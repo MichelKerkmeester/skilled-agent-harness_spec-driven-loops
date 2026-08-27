@@ -1,42 +1,18 @@
 ---
-title: "Implementation Plan: Phase 5: comment-extraction [template:level-1/plan.md]"
-description: "[2-3 sentences: what this implements and the technical approach]"
+title: "Implementation Plan: Phase 5: comment-extraction"
+description: "Move instructional HTML comments out of authoring templates into discoverable sidecars while preserving load-bearing markers. Add additive per-document byte budgets and review the reduced golden snapshots without changing the renderer."
 trigger_phrases:
-  - "implementation"
-  - "plan"
-  - "name"
-  - "template"
-  - "plan core"
-importance_tier: "normal"
+  - "comment extraction plan"
+  - "instructional comment leakage"
+  - "template guidance sidecar"
+  - "rendered byte budget"
+importance_tier: "important"
 contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "scaffold/005-comment-extraction"
-    last_updated_at: "2026-08-26T05:33:59Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-comment-extraction"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Implementation Plan: Phase 5: comment-extraction
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!--
-SELF-CHECK:
-- Confirm the plan names the simplest viable approach, affected surfaces, and verification path.
-- Match phases to the stated scope; remove setup theater that does not change the outcome.
-FAILURE MODES:
-- Over-planning, missing rollback, and treating assumptions as dependencies.
--->
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 
 ---
 
@@ -47,13 +23,13 @@ FAILURE MODES:
 
 | Aspect | Value |
 |--------|-------|
-| **Language/Stack** | [e.g., TypeScript, Python 3.11] |
-| **Framework** | [e.g., React, FastAPI] |
-| **Storage** | [e.g., PostgreSQL, None] |
-| **Testing** | [e.g., Jest, pytest] |
+| **Language/Stack** | Markdown templates, HTML comments, TypeScript, Vitest, and Node.js |
+| **Framework** | system-spec-kit inline-gate renderer and scaffold contracts |
+| **Storage** | Template sidecar guidance and golden snapshot output |
+| **Testing** | Fresh scaffolds, comment scans, marker checks, byte-budget assertions, and snapshot review |
 
 ### Overview
-[2-3 sentences: what this implements and the technical approach]
+Move SELF-CHECK, FAILURE-MODES, voice-guide, and footer-size comments from `.md.tmpl` files into sidecar guidance under `templates/manifest/guidance/`. Preserve `SPECKIT_LEVEL` and `SPECKIT_TEMPLATE_SOURCE`, add the measured 90% byte ceilings, link the sidecars from the template guide, and leave the renderer unchanged.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -62,14 +38,14 @@ FAILURE MODES:
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] The spec distinguishes instructional comments from load-bearing template markers.
+- [x] The measured baselines and 90% byte ceilings are recorded.
+- [x] The template, sidecar, snapshot, test, and author-guide paths are identified.
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Tests passing (if applicable)
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] Fresh scaffolds contain no targeted instructional comments and retain both required markers.
+- [ ] Level 1 spec.md, Level 1 implementation-summary.md, and Level 2 spec.md stay at or below 3,852 B, 3,028 B, and 5,964 B.
+- [ ] Sidecar guidance is linked from the template guide and the reviewed snapshot re-baseline contains only intended reductions.
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -78,34 +54,18 @@ FAILURE MODES:
 ## 3. ARCHITECTURE
 
 ### Pattern
-[MVC | MVVM | Clean Architecture | Serverless | Monolith | Other]
+Sidecar author guidance with additive rendered-byte budgets. The renderer continues to process only the templates and never needs to load the sidecars.
 
 ### Key Components
-- **[Component 1]**: [Purpose]
-- **[Component 2]**: [Purpose]
+- **Authoring templates**: `.opencode/skills/system-spec-kit/templates/manifest/*.md.tmpl` lose instructional comments but retain `SPECKIT_LEVEL` and `SPECKIT_TEMPLATE_SOURCE`.
+- **Guidance sidecars**: `.opencode/skills/system-spec-kit/templates/manifest/guidance/` stores the relocated author instructions.
+- **Snapshot assertions**: `.opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts` enforces per-document byte ceilings and marker preservation.
+- **Snapshot evidence**: `.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` records the reviewed reduced renders.
+- **Author discoverability**: `.opencode/skills/system-spec-kit/references/templates/template-guide.md` links authors to the sidecar guidance.
 
 ### Data Flow
-[Brief description of how data moves through the system]
+Authoring instructions move from inline comments to sidecars. The unchanged inline-gate renderer emits templates without those comments. Fresh scaffold output is scanned for comment leakage, checked for markers, measured against the byte budgets, and compared with the reviewed snapshot re-baseline.
 <!-- /ANCHOR:architecture -->
-
----
-
-<!-- ANCHOR:affected-surfaces -->
-## FIX ADDENDUM: AFFECTED SURFACES
-
-Use this section when `research_intent=fix_bug`, when planning from a deep-review FAIL/CONDITIONAL verdict, or when any finding touches security, path handling, env precedence, schema boundaries, persistence, public responses, or shared policy.
-
-| Surface | Current Role | Action | Verification |
-|---------|--------------|--------|--------------|
-| [producer/helper/policy] | [what owns the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-| [consumer/status/docs/tests] | [how it observes the behavior] | [update/unchanged/not a consumer] | [grep/test/doc evidence] |
-
-Required inventories:
-- Same-class producers: `rg -n '<field|string|helper|literal|error-pattern>' <module-or-files>`.
-- Consumers of changed symbols: `rg -n '<changedSymbol>|<changedConstant>|<changedPublicField>' . --glob '*.ts' --glob '*.js' --glob '*.md'`.
-- Matrix axes: list every independent input axis and the required rows before implementation.
-- Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
-<!-- /ANCHOR:affected-surfaces -->
 
 ---
 
@@ -113,19 +73,18 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 
 ### Phase 1: Setup
-- [ ] Project structure created
-- [ ] Dependencies installed
-- [ ] Development environment ready
+- [ ] Inventory instructional comments in every manifest template and separate them from the two load-bearing markers.
+- [ ] Recompute the real renderer baselines for Level 1 spec.md, Level 1 implementation-summary.md, and Level 2 spec.md before setting the 90% ceilings.
 
 ### Phase 2: Core Implementation
-- [ ] [Core feature 1]
-- [ ] [Core feature 2]
-- [ ] [Core feature 3]
+- [ ] Create sidecar guidance files and link them from `template-guide.md`.
+- [ ] Remove only SELF-CHECK, FAILURE-MODES, voice-guide, and footer-size comments from the manifest templates.
+- [ ] Add additive byte-budget assertions and update the golden snapshot baseline for the reduced renders.
 
 ### Phase 3: Verification
-- [ ] Manual testing complete
-- [ ] Edge cases handled
-- [ ] Documentation updated
+- [ ] Render fresh scaffolds at each supported level and confirm no targeted instructional comment remains.
+- [ ] Confirm `SPECKIT_LEVEL` and `SPECKIT_TEMPLATE_SOURCE` still resolve in level detection and snapshots.
+- [ ] Review the snapshot diff, confirm the renderer source is unchanged, and verify all byte ceilings.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,9 +94,10 @@ Required inventories:
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Unit | [Components/functions] | [Jest/pytest/etc.] |
-| Integration | [API endpoints/flows] | [Tools] |
-| Manual | [User journeys] | Browser |
+| Template scan | Targeted instructional comments versus load-bearing markers | `rg` across `.opencode/skills/system-spec-kit/templates/manifest/` |
+| Byte budget | Level 1 spec.md, Level 1 implementation-summary.md, and Level 2 spec.md | `scaffold-golden-snapshots.vitest.ts` |
+| Snapshot | Reduced renders and marker output at supported levels | Vitest and `scaffold-golden-snapshots.vitest.ts.snap` |
+| Discoverability | Sidecar links and author guidance | `template-guide.md` link inspection |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -147,7 +107,11 @@ Required inventories:
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| [System/Library] | [Internal/External] | [Green/Yellow/Red] | [Impact] |
+| Inline-gate renderer | Internal render contract | Green | Comment extraction could require an out-of-scope renderer change |
+| `SPECKIT_LEVEL` and `SPECKIT_TEMPLATE_SOURCE` markers | Level and snapshot contract | Green | Fresh scaffolds could fail detection |
+| Golden snapshot harness | Internal verification | Green | The byte reduction and output scope cannot be reviewed |
+| Template guide | Author guidance surface | Green | Sidecars would be difficult to discover |
+| Measured rendered-byte baselines | Acceptance thresholds | Yellow | The 90% limits could be inaccurate |
 <!-- /ANCHOR:dependencies -->
 
 ---
@@ -155,16 +119,9 @@ Required inventories:
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: [Conditions requiring rollback]
-- **Procedure**: [How to revert changes]
+- **Trigger**: A marker failure, a byte-budget failure, an unintended snapshot diff, missing sidecar guidance, or any renderer change.
+- **Procedure**:
+  1. Restore the prior manifest templates, snapshot baseline, byte assertions, and guide links as one phase change set.
+  2. Remove the phase sidecar files if the prior template contract is restored.
+  3. Confirm the original scaffold output and renderer behavior before reopening extraction.
 <!-- /ANCHOR:rollback -->
-
----
-
-<!--
-CORE TEMPLATE (~90 lines)
-- Essential technical planning
-- Simple phase structure
-- Add L2/L3 addendums for complexity
--->
-

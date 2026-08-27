@@ -133,7 +133,7 @@ then
     echo "Error: debug-delegation template contract could not be resolved" >&2
     exit 1
 fi
-DEBUG_TEMPLATE_PATH="${TEMPLATES_BASE}/manifest/debug-delegation.md.tmpl"
+DEBUG_TEMPLATE_PATH="${TEMPLATES_BASE}/addons/debug-delegation.md.tmpl"
 INLINE_GATE_RENDERER="${SCRIPT_DIR}/../templates/inline-gate-renderer.sh"
 DEBUG_TEMPLATE_RENDERED="$("$INLINE_GATE_RENDERER" --level 1 "$DEBUG_TEMPLATE_PATH")"
 DEBUG_TEMPLATE_SOURCE_MARKER="$(printf '%s\n' "$DEBUG_TEMPLATE_RENDERED" | grep -m1 'SPECKIT_TEMPLATE_SOURCE:' | sed 's/^<!-- //; s/ -->$//' || true)"

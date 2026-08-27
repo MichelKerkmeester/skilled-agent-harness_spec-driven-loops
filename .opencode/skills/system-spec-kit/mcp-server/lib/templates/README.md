@@ -28,7 +28,7 @@ templates/
 
 | File | Role |
 |---|---|
-| `level-contract-resolver.ts` | Loads `templates/manifest/spec-kit-docs.json`, validates level rows, normalizes section gates and exposes serializable contract data. |
+| `level-contract-resolver.ts` | Loads `templates/spec-kit-docs.json`, validates level rows, normalizes section gates and exposes serializable contract data. |
 
 ---
 
@@ -59,5 +59,5 @@ npm test -- --runInBand
 
 ## 7. RELATED
 
-- `../../../templates/manifest/spec-kit-docs.json`
+- `../../../templates/spec-kit-docs.json`
 - `../spec/`

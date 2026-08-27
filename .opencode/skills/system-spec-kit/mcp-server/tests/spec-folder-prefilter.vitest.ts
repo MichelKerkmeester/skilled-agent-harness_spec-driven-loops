@@ -85,6 +85,7 @@ vi.mock('../lib/search/embedding-expansion', () => ({
 
 // Search-flags — disable all optional features to keep tests deterministic
 vi.mock('../lib/search/search-flags', () => ({
+  parseFlagTristate: vi.fn((_name: string, defaultValue: boolean) => defaultValue),
   isMultiQueryEnabled: vi.fn(() => false),
   isEmbeddingExpansionEnabled: vi.fn(() => false),
   isSearchFallbackEnabled: vi.fn(() => false),
@@ -121,7 +122,6 @@ function makePipelineConfig(overrides: Partial<PipelineConfig> = {}): PipelineCo
     tier: undefined,
     contextType: undefined,
     includeArchived: false,
-    includeConstitutional: false,
     includeContent: false,
     anchors: undefined,
     qualityThreshold: undefined,
@@ -197,6 +197,7 @@ function seedRows(
 // 1. Stage 1 — specFolder forwarded to vector channel
 // ═══════════════════════════════════════════════════════════════
 
+// constitutional tier removed
 // SKIP: Stage-1 forwarding mocks no longer intercept entry points after pipeline refactor; remock deferred
 describe.skip('R9: Stage 1 spec-folder forwarding — vector channel', () => {
   beforeEach(() => clearCallLogs());
@@ -348,14 +349,10 @@ describe.skip('R9: Stage 1 spec-folder forwarding — constitutional injection',
   beforeEach(() => clearCallLogs());
 
   it('R9-07: all vectorSearch calls (primary + constitutional) carry the same specFolder', async () => {
-    // When includeConstitutional is true and the primary channel returns no constitutional
-    // Results, Stage 1 does an extra vectorSearch call with tier='constitutional'.
-    // Both calls must carry the same specFolder.
     const input: Stage1Input = {
       config: makePipelineConfig({
         searchType: 'vector',
         specFolder: 'specs/007-auth',
-        includeConstitutional: true,
       }),
     };
 

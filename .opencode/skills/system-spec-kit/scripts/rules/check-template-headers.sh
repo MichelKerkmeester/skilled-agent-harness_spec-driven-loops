@@ -152,6 +152,10 @@ run_check() {
     done < <(node "$helper_script" docs "$contract_level")
 
     if [[ -f "$folder/checklist.md" ]]; then
+        compare_headers "$folder/checklist.md" "checklist.md"
+    fi
+
+    if [[ -f "$folder/checklist.md" ]]; then
         local bare_priority_count=0
         local chk_count=0
         # Match both lowercase and uppercase X in checkbox class

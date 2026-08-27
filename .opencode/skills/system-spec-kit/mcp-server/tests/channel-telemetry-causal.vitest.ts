@@ -32,7 +32,6 @@ function config(): PipelineConfig {
     searchType: 'hybrid',
     limit: 5,
     includeArchived: false,
-    includeConstitutional: false,
     includeContent: false,
     minState: '',
     applyStateLimits: false,

@@ -1,35 +1,18 @@
 ---
-title: "Implementation Summary [template:level-1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Template Reduction Verification"
+description: "Recorded the packet-wide verification of template reduction, compatibility, scaffolding, and structural checks, including one pre-existing semantic-empty failure."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "scaffold/006-verify-rollout"
-    last_updated_at: "2026-08-26T05:33:59Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/006-verify-rollout"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+  - "template reduction verification"
+  - "golden snapshot suite"
+  - "legacy packet compatibility"
+  - "check-anchors compare"
+importance_tier: "important"
+contextType: "implementation"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 ---
 
@@ -39,7 +22,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-verify-rollout |
-| **Completed** | 2026-08-26 |
+| **Completed** | Not stated in the reviewed evidence |
+| **Authored** | 2026-08-27 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,28 +32,17 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+This phase closed the verification loop for the template-reduction packet without adding a new template or validator change. It checked compilation, generated snapshots, fresh scaffolds, legacy compatibility, and the two structural anchor views across the landed changes.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Verification close-out
 
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The close-out confirms that the TypeScript build is green, golden snapshots are green, fresh L1, L2, and L3 scaffolds are valid, legacy packets retain backward-compatible behavior, and `check-anchors` agrees with `template-structure.js compare`. The semantic-empty `FRONTMATTER_VALID` test remains the one recorded failure and also fails at `HEAD`, so it is pre-existing and outside this packet's change scope.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `(none)` | Verification only | This phase records evidence for the changes landed by the preceding phases. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +50,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The phase ran the packet-wide verification set against the landed source and generated outputs, compared fresh and legacy behavior, reviewed structural-check agreement, and recorded the pre-existing semantic-empty failure rather than masking it.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +58,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Treat the semantic-empty failure as pre-existing | The same test fails at `HEAD`, so the close-out does not attribute it to template reduction. |
+| Require legacy compatibility evidence | The merged tasks contract must not change shipped packet behavior. |
+| Compare both structural checks | Agreement between `check-anchors` and `template-structure.js compare` closes the prior verification gap. |
+| Keep close-out write-free | This phase verifies the preceding changes and does not introduce another template or validator change. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +71,14 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| TypeScript compilation | PASS, `tsc` completed successfully. |
+| Golden snapshot suite | PASS, the rebaselined snapshots are green. |
+| Fresh L1, L2, and L3 scaffolds | PASS, `create.sh` output is valid at each checked level. |
+| Legacy packet backward compatibility | PASS, legacy packets retain compatible validation and derived behavior. |
+| `check-anchors` and `template-structure.js compare` | PASS, both structural checks agree. |
+| Semantic-empty `FRONTMATTER_VALID` test | FAIL, the same failure is present at `HEAD` and remains pre-existing and out of scope. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +86,5 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **One pre-existing validation failure remains.** The semantic-empty authored-frontmatter test fails in the baseline and final state; resolving it requires a separate change.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-

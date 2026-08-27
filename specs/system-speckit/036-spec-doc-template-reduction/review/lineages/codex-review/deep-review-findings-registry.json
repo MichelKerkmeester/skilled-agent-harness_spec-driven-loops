@@ -1,0 +1,36 @@
+{
+  "sessionId": "fanout-codex-review-1787856238501-fiz898",
+  "generation": 1,
+  "lineageMode": "auto",
+  "openFindings": [
+    {"id":"F001","severity":"P1","dimension":"traceability","title":"Declared review scope is invalid after the template move","file":"specs/system-speckit/036-spec-doc-template-reduction/goal-file-manifest.txt:30-39","firstSeenIteration":1,"lastSeenIteration":10,"status":"active","contentHash":"f001-scope-v1"},
+    {"id":"F002","severity":"P1","dimension":"correctness","title":"Debug-delegation scaffold resolves a removed template path","file":".opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh:136","firstSeenIteration":1,"lastSeenIteration":10,"status":"active","contentHash":"f002-runtime-v1"},
+    {"id":"F003","severity":"P1","dimension":"traceability","title":"Completed summaries contradict Draft specs and unchecked task ledgers","file":"specs/system-speckit/036-spec-doc-template-reduction/007-lazy-addon-docs/implementation-summary.md:21-22","firstSeenIteration":2,"lastSeenIteration":10,"status":"active","contentHash":"f003-state-v1"},
+    {"id":"F004","severity":"P1","dimension":"traceability","title":"Phase 007/008 execution documents target the removed manifest tree","file":"specs/system-speckit/036-spec-doc-template-reduction/007-lazy-addon-docs/tasks.md:39-68","firstSeenIteration":3,"lastSeenIteration":10,"status":"active","contentHash":"f004-path-v1"},
+    {"id":"F005","severity":"P2","dimension":"traceability","title":"Parent completion state is stale relative to the child phase map","file":"specs/system-speckit/036-spec-doc-template-reduction/spec.md:49,103-109","firstSeenIteration":4,"lastSeenIteration":10,"status":"active","contentHash":"f005-parent-v1"},
+    {"id":"F006","severity":"P2","dimension":"security","title":"Feature-name substitution is fragile for replacement metacharacters","file":".opencode/skills/system-spec-kit/scripts/spec/create.sh:529-545","firstSeenIteration":5,"lastSeenIteration":10,"status":"active","contentHash":"f006-input-v1"},
+    {"id":"F007","severity":"P2","dimension":"maintainability","title":"Maintainer guides still describe the removed manifest directory","file":".opencode/skills/system-spec-kit/templates/README.md:21-22,127-137","firstSeenIteration":6,"lastSeenIteration":10,"status":"active","contentHash":"f007-docs-v1"},
+    {"id":"F008","severity":"P2","dimension":"maintainability","title":"Packet templates retain template-session and template-tag defaults","file":".opencode/skills/system-spec-kit/templates/packet-types/review.spec.md.tmpl:1-20","firstSeenIteration":7,"lastSeenIteration":10,"status":"active","contentHash":"f008-residue-v1"},
+    {"id":"F009","severity":"P1","dimension":"traceability","title":"Manifest omits in-target phase coverage while admitting packet 037 files","file":"specs/system-speckit/036-spec-doc-template-reduction/goal-file-manifest.txt:64-72","firstSeenIteration":8,"lastSeenIteration":10,"status":"active","contentHash":"f009-coverage-v1"}
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": ["F001","F002","F003","F004","F005","F006","F007","F008","F009"],
+  "findingHistory": [
+    {"iteration":1,"new":["F001","F002"],"refined":[]},
+    {"iteration":2,"new":["F003"],"refined":["F001","F002"]},
+    {"iteration":3,"new":["F004"],"refined":["F001","F002","F003"]},
+    {"iteration":4,"new":["F005"],"refined":["F001","F003","F004"]},
+    {"iteration":5,"new":["F006"],"refined":["F001","F002","F003","F004","F005"]},
+    {"iteration":6,"new":["F007"],"refined":["F001","F002","F003","F004","F005","F006"]},
+    {"iteration":7,"new":["F008"],"refined":["F001","F002","F003","F004","F005","F006","F007"]},
+    {"iteration":8,"new":["F009"],"refined":["F001","F003","F004","F005","F007","F008"]},
+    {"iteration":9,"new":[],"refined":["F001","F002","F003","F004","F005","F006","F007","F008","F009"]},
+    {"iteration":10,"new":[],"refined":["F001","F002","F003","F004","F005","F006","F007","F008","F009"]}
+  ],
+  "counts": {"P0": 0, "P1": 5, "P2": 4, "open": 9, "resolved": 0},
+  "dimensionsCovered": ["correctness", "security", "traceability", "maintainability"],
+  "lastIteration": 10,
+  "convergenceScore": 0.762,
+  "stopReason": "max-iterations",
+  "releaseReadinessState": "release-blocking"
+}

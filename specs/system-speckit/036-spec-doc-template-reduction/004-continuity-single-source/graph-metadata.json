@@ -16,13 +16,13 @@
       "FRONTMATTER_MEMORY_BLOCK",
       "resume ladder",
       "spec core",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "continuity single source plan",
+      "FRONTMATTER_MEMORY_BLOCK validator",
+      "SESSION_LINEAGE scope",
+      "resume ladder continuity",
+      "continuity single source tasks",
+      "validator-first template dedup",
+      "canonical implementation-summary"
     ],
     "key_topics": [
       "memory",
@@ -33,12 +33,12 @@
       "ladder",
       "spec",
       "core",
-      "implementation",
+      "single",
+      "source",
       "plan",
-      "name",
-      "template"
+      "validator"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "draft",
     "key_files": [
       "implementation-summary.md",
@@ -120,7 +120,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Validator",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,25 +138,19 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -186,16 +186,16 @@
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
+        "name": "Source Continuity",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The ~20-line `memory.continuity` YAML block is re-emitted in spec/plan/tasks/checklist/implementation-summary — ~227 near-identical lines per L2 packet",
+    "causal_summary": "The ~16-line `memory.continuity` YAML block is re-emitted in spec/plan/tasks/checklist/implementation-summary, about 80 near-identical lines across five docs in an L2 packet",
     "created_at": "2026-08-26T05:33:57Z",
-    "last_save_at": "2026-08-26T08:01:30.532Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-27T17:51:07.190Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:95d80a806ddfa6afe58db227af2abba492156189abea82fc34f81f10d2f86e60",
+    "source_fingerprint": "sha256:131ebc345b00ad5e1e95e8a9bae3cbaff4dfe413a4f20264d849ac71ea01a837",
     "source_doc_hashes": {
-      "spec.md": "76ba95ebb0e81e9ba3d464e36217a6350b13ce67468e6095e824d5828b18efa8",
-      "plan.md": "a398a7cec861c9a16cd54e0869835440350d967ce316a555c5b645fd132b42a7",
-      "tasks.md": "26168ed223ff2e49e2c1c53503c974cd36d8f51644d9160879add279cdf682cd",
-      "implementation-summary.md": "916b8b07a43f03796fbd0d75ab0ad0b5d417472216fe80ca56dae6b7b6bed813"
+      "spec.md": "a94c81dc2043e3134f1f02f975e9927c2535d55c6f2d89d439de91f934081fc4",
+      "plan.md": "866435619439a841554cf80d5d404d98c5729cca2c7adc67a7c48a737f7d62e5",
+      "tasks.md": "b149c6d1aebee1f445dd87188129430c055eaf18efec42e3ea83ed2a8861732b",
+      "implementation-summary.md": "e4a5f928f1ac9d2b60253de030e712e86e388797eda19fe2b46fb798e616c7e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

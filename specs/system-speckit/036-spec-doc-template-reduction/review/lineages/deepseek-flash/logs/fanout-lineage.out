@@ -1,0 +1,202 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+All protocol and target context is loaded. I'm now running the deep-review loop as the `deepseek-flash` fan-out lineage. Emitting the pre-bound setup:
+
+```
+BINDING: review_target = specs/system-speckit/036-spec-doc-template-reduction
+BINDING: review_target_type = spec-folder
+BINDING: review_dimensions = all (correctness, security, traceability, maintainability)
+BINDING: spec_folder = specs/system-speckit/036-spec-doc-template-reduction
+BINDING: execution_mode = AUTONOMOUS
+BINDING: lineage_mode = auto
+BINDING: artifact_dir = specs/system-speckit/036-spec-doc-template-reduction/review/lineages/deepseek-flash (config.fanout_lineage_artifact_dir override; resolveArtifactRoot step skipped as directed)
+BINDING: session_id = fanout-deepseek-flash-1787805958244-hkfwxl
+BINDING: executor = cli-devin model=deepseek-v4-flash-max
+BINDING: loop_type = review | stopPolicy = max-iterations | maxIterations = 10 | convergenceThreshold = 0.1
+```
+
+## PHASE INIT
+
+Writing the state packet (config, state log, findings registry, strategy) inside the lineage dir:
+
+
+
+
+
+**PHASE MAIN LOOP** — Iteration 1: D1 Correctness (inventory pass + scaffold-state audit).
+
+Iteration 1 evidence gathered: all five 002-006 `plan.md` files are un-authored scaffold while their specs are authored; continuity blocks carry malformed `scaffold-scaffold/` session ids; 001 spec.md is placeholder despite being cited as the R1-R6 research foundation. Writing iteration-001.md, JSONL delta, and state updates:
+
+
+
+
+
+
+
+Iteration 1 closed (3 P1, 5 P2, verdict CONDITIONAL). **Iteration 2**: D1 Correctness — template corpus (level-1 examples):
+
+Level-1 examples reveal garbled frontmatter descriptions, example-vs-scaffold drift, and leaking EXAMPLE comments. Verifying template composition sources in the manifest:
+
+
+
+Root cause of F002 located in `create.sh` (double `scaffold-` prefix at lines 529/545 and 615), and `SCAFFOLD_VALIDATION_COUNTS` confirmed as create.sh scaffold residue. Writing iteration 2:
+
+
+
+
+
+
+
+Iteration 2 closed. **Iteration 3**: D2 Security — validator/generator trust boundaries (check-anchors.sh, level-2 examples):
+
+
+
+
+
+Both claims verified at code level: `is_phase_parent` lives only in `scripts/lib/shell-common.sh:48`, and the deriveStatus precedence `implementation-summary > checklist > tasks` is confirmed at `graph-metadata-parser.ts:1186-1198`. Writing iteration 3:
+
+
+
+
+
+
+
+Iteration 3 closed. **Iteration 4**: D3 Traceability — spec_code protocol sweep of 002-006 normative claims:
+
+Key verification results: `resume-ladder.ts` MISSING at claimed path; decision-record.md.tmpl has no L3 markers; research.md.tmpl exactly 948 lines. Digging into the two anomalies:
+
+
+
+Iteration 4 evidence complete: resume-ladder source lives at `lib/resume/` (not `lib/graph/` as 004 claims), and the decision-record skeleton is already shared — the "138 identical lines" premise is stale. Writing iteration 4:
+
+
+
+
+
+
+
+**Iteration 5**: D3 Traceability — cross-doc consistency (tasks/implementation-summary/graph-metadata):
+
+
+
+
+
+Iteration 5 evidence complete — implementation-summary scaffolds claim "Completed", graph-metadata orphans all children, description.json carries placeholder pollution. Writing iteration 5:
+
+
+
+
+
+
+
+**Iteration 6**: D4 Maintainability — quantitative bloat measurements (continuity duplication, comment share, byte budgets):
+
+
+
+
+
+
+
+Measurements in. Writing iteration 6:
+
+
+
+
+
+
+
+**Iteration 7**: 002 BLOCKER divergence deep-dive — template-structure.js compare vs check-anchors.sh:
+
+
+
+BLOCKER structural claims verified at code level; found a silent-validation-skip mechanism (F025). Writing iteration 7:
+
+
+
+
+
+
+
+
+
+
+
+
+
+Continuity save path fully mapped — answers the 002/004 open question at code level. Writing iteration 8:
+
+
+
+**Iteration 9**: broadening — overlay protocols (feature_catalog_code, playbook_capability) + 001 research + research.md.tmpl taxonomy:
+
+
+
+
+
+
+
+
+
+Iteration 9 evidence complete — 002's "5 reader surfaces" fully verified, research.md.tmpl widget taxonomy confirmed, catalog consistent. Writing iteration 9:
+
+
+
+
+
+
+
+
+
+Stabilization pass complete — F009 now confirmed systemic across level-2 examples too. Writing iteration 10 (final):
+
+
+
+
+
+All 10 iterations complete. Finalizing state and running **PHASE SYNTHESIS**:
+
+
+
+
+
+
+
+
+
+Final verification of the lineage packet:
+
+Lineage run complete. All phases executed per the deep-review protocol:
+
+- **phase_init**: config, state log, findings registry, strategy packet written to the lineage dir
+- **phase_main_loop**: 10/10 iterations (max-iterations stop policy; early convergence treated as telemetry with angles broadened) — every iteration produced `iteration-NNN.md` + JSONL delta + strategy/registry/dashboard updates; all 8 P1 findings carried typed claim-adjudication packets
+- **phase_synthesis**: dedup + severity reconciliation + adversarial P0 replay + `review-report.md` (9 core sections; resource-map gate skipped — no resource-map.md at init) + `synthesis_complete` event
+
+**Result**: verdict **CONDITIONAL** — 0 P0, 8 P1, 18 P2. Protocol coverage: spec_code partial (10 pass/2 fail), checklist_evidence FAIL, feature_catalog_code pass, playbook_capability partial. Verified at code level: the 002 BLOCKER's structural diagnosis (two classification paths, external `is_phase_parent`), the "five reader surfaces" claim (5/5), the decision-record 138-line premise (stale), the comment-leakage premise (19-52% per scaffold doc), and the generate-context save-path behavior. All 26 findings carry file:line evidence; all artifacts parse cleanly; no writes occurred outside `review/lineages/deepseek-flash`.
+
+FANOUT_LINEAGE_COMPLETE:deepseek-flash

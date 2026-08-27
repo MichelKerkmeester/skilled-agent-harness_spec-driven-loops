@@ -1,35 +1,18 @@
 ---
-title: "Implementation Summary [template:level-1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Template Reduction Analysis"
+description: "Research-backed analysis that maps six template-reduction recommendations to implementation requirements, contract surfaces, and verification gates."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "scaffold/001-analysis"
-    last_updated_at: "2026-08-26T05:33:56Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/001-analysis"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+  - "template reduction analysis"
+  - "spec-kit recommendations"
+  - "template contract map"
+  - "byte budget"
+importance_tier: "important"
+contextType: "implementation"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 ---
 
@@ -39,7 +22,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-analysis |
-| **Completed** | 2026-08-26 |
+| **Completed** | Not stated in the reviewed evidence |
+| **Authored** | 2026-08-27 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,28 +32,20 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+This phase converted the template-reduction research into an implementation contract. The research report records measured duplication, instructional-comment leakage, continuity repetition, acceptance-criteria restatement, and the routing risk in the research taxonomy. The authored specification maps those findings to six requirements and the plan and tasks documents define the ordered child-phase handoff.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Research and recommendations
 
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The analysis ranks the work as R1 shared-core deduplication, R6 byte-budget assertions, R2 comment extraction, R3 tasks and checklist merge, R4 continuity consolidation, and R5 research-taxonomy review. It preserves renderer markers, content-router anchors, legacy packet reads, and validator behavior as contract boundaries. It defers research-taxonomy neutralization until its routing coupling receives a dedicated review.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `001-analysis/research/research.md` | Authored | Records measured findings, evidence sources, ranked recommendations, and unresolved questions. |
+| `001-analysis/spec.md` | Modified | Defines six requirements, acceptance criteria, scope boundaries, risks, and success criteria. |
+| `001-analysis/plan.md` | Modified | Maps research evidence to contract surfaces, phase order, dependencies, and proof gates. |
+| `001-analysis/tasks.md` | Modified | Maps each requirement to a concrete analysis task and child-phase handoff check. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +53,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The phase used the research report and direct source evidence to author the specification, plan, and task mapping; it made no production template or runtime code change.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +61,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Map each recommendation to one requirement | Keeps implementation scope and verification ownership traceable. |
+| Sequence low-risk and byte-preserving work before contract migrations | Lets later validator and document-shape changes inherit earlier evidence. |
+| Preserve markers, anchors, and legacy reads as explicit boundaries | These surfaces are consumed by the renderer, routing, validation, and status logic. |
+| Defer research-taxonomy neutralization | The research template shares routing anchors, so taxonomy changes need a separate route review. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +74,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Research report evidence and measurements | PASS, the report contains cited source surfaces, measured baselines, ranked recommendations, and open questions. |
+| Six-requirement specification | PASS, the specification replaces placeholders with six explicit requirements and acceptance criteria. |
+| Plan and task traceability | PASS, the documents record the sequence R1, R6, R2, R3, R4, then R5 and name objective gates. |
+| Analysis-phase scope | PASS, the phase documents define downstream work without changing production templates or runtime code. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +87,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Analysis only.** The phase does not implement the template, validator, status, or snapshot changes described by its recommendations.
+2. **Rendered-byte totals remain open.** The report records baselines and requires recomputation with the committed renderer after comment extraction.
+3. **Research taxonomy remains coupled.** Neutralization is deferred until a dedicated routing review can confirm the anchor contract.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-

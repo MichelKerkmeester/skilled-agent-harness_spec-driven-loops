@@ -21,10 +21,10 @@ Complete specifications for all documentation levels using the manifest-backed L
 
 ### Template Architecture: Manifest-Backed Level Contracts
 
-Templates use a manifest-backed model where `templates/manifest/spec-kit-docs.json` selects rendered `*.md.tmpl` documents for each Level:
+Templates use a manifest-backed model where `templates/spec-kit-docs.json` selects rendered `*.md.tmpl` documents for each Level:
 
 ```
-templates/manifest/
+templates/
 ├── spec-kit-docs.json       # Level contract and document membership
 ├── spec.md.tmpl             # Requirements and scope
 ├── plan.md.tmpl             # Technical approach
@@ -44,7 +44,7 @@ templates/manifest/
 
 | Path | Purpose | When to Use |
 |------|---------|-------------|
-| `templates/manifest/spec-kit-docs.json` | Level contract and document matrix | **ALWAYS use this through `create.sh` for new specs** |
+| `templates/spec-kit-docs.json` | Level contract and document matrix | **ALWAYS use this through `create.sh` for new specs** |
 | Level source contract | Source components | Reference only (understanding architecture) |
 | Level extension contract | Level additions | Reference only (understanding architecture) |
 
@@ -93,10 +93,10 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 
 ### Required Files (Baseline)
 
-- `spec.md` - Requirements and user stories (scaffolded from `templates/manifest/spec.md.tmpl`)
-- `plan.md` - Technical implementation plan (rendered from `templates/manifest/plan.md.tmpl`)
-- `tasks.md` - Task breakdown by user story (rendered from `templates/manifest/tasks.md.tmpl`)
-- `implementation-summary.md` - Post-implementation documentation (rendered from `templates/manifest/implementation-summary.md.tmpl`)
+- `spec.md` - Requirements and user stories (scaffolded from `templates/core/spec.md.tmpl`)
+- `plan.md` - Technical implementation plan (rendered from `templates/core/plan.md.tmpl`)
+- `tasks.md` - Task breakdown by user story (rendered from `templates/core/tasks.md.tmpl`)
+- `implementation-summary.md` - Post-implementation documentation (rendered from `templates/core/implementation-summary.md.tmpl`)
 
 ### Optional Files
 
@@ -145,16 +145,16 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 ### Template Sources
 
 **Manifest templates (scaffolded by `create.sh`):**
-- `templates/manifest/spec.md.tmpl`
-- `templates/manifest/plan.md.tmpl`
-- `templates/manifest/tasks.md.tmpl`
-- `templates/manifest/implementation-summary.md.tmpl`
+- `templates/core/spec.md.tmpl`
+- `templates/core/plan.md.tmpl`
+- `templates/core/tasks.md.tmpl`
+- `templates/core/implementation-summary.md.tmpl`
 
 **Core source (for reference):**
-- `templates/manifest/spec.md.tmpl`
-- `templates/manifest/plan.md.tmpl`
-- `templates/manifest/tasks.md.tmpl`
-- `templates/manifest/implementation-summary.md.tmpl`
+- `templates/core/spec.md.tmpl`
+- `templates/core/plan.md.tmpl`
+- `templates/core/tasks.md.tmpl`
+- `templates/core/implementation-summary.md.tmpl`
 
 ### Template Adaptation
 
@@ -228,16 +228,16 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 ### Template Sources
 
 **Manifest templates (scaffolded by `create.sh`):**
-- `templates/manifest/spec.md.tmpl`
-- `templates/manifest/plan.md.tmpl`
-- `templates/manifest/tasks.md.tmpl`
-- `templates/manifest/implementation-summary.md.tmpl`
-- `templates/manifest/checklist.md.tmpl`
+- `templates/core/spec.md.tmpl`
+- `templates/core/plan.md.tmpl`
+- `templates/core/tasks.md.tmpl`
+- `templates/core/implementation-summary.md.tmpl`
+- `templates/addons/checklist.md.tmpl`
 
 **Addendum source (+Verify):**
-- `templates/manifest/spec.md.tmpl`
-- `templates/manifest/plan.md.tmpl`
-- `templates/manifest/tasks.md.tmpl`
+- `templates/core/spec.md.tmpl`
+- `templates/core/plan.md.tmpl`
+- `templates/core/tasks.md.tmpl`
 
 ### Template Adaptation
 
@@ -339,20 +339,20 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 ### Template Sources
 
 **Manifest templates (scaffolded by `create.sh`):**
-- `templates/manifest/spec.md.tmpl`
-- `templates/manifest/plan.md.tmpl`
-- `templates/manifest/tasks.md.tmpl`
-- `templates/manifest/checklist.md.tmpl`
-- `templates/manifest/decision-record.md.tmpl`
-- `templates/manifest/implementation-summary.md.tmpl`
+- `templates/core/spec.md.tmpl`
+- `templates/core/plan.md.tmpl`
+- `templates/core/tasks.md.tmpl`
+- `templates/addons/checklist.md.tmpl`
+- `templates/addons/decision-record.md.tmpl`
+- `templates/core/implementation-summary.md.tmpl`
 
 **Addendum source (+Arch):**
-- `templates/manifest/spec.md.tmpl`
-- `templates/manifest/plan.md.tmpl`
-- `templates/manifest/tasks.md.tmpl`
+- `templates/core/spec.md.tmpl`
+- `templates/core/plan.md.tmpl`
+- `templates/core/tasks.md.tmpl`
 
 **Optional:**
-- `templates/manifest/research.md.tmpl` (render into `research/research.md` when needed)
+- `templates/addons/research.md.tmpl` (render into `research/research.md` when needed)
 
 ### Template Adaptation
 
@@ -474,20 +474,20 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 ### Template Sources
 
 **Manifest templates (scaffolded by `create.sh`):**
-- `templates/manifest/spec.md.tmpl`
-- `templates/manifest/plan.md.tmpl`
-- `templates/manifest/tasks.md.tmpl`
-- `templates/manifest/checklist.md.tmpl`
-- `templates/manifest/decision-record.md.tmpl`
-- `templates/manifest/implementation-summary.md.tmpl`
+- `templates/core/spec.md.tmpl`
+- `templates/core/plan.md.tmpl`
+- `templates/core/tasks.md.tmpl`
+- `templates/addons/checklist.md.tmpl`
+- `templates/addons/decision-record.md.tmpl`
+- `templates/core/implementation-summary.md.tmpl`
 
 **Addendum source (+Govern):**
-- `templates/manifest/spec.md.tmpl`
-- `templates/manifest/plan.md.tmpl`
-- `templates/manifest/tasks.md.tmpl`
+- `templates/core/spec.md.tmpl`
+- `templates/core/plan.md.tmpl`
+- `templates/core/tasks.md.tmpl`
 
 **Optional:**
-- `templates/manifest/research.md.tmpl` (render into `research/research.md` when needed)
+- `templates/addons/research.md.tmpl` (render into `research/research.md` when needed)
 
 ### Creating Level 3+ Spec Folder
 
@@ -569,8 +569,8 @@ If the script is unavailable, manually add the required files:
 
 | From   | To                         | Action                                                 | Files to Add |
 | ------ | -------------------------- | ------------------------------------------------------ | ------------ |
-| 1 → 2  | Add verification           | Render `templates/manifest/checklist.md.tmpl` for Level 2     |              |
-| 2 → 3  | Add decision documentation | Render `templates/manifest/decision-record.md.tmpl` for Level 3 |              |
+| 1 → 2  | Add verification           | Render `templates/addons/checklist.md.tmpl` for Level 2     |              |
+| 2 → 3  | Add decision documentation | Render `templates/addons/decision-record.md.tmpl` for Level 3 |              |
 | 3 → 3+ | Add governance             | Re-render affected manifest templates for Level 3+             |              |
 
 **Changelog example:**
@@ -731,8 +731,8 @@ Some templates are not level-specific but can be used at any documentation level
 | `debug-delegation.md` | Debug task delegation | When stuck debugging (3+ failed attempts) | Task tool -> `@debug` |
 
 **Template Sources:**
-- `templates/manifest/handover.md.tmpl`
-- `templates/manifest/debug-delegation.md.tmpl`
+- `templates/addons/handover.md.tmpl`
+- `templates/addons/debug-delegation.md.tmpl`
 
 ### Summary Templates (REQUIRED for ALL Levels)
 
@@ -742,11 +742,11 @@ Some templates are not level-specific but can be used at any documentation level
 | `resource-map.md` | Lean path catalog | Any level, when reviewers need a scannable file ledger | Manual (optional) |
 
 **Template Sources:**
-- Level 1: `templates/manifest/implementation-summary.md.tmpl`
-- Level 2: `templates/manifest/implementation-summary.md.tmpl`
-- Level 3: `templates/manifest/implementation-summary.md.tmpl`
-- Level 3+: `templates/manifest/implementation-summary.md.tmpl`
-- `templates/manifest/resource-map.md.tmpl`
+- Level 1: `templates/core/implementation-summary.md.tmpl`
+- Level 2: `templates/core/implementation-summary.md.tmpl`
+- Level 3: `templates/core/implementation-summary.md.tmpl`
+- Level 3+: `templates/core/implementation-summary.md.tmpl`
+- `templates/addons/resource-map.md.tmpl`
 
 **Why Required for ALL Levels:**
 - `implementation-summary.md` documents outcomes, lessons learned, and deviations from plan
@@ -814,34 +814,34 @@ See [phase-definitions.md](../structure/phase-definitions.md) for complete phase
 ### Templates (Manifest-Backed Level Contracts)
 
 **Manifest Templates:**
-- [spec.md.tmpl](../../templates/manifest/spec.md.tmpl) - Essential what/why/how
-- [plan.md.tmpl](../../templates/manifest/plan.md.tmpl) - Technical approach
-- [tasks.md.tmpl](../../templates/manifest/tasks.md.tmpl) - Task breakdown
-- [implementation-summary.md.tmpl](../../templates/manifest/implementation-summary.md.tmpl) - Outcomes
+- [spec.md.tmpl](../../templates/core/spec.md.tmpl) - Essential what/why/how
+- [plan.md.tmpl](../../templates/core/plan.md.tmpl) - Technical approach
+- [tasks.md.tmpl](../../templates/core/tasks.md.tmpl) - Task breakdown
+- [implementation-summary.md.tmpl](../../templates/core/implementation-summary.md.tmpl) - Outcomes
 
 **Composed Level 1 (Core only ~455 LOC):**
-- [spec template](../../templates/manifest/spec.md.tmpl) - Requirements and scope
-- [plan.md.tmpl](../../templates/manifest/plan.md.tmpl) - Technical plan
-- [tasks.md.tmpl](../../templates/manifest/tasks.md.tmpl) - Task breakdown
-- [implementation-summary.md.tmpl](../../templates/manifest/implementation-summary.md.tmpl) - Outcomes
+- [spec template](../../templates/core/spec.md.tmpl) - Requirements and scope
+- [plan.md.tmpl](../../templates/core/plan.md.tmpl) - Technical plan
+- [tasks.md.tmpl](../../templates/core/tasks.md.tmpl) - Task breakdown
+- [implementation-summary.md.tmpl](../../templates/core/implementation-summary.md.tmpl) - Outcomes
 
 **Level 2 (verification):**
 - All Level 1 templates + quality gates, NFRs
-- [checklist.md.tmpl](../../templates/manifest/checklist.md.tmpl) - Verification checklist
+- [checklist.md.tmpl](../../templates/addons/checklist.md.tmpl) - Verification checklist
 
 **Level 3 (architecture):**
 - All Level 2 templates + architecture decisions
-- [decision-record.md.tmpl](../../templates/manifest/decision-record.md.tmpl) - ADRs
-- [research.md.tmpl](../../templates/manifest/research.md.tmpl) - Optional research template copied into `research/research.md`
+- [decision-record.md.tmpl](../../templates/addons/decision-record.md.tmpl) - ADRs
+- [research.md.tmpl](../../templates/addons/research.md.tmpl) - Optional research template copied into `research/research.md`
 
 **Level 3+ (governance):**
 - All Level 3 templates + approval workflow, compliance, stakeholders
 - Extended checklist with approval tracking
 
 **Session Management Templates (Any Level):**
-- [handover.md.tmpl](../../templates/manifest/handover.md.tmpl) - Session context transfer
-- [debug-delegation.md.tmpl](../../templates/manifest/debug-delegation.md.tmpl) - Debug task delegation
-- [resource-map.md.tmpl](../../templates/manifest/resource-map.md.tmpl) - Optional lean path catalog
+- [handover.md.tmpl](../../templates/addons/handover.md.tmpl) - Session context transfer
+- [debug-delegation.md.tmpl](../../templates/addons/debug-delegation.md.tmpl) - Debug task delegation
+- [resource-map.md.tmpl](../../templates/addons/resource-map.md.tmpl) - Optional lean path catalog
 
 **Non-Template Helpers:**
 - canonical continuity inside packet docs, primarily `_memory.continuity` in `implementation-summary.md`

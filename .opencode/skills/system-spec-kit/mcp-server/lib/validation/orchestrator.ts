@@ -53,7 +53,7 @@ const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
 function findSkillRoot(startDir: string): string {
   let current = startDir;
   for (let depth = 0; depth < 8; depth += 1) {
-    if (fs.existsSync(path.join(current, 'templates', 'manifest', 'spec-kit-docs.json'))) {
+    if (fs.existsSync(path.join(current, 'templates', 'spec-kit-docs.json'))) {
       return current;
     }
     const parent = path.dirname(current);
@@ -64,15 +64,66 @@ function findSkillRoot(startDir: string): string {
 }
 
 const SKILL_ROOT = findSkillRoot(MODULE_DIR);
-const TEMPLATE_ROOT = path.join(SKILL_ROOT, 'templates', 'manifest');
+const TEMPLATE_ROOT = path.join(SKILL_ROOT, 'templates');
+const TEMPLATE_SUBDIRECTORIES = ['core', 'addons', 'packet-types'] as const;
 const VALIDATOR_REGISTRY_PATH = path.join(SKILL_ROOT, 'scripts', 'lib', 'validator-registry.json');
 const VALIDATOR_RULES_ROOT = path.join(SKILL_ROOT, 'scripts', 'rules');
 const VALIDATOR_DIST_VALIDATION_ROOT = path.join(SKILL_ROOT, 'scripts', 'dist', 'validation');
 const VALIDATE_SCRIPT_DIR = path.join(SKILL_ROOT, 'scripts', 'spec');
 const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase', 'review']);
+const CANONICAL_CONTINUITY_DOC = 'implementation-summary.md';
+const OPTIONAL_CONTINUITY_DOCS = new Set([
+  'spec.md',
+  'plan.md',
+  'tasks.md',
+  'checklist.md',
+  'handover.md',
+  'debug-delegation.md',
+  'research/research.md',
+  'before-after.md',
+  'timeline.md',
+  'roadmap.md',
+]);
 const REQUIRED_FRONTMATTER_KEYS = ['packet_pointer', 'last_updated_at', 'last_updated_by', 'recent_action', 'next_safe_action'];
 const OPTIONAL_TEMPLATE_HEADER_RE = /^(?:L(?:2|3\+?)|FIX ADDENDUM)\s*:/iu;
 const OPTIONAL_TEMPLATE_ANCHORS = new Set(['affected-surfaces', 'nfr', 'edge-cases', 'complexity', 'phase-deps', 'effort', 'enhanced-rollback']);
+const MERGED_VERIFICATION_ANCHORS = new Set([
+  'protocol',
+  'pre-impl',
+  'code-quality',
+  'testing',
+  'fix-completeness',
+  'security',
+  'docs',
+  'file-org',
+  'summary',
+  'arch-verify',
+  'perf-verify',
+  'deploy-ready',
+  'compliance-verify',
+  'docs-verify',
+  'sign-off',
+]);
+const MERGED_VERIFICATION_HEADERS = new Set([
+  'VERIFICATION CHECKLIST',
+  'VERIFICATION CHECKLIST:',
+  'VERIFICATION PROTOCOL',
+  'PRE-IMPLEMENTATION',
+  'CODE QUALITY',
+  'TESTING',
+  'TESTING CHECKLIST',
+  'FIX COMPLETENESS',
+  'SECURITY',
+  'DOCUMENTATION',
+  'FILE ORGANIZATION',
+  'VERIFICATION SUMMARY',
+  'L3+: ARCHITECTURE VERIFICATION',
+  'L3+: PERFORMANCE VERIFICATION',
+  'L3+: DEPLOYMENT READINESS',
+  'L3+: COMPLIANCE VERIFICATION',
+  'L3+: DOCUMENTATION VERIFICATION',
+  'L3+: SIGN-OFF',
+]);
 
 export type RegistrySeverity = 'error' | 'warn' | 'info' | 'skip';
 
@@ -161,6 +212,8 @@ function detectLevel(folder: string): SpecKitLevel {
   }
   if (fs.existsSync(path.join(folder, 'decision-record.md'))) return '3';
   if (fs.existsSync(path.join(folder, 'checklist.md'))) return '2';
+  const tasksPath = path.join(folder, 'tasks.md');
+  if (fs.existsSync(tasksPath) && fs.readFileSync(tasksPath, 'utf8').includes('<!-- ANCHOR:protocol -->')) return '2';
   return '1';
 }
 
@@ -346,6 +399,10 @@ function docsForLevel(level: SpecKitLevel): string[] {
   return [...contract.requiredCoreDocs, ...contract.requiredAddonDocs];
 }
 
+function lifecycleRequiredDocsForLevel(level: SpecKitLevel): string[] {
+  return [...resolveLevelContract(level).lifecycleRequiredDocs.afterImplementationStarts];
+}
+
 const STARTED_WORK_ITEM_RE = /^[ \t]*[-*] \[[xX]\]/mu;
 
 function hasStartedWork(folder: string): boolean {
@@ -358,7 +415,25 @@ function hasStartedWork(folder: string): boolean {
 
 function requiredDocsForLevel(folder: string, level: SpecKitLevel): string[] {
   const started = hasStartedWork(folder);
-  return docsForLevel(level).filter((docName) => docName !== 'implementation-summary.md' || started);
+  const docs = docsForLevel(level);
+  if (!started) return docs;
+  return [
+    ...docs,
+    ...lifecycleRequiredDocsForLevel(level).filter((docName) => !docs.includes(docName)),
+  ];
+}
+
+function validationDocsForLevel(folder: string, level: SpecKitLevel): string[] {
+  const contract = resolveLevelContract(level);
+  const docs = [...docsForLevel(level)];
+  const presentLifecycleDocs = lifecycleRequiredDocsForLevel(level)
+    .filter((docName) => fs.existsSync(path.join(folder, docName)));
+  const presentAddons = [...contract.optionalAddonDocs, ...contract.lazyAddonDocs]
+    .filter((docName) => fs.existsSync(path.join(folder, docName)));
+  for (const docName of [...presentLifecycleDocs, ...presentAddons]) {
+    if (!docs.includes(docName)) docs.push(docName);
+  }
+  return docs;
 }
 
 function readIfExists(filePath: string): string | null {
@@ -412,11 +487,20 @@ function renderInlineGates(template: string, level: SpecKitLevel): string {
 function templateNameForDoc(level: SpecKitLevel, docName: string): string {
   if (level === 'phase' && docName === 'spec.md') return 'phase-parent.spec.md.tmpl';
   if (level === 'review' && docName === 'spec.md') return 'review.spec.md.tmpl';
+  if (docName === 'research/research.md') return 'research.md.tmpl';
   return `${docName}.tmpl`;
 }
 
+function templatePathForName(templateName: string): string {
+  for (const subdirectory of TEMPLATE_SUBDIRECTORIES) {
+    const candidate = path.join(TEMPLATE_ROOT, subdirectory, templateName);
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  return path.join(TEMPLATE_ROOT, templateName);
+}
+
 function renderedTemplate(level: SpecKitLevel, docName: string): string | null {
-  const templatePath = path.join(TEMPLATE_ROOT, templateNameForDoc(level, docName));
+  const templatePath = templatePathForName(templateNameForDoc(level, docName));
   if (!fs.existsSync(templatePath)) return null;
   return renderInlineGates(fs.readFileSync(templatePath, 'utf8'), level);
 }
@@ -426,8 +510,8 @@ function renderedTemplate(level: SpecKitLevel, docName: string): string | null {
 // authored, template-backed spec docs; for every numbered level and phase
 // parents this set is identical to docsForLevel, so the filter is a no-op there.
 function authoredDocsForLevel(level: SpecKitLevel, folder: string): string[] {
-  return docsForLevel(level).filter((docName) =>
-    fs.existsSync(path.join(TEMPLATE_ROOT, templateNameForDoc(level, docName))),
+  return validationDocsForLevel(folder, level).filter((docName) =>
+    fs.existsSync(templatePathForName(templateNameForDoc(level, docName))),
   );
 }
 
@@ -469,7 +553,7 @@ const PLACEHOLDER_MARKER_RE = /<YOUR_VALUE_HERE:|\[YOUR_VALUE_HERE:|\[NEEDS_CLAR
 
 function validatePlaceholders(folder: string, level: SpecKitLevel): ValidationEntry {
   const findings: string[] = [];
-  for (const docName of docsForLevel(level)) {
+  for (const docName of validationDocsForLevel(folder, level)) {
     const content = readIfExists(path.join(folder, docName));
     if (!content) continue;
     const lines = content.split(/\r?\n/u);
@@ -513,7 +597,8 @@ function validateTemplateShape(folder: string, level: SpecKitLevel, scope: 'head
 
   const findings: string[] = [];
   let checked = 0;
-  for (const docName of docsForLevel(level)) {
+  const legacyChecklist = fs.existsSync(path.join(folder, 'checklist.md'));
+  for (const docName of validationDocsForLevel(folder, level)) {
     const actual = readIfExists(path.join(folder, docName));
     const expected = renderedTemplate(level, docName);
     if (!actual || !expected) continue;
@@ -521,7 +606,10 @@ function validateTemplateShape(folder: string, level: SpecKitLevel, scope: 'head
 
     if (scope === 'headers') {
       const actualHeaders = h2Headers(actual);
-      const expectedHeaders = h2Headers(expected).filter((header) => !OPTIONAL_TEMPLATE_HEADER_RE.test(header));
+      const expectedHeaders = h2Headers(expected).filter((header) =>
+        !OPTIONAL_TEMPLATE_HEADER_RE.test(header)
+        && !(legacyChecklist && docName === 'tasks.md' && MERGED_VERIFICATION_HEADERS.has(header)),
+      );
       let cursor = 0;
       for (const expectedHeader of expectedHeaders) {
         const foundAt = expectedHeader === 'ADR-001:'
@@ -532,7 +620,10 @@ function validateTemplateShape(folder: string, level: SpecKitLevel, scope: 'head
       }
     } else {
       const actualAnchors = new Set(anchors(actual));
-      const expectedAnchors = anchors(expected).filter((anchor) => !OPTIONAL_TEMPLATE_ANCHORS.has(anchor));
+      const expectedAnchors = anchors(expected).filter((anchor) =>
+        !OPTIONAL_TEMPLATE_ANCHORS.has(anchor)
+        && !(legacyChecklist && docName === 'tasks.md' && MERGED_VERIFICATION_ANCHORS.has(anchor)),
+      );
       for (const expectedAnchor of expectedAnchors) {
         if (!actualAnchors.has(expectedAnchor)) findings.push(`${docName}: missing required anchor '${expectedAnchor}'`);
       }
@@ -548,16 +639,31 @@ function validateTemplateShape(folder: string, level: SpecKitLevel, scope: 'head
 }
 
 function validatePriorityTags(folder: string): ValidationEntry {
-  const checklist = readIfExists(path.join(folder, 'checklist.md'));
+  const legacyChecklist = readIfExists(path.join(folder, 'checklist.md'));
+  const tasks = readIfExists(path.join(folder, 'tasks.md'));
+  const checklist = legacyChecklist ?? (tasks ? extractMergedVerification(tasks) : null);
+  const sourceName = legacyChecklist ? 'checklist.md' : 'tasks.md';
   if (!checklist) return entry('PRIORITY_TAGS', 'pass', 'No checklist found');
   const findings = checklist
     .split(/\r?\n/u)
     .map((line, index) => ({ line, index: index + 1 }))
     .filter(({ line }) => /^-\s+\[[ xX]\]/u.test(line) && !/\*{0,2}CHK-[A-Za-z0-9-]+\*{0,2}\s+\[P[012]\]/u.test(line))
-    .map(({ line, index }) => `checklist.md:${index}: ${line.trim().slice(0, 120)}`);
+    .map(({ line, index }) => `${sourceName}:${index}: ${line.trim().slice(0, 120)}`);
   return findings.length === 0
-    ? entry('PRIORITY_TAGS', 'pass', 'Checklist priority tags use CHK-* [P*] format')
-    : entry('PRIORITY_TAGS', 'warn', `${findings.length} checklist item(s) have non-standard priority tags`, findings);
+    ? entry('PRIORITY_TAGS', 'pass', legacyChecklist ? 'Checklist priority tags use CHK-* [P*] format' : 'Verification checklist priority tags use CHK-* [P*] format')
+    : entry('PRIORITY_TAGS', 'warn', `${findings.length} ${legacyChecklist ? 'checklist' : 'verification'} item(s) have non-standard priority tags`, findings);
+}
+
+function extractMergedVerification(content: string): string | null {
+  const startMarker = '<!-- ANCHOR:protocol -->';
+  const start = content.indexOf(startMarker);
+  if (start === -1) return null;
+  const signOffEndMarker = '<!-- /ANCHOR:sign-off -->';
+  const summaryEndMarker = '<!-- /ANCHOR:summary -->';
+  const endMarker = content.indexOf(signOffEndMarker, start) !== -1 ? signOffEndMarker : summaryEndMarker;
+  const end = content.indexOf(endMarker, start);
+  if (end === -1) return null;
+  return content.slice(start, end + endMarker.length);
 }
 
 function extractSessionIds(content: string): { sessionIds: string[]; parentSessionIds: string[] } {
@@ -607,7 +713,7 @@ function collectKnownSessionIds(folder: string): Set<string> {
       if (dirent.isDirectory()) {
         if (dirent.name === 'node_modules' || dirent.name === '.git' || dirent.name === 'scratch') continue;
         if (depth + 1 <= SESSION_SCAN_MAX_DEPTH) stack.push({ dir: full, depth: depth + 1 });
-      } else if (dirent.isFile() && dirent.name.endsWith('.md')) {
+      } else if (dirent.isFile() && dirent.name === CANONICAL_CONTINUITY_DOC) {
         const content = readIfExists(full);
         if (!content) continue;
         for (const id of extractSessionIds(content).sessionIds) known.add(id);
@@ -623,12 +729,11 @@ function validateSpecDocRule(folder: string, level: SpecKitLevel, rule: SpecDocR
   const details = [...result.details];
   if (rule === 'FRONTMATTER_MEMORY_BLOCK') {
     const known = collectKnownSessionIds(folder);
-    for (const docName of docsForLevel(level)) {
-      const content = readIfExists(path.join(folder, docName));
-      if (!content) continue;
+    const content = readIfExists(path.join(folder, CANONICAL_CONTINUITY_DOC));
+    if (content) {
       for (const parentId of extractSessionIds(content).parentSessionIds) {
         if (!known.has(parentId)) {
-          details.push(`SESSION_LINEAGE_BROKEN: ${docName}: parent_session_id '${parentId}' does not exist in known packet frontmatter`);
+          details.push(`SESSION_LINEAGE_BROKEN: ${CANONICAL_CONTINUITY_DOC}: parent_session_id '${parentId}' does not exist in known packet frontmatter`);
         }
       }
     }
@@ -663,7 +768,9 @@ function validateGeneratedMetadataDrift(folder: string): ValidationEntry {
 
 function validateFrontmatterBasics(folder: string, level: SpecKitLevel): ValidationEntry {
   const missing: string[] = [];
-  for (const docName of authoredDocsForLevel(level, folder)) {
+  for (const docName of authoredDocsForLevel(level, folder).filter((name) =>
+    name === CANONICAL_CONTINUITY_DOC || !OPTIONAL_CONTINUITY_DOCS.has(name),
+  )) {
     const content = readIfExists(path.join(folder, docName));
     if (!content) continue;
     const frontmatter = content.match(/^---\n([\s\S]*?)\n---/u)?.[1] ?? '';

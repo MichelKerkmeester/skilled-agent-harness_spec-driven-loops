@@ -225,9 +225,21 @@ describe('spec-doc-structure contract', () => {
     ]);
   });
 
-  it('warns when a Level 3 sample fixture is missing the _memory block', () => {
+  it('accepts a non-canonical doc that omits the _memory block (continuity is single-source in implementation-summary.md)', () => {
     const folder = copyFixture('063-template-compliant-level3');
     stripMemoryBlock(path.join(folder, 'spec.md'));
+    const result = runSpecDocStructureRule({
+      folder,
+      level: '3',
+      rule: 'FRONTMATTER_MEMORY_BLOCK',
+    });
+
+    expect(result.status).toBe('pass');
+  });
+
+  it('warns when the canonical implementation-summary.md is missing the _memory block', () => {
+    const folder = copyFixture('063-template-compliant-level3');
+    stripMemoryBlock(path.join(folder, 'implementation-summary.md'));
     const result = runSpecDocStructureRule({
       folder,
       level: '3',

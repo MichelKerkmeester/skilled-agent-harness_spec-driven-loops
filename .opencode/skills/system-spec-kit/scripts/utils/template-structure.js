@@ -54,6 +54,43 @@ const CUSTOM_ALLOWED_ANCHOR_PATTERNS = {
     ],
   },
 };
+const MERGED_VERIFICATION_ANCHORS = new Set([
+  'protocol',
+  'pre-impl',
+  'code-quality',
+  'testing',
+  'fix-completeness',
+  'security',
+  'docs',
+  'file-org',
+  'summary',
+  'arch-verify',
+  'perf-verify',
+  'deploy-ready',
+  'compliance-verify',
+  'docs-verify',
+  'sign-off',
+]);
+const MERGED_VERIFICATION_HEADERS = new Set([
+  'VERIFICATION CHECKLIST',
+  'VERIFICATION CHECKLIST:',
+  'VERIFICATION PROTOCOL',
+  'PRE-IMPLEMENTATION',
+  'CODE QUALITY',
+  'TESTING',
+  'TESTING CHECKLIST',
+  'FIX COMPLETENESS',
+  'SECURITY',
+  'DOCUMENTATION',
+  'FILE ORGANIZATION',
+  'VERIFICATION SUMMARY',
+  'L3+: ARCHITECTURE VERIFICATION',
+  'L3+: PERFORMANCE VERIFICATION',
+  'L3+: DEPLOYMENT READINESS',
+  'L3+: COMPLIANCE VERIFICATION',
+  'L3+: DOCUMENTATION VERIFICATION',
+  'L3+: SIGN-OFF',
+]);
 const DOC_TEMPLATE_NAMES = {
   'spec.md': 'spec.md.tmpl',
   'plan.md': 'plan.md.tmpl',
@@ -61,6 +98,12 @@ const DOC_TEMPLATE_NAMES = {
   'implementation-summary.md': 'implementation-summary.md.tmpl',
   'checklist.md': 'checklist.md.tmpl',
   'decision-record.md': 'decision-record.md.tmpl',
+  'handover.md': 'handover.md.tmpl',
+  'debug-delegation.md': 'debug-delegation.md.tmpl',
+  'research/research.md': 'research.md.tmpl',
+  'before-after.md': 'before-after.md.tmpl',
+  'timeline.md': 'timeline.md.tmpl',
+  'roadmap.md': 'roadmap.md.tmpl',
 };
 const VALID_LEVELS = new Set(['1', '2', '3', '3+', 'phase', 'review']);
 const DOCUMENT_NAME_RE = /^(?:[A-Za-z0-9][A-Za-z0-9_-]*\/)?[A-Za-z0-9][A-Za-z0-9_-]*\.md$/u;
@@ -138,7 +181,15 @@ function getTemplatesRoot() {
 }
 
 function getManifestPath(templatesRoot = getTemplatesRoot()) {
-  return path.join(templatesRoot, 'manifest', 'spec-kit-docs.json');
+  return path.join(templatesRoot, 'spec-kit-docs.json');
+}
+
+function resolveManifestTemplatePath(templatesRoot, templateName) {
+  for (const subdirectory of ['core', 'addons', 'packet-types']) {
+    const candidate = path.join(templatesRoot, subdirectory, templateName);
+    if (fs.existsSync(candidate)) return candidate;
+  }
+  return path.join(templatesRoot, templateName);
 }
 
 function loadLevelContract(level, templatesRoot = getTemplatesRoot()) {
@@ -150,7 +201,9 @@ function loadLevelContract(level, templatesRoot = getTemplatesRoot()) {
   }
   const requiredCoreDocs = assertDocumentList(normalizedLevel, row, 'requiredCoreDocs');
   const requiredAddonDocs = assertDocumentList(normalizedLevel, row, 'requiredAddonDocs');
+  const optionalAddonDocs = assertDocumentList(normalizedLevel, row, 'optionalAddonDocs');
   const lazyAddonDocs = assertDocumentList(normalizedLevel, row, 'lazyAddonDocs');
+  const lifecycleRequiredDocs = assertLifecycleRequiredDocs(normalizedLevel, row);
   const sectionGates = assertSectionGates(normalizedLevel, row);
   if (typeof row.frontmatterMarkerLevel !== 'number') {
     throw new Error(`Internal template contract could not be resolved for Level ${normalizedLevel}`);
@@ -159,7 +212,11 @@ function loadLevelContract(level, templatesRoot = getTemplatesRoot()) {
   return {
     requiredCoreDocs: [...requiredCoreDocs],
     requiredAddonDocs: [...requiredAddonDocs],
+    optionalAddonDocs: [...optionalAddonDocs],
     lazyAddonDocs: [...lazyAddonDocs],
+    lifecycleRequiredDocs: {
+      afterImplementationStarts: [...lifecycleRequiredDocs.afterImplementationStarts],
+    },
     sectionGates: Object.fromEntries(Object.entries(sectionGates).map(([sectionId, levels]) => [sectionId, [...levels]])),
     frontmatterMarkerLevel: row.frontmatterMarkerLevel,
   };
@@ -170,17 +227,39 @@ function getContractDocs(level, templatesRoot = getTemplatesRoot()) {
   return [...contract.requiredCoreDocs, ...contract.requiredAddonDocs];
 }
 
+function getLifecycleRequiredDocs(level, templatesRoot = getTemplatesRoot()) {
+  const contract = loadLevelContract(level, templatesRoot);
+  return [...contract.lifecycleRequiredDocs.afterImplementationStarts];
+}
+
 function assertDocumentList(level, row, field) {
   const docs = row[field];
   if (!Array.isArray(docs) || (field === 'requiredCoreDocs' && docs.length === 0)) {
     throw new Error(`Internal template contract could not be resolved for Level ${level}`);
   }
+  return assertDocumentNames(level, docs);
+}
+
+function assertDocumentNames(level, docs) {
   for (const doc of docs) {
     if (typeof doc !== 'string' || !DOCUMENT_NAME_RE.test(doc) || doc.includes('..')) {
       throw new Error(`Internal template contract could not be resolved for Level ${level}`);
     }
   }
   return docs;
+}
+
+function assertLifecycleRequiredDocs(level, row) {
+  const lifecycle = row.lifecycleRequiredDocs;
+  if (lifecycle === undefined) return { afterImplementationStarts: [] };
+  if (!lifecycle || typeof lifecycle !== 'object' || Array.isArray(lifecycle)) {
+    throw new Error(`Internal template contract could not be resolved for Level ${level}`);
+  }
+  const docs = lifecycle.afterImplementationStarts ?? [];
+  if (!Array.isArray(docs)) {
+    throw new Error(`Internal template contract could not be resolved for Level ${level}`);
+  }
+  return { afterImplementationStarts: [...assertDocumentNames(level, docs)] };
 }
 
 function assertSectionGates(level, row) {
@@ -328,7 +407,15 @@ function inferPhaseSpecAddenda(documentPath) {
 
 function resolveTemplatePath(level, basename, templatesRoot = getTemplatesRoot()) {
   const normalizedLevel = normalizeLevel(level);
-  if (!getContractDocs(normalizedLevel, templatesRoot).includes(basename)) {
+  const contract = loadLevelContract(normalizedLevel, templatesRoot);
+  const contractDocs = [
+    ...contract.requiredCoreDocs,
+    ...contract.requiredAddonDocs,
+    ...contract.optionalAddonDocs,
+    ...contract.lazyAddonDocs,
+    ...contract.lifecycleRequiredDocs.afterImplementationStarts,
+  ];
+  if (!contractDocs.includes(basename)) {
     return null;
   }
   let manifestTemplateName;
@@ -343,7 +430,7 @@ function resolveTemplatePath(level, basename, templatesRoot = getTemplatesRoot()
   if (!manifestTemplateName) {
     return null;
   }
-  return path.join(templatesRoot, 'manifest', manifestTemplateName);
+  return resolveManifestTemplatePath(templatesRoot, manifestTemplateName);
 }
 
 function extractH2Headers(content) {
@@ -660,7 +747,15 @@ function insertUniqueAnchorsAfter(anchorIds, additions, afterAnchorId) {
 
 function loadTemplateContractForDocument(level, basename, documentPath, templatesRoot = getTemplatesRoot()) {
   const baseContract = loadTemplateContract(level, basename, templatesRoot);
-  if (!baseContract.supported || !documentPath || basename !== 'spec.md') {
+  if (!baseContract.supported || !documentPath) {
+    return baseContract;
+  }
+
+  if (basename === 'tasks.md' && fs.existsSync(path.join(path.dirname(documentPath), 'checklist.md'))) {
+    return makeLegacyTasksContract(baseContract);
+  }
+
+  if (basename !== 'spec.md') {
     return baseContract;
   }
 
@@ -674,6 +769,21 @@ function loadTemplateContractForDocument(level, basename, documentPath, template
     .filter(Boolean);
 
   return mergeTemplateContracts(baseContract, addendumContracts);
+}
+
+function makeLegacyTasksContract(baseContract) {
+  const legacyHeaders = baseContract.headerRules.filter((header) => !MERGED_VERIFICATION_HEADERS.has(header.normalized));
+  const mergedHeaders = baseContract.headerRules.filter((header) => MERGED_VERIFICATION_HEADERS.has(header.normalized));
+  const legacyAnchors = baseContract.requiredAnchors.filter((anchorId) => !MERGED_VERIFICATION_ANCHORS.has(anchorId));
+  const mergedAnchors = baseContract.requiredAnchors.filter((anchorId) => MERGED_VERIFICATION_ANCHORS.has(anchorId));
+
+  return {
+    ...baseContract,
+    headerRules: legacyHeaders,
+    optionalHeaderRules: [...(baseContract.optionalHeaderRules || []), ...mergedHeaders],
+    requiredAnchors: legacyAnchors,
+    optionalAnchors: [...(baseContract.optionalAnchors || []), ...mergedAnchors],
+  };
 }
 
 function loadDocumentStructure(content) {
@@ -849,6 +959,11 @@ function runCli(argv) {
       return 0;
     }
 
+    if (command === 'lifecycle-docs') {
+      console.log(getLifecycleRequiredDocs(level).join('\n'));
+      return 0;
+    }
+
     if (command === 'level-contract') {
       console.log(JSON.stringify(loadLevelContract(level), null, 2));
       return 0;
@@ -865,7 +980,7 @@ function runCli(argv) {
       return 0;
     }
 
-    console.error('Usage: template-structure.js <contract|compare|docs|level-contract> ...');
+    console.error('Usage: template-structure.js <contract|compare|docs|lifecycle-docs|level-contract> ...');
     return 2;
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
@@ -882,6 +997,7 @@ export {
   extractH2Headers,
   inferPhaseSpecAddenda,
   getContractDocs,
+  getLifecycleRequiredDocs,
   loadLevelContract,
   loadDocumentStructure,
   loadTemplateContract,

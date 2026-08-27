@@ -1221,7 +1221,7 @@ Five database-layer bugs were fixed:
 
 **B4: Missing changes guard:** Save-path UPDATE statements in `handlers/pe-gating.ts` now validate SQLite update results (`result.changes`). Zero-row updates are treated as no-ops/errors instead of false success.
 
-**B5: Connection-map isolation and constitutional cache scoping:** `vector-index-store.ts` no longer lets `initialize_db(custom_path)` overwrite the module-global default connection. Connections are tracked in `db_connections = new Map<string, Database.Database>()` keyed by resolved path, globals are updated only for the validated default store and `close_db()` closes every tracked handle. The constitutional-memory cache key now also includes the `includeArchived` flag, preventing archived-inclusive results from leaking into archived-exclusive reads.
+**B5: Connection-map isolation:** `vector-index-store.ts` no longer lets `initialize_db(custom_path)` overwrite the module-global default connection. Connections are tracked in `db_connections = new Map<string, Database.Database>()` keyed by resolved path, globals are updated only for the validated default store and `close_db()` closes every tracked handle. The separate constitutional-memory cache-scoping behavior was removed in the constitutional-layer deprecation.
 
 #### Source Files
 
@@ -1245,7 +1245,7 @@ Six guard/edge-case issues were fixed:
 
 **E3: Expired multi-concept results:** `multi_concept_search()` now applies `AND (m.expires_at IS NULL OR m.expires_at > datetime('now'))`, bringing the AND-match path back in line with single-query retrieval and preventing expired memories from leaking into result sets.
 
-**E4: Vector-search limit overflow:** `vector_search()` now returns `constitutional_results.slice(0, limit)` when constitutional injection already fills the request, so callers never receive more rows than `limit` even when the constitutional tier saturates the result set.
+**E4: Vector-search limit overflow:** The former constitutional-injection limit-overflow path was removed in the constitutional-layer deprecation.
 
 **E5: Embedding dimension validation:** `vector_search()` now validates embedding length before buffer conversion and throws a `VectorIndexError` with `EMBEDDING_VALIDATION` semantics instead of surfacing raw sqlite-vec errors for malformed embeddings.
 
@@ -3086,6 +3086,22 @@ See [`memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md
 
 ---
 
+### Constitutional sufficiency-gate exemption (removed)
+
+#### Description
+
+This sufficiency-gate exemption was removed in the constitutional-layer deprecation. Constitutional markdown files previously passed through `memory_index_scan` in warn-only sufficiency mode rather than hard-rejecting with `INSUFFICIENT_CONTEXT_ABORT`; the 20 rule files are now plain unindexed reference docs.
+
+#### How It Works
+
+The former `handleMemoryIndexScan` path widened the existing `useWarnOnly` exemption with `force || isSpecDoc || isConstitutional`. That exemption was removed with the constitutional layer. The strict gate remains intact for indexed files.
+
+#### Source Files
+
+See [`memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md`](../feature-catalog/memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md) for full implementation and test file listings.
+
+---
+
 ### Graph-metadata and lineage repair runner
 
 #### Description
@@ -3343,8 +3359,8 @@ Ten fixes addressed schema completeness, pipeline metadata, embedding efficiency
 
 - **Schema params exposed (#13):** `memorySearch` tool schema now includes `trackAccess`, `includeArchived` and `mode` parameters.
 - **Dead dedup config removed (#14):** `sessionDeduped` removed from Stage 4 metadata (dedup is post-cache in the main handler).
-- **Constitutional count passthrough (#15):** Stage 1's constitutional injection count flows through the orchestrator to Stage 4 output metadata.
-- **Embedding caching (#16):** Stage 1 caches the query embedding at function scope for reuse in the constitutional injection path, saving one API call per search.
+- **Constitutional count passthrough (#15):** The former Stage 1 constitutional injection count passthrough was removed in the constitutional-layer deprecation.
+- **Embedding caching (#16):** The former Stage 1 query-embedding cache for the constitutional injection path was removed in the constitutional-layer deprecation.
 - **Stemmer double-consonant (#18):** `simpleStem()` now handles doubled consonants after suffix removal: "running"->"runn"->"run", "stopped"->"stopp"->"stop".
 - **Full-content embedding on update (#19):** `memory_update` now embeds `title + "\n\n" + content_text` instead of title alone.
 - **Ancillary record cleanup on delete (#20):** Memory deletion now cleans `degree_snapshots`, `community_assignments`, `memory_summaries`, `memory_entities` and `causal_edges`.
@@ -3355,7 +3371,7 @@ Ten fixes addressed schema completeness, pipeline metadata, embedding efficiency
 A later audit added three more pipeline-side corrections to the same runtime path:
 
 - **Deep-mode filter parity (H11):** Reformulation and HyDE candidates now re-enter scope, tier, `contextType` and `qualityThreshold` filtering before merge.
-- **Constitutional scope parity (H12):** Constitutional injection now uses `shouldApplyScopeFiltering`, so global scope enforcement applies even when callers omit explicit governance scope fields.
+- **Constitutional scope parity (H12):** The former constitutional-injection scope-parity path was removed in the constitutional-layer deprecation.
 - **CamelCase chunk metadata support (H14):** Chunk reassembly now accepts `parentId`, `chunkIndex` and `chunkLabel` aliases in addition to snake_case fields, preventing silent bypass of parent collapse.
 
 #### Source Files
@@ -4056,17 +4072,17 @@ See [`tooling-and-scripts/cli-runtime-warm-only-fallbacks.md`](../feature-catalo
 
 ---
 
-### Constitutional memory manager command
+### Constitutional memory manager command (removed)
 
 #### Description
 
-This is the operator-facing slash command for creating and managing constitutional rules: the durable reference rule docs under `constitutional/`. Think of it as the system's rulebook editor rather than a generic note-taking command.
+This was the operator-facing slash command for creating and managing constitutional rules: the durable reference rule docs under `constitutional/`. The command was removed in the constitutional-layer deprecation.
 
 #### How It Works
 
-`/memory:learn` is a constitutional-rule workflow. The no-argument form shows an overview dashboard; natural-language input enters guided create mode; and `list`, `edit`, `remove`, and `budget` provide the rest of the lifecycle. New and edited files are written to `.opencode/skills/system-spec-kit/constitutional/` as plain reference docs and checked against the shared `~2000` token budget. They are no longer indexed as a searchable memory tier or auto-surfaced.
+`/memory:learn` was a constitutional-rule workflow. The no-argument form showed an overview dashboard; natural-language input entered guided create mode; and `list`, `edit`, `remove`, and `budget` provided the rest of the lifecycle. New and edited files were written to `.opencode/skills/system-spec-kit/constitutional/` as plain reference docs and checked against the shared `~2000` token budget. They were not indexed as a searchable memory tier or auto-surfaced.
 
-Verification also closed active documentation drift outside the original spec file list. Global command indexes, related-command references, workflow docs, workspace READMEs, and speckit agent summaries now all describe `/memory:learn` as the constitutional memory manager instead of the retired "explicit learning / corrections / patterns" workflow.
+Historical verification also closed documentation drift outside the original spec file list. Global command indexes, related-command references, workflow docs, workspace READMEs, and speckit agent summaries described `/memory:learn` as the constitutional memory manager instead of the retired "explicit learning / corrections / patterns" workflow.
 
 #### Source Files
 
@@ -4513,7 +4529,7 @@ The constitutional rule docs include an advisory rule that automated writers mus
 
 #### How It Works
 
-The rule lives as a plain reference doc under `constitutional/`. The write path derives provenance server-side and applies the protected-field guard before mutation, so the advisory rule is backed by executable write-ingress behavior.
+The rule was deleted with the rule folder under `constitutional/`. The write path derives provenance server-side and applies the protected-field guard before mutation, so the advisory rule is backed by executable write-ingress behavior.
 
 #### Source Files
 
@@ -4529,7 +4545,7 @@ The constitutional rule docs include an advisory rule that entity co-occurrence 
 
 #### How It Works
 
-The rule lives as a plain reference doc under `constitutional/`. It complements the tombstone and metadata-edge work by requiring causal graph writers to preserve provenance and avoid treating entity overlap as proof of causation.
+The rule was deleted with the rule folder under `constitutional/`. It complements the tombstone and metadata-edge work by requiring causal graph writers to preserve provenance and avoid treating entity overlap as proof of causation.
 
 #### Source Files
 

@@ -86,7 +86,7 @@ utils/
 | `recordTierDowngradeAudit` | Legacy helper that emitted a durable `governance_audit` row when a memory was normalized away from the (now removed) `constitutional` tier |
 | `buildGovernanceLogicalKey` | Build the stable logical key used to correlate governance-audit rows across processes |
 
-Excluded-from-index rule: the `.opencode/skills/system-spec-kit/constitutional/` directory is no longer indexed at all — its rule files are plain, unindexed reference docs, not a searchable memory tier.
+Excluded-from-index rule: the the retired constitutional rule docs directory is no longer indexed at all — its rule files are plain, unindexed reference docs, not a searchable memory tier.
 
 Operator maintenance CLI for pre-existing pollution: `scripts/dist/memory/cleanup-index-scope-violations.js` with `--apply` / `--verify`. Target verify counts: `z_future_rows=0`, `external_rows=0`.
 

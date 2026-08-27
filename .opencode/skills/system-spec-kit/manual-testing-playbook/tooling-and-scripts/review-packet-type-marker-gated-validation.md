@@ -35,7 +35,7 @@ This scenario validates the review packet type in `validate.sh`. A `<!-- SPECKIT
 
 ### Commands
 
-1. Identify a review-record packet whose `spec.md` carries `<!-- SPECKIT_LEVEL: review -->`. Use a clean scaffold from `templates/manifest/review.spec.md.tmpl` when the assertion includes exit-code 0; archived packets can be used for marker and file-waiver evidence only if their unrelated warnings are called out.
+1. Identify a review-record packet whose `spec.md` carries `<!-- SPECKIT_LEVEL: review -->`. Use a clean scaffold from `templates/packet-types/review.spec.md.tmpl` when the assertion includes exit-code 0; archived packets can be used for marker and file-waiver evidence only if their unrelated warnings are called out.
 2. Confirm the marker and the required files:
    ```bash
    grep -lE '<!-- SPECKIT_LEVEL: *review *-->' <spec-folder>/spec.md
@@ -154,7 +154,7 @@ Inspect the review-marker detection in `.opencode/skills/system-spec-kit/scripts
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Validator: `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`
-- Template: `.opencode/skills/system-spec-kit/templates/manifest/review.spec.md.tmpl`
+- Template: `.opencode/skills/system-spec-kit/templates/packet-types/review.spec.md.tmpl`
 
 ---
 

@@ -136,7 +136,7 @@ These factors can push you to a higher level even if LOC suggests lower:
 
 In addition to level, choose the appropriate template **style**:
 
-Templates are selected by `templates/manifest/spec-kit-docs.json` and rendered through `create.sh`.
+Templates are selected by `templates/spec-kit-docs.json` and rendered through `create.sh`.
 
 ---
 

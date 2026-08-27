@@ -454,7 +454,7 @@ export function renderAdvisorBrief(
   return rendered;
 }
 
-/** Render the constitutional context retained when no advisor brief is available. */
+/** Render the fallback steering directives (hygiene, governor, proof) retained when no advisor brief is available. */
 export function renderAdvisorFallbackDirective(options: AdvisorBriefRenderOptions = {}): string {
   const rendered = DIRECTIVES_LABEL.slice(1) + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
   observeAdvisorPolicy(rendered, options);

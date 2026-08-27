@@ -133,6 +133,7 @@ export function inferTypeFromTier(content: string | null | undefined): MemoryTyp
   }
 
   // Check for tier markers in content
+  // Preserve recognition of legacy constitutional markers when re-indexing archived documents.
   if (content.includes('[CONSTITUTIONAL]') || content.includes('importance: constitutional')) {
     return 'meta-cognitive';
   }
@@ -339,7 +340,7 @@ export function validateInferredType(
 ): TypeValidationResult {
   const warnings: string[] = [];
 
-  // Check if constitutional content has correct type
+  // Keep legacy constitutional path validation for archived document compatibility.
   if (filePath?.includes('constitutional') && inferredType !== 'meta-cognitive') {
     warnings.push(`Constitutional file "${filePath}" has type "${inferredType}" instead of "meta-cognitive"`);
   }

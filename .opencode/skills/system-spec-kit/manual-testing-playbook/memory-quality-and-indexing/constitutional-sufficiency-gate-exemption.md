@@ -10,7 +10,7 @@ expected_leaf_resources: []
 
 # 417 -- Constitutional sufficiency-gate exemption
 
-> **DEPRECATED — the constitutional memory layer was removed; this scenario no longer applies.**
+> **DEPRECATED (constitutional-layer removal):** this feature was removed; the 20 rule files were deleted as well. Retained here for historical record.
 
 ## 1. OVERVIEW
 

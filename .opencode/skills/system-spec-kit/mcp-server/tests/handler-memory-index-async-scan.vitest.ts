@@ -246,7 +246,6 @@ describe('handler-memory-index async scan mode', () => {
     });
 
     await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,
@@ -273,7 +272,6 @@ describe('handler-memory-index async scan mode', () => {
     });
 
     const result = await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,
@@ -301,7 +299,6 @@ describe('handler-memory-index async scan mode', () => {
     });
 
     const result = await handler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,

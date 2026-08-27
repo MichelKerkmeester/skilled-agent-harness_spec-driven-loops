@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-spec-doc-template-reduction/009-template-folder-restructure",
+  "spec_folder": "system-speckit/036-spec-doc-template-reduction/009-template-folder-restructure",
+  "parent_id": "system-speckit/036-spec-doc-template-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template folder restructure",
+      "role-based template folders",
+      "spec-kit template manifest",
+      "template resolver paths",
+      "template contract promotion",
+      "template folder restructure plan",
+      "role-based template layout",
+      "root contract manifest",
+      "template lookup resolver",
+      "spec-kit path migration",
+      "template folder restructure tasks",
+      "role-based template migration"
+    ],
+    "key_topics": [
+      "template",
+      "folder",
+      "restructure",
+      "role-based",
+      "folders",
+      "spec-kit",
+      "manifest",
+      "resolver",
+      "paths",
+      "contract",
+      "promotion",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Restructure Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Template Folders",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Artifact Set",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Root",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Specification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The former `templates/manifest/` directory mixed required core templates, optional add-ons, packet-type templates, the contract manifest, and maintainer guides",
+    "created_at": "2026-08-27T17:51:34.375Z",
+    "last_save_at": "2026-08-27T18:58:16.052Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:06e869b843f9924afe3b28d5a2fddfb4d6d2d8b7aa2407224c6e3bb8da80800f",
+    "source_doc_hashes": {
+      "spec.md": "037238f96a972b8564bd6b28aa893883fbc5257f7886d0c2f4678985c0b9c584",
+      "plan.md": "f3693bc6ee875499efd6e049da88806f209a5874b68d1e6166d9936b5f61d19d",
+      "tasks.md": "5f40fb7b0dfc510d3b201caa4ddf432a09242fc0521acaff66a8ce12ef4f7555",
+      "implementation-summary.md": "c5e1870346fee587ad3759920012bf9270dbc2bfb314f8b5c57f09720a14948b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

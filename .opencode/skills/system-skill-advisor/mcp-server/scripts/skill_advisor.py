@@ -1991,7 +1991,6 @@ PHRASE_INTENT_BOOSTERS = {
     "spec folder workflow": [("system-spec-kit", 1.8)],
     "resume prior session context": [("system-spec-kit", 1.8)],
     "validate spec packet": [("system-spec-kit", 1.6)],
-    "constitutional memory": [("system-spec-kit", 1.7)],
     # --- Autoresearch deep research loop ---
     "deep research": [("deep-research", 2.5)],
     "research loop": [("deep-research", 2.5)],

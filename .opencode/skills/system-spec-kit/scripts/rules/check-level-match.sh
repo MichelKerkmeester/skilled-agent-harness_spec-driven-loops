@@ -198,16 +198,21 @@ run_check() {
         fi
     done
 
-    # Validate file presence based on the shared Level contract.
+    # Validate unconditional and lifecycle-gated file presence from the shared contract.
     local required_files=()
     local req_file
     while IFS= read -r req_file; do
         [[ -z "$req_file" ]] && continue
-        if [[ "$req_file" == "implementation-summary.md" ]] && ! _level_has_implementation_started "$folder"; then
-            continue
-        fi
         required_files+=("$req_file")
     done < <(node "$_level_match_helper" docs "$primary_level")
+
+    if _level_has_implementation_started "$folder"; then
+        local lifecycle_doc
+        while IFS= read -r lifecycle_doc; do
+            [[ -z "$lifecycle_doc" ]] && continue
+            required_files+=("$lifecycle_doc")
+        done < <(node "$_level_match_helper" lifecycle-docs "$primary_level")
+    fi
 
     for req_file in "${required_files[@]-}"; do
         if [[ ! -f "$folder/$req_file" ]]; then

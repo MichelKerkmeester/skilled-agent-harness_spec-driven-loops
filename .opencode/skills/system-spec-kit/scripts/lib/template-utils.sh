@@ -212,7 +212,17 @@ _manifest_template_path() {
         manifest_name="${template_name}.tmpl"
     fi
 
-    printf '%s\n' "$base_templates_dir/manifest/$manifest_name"
+    # Templates live in role-based folders: core (required), addons (optional),
+    # packet-types (special packet shapes). Search each so a basename resolves
+    # regardless of its role folder, then fall back to the templates root.
+    local sub
+    for sub in core addons packet-types; do
+        if [[ -f "$base_templates_dir/$sub/$manifest_name" ]]; then
+            printf '%s\n' "$base_templates_dir/$sub/$manifest_name"
+            return 0
+        fi
+    done
+    printf '%s\n' "$base_templates_dir/$manifest_name"
 }
 
 _inline_gate_renderer_path() {
@@ -241,7 +251,7 @@ resolve_level_contract() {
     local resolver="$skill_root/mcp-server/lib/templates/level-contract-resolver.ts"
 
     if [[ ! -f "$loader" || ! -f "$resolver" ]]; then
-        local manifest="$skill_root/templates/manifest/spec-kit-docs.json"
+        local manifest="$skill_root/templates/spec-kit-docs.json"
         node - "$level" "$manifest" <<'NODE'
 const fs = require('fs');
 const [level, manifestPath] = process.argv.slice(2);

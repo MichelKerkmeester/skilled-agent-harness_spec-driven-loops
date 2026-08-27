@@ -1,35 +1,18 @@
 ---
-title: "Implementation Summary [template:level-1/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Instructional Comment Extraction"
+description: "Removed non-load-bearing instructional comments from in-scope manifest templates while preserving structural markers and reducing rendered snapshot bytes."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
-_memory:
-  continuity:
-    packet_pointer: "scaffold/005-comment-extraction"
-    last_updated_at: "2026-08-26T05:33:59Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
-    blockers: []
-    key_files: []
-    session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-scaffold/005-comment-extraction"
-      parent_session_id: null
-    completion_pct: 0
-    open_questions: []
-    answered_questions: []
+  - "comment extraction"
+  - "instructional comment leakage"
+  - "template markers"
+  - "rendered byte reduction"
+importance_tier: "important"
+contextType: "implementation"
 ---
-<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->
-<!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr-rules.md -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 
 ---
 
@@ -39,7 +22,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-comment-extraction |
-| **Completed** | 2026-08-26 |
+| **Completed** | Not stated in the reviewed evidence |
+| **Authored** | 2026-08-27 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -48,28 +32,23 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-<!-- Voice guide:
-     Open with a hook: what changed and why it matters. One paragraph, impact first.
-     Then use ### subsections per feature. Each subsection: what it does + why it exists.
-     Write "You can now inspect the trace" not "Trace inspection was implemented."
-     NO "Files Changed" table for Level 3/3+. The narrative IS the summary.
-     For Level 1-2, a Files Changed table after the narrative is fine.
-     Reference: specs/system-spec-kit/020-mcp-working-memory-hybrid-rag/implementation-summary.md -->
+The in-scope manifest templates now omit instructional `SELF-CHECK`, `FAILURE MODES`, voice-guide, and footer comments that the renderer previously carried into scaffold output. Load-bearing `SPECKIT_LEVEL`, `SPECKIT_TEMPLATE_SOURCE`, and structural anchor markers remain. The reviewed snapshot baseline records the resulting rendered-byte reduction.
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+### Measured reduction
 
-### [Feature Name]
-
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The measured Level 1 `spec.md` example fell from approximately 4,280 bytes to approximately 2,490 bytes in the rendered baseline. This phase records the source and snapshot reduction without changing the inline-gate renderer.
 
 ### Files Changed
 
-<!-- Include for Level 1-2. Omit for Level 3/3+ where the narrative carries. -->
-
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl` | Modified | Removes instructional comments while retaining level and source markers. |
+| `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl` | Modified | Removes instructional comments while retaining structural content. |
+| `.opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl` | Modified | Removes instructional comments while retaining task and verification contracts. |
+| `.opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl` | Modified | Removes instructional comments from the legacy checklist template. |
+| `.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl` | Modified | Removes non-load-bearing guidance comments from the decision-record template. |
+| `.opencode/skills/system-spec-kit/templates/manifest/implementation-summary.md.tmpl` | Modified | Removes voice-guide and footer comments from the implementation-summary template. |
+| `.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` | Modified | Rebaselines the reduced rendered output. |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,13 +56,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-<!-- Voice guide:
-     Tell the delivery story. What gave you confidence this works?
-     "All features shipped behind feature flags" not "Feature flags were used."
-     For Level 1: a single sentence is enough.
-     For Level 3+: describe stages (testing, rollout, verification). -->
-
-[How was this tested, verified and shipped? What was the rollout approach?]
+The phase classified instructional comments separately from structural markers, removed the targeted comments from the in-scope manifest templates, left the renderer unchanged, and reviewed the reduced snapshot output.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -91,12 +64,12 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-<!-- Voice guide: "Why" column should read like you're explaining to a colleague.
-     "Chose X because Y" not "X was selected due to Y." -->
-
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| Preserve level and source markers | Detection and snapshot checks consume them, so they are part of the template contract. |
+| Leave the renderer unchanged | Removing comments at the template source avoids expanding the render path. |
+| Remove only instructional comments | Anchors and other structural markers carry validation and routing behavior. |
+| Record the byte reduction from reviewed snapshots | The output baseline proves the rendered effect of the source cleanup. |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -104,12 +77,14 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-<!-- Voice guide: Be honest. Show failures alongside passes.
-     "FAIL, TS2349 error in benchmarks.ts" not "Minor issues detected." -->
-
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Targeted comment scan | PASS for the in-scope manifest templates, with the targeted instructional blocks removed. |
+| Structural marker preservation | PASS, `SPECKIT_LEVEL`, `SPECKIT_TEMPLATE_SOURCE`, and structural anchors remain. |
+| Renderer scope | PASS, no inline-gate renderer change appears in the inspected diff. |
+| Rendered byte measurement | PASS, the Level 1 spec example is approximately 4,280 bytes before and approximately 2,490 bytes after. |
+| Golden snapshots | PASS, the reduced renders were rebaselined. |
+| Guidance sidecars and guide link | NOT EVIDENCED in the inspected diff, so this summary makes no completion claim for that planned artifact. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -117,19 +92,6 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-<!-- Voice guide: Number them. Be specific and actionable.
-     "Adaptive fusion is enabled by default. Set SPECKIT_ADAPTIVE_FUSION=false to disable."
-     not "Some features may require configuration."
-     Write "None identified." if nothing applies. -->
-
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Sidecar guidance is not shown in the inspected diff.** No new guidance file or template-guide link appears in the scoped changes, so discoverability of the removed authoring instructions needs separate follow-up if required.
+2. **Explicit byte-budget assertions are not shown in the inspected test diff.** This summary records the measured snapshot reduction and does not claim a new assertion until that change is evidenced.
 <!-- /ANCHOR:limitations -->
-
----
-
-<!--
-CORE TEMPLATE: Post-implementation documentation, created AFTER work completes.
-Write in human voice: active, direct, specific. No em dashes, no hedging, no AI filler.
-HVR rules: .opencode/skills/sk-doc/references/hvr-rules.md
--->
-

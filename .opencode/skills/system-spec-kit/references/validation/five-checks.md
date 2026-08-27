@@ -322,6 +322,6 @@ RESULT: [X/5 PASS] -> [PROCEED/RECONSIDER]
 ## 7. RELATED RESOURCES
 
 - [Structured Gate Decision Format](./decision-format.md) - Standard format for documenting decisions
-- [Checklist Template](../../templates/manifest/checklist.md.tmpl) - Level 2+ validation checklist structure
+- [Checklist Template](../../templates/addons/checklist.md.tmpl) - Level 2+ validation checklist structure
 - [SKILL.md - Validation Workflow](../../SKILL.md) - Overview of validation workflows (Section 3)
-- [Decision Record Template](../../templates/manifest/decision-record.md.tmpl) - For documenting Level 3/3+ decisions
+- [Decision Record Template](../../templates/addons/decision-record.md.tmpl) - For documenting Level 3/3+ decisions

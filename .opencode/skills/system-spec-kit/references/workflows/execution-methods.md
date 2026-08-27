@@ -179,15 +179,15 @@ bash .opencode/skills/system-spec-kit/scripts/spec/recommend-level.sh --auth --a
 
 ### Level contract resolver
 
-The resolver is the library that reads `templates/manifest/spec-kit-docs.json` for `create.sh`, `validate.sh`, and tests. For manual rendering, use the inline renderer.
+The resolver is the library that reads `templates/spec-kit-docs.json` for `create.sh`, `validate.sh`, and tests. For manual rendering, use the inline renderer.
 
 **Usage:**
 ```bash
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir /tmp/spec-kit-render \
-  .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl \
-  .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl
+  .opencode/skills/system-spec-kit/templates/core/spec.md.tmpl \
+  .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
 ```
 
 **Flags:**

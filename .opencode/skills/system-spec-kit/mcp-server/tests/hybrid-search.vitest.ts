@@ -964,7 +964,6 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
             useFts: false,
             useBm25: false,
             useGraph: false,
-            includeConstitutional: false,
             evaluationMode: true,
           },
         );

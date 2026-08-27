@@ -16,6 +16,7 @@ const STOP_WORDS = new Set([
   'do', 'does', 'did', 'so', 'if', 'then', 'than', 'too', 'very',
 ]);
 
+// Preserve legacy constitutional aliases so archived-tier queries remain discoverable.
 const LEXICAL_QUERY_SYNONYMS: Record<string, string[]> = {
   ephemeral: ['temporary', 'short-term', 'transient'],
   temporary: ['ephemeral', 'short-term', 'transient'],

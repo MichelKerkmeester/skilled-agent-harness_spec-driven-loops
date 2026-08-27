@@ -110,6 +110,7 @@ export const MEMORY_TYPES = {
   },
   'meta-cognitive': {
     halfLifeDays: null,
+    // Keep the legacy label for archived rows classified as meta-cognitive.
     description: 'Rules about rules: constitutional, standards, invariants',
     autoExpireDays: null,
     decayEnabled: false,
@@ -193,6 +194,7 @@ export const PATH_TYPE_PATTERNS: readonly PathTypePattern[] = [
   { pattern: /postmortem/i, type: 'autobiographical' },
 
   // Meta-cognitive patterns (rules)
+  // Preserve legacy constitutional path matching for archived document re-indexing.
   { pattern: /constitutional/i, type: 'meta-cognitive' },
   { pattern: /agents\.md$/i, type: 'meta-cognitive' },
   { pattern: /claude\.md$/i, type: 'meta-cognitive' },

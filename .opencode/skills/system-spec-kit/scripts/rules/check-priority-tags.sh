@@ -8,8 +8,8 @@ set -euo pipefail
 
 # Rule: PRIORITY_TAGS
 # Severity: warning
-# Description: Validates checklist items have priority context (P0/P1/P2 headers or inline tags).
-#              Only runs for Level 2+ (when checklist.md exists)
+# Description: Validates verification items have priority context (P0/P1/P2 headers or inline tags).
+#              Only runs for Level 2+ (when a merged or legacy checklist exists)
 
 # ───────────────────────────────────────────────────────────────
 # 1. INITIALIZATION
@@ -34,11 +34,18 @@ run_check() {
     fi
     
     local checklist="$folder/checklist.md"
-    
+    local source_name="checklist.md"
+    local merged_tasks=false
+
     if [[ ! -f "$checklist" ]]; then
-        RULE_STATUS="skip"
-        RULE_MESSAGE="Skipped (checklist.md not found)"
-        return
+        checklist="$folder/tasks.md"
+        source_name="tasks.md"
+        if [[ ! -f "$checklist" ]] || ! grep -q '<!-- ANCHOR:protocol -->' "$checklist" 2>/dev/null; then
+            RULE_STATUS="skip"
+            RULE_MESSAGE="Skipped (merged verification section and checklist.md not found)"
+            return
+        fi
+        merged_tasks=true
     fi
 
 # ───────────────────────────────────────────────────────────────
@@ -48,9 +55,25 @@ run_check() {
     local current_priority=""
     local items_without_priority=0
     local line_number=0
+    local in_verification=false
+    local verification_end_marker='<!-- /ANCHOR:summary -->'
+    if [[ "$merged_tasks" == "true" ]] && grep -q '<!-- /ANCHOR:sign-off -->' "$checklist" 2>/dev/null; then
+        verification_end_marker='<!-- /ANCHOR:sign-off -->'
+    fi
     
     while IFS= read -r line || [[ -n "$line" ]]; do
         ((line_number++)) || true
+
+        if [[ "$merged_tasks" == "true" ]]; then
+            if [[ "$line" == *"<!-- ANCHOR:protocol -->"* ]]; then
+                in_verification=true
+            elif [[ "$line" == *"$verification_end_marker"* ]]; then
+                in_verification=false
+                continue
+            elif [[ "$in_verification" != "true" ]]; then
+                continue
+            fi
+        fi
         
         # Priority section headers: ## P0, ## P0 - Blockers, ### P0:, etc.
         if [[ "$line" =~ ^#{1,3}[[:space:]]+(P[012])([[:space:]]|$|:|-) ]]; then
@@ -62,7 +85,7 @@ run_check() {
         if [[ "$line" =~ ^[[:space:]]*-[[:space:]]\[[[:space:]xX]\] ]]; then
             # Validate format: must have space after ] and description
             if [[ ! "$line" =~ ^[[:space:]]*-[[:space:]]\[[[:space:]xX]\][[:space:]]+.+ ]]; then
-                RULE_DETAILS+=("Line $line_number: Invalid format (missing space or description)")
+                RULE_DETAILS+=("$source_name:$line_number: Invalid format (missing space or description)")
                 ((items_without_priority++)) || true
                 continue
             fi
@@ -77,7 +100,7 @@ run_check() {
                 local desc="${line#*] }"
                 desc="${desc:0:50}"
                 [[ ${#desc} -eq 50 ]] && desc="${desc}..."
-                RULE_DETAILS+=("Line $line_number: $desc")
+                RULE_DETAILS+=("$source_name:$line_number: $desc")
                 ((items_without_priority++)) || true
             fi
         fi
@@ -89,10 +112,18 @@ run_check() {
 
     if [[ $items_without_priority -eq 0 ]]; then
         RULE_STATUS="pass"
-        RULE_MESSAGE="All checklist items have priority context"
+        if [[ "$merged_tasks" == "true" ]]; then
+            RULE_MESSAGE="All verification items have priority context"
+        else
+            RULE_MESSAGE="All checklist items have priority context"
+        fi
     else
         RULE_STATUS="warn"
-        RULE_MESSAGE="Found $items_without_priority checklist item(s) without priority context"
+        if [[ "$merged_tasks" == "true" ]]; then
+            RULE_MESSAGE="Found $items_without_priority verification item(s) without priority context"
+        else
+            RULE_MESSAGE="Found $items_without_priority checklist item(s) without priority context"
+        fi
         RULE_REMEDIATION="Move items under P0/P1/P2 headers or add inline [P0]/[P1]/[P2] tags"
     fi
 }

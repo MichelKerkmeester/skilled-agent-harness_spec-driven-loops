@@ -182,7 +182,7 @@ When debugging becomes prolonged or repetitive:
 
 ### Templates
 
-- [checklist.md](../../templates/manifest/checklist.md.tmpl) - Checklist template for spec folders (Level 2+)
+- [checklist.md](../../templates/addons/checklist.md.tmpl) - Checklist template for spec folders (Level 2+)
 
 ### Skills
 

@@ -101,7 +101,6 @@ function createStage2Input(
       searchType: 'vector',
       limit: candidates.length,
       includeArchived: false,
-      includeConstitutional: true,
       includeContent: false,
       minState: 'hot',
       applyStateLimits: false,

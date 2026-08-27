@@ -1,6 +1,6 @@
 ---
 title: "Automated writers never overwrite manual constitutional rule"
-description: "Advisory constitutional memory that keeps automated writers from overwriting protected manual or constitutional content, backed by write-ingress provenance guards."
+description: "Kept unindexed reference doc that reminds automated writers not to overwrite protected manual or rule content, backed by write-ingress provenance guards."
 trigger_phrases:
   - "automated writers never overwrite manual constitutional rule"
   - "automated-writers-never-overwrite-manual"
@@ -15,17 +15,17 @@ version: 3.6.0.1
 
 ## 1. OVERVIEW
 
-This constitutional rule states that automated writers must not overwrite protected manual or constitutional material.
+This kept reference rule states that automated writers must not overwrite protected manual or rule material.
 
-It is advisory memory, but it is paired with executable write-ingress behavior: source kind is derived server-side and automated updates skip protected fields before mutation.
+It is an advisory reference, but it is paired with executable write-ingress behavior: source kind is derived server-side and automated updates skip protected fields before mutation.
 
 ---
 
 ## 2. HOW IT WORKS
 
-The rule file lives in the system-spec-kit constitutional memory pack and is indexed through the existing always-surface constitutional loader. It gives agents and operators a durable reminder that human-authored or constitutional truth requires explicit human authority to replace.
+The rule file is kept as a plain unindexed reference doc under the system-spec-kit constitutional reference directory. It gives agents and operators a durable reminder that human-authored or rule truth requires explicit human authority to replace.
 
-The runtime guard derives provenance from server context and rejects forged provenance fields. Automated updates can still write safe fields, but protected manual or constitutional fields are skipped and surfaced as a guarded-write hint instead of being silently overwritten.
+The runtime guard derives provenance from server context and rejects forged provenance fields. Automated updates can still write safe fields, but protected manual or rule fields are skipped and surfaced as a guarded-write hint instead of being silently overwritten.
 
 ---
 
@@ -35,7 +35,7 @@ The runtime guard derives provenance from server context and rejects forged prov
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/constitutional/automated-writers-never-overwrite-manual.md` | Constitutional memory | Advisory rule file |
+| (rule file removed) | Retired with the constitutional layer | Guidance now lives in the root instruction docs |
 | `mcp-server/handlers/memory-crud-update.ts` | Handler | Guarded update parameters and forged-provenance rejection |
 | `mcp-server/handlers/save/create-record.ts` | Handler | Server-derived source kind persistence |
 | `mcp-server/lib/search/vector-index-schema.ts` | Shared | source_kind storage and backfill |
@@ -57,5 +57,5 @@ The runtime guard derives provenance from server context and rejects forged prov
 - Feature file path: `governance/automated-writers-never-overwrite-manual-constitutional-rule.md`
 
 Related references:
-- [constitutional-gate-enforcement-rule-pack.md](../../feature-catalog/governance/constitutional-gate-enforcement-rule-pack.md) - Constitutional memory rule pack
+- [constitutional-gate-enforcement-rule-pack.md](../../feature-catalog/governance/constitutional-gate-enforcement-rule-pack.md) - Retained rule-pack history
 - [hierarchical-scope-governance-governed-ingest-retention-and-audit.md](../../feature-catalog/governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md) - Governed ingest and audit

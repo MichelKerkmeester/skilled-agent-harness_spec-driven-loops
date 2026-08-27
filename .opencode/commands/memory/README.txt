@@ -35,7 +35,7 @@ trigger_phrases:
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-The `memory` command group provides operations for the Spec Kit Memory MCP system. These commands cover context preservation, unified knowledge retrieval and analysis, and database maintenance plus async ingest. Session recovery now lives under `/speckit:resume`. `/memory:learn` is deprecated — the constitutional-memory layer (an always-surface, search-boosted rule tier) was retired; the former rule files remain as plain, unindexed reference docs.
+The `memory` command group provides operations for the Spec Kit Memory MCP system. These commands cover context preservation, unified knowledge retrieval and analysis, and database maintenance plus async ingest. Session recovery now lives under `/speckit:resume`. `/memory:learn` is deprecated — the constitutional-memory layer (an always-surface, search-boosted rule tier) was retired; the former rule files were deleted from the repository.
 
 All commands interact with the memory MCP server tools (`system_spec_memory_*`). They follow a gate-based argument validation pattern: if required arguments are missing, the command prompts the user before proceeding.
 
@@ -77,7 +77,7 @@ Visible dashboards, prompts, examples, and errors live in each command's present
 
 `/memory:learn` is deprecated. The constitutional-memory layer (the always-surface, search-boosted
 rule tier it managed) was retired and removed from the code, so its create/list/edit/remove/budget
-routes no longer exist. The former rule files remain as plain, unindexed reference docs. Use
+routes no longer exist. The former rule files were deleted from the repository. Use
 `/memory:save` to preserve scoped context instead.
 
 ### Search Subcommands
@@ -290,7 +290,7 @@ Primary MCP tools mapped to their command home:
 
 **Q: Can I still use `/memory:learn` to create constitutional memories?**
 
-No. `/memory:learn` is deprecated. The constitutional-memory layer — an always-surface, search-boosted rule tier — was retired and removed from the code, so there are no constitutional memories to create, list, or budget. The former rule files remain as plain, unindexed reference docs. Use `/memory:save` to preserve session context, implementation decisions, and research findings tied to a specific spec folder.
+No. `/memory:learn` is deprecated. The constitutional-memory layer — an always-surface, search-boosted rule tier — was retired and removed from the code, so there are no constitutional memories to create, list, or budget. The former rule files were deleted from the repository. Use `/memory:save` to preserve session context, implementation decisions, and research findings tied to a specific spec folder.
 
 **Q: What happens if I run `/memory:manage scan --force` on a large workspace?**
 

@@ -12,6 +12,8 @@ version: 3.6.0.13
 
 # Constitutional memory as expert knowledge injection
 
+> **DEPRECATED (constitutional-layer removal):** this feature was removed; the 20 rule files were deleted as well. Retained here for historical record.
+
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW

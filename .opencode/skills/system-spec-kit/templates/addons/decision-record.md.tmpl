@@ -1,0 +1,132 @@
+---
+title: "Decision Record: [NAME]"
+description: "Decision record template for documenting architectural choices, alternatives, consequences, and implementation notes."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "name"
+  - "template"
+  - "decision record"
+importance_tier: "normal"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/templates"
+    last_updated_at: "2026-04-11T00:00:00Z"
+    last_updated_by: "template-author"
+    recent_action: "Initialized decision record template"
+    next_safe_action: "Replace continuity placeholders"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "template-session"
+      parent_session_id: null
+    completion_pct: 0
+    open_questions: []
+    answered_questions: []
+---
+# Decision Record: [NAME]
+
+<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
+<!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr-rules.md -->
+
+---
+
+<!-- ANCHOR:adr-001 -->
+## ADR-001: [Decision Title]
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | [Proposed/Accepted/Deprecated/Superseded] |
+| **Date** | [YYYY-MM-DD] |
+| **Deciders** | [Names] |
+
+---
+
+<!-- ANCHOR:adr-001-context -->
+### Context
+
+[What problem or situation required this decision? What was at stake?
+Write in direct, active voice.]
+
+### Constraints
+
+- [Technical constraint with specifics]
+- [Business constraint with specifics]
+<!-- /ANCHOR:adr-001-context -->
+
+---
+
+<!-- ANCHOR:adr-001-decision -->
+### Decision
+
+**We chose**: [One-sentence description of the decision, in active voice]
+
+**How it works**: [Implementation approach in 2-3 direct sentences]
+<!-- /ANCHOR:adr-001-decision -->
+
+---
+
+<!-- ANCHOR:adr-001-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **[Chosen]** | [Advantages] | [Disadvantages] | [X/10] |
+| [Alternative A] | [Advantages] | [Disadvantages] | [Y/10] |
+
+**Why this one**: [Rationale in 1-2 sentences, direct and specific]
+<!-- /ANCHOR:adr-001-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-001-consequences -->
+### Consequences
+
+**What improves**:
+- [Specific benefit with measurable impact where possible]
+- [Specific benefit]
+
+**What it costs**:
+- [Specific drawback] . Mitigation: [How to handle it]
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| [Risk with specifics] | [H/M/L] | [Concrete strategy] |
+<!-- /ANCHOR:adr-001-consequences -->
+
+---
+
+<!-- ANCHOR:adr-001-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | [PASS/FAIL] | [Is this solving an actual need now?] |
+| 2 | **Beyond Local Maxima?** | [PASS/FAIL] | [Were alternatives explored?] |
+| 3 | **Sufficient?** | [PASS/FAIL] | [Is this the simplest approach?] |
+| 4 | **Fits Goal?** | [PASS/FAIL] | [Is this on the critical path?] |
+| 5 | **Open Horizons?** | [PASS/FAIL] | [Is this long-term aligned?] |
+
+**Checks Summary**: [X/5 PASS]
+<!-- /ANCHOR:adr-001-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-001-impl -->
+### Implementation
+
+**What changes**:
+- [System/Component with specific change]
+- [System/Component with specific change]
+
+**How to roll back**: [Concrete revert steps, not "revert if needed"]
+<!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->
+
+---

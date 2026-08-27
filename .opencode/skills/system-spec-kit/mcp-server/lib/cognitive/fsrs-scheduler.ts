@@ -391,6 +391,7 @@ function applyClassificationDecay(
 const HYBRID_NO_DECAY_CONTEXT_TYPES: ReadonlySet<string> = new Set([
   'planning',
   ...Object.keys(LEGACY_CONTEXT_TYPE_ALIASES).filter(k => LEGACY_CONTEXT_TYPE_ALIASES[k] === 'planning'),
+  // Preserve no-decay behavior for archived rows carrying the legacy context type.
   'constitutional',
   'critical',
 ]);

@@ -677,8 +677,8 @@ workflow:
     - Run create.sh script (scripts/spec/create.sh) with calculated number
     - Estimate complexity and select documentation level using progressive enhancement:
       - "Level 1 (Baseline): <100 LOC - spec.md + plan.md + tasks.md"
-      - "Level 2 (Verification): 100-499 LOC - Level 1 + checklist.md"
-      - "Level 3 (Full): >=500 LOC - Level 2 + decision-record.md"
+      - "Level 2 (Verification): 100-499 LOC - core trio; checklist.md optional"
+      - "Level 3 (Full): >=500 LOC - core trio; decision-record.md on demand"
     - Load spec.md and use as EXACT structure
     - Parse user description and extract key concepts
     - Identify actors, actions, data, constraints

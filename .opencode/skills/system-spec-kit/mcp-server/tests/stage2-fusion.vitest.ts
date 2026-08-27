@@ -72,7 +72,6 @@ function createStage2Input(candidates: Array<Record<string, unknown>>): Stage2In
       searchType: 'vector' as const,
       limit: candidates.length,
       includeArchived: false,
-      includeConstitutional: true,
       includeContent: false,
       minState: 'hot',
       applyStateLimits: false,

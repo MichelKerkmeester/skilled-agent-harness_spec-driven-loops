@@ -59,7 +59,6 @@ function createConfig(overrides: Partial<PipelineConfig> = {}): PipelineConfig {
     searchType: 'hybrid',
     limit: 10,
     includeArchived: false,
-    includeConstitutional: false,
     includeContent: false,
     minState: 'ARCHIVED',
     applyStateLimits: false,

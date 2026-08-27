@@ -204,20 +204,20 @@ bash .opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh specs/X
 
 ### Templates (Manifest-Based Organization)
 
-Templates are selected from `templates/manifest/spec-kit-docs.json`:
+Templates are selected from `templates/spec-kit-docs.json`:
 
 | Level | Source | Rendered Content |
 |-------|--------|---------------------|
-| Level 1 | `templates/manifest/spec-kit-docs.json` | Baseline templates (spec, plan, tasks, implementation-summary) |
-| Level 2 | `templates/manifest/spec-kit-docs.json` | Level 1 + checklist |
-| Level 3 | `templates/manifest/spec-kit-docs.json` | Level 2 + decision-record, lazy research |
-| Level 3+ | `templates/manifest/spec-kit-docs.json` | Level 3 file set with governance sections |
+| Level 1 | `templates/spec-kit-docs.json` | Baseline templates (spec, plan, tasks, implementation-summary) |
+| Level 2 | `templates/spec-kit-docs.json` | Level 1 + checklist |
+| Level 3 | `templates/spec-kit-docs.json` | Level 2 + decision-record, lazy research |
+| Level 3+ | `templates/spec-kit-docs.json` | Level 3 file set with governance sections |
 
 **Example paths:**
-- `templates/manifest/spec.md.tmpl` - Level-gated spec template
-- `templates/manifest/checklist.md.tmpl` - Level-gated checklist template
-- `templates/manifest/decision-record.md.tmpl` - Level-gated ADR template
-- `templates/manifest/spec.md.tmpl` - Level 3+ spec sections are rendered by gate
+- `templates/core/spec.md.tmpl` - Level-gated spec template
+- `templates/addons/checklist.md.tmpl` - Level-gated checklist template
+- `templates/addons/decision-record.md.tmpl` - Level-gated ADR template
+- `templates/core/spec.md.tmpl` - Level 3+ spec sections are rendered by gate
 
 ### Reference Documentation
 - [level-specifications.md](./level-specifications.md) - Complete level requirements

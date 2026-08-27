@@ -88,7 +88,6 @@ function makeConfig(overrides: Partial<PipelineConfig> = {}): PipelineConfig {
     mode: 'deep',
     limit: 5,
     includeArchived: false,
-    includeConstitutional: false,
     includeContent: false,
     minState: 'active',
     applyStateLimits: false,

@@ -12,7 +12,7 @@ version: 3.6.0.12
 
 # Constitutional memory manager command
 
-> **DEPRECATED — the constitutional memory layer was removed; this scenario no longer applies.**
+> **DEPRECATED (constitutional-layer removal):** this feature was removed; the 20 rule files were deleted as well. Retained here for historical record.
 
 <!-- sk-doc-template: skill_asset_feature_catalog -->
 

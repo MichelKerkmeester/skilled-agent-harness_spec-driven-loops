@@ -40,7 +40,7 @@ Schema v35 adds the `source_kind` column and a backfill mapping older provenance
 | `mcp-server/handlers/memory-crud-update.ts` | Handler | Derives update provenance, rejects forged input, and guards protected writes |
 | `mcp-server/handlers/mutation-hooks.ts` | Handler | Keeps post-write cache and audit behavior scoped |
 | `mcp-server/lib/storage/mutation-ledger.ts` | Shared | Deduplicated audit append keyed by actor, source, and reason |
-| `.opencode/skills/system-spec-kit/constitutional/automated-writers-never-overwrite-manual.md` | Constitutional memory | Advisory governance rule paired with the guard |
+| the retired constitutional rule docs | Constitutional memory | Advisory governance rule paired with the guard |
 
 ### Validation And Tests
 

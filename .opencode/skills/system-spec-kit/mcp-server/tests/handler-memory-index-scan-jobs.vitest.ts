@@ -309,7 +309,6 @@ describe('memory_index_scan background dispatch', () => {
 
     const result = await scanHandler.handleMemoryIndexScan({
       background: true,
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,
@@ -333,7 +332,6 @@ describe('memory_index_scan background dispatch', () => {
 
   it('without background runs synchronously and never creates a job', async () => {
     const result = await scanHandler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,
@@ -348,7 +346,6 @@ describe('memory_index_scan background dispatch', () => {
   it('memory_index_scan_status echoes the terminal result and returns E404 for unknown ids', async () => {
     const started = await scanHandler.handleMemoryIndexScan({
       background: true,
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,
@@ -374,7 +371,6 @@ describe('memory_index_scan background dispatch', () => {
     mocks.mockIndexMemoryFile.mockResolvedValue({ status: 'cancelled' });
 
     const result = await scanHandler.handleMemoryIndexScan({
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,
@@ -395,7 +391,6 @@ describe('memory_index_scan background dispatch', () => {
 
     const started = await scanHandler.handleMemoryIndexScan({
       background: true,
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,
@@ -425,7 +420,6 @@ describe('memory_index_scan background dispatch', () => {
 
     const started = await scanHandler.handleMemoryIndexScan({
       background: true,
-      includeConstitutional: false,
       includeSpecDocs: true,
       incremental: false,
       force: false,

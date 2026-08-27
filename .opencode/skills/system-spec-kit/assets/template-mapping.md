@@ -66,9 +66,9 @@ Level 3+ (Extended):    Level 3 + approval workflow + compliance + stakeholder t
 | **Phase Parent**    | `spec.md` + `description.json` + `graph-metadata.json` (lean trio) | None (control file only) | `create.sh --phase --phases N --phase-names a,b,c <description>` |
 
 **Phase Parent** rows above apply when the target folder qualifies as a phase parent (≥1 direct child matching `^[0-9]{3}-[a-z0-9-]+$` AND ≥1 such child has `spec.md` OR `description.json`). At a phase parent:
-- **Required:** `spec.md` (lean, rendered from `templates/manifest/phase-parent.spec.md.tmpl`), `description.json`, `graph-metadata.json`
+- **Required:** `spec.md` (lean, rendered from `templates/packet-types/phase-parent.spec.md.tmpl`), `description.json`, `graph-metadata.json`
 - **Prohibited at parent (live in children only):** `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`
-- **Optional:** `templates/manifest/context-index.md.tmpl` (migration bridge, only if reorganized)
+- **Optional:** `templates/packet-types/context-index.md.tmpl` (migration bridge, only if reorganized)
 
 Phase children continue to follow the normal Level 1–3+ rows above for their assigned level. Tolerant policy: legacy phase parents that retain heavy docs continue to validate without churn.
 
@@ -90,7 +90,7 @@ mkdir -p specs/###-name/research
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name/research \
-  .opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl
+  .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
 ```
 
 **Level 3+ Scaffold Commands (complete set):**
@@ -101,7 +101,7 @@ mkdir -p specs/###-name/research
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 3+ \
   --out-dir specs/###-name/research \
-  .opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl
+  .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
 ```
 
 ---
@@ -112,8 +112,8 @@ These templates are OPTIONAL and can be added at any documentation level:
 
 | Template File | Render As     | When to Use                          | Render Command                                                                        |
 | ------------- | ------------- | ------------------------------------ | ------------------------------------------------------------------------------------- |
-| `research/research.md` | `research/research.md` | Comprehensive research documentation (Level 3+ typical) | Render `templates/manifest/research.md.tmpl` with `inline-gate-renderer --level N --out-dir specs/###-name/research` |
-| `resource-map.md` | `resource-map.md` | Lean path catalog of every file analyzed/created/updated/removed (any level) | Render `templates/manifest/resource-map.md.tmpl` with `inline-gate-renderer --level N --out-dir specs/###-name` |
+| `research/research.md` | `research/research.md` | Comprehensive research documentation (Level 3+ typical) | Render `templates/addons/research.md.tmpl` with `inline-gate-renderer --level N --out-dir specs/###-name/research` |
+| `resource-map.md` | `resource-map.md` | Lean path catalog of every file analyzed/created/updated/removed (any level) | Render `templates/addons/resource-map.md.tmpl` with `inline-gate-renderer --level N --out-dir specs/###-name` |
 
 **Notes:**
 - These are OPTIONAL - only render when the packet benefits from them
@@ -276,7 +276,7 @@ Content that will be indexed...
 
 **Non-negotiable rules:**
 
-1. **Always scaffold or render from `.opencode/skills/system-spec-kit/templates/manifest/`** - Never freehand documentation
+1. **Always scaffold or render from `.opencode/skills/system-spec-kit/templates/`** - Never freehand documentation
 2. **Preserve numbering and emojis** - Maintain visual scanning pattern
 3. **Fill every placeholder** - Replace `[PLACEHOLDER]` with actual content
 4. **Remove instructional comments** - Delete `<!-- SAMPLE -->` blocks
@@ -337,7 +337,7 @@ mkdir -p specs/###-name/research
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 3 \
   --out-dir specs/###-name/research \
-  .opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl
+  .opencode/skills/system-spec-kit/templates/addons/research.md.tmpl
 ```
 
 ### Step 6: Fill Templates
@@ -376,36 +376,36 @@ Get explicit "yes/go ahead/proceed" before ANY file changes.
 ### Templates (Organized by Level)
 
 **Level 1 Templates (Baseline):**
-- [spec template](../templates/manifest/spec.md.tmpl) - Requirements and user stories template
-- [plan.md](../templates/manifest/plan.md.tmpl) - Technical implementation plan template
-- [tasks.md](../templates/manifest/tasks.md.tmpl) - Task breakdown template
-- [implementation-summary.md](../templates/manifest/implementation-summary.md.tmpl) - Completion summary template
+- [spec template](../templates/core/spec.md.tmpl) - Requirements and user stories template
+- [plan.md](../templates/core/plan.md.tmpl) - Technical implementation plan template
+- [tasks.md](../templates/core/tasks.md.tmpl) - Task breakdown template
+- [implementation-summary.md](../templates/core/implementation-summary.md.tmpl) - Completion summary template
 
 **Level 2 Templates (Verification):**
-- [spec template](../templates/manifest/spec.md.tmpl) - Requirements template with extended sections
-- [plan.md](../templates/manifest/plan.md.tmpl) - Implementation plan with verification
-- [tasks.md](../templates/manifest/tasks.md.tmpl) - Task breakdown template
-- [implementation-summary.md](../templates/manifest/implementation-summary.md.tmpl) - Completion summary template
-- [checklist.md](../templates/manifest/checklist.md.tmpl) - Validation checklist template
+- [spec template](../templates/core/spec.md.tmpl) - Requirements template with extended sections
+- [plan.md](../templates/core/plan.md.tmpl) - Implementation plan with verification
+- [tasks.md](../templates/core/tasks.md.tmpl) - Task breakdown template
+- [implementation-summary.md](../templates/core/implementation-summary.md.tmpl) - Completion summary template
+- [checklist.md](../templates/addons/checklist.md.tmpl) - Validation checklist template
 
 **Level 3 Templates (Full Documentation):**
-- [spec template](../templates/manifest/spec.md.tmpl) - Comprehensive requirements template
-- [plan.md](../templates/manifest/plan.md.tmpl) - Full implementation plan template
-- [tasks.md](../templates/manifest/tasks.md.tmpl) - Detailed task breakdown template
-- [implementation-summary.md](../templates/manifest/implementation-summary.md.tmpl) - Completion summary template
-- [checklist.md](../templates/manifest/checklist.md.tmpl) - Full validation checklist template
-- [decision-record.md](../templates/manifest/decision-record.md.tmpl) - Architecture Decision Records template
+- [spec template](../templates/core/spec.md.tmpl) - Comprehensive requirements template
+- [plan.md](../templates/core/plan.md.tmpl) - Full implementation plan template
+- [tasks.md](../templates/core/tasks.md.tmpl) - Detailed task breakdown template
+- [implementation-summary.md](../templates/core/implementation-summary.md.tmpl) - Completion summary template
+- [checklist.md](../templates/addons/checklist.md.tmpl) - Full validation checklist template
+- [decision-record.md](../templates/addons/decision-record.md.tmpl) - Architecture Decision Records template
 
 **Level 3+ Templates (Extended):**
-- [spec template](../templates/manifest/spec.md.tmpl) - Requirements with approval workflow and compliance checkpoints
-- [plan.md](../templates/manifest/plan.md.tmpl) - Implementation plan with AI execution framework and workstream coordination
-- [tasks.md](../templates/manifest/tasks.md.tmpl) - Task breakdown with 3-tier format and AI execution protocol
-- [implementation-summary.md](../templates/manifest/implementation-summary.md.tmpl) - Completion summary template
-- [checklist.md](../templates/manifest/checklist.md.tmpl) - Extended checklist (100-150 items) with sign-offs and compliance
-- [decision-record.md](../templates/manifest/decision-record.md.tmpl) - Decision records with authority and review requirements
+- [spec template](../templates/core/spec.md.tmpl) - Requirements with approval workflow and compliance checkpoints
+- [plan.md](../templates/core/plan.md.tmpl) - Implementation plan with AI execution framework and workstream coordination
+- [tasks.md](../templates/core/tasks.md.tmpl) - Task breakdown with 3-tier format and AI execution protocol
+- [implementation-summary.md](../templates/core/implementation-summary.md.tmpl) - Completion summary template
+- [checklist.md](../templates/addons/checklist.md.tmpl) - Extended checklist (100-150 items) with sign-offs and compliance
+- [decision-record.md](../templates/addons/decision-record.md.tmpl) - Decision records with authority and review requirements
 
 **Optional Templates:**
-- [research.md.tmpl](../templates/manifest/research.md.tmpl) - Render to `research/research.md` for Level 3 research packets
+- [research.md.tmpl](../templates/addons/research.md.tmpl) - Render to `research/research.md` for Level 3 research packets
 
 ### Related Skills
 - `system-spec-kit` - Spec folder workflow orchestrator

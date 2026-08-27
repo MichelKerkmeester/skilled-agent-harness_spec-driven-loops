@@ -23,7 +23,6 @@ import { calculateDocumentWeight, isSpecDocumentType } from './document-helpers.
 import { applyPostInsertMetadata } from './post-insert-metadata.js';
 import { isManualSourceKind } from './write-provenance.js';
 
-// Feature catalog: Lineage state active projection and asOf resolution
 const logger = createLogger('LineageState');
 
 
@@ -531,6 +530,7 @@ function bindHistory(database: Database.Database): void {
 }
 
 function markHistoricalPredecessor(database: Database.Database, memoryId: number, updatedAt: string): void {
+  // Keep the legacy tier unchanged so historical rows remain readable after lineage updates.
   database.prepare(`
     UPDATE memory_index
     SET importance_tier = CASE
@@ -1473,9 +1473,9 @@ export function retirePredecessorForActiveReindex(
   if (!predecessor) {
     return null;
   }
-  // Constitutional rows are exempt from the active-row guard and must keep their
-  // always-surface tier — deprecating one would declassify it. Leave it active and
-  // let the lineage transition supersede it without a tier change.
+  // Keep legacy constitutional rows exempt so archived data is not declassified during reindexing.
+  // These rows must keep their always-surface tier; deprecating one would declassify it.
+  // Leave it active and let the lineage transition supersede it without a tier change.
   if (predecessor.importance_tier === 'constitutional') {
     return null;
   }

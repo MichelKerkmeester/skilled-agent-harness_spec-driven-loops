@@ -131,4 +131,4 @@ Verification gate: confirm `git status --short` only includes the intended packe
 - spec-folder-authoring-checklist.md (companion checklist, same directory)
 - system-spec-kit/scripts/spec/validate.sh (the gate)
 - system-spec-kit/scripts/dist/spec-folder/generate-description.js (metadata refresh)
-- system-spec-kit/templates/manifest/{spec,plan,tasks,implementation-summary}.md.tmpl (canonical templates)
+- system-spec-kit/templates/{spec,plan,tasks,implementation-summary}.md.tmpl (canonical templates)

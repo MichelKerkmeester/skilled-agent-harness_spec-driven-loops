@@ -112,7 +112,8 @@ EXIT CODES: 0=pass, 1=user error, 2=validation error, 3=system error
 
 $registry_rules
 
-LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+checklist, 3=+decision-record
+LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+checklist, 3=+architecture guidance
+        decision-record.md and other add-ons are on-demand when explicitly added
         review=spec+review/review-report (lean review record, marker-gated)
         *impl-summary required after tasks completed
 EOF
@@ -458,6 +459,9 @@ detect_level() {
     # Fallback: infer from existing files
     [[ -f "$folder/decision-record.md" ]] && { DETECTED_LEVEL=3; LEVEL_METHOD="inferred"; return; }
     [[ -f "$folder/checklist.md" ]] && { DETECTED_LEVEL=2; LEVEL_METHOD="inferred"; return; }
+    if [[ -f "$folder/tasks.md" ]] && grep -q '<!-- ANCHOR:protocol -->' "$folder/tasks.md" 2>/dev/null; then
+        DETECTED_LEVEL=2; LEVEL_METHOD="inferred"; return
+    fi
     DETECTED_LEVEL=1; LEVEL_METHOD="inferred"
 }
 
