@@ -79,6 +79,13 @@ export const CHECKS = {
     if (/\|\s*(AI_SESSION_CHILD=\S+\s+)?opencode\s+run\b/.test(cmd)) return true;
     return false;
   },
+  // Without an explicit model the run falls back to the configured default; when that
+  // provider is out of quota the 429 retries forever and emits nothing, which looks
+  // exactly like a deadlock.
+  'explicit-model-required': (cmd) => {
+    if (!/\bopencode\s+run\b/.test(cmd)) return true; // not the dispatch shape → n/a
+    return /(^|\s)(-m|--model)(\s|=)/.test(cmd);
+  },
   // A bare top-level `--agent general` is rejected by opencode at runtime.
   'no-bare-agent-general': (cmd) => !/--agent\s+general(\s|$)/.test(cmd),
   // A slash-command-shaped prompt needs --command, else opencode delivers it as raw prose.
