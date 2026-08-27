@@ -760,6 +760,279 @@ workflow:
             - "opencode run receives --model, --format json, --dangerously-skip-permissions, --pure, --dir, and optional --variant; service-tier is not supported"
             - "input:'' supplies closed stdin (EOF), equivalent to </dev/null"
             - "The cli-opencode self-invocation guard still applies: this single-executor branch runs only from a non-OpenCode dispatch surface"
+        if_cli_cursor:
+          command: |
+            node --experimental-strip-types --input-type=module <<'EOF'
+            import { readFileSync } from 'node:fs';
+            import { createRequire } from 'node:module';
+            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { resolveSandboxMode, resolveClaudePermissionMode } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
+            import {
+              snapshotOutOfScopeDirtyPaths,
+              enforceWriteContainment,
+            } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
+
+            // cursor-agent/devin/pi have no single-executor branch of their own, so
+            // without this they silently degrade to native. The command builder is the
+            // same one the fan-out lineage path uses, so the enforced model allowlist,
+            // headless write-mode flags, and binary preflight stay one source of truth.
+            // It throws (fail closed) when the binary is absent or the model is off the
+            // allowlist, so a requested CLI executor never becomes native.
+            const require = createRequire(import.meta.url);
+            const { buildLineageCommand } = require('./.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+
+            const kind = '{config.executor.kind}';
+            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
+            const timeoutSeconds = Number('{config.executor.timeoutSeconds}');
+            // The iteration must write its own iteration file, delta and state record,
+            // so the leaf runs workspace-write; the builder maps that to each CLI's real
+            // write-permitting headless flags.
+            const sandboxMode = 'workspace-write';
+            const lineage = { kind, model, sandboxMode };
+            const resolvedSandbox = resolveSandboxMode(sandboxMode);
+            const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
+
+            const repoRoot = '{repo_root}';
+            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const { command, args, input } = buildLineageCommand(
+              lineage,
+              promptBody,
+              resolvedSandbox,
+              resolvedPermission,
+              { env: process.env, cwd: repoRoot },
+            );
+
+            const executor = {
+              kind,
+              model,
+              configDir: null,
+              reasoningEffort: null,
+              serviceTier: null,
+              sandboxMode,
+              timeoutSeconds,
+              governor: null,
+            };
+            const dispatchId = 'alignment-i{current_iteration}-g{generation}';
+            const artifactDir = '{artifact_dir}';
+            const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
+            const dispatchExit = runAuditedExecutorCommand({
+              command,
+              args,
+              cwd: repoRoot,
+              timeoutSeconds,
+              stateLogPath: '{state_paths.state_log}',
+              executor,
+              iteration: Number('{current_iteration}'),
+              input,
+              receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+              dispatchId,
+            });
+            const containment = enforceWriteContainment({
+              repoRoot,
+              artifactDir,
+              preDispatchDirtyPaths,
+              stateLogPath: '{state_paths.state_log}',
+              iteration: Number('{current_iteration}'),
+              label: dispatchId,
+            });
+            if (containment.violations.length > 0) {
+              console.error(
+                'write-containment violation: reverted ' + containment.violations.length
+                  + ' out-of-scope path(s): '
+                  + containment.violations.map((v) => v.path).join(', '),
+              );
+              process.exit(1);
+            }
+            process.exit(dispatchExit);
+            EOF
+          working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+          wait_for_completion: true
+          notes:
+            - "cli-cursor single-executor: dispatches per-iteration through the shared fan-out command builder (buildLineageCommand) so the enforced cli-cursor model allowlist + headless write flags stay one source of truth; runAuditedExecutorCommand emits INTENT + COMPLETION receipts"
+            - "Fails closed when cursor-agent is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-cursor executor never degrades to native"
+        if_cli_devin:
+          command: |
+            node --experimental-strip-types --input-type=module <<'EOF'
+            import { readFileSync } from 'node:fs';
+            import { createRequire } from 'node:module';
+            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { resolveSandboxMode, resolveClaudePermissionMode } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
+            import {
+              snapshotOutOfScopeDirtyPaths,
+              enforceWriteContainment,
+            } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
+
+            // cursor-agent/devin/pi have no single-executor branch of their own, so
+            // without this they silently degrade to native. The command builder is the
+            // same one the fan-out lineage path uses, so the enforced model allowlist,
+            // headless write-mode flags, and binary preflight stay one source of truth.
+            // It throws (fail closed) when the binary is absent or the model is off the
+            // allowlist, so a requested CLI executor never becomes native.
+            const require = createRequire(import.meta.url);
+            const { buildLineageCommand } = require('./.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+
+            const kind = '{config.executor.kind}';
+            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
+            const timeoutSeconds = Number('{config.executor.timeoutSeconds}');
+            // The iteration must write its own iteration file, delta and state record,
+            // so the leaf runs workspace-write; the builder maps that to each CLI's real
+            // write-permitting headless flags.
+            const sandboxMode = 'workspace-write';
+            const lineage = { kind, model, sandboxMode };
+            const resolvedSandbox = resolveSandboxMode(sandboxMode);
+            const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
+
+            const repoRoot = '{repo_root}';
+            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const { command, args, input } = buildLineageCommand(
+              lineage,
+              promptBody,
+              resolvedSandbox,
+              resolvedPermission,
+              { env: process.env, cwd: repoRoot },
+            );
+
+            const executor = {
+              kind,
+              model,
+              configDir: null,
+              reasoningEffort: null,
+              serviceTier: null,
+              sandboxMode,
+              timeoutSeconds,
+              governor: null,
+            };
+            const dispatchId = 'alignment-i{current_iteration}-g{generation}';
+            const artifactDir = '{artifact_dir}';
+            const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
+            const dispatchExit = runAuditedExecutorCommand({
+              command,
+              args,
+              cwd: repoRoot,
+              timeoutSeconds,
+              stateLogPath: '{state_paths.state_log}',
+              executor,
+              iteration: Number('{current_iteration}'),
+              input,
+              receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+              dispatchId,
+            });
+            const containment = enforceWriteContainment({
+              repoRoot,
+              artifactDir,
+              preDispatchDirtyPaths,
+              stateLogPath: '{state_paths.state_log}',
+              iteration: Number('{current_iteration}'),
+              label: dispatchId,
+            });
+            if (containment.violations.length > 0) {
+              console.error(
+                'write-containment violation: reverted ' + containment.violations.length
+                  + ' out-of-scope path(s): '
+                  + containment.violations.map((v) => v.path).join(', '),
+              );
+              process.exit(1);
+            }
+            process.exit(dispatchExit);
+            EOF
+          working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+          wait_for_completion: true
+          notes:
+            - "cli-devin single-executor: dispatches per-iteration through the shared fan-out command builder (buildLineageCommand) so the enforced cli-devin model allowlist + headless write flags stay one source of truth; runAuditedExecutorCommand emits INTENT + COMPLETION receipts"
+            - "Fails closed when devin is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-devin executor never degrades to native"
+        if_cli_pi:
+          command: |
+            node --experimental-strip-types --input-type=module <<'EOF'
+            import { readFileSync } from 'node:fs';
+            import { createRequire } from 'node:module';
+            import { runAuditedExecutorCommand } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { resolveSandboxMode, resolveClaudePermissionMode } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
+            import {
+              snapshotOutOfScopeDirtyPaths,
+              enforceWriteContainment,
+            } from './.opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
+
+            // cursor-agent/devin/pi have no single-executor branch of their own, so
+            // without this they silently degrade to native. The command builder is the
+            // same one the fan-out lineage path uses, so the enforced model allowlist,
+            // headless write-mode flags, and binary preflight stay one source of truth.
+            // It throws (fail closed) when the binary is absent or the model is off the
+            // allowlist, so a requested CLI executor never becomes native.
+            const require = createRequire(import.meta.url);
+            const { buildLineageCommand } = require('./.opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+
+            const kind = '{config.executor.kind}';
+            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
+            const timeoutSeconds = Number('{config.executor.timeoutSeconds}');
+            // The iteration must write its own iteration file, delta and state record,
+            // so the leaf runs workspace-write; the builder maps that to each CLI's real
+            // write-permitting headless flags.
+            const sandboxMode = 'workspace-write';
+            const lineage = { kind, model, sandboxMode };
+            const resolvedSandbox = resolveSandboxMode(sandboxMode);
+            const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
+
+            const repoRoot = '{repo_root}';
+            const promptBody = readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8');
+            const { command, args, input } = buildLineageCommand(
+              lineage,
+              promptBody,
+              resolvedSandbox,
+              resolvedPermission,
+              { env: process.env, cwd: repoRoot },
+            );
+
+            const executor = {
+              kind,
+              model,
+              configDir: null,
+              reasoningEffort: null,
+              serviceTier: null,
+              sandboxMode,
+              timeoutSeconds,
+              governor: null,
+            };
+            const dispatchId = 'alignment-i{current_iteration}-g{generation}';
+            const artifactDir = '{artifact_dir}';
+            const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
+            const dispatchExit = runAuditedExecutorCommand({
+              command,
+              args,
+              cwd: repoRoot,
+              timeoutSeconds,
+              stateLogPath: '{state_paths.state_log}',
+              executor,
+              iteration: Number('{current_iteration}'),
+              input,
+              receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+              dispatchId,
+            });
+            const containment = enforceWriteContainment({
+              repoRoot,
+              artifactDir,
+              preDispatchDirtyPaths,
+              stateLogPath: '{state_paths.state_log}',
+              iteration: Number('{current_iteration}'),
+              label: dispatchId,
+            });
+            if (containment.violations.length > 0) {
+              console.error(
+                'write-containment violation: reverted ' + containment.violations.length
+                  + ' out-of-scope path(s): '
+                  + containment.violations.map((v) => v.path).join(', '),
+              );
+              process.exit(1);
+            }
+            process.exit(dispatchExit);
+            EOF
+          working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
+          wait_for_completion: true
+          notes:
+            - "cli-pi single-executor: dispatches per-iteration through the shared fan-out command builder (buildLineageCommand) so the enforced cli-pi model allowlist + headless write flags stay one source of truth; runAuditedExecutorCommand emits INTENT + COMPLETION receipts"
+            - "Fails closed when pi is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-pi executor never degrades to native"
         record_executor_audit:
           skip_when: "config.executor.kind == 'native'"
           target: "{state_paths.state_log}"

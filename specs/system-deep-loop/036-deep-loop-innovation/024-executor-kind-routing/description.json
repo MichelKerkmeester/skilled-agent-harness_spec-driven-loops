@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing",
+  "description": "The single-executor path of the auto loop YAMLs (`deep-review-auto`, `deep-research-auto`, `deep-alignment-auto`) dispatches per iteration via",
+  "keywords": [
+    "single-executor",
+    "path",
+    "auto",
+    "loop",
+    "yamls",
+    "deep-review-auto",
+    "deep-research-auto",
+    "deep-alignment-auto",
+    "dispatches",
+    "per",
+    "iteration",
+    "via"
+  ],
+  "lastUpdated": "2026-08-27T06:46:21.428Z",
+  "specId": "024",
+  "folderSlug": "executor-kind-routing",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
