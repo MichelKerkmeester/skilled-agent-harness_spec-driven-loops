@@ -9,7 +9,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { createRequire } from 'node:module';
-import { readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, realpathSync } from 'node:fs';
 import { dirname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -36,7 +36,10 @@ function packageVersionFor(specifier: string): string {
 
 describe('runtime dependency self-containment', () => {
   it('resolves zod, better-sqlite3, and tsx from the runtime\'s own node_modules', () => {
-    const ownNodeModules = resolve(runtimeRoot, 'node_modules') + sep;
+    // require.resolve() follows symlinks, so the comparison base must be
+    // realpath'd too — node_modules is a symlink when this tree is a git
+    // worktree, and a raw-path prefix check would spuriously fail there.
+    const ownNodeModules = realpathSync(resolve(runtimeRoot, 'node_modules')) + sep;
     for (const specifier of Object.keys(PINNED)) {
       const resolved = runtimeRequire.resolve(`${specifier}/package.json`);
       expect(resolved.startsWith(ownNodeModules)).toBe(true);
@@ -60,7 +63,7 @@ describe('runtime dependency self-containment', () => {
   it('bare-resolves the tsx loader the .cjs scripts boot from', () => {
     const loader = runtimeRequire.resolve('tsx');
     expect(loader.endsWith(`${sep}dist${sep}loader.mjs`)).toBe(true);
-    expect(loader.startsWith(resolve(runtimeRoot, 'node_modules') + sep)).toBe(true);
+    expect(loader.startsWith(realpathSync(resolve(runtimeRoot, 'node_modules')) + sep)).toBe(true);
   });
 
   it('keeps every lib and script free of deep sibling-skill node_modules reach-ins', () => {

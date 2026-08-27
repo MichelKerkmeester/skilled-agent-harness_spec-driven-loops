@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/ai-council.md",
-      "sha256": "38d362e26f6cb89a66b0f222bbda86da3d7c2a0b49dca89a4a9709a44165a9b2",
+      "sha256": "c181e7bec81b76ee8c0fc13c50375b1ea5a65fbd8c01817fa89674ae86af3ea6",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-auto.yaml",
-      "sha256": "03ceab7c987362030234af06aee7fefecda0ed09d8a15cd5e701ab8021e2afad",
+      "sha256": "262390bb9e9a3e71b024c108dd0ec8af06e7ff7776da97429cdb2ff9f632a7d6",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-ai-council-confirm.yaml",
-      "sha256": "c1897ccc965875d34135256ac9106c8607f62e5db9630b3a22d14cefef5f502a",
+      "sha256": "eeb4acad7e33e8ea9278e13edffb8fa008b7202725143521e1e10966cb6ca7cd",
       "section": "full"
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "dc4a50f8b78bc24008b1676f4a4e47521d42194a5b418ebb9a1e57e8b0aa30d9",
+      "sha256": "292b60eeae5e037b1af1c487ad666ece0331f922a5ffc1297369fd7c0ae8f43f",
       "section": "full"
     },
     {
@@ -137,7 +137,7 @@
     },
     {
       "path": ".opencode/agents/ai-council.md",
-      "sha256": "26ea3a04f2c8221d0b7ee689d54c11e691d24663db500662d56f2f4953344440",
+      "sha256": "edb0522d7cda5cddb65c87f2f1c0cd706d685539368994e66a6244143d037c8e",
       "section": "full"
     },
     {

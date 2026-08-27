@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/research.md",
-      "sha256": "4df5217e780d1c44c8ada4a2567af2ac86b5d5d6c1c5544db019fcfb890fd2e5",
+      "sha256": "8f7b29eda98e4a79599c382204e111b6bfd081511e9defbea7b700a5bbd140e9",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "cdef3e7d11f89387bbba8212006f1588ca8b95906a5e5ffae8066cee0c26b150",
+      "sha256": "b4e94b57eae404e0a4e981ae5fcf6fba5414486759713b453ce25d5d836b31b0",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "cec8a4eaffd662bc618bb2da7e681e388bc0bc26d59bbdef1c5a62c72c939281",
+      "sha256": "ed6aa41151410f85659d46dac84116dda45d1557076fd4ca4d35bbe57bdffc2a",
       "section": "full"
     },
     {
@@ -37,17 +37,17 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "9ba7361dd7c9571ebb03c29f50a278774bd905052a1f422dd7ed439e87e46741",
+      "sha256": "292b60eeae5e037b1af1c487ad666ece0331f922a5ffc1297369fd7c0ae8f43f",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "f1367563795e8991cf88f045573fbbdf8b613fde6c51b8326c2a025213baa907",
+      "sha256": "a1f111711db73b3b27cf29c1bebc778cf1c644ac71804f9ac0f4201f78198c79",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "fe2ad298d15331a20d41b6430b37d6ef5286a64a8d2d0ba6d736e3306285192e",
+      "sha256": "2f2c98b95d6b4ec1ec2219ec1adac8541e7b54463a21cf3837b6c8a7d45522c2",
       "section": "full"
     },
     {
@@ -77,12 +77,12 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "dc562c8cd645e1ab23f70f2700db7b21b67b9c6d5054e5b811c6680244981610",
+      "sha256": "fcfc3408e81ea6c260ad5b02881137b86b45c4885281216b828843186995c2a5",
       "section": "full"
     },
     {
       "path": ".opencode/agents/deep-research.md",
-      "sha256": "fbf6110894d1e64a41bd47362a17a29b581d0c815212d63ded0971f2bade50fe",
+      "sha256": "52ff4644f304bc0d07714f2506c48b8e321ed124f0e40fc9d92eb2f2f6ba946f",
       "section": "full"
     },
     {

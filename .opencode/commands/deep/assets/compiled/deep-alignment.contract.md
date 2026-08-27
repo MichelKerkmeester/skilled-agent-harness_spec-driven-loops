@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/alignment.md",
-      "sha256": "08ea23626666097ec5e2956a3104191ee6a040cd232859d1e825eed6dd058831",
+      "sha256": "ab5e7910c22c4202cc106424cf9ad491a6e1f176dcd045491c52b4f87385b297",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-alignment-presentation.txt",
-      "sha256": "060ee1c439f8191db8024fc788d7ebe6fb1fe7d1614a927607e7e6e789c407de",
+      "sha256": "ce97156ea98163504e37b5a8f46acdc9a317233c170ff5373754ed3552223cf2",
       "section": "full"
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "path": ".opencode/commands/deep/assets/deep-alignment-auto.yaml",
-      "sha256": "bc3d281f78528efd079af9561c3a83fbc2f7004cef4c794a44690d4064d7fb33",
+      "sha256": "fefb3a333278ecd35e419759c885c066eb36c1cb4958956f89bd2c1690b85abf",
       "section": "full"
     },
     {
       "path": ".opencode/commands/deep/assets/deep-alignment-confirm.yaml",
-      "sha256": "884cf16ef83276de8f7ace7af329d44cf5dda67a9992be30f1a9c378e22a0b05",
+      "sha256": "5fcb0947ba69d223588fce912691595bc0ed48b4b66dd3bc605e5322d20c9c52",
       "section": "full"
     },
     {
@@ -37,27 +37,27 @@
     },
     {
       "path": ".opencode/skills/system-deep-loop/SKILL.md",
-      "sha256": "dc4a50f8b78bc24008b1676f4a4e47521d42194a5b418ebb9a1e57e8b0aa30d9",
+      "sha256": "292b60eeae5e037b1af1c487ad666ece0331f922a5ffc1297369fd7c0ae8f43f",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
-      "sha256": "516b662afca3f9f525a95650d202dee729a15defa0219e72d60582adebf3441b",
+      "sha256": "fc48caa86ed6310bd99b447edb41453111e6ccb632b21ed01fb59f9a1752b7a0",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/references/scoping-protocol.md",
-      "sha256": "bc8d748466cd64c3c8c1094cdc1abe0fb7b3032253494f091ddf80491e1fdb25",
+      "sha256": "7b7f5ef0e812ffc616bea3a974368898cabbf8d3bbba2dac5ced0644cac53c9c",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/references/discover-contract.md",
-      "sha256": "2e2137da1e174d0ae9d58dcaaff73a1e0685574f69ea00502e36c84a4df12d7c",
+      "sha256": "3157c0eedc685a2573059806d6e10af11741b44e8c829d34a068357e6c5944c2",
       "section": "full"
     },
     {
       "path": ".opencode/skills/system-deep-loop/deep-alignment/references/lane-config-schema.md",
-      "sha256": "987facf2518b846b6cb20e99524b4ba46bd9991b3cae71cec832808237939821",
+      "sha256": "b89309bd118143078a928469e6bcb0e5755fd2c0fb176f2d1d1e9c8a5be9126b",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".opencode/agents/deep-alignment.md",
-      "sha256": "1dac7f8e54f41356495b9b9ff56b9dc74688e9c7f46c22aef5583c4348f7f6c4",
+      "sha256": "e0b4663acc30286cdcad36868756a65a0938d796fa41d68fc3b49aa58996e2fb",
       "section": "full"
     },
     {
@@ -81,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "53b0b4585374f1db4c1da1f7fa2156c31ff939b94bec3e5c109f0e2104a436a6"
+  "compiledBodyDigest": "38269a8e0b0539baf9cf0e9bb0d9445c2039700cd82007bd22be286b69401b44"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:alignment

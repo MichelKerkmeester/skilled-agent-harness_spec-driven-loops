@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/019-risky-followup-remediation/001-dependency-and-node-abi-alignment",
+  "description": "`dependency-seams` had two assertions failing — that `better-sqlite3`/`zod`/`tsx` resolve from the runtime's own `nodemodules`, and that the `tsx`",
+  "keywords": [
+    "dependency-seams",
+    "two",
+    "assertions",
+    "failing",
+    "better-sqlite3",
+    "zod",
+    "tsx",
+    "resolve",
+    "runtime",
+    "own",
+    "nodemodules"
+  ],
+  "lastUpdated": "2026-08-26T12:23:33.859Z",
+  "specId": "001",
+  "folderSlug": "dependency-and-node-abi-alignment",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation",
+    "019-risky-followup-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/020-tsx-boot-spaced-path-hardening",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "tsx boot spaced path hardening",
+      "loop-lock.js ERR_MODULE_NOT_FOUND deep-loop",
+      "NODE_PRESERVE_SYMLINKS tsx loader",
+      "DEEP_LOOP_REPO_ROOT containment override",
+      "tsx boot spaced path hardening summary",
+      "runtime-bootstrap tsxChildEnv",
+      "DEEP_LOOP_REPO_ROOT override"
+    ],
+    "key_topics": [
+      "tsx",
+      "boot",
+      "spaced",
+      "path",
+      "hardening",
+      "loop-lock",
+      "deep-loop",
+      "loader",
+      "containment",
+      "override",
+      "summary",
+      "runtime-bootstrap"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Root Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spaced Paths",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep-loop runtime is 19 `.ts` files with zero `.js` files; each `.cjs` entrypoint re-execs itself under the tsx loader (`--import <tsx>`), which remaps `.js` import specifiers to their `.ts` source",
+    "created_at": "2026-08-26T14:47:30.655Z",
+    "last_save_at": "2026-08-26T16:11:04.901Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b52f9108ec84cf3f2c32b062ba0f6856361423834dfed45d1786a3bc04849c16",
+    "source_doc_hashes": {
+      "spec.md": "54e5bff7370b5a9ae10787eed741f1e08f2a1c0453cee07cdaa7e17952e5f9b3",
+      "plan.md": "a220021f51cc01aed706cff600d1e33a1879b87b127499a8663309b0b700b9ec",
+      "tasks.md": "64ddf314ae8b5f82f4bce1a732ddfb87632c493e22996bad4178db0c4fb83037",
+      "checklist.md": "5eb03ae4aefdaf744fb48768c3654da13f304f1949ac396b2bb1ff7b928b90b2",
+      "implementation-summary.md": "306bd7684595e3106337367cae11853e17f42987cf266cef7b4b3b0341a4b008"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

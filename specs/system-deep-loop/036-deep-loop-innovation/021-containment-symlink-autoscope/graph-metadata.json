@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "containment symlink autoscope",
+      "resolveArtifactScope null symlinked spec tree",
+      "containment repo root auto detection",
+      "containment symlink autoscope summary",
+      "resolveContainmentRepoRoot artifact worktree",
+      "containment catch-22 closed"
+    ],
+    "key_topics": [
+      "containment",
+      "symlink",
+      "autoscope",
+      "resolveartifactscope",
+      "null",
+      "symlinked",
+      "spec",
+      "tree",
+      "repo",
+      "root",
+      "auto",
+      "detection"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Containment Auto",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Symlinked Spec Trees",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Resolve",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Resolve",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 020 fixed the tsx-loader crash and added a `DEEPLOOPREPOROOT` override, but left the containment half of the operator's catch-22 unconfirmed",
+    "created_at": "2026-08-26T16:09:53.781Z",
+    "last_save_at": "2026-08-27T03:21:07.887Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e9ab68d19df97b11024ac4c2f75b8bc4a1068e717cb6080a96877ac91f928205",
+    "source_doc_hashes": {
+      "spec.md": "d82d6dd0fa5b01f120fed8491011e69b702b4892ae647dcfe52d230f936cefba",
+      "plan.md": "d81bdb8dffd02feea19cf6bf15762f670f83e27a2cf2c155b744a18fa216f77a",
+      "tasks.md": "f6b477bef62ce55ae418a01763bbbbc82ca2e9cda0b946616f68baaae81d8a43",
+      "checklist.md": "fd58c991f1ad0b2f052e2e87fd1c5dcf882345b338db6af0d8fe12619c935517",
+      "implementation-summary.md": "90de4d773c6af2b1ee6e627a38ee882309c09f9b1887b21dcb5a3c40ed6442d3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

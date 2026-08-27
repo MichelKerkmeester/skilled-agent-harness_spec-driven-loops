@@ -58,7 +58,7 @@ function runTsxBootstrap() {
     ['--import', TSX_LOADER, __filename, ...process.argv.slice(2)],
     {
       cwd: process.cwd(),
-      env: { ...process.env, DEEP_LOOP_TSX_LOADED: '1' },
+      env: require('./runtime-bootstrap.cjs').tsxChildEnv({ DEEP_LOOP_TSX_LOADED: '1' }),
       stdio: [process.stdin.isTTY ? 'ignore' : 'pipe', 'pipe', 'pipe'],
     },
   );
@@ -2263,7 +2263,7 @@ async function main() {
     resolveClaudePermissionMode,
   } = await import('../lib/deep-loop/executor-config.ts');
   const { buildExecutorDispatchEnv, detectSameKindFromStack, CLI_DISPATCH_STACK_ENV } = await import('../lib/deep-loop/executor-audit.ts');
-  const { snapshotOutOfScopeDirtyPaths, enforceWriteContainment } = await import('../lib/deep-loop/write-containment.ts');
+  const { snapshotOutOfScopeDirtyPaths, enforceWriteContainment, __internals: containmentInternals } = await import('../lib/deep-loop/write-containment.ts');
   const {
     DEFAULT_LINEAGE_TIMESTAMP_TOLERANCE_MS,
     checkLineageTimestampWindow,
@@ -2285,6 +2285,15 @@ async function main() {
   const lineagesDir = path.join(baseArtifactDir, 'lineages');
   const ledgerPath = path.join(baseArtifactDir, 'orchestration-status.log');
   const summaryPath = path.join(baseArtifactDir, 'orchestration-summary.json');
+  // Repo root for write containment, resolved once for the whole run: the working
+  // directory, unless an operator pins DEEP_LOOP_REPO_ROOT or the artifact tree
+  // resolves into a different worktree via symlink. Every lineage lives under the
+  // same tree, so this is the same for all of them (see runtime-bootstrap).
+  const containmentRepoRoot = require('./runtime-bootstrap.cjs')
+    .resolveContainmentRepoRoot(process.env, process.cwd(), {
+      artifactDir: lineagesDir,
+      gitToplevel: (dir) => containmentInternals.resolveGitToplevel(dir),
+    });
   const runId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   const parsedFanoutConfig = parseFanoutConfig(rawConfig);
   const rawGuardConfig = rawConfigWithCliBudgetOverrides(rawConfig, args);
@@ -2628,6 +2637,7 @@ async function main() {
       // legitimately write outside lineageDir -- the guard can no longer destroy such a
       // write, only flag it.
       const containmentEnabled = true;
+      // containmentRepoRoot is resolved once per run above.
       // Sibling lineages run concurrently and write their own artifacts after this
       // leaf's baseline is captured. Those writes are indistinguishable from this
       // leaf's, so treating them as its violations reverts a sibling's legitimate
@@ -2644,7 +2654,7 @@ async function main() {
       const containmentUnattributableDirs = [...siblingLineageDirs, ...kindLegitimateDirs];
       const preDispatchDirtyPaths = containmentEnabled
         ? snapshotOutOfScopeDirtyPaths({
-          repoRoot: process.cwd(),
+          repoRoot: containmentRepoRoot,
           artifactDir: lineageDir,
           unattributableDirs: containmentUnattributableDirs,
         })
@@ -2712,7 +2722,7 @@ async function main() {
       // (hermetic test lineages).
       if (containmentEnabled) {
         const containment = enforceWriteContainment({
-          repoRoot: process.cwd(),
+          repoRoot: containmentRepoRoot,
           artifactDir: lineageDir,
           unattributableDirs: containmentUnattributableDirs,
           preDispatchDirtyPaths,

@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor",
+  "parent_id": "system-deep-loop/036-deep-loop-innovation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 0 dispatch anchor deep review",
+      "DIRECT INVOCATION REQUIRED false block",
+      "ARGS_PRESENT dispatch-context authorization",
+      "phase 0 dispatch anchor summary",
+      "DISPATCH-CONTEXT authorization prefix",
+      "deep review direct invocation false block fix"
+    ],
+    "key_topics": [
+      "phase",
+      "dispatch",
+      "anchor",
+      "deep",
+      "review",
+      "direct",
+      "invocation",
+      "required",
+      "false",
+      "block",
+      "dispatch-context",
+      "authorization"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Objective Dispatch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Anchor",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep/ commands (`review`, `research`, `ai-council`, `alignment`) open with a Phase-0 dispatch-context gate whose block reads \"⛔ DIRECT INVOCATION REQUIRED — no review iteration executed\"",
+    "created_at": "2026-08-27T03:18:13.515Z",
+    "last_save_at": "2026-08-27T03:37:13.056Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:233f677e856d1848238380dc8f334ddaaf427ce15bf24828e7195c812442a3c2",
+    "source_doc_hashes": {
+      "spec.md": "704631de9d98ff90927f8ccca72c21609f34cac833f2c2b398a83cb524e375b1",
+      "plan.md": "404a2cc4f5aa734608620312d5b44c9b3630253b0dc2e1f7789a6d870e9e98c9",
+      "tasks.md": "1dd2e601292152927fc2162664fa01a7d75e8a575ab6404930de2d216f08fc9d",
+      "checklist.md": "4b0b3ee5833d464b5c8b3680854e3ecb16508cb58626d488dbb218924581d58c",
+      "implementation-summary.md": "5bf334595c67c8bce9829fe6d3c9e0274aac43dff016ff237a902ada9f1d0a01"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
