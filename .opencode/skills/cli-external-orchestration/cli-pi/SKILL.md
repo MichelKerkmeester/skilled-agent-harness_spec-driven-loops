@@ -171,6 +171,8 @@ The `route_pi_resources(task)` function body lives in [`shared-smart-router.md`]
 
 This packet owns provider-specific routing, the availability probe, prompt construction, and the self-invocation guard. The shared deep-loop runtime owns process construction and execution. The runtime now supports the `cli-pi` executor kind — its fan-out command builder is implemented (print mode, provider-qualified `--model`, `--thinking` from `reasoningEffort`), so dispatch through the executor kind directly. Do not add a packet-local wrapper, spawn path, or command builder.
 
+**Closed roster — non-roster models are FORBIDDEN.** Dispatch ONLY the models in [references/providers-and-models.md](./references/providers-and-models.md) §2. The deep-loop fan-out hard-rejects any off-roster id (`isPiModelAllowed` over `PI_SUPPORTED_MODELS`); even a direct `pi --model` invocation must not use an unlisted id. To add a model, amend the roster (spec packet + `PI_SUPPORTED_MODELS`) first.
+
 The pinned contract confirms that headless Pi uses print mode, that JSON mode emits JSONL events, and that RPC mode is a persistent JSONL protocol. These are different contracts. Do not treat RPC as a one-shot print invocation. See [cli-reference.md](./references/cli-reference.md) and [integration-patterns.md](./references/integration-patterns.md).
 
 ### Dispatch Lifecycle

@@ -40,7 +40,9 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 ## 2. PROVIDERS & MODELS
 
-OpenCode resolves models through configured providers; the model string passed to `--model` is always `provider/model-id`. Run `opencode models <provider>` for the live list on a given install.
+> **CLOSED ROSTER — non-roster models are FORBIDDEN.** Dispatch ONLY the models catalogued in this section. Any model not in this catalog MUST NOT be called through cli-opencode. Unlike cli-pi/cli-cursor/cli-devin, cli-opencode has **no code-enforced allowlist** — `--model provider/id` is free-form and the deep-loop fan-out does not gate opencode ids — so this is a **hard discipline rule**, not a runtime gate: adherence to this catalog IS the enforcement. To add a model, amend this catalog first — never dispatch an unlisted id ad hoc.
+
+OpenCode resolves models through configured providers; the model string passed to `--model` is always `provider/model-id`. Run `opencode models <provider>` for the live list on a given install — but a live id that is NOT in this catalog is still forbidden for cli-opencode dispatch.
 
 ### deepseek
 
@@ -105,6 +107,8 @@ Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-
 |----------|----------|-------|
 | `cline-pass/cline-pass/deepseek-v4-flash` | — | DeepSeek V4 Flash via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier); list-verified in `opencode models cline-pass` on 2026-08-18 (not dispatch-tested) |
 | `cline-pass/cline-pass/deepseek-v4-pro` | — | DeepSeek V4 Pro via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier); context 1M, output 384K; list-verified in `opencode models cline-pass` on 2026-08-18 (not dispatch-tested). cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.5`/`mimo-v2.5-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope |
+
+> **GLM-5.3-Flash is NOT available on cli-opencode's Cline route.** Unlike cli-pi (which passes the raw Cline id `z-ai/glm-5.3-flash` straight through and works), opencode's `cline-pass` adapter returns `Unexpected server error` for every id form (`cline-pass/z-ai/glm-5.3-flash`, `cline-pass/cline-pass/glm-5.3-flash`), and `opencode models cline-pass` lists only `glm-5.3` (no `-flash` variant). Verified 2026-08-27. Reach GLM-5.3-Flash on cli-opencode via **`openrouter/z-ai/glm-5.3-flash`** or **`opencode-go/glm-5.3-flash`** instead.
 
 ---
 

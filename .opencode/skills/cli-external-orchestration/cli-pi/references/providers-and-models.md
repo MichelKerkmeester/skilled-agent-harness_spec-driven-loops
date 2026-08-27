@@ -39,9 +39,11 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 ## 2. PROVIDERS & MODELS
 
-Pi is a multi-provider passthrough with **no enforced allowlist** at this layer. Select a model with `--provider <name>` plus `--model <pattern>`, or a single `--model provider/id` form; `--model` also accepts an inline thinking suffix (`--model sonnet:high`). Reasoning effort stays independent of the model id (see §4).
+> **CLOSED ROSTER — non-roster models are FORBIDDEN.** Dispatch ONLY the models listed in this section. Any model not in this roster MUST NOT be called through cli-pi. Enforcement lives in the deep-loop external-CLI fan-out, which hard-rejects any off-roster id (`isPiModelAllowed` over `PI_SUPPORTED_MODELS` in `executor-config.ts`, byte-mirrored in `fanout-run.cjs`); the `pi` binary itself is a passthrough with no allowlist, so for any direct (non-fan-out) invocation this is a **hard discipline rule**, not a runtime gate. To add a model, amend the roster (spec packet + `PI_SUPPORTED_MODELS`) first — never dispatch an unlisted id ad hoc.
 
-The table below is the machine-local authenticated roster from `~/.pi/agent/auth.json` and `models-store.json` (six authenticated providers; opencode-go added 2026-08-07, openrouter confirmed 2026-08-17). The roster is machine state, not a contract — re-read `models-store.json` before relying on a specific id.
+Pi is a multi-provider passthrough at the binary layer. Select a model with `--provider <name>` plus `--model <pattern>`, or a single `--model provider/id` form; `--model` also accepts an inline thinking suffix (`--model sonnet:high`). Reasoning effort stays independent of the model id (see §4).
+
+The table below is the closed roster for cli-pi dispatch, sourced from the machine-local authenticated set (`~/.pi/agent/auth.json` + `models-store.json`; opencode-go added 2026-08-07, openrouter confirmed 2026-08-17). Re-read `models-store.json` to confirm an id is still authenticated on this machine, but do not dispatch anything outside this roster.
 
 ### openai-codex
 
