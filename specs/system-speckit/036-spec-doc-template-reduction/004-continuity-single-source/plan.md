@@ -59,7 +59,7 @@ Validator-first contract relaxation followed by template-level deduplication. Ru
 ### Key Components
 - **Continuity validator**: `.opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts` changes `FRONTMATTER_MEMORY_BLOCK` to recognize `implementation-summary.md` as the canonical host.
 - **Cross-document validator**: `.opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts` reviews `SESSION_LINEAGE` without requiring stale copies in non-canonical documents.
-- **Non-canonical templates**: `.opencode/skills/system-spec-kit/templates/manifest/{spec,plan,tasks,checklist}.md.tmpl` stop emitting `_memory.continuity`.
+- **Non-canonical templates**: `.opencode/skills/system-spec-kit/templates/{spec,plan,tasks,checklist}.md.tmpl` stop emitting `_memory.continuity`.
 - **Unchanged consumers**: `.opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts`, `.opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts`, and `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts` continue to use the canonical implementation-summary path.
 
 ### Data Flow

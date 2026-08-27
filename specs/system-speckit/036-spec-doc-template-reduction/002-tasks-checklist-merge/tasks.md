@@ -36,7 +36,7 @@ contextType: "general"
 
 - [ ] T001 [REQ-004] Capture fresh level render baselines and existing legacy packet status (`.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap`, `specs/`); done when the before-state covers L1/L2/L3/L3+ renders and representative legacy packets.
 - [ ] T002 [REQ-004] Isolate the anchor-check divergence (`.opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh`, `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js`); done when the merge has a known pass condition for required and optional anchors.
-- [ ] T003 [REQ-003] Inventory the level contract and all checklist readers (`.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`); done when every producer and reader has an explicit merged-document or legacy-fallback action.
+- [ ] T003 [REQ-003] Inventory the level contract and all checklist readers (`.opencode/skills/system-spec-kit/templates/spec-kit-docs.json`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`); done when every producer and reader has an explicit merged-document or legacy-fallback action.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,8 +44,8 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [REQ-001] Build the unified level-gated template (`.opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl`); done when L1 renders tasks only and L2/L3/L3+ render tasks, verification, and testing sections with the required anchors.
-- [ ] T005 [REQ-003, REQ-006] Update the level-document manifest, generator, and validator (`.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`); done when new scaffolds use the merged contract and retain priority-tag semantics.
+- [ ] T004 [REQ-001] Build the unified level-gated template (`.opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl`); done when L1 renders tasks only and L2/L3/L3+ render tasks, verification, and testing sections with the required anchors.
+- [ ] T005 [REQ-003, REQ-006] Update the level-document manifest, generator, and validator (`.opencode/skills/system-spec-kit/templates/spec-kit-docs.json`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`); done when new scaffolds use the merged contract and retain priority-tag semantics.
 - [ ] T006 [REQ-002] Add the legacy checklist branch to status derivation (`.opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts`); done when existing packets with standalone `checklist.md` derive the same status as before.
 - [ ] T007 [REQ-003, REQ-006] Retarget level detection, priority tags, and AC coverage (`.opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts`, `.opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh`); done when the merged document is preferred, legacy files remain readable, and P0/P1/P2 tags resolve.
 - [ ] T008 [REQ-004, REQ-005] Update anchor rules, reviewed snapshots, and both distribution trees (`.opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh`, `.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap`, `.opencode/skills/system-spec-kit/scripts/dist/`, `.opencode/skills/system-spec-kit/mcp-server/dist/`); done when only the merged-document snapshot changes and compiled outputs match source.

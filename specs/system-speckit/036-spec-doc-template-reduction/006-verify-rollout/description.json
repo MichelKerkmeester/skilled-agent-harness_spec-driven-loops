@@ -17,13 +17,15 @@
     "packet",
     "fleet"
   ],
-  "lastUpdated": "2026-08-26T07:58:31.654Z",
+  "lastUpdated": "2026-08-27T20:20:50.511Z",
   "specId": "006",
   "folderSlug": "verify-rollout",
   "parentChain": [
     "system-speckit",
     "036-spec-doc-template-reduction"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-08-26_21-20__scaffold-smoke-proves-the-generator-fix.md"
+  ]
 }

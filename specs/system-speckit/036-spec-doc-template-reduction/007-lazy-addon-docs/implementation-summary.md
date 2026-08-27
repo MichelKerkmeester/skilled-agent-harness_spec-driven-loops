@@ -41,10 +41,10 @@ The manifest registers all four documents in `lazyAddonDocs` for every numbered 
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/templates/manifest/before-after.md.tmpl` | Created | Level-agnostic before-and-after record with metadata, summary, comparison, net-effect, and notes/caveats anchors |
-| `.opencode/skills/system-spec-kit/templates/manifest/timeline.md.tmpl` | Created | Level-agnostic chronological record with metadata, timeline, and milestones anchors |
-| `.opencode/skills/system-spec-kit/templates/manifest/roadmap.md.tmpl` | Created | Level-agnostic forward plan with metadata, now-next-later, milestones-targets, and dependencies anchors |
-| `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` | Modified | Registers the three templates and classifies all four documents as explicit, silent-skip lazy add-ons at every level |
+| `.opencode/skills/system-spec-kit/templates/addons/before-after.md.tmpl` | Created | Level-agnostic before-and-after record with metadata, summary, comparison, net-effect, and notes/caveats anchors |
+| `.opencode/skills/system-spec-kit/templates/addons/timeline.md.tmpl` | Created | Level-agnostic chronological record with metadata, timeline, and milestones anchors |
+| `.opencode/skills/system-spec-kit/templates/addons/roadmap.md.tmpl` | Created | Level-agnostic forward plan with metadata, now-next-later, milestones-targets, and dependencies anchors |
+| `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json` | Modified | Registers the three templates and classifies all four documents as explicit, silent-skip lazy add-ons at every level |
 | `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Modified | Adds `--with-lazy-addons` and keeps the default scaffold free of these four add-ons |
 | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modified | Removes the decision-record level requirement from the documented contract and preserves level detection for the merged tasks verification sections |
 | `.opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts` | Modified | Treats lazy documents as valid when present and enforces the registered static anchors for the three new templates |

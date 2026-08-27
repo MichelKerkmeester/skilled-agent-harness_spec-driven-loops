@@ -24,7 +24,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-27 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -67,9 +67,9 @@ This phase writes design documents only. A later implementation phase owns chang
 
 ### Problem Statement
 
-The manifest declares `implementation-summary.md` in `requiredCoreDocs` for every numbered level, including Level 1 at `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json:163-167`, Level 2 at `:290-295`, Level 3 at `:460-464`, and Level 3+ at `:657-662`. That declaration overstates the contract at scaffold time. The runtime skips the summary from the generic required-file loop and requires it only after implementation starts in `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh:65-98`; `check-level-match.sh:201-215` applies the same lifecycle skip, and its implementation-start detector is defined at `:123-134`. The shared parser lists only `spec.md`, `plan.md`, and `tasks.md` for Level 1 at `.opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts:53-57`.
+The manifest declares `implementation-summary.md` in `requiredCoreDocs` for every numbered level, including Level 1 at `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json:163-167`, Level 2 at `:290-295`, Level 3 at `:460-464`, and Level 3+ at `:657-662`. That declaration overstates the contract at scaffold time. The runtime skips the summary from the generic required-file loop and requires it only after implementation starts in `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh:65-98`; `check-level-match.sh:201-215` applies the same lifecycle skip, and its implementation-start detector is defined at `:123-134`. The shared parser lists only `spec.md`, `plan.md`, and `tasks.md` for Level 1 at `.opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts:53-57`.
 
-The Level-1 plan template also duplicates the phase checklist that `tasks.md` owns. `plan.md.tmpl` places Setup, Core Implementation, and Verification checkbox rows at `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl:119-136`, while the Level-1 tasks template repeats the same phase structure at its `phase-1`, `phase-2`, and `phase-3` anchors. The duplicated plan rows add maintenance work and invite disagreement about task state. Level-1 plans also force generic testing, dependency, and rollback content when a concise N/A statement would accurately describe the phase.
+The Level-1 plan template also duplicates the phase checklist that `tasks.md` owns. `plan.md.tmpl` places Setup, Core Implementation, and Verification checkbox rows at `.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl:119-136`, while the Level-1 tasks template repeats the same phase structure at its `phase-1`, `phase-2`, and `phase-3` anchors. The duplicated plan rows add maintenance work and invite disagreement about task state. Level-1 plans also force generic testing, dependency, and rollback content when a concise N/A statement would accurately describe the phase.
 
 ### Purpose
 
@@ -85,7 +85,7 @@ Define an implementation-ready optimization that keeps all four documents in the
 - Define `lifecycleRequiredDocs.afterImplementationStarts` for `implementation-summary.md` in every numbered level of `spec-kit-docs.json`.
 - Remove `implementation-summary.md` from numbered-level `requiredCoreDocs` while retaining the four-document lifecycle contract in the manifest and runtime behavior.
 - Align the contract resolver, template-structure helper, scaffold path, `check-files.sh`, `check-level-match.sh`, and `spec-doc-health.ts` with the same pre-start and post-start document states.
-- Trim the duplicated Setup, Core Implementation, and Verification checkbox rows from `templates/manifest/plan.md.tmpl` and keep `tasks.md` as the phase checklist authority.
+- Trim the duplicated Setup, Core Implementation, and Verification checkbox rows from `templates/core/plan.md.tmpl` and keep `tasks.md` as the phase checklist authority.
 - Let the Level-1 plan render concise N/A statements for testing, dependencies, and rollback when those concerns do not apply.
 - Preserve Level 2+ testing, rollback, phase-dependency and dependency-graph content, plus the level-gated `FIX ADDENDUM: AFFECTED SURFACES` section.
 - Verify default and started scaffolds, recursive validation, resolver behavior, and golden snapshots in the later implementation phase.
@@ -101,8 +101,8 @@ Define an implementation-ready optimization that keeps all four documents in the
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` | Modify | Remove the summary from numbered-level `requiredCoreDocs` and declare the lifecycle-gated requirement for Levels 1, 2, 3, and 3+. |
-| `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl` | Modify | Remove duplicated phase checkbox rows, keep the `phases` anchor as a sequencing pointer, and add Level-1 N/A paths while preserving Level 2+ content. |
+| `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json` | Modify | Remove the summary from numbered-level `requiredCoreDocs` and declare the lifecycle-gated requirement for Levels 1, 2, 3, and 3+. |
+| `.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl` | Modify | Remove duplicated phase checkbox rows, keep the `phases` anchor as a sequencing pointer, and add Level-1 N/A paths while preserving Level 2+ content. |
 | `.opencode/skills/system-spec-kit/mcp-server/lib/templates/level-contract-resolver.ts` | Review/Modify | Expose and validate the lifecycle-gated document classification without treating it as unconditional core content. |
 | `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` | Review/Modify | Resolve lifecycle-gated docs and retain legacy document and anchor compatibility. |
 | `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Review/Modify | Create the three pre-start core documents by default and create the summary at the implementation-start transition defined by the later workflow. |

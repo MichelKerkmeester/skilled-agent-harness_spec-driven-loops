@@ -17,13 +17,15 @@
     "only",
     "frontmatter"
   ],
-  "lastUpdated": "2026-08-26T07:56:35.034Z",
+  "lastUpdated": "2026-08-27T20:20:38.818Z",
   "specId": "003",
   "folderSlug": "template-dedup",
   "parentChain": [
     "system-speckit",
     "036-spec-doc-template-reduction"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-08-26_21-20__scaffold-smoke-proves-the-generator-fix.md"
+  ]
 }

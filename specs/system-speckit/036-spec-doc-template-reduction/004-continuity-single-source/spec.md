@@ -109,7 +109,7 @@ Author continuity once (in implementation-summary) and relax the validators firs
 |-----------|-------------|-------------|
 | mcp-server/lib/validation/spec-doc-structure.ts | Modify | FRONTMATTER_MEMORY_BLOCK: single-canonical-doc expectation |
 | mcp-server/lib/validation/orchestrator.ts | Modify | SESSION_LINEAGE scope review |
-| templates/manifest/{spec,plan,tasks,checklist}.md.tmpl | Modify | Drop redundant _memory.continuity emission |
+| templates/{spec,plan,tasks,checklist}.md.tmpl | Modify | Drop redundant _memory.continuity emission |
 <!-- /ANCHOR:scope -->
 
 ---

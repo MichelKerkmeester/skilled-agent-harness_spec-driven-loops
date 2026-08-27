@@ -16,13 +16,13 @@
       "blast-radius sweep",
       "mcp-server test suite",
       "spec core",
-      "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
+      "verify rollout memory redesign",
+      "constitutional negative control",
+      "mcp-server full test suite",
+      "constitutional blast-radius sweep",
+      "steering parity root docs",
       "tasks",
-      "tasks core"
+      "name"
     ],
     "key_topics": [
       "verify",
@@ -38,7 +38,7 @@
       "suite",
       "spec"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "draft",
     "key_files": [
       "spec.md",
@@ -120,7 +120,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,12 +139,6 @@
       },
       {
         "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -194,8 +194,8 @@
     ],
     "causal_summary": "The deprecation touches search plumbing, tier config, learned-triggers, a command, root docs, and the advisor — a wide blast radius",
     "created_at": "2026-08-26T05:34:14Z",
-    "last_save_at": "2026-08-26T08:01:39.627Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-08-27T20:23:44.097Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1ea931b915d48aef2f202fa85ed16a38f9c8be09c5109f6324b8958392f892d2",
+    "source_fingerprint": "sha256:41982e058e034d77a041a395a2b7291ed933983b9ed7c40571a2646d9efbdb1f",
     "source_doc_hashes": {
       "spec.md": "9b176f8d399acccf57f0362f9ff2c54bb65ccd2cff2fa13ff12934556fa1dd58",
-      "plan.md": "8b78c13b7335299f9a6636f0940661ed1017e024e9d0f21414ad05c03f89dd2f",
+      "plan.md": "c0645a0f1ec0fbb892c39a83162d61bc5f763f1a5fc48e66bafef785fb448d7e",
       "tasks.md": "ec307271043e68b712a48fb79fa9396199b4f85b0cf12accb952f7bfb8703968",
       "implementation-summary.md": "b73fb177fe2fced0f724d9c89c0572f9e8e85597bcef8d431a91cc3da818d57d"
     },

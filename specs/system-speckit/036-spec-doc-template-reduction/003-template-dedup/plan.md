@@ -57,8 +57,8 @@ Replace the two level-specific decision-record frontmatter blocks with one combi
 Shared gated skeleton with isolated metadata correction: consolidate only frontmatter, preserve the ADR body, and treat research taxonomy as an independent anchor-preserving decision.
 
 ### Key Components
-- **Decision-record template**: `.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl` holds the L3/L3+ frontmatter and one shared ADR body.
-- **Research template**: `.opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl` holds the domain-specific taxonomy and required research anchors.
+- **Decision-record template**: `.opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl` holds the L3/L3+ frontmatter and one shared ADR body.
+- **Research template**: `.opencode/skills/system-spec-kit/templates/addons/research.md.tmpl` holds the domain-specific taxonomy and required research anchors.
 - **Routing and evidence**: `.opencode/skills/system-spec-kit/mcp-server/lib/content-router.ts` and `.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` prove anchor stability and output scope.
 
 ### Data Flow

@@ -34,8 +34,8 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [REQ-001] Isolate the roughly 24 duplicated frontmatter lines from the shared ADR body (`.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl`); done when the intended metadata-only diff and unchanged body boundary are explicit.
-- [ ] T002 [REQ-002, REQ-004] Inventory the research_finding anchor set and taxonomy decision (`.opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl`, `.opencode/skills/system-spec-kit/mcp-server/lib/content-router.ts`); done when every route has a preserved destination or a documented deferral rationale.
+- [ ] T001 [REQ-001] Isolate the roughly 24 duplicated frontmatter lines from the shared ADR body (`.opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl`); done when the intended metadata-only diff and unchanged body boundary are explicit.
+- [ ] T002 [REQ-002, REQ-004] Inventory the research_finding anchor set and taxonomy decision (`.opencode/skills/system-spec-kit/templates/addons/research.md.tmpl`, `.opencode/skills/system-spec-kit/mcp-server/lib/content-router.ts`); done when every route has a preserved destination or a documented deferral rationale.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -43,8 +43,8 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 [REQ-001] Consolidate the L3/L3+ decision-record frontmatter and correct the malformed description (`.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl`); done when one combined metadata block serves both levels and the ADR body remains one shared block.
-- [ ] T004 [REQ-002, REQ-004] Neutralize the research widget taxonomy or record the explicit deferral (`.opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl`, `003-template-dedup/implementation-summary.md`); done when the research_finding anchor contract remains intact and the chosen outcome has rationale.
+- [ ] T003 [REQ-001] Consolidate the L3/L3+ decision-record frontmatter and correct the malformed description (`.opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl`); done when one combined metadata block serves both levels and the ADR body remains one shared block.
+- [ ] T004 [REQ-002, REQ-004] Neutralize the research widget taxonomy or record the explicit deferral (`.opencode/skills/system-spec-kit/templates/addons/research.md.tmpl`, `003-template-dedup/implementation-summary.md`); done when the research_finding anchor contract remains intact and the chosen outcome has rationale.
 - [ ] T005 [REQ-003] Prepare the rebuilt runtime surfaces (`.opencode/skills/system-spec-kit/scripts/dist/`, `.opencode/skills/system-spec-kit/mcp-server/dist/`); done when both distributions are regenerated from the corrected template sources before validation.
 <!-- /ANCHOR:phase-2 -->
 

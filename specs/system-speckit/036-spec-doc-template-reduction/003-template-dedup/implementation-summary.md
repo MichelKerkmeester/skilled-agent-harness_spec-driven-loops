@@ -42,7 +42,7 @@ The source diff combines the L3 and L3+ metadata gates, removes the duplicate fr
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl` | Modified | Consolidates L3/L3+ frontmatter and fixes the malformed L3+ description while preserving the ADR body. |
+| `.opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl` | Modified | Consolidates L3/L3+ frontmatter and fixes the malformed L3+ description while preserving the ADR body. |
 | `.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` | Modified | Records the reviewed template output baseline. |
 <!-- /ANCHOR:what-built -->
 

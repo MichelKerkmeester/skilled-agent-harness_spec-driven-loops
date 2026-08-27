@@ -19,7 +19,7 @@ _memory:
     next_safe_action: "Implement the sequenced child phases with their required contract updates"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/templates/manifest/"
+      - ".opencode/skills/system-spec-kit/templates/"
       - ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts"
       - ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts"
     session_dedup:
@@ -114,10 +114,10 @@ Define an implementation-ready, research-backed reduction plan that removes avoi
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl | Modify | Remove measured duplicate checklist body lines while preserving rendered output. |
-| .opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl | Modify | Correct duplicated frontmatter and the malformed L3+ description while preserving the shared ADR body. |
-| .opencode/skills/system-spec-kit/templates/manifest/guidance/ | Create | Store instructional authoring guidance outside scaffolded documents. |
-| .opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json | Modify | Define the merged tasks and checklist document contract. |
+| .opencode/skills/system-spec-kit/templates/addons/checklist.md.tmpl | Modify | Remove measured duplicate checklist body lines while preserving rendered output. |
+| .opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl | Modify | Correct duplicated frontmatter and the malformed L3+ description while preserving the shared ADR body. |
+| .opencode/skills/system-spec-kit/templates/guidance/ | Create | Store instructional authoring guidance outside scaffolded documents. |
+| .opencode/skills/system-spec-kit/templates/spec-kit-docs.json | Modify | Define the merged tasks and checklist document contract. |
 | .opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts | Modify | Preserve legacy checklist status reads during the merge. |
 | .opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts | Modify | Relax continuity validation before template consolidation. |
 | .opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts | Modify | Verify byte-preserving changes and percentage-based budgets. |

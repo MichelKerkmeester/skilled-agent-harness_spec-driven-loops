@@ -25,7 +25,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-27 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -88,10 +88,10 @@ Define three new level-agnostic lazy add-on document types and decouple `decisio
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.opencode/skills/system-spec-kit/templates/manifest/before-after.md.tmpl` | Create | Level-agnostic before-and-after template |
-| `.opencode/skills/system-spec-kit/templates/manifest/timeline.md.tmpl` | Create | Level-agnostic chronological timeline template |
-| `.opencode/skills/system-spec-kit/templates/manifest/roadmap.md.tmpl` | Create | Level-agnostic forward-looking roadmap template |
-| `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` | Modify | Register document entries and all-level lazy lists |
+| `.opencode/skills/system-spec-kit/templates/addons/before-after.md.tmpl` | Create | Level-agnostic before-and-after template |
+| `.opencode/skills/system-spec-kit/templates/addons/timeline.md.tmpl` | Create | Level-agnostic chronological timeline template |
+| `.opencode/skills/system-spec-kit/templates/addons/roadmap.md.tmpl` | Create | Level-agnostic forward-looking roadmap template |
+| `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json` | Modify | Register document entries and all-level lazy lists |
 | `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Modify | Add explicit lazy-add-on scaffolding opt-in |
 | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modify | Validate lazy documents when present and remove the decision-record level gate |
 | `.opencode/skills/system-spec-kit/mcp-server/lib/templates/level-contract-resolver.ts` | Review/adjust | Preserve manifest-driven required, optional, and lazy document lists |

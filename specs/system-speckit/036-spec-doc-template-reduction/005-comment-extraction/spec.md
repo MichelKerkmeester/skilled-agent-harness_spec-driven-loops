@@ -18,7 +18,7 @@ _memory:
     next_safe_action: "Move instructional comments to sidecars; add byte-budget snapshot assertions"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/templates/manifest/"
+      - ".opencode/skills/system-spec-kit/templates/"
       - ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -105,8 +105,8 @@ Move that guidance out-of-band into sidecar files so scaffolded docs carry only 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| templates/manifest/*.md.tmpl | Modify | Strip instructional comments, keeping only markers |
-| templates/manifest/guidance/ | Create | Sidecar guidance files holding the relocated instructions |
+| templates/*.md.tmpl | Modify | Strip instructional comments, keeping only markers |
+| templates/guidance/ | Create | Sidecar guidance files holding the relocated instructions |
 | scripts/tests/scaffold-golden-snapshots.vitest.ts | Modify | Additive per-doc byte-budget assertions |
 | scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap | Modify | Reviewed re-baseline for reduced bytes |
 <!-- /ANCHOR:scope -->
