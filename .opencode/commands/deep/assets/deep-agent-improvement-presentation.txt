@@ -173,7 +173,6 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 ```
 
 **Phase Output:**
-- `general_agent_verified = ________________`
 - `lane = ________________`
 - `target_path = ________________`
 - `target_profile = ________________`

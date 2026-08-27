@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/ai-council.md",
-      "sha256": "c181e7bec81b76ee8c0fc13c50375b1ea5a65fbd8c01817fa89674ae86af3ea6",
+      "sha256": "a34c392331537e423ff8bc26006e79f36703794d2ec76e85e903a07c794866a5",
       "section": "full"
     },
     {

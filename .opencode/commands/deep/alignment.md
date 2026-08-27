@@ -12,53 +12,9 @@ Thin router for the deep-alignment loop. This command verifies the orchestrating
 
 Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, and artifact-writing behavior are owned by the workflow YAML assets.
 
-This command is **general-agent based** and must pass the dispatch-context check before setup routing continues. Do not use the Task tool to spawn the general agent; in `opencode run --command`, the default primary agent is the command orchestrator when it has the tools listed below. Keep raw agent handles out of this command body because OpenCode parses them as delegation requests.
+This command is **general-agent based**. Do not use the Task tool to spawn the general agent; in `opencode run --command`, the default primary agent is the command orchestrator when it has the tools listed below. Keep raw agent handles out of this command body because OpenCode parses them as delegation requests.
 
 In `:auto` mode, an explicit `--restart` or `--lineage-mode=restart` flag is operator authorization to archive the resolved alignment packet before phase init. Do not ask for a second confirmation; preserve rollback by moving the timestamped archive directory back to `alignment/` if needed.
-
-### PHASE 0: DISPATCH-CONTEXT CHECK
-
-**STATUS: ☐ CHECKED**
-
-```
-This gate checks actual dispatch context, not self-reported capability.
-
-CHECK: was this file invoked directly as /deep:alignment (typed by the user, or an
-explicit Task delegation naming this exact command), or is this agent the default
-primary agent for `opencode run --command deep/alignment` -- as opposed to another
-agent pasting this file's raw content into a Task-dispatch prompt as inline ad hoc
-instructions for a worker to follow (that worker should follow its own dispatch
-prompt, not re-run this command's full setup contract)?
-
-├─ YES, or no concrete evidence of the pasted-inline case:
-│   └─ general_agent_verified = TRUE → Continue to the Unified Setup Phase (also a HARD BLOCK)
-│
-└─ NO, with concrete evidence this file's content was pasted inline rather than
-   invoked as the command itself:
-    │
-    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-    ├─ Do NOT dispatch the general agent through Task; it is not a loop executor.
-    │
-    ├─ DISPLAY to user:
-    │   ┌────────────────────────────────────────────────────────────┐
-    │   │ ⛔ DIRECT INVOCATION REQUIRED                              │
-    │   │                                                            │
-    │   │ This command orchestrates the deep-alignment loop and runs │
-    │   │ general-agent based.                                       │
-    │   │                                                            │
-    │   │ To proceed, restart with:                                  │
-    │   │   /deep:alignment [arguments]                              │
-    │   └────────────────────────────────────────────────────────────┘
-    │
-    └─ RETURN: STATUS=FAIL ERROR="Must be invoked directly, not pasted as inline sub-agent instructions"
-
-Default on ambiguity: PROCEED. Do not block on an inability to introspect abstract
-capability -- that question is unanswerable from the inside. Block only on
-concrete evidence of the pasted-inline case above.
-```
-
-**Phase Output:**
-- `general_agent_verified = ________________`
 
 ### MANDATORY INPUT GATE
 

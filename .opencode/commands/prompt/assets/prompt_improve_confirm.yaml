@@ -82,9 +82,9 @@ approval_gates:
 # ─────────────────────────────────────────────────────────────────
 workflow:
   phase_0_setup:
-    purpose: Confirm the router bound every input and verified dispatch context
+    purpose: Confirm the router bound every input
     activities:
-      - "Confirm the router's PHASE 0 dispatch-context check passed and its consolidated setup prompt bound prompt_input, enhancement_mode, save_choice, and dispatch_mode."
+      - "Confirm the router's consolidated setup prompt bound prompt_input, enhancement_mode, save_choice, and dispatch_mode."
       - "If any applicable field is still unresolved, re-show only the missing questions from presentation.Startup and wait; never split them across prompts and never auto-select the save location."
     hard_stops:
       - "Do not proceed until every applicable field is bound."

@@ -15,52 +15,7 @@ Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, 
 
 Load the presentation contract before showing startup questions, dashboards, checkpoints, success output, failure output, examples, or next-step prompts.
 
-This command is **general-agent based** and must pass the dispatch-context check before setup routing continues. Gate 1 (dispatch-context check) and Gate 2 (the BLOCKED Unified Setup Phase) are HARD BLOCKS; neither may be skipped.
-
-### PHASE 0: DISPATCH-CONTEXT CHECK
-
-**STATUS: ☐ CHECKED**
-
-```
-This gate checks actual dispatch context, not self-reported capability -- the prior
-self-assessment version of this check produced a confirmed false-positive block (a
-capable agent judged itself "uncertain" on an abstract question and hard-stopped).
-
-CHECK: was this file invoked directly as /deep:ai-council (typed by the user, or an
-explicit Task delegation naming this exact command) -- as opposed to another agent
-pasting this file's raw content into a Task-dispatch prompt as inline ad hoc
-instructions for a worker to follow (that worker should follow its own dispatch
-prompt, not re-run this command's full setup contract)?
-
-├─ YES, or no concrete evidence of the pasted-inline case:
-│   └─ general_agent_verified = TRUE → Continue to the Unified Setup Phase (also a HARD BLOCK)
-│
-└─ NO, with concrete evidence this file's content was pasted inline rather than
-   invoked as the command itself:
-    │
-    ├─ ⛔ HARD BLOCK - DO NOT PROCEED
-    │
-    ├─ DISPLAY to user:
-    │   ┌────────────────────────────────────────────────────────────┐
-    │   │ ⛔ DIRECT INVOCATION REQUIRED                              │
-    │   │                                                            │
-    │   │ This command orchestrates the deep-ai-council session and  │
-    │   │ runs general-agent based.                                  │
-    │   │                                                            │
-    │   │ To proceed, restart with:                                  │
-    │   │   /deep:ai-council [arguments]                             │
-    │   └────────────────────────────────────────────────────────────┘
-    │
-    └─ RETURN: STATUS=FAIL ERROR="Must be invoked directly, not pasted as inline sub-agent instructions"
-
-Default on ambiguity: PROCEED. Do not block on an inability to introspect abstract
-capability (e.g. "can I orchestrate a workflow") -- that question is unanswerable
-from the inside. Block only on
-concrete evidence of the pasted-inline case above.
-```
-
-**Phase Output:**
-- `general_agent_verified = ________________`
+This command is **general-agent based**. The Unified Setup Phase (the BLOCKED input gate) is a HARD BLOCK; it may not be skipped.
 
 ### MANDATORY INPUT GATE
 

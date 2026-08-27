@@ -1,6 +1,6 @@
 # Deep Command-Surface Benchmark Presentation Contract
 
-Presentation source of truth for `/deep:command-benchmark`. The Markdown router owns dispatch-context verification, the blocking input gate, input binding, and target selection. The workflow YAML owns target dispatch and evidence pointers. The reused engines own every subject check and result.
+Presentation source of truth for `/deep:command-benchmark`. The Markdown router owns the blocking input gate, input binding, and target selection. The workflow YAML owns target dispatch and evidence pointers. The reused engines own every subject check and result.
 
 ## 1. Startup Presentation
 

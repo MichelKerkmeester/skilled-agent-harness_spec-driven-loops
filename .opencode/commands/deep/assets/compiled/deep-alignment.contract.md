@@ -7,7 +7,7 @@
   "sourceDigests": [
     {
       "path": ".opencode/commands/deep/alignment.md",
-      "sha256": "ab5e7910c22c4202cc106424cf9ad491a6e1f176dcd045491c52b4f87385b297",
+      "sha256": "f9a7d771a3fd7af9f7cb1bbe243347b3689be07199c872dc7d66276290e19c7f",
       "section": "full"
     },
     {
