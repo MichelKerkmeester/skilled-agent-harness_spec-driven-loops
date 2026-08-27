@@ -4,14 +4,14 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["research", "review", "ai-council", "agent-improvement", "model-benchmark", "skill-benchmark", "alignment"],
+    "tieBreak": ["research", "review", "ai-council", "agent-improvement", "model-benchmark", "skill-benchmark"],
     "outcomes": {
       "single": "one dominant deep-loop intent routes to one mode",
       "orderedBundle": "clearly separate deep-loop intents route to an ordered mode list",
       "defer": "unclear or contradictory deep-loop intent asks for disambiguation"
     },
     "defaultResource": ["ROUTER.md", "mode-registry.json"],
-    "launcherVocabularyClasses": ["command-benchmark-aliases"]
+    "launcherVocabularyClasses": []
   },
   "routerSignals": {
     "research": {
@@ -43,11 +43,6 @@
       "weight": 4,
       "classes": ["skill-benchmark-aliases"],
       "resources": ["deep-improvement/SKILL.md"]
-    },
-    "alignment": {
-      "weight": 4,
-      "classes": ["alignment-aliases"],
-      "resources": ["deep-alignment/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -68,13 +63,6 @@
     },
     "skill-benchmark-aliases": {
       "keywords": ["/deep:skill-benchmark"]
-    },
-    "command-benchmark-aliases": {
-      "note": "Launcher vocabulary for the command-surface benchmark; it is not an alignment workflow signal.",
-      "keywords": ["/deep:command-benchmark"]
-    },
-    "alignment-aliases": {
-      "keywords": ["deep-alignment", "alignment lane", "conformance audit", "conformance review", "named standard authority", "standard authority check", "alignment conformance audit"]
     }
   }
 }

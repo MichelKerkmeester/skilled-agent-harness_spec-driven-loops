@@ -62,8 +62,6 @@ const REQUIRED_DEPENDENCIES = new Map<string, readonly string[]>([
   ['006-model-benchmark', ['004-deep-improvement-common']],
   ['007-skill-benchmark', ['004-deep-improvement-common']],
 ]);
-const REVIEW_NODE_ID = '002-deep-review';
-const ALIGNMENT_NODE_ID = '008-deep-alignment';
 const RESEARCH_NODE_ID = '001-deep-research';
 const COUNCIL_NODE_ID = '003-deep-ai-council';
 interface MutableEdge {
@@ -674,54 +672,6 @@ function applyHardOrderEdges(
   return issues;
 }
 
-function applyReviewFence(
-  nodes: readonly GraphNode[],
-  edges: Map<string, MutableEdge>,
-): readonly GraphValidationIssue[] {
-  const review = nodes.find((node) => node.id === REVIEW_NODE_ID) as GraphNode;
-  const alignment = nodes.find((node) => node.id === ALIGNMENT_NODE_ID) as GraphNode;
-  const reviewResources = nodeResourceMap(review);
-  const alignmentResources = nodeResourceMap(alignment);
-  const resolvedFenceResources = ['backend:review-loop', 'lock:review-loop']
-    .filter((canonicalId) => reviewResources.has(canonicalId) && alignmentResources.has(canonicalId));
-  const hasUnresolvedReviewAlias = [...review.read_set, ...review.write_set, ...review.shared_state,
-    ...alignment.read_set, ...alignment.write_set, ...alignment.shared_state]
-    .some((resource) => resource.identity.includes('review-loop')
-      && resource.canonical_id.startsWith('unknown:'));
-  const fenceResources = hasUnresolvedReviewAlias
-    ? [...resolvedFenceResources, 'unknown:review-loop-fence']
-    : resolvedFenceResources;
-  const issues: GraphValidationIssue[] = [];
-  const evidence = resolvedFenceResources.flatMap((canonicalId) => [
-    ...(reviewResources.get(canonicalId)?.entries ?? []),
-    ...(alignmentResources.get(canonicalId)?.entries ?? []),
-  ]).flatMap((resource) => resource.evidence);
-
-  if (resolvedFenceResources.length === 0) {
-    issues.push(graphIssue(
-      'REVIEW_LOOP_FENCE_EVIDENCE_MISSING',
-      'Review and alignment do not resolve to one shared review-loop identity.',
-      [REVIEW_NODE_ID, ALIGNMENT_NODE_ID],
-      ['unknown:review-loop-fence'],
-    ));
-  }
-  addEdge(edges, {
-    from: REVIEW_NODE_ID,
-    to: ALIGNMENT_NODE_ID,
-    edgeType: 'fence',
-    edgeOrigin: 'required-constraint',
-    resources: fenceResources.length > 0 ? fenceResources : ['unknown:review-loop-fence'],
-    serialization: 'mutual-exclusion',
-    reason: 'Review and alignment must not hold the shared review-loop writer concurrently.',
-    evidence: evidence.length > 0 ? evidence : [{
-      source_path: SEQUENCING_SOURCE,
-      basis: 'required-constraint',
-      detail: 'Missing or unresolved review-loop aliases retain the fence.',
-    }],
-  });
-  return issues;
-}
-
 function finalizeEdges(edges: ReadonlyMap<string, MutableEdge>): readonly ConflictEdge[] {
   return [...edges.values()].map((edge) => ({
     id: `edge:${edge.from}:${edge.to}:${edge.edgeType}`,
@@ -825,7 +775,6 @@ export function deriveWriteSetConflictGraph(input: GraphBuildInput): WriteSetCon
   const conflictResult = derivedConflictEdges(nodes);
   issues.push(...conflictResult.issues);
   issues.push(...applyHardOrderEdges(nodes, conflictResult.edges));
-  issues.push(...applyReviewFence(nodes, conflictResult.edges));
   const edges = finalizeEdges(conflictResult.edges);
   const cycleIssue = dependencyCycleIssue(nodes, edges);
   if (cycleIssue) issues.push(cycleIssue);

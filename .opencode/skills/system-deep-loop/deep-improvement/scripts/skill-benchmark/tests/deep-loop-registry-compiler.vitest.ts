@@ -101,29 +101,6 @@ describe('deep-loop registry compiler identity resolution', () => {
     );
   });
 
-  it('keeps the command benchmark in its own benchmark vocabulary', () => {
-    const hubRouter = JSON.parse(
-      readFileSync(join(SKILL_ROOT, 'hub-router.json'), 'utf8'),
-    ) as {
-      vocabularyClasses: Record<string, { keywords?: string[] }>;
-    };
-    expect(hubRouter.vocabularyClasses['command-benchmark-aliases']?.keywords)
-      .toContain('/deep:command-benchmark');
-    expect(hubRouter.vocabularyClasses['alignment-aliases']?.keywords)
-      .not.toContain('/deep:command-benchmark');
-
-    const compiled = compileRegistry(baseInput()) as {
-      routingModel: {
-        launcherVocabularies: Array<{ className: string; keywords: string[] }>;
-      };
-    };
-    expect(compiled.routingModel.launcherVocabularies).toEqual([
-      {
-        className: 'command-benchmark-aliases',
-        keywords: ['/deep:command-benchmark'],
-      },
-    ]);
-  });
 
   it('preserves the three shared-packet improvement identities', () => {
     const compiled = compileRegistry(baseInput()) as {

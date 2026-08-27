@@ -50,10 +50,6 @@ const ALLOWLIST = new Set([
   '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::./baselines/claude-baseline.md',
   '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../README.md',
   '.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md::../SKILL.md',
-  // conformance benchmark contract template — destination package inputs
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-contract-template.md::./lane-config.json',
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-contract-template.md::./fixtures/fixture-manifest.json',
-  '.opencode/skills/sk-doc/sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-contract-template.md::../README.md',
   // skill_md_template — fill-in names the author replaces per skill
   '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/workflow-details.md',
   '.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-md-template.md::./references/reference-name.md',

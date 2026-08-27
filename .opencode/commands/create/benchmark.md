@@ -10,7 +10,7 @@ This command is a thin router. It separates execution routing from user-facing p
 
 ## 1. ROUTER CONTRACT
 
-Route /create:benchmark to its presentation contract and workflow YAML for family-keyed benchmark authoring. The existing `mcp_promotion` route remains intact; `conformance_benchmark` is an authoring-only branch.
+Route /create:benchmark to its presentation contract and workflow YAML for family-keyed benchmark authoring. The `mcp_promotion` route is the command-bound authoring branch.
 
 - Do not split behavior across legacy or ad-hoc benchmark commands.
 - Do not edit workflow YAML while executing this command.
@@ -64,6 +64,6 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 ## 6. WORKFLOW SUMMARY
 
-The bound workflow YAML (`create-benchmark-auto.yaml` for `:auto`, `create-benchmark-confirm.yaml` for `:confirm` or an omitted mode) routes `mcp_promotion` through the existing benchmark-folder workflow. The `conformance_benchmark` branch copies and fills the four conformance templates, validates the authored Markdown and JSON, reports the package path, and terminates without invoking an adapter or deep-alignment. `:auto` executes autonomously; `:confirm` runs the same branch with checkpoints. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract.
+The bound workflow YAML (`create-benchmark-auto.yaml` for `:auto`, `create-benchmark-confirm.yaml` for `:confirm` or an omitted mode) routes `mcp_promotion` through the existing benchmark-folder workflow. `:auto` executes autonomously; `:confirm` runs the same branch with checkpoints. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract.
 
 User request: $ARGUMENTS

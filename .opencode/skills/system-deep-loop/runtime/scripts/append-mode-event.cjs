@@ -96,7 +96,6 @@ function normalizeMode(mode) {
   const trimmed = mode.trim();
   if (trimmed === 'research' || trimmed === 'deep-research') return 'deep-research';
   if (trimmed === 'review' || trimmed === 'deep-review') return 'deep-review';
-  if (trimmed === 'alignment' || trimmed === 'deep-alignment') return 'deep-alignment';
   if (trimmed === 'ai-council' || trimmed === 'council' || trimmed === 'deep-ai-council' || trimmed === 'deep-council') return 'deep-ai-council';
   if (trimmed === 'agent-improvement' || trimmed === 'deep-agent-improvement') return 'agent-improvement';
   if (trimmed === 'model-benchmark' || trimmed === 'deep-model-benchmark') return 'model-benchmark';
@@ -126,15 +125,6 @@ async function resolveModeAdapter(mode) {
         createRegistry: mod.createDeepReviewEventRegistry,
         prepareEvent: mod.prepareDeepReviewEvent,
         isEventStem: mod.isDeepReviewEventStem,
-      };
-    }
-    case 'deep-alignment': {
-      const mod = await import('../lib/deep-alignment-ledger-schema/index.ts');
-      return {
-        normalizedMode: 'deep-alignment',
-        createRegistry: mod.createDeepAlignmentEventRegistry,
-        prepareEvent: mod.prepareDeepAlignmentEvent,
-        isEventStem: mod.isDeepAlignmentEventStem,
       };
     }
     case 'deep-ai-council': {

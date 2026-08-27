@@ -3,7 +3,7 @@
 
 // Deterministic append of one JSONL state record read from stdin.
 //
-// The deep-loop state logs (deep-review-state.jsonl, deep-alignment-state.jsonl,
+// The deep-loop state logs (deep-review-state.jsonl, deep-research-state.jsonl,
 // ...) accumulate multi-KB single-line iteration records. When an orchestrator
 // fulfils an `append_jsonl` step with an edit/patch tool, the patch must
 // context-match the preceding giant line and reliably fails, halting the loop.

@@ -132,7 +132,6 @@ The council shares the `runtime/` with the other active deep-loop families. The 
 | `deep-research` | Investigates evidence and answers research questions. The council uses research seats to gather evidence but does not run deep-research loops itself. |
 | `deep-review` | Audits code for bugs, security gaps and quality issues. The council recommends a plan, and a review checks the result after implementation. |
 | `deep-improvement` | Runs evaluator-first improvement across the `agent-improvement`, `model-benchmark`, and `skill-benchmark` command lanes. |
-| `deep-alignment` | Audits artifacts against a named standard authority; see the [mode registry](../mode-registry.json) for the active roster. |
 
 ### Behavior Benchmark
 

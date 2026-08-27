@@ -20,7 +20,6 @@ export const AUTHORITY_FLIP_EVENT_TYPE = 'deep-loop-authority-flip.ledger.transi
 export type CutoverCertificateMode =
   | 'agent-improvement'
   | 'deep-ai-council'
-  | 'deep-alignment'
   | 'deep-improvement-common'
   | 'deep-research'
   | 'deep-review'
@@ -136,5 +135,4 @@ export const AUTHORITY_FLIP_MODE_ORDER: readonly CutoverCertificateMode[] = Obje
   'agent-improvement',
   'model-benchmark',
   'skill-benchmark',
-  'deep-alignment',
 ]);

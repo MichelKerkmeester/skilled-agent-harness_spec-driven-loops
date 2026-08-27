@@ -93,7 +93,6 @@ command/
 │   ├── agent-improvement.md  # Evaluator-first agent improvement loop
 │   ├── ai-council.md         # Multi-seat AI council planning
 │   ├── alignment.md          # Conformance audit against named authorities
-│   ├── command-benchmark.md  # Benchmark the command surface
 │   ├── model-benchmark.md    # Model/prompt-framework benchmark loop
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow
@@ -166,8 +165,6 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 |---------|------------|---------|
 | AI Council | `/deep:ai-council <question> [:auto\|:confirm]` | Multi-seat planning and convergence checks |
 | Agent Improvement | `/deep:agent-improvement <agent_path> [:auto\|:confirm]` | Evaluate and improve agents across 5 integration-aware dimensions |
-| Alignment | `/deep:alignment <target> [authority] [:auto\|:confirm]` | Audit conformance against named standard authorities |
-| Command Benchmark | `/deep:command-benchmark <spec-folder> [:auto\|:confirm]` | Benchmark command-surface conformance and behavior |
 | Model Benchmark | `/deep:model-benchmark [profile] [:auto\|:confirm]` | Benchmark and optimize a model or prompt framework against fixtures |
 | Research Loop | `/deep:research <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
 | Review Loop | `/deep:review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |

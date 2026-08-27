@@ -24,7 +24,7 @@ Cursor agent discovery is convention-based, not a flag shown in `--help`. A comp
 - Real user request: `List every repository agent Cursor can dispatch and report the count.`
 - Prompt: `Enumerate every repository agent profile available to this Cursor session. Report the exact names and count. Do not edit files.`
 - Expected execution process: Count and list the local `.cursor/agents/*.md` files, then dispatch `cursor-agent -p` with the explicit model and approval/sandbox flags; compare the output.
-- Expected signals: `ai-council`, `code`, `context`, `debug`, `deep-alignment`, `deep-improvement`, `deep-research`, `deep-review`, `design`, `markdown`, `orchestrate`, `prompt-improver`, and `review` all appear exactly once.
+- Expected signals: `ai-council`, `code`, `context`, `debug`, `deep-improvement`, `deep-research`, `deep-review`, `design`, `markdown`, `orchestrate`, `prompt-improver`, and `review` all appear exactly once.
 - Desired user-visible outcome: A 13-agent roster with no duplicates or silent omissions.
 - Pass/fail: PASS when filesystem and live dispatch agree; FAIL on any missing/duplicate name; SKIP only with a named Cursor availability/auth blocker.
 

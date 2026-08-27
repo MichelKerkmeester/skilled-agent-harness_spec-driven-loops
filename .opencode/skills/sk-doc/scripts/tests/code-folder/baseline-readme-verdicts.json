@@ -3327,66 +3327,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".opencode/skills/system-deep-loop/deep-alignment/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/system-deep-loop/deep-alignment/assets/conformance-benchmark/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/system-deep-loop/deep-alignment/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/system-deep-loop/deep-alignment/scripts/adapters/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/system-deep-loop/deep-alignment/scripts/tests/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/deep-improvement/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -7108,26 +7048,6 @@
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/docs-clean/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/specs/system-deep-loop/032-deep-alignment-mode/behavior-benchmark/fixtures/fx-001-alignment-target/docs/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
       "warnings": []
     },
     {

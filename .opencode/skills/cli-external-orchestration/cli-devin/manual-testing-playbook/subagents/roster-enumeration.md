@@ -24,7 +24,7 @@ An LLM-generated list is nondeterministic and cannot prove mirror parity. Filesy
 - Real user request: `Verify every mirrored Devin agent profile on disk, then run one read-only review-profile check.`
 - Prompt: `Use the review subagent to inspect the current diff for correctness and repository-convention issues. Read only, cite file paths, and do not modify files.`
 - Expected execution process: Deterministically list `.devin/agents/*/AGENT.md`, derive names from paths, confirm all 13 entries are symlinks with resolvable targets, then run one print-mode dispatch naming `review` under canonical `auto` mode.
-- Expected signals: The filesystem roster contains exactly ai-council, code, context, debug, deep-alignment, deep-improvement, deep-research, deep-review, design, markdown, orchestrate, prompt-improver, and review. The bounded dispatch uses the `review` profile and returns read-only findings or an explicit no-findings result.
+- Expected signals: The filesystem roster contains exactly ai-council, code, context, debug, deep-improvement, deep-research, deep-review, design, markdown, orchestrate, prompt-improver, and review. The bounded dispatch uses the `review` profile and returns read-only findings or an explicit no-findings result.
 - Desired user-visible outcome: Deterministic 13/13 filesystem parity plus evidence that one named mirrored profile is dispatchable.
 - Pass/fail: PASS when the symlink roster matches exactly, every target resolves, and the named `review` dispatch completes read-only; FAIL on roster drift, a broken target, an unavailable named profile, or mutation; SKIP when Devin authentication or CLI availability prevents the dispatch after filesystem parity is recorded.
 

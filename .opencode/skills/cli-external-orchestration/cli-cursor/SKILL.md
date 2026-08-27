@@ -262,7 +262,7 @@ Cursor CLI loads custom subagents from two places, confirmed live:
 | `.cursor/agents/*.md` | project | This repo mirrors all 13 roster agents here |
 | `.claude/agents/*.md` | project (Claude-format auto-import) | Already worked before any mirror existed |
 
-Cursor's own bundled `create-subagent` skill documents the format: `name` + `description` frontmatter (both required), markdown body as the system prompt. A live `cursor-agent --force -p` roster probe lists all 13 repo agents (`ai-council`, `code`, `context`, `debug`, `deep-alignment`, `deep-improvement`, `deep-research`, `deep-review`, `design`, `markdown`, `orchestrate`, `prompt-improver`, `review`) alongside Cursor's own built-ins, with no duplicate entries when both sources define the same name.
+Cursor's own bundled `create-subagent` skill documents the format: `name` + `description` frontmatter (both required), markdown body as the system prompt. A live `cursor-agent --force -p` roster probe lists all 12 repo agents (`ai-council`, `code`, `context`, `debug`, `deep-improvement`, `deep-research`, `deep-review`, `design`, `markdown`, `orchestrate`, `prompt-improver`, `review`) alongside Cursor's own built-ins, with no duplicate entries when both sources define the same name.
 
 Each `.cursor/agents/<name>.md` is a **symlink** to the canonical `.claude/agents/<name>.md`, matching the discovery-mirror precedent already used for `.claude/hooks/` and `.codex/hooks/`. One source of truth, so a mirror can never drift from the agent it mirrors.
 

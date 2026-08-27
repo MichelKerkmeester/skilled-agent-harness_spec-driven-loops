@@ -23,9 +23,7 @@ export const DEFAULT_ALIAS_GROUPS: readonly AliasGroup[] = [
     aliases: [
       'backend:review-loop',
       'backend:deep-review-loop',
-      'backend:deep-alignment-review-loop',
       'service:deep-review-loop',
-      'service:deep-alignment-review-loop',
     ],
   },
   {
@@ -33,7 +31,6 @@ export const DEFAULT_ALIAS_GROUPS: readonly AliasGroup[] = [
     aliases: [
       'lock:review-loop',
       'lock:deep-review-loop',
-      'lock:deep-alignment-review-loop',
     ],
   },
 ] as const;

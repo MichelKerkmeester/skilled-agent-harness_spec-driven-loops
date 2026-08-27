@@ -86,7 +86,7 @@ export type DeepReviewReducerErrorCode =
 // ───────────────────────────────────────────────────────────────────
 
 export interface SharedReviewLoopModeConfiguration {
-  readonly mode: 'review' | 'alignment';
+  readonly mode: 'review';
   readonly requiredCoveragePolicy: 'all-required-cells';
   readonly hardVetoClasses: readonly string[];
   readonly terminalDecisionPolicy: 'typed-transition-only';

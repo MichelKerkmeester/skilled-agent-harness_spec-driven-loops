@@ -22,7 +22,6 @@ const RESEARCH_DELTAS_CONTRACT_REL = join('lib', 'legacy-projections', 'deep-res
 const RESEARCH_PROJECTIONS_CONTRACT_REL = join('lib', 'legacy-projections', 'deep-research-projections-contract.ts');
 const REVIEW_DELTAS_CONTRACT_REL = join('lib', 'legacy-projections', 'deep-review-deltas-contract.ts');
 const REVIEW_PROJECTIONS_CONTRACT_REL = join('lib', 'legacy-projections', 'deep-review-projections-contract.ts');
-const ALIGNMENT_STATE_DELTAS_CONTRACT_REL = join('lib', 'legacy-projections', 'deep-alignment-state-deltas-contract.ts');
 const IMPROVEMENT_LEDGERS_CONTRACT_REL = join('lib', 'legacy-projections', 'deep-improvement-ledgers-contract.ts');
 const COUNCIL_CONFIG_STATE_CONTRACT_REL = join('lib', 'legacy-projections', 'deep-ai-council-config-state-contract.ts');
 const REAL_MANIFEST = readFileSync(join(RUNTIME_ROOT, MANIFEST_REL), 'utf8');
@@ -38,7 +37,6 @@ const REAL_COVERED_CONTRACTS: Record<string, string> = {
   [RESEARCH_PROJECTIONS_CONTRACT_REL]: readFileSync(join(RUNTIME_ROOT, RESEARCH_PROJECTIONS_CONTRACT_REL), 'utf8'),
   [REVIEW_DELTAS_CONTRACT_REL]: readFileSync(join(RUNTIME_ROOT, REVIEW_DELTAS_CONTRACT_REL), 'utf8'),
   [REVIEW_PROJECTIONS_CONTRACT_REL]: readFileSync(join(RUNTIME_ROOT, REVIEW_PROJECTIONS_CONTRACT_REL), 'utf8'),
-  [ALIGNMENT_STATE_DELTAS_CONTRACT_REL]: readFileSync(join(RUNTIME_ROOT, ALIGNMENT_STATE_DELTAS_CONTRACT_REL), 'utf8'),
   [IMPROVEMENT_LEDGERS_CONTRACT_REL]: readFileSync(join(RUNTIME_ROOT, IMPROVEMENT_LEDGERS_CONTRACT_REL), 'utf8'),
   [COUNCIL_CONFIG_STATE_CONTRACT_REL]: readFileSync(join(RUNTIME_ROOT, COUNCIL_CONFIG_STATE_CONTRACT_REL), 'utf8'),
 };
@@ -115,9 +113,9 @@ describe('check-projection-coverage', () => {
     const r = runReal();
     expect(r.status).toBe(0);
     expect(r.payload.ok).toBe(true);
-    expect(r.payload.projectable).toBe(21);
-    expect(r.payload.covered).toBe(9);
-    expect(r.payload.uncovered).toBe(12);
+    expect(r.payload.projectable).toBe(19);
+    expect(r.payload.covered).toBe(8);
+    expect(r.payload.uncovered).toBe(11);
     expect(r.payload.violations).toEqual([]);
   });
 
@@ -172,8 +170,8 @@ describe('check-projection-coverage', () => {
     const mismatch = r.payload.violations.find(
       (v: any) => v.rule === 'UNCOVERED_COUNT_MISMATCH',
     );
-    expect(mismatch.detail).toContain('12');
     expect(mismatch.detail).toContain('11');
+    expect(mismatch.detail).toContain('10');
   });
 
   it('case 4: a declared uncovered surface is reclassified to retain-legacy-input -> status 2, STALE_UNCOVERED_DECLARATION', () => {
@@ -249,15 +247,15 @@ describe('check-projection-coverage', () => {
     const r = runReal();
     expect(r.status).toBe(0);
     expect(r.payload.ok).toBe(true);
-    expect(r.payload.projectable).toBe(21);
-    expect(r.payload.covered).toBe(9);
-    expect(r.payload.uncovered).toBe(12);
+    expect(r.payload.projectable).toBe(19);
+    expect(r.payload.covered).toBe(8);
+    expect(r.payload.uncovered).toBe(11);
     expect(r.payload.violations).toEqual([]);
-    expect(r.payload.breakdown.modeOwned.total).toBe(9);
+    expect(r.payload.breakdown.modeOwned.total).toBe(8);
     expect(r.payload.breakdown.modeOwned.uncovered).toBe(0);
     expect(r.payload.breakdown.modeOwned.uncoveredSurfaceIds).toEqual([]);
-    expect(r.payload.breakdown.infrastructure.total).toBe(12);
-    expect(r.payload.breakdown.infrastructure.uncovered).toBe(12);
+    expect(r.payload.breakdown.infrastructure.total).toBe(11);
+    expect(r.payload.breakdown.infrastructure.uncovered).toBe(11);
   });
 
   it('case 8: reassigning a mode surface to an infrastructure writer fires MODE_OWNED_COUNT_MISMATCH', () => {
@@ -284,8 +282,8 @@ describe('check-projection-coverage', () => {
     const mismatch = r.payload.violations.find(
       (v: any) => v.rule === 'MODE_OWNED_COUNT_MISMATCH',
     );
-    expect(mismatch.detail).toContain('9');
     expect(mismatch.detail).toContain('8');
-    expect(r.payload.breakdown.modeOwned.total).toBe(8);
+    expect(mismatch.detail).toContain('7');
+    expect(r.payload.breakdown.modeOwned.total).toBe(7);
   });
 });

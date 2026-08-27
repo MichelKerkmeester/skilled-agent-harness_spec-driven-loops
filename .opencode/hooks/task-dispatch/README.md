@@ -29,7 +29,7 @@ The core returns a transport-free `allow`/`warn`/`reject` decision; adapters tra
 system-deep-loop-guard: Deep Route mode mismatch -- dispatch targets subagent_type="<agent>" (registry modes="<a|b>") but the prompt declares mode="<mode>"
 ```
 
-*Check 2 — loop-like repeated hand-off.* For the four command-owned loop executors (`deep-research`, `deep-review`, `deep-improvement`, `deep-alignment`), records each non-command-driven dispatch in per-session state. A dispatch is command-driven only when the prompt carries an `Iteration: N of M` marker *and* a `Config: <path>` line that resolves to a real on-disk deep-loop config with `mode` + `maxIterations` — marker text alone is not enough, so a forger or injected content cannot gain command authority. At 2 non-command-driven hand-offs it warns; at 3, under `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1`, it rejects:
+*Check 2 — loop-like repeated hand-off.* For the three command-owned loop executors (`deep-research`, `deep-review`, `deep-improvement`), records each non-command-driven dispatch in per-session state. A dispatch is command-driven only when the prompt carries an `Iteration: N of M` marker *and* a `Config: <path>` line that resolves to a real on-disk deep-loop config with `mode` + `maxIterations` — marker text alone is not enough, so a forger or injected content cannot gain command authority. At 2 non-command-driven hand-offs it warns; at 3, under `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1`, it rejects:
 
 ```text
 system-deep-loop-guard: loop-like repeated dispatch -- "<agent>" received <N> non-command-driven hand-offs in this session without a command-driven iteration marker; command-owned loop executors should be dispatched by their parent /deep:* command, not repeatedly handed off by another agent.

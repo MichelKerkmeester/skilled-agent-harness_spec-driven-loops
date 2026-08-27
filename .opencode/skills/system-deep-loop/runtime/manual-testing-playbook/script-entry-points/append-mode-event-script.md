@@ -67,7 +67,7 @@ The append gateway is the sanctioned way every canonical record reaches a mode's
    - A bare, unprefixed stem (`"stem":"run_initialized"`) — exit 1, `reason` `"Envelope field must be a bounded non-empty string"`, code `RUNTIME_ERROR`.
    - An event file carrying neither stem nor event_type (e.g. `{"type":"event","event":"x"}`) — exit 1, `reason` `"Unrecognized event format: expected object with stem or event_type"`, code `RUNTIME_ERROR`.
    - An unresolvable mode name (`--mode not-a-real-mode`) — exit 1, `reason` `"Unsupported mode: not-a-real-mode"`, code `RUNTIME_ERROR`.
-   - A mode that resolves but sits outside the frozen authority order (`--mode deep-improvement`) — exit 2, `reason` `"Mode 'deep-improvement' is not in the frozen authority order: deep-research, deep-review, deep-ai-council, deep-improvement-common, agent-improvement, model-benchmark, skill-benchmark, deep-alignment"`, code `AUTHORITY_DENIED`.
+   - A mode that resolves but sits outside the frozen authority order (`--mode deep-improvement`) — exit 2, `reason` `"Mode 'deep-improvement' is not in the frozen authority order: deep-research, deep-review, deep-ai-council, deep-improvement-common, agent-improvement, model-benchmark, skill-benchmark"`, code `AUTHORITY_DENIED`.
 9. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
 
 ### Expected Outcome
@@ -105,7 +105,7 @@ Two distinct exit codes carry two distinct meanings; do not conflate them.
 
 **Exit 2 — the write was refused at the authority boundary.** No state file and no ledger frame are written.
 
-- A mode that resolves but sits outside the frozen authority order (`--mode deep-improvement`) yields `reason` `"Mode 'deep-improvement' is not in the frozen authority order: deep-research, deep-review, deep-ai-council, deep-improvement-common, agent-improvement, model-benchmark, skill-benchmark, deep-alignment"`, code `AUTHORITY_DENIED`.
+- A mode that resolves but sits outside the frozen authority order (`--mode deep-improvement`) yields `reason` `"Mode 'deep-improvement' is not in the frozen authority order: deep-research, deep-review, deep-ai-council, deep-improvement-common, agent-improvement, model-benchmark, skill-benchmark"`, code `AUTHORITY_DENIED`.
 - Admission denied, admission closed, or the append itself failing also exit 2.
 
 Exit 2 is the refusal path, demonstrably: it is a halt, never a licence to write the state file directly.

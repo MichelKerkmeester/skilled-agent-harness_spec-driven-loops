@@ -17,8 +17,6 @@ const { spawnSync } = require('node:child_process');
 const RUNNER = path.join(__dirname, '..', 'behavior-bench-run.cjs');
 const FAKE_LEG = path.join(__dirname, 'fixtures', 'fake-leg.js');
 const SMOKE_SCENARIO = path.join(__dirname, 'fixtures', 'SMOKE-000-fake.md');
-const DAB_GOLDEN = path.join(__dirname, 'fixtures', 'dab-v1-golden.json');
-const DAB_SCENARIOS = path.join(__dirname, '..', '..', '..', 'deep-alignment', 'behavior-benchmark', 'scenarios');
 
 function loadSmokeContract() {
   const md = fs.readFileSync(SMOKE_SCENARIO, 'utf8');
@@ -40,23 +38,6 @@ function runBench(args, env) {
   });
 }
 
-function fixedDabObservation() {
-  return {
-    spawnError: null,
-    exitCode: 0,
-    killedBy: 'none',
-    stdoutNonEmptyLines: 2,
-    stdoutText: 'alignment lane conformance run complete',
-    taskEvents: [{ t: 100, line: '{"tool":"task","subagent_type":"deep-alignment"}' }],
-    routeProofRecords: [{ target_agent: 'deep-alignment' }],
-    seatArtifacts: 0,
-    candidateArtifacts: 0,
-    markerHits: [],
-    fixtureGained: true,
-    checkpoints: { tFirstOutputMs: 10, tSetupMs: null, tFirstDispatchMs: 100, tTerminalMs: 1000 },
-  };
-}
-
 async function main() {
   const bench = require(RUNNER);
   assert.equal(typeof bench.classify, 'function');
@@ -74,36 +55,6 @@ async function main() {
   const deepseekArgs = bench.buildSpawnArgs('deepseek', loadSmokeContract());
   assert.deepEqual(deepseekArgs.slice(0, 4), ['opencode', 'run', '--model', 'deepseek/deepseek-v4-pro']);
   assert.ok(deepseekArgs.includes('--format'), 'deepseek leg uses opencode JSON format');
-
-  // ── frozen v1 regression map ────────────────────────────────────────────
-  // The golden pins the original DAB-001..011 v1 scenarios. Higher-numbered DAB
-  // scenarios are the schema-v2 command suite and are covered by their own
-  // phase tests, so the v1 regression deliberately scopes to 001..011 only.
-  const dabGolden = JSON.parse(fs.readFileSync(DAB_GOLDEN, 'utf8'));
-  const dabFiles = fs.readdirSync(DAB_SCENARIOS)
-    .filter((name) => /^DAB-0(0[1-9]|1[01])-.*\.md$/.test(name))
-    .sort();
-  assert.equal(dabFiles.length, 11, 'all eleven frozen v1 DAB scenarios are present');
-  assert.equal(Object.keys(dabGolden).length, 11, 'golden contains all eleven DAB entries');
-  for (const file of dabFiles) {
-    const contract = bench.parseScenario(path.join(DAB_SCENARIOS, file));
-    assert.ok(contract, file + ' parses');
-    assert.ok(
-      contract.schema_version === undefined || contract.schema_version === 1,
-      contract.id + ' remains a v1 contract',
-    );
-    const obs = fixedDabObservation();
-    const causes = bench.classificationCauses(contract, obs);
-    const selected = bench.selectResultCauses(contract, causes);
-    const fingerprint = {
-      schemaVersion: contract.schema_version === 2 ? 2 : 1,
-      dimensions: bench.score(contract, obs, null),
-      classification: causes[0],
-      primaryCause: selected.primaryCause,
-      secondaryCause: selected.secondaryCause,
-    };
-    assert.deepEqual(fingerprint, dabGolden[contract.id], contract.id + ' matches the pre-edit golden');
-  }
 
   // ── measurement helpers ─────────────────────────────────────────────────
   assert.equal(

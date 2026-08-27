@@ -161,7 +161,7 @@ Field guidance (see framework.md for the authoritative enums):
   invocation.command  : a RAW JSON value, not a quoted placeholder. For "command" kind, fill a quoted string (e.g.
                         "review <target> :auto"). For "natural" kind, use the bare JSON literal null — never the quoted
                         text "null" (a quoted "null" is a non-empty string, not the JSON null a natural-entry cell needs;
-                        see DAB-003's shipped `"command": null`).
+                        see RVB-003's shipped `"command": null`).
   fixture             : REQUIRED repo-relative directory string that absorbs all writes for the run. Never null — every
                         scenario, including question_halt cells, binds a fixture.
   expected_interaction: "autonomous" (runs to a terminal) | "question_halt" (must ask ONE consolidated setup question then

@@ -18,7 +18,6 @@ These rows are mutually exclusive: an ID listed here is absent from both other a
 
 | Region | Count | IDs |
 | --- | ---: | --- |
-| Only in JSON-derived | 15 | `command-create-benchmark`, `command-create-command`, `command-create-diff`, `command-create-flowchart`, `command-create-skill-parent`, `command-deep-ai-council`, `command-deep-alignment`, `command-deep-command-benchmark`, `command-deep-model-benchmark`, `command-deep-research`, `command-deep-review`, `command-deep-skill-benchmark`, `command-interface-design`, `command-interface-design-reference`, `command-prompt-improve` |
 | Only in live TypeScript | 4 | `create:agent`, `create:manual-testing-playbook`, `deep-model-benchmark`, `memory:save` |
 | Only in live Python | 7 | `command-prompt-improver`, `command-spec-kit-complete`, `command-spec-kit-deep-research`, `command-spec-kit-deep-review`, `command-spec-kit-implement`, `command-spec-kit-plan`, `command-spec-kit-resume` |
 

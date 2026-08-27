@@ -799,7 +799,6 @@ describe('dark adapter legacy isolation', () => {
     expect(LEGACY_DARK_BOUNDARIES.map((entry) => entry.source)).toEqual([
       'deep-research/scripts/reduce-state.cjs',
       'runtime/scripts/reduce-state.cjs',
-      'runtime/scripts/reduce-alignment-state.cjs',
       'deep-improvement/scripts/shared/reduce-state.cjs',
       'runtime/lib/deep-loop/atomic-state.ts',
       'runtime/lib/deep-loop/jsonl-repair.ts',

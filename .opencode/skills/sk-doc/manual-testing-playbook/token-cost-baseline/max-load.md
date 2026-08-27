@@ -13,10 +13,6 @@ expected_resources:
   - sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-baseline-template.md
   - sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-index-template.md
   - sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md
-  - sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-contract-template.md
-  - sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-fixture-manifest-template.md
-  - sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-lane-config-template.md
-  - sk-create-benchmark/assets/conformance-benchmark/conformance-benchmark-readme-template.md
   - sk-create-benchmark/assets/model-benchmark/model-benchmark-code-task-fixture-template.md
   - sk-create-benchmark/assets/model-benchmark/model-benchmark-pattern-fixture-template.md
   - sk-create-benchmark/assets/model-benchmark/model-benchmark-profile-template.md
@@ -25,11 +21,9 @@ expected_resources:
   - sk-create-benchmark/assets/skill-benchmark/skill-benchmark-readme-template.md
   - sk-create-benchmark/references/agent-improvement/agent-improvement-authoring-guide.md
   - sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md
-  - sk-create-benchmark/references/conformance-benchmark/conformance-benchmark-authoring-guide.md
   - sk-create-benchmark/references/model-benchmark/model-benchmark-fixture-guide.md
   - sk-create-benchmark/references/shared/README.md
   - sk-create-benchmark/references/shared/case-studies.md
-  - sk-create-benchmark/references/shared/command-benchmark-composition.md
   - sk-create-benchmark/references/shared/pitfalls.md
   - sk-create-benchmark/references/shared/worked-example.md
   - sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md
@@ -141,13 +135,9 @@ expected_leaf_resources:
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: assets/behavior-benchmark/behavior-benchmark-scenario-template.md
   - workflow_mode: sk-create-benchmark
-    leaf_resource_id: assets/conformance-benchmark/conformance-benchmark-contract-template.md
   - workflow_mode: sk-create-benchmark
-    leaf_resource_id: assets/conformance-benchmark/conformance-benchmark-fixture-manifest-template.md
   - workflow_mode: sk-create-benchmark
-    leaf_resource_id: assets/conformance-benchmark/conformance-benchmark-lane-config-template.md
   - workflow_mode: sk-create-benchmark
-    leaf_resource_id: assets/conformance-benchmark/conformance-benchmark-readme-template.md
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: assets/model-benchmark/model-benchmark-code-task-fixture-template.md
   - workflow_mode: sk-create-benchmark
@@ -165,7 +155,6 @@ expected_leaf_resources:
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/behavior-benchmark/behavior-benchmark-guide.md
   - workflow_mode: sk-create-benchmark
-    leaf_resource_id: references/conformance-benchmark/conformance-benchmark-authoring-guide.md
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/model-benchmark/model-benchmark-fixture-guide.md
   - workflow_mode: sk-create-benchmark
@@ -173,7 +162,6 @@ expected_leaf_resources:
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/shared/case-studies.md
   - workflow_mode: sk-create-benchmark
-    leaf_resource_id: references/shared/command-benchmark-composition.md
   - workflow_mode: sk-create-benchmark
     leaf_resource_id: references/shared/pitfalls.md
   - workflow_mode: sk-create-benchmark

@@ -34,7 +34,7 @@ A benchmark finishes inside a spec packet. The result lives three folders deep i
 
 ### What It Does
 
-`create-benchmark` authors documentation and input artifacts for five benchmark families, plus a guide-only sixth lane. MCP promotion writes a `benchmark-report.md` and a `source.md` that move a shipped spec packet's results into a skill's `mcp-server/benchmarks/` tree. Behavior benchmarks get a `behavior-benchmark/` package of scenario contracts for a deep-loop mode. Conformance benchmarks get a deterministic peer-adapter input package. Skill-benchmarks get a hub's `benchmark/README.md` run-label index. Model-benchmarks get Lane B fixtures and run profiles. The skill never runs a benchmark, never writes a scorer or rubric and never hand-authors a `skill-benchmark-report.md`. Those stay lane-owned in deep-improvement. Start with the `/create:benchmark` command. The family router in `SKILL.md` section 2 decides which family shape applies. It is the required first stop before authoring anything.
+`create-benchmark` authors documentation and input artifacts for four benchmark families, plus a guide-only fifth lane. MCP promotion writes a `benchmark-report.md` and a `source.md` that move a shipped spec packet's results into a skill's `mcp-server/benchmarks/` tree. Behavior benchmarks get a `behavior-benchmark/` package of scenario contracts for a deep-loop mode. Skill-benchmarks get a hub's `benchmark/README.md` run-label index. Model-benchmarks get Lane B fixtures and run profiles. The skill never runs a benchmark, never writes a scorer or rubric and never hand-authors a `skill-benchmark-report.md`. Those stay lane-owned in deep-improvement. Start with the `/create:benchmark` command. The family router in `SKILL.md` section 2 decides which family shape applies. It is the required first stop before authoring anything.
 
 ### The Family Capability Layer
 
@@ -42,7 +42,6 @@ A benchmark finishes inside a spec packet. The result lives three folders deep i
 |---|---|---|
 | **MCP promotion** (`shared`) | retrieval, quality, runtime or throughput of a shipped MCP stack | a `benchmark-report.md` and a `source.md` inside `<skill>/mcp-server/benchmarks/benchmark-<date>/` |
 | **Behavior** (`behavior_benchmark`) | executor-model behavior at a deep-loop mode's invocation surface | a `behavior-benchmark/` package of scenario contracts at `<mode>/behavior-benchmark/` |
-| **Conformance** (`conformance_benchmark`) | deterministic artifact conformance against a named authority | a peer-adapter input package at `<mode>/assets/conformance-benchmark/<benchmark-id>/` |
 | **Skill-benchmark** (`skill_benchmark`, Lane C) | whether a skill is well-routed, discoverable and useful | the `benchmark/README.md` run-label index at `<skill>/benchmark/<run-label>/` |
 | **Model-benchmark** (`model_benchmark`, Lane B) | what a model or prompt framework produces against a held-out oracle | Lane B fixtures and run profiles at `system-deep-loop/deep-improvement/assets/model-benchmark/` |
 | **Agent-improvement** (`agent_improvement`, Lane A) | an agent's quality across five dimensions | the Lane A guide only, authored in-lane in deep-improvement, never as a family artifact from this skill |
@@ -58,7 +57,7 @@ A benchmark finishes inside a spec packet. The result lives three folders deep i
 ```text
 Measurable MCP surface + shipped spec packet with accepted ADRs + stable fixture?
   YES -> MCP promotion (SKILL.md section 3-8)
-  NO  -> check behavior / conformance / skill / model families (SKILL.md section 2 table)
+  NO  -> check behavior / skill / model families (SKILL.md section 2 table)
 ```
 
 The block is the family router in miniature. MCP promotion is the flagship command-driven family.
@@ -78,7 +77,7 @@ Expected: zero blocking issues once the ten required sections are filled in.
 
 The flagship family, MCP promotion, runs a fixed sequence. Confirm the promotion gate first: an accepted decision, a stable headline, a stable fixture and replay commands. Classify the task as a re-run or a retirement when the headline repeats, otherwise as a first-time promotion. Confirm the target skill actually has `mcp-server/`. Create or update the benchmarks index. Choose the `benchmark-YYYY-MM-DD/` folder using the execution date. Copy the source artifacts starting with the aggregate CSV. Write `benchmark-report.md` from the fixed ten-section structure. Write `source.md` as a lean wayfinding pointer back to the spec packet. Update the README index row. Validate.
 
-Behavior, conformance, skill and model benchmarks follow the same authoring-not-running shape. Each family has its own package layout documented in its own `SKILL.md` section (9 through 12) and its own guide under `references/`.
+Behavior, skill and model benchmarks follow the same authoring-not-running shape. Each family has its own package layout documented in its own `SKILL.md` section (9 through 11) and its own guide under `references/`.
 
 ### Key Concept: Authoring Never Crosses Into Scoring
 
@@ -90,7 +89,7 @@ Every family stops at the same boundary. It writes down what a benchmark measure
 
 ### When To Use This Skill
 
-Reach for this packet when a benchmark already ran and shipped inside a spec packet with an accepted decision record, when a deep-loop mode needs a behavior-benchmark package, when a peer-adapter conformance check needs its input package, when a hub needs its `benchmark/README.md` index established or updated. Reach for it too when Lane B needs new fixtures or a run profile.
+Reach for this packet when a benchmark already ran and shipped inside a spec packet with an accepted decision record, when a deep-loop mode needs a behavior-benchmark package, when a hub needs its `benchmark/README.md` index established or updated. Reach for it too when Lane B needs new fixtures or a run profile.
 
 Skip it when the benchmark is still in-flight, is a single unreplayable data point or the real ask is a release note (`create-changelog`) or an audit of benchmark markdown that already exists (`create-quality-control`).
 
@@ -112,7 +111,6 @@ Skip it when the benchmark is still in-flight, is a single unreplayable data poi
 | A re-run created a second dated folder | The re-run confirmed the same headline instead of updating in place | Delete the new folder. Add a `Re-run YYYY-MM-DD` note to the existing `benchmark-report.md` instead |
 | `skill-benchmark-report.md` was hand-edited and the next run wiped it | It is a renderer-owned render from `build-report.cjs` | Never hand-edit it. Change the run JSON or file a renderer issue instead |
 | The wrong family template got copied | The family router in `SKILL.md` section 2 was skipped | Re-route through the family table before authoring anything |
-| A "command benchmark" request got dropped into one family folder | Command benchmarks compose two families, not one | Author both a behavior and a conformance package and bind them via the matrix manifest in `references/shared/command-benchmark-composition.md` |
 
 ---
 
@@ -124,11 +122,11 @@ A: A raw CSV gives a reader a bare number with no methodology and no replay path
 
 **Q: Why five families instead of one generic "benchmark" template?**
 
-A: The five families measure genuinely different things: retrieval quality, executor-model behavior, artifact conformance, skill routing and model output each answer a different question. Conflating their package shapes breaks the lane that consumes each one.
+A: The four families measure genuinely different things: retrieval quality, executor-model behavior, skill routing and model output each answer a different question. Conflating their package shapes breaks the lane that consumes each one.
 
 **Q: Can this packet run a benchmark for me?**
 
-A: No. It authors documentation and input artifacts only. Execution and scoring stay in the owning lane, deep-improvement or deep-alignment depending on the family.
+A: No. It authors documentation and input artifacts only. Execution and scoring stay in the owning lane, deep-improvement.
 
 **Q: What if a re-run confirms the same headline as before?**
 
@@ -141,7 +139,7 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
 | Check | How to run it |
 |---|---|
 | MCP promotion report | `python3 .opencode/skills/sk-doc/scripts/validate_document.py <path>/benchmark-report.md --type readme` reports zero blocking issues |
-| Behavior, skill, model and conformance package markdown | Same validator against each authored `.md`. JSON fixtures and lane-configs must additionally parse as valid JSON |
+| Behavior, skill, and model package markdown | Same validator against each authored `.md`. JSON fixtures and lane-configs must additionally parse as valid JSON |
 | Filename or folder naming | `python3 .opencode/skills/sk-doc/shared/scripts/check_authored_name_kebab.py <artifact-path-or-slug>` before any new artifact path ships |
 
 ---
@@ -153,7 +151,6 @@ A: Update the existing `benchmark-report.md` with a `Re-run YYYY-MM-DD` note ins
 | [`SKILL.md`](./SKILL.md) | Authoritative workflow contract, family router and all six family sections |
 | [`references/shared/README.md`](./references/shared/README.md) | Overflow route-map: case studies, the report worked example and common pitfalls |
 | [`references/behavior-benchmark/behavior-benchmark-guide.md`](./references/behavior-benchmark/behavior-benchmark-guide.md) | End-to-end guide for authoring a `behavior-benchmark` package |
-| [`references/conformance-benchmark/conformance-benchmark-authoring-guide.md`](./references/conformance-benchmark/conformance-benchmark-authoring-guide.md) | Authoring guide for deterministic peer-adapter packages |
 | [`references/skill-benchmark/skill-benchmark-storage-guide.md`](./references/skill-benchmark/skill-benchmark-storage-guide.md) | Storage convention for a hub's `benchmark/` tree and the renderer boundary |
 | [`references/model-benchmark/model-benchmark-fixture-guide.md`](./references/model-benchmark/model-benchmark-fixture-guide.md) | Fixture-family taxonomy, profile shape and the Lane B scoring boundary |
 | [`assets/shared/benchmark-report-template.md`](./assets/shared/benchmark-report-template.md) | Template for the ten-section `benchmark-report.md` |

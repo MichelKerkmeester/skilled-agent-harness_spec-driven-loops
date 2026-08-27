@@ -9,7 +9,7 @@ description: "Normative scenario contract and reference runner for scoring live 
 
 ## 1. OVERVIEW
 
-Shared behavior-benchmark contract consumed by every deep-loop mode (`deep-ai-council`, `deep-alignment`, `deep-improvement`, `deep-research`, `deep-review`). `framework.md` is the single source of truth for the scenario schema, scoring rubric and classification taxonomy. `behavior-bench-run.cjs` is the reference runner that executes one scenario against one executor leg and emits a scored result JSON. Per-mode scenario packages live under each `deep-*` skill's own `behavior-benchmark/` folder and link back to `framework.md` rather than redefining the contract.
+Shared behavior-benchmark contract consumed by every deep-loop mode (`deep-ai-council`, `deep-improvement`, `deep-research`, `deep-review`). `framework.md` is the single source of truth for the scenario schema, scoring rubric and classification taxonomy. `behavior-bench-run.cjs` is the reference runner that executes one scenario against one executor leg and emits a scored result JSON. Per-mode scenario packages live under each `deep-*` skill's own `behavior-benchmark/` folder and link back to `framework.md` rather than redefining the contract.
 
 ---
 

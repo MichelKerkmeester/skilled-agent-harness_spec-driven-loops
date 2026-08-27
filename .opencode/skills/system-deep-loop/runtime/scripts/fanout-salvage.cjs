@@ -19,7 +19,6 @@ const { mergeJsonlUnderLock } = require('../lib/deep-loop/jsonl-repair.ts');
 const STATE_LOG_BY_LOOP_TYPE = {
   research: 'deep-research-state.jsonl',
   review: 'deep-review-state.jsonl',
-  alignment: 'deep-alignment-state.jsonl',
 };
 
 /**
@@ -69,7 +68,7 @@ function extractTextFromOpencodeJson(stdout) {
  *     see a file and can apply their own stuck-recovery logic.
  *
  * @param {string} lineageDir - Absolute path to the lineage artifact dir.
- * @param {'research'|'review'|'alignment'} loopType - Loop type for state log naming.
+ * @param {'research'|'review'} loopType - Loop type for state log naming.
  * @param {string} savedStdout - Captured subprocess stdout.
  * @returns {{ salvaged: number, failed: number }}
  */

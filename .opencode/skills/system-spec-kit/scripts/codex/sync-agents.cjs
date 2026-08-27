@@ -22,9 +22,6 @@ const HISTORICAL_SETTINGS = Object.freeze({
   code: { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   context: { sandboxMode: 'read-only', ...DEFAULT_SETTINGS },
   debug: { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
-  // deep-alignment intentionally runs workspace-write: it writes its own JSONL state,
-  // deltas, and logs via Bash while treating every audited artifact as read-only by scope.
-  'deep-alignment': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'deep-improvement': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'deep-research': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },
   'deep-review': { sandboxMode: 'workspace-write', ...DEFAULT_SETTINGS },

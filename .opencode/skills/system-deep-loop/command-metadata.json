@@ -85,10 +85,6 @@
         {
           "sibling": "/deep:research",
           "when": "Prefer research when the target needs open-ended investigation rather than an audit verdict."
-        },
-        {
-          "sibling": "/deep:alignment",
-          "when": "Prefer alignment when artifacts must be checked against a named standard authority."
         }
       ]
     }
@@ -277,100 +273,6 @@
         {
           "sibling": "/deep:model-benchmark",
           "when": "Prefer model benchmark when the target is a model or prompt framework profile."
-        }
-      ]
-    }
-  },
-  {
-    "command": "/deep:alignment",
-    "ownerMode": "alignment",
-    "description": "Autonomous deep-alignment loop: conformance audit against named standard authorities across resolved lanes. Modes :auto, :confirm.",
-    "argumentHint": "<target> [authority] [:auto|:confirm] [--lane-config <file.json>] [--max-iterations=N] [--coverage-threshold=N] [--stability-window=N] [--convergence-mode=default|off] [--spec-folder=PATH] [--restart|--lineage-mode=restart] [--executor-kind=native|cli-codex|cli-opencode] [--model=MODEL] [--reasoning-effort=LEVEL] [--service-tier=TIER] [--executor-timeout=SECONDS] (--model/--reasoning-effort apply to cli-codex and cli-opencode; --service-tier is cli-codex-only; :auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)",
-    "userIntent": {
-      "job": "I want to check artifacts for conformance to a named standard authority across resolved lanes.",
-      "ownedSignals": [
-        "check conformance to a standard",
-        "audit artifacts against an authority",
-        "run an alignment lane"
-      ]
-    },
-    "choreography": [
-      {
-        "order": 1,
-        "skill": "system-deep-loop",
-        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
-        "action": "load the system-deep-loop parent hub routing table"
-      },
-      {
-        "order": 2,
-        "skill": "deep-alignment",
-        "resource": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
-        "action": "load the named-standard alignment mode contract, then apply the workflow to $ARGUMENTS"
-      },
-      {
-        "order": 3,
-        "skill": "deep-alignment",
-        "resource": ".opencode/commands/deep/assets/deep-alignment-presentation.txt",
-        "action": "load the command presentation contract before resolving setup and execution mode"
-      }
-    ],
-    "discriminator": {
-      "whenToUse": "Use this command when artifacts must be checked against a named authority's standard across one or more alignment lanes.",
-      "preferSiblingWhen": [
-        {
-          "sibling": "/deep:command-benchmark",
-          "when": "Prefer command benchmark when the target is the slash-command surface and its conformance or behavior matrix."
-        },
-        {
-          "sibling": "/deep:review",
-          "when": "Prefer review when the target is a general code audit without a named standard authority."
-        }
-      ]
-    }
-  },
-  {
-    "command": "/deep:command-benchmark",
-    "ownerMode": "alignment",
-    "description": "Run the command-surface benchmark through reused conformance and behavior engines. Modes :auto/:confirm.",
-    "argumentHint": "<spec-folder> [:auto|:confirm] [--axis=conformance|behavior|all] [--run-id=ID]",
-    "userIntent": {
-      "job": "I want to benchmark a slash-command surface through conformance and behavior engines.",
-      "ownedSignals": [
-        "benchmark slash commands",
-        "test command surface behavior",
-        "run command conformance checks"
-      ]
-    },
-    "choreography": [
-      {
-        "order": 1,
-        "skill": "system-deep-loop",
-        "resource": ".opencode/skills/system-deep-loop/SKILL.md",
-        "action": "load the system-deep-loop parent hub routing table"
-      },
-      {
-        "order": 2,
-        "skill": "deep-alignment",
-        "resource": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
-        "action": "load the command-surface alignment mode contract, then apply the workflow to $ARGUMENTS"
-      },
-      {
-        "order": 3,
-        "skill": "deep-alignment",
-        "resource": ".opencode/commands/deep/assets/deep-command-benchmark-presentation.txt",
-        "action": "load the command presentation contract before resolving setup and execution mode"
-      }
-    ],
-    "discriminator": {
-      "whenToUse": "Use this command when the target is a slash-command surface requiring the conformance or behavior benchmark.",
-      "preferSiblingWhen": [
-        {
-          "sibling": "/deep:alignment",
-          "when": "Prefer alignment when the target is broader artifact conformance against a named authority rather than the command surface."
-        },
-        {
-          "sibling": "/deep:review",
-          "when": "Prefer review when the target is a general code audit rather than a command benchmark."
         }
       ]
     }

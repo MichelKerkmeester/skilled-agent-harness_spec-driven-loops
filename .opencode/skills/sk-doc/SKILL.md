@@ -8,7 +8,7 @@ metadata:
   family: sk-util
 ---
 
-<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, conformance benchmark, conformance_benchmark, peer adapter benchmark, deep-alignment benchmark, lane-config benchmark, sk-doc-command, sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-quality-control, shared-backbone, create-quality-control-pipeline -->
+<!-- Keywords: sk-doc, documentation, markdown, authoring, parent-hub, mode-registry, hub-router, workflowmode, packetkind, sk-create-skill, sk-create-readme, sk-create-agent, sk-create-command, sk-create-feature-catalog, sk-create-manual-testing-playbook, sk-create-benchmark, sk-create-diagram, sk-create-changelog, sk-create-diff, sk-create-quality-control, shared-backbone, create-quality-control-pipeline -->
 
 # Documentation Authoring Hub (sk-doc)
 
@@ -28,7 +28,7 @@ Use this skill for documentation and OpenCode-component authoring, and for docum
 | **sk-create-command** | Scaffold an OpenCode slash command (argument-hint + allowed-tools + router/presentation split) | `sk-create-command/` | `/create:command` |
 | **sk-create-feature-catalog** | Author a feature-catalog inventory package | `sk-create-feature-catalog/` | `/create:feature-catalog` |
 | **sk-create-manual-testing-playbook** | Author a manual-testing-playbook package | `sk-create-manual-testing-playbook/` | `/create:manual-testing-playbook` |
-| **sk-create-benchmark** | Author MCP-promotion, behavior, conformance, skill-benchmark, and model-benchmark packages or inputs | `sk-create-benchmark/` | `/create:benchmark` |
+| **sk-create-benchmark** | Author MCP-promotion, behavior, skill-benchmark, and model-benchmark packages or inputs | `sk-create-benchmark/` | `/create:benchmark` |
 | **sk-create-diagram** | Generate an HTML/SVG technical diagram (27 types) or a validated ASCII/markdown flowchart via `--output-format` | `sk-create-diagram/` | `/create:diagram` |
 | **sk-create-changelog** | Author a global or packet-local changelog entry (version bump + topology-aware placement) | `sk-create-changelog/` | `/create:changelog` |
 | **sk-create-diff** | Produce a local, Git-free before/after review of an edited document (text/Markdown/HTML/DOCX/text-PDF) as a self-contained HTML report | `sk-create-diff/` | — (routes via aliases) |

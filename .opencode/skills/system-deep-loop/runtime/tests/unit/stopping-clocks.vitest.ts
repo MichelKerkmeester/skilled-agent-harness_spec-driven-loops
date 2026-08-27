@@ -1132,7 +1132,7 @@ describe('ledger event and additive-dark bridge', () => {
   });
 
   it('preserves every supported profile and the legacy result by identity', () => {
-    expect(STOPPING_CLOCK_PROFILES).toHaveLength(7);
+    expect(STOPPING_CLOCK_PROFILES).toHaveLength(6);
     for (const profile of STOPPING_CLOCK_PROFILES) {
       expect(profile.required_clocks).toHaveLength(5);
       expect(profile.adapters.map((entry) => entry.clock_kind)).toEqual(profile.required_clocks);

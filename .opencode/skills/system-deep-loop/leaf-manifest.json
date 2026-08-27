@@ -202,32 +202,6 @@
     },
     {
       "leaves": [
-        "assets/.gitkeep",
-        "assets/alignment-prompt-pack.md.tmpl",
-        "assets/command-benchmark/command-benchmark-matrix.json",
-        "assets/conformance-benchmark/README.md",
-        "assets/conformance-benchmark/command-surface/conformance-benchmark.md",
-        "assets/conformance-benchmark/command-surface/fixtures/fixture-manifest.json",
-        "assets/conformance-benchmark/command-surface/lane-config.json",
-        "assets/deep-alignment-config-template.json",
-        "references/adapters/sk-code-adapter.md",
-        "references/adapters/sk-code-known-deviations.md",
-        "references/adapters/sk-doc-adapter.md",
-        "references/adapters/sk-doc-command-adapter.md",
-        "references/adapters/sk-doc-command-known-deviations.md",
-        "references/adapters/sk-doc-known-deviations.md",
-        "references/adapters/sk-git-adapter.md",
-        "references/adapters/sk-git-known-deviations.md",
-        "references/discover-contract.md",
-        "references/lane-config-schema.md",
-        "references/scoping-protocol.md",
-        "references/state-machine-wiring.md"
-      ],
-      "packet": "deep-alignment",
-      "workflowMode": "alignment"
-    },
-    {
-      "leaves": [
         "assets/agent-improvement/README.md",
         "assets/agent-improvement/improvement-charter.md",
         "assets/agent-improvement/improvement-config-reference.md",
