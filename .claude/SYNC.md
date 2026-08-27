@@ -109,7 +109,7 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 ## 8. KNOWN GAPS
 
 - **`agents/` is a fork, not a mirror.** The pre-commit gate compares token sets, so a pure-prose edit on one side can pass while the two documents diverge in wording. Only a real symlink or a generator would remove this class entirely.
-- **`agents/README.txt` has no gate.** It drifted before — `deep-alignment` was missing from it while the agent file existed.
+- **`agents/README.txt` has no gate.** It drifted before — a newly added agent was missing from it while the agent file existed.
 - **`settings.json` is hand-authored and unmirrorable.** The four runtimes use incompatible event vocabularies and entry shapes; no generator can produce it from a shared source.
 - **The command mirror proves repository discovery boundaries, not product-internal behavior.** A live Claude version may expose separate native capabilities that this repository check neither confirms nor denies.
 

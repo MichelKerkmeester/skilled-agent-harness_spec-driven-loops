@@ -1,0 +1,84 @@
+{
+  "findings": [
+    {
+      "id": "F1",
+      "sev": "P1",
+      "iter": 1,
+      "dim": "correctness",
+      "file": ".opencode/skills/system-deep-loop/SKILL.md",
+      "line": 58,
+      "claim": "hub still documents alignment as active workflowMode (+hint :20, backendKind :59-60)"
+    },
+    {
+      "id": "F2",
+      "sev": "P2",
+      "iter": 1,
+      "dim": "correctness",
+      "file": ".opencode/commands/README.txt",
+      "line": 45,
+      "claim": "claims 8 deep commands + lists deleted alignment.md (:95); dir has 6"
+    },
+    {
+      "id": "F3",
+      "sev": "P2",
+      "iter": 1,
+      "dim": "correctness",
+      "file": ".opencode/skills/system-deep-loop/runtime/lib/README.md",
+      "line": 12,
+      "claim": "runtime READMEs advertise alignment as served mode (+mode-contracts/README.md:12)"
+    },
+    {
+      "id": "F4",
+      "sev": "P2",
+      "iter": 1,
+      "dim": "correctness",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": 1496,
+      "claim": "~90-line executor heredoc duplicated 6x; sync obligation (advisory)"
+    },
+    {
+      "id": "F5",
+      "sev": "P0",
+      "iter": 3,
+      "dim": "spec-alignment",
+      "confirmed": true,
+      "file": ".codex/prompts/deep-alignment.md",
+      "line": 1,
+      "claim": "4 git-tracked orphaned prompt mirrors (.codex/.pi prompts for deep-alignment+command-benchmark) ref deleted commands; REQ-001 violation. Fix: run sync-prompts.cjs + sync-prompts-pi.cjs"
+    },
+    {
+      "id": "F6",
+      "sev": "P2",
+      "iter": 3,
+      "dim": "spec-alignment",
+      "file": "specs/system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing/checklist.md",
+      "line": 74,
+      "claim": "024 checklist cites deleted deep-alignment-auto.yaml as evidence; needs supersession note"
+    }
+  ],
+  "byIteration": {
+    "1": {
+      "P0": 0,
+      "P1": 1,
+      "P2": 3,
+      "verdict": "CONDITIONAL"
+    },
+    "2": {
+      "P0": 0,
+      "P1": 0,
+      "P2": 0,
+      "verdict": "PASS"
+    },
+    "3": {
+      "P0": 1,
+      "P1": 0,
+      "P2": 1,
+      "verdict": "FAIL"
+    }
+  },
+  "confirmed": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  }
+}

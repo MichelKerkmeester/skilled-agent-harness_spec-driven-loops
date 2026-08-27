@@ -4,14 +4,14 @@ description: "The advisor-routable hub for the active deep-loop workflow familie
 trigger_phrases:
   - "system deep loop"
   - "deep loop workflows"
-  - "deep research review council alignment improvement"
+  - "deep research review council improvement"
   - "deep-loop hub routing"
 version: 2.2.3.0
 ---
 
 # system-deep-loop
 
-> One skill that routes to every active deep-loop workflow: research, review, AI Council, alignment and improvement.
+> One skill that routes to every active deep-loop workflow: research, review, AI Council and improvement.
 
 ---
 
@@ -19,7 +19,7 @@ version: 2.2.3.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Running an iterative deep-loop workflow: autonomous research, code review, multi-seat AI Council planning, named-standard conformance alignment or evaluator-first improvement. |
+| **Use it for** | Running an iterative deep-loop workflow: autonomous research, code review, multi-seat AI Council planning or evaluator-first improvement. |
 | **Invoke with** | `Skill(system-deep-loop)`, the `/deep:*` commands or the deep agents. |
 | **Works on** | A spec packet or a scoped target, with externalized state kept under the packet. |
 | **Produces** | The mode's artifacts (for example research.md, review-report.md, council artifacts or improvement proposals) plus convergence state. |
@@ -58,9 +58,9 @@ The hub resolves `workflowMode: review` to the `deep-review` packet and runs its
 
 Every mode is described once in `mode-registry.json` by a three-tier discriminator, and no router re-derives that mapping:
 
-- **`workflowMode`** is the public key used by commands, the advisor and the registry, for example `research`, `ai-council`, `alignment` or `agent-improvement`.
-- **`runtimeLoopType`** is the graph-backed convergence key for `runtime/`, one of `research`, `review` or `council` for active modes. Alignment maps to `review`. It is an explicit `null` only for the three improvement lanes and is never guessed from `workflowMode`.
-- **`backendKind`** is the registry-defined backend kind: `runtime-loop-type`, `alignment-convergence` or `improvement-host`. See [`mode-registry.json`](./mode-registry.json); the registry is authoritative for this roster.
+- **`workflowMode`** is the public key used by commands, the advisor and the registry, for example `research`, `ai-council` or `agent-improvement`.
+- **`runtimeLoopType`** is the graph-backed convergence key for `runtime/`, one of `research`, `review` or `council` for active modes. It is an explicit `null` only for the three improvement lanes and is never guessed from `workflowMode`.
+- **`backendKind`** is the registry-defined backend kind: `runtime-loop-type` or `improvement-host`. See [`mode-registry.json`](./mode-registry.json); the registry is authoritative for this roster.
 
 A router reads the registry, loads the mode packet, and selects the backend named by that entry.
 

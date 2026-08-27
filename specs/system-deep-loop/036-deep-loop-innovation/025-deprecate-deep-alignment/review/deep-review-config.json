@@ -1,0 +1,25 @@
+{
+  "mode": "review",
+  "reviewTarget": "All work shipped this session on skilled/v4.0.0.0 across three commits: 8849444aa6 (deep-alignment + conformance-benchmark removal), d1a5981b58 (executor single-dispatch routing fix), e41aa1878a (Phase-0 dispatch-gate retirement).",
+  "reviewTargetType": "files",
+  "reviewDimensions": ["correctness", "security", "spec-alignment", "completeness"],
+  "specFolder": "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "stopPolicy": "max-iterations",
+  "antiConvergence": { "convergenceMode": "off", "divergent": {} },
+  "executionMode": "manual-fallback",
+  "lineageMode": "new",
+  "resource_map": { "emit": false },
+  "config": {
+    "executor": { "kind": "cli-pi", "model": "openrouter/z-ai/glm-5.3-flash" }
+  },
+  "provenance": {
+    "orchestration": "manual-multi-agent-fallback",
+    "reason": "Canonical /deep:review :auto loop hangs at iteration-2 process-nesting fleet-wide (opencode orchestrator, cli-devin + cli-pi both; corroborated by 016-system-deep-loop-review hung casualty). Operator-flagged and approved per PLAN-WORKFLOW LOCK.",
+    "conductor": "claude-opus (single writer of all state artifacts)",
+    "reviewer": "cli-pi glm-5.3-flash (read-only passes)",
+    "deep_review_leaf_agent_used": false,
+    "orchestrator_fix": "deferred to a separate Gate-3 packet"
+  }
+}

@@ -9,7 +9,7 @@ description: "Domain logic library for system-deep-loop, holding thirty-seven do
 
 ## 1. OVERVIEW
 
-Shared domain logic for the `system-deep-loop` hub, which routes research, review, ai-council, alignment and three improvement lanes. Active graph-backed workflow modes use `runtimeLoopType` values `research`, `review` or `council`. Legacy `context` handling remains only for historical artifacts, and improvement lanes keep `runtimeLoopType: null`. Most domains isolate their own concerns and write verified events through the shared `authorized-ledger` gateway on top of the `event-envelope` substrate, though a few domains such as `council/`, `coverage-graph/` and `write-set-conflict-graph/` stay outside that ledger-backed spine. This is the domain layer. CLI-specific infrastructure lives in `scripts/lib/` instead.
+Shared domain logic for the `system-deep-loop` hub, which routes research, review, ai-council and three improvement lanes. Active graph-backed workflow modes use `runtimeLoopType` values `research`, `review` or `council`. Legacy `context` handling remains only for historical artifacts, and improvement lanes keep `runtimeLoopType: null`. Most domains isolate their own concerns and write verified events through the shared `authorized-ledger` gateway on top of the `event-envelope` substrate, though a few domains such as `council/`, `coverage-graph/` and `write-set-conflict-graph/` stay outside that ledger-backed spine. This is the domain layer. CLI-specific infrastructure lives in `scripts/lib/` instead.
 
 ---
 

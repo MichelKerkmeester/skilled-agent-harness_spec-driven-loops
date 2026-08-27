@@ -26,7 +26,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 20 deterministic scenarios across 5 categories validating the `system-deep-loop` parent-skill hub. Each scenario keeps its stable `{PREFIX}-NNN` ID in a dedicated per-scenario file whose YAML frontmatter carries the typed routing gold and whose body holds the full execution contract.
+This playbook provides 19 deterministic scenarios across 5 categories validating the `system-deep-loop` parent-skill hub. Each scenario keeps its stable `{PREFIX}-NNN` ID in a dedicated per-scenario file whose YAML frontmatter carries the typed routing gold and whose body holds the full execution contract.
 
 Coverage note: the playbook covers the hub's registry-driven routing at version `2.0.0.0`. It exercises:
 - Dominant-intent routing for the lexical modes: `research`, `review`, and `ai-council`.
@@ -59,7 +59,7 @@ Coverage note: the playbook covers the hub's registry-driven routing at version 
 1. Working directory is the repository root.
 2. The hub skill is present at `.opencode/skills/system-deep-loop/`.
 3. `.opencode/skills/system-deep-loop/SKILL.md` states that `mode-registry.json` is the single source of truth and that the hub holds no per-mode convergence, state, or synthesis logic.
-4. `.opencode/skills/system-deep-loop/mode-registry.json` contains exactly 7 active modes in its `modes` array.
+4. `.opencode/skills/system-deep-loop/mode-registry.json` contains exactly 6 active modes in its `modes` array.
 5. The skill advisor at `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` is callable when advisor scenarios are executed.
 6. The orchestrator runtime can invoke `Skill(system-deep-loop)` and can run `/deep:*` command prompts, or the operator can capture equivalent dry-run routing transcripts.
 7. Operator evidence is written under `/tmp/dlw-<SCENARIO-ID>/` and never into project source paths unless a scenario explicitly states the mode's real artifact-root contract.
@@ -129,8 +129,8 @@ For each executed scenario, check:
 
 Release is READY only when:
 1. No feature verdict is FAIL.
-2. All critical scenarios are PASS: MO-001, MO-002, MO-003, MO-005, IL-001, IL-002, IL-003, AI-001, AI-004, RB-001, RB-003, SC-001, SC-002, SC-004.
-3. Coverage is 100% of playbook scenarios: 20 / 20.
+2. All critical scenarios are PASS: MO-001, MO-002, MO-003, IL-001, IL-002, IL-003, AI-001, AI-004, RB-001, RB-003, SC-001, SC-002, SC-004.
+3. Coverage is 100% of playbook scenarios: 19 / 19.
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -141,7 +141,7 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 
 ## 6. CATEGORY INDEX
 
-### Mode Routing (`MO-001..MO-005`)
+### Mode Routing (`MO-001..MO-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
@@ -149,7 +149,6 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 | `MO-002` | Review Routing | Iterative review request resolves to `review` | `mode-routing/review-routing.md` | Yes |
 | `MO-003` | AI Council Routing | Multi-seat planning deliberation resolves to `ai-council` | `mode-routing/ai-council-routing.md` | Yes |
 | `MO-004` | Mode-Hint Override | Explicit `research:` hint overrides ambiguous wording | `mode-routing/mode-hint-override.md` | No |
-| `MO-005` | Alignment Routing | Read-only conformance audit against a named standard resolves to `alignment` | `mode-routing/alignment-routing.md` | Yes |
 
 ### Improvement Lane Routing (`IL-001..IL-003`)
 
@@ -193,7 +192,7 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 Automated drift guards may exist for advisor projection maps, but this playbook is the manual validation surface for operator-observed routing behavior. Do not treat an automated guard as a substitute for the scenario transcripts unless the feature file explicitly allows the automated output as supporting evidence.
 
 Tests NOT covered by automation here:
-- End-to-end advisor prompt behavior for the 20 manual scenarios.
+- End-to-end advisor prompt behavior for the 19 manual scenarios.
 - Operator-visible command routing transcript quality.
 - Runtime response shape proving the hub stayed routing-only.
 - Artifact-root and state-discipline evidence from live iteration dry-runs.
@@ -212,12 +211,12 @@ gate (`validate-playbook-topology.cjs`) can validate the gold against
 that supplies the observed leaf addresses lives at
 `ROUTER.md`.
 
-- **Mode Routing** (`mode-routing/`): `MO-001` research, `MO-002` review, `MO-003` ai-council, `MO-004` mode-hint override, `MO-005` alignment.
+- **Mode Routing** (`mode-routing/`): `MO-001` research, `MO-002` review, `MO-003` ai-council, `MO-004` mode-hint override.
 - **Improvement Lane Routing** (`improvement-lane-routing/`): `IL-001` agent-improvement (typed), `IL-002` model-benchmark, `IL-003` skill-benchmark.
 - **Advisor Integration** (`advisor-integration/`): `AI-001` single advisor identity, `AI-002` lexical mode scoring, `AI-003` command-bridge guard, `AI-004` no false fire on code edit.
 - **Runtime and Backend** (`runtime-and-backend/`): `RB-001` runtime-loop research, `RB-002` runtime-loop council, `RB-003` improvement host, `RB-004` retired backend.
 - **State and Convergence Discipline** (`state-and-convergence-discipline/`): `SC-001` externalized state, `SC-002` artifact-root writes, `SC-003` convergence stop, `SC-004` hub logic boundary.
 
-**Total scenarios**: 20
-**Typed leaf-resource gold**: `MO-001`, `MO-002`, `MO-003`, `MO-005`, `IL-001` (the five distinct-packet modes). The three improvement lanes multiplex onto one `deep-improvement` packet, so only the first-declared lane (`agent-improvement`, `IL-001`) resolves to a distinct observed workflow mode; `IL-002`/`IL-003` carry empty typed gold by design (shared-packet fan-out).
+**Total scenarios**: 19
+**Typed leaf-resource gold**: `MO-001`, `MO-002`, `MO-003`, `IL-001` (the four distinct-packet modes). The three improvement lanes multiplex onto one `deep-improvement` packet, so only the first-declared lane (`agent-improvement`, `IL-001`) resolves to a distinct observed workflow mode; `IL-002`/`IL-003` carry empty typed gold by design (shared-packet fan-out).
 **Categories**: 5
