@@ -8,6 +8,10 @@ hard_rules:
     check: stdin-redirect-required
     message: "Ad-hoc `opencode run` MUST close/redirect stdin (`</dev/null`) — omitting it can hang indefinitely at 0% CPU with zero output."
     severity: warn
+  - id: explicit-model-required
+    check: explicit-model-required
+    message: "Always pass `-m <provider/model>` to a non-interactive `opencode run`. When the configured default provider is out of quota, opencode retries the 429 indefinitely and produces NO output — indistinguishable from a deadlock. Confirm with `--print-logs --log-level DEBUG` (look for 'stream error … Error 429')."
+    severity: warn
   - id: no-bare-agent-general
     check: no-bare-agent-general
     message: "Never pass a bare top-level `--agent general`; opencode rejects it on run."
@@ -180,6 +184,8 @@ Honor explicit user model, port, and handback phrasing verbatim; otherwise use t
 Core flags: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, continuation/session/fork flags, `--share` and `--port` for detached sessions, `--file`, `--thinking`, `--pure`, and log flags.
 
 > **Non-interactive invocation stdin**: always append `</dev/null` to any non-interactive `opencode run` invocation — without it, opencode can inherit parent-terminal stdin and hang. See `references/integration-patterns.md` §6.
+
+> **Always pin the model with `-m <provider/model>`**: a run that inherits an out-of-quota default provider retries the `429` forever and prints nothing, which looks exactly like a deadlock or a snapshot-lock hang. This is the single most common cause of a "hung" `opencode run` — including command-driven deep-loop runs, where the orchestrator inherits the default even though `--executor`/`--model` were passed for the leaf. Diagnose with `--print-logs --log-level DEBUG` and look for `stream error … Error 429`; fix by pinning a provider/model with live quota.
 
 > **Registered command dispatch (`--command`)**: slash-command text inside a `run` message is NOT expanded — `opencode run "/memory:search query"` delivers the slash text as raw prose. Execute a registered command via `opencode run --command <family>/<name> [flags] "<args>"` (becomes `$ARGUMENTS`; e.g. `memory/search` for `/memory:search`). Full semantics: `references/cli-reference.md` §4.
 
