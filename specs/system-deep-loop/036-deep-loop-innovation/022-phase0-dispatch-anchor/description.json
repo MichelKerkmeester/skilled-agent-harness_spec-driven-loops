@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor",
+  "description": "The deep/ commands (`review`, `research`, `ai-council`, `alignment`) open with a Phase-0 dispatch-context gate whose block reads \"⛔ DIRECT INVOCATION",
+  "keywords": [
+    "deep",
+    "commands",
+    "review",
+    "research",
+    "ai-council",
+    "alignment",
+    "open",
+    "phase-0",
+    "dispatch-context",
+    "gate",
+    "whose",
+    "block",
+    "reads",
+    "direct",
+    "invocation"
+  ],
+  "lastUpdated": "2026-08-27T03:36:50.515Z",
+  "specId": "022",
+  "folderSlug": "phase0-dispatch-anchor",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

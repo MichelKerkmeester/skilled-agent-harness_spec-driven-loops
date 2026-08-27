@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope",
-  "spec_folder": "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope",
+  "packet_id": "system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor",
+  "spec_folder": "system-deep-loop/036-deep-loop-innovation/022-phase0-dispatch-anchor",
   "parent_id": "system-deep-loop/036-deep-loop-innovation",
   "children_ids": [],
   "manual": {
@@ -11,26 +11,26 @@
   },
   "derived": {
     "trigger_phrases": [
-      "containment symlink autoscope",
-      "resolveArtifactScope null symlinked spec tree",
-      "containment repo root auto detection",
-      "containment symlink autoscope summary",
-      "resolveContainmentRepoRoot artifact worktree",
-      "containment catch-22 closed"
+      "phase 0 dispatch anchor deep review",
+      "DIRECT INVOCATION REQUIRED false block",
+      "ARGS_PRESENT dispatch-context authorization",
+      "phase 0 dispatch anchor summary",
+      "DISPATCH-CONTEXT authorization prefix",
+      "deep review direct invocation false block fix"
     ],
     "key_topics": [
-      "containment",
-      "symlink",
-      "autoscope",
-      "resolveartifactscope",
-      "null",
-      "symlinked",
-      "spec",
-      "tree",
-      "repo",
-      "root",
-      "auto",
-      "detection"
+      "phase",
+      "dispatch",
+      "anchor",
+      "deep",
+      "review",
+      "direct",
+      "invocation",
+      "required",
+      "false",
+      "block",
+      "dispatch-context",
+      "authorization"
     ],
     "importance_tier": "high",
     "status": "complete",
@@ -79,13 +79,13 @@
         "source": "derived"
       },
       {
-        "name": "Containment Auto",
+        "name": "Objective Dispatch",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Symlinked Spec Trees",
+        "name": "Context Anchor",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -97,13 +97,13 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Packet",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Resolve",
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -121,13 +121,13 @@
         "source": "derived"
       },
       {
-        "name": "Overview The",
+        "name": "The Phase",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Pattern Resolve",
+        "name": "Overview The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -145,13 +145,13 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
+        "name": "Phase 1: Setup",
+        "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
+        "name": "Phase 2: Implementation",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -187,9 +187,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Packet 020 fixed the tsx-loader crash and added a `DEEPLOOPREPOROOT` override, but left the containment half of the operator's catch-22 unconfirmed",
-    "created_at": "2026-08-26T16:09:53.781Z",
-    "last_save_at": "2026-08-27T03:21:07.887Z",
+    "causal_summary": "The deep/ commands (`review`, `research`, `ai-council`, `alignment`) open with a Phase-0 dispatch-context gate whose block reads \"⛔ DIRECT INVOCATION REQUIRED — no review iteration executed\"",
+    "created_at": "2026-08-27T03:18:13.515Z",
+    "last_save_at": "2026-08-27T03:37:13.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9ab68d19df97b11024ac4c2f75b8bc4a1068e717cb6080a96877ac91f928205",
+    "source_fingerprint": "sha256:233f677e856d1848238380dc8f334ddaaf427ce15bf24828e7195c812442a3c2",
     "source_doc_hashes": {
-      "spec.md": "d82d6dd0fa5b01f120fed8491011e69b702b4892ae647dcfe52d230f936cefba",
-      "plan.md": "d81bdb8dffd02feea19cf6bf15762f670f83e27a2cf2c155b744a18fa216f77a",
-      "tasks.md": "f6b477bef62ce55ae418a01763bbbbc82ca2e9cda0b946616f68baaae81d8a43",
-      "checklist.md": "fd58c991f1ad0b2f052e2e87fd1c5dcf882345b338db6af0d8fe12619c935517",
-      "implementation-summary.md": "90de4d773c6af2b1ee6e627a38ee882309c09f9b1887b21dcb5a3c40ed6442d3"
+      "spec.md": "704631de9d98ff90927f8ccca72c21609f34cac833f2c2b398a83cb524e375b1",
+      "plan.md": "404a2cc4f5aa734608620312d5b44c9b3630253b0dc2e1f7789a6d870e9e98c9",
+      "tasks.md": "1dd2e601292152927fc2162664fa01a7d75e8a575ab6404930de2d216f08fc9d",
+      "checklist.md": "4b0b3ee5833d464b5c8b3680854e3ecb16508cb58626d488dbb218924581d58c",
+      "implementation-summary.md": "5bf334595c67c8bce9829fe6d3c9e0274aac43dff016ff237a902ada9f1d0a01"
     },
     "last_active_child_id": null,
     "last_active_at": null
