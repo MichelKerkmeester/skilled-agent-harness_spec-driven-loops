@@ -21,13 +21,15 @@
     "notes",
     "survive"
   ],
-  "lastUpdated": "2026-08-26T07:57:55.762Z",
+  "lastUpdated": "2026-08-27T20:20:46.608Z",
   "specId": "005",
   "folderSlug": "comment-extraction",
   "parentChain": [
     "system-speckit",
     "036-spec-doc-template-reduction"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-08-26_21-20__scaffold-smoke-proves-the-generator-fix.md"
+  ]
 }

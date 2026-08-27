@@ -25,8 +25,8 @@ contextType: "implementation"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Bash, TypeScript, JSON, and Markdown |
-| **Registry** | `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` |
-| **Template** | `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl` |
+| **Registry** | `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json` |
+| **Template** | `.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl` |
 | **Runtime Rules** | `check-files.sh`, `check-level-match.sh`, and `spec-doc-health.ts` |
 | **Verification** | `create.sh` smoke cases, resolver tests, `validate.sh --recursive`, and golden snapshots |
 

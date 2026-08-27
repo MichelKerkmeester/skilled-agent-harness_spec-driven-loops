@@ -176,7 +176,7 @@
     ],
     "causal_summary": "Spec Kit currently lacks manifest-registered templates for structured before-and-after comparisons, chronological timelines, and forward-looking roadmaps",
     "created_at": "2026-08-27T17:51:23.535Z",
-    "last_save_at": "2026-08-27T18:20:00.189Z",
+    "last_save_at": "2026-08-27T20:20:54.404Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,12 +185,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddede5a5c7c83fe3149e6b4e2b91f099e6bf1bbf59c41a19d686c84c8003944e",
+    "source_fingerprint": "sha256:0957778b75d1bf7cc9d06421c053d8cd10ee99382d3de85211617a404b076d23",
     "source_doc_hashes": {
-      "spec.md": "33b0cfad573ebe5a708292150f7f6ebab4d99486f54994e93c7b7a7cadc50ab1",
-      "plan.md": "0d34339cfd616f5d23039668df69d3f98ab833e381d39b449053499be3cfc74c",
-      "tasks.md": "1df83258a86c5efe04720413172ea75c1011a8ef62659108a073e09b9659bd3c",
-      "implementation-summary.md": "44cb0bd6c651dc59568fbdfc98b21bf2db1b7330c3ef00a06edc76064acaf681"
+      "spec.md": "2a494fa05dd92c9ced7cfcb8f98ebdc3fbfd985aa91fac5361bad1c31ac9bd80",
+      "plan.md": "fca00e82be01abdc804f94ece1fbd17ca6a38b65f9d65a41507168e476a5d186",
+      "tasks.md": "0ea789ef0456f0a5b12515eb943c736e0d327a2d1e6ad955b9eefc89e009a6e4",
+      "implementation-summary.md": "ea7a0c3f5bfe9256ba92fed66b90f7d632f787c8eda0a7d7b8940629c1e14a13"
     },
     "last_active_child_id": null,
     "last_active_at": null

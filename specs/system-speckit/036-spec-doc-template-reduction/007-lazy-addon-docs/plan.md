@@ -25,7 +25,7 @@ contextType: "implementation"
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | Bash, TypeScript, JSON, and Markdown |
-| **Registry** | `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` |
+| **Registry** | `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json` |
 | **Scaffold** | `.opencode/skills/system-spec-kit/scripts/spec/create.sh` |
 | **Validator** | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` |
 | **Contract Resolver** | `.opencode/skills/system-spec-kit/mcp-server/lib/templates/level-contract-resolver.ts` |

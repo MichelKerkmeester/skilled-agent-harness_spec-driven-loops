@@ -18,13 +18,15 @@
     "lines",
     "per"
   ],
-  "lastUpdated": "2026-08-26T07:57:14.709Z",
+  "lastUpdated": "2026-08-27T20:20:42.674Z",
   "specId": "004",
   "folderSlug": "continuity-single-source",
   "parentChain": [
     "system-speckit",
     "036-spec-doc-template-reduction"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-08-26_21-20__scaffold-smoke-proves-the-generator-fix.md"
+  ]
 }

@@ -45,7 +45,7 @@ contextType: "general"
 
 - [ ] T003 [REQ-001] Relax `FRONTMATTER_MEMORY_BLOCK` for canonical-only continuity (`.opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts`); done when the old five-copy packet passes strict validation before template edits.
 - [ ] T004 [REQ-003] Rescope the `SESSION_LINEAGE` scan (`.opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts`); done when representative shipped packets do not gain a session-lineage failure.
-- [ ] T005 [REQ-002] Remove redundant continuity emission from the four non-canonical templates (`.opencode/skills/system-spec-kit/templates/manifest/{spec,plan,tasks,checklist}.md.tmpl`); done when `implementation-summary.md.tmpl` remains the only canonical template source and runtime consumer paths are unchanged.
+- [ ] T005 [REQ-002] Remove redundant continuity emission from the four non-canonical templates (`.opencode/skills/system-spec-kit/templates/{spec,plan,tasks,checklist}.md.tmpl`); done when `implementation-summary.md.tmpl` remains the only canonical template source and runtime consumer paths are unchanged.
 <!-- /ANCHOR:phase-2 -->
 
 ---

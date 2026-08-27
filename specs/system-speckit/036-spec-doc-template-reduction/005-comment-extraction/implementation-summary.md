@@ -42,12 +42,12 @@ The measured Level 1 `spec.md` example fell from approximately 4,280 bytes to ap
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl` | Modified | Removes instructional comments while retaining level and source markers. |
-| `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl` | Modified | Removes instructional comments while retaining structural content. |
-| `.opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl` | Modified | Removes instructional comments while retaining task and verification contracts. |
-| `.opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl` | Modified | Removes instructional comments from the legacy checklist template. |
-| `.opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl` | Modified | Removes non-load-bearing guidance comments from the decision-record template. |
-| `.opencode/skills/system-spec-kit/templates/manifest/implementation-summary.md.tmpl` | Modified | Removes voice-guide and footer comments from the implementation-summary template. |
+| `.opencode/skills/system-spec-kit/templates/core/spec.md.tmpl` | Modified | Removes instructional comments while retaining level and source markers. |
+| `.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl` | Modified | Removes instructional comments while retaining structural content. |
+| `.opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl` | Modified | Removes instructional comments while retaining task and verification contracts. |
+| `.opencode/skills/system-spec-kit/templates/addons/checklist.md.tmpl` | Modified | Removes instructional comments from the legacy checklist template. |
+| `.opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl` | Modified | Removes non-load-bearing guidance comments from the decision-record template. |
+| `.opencode/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl` | Modified | Removes voice-guide and footer comments from the implementation-summary template. |
 | `.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` | Modified | Rebaselines the reduced rendered output. |
 <!-- /ANCHOR:what-built -->
 

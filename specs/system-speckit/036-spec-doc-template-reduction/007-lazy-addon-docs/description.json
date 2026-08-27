@@ -15,16 +15,17 @@
     "timelines",
     "forward-looking"
   ],
-  "lastUpdated": "2026-08-27T18:20:00.189Z",
+  "lastUpdated": "2026-08-27T20:20:54.404Z",
   "specId": "007",
   "folderSlug": "lazy-addon-docs",
   "parentChain": [
     "system-speckit",
     "036-spec-doc-template-reduction"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "27-08-26_18-51__scaffold-smoke-proves-the-generator-fix.md",
-    "27-08-26_19-19__scaffold-smoke-proves-the-generator-fix.md"
+    "27-08-26_19-19__scaffold-smoke-proves-the-generator-fix.md",
+    "27-08-26_21-20__scaffold-smoke-proves-the-generator-fix.md"
   ]
 }

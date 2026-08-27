@@ -29,7 +29,7 @@ contextType: "general"
 | **Testing** | Fresh scaffolds, comment scans, marker checks, byte-budget assertions, and snapshot review |
 
 ### Overview
-Move SELF-CHECK, FAILURE-MODES, voice-guide, and footer-size comments from `.md.tmpl` files into sidecar guidance under `templates/manifest/guidance/`. Preserve `SPECKIT_LEVEL` and `SPECKIT_TEMPLATE_SOURCE`, add the measured 90% byte ceilings, link the sidecars from the template guide, and leave the renderer unchanged.
+Move SELF-CHECK, FAILURE-MODES, voice-guide, and footer-size comments from `.md.tmpl` files into sidecar guidance under `templates/guidance/`. Preserve `SPECKIT_LEVEL` and `SPECKIT_TEMPLATE_SOURCE`, add the measured 90% byte ceilings, link the sidecars from the template guide, and leave the renderer unchanged.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -57,8 +57,8 @@ Move SELF-CHECK, FAILURE-MODES, voice-guide, and footer-size comments from `.md.
 Sidecar author guidance with additive rendered-byte budgets. The renderer continues to process only the templates and never needs to load the sidecars.
 
 ### Key Components
-- **Authoring templates**: `.opencode/skills/system-spec-kit/templates/manifest/*.md.tmpl` lose instructional comments but retain `SPECKIT_LEVEL` and `SPECKIT_TEMPLATE_SOURCE`.
-- **Guidance sidecars**: `.opencode/skills/system-spec-kit/templates/manifest/guidance/` stores the relocated author instructions.
+- **Authoring templates**: `.opencode/skills/system-spec-kit/templates/*.md.tmpl` lose instructional comments but retain `SPECKIT_LEVEL` and `SPECKIT_TEMPLATE_SOURCE`.
+- **Guidance sidecars**: `.opencode/skills/system-spec-kit/templates/guidance/` stores the relocated author instructions.
 - **Snapshot assertions**: `.opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts` enforces per-document byte ceilings and marker preservation.
 - **Snapshot evidence**: `.opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap` records the reviewed reduced renders.
 - **Author discoverability**: `.opencode/skills/system-spec-kit/references/templates/template-guide.md` links authors to the sidecar guidance.
@@ -94,7 +94,7 @@ Authoring instructions move from inline comments to sidecars. The unchanged inli
 
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
-| Template scan | Targeted instructional comments versus load-bearing markers | `rg` across `.opencode/skills/system-spec-kit/templates/manifest/` |
+| Template scan | Targeted instructional comments versus load-bearing markers | `rg` across `.opencode/skills/system-spec-kit/templates/` |
 | Byte budget | Level 1 spec.md, Level 1 implementation-summary.md, and Level 2 spec.md | `scaffold-golden-snapshots.vitest.ts` |
 | Snapshot | Reduced renders and marker output at supported levels | Vitest and `scaffold-golden-snapshots.vitest.ts.snap` |
 | Discoverability | Sidecar links and author guidance | `template-guide.md` link inspection |

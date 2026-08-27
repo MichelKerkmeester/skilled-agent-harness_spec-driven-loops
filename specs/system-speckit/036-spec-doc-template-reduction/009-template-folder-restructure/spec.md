@@ -40,7 +40,7 @@ contextType: "implementation"
 
 ### Problem Statement
 
-The former `templates/manifest/` directory mixed required core templates, optional add-ons, packet-type templates, the contract manifest, and maintainer guides. The mixed layout obscured document roles and forced scripts, tests, and reference documentation to depend on one overloaded path.
+The former `templates/` directory mixed required core templates, optional add-ons, packet-type templates, the contract manifest, and maintainer guides. The mixed layout obscured document roles and forced scripts, tests, and reference documentation to depend on one overloaded path.
 
 ### Purpose
 
@@ -94,7 +94,7 @@ Use `templates/core/`, `templates/addons/`, and `templates/packet-types/` for th
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Separate template sources by role and remove the obsolete manifest folder. | The tree contains four files in `templates/core/`, nine files in `templates/addons/`, and three files in `templates/packet-types/`. The former `templates/manifest/` directory and its 16 source entries no longer exist. |
+| REQ-001 | Separate template sources by role and remove the obsolete manifest folder. | The tree contains four files in `templates/core/`, nine files in `templates/addons/`, and three files in `templates/packet-types/`. The former `templates/` directory and its 16 source entries no longer exist. |
 | REQ-002 | Promote the contract and maintainer documentation to the template root. | `templates/spec-kit-docs.json`, `templates/EXTENSION-GUIDE.md`, `templates/MIGRATION.md`, and `templates/CONTRACT.md` exist. `CONTRACT.md` carries the contract role formerly provided by `manifest/README.md`. |
 | REQ-003 | Update runtime template and contract resolution for the new layout. | `_manifest_template_path` searches `core`, `addons`, and `packet-types` before the template root; `create.sh` resolves `phase-parent.spec.md.tmpl` from `packet-types/`; and `level-contract-resolver.ts` uses the root `spec-kit-docs.json` for both source and distribution paths. |
 
@@ -126,7 +126,7 @@ Use `templates/core/`, `templates/addons/`, and `templates/packet-types/` for th
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Risk | A consumer retains a direct `templates/manifest/` path. | Scaffolding, tests, or documentation can fail after the move. | Update lookup helpers, explicit phase-parent paths, resolver constants, named tests, and reference surfaces together. |
+| Risk | A consumer retains a direct `templates/` path. | Scaffolding, tests, or documentation can fail after the move. | Update lookup helpers, explicit phase-parent paths, resolver constants, named tests, and reference surfaces together. |
 | Risk | Role folders contain duplicate basenames. | Lookup order could resolve the wrong template. | Keep one source per template basename and search the distinct role folders in a fixed order before the root fallback. |
 | Risk | Existing packets depend on unchanged rendered names. | Authors could face unnecessary migration work. | Preserve basenames, retain the manifest-driven contract, and compare the golden snapshots and all-level scaffold output. |
 | Dependency | Root `spec-kit-docs.json` | Runtime contract resolution depends on the promoted manifest. | Point both source and distribution resolver paths at the root file and rebuild the MCP distribution. |

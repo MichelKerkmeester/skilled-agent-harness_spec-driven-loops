@@ -19,10 +19,10 @@ _memory:
     blockers:
       - "check-anchors ANCHORS_VALID flags 9 base verification anchors on shipped L2+ packets while compare reports them optional at every level"
     key_files:
-      - ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl"
+      - ".opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl"
       - ".opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh"
       - ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js"
-      - ".opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json"
+      - ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "design-036-002-tasks-checklist-merge"
@@ -112,9 +112,9 @@ Fold both into one unified verification-and-task document so an author (includin
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| templates/manifest/tasks.md.tmpl | Modify | Absorb the verification + testing checklist sections as L2+-gated addenda |
-| templates/manifest/checklist.md.tmpl | Delete/retire | Its content moves into the unified doc; retained only as a legacy read-path artifact if required |
-| templates/manifest/spec-kit-docs.json | Modify | Retarget the L2/3/3+ checklist addon rows and sectionGates to the unified doc |
+| templates/core/tasks.md.tmpl | Modify | Absorb the verification + testing checklist sections as L2+-gated addenda |
+| templates/addons/checklist.md.tmpl | Delete/retire | Its content moves into the unified doc; retained only as a legacy read-path artifact if required |
+| templates/spec-kit-docs.json | Modify | Retarget the L2/3/3+ checklist addon rows and sectionGates to the unified doc |
 | mcp-server/lib/graph/graph-metadata-parser.ts | Modify | deriveStatus combined evaluation + legacy checklist read-path (lines ~1178-1266) |
 | mcp-server/lib/validation/orchestrator.ts | Modify | detectLevel signal (~157-171) + PRIORITY_TAGS retarget (~550-561) |
 | scripts/rules/check-ac-coverage.sh | Modify | Filename bindings (~54,57,198-200): prefer merged matrix, fall back to legacy checklist |

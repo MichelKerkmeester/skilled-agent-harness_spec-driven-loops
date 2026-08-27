@@ -42,8 +42,8 @@ The change updated the unified template, manifest, scaffold and validation level
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl` | Modified | Carries Tasks plus L2+ Verification Checklist and Testing Checklist sections. |
-| `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json` | Modified | Makes `checklist.md` optional and gates merged verification anchors on L2+. |
+| `.opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl` | Modified | Carries Tasks plus L2+ Verification Checklist and Testing Checklist sections. |
+| `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json` | Modified | Makes `checklist.md` optional and gates merged verification anchors on L2+. |
 | `.opencode/skills/system-spec-kit/scripts/spec/create.sh` | Modified | Scaffolds the unified tasks document for new packets. |
 | `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Modified | Detects the merged tasks document while accepting legacy checklist packets. |
 | `.opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts` | Modified | Derives status from merged verification content and retains legacy checklist reads. |

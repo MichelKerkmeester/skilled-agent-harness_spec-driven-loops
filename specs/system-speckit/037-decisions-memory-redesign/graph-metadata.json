@@ -3,24 +3,32 @@
   "packet_id": "037-decisions-memory-redesign",
   "spec_folder": "037-decisions-memory-redesign",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "system-speckit/037-decisions-memory-redesign/006-verify-rollout"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
+  "derived": {
     "trigger_phrases": [],
     "key_topics": [],
     "importance_tier": "important",
     "status": "planned",
-    "key_files": ["spec.md"],
+    "key_files": [
+      "spec.md"
+    ],
     "entities": [],
     "causal_summary": "Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and skill",
     "created_at": "2026-08-26T05:34:10Z",
-    "last_save_at": "2026-08-26T05:34:10Z",
+    "last_save_at": "2026-08-27T20:23:46.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md"]
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": "system-speckit/037-decisions-memory-redesign/006-verify-rollout",
+    "last_active_at": "2026-08-27T20:23:46.107Z"
   }
 }

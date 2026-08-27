@@ -44,10 +44,10 @@ The continuity validator and session-lineage scan were updated before the templa
 |------|--------|---------|
 | `.opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts` | Modified | Makes continuity optional in non-canonical contract documents while preserving the canonical requirement. |
 | `.opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts` | Modified | Limits session-lineage continuity inspection to the canonical summary and preserves legacy document handling. |
-| `.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl` | Modified | Removes redundant continuity emission. |
-| `.opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl` | Modified | Removes redundant continuity emission. |
-| `.opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl` | Modified | Removes redundant continuity emission. |
-| `.opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl` | Modified | Removes redundant continuity emission from the legacy template. |
+| `.opencode/skills/system-spec-kit/templates/core/spec.md.tmpl` | Modified | Removes redundant continuity emission. |
+| `.opencode/skills/system-spec-kit/templates/core/plan.md.tmpl` | Modified | Removes redundant continuity emission. |
+| `.opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl` | Modified | Removes redundant continuity emission. |
+| `.opencode/skills/system-spec-kit/templates/addons/checklist.md.tmpl` | Modified | Removes redundant continuity emission from the legacy template. |
 <!-- /ANCHOR:what-built -->
 
 ---

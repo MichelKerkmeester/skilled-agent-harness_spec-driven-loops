@@ -12,13 +12,15 @@
     "pain",
     "point"
   ],
-  "lastUpdated": "2026-08-26T06:37:20.709Z",
+  "lastUpdated": "2026-08-27T20:20:31.239Z",
   "specId": "001",
   "folderSlug": "analysis",
   "parentChain": [
     "system-speckit",
     "036-spec-doc-template-reduction"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-08-26_21-20__scaffold-smoke-proves-the-generator-fix.md"
+  ]
 }

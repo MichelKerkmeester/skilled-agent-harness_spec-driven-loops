@@ -57,8 +57,8 @@ Replace the separate authoring pair with a unified `tasks.md` document that carr
 Versioned contract migration with a compatibility read path: write the new document shape, update every producer and reader, and continue reading legacy packets during rollout.
 
 ### Key Components
-- **Unified document source**: `.opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl`; retire `.opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl` only after the legacy read path is proven.
-- **Level contract**: `.opencode/skills/system-spec-kit/templates/manifest/spec-kit-docs.json`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, and `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` define creation, detection, and level-gated document requirements.
+- **Unified document source**: `.opencode/skills/system-spec-kit/templates/core/tasks.md.tmpl`; retire `.opencode/skills/system-spec-kit/templates/addons/checklist.md.tmpl` only after the legacy read path is proven.
+- **Level contract**: `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json`, `.opencode/skills/system-spec-kit/scripts/spec/create.sh`, and `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` define creation, detection, and level-gated document requirements.
 - **Reader surfaces**: `.opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts`, `.opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts`, `.opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh`, and `.opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh` must resolve the merged document without losing legacy behavior.
 - **Compatibility evidence**: Existing packets such as `specs/sk-git/011-feature-catalog-and-manual-playbook/` and `specs/sk-git/008-research-and-requirements/`, plus the golden snapshot file, prove the migration boundary.
 
@@ -108,7 +108,7 @@ The level contract creates the unified document for new packets. Status, priorit
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| `templates/manifest/spec-kit-docs.json` level table | Internal contract | Green | New scaffolds can create the wrong document set |
+| `templates/spec-kit-docs.json` level table | Internal contract | Green | New scaffolds can create the wrong document set |
 | `scripts/spec/create.sh` and `scripts/spec/validate.sh` | Internal tools | Green | Creation and level detection can diverge |
 | `scripts/rules/check-anchors.sh` and `template-structure.js` | Internal verification | Yellow | The merge cannot pass anchor validation until their divergence is understood |
 | Existing packets under `specs/` | Compatibility corpus | Green | Legacy status and validation regressions can go undetected |

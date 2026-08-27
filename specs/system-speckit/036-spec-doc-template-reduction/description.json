@@ -1,4 +1,5 @@
 {
+  "level": "phase",
   "specFolder": "system-speckit/036-spec-doc-template-reduction",
   "description": "Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility",
   "keywords": [
@@ -18,13 +19,14 @@
     "small-model",
     "legibility"
   ],
-  "lastUpdated": "2026-08-26T05:33:55.479Z",
+  "lastUpdated": "2026-08-27T20:20:27.241Z",
   "specId": "036",
   "folderSlug": "spec-doc-template-reduction",
   "parentChain": [
     "system-speckit"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "27-08-26_21-20__scaffold-smoke-proves-the-generator-fix.md"
+  ]
 }

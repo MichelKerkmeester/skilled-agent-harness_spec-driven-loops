@@ -18,8 +18,8 @@ _memory:
     next_safe_action: "Correct the decision-record frontmatter and review the focused snapshot diff first"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/templates/manifest/decision-record.md.tmpl"
-      - ".opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl"
+      - ".opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl"
+      - ".opencode/skills/system-spec-kit/templates/addons/research.md.tmpl"
       - ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -107,8 +107,8 @@ Research taxonomy neutralization is deferred to a separately reviewed change bec
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| templates/manifest/decision-record.md.tmpl | Modify | Correct duplicated frontmatter and garbled L3+ description; preserve the shared ADR body |
-| templates/manifest/research.md.tmpl | Modify | Domain-neutral skeleton; preserve required anchors |
+| templates/addons/decision-record.md.tmpl | Modify | Correct duplicated frontmatter and garbled L3+ description; preserve the shared ADR body |
+| templates/addons/research.md.tmpl | Modify | Domain-neutral skeleton; preserve required anchors |
 | scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap | Modify | Empty diff for decision-record; reviewed re-baseline only for research renders |
 <!-- /ANCHOR:scope -->
 

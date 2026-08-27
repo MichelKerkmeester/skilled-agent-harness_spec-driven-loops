@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`decision-record.md.tmpl` already shares its ADR skeleton across the L3 and L3+ blocks",
     "created_at": "2026-08-26T05:33:57Z",
-    "last_save_at": "2026-08-27T17:51:01.833Z",
+    "last_save_at": "2026-08-27T20:20:38.818Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:52804e04e8d170092bb0c1f577db42f6cc9b80ef43bcc757917b2ef36c8ea7d6",
+    "source_fingerprint": "sha256:0eed96a074d59952b1d6aeafe13f42d0150c34b9c9b16c2a57253bca4453b85f",
     "source_doc_hashes": {
-      "spec.md": "7bc5b9c1f569e67e6f20669eb7cddc760141749224ed8782142c3848b0fea4f9",
-      "plan.md": "793fab22a93284bf7a03f10f6245f73b8f02bdb8bb646d8788a6d5bce742b11d",
-      "tasks.md": "3db435ccb65bfa96a51c45cb281ca6a175dee6f4c4592777aba19525f05d5a24",
-      "implementation-summary.md": "ba30101cf0752310b847d99e03a8cc49261b90d09da147753d13d96261fd7748"
+      "spec.md": "882a790c3ad032ec29d90854a929c1272b2473e25f71455f67a28c7f9c613747",
+      "plan.md": "9377fba47992b4c5456165053befdd643ebaaa8189c360ffc29779ac9091a47b",
+      "tasks.md": "86fef7d97c3f92c15651c2ce7f9d4266345a95a812aeafebd2793c376d813e83",
+      "implementation-summary.md": "4eaeebc841760b25799910616b70be55f879ef1107f2ce3a29d0c94d9f0e7126"
     },
     "last_active_child_id": null,
     "last_active_at": null
