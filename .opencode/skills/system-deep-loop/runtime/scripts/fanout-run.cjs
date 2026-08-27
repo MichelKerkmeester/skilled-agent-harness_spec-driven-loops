@@ -1771,14 +1771,16 @@ function buildNativeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPer
   });
 }
 
-// Mirrors isFlashMaxPinnedModel in executor-config.ts. DeepSeek V4 Flash is a
-// reasoning model pinned to the max thinking tier by operator policy — it is never
-// dispatched below max. Bare on cli-pi, provider-prefixed on cli-opencode, and the
-// OpenRouter `-latest` variant is the same family and pinned too; the devin `-max` uid
-// bakes the tier into the id and is intentionally not matched. Duplicated as a plain
-// function so the pin lands inside the synchronous command builders below.
+// Mirrors isFlashMaxPinnedModel in executor-config.ts. DeepSeek V4 Flash and
+// GLM-5.3-Flash are reasoning models whose top tier is `max`, pinned there by operator
+// policy — never dispatched below max. DeepSeek is bare on cli-pi, provider-prefixed on
+// cli-opencode, and its OpenRouter `-latest` variant is the same family and pinned too;
+// GLM-5.3-Flash matches its bare opencode-go literal and its OpenRouter `z-ai/` literal.
+// Gemini 3.7 Flash tops at `high` (no `max`) and is intentionally not matched; the devin
+// `-max` uid bakes the tier into the id and is not matched. Duplicated as a plain function
+// so the pin lands inside the synchronous command builders below.
 function isFlashMaxPinnedModel(model) {
-  return /(^|\/)deepseek-v4-flash(-latest)?$/.test(model);
+  return /(^|\/)(deepseek-v4-flash(-latest)?|glm-5\.3-flash)$/.test(model);
 }
 
 function buildOpencodeLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
@@ -1873,15 +1875,17 @@ const PI_ALLOWED_MODELS = new Set([
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
   'qwen3.8-max',
-  // OpenRouter carries DeepSeek V4 Flash and the Ox Alpha stealth tune; each id keeps
+  // OpenRouter carries DeepSeek V4 Flash, GLM-5.3-Flash, and Gemini 3.7 Flash; each id keeps
   // its upstream provider path so `${provider}/${model}` composes the full
   // openrouter/<upstream>/<model> selector. No other model routes through OpenRouter.
   'deepseek/deepseek-v4-flash-latest',
-  'stealth/ox-alpha',
-  // Cline (ClinePass) fronts the free Ox Alpha tune; its Cline id carries the vendor prefix
-  // `x-ai/ox-alpha` (not `cline-pass/`), so `${provider}/${model}` composes the three-segment
-  // cline-pass/x-ai/ox-alpha selector. Cline has no `max` tier — dispatch this id at `xhigh`.
-  'x-ai/ox-alpha',
+  'z-ai/glm-5.3-flash',
+  'google/gemini-3.7-flash',
+  // opencode-go also fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}`
+  // composes opencode-go/glm-5.3-flash — distinct from the OpenRouter `z-ai/` literal above.
+  // GLM-5.3-Flash on Cline reuses the SAME `z-ai/glm-5.3-flash` literal as OpenRouter, and one
+  // literal maps to one provider, so the Cline route is direct-dispatch only and absent here.
+  'glm-5.3-flash',
 ]);
 const PI_DEFAULT_MODEL = 'deepseek-v4-pro';
 
@@ -2087,14 +2091,15 @@ const PI_MODEL_PROVIDERS = new Map([
   ['mimo-v2.5-pro', 'xiaomi'],
   ['mimo-v2.5-pro-ultraspeed', 'xiaomi'],
   ['qwen3.8-max', 'opencode-go'],
-  // OpenRouter fronts DeepSeek V4 Flash `-latest` and the Ox Alpha stealth tune. Each
+  // OpenRouter fronts DeepSeek V4 Flash `-latest`, GLM-5.3-Flash, and Gemini 3.7 Flash. Each
   // model id already carries its upstream provider path, so `${provider}/${model}` yields
   // the 3-segment openrouter/<upstream>/<model> selector Pi's OpenRouter roster expects.
   ['deepseek/deepseek-v4-flash-latest', 'openrouter'],
-  ['stealth/ox-alpha', 'openrouter'],
-  // Cline (ClinePass): the Ox Alpha id carries the vendor prefix `x-ai/ox-alpha`, so
-  // `${provider}/${model}` yields the three-segment cline-pass/x-ai/ox-alpha selector Pi's cline-pass roster expects.
-  ['x-ai/ox-alpha', 'cline-pass'],
+  ['z-ai/glm-5.3-flash', 'openrouter'],
+  ['google/gemini-3.7-flash', 'openrouter'],
+  // opencode-go fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}` yields
+  // the opencode-go/glm-5.3-flash selector. Distinct from the OpenRouter `z-ai/` literal above.
+  ['glm-5.3-flash', 'opencode-go'],
 ]);
 // Map each shared reasoningEffort level to the name Pi's `--thinking` uses (from the
 // installed `pi --help`): the config's 'none' is Pi's 'off', and the config's 'ultra'

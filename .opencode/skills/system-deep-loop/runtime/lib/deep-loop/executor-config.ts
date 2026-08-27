@@ -189,18 +189,20 @@ export const PI_SUPPORTED_MODELS = [
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
   'qwen3.8-max',
-  // OpenRouter carries two models here, each keeping its upstream provider path so
+  // OpenRouter carries three models here, each keeping its upstream provider path so
   // `${provider}/${model}` composes the full three-segment OpenRouter selector:
-  // DeepSeek V4 Flash (openrouter/deepseek/deepseek-v4-flash-latest) and the Ox Alpha
-  // stealth tune (openrouter/stealth/ox-alpha). No other model routes through OpenRouter.
+  // DeepSeek V4 Flash (openrouter/deepseek/deepseek-v4-flash-latest), GLM-5.3-Flash
+  // (openrouter/z-ai/glm-5.3-flash), and Gemini 3.7 Flash (openrouter/google/gemini-3.7-flash).
+  // No other model routes through OpenRouter.
   'deepseek/deepseek-v4-flash-latest',
-  'stealth/ox-alpha',
-  // Cline (ClinePass) fronts the free Ox Alpha tune as a config-wired provider. Its Cline
-  // id carries the vendor prefix `x-ai/ox-alpha` (NOT the `cline-pass/` prefix the DeepSeek
-  // entries use), so `${provider}/${model}` composes the three-segment cline-pass/x-ai/ox-alpha
-  // selector the Cline API requires (live-verified). Cline has no `max` tier here — this id
-  // is dispatched at `xhigh`, and is not caught by the Flash max-pin.
-  'x-ai/ox-alpha',
+  'z-ai/glm-5.3-flash',
+  'google/gemini-3.7-flash',
+  // opencode-go also fronts GLM-5.3-Flash under a bare literal, so `${provider}/${model}`
+  // composes opencode-go/glm-5.3-flash — a distinct literal from the OpenRouter `z-ai/` one
+  // above, so each routes to its own provider. GLM-5.3-Flash on Cline reuses the SAME
+  // `z-ai/glm-5.3-flash` literal as the OpenRouter route, and one literal maps to one
+  // provider, so the Cline route is direct-dispatch only and intentionally absent here.
+  'glm-5.3-flash',
 ] as const;
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
 
@@ -213,16 +215,18 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
 }
 
 /**
- * DeepSeek V4 Flash is a reasoning model, and operator policy pins it to the max
- * thinking tier: it is never dispatched at a lower effort. The id is bare on cli-pi
- * (`deepseek-v4-flash`) and provider-prefixed on cli-opencode
- * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4-flash`); the OpenRouter
- * `-latest` variant (`deepseek/deepseek-v4-flash-latest`) is the same reasoning family
- * and is pinned too. The devin `-max` uid already bakes the tier into the id and is
- * intentionally not matched here.
+ * DeepSeek V4 Flash and GLM-5.3-Flash are reasoning models whose top thinking tier is
+ * `max`, and operator policy pins them there: they are never dispatched at a lower effort.
+ * DeepSeek's id is bare on cli-pi (`deepseek-v4-flash`) and provider-prefixed on cli-opencode
+ * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4-flash`); the OpenRouter `-latest`
+ * variant (`deepseek/deepseek-v4-flash-latest`) is the same reasoning family and is pinned
+ * too. GLM-5.3-Flash is matched on both its bare opencode-go literal (`glm-5.3-flash`) and
+ * its OpenRouter vendor-prefixed literal (`z-ai/glm-5.3-flash`). Gemini 3.7 Flash tops out at
+ * `high` (no `max` variant) and is intentionally NOT pinned here. The devin `-max` uid already
+ * bakes the tier into the id and is intentionally not matched here.
  */
 export function isFlashMaxPinnedModel(model: string): boolean {
-  return /(^|\/)deepseek-v4-flash(-latest)?$/.test(model);
+  return /(^|\/)(deepseek-v4-flash(-latest)?|glm-5\.3-flash)$/.test(model);
 }
 
 /** Effective reasoning effort after the Flash max-tier pin: 'max' for Flash, else unchanged. */

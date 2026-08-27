@@ -818,11 +818,13 @@ describe('CURSOR_SUPPORTED_MODELS / isCursorModelAllowed', () => {
 });
 
 describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
-  it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash variant and the Cline-routed Ox Alpha', () => {
+  it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash/GLM/Gemini variants and the opencode-go GLM-5.3-Flash literal', () => {
     expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
       'deepseek-v4-flash',
       'deepseek-v4-pro',
       'deepseek/deepseek-v4-flash-latest',
+      'glm-5.3-flash',
+      'google/gemini-3.7-flash',
       'gpt-5.6-luna',
       'gpt-5.6-sol',
       'gpt-5.6-terra',
@@ -830,8 +832,7 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
       'mimo-v2.5-pro-ultraspeed',
       'minimax-m3',
       'qwen3.8-max',
-      'stealth/ox-alpha',
-      'x-ai/ox-alpha',
+      'z-ai/glm-5.3-flash',
     ]);
   });
 
@@ -856,17 +857,20 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
 });
 
 describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
-  it('matches DeepSeek V4 Flash bare, provider-prefixed, and the OpenRouter -latest variant', () => {
+  it('matches DeepSeek V4 Flash bare, provider-prefixed, the OpenRouter -latest variant, and GLM-5.3-Flash bare and vendor-prefixed', () => {
     expect(isFlashMaxPinnedModel('deepseek-v4-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('opencode-go/deepseek-v4-flash')).toBe(true);
     expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash-latest')).toBe(true);
+    expect(isFlashMaxPinnedModel('glm-5.3-flash')).toBe(true);
+    expect(isFlashMaxPinnedModel('z-ai/glm-5.3-flash')).toBe(true);
   });
 
-  it('does not match the devin -max uid, the OpenRouter Luna, or other models', () => {
+  it('does not match the devin -max uid, Gemini 3.7 Flash (tops at high), the OpenRouter Luna, or other models', () => {
     expect(isFlashMaxPinnedModel('deepseek-v4-flash-max')).toBe(false);
     expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash-max')).toBe(false);
     expect(isFlashMaxPinnedModel('deepseek-v4-pro')).toBe(false);
+    expect(isFlashMaxPinnedModel('google/gemini-3.7-flash')).toBe(false);
     expect(isFlashMaxPinnedModel('openai/gpt-5.6-luna')).toBe(false);
   });
 

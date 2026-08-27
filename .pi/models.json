@@ -26,10 +26,10 @@
           "thinkingLevelMap": { "minimal": null, "low": null, "medium": null, "high": "high", "max": null, "xhigh": "xhigh" }
         },
         {
-          "id": "x-ai/ox-alpha",
-          "name": "Ox Alpha",
+          "id": "z-ai/glm-5.3-flash",
+          "name": "GLM-5.3-Flash",
           "reasoning": true,
-          "contextWindow": 1000000,
+          "contextWindow": 1310720,
           "maxTokens": 131072,
           "thinkingLevelMap": { "minimal": null, "low": null, "medium": null, "high": "high", "max": null, "xhigh": "xhigh" }
         }
