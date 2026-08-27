@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/055-glm-5-3-flash-gemini-roster",
+  "spec_folder": "cli-external-orchestration/055-glm-5-3-flash-gemini-roster",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [
+      "cli-external-orchestration/052-opencode-go-ox-alpha-free-roster",
+      "cli-external-orchestration/053-cline-ox-alpha-cli-pi-roster"
+    ],
+    "related_to": [
+      "cli-external-orchestration/047-cli-pi-opencode-openrouter-roster",
+      "cli-external-orchestration/044-deepseek-v4-flash-max-only"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "glm-5.3-flash gemini roster",
+      "retire ox-alpha glm gemini",
+      "openrouter allowlist glm gemini cli",
+      "gemini 3.7 flash openrouter cli",
+      "glm-5.3-flash gemini plan",
+      "retire ox-alpha glm gemini roster",
+      "implementation",
+      "plan",
+      "tasks",
+      "verification",
+      "checklist",
+      "implementation summary"
+    ],
+    "key_topics": [
+      "glm-5",
+      "3-flash",
+      "gemini",
+      "roster",
+      "retire",
+      "ox-alpha",
+      "glm",
+      "openrouter",
+      "allowlist",
+      "cli",
+      "flash",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retire Ox Alpha",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ox Alpha",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Google Gemini",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The Ox Alpha",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Retire Ox Alpha",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Config",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The Ox Alpha stealth model (`stealth/ox-alpha` on OpenRouter, `x-ai/ox-alpha` on Cline) was the operator's small-model workhorse across cli-opencode and cli-pi",
+    "created_at": "2026-08-27T06:45:48.119Z",
+    "last_save_at": "2026-08-27T06:45:48.119Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6342451b0042f3052c432805b06fdbb9df27a3291e3d2faa11382c44aeb9cd9a",
+    "source_doc_hashes": {
+      "spec.md": "d64fe6cd8cd33624a72d42a6fc2b3e4aa579e04ede5b44400a857dc5f7f68cbb",
+      "plan.md": "4b01cbd4f502ae40d8a32a9c152716e9465629be8b314912b7c0086034e30df2",
+      "tasks.md": "856f7c1e05d84edc46ff15dcd2d70dd7bcce3284ef6a180a029870a70d08d919",
+      "checklist.md": "c91a8c671c5a0f8ca0dbb597bc2df4de6b4b2ffa35f5c642c716a6670646cfc0",
+      "implementation-summary.md": "a78b0d8723305260b30d91c238e89ec5e14dde13f080b85ec1db62c2e51f7839"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

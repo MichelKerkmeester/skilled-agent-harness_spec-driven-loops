@@ -1,0 +1,26 @@
+{
+  "specFolder": "cli-external-orchestration/055-glm-5-3-flash-gemini-roster",
+  "description": "The Ox Alpha stealth model (`stealth/ox-alpha` on OpenRouter, `x-ai/ox-alpha` on Cline) was the operator's small-model workhorse across cli-opencode",
+  "keywords": [
+    "alpha",
+    "stealth",
+    "model",
+    "ox-alpha",
+    "openrouter",
+    "x-ai",
+    "cline",
+    "operator",
+    "small-model",
+    "workhorse",
+    "across",
+    "cli-opencode"
+  ],
+  "lastUpdated": "2026-08-27T06:44:44.820Z",
+  "specId": "055",
+  "folderSlug": "glm-5-3-flash-gemini-roster",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
