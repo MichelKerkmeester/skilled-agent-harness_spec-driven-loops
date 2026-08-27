@@ -13,7 +13,7 @@ const CC = path.join(CLI_ORCHESTRATION, 'cli-claude-code/SKILL.md');
 test('parses the flat hard_rules list from real SKILL.md frontmatter', () => {
   const co = readHardRules(CO);
   assert.deepEqual(co.map((r) => r.id), [
-    'stdin-redirect-required', 'no-bare-agent-general',
+    'stdin-redirect-required', 'explicit-model-required', 'no-bare-agent-general',
     'command-flag-for-slash-prompt', 'share-requires-confirmation',
   ]);
   assert.equal(readHardRules(CC).length, 1);
@@ -30,20 +30,20 @@ test('CI GUARD: every declared check id maps to a known check (a typo fails loud
 
 test('AC-1: opencode run without </dev/null is flagged; with it, clean (mutation-proof)', () => {
   const rules = readHardRules(CO);
-  const flagged = evaluate('opencode run "do a thing"', rules).map((v) => v.id);
+  const flagged = evaluate('opencode run -m p/m "do a thing"', rules).map((v) => v.id);
   assert.deepEqual(flagged, ['stdin-redirect-required']);
   // Mutation guard: the SAME command with a redirect must NOT flag — proves the check discriminates.
-  assert.deepEqual(evaluate('opencode run "do a thing" </dev/null', rules), []);
-  assert.deepEqual(evaluate('cat x | opencode run "x"', rules), []); // pipe closes inherited stdin
+  assert.deepEqual(evaluate('opencode run -m p/m "do a thing" </dev/null', rules), []);
+  assert.deepEqual(evaluate('cat x | opencode run -m p/m "x"', rules), []); // pipe closes inherited stdin
 });
 
 test('other checks discriminate correctly', () => {
   const rules = readHardRules(CO);
   const ids = (cmd) => evaluate(cmd, rules).map((v) => v.id).sort();
-  assert.deepEqual(ids('opencode run --agent general "x" </dev/null'), ['no-bare-agent-general']);
-  assert.deepEqual(ids('opencode run "/memory:search q" </dev/null'), ['command-flag-for-slash-prompt']);
-  assert.deepEqual(ids('opencode run --command memory/search "/memory:search q" </dev/null'), []);
-  assert.deepEqual(ids('opencode run "x" --share </dev/null'), ['share-requires-confirmation']);
+  assert.deepEqual(ids('opencode run -m p/m --agent general "x" </dev/null'), ['no-bare-agent-general']);
+  assert.deepEqual(ids('opencode run -m p/m "/memory:search q" </dev/null'), ['command-flag-for-slash-prompt']);
+  assert.deepEqual(ids('opencode run -m p/m --command memory/search "/memory:search q" </dev/null'), []);
+  assert.deepEqual(ids('opencode run -m p/m "x" --share </dev/null'), ['share-requires-confirmation']);
   assert.deepEqual(ids('git status && ls -la'), []); // non-dispatch bash never fires
 });
 
