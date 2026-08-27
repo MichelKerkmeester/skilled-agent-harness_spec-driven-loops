@@ -72,6 +72,7 @@ _memory:
 
 - [x] CHK-024 [P0] All three auto loops covered
   - **Evidence**: `grep -cE '^        if_cli_(cursor|devin|pi):'` = 3 in each of `deep-review-auto.yaml`, `deep-research-auto.yaml`, `deep-alignment-auto.yaml`
+  - **Superseded (2026-08-27)**: `deep-alignment-auto.yaml` was later deleted with the deep-alignment mode; the evidence above was accurate when recorded. Two auto loops (`deep-review-auto`, `deep-research-auto`) now carry the three branches, and both still verify at 3 each.
 - [x] CHK-025 [P1] Each YAML's field + dispatchId convention honored
   - **Evidence**: research uses `config.executor.type`; review/alignment use `config.executor.kind`; dispatchId prefixes `review`/`research`/`alignment`
 - [x] CHK-026 [P1] YAML validity preserved
