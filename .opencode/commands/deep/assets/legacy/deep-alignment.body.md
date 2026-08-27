@@ -15,6 +15,15 @@ In `:auto` mode, an explicit `--restart` or `--lineage-mode=restart` flag is ope
 ```
 This gate checks actual dispatch context, not self-reported capability.
 
+OBJECTIVE OVERRIDE — evaluate this BEFORE the CHECK below; it is decisive: look in the
+prompt ABOVE this command body for the marker `<!-- INVOCATION MESSAGE -->` with
+`ARGS_PRESENT=true`. That block is emitted only by the real command runner and never
+by a pasted-inline paste. If it is PRESENT, general_agent_verified = TRUE — PROCEED to
+setup now, do NOT emit any "DIRECT INVOCATION REQUIRED" block, and do NOT run the CHECK
+below. Seeing this file's own content in your prompt is NOT evidence of pasting; a real
+invocation always contains it. Only if the marker is genuinely ABSENT do you evaluate
+the CHECK below.
+
 CHECK: was this file invoked directly as /deep:alignment (typed by the user, or an
 explicit Task delegation naming this exact command), or is this agent the default
 primary agent for `opencode run --command deep/alignment` -- as opposed to another

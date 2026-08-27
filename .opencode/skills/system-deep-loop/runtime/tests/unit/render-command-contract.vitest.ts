@@ -132,6 +132,28 @@ describe('render-command-contract', () => {
     expect(Buffer.compare(noArgs.body, withArgs.body)).toBe(0);
   });
 
+  it.each(commands)('resolves the dispatch-context gate in the prefix of a real invocation for %s', (command) => {
+    // A real invocation carries the DISPATCH-CONTEXT authorization ahead of the
+    // body, so the model has an objective answer before the self-classification
+    // gate that capable orchestrators have false-blocked on.
+    const withArgs = withInjectionMode(undefined, () => renderer.renderCommandContract(command, {
+      argsText: 'target :auto',
+      manifestPath: tempManifestPath(),
+    }));
+    const text = withArgs.output.toString('utf8');
+    expect(text).toContain('DISPATCH-CONTEXT:');
+    expect(text).toContain('general_agent_verified = TRUE');
+    expect(withArgs.output.indexOf(Buffer.from('DISPATCH-CONTEXT:'))).toBeLessThan(withArgs.output.indexOf(withArgs.body));
+
+    // A pasted-inline paste carries no invocation message, so it must NOT receive
+    // the authorization -- the gate still guards that case.
+    const noArgs = withInjectionMode(undefined, () => renderer.renderCommandContract(command, {
+      argsText: '',
+      manifestPath: tempManifestPath(),
+    }));
+    expect(noArgs.output.toString('utf8')).not.toContain('DISPATCH-CONTEXT:');
+  });
+
   it.each(commands)('appends a manifest row with render hashes for %s', (command) => {
     const argsText = 'target :auto --max-iterations=2';
     const manifestPath = tempManifestPath();

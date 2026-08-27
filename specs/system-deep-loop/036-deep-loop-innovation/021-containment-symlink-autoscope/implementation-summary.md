@@ -10,7 +10,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope"
-    last_updated_at: "2026-08-26T17:30:00.000Z"
+    last_updated_at: "2026-08-27T03:20:00.000Z"
     last_updated_by: "claude"
     recent_action: "Auto-scoped containment to the artifact's real worktree; catch-22 closed, boundary intact"
     next_safe_action: "Commit; push per operator go-ahead"
