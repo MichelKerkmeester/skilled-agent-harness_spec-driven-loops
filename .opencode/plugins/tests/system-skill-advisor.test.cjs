@@ -159,6 +159,11 @@ function writeFixtureFile(filePath, content) {
 }
 
 function makeAdvisorFixture() {
+  // An ambient absolute DB-dir override points the advisor outside this fixture, so the
+  // signature never sees the files the test writes. Editor and MCP environments set it,
+  // which made these tests pass locally and fail under those runtimes.
+  delete process.env.SYSTEM_SKILL_ADVISOR_DB_DIR;
+  delete process.env.MK_SKILL_ADVISOR_DB_DIR;
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'system-skill-advisor-signature-'));
   writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'SKILL.md'), '# Demo\n');
   writeFixtureFile(path.join(root, '.opencode', 'skills', 'demo', 'graph-metadata.json'), '{"name":"demo"}\n');
