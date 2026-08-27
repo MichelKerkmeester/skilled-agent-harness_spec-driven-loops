@@ -1,84 +1,1752 @@
 {
-  "findings": [
+  "sessionId": "2026-08-27T19:11:40.386Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "restart",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
     {
-      "id": "F1",
-      "sev": "P1",
-      "iter": 1,
-      "dim": "correctness",
-      "file": ".opencode/skills/system-deep-loop/SKILL.md",
-      "line": 58,
-      "claim": "hub still documents alignment as active workflowMode (+hint :20, backendKind :59-60)"
-    },
-    {
-      "id": "F2",
-      "sev": "P2",
-      "iter": 1,
-      "dim": "correctness",
-      "file": ".opencode/commands/README.txt",
-      "line": 45,
-      "claim": "claims 8 deep commands + lists deleted alignment.md (:95); dir has 6"
-    },
-    {
-      "id": "F3",
-      "sev": "P2",
-      "iter": 1,
-      "dim": "correctness",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/README.md",
-      "line": 12,
-      "claim": "runtime READMEs advertise alignment as served mode (+mode-contracts/README.md:12)"
-    },
-    {
-      "id": "F4",
-      "sev": "P2",
-      "iter": 1,
-      "dim": "correctness",
-      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
-      "line": 1496,
-      "claim": "~90-line executor heredoc duplicated 6x; sync obligation (advisory)"
-    },
-    {
-      "id": "F5",
-      "sev": "P0",
-      "iter": 3,
-      "dim": "spec-alignment",
-      "confirmed": true,
-      "file": ".codex/prompts/deep-alignment.md",
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "Orphan authority-state file for deleted deep-alignment mode",
+      "file": ".opencode/skills/.authority-state/authority-deep-alignment.json",
       "line": 1,
-      "claim": "4 git-tracked orphaned prompt mirrors (.codex/.pi prompts for deep-alignment+command-benchmark) ref deleted commands; REQ-001 violation. Fix: run sync-prompts.cjs + sync-prompts-pi.cjs"
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
     },
     {
-      "id": "F6",
-      "sev": "P2",
-      "iter": 3,
-      "dim": "spec-alignment",
-      "file": "specs/system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing/checklist.md",
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "Phase-0 gate retirement reduced defense-in-depth (advisory)",
+      "file": ".opencode/commands/deep/review.md",
+      "line": 14,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-003",
+      "severity": "P2",
+      "title": "cli-codex single-executor branch does not share buildLineageCommand (pre-existing, observation-only)",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": 1393,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-004",
+      "severity": "P2",
+      "title": "Checklist Verification Summary and _memory frontmatter stale re CHK-024",
+      "file": "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/checklist.md",
+      "line": 124,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-005",
+      "severity": "P2",
+      "title": "035 fixture corpus still contains deep-alignment prompt mirrors (out of 025 scope, observation)",
+      "file": "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/clean-control/.codex/prompts/deep-alignment.md",
+      "line": 1,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-006",
+      "severity": "P2",
+      "title": "Stale alignment mode reference in runtime README",
+      "file": ".opencode/skills/system-deep-loop/runtime/README.md",
+      "line": 15,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-007",
+      "severity": "P2",
+      "title": "Stale alignment mode reference in shared progress README",
+      "file": ".opencode/skills/system-deep-loop/shared/progress/README.md",
+      "line": 12,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-008",
+      "severity": "P2",
+      "title": "Stale alignment (DAB) behavior-benchmark prefix in authoring guide",
+      "file": ".opencode/skills/sk-doc/sk-create-benchmark/SKILL.md",
+      "line": 32,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-009",
+      "severity": "P2",
+      "title": "Executor field-name drift: research uses config.executor.type, review uses config.executor.kind (pre-existing)",
+      "file": ".opencode/commands/deep/assets/deep-research-auto.yaml",
+      "line": 1099,
+      "description": "Research branches on config.executor.type; review on config.executor.kind — porting hazard",
+      "findingClass": "tech-debt",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-010",
+      "severity": "P2",
+      "title": "Branch-set asymmetry: review has if_cli_copilot, research does not (pre-existing)",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml",
+      "line": 1080,
+      "description": "Review has 8 executor branches (incl copilot); research has 7 (no copilot). Asymmetric branch sets.",
+      "findingClass": "tech-debt",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 6,
+      "lastSeen": 6,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 6,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-011",
+      "severity": "P2",
+      "title": "Surviving deterministic guard is runtime-asymmetric; Phase-0 retirement removed the only runtime-neutral boundary",
+      "file": ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs",
+      "line": 142,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-012",
+      "severity": "P2",
+      "title": "Frozen census edit contract-correct but handoff-manifest sha256 stale and unenforced",
+      "file": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/phase-004-handoff-manifest.json",
+      "line": 23,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 7,
+      "lastSeen": 7,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 7,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-013",
+      "severity": "P2",
+      "title": "framework.md mode enum and budget policy still reference deleted alignment mode",
+      "file": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md",
       "line": 74,
-      "claim": "024 checklist cites deleted deep-alignment-auto.yaml as evidence; needs supersession note"
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-014",
+      "severity": "P2",
+      "title": "guide prefix table lists DAB (alignment) inconsistent with cleaned framework",
+      "file": ".opencode/skills/sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md",
+      "line": 101,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-015",
+      "severity": "P2",
+      "title": "template stale references to deleted alignment mode and conformance family",
+      "file": ".opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md",
+      "line": 7,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 9,
+      "lastSeen": 9,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 9,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-001",
+      "severity": "P2",
+      "title": "Summary P2 finding 1",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-002",
+      "severity": "P2",
+      "title": "Summary P2 finding 2",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-003",
+      "severity": "P2",
+      "title": "Summary P2 finding 3",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-004",
+      "severity": "P2",
+      "title": "Summary P2 finding 4",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-005",
+      "severity": "P2",
+      "title": "Summary P2 finding 5",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-006",
+      "severity": "P2",
+      "title": "Summary P2 finding 6",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-007",
+      "severity": "P2",
+      "title": "Summary P2 finding 7",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-008",
+      "severity": "P2",
+      "title": "Summary P2 finding 8",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-009",
+      "severity": "P2",
+      "title": "Summary P2 finding 9",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-010",
+      "severity": "P2",
+      "title": "Summary P2 finding 10",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-011",
+      "severity": "P2",
+      "title": "Summary P2 finding 11",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-012",
+      "severity": "P2",
+      "title": "Summary P2 finding 12",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-013",
+      "severity": "P2",
+      "title": "Summary P2 finding 13",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-014",
+      "severity": "P2",
+      "title": "Summary P2 finding 14",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "SUMMARY-P2-015",
+      "severity": "P2",
+      "title": "Summary P2 finding 15",
+      "file": null,
+      "line": null,
+      "description": "maintainability",
+      "findingClass": "summary-only",
+      "deltaStatus": "active",
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
     }
   ],
-  "byIteration": {
-    "1": {
-      "P0": 0,
-      "P1": 1,
-      "P2": 3,
-      "verdict": "CONDITIONAL"
-    },
-    "2": {
-      "P0": 0,
-      "P1": 0,
-      "P2": 0,
-      "verdict": "PASS"
-    },
-    "3": {
-      "P0": 1,
-      "P1": 0,
-      "P2": 1,
-      "verdict": "FAIL"
-    }
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
   },
-  "confirmed": {
+  "findingsBySeverity": {
     "P0": 0,
     "P1": 0,
-    "P2": 0
-  }
+    "P2": 30
+  },
+  "openFindingsCount": 30,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1.3125,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "type": "uncovered_dimensions"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.25,
+    "findingStability": 1,
+    "p0ResolutionRate": 1,
+    "evidenceDensity": 3
+  },
+  "candidateCoverage": {
+    "covered": [
+      "checklist_evidence_drift",
+      "comment_hygiene_violation",
+      "contract_drift",
+      "count_mismatch",
+      "cross_packet_traceability",
+      "dangling_mirror",
+      "dispatch_context_bypass",
+      "doc_code_drift",
+      "frozen_artifact_drift",
+      "frozen_fixture_classification",
+      "gate_removal_safety",
+      "generated_metadata_provenance",
+      "metadata_inconsistency",
+      "orphan_reference",
+      "routing_fallback",
+      "spec_code_drift",
+      "stale_reference"
+    ],
+    "ruledOut": [
+      "comment_hygiene_violation",
+      "contract_drift",
+      "count_mismatch",
+      "dangling_fixture_reference",
+      "dangling_mirror",
+      "doc_code_drift",
+      "frozen_fixture_classification",
+      "gate_removal_safety",
+      "generated_metadata_provenance",
+      "metadata_inconsistency",
+      "orphan_reference",
+      "routing_fallback",
+      "spec_code_drift",
+      "write_containment_gap"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "orphan_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3,
+          9
+        ]
+      },
+      "dangling_mirror": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "routing_fallback": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "gate_removal_safety": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "metadata_inconsistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "spec_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3,
+          8
+        ]
+      },
+      "checklist_evidence_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cross_packet_traceability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "doc_code_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "stale_reference": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4,
+          9
+        ]
+      },
+      "comment_hygiene_violation": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "count_mismatch": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "contract_drift": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "dispatch_context_bypass": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "frozen_artifact_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "write_containment_gap": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "frozen_fixture_classification": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "generated_metadata_provenance": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "dangling_fixture_reference": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".claude/commands/",
+        ".cursor/commands/"
+      ],
+      "bugClass": "dangling_mirror",
+      "disposition": "ruled_out",
+      "rationale": "commit b955f937fc9 removed the 4 dangling mirrors; symlink check confirms 0 remaining",
+      "evidenceRefs": [
+        ".claude/commands/deep/alignment.md"
+      ],
+      "reason": "verified by find + test -e on all symlinks"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/commands/deep/assets/deep-review-auto.yaml"
+      ],
+      "bugClass": "routing_fallback",
+      "disposition": "ruled_out",
+      "rationale": "fail-closed branches reusing buildLineageCommand; no silent native fallback",
+      "evidenceRefs": [
+        ".opencode/commands/deep/assets/deep-review-auto.yaml:1493"
+      ],
+      "reason": "verified by reading the added branch code in the diff"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/commands/deep/",
+        ".opencode/commands/prompt/"
+      ],
+      "bugClass": "gate_removal_safety",
+      "disposition": "ruled_out",
+      "rationale": "deterministic harness guard remains; in-prompt gate was unfixable and redundant",
+      "evidenceRefs": [
+        ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs:142"
+      ],
+      "reason": "verified by reading dispatch-guard.cjs:142 + grep for residual markers"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/mode-registry.json",
+        ".opencode/skills/system-deep-loop/leaf-manifest.json",
+        ".opencode/skills/system-deep-loop/command-metadata.json",
+        ".opencode/skills/system-deep-loop/graph-metadata.json"
+      ],
+      "bugClass": "metadata_inconsistency",
+      "disposition": "ruled_out",
+      "rationale": "all generated metadata files clean; 6 modes consistent",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/mode-registry.json:30"
+      ],
+      "reason": "verified by grep across all 6 metadata files"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/",
+        ".claude/",
+        ".codex/",
+        ".cursor/",
+        ".pi/",
+        ".devin/",
+        "README.md"
+      ],
+      "bugClass": "orphan_reference",
+      "disposition": "ruled_out",
+      "rationale": "zero active-surface orphan references; all hits are historical/changelog/fixture/supersession-note",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json:29",
+        ".opencode/skills/sk-doc/sk-create-benchmark/changelog/v1.4.0.0.md:6",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing/checklist.md:74"
+      ],
+      "reason": "verified by repo-wide grep + active-surface path classification"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/mode-registry.json",
+        ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/shipped-census.ts"
+      ],
+      "bugClass": "metadata_inconsistency",
+      "disposition": "ruled_out",
+      "rationale": "metadata consistent with 6 surviving modes and 7 census declarations",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/mode-registry.json:30",
+        ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/shipped-census.ts:111"
+      ],
+      "reason": "verified by direct read of mode-registry + shipped-census"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/spec.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/checklist.md"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "spec claims match code state",
+      "evidenceRefs": [
+        "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/spec.md:98"
+      ],
+      "reason": "verified by direct read + cross-check against mode-registry and shipped-census"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md"
+      ],
+      "bugClass": "count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "counts verify exactly against disk",
+      "evidenceRefs": [
+        "README.md:907"
+      ],
+      "reason": "verified by direct disk inventory"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/commands/deep/assets/legacy/",
+        ".opencode/commands/deep/assets/compiled/"
+      ],
+      "bugClass": "contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "no retired gate text remains; retained Gate-3 text is correct and consistent across contracts and sources",
+      "evidenceRefs": [
+        ".opencode/commands/deep/assets/compiled/deep-review.contract.md:103",
+        ".opencode/commands/deep/review.md:36"
+      ],
+      "reason": "verified by grep across mirrors and sources"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "seven-commit diffs"
+      ],
+      "bugClass": "comment_hygiene_violation",
+      "disposition": "ruled_out",
+      "rationale": "no ephemeral artifact labels introduced",
+      "evidenceRefs": [
+        "seven-commit diff scan"
+      ],
+      "reason": "verified by grep across all seven commit diffs"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "no enforcement asymmetry introduced; the new advisory matches the existing pattern",
+      "evidenceRefs": [
+        ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md:11",
+        ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs"
+      ],
+      "reason": "verified by grep — sibling rules are equally unenforced"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/commands/deep/assets/deep-alignment-auto.yaml"
+      ],
+      "bugClass": "write_containment_gap",
+      "disposition": "ruled_out",
+      "rationale": "containment present and consistent across all CLI kinds; pre-dirty-path masking limitation is pre-existing and shared",
+      "evidenceRefs": [
+        "git show d1a5981b58c"
+      ],
+      "reason": "verified by direct read of inserted branches"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/clean-control/.codex/prompts/deep-alignment.md",
+        "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/spec.md"
+      ],
+      "bugClass": "frozen_fixture_classification",
+      "disposition": "ruled_out",
+      "rationale": "corpus is FROZEN-by-design; mirrors are correct historical fixtures, not stale; refreshing them would defeat the oracle",
+      "evidenceRefs": [
+        "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/spec.md:69",
+        "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/spec.md:86",
+        "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/mutation-manifest.json"
+      ],
+      "reason": "spec.md REQ-004 + section 6 risk confirm frozen snapshot; mutation-manifest is the regenerator, expectations are the frozen oracle"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json",
+        ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json",
+        ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs"
+      ],
+      "bugClass": "generated_metadata_provenance",
+      "disposition": "ruled_out",
+      "rationale": "compiler+fixture+vitest triple updated coherently; command-bridges.generated.json consistent with declared generatedBy; skill-graph.json stale generated_at is pre-existing and out of 025 scope",
+      "evidenceRefs": [
+        "git show --stat 8849444aa6",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json:2",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json:1"
+      ],
+      "reason": "coherent triple update verified; skill-graph provenance ambiguity predates all 7 commits (generated_at 2026-08-10) and is not 8849444aa6-introduced"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-deep-loop/036-deep-loop-innovation/023-cross-runtime-dispatch/spec.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing/spec.md"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "3/3 claims match for each packet; 024 deep-alignment-auto.yaml ref is correct historical record of commit 2, later removed by commit 3 (documented by 025) — correct spec-per-commit traceability",
+      "evidenceRefs": [
+        "git show --stat e41aa1878ad",
+        "specs/system-deep-loop/036-deep-loop-innovation/023-cross-runtime-dispatch/spec.md:1",
+        "git show --stat d1a5981b58c",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing/spec.md:50"
+      ],
+      "reason": "verified by 3-claim spot-check per packet against commit diffs; no drift"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/shared/behavior-benchmark/"
+      ],
+      "bugClass": "dangling_fixture_reference",
+      "disposition": "ruled_out",
+      "rationale": "test references only SMOKE-000-fake.md and fake-leg.js (both present); dab-v1-golden.json confirmed absent",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs:18"
+      ],
+      "reason": "verified by grep + directory listing"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-improvement/",
+        ".opencode/commands/create/"
+      ],
+      "bugClass": "orphan_reference",
+      "disposition": "ruled_out",
+      "rationale": "no orphaned references in surviving benchmark scripts or create command assets",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-improvement/"
+      ],
+      "reason": "verified by grep across both directories"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".claude/commands/",
+        ".cursor/commands/"
+      ],
+      "bugClass": "dangling_mirror",
+      "disposition": "ruled_out",
+      "rationale": "commit b955f937fc9 removed the 4 dangling mirrors; symlink check confirms 0 remaining",
+      "evidenceRefs": [
+        ".claude/commands/deep/alignment.md"
+      ],
+      "proof": "verified by find + test -e on all symlinks"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/commands/deep/assets/deep-review-auto.yaml"
+      ],
+      "bugClass": "routing_fallback",
+      "disposition": "ruled_out",
+      "rationale": "fail-closed branches reusing buildLineageCommand; no silent native fallback",
+      "evidenceRefs": [
+        ".opencode/commands/deep/assets/deep-review-auto.yaml:1493"
+      ],
+      "proof": "verified by reading the added branch code in the diff"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/commands/deep/",
+        ".opencode/commands/prompt/"
+      ],
+      "bugClass": "gate_removal_safety",
+      "disposition": "ruled_out",
+      "rationale": "deterministic harness guard remains; in-prompt gate was unfixable and redundant",
+      "evidenceRefs": [
+        ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs:142"
+      ],
+      "proof": "verified by reading dispatch-guard.cjs:142 + grep for residual markers"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/mode-registry.json",
+        ".opencode/skills/system-deep-loop/leaf-manifest.json",
+        ".opencode/skills/system-deep-loop/command-metadata.json",
+        ".opencode/skills/system-deep-loop/graph-metadata.json"
+      ],
+      "bugClass": "metadata_inconsistency",
+      "disposition": "ruled_out",
+      "rationale": "all generated metadata files clean; 6 modes consistent",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/mode-registry.json:30"
+      ],
+      "proof": "verified by grep across all 6 metadata files"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/",
+        ".claude/",
+        ".codex/",
+        ".cursor/",
+        ".pi/",
+        ".devin/",
+        "README.md"
+      ],
+      "bugClass": "orphan_reference",
+      "disposition": "ruled_out",
+      "rationale": "zero active-surface orphan references; all hits are historical/changelog/fixture/supersession-note",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/skill-benchmark-report.json:29",
+        ".opencode/skills/sk-doc/sk-create-benchmark/changelog/v1.4.0.0.md:6",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing/checklist.md:74"
+      ],
+      "proof": "verified by repo-wide grep + active-surface path classification"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/mode-registry.json",
+        ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/shipped-census.ts"
+      ],
+      "bugClass": "metadata_inconsistency",
+      "disposition": "ruled_out",
+      "rationale": "metadata consistent with 6 surviving modes and 7 census declarations",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/mode-registry.json:30",
+        ".opencode/skills/system-deep-loop/runtime/lib/write-set-conflict-graph/shipped-census.ts:111"
+      ],
+      "proof": "verified by direct read of mode-registry + shipped-census"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/spec.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/checklist.md"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "spec claims match code state",
+      "evidenceRefs": [
+        "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/spec.md:98"
+      ],
+      "proof": "verified by direct read + cross-check against mode-registry and shipped-census"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "README.md"
+      ],
+      "bugClass": "count_mismatch",
+      "disposition": "ruled_out",
+      "rationale": "counts verify exactly against disk",
+      "evidenceRefs": [
+        "README.md:907"
+      ],
+      "proof": "verified by direct disk inventory"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/commands/deep/assets/legacy/",
+        ".opencode/commands/deep/assets/compiled/"
+      ],
+      "bugClass": "contract_drift",
+      "disposition": "ruled_out",
+      "rationale": "no retired gate text remains; retained Gate-3 text is correct and consistent across contracts and sources",
+      "evidenceRefs": [
+        ".opencode/commands/deep/assets/compiled/deep-review.contract.md:103",
+        ".opencode/commands/deep/review.md:36"
+      ],
+      "proof": "verified by grep across mirrors and sources"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "seven-commit diffs"
+      ],
+      "bugClass": "comment_hygiene_violation",
+      "disposition": "ruled_out",
+      "rationale": "no ephemeral artifact labels introduced",
+      "evidenceRefs": [
+        "seven-commit diff scan"
+      ],
+      "proof": "verified by grep across all seven commit diffs"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-005",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs"
+      ],
+      "bugClass": "doc_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "no enforcement asymmetry introduced; the new advisory matches the existing pattern",
+      "evidenceRefs": [
+        ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md:11",
+        ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs"
+      ],
+      "proof": "verified by grep — sibling rules are equally unenforced"
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/commands/deep/assets/deep-alignment-auto.yaml"
+      ],
+      "bugClass": "write_containment_gap",
+      "disposition": "ruled_out",
+      "rationale": "containment present and consistent across all CLI kinds; pre-dirty-path masking limitation is pre-existing and shared",
+      "evidenceRefs": [
+        "git show d1a5981b58c"
+      ],
+      "proof": "verified by direct read of inserted branches"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/clean-control/.codex/prompts/deep-alignment.md",
+        "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/spec.md"
+      ],
+      "bugClass": "frozen_fixture_classification",
+      "disposition": "ruled_out",
+      "rationale": "corpus is FROZEN-by-design; mirrors are correct historical fixtures, not stale; refreshing them would defeat the oracle",
+      "evidenceRefs": [
+        "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/spec.md:69",
+        "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/spec.md:86",
+        "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/mutation-manifest.json"
+      ],
+      "proof": "spec.md REQ-004 + section 6 risk confirm frozen snapshot; mutation-manifest is the regenerator, expectations are the frozen oracle"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json",
+        ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/fixtures/canary-cases.v1.json",
+        ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs"
+      ],
+      "bugClass": "generated_metadata_provenance",
+      "disposition": "ruled_out",
+      "rationale": "compiler+fixture+vitest triple updated coherently; command-bridges.generated.json consistent with declared generatedBy; skill-graph.json stale generated_at is pre-existing and out of 025 scope",
+      "evidenceRefs": [
+        "git show --stat 8849444aa6",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json:2",
+        ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json:1"
+      ],
+      "proof": "coherent triple update verified; skill-graph provenance ambiguity predates all 7 commits (generated_at 2026-08-10) and is not 8849444aa6-introduced"
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/system-deep-loop/036-deep-loop-innovation/023-cross-runtime-dispatch/spec.md",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing/spec.md"
+      ],
+      "bugClass": "spec_code_drift",
+      "disposition": "ruled_out",
+      "rationale": "3/3 claims match for each packet; 024 deep-alignment-auto.yaml ref is correct historical record of commit 2, later removed by commit 3 (documented by 025) — correct spec-per-commit traceability",
+      "evidenceRefs": [
+        "git show --stat e41aa1878ad",
+        "specs/system-deep-loop/036-deep-loop-innovation/023-cross-runtime-dispatch/spec.md:1",
+        "git show --stat d1a5981b58c",
+        "specs/system-deep-loop/036-deep-loop-innovation/024-executor-kind-routing/spec.md:50"
+      ],
+      "proof": "verified by 3-claim spot-check per packet against commit diffs; no drift"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/shared/behavior-benchmark/"
+      ],
+      "bugClass": "dangling_fixture_reference",
+      "disposition": "ruled_out",
+      "rationale": "test references only SMOKE-000-fake.md and fake-leg.js (both present); dab-v1-golden.json confirmed absent",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/shared/behavior-benchmark/tests/behavior-bench-run.test.cjs:18"
+      ],
+      "proof": "verified by grep + directory listing"
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/system-deep-loop/deep-improvement/",
+        ".opencode/commands/create/"
+      ],
+      "bugClass": "orphan_reference",
+      "disposition": "ruled_out",
+      "rationale": "no orphaned references in surviving benchmark scripts or create command assets",
+      "evidenceRefs": [
+        ".opencode/skills/system-deep-loop/deep-improvement/"
+      ],
+      "proof": "verified by grep across both directories"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "stale_reference",
+      "orphan_reference",
+      "dangling_fixture_reference"
+    ],
+    "covered": [
+      "stale_reference"
+    ],
+    "ruledOut": [
+      "orphan_reference",
+      "dangling_fixture_reference"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
 }

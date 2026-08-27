@@ -71,7 +71,7 @@ rather than guessing their shape.
 | `schema_version` | int (optional) | Defaults to `1`. Only the exact value `2` opts the scenario into schema v2. |
 | `id` | string | Scenario identifier, e.g. `RVB-001`. Prefixes are fixed per package (see PACKAGE CONVENTIONS). |
 | `title` | string | Short human title. |
-| `mode` | enum | `context` \| `research` \| `review` \| `ai-council` \| `improvement` \| `alignment`. |
+| `mode` | enum | `context` \| `research` \| `review` \| `ai-council` \| `improvement`. |
 | `entry_surface` | enum | `E1` \| `E2` \| `E3` \| `E4` (see below). |
 | `clarity` | enum | `C1` \| `C2` \| `C3` (see below). |
 | `prompt` | string | The verbatim user-style text fed to the executor. |
@@ -212,11 +212,8 @@ budget_ms = max(3 * claude_baseline_tTerminal, 180000)
 ```
 
 Capped at `900000` ms (15 minutes) for `research` and `review`
-scenarios. `ai-council`, `improvement`, and `alignment` scenarios cap at
-`1500000` ms (25 minutes): `ai-council` and `improvement` for their
-multi-seat and evaluator-loop cost, and `alignment` because it runs
-autonomous multi-cell workloads of the same shape and the Claude baseline
-shows `900000` ms is too low for its cells.
+scenarios. `ai-council` and `improvement` scenarios cap at
+`1500000` ms (25 minutes) for their multi-seat and evaluator-loop cost.
 
 ### Watchdog (no-progress kill)
 

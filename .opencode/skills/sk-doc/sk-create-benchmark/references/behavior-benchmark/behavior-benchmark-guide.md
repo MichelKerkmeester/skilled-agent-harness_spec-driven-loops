@@ -98,8 +98,8 @@ reference until its owning rename phase.
   example `RVB-001-auto-run-specified.md`. The `NNN` is contiguous from `001`.
 - **Baseline file**: `baselines/claude-baseline.md`.
 - **ID prefix**: three uppercase letters, unique per package. The framework fixes
-  `ACB` (ai-council), `DAB` (alignment), `IMB` (improvement), `RSB` (research), and
-  `RVB` (review). A new mode extends that table with its own prefix and declares it
+  `ACB` (ai-council), `IMB` (improvement), `RSB` (research), and `RVB` (review).
+  A new mode extends that table with its own prefix and declares it
   in the index OVERVIEW. Confirm the prefix is not already taken before assigning it.
 
 ---

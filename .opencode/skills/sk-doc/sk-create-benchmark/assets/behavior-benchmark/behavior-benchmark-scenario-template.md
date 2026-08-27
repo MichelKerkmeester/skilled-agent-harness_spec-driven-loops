@@ -4,7 +4,6 @@ description: "Fillable scaffold for one behavior-benchmark scenario contract, a 
 trigger_phrases:
   - "behavior benchmark scenario template"
   - "behavior benchmark scenario contract"
-  - "DAB scenario scaffold"
   - "behavior scenario machine contract"
   - "schema v2 scenario scaffold"
 importance_tier: "important"
@@ -154,7 +153,7 @@ Field guidance (see framework.md for the authoritative enums):
   command_topology    : V2 command families. "workflow router" | "subaction router" | "direct-tool/plugin router" | "monolithic".
                         Informational topology label carried by shipped command scenarios; it is not in the framework's normative
                         machine-contract field table and the runner does not parse it. Omit it for non-command v2 cells.
-  mode                : the package mode value (context|research|review|ai-council|improvement, or a declared extension such as alignment).
+  mode                : the package mode value (context|research|review|ai-council|improvement, or a declared extension).
   entry_surface       : E1 command+suffix | E2 bare command (must halt) | E3 natural ask | E4 orchestrate-routed.
   clarity             : C1 vague | C2 concise-but-scoped | C3 fully specified.
   invocation.kind     : "command" (with command "namespace/name") or "natural" (command null).
@@ -187,7 +186,7 @@ Field guidance (see framework.md for the authoritative enums):
   boundary            : V2. { "allow_prefixes": [dir, ...] }. Any created, rewritten, or deleted fixture path outside every
                         allowed prefix is a boundary_violation.
   budget_ms           : provisional framework floor (180000 ms) until a baseline lands, capped by mode at 900000 ms
-                        (research/review) or 1500000 ms (ai-council/improvement/alignment) — see framework.md BUDGET
+                        (research/review) or 1500000 ms (ai-council/improvement) — see framework.md BUDGET
                         POLICY; do not invent a per-scenario number. Recompute from tTerminal once a baseline lands.
   watchdog_ms         : OPTIONAL, placed BEFORE the mandatory final "notes" field so deleting this one line never strands
                         a trailing comma. Set (e.g. 480000) only on autonomous delegating cells that legitimately go

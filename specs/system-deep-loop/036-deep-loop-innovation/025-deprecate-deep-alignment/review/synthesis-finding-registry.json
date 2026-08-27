@@ -1,0 +1,320 @@
+{
+  "dedupedFrom": 15,
+  "active": 15,
+  "bySeverity": {
+    "P2": 15
+  },
+  "findings": [
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "title": "Orphan authority-state file for deleted deep-alignment mode",
+      "dimension": "unassigned",
+      "file": ".opencode/skills/.authority-state/authority-deep-alignment.json:1",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-001.jsonl"
+      ],
+      "contentHash": "cf12a00962d5d9b43e4a3b9d8a2d9acd690c4d0ef01c329dc41e14e234d58de6",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-001.md",
+      "narrativeDetail": "P2-001 Orphan authority-state file for deleted deep-alignment mode - **File:** `.opencode/skills/.authority-state/authority-deep-alignment.json:1` - **Evidence:** The `deep-alignment` mode was removed in commit 8849444aa61 (mode packet, agents, commands, prompts all deleted). The authority-state directory still contains `authority-deep-alignment.json` with `\"mode\":\"deep-alignme"
+    },
+    {
+      "id": "P2-002",
+      "severity": "P2",
+      "title": "Phase-0 gate retirement reduced defense-in-depth (advisory)",
+      "dimension": "unassigned",
+      "file": ".opencode/commands/deep/review.md:14",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-002.jsonl"
+      ],
+      "contentHash": "76c9a69496408260e5f0a7ff8fc58a87a949900f725eed9f85a01a5068db5e9a",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-002.md",
+      "narrativeDetail": "P2-002 Phase-0 gate retirement reduced defense-in-depth (advisory) - **File:** `.opencode/commands/deep/review.md` (diff in e41aa1878ad) — removed `PHASE 0: DISPATCH-CONTEXT CHECK`; surviving deterministic guard at `.opencode/hooks/task-dispatch/lib/dispatch-guard.cjs:142` (`isCommandDrivenIteration`) and `:557` (Check 2 wiring) - **Claim:** Retiring the Phase-0 dispatch-contex"
+    },
+    {
+      "id": "P2-003",
+      "severity": "P2",
+      "title": "cli-codex single-executor branch does not share buildLineageCommand (pre-existing, observation-only)",
+      "dimension": "unassigned",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml:1393",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-002.jsonl"
+      ],
+      "contentHash": "0a9f1651792b0985a53ac3755854c11efe5860fe51db83af0fb08a4648281a2c",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-002.md",
+      "narrativeDetail": "P2-003 cli-codex single-executor branch does not share buildLineageCommand (pre-existing, observation-only) - **File:** `.opencode/commands/deep/assets/deep-review-auto.yaml:1393-1495` (if_cli_codex) vs `:1496-1677` (if_cli_cursor/devin/pi) - **Claim:** The pre-existing `if_cli_codex` branch performs its binary preflight inline (`execFileSync('/bin/sh', ['-c', 'command -v codex"
+    },
+    {
+      "id": "P2-004",
+      "severity": "P2",
+      "title": "Checklist Verification Summary and _memory frontmatter stale re CHK-024",
+      "dimension": "unassigned",
+      "file": "specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/checklist.md:124",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-003.jsonl"
+      ],
+      "contentHash": "0916ae3fa4a6108ce96d6279b560ef1ca8f86edc59aa2c2d5beed9e0d77e9281",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-003.md",
+      "narrativeDetail": "P2-004 Checklist Verification Summary and _memory frontmatter stale re CHK-024 - **File:** `specs/system-deep-loop/036-deep-loop-innovation/025-deprecate-deep-alignment/checklist.md:124` (summary) + `:11` (_memory frontmatter) vs `:68` (CHK-024) - **Claim:** The checklist's Verification Summary and `_memory` frontmatter contradict the CHK-024 checkbox/evidence row, leaving a do"
+    },
+    {
+      "id": "P2-005",
+      "severity": "P2",
+      "title": "035 fixture corpus still contains deep-alignment prompt mirrors (out of 025 scope, observation)",
+      "dimension": "unassigned",
+      "file": "specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/clean-control/.codex/prompts/deep-alignment.md:1",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-003.jsonl"
+      ],
+      "contentHash": "cbbb73f2c8dff09c630865c0b27c6572b76062278f691958f4722d74d0f440d1",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-003.md",
+      "narrativeDetail": "P2-005 035-command-surface-benchmark fixture corpus still contains deep-alignment prompt mirrors (out of 025 scope, observation) - **File:** `specs/system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/fixtures/corpus/public/clean-control/.codex/prompts/deep-alignment.md:1` (and 13 sibling corpus dirs) - **Claim:** The 035 deterministic-fixtures-oracl"
+    },
+    {
+      "id": "P2-006",
+      "severity": "P2",
+      "title": "Stale alignment mode reference in runtime README",
+      "dimension": "unassigned",
+      "file": ".opencode/skills/system-deep-loop/runtime/README.md:15",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-004.jsonl"
+      ],
+      "contentHash": "f55431373b1608791d6e47a4bfb9957454e6a3aa49c2a32ee84aa25e83d4e91f",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-004.md",
+      "narrativeDetail": "P2-006 Stale \"alignment mode\" reference in system-deep-loop runtime README - **File:** `.opencode/skills/system-deep-loop/runtime/README.md:15` - **Claim:** The runtime README still lists the removed `alignment` mode as a live runtime consumer, so the documentation no longer matches the code after the 8849444aa61 removal. The hub-level `system-deep-loop/{README,ROUTER,SKILL}.md"
+    },
+    {
+      "id": "P2-007",
+      "severity": "P2",
+      "title": "Stale alignment mode reference in shared progress README",
+      "dimension": "unassigned",
+      "file": ".opencode/skills/system-deep-loop/shared/progress/README.md:12",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-004.jsonl"
+      ],
+      "contentHash": "6a2e6ccd2eed9da2d90f8d1c0c4dcb0790ee89266324eeec46039853deb35bc0",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-004.md",
+      "narrativeDetail": "P2-007 Stale \"alignment mode\" reference in shared progress README - **File:** `.opencode/skills/system-deep-loop/shared/progress/README.md:12` - **Claim:** The shared progress README still references \"the alignment mode\" as a live state reducer that bypasses the shared progress helper, after the mode was removed. - **Evidence refs:**   - `.opencode/skills/system-deep-loop/share"
+    },
+    {
+      "id": "P2-008",
+      "severity": "P2",
+      "title": "Stale alignment (DAB) behavior-benchmark prefix in authoring guide",
+      "dimension": "unassigned",
+      "file": ".opencode/skills/sk-doc/sk-create-benchmark/SKILL.md:32",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-004.jsonl"
+      ],
+      "contentHash": "d2a8ff0ffdc1fc4ed2fb8e690ba796950c55a1d4bc42d62fe6d154335a9b5d3c",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-004.md",
+      "narrativeDetail": "P2-008 Stale `alignment` (DAB) behavior-benchmark prefix in sk-create-benchmark guide - **File:** `.opencode/skills/sk-doc/sk-create-benchmark/SKILL.md:32` - **Claim:** The behavior-benchmark authoring guide still lists `alignment` (DAB) as a fixed scenario prefix alongside the four surviving mode prefixes. The alignment mode and its DAB-001..DAB-024 scenarios were deleted in 8"
+    },
+    {
+      "id": "P2-009",
+      "severity": "P2",
+      "title": "Executor field-name drift: research uses config.executor.type, review uses config.executor.kind (pre-existing)",
+      "dimension": "correctness",
+      "file": ".opencode/commands/deep/assets/deep-research-auto.yaml:1099",
+      "line": null,
+      "evidence": [
+        "deep-research-auto.yaml:1099",
+        "deep-review-auto.yaml:1073",
+        "executor-config.ts:433",
+        "executor-config.vitest.ts:94",
+        "deep-research.contract.md:252"
+      ],
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": 6,
+      "iterations": [
+        "iter-006.jsonl"
+      ],
+      "contentHash": "0108b364539aae886bf99310ccac7c0ddd137661d7fe96c57ab65a56a096ccb9",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-006.md",
+      "narrativeDetail": "P2-009 Executor field-name drift: research uses `config.executor.type`, review uses `config.executor.kind` (pre-existing, observation-only) - **File:** `.opencode/commands/deep/assets/deep-research-auto.yaml:1099` (`branch_on: \"config.executor.type\"`) vs `.opencode/commands/deep/assets/deep-review-auto.yaml:1073` (`branch_on: \"config.executor.kind\"`) - **Claim:** The two deep-l"
+    },
+    {
+      "id": "P2-010",
+      "severity": "P2",
+      "title": "Branch-set asymmetry: review has if_cli_copilot, research does not (pre-existing)",
+      "dimension": "correctness",
+      "file": ".opencode/commands/deep/assets/deep-review-auto.yaml:1080",
+      "line": null,
+      "evidence": [
+        "deep-review-auto.yaml:1080",
+        "deep-research-auto.yaml",
+        "executor-config.ts:77",
+        "deep-research.contract.md:252"
+      ],
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": 6,
+      "iterations": [
+        "iter-006.jsonl"
+      ],
+      "contentHash": "2105ca75a62821d1f3d1b2571a1936c3a9110865b56e5e8c10cdd0f72b8dac98",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-006.md",
+      "narrativeDetail": "P2-010 Branch-set asymmetry: review has `if_cli_copilot`, research does not (pre-existing, observation-only) - **File:** `.opencode/commands/deep/assets/deep-review-auto.yaml:1080` (`if_cli_copilot`) — absent from `.opencode/commands/deep/assets/deep-research-auto.yaml` - **Claim:** The review executor branch block includes an `if_cli_copilot` branch (dispatching copilot but re"
+    },
+    {
+      "id": "P2-011",
+      "severity": "P2",
+      "title": "Surviving deterministic guard is runtime-asymmetric; Phase-0 retirement removed the only runtime-neutral boundary",
+      "dimension": "unassigned",
+      "file": ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs:142",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-007.jsonl"
+      ],
+      "contentHash": "3f291d6e484383a3daab374b75c514e2ef2512c1d4ef6b2fc9f7436e058fbada",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-007.md",
+      "narrativeDetail": "P2-011 — Surviving deterministic guard is runtime-asymmetric; Phase-0 retirement removed the only runtime-neutral boundary - **Claim:** The retired Phase-0 dispatch-context gate was the only runtime-NEUTRAL (prompt-level) boundary against a pasted-inline deep/* command doc gaining command authority. The surviving deterministic guard (`dispatch-guard.cjs:isCommandDrivenIteration"
+    },
+    {
+      "id": "P2-012",
+      "severity": "P2",
+      "title": "Frozen census edit contract-correct but handoff-manifest sha256 stale and unenforced",
+      "dimension": "unassigned",
+      "file": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/003-baseline-taxonomy-and-state-census/phase-004-handoff-manifest.json:23",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-007.jsonl"
+      ],
+      "contentHash": "5fc9ade313b400c6f1a79cba3210f9ffa620983bf2d03a7749c3de929b899a5f",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-007.md",
+      "narrativeDetail": "P2-012 — Frozen census edit was contract-correct, but the handoff-manifest sha256 is now stale and unenforced - **Claim:** The 3-row removal from frozen packet-001 `state-backend-census.json` (8849444aa6) was contract-CORRECT for the evidence-exists invariant: `validate-evidence.cjs:388,408,419` calls `assertEvidencePath` on every census row's `evidence`, and the removed rows ("
+    },
+    {
+      "id": "P2-013",
+      "severity": "P2",
+      "title": "framework.md mode enum and budget policy still reference deleted alignment mode",
+      "dimension": "unassigned",
+      "file": ".opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md:74",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-009.jsonl"
+      ],
+      "contentHash": "240151d0222131d22012fbcb32ac1ef02de406d55c0988311c44af6bbce4f4d7",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-009.md",
+      "narrativeDetail": "P2-013 — framework.md mode enum and budget policy still reference deleted `alignment` mode - **File**: `.opencode/skills/system-deep-loop/shared/behavior-benchmark/framework.md:74,215-219` - **Claim**: The authoritative behavior-benchmark framework still lists `alignment` as a valid `mode` enum value (line 74: `context | research | review | ai-council | improvement | alignment`"
+    },
+    {
+      "id": "P2-014",
+      "severity": "P2",
+      "title": "guide prefix table lists DAB (alignment) inconsistent with cleaned framework",
+      "dimension": "unassigned",
+      "file": ".opencode/skills/sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md:101",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-009.jsonl"
+      ],
+      "contentHash": "8aed75717fd6d7addc8e302139014f676f95e7c8bb59e9a1b13050d60ee2fac6",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-009.md",
+      "narrativeDetail": "P2-014 — behavior-benchmark-guide.md prefix table lists `DAB (alignment)` inconsistent with cleaned framework - **File**: `.opencode/skills/sk-doc/sk-create-benchmark/references/behavior-benchmark/behavior-benchmark-guide.md:101` - **Claim**: The authoring guide's ID prefix table lists `DAB` (alignment) as a fixed prefix: \"`ACB` (ai-council), `DAB` (alignment), `IMB` (improveme"
+    },
+    {
+      "id": "P2-015",
+      "severity": "P2",
+      "title": "template stale references to deleted alignment mode and conformance family",
+      "dimension": "unassigned",
+      "file": ".opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md:7",
+      "line": null,
+      "evidence": null,
+      "impact": null,
+      "fixRecommendation": null,
+      "firstSeen": null,
+      "iterations": [
+        "iter-009.jsonl"
+      ],
+      "contentHash": "5682c3a0a87ef6cb989f1367fe0d17a85fbce3e0d580f6a9b7d698d6bbb46eba",
+      "status": "active",
+      "occurrences": 1,
+      "sourceIteration": "iteration-009.md",
+      "narrativeDetail": "P2-015 — behavior-benchmark-scenario-template.md stale references to deleted `alignment` mode and `conformance` family - **File**: `.opencode/skills/sk-doc/sk-create-benchmark/assets/behavior-benchmark/behavior-benchmark-scenario-template.md:7,36,99,157,190` - **Claim**: The active authoring template (a fillable scaffold authors copy per scenario) contains five stale references"
+    }
+  ]
+}
