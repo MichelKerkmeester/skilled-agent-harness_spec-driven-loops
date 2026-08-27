@@ -10,13 +10,9 @@ Thin router for the sk-prompt prompt-improvement workflow. This command verifies
 
 ## 1. ROUTER CONTRACT
 
-This Markdown owns dispatch-context verification, the blocking input gate, input binding, and execution-target selection. Agent dispatch (`@prompt-improver`), the DEPTH pipeline, CLEAR scoring, and prompt-file saving belong to the workflow YAML assets.
+This Markdown owns the blocking input gate, input binding, and execution-target selection. Agent dispatch (`@prompt-improver`), the DEPTH pipeline, CLEAR scoring, and prompt-file saving belong to the workflow YAML assets.
 
 Load the presentation contract before showing any startup question, checkpoint, dashboard, success output, failure output, or next-step prompt.
-
-### PHASE 0: DISPATCH-CONTEXT CHECK
-
-Proceed when this file was invoked directly as the command, or by an explicit delegation naming this exact command. Stop only when there is concrete evidence that its raw contents were pasted into an unrelated worker prompt. Ambiguity is not evidence of a bad dispatch context.
 
 ### MANDATORY INPUT GATE
 
@@ -30,7 +26,6 @@ Proceed when this file was invoked directly as the command, or by an explicit de
 
 | Field | Required | Source |
 |---|---:|---|
-| `dispatch_context_verified` | yes | Phase 0 |
 | `prompt_input` | yes | explicit positional input or explicit reply |
 | `enhancement_mode` | yes | `$mode` prefix or `auto` |
 | `save_choice` | yes | setup prompt |

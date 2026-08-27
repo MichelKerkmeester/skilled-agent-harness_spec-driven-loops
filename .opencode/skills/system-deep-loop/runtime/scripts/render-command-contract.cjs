@@ -107,14 +107,6 @@ function buildInvocationPrefix(argsText) {
     lines.push(
       'Bind setup from the MESSAGE above — the target, the `:auto`/`:confirm` suffix, `--spec-folder`, the research topic, and other flags are there. When ARGS_PRESENT=true you MUST proceed on that MESSAGE now: do NOT ask the setup question, and do NOT treat a populated MESSAGE as empty.',
     );
-    // The dispatch-context gate in the command body asks the model to
-    // self-classify "real invocation vs pasted-inline", which capable
-    // orchestrators have false-blocked on. This block is prepended only by the
-    // real command runner and never by a pasted-inline doc, so its presence is
-    // the objective answer the gate needs.
-    lines.push(
-      'DISPATCH-CONTEXT: this INVOCATION MESSAGE block is emitted only by the real command runner, never when a command doc is pasted inline as ad hoc instructions. Its presence is objective proof that you were invoked as the command itself. The Phase 0 dispatch-context check below is therefore already SATISFIED — set general_agent_verified = TRUE, do NOT emit the "DIRECT INVOCATION REQUIRED" block, and do NOT return a direct-invocation STATUS=FAIL. There is no pasted-inline evidence here; proceed to setup.',
-    );
   } else {
     lines.push('MESSAGE: (none supplied)', '');
     lines.push('ARGS_PRESENT=false: no invocation message was supplied; follow the command body below for setup routing.');

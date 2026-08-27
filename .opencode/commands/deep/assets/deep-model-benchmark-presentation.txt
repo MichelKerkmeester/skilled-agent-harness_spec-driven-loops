@@ -166,7 +166,6 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 ```
 
 **Phase Output:**
-- `general_agent_verified = ________________`
 - `lane = model-benchmark`
 - `profile_path = ________________`
 - `spec_folder = ________________`

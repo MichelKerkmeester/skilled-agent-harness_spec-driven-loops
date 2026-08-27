@@ -61,9 +61,8 @@ inputs:
 # ─────────────────────────────────────────────────────────────────
 workflow:
   phase_0_preconditions:
-    purpose: Confirm the router bound every input and verified dispatch context
+    purpose: Confirm the router bound every input
     activities:
-      - "Confirm the router's PHASE 0 dispatch-context check passed."
       - "Confirm prompt_input, enhancement_mode, save_choice, and dispatch_mode are bound; apply the presentation Auto Resolution Table defaults for any unresolved field."
     fail_fast:
       when: "prompt_input is missing"

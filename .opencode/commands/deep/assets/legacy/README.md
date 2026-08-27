@@ -52,7 +52,6 @@ legacy/
 
 The legacy bodies own:
 
-- Dispatch-context checks
 - Setup input resolution
 - Execution-mode selection
 - Workflow YAML selection

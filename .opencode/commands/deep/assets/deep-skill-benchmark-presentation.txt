@@ -114,6 +114,6 @@ The JSON report is the machine record (verdict, D1-D5, funnel, ranked bottleneck
 
 ### Presentation Boundary
 
-The following router-owned display must render verbatim when triggered: the Phase 0 general-agent-required failure block with `STATUS=FAIL ERROR="General agent required"`, and the Mandatory Input Gate blocked-state wording, resolved-input confirmation, and missing-input failure summary.
+The following router-owned display must render verbatim when triggered: the Mandatory Input Gate blocked-state wording, resolved-input confirmation, and missing-input failure summary.
 
 The following content must not come from this router: loop-host progress, benchmark scores, verdicts, ranked bottlenecks, scenario rows, report wording, remediation details, and any skill-owned fixture, playbook, live-routing, advisor, or browser-scenario description beyond the setup fields named here.

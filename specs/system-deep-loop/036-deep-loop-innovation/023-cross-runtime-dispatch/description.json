@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/036-deep-loop-innovation/023-cross-runtime-dispatch",
+  "description": "Every deep/ command (`review`, `research`, `ai-council`, `alignment`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, `command-benchmark`)",
+  "keywords": [
+    "every",
+    "deep",
+    "command",
+    "review",
+    "research",
+    "ai-council",
+    "alignment",
+    "agent-improvement",
+    "model-benchmark",
+    "skill-benchmark",
+    "command-benchmark"
+  ],
+  "lastUpdated": "2026-08-27T06:03:22.704Z",
+  "specId": "023",
+  "folderSlug": "cross-runtime-dispatch",
+  "parentChain": [
+    "system-deep-loop",
+    "036-deep-loop-innovation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
