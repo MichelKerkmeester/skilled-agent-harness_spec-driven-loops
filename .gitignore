@@ -241,6 +241,10 @@ tmp/
 .worktrees/
 **/node-compile-cache/
 **/vitest-tmp/
+# Bridges another checkout's spec tree into this one for a cross-project session.
+# They point outside the repository, so committing one would publish a path that
+# exists on exactly one machine.
+/specs/*-wt[0-9]*
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Archive & testing fixtures
