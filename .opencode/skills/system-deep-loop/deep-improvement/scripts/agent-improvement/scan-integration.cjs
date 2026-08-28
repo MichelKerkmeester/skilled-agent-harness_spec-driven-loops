@@ -16,7 +16,9 @@ const MIRROR_TEMPLATES = [
   '.opencode/agents/{name}.md',
   '.claude/agents/{name}.md',
 ];
-const GLOBAL_DOC_PATHS = ['CLAUDE.md', '.claude/CLAUDE.md'];
+// The repo carries one instruction document. CLAUDE.md is a symlink to AGENTS.md,
+// so a second runtime-specific copy would only be a surface that can drift.
+const GLOBAL_DOC_PATHS = ['CLAUDE.md'];
 const SKILL_ADVISOR_PATH = '.opencode/skills/scripts/skill_advisor.py';
 
 // ─────────────────────────────────────────────────────────────────────────────
