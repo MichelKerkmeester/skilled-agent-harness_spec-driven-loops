@@ -221,4 +221,4 @@ A: No. It is a transport with `mutatesWorkspace: false`:
 | [`examples/README.md`](./examples/README.md) | Worked Code Mode walkthroughs: smoke search, platform-filtered flow research, element intent |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory: three tools across the supported query-intent domains |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios (read-only, SKIP allowed for registration and OAuth-gated steps) |
-| [Skills Library](../../README.md) | The skill catalog and routing front door |
+| [Skills Library](../../README.txt) | The skill catalog and routing front door |
