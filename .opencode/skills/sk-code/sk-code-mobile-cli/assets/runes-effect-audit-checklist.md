@@ -10,22 +10,36 @@ trigger_phrases:
   - "ported effect re-run loop"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Runes Effect Self-Invalidation Audit
 
-Use this when adding or porting a Svelte `$effect` (the migration ported React `useEffect`
-callbacks into runes). A `$effect` that dispatches into the same `$state` it reads re-invalidates
-itself — the symptom is `effect_update_depth_exceeded`, a frozen view, or a silent double-fetch.
-
-The state layer these effects drive lives under `app-mobile/src/shared/state/` (derivations like
-`app-mobile/src/shared/state/turns.ts`); the fixed exemplars are `app-mobile/src/routes/+layout.svelte`
-and `app-mobile/src/shared/commands/host-command-catalog.svelte.ts`.
+Use this when adding or porting a Svelte `$effect`, especially a ported React `useEffect`
+callback, to audit it for self-invalidation.
 
 ---
 
-## 1. LIST EVERY REACTIVE READ
+## 1. OVERVIEW
+
+### Purpose
+
+A `$effect` that dispatches into the same `$state` it reads re-invalidates itself — the symptom
+is `effect_update_depth_exceeded`, a frozen view, or a silent double-fetch. The state layer these
+effects drive lives under `app-mobile/src/shared/state/` (derivations like
+`app-mobile/src/shared/state/turns.ts`); the fixed exemplars are
+`app-mobile/src/routes/+layout.svelte` and
+`app-mobile/src/shared/commands/host-command-catalog.svelte.ts`.
+
+### Usage
+
+Work through the sections in order — list every reactive read, identify the self-invalidation,
+untrack the dispatch, trace indirect dispatch, re-audit the whole file, and confirm
+test-harness parity — before claiming the effect is fixed, then confirm against THE GATE.
+
+---
+
+## 2. LIST EVERY REACTIVE READ
 
 - [ ] Listed every `$state` / `$derived` / prop / store value the effect reads DIRECTLY
 - [ ] Listed every read made INSIDE a function or hook-API method the effect calls — a read one
@@ -33,7 +47,7 @@ and `app-mobile/src/shared/commands/host-command-catalog.svelte.ts`.
 
 ---
 
-## 2. IDENTIFY THE SELF-INVALIDATION
+## 3. IDENTIFY THE SELF-INVALIDATION
 
 - [ ] Found any SYNCHRONOUS dispatch whose reducer READS the `$state` it reduces — that read
   makes the effect depend on state the same dispatch then rewrites (the loop)
@@ -42,7 +56,7 @@ and `app-mobile/src/shared/commands/host-command-catalog.svelte.ts`.
 
 ---
 
-## 3. UNTRACK THE DISPATCH
+## 4. UNTRACK THE DISPATCH
 
 - [ ] Wrapped the synchronous dispatch in `untrack(...)` so the effect depends only on its
   intended trigger — e.g. `untrack(() => dispatch({ type: 'session-changed' }))` in
@@ -52,7 +66,7 @@ and `app-mobile/src/shared/commands/host-command-catalog.svelte.ts`.
 
 ---
 
-## 4. TRACE INDIRECT DISPATCH
+## 5. TRACE INDIRECT DISPATCH
 
 - [ ] Traced API METHODS, not just the literal `dispatch(` token — a dispatch can be indirect
   behind a hook method (a `refresh()` or `clearStoredDraft()` that dispatches internally, as in
@@ -61,7 +75,7 @@ and `app-mobile/src/shared/commands/host-command-catalog.svelte.ts`.
 
 ---
 
-## 5. RE-AUDIT THE WHOLE FILE
+## 6. RE-AUDIT THE WHOLE FILE
 
 - [ ] After fixing one effect, re-audited EVERY effect in the same file — fixing one does not
   clear the others: `rg -n "\$effect" <file>` and walk each (mount + reconnect effects in one
@@ -69,7 +83,7 @@ and `app-mobile/src/shared/commands/host-command-catalog.svelte.ts`.
 
 ---
 
-## 6. TEST-HARNESS PARITY
+## 7. TEST-HARNESS PARITY
 
 - [ ] In tests, absorbed `@testing-library/svelte` `rerender` re-firing UNCHANGED props via an
   equality-checked intermediate `$state` in the HARNESS — never a source-side value guard
@@ -77,7 +91,7 @@ and `app-mobile/src/shared/commands/host-command-catalog.svelte.ts`.
 
 ---
 
-## 7. VERIFY
+## 8. VERIFY
 
 - [ ] Reproduced the symptom first where safe (throw / frozen view / double-fetch), applied the
   fix, then confirmed the same path no longer loops
@@ -85,7 +99,7 @@ and `app-mobile/src/shared/commands/host-command-catalog.svelte.ts`.
 
 ---
 
-## THE GATE
+## 9. THE GATE
 
 Done only when: every direct and one-layer-down read is enumerated; the reducing synchronous
 dispatch is `untrack`-wrapped (including indirect dispatch behind API methods); every other
