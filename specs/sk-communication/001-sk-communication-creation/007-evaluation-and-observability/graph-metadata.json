@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Measure whether output feels 1:1 with the reference while proving fidelity, latency, cost, privacy, and operational behavior",
     "created_at": "2026-08-11T10:04:32Z",
-    "last_save_at": "2026-08-11T13:35:59.660Z",
+    "last_save_at": "2026-08-28T19:09:01.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:78de9762bdc3a5dee10060ed27efdce082a1d8beba84776ad97d3eccef156df6",
+    "source_fingerprint": "sha256:100409742e36e833e3f6fbc21898ff8867315bb424eda1ed442cd4a76bfafd9a",
     "source_doc_hashes": {
       "spec.md": "a9e2a9b9f176b6f21e189041893b8df9a49a1c34a9faae69c6c7db5e4b41b5a9",
       "plan.md": "b949204b49f98e5e62cf8c62e62e9effd9c256b0ffdd38982a2005fac7de66e3",
@@ -218,7 +218,7 @@
       "checklist.md": "dda48f3d9735b08c12626d2058792802c6e46371fd7aa193056b7d7aa6f21820",
       "decision-record.md": "5af6b946402dbcd872037e16d3efec71ca46613fdd7906eb0404d1385e2f7967",
       "implementation-summary.md": "1a510f3c6a8d2be23d34a5a940f2a32a6842146f6f75a57e162ff990d909deff",
-      "handover.md": "642330acd75b84e152fc052a8d82cd281106dcb97ce4f726dd5b41edd139b28d"
+      "handover.md": "bf4fce2b363f6e4fcd75f6536386ec05d332840df9931f20ebef17a7073e7da3"
     },
     "last_active_child_id": null,
     "last_active_at": null

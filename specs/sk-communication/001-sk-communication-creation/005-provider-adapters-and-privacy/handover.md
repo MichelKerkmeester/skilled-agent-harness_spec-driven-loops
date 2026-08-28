@@ -38,6 +38,14 @@ Phase 005 provides the privacy-approved provider attempt plan and bounded infere
 
 ---
 
+<!-- ANCHOR:when-to-use -->
+## WHEN TO USE THIS TEMPLATE
+
+Open this handover when starting Phase 006. Phase 005 is complete at checkpoint `d8e5dc4` and delivers the privacy-approved provider attempt plan and the bounded inference result that Phase 006 places between runtime assembly and Phase 004 fidelity validation. Read it to inherit two rules that are easy to break: privacy routing runs before any quality or cost ranking, and fallback may only walk an already-approved attempt list.
+<!-- /ANCHOR:when-to-use -->
+
+---
+
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
@@ -148,3 +156,11 @@ ProtectedDocument
 
 Provider and privacy support is implemented, but six-runtime integration and 1:1 reference-quality communication are not yet complete. Phase 006 owns runtime/client behavior, and Phase 007 owns the blinded non-inferiority evaluation.
 <!-- /ANCHOR:session-notes -->
+
+---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file only when the Phase 005 verification result, the pinned checkpoint, or the Phase 006 starting point changes. Preserve the anchors and the template source marker, and refresh indexed continuity after a material edit.
+<!-- /ANCHOR:template-instructions -->

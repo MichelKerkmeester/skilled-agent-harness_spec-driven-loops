@@ -45,12 +45,7 @@
       "tasks.md",
       "evidence/agent-config-008.json",
       "implementation-summary.md",
-      ".claude/mcp.json",
-      "mcp_server/vitest.config.ts",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       "spec.md",
-      "lib/utils/README.md",
       "plan.md"
     ],
     "entities": [
@@ -97,39 +92,9 @@
         "source": "derived"
       },
       {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": "mcp_server/vitest.config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "lib/utils/README.md",
         "source": "derived"
       },
       {
@@ -197,11 +162,41 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Prompt",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Commit Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "templated Bash",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "re-dispatch",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Exercise all 39 mk-spec-memory MCP tools and execute all 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 to validate behavior post-113 z_archive un-exclusion.",
     "created_at": "2026-05-16T13:55:00Z",
-    "last_save_at": "2026-07-17T17:19:13.161Z",
+    "last_save_at": "2026-08-28T19:09:02.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +206,13 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:f8767cc73d8396dee47c9bf692faef81d2bd0170a024f447443feedea52c4bf2",
+    "source_fingerprint": "sha256:b062ad0a0f47ffdfbe77f7156f417132b1d205f28982cd94f4ceadf53f3733f4",
     "source_doc_hashes": {
       "spec.md": "2ce9b46d9a5dc0230e1ef24b8822c2d6f5677c1466ea3c74b2cce79a6a5fb686",
       "plan.md": "5efc5410bf6d6794c8ad2993f5abbcbd1690ff3a8a9488aebc7e791d622e7d87",
       "tasks.md": "bb85f5b505a8099fb1e9c6a86d2ead71d4a4e4613eb9d018e8e12b94433cb696",
       "implementation-summary.md": "f509a856c1cf2b4dbfd16684a8c1e6ff515b07a90e3f71410b6fd6ce8d68df9c",
-      "handover.md": "45c391bd5b0c9757c5e9cfe0f921acbb6c9b4fc7e8257b4631dfac7b91fea294"
+      "handover.md": "dd3e943ba71f876a619d19c6c4689159c97faaa71f5343aff7dad75fd1db8d6d"
     },
     "last_active_child_id": null,
     "last_active_at": null

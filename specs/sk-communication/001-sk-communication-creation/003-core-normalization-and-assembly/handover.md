@@ -36,6 +36,14 @@ Phase 003 provides the runtime-neutral message candidate and exact-original fall
 
 ---
 
+<!-- ANCHOR:when-to-use -->
+## WHEN TO USE THIS TEMPLATE
+
+Open this handover when starting Phase 004. Phase 003 is complete and owns the runtime-neutral message candidate and the exact-original fallback boundary; it does not yet protect spans, validate fidelity, or render into any CLI. Read it to inherit the state-keying, ordering, and privacy decisions that Phase 004 must preserve rather than rediscover.
+<!-- /ANCHOR:when-to-use -->
+
+---
+
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
@@ -139,3 +147,11 @@ Phase 003 provides the runtime-neutral message candidate and exact-original fall
 
 The package is private and remains an internal library surface. A dry-run package contains 121 entries and resolves the Phase 003 exports. Full 1:1 communication output is not complete yet. Phase 004 owns protected spans and render safety, Phase 005 owns providers, Phase 006 owns the six CLI integrations and Phase 007 owns human parity evaluation.
 <!-- /ANCHOR:session-notes -->
+
+---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file only when the Phase 003 verification result, a blocker, or the Phase 004 starting point changes. Preserve the anchors and the template source marker, and refresh indexed continuity after a material edit.
+<!-- /ANCHOR:template-instructions -->

@@ -38,6 +38,14 @@ Phase 007 provides the release-gate framework, content-free observability, and t
 
 ---
 
+<!-- ANCHOR:when-to-use -->
+## WHEN TO USE THIS TEMPLATE
+
+Open this handover when starting Phase 008. Phase 007 is complete at checkpoint `ffce7901a2` and supplies the release-gate evaluation framework, content-free observability, and the provenance discipline that keeps an LLM-judge result from ever counting as human evidence. Read it before packaging a release, because the gate Phase 008 must enforce is the powered blind human study defined here.
+<!-- /ANCHOR:when-to-use -->
+
+---
+
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
@@ -137,3 +145,11 @@ The powered blind **human** non-inferiority study is NOT run here. To produce re
 
 The evaluation and observability framework is complete and verified, and the plumbing is proven with a real model reviewer. The powered blind human non-inferiority study and the first live credentialed smoke remain operator-run activities that Phase 008 packages and gates.
 <!-- /ANCHOR:session-notes -->
+
+---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file only when the Phase 007 verification result, the pinned checkpoint, or the Phase 008 starting point changes. Preserve the anchors and the template source marker, and refresh indexed continuity after a material edit.
+<!-- /ANCHOR:template-instructions -->

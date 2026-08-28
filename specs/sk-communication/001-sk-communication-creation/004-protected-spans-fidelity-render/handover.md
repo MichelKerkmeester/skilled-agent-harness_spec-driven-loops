@@ -37,6 +37,14 @@ Phase 004 provides the protected request, fidelity outcome and capability-aware 
 
 ---
 
+<!-- ANCHOR:when-to-use -->
+## WHEN TO USE THIS TEMPLATE
+
+Open this handover when starting Phase 005. Phase 004 is complete and owns the protected request, the fidelity outcome, and the capability-aware render decision across the six runtimes. Read it before adding providers: Phase 005 must keep span protection, deterministic vetoes, and source-digest comparison in force, and must never treat provider output as authorization to display corrupted text.
+<!-- /ANCHOR:when-to-use -->
+
+---
+
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
@@ -142,3 +150,11 @@ Phase 004 provides the protected request, fidelity outcome and capability-aware 
 
 The library surface is verified, but 1:1 reference-like communication is not complete. Phase 005 still owns providers and privacy, Phase 006 owns all six CLI integrations and Phase 007 owns blinded parity evaluation. Do not claim runtime parity from Phase 004 alone.
 <!-- /ANCHOR:session-notes -->
+
+---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file only when the Phase 004 verification result, a blocker, or the Phase 005 input boundary changes. Preserve the anchors and the template source marker, and refresh indexed continuity after a material edit.
+<!-- /ANCHOR:template-instructions -->

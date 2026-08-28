@@ -40,6 +40,14 @@ Closeout state for phase 018. Runtime implementation and regression proof are co
 
 ---
 
+<!-- ANCHOR:when-to-use -->
+## WHEN TO USE THIS TEMPLATE
+
+Open this handover when resuming phase 018, the post-review closeout of directive-lifecycle delivery: the runtime fix, its six-iteration deep review, and the adjudication that separated confirmed findings from hypotheses. The packet is complete — ledgers reconciled, metadata regenerated, `validate.sh --strict` at exit 0 — so what remains is operator work outside the packet: pushing the three local commits and deciding on the native-host Cursor rollout.
+<!-- /ANCHOR:when-to-use -->
+
+---
+
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
@@ -169,3 +177,11 @@ The next session must keep the packet `in_progress` until the authored ledgers, 
 
 Strict validation after this handover write confirmed the handover template, anchors, frontmatter, sufficiency, references, and placeholders are valid. After the canonical metadata refresh, generated-metadata integrity also passed. `validate.sh --strict` returns exit 0 with RESULT: PASSED (0 errors, 0 warnings). The earlier non-compact `recent_action`, cross-document status-classification, and completed-item evidence warnings were all resolved during final ledger reconciliation.
 <!-- /ANCHOR:session-notes -->
+
+---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file only when the push state or the native-host rollout decision changes. Preserve the anchors and the template source marker, and rerun strict validation plus metadata regeneration after any material edit.
+<!-- /ANCHOR:template-instructions -->

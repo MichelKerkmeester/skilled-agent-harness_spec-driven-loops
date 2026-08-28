@@ -33,6 +33,14 @@ _memory:
 
 ---
 
+<!-- ANCHOR:when-to-use -->
+## WHEN TO USE THIS TEMPLATE
+
+Open this handover to finish the mk-spec-memory embedding-backlog work. Research packet 004 proved the root cause and this packet implemented and verified three durable prevention fixes, so the code side is done; the status stays `in_progress` because the remaining steps are operator actions. Two of them are outstanding: rebuild and restart the daemon so the fixes take effect, and optionally run the one-time status repair for the stuck rows, which already hold their vectors and so do not need re-embedding.
+<!-- /ANCHOR:when-to-use -->
+
+---
+
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
@@ -124,3 +132,11 @@ Re-embedding the mk-spec-memory store never finished: a job would report "done" 
 - Nothing was committed and the live DB was not mutated. `dist/` is gitignored — the build output is local; a fresh checkout must `npm run build`.
 - Sibling research packet 004 is the evidence base; 005 is its implementation.
 <!-- /ANCHOR:session-notes -->
+
+---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file once the daemon rebuild and restart land, and again if the one-time backlog repair is run against the live database. Preserve the anchors and the template source marker, and refresh `description.json` and `graph-metadata.json` after a material edit.
+<!-- /ANCHOR:template-instructions -->

@@ -37,6 +37,14 @@ This handover gives a new AI enough evidence to independently analyze the comple
 
 ---
 
+<!-- ANCHOR:when-to-use -->
+## WHEN TO USE THIS TEMPLATE
+
+Open this handover to review or extend the Cursor `sessionStart` Gate-3 prebind adapter, which establishes enforceable spec-gate state for a top-level Cursor CLI session that never receives a `beforeSubmitPrompt` event. The phase is complete: implementation `348b644283` and closeout `1580cd2852` are committed locally and unpushed, and the intended next step is an independent audit of those two commits rather than further code changes.
+<!-- /ANCHOR:when-to-use -->
+
+---
+
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
@@ -278,3 +286,9 @@ Return findings first, ordered P0/P1/P2, with exact file and line references and
 <!-- /ANCHOR:session-notes -->
 
 ---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file only when the delivery state changes: a new commit, a push, or the release of the SQLite writer lock that currently blocks memory indexing. Preserve the anchors and the template source marker, and refresh `description.json` and `graph-metadata.json` after a material edit.
+<!-- /ANCHOR:template-instructions -->

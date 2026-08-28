@@ -41,53 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
-      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
-      ".cursor/hooks.json",
-      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs",
-      ".opencode/plugins/tests/mk-spec-gate.test.cjs",
-      ".cursor/hooks/spec-gate-prebind.mjs",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
       "spec.md",
-      "shared/dist/gate-3-classifier.js",
-      ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.test.mjs",
       "handover.md"
     ],
     "entities": [
-      {
-        "name": "spec-gate-prebind.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-core.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
-        "kind": "config",
-        "path": ".cursor/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-prebind.test.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/runtime/hooks/cursor/spec-gate-prebind.test.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-gate.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-spec-gate.test.cjs",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -113,27 +74,9 @@
         "source": "derived"
       },
       {
-        "name": "hooks.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/shared/hooks.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "gate-3-classifier.js",
-        "kind": "code",
-        "path": "shared/dist/gate-3-classifier.js",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-core.test.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/runtime/lib/spec-gate/spec-gate-core.test.mjs",
         "source": "derived"
       },
       {
@@ -201,11 +144,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Update Cursor",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Cursor's deny-capable `preToolUse` adapter is wired, but it only enforces when session gate state is already `open`",
     "created_at": "2026-07-25T13:39:58Z",
-    "last_save_at": "2026-07-27T06:30:56.949Z",
+    "last_save_at": "2026-08-28T19:09:00.151Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +207,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:b510e658261d6d9de32ac86026e374e3e823f67f8a28ed271aeef0feae51f5f6",
+    "source_fingerprint": "sha256:e456ef4b94c9c1c00d39ae56cc171c082c8a9c57da8302024771197a9a8f0841",
     "source_doc_hashes": {
       "spec.md": "57034755f0153111b3b72e2b9b626069582604fc9798c68bf4bd7a6cf173a785",
       "plan.md": "b661cadb8df56a327b74f5f38a4876dd7ab32c7e94f22707e8266ac09b62677b",
       "tasks.md": "efb9cdcaae12cffc3c2f2627244f4645e2eff2ed75d4b3979be3620c408a8562",
       "checklist.md": "1fe800225465dfa5383db8282c7a54f1bff03de23bdb4586717e0648d0967ccd",
       "implementation-summary.md": "20ac16bfe23f307d952d1e7a36f51b4014199646739120b4ec099daddac83dc0",
-      "handover.md": "7c04273538f7ce5052659523daabfd7d95926385caa4b4639c301663b0cdadd8"
+      "handover.md": "f1f2ec4e900dd24a29ffa58a694a9bef43aa5cd6c09b89b03ca81f405eb45013"
     },
     "last_active_child_id": null,
     "last_active_at": null

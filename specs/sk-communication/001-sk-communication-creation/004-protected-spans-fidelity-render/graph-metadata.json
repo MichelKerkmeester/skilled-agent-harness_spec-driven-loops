@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Protect non-negotiable content, validate rewritten candidates deterministically, and choose a safe presentation mode",
     "created_at": "2026-08-11T10:04:29Z",
-    "last_save_at": "2026-08-11T19:31:50.870Z",
+    "last_save_at": "2026-08-28T19:09:01.277Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1415bd33c9df45cca3aee512866e1d4f5b7918a77999885835f59db6a8b38ce5",
+    "source_fingerprint": "sha256:0c8d69618573707f30288f463eb9ebb8f3ba4ac7e4974d57c973ceff370a1088",
     "source_doc_hashes": {
       "spec.md": "d1f87a52f809c7c11c36ed9b951f70073c5be013c506075f15771f895cf37b0a",
       "plan.md": "4c26c8678d33de878ee968b4647ce3deb1f5b391a79a5cfecea505301a94ab29",
@@ -217,7 +217,7 @@
       "checklist.md": "527be0d312658194c1ef87c50bf70dc82c9f735bd343ac8b376bc9ab0e70c77e",
       "decision-record.md": "95f7c123a6f1c99fddeb9afa485b5b07236cce7ab4bde0acdef5c04c288329a2",
       "implementation-summary.md": "10e17ec577f619d391e1baccbf9b8d7acdccfc1adfbe3d585c40d437ea524928",
-      "handover.md": "767b2e171b0f240bf0a7ba2240b3a0ef7ebc6f6d4c849916f04465f330c97d0b"
+      "handover.md": "1787cb13fb058e0b7c870179d06766b4aaa218eac53fc2aa74f9dde1ba67b8ce"
     },
     "last_active_child_id": null,
     "last_active_at": null
