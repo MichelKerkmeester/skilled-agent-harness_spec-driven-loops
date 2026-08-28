@@ -26,7 +26,7 @@ This entry lives with the Skill Advisor hook/plugin documentation because it use
 
 ### State Store And Command Router
 
-`.opencode/plugins/opencode-goal.js` stores one JSON goal record per OpenCode session under `.opencode/skills/.goal-state/` by default, keyed by a sanitized session id. Writes go through an in-process mutation queue and atomic temp-file rename. `.opencode/commands/goal_opencode.md` is a thin router: empty arguments and `show` call `opencode_goal_status`, while `set`, `set --budget N`, bare text, `history`, `doctor`, `health`, `clear`, `complete`, `pause` and `resume` call `opencode_goal`.
+`.opencode/plugins/opencode-goal.js` stores one JSON goal record per OpenCode session under `.opencode/skills/.state/goal/` by default, keyed by a sanitized session id. Writes go through an in-process mutation queue and atomic temp-file rename. `.opencode/commands/goal_opencode.md` is a thin router: empty arguments and `show` call `opencode_goal_status`, while `set`, `set --budget N`, bare text, `history`, `doctor`, `health`, `clear`, `complete`, `pause` and `resume` call `opencode_goal`.
 
 ### Passive Injection
 
@@ -56,7 +56,7 @@ Live verification: the plugin is registered and driven end-to-end in a real Open
 |---|---|---|
 | `.opencode/plugins/opencode-goal.js` | OpenCode plugin | State store, passive injection, tools, supervisor verification and guarded continuation |
 | `.opencode/commands/goal_opencode.md` | Slash command | Thin command router for `opencode_goal` and `opencode_goal_status` |
-| `.opencode/skills/.goal-state/` | State directory | Default per-session JSON state location |
+| `.opencode/skills/.state/goal/` | State directory | Default per-session JSON state location |
 
 ### Validation And Tests
 

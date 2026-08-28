@@ -85,10 +85,10 @@ node .opencode/plugins/tests/opencode-goal-capabilities.test.cjs
 
 ### Expected Signals
 
-- `/goal` does not read or write `.opencode/skills/.goal-state` directly; all state access goes through `opencode_goal` or `opencode_goal_status`.
+- `/goal` does not read or write `.opencode/skills/.state/goal` directly; all state access goes through `opencode_goal` or `opencode_goal_status`.
 - `/goal set` output includes `mutation=created|refreshed|replaced` matching the actual set-time outcome.
 - `/goal set <objective> --budget N` rejects invalid budgets and reports the accepted token budget in status output.
-- `/goal history`, `/goal doctor`, `/goal health`, and `/goal resume` route through `opencode_goal`; none reads `.opencode/skills/.goal-state` directly from command markdown.
+- `/goal history`, `/goal doctor`, `/goal health`, and `/goal resume` route through `opencode_goal`; none reads `.opencode/skills/.state/goal` directly from command markdown.
 - Status/set output includes `store_health=no_active_goal` or `store_health=state_age_ms:<N>`.
 - Status/set output includes `verifier_source=none|injected|default-heuristic|default-llm`.
 - Status/set output includes `remaining_auto_turns`, `remaining_wall_ms`, and `provider_retry_after_ms`; env caps honor `OPENCODE_GOAL_MAX_AUTO_TURNS` and `OPENCODE_GOAL_MAX_WALL_MS`.
@@ -102,7 +102,7 @@ node .opencode/plugins/tests/opencode-goal-capabilities.test.cjs
 
 | Symptom | Detection | Action |
 | --- | --- | --- |
-| Command edits state directly | `/goal` command reads or writes `.goal-state` | Block release; command must route through plugin tools only. |
+| Command edits state directly | `/goal` command reads or writes `.state/goal` | Block release; command must route through plugin tools only. |
 | Cross-session state leak | Goal set in one session appears in another | Inspect `sessionKeyForSession` and state path logic. |
 | Prompt injection leaks into context | Injection preview contains unredacted role or instruction text | Inspect `sanitizeInlineText` and `renderGoalInjection`. |
 | Active continuation fires by default | `OPENCODE_GOAL_AUTONOMY` unset still submits a prompt | Block release; default-off gate regressed. |
@@ -187,7 +187,7 @@ Command file read confirmed `.opencode/commands/goal_opencode.md` exists and rou
 ```text
 4: allowed-tools: opencode_goal, opencode_goal_status
 15: Manage the passive session goal through the `opencode-goal` plugin. `/goal` is a state-free router: it resolves the requested action from `$ARGUMENTS` and dispatches to the `opencode_goal` / `opencode_goal_status` plugin tools, which own all goal state and session resolution.
-37: This command is state-free. It never reads or writes `.opencode/skills/.goal-state` directly.
+37: This command is state-free. It never reads or writes `.opencode/skills/.state/goal` directly.
 39: - Empty arguments or `show` route to `opencode_goal_status`.
 40: - `set <objective>` routes to `opencode_goal` with `action: "set"` and `objective: REST`.
 42: - `clear`, `complete`, and `pause [reason]` route to `opencode_goal`.
@@ -203,7 +203,7 @@ Found 17 matches
 
   Line 15: Manage the passive session goal through the `opencode-goal` plugin. `/goal` is a state-free router: it resolves the requested action from `$ARGUMENTS` and dispatches to the `opencode_goal` / `opencode_goal_status` plugin tools, which own all goal state and session resolution.
 
-  Line 37: This command is state-free. It never reads or writes `.opencode/skills/.goal-state` directly.
+  Line 37: This command is state-free. It never reads or writes `.opencode/skills/.state/goal` directly.
 
   Line 39: - Empty arguments or `show` route to `opencode_goal_status`.
 

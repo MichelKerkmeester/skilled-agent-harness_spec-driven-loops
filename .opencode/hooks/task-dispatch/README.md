@@ -15,7 +15,7 @@ trigger_phrases:
 
 `task-dispatch/` gates Task-tool dispatches before they execute. The main concern is deep-loop protection: `lib/dispatch-guard.cjs` recognizes dispatches that target deep-loop sub-agents and distinguishes a bounded external handoff from repeated handoffs that recreate a command-owned iteration loop outside its parent command. A second, Claude-only guard enforces the Fable-model subagent policy.
 
-The core returns a transport-free `allow`/`warn`/`reject` decision; adapters translate it into their runtime's envelope. Warning state persists under `.opencode/skills/.loop-guard-state/` so both OpenCode and Claude share one bounded audit trail. The core performs the loop-state persistence and state-directory maintenance but never writes stdout/stderr and never writes the warning log itself — the adapter appends warnings/audits so both runtimes share one bounded log path.
+The core returns a transport-free `allow`/`warn`/`reject` decision; adapters translate it into their runtime's envelope. Warning state persists under `.opencode/skills/.state/loop-guard/` so both OpenCode and Claude share one bounded audit trail. The core performs the loop-state persistence and state-directory maintenance but never writes stdout/stderr and never writes the warning log itself — the adapter appends warnings/audits so both runtimes share one bounded log path.
 
 ---
 
@@ -122,7 +122,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 | Boundary | Rule |
 |---|---|
 | Imports | The core imports Node builtins only. Adapters import `../lib/` and (CommonJS ones) `../../shared/hook-adapter-shared.cjs` + `../../shared/hook-flags.cjs` — nothing outside this tree. The Cursor adapter imports `hook-flags.mjs` and shells out to the Claude adapter by repo-relative path. |
-| State | Loop-repeat counters and warning logs live in `.opencode/skills/.loop-guard-state/`, written by adapters (never the core) so both runtimes share one bounded log. State files are session-keyed and written atomically (temp + rename). |
+| State | Loop-repeat counters and warning logs live in `.opencode/skills/.state/loop-guard/`, written by adapters (never the core) so both runtimes share one bounded log. State files are session-keyed and written atomically (temp + rename). |
 | Decisions | `allow`, `warn`, or `reject`. Reject is reserved for confirmed mode mismatch (under the reject env) and confirmed loop-recreation (count ≥ 3 under the reject-loop env), plus the Fable policy's three forbidden shapes. |
 | Failure | Fails open on malformed stdin, missing/unreadable registry or state, or any internal error. A persistence failure under a reject env emits an audit line (`appendRejectModeDegradedAudit`) but still allows the dispatch. |
 
@@ -147,7 +147,7 @@ Expected result: `ok`, with no module-resolution error (confirms the OpenCode ad
 ## 9. RELATED
 
 - [`../README.md`](../README.md): the unified hooks tree this concern lives in, with the full kill-switch index and coverage matrix.
-- [`../../skills/.loop-guard-state/README.md`](../../skills/.loop-guard-state/README.md): the shared state directory contract.
+- [`../../skills/.state/loop-guard/README.md`](../../skills/.state/loop-guard/README.md): the shared state directory contract.
 - [`../injection-contract.md`](../injection-contract.md): decision visibility per runtime.
 - [`../shared/README.md`](../shared/README.md): the shared stdin parser and kill-switch resolver the adapters use.
 - [`../../skills/system-deep-loop/SKILL.md`](../../skills/system-deep-loop/SKILL.md): the deep-loop workflow whose `mode-registry.json` and command-owned executors this guard protects.

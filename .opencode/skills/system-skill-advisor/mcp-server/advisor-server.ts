@@ -74,7 +74,7 @@ function resolveWorkspaceRoot(): string {
   // whose .opencode/skills tree contains this advisor. This is robust to the
   // source-vs-dist depth difference (the compiled file lives one level deeper
   // under dist/mcp-server/) and can never resolve a subdirectory cwd, which is
-  // what created stray nested .opencode/.advisor-state directories whenever the
+  // what created stray nested .opencode/.state/advisor directories whenever the
   // advisor ran with a subdirectory as its working directory.
   let dir = import.meta.dirname;
   for (let i = 0; i < 12; i += 1) {

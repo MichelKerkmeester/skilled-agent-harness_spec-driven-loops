@@ -16,7 +16,7 @@ version: 1.0.0.1
 
 ## 1. OVERVIEW
 
-This folder stores machine-specific state for the [`system-spec-gate.js`](../../plugins/system-spec-gate.js) OpenCode plugin. The plugin is a transport adapter over the runtime-neutral [`spec-gate-core.mjs`](../system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs). The core defines this directory path, persists each session's Gate 3 status and applies the shared classification and mutation policy.
+This folder stores machine-specific state for the [`system-spec-gate.js`](../../../plugins/system-spec-gate.js) OpenCode plugin. The plugin is a transport adapter over the runtime-neutral [`spec-gate-core.mjs`](../../system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs). The core defines this directory path, persists each session's Gate 3 status and applies the shared classification and mutation policy.
 
 Gate 3 is the **SPEC FOLDER QUESTION** in the `system-spec-kit` gate rules. It asks for an A-E choice before file mutation work. The persisted status lets the prompt-classification hook and the later tool-execution hook share one answer even though they run at different points in the OpenCode lifecycle.
 
@@ -36,7 +36,7 @@ The plugin connects three OpenCode hook surfaces to the shared core:
 
 The plugin and core process a session in this order:
 
-1. The shared [`gate-3-classifier.ts`](../system-spec-kit/shared/gate-3-classifier.ts) classifies file-write, memory-save and write-producing resume intent. Read-only terms can suppress qualifying file-write matches. Memory-save and invoked resume workflows retain their own classification rules.
+1. The shared [`gate-3-classifier.ts`](../../system-spec-kit/shared/gate-3-classifier.ts) classifies file-write, memory-save and write-producing resume intent. Read-only terms can suppress qualifying file-write matches. Memory-save and invoked resume workflows retain their own classification rules.
 2. `classifyIntent()` checks an existing open state for an answer before it classifies the turn again. A recognized skip stores `skipped`. A valid spec-folder binding stores `satisfied`.
 3. A triggering turn without an accepted answer stores `open` with `askedAtMs` and returns the bounded A-E question. A triggering turn that already names a valid folder can satisfy the gate without another question.
 4. `evaluateMutation()` reads that cached status. It allows sessions marked `satisfied` or `skipped`, and it allows sessions whose gate never opened.
@@ -93,7 +93,7 @@ Rotation keeps the active warning log and one `.1` backup. Cleanup also removes 
 
 ## 5. SYSTEM BOUNDARIES
 
-The runtime state supports Gate 3 enforcement but does not replace the documented gate workflow. [`AGENTS.md`](../../../AGENTS.md) defines when the assistant must ask the spec-folder question and the shared classifier provides the machine-readable trigger contract. The plugin carries that decision across OpenCode hooks.
+The runtime state supports Gate 3 enforcement but does not replace the documented gate workflow. [`AGENTS.md`](../../../../AGENTS.md) defines when the assistant must ask the spec-folder question and the shared classifier provides the machine-readable trigger contract. The plugin carries that decision across OpenCode hooks.
 
 `spec-gate-core.mjs` imports the compiled shared classifier from `shared/dist`. It does not call the Spec Kit Memory MCP daemon to classify a prompt or evaluate a mutation. Memory-save phrases still trigger Gate 3 because those workflows can write continuity artifacts, not because this state directory stores memory records.
 
@@ -103,7 +103,7 @@ The core is runtime-neutral so another runtime adapter can use the same policy a
 
 ## 6. RELATED FILES
 
-- [`system-spec-gate.js`](../../plugins/system-spec-gate.js) connects OpenCode prompts, mutations and session events to the gate.
-- [`spec-gate-core.mjs`](../system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs) defines state persistence, event logging and cleanup.
-- [`gate-3-classifier.ts`](../system-spec-kit/shared/gate-3-classifier.ts) defines the authoritative Gate 3 trigger and binding contract.
+- [`system-spec-gate.js`](../../../plugins/system-spec-gate.js) connects OpenCode prompts, mutations and session events to the gate.
+- [`spec-gate-core.mjs`](../../system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs) defines state persistence, event logging and cleanup.
+- [`gate-3-classifier.ts`](../../system-spec-kit/shared/gate-3-classifier.ts) defines the authoritative Gate 3 trigger and binding contract.
 - `gate-enforcement.md` summarizes the human-facing gate rules and their relationship to the broader workflow.

@@ -277,7 +277,7 @@ describe('smart-router telemetry recording', () => {
 
     // The repo-root marker and the default write path both target the real,
     // plural `.opencode/skills/` directory -- the actual live telemetry file
-    // has always lived at `.opencode/skills/.smart-router-telemetry/`, while
+    // has always lived at `.opencode/skills/.state/smart-router-telemetry/`, while
     // this module's own default once pointed at a singular `.opencode/skill/`
     // typo left over from an incomplete plural-rename sweep.
     const repoRoot = createTempRoot();
@@ -290,7 +290,7 @@ describe('smart-router telemetry recording', () => {
     try {
       process.chdir(nestedWorkspace);
       expect(telemetryFilePath()).toBe(
-        path.join(resolvedRepoRoot, '.opencode', 'skills', '.smart-router-telemetry', 'compliance.jsonl')
+        path.join(resolvedRepoRoot, '.opencode', 'skills', '.state', 'smart-router-telemetry', 'compliance.jsonl')
       );
     } finally {
       process.chdir(originalCwd);

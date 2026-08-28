@@ -28,14 +28,14 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 |---|---|---|
 | Plugin | `.opencode/plugins/opencode-goal.js` | Auto-loaded OpenCode plugin with `event`, `experimental.chat.system.transform`, `opencode_goal`, and `opencode_goal_status`. |
 | Command | `.opencode/commands/goal-opencode.md` | State-free `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
-| State | `.opencode/skills/.goal-state/` | Runtime JSON state, keyed by a fixed SHA-256 digest of the session id, intentionally outside spec docs. |
+| State | `.opencode/skills/.state/goal/` | Runtime JSON state, keyed by a fixed SHA-256 digest of the session id, intentionally outside spec docs. |
 | Tests | `.opencode/plugins/tests/opencode-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
 
 ## 3. BEHAVIOR CONTRACT
 
 - `/goal set <objective>` stores a sanitized raw `objective`, derives a deterministic `goalPrompt`, and records prompt metadata under `promptEnhancement`.
 - `/goal set <objective> --budget N` passes `tokenBudget: N` through the command router; invalid, zero, negative, or missing budget values fail before a tool call.
-- `/goal history` lists archived goal records from `.opencode/skills/.goal-state/.archive/` without creating or mutating active state.
+- `/goal history` lists archived goal records from `.opencode/skills/.state/goal/.archive/` without creating or mutating active state.
 - Reads adopt valid legacy hex-keyed active and archived files into the fixed digest path without overwriting an occupied target. Malformed or mismatched sources remain untouched.
 - `/goal doctor` and `/goal health` are read-only inspections that report active state-file count, archive-file count, `.continuation.log` and `.goal-events.log` byte sizes, last sweep time, and orphan-candidate count.
 - `/goal resume` reactivates only `paused` or `usage_limited` goals, clears `continuationSuppressed`, clears `continuationSuppressedReason`, and rejects terminal resurrection.
@@ -51,7 +51,7 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 |---|---|---|
 | `OPENCODE_GOAL_PLUGIN_DISABLED` | unset | Set `1` to disable goal injection and plugin behavior. |
 | `OPENCODE_GOAL_AUTONOMY` | unset | `active` enables guarded continuation; `smoke` logs would-fire decisions; unset or `passive` suppresses continuation. |
-| `OPENCODE_GOAL_DEBUG` | unset | Set `1` to append bounded debug events under `.goal-state`. |
+| `OPENCODE_GOAL_DEBUG` | unset | Set `1` to append bounded debug events under `.state/goal`. |
 | `OPENCODE_GOAL_VERIFIER` | `heuristic` | `heuristic` uses the deterministic fail-closed verifier; `llm` opts into `ctx.client.session.promptAsync` semantic verdicts. |
 | `OPENCODE_GOAL_MAX_OBJECTIVE_CHARS` | `4000` | Caps stored raw objective text. |
 | `OPENCODE_GOAL_MAX_GOAL_PROMPT_CHARS` | `4000` | Caps generated `goalPrompt`; values above 4000 are clamped. |

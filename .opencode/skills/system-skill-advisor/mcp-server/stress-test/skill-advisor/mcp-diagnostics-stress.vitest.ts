@@ -21,7 +21,7 @@ function writeFile(root: string, relativePath: string, content: string): void {
 }
 
 function writeGeneration(root: string, state: 'live' | 'stale' | 'absent' | 'unavailable', generation: number): void {
-  writeFile(root, '.opencode/skills/.advisor-state/skill-graph-generation.json', `${JSON.stringify({
+  writeFile(root, '.opencode/skills/.state/advisor/skill-graph-generation.json', `${JSON.stringify({
     generation,
     updatedAt: '2026-04-20T00:00:00.000Z',
     sourceSignature: `stress-${state}`,

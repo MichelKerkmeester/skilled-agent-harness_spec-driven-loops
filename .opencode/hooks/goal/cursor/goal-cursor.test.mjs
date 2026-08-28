@@ -4,7 +4,7 @@
 // ║ PURPOSE: Injection-when-active, no-op-when-none/paused/disabled, and      ║
 // ║          fail-open-on-malformed-stdin coverage for goal-inject.mjs.       ║
 // ║          Every case points OPENCODE_GOAL_STATE_DIR at a fresh temp directory    ║
-// ║          so the real `.opencode/skills/.goal-state/` tree is never       ║
+// ║          so the real `.opencode/skills/.state/goal/` tree is never       ║
 // ║          touched, and every hook invocation runs as a real spawned       ║
 // ║          process (execFileSync) so stdin/stdout/exit-code behavior is    ║
 // ║          exercised exactly as Cursor would drive it.                     ║

@@ -57,7 +57,7 @@ import { classifyPrompt, validateSpecFolderBinding } from '../../../../shared/di
 // 2. CONSTANTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-const GATE_STATE_DIR_RELATIVE_PATH = '.opencode/skills/.spec-gate-state';
+const GATE_STATE_DIR_RELATIVE_PATH = '.opencode/skills/.state/spec-gate';
 const GATE_ARCHIVE_DIR_NAME = '.archive';
 const WARN_LOG_FILENAME = 'spec-gate-warnings.log';
 const WARN_LOG_BACKUP_SUFFIX = '.1';

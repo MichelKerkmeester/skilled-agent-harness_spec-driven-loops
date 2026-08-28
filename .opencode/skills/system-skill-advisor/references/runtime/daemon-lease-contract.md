@@ -108,7 +108,7 @@ The lease row deletion is guarded by owner ID. If two daemons race on stale-leas
 
 ### Legacy Probe During Rolling Starts
 
-During the Phase 006 compatibility window, launcher startup also probes the old lease database at `.opencode/skills/.advisor-state/skill-graph-daemon-lease.sqlite`. If that legacy database contains a live owner, the launcher exits `0` with `LEASE_HELD_BY:<pid> ... (legacy path)` and does not open the skill graph DB. If the legacy owner is stale or dead, startup logs the stale legacy observation and proceeds with the canonical lease beside the resolved DB directory. The launcher observes but does not migrate the legacy database.
+During the Phase 006 compatibility window, launcher startup also probes the old lease database at `.opencode/skills/.state/advisor/skill-graph-daemon-lease.sqlite`. If that legacy database contains a live owner, the launcher exits `0` with `LEASE_HELD_BY:<pid> ... (legacy path)` and does not open the skill graph DB. If the legacy owner is stale or dead, startup logs the stale legacy observation and proceeds with the canonical lease beside the resolved DB directory. The launcher observes but does not migrate the legacy database.
 
 ---
 

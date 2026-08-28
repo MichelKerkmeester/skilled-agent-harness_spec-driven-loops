@@ -219,7 +219,7 @@ Expected signals: Retry behavior, neutral fallback card shape, quarantine skip p
 ### DLR-052 | system-deep-loop-guard
 
 #### Description
-Detection-layer OpenCode plugin with two checks: flags/blocks a Task dispatch whose declared Deep Route mode disagrees with `mode-registry.json`'s entry for the resolved target agent, and flags/blocks a session-scoped loop-like repeated `orchestrate`-to-command-owned-loop-executor dispatch. Also sweeps/archives/prunes its own `.loop-guard-state` directory on `session.created` so it does not grow unbounded.
+Detection-layer OpenCode plugin with two checks: flags/blocks a Task dispatch whose declared Deep Route mode disagrees with `mode-registry.json`'s entry for the resolved target agent, and flags/blocks a session-scoped loop-like repeated `orchestrate`-to-command-owned-loop-executor dispatch. Also sweeps/archives/prunes its own `.state/loop-guard` directory on `session.created` so it does not grow unbounded.
 
 #### Scenario Contract
 Prompt: `Verify system-deep-loop-guard still detects a Deep Route mode mismatch and a loop-like repeated dispatch, and respects SYSTEM_DEEP_LOOP_GUARD_REJECT / SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP.`

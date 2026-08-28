@@ -748,7 +748,7 @@ describe('mode append gateway', () => {
     expect(resolveAuthorityRoot({
       repositoryRoot: customRepo,
       environment: {},
-    })).toBe(join(customRepo, '.opencode/skills/.authority-state'));
+    })).toBe(join(customRepo, '.opencode/skills/.state/authority'));
 
     // With no repository root supplied the resolver must DISCOVER the
     // checkout rather than trust the working directory, because callers near
@@ -757,7 +757,7 @@ describe('mode append gateway', () => {
     expect(resolveAuthorityRoot({
       environment: {},
       discoverRepositoryRoot: () => discovered,
-    })).toBe(join(discovered, '.opencode/skills/.authority-state'));
+    })).toBe(join(discovered, '.opencode/skills/.state/authority'));
 
     // Discovery failing is the only case that may fall back to the working
     // directory; it must still return an absolute root rather than throw at a
@@ -765,6 +765,6 @@ describe('mode append gateway', () => {
     expect(resolveAuthorityRoot({
       environment: {},
       discoverRepositoryRoot: () => null,
-    })).toBe(join(process.cwd(), '.opencode/skills/.authority-state'));
+    })).toBe(join(process.cwd(), '.opencode/skills/.state/authority'));
   });
 });

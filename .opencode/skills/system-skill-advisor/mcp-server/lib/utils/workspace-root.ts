@@ -17,7 +17,7 @@ export interface AdvisorWorkspaceRootOptions {
 
 const DEFAULT_MAX_DEPTH = 14;
 // Strict sentinel: anchors on the canonical SKILL.md inside system-spec-kit so
-// nested mock dirs (e.g. mcp-server/.opencode/skills/.advisor-state/) cannot
+// nested mock dirs (e.g. mcp-server/.opencode/skills/.state/advisor/) cannot
 // satisfy the walk-up. A bare `.opencode/skills` directory is trivially
 // self-perpetuating: once any caller writes anything under it from a wrong
 // cwd, the walk-up resolver returns that wrong cwd on subsequent calls.

@@ -181,7 +181,7 @@ injection_preview="[active_goal:goal-b7a3ad9a-f1a6-4787-8eb8-3c413c78a894]\nstat
 
 ### Failure Triage
 
-Confirm OpenCode was restarted -> inspect `.opencode/plugins/opencode-goal.js` plugin load -> inspect `.opencode/commands/goal-opencode.md` allowed tools -> run `opencode-goal-state` and `opencode-goal-tool-path` tests -> inspect `.opencode/skills/.goal-state/` only as runtime evidence, not as command-owned state.
+Confirm OpenCode was restarted -> inspect `.opencode/plugins/opencode-goal.js` plugin load -> inspect `.opencode/commands/goal-opencode.md` allowed tools -> run `opencode-goal-state` and `opencode-goal-tool-path` tests -> inspect `.opencode/skills/.state/goal/` only as runtime evidence, not as command-owned state.
 
 ---
 

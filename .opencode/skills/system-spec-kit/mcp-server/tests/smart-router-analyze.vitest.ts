@@ -105,13 +105,13 @@ describe('smart-router telemetry analyzer', () => {
 
   it('emits a no-data report for empty JSONL', () => {
     const root = tempRoot();
-    fs.mkdirSync(path.join(root, '.opencode', 'skill', '.smart-router-telemetry'), { recursive: true });
-    const inputPath = path.join(root, '.opencode', 'skill', '.smart-router-telemetry', 'compliance.jsonl');
+    fs.mkdirSync(path.join(root, '.opencode', 'skill', '.state/smart-router-telemetry'), { recursive: true });
+    const inputPath = path.join(root, '.opencode', 'skill', '.state/smart-router-telemetry', 'compliance.jsonl');
     fs.writeFileSync(inputPath, '', 'utf8');
 
     const analysis = analyzeTelemetryFile({
       workspaceRoot: root,
-      inputPath: '.opencode/skills/.smart-router-telemetry/compliance.jsonl',
+      inputPath: '.opencode/skills/.state/smart-router-telemetry/compliance.jsonl',
       timestamp: '2026-04-19T21:00:00.000Z',
     });
     const markdown = formatTelemetryAnalysisReport(analysis);

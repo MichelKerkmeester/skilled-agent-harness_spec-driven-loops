@@ -74,7 +74,7 @@ const CLAIM_ANCHOR_TAIL_CHARS = 400;
 // packet, so the adapter must recover both itself).
 const SPEC_FOLDER_TEXT_PATTERN = /(?:\.opencode\/)?specs\/[^\s"'`)\]]+/;
 
-const STATE_DIR_RELATIVE_PATH = '.opencode/skills/.completion-sentinel-state';
+const STATE_DIR_RELATIVE_PATH = '.opencode/skills/.state/completion-sentinel';
 const LOG_RELATIVE_PATH = '.opencode/logs/completion-sentinel-advisories.log';
 const DEDUP_FILE_NAME = 'advisory-dedup.json';
 const ADVISORY_LOG_BACKUP_SUFFIX = '.1';

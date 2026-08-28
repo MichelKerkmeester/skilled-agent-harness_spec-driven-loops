@@ -115,7 +115,7 @@ describe('sa-007b — Generation lock token ownership (F-001-A1-03)', () => {
   });
 
   function lockTargetPath(): string {
-    const filePath = join(tmpDir, '.advisor-state', 'generation.json');
+    const filePath = join(tmpDir, '.state/advisor', 'generation.json');
     mkdirSync(dirname(filePath), { recursive: true });
     return filePath;
   }

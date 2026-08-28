@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Advisor State-Directory Containment
 // ───────────────────────────────────────────────────────────────
-// Regression guard for the stray `.advisor-state` / skill-graph DB leak: when a
+// Regression guard for the stray `.state/advisor` / skill-graph DB leak: when a
 // session runs from inside a specs/<packet> directory, the advisor must resolve
 // its state paths to the REAL repo root, never to the packet subdir. The two
 // path chokepoints (generation counter + skill-graph DB dir) and the hook entry

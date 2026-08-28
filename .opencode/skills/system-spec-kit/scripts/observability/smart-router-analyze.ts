@@ -39,7 +39,7 @@ export interface TelemetryAnalysis {
   readonly noData: boolean;
 }
 
-const DEFAULT_INPUT_PATH = '.opencode/skills/.smart-router-telemetry/compliance.jsonl';
+const DEFAULT_INPUT_PATH = '.opencode/skills/.state/smart-router-telemetry/compliance.jsonl';
 const DEFAULT_OUTPUT_DIR = '.opencode/skills/system-spec-kit/scripts/observability';
 const IS_CLI_ENTRY = process.argv[1]
   ? path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
