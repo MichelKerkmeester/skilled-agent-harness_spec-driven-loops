@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish/` |
+| **Spec Folder** | 002-phase-parent-generator-pointer-polish |
 | **Completed** | 2026-04-27 |
 | **Level** | 2 |
 | **Predecessor** | `001-phase-parent-validator-docs` (validator + detection + lean template + docs sync) |

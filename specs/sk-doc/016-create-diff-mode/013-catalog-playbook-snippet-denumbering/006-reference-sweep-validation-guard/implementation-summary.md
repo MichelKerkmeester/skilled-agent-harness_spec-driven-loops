@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/013-catalog-playbook-snippet-denumbering/006-reference-sweep-validation-guard"
+    packet_pointer: "sk-doc/016-create-diff-mode/013-catalog-playbook-snippet-denumbering/006-reference-sweep-validation-guard"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase complete and merged to main"
@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 133-catalog-playbook-snippet-denumbering/006-reference-sweep-validation-guard |
+| **Spec Folder** | 006-reference-sweep-validation-guard |
 | **Completed** | 2026-06-06 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

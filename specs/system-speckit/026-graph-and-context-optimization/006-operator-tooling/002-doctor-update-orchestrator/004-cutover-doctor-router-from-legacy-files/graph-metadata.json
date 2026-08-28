@@ -48,10 +48,6 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/commands/doctor/mcp.md",
-      ".opencode/commands/doctor/update.md",
-      ".opencode/commands/doctor/_routes.yaml",
-      ".opencode/commands/doctor/assets/doctor_update.yaml",
       "implementation-summary.md"
     ],
     "entities": [
@@ -83,30 +79,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/mcp.md",
-        "source": "derived"
-      },
-      {
-        "name": "update.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/update.md",
-        "source": "derived"
-      },
-      {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/_routes.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_update.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_update.yaml",
         "source": "derived"
       },
       {
@@ -198,11 +170,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sed Correctness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 1 shipped the new `/doctor` router additively",
     "created_at": "2026-05-11T17:00:00.000Z",
-    "last_save_at": "2026-07-17T17:19:32.769Z",
+    "last_save_at": "2026-08-28T15:59:53.348Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df13eb43a74da45d79bd7ed11b8d1e9d18afa2b00d3beb0531b94d1863ea1dc6",
+    "source_fingerprint": "sha256:e82bdae9a33cdd678480846475af65d51310adcc09d2f85e979daa6d19738d63",
     "source_doc_hashes": {
       "spec.md": "dbcd4599efa528fbcbec05ac324da63f9c3d29b3305838da7043b45ce3965ed5",
       "plan.md": "c084bb86e7f3be2a13b6084177e218cb072789ac6a4f8128a2fb53acc111e26f",
       "tasks.md": "a8923733c4ee039da40a9575b85dfdfb5d8a710194a6cb0a30fccebc81818d3c",
       "checklist.md": "8eb22eb0d2080b5fb8265d2442b040ac6f8021ad9b8ce54c6a8f2080cbb7ae1b",
       "decision-record.md": "5ee252c8ed54fac1fae693e14b86f5b1693b6aeae7027e28d6e323d6905eae1e",
-      "implementation-summary.md": "c8ba5d1df445a24950013a20fc2883a52f7bb20b9a2fc5862ff7cc811adabc1a"
+      "implementation-summary.md": "c7aaaffd6b2854d3d9ba72f829a615b526ef99bbfd34ce98f6943153e364abbc"
     },
     "last_active_child_id": null,
     "last_active_at": null

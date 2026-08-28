@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-skill-readme-standardization/020-sk-prompt-readme"
+    packet_pointer: "sk-doc/016-create-diff-mode/014-skill-readme-standardization/020-sk-prompt-readme"
     last_updated_at: "2026-06-07T14:57:42Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "README shipped and validated"

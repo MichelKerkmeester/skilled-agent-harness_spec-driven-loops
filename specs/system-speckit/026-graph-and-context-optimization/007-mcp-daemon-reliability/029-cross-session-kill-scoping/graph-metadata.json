@@ -196,7 +196,7 @@
     ],
     "causal_summary": "MCP transports kept dying mid-session despite the front-proxy work",
     "created_at": "2026-06-06T17:05:00Z",
-    "last_save_at": "2026-07-17T17:19:35.591Z",
+    "last_save_at": "2026-08-28T15:59:57.298Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4fa75e51e266f8afb1b27ed2326736731254efe0c9c96a6430a68512c2db1434",
+    "source_fingerprint": "sha256:ce2a2778e1e86b67950b90aa4ef08dfa5234f62e298bdd31b02aff3ba179a3ff",
     "source_doc_hashes": {
       "spec.md": "22d79d9119f78077135fd0bc7d25f9890197a1fb49504163811ed46141dede55",
       "plan.md": "b798ddc14f978fb14ca74cc83f9181943bb2c40664f3d5e771df79cb6b809ee4",
       "tasks.md": "1ae9a021f7ba57e6cf45ab554e24b9f1d974ec1be26632e6db0201edb8137898",
-      "implementation-summary.md": "d4b491fae3cda79d279f3a1f6b8a155033852b873f0b580e32244773bf37f04e"
+      "implementation-summary.md": "8e7d6669b0db5db559a7592791a5067e2d0c976aa8ed4376f21db4aa82f50a21"
     },
     "last_active_child_id": null,
     "last_active_at": null

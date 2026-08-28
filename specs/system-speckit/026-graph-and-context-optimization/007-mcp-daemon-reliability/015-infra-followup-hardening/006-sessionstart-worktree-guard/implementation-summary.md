@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard |
+| **Spec Folder** | 006-sessionstart-worktree-guard |
 | **Completed** | 2026-05-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

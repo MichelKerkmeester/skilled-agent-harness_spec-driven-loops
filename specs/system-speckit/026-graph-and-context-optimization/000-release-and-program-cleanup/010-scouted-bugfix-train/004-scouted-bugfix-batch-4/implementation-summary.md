@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4` |
+| **Spec Folder** | 004-scouted-bugfix-batch-4 |
 | **Completed** | 2026-06-03 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

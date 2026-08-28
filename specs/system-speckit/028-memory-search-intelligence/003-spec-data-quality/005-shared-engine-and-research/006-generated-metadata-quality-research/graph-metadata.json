@@ -46,12 +46,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -88,36 +83,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-parser.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "folder-discovery.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index-scope.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
         "source": "derived"
       },
       {
@@ -197,11 +162,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit generators that produce `description.json` and `graph-metadata.json` over-reach and churn",
     "created_at": "2026-06-27T17:15:40.899Z",
-    "last_save_at": "2026-07-17T17:19:52.209Z",
+    "last_save_at": "2026-08-28T16:00:19.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +207,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1f6854d99c215c2146d46d1b5aaf7b0e6db7147499f21f8bbeae69d99ff956ee",
+    "source_fingerprint": "sha256:2451fcaea25f9e9dc2c5157290f364856136c6642af1409a3cd0fdd122c48eea",
     "source_doc_hashes": {
       "spec.md": "e90760a784ff42a161d56371827985d812bef347a9eac2a6f56a0921e8c3af81",
       "plan.md": "debc671c116bbdc3d0b54cbe950e1faec96b601ca7990d7ccc1888216ef29c17",
       "tasks.md": "a09e42d4e5db6f806f5195127b62bef6cc04ab7e308ee133380f94a00d9c8c87",
       "checklist.md": "88454e91383eea28fcaee4c7b83f93dc7514fc8c3947772d6ddefb59291b5ff2",
-      "implementation-summary.md": "8701afde290327c26de0d81f24c2ebe7c34974103230f2c1466b6e8c00dfaa41",
+      "implementation-summary.md": "371d4da94574ba91bf324de299768493db6eceb00eb36b479d9c8b0fcecc9f12",
       "research/research.md": "c019804186c0b5baaadcdf97202c8dc1db44606fb7899576d937c3b436e30e35"
     },
     "last_active_child_id": null,

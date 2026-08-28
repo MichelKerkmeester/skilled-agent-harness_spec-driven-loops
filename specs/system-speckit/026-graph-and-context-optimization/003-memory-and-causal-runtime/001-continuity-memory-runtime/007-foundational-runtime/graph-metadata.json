@@ -43,122 +43,18 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      "mcp_server/lib/context/caller-context.ts",
-      "mcp_server/lib/enrichment/retry-budget.ts",
-      "handlers/save/post-insert.ts",
-      "scripts/validation/continuity-freshness.ts",
-      "scripts/validation/evidence-marker-lint.ts",
-      "hooks/shared-provenance.ts",
-      "hooks/claude/shared.ts",
-      "lib/governance/scope-governance.ts",
-      "scripts/tests/gate-3-classifier.vitest.ts",
-      "lib/utils/exhaustiveness.ts",
-      "scripts/validation/evidence-marker-audit.ts",
-      "shared/gate-3-classifier.ts",
-      "lib/context/caller-context.ts",
-      "handlers/session-resume.ts",
-      "mcp_server/lib/utils/exhaustiveness.ts",
       "checklist.md",
-      "scripts/core/workflow.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "entities": [
-      {
-        "name": "caller-context.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/context/caller-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retry-budget.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/enrichment/retry-budget.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-insert.ts",
-        "kind": "code",
-        "path": "handlers/save/post-insert.ts",
-        "source": "derived"
-      },
-      {
-        "name": "continuity-freshness.ts",
-        "kind": "code",
-        "path": "scripts/validation/continuity-freshness.ts",
-        "source": "derived"
-      },
-      {
-        "name": "evidence-marker-lint.ts",
-        "kind": "code",
-        "path": "scripts/validation/evidence-marker-lint.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shared-provenance.ts",
-        "kind": "code",
-        "path": "hooks/shared-provenance.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shared.ts",
-        "kind": "code",
-        "path": "hooks/claude/shared.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scope-governance.ts",
-        "kind": "code",
-        "path": "lib/governance/scope-governance.ts",
-        "source": "derived"
-      },
-      {
-        "name": "gate-3-classifier.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/gate-3-classifier.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "exhaustiveness.ts",
-        "kind": "code",
-        "path": "lib/utils/exhaustiveness.ts",
-        "source": "derived"
-      },
-      {
-        "name": "evidence-marker-audit.ts",
-        "kind": "code",
-        "path": "scripts/validation/evidence-marker-audit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "gate-3-classifier.ts",
-        "kind": "code",
-        "path": "shared/gate-3-classifier.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-resume.ts",
-        "kind": "code",
-        "path": "handlers/session-resume.ts",
-        "source": "derived"
-      },
       {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -171,6 +67,24 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -208,11 +122,83 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Begin Wave",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Enables Copilot",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "After Wave",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parallel Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Infrastructure Primitives",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Break Gemini",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cluster Consumers",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cluster Inventory",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Before",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Success Criteria",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 017 (27 `fix(016)` commits landing P0-A/B/C/D, S1-S7 structural refactors, M3-M13 medium refactors, 21 quick wins, 34 test migrations) completed the remediation scoped from the 50-iteration Phase 016 research",
     "created_at": "2026-04-18T14:40:19.024Z",
-    "last_save_at": "2026-07-17T17:19:17.253Z",
+    "last_save_at": "2026-08-28T15:59:32.024Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,13 +209,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:05a7e8188e7d51b1384cdcdc3cc2ce4362431f2161a51839f8abad806cbaab6f",
+    "source_fingerprint": "sha256:9458e82eb76005955d5072b7dec80110ab1e0b61aeff3e3c88f20b08414d1402",
     "source_doc_hashes": {
       "spec.md": "f90d079d8dd3b1648858695056f27585bc2b3f9c5580693280ce8db001ce307c",
       "plan.md": "3da11ce9604147bf2df23f68743f5126caee6744ab1f4d02304cf139bfe30c34",
       "tasks.md": "77200081117a4579aaf3e11cc5b336e056b626c039f92e3539a2ce079b9de9dd",
       "checklist.md": "90d51fc92d53937773c580fb86f033e350789f23cb138987c8fea9820695699d",
-      "implementation-summary.md": "6b85b8d7d1392b348a0e14f427ccf102cdae096042b533fb9091e6fab27c43a0",
+      "implementation-summary.md": "cfc9e7611813f5b65bb60025e2bbf4ca129967bf34c1c5c6d86f3e5e1c340079",
       "research/research.md": "5fc92a6ec725918a8ca5277b3104bbc4dd0848e0320f8376ee232f74416c986a"
     },
     "last_active_child_id": null,

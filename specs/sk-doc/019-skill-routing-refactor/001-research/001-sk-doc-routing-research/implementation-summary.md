@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-research/001-sk-doc-routing-research |
+| **Spec Folder** | 001-sk-doc-routing-research |
 | **Completed** | 2026-07-16 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/003-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability` |
+| **Spec Folder** | 006-fix-memory-search-health-fallback-stability |
 | **Completed** | 2026-05-08 |
 | **Level** | 2 |
 | **Requirements Closed** | 13/13 |

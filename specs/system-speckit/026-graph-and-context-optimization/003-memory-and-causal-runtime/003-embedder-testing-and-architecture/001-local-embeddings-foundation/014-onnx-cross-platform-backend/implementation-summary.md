@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `014-onnx-cross-platform-backend` |
+| **Spec Folder** | 014-onnx-cross-platform-backend |
 | **Completed** | 2026-05-13 |
 | **Level** | 2 |
 | **Status** | **REJECTED** — production code reverted, packet retained as decision record |

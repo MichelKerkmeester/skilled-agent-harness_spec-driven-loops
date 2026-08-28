@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/012-hybrid-search-scope-then-limit` |
+| **Spec Folder** | 012-hybrid-search-scope-then-limit |
 | **Completed** | 2026-06-11 |
 | **Level** | 1 |
 | **Priority** | P1 |

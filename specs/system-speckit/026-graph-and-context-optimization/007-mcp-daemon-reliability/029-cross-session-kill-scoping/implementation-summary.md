@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 026-graph-and-context-optimization/007-mcp-daemon-reliability/029-cross-session-kill-scoping |
+| **Spec Folder** | 029-cross-session-kill-scoping |
 | **Completed** | 2026-06-06 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

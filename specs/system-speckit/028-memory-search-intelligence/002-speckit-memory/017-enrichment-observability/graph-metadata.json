@@ -44,11 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts",
-      "handlers/memory-crud-health.ts",
-      "handlers/memory-save.ts",
       "implementation-summary.md"
     ],
     "entities": [
@@ -68,24 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handler-memory-health-edge.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-health-edge.vitest.ts",
         "source": "derived"
       },
       {
@@ -195,11 +172,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP splits the write path from background post-insert enrichment: a row commits immediately marked enrichment-pending, then an async, concurrency-capped scheduler runs the actual entity/graph enrichment later [CONFIRMED: `handlers/memory-save.ts:2934-2987`, `lib/search/vector-index-schema.ts:1884-1885`, `postinsertenrichmentstatus TEXT NOT NULL DEFAULT 'complete'`]",
     "created_at": "2026-06-19T05:40:37.448Z",
-    "last_save_at": "2026-07-12T13:24:50.481Z",
+    "last_save_at": "2026-08-28T16:00:12.790Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a72fb875419d29f1ce51cd757628d8d2dbf15c403b587b05ae8c285d50b0c89e",
+    "source_fingerprint": "sha256:998b5676b53f059235ca30ac07cb5c143a7ffdff43664427b3773c790616d1ef",
     "source_doc_hashes": {
       "spec.md": "29f9892c7ae936cd43b1c9d6140103deee6c16ca2f7f7ccefc22d5ca651dc94d",
       "plan.md": "eb110a67ad3e4b70a52c48fa02775244a2d059cf1dfd55cc1bf54bc61af6395e",
       "tasks.md": "281be462462a984c31063c33f32aa078f3ebaeff4433647ba0a2066191c7e192",
-      "implementation-summary.md": "8f0c03c6b5844cf681e17eeedec512c853bfc77dfaefb65389c132342a0a3b63"
+      "implementation-summary.md": "3ec412d606987e7998e5ac8fdfde751c78043c45724f0b21cffab418612772cb"
     },
     "last_active_child_id": null,
     "last_active_at": null

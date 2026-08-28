@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/002-author-presentation-md |
+| **Spec Folder** | 002-author-presentation-md |
 | **Completed** | 2026-06-10 |
 | **Level** | 1 |
 | **Status** | Completed |

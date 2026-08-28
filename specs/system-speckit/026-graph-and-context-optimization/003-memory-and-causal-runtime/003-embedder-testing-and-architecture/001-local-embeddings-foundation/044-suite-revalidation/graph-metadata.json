@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 032/002 evidence recorded only 2 PASS / 2 PARTIAL / 11 FAIL across scenarios 401-415, with many failures caused by substrate defects rather than scenario behavior",
     "created_at": "2026-05-14T16:11:01Z",
-    "last_save_at": "2026-07-17T17:19:20.431Z",
+    "last_save_at": "2026-08-28T15:59:36.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45e64f56924acb91bfef846d8eff6a86cfd19d17622a8e8e41333d376adf5c5d",
+    "source_fingerprint": "sha256:81ed61b689b9e17391b9b9892c7a0e1f7fdf65f2a181eacbd7bfc5eff01bcf64",
     "source_doc_hashes": {
       "spec.md": "f9d5032b5a1cf3118994ba61ea95debab595ad1b9cf00cf0f7ab2b2bc160a9b0",
       "plan.md": "9b3d6b386e7821bf5eeaebe20da6b274414cc369907ebac7dc9c69ec5a38e032",
       "tasks.md": "f4c2839e861a3742f28707a8b19d21847aac773ff81e30e96955e91d3242b6ce",
       "checklist.md": "cbc5b5823714554a0fdd9bc9f588f092e52a13f5672a5aac1b97097b8f4ffa46",
-      "implementation-summary.md": "ee00c690ec6056eae0bf381b2b7c5dbc0cf3eed6d858a7306c9e85d8c9b3c7e2"
+      "implementation-summary.md": "40ab278c02dfacd942c17f4bff1c9260edd6adcac6e5e73b294b6fa3685a75e9"
     },
     "last_active_child_id": null,
     "last_active_at": null

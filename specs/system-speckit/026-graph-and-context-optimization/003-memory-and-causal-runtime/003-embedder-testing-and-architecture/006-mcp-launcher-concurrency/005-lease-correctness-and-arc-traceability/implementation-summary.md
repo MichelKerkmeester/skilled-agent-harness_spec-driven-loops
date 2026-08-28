@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `005-lease-correctness-and-arc-traceability` |
+| **Spec Folder** | 005-lease-correctness-and-arc-traceability |
 | **Completed** | 2026-05-18 |
 | **Level** | 2 |
 | **Status** | Implementation complete; commit blocked by sandbox Git index permissions |

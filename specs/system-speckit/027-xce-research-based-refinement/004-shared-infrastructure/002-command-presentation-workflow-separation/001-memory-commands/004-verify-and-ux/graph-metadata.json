@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Memory Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:42.944Z",
+    "last_save_at": "2026-08-28T16:00:09.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee057273194dc12c4035e5782cec3bceb5dd9b3a21c4cdb4c7656eeed8e72351",
+    "source_fingerprint": "sha256:36cbe614709824520017fb48edeed3f0e6ce7ac5ed0c2d5d0724e5ff22d8a361",
     "source_doc_hashes": {
       "spec.md": "75fba003f43cc28ac61eab9318b1776abad475907e2c731d0d6e9d42d0ce26e3",
       "plan.md": "f24f12f82c41ced65be3863230cc638a7055c6580cb55d58805f9df558fb7ac0",
       "tasks.md": "ae2c39042a742f4fa0eb3b8de28f8826141b2bc68794112aef5bc4c29d692db0",
-      "implementation-summary.md": "e2c8697bfa7b6b74f2174445f3a9124fc75455aea2fcd9586e80f0f30bec7a87"
+      "implementation-summary.md": "f4d6b29474d58196a588fd65c7b0273385f4cf1542c749ac699854709f93ddfb"
     },
     "last_active_child_id": null,
     "last_active_at": null

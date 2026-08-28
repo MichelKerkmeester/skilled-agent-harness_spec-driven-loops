@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 040-flag-graduation-benchmark |
+| **Spec Folder** | 008-flag-graduation-benchmark |
 | **Completed** | Yes, 2026-06-23, twelve flags graduated and one deleted, flips committed |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

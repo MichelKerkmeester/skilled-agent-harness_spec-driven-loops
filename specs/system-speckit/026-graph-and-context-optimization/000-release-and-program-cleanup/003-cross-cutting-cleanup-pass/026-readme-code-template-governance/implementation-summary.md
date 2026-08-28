@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/026-readme-code-template-governance` |
+| **Spec Folder** | 026-readme-code-template-governance |
 | **Completed** | 2026-05-02 |
 | **Level** | 2 |
 | **Status** | Complete |

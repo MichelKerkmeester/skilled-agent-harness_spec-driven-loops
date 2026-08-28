@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/034-query-expansion-context-size` |
+| **Spec Folder** | 034-query-expansion-context-size |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

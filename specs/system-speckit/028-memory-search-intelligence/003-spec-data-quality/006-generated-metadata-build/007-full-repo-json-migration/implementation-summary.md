@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 039-full-repo-json-migration |
+| **Spec Folder** | 007-full-repo-json-migration |
 | **Completed** | Yes, 2026-06-23, 2049 folders at 0 violations, byte-stable re-run, z_future excluded by operator decision |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

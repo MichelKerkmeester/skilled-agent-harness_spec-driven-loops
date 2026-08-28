@@ -40,68 +40,13 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/query-expansion-bound-stress.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/v-rule-save-flood-stress.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/package.json",
-      ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts",
-      "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
-      "mcp_server/stress_test/substrate/README.md",
-      "stress_test/substrate/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "stress_test/README.md",
-      "stress_test/substrate/run-substrate-stress-harness.mjs",
       "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "run-substrate-stress-harness.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "substrate-runner-harness.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "query-expansion-bound-stress.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/query-expansion-bound-stress.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "v-rule-save-flood-stress.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/v-rule-save-flood-stress.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "vitest.stress.config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -203,11 +148,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Read Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The canonical Vitest stress suite in `mcpserver/stresstest/` is provider-agnostic by design",
     "created_at": "2026-05-14T21:40:55.576Z",
-    "last_save_at": "2026-07-17T17:19:20.767Z",
+    "last_save_at": "2026-08-28T15:59:37.941Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49fec3e3fc9e4e323fe0147a2165e7f7407351798cc0b1b40a4880e0db8c8471",
+    "source_fingerprint": "sha256:39c2bc5e384805c92beda6691030e1686204648503912973afc7436be77311cd",
     "source_doc_hashes": {
       "spec.md": "721d38bb7dfa0e5a74ab9a9f5986eea5c5981affb8321c039e1eaed194384e06",
       "plan.md": "6c194405c48fc2b506b091b0f6a8d94fc81910389d8927928117eaa18f2f69b8",
       "tasks.md": "ee73f908d3a4269f1fe6b8e23898fb7ed911db2157ad41716205a4a33ae2a5d2",
       "checklist.md": "5f6ce39b67e1049c6e17f79f9ce8c52e6b0f518e4af3255988981ce880b05f5d",
-      "implementation-summary.md": "6bec2f24eb7a86bb0b07dd29ace3bf40cbbc1a231f6f79a6046a343d57b57b62"
+      "implementation-summary.md": "820a5f4d11afde2272a12ef7d4aa6da6e8d1da1319a5f0bc2c615a0c874bc5fe"
     },
     "last_active_child_id": null,
     "last_active_at": null

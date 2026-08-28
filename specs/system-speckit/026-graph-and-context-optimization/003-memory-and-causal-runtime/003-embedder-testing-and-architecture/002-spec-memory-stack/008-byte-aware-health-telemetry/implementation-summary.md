@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/008-byte-aware-health-telemetry` |
+| **Spec Folder** | 008-byte-aware-health-telemetry |
 | **Completed** | 2026-05-18 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Doctor Commands needs a scoped verify and ux phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:43.905Z",
+    "last_save_at": "2026-08-28T16:00:10.843Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee3c2b642faaeaad3ebe0e7f4a7a5461b3db3082e88305381604a15dc2a7ddcf",
+    "source_fingerprint": "sha256:981843e03ef679d4e83433f0ff516d3403ac64607a9ee7c79c5b7363da084f5e",
     "source_doc_hashes": {
       "spec.md": "ed42de7620c370eed4a5976c85020462d37c851a00b4f10804bf2fd942e0d4dd",
       "plan.md": "aeefc435cca4dba02f341faefc3478e4a3963e97b3261acd0c9e0e605c08e9aa",
       "tasks.md": "f217d615ee87adc913460fcb3f9082f79c8451e4e1b3ff3ae989623ed61f042c",
-      "implementation-summary.md": "7ec3e5e3e8d4d4e9d355e368453f4cb03cae08ba58e17307baa0145e51c673a0"
+      "implementation-summary.md": "11c4b224e0a0326c3f126bc382e0f52109765293c18722333c362839c14ed297"
     },
     "last_active_child_id": null,
     "last_active_at": null

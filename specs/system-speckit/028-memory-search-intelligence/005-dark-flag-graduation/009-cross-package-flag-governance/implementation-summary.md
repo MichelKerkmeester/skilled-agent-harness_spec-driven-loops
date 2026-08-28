@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 016-cross-package-flag-governance |
+| **Spec Folder** | 009-cross-package-flag-governance |
 | **Completed** | 2026-07-09 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

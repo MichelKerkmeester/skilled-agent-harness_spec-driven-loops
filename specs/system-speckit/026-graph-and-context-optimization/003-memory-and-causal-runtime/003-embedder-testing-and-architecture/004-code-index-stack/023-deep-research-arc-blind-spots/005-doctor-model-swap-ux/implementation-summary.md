@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/005-doctor-model-swap-ux` |
+| **Spec Folder** | 005-doctor-model-swap-ux |
 | **Completed** | 2026-05-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

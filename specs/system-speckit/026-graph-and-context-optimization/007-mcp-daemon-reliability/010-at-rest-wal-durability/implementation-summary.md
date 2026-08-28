@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `010-at-rest-wal-durability` |
+| **Spec Folder** | 010-at-rest-wal-durability |
 | **Completed** | 2026-05-29 |
 | **Level** | 2 |
 | **Status** | Implemented (tsc + 385 tests green; benchmark on a DB copy; focused review 0 defects; strict-validate 0/0) |

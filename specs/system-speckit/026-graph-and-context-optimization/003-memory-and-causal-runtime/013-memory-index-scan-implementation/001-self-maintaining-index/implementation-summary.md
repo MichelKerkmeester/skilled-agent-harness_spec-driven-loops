@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 013-memory-index-scan-implementation |
+| **Spec Folder** | 001-self-maintaining-index |
 | **Status** | Shipped & deployed. **Phases 1-3** (2026-05-31): coalescing + async drain + move reconciliation. **Phase 4** (council follow-up, 2026-06-01): active-row uniqueness guard (deprecate-before-insert + v28 partial unique index) + multi-tenant scope isolation — commit `942ad78d9c`; clean index rebuild → 9614 rows / 9614 vectors / 0 missing (`healthy_fresh`). Checkpoint-v2 (D) + MCP front-proxy (E) re-deferred — see `handover.md` §8. |
 | **Level** | 2 |
 | **Created** | 2026-05-31 |

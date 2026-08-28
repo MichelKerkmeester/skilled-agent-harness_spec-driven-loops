@@ -11,7 +11,7 @@ contextType: "implementation"
 parent: "skilled-agent-orchestration/125-sk-doc-parent"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/011-smart-router-alignment"
+    packet_pointer: "sk-doc/014-sk-doc-parent/011-smart-router-alignment"
     last_updated_at: "2026-07-07T06:49:18.161Z"
     last_updated_by: "claude-sonnet"
     recent_action: "Spec/plan/tasks authored; audit and alignment not yet started"

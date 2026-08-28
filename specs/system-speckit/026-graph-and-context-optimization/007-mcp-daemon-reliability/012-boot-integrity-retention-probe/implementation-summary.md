@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `012-boot-integrity-retention-probe` |
+| **Spec Folder** | 012-boot-integrity-retention-probe |
 | **Completed** | 2026-05-29 |
 | **Level** | 2 |
 | **Status** | implemented |

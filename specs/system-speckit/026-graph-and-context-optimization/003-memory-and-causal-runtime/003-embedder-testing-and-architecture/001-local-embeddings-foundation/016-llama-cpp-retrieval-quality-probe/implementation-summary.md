@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `016-llama-cpp-retrieval-quality-probe` |
+| **Spec Folder** | 016-llama-cpp-retrieval-quality-probe |
 | **Completed** | 2026-05-13 |
 | **Level** | 1 |
 | **Status** | Complete |

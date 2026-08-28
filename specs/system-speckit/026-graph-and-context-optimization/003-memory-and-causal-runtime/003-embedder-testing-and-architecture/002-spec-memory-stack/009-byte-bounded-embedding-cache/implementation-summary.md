@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/009-byte-bounded-embedding-cache` |
+| **Spec Folder** | 009-byte-bounded-embedding-cache |
 | **Completed** | 2026-05-18 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

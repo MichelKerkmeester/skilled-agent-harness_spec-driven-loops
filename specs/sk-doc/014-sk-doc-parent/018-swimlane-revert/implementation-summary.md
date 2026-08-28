@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/018-swimlane-revert"
+    packet_pointer: "sk-doc/014-sk-doc-parent/018-swimlane-revert"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus"
     recent_action: "Reverted widening; validator exit 0"

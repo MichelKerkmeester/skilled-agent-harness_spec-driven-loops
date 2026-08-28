@@ -36,26 +36,12 @@
     "importance_tier": "useful",
     "status": "complete",
     "key_files": [
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/bin/mk-code-index-launcher.cjs",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -187,11 +173,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "js",
+        "kind": "technology",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "one-line",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Propagate skill-advisor's EPERM handling in leaseHeldFromFile to mk-spec-memory and mk-code-index launchers. Closes the -32000 MCP reconnect failure where process.kill(pid, 0) returns EPERM in the Claude/Codex sandbox and the two launchers crash because they only handle ESRCH.",
     "created_at": "2026-05-18T20:00:10.250Z",
-    "last_save_at": "2026-07-17T17:19:25.523Z",
+    "last_save_at": "2026-08-28T15:59:46.150Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24e5db3d772e5bfc6a4a11952c1353ed3fdb0b28b788d25f4faefffe67f35705",
+    "source_fingerprint": "sha256:2f5a4dc168c917e96b5e4aa43f61cfdac1158875920bccafcac25f94f72b9b5f",
     "source_doc_hashes": {
       "spec.md": "82d59d4bc3148d4431238511047cc651bc019ed61bf22937a2858adb94659356",
       "plan.md": "eca147581ef863a66d4d3766208bce8c94cad34805ea95d2f4d75b270b74dbd0",
       "tasks.md": "6a5dfd65cd77b74a1895f2cb257e69d2158c9d111176f8b5805d1988a89f6d2d",
-      "implementation-summary.md": "7c83e4f0b7ee41c265d9821d8ac2fa1915830d7239b828a7607167075725cba3"
+      "implementation-summary.md": "153631922660bb037111142296372418fb11bcf12488a5f62192cdefd7e8799b"
     },
     "last_active_child_id": null,
     "last_active_at": null

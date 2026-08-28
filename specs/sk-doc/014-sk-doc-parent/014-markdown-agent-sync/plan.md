@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/014-markdown-agent-sync"
+    packet_pointer: "sk-doc/014-sk-doc-parent/014-markdown-agent-sync"
     last_updated_at: "2026-07-07T06:45:57.931Z"
     last_updated_by: "claude-sonnet"
     recent_action: "Author phase-014 plan"

@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-skill-readme-standardization/013-mcp-click-up-readme"
+    packet_pointer: "sk-doc/016-create-diff-mode/014-skill-readme-standardization/013-mcp-click-up-readme"
     last_updated_at: "2026-06-07T12:50:50Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "All phase-013 tasks complete"

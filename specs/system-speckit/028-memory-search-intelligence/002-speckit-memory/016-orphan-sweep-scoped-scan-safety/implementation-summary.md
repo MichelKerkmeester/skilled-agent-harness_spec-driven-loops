@@ -42,7 +42,7 @@ answered_questions:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 012-orphan-sweep-scoped-scan-safety |
+| **Spec Folder** | 016-orphan-sweep-scoped-scan-safety |
 | **Status** | IMPLEMENTED |
 | **Completed** | 2026-07-09 |
 | **Level** | 2 |

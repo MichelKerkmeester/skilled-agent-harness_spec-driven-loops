@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/012-canonical-vector-shard-split` |
+| **Spec Folder** | 012-canonical-vector-shard-split |
 | **Completed** | Implementation complete; verification passed with documented handler-memory-save baseline |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

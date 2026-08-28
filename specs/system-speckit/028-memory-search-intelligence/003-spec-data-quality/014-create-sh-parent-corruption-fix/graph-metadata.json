@@ -35,26 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "test-phase-system.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -186,11 +172,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`create.sh --phase --phase-parent <existing-packet> --phase-names <name> ...` rebinds `FEATUREDIR` to the existing parent (`create.sh:1046-1062`) but still calls the parent description generator with the append request's own feature description (`create.sh:1310-1317`)",
     "created_at": "2026-07-02T15:04:28.155Z",
-    "last_save_at": "2026-07-17T17:19:53.468Z",
+    "last_save_at": "2026-08-28T16:00:23.846Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:78c645c49fe3d3b0b2835cb930f3b0495ab9029ff603486927b161e9771ea931",
+    "source_fingerprint": "sha256:c62797d9768e9224f92dfe556d290cd0607eee8621a6c5fc3cfffeacc075a9f2",
     "source_doc_hashes": {
       "spec.md": "68974381e621547a76abd44d800bec1a4554ebc8133442d01735f2cc8fbca14c",
       "plan.md": "7f4fce06f8b650c885f58d8fbb0edfc21a802b8df6075e796502bfdf6ce3a01d",
       "tasks.md": "7b68813d735866c0d1971de4aad799683d21cb8baf0b19bfd7b472464db6ae53",
-      "implementation-summary.md": "92ed27ab5efae8c4a3b55b06f40885f20e1f43e902bae06f3be922dc52bcc91e"
+      "implementation-summary.md": "58c216e80f68e70404e22870b2a77b1e948d17f392c6047e6cad0af9616b979e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -44,7 +44,6 @@
       "tasks.md",
       "checklist.md",
       "plan.md",
-      ".opencode/package.json",
       "implementation-summary.md"
     ],
     "entities": [
@@ -70,12 +69,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/package.json",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A GPT-5.5-fast (high) audit dispatched via cli-opencode across the 8 phases of the 028-memory-search-intelligence packet (10 parallel sweeps) surfaced 75 findings: 24 high/critical drift/bug/inconsistency issues (independently re-verified against real files, 24/24 confirmed) and 51 unverified medium/low findings from the single sweep pass",
     "created_at": "2026-07-01T07:28:37.642Z",
-    "last_save_at": "2026-07-17T17:19:53.133Z",
+    "last_save_at": "2026-08-28T16:00:22.872Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0027965c8d9a1621c541c651426de355e8ed666418791b3b019f1be86298633",
+    "source_fingerprint": "sha256:e5a4ed3f089d4aa7f121099371f51f8ced8e0f0ed1c05172a9c2cbed73600038",
     "source_doc_hashes": {
       "spec.md": "b5eb14fd589cc3a1e44beb90281402bdea6c7acd468f3bd81dee706cb81d5e01",
       "plan.md": "101e48f7544000a9fdc8598f5705152e552fc484532efc9f55f914c578bab5b0",
       "tasks.md": "0f73e3eb74524a9a50a2f6d4da0666ba2ac27eb7cba3b3e00dbe6d3514c94f66",
       "checklist.md": "ad2066b6e18c5ff9257de20700c92b6edb619c6d08e2c9cf66469c8681023828",
-      "implementation-summary.md": "00ca34e690699cb8846ccd28930a6d497780613e172b831fecd5e6db8e310e60"
+      "implementation-summary.md": "845b255f7fe521c819c9dda67592249f69df59eff8f8f6091143e5f901330f6b"
     },
     "last_active_child_id": null,
     "last_active_at": null

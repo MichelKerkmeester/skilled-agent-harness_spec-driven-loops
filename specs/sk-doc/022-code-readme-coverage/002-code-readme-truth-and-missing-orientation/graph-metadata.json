@@ -197,7 +197,7 @@
     ],
     "causal_summary": "These are the only findings in the program with real operator cost",
     "created_at": "2026-07-30T18:58:50.819Z",
-    "last_save_at": "2026-08-28T15:53:22.997Z",
+    "last_save_at": "2026-08-28T15:59:25.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5dc7230f4fe5018972986936b72be6fc557dde310022983a079d1999f1628e19",
+    "source_fingerprint": "sha256:96c89e7988e867600cb05f8a46570ea0954b0d79ff18bb969684ae2c46fac484",
     "source_doc_hashes": {
       "spec.md": "7eda66dda27bac369fcf3994cc6b2fa6d91d227b208b2c91228253f3822ad691",
-      "plan.md": "8ec7eab898bf60f4fec0cbe4d119b4fb42009db8593c0826fe4804cad5ad2c97",
-      "tasks.md": "113df828728d66e67ddda26f5aad3c6fde8570e6b8b511d81bba2b19bbcfefbe",
-      "checklist.md": "b47c6a1637defae57b74d70b1ce55d73ebc8f4560bf9158d2442223fcba89e2f",
-      "implementation-summary.md": "39549a3f7e9dafc9dca53f7bcb69b7eddfd5630724c2627af6d9602a52e20b4d"
+      "plan.md": "b0976586f49245d266dc0c0206a8d4d73376c8c949393fdc67cd598c07476e6b",
+      "tasks.md": "fe9782dee970f6a094c1e3b77502b63748fd2c58252a4e40b6e58ca5e69430ac",
+      "checklist.md": "1c689b85e0fa69310e0dec13d73038cd854ea4df9459eb3f2fd52f4a92688f1c",
+      "implementation-summary.md": "cffc89de18f48335db2385f6e343ca72c5f5c009f9555c04cf2a05ae1515648b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/004-doctor-commands/003-router-rewire |
+| **Spec Folder** | 003-router-rewire |
 | **Completed** | 2026-06-10 |
 | **Level** | 1 |
 | **Status** | Completed |

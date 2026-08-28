@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 015-storage-adapter-ports |
+| **Spec Folder** | 003-storage-adapter-ports |
 | **Completed** | Slices 1-5 complete; final conservative routing verified |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

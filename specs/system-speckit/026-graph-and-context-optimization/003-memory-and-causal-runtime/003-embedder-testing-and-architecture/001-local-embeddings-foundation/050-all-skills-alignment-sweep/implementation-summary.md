@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `015-all-skills-alignment-sweep` |
+| **Spec Folder** | 050-all-skills-alignment-sweep |
 | **Started** | 2026-05-14 |
 | **Completed** | 2026-05-14 |
 | **Level** | 3 |

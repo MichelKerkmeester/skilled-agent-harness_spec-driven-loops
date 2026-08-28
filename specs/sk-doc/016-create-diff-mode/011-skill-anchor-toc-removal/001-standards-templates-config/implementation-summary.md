@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/011-skill-anchor-toc-removal/001-standards-templates-config"
+    packet_pointer: "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/001-standards-templates-config"
     last_updated_at: "2026-05-26T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Flipped TOC config/standards and templates"
@@ -32,7 +32,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 117-skill-anchor-toc-removal/001-standards-templates-config |
+| **Spec Folder** | 001-standards-templates-config |
 | **Completed** | 2026-05-26 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

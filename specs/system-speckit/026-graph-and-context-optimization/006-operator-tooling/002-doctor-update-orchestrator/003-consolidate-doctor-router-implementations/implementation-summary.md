@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/003-skill-advisor-routing-engine-consolidation` |
+| **Spec Folder** | 003-consolidate-doctor-router-implementations |
 | **Status** | In Progress |
 | **Level** | 2 |
 | **Phase** | Phase 1: additive router |

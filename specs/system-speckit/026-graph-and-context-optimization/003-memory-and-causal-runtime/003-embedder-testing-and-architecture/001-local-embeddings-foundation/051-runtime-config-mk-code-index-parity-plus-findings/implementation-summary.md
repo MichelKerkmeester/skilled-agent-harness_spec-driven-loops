@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/051-runtime-config-mk-code-index-parity-plus-findings` |
+| **Spec Folder** | 051-runtime-config-mk-code-index-parity-plus-findings |
 | **Completed** | 2026-05-14 |
 | **Level** | 3 |
 | **Branch** | `main` |

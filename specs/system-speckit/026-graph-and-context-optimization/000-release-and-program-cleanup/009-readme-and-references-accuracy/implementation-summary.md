@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/133-readme-and-references-accuracy` |
+| **Spec Folder** | 009-readme-and-references-accuracy |
 | **Completed** | 2026-06-03 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

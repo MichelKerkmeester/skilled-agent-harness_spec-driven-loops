@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 031-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup |
+| **Spec Folder** | 006-comment-ephemeral-pointer-cleanup |
 | **Completed** | 2026-05-29 |
 | **Level** | 1 |
 

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Reconcile .opencode, .claude, and .codex agent mirror parity with the agent-io contract and verification-discipline doctrine",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:37.866Z",
+    "last_save_at": "2026-08-28T15:59:59.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:91d1bdd67a059bb5622742bf80692b14a6646d03e05d42e50c6a087af2b25f37",
+    "source_fingerprint": "sha256:464f78a129e5c7f2f3886d120a377de1e530749366d37694e469f38c1f44d2bf",
     "source_doc_hashes": {
       "spec.md": "0e784fc09ceba2e064d11a86da5c1d70b5a4e8f2638e24252180bca5813cfdd5",
       "plan.md": "07bdba24b302157d9139713ad79e04ac2e3c625b4cf2db2fbbf2112195b8dc91",
       "tasks.md": "8366498787033bdd578dca46142eff6f11db7d21b9b3b060a5a6adf281eb9300",
-      "implementation-summary.md": "6d6cc59b6643711a721c791947fe7323a9d89fa1584fc3a3d96b69eeb2ebadf5"
+      "implementation-summary.md": "d943da85540bda11ac9ea1b4c7644f829e85013e535fd3ed3a886c94628b83a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

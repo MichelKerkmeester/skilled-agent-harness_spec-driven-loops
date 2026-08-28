@@ -174,7 +174,7 @@
     ],
     "causal_summary": "Both audits found detached sidecars and in-process adapter caches that can retain model/client state",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-07-17T17:19:27.699Z",
+    "last_save_at": "2026-08-28T15:59:49.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -183,12 +183,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:29f7d090ed5a962ed94d35b752574e438b4a34b70e487a5c08f26ddafba407f1",
+    "source_fingerprint": "sha256:cf77e96a5b922b14d552df47fa4cf5c16d38f7542ae3614bf8eee12640ced2dd",
     "source_doc_hashes": {
       "spec.md": "b5899f5e3c4a43862e833be0bc03b56fccd6e935d429422b6b2b67a71ab6b56e",
       "plan.md": "68dcf2dabea33c4885df884b37c72bc1fe313312a25f82d655a4ae53cbce183e",
       "tasks.md": "a8c52de750e34a7ab343d54c95902c3c8ab9d2fc99569b9a1ec33ef9ba367c05",
-      "implementation-summary.md": "52737236cb1ac2f26c753e9ebfc8faba04dd05c922cf01cadff9da019ed73a9b"
+      "implementation-summary.md": "77c55e28219f62736274d2d8281f468fa8eb865715217ac159bd02ce3953d395"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 018-git-hooks-reinstall-and-guard |
+| **Spec Folder** | 025-git-hooks-reinstall-and-guard |
 | **Completed** | 2026-07-09 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

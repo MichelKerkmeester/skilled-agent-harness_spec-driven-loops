@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 049-derive-status-explicit-bypass-fix |
+| **Spec Folder** | 015-derive-status-explicit-bypass-fix |
 | **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

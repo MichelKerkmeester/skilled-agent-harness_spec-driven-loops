@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/011-skill-anchor-toc-removal/002-toc-removal"
+    packet_pointer: "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/002-toc-removal"
     last_updated_at: "2026-05-26T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Removed all TOC blocks from skill markdown"
@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 117-skill-anchor-toc-removal/002-toc-removal |
+| **Spec Folder** | 002-toc-removal |
 | **Completed** | 2026-05-26 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

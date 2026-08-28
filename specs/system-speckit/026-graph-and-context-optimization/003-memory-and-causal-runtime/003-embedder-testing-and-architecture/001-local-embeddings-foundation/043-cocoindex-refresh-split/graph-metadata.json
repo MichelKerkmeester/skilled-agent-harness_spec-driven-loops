@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Packet 035 found that MCP requests can time out while CocoIndex continues daemon-side work, and packet 041 added the request IDs and timings needed to see that cost",
     "created_at": "2026-05-14T16:12:41Z",
-    "last_save_at": "2026-07-17T17:19:20.428Z",
+    "last_save_at": "2026-08-28T15:59:36.248Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0cadb516235ed5c5119f6fe47584668e1928b97afa24b077ae156c43f0055b38",
+    "source_fingerprint": "sha256:9c1dccea3db1ce8d69dfb6baa480fe0c258ed3b7966a127845b249098a7f2ae8",
     "source_doc_hashes": {
       "spec.md": "39c25f40ef71b762fe33a4cdd6bfebce1382e64407cdda7e628daad3bb64d4e5",
       "plan.md": "94410f002b05eb4cf213892b8613db313728eb32b3b540fde7438b5b1f2cd287",
       "tasks.md": "f5873f4e2227959a6d2b770ac0ff85e648c017f1168174327daf00f153e1b83c",
       "checklist.md": "83e70bfa579c3016060fdb55eb8d94fa27eaac08e6644b74e29a6af94faec216",
       "decision-record.md": "873a914e8fd0e0c4e846364380c019515beefacb8db6b06a98ad62770698b7c5",
-      "implementation-summary.md": "e0f428eba859416ca938466b3eb00040411ab7927faeb21d92c7a3f5f7686b0c"
+      "implementation-summary.md": "4d0f8367efc9ce41f7d4f7ebdd77aa7b10d4bc44bbefbfc3f44453afacf03777"
     },
     "last_active_child_id": null,
     "last_active_at": null

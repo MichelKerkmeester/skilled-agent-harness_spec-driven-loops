@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-skill-readme-standardization/004-cli-devin-readme"
+    packet_pointer: "sk-doc/016-create-diff-mode/014-skill-readme-standardization/004-cli-devin-readme"
     last_updated_at: "2026-06-07T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped cli-devin README via the full recipe"

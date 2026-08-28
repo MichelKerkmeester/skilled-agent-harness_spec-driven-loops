@@ -43,9 +43,7 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-code-graph/package-lock.json",
       "implementation-summary.md",
-      "tests/context-server.vitest.ts",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -53,21 +51,9 @@
     ],
     "entities": [
       {
-        "name": "package-lock.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-code-graph/package-lock.json",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.vitest.ts",
-        "kind": "test",
-        "path": "tests/context-server.vitest.ts",
         "source": "derived"
       },
       {
@@ -195,11 +181,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Fix the 3 `Cannot find module '@modelcontextprotocol/sdk/*'` errors blocking `mcp_server/npm run build` by repairing the post-extraction dependency boundary.",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-07-17T17:19:19.787Z",
+    "last_save_at": "2026-08-28T15:59:34.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:12:00Z",
     "source_docs": [
@@ -209,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9f682cf6b92b4c9136895acd87532167292207e176170a1f011bd4966bf30e2",
+    "source_fingerprint": "sha256:6257570e3881284fe6c76a1988adf06ccca94a95640bd15eea60a9190d24749d",
     "source_doc_hashes": {
       "spec.md": "83013da14f0e5861d0ab13e9be2c6fd493e1790d7749412dae083535d8fead6b",
       "plan.md": "547e7585d11e2ca52fd5124291d75e9e0992154e0624fe6ea7c50efb553b3108",
       "tasks.md": "f6b694d09f57ae0ef41025f68e1ddcf3f6f12f66db57c9d3bc34588c58d38c6a",
       "checklist.md": "9321775613be62c19b6ad640e6a0b9a27f7c919610cc17b3712af81b95a580a8",
-      "implementation-summary.md": "ff73f7e82940c7f9f2dfc08ae37e7716b0d8ad4f7b40f3ea3920faeb97b9925c"
+      "implementation-summary.md": "586ea5e7afc43b3ae4183189e82f2eb67b9676edc395c11c96ca8cbebcc95f61"
     },
     "last_active_child_id": null,
     "last_active_at": null

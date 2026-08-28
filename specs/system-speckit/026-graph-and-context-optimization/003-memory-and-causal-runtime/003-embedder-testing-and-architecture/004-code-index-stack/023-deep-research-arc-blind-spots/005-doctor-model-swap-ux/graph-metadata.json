@@ -194,7 +194,7 @@
     ],
     "causal_summary": "CocoIndex operators had no single preflight for three high-trust failure modes: a stale global `ccc`, non-commercial default reranker licensing, and expensive model-swap reindexing",
     "created_at": "2026-05-19T20:36:58.000Z",
-    "last_save_at": "2026-07-17T17:19:24.215Z",
+    "last_save_at": "2026-08-28T15:59:44.163Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ffadcffca7ea829a6407f458b2cf5822e5b188c6cb9675a0fb05779eceb1f746",
+    "source_fingerprint": "sha256:7db32105e869f8d4288e565d2b8ed0c0e9b1124e520fe2ccede5b73c55481e47",
     "source_doc_hashes": {
       "spec.md": "ecb4331b5cb0366cc04f70b8724447a071f46b34d11cb49bcd04bcd35af2f31b",
       "plan.md": "d45d9834fb3e262f143097bfbbb307325845b8ad5e1c18acc173559a7202554e",
       "tasks.md": "403fd6ac47c27b5620507ec17330ee9466d5090ae8a50a01be0f84c8a53696a1",
       "checklist.md": "b8dd00b661532ceede853e561d33435d769ea56ac508e44b2873598c52193027",
-      "implementation-summary.md": "45d97505807fa7e499f4c517491cfe424f3a85a4bdbc5613f5658b91a7800fb5"
+      "implementation-summary.md": "59fa84c305e485e0ccb4dda40cc8a2e3ebe73fd8e1b689fdb8a4c0076c051074"
     },
     "last_active_child_id": null,
     "last_active_at": null

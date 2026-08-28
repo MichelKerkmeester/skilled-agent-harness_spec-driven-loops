@@ -41,10 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".codex/config.toml",
-      ".claude/mcp.json",
-      ".opencode/bin/mk-code-index-launcher.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/shared-daemon-runner-helpers.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -53,30 +49,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "shared-daemon-runner-helpers.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/shared-daemon-runner-helpers.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -196,11 +168,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Scaffold Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "named",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `mk-code-index` rename had landed in source and `.claude/mcp.json`, but `opencode.json`, `.codex/config.toml`, and `.gemini/settings.json` still used the legacy `systemcodegraph` config key and launcher path",
     "created_at": "2026-05-14T19:23:26Z",
-    "last_save_at": "2026-07-17T17:19:20.761Z",
+    "last_save_at": "2026-08-28T15:59:38.612Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d1da3e952ed51728aa8fdb354dc72ef1439b83a8b35b65b041635de403f33a10",
+    "source_fingerprint": "sha256:010e2b232d40d3c64127962aa5a03666b953c953df751e478e844bc45dbc47cc",
     "source_doc_hashes": {
       "spec.md": "913f51cec99a0e9d7852f805b6f982cf92ae64168a3024e57953609125034ef7",
       "plan.md": "1824a28bfc34473ca57c795ba1eac0bd23f3218ed0e15c1dc747e82dd58957bf",
       "tasks.md": "199a24f906cd181a088070b42623713b256689315a6eecd0af0933603cda469b",
       "checklist.md": "c6cb462010004570a20e27f9855c5efc37a76ca0ca89b7c479155239bb4223c9",
       "decision-record.md": "83970ed217bf2950dff175933b3503e1352bc936c8424e65c1fd4e6686d89c96",
-      "implementation-summary.md": "395e2b0d99cec485856caab6cbb0934b9a9466d303f6249079e7b455775648a8"
+      "implementation-summary.md": "816455e281f8e14227b9dd4a0f5581a7590bcd50c8c8dcf45d6dd7fd5bf2724c"
     },
     "last_active_child_id": null,
     "last_active_at": null

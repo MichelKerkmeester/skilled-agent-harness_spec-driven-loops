@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-research/003-sk-design-routing-research |
+| **Spec Folder** | 003-sk-design-routing-research |
 | **Status** | Complete |
 | **Completed** | Research Complete (100%) |
 | **Level** | 1 |

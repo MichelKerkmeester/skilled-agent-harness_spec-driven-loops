@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/002-telemetry-and-process-verification-harness` |
+| **Spec Folder** | 002-telemetry-and-process-verification-harness |
 | **Prepared** | 2026-05-22 |
 | **Completed** | 2026-05-22 |
 | **Level** | 1 |

@@ -28,7 +28,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `004-retention-reducer` |
+| **Spec Folder** | 004-retention-reducer |
 | **Level** | 2 |
 | **Status** | Implemented |
 <!-- /ANCHOR:metadata -->

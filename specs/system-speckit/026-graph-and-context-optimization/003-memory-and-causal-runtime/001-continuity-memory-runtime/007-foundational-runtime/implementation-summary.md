@@ -52,7 +52,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/` |
+| **Spec Folder** | 007-foundational-runtime |
 | **Parent Packet** | `026-graph-and-context-optimization` |
 | **Started** | 2026-04-17 14:04 (spec folder scaffold) |
 | **Completed** | 2026-04-17 18:00 (Wave D Cluster D3 merged) |

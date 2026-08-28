@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/002-scoped-preexec-and-handoff-gates` |
+| **Spec Folder** | 002-scoped-preexec-and-handoff-gates |
 | **Completed** | 2026-06-10 |
 | **Level** | 2 |
 | **Status** | Implemented with scope exceptions |

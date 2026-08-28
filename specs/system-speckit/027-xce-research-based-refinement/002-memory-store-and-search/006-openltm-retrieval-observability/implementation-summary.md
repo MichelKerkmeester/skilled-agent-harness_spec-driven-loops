@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 008-openltm-retrieval-observability |
+| **Spec Folder** | 006-openltm-retrieval-observability |
 | **Completed** | 2026-06-10 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

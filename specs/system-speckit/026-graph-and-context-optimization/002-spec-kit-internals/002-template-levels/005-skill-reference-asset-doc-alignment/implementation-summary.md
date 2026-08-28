@@ -46,7 +46,7 @@ _memory:
 | **Feature** | skill references assets alignment |
 | **Status** | Complete |
 | **Completed** | 2026-05-02 |
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/005-skill-reference-asset-doc-alignment` |
+| **Spec Folder** | 005-skill-reference-asset-doc-alignment |
 <!-- /ANCHOR:metadata -->
 
 ---

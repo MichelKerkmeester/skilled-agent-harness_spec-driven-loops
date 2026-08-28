@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 027-envelope-fidelity-enforcement |
+| **Spec Folder** | 037-envelope-fidelity-enforcement |
 | **Completed** | 2026-06-22, status COMPLETE |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

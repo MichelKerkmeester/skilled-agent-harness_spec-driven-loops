@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/010-embedder-sidecar-execution` |
+| **Spec Folder** | 010-embedder-sidecar-execution |
 | **Completed** | 2026-05-19 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

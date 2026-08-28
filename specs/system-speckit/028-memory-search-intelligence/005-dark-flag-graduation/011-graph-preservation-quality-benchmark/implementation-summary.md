@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 021-graph-preservation-quality-benchmark |
+| **Spec Folder** | 011-graph-preservation-quality-benchmark |
 | **Status** | COMPLETE |
 | **Completed** | 2026-07-10 |
 | **Level** | 3 |

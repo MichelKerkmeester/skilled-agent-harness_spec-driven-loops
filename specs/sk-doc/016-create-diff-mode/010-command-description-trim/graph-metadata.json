@@ -36,40 +36,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-prompt/SKILL.md",
-      ".opencode/commands/create/changelog.md",
-      ".opencode/commands/memory/manage.md",
-      ".opencode/commands/memory/search.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/changelog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manage.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/manage.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -189,11 +161,35 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Final",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Same",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After packets 083 (skills+commands first pass), 086 (audit tooling shipped), and 090 (agent trims), 8 items remain `OVER-SOFT` in the audit: `sk-prompt` (132/130) and 7 commands clustered at 112-122 chars (target 110)",
     "created_at": "2026-05-06T17:04:32.499Z",
-    "last_save_at": "2026-07-17T14:37:12.849Z",
+    "last_save_at": "2026-08-28T15:57:32.188Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5112921f46d42ceec748e97fe2d865b0581ea631de71e521928436cf6f97b020",
+    "source_fingerprint": "sha256:cc5e8e1a94abc0b920ee149739ae89f851914257005f69e0b009edd3e88479b2",
     "source_doc_hashes": {
-      "spec.md": "0eafff23490d52d009a1cc96ca36e24a4f0d6e31e6a1216f06d90b2275696b76",
-      "plan.md": "42bc69f46d8e9b53644e66ab94404faa7d1c39a06409f3afa7162d1283ff8fd0",
-      "tasks.md": "6e36414a91c7b1be77981ccf4ee08775fb1cdbdddddfa39002dd2434fdbc1866",
-      "implementation-summary.md": "c9a3cbee7db754177e177fe7b2fedcdc3ac987796636414f7559699dca02b563"
+      "spec.md": "ef87c2d913c34af225865780ae45485c2885cfe9b10e8d7a5f832aca68842797",
+      "plan.md": "08208c31fb2012f0fb3546551b4ed6301dbe3f584cb26afc398636e51611c035",
+      "tasks.md": "6f669dd4674c48bbe59999581d8c9afc016ff0db55275f284afd7d3fc76f1a7f",
+      "implementation-summary.md": "62deb8b84f6c6e0f25a36720e89a915ecd1e7b923063171e4369ac5de8f8080e"
     },
     "last_active_child_id": null,
     "last_active_at": null

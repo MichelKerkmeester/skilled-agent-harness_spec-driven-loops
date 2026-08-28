@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 048-create-sh-parent-corruption-fix |
+| **Spec Folder** | 014-create-sh-parent-corruption-fix |
 | **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

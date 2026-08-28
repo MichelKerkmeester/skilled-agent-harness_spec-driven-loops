@@ -42,16 +42,7 @@
       "plan.md",
       "tasks.md",
       "resource-map.md",
-      "implementation-summary.md",
-      ".opencode/install_guides/README.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/shared/README.md",
-      ".opencode/skills/system-spec-kit/shared/embeddings/README.md",
-      ".opencode/skills/system-spec-kit/shared/embeddings/providers/README.md",
-      "shared/README.md",
-      "shared/embeddings/README.md",
-      "shared/embeddings/providers/README.md",
-      ".opencode/skills/system-spec-kit/shared/mcp_server/database/README.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -82,12 +73,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/README.md",
         "source": "derived"
       },
       {
@@ -197,11 +182,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Inventory every README in the repo, identify staleness against the 014 line, and apply the edits to align canonical READMEs with current code state.",
     "created_at": "2026-05-13T15:30:00Z",
-    "last_save_at": "2026-07-17T17:19:19.140Z",
+    "last_save_at": "2026-08-28T15:59:34.256Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-13T15:30:00Z",
     "source_docs": [
@@ -211,12 +202,12 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:264a90f1da474afdbd7d5cd806ea7dc30b213896711dfe78d00bdf6058641c2c",
+    "source_fingerprint": "sha256:de6a424d37d89b61f42c77a399a7426412ec5f8a90dfc1ce11eebfee87e9f1c6",
     "source_doc_hashes": {
       "spec.md": "daa481d998163bcce447ae4200db88c3580e4af486c5164cfb2bf85c8a6a9450",
       "plan.md": "1eb568b839fbd7e600b9df83b9bcbb1c7c8b5a299ef9d8778224bcd484ba2fc8",
       "tasks.md": "95ca763af3e08acad783bf127a7ce6aba2b02efa57df2adbe3917a48b50fad9c",
-      "implementation-summary.md": "1c46c86352664c7cd4c7dc6fd8d84626b9eda41b4da741758ee4e3c608a956e3",
+      "implementation-summary.md": "341a5fe8485df6dc43e9b4cbfc62d3958d25fc2179215f7ed39d38309a4ebbaf",
       "resource-map.md": "29e68f0dca99a8715cab41425ba4c7874884bebdf843d6fbe8cd42f7494557b4"
     },
     "last_active_child_id": null,

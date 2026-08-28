@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename |
+| **Spec Folder** | 052-mk-spec-memory-rename |
 | **Completed** | 2026-05-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 014-self-healing-internals-hardening |
+| **Spec Folder** | 020-self-healing-internals-hardening |
 | **Status** | Implemented; all three fixes (F8/F11/F12) built and verified per this document's Verification section |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

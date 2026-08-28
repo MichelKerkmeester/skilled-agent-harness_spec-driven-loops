@@ -10,7 +10,7 @@ contextType: "implementation"
 parent: "skilled-agent-orchestration/125-sk-doc-parent"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/020-command-agent-template-conformance"
+    packet_pointer: "sk-doc/014-sk-doc-parent/020-command-agent-template-conformance"
     last_updated_at: "2026-07-07T14:31:04.000Z"
     last_updated_by: "claude-opus"
     recent_action: "Fixed agent detection+rule; routers via GPT-5.5"

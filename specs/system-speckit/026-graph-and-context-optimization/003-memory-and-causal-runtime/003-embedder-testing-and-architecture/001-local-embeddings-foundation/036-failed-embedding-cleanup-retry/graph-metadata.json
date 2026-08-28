@@ -43,7 +43,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/repair-failed-embeddings.mjs",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -51,12 +50,6 @@
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "repair-failed-embeddings.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/repair-failed-embeddings.mjs",
-        "source": "derived"
-      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
@@ -194,11 +187,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 037, 038, and 039 restored llama-cpp embedding-worker health and error behavior, but the active llama-cpp SQLite profile still contains historical rows that did not embed successfully before the worker was fixed",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:19.774Z",
+    "last_save_at": "2026-08-28T15:59:35.610Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ef0bf39f4ab8634a3939ecfa9c960ac25e85d8f11255089c2ca3245a5a2afbc",
+    "source_fingerprint": "sha256:e69d6f583b537d439f7ea00ad93a59c4ef853705739b9167ae2dc2552231ba13",
     "source_doc_hashes": {
       "spec.md": "afc15eb13aa01f9d32d55d86c7557ac5dde9a21c8a2538c87bb9a8e2c9d9a756",
       "plan.md": "a8b7f909ac44fe346b12bb6299f06aab91568fbd87e3afd96e7888cfb5e15e7c",
       "tasks.md": "45a7de4be7cf220d6cf5fc76b30d840c14eb581c8655ad5c10c20efc50c08dcb",
       "checklist.md": "25e2ca3c591353d64525ba5e91cf30c74350d558dc95d953375f38579ec74e73",
-      "implementation-summary.md": "d719a6a94b34037ac75ed9d3a32dad1a23e97f96225f59a2fcbf2ef67697d3be"
+      "implementation-summary.md": "ae47a5ddee4b2f2434d5a3148565e3bcb6fb0faa2543d98788d351f84a9422b2"
     },
     "last_active_child_id": null,
     "last_active_at": null

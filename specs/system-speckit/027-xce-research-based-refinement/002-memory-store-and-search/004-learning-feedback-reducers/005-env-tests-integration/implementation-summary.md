@@ -28,7 +28,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration` |
+| **Spec Folder** | 005-env-tests-integration |
 | **Level** | 2 |
 | **Status** | Complete |
 <!-- /ANCHOR:metadata -->

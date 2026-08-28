@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 031-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep |
+| **Spec Folder** | 007-ephemeral-pointer-guard-and-sweep |
 | **Completed** | 2026-05-29 |
 | **Level** | 1 |
 

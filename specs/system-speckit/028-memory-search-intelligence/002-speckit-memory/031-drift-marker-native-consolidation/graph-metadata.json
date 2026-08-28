@@ -37,92 +37,18 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
-      ".opencode/skills/system-spec-kit/mcp_server/core/config.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
-      "scripts/git-hooks/drift-marker-write.ts",
-      "mcp_server/api/index.ts",
-      "scripts/tests/drift-marker-write.vitest.ts",
       "implementation-summary.md",
-      "scripts/evals/check-no-mcp-lib-imports.ts",
-      "scripts/check-api-boundary.sh",
-      ".opencode/skills/system-spec-kit/scripts/git-hooks/drift-marker-write.ts",
       "decision-record.md",
-      "scripts/spec-folder/generate-description.ts",
-      "scripts/graph/backfill-graph-metadata.ts",
-      "api/index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-mutex-liveness.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts",
-      ".opencode/skills/system-spec-kit/scripts/check-api-boundary.sh"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md"
     ],
     "entities": [
-      {
-        "name": "memory-drift-marker.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
-        "source": "derived"
-      },
-      {
-        "name": "config.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/core/config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-drift-healing.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/memory-drift-healing.ts",
-        "source": "derived"
-      },
-      {
-        "name": "transaction-manager.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-folder-mutex.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/spec-folder-mutex.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "drift-marker-write.ts",
-        "kind": "code",
-        "path": "scripts/git-hooks/drift-marker-write.ts",
-        "source": "derived"
-      },
-      {
-        "name": "drift-marker-write.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/drift-marker-write.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-no-mcp-lib-imports.ts",
-        "kind": "code",
-        "path": "scripts/evals/check-no-mcp-lib-imports.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-api-boundary.sh",
-        "kind": "script",
-        "path": "scripts/check-api-boundary.sh",
         "source": "derived"
       },
       {
@@ -132,21 +58,27 @@
         "source": "derived"
       },
       {
-        "name": "generate-description.ts",
-        "kind": "code",
-        "path": "scripts/spec-folder/generate-description.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "code",
-        "path": "scripts/graph/backfill-graph-metadata.ts",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "spec-folder-mutex-liveness.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/spec-folder-mutex-liveness.vitest.ts",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -202,11 +134,65 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Answered Questions",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "New Entrypoint",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hook Shrink",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/scripts/git-hooks/lib/memory-drift-marker.sh` (143 lines) detects `.opencode/specs`",
     "created_at": "2026-07-09T20:28:44.767Z",
-    "last_save_at": "2026-07-17T17:19:49.005Z",
+    "last_save_at": "2026-08-28T16:00:15.479Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49868d288a332b0fb62d02f4f0198d9cb7f806a793aa080ea1d2fa467b8619d8",
+    "source_fingerprint": "sha256:f04db95c5ac502d16ca5ef4013fac8a6c627d88d6323177699cc4b8f104d09f4",
     "source_doc_hashes": {
       "spec.md": "49484fc8b62b4b97ea5f51f3866b3d5a81ee4aa79a6db8eb6d3fab9c7da84a39",
       "plan.md": "cafe26f54c50bba7f5ebcc96cf738d8923504563d34f4f994a148cd86a2b8932",
       "tasks.md": "48af9985bf16dca1c9d7fe77841fe1403d312181dc2b52ba2717ecc076556dbe",
       "checklist.md": "fc29607687a19c938ddefd2ef635e1bb1579346423a954e667036bd72ddc7649",
       "decision-record.md": "2a85363cde575c9d2efed7b0dd5ac849d6a9ba40ee56b80b41fcae9094d05330",
-      "implementation-summary.md": "d55dce8df3ab749cd08ec4c5e4e799b69359eb1ae820143a2d51a331f49ab1dc"
+      "implementation-summary.md": "bc5eba20e884eec78081958e0c39a356105c8a0c81030871e419cd4ddfb7a967"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -43,88 +43,14 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "handlers/save/pe-orchestration.ts",
-      "handlers/pe-gating.ts",
-      "handlers/save/types.ts",
-      "handlers/memory-index.ts",
-      "handlers/memory-save.ts",
-      "tests/pe-orchestration.vitest.ts",
-      "tests/handler-memory-index.vitest.ts",
-      "mcp_server/lib/utils/index-scope.ts",
-      "lib/governance/scope-governance.ts",
-      "scripts/memory/cleanup-index-scope-violations.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "tests/memory-governance.vitest.ts",
-      "tests/stage3-rerank-regression.vitest.ts",
-      "mcp_server/handlers/memory-save.ts",
-      "mcp_server/handlers/memory-index.ts"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "pe-orchestration.ts",
-        "kind": "code",
-        "path": "handlers/save/pe-orchestration.ts",
-        "source": "derived"
-      },
-      {
-        "name": "pe-gating.ts",
-        "kind": "code",
-        "path": "handlers/pe-gating.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "handlers/save/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "pe-orchestration.vitest.ts",
-        "kind": "test",
-        "path": "tests/pe-orchestration.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handler-memory-index.vitest.ts",
-        "kind": "test",
-        "path": "tests/handler-memory-index.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index-scope.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/utils/index-scope.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scope-governance.ts",
-        "kind": "code",
-        "path": "lib/governance/scope-governance.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cleanup-index-scope-violations.ts",
-        "kind": "code",
-        "path": "scripts/memory/cleanup-index-scope-violations.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -162,18 +88,6 @@
         "source": "derived"
       },
       {
-        "name": "memory-governance.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-governance.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage3-rerank-regression.vitest.ts",
-        "kind": "test",
-        "path": "tests/stage3-rerank-regression.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Memory Indexer Invariants",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,11 +122,83 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Merged Track",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execution Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two distinct invariant failures showed up simultaneously in the memory indexer:",
     "created_at": "2026-04-24T17:21:38.685Z",
-    "last_save_at": "2026-07-17T17:19:17.580Z",
+    "last_save_at": "2026-08-28T15:59:32.367Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e7c41eb58f43133f80a12f879dd7f323a16dc5226aa42d3c931f3966393ae4d",
+    "source_fingerprint": "sha256:47afb8f6f63c98e8c5b896c698b91160da2bc92b50ca0afa8008b78c092f1c22",
     "source_doc_hashes": {
       "spec.md": "f71f0fac84741825083a941a22996e3944110414739df75e6ce83854d20375fd",
       "plan.md": "fe360d5b65d11713fc1a26e06062a75f6eecabf9db85d09f7d7ef5719fef9dba",
       "tasks.md": "8d8b58877ee2677c9d094062c23a226725c6c3488a3106ced3e1fec9f9a65752",
       "checklist.md": "53fd24f923bb568e40ff00ef3e7b89afc38ea150fb7f75cb6650f1564ab68eaf",
       "decision-record.md": "be7b19dadd394d0cb28b639f3ce3f91fd099d462893c0333243865c4ca29b414",
-      "implementation-summary.md": "d9d3cc25788624f9b2402fbb35d93b7fd6efcd34ca7167b9625bc8c09f69e445"
+      "implementation-summary.md": "f7ae3d3268f5b00714f8f6dafdb0cc0cd129506fd914bfd96012f7fd7587fbdd"
     },
     "last_active_child_id": null,
     "last_active_at": null

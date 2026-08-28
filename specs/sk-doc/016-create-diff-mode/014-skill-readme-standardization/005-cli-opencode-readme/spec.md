@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-skill-readme-standardization/005-cli-opencode-readme"
+    packet_pointer: "sk-doc/016-create-diff-mode/014-skill-readme-standardization/005-cli-opencode-readme"
     last_updated_at: "2026-06-07T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped cli-opencode README; Batch A (cli-*) complete"

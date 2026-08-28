@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/136-scouted-bugfix-batch-3` |
+| **Spec Folder** | 003-scouted-bugfix-batch-3 |
 | **Completed** | 2026-06-03 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

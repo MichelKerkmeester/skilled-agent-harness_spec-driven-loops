@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-research/002-skill-advisor-routing-research |
+| **Spec Folder** | 002-skill-advisor-routing-research |
 | **Completed** | 2026-07-16 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
