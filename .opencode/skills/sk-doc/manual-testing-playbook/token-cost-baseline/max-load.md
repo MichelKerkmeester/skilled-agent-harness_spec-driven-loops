@@ -227,17 +227,17 @@ expected_leaf_resources:
   - workflow_mode: sk-create-feature-catalog
     leaf_resource_id: references/examples.md
   - workflow_mode: sk-create-diagram
-    leaf_resource_id: assets/approval-workflow-loops.md
+    leaf_resource_id: assets/ascii-patterns/approval-workflow-loops.md
   - workflow_mode: sk-create-diagram
-    leaf_resource_id: assets/decision-tree-flow.md
+    leaf_resource_id: assets/ascii-patterns/decision-tree-flow.md
   - workflow_mode: sk-create-diagram
-    leaf_resource_id: assets/parallel-execution.md
+    leaf_resource_id: assets/ascii-patterns/parallel-execution.md
   - workflow_mode: sk-create-diagram
-    leaf_resource_id: assets/simple-workflow.md
+    leaf_resource_id: assets/ascii-patterns/simple-workflow.md
   - workflow_mode: sk-create-diagram
-    leaf_resource_id: assets/system-architecture-swimlane.md
+    leaf_resource_id: assets/ascii-patterns/system-architecture-swimlane.md
   - workflow_mode: sk-create-diagram
-    leaf_resource_id: assets/user-onboarding.md
+    leaf_resource_id: assets/ascii-patterns/user-onboarding.md
   - workflow_mode: sk-create-diagram
     leaf_resource_id: references/README.md
   - workflow_mode: sk-create-diagram
