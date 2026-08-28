@@ -21,7 +21,7 @@
   "dependencies": {
     "@spec-kit/mcp-server": "file:../mcp-server",
     "@spec-kit/shared": "file:../shared",
-    "better-sqlite3": "12.6.2",
+    "better-sqlite3": "^12.11.1",
     "js-yaml": "^4.3.0",
     "sqlite-vec": "0.1.7-alpha.2"
   },
