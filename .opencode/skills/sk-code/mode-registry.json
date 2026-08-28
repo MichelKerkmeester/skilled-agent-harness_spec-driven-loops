@@ -16,7 +16,7 @@
   "extensions": {
     "surface-axis": {
       "description": "Declares the SURFACE axis. packetKind:'surface' entries are read-only domain-evidence packets (backendKind:'evidence-base', routingClass:'metadata', mutatesWorkspace:false) bundled alongside a workflow mode via routerPolicy.outcomes.surfaceBundle. They bundle stack knowledge plus the workflow doctrine as read-only evidence; the acting agent applies it — the surface never executes the process itself.",
-      "surfaces": ["sk-code-webflow", "sk-code-opencode", "sk-code-mobile-cli"]
+      "surfaces": ["sk-code-webflow", "sk-code-opencode", "sk-code-mobile-cli", "sk-code-obsidian"]
     }
   },
   "modes": [
@@ -107,6 +107,24 @@
       "packetSkillName": "sk-code-mobile-cli",
       "grandfatheredFolderMismatch": false,
       "aliases": ["pi remote mobile ui", "svelte design system", "mobile cli design tokens", "ink-on-parchment tokens", "ds grammar editability"],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "sk-code-obsidian",
+      "packetKind": "surface",
+      "backendKind": "evidence-base",
+      "toolSurface": {
+        "allowed": ["Read", "Bash", "Grep", "Glob"],
+        "forbidden": ["Write", "Edit", "Task"],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "sk-code-obsidian",
+      "packetSkillName": "sk-code-obsidian",
+      "grandfatheredFolderMismatch": false,
+      "aliases": ["obsidian plugin implementation", "obsidian plugin code", "note database plugin", "obsidian plugin surface", "db-* class grammar"],
       "advisorRouting": {
         "routingClass": "metadata"
       }
