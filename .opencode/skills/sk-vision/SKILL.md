@@ -96,11 +96,48 @@ RESOURCE_MAP = {
     "VISION": ["feature-catalog/", "manual-testing-playbook/"],
 }
 
-UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm the input is a local image path, data URL, or http(s) image URL",
-    "Confirm the primary model is text-only",
-    "Do not route audio, video, or document work here",
-]
+UNKNOWN_FALLBACK = {
+    "load_level": "UNKNOWN_FALLBACK",
+    "needs_disambiguation": True,
+    "checklist": [
+        "Confirm the input is a local image path, data URL, or http(s) image URL",
+        "Confirm the primary model is text-only",
+        "Do not route audio, video, or document work here",
+    ],
+}
+
+
+def discover_markdown_resources() -> set[str]:
+    """Inventory the routable corpus so routing never names a missing file."""
+    docs = []
+    for base in (SKILL_ROOT / "feature-catalog", SKILL_ROOT / "manual-testing-playbook"):
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+
+def _guard_in_skill(relative_path: str) -> str:
+    """Refuse any path that escapes the skill root or is not markdown."""
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError("Only skill-local markdown resources are routable")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+
+def route_resources(request):
+    """SKILL.md answers most invocations; load the corpus only when needed."""
+    inventory = discover_markdown_resources()
+    if not inventory:
+        return {**UNKNOWN_FALLBACK, "resources": []}
+    loaded = []
+    for prefix in RESOURCE_MAP["VISION"]:
+        for candidate in sorted(p for p in inventory if p.startswith(prefix)):
+            guarded = _guard_in_skill(candidate)
+            if guarded not in loaded:
+                load(guarded)
+                loaded.append(guarded)
+    return {"resources": loaded}
 ```
 
 ---

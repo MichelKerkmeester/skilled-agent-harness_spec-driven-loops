@@ -10,7 +10,7 @@
     "siblings": [
       {
         "target": "sk-code",
-        "weight": 0.3,
+        "weight": 0.4,
         "context": "vision evidence for text-only coding models"
       }
     ],
