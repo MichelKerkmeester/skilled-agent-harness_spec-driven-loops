@@ -120,16 +120,16 @@ describe('flag tri-state truth-table (both read sites agree)', () => {
     });
   }
 
-  it('all four default-on cohort copies stay in lockstep (6 hubs; twins order-identical)', () => {
+  it('all four default-on cohort copies stay in lockstep (5 hubs; twins order-identical)', () => {
     const authoredResolver = requireCjs(AUTHORED_RESOLVER);
     const binResolver = [...resolver.DEFAULT_ON_HUBS];
     const authoredResolverCohort = [...authoredResolver.DEFAULT_ON_HUBS];
     const advisorSrc = [...ADVISOR_DEFAULT_ON_HUBS];
     const advisorDist = cohortMembersFromSource(ADVISOR_DIST_FLAG);
 
-    // Exactly 6 hubs in every one of the four copies.
+    // Exactly 5 hubs in every one of the four copies.
     for (const cohort of [binResolver, authoredResolverCohort, advisorSrc, advisorDist]) {
-      expect(cohort.length).toBe(6);
+      expect(cohort.length).toBe(5);
     }
     // Order-identity WITHIN each family: the two resolver copies must agree, and
     // the advisor source and its compiled dist must list the cohort identically — an
@@ -267,7 +267,7 @@ describe('move-simulation: no runtime read under .opencode/specs', () => {
     try {
       sync.build({ runtimeRoot });
       const verification = sync.verifyRoot(runtimeRoot, { emit: false });
-      expect(verification.message).toContain('all 6 hubs resolve; 0 reads under .opencode/specs');
+      expect(verification.message).toContain('all 5 hubs resolve; 0 reads under .opencode/specs');
       expect(Object.keys(verification.resolved)).toEqual([...resolver.DEFAULT_ON_HUBS]);
     } finally {
       rmSync(sandbox, { recursive: true, force: true });
