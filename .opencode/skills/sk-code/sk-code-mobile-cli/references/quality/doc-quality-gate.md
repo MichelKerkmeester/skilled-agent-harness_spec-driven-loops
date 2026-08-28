@@ -7,10 +7,10 @@ trigger_phrases:
   - 'extract structure script'
   - 'dqi score target'
   - 'docs change gate'
-  - 'dqi baseline table'
+  - 'dqi score regression check'
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # Pi Remote Doc Quality Gate
@@ -76,7 +76,7 @@ The bar applies to every markdown file the change touches. The target is higher 
 | Reference docs under docs/ | 90         | 70  | Frontmatter, intro paragraph, numbered ALL-CAPS H2 sections, dividers, language-tagged code blocks |
 | README files               | 80         | 70  | H1 plus blockquote description, TABLE OF CONTENTS, numbered H2 sections                            |
 
-New files must reach the target for their class. Existing files at or above the bar may land with the score recorded in the baseline, but a change must never lower the score that dqi-baseline.md records for that file.
+New files must reach the target for their class. Existing files at or above the bar may land as they are, but a change must never lower a file's own score.
 
 ---
 
@@ -85,68 +85,48 @@ New files must reach the target for their class. Existing files at or above the 
 The gate runs in review, before a docs change lands. The reviewer runs the extractor on every markdown file the change adds or edits and applies three checks in order:
 
 1. The DQI is 70 or higher. Below 70 blocks the change.
-2. The DQI is not lower than the score recorded for that file in `dqi-baseline.md`. A regression blocks the change.
+2. The DQI is not lower than the score the same file produces at the base revision. A regression blocks the change.
 3. A new file reaches the target for its class, or the change carries a documented plan that names the file and the score gap.
 
-When the checks pass, the reviewer updates `dqi-baseline.md` with the new score in the same change. The baseline table stays current because the gate writes to it on every pass.
+Check 2 is measured, not looked up. Because the scorer is deterministic, the reviewer reads the base revision of the file and runs the extractor on it:
 
----
-
-## 6. REFERENCE TEMPLATE SHAPE
-
-Every reference doc under docs/ follows one shape. The shape is also what the style component of the DQI rewards.
-
-- YAML frontmatter opens the file. Required keys are `title`, `description` on a single line, `trigger_phrases` as a YAML list, `importance_tier`, `contextType`, and `version`.
-- H1 title follows the frontmatter. It carries no emoji and no trailing period.
-- One intro paragraph of at least 10 words sits between the H1 and the first H2. The style component grants 4 points for it.
-- H2 sections use the form `## N. SECTION NAME`, with a number prefix and ALL CAPS text. The style component grants 12 points for number plus ALL CAPS on every H2.
-- A `---` divider line separates H2 sections. The style component grants 6 points for it.
-- Code blocks carry a language tag. Placeholder markers such as `[TODO]` and `{{PLACEHOLDER}}` are blocking errors.
-
-Frontmatter and opening block:
-
-```
----
-title: Example Document
-description: One line that states what this document covers.
-trigger_phrases:
-  - 'example document'
-importance_tier: normal
-contextType: general
-version: 1.0.0.0
----
-
-# Example Document
-
-This paragraph is the intro. It states the scope in ten words or more.
+```bash
+git show HEAD:path/to/file.md > /tmp/base.md
+python3 .opencode/skills/sk-doc/scripts/extract_structure.py /tmp/base.md
 ```
 
-Numbered ALL-CAPS H2 sections:
-
-```
+The comparison is against the file's own prior revision, never against a stored score table. A checked-in table drifts the moment a doc changes outside the gate; re-measuring the base revision cannot.
 
 ---
 
-## 1. OVERVIEW
+## 6. WHAT THE SCORER REWARDS
 
-Body content for the first section.
+The document shape itself is defined once, by the create-skill templates, and is not restated here:
+
+| Document class | Canonical template |
+| -------------- | ------------------ |
+| Skill reference file | `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md` |
+| Skill asset file | `.opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-asset-template.md` |
+| README | `.opencode/skills/sk-doc/sk-create-readme/` |
+
+What belongs here is only the part the templates do not carry: how the scorer converts that shape into points. The style component is worth 30 and breaks down as follows.
+
+| Element | Points | How it is scored |
+| ------- | ------ | ---------------- |
+| Every H2 in the form `## N. SECTION NAME`, numbered and ALL CAPS | 12 | Pro rata: the rate of numbered plus ALL-CAPS H2s across all H2s. A file with no H2 at all forfeits nothing. |
+| `---` divider between H2 sections | 6 | Full marks once the divider count reaches one fewer than the H2 count; below that, pro rata. |
+| Style-issue budget | 8 | Starts at 8 and loses 2 per style issue, floored at 0. Four issues zero it. |
+| Intro paragraph between H1 and the first H2 | 4 | All or nothing. |
+
+Changelogs are exempt from the H2 rule and are granted the full 12: the changelog template uses unnumbered Title-Case headings, so scoring them against the numbered ALL-CAPS house style would cap a correct changelog in the acceptable band.
+
+Placeholder markers such as `[TODO]` and `{{PLACEHOLDER}}` are blocking errors, not point deductions.
+
+Run the extractor and read `dqi.breakdown` to see which of these a specific file lost. The keys are `h2_format_score`, `divider_score`, `style_issue_score`, and `intro_score`.
 
 ---
 
-## 2. PROCEDURE
-
-Body content for the second section, with a language-tagged code block.
-```
-
----
-
-## 7. BASELINE AND TRACKING
-
-`dqi-baseline.md` holds the last measured DQI for every doc and README in the app. The gate refreshes the table on every passing change. Re-run the full sweep before a release to confirm the table matches the tree.
-
----
-
-## 8. FAILURE RESPONSE
+## 7. FAILURE RESPONSE
 
 A blocked file needs a fix before the change can land. Work the fix in the same order the score is built.
 

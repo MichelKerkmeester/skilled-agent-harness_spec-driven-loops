@@ -10,18 +10,33 @@ trigger_phrases:
   - "touch target 44px"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # A11y Parity Checklist
 
-Use this when swapping a primitive or changing an interaction. None of the value/render gates
-see the AT-tree, focus, roles, or dismissal — a swap can pass those and still regress
-accessibility. Prove parity explicitly.
+Use this when swapping a primitive or changing an interaction — none of the value/render gates
+see the AT-tree, focus, roles, or dismissal.
 
 ---
 
-## 1. AT-TREE (role / name / state)
+## 1. OVERVIEW
+
+### Purpose
+
+A swap can pass the value/render gates and still regress accessibility. This checklist proves
+parity explicitly: AT-tree, focus and interaction states, overlay isolation and dismissal,
+mutual exclusivity and target size, and contrast in both themes.
+
+### Usage
+
+Work through the sections in order after swapping a primitive or changing an interaction,
+before claiming the change preserves accessibility. Check each box, then confirm against THE
+GATE.
+
+---
+
+## 2. AT-TREE (role / name / state)
 
 - [ ] Accessible role, name, and checked/expanded/pressed state match the pre-swap primitive
 - [ ] Covered by `app-mobile/tests/accessibility.svelte.test.ts` (and the per-surface a11y
@@ -29,7 +44,7 @@ accessibility. Prove parity explicitly.
 
 ---
 
-## 2. FOCUS AND INTERACTION STATES
+## 3. FOCUS AND INTERACTION STATES
 
 - [ ] Focus ring intact — a native-button port keeps `[data-focus-visible]` styling: apply
   `use:focusVisible` from `app-mobile/src/shared/primitives/a11y/interactions.ts` and style via
@@ -40,7 +55,7 @@ accessibility. Prove parity explicitly.
 
 ---
 
-## 3. OVERLAY ISOLATION AND DISMISSAL
+## 4. OVERLAY ISOLATION AND DISMISSAL
 
 - [ ] Overlays hide the rest of the tree — `hideOutside(...)` from
   `app-mobile/src/shared/primitives/a11y/aria-hide-outside.svelte.ts` marks siblings
@@ -51,7 +66,7 @@ accessibility. Prove parity explicitly.
 
 ---
 
-## 4. MUTUAL EXCLUSIVITY AND TARGET SIZE
+## 5. MUTUAL EXCLUSIVITY AND TARGET SIZE
 
 - [ ] Radio/toggle mutual exclusivity holds — exactly one option carries the checked state.
   Covered by `app-mobile/tests/effort-sheet-a11y.svelte.test.ts` (the effort radio group)
@@ -61,7 +76,7 @@ accessibility. Prove parity explicitly.
 
 ---
 
-## 5. CONTRAST (both themes)
+## 6. CONTRAST (both themes)
 
 - [ ] WCAG AA holds in light AND dark — `app-mobile/tests/contrast.test.ts` computes the real
   ratio for every foreground/background pair: >=4.5:1 for text, >=3:1 for non-text (focus ring,
@@ -69,13 +84,13 @@ accessibility. Prove parity explicitly.
 
 ---
 
-## 6. VERIFY
+## 7. VERIFY
 
 - [ ] `npm run test:web` green — runs the a11y and contrast suites above
 
 ---
 
-## THE GATE
+## 8. THE GATE
 
 Parity holds only when: role/name/state match; the focus ring survives via
 `[data-focus-visible]`; hover/press use the pointer-aware actions, not native `:hover`; overlays

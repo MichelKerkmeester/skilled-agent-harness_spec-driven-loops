@@ -10,18 +10,32 @@ trigger_phrases:
   - "component story required"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Story Coverage Upkeep Checklist
 
-Use this whenever a renderable component changes. Storybook is the read-only catalog of every
-visual piece, and the coverage gate keeps it complete as the app grows. See the repo-root
-`STORYBOOK.md` for the full catalog contract.
+Use this whenever a renderable component changes. See the repo-root `STORYBOOK.md` for the full
+catalog contract.
 
 ---
 
-## 1. EVERY COMPONENT HAS A STORY
+## 1. OVERVIEW
+
+### Purpose
+
+Storybook is the read-only catalog of every visual piece; the coverage gate keeps it complete as
+the app grows by failing on any renderable component with no story or any stale allowlist entry.
+
+### Usage
+
+Work through the sections in order — every component has a story, stories show real values,
+coverage gate green, catalog renders in both themes, and allowlist discipline — before claiming
+a component change is complete, then confirm against THE GATE.
+
+---
+
+## 2. EVERY COMPONENT HAS A STORY
 
 - [ ] Every renderable `*.svelte` change created or updated its co-located `*.stories.ts` (same
   directory, same stem)
@@ -31,7 +45,7 @@ visual piece, and the coverage gate keeps it complete as the app grows. See the 
 
 ---
 
-## 2. STORIES SHOW REAL VALUES
+## 3. STORIES SHOW REAL VALUES
 
 - [ ] Filled each story's `args` from real demo fixtures (`$shared/data/demo`) — NEVER invented
   values; the catalog must show what the app actually renders
@@ -40,7 +54,7 @@ visual piece, and the coverage gate keeps it complete as the app grows. See the 
 
 ---
 
-## 3. COVERAGE GATE GREEN
+## 4. COVERAGE GATE GREEN
 
 - [ ] `npm run story:coverage` exits 0 (`scripts/story-coverage.mjs`). A red gate is a FAILING
   test, not a warning — it fails on any renderable component with no story, or any stale
@@ -48,7 +62,7 @@ visual piece, and the coverage gate keeps it complete as the app grows. See the 
 
 ---
 
-## 4. CATALOG RENDERS IN BOTH THEMES
+## 5. CATALOG RENDERS IN BOTH THEMES
 
 - [ ] `node scripts/catalog-smoke-cdp.mjs` exits 0 — every story renders in light AND dark with
   zero throws (build-only checks miss runtime throws; exit 2 = a story threw)
@@ -56,7 +70,7 @@ visual piece, and the coverage gate keeps it complete as the app grows. See the 
 
 ---
 
-## 5. ALLOWLIST DISCIPLINE
+## 6. ALLOWLIST DISCIPLINE
 
 - [ ] Any entry in `scripts/story-coverage-allowlist.json` is genuinely non-renderable (route
   wrapper, context provider, compositional sub-part) and carries a WRITTEN reason
@@ -65,13 +79,13 @@ visual piece, and the coverage gate keeps it complete as the app grows. See the 
 
 ---
 
-## 6. VERIFY
+## 7. VERIFY
 
 - [ ] `npm run test:web` green (the web suite covers the components whose stories you touched)
 
 ---
 
-## THE GATE
+## 8. THE GATE
 
 Done only when: every changed renderable component has a co-located story built from real
 `$shared/data/demo` fixtures; `npm run story:coverage` exits 0; `catalog-smoke-cdp.mjs` renders

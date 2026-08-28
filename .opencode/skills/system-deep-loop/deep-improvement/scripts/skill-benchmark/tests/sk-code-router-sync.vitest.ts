@@ -18,7 +18,7 @@ import { join, resolve, relative } from 'node:path';
 const SKILL_ROOT = resolve(__dirname, '..', '..', '..');
 const REPO_SKILLS = resolve(SKILL_ROOT, '..', '..');
 const SKCODE = join(REPO_SKILLS, 'sk-code');
-const { parseRouter, loadSurfaceRouter, registryPacketRoots } = require(join(SKILL_ROOT, 'scripts', 'skill-benchmark', 'router-replay.cjs'));
+const { parseRouter, loadSurfaceRouter, registryPacketRoots, routeSkillResources } = require(join(SKILL_ROOT, 'scripts', 'skill-benchmark', 'router-replay.cjs'));
 
 // Router-internal navigation docs — intentionally NOT intent resources.
 const NON_ROUTED_ALLOWLIST = new Set([
@@ -286,5 +286,64 @@ describe('sk-code qualifiedIdToLeaf bijection — compiled destinations <-> leaf
     expect(codeOpencode, 'leaf-manifest.json declares no code-opencode mode').toBeTruthy();
     const orphans = [...codeOpencodeResourcePaths()].filter((p) => !codeOpencode.leaves.has(p));
     expect(orphans).toEqual([]);
+  });
+});
+
+// A routing scenario declares the resources its prompt should pull. Nothing
+// previously compared that declaration against what the router actually emits,
+// so a scenario could name a doc no intent routes and stay green forever while
+// silently scoring a permanent recall miss. The shared implement/debug/verify
+// doctrine is the live example: it ships symlinked into every surface and is
+// bundled on surface detection, never listed in any RESOURCE_MAP, so naming it
+// in a fixture asserts something the router structurally cannot do.
+function routingScenarios(): Array<{ file: string; root: string; expected: string[]; prompt: string }> {
+  const out: Array<{ file: string; root: string; expected: string[]; prompt: string }> = [];
+  for (const packet of readdirSync(SKCODE, { withFileTypes: true })) {
+    if (!packet.isDirectory()) continue;
+    const root = join(SKCODE, packet.name);
+    const pb = join(root, 'manual-testing-playbook');
+    if (!existsSync(pb)) continue;
+    for (const entry of readdirSync(pb, { withFileTypes: true })) {
+      if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
+      if (entry.name === 'manual-testing-playbook.md' || entry.name.toLowerCase() === 'readme.md') continue;
+      const text = readFileSync(join(pb, entry.name), 'utf8');
+      if (!text.startsWith('---')) continue;
+      const fm = text.slice(3).split('\n---')[0];
+      if (!/^expected_intent:/m.test(fm)) continue;
+      const expected = [...fm.matchAll(/^\s*-\s*(\S+\.md)\s*$/gm)].map((m) => m[1]);
+      if (!expected.length) continue;
+      const fence = /```text\n([\s\S]*?)\n```/.exec(text);
+      const inline = /^-\s*Prompt:\s*`([^`]+)`/m.exec(text);
+      const prompt = (fence ? fence[1] : inline ? inline[1] : '').trim();
+      if (!prompt) continue;
+      out.push({ file: `${packet.name}/${entry.name}`, root, expected, prompt });
+    }
+  }
+  return out;
+}
+
+describe('sk-code routing scenarios — declared resources are actually routable', () => {
+  const scenarios = routingScenarios();
+
+  it('finds routing scenarios to check (guard would be vacuous otherwise)', () => {
+    expect(scenarios.length).toBeGreaterThan(0);
+  });
+
+  it('every declared expected_resource is emitted by the surface router', () => {
+    const unroutable: string[] = [];
+    for (const s of scenarios) {
+      const routed = new Set<string>(routeSkillResources({ skillRoot: s.root, taskText: s.prompt }).resources);
+      for (const want of s.expected) {
+        if (!routed.has(want)) unroutable.push(`${s.file} -> ${want}`);
+      }
+    }
+    expect(unroutable).toEqual([]);
+  });
+
+  it('every scenario prompt selects at least one intent (no default-only fallthrough)', () => {
+    const noIntent = scenarios
+      .filter((s) => routeSkillResources({ skillRoot: s.root, taskText: s.prompt }).intents.length === 0)
+      .map((s) => s.file);
+    expect(noIntent).toEqual([]);
   });
 });

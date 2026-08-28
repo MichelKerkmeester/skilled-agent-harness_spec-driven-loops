@@ -70,15 +70,14 @@ Checklists (`assets/`) and the source-gates runner (`scripts/`) — token retint
 verification, BEM rename, runes-effect audit, story coverage, a11y parity, and `run-source-gates.sh`.
 See §4 for the full list.
 
-App documentation lives under `references/` in six purpose-named folders, each grouping one concern so
+App documentation lives under `references/` in five purpose-named folders, each grouping one concern so
 the set reads by intent:
 
 - `references/operations/` — running the live relay: `operations.md`, `incident-playbooks.md`, `rollback.md`.
 - `references/release/` — shipping a build: `ai-deploy-playbook.md`, `release-verification.md`.
 - `references/setup/` — first run: `setup.md`, `install-and-onboarding.md`.
 - `references/standards/` — the rules a change must hold: `code-standards.md`, `security.md`, `platform-support.md`.
-- `references/design-reference/` — the `mobile-chat-apps/` UI teardown, current-UI map, competitor research, and screens.
-- `references/quality/` — the DQI and full-access-runtime baselines.
+- `references/quality/` — the doc-quality gate and the full-access-runtime baseline.
 
 The **feature catalog** and the **manual testing playbook** are the single source of truth at the app
 repository root (`feature-catalog/` and `manual-testing-playbook/`). This surface does not mirror them,
@@ -107,7 +106,7 @@ DEFAULT_RESOURCE = [
 ]
 
 INTENT_SIGNALS = {
-    "IMPLEMENTATION":     {"weight": 1, "keywords": ["retint", "token edit", "component token", "semantic role", "presentation seam", "css custom property", "implement", "build", "primitive", "theme remap"]},
+    "IMPLEMENTATION":     {"weight": 1, "keywords": ["retint", "token edit", "component token", "semantic role", "presentation seam", "presentation comment", "css custom property", "implement", "build", "primitive", "theme remap"]},
     "CODE_QUALITY":       {"weight": 1, "keywords": ["guardrail", "do-not-edit", "lint", "quality gate", "frozen value", "code smell", "naming", "folder docs", "comment grammar"]},
     "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "regression", "wrong theme", "unexpected color", "leaking retint", "orphaned reference", "self-invalidation", "effect loop"]},
     "VERIFICATION":       {"weight": 1, "keywords": ["verify", "resolver", "value-preservation", "contrast", "wcag", "type-check", "test:web", "completion claim", "browser-free", "scan-skill-references"]},

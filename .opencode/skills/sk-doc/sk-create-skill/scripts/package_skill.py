@@ -136,6 +136,7 @@ RESOURCE_DOC_SUBTREES = ['references', 'assets']
 # output. Their spellings are contracts rather than authored filesystem slugs.
 TOOL_MANDATED_FILENAMES = {
     '.utcp_config.json',
+    'DESIGN.md',
     'README.md',
     'ROUTER.md',
     'SKILL.md',
@@ -149,9 +150,6 @@ TOOL_MANDATED_FILENAMES = {
 # IDs, and fixtures deliberately carry the shapes they exercise, so neither is
 # free to be renamed into kebab-case without breaking what refers to it.
 EXEMPT_SUBTREES = {
-    '__mocks__',
-    '__pycache__',
-    '__snapshots__',
     'changelog',
     'dist',
     'fixtures',
@@ -496,6 +494,10 @@ def _is_exempt_package_path(path: Path, relative_path: Path) -> bool:
     if any(part.startswith('.') for part in relative_path.parts):
         return True
     if any(part in EXEMPT_SUBTREES for part in relative_path.parts):
+        return True
+    # Dunder directories are a language convention (Python packages, Jest
+    # __mocks__/__snapshots__), not authored slugs a maintainer may rename.
+    if any(part.startswith('__') and part.endswith('__') for part in relative_path.parts):
         return True
     if path.is_dir():
         return _is_python_package_directory(path)
