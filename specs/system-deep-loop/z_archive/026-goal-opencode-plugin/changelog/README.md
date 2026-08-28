@@ -14,13 +14,6 @@ contextType: "implementation"
 
 Spec 032 owns the `/goal` OpenCode plugin and command. Phases 001-008 shipped the original passive-goal implementation plus its prompt-enhancement and system-spec-kit integration. Phase 009 (`/speckit:*` goal-prompt-offer integration) is owned by a separate, concurrently in-flight session and has no changelog here. Phases 010-014 are a remediation track that closed a dual deep-research/deep-review audit's findings, normalized the command surface, backfilled regression tests, wired the `usage_limited` detector, and added goal-state cleanup. The chronological view of the same work lives in [`../timeline.md`](../timeline.md) and the before-and-after narrative in [`../before-vs-after.md`](../before-vs-after.md).
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1. PHASE CHANGELOGS](#1-phase-changelogs)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ---
 
 ## 1. PHASE CHANGELOGS

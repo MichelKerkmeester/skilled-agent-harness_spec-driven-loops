@@ -12,6 +12,8 @@ trigger_phrases:
 
 `tests/fixtures/` holds reusable, deterministic test data for MCP server runtime and regression suites. Fixtures should describe test scenarios, not production architecture.
 
+---
+
 ## 2. TREE AND KEY FILES
 
 ```text
@@ -29,11 +31,15 @@ fixtures/
 - `contradiction-pairs.json` - contradiction-detection fixture data.
 - `hooks/` - transcript fixtures used by hook replay tests.
 
+---
+
 ## 3. BOUNDARIES
 
 - Keep fixture data small, explicit, and stable across machines.
 - Do not store generated databases, temporary files, or CI outputs here.
 - Prefer suite-local setup when data is only useful to one test file.
+
+---
 
 ## 4. VALIDATION
 
@@ -43,6 +49,8 @@ Run the suite that consumes the changed fixture from `mcp_server`, or run the fu
 npx vitest run tests/<suite>.vitest.ts
 npx vitest run
 ```
+
+---
 
 ## 5. RELATED
 

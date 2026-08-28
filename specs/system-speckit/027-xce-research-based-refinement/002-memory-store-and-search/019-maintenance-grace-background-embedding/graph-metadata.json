@@ -41,47 +41,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
-      "lib/providers/retry-manager.ts",
-      "lib/storage/maintenance-marker.ts",
-      "handlers/memory-index.ts",
-      "tests/maintenance-marker.vitest.ts",
-      "mcp_server/lib/storage/maintenance-marker.ts",
-      "mcp_server/handlers/memory-index.ts",
-      "mcp_server/lib/providers/retry-manager.ts",
-      "mcp_server/tests/maintenance-marker.vitest.ts",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "maintenance-marker.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/maintenance-marker.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retry-manager.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
-        "source": "derived"
-      },
-      {
-        "name": "maintenance-marker.vitest.ts",
-        "kind": "test",
-        "path": "tests/maintenance-marker.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -201,11 +166,35 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Confirmed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "019 made a reindex's scan survive launcher re-election, but its maintenance marker was scoped to the scan job",
     "created_at": "2026-06-17T13:56:34.988Z",
-    "last_save_at": "2026-07-17T17:19:41.682Z",
+    "last_save_at": "2026-08-28T16:00:07.840Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5f1b9de901b0785bef510333df27f07d8846586b2f358b87d446d59d3b29564",
+    "source_fingerprint": "sha256:d5ab03f353250aa511c60b1c83b613b7fc16b93f72e65b4ba09779b14fd39042",
     "source_doc_hashes": {
       "spec.md": "7f77e20652be76c4bff6fcc0f6aac43278bb4583002ac5b76ed2157cf8db68cf",
       "plan.md": "4972ef47f324f6971fc8f750f2f28fc6ca76a1ce52c14c96874ab9190bbcfee1",
       "tasks.md": "0091bf3d6037de85e2413814d5786e86af5dbed530e7abeb335599d927a6fab0",
-      "implementation-summary.md": "7aecfc9e931200a00179a04b10c763387a54444f98ed48f24ee7008a635c5afe"
+      "implementation-summary.md": "217f18a23afeac01aacfac62004bbd9a4d83d9bf1ba2ba98ac6af62e3d047955"
     },
     "last_active_child_id": null,
     "last_active_at": null

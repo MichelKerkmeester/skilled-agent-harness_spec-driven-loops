@@ -20,7 +20,7 @@ const { pathToFileURL } = require('node:url');
 const REJECT_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT';
 const REJECT_LOOP_ENV = 'SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP';
 const WARN_LOG_MAX_BYTES_ENV = 'SYSTEM_DEEP_LOOP_GUARD_WARNING_LOG_MAX_BYTES';
-const GUARD_LOG_RELATIVE = ['.opencode', 'skills', '.loop-guard-state', 'guard-warnings.log'];
+const GUARD_LOG_RELATIVE = ['.opencode', 'skills', '.state', 'loop-guard', 'guard-warnings.log'];
 
 function writeFixtureRegistry(dir) {
   const registryDir = path.join(dir, '.opencode', 'skills', 'system-deep-loop');
@@ -45,7 +45,7 @@ function guardLogPath(dir) {
 }
 
 function degradedGuardLogPath(dir) {
-  return `${path.join(dir, '.opencode', 'skills', '.loop-guard-state')}.guard-warnings.log`;
+  return `${path.join(dir, '.opencode', 'skills', '.state', 'loop-guard')}.guard-warnings.log`;
 }
 
 // Soft warnings land in the state-dir log, not console. Read/clear it per check
@@ -335,7 +335,7 @@ async function main() {
   assert.doesNotMatch(readGuardLog(tmpDir), /loop-like/, 'separate sessions must not share loop-repeat counts');
 
   // Fail-open: loop-guard state directory is a file, not a directory -- write fails, dispatch never blocked.
-  const blockedStateDirPath = path.join(tmpDir, '.opencode', 'skills', '.loop-guard-state');
+  const blockedStateDirPath = path.join(tmpDir, '.opencode', 'skills', '.state', 'loop-guard');
   fs.rmSync(blockedStateDirPath, { recursive: true, force: true });
   fs.writeFileSync(blockedStateDirPath, 'not a directory');
   process.env[REJECT_LOOP_ENV] = '1';
@@ -353,7 +353,7 @@ async function main() {
 
   // --- Retention: sweep archives stale per-session state, prune deletes old archives ---
 
-  const retentionStateDir = path.join(tmpDir, '.opencode', 'skills', '.loop-guard-state');
+  const retentionStateDir = path.join(tmpDir, '.opencode', 'skills', '.state', 'loop-guard');
   fs.mkdirSync(retentionStateDir, { recursive: true });
   const retentionArchiveDir = path.join(retentionStateDir, '.archive');
 

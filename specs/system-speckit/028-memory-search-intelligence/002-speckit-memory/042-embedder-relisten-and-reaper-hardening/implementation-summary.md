@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 032-embedder-relisten-and-reaper-hardening |
+| **Spec Folder** | 042-embedder-relisten-and-reaper-hardening |
 | **Completed** | 2026-07-11 — WS1-WS5 implemented + verified; two adversarial-review rounds resolved |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

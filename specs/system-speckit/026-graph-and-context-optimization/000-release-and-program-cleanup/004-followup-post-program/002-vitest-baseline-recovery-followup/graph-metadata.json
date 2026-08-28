@@ -48,17 +48,11 @@
     "key_files": [
       "scratch/p0-findings-from-h.md",
       "scratch/deleted-tests-from-h.md",
-      ".opencode/skills/system-spec-kit/changelog/v3.4.1.0.md",
       "scratch/vitest-current-baseline.json",
       "scratch/current-failure-inventory.json",
       "scratch/classification-inventory.json",
       "scratch/vitest-postfix.json",
       "scratch/vitest-post-unit-h.json",
-      "mcp_server/tests/handler-memory-index.vitest.ts",
-      "scripts/tests/yaml-intake-event-payloads.vitest.ts",
-      "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
-      "scripts/tests/workspace-identity.vitest.ts",
-      "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -76,12 +70,6 @@
         "name": "deleted-tests-from-h.md",
         "kind": "doc",
         "path": "scratch/deleted-tests-from-h.md",
-        "source": "derived"
-      },
-      {
-        "name": "v3.4.1.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/changelog/v3.4.1.0.md",
         "source": "derived"
       },
       {
@@ -112,36 +100,6 @@
         "name": "vitest-post-unit-h.json",
         "kind": "config",
         "path": "scratch/vitest-post-unit-h.json",
-        "source": "derived"
-      },
-      {
-        "name": "handler-memory-index.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/handler-memory-index.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "yaml-intake-event-payloads.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/yaml-intake-event-payloads.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-source-dist-alignment-orphans.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workspace-identity.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/workspace-identity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scaffold-golden-snapshots.vitest.ts.snap",
-        "kind": "file",
-        "path": "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
         "source": "derived"
       },
       {
@@ -209,11 +167,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Close",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Sibling packet `003-vitest-baseline-recovery` (Unit F) expected 196 deferred failures to be discoverable through `// followup: 026/000/002-vitest-baseline-recovery-followup` annotations",
     "created_at": "2026-05-09T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:10.744Z",
+    "last_save_at": "2026-08-28T15:59:27.990Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,12 +217,12 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:2ce7226db5ab78cdcb59dc55f4fbdbaca2fc92b7662a65ffe4d4a68ab456dbde",
+    "source_fingerprint": "sha256:4a3affca714a0b6019e2243bd75b58abcbf1e60da0456e09117b4b480810facd",
     "source_doc_hashes": {
       "spec.md": "1412082e4869bb194302f84b4e8275e29bf06d264a03534b01535d13e8a1de73",
       "plan.md": "c6ba455e469a4773a95b4cae944a8c43dac0c802da4dba501bf04002223e576a",
       "tasks.md": "cbc9dd187a46f72a4843b3e92d0cb2b22b51f686ed921981f0369fd26d39ac8a",
-      "implementation-summary.md": "1f7382dec5c2c00705edae67742525bd7dfe5c5c45f1986e98c2e9b529951256",
+      "implementation-summary.md": "f6eea2bdc71c88b1e04c199f19acc9f1cb47f26a587f93805a9d0c7c3d2468eb",
       "resource-map.md": "0301c9cd02e03dd49c1f6ef1992c1b548e8add10b31abdd0ecd5b9a7b9440054"
     },
     "last_active_child_id": null,

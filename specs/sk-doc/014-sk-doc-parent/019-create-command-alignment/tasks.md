@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/019-create-command-alignment"
+    packet_pointer: "sk-doc/014-sk-doc-parent/019-create-command-alignment"
     last_updated_at: "2026-07-07T12:55:35.000Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored phase-019 tasks"

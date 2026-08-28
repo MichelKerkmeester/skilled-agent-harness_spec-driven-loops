@@ -102,7 +102,7 @@ Each agent is defined in a `.md` file in `.claude/agents/` (the Claude Code runt
 ├── deep-improvement.md # Proposal-only agent-improvement candidates (command-owned)
 ├── deep-research.md    # Single-iteration deep research (command-owned)
 ├── deep-review.md      # Single-iteration deep review (command-owned)
-├── design.md           # Design-reference extraction via sk-design-md-generator
+├── design.md           # Decides UI values via sk-design; measures a surface via sk-design-md-generator
 ├── markdown.md         # Template-first markdown/documentation execution
 ├── orchestrate.md      # Multi-agent coordination
 ├── prompt-improver.md  # Dispatch-ready prompt packages (command-owned)
@@ -127,7 +127,7 @@ There is no `handover.md`, `research.md`, `speckit.md`, or `write.md` in the cur
 | `ai-council` | `plan` (planning) + scoped-write to `ai-council/**` | Multi-strategy planning, diverse reasoning strategies, scored rubric | Complex planning requiring multiple perspectives scored by quality dimensions |
 | `markdown` | default | Template-first documentation generation, README creation, guide writing, spec-folder scaffolding | Creating or updating technical documentation, guides, READMEs, or spec docs |
 | `code` | default | Application-code implementation via `sk-code` | Implementing an approved plan; orchestrator-only dispatch |
-| `design` | default | Design-reference extraction via `sk-design-md-generator` | Extracting a measured Style Reference (design tokens) from a live source before building UI |
+| `design` | default | Decides UI values via `sk-design`; measures a surface via `sk-design-md-generator` | Choosing spacing, type, color, shadow or motion values; diagnosing a UI complaint; reviewing UI for accessibility; or extracting a measured Style Reference from a live source UI |
 | `deep-review` | default | Single-iteration severity-tagged code review | Command-owned by `/deep:review` — never dispatch directly for the iterative loop |
 | `deep-improvement` | default | Proposal-only agent-improvement candidate generation | Command-owned by `/deep:agent-improvement` — never dispatch directly |
 | `prompt-improver` | default | Dispatch-ready prompt package generation | Command-owned by `/prompt`'s deep-path escalation — never dispatch directly |

@@ -49,7 +49,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/015-tanstack-security-audit` |
+| **Spec Folder** | 001-dependency-security-supply-chain-audit |
 | **Completed** | 2026-05-15 |
 | **Level** | 1 |
 | **Verdict** | **COMPROMISE-CONFIRMED** (host) / **CLEAN** (repo) |

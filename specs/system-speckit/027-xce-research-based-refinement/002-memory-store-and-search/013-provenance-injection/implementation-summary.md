@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/013-provenance-injection` |
+| **Spec Folder** | 013-provenance-injection |
 | **Completed** | 2026-06-11 |
 | **Level** | 2 |
 | **Priority** | P1 |

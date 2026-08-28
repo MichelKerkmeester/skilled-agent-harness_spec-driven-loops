@@ -30,7 +30,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/014-fts5-default-lexical-with-guardrails` |
+| **Spec Folder** | 014-fts5-default-lexical-with-guardrails |
 | **Updated** | 2026-05-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

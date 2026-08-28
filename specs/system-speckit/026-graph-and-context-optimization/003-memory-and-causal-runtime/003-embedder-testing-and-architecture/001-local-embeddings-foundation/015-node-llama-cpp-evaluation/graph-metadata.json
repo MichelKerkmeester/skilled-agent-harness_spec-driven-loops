@@ -50,12 +50,8 @@
       "implementation-summary.md",
       "scratch/bench-results.json",
       "scratch/parity-results.txt",
-      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
       "scratch/bench-llama-cpp-vs-hf-local.ts",
       "scratch/model-info.json",
-      "shared/embeddings/factory.ts",
-      "mcp_server/README.md",
       "scratch/smoke-results.txt"
     ],
     "entities": [
@@ -99,18 +95,6 @@
         "name": "parity-results.txt",
         "kind": "file",
         "path": "scratch/parity-results.txt",
-        "source": "derived"
-      },
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
         "source": "derived"
       },
       {
@@ -202,11 +186,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Metal",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP local embedding path currently defaults to `hf-local`, which uses `@huggingface/transformers` with the ONNX EmbeddingGemma export and q8 dtype",
     "created_at": "2026-05-13T09:52:09Z",
-    "last_save_at": "2026-07-17T17:19:18.822Z",
+    "last_save_at": "2026-08-28T15:59:33.490Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T09:56:14Z",
     "source_docs": [
@@ -216,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4b887ef03b75a0d1c3be76483af31e6030b14eada2e77093b1fdac52a07a15a2",
+    "source_fingerprint": "sha256:39590e73a49fcee34d4345f2914e0c28f5c537b79668769a1ae7f0057c5ee69b",
     "source_doc_hashes": {
       "spec.md": "a7aaa56f2f4e0e1309ad75131469119c524b5d5df3763c24460372e24d191960",
       "plan.md": "3b50761d87e8c7d29a49029fd3d72e914ea5104961aa5c1e4526e682f88aeee9",
       "tasks.md": "9d9e761e7f00b33c0ccc7d2d619753cf6d72fe2f7503130915981dfe19c23ae2",
       "checklist.md": "8c0c1a65b95c79f33c6f77bee954ae3e7631d3ebce151676eadf2b1d1c17deb0",
-      "implementation-summary.md": "18b20e640d29d8c8d53be404de1afdbaea9417ba034667f871656a12a257fd35"
+      "implementation-summary.md": "bf948cc3b475d62076f9392fb9594206cc0c8fdaa775d1a5bf4c832c53de1ff6"
     },
     "last_active_child_id": null,
     "last_active_at": null

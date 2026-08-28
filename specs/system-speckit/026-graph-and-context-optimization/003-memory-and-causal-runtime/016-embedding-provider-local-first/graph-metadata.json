@@ -43,43 +43,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      "shared/embeddings/factory.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/factory-auto-resolution.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/embedder-ollama.vitest.ts",
       "plan.md",
       "checklist.md",
-      "mcp_server/vitest.config.ts",
       "spec.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "factory-auto-resolution.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/factory-auto-resolution.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedder-ollama.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedder-ollama.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -90,12 +60,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": "mcp_server/vitest.config.ts",
         "source": "derived"
       },
       {
@@ -199,11 +163,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The shared embeddings factory has three provider-order definitions",
     "created_at": "2026-06-02T21:06:00Z",
-    "last_save_at": "2026-07-17T17:19:31.515Z",
+    "last_save_at": "2026-08-28T15:59:52.658Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3968377f6eea5389e115efa2b79aeaacffaea3387b6605e1f18329adee6607e5",
+    "source_fingerprint": "sha256:3321177d82187cb618a8522eea08aa7369e3985bde81a6ab26266163e8465790",
     "source_doc_hashes": {
       "spec.md": "d9479fb74a77e27e141a440c831617307ad1ec782400429adccd4736042f63ee",
       "plan.md": "ddf3b3b5e26d4967f8ac3bc1c2533b44fdba22a65603af256e4c645d42919d5a",
       "tasks.md": "f72029a528b486a7136f22b2e849fa12d99600f9edaff431ffcaf2da8948f500",
       "checklist.md": "3f6cbc089eb46aabb28ef2d68affca47c1ee0fb582c3948101f66e38970f210d",
-      "implementation-summary.md": "d04724084daaa0d911cd4e33cb384369d9f6d1f0959bece246a4464286a139ce"
+      "implementation-summary.md": "8459b0d069c335cce0060fb7a6d6e7d317763f84d47985cee08586f1ee886890"
     },
     "last_active_child_id": null,
     "last_active_at": null

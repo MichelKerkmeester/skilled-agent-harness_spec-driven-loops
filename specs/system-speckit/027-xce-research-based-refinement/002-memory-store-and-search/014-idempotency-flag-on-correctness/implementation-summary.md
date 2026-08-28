@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/014-idempotency-flag-on-correctness` |
+| **Spec Folder** | 014-idempotency-flag-on-correctness |
 | **Completed** | 2026-06-11 |
 | **Level** | 2 |
 | **Priority** | P1 |

@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-derived-id-provenance |
+| **Spec Folder** | 010-derived-id-provenance |
 | **Completed** | 2026-06-19 |
 | **Level** | 3 |
 | **Candidate status** | DONE behind default-off `SPECKIT_DERIVED_ID_PROVENANCE` |

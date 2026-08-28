@@ -6,10 +6,14 @@ The `goal-context.ts` extension registers the authoritative `/goal-pi` command. 
 
 If this fallback prompt runs, the identity-aware extension command is unavailable. The runtime-neutral CLI requires an explicit native binding and must not guess the current session.
 
+---
+
 ## 2. CONTRACT
 
 Inputs: `$ARGUMENTS` — any goal action.
 Output: a fail-closed explanation that the native current-session binding is unavailable.
+
+---
 
 ## 3. INSTRUCTIONS
 
@@ -21,6 +25,8 @@ code=UNSUPPORTED_SESSION_BINDING
 ```
 
 Tell the operator that the Pi goal extension must be enabled before session-bound goal management can run.
+
+---
 
 ## 4. HARD RULES
 

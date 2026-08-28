@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `001-indexer-surface-investigation` |
+| **Spec Folder** | 001-indexer-surface-investigation |
 | **Completed** | 2026-05-18 |
 | **Level** | 1 |
 | **Scope** | Research-only |

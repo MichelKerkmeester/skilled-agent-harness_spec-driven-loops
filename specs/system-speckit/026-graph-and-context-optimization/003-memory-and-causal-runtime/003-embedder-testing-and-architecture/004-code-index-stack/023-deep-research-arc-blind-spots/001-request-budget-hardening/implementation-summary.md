@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/001-request-budget-hardening/` |
+| **Spec Folder** | 001-request-budget-hardening |
 | **Completed** | 2026-05-19 |
 | **Level** | 2 |
 | **Findings Closed** | 005-A, 015-A, 015-C, 020-C |

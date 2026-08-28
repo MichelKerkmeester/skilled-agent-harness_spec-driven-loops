@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/001-clean-room-license-audit/` |
+| **Spec Folder** | 007-clean-room-license-audit |
 | **Completed** | 2026-04-25 |
 | **Level** | 2 |
 | **Status** | Complete |

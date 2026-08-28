@@ -509,7 +509,18 @@ function renderRunReadme(report, context = {}) {
   out.push(`> ${runHeading(report)}\n`);
   out.push(`**Verdict: ${report.verdict || NOT_RECORDED}**${report.aggregateScore != null ? ` · aggregate ${report.aggregateScore}/100` : ''}\n`);
 
-  out.push('## Run');
+  // The README contract wants a numbered ALL-CAPS section spine opening on
+  // OVERVIEW, with `---` between sections. Orientation leads so a reader knows
+  // what the folder is before reading the run's numbers.
+  out.push('---');
+  out.push('');
+  out.push('## 1. OVERVIEW');
+  out.push('');
+  out.push('This is a curated report. Raw execution evidence stays in the packet that produced it, named in `source.md`. Every file here is generated from the run record: a field this run did not capture reads as not recorded rather than being filled in.');
+  out.push('');
+  out.push('---');
+  out.push('');
+  out.push('## 2. RUN');
   out.push('');
   out.push('| Field | Value |');
   out.push('|---|---|');
@@ -522,7 +533,9 @@ function renderRunReadme(report, context = {}) {
   out.push(`| Outcome tally | ${tally.length ? tally.map(([v, n]) => `${n} ${v}`).join(', ') : NOT_RECORDED} |`);
   out.push('');
 
-  out.push('## Files');
+  out.push('---');
+  out.push('');
+  out.push('## 3. FILES');
   out.push('');
   out.push('| File | Contents |');
   out.push('|---|---|');
@@ -541,10 +554,6 @@ function renderRunReadme(report, context = {}) {
   out.push('| [`source.md`](./source.md) | Where the corpus, the gold and the raw evidence live |');
   out.push('');
 
-  out.push('## Reading This Folder');
-  out.push('');
-  out.push('This is a curated report. Raw execution evidence stays in the packet that produced it, named in `source.md`. Every file here is generated from the run record: a field this run did not capture reads as not recorded rather than being filled in.');
-  out.push('');
   return out.join('\n');
 }
 

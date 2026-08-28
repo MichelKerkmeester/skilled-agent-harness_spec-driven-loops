@@ -1,5 +1,5 @@
 {
-  "count": 759,
+  "count": 673,
   "mode": "readme",
   "results": [
     {
@@ -465,53 +465,32 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/cli-external-orchestration/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -536,19 +515,12 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/cli-external-orchestration/cli-claude-code/benchmark/reports/2026-07-29--manual-testing-playbook--goal-hook/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -773,70 +745,42 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/mcp-tooling/benchmark/reports/baseline/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/mcp-tooling/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--unspecified/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/mcp-tooling/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/mcp-tooling/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -1148,104 +1092,62 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--after--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--full--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live--live/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-final--live/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--live-remediated--live/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -1260,36 +1162,22 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/2026-07-10--router-baseline--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -1304,87 +1192,52 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/baseline/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -1429,36 +1282,22 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/sk-code-opencode/benchmark/reports/2026-07-10--router-mode-a--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -1493,36 +1332,22 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/sk-code-quality/benchmark/reports/2026-07-10--router-mode-a--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -1577,36 +1402,22 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/sk-code-review/benchmark/reports/2026-07-10--router-mode-a--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -1691,36 +1502,22 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/sk-code-webflow/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-code/sk-code-webflow/benchmark/reports/2026-07-10--router-mode-a--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -1755,463 +1552,9 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-012-routing-rigor--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-d3-proxy--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/benchmark/reports/2026-07-07--after-016-hub-routing--live/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/benchmark/reports/2026-07-07--after-018-transport-integration--live/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/benchmark/reports/2026-07-07--after-022-coverage-fill--live/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-design/benchmark/reports/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/benchmark/reports/baseline/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/shared/corpus-context/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/shared/corpus-context/tests/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/shared/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/sk-design-interface/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/sk-design-interface/corpus/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/sk-design-interface/corpus/tests/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/sk-design-interface/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/sk-design-md-generator/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/sk-design-md-generator/backend/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/sk-design-md-generator/backend/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/sk-design-md-generator/backend/tests/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/sk-design-md-generator/backend/tests/fixtures/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/sk-design-md-generator/references/examples/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/database/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/lib/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/lib/database/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/lib/engine/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/library/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/library/bundles/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/library/manifests/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/tests/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/tests/database/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/tests/engine/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/tests/oracle/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-design/styles/tests/oracle/golden/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -2239,104 +1582,62 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--acceptance--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--benchmark-sweep--r3/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-doc/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-doc/manual-testing-playbook/holdout/ind-readme.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -2715,36 +2016,22 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-git/benchmark/reports/2026-07-10--live--glm-5-2-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-git/benchmark/reports/2026-07-10--live--kimi-2-7/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -2839,53 +2126,32 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/sk-prompt/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -2920,70 +2186,42 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/benchmark/reports/baseline/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--playbook-verify--sonnet/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--real--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/benchmark/reports/compiled-routing/2026-07-21--verify--luna-high/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -3118,36 +2356,22 @@
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--live-mode-b--live/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
       "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
+      "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/deep-improvement/benchmark/reports/2026-07-10--router-mode-a--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
       "warnings": []
     },
     {
@@ -3511,16 +2735,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/compatibility-shadow/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/runtime/lib/conditional-fanin/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -3552,16 +2766,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/runtime/lib/coverage-graph/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/cross-mode-closures/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -3641,16 +2845,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/inflight-state-classification/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -3662,16 +2856,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/mixed-version-fixtures/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -3761,16 +2945,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/rollback-drills/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/runtime/lib/sealed-reference-artifacts/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -3782,16 +2956,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/system-deep-loop/runtime/lib/semantic-communities/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/system-deep-loop/runtime/lib/shadow-parity/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -4632,16 +3796,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".opencode/skills/system-spec-kit/config/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/system-spec-kit/constitutional/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -6552,16 +5706,6 @@
       "blocking_errors": [],
       "document_type": "unknown",
       "file": ".opencode/skills/system-spec-kit/templates/examples/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "unknown",
-      "file": ".opencode/skills/system-spec-kit/templates/manifest/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

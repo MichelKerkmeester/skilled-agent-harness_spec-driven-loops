@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `023-deep-research-arc-blind-spots/002-retrieval-observability` |
+| **Spec Folder** | 002-retrieval-observability |
 | **Completed** | 2026-05-19 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

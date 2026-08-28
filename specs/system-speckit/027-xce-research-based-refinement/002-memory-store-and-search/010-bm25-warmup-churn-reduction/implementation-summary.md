@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 017-bm25-warmup-churn-reduction |
+| **Spec Folder** | 010-bm25-warmup-churn-reduction |
 | **Completed** | 2026-06-11 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

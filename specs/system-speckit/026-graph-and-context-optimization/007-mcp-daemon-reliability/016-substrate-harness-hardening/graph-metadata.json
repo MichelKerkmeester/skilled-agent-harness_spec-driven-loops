@@ -41,33 +41,17 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-harness-hardening.vitest.ts",
       "research/research.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
-      ".opencode/bin/mk-code-index-launcher.cjs",
       "research/iterations/iteration-001.md",
       "research/resource-map.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "run-substrate-stress-harness.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "substrate-harness-hardening.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-harness-hardening.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -102,18 +86,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "substrate-runner-harness.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
         "source": "derived"
       },
       {
@@ -199,11 +171,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The substrate stress harness reclassifies a connection failure as a tolerated SKIP whenever a live PID is found in a daemon's single-writer lease",
     "created_at": "2026-05-31T10:01:17.891Z",
-    "last_save_at": "2026-07-17T17:19:34.613Z",
+    "last_save_at": "2026-08-28T15:59:57.002Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +211,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:fa9cc4899271378937399bdbd4a564bbae10c4c458bada0e539d7e3f836e3d11",
+    "source_fingerprint": "sha256:ccaa45363864d711ffc857abc72d1577ee864f61dcc3d0c882b3dadabae8a510",
     "source_doc_hashes": {
       "spec.md": "5a369b8332f75f6c15aa1126a23b8d3865372eee71461f0a7190b97a5b0e86c0",
       "plan.md": "fc5c2670daec6a0858b6c9f2bfc13dad8e2d53db8960add03ac2b73bcea35928",
       "tasks.md": "f0f1c2286e0bc6d96a62e63f7c9791067a10f5cd6e198cc693cfe9c43f9e8c76",
       "checklist.md": "c35a3530a310dd33ed30a951ac5a5c8cfe64e8e8ebbfac870347909ca40bef56",
       "decision-record.md": "874d6ba58c244714da3577ebd94de66fbc1b0590bc294181fb8bd48c82575e71",
-      "implementation-summary.md": "31b6f924a187898cbd7995af43e26604b70f1ca7d2227ed6cd6a558a04e152f9",
+      "implementation-summary.md": "a4a0f8665a4de9f62928e1dae8fa352f1c3e54e0ef952bc28fbdda114c2f8fbf",
       "research/research.md": "11b38d24ec611d377f36dc430ed149c7ecce2ef78131100818c1a1037a6b8057"
     },
     "last_active_child_id": null,

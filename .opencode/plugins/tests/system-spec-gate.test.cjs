@@ -291,7 +291,7 @@ test('SYSTEM_SPEC_GATE_ENFORCE unset: no Write/Edit is ever denied through the O
 // ─────────────────────────────────────────────────────────────────────────────
 
 function warningLogPath(projectDir) {
-  return path.join(projectDir, '.opencode', 'skills', '.spec-gate-state', 'spec-gate-warnings.log');
+  return path.join(projectDir, '.opencode', 'skills', '.state', 'spec-gate', 'spec-gate-warnings.log');
 }
 
 test('WS1 telemetry: a source-file Write with an open gate writes exactly one parseable session|tool|path|decision line', async () => {

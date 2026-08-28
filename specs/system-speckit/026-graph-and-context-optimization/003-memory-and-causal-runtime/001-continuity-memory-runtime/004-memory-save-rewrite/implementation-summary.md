@@ -44,7 +44,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `004-memory-save-rewrite` (historical alias: `014-memory-save-rewrite`) |
+| **Spec Folder** | 004-memory-save-rewrite |
 | **Status** | Complete |
 | **Completed** | 2026-04-15 |
 | **Level** | 3+ |

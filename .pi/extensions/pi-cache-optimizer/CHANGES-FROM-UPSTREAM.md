@@ -75,6 +75,8 @@ The DeepSeek compat path treated `supportsLongCacheRetention` as a required/miss
 - An `opencode/deepseek-v4-flash-free` session created a new statistics entry.
 - A real `deepseek/deepseek-v4-flash` session created zero statistics entries.
 
+---
+
 ## 4. FOLLOW-UP FINDING CLARIFICATIONS
 
 - For the historical `openai-codex` workload, this extension adds no provider-side cache-hit contribution because Pi's native server-side cache produced the measured hit rate. That does not mean the extension has no effect: it still requests `PI_CACHE_RETENTION=long` and supplies local footer statistics and diagnostics.

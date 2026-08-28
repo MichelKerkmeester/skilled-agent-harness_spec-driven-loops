@@ -41,9 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/commands/doctor/speckit.md",
-      ".opencode/commands/doctor/mcp.md",
-      ".opencode/commands/doctor/update.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -63,24 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "speckit.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/speckit.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/mcp.md",
-        "source": "derived"
-      },
-      {
-        "name": "update.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/update.md",
         "source": "derived"
       },
       {
@@ -194,7 +173,7 @@
     ],
     "causal_summary": "Doctor Commands needs a scoped router rewire phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:43.593Z",
+    "last_save_at": "2026-08-28T16:00:10.515Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +182,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c492b92480a738a221466c8c27447d5a02bb3defd589de659c181ce5946e1a7b",
+    "source_fingerprint": "sha256:e3c722634f1b8a173ba49be38e75479f0a593af72781f553cd4d6ad0e77ca14f",
     "source_doc_hashes": {
       "spec.md": "5f710f30b519ac50607090a47571cb48e5f956e15cb8132d3f26322b4e7f4c1f",
       "plan.md": "6d0c6bc4e7912dbc63d443f7b822d374babcb3d8e273c93c2c324acd3196cb60",
       "tasks.md": "17e1ea6a8231ad21e7001a0c020606812b90572878cdfdeb7c1b59174c0e404e",
-      "implementation-summary.md": "81a083721bef16c09bcb8c3c123427e4ffd92518d17ce2256a494fe92903f48d"
+      "implementation-summary.md": "98c5b6a8c6208971a4de83a3bf27de6e81a821c49b887d9b0f189127c1e41679"
     },
     "last_active_child_id": null,
     "last_active_at": null

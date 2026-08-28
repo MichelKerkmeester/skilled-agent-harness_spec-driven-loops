@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "sk-design/017-design-skill/002-agent-alignment",
+  "description": "The `design` agent was written when extraction was the only surviving design capability",
+  "keywords": [
+    "design",
+    "agent",
+    "written",
+    "extraction",
+    "only",
+    "surviving",
+    "capability"
+  ],
+  "lastUpdated": "2026-08-28T12:29:07.935Z",
+  "specId": "002",
+  "folderSlug": "agent-alignment",
+  "parentChain": [
+    "sk-design",
+    "017-design-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

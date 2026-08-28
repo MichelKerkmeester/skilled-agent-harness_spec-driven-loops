@@ -3,6 +3,7 @@
   "packet_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe",
   "spec_folder": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/012-boot-integrity-retention-probe",
   "parent_id": "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -43,13 +44,6 @@
     "key_files": [
       "spec.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
-      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md"
@@ -65,48 +59,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-ipc-bridge.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-ipc-bridge-probe.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
         "source": "derived"
       },
       {
@@ -198,11 +150,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Three",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three gaps remained after packet 010 made the at-rest WAL durable",
     "created_at": "2026-05-29T13:49:32.618Z",
-    "last_save_at": "2026-07-17T17:19:34.307Z",
+    "last_save_at": "2026-08-28T15:59:54.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f84219e8ed1b445776b57edf8a68b2102600e94219be6593f42b494091a11bc2",
+    "source_fingerprint": "sha256:d99f395b9bd8575754efd3be366d5b90ccad31a0c69f536fd6e1ea5abb5ebbaa",
     "source_doc_hashes": {
       "spec.md": "1c51479df648af133ce52b99a032133f68aff5c46a1cf22f6bb5f9627ed53906",
       "plan.md": "b7559dd6d9c50ede0a7b0e3aa726ff12148179feda6ae92f98b40dd293f654d1",
       "tasks.md": "0293dfb9a70b261747681c9f88273d4ef65f7f4e788db3b02c40d0630742fd01",
       "checklist.md": "e1683667fe980cae3eecb12c7188a38d09a1e5a679821e0be4bdaa19bb2963d4",
-      "implementation-summary.md": "9dfc25fdc2077581d0b38bd7cb6cda7234d0242ce5d888e83d9b6ef532905b83"
+      "implementation-summary.md": "e4c304752d2187895501b84b64b2442d86178a80a4a18ead63649292d3c481ca"
     },
     "last_active_child_id": null,
     "last_active_at": null

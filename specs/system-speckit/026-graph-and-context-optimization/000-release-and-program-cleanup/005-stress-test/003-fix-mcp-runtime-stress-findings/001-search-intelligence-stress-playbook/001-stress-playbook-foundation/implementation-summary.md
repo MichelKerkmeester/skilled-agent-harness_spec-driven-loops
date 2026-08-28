@@ -40,7 +40,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-search-intelligence-stress-playbook |
+| **Spec Folder** | 001-stress-playbook-foundation |
 | **Completed** | 2026-04-26 (design + scaffold; execution deferred) |
 | **Level** | 1 |
 | **Status** | Design complete; execution scheduled |

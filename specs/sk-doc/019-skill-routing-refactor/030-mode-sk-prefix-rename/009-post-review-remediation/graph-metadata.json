@@ -3,6 +3,7 @@
   "packet_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/009-post-review-remediation",
   "spec_folder": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/009-post-review-remediation",
   "parent_id": "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -186,7 +187,7 @@
     ],
     "causal_summary": "Fix every remaining deep-review finding: route-gold refresh, phase-parent status rollup, pre-existing repairs, additive advisor vocabulary.",
     "created_at": "2026-07-28T11:56:16.836Z",
-    "last_save_at": "2026-07-29T09:11:13.132Z",
+    "last_save_at": "2026-08-28T15:53:21.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,13 +197,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15f42bff62835d154eacf3a0cb3b23c976cf2a7e17c159d22d1566d9b4848e5d",
+    "source_fingerprint": "sha256:3b84709605ca64bed1c4296fefefb2171ee1b072be31345faadfd99eae61941e",
     "source_doc_hashes": {
       "spec.md": "c629399fe42966db5f16c5acd0a9b7b25f2835f5afef6910be59b0717d405ac3",
       "plan.md": "891d4e42418d73c861a87b3f46ac6f599b2d99187136893075842c0f9a236167",
       "tasks.md": "36e170c19e1b46c27566a6a8c4f55fa36487db0d5f9598bb3c6faa50e4422d0c",
       "checklist.md": "b5e2d4008b5b15dd655810255531609bda89cbf16b4e4a00bb0efe97949ad91b",
-      "implementation-summary.md": "020cc651b7fffa23b0787c37b05564fb2d3d22da7950dab6f83ce3c9d7d81155"
+      "implementation-summary.md": "6a18bf3c875d34c372ebaaa1c70459af249aa22977847ad69c4bc15ea0c8008b"
     },
     "last_active_child_id": null,
     "last_active_at": null

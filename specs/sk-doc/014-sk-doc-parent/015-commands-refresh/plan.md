@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/015-commands-refresh"
+    packet_pointer: "sk-doc/014-sk-doc-parent/015-commands-refresh"
     last_updated_at: "2026-07-07T06:40:27.201Z"
     last_updated_by: "claude-opus"
     recent_action: "Author phase-015 plan"

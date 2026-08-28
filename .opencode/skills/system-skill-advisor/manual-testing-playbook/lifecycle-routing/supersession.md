@@ -92,7 +92,7 @@ Precondition check for a superseded-successor pair in skill `graph-metadata.json
 
 ```text
 grep pattern: "supersession|redirect_to|redirect_from|superseded|successor"
-path: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills
+path: <repo-root>/.opencode/skills
 include: graph-metadata.json
 
 No files found
@@ -102,85 +102,85 @@ More specific metadata-field check:
 
 ```text
 grep pattern: "\"lifecycle_status\"|\"redirect_to\"|\"redirect_from\"|\"skill_id\""
-path: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills
+path: <repo-root>/.opencode/skills
 include: *graph-metadata.json
 
 Found 20 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-chrome-devtools/graph-metadata.json:
+<repo-root>/.opencode/skills/mcp-chrome-devtools/graph-metadata.json:
   Line 3:   "skill_id": "mcp-chrome-devtools",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-git/graph-metadata.json:
+<repo-root>/.opencode/skills/sk-git/graph-metadata.json:
   Line 3:   "skill_id": "sk-git",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/cli-opencode/graph-metadata.json:
+<repo-root>/.opencode/skills/cli-opencode/graph-metadata.json:
   Line 3:   "skill_id": "cli-opencode",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/z_archive/cli-codex-retired/graph-metadata.json:
+<repo-root>/.opencode/skills/z_archive/cli-codex-retired/graph-metadata.json:
   Line 3:   "skill_id": "cli-codex",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/sk-design-interface/graph-metadata.json:
-  Line 3:   "skill_id": "sk-design-interface",
+.opencode/skills/sk-design/graph-metadata.json:
+  Line 3:   "skill_id": "sk-design",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-code-mode/graph-metadata.json:
+<repo-root>/.opencode/skills/mcp-code-mode/graph-metadata.json:
   Line 3:   "skill_id": "mcp-code-mode",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/graph-metadata.json:
+<repo-root>/.opencode/skills/system-spec-kit/graph-metadata.json:
   Line 3:   "skill_id": "system-spec-kit",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/cli-claude-code/graph-metadata.json:
+<repo-root>/.opencode/skills/cli-claude-code/graph-metadata.json:
   Line 3:   "skill_id": "cli-claude-code",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-click-up/graph-metadata.json:
+<repo-root>/.opencode/skills/mcp-click-up/graph-metadata.json:
   Line 3:   "skill_id": "mcp-click-up",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/graph-metadata.json:
+<repo-root>/.opencode/skills/sk-doc/graph-metadata.json:
   Line 3:   "skill_id": "sk-doc",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt/graph-metadata.json:
+<repo-root>/.opencode/skills/sk-prompt/graph-metadata.json:
   Line 3:   "skill_id": "sk-prompt",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-figma/graph-metadata.json:
+<repo-root>/.opencode/skills/mcp-figma/graph-metadata.json:
   Line 3:   "skill_id": "mcp-figma",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/runtime/graph-metadata.json:
+<repo-root>/.opencode/skills/system-deep-loop/runtime/graph-metadata.json:
   Line 4:   "skill_id": "deep-loop-runtime",
 
 
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/sk-code-review/graph-metadata.json:
+<repo-root>/.opencode/skills/sk-code/sk-code-review/graph-metadata.json:
   Line 3:   "skill_id": "sk-code-review",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt-models/graph-metadata.json:
+<repo-root>/.opencode/skills/sk-prompt-models/graph-metadata.json:
   Line 3:   "skill_id": "sk-prompt-models",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/graph-metadata.json:
+<repo-root>/.opencode/skills/sk-design/graph-metadata.json:
   Line 3:   "skill_id": "sk-design",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/graph-metadata.json:
+<repo-root>/.opencode/skills/sk-code/graph-metadata.json:
   Line 3:   "skill_id": "sk-code",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/graph-metadata.json:
+<repo-root>/.opencode/skills/system-skill-advisor/graph-metadata.json:
   Line 3:   "skill_id": "system-skill-advisor",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/graph-metadata.json:
+<repo-root>/.opencode/skills/system-deep-loop/graph-metadata.json:
   Line 4:   "skill_id": "system-deep-loop",
 ```
 
@@ -190,7 +190,7 @@ MCP advisor recommendation call made during routing/precondition validation:
 {
   "status": "ok",
   "data": {
-    "workspaceRoot": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public",
+    "workspaceRoot": "<repo-root>",
     "effectiveThresholds": {
       "confidenceThreshold": 0.8,
       "uncertaintyThreshold": 0.35,

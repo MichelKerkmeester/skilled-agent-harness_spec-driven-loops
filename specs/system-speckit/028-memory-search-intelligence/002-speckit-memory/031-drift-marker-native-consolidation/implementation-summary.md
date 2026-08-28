@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 022-drift-marker-native-consolidation |
+| **Spec Folder** | 031-drift-marker-native-consolidation |
 | **Status** | COMPLETE |
 | **Completed** | 2026-07-10 |
 | **Level** | 2 |

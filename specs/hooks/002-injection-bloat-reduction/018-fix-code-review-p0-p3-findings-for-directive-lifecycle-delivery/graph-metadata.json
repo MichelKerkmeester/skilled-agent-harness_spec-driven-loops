@@ -66,9 +66,9 @@
       "evidence/runtime/2026-08-11-registered-paths-final-2/summary.json",
       "evidence/outcomes/opencode-test-seam.json",
       "evidence/performance/result-final-5.json",
-      "evidence/tests/registered-adapters-verified.log",
       "evidence/runtime/2026-08-11-registered-paths-final/source-hashes.json",
-      "evidence/outcomes/cursor-native-host-final.json"
+      "evidence/outcomes/cursor-native-host-final.json",
+      "evidence/outcomes/pi-repeat-suppression-verified.json"
     ],
     "entities": [
       {
@@ -174,12 +174,6 @@
         "source": "derived"
       },
       {
-        "name": "registered-adapters-verified.log",
-        "kind": "file",
-        "path": "evidence/tests/registered-adapters-verified.log",
-        "source": "derived"
-      },
-      {
         "name": "source-hashes.json",
         "kind": "config",
         "path": "evidence/runtime/2026-08-11-registered-paths-final/source-hashes.json",
@@ -189,6 +183,12 @@
         "name": "cursor-native-host-final.json",
         "kind": "config",
         "path": "evidence/outcomes/cursor-native-host-final.json",
+        "source": "derived"
+      },
+      {
+        "name": "pi-repeat-suppression-verified.json",
+        "kind": "config",
+        "path": "evidence/outcomes/pi-repeat-suppression-verified.json",
         "source": "derived"
       },
       {
@@ -218,7 +218,7 @@
     ],
     "causal_summary": "Before this phase, the canonical decision recorded transcript size only when it delivered the full directive block",
     "created_at": "2026-08-11T12:34:41Z",
-    "last_save_at": "2026-08-12T05:31:12.086Z",
+    "last_save_at": "2026-08-28T15:52:55.962Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -230,15 +230,15 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:1abba5c3bd36fc8fb14dfe67c3a14739bb55487682aa1b5c570e470616904a84",
+    "source_fingerprint": "sha256:7dda9c47dceff1f9e37785858836be663b16f68c8a8e57f365e01f20df2395a9",
     "source_doc_hashes": {
-      "spec.md": "f00ff69d5afb03e56acddf705b0c93fdad7ec5ae5d376b56ee7b582b5446843f",
-      "plan.md": "5f64ce29a7cf36d6581f55d4d9901d45751fc2652a99cdc7bdaad496ecbbca40",
-      "tasks.md": "6303746dff874430236cfcca5e14dab0a6f0c05867e58132e73d490595648c46",
-      "checklist.md": "10a94e6454c111cd181968fdcf49975f2c55319dc711e5e540b396cb355fdbce",
-      "decision-record.md": "a4b399f437316c3095dc9ee2be8ae4534502a45a67f88147867d9d48861ab6b6",
-      "implementation-summary.md": "7d9c8ee8ea7c9c26b3e61c78cfdf0686410dfdc8dca50e639ead2d6f77d551f8",
-      "handover.md": "644eeb93f78ee4ac67e653cfc33a1e82d770ad376798ee8af5ecb0b18102c92d"
+      "spec.md": "94bf56e3095b96ea8252dbde46bb7bb5433a77ff3fb7f568bf5857cb0899daa1",
+      "plan.md": "cca285c50a635030abd10ae9f266051dd80b778482f934e4d8d346871cd2f56a",
+      "tasks.md": "46ad4e5a50bb5da62558306c0778df470273b1496604b35fa83c6ec2a37a3d49",
+      "checklist.md": "4335779c22dba760400e327bad82f9864159d63e36280ad49afaf084bd41049d",
+      "decision-record.md": "180f5342c7dff1233f7a8b5f23cfcca08808cbc428d92ea80bdc10c15e380681",
+      "implementation-summary.md": "e1da1907e6eb8d4567080291fac2d43ebe7ea219cbc1b7368bbe810e0f283a37",
+      "handover.md": "c4167871ba40880f1e745532cacb8744d26952f285207dc9b52863e7ca73ef64"
     },
     "last_active_child_id": null,
     "last_active_at": null

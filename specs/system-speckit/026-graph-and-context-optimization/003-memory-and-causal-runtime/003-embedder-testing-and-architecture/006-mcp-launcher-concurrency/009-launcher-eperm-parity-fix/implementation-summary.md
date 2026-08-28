@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `009-launcher-eperm-parity-fix` |
+| **Spec Folder** | 009-launcher-eperm-parity-fix |
 | **Completed** | 2026-05-18 |
 | **Level** | 1 |
 | **Status** | Complete |

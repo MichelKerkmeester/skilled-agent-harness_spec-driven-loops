@@ -3,6 +3,7 @@
   "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph",
   "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout/002-system-code-graph",
   "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/012-non-hub-rollout",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -199,7 +200,7 @@
     ],
     "causal_summary": "`system-code-graph` is a standalone skill with one inline `INTENTSIGNALS`/`RESOURCEMAP` router, one workflow mode, and no hub registry or sub-mode packets",
     "created_at": "2026-07-19T12:00:00.000Z",
-    "last_save_at": "2026-07-24T12:11:52.075Z",
+    "last_save_at": "2026-08-28T15:53:15.319Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +210,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83204ea57535aa13a3d54e667bed5c1d5e0e21985cb9b088f4fd368c84ad01d5",
+    "source_fingerprint": "sha256:513f98c3c193eaccc7f30450b2fd2aded200a49fc61ced304340336695dcc1ea",
     "source_doc_hashes": {
-      "spec.md": "40f6e27eb14fa877fc2c2a12af4108d290054340f73a0e3a83872a406f2a5b1a",
+      "spec.md": "904e67a7d1b8a1c1d34540422ef9cc4f49c4fcbf67b0c6fe8993da12c588bb21",
       "plan.md": "c5e820b1c246bcaee30963078a280846e1cbf23e33d9459feb48dc1823838610",
       "tasks.md": "80937da5f27a72be4cd9072b3854f0b9bf61fef734cb0288c9a039e74bacda3a",
       "checklist.md": "d870a2dcd718616bbeb2286f7f9b4cb8aa8bca5006692b2a49215c927569bb72",

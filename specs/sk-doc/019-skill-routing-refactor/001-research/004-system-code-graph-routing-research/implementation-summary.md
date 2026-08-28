@@ -50,7 +50,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-research/004-system-code-graph-routing-research |
+| **Spec Folder** | 004-system-code-graph-routing-research |
 | **Completed** | 2026-07-17 (100% research scope) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

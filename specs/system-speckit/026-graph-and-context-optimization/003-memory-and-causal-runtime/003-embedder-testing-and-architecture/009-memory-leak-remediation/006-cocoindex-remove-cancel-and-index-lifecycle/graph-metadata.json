@@ -36,8 +36,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -62,12 +61,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "process-sweep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
         "source": "derived"
       },
       {
@@ -183,11 +176,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The code-index audit found that remove/close can race active indexing and that index operations lack a real protocol cancel surface",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-07-17T17:19:27.698Z",
+    "last_save_at": "2026-08-28T15:59:49.148Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +195,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:32408a505fc9bb3574e73108ab2182fde2506240a78cbea0e13db665caefb2d1",
+    "source_fingerprint": "sha256:8c79b2c695c1c2f2af6b32bb746b6ea5d56337eb50beed95e2b831b5db50dd50",
     "source_doc_hashes": {
       "spec.md": "e8483a07982f468ba2fbd5c52de003db880b287fbb2027e1a9d12aa995d06377",
       "plan.md": "cdd9bb862631906162be8bd49a8cb0ecfe624df8990c3b0cbb3c7350dd75f615",
       "tasks.md": "1a946990bb42df821e0601c01c83db259b3145079cad9b75299e8376d7911cff",
-      "implementation-summary.md": "48d6ac96d1d3c37041d4a516f02e7d5080a57272265a29d69509389e70698122"
+      "implementation-summary.md": "35f42d1bf9c23643e6a80e7caa994ba86ec96aa1fa2fd532073f19e8207cd76e"
     },
     "last_active_child_id": null,
     "last_active_at": null

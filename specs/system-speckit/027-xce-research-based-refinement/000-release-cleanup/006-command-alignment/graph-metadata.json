@@ -41,16 +41,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/commands/memory/manage.md",
-      ".opencode/commands/memory/search.md",
-      ".opencode/commands/memory/save.md",
-      ".opencode/commands/speckit/complete.md",
-      ".opencode/commands/speckit/implement.md",
-      ".opencode/commands/speckit/resume.md",
-      ".opencode/commands/doctor/speckit.md",
-      ".opencode/commands/doctor/mcp.md",
-      ".opencode/commands/doctor/update.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -75,60 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "manage.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/manage.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
-        "source": "derived"
-      },
-      {
-        "name": "complete.md",
-        "kind": "doc",
-        "path": ".opencode/commands/speckit/complete.md",
-        "source": "derived"
-      },
-      {
-        "name": "implement.md",
-        "kind": "doc",
-        "path": ".opencode/commands/speckit/implement.md",
-        "source": "derived"
-      },
-      {
-        "name": "resume.md",
-        "kind": "doc",
-        "path": ".opencode/commands/speckit/resume.md",
-        "source": "derived"
-      },
-      {
-        "name": "speckit.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/speckit.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/mcp.md",
-        "source": "derived"
-      },
-      {
-        "name": "update.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/update.md",
         "source": "derived"
       },
       {
@@ -196,11 +133,65 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "approval",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Aligned",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Inventory",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Align command-doc content accuracy for flags, behavior, and CLI front doors without changing structural router or presentation ownership",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:37.561Z",
+    "last_save_at": "2026-08-28T15:59:59.231Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62aa7c72b3a62e8cf13da881476605cb3e39afdf7055b92b8e172117659b436a",
+    "source_fingerprint": "sha256:efa6e0c72af93314c38d957c01b5a83c01ef14570e93bbb9a03e0dbdaa2d883a",
     "source_doc_hashes": {
       "spec.md": "d3eb9cacca86276e2404b1ff776d9f53a816f020951435f4ae42704e86c98992",
       "plan.md": "6a81e00681ea22e86fb105c2892b98ef67e5a25a0b40168fc987ea6f5dc2eed7",
       "tasks.md": "127033b09cf6a5a3d25e68487748cd633c7673053f7422166cf4406dac4167c5",
-      "implementation-summary.md": "fa5cfc7375e1cc2441cd24f73a8d1ae3872eae267bb2fd51fb96c890f13ba74e"
+      "implementation-summary.md": "c12ecd0af63168d471dbf902d6d8f0c2d8c4c6a29b73a7dcb8ea59ad6542b66c"
     },
     "last_active_child_id": null,
     "last_active_at": null

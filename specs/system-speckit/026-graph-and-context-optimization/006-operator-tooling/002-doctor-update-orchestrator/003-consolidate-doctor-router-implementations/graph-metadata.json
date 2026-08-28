@@ -46,14 +46,7 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/commands/doctor/mcp.md",
-      ".opencode/commands/doctor/_routes.yaml",
-      ".opencode/commands/doctor/scripts/route-validate.sh",
-      ".opencode/commands/doctor/scripts/route-validate.py",
-      "implementation-summary.md",
-      ".claude/commands/doctor/mcp.md",
-      ".opencode/commands/doctor/update.md",
-      ".opencode/commands/doctor/assets/doctor_causal-graph.yaml"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -87,45 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "mcp.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/mcp.md",
-        "source": "derived"
-      },
-      {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/_routes.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "route-validate.sh",
-        "kind": "script",
-        "path": ".opencode/commands/doctor/scripts/route-validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "route-validate.py",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/route-validate.py",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "update.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/update.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_causal-graph.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_causal-graph.yaml",
         "source": "derived"
       },
       {
@@ -199,11 +156,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Related Docs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "mutation",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Routing Manifest",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 10 `/doctor:` markdown commands in `.opencode/commands/doctor/` share ~50 lines of duplicated boilerplate per file",
     "created_at": "2026-05-11T16:00:00.000Z",
-    "last_save_at": "2026-07-17T17:19:32.774Z",
+    "last_save_at": "2026-08-28T15:59:52.988Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3e7a31373c46def4596f29d3d0e2d772a912e23435c77fca793efe668274db2",
+    "source_fingerprint": "sha256:fe660e413b290617ef9591e5908e35d52fd87baf4667452dd7d1e91e7104dac8",
     "source_doc_hashes": {
       "spec.md": "78e38ea638cb5fa397141bba3a43a7174ab17a934faf13cd9a66ddccc791d6b3",
       "plan.md": "64ba0b71001edece96909354e3231fb69a366f5c1b13bca23c24c5d1b436e2e6",
       "tasks.md": "a7f01c31386a0ee42cc4dfcb4e20de0bd2a46c9a01fc99b43640efe05f54538e",
       "checklist.md": "3b7892fce54bad18bceaf4b7a5e1e0dd2af849b9a2a1883672dc4aa81469d53e",
       "decision-record.md": "8214aaf1380e08c7101b4f06c48b76d1f12a97c81759b40b391ab1fdcee680d3",
-      "implementation-summary.md": "8e88540cfe9c72fcf1e7cf1163a5dc890aa02b8700eeef554762017dea3379eb"
+      "implementation-summary.md": "963a3837bbdaed03b6b62e104d288ce7add0a41ae937a81d1fc99dfea77c5e42"
     },
     "last_active_child_id": null,
     "last_active_at": null

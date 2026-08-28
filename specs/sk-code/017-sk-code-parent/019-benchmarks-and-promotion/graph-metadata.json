@@ -41,10 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/commands/doctor/assets/doctor_parent-skill.yaml",
-      ".opencode/specs/sk-code/017-sk-code-parent/graph-metadata.json",
-      ".opencode/specs/sk-code/017-sk-code-parent/spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -52,24 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "doctor_parent-skill.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/assets/doctor_parent-skill.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-code/017-sk-code-parent/graph-metadata.json",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -195,11 +173,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optional Catalogs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 124 parent-hub program is only complete after all three hub families have fresh, comparable Lane-C benchmark baselines, parent-skill-check migration checks 5-9 can be promoted from warning posture to failure posture, and the parent phase rollup metadata reflects phases 010-019 instead of the stale 001-009 child list",
     "created_at": "2026-07-05T05:46:27.012Z",
-    "last_save_at": "2026-07-09T10:02:44.191Z",
+    "last_save_at": "2026-08-28T15:52:58.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:179eb6666fa864280523c530b755767cd8319f4b1b410dd5adfdf2efdfac6786",
+    "source_fingerprint": "sha256:34bccdb8457f57dd9a424e50d732d89893fd71164c0998779fc712c589ccbbaa",
     "source_doc_hashes": {
       "spec.md": "9da3da296bf0116dedf2509598a0be304871b86c98e345f4724f25d5709db7dc",
       "plan.md": "d1a8b2c59523000a49978cd429b9fd0106caef7809d9f2f44b9e0607078fca0d",
       "tasks.md": "8d5fbe44a171c147bb39cadf5bedeb30aa186c01c7992a9a3bb4b713bf7a356b",
-      "checklist.md": "2fcef63f8ab036862c88ef8996d352285425822bc58a57c87c85675e236da152",
+      "checklist.md": "425be77c54ef35332e0a7597f8fd4cd982724b513a0d79a92041afef863625f3",
       "implementation-summary.md": "b170fb285289c7987e5df838c9407af331846ec1f9d5e9716542016b6d2c052c"
     },
     "last_active_child_id": null,

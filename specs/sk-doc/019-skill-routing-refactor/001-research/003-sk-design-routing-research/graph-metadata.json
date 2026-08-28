@@ -52,12 +52,7 @@
       "research/iterations/iteration-003.md",
       "research/iterations/iteration-005.md",
       "research/iterations/iteration-007.md",
-      "research/iterations/iteration-008.md",
-      ".opencode/skills/sk-design/mode-registry.json",
-      ".opencode/skills/sk-design/hub-router.json",
-      ".opencode/skills/sk-design/design-interface/SKILL.md",
-      ".opencode/skills/sk-design/design-motion/SKILL.md",
-      ".opencode/skills/sk-design/design-md-generator/SKILL.md"
+      "research/iterations/iteration-008.md"
     ],
     "entities": [
       {
@@ -145,24 +140,6 @@
         "source": "derived"
       },
       {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,11 +180,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Autonomous",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-design's routing cannot be measured on the canonical typed-pair surface",
     "created_at": "2026-07-17T04:00:35.686Z",
-    "last_save_at": "2026-07-24T11:03:16.570Z",
+    "last_save_at": "2026-08-28T15:59:25.007Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +212,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:71b3a1d5767928494aca01e16a9a8ed186bdcd1994d3e63c127f01e844c31f0e",
+    "source_fingerprint": "sha256:0460f195b681cc534f9fd187121374791aaee4e28a38bc034b5beee0adf271c3",
     "source_doc_hashes": {
       "spec.md": "109d046fc2fc337dd277c089e81cd4d19d43ede1ad3e2cd6c4bfb1124f0c7c52",
       "plan.md": "cde7d8bef0f417c78b65ad3caff8e5569aea5aee7eb9e0cc4569599dd816dd30",
       "tasks.md": "c98fbfe575f33134343315337fa90e94f6e21e1e5a414d32bc566f09c747a2d4",
-      "implementation-summary.md": "fe39fd9f3d227faaef4b90623a60d3e70d28c965ffddcebcfb17211965f3d727",
-      "research/research.md": "c497cff31b75611a1468e9c17761a946c07403ebcfd35a85468c0a0d87d38727"
+      "implementation-summary.md": "6f1ed7e37cfc8ee41627cddb47195ef21c7937701a79cc8b0af5751c2b5b2417",
+      "research/research.md": "bcab3eb9dbfa066fe348d44f6703fe084dfa0fd34bb9bff49c021abfa47acf27"
     },
     "last_active_child_id": null,
     "last_active_at": null

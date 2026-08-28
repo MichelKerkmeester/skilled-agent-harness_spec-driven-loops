@@ -41,14 +41,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "references/memory/memory_system.md",
-      "references/config/environment_variables.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/references/memory/memory_system.md",
-      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -73,36 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory_system.md",
-        "kind": "doc",
-        "path": "references/memory/memory_system.md",
-        "source": "derived"
-      },
-      {
-        "name": "environment_variables.md",
-        "kind": "doc",
-        "path": "references/config/environment_variables.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
         "source": "derived"
       },
       {
@@ -194,11 +157,41 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "approval",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Aligned",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skill Drift List",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Align every skill SKILL.md, README, assets, and references with shipped flags and behaviors while preserving the narrative house voice",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:37.562Z",
+    "last_save_at": "2026-08-28T15:59:57.892Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:499ee7e625f66e7610daa9f98a516d1159a978430197da274d7614c2490c1632",
+    "source_fingerprint": "sha256:b849edae4a41dfe951bd4cb5abb6452b4a8555f9290e513a332e840d21656878",
     "source_doc_hashes": {
       "spec.md": "48281a0724b2ea527988939490cfa26c44f40a18dd9eccbd9ee5188c0048a4db",
       "plan.md": "7e2ebdb78ecc3a48b66111f39818b9b12dd8d38fe85b9062121f0f396145d357",
       "tasks.md": "60e6977f22ac072e31ecfc2e4e5268a7a6ea930fcebb8bf22b0f9d3015194f27",
-      "implementation-summary.md": "ca62822016cfcb9ed11b59cc50a08db2406982bfd4957724dc2b9b926ee2134f"
+      "implementation-summary.md": "91be11d38515de0b4c13dc7f85c267eb6a6217cecec8d46d522c5754ba4b6b28"
     },
     "last_active_child_id": null,
     "last_active_at": null

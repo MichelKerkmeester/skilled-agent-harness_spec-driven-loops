@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/005-mcp-cli-stress-tests |
+| **Spec Folder** | 005-mcp-cli-stress-tests |
 | **Completed** | 2026-06-10 |
 | **Level** | 1 |
 | **Status** | Completed |

@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `005-embedding-status-integrity` |
+| **Spec Folder** | 005-embedding-status-integrity |
 | **Updated** | 2026-05-27 |
 | **Level** | 1 |
 

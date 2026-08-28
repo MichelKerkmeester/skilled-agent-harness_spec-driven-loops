@@ -41,63 +41,13 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md",
-      ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/positive-design-controls.md",
-      ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/doc-write-routes-elsewhere.md",
-      ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-design/README.md",
-      ".opencode/skills/sk-design/description.json",
-      ".opencode/skills/sk-design/graph-metadata.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
       "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "mcp-open-design-mode.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/01--mode-routing/mcp-open-design-mode.md",
-        "source": "derived"
-      },
-      {
-        "name": "positive-design-controls.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/positive-design-controls.md",
-        "source": "derived"
-      },
-      {
-        "name": "doc-write-routes-elsewhere.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/doc-write-routes-elsewhere.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/graph-metadata.json",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -199,11 +149,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Predecessor Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 018 integrated `design-mcp-open-design` as a registered `packetKind: \"transport\"` mode in sk-design's registries, but the hub's `manualtestingplaybook` (the corpus the skill-benchmark harness scores against) still only exercised the five original design-judgment modes — it had zero scenarios naming the new mode",
     "created_at": "2026-07-07T08:32:09.549Z",
-    "last_save_at": "2026-07-09T10:02:44.552Z",
+    "last_save_at": "2026-08-28T15:53:06.332Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b82a2d3d161ade63ac780dbead80d492a96ed704220067d9149d2c7bfe4cb3a1",
+    "source_fingerprint": "sha256:ebbdaaffd3ddc98e175484f6caeaaf6373378098c69b2fac67485f9e121a9aed",
     "source_doc_hashes": {
-      "spec.md": "f3aaf3d5b96d3a44ee191681a47e5ef8fbd904b1adbc2c7f8e8c49ecbf45128a",
-      "plan.md": "d85895b5053fa8499a62b0611be253cade437821baf8b4a247ca0209caafc53e",
-      "tasks.md": "2dd03bb2623d2fca3ac57367e0751756548e94868cb4394c8022be032350fe81",
-      "checklist.md": "e0a74000f34b035c3898aa2c7b20ab6120cb118e167b8e2bc3b9c886da4f88fc",
-      "implementation-summary.md": "f6d56426a660fde5adc38571155a1bceac22ecb394b282971da62edae95b7148"
+      "spec.md": "c23ace4eb72bfbb3defefe316b77efbb4c1a1b8caf252a15a3d661f0d53e5111",
+      "plan.md": "39ac0ceb15dcfe6d685e326718e7938074768706a937430c8be29bf17e903168",
+      "tasks.md": "a4d4e1072f0fee773e97d9cd379c6b34f10722cc6a7dbde8c029106b63ff0b4a",
+      "checklist.md": "c0f758a98a4aed0bca91e943d7ba8890d8a95ffe465dae87eceb5a2fa8127418",
+      "implementation-summary.md": "80d206c1a9532faafe997eb2fca0223f02ec7aeb87dc6812b909ed34a5fdc61f"
     },
     "last_active_child_id": null,
     "last_active_at": null

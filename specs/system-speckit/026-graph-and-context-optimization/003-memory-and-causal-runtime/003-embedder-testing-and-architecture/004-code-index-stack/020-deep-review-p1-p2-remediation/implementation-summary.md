@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/020-deep-review-p1-p2-remediation/` |
+| **Spec Folder** | 020-deep-review-p1-p2-remediation |
 | **Completed** | 2026-05-19 |
 | **Level** | 2 |
 | **P1 Findings Fixed** | 9/9 |

@@ -42,8 +42,6 @@
     "key_files": [
       "research/research.md",
       "spec.md",
-      ".opencode/skills/sk-code/SKILL.md",
-      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
       "research/iterations/iteration-001.md",
       "research/resource-map.md",
       "research/deep-research-state.jsonl",
@@ -65,18 +63,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-resource-contract.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
         "source": "derived"
       },
       {
@@ -198,11 +184,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "anti-gaming",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-code routing could not be measured honestly on the canonical typed-pair surface",
     "created_at": "2026-07-24T12:00:18.909Z",
-    "last_save_at": "2026-07-24T12:27:28.111Z",
+    "last_save_at": "2026-08-28T15:53:13.861Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +210,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:40843ff5b63ae7622c9a1a207d3e89b6ea9d5e15fa75f1047017456d65d77d1a",
+    "source_fingerprint": "sha256:d71480c93ccad39df9f72baa11f96237a4e34c9c03b0bce3c348c1b58bf5403c",
     "source_doc_hashes": {
       "spec.md": "a5b662a28b95fff106dda5eadf541e1367d701e38848eb4905ee2bf079ec1eb3",
       "plan.md": "24fa54595a3722553b655db1e92b9c7e4816fea036dca8d77e2b00f025d0d5f1",
       "tasks.md": "8d5a9142ec6b3498283022859cdc5fb29cf8b7f562ccd102c43a304dd7613283",
       "implementation-summary.md": "835a0893a8b3fdeb1d1bdbffa68867462746b09d35dd3c0a7d4f3a0b6b219365",
-      "research/research.md": "a2769b0ed8db0a8599510acd2796ca610d2b38973ac8820c41b36f4c022033b5"
+      "research/research.md": "037ac5debac3a36f5a4df502724a2d3537a0bffe462624ccd3abee6566c211d8"
     },
     "last_active_child_id": null,
     "last_active_at": null

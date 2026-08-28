@@ -49,8 +49,7 @@
       "scratch/probe-retrieval-quality.ts",
       "scratch/probe-corpus.json",
       "scratch/probe-queries.json",
-      "scratch/probe-embeddings.json",
-      "templates/examples/level_1/spec.md"
+      "scratch/probe-embeddings.json"
     ],
     "entities": [
       {
@@ -200,7 +199,7 @@
     ],
     "causal_summary": "Packet 015 showed `llama-cpp` is much faster than `hf-local`, but vector-to-vector parity failed with mean cosine `0.9677582325103543` against a `0.995` target",
     "created_at": "2026-05-13T10:23:12Z",
-    "last_save_at": "2026-07-17T17:19:18.819Z",
+    "last_save_at": "2026-08-28T15:59:33.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T10:23:12Z",
     "source_docs": [
@@ -209,12 +208,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd05fb28d1b514b36450b84a67df1fea9a31c2428e7208f73f36ef240b2856d5",
+    "source_fingerprint": "sha256:0094b1c8d666468fae00e35af69f8a116e98fb712bdc48675494f0bbf75e516a",
     "source_doc_hashes": {
       "spec.md": "e07770bbf38c7edbc8ffaeec494c7d53baf220bf85e45d1e869e5b1e1559e161",
       "plan.md": "3f372262a438045b8b5ce138b5a95150298673c68d969c7df6d0d3a0d958e742",
       "tasks.md": "cb89c649db28613c5eea81bf5024980317fc2f3ae83cc246f83dbace69d13033",
-      "implementation-summary.md": "72367a9cdc21c3449e1145a61bd7a9f509616de3de535a8af47a0cb69cfdd260"
+      "implementation-summary.md": "e9942f63a6cb8916098a8feab4faef54b2d80e1c9434f20c488c8a46de447a58"
     },
     "last_active_child_id": null,
     "last_active_at": null

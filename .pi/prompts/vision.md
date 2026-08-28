@@ -4,11 +4,15 @@
 
 Pi reaches sk-vision through a hidden but callable extension tool. This prompt is the native `/vision` entry point and tells the agent to inspect the user's most recent image with `sk_vision_inspect`.
 
+---
+
 ## 2. CONTRACT
 
 **Input:** `$ARGUMENTS` — an optional question about the most recent image.
 
 **Output:** A concise answer synthesized from the `sk_vision_inspect` tool's `<SK-VISION>` output. Treat OCR as exact evidence; treat scene and caption as interpretation.
+
+---
 
 ## 3. INSTRUCTIONS
 
@@ -18,6 +22,8 @@ Pi reaches sk-vision through a hidden but callable extension tool. This prompt i
 4. Answer using the tool's `<SK-VISION>` output. Synthesize the evidence instead of dumping the raw block.
 5. Treat OCR as exact and verbatim. Treat scene and caption as interpretation and hedge uncertain claims.
 6. Never invent details beyond the tool evidence.
+
+---
 
 ## 4. HARD RULES
 

@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `019-readme-resource-map` |
+| **Spec Folder** | 019-readme-resource-map |
 | **Completed** | 2026-05-13 |
 | **Level** | 1 |
 | **Status** | Complete |

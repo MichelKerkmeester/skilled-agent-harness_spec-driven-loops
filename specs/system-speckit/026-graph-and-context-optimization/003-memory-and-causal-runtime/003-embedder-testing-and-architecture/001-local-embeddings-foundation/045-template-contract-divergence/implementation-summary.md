@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/045-template-contract-divergence` |
+| **Spec Folder** | 045-template-contract-divergence |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
 | **Depends On** | `041-v-rule-cross-spec-overreach` |

@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/008-agents-md-alignment |
+| **Spec Folder** | 008-agents-md-alignment |
 | **Completed** | 2026-06-10 |
 | **Level** | 1 |
 | **Status** | Completed |

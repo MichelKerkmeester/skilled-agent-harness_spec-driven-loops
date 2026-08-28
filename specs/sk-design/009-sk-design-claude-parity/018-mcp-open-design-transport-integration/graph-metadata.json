@@ -41,45 +41,13 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/mode-registry.json",
-      ".opencode/skills/sk-design/hub-router.json",
-      ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/skills/mcp-figma/graph-metadata.json",
-      ".opencode/skills/cli-opencode/SKILL.md",
-      ".opencode/skills/sk-code/mode-registry.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "feature_catalog/feature_catalog.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-opencode/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -102,18 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": "feature_catalog/feature_catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": "manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
@@ -199,11 +155,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Dispatch Explore",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Skills Library",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The operator physically moved and renamed `.opencode/skills/mcp-open-design/` to `.opencode/skills/sk-design/design-mcp-open-design/` via a raw `mv` (outside git)",
     "created_at": "2026-07-07T07:42:15.977Z",
-    "last_save_at": "2026-07-09T10:02:44.543Z",
+    "last_save_at": "2026-08-28T15:53:05.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,11 +205,11 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dfe837a80288b8eea9d77bf87e28e18878fbc38cf8364a3f28336156e1130433",
+    "source_fingerprint": "sha256:0bfb7e1f62232b7c6819866512976525b6c58029ef8d9298cdb145ab52048f58",
     "source_doc_hashes": {
       "spec.md": "3d3254710bf13f113f461983b30328f7c49b33bdca4a48d7dc01d65dd7ddb5bd",
       "plan.md": "aaa9371574796e822be480c6b4f7d2ca11768e92e5ee3f0423420b8faf61d138",
-      "tasks.md": "9f0b4b3ffadaaf7682c8d6c9d3b495dabf7a7d84ee3f9652fb6c5e1707045e3f",
+      "tasks.md": "e0d7eb0f9860921d6364168948be393639b970b5cefc2101bbcfecbcfee5c942",
       "checklist.md": "8c4ba98aceb373432394fa4f749fea56f1b6f3c9df5bfc90c78dc36afb3ed8af",
       "implementation-summary.md": "9fd94009c15a5b73bbfefff32aaf1e35d055a16bcbf2476bfeed5c161095c8a0"
     },

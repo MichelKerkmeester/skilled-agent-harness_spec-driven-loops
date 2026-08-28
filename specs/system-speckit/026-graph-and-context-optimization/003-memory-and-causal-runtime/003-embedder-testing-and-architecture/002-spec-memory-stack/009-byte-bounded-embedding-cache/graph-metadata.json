@@ -41,61 +41,12 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache-byte-bounded.vitest.ts",
-      ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "embedding-cache.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-queries.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-pipeline.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-cache-byte-bounded.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedding-cache-byte-bounded.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedder_architecture.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
@@ -197,11 +148,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Source",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "byte",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cache Schema",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Site Wiring The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The persistent `embeddingcache` table is capped by a global row count and keyed only by content hash, model, and dimensions",
     "created_at": "2026-05-18T21:37:47.685Z",
-    "last_save_at": "2026-07-17T17:19:21.387Z",
+    "last_save_at": "2026-08-28T15:59:40.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e14dd6fb244fb10fbdd087aefbf5507c459031e811e9d311262c51cf1435a726",
+    "source_fingerprint": "sha256:cb97307dfef2975ea567b74951c311f5e15584ec9b75604d392b0aa18b045650",
     "source_doc_hashes": {
       "spec.md": "e361a668d910c5c498029f08ebb72a1da0fa40bb544fcdec95e8d4f0a68f6fed",
       "plan.md": "cb814f1d5cd31c6fca3ac9a2c3292e09e31aff631cd00f92780d935fcf11e946",
       "tasks.md": "3a47e46ab1401a97a876fab91e8f88420d2725819bd08fed52fc596afd6b892b",
-      "implementation-summary.md": "0605236feb7c55cb151a20f15038285a33c52751de4d42e89dbdb10ab858ba3c"
+      "implementation-summary.md": "edaf7bef81ae55e9f3b4b2d33109a7868a36c047308b3e24f08131490d9056a3"
     },
     "last_active_child_id": null,
     "last_active_at": null

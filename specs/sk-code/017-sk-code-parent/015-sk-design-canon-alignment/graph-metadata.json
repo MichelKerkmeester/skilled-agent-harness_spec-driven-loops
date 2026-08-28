@@ -41,35 +41,13 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/description.json",
-      ".opencode/skills/sk-design/mode-registry.json",
-      ".opencode/skills/sk-design/design-interface/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-design/hub-router.json",
       "implementation-summary.md",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/README.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -86,12 +64,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/hub-router.json",
         "source": "derived"
       },
       {
@@ -195,11 +167,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Hub Fixes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Canon Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Contract Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The master plan reports that `parent-skill-check` strict mode leaves sk-design with four remaining parent-hub invariant failures after the five-mode `packetKind` repair was already pushed in commit `f8673ff0db`",
     "created_at": "2026-07-05T05:46:25.870Z",
-    "last_save_at": "2026-07-07T17:16:29.673Z",
+    "last_save_at": "2026-08-28T15:52:57.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a46847c2c989c63d508610075b4f72816aed7e0ffe2f15514284431d43465888",
+    "source_fingerprint": "sha256:8dd4de599a809b81612cae1e7fedb88fc0c74c613f729258bc00e176b7b86ae0",
     "source_doc_hashes": {
       "spec.md": "de3fdf36ff1d6a4ab430188ead4cb111dd993a3f37e515405b440fe9688515ce",
       "plan.md": "1904f4167d9e0dcf1739674ffece7be4fa9d81c960d988ef9fb1c0c1eecfb15d",
       "tasks.md": "821bf826af8fd04f1be99b5926d2836d00d32fb10737c117e760e175078ef7db",
-      "checklist.md": "b7814b872a12c83cabb73efeb1f0cf85d089eced1a85d1914911cc32b16ccfea",
+      "checklist.md": "cf7ab8b0cf9c1b4ab80dd153870ded5c963de3efd5fd5fb24fdfef47053c9296",
       "implementation-summary.md": "ba05a60d36e0e95cf03feb840df5ed40307b6a69f57c6c53276777873a805583"
     },
     "last_active_child_id": null,

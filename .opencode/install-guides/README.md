@@ -18,33 +18,8 @@ importance_tier: "important"
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-1. [OVERVIEW](#1-overview)
-2. [GUIDES INVENTORY](#2-guides-inventory)
-3. [USAGE](#3-usage)
-4. [PRE-FLIGHT CHECK](#4-pre-flight-check)
-5. [ENVIRONMENT DETECTION](#5-environment-detection)
-6. [VERSION COMPATIBILITY & RESOURCES](#6-version-compatibility--resources)
-7. [COMPONENT MATRIX](#7-component-matrix)
-8. [PHASE 1: PREREQUISITES](#8-phase-1-prerequisites)
-9. [PHASE 2: LOCAL EMBEDDINGS](#9-phase-2-local-embeddings)
-10. [PHASE 3: MCP SERVERS](#10-phase-3-mcp-servers)
-11. [PHASE 4: PLUGINS](#11-phase-4-plugins)
-12. [CONFIGURATION TEMPLATES](#12-configuration-templates)
-13. [FINAL VERIFICATION](#13-final-verification)
-14. [DISASTER RECOVERY](#14-disaster-recovery)
-15. [POST-INSTALLATION CONFIGURATION](#15-post-installation-configuration)
-16. [WHAT'S NEXT?](#16-whats-next)
-17. [TROUBLESHOOTING](#17-troubleshooting)
-18. [QUICK REFERENCE](#18-quick-reference)
-19. [RELATED DOCUMENTS](#19-related-documents)
-
 ---
 
-<!-- /ANCHOR:table-of-contents -->
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 ### What is this directory?
@@ -66,8 +41,6 @@ This README serves as both the **directory index** (listing all available guides
 
 ---
 
-<!-- /ANCHOR:overview -->
-<!-- ANCHOR:guides-inventory -->
 ## 2. GUIDES INVENTORY
 
 All 5 `.md` guide entries in this directory (1 regular file + 4 symlinks), grouped by type:
@@ -85,8 +58,6 @@ All 5 `.md` guide entries in this directory (1 regular file + 4 symlinks), group
 
 ---
 
-<!-- /ANCHOR:guides-inventory -->
-<!-- ANCHOR:usage -->
 ## 3. USAGE
 
 ### When to use which guide
@@ -117,8 +88,6 @@ Start with Pre-Flight Check to detect what's already installed, then guide me th
 
 ---
 
-<!-- /ANCHOR:usage -->
-<!-- ANCHOR:pre-flight-check -->
 ## 4. PRE-FLIGHT CHECK
 
 Run this command to detect what's already installed:
@@ -158,8 +127,6 @@ echo ""
 
 ---
 
-<!-- /ANCHOR:pre-flight-check -->
-<!-- ANCHOR:environment-detection -->
 ## 5. ENVIRONMENT DETECTION
 
 Answer these questions to configure your installation:
@@ -263,8 +230,6 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 ---
 
-<!-- /ANCHOR:environment-detection -->
-<!-- ANCHOR:version-compatibility-resources -->
 ## 6. VERSION COMPATIBILITY & RESOURCES
 
 ### 6.1 Version Compatibility Matrix
@@ -300,8 +265,6 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 ---
 
-<!-- /ANCHOR:version-compatibility-resources -->
-<!-- ANCHOR:component-matrix -->
 ## 7. COMPONENT MATRIX
 
 ### 7.1 Component Overview
@@ -381,8 +344,6 @@ Prerequisites → Code Mode → Spec Kit Memory
 
 ---
 
-<!-- /ANCHOR:component-matrix -->
-<!-- ANCHOR:phase-1-prerequisites -->
 ## 8. PHASE 1: PREREQUISITES
 
 > **Skip Check:** Run `node -v && python3 -V`. If both return versions, skip to Phase 2.
@@ -466,8 +427,6 @@ node --version | grep -E "^v(1[89]|2[0-9])" && python3 --version | grep -E "3\.(
 
 ---
 
-<!-- /ANCHOR:phase-1-prerequisites -->
-<!-- ANCHOR:phase-2-local-embeddings -->
 ## 9. PHASE 2: LOCAL EMBEDDINGS
 
 Spec Kit Memory resolves the active local embedding profile automatically. The HF Local ONNX profile runs on Node.js without external services. When an Ollama daemon is reachable on `localhost:11434`, the cascade can promote to Ollama.
@@ -476,8 +435,6 @@ No separate local model service is required for Memory MCP embeddings. Continue 
 
 ---
 
-<!-- /ANCHOR:phase-2-local-embeddings -->
-<!-- ANCHOR:phase-3-mcp-servers -->
 ## 10. PHASE 3: MCP SERVERS
 
 > **Skip Check:** Run `grep -q '"code_mode"' opencode.json && grep -q '"system-spec-memory"' opencode.json && echo "✅ All configured"`. If all configured, skip to Phase 4.
@@ -760,8 +717,6 @@ grep -q '"code_mode"' opencode.json && \
 
 ---
 
-<!-- /ANCHOR:phase-3-mcp-servers -->
-<!-- ANCHOR:phase-4-plugins -->
 ## 11. PHASE 4: PLUGINS
 
 ### 11.1 Native Skills (Built-in)
@@ -861,8 +816,6 @@ test -d .opencode/skills && [ $(ls -1 .opencode/skills | wc -l) -ge 1 ] && echo 
 
 ---
 
-<!-- /ANCHOR:phase-4-plugins -->
-<!-- ANCHOR:configuration-templates -->
 ## 12. CONFIGURATION TEMPLATES
 
 ### 12.1 Complete `opencode.json` (Full Bundle)
@@ -937,8 +890,6 @@ test -d .opencode/skills && [ $(ls -1 .opencode/skills | wc -l) -ge 1 ] && echo 
 
 ---
 
-<!-- /ANCHOR:configuration-templates -->
-<!-- ANCHOR:final-verification -->
 ## 13. FINAL VERIFICATION
 
 ### Checklist
@@ -985,8 +936,6 @@ Full reference: `.opencode/commands/doctor/speckit.md` + `.opencode/commands/doc
 
 ---
 
-<!-- /ANCHOR:final-verification -->
-<!-- ANCHOR:disaster-recovery -->
 ## 14. DISASTER RECOVERY
 
 Emergency procedures for backup, recovery and clean uninstallation of OpenCode components. Use this section when things go wrong or when performing maintenance.
@@ -1094,8 +1043,6 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 
 ---
 
-<!-- /ANCHOR:disaster-recovery -->
-<!-- ANCHOR:post-installation-configuration -->
 ## 15. POST-INSTALLATION CONFIGURATION
 
 After installing OpenCode components, customize the AI agent configuration for your project.
@@ -1200,8 +1147,6 @@ cat opencode.json | jq '.mcp | keys'  # MCP servers configured
 
 ---
 
-<!-- /ANCHOR:post-installation-configuration -->
-<!-- ANCHOR:whats-next -->
 ## 16. WHAT'S NEXT?
 
 You have completed the installation. Here is your roadmap for getting started.
@@ -1256,8 +1201,6 @@ For the SpecKit chain, `/speckit:plan --intake-only` is the standalone intake en
 
 ---
 
-<!-- /ANCHOR:whats-next -->
-<!-- ANCHOR:troubleshooting -->
 ## 17. TROUBLESHOOTING
 
 <details>
@@ -1406,8 +1349,6 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 
 ---
 
-<!-- /ANCHOR:troubleshooting -->
-<!-- ANCHOR:quick-reference -->
 ## 18. QUICK REFERENCE
 
 ### Essential Commands
@@ -1443,8 +1384,6 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 
 ---
 
-<!-- /ANCHOR:quick-reference -->
-<!-- ANCHOR:related-documents -->
 ## 19. RELATED DOCUMENTS
 
 ### Internal Documentation
@@ -1462,4 +1401,3 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 |----------|-------------|
 | [OpenCode Docs](https://opencode.ai/docs) | Official OpenCode documentation |
 | [Model Context Protocol](https://modelcontextprotocol.io) | MCP specification and standards |
-<!-- /ANCHOR:related-documents -->

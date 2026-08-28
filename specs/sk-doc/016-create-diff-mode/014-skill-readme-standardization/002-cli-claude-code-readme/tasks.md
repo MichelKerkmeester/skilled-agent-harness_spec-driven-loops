@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-skill-readme-standardization/002-cli-claude-code-readme"
+    packet_pointer: "sk-doc/016-create-diff-mode/014-skill-readme-standardization/002-cli-claude-code-readme"
     last_updated_at: "2026-06-07T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "All phase-002 tasks complete"

@@ -30,7 +30,7 @@ Private procedure card for applying the existing design-md-generator measured ex
 
 ## 2. TOOL BOUNDARY
 
-`sk-design-md-generator` is the only mutating sk-design mode. It may use its existing extraction pipeline when the mode contract permits. The card does not grant Write, Edit, or Bash to the read-only `sk-design-interface` mode.
+`sk-design-md-generator` is the mutating half of the design pair; its sibling `sk-design` authors values and ships no pipeline. It may use its existing extraction pipeline when the mode contract permits. The card does not grant Write, Edit, or Bash to the sibling `sk-design` skill, which authors values and mutates nothing through this pipeline.
 
 ---
 
@@ -40,10 +40,10 @@ Private procedure card for applying the existing design-md-generator measured ex
 2. Extract by category: colors, typography, spacing, radii, shadows, and any present z-index, animation, breakpoint, or container tokens.
 3. Keep source names, intended usage, gaps, and inconsistencies visible.
 4. Emit or plan the target reference format that matches the mode's current extraction contract.
-5. Recommend review before future `sk-design-interface` work consumes the extracted system.
+5. Recommend review before downstream work consumes the extracted system.
 
 ---
 
 ## 4. CONFLICT RULE
 
-If no measurable source exists and the user wants a new direction from a brief, route to `sk-design-interface/procedures/aesthetic-direction.md` instead.
+If no measurable source exists and the user wants values decided from a brief, route to the sibling authoring skill `sk-design` instead.

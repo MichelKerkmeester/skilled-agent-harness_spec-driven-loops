@@ -41,78 +41,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".claude/mcp.json",
-      ".codex/config.toml",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      "mcp_server/handlers/save/spec-folder-mutex.ts",
-      "mcp_server/tests/handler-memory-save.vitest.ts",
-      "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
-      "mcp_server/tests/shared-daemon-runner-helpers.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
       "spec.md",
       "plan.md",
       "resource-map.md",
       "implementation-summary.md",
-      ".opencode/commands/doctor/_routes.yaml",
-      "mcp_server/context-server.ts",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-folder-mutex.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/save/spec-folder-mutex.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handler-memory-save.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/handler-memory-save.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "run-substrate-stress-harness.mjs",
-        "kind": "file",
-        "path": "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "shared-daemon-runner-helpers.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/shared-daemon-runner-helpers.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -135,12 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/_routes.yaml",
         "source": "derived"
       },
       {
@@ -202,11 +131,71 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Rename",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Server Rename",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Update Server",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current configured server alias forces a 22-character fully qualified prefix, `mcpmkspecmemory`, into every Claude-style tool reference",
     "created_at": "2026-05-13T09:00:44Z",
-    "last_save_at": "2026-07-17T17:19:20.760Z",
+    "last_save_at": "2026-08-28T15:59:38.949Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,12 +205,12 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:841bbeb6500b428c8d51c003d3ee2b2aed7fd2df6e619fef160bb3af177fce44",
+    "source_fingerprint": "sha256:fa6f646e02bee147aa9ef378c346deb3729188ac3fa6988acef4cbe985dd41be",
     "source_doc_hashes": {
       "spec.md": "f553b67cd8b404bd83983faa22923e1ac0799253abc38d7797d57df4626c75e1",
       "plan.md": "2e659b4eeb8342d2868f2a75ba6b0f23895009e332077b5323b87f1813c70439",
       "tasks.md": "5702b77718daaba1ad27fba1e8e66068e26eb3ceb25d7e6284f11ff439c4251b",
-      "implementation-summary.md": "857cb8cf8af5e1e07541c0fdcab9a20f37e69e51d45635818723edf2b204b99f",
+      "implementation-summary.md": "92e94b16511800f94d2d6702d032a4fc952b031b40acfdd6839e2385079e71a7",
       "resource-map.md": "da36a8df869007b96d09257d6ca7b3ec1ab7d078baad04752b4c0eb58449fff8"
     },
     "last_active_child_id": null,

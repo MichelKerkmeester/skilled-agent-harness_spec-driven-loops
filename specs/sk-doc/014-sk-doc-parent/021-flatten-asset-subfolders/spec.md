@@ -10,7 +10,7 @@ contextType: "implementation"
 parent: "skilled-agent-orchestration/125-sk-doc-parent"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/021-flatten-asset-subfolders"
+    packet_pointer: "sk-doc/014-sk-doc-parent/021-flatten-asset-subfolders"
     last_updated_at: "2026-07-07T14:54:32.000Z"
     last_updated_by: "claude-opus"
     recent_action: "Moved 17 templates up; swept 33 live refs"

@@ -38,20 +38,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "mcp_server/lib/search/search-flags.ts",
       "spec.md",
       "implementation-summary.md",
       "plan.md",
-      "mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -68,12 +60,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "run_arm.py",
-        "kind": "file",
-        "path": "mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/scripts/run_arm.py",
         "source": "derived"
       },
       {
@@ -189,11 +175,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Spec-memory's `SPECKITCROSSENCODER=true` path stays default-off because Qwen3-Reranker-0.6B on Apple Silicon CPU is too slow under the MCP rerank-gate timeout:",
     "created_at": "2026-05-23T11:55:15.619Z",
-    "last_save_at": "2026-07-17T17:19:26.760Z",
+    "last_save_at": "2026-08-28T15:53:27.825Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,11 +200,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:05abb03d46424f59c3dd03e2367322e6aeb221e745d75b0b53fb8d132841d297",
+    "source_fingerprint": "sha256:63e5526cf2d4300afa537a162c1145e12d8e49231e3de54013e00269080ca980",
     "source_doc_hashes": {
       "spec.md": "971feb56176601fe479a73cadefb7d44af0fb4b1f3ded0b84246ca8929f991c2",
-      "plan.md": "8a4832b883de3068926e1ea3bc03392a5350ea1830612b797774642ef0f1c4ff",
-      "tasks.md": "09231823ec16987c1685540e2522fa9588ed290a4e76764f8992f3c882fd99db",
+      "plan.md": "c101efa0567f4ab56b453300518d08601d487d01185297d338cf691a7d7753aa",
+      "tasks.md": "81a04b6860113a1d333f4594376834c24da433c5b1d4bb767e59f4da8805de00",
       "implementation-summary.md": "c15f344b79a74005e1ac380463b28fa48d57872242122d39a1cb4449fae1ff8a"
     },
     "last_active_child_id": null,

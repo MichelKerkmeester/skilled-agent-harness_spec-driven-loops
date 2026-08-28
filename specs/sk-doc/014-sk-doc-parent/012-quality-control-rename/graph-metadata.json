@@ -39,40 +39,12 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/sk-doc/mode-registry.json",
-      ".opencode/skills/sk-doc/hub-router.json",
-      ".opencode/skills/sk-doc/description.json",
-      ".opencode/skills/sk-doc/graph-metadata.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/graph-metadata.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +164,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc `doc-quality` workflow packet (built in the original phase map's `012-doc-quality/`) is named as if it were a mode or feature flag rather than a create- authoring packet, which is inconsistent with the hub's naming convention and undersells what the packet actually does: validate, score, and optimize an existing document — the same job the bound `/doc:quality` command already describes",
     "created_at": "2026-07-07T04:51:44.810Z",
-    "last_save_at": "2026-07-17T14:36:58.992Z",
+    "last_save_at": "2026-08-28T15:58:15.888Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8a02ffcbaaac2f79c445540b53bebf4094556231274560ddb0fd0caf47e19b7",
+    "source_fingerprint": "sha256:9107cea59e80e7bbe9e57d1501b13d0e9e5d4072d979de1ea3721e471779b0f0",
     "source_doc_hashes": {
-      "spec.md": "fb431c5611813f976f706974b9a502c54415affa0ac7f7f2c400880854e84ca6",
-      "plan.md": "13ca547771402b1e78907cbc3f201b14f79abc2429cd79dc615de385cf70ca32",
-      "tasks.md": "4744a4f8fa2f10fa04acd8f359c3d76e2612f8c6ec1e3c0f1e38ff357872098a",
-      "implementation-summary.md": "17ad43813aad2322c2e4a1b295185a1c1cb51b91288a1e82ae02d436524eaa0d"
+      "spec.md": "7257d5ac4951e454f0b0433486ef8c6c93e2c6821c357b04a1e5de676047275d",
+      "plan.md": "3a9abec5945a8e5a8371b55eb334497ea347b74e8e7a7385206d44fbc0c57a81",
+      "tasks.md": "a7b7b39aa2bfa75c66d588f5b4bf6876a9b8c852111a9a80c95f53baba3de006",
+      "implementation-summary.md": "f5924b7b35f14f6fabbca32e65761961e431ef13b4476b1b9544e21ea2cb82c1"
     },
     "last_active_child_id": null,
     "last_active_at": null

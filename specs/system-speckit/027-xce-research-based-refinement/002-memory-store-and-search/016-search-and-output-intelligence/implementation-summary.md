@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 017-search-and-output-intelligence-implementation (phase parent) |
+| **Spec Folder** | 016-search-and-output-intelligence |
 | **Completed** | 2026-06-17 |
 | **Level** | 1 (phase parent — rollup; per-child detail lives in the children) |
 <!-- /ANCHOR:metadata -->

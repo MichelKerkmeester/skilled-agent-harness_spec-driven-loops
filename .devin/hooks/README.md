@@ -12,6 +12,8 @@ description: "Discovery-only symlinks for Devin-specific hook adapters; runtime 
 
 The current registration is live under `devin -p` when events are top-level arrays with nested matcher groups. Six lifecycle events have fired in a corrected-schema session. `PermissionRequest` and `PostCompaction` remain unobserved because those events did not occur.
 
+---
+
 ## 2. INVENTORY
 
 | Group | Files |
@@ -22,12 +24,16 @@ The current registration is live under `devin -p` when events are top-level arra
 
 The three `.js` links target compiled `mcp-server/dist/` output. A fresh checkout must build that package before those links resolve.
 
+---
+
 ## 3. WIRING AND CAVEATS
 
 - `.devin/hooks.v1.json` is the runtime authority and contains 8 events, 11 matcher groups and 19 commands.
 - `run_subagent` did not occur in the captured session, so `task-dispatch-guard.cjs` remains directly tested but not live-observed.
 - No external non-`mk_` MCP family is currently registered under Devin, so the route guard has no applicable live call yet.
 - No block-severity fixture exists, so the dispatch deny branch remains structurally tested rather than proven end to end.
+
+---
 
 ## 4. VALIDATION
 
@@ -42,6 +48,8 @@ node -e "const d=require('./.devin/hooks.v1.json'); console.log(Object.keys(d).l
 ```
 
 Expected result: `8`.
+
+---
 
 ## 5. RELATED RESOURCES
 

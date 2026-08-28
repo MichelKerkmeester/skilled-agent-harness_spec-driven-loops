@@ -12,6 +12,8 @@ trigger_phrases:
 
 `tests/_support/` contains shared Vitest setup and focused helpers used by MCP server tests. Keep this directory limited to reusable test infrastructure, not assertions or production behavior.
 
+---
+
 ## 2. TREE AND KEY FILES
 
 ```text
@@ -24,11 +26,15 @@ _support/
 - `vitest-setup.ts` - normalizes temp-directory environment variables for test runs.
 - `hooks/` - shared replay helpers for hook-focused tests.
 
+---
+
 ## 3. BOUNDARIES
 
 - Keep cross-suite helpers deterministic and free of persistent workspace writes.
 - Do not place fixture payloads here; use `tests/fixtures/` for reusable data.
 - Do not add production exports from test support modules.
+
+---
 
 ## 4. VALIDATION
 
@@ -38,6 +44,8 @@ Run affected Vitest suites from `mcp_server`; use the full suite for shared setu
 npx vitest run tests/<suite>.vitest.ts
 npx vitest run
 ```
+
+---
 
 ## 5. RELATED
 

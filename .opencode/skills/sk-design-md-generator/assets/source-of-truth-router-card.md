@@ -83,7 +83,7 @@ If a row cannot name a measured token and the origin is not honestly brief-provi
 □ You are extracting a live surface, not authoring from a brief with no site
 ```
 
-If the last box fails, this is forward-authoring. It is out of scope for this mode. Route it to the separate design-spec decision and do not loosen fidelity to fit it here.
+If the last box fails, this is forward-authoring. It is out of scope for this mode. Route it to the sibling authoring skill `sk-design` and do not loosen fidelity to fit it here.
 
 ---
 

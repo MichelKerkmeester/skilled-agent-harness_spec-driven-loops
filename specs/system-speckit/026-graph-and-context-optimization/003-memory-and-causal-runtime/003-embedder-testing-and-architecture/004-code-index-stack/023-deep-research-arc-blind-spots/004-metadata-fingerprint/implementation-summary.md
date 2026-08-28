@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `023-deep-research-arc-blind-spots/004-metadata-fingerprint` |
+| **Spec Folder** | 004-metadata-fingerprint |
 | **Completed** | 2026-05-19 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

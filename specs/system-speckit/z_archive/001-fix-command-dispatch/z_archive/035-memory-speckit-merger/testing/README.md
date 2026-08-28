@@ -2,23 +2,14 @@
 
 Testing suite for the merged memory system in `system-spec-kit`.
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 This README documents the purpose and usage of this spec folder and links to the primary artifacts in this directory.
 
 ---
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1.  OVERVIEW]](#1--overview)
 
 ---
-<!-- /ANCHOR:table-of-contents -->
 
-<!-- ANCHOR:purpose -->
 ## Purpose
 
 This testing suite validates the memory system after the merger of `system-memory` into `system-spec-kit`. It ensures:
@@ -27,18 +18,14 @@ This testing suite validates the memory system after the merger of `system-memor
 2. No broken paths or references
 3. Database integrity is maintained
 4. Memory operations work correctly
-<!-- /ANCHOR:purpose -->
 
-<!-- ANCHOR:prerequisites -->
 ## Prerequisites
 
 - Node.js installed
 - SQLite3 command-line tool installed
 - OpenCode running (for MCP tool tests)
 - Bash shell (macOS/Linux)
-<!-- /ANCHOR:prerequisites -->
 
-<!-- ANCHOR:files -->
 ## Files
 
 | File | Purpose |
@@ -47,9 +34,7 @@ This testing suite validates the memory system after the merger of `system-memor
 | `memory-restart.sh` | Clean database restart procedure |
 | `validation-checklist.md` | Manual validation checklist |
 | `rollback.sh` | Restore from backup if issues occur |
-<!-- /ANCHOR:files -->
 
-<!-- ANCHOR:how-to-run-tests -->
 ## How to Run Tests
 
 ### 1. Automated Tests
@@ -84,9 +69,7 @@ Open `validation-checklist.md` and work through each item manually using OpenCod
 ```bash
 ..opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/035-memory-speckit-merger/testing/rollback.sh
 ```
-<!-- /ANCHOR:how-to-run-tests -->
 
-<!-- ANCHOR:expected-results -->
 ## Expected Results
 
 ### Successful Test Suite Output
@@ -122,9 +105,7 @@ Test 4: Database Integrity
 | Syntax errors | Check recent changes to JS files |
 | Old paths found | Update references to use `system-spec-kit` |
 | MCP tools not working | Restart OpenCode to reload MCP servers |
-<!-- /ANCHOR:expected-results -->
 
-<!-- ANCHOR:directory-structure -->
 ## Directory Structure
 
 ```
@@ -139,5 +120,4 @@ Test 4: Database Integrity
 └── scripts/
     └── generate-context.js   # Memory file generator
 ```
-<!-- /ANCHOR:directory-structure -->
 

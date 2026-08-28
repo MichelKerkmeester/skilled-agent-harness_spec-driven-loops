@@ -41,10 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/commands/doctor/speckit.md",
-      ".opencode/commands/doctor/mcp.md",
-      ".opencode/commands/doctor/update.md",
-      ".opencode/commands/doctor/_routes.yaml",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,30 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "speckit.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/speckit.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/mcp.md",
-        "source": "derived"
-      },
-      {
-        "name": "update.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/update.md",
-        "source": "derived"
-      },
-      {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/_routes.yaml",
         "source": "derived"
       },
       {
@@ -191,11 +163,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Reviewed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Doctor Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:43.592Z",
+    "last_save_at": "2026-08-28T16:00:09.856Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0ab9581d79b0e6c65be05b5e2a1d4e84b4c05f5bd1ec4263ceaef7d6f716119",
+    "source_fingerprint": "sha256:eec5a88cffce733bc2cc0ce8a1b94a8dd828270b8ba66de864014707f32d4d06",
     "source_doc_hashes": {
       "spec.md": "aed2546a09a36b46733e3495857a071b36e2afdd0585cd5cc632e134c2755ff6",
       "plan.md": "f289091265875468c10a91170c21c0236b2fa28ef0f7bb1d8cfde868469c59e9",
       "tasks.md": "3924f2aeee296d4136bbcdd23896a0eab85209761cc2185e30c270b21c84c2f5",
-      "implementation-summary.md": "2f1790193d6e8abac604d4607a19fea0af498daf980cf51b11c9d76057502057"
+      "implementation-summary.md": "d53a186f62528575fe8a074e6403999a9e4e02f44122b578385881a66d7a2c0b"
     },
     "last_active_child_id": null,
     "last_active_at": null

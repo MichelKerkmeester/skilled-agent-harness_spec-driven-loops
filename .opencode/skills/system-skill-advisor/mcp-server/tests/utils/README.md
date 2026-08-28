@@ -11,11 +11,15 @@ description: "Test-only folder for the skill-advisor mcp-server test suite, not 
 
 `tests/utils/` is a test-only folder in the skill-advisor `mcp-server/tests/` suite. Despite the `utils` name it holds a regression test, not shared helper code: it exercises `findAdvisorWorkspaceRoot` from `../../lib/utils/workspace-root.ts`.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
 |------|---------|
 | `workspace-root.vitest.ts` | Verifies the sentinel walk-up happy path and guards the no-sentinel fallback, asserting it never resolves to a directory inside a `specs/` packet tree. |
+
+---
 
 ## 3. RELATED
 

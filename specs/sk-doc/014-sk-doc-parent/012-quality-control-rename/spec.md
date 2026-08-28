@@ -11,7 +11,7 @@ contextType: "implementation"
 parent: "skilled-agent-orchestration/125-sk-doc-parent"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/012-quality-control-rename"
+    packet_pointer: "sk-doc/014-sk-doc-parent/012-quality-control-rename"
     last_updated_at: "2026-07-07T06:49:21.963Z"
     last_updated_by: "claude-sonnet"
     recent_action: "Spec/plan/tasks authored; rename not yet started"

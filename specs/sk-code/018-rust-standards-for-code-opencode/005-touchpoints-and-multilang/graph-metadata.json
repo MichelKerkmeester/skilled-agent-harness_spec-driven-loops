@@ -39,61 +39,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/shared/references/stack_detection.md",
-      ".opencode/skills/sk-code/hub-router.json",
-      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py",
-      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-      ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns.md",
-      ".opencode/skills/sk-code/code-opencode/references/shared/code_organization.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "stack_detection.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/shared/references/stack_detection.md",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "verify_stack_folders.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py",
-        "source": "derived"
-      },
-      {
-        "name": "verify_alignment_drift.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
-        "source": "derived"
-      },
-      {
-        "name": "router-replay.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "universal_patterns.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/shared/universal_patterns.md",
-        "source": "derived"
-      },
-      {
-        "name": "code_organization.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/shared/code_organization.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -195,11 +146,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Rust",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Language Determinism Contracts",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Beyond the surface router and parent union, several tools independently classify languages (stack detection, the hub router, two Python verifiers, and the skill-benchmark router-replay)",
     "created_at": "2026-07-11T08:51:44.754Z",
-    "last_save_at": "2026-07-11T12:02:22.548Z",
+    "last_save_at": "2026-08-28T15:53:00.903Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +189,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e413c412b997605ab2a9bbf4dca1d77d813f8929e4b7b74dcf81da1086234f4b",
+    "source_fingerprint": "sha256:23dd32ba57f9d0a6278dfa8611ea8e0a155d834df698feb8ce770ed7b4eefa2b",
     "source_doc_hashes": {
       "spec.md": "df2d50a740f2606eed98aa828fcc1ac83d7f35819915b17fbae88eda5b8c672c",
       "plan.md": "fdbc538ec38fb8c72645941a1f9278c67b9c97266846127def7cee0fe916212e",
       "tasks.md": "89fb005c11b3bbfc5c7e79af3968aeacd6b531d7db69f2808bc08f7df214d5fd",
-      "implementation-summary.md": "d8a555214ea18f1bf484e975e08fb07159d27ba3f18ed2b66e4508b926792912"
+      "implementation-summary.md": "74ea8e16d5c9b3144c0a88978d2b6bae070d450d0674d790097123c5810037d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

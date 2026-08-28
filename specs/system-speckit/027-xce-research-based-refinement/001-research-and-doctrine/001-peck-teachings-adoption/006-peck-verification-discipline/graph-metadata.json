@@ -3,6 +3,7 @@
   "packet_id": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline",
   "spec_folder": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline",
   "parent_id": "system-speckit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -46,21 +47,7 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/continuity-freshness.vitest.ts",
-      ".opencode/agents/review.md",
-      ".claude/agents/review.md",
-      ".codex/agents/review.toml",
-      ".opencode/agents/context.md",
-      ".claude/agents/context.md",
-      ".codex/agents/context.toml",
-      ".opencode/agents/deep-research.md",
-      ".claude/agents/deep-research.md",
-      ".codex/agents/deep-research.toml",
-      ".opencode/agents/deep-review.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -94,75 +81,9 @@
         "source": "derived"
       },
       {
-        "name": "continuity-freshness.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-doc-structure.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/spec-doc-structure.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validation_rules.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "continuity-freshness.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/continuity-freshness.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "review.md",
-        "kind": "doc",
-        "path": ".opencode/agents/review.md",
-        "source": "derived"
-      },
-      {
-        "name": "review.toml",
-        "kind": "file",
-        "path": ".codex/agents/review.toml",
-        "source": "derived"
-      },
-      {
-        "name": "context.md",
-        "kind": "doc",
-        "path": ".opencode/agents/context.md",
-        "source": "derived"
-      },
-      {
-        "name": "context.toml",
-        "kind": "file",
-        "path": ".codex/agents/context.toml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-research.toml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-review.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -206,11 +127,77 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Escalation Discipline",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verdict Lock",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Budget Discipline",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Peck's source carries a coherent verification-discipline bundle in its agent prompts that the README-only analysis pass never surfaced, and live spec-kit has a real gap against each piece",
     "created_at": "2026-06-06T10:22:05.626Z",
-    "last_save_at": "2026-07-17T17:19:39.112Z",
+    "last_save_at": "2026-08-28T16:00:00.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +208,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6f6a5125bd1d0716839dc125092eb4aee64bb8c869878b9692d92675fc06f17",
+    "source_fingerprint": "sha256:e1b5bff34feaf18970a2c07442ba8ba9472c7b91f75bc7c0bdcce69c32aa1709",
     "source_doc_hashes": {
       "spec.md": "cf651b168d8bedbb0ac4aa06919a80b929727f5193028fedb69d0763ae217ef6",
       "plan.md": "f1d71443ea3dbfbb73fc4cea8441a06732d418b10d052fcbc106008a0562b5e1",
       "tasks.md": "05d2bd96d526128faf80e41c0baeee1898a00471e0398bb8b5db820428429024",
       "checklist.md": "51cdc333e211cd415585e131d3d93b339d0086d1eaf3ac8ff23338e8905aa08b",
       "decision-record.md": "95742876c5c46270bb1c180d22f0576fa513b3bc913f6b9f6095eca2cc6db97b",
-      "implementation-summary.md": "c4b6e47449c2693528c135d956d3dd50ed9876a9bc31a5b385405fa5ab9419f9"
+      "implementation-summary.md": "e4cc9e1c00662a1282f86a5a1fa653b47510cec54e6843c63cad9351e58b4688"
     },
     "last_active_child_id": null,
     "last_active_at": null

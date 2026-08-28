@@ -36,75 +36,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "tests/hybrid-search.vitest.ts",
-      "tests/memory-search-ux-hooks.vitest.ts",
-      "lib/storage/canonical-fingerprint.ts",
-      "mcp_server/lib/search/hybrid-search.ts",
-      "mcp_server/lib/storage/reconsolidation.ts",
-      "mcp_server/lib/storage/lineage-state.ts",
-      "mcp_server/lib/search/vector-index-mutations.ts",
-      "mcp_server/lib/search/vector-index-store.ts",
-      "mcp_server/lib/search/db-shard-migration.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "hybrid-search.vitest.ts",
-        "kind": "test",
-        "path": "tests/hybrid-search.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search-ux-hooks.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-search-ux-hooks.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "canonical-fingerprint.ts",
-        "kind": "code",
-        "path": "lib/storage/canonical-fingerprint.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reconsolidation.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/reconsolidation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lineage-state.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/lineage-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-mutations.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-mutations.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "db-shard-migration.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/db-shard-migration.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -194,11 +131,59 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deferred Slices",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Added Maintenance",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Driver coupling is scattered across roughly 127 production files: vector access, lexical search, graph traversal, maintenance (vacuum/checkpoint family), and contention/retry idioms are implicit better-sqlite3 call sites rather than named seams",
     "created_at": "2026-06-10T17:48:34Z",
-    "last_save_at": "2026-07-17T17:19:43.906Z",
+    "last_save_at": "2026-08-28T16:00:11.176Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +192,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9782587b4036d58e80cfcc86f0e2385c9d5f5bfc19837e32abf9363c87d3d407",
+    "source_fingerprint": "sha256:67eada1f3ed878803115f7ffcb48e4c14f75319c2cdbdbabdce2b008fbeb1c47",
     "source_doc_hashes": {
       "spec.md": "26a6501af269e636b180ee56f38cb3ee0c99b3e9e8f7b05edeb6a181d17dc9a2",
       "plan.md": "d010d2b5853ad24f41d8f5fcf31e05d1378573be3ee3b2af457df71cfbb78f6b",
       "tasks.md": "b237ca44236f769c69b6eb9b22f16d43620962c5f742d30be4c04eef928977d5",
-      "implementation-summary.md": "767f0b7e75d94bd2f29e2f92f927e4a93c8e91c21077b587ac3cfa01086b18a0"
+      "implementation-summary.md": "c60de6caaa99dd732e99c74314d8dc182af1bc68ba456628a0aa24ba13e7a8fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

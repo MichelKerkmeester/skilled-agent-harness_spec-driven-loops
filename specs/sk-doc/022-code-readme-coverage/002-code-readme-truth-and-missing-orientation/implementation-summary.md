@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation"
+    packet_pointer: "sk-doc/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation"
     last_updated_at: "2026-08-02T11:40:04Z"
     last_updated_by: "build-leaf"
     recent_action: "Completed the source-derived README repairs and recorded verification receipts"

@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 019-maintenance-grace-daemon-survives-reelection |
+| **Spec Folder** | 018-maintenance-grace-daemon-survives-reelection |
 | **Completed** | 2026-06-17 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

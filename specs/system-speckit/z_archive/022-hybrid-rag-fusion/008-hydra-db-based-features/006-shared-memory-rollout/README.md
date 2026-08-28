@@ -12,28 +12,15 @@ contextType: "general"
 
 > This folder defines the Level 3+ collaboration rollout package for shared-memory spaces, deny-by-default membership, conflict handling, and staged release controls.
 
-## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
-
-- [1. OVERVIEW](#1--overview)
-- [2. CURRENT STATUS](#2--current-status)
-- [3. DOCUMENTS](#3--documents)
-- [4. SCOPE BOUNDARY](#4--scope-boundary)
-- [5. RELATED](#5--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ## 1. OVERVIEW
-<!-- ANCHOR:overview -->
 
 This folder defines the Level 3+ execution package for shared-memory spaces, membership policy, conflict handling, and staged rollout. It is the final release phase of the Hydra roadmap and is intentionally blocked on successful completion of the earlier safety and governance phases.
 
 Phase 6 is shipped in the live runtime with opt-in shared-memory controls, deny-by-default membership, conflict handling, and rollout safeguards documented in this phase pack.
 
-<!-- /ANCHOR:overview -->
+---
 
 ## 2. CURRENT STATUS
-<!-- ANCHOR:current-status -->
 
 | Field | Value |
 |-------|-------|
@@ -43,10 +30,9 @@ Phase 6 is shipped in the live runtime with opt-in shared-memory controls, deny-
 | **Depends On** | `../005-hierarchical-scope-governance/` plus graph and adaptive readiness from Phases 3 and 4 |
 | **Next Phase** | None |
 
-<!-- /ANCHOR:current-status -->
+---
 
 ## 3. DOCUMENTS
-<!-- ANCHOR:documents -->
 
 - `spec.md` defines shared-space, membership, conflict, and rollout requirements.
 - `plan.md` breaks the phase into space model, conflict handling, and staged rollout work.
@@ -55,10 +41,9 @@ Phase 6 is shipped in the live runtime with opt-in shared-memory controls, deny-
 - `decision-record.md` captures the opt-in rollout decision for this phase.
 - `implementation-summary.md` records the shipped implementation, verification set, and any remaining limitations.
 
-<!-- /ANCHOR:documents -->
+---
 
 ## 4. SCOPE BOUNDARY
-<!-- ANCHOR:scope-boundary -->
 
 Included here:
 - Shared-memory spaces and membership rules.
@@ -69,13 +54,11 @@ Explicitly not included here:
 - Pre-governance experiments that bypass Phase 5 controls.
 - Unbounded collaboration access.
 
-<!-- /ANCHOR:scope-boundary -->
+---
 
 ## 5. RELATED
-<!-- ANCHOR:related -->
 
 - Parent roadmap: `../spec.md`
 - Phase 5 gate: `../005-hierarchical-scope-governance/spec.md`
 - Parent decisions: `../decision-record.md`
 
-<!-- /ANCHOR:related -->

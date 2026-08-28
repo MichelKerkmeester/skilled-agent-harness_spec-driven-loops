@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync/` |
+| **Spec Folder** | 003-phase-parent-reference-readme-sync |
 | **Completed** | 2026-04-27 |
 | **Level** | 2 |
 | **Predecessors** | `001-phase-parent-validator-docs` + `002-phase-parent-generator-pointer-polish` |

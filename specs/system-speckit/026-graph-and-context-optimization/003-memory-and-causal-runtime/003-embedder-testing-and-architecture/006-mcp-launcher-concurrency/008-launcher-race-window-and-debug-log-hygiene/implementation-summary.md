@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `008-launcher-race-window-and-debug-log-hygiene` |
+| **Spec Folder** | 008-launcher-race-window-and-debug-log-hygiene |
 | **Completed** | 2026-05-18 |
 | **Level** | 1 |
 | **Status** | Complete |

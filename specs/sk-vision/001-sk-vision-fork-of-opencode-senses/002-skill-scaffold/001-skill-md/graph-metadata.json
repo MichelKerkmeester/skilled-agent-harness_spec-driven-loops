@@ -30,7 +30,7 @@
       "path"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "The workspace has no `sk-vision` skill body, so later children have nowhere to reserve the package path or advisor triggers",
     "created_at": "2026-08-16T07:22:40Z",
-    "last_save_at": "2026-08-16T07:50:04.652Z",
+    "last_save_at": "2026-08-28T15:53:24.131Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5f160c7734a9732ba6f16a169ffae38507c10208d28d753539ddf1848cbff412",
+    "source_fingerprint": "sha256:c081512e6ad349f448c8bd9d8dd9e4f68076b398b0a207b6c5cbabc96e9019ae",
     "source_doc_hashes": {
       "spec.md": "1bdf152e0842d493fe50ca71d190fb0cd92aff997444752e0716d5962df61eb0",
       "plan.md": "7d9cfc4216775f1977db94a5b15357e13f6fa1c477287ce7ef801f520e163bbf",
       "tasks.md": "929dfb1ca62cff15cab8dfac1631ba00c2c8d4214e54429172e757ac57641905",
-      "implementation-summary.md": "d988262676082dfabe671838bf53b26d13443704331143f64f40371fd6207d32"
+      "implementation-summary.md": "38d91d2c0ad2b2c70482196b0b1f70c3cbdfec1886e2043bfb038234f018440f"
     },
     "last_active_child_id": null,
     "last_active_at": null

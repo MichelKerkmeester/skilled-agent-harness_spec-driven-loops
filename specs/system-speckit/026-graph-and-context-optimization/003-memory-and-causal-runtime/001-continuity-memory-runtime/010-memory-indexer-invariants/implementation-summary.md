@@ -40,7 +40,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 005-memory-indexer-invariants |
+| **Spec Folder** | 010-memory-indexer-invariants |
 | **Level** | 3 |
 | **Completed** | 2026-04-24 (Track B fully; Track A code complete, pending live MCP rescan) |
 | **Status** | Code Complete Pending Track A Live Rescan |

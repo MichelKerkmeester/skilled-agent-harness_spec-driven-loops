@@ -62,7 +62,6 @@ quality_flags:
 
 ---
 
-<!-- ANCHOR:preflight-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 ## PREFLIGHT BASELINE
 
 **Epistemic state captured at session start for learning delta calculation.**
@@ -82,24 +81,10 @@ quality_flags:
 - Confidence: N/A
 - Uncertainty: N/A
 - Readiness: N/A
-<!-- /ANCHOR:preflight-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 ---
-
-## Table of Contents
-
-- [Continue Session](#continue-session)
-- [Project State Snapshot](#project-state-snapshot)
-- [Implementation Guide](#implementation-guide)
-- [Overview](#overview)
-- [Detailed Changes](#detailed-changes)
-- [Decisions](#decisions)
-- [Conversation](#conversation)
-- [Recovery Hints](#recovery-hints)
-- [Memory Metadata](#memory-metadata)
 
 ---
 
-<!-- ANCHOR:continue-session-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 <a id="continue-session"></a>
 
 ## CONTINUE SESSION
@@ -130,7 +115,6 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 ```
 /spec_kit:resume 003-memory-and-spec-kit/047-constitutional-readme
 ```
-<!-- /ANCHOR:continue-session-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 ---
 
 <a id="project-state-snapshot"></a>
@@ -162,7 +146,6 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 ---
 
-<!-- ANCHOR:task-guide-memory-and-spec-kit/047-constitutional-readme-003-memory-and-spec-kit/047-constitutional-readme -->
 <a id="implementation-guide"></a>
 
 ## 1. IMPLEMENTATION GUIDE
@@ -209,12 +192,11 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 
 - **Module Pattern**: Organize code into importable modules
 
-<!-- /ANCHOR:task-guide-memory-and-spec-kit/047-constitutional-readme-003-memory-and-spec-kit/047-constitutional-readme -->
-
 ---
 
-<!-- ANCHOR:summary-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 <a id="overview"></a>
+
+---
 
 ## 2. OVERVIEW
 
@@ -244,35 +226,26 @@ Comprehensive constitutional memory system optimization session. Started with 5-
 | `.opencode/skills/system-spec-kit/config/config.jsonc` | Modified during session |
 | `.opencode/.../scripts/cleanup-orphaned-vectors.js` | Modified during session |
 
-<!-- /ANCHOR:summary-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
+---
+
+<a id="detailed-changes"></a>
 
 ---
 
-<!-- ANCHOR:detailed-changes-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
-<a id="detailed-changes"></a>
-
 ## 3. DETAILED CHANGES
 
-<!-- ANCHOR:implementation-comprehensive-constitutional-memory-system-a2562f14-session-1766832908883-en89zozsd -->
 ### FEATURE: Comprehensive constitutional memory system optimization session. Started with 5-agent parallel...
 
 Comprehensive constitutional memory system optimization session. Started with 5-agent parallel analysis of the spec-kit and memory system architecture, then created a detailed README.md for the constitutional folder explaining how constitutional memories work, how to create them, and how to customize them. Updated the constitutional token budget from 500 to 2000 tokens across the entire codebase (8 files: importance-tiers.js, vector-index.js, context-server.js, config.jsonc, and multiple READMEs/templates). Optimized gate-enforcement.md using Option B: added 4 missing trigger phrases (build, generate, configure, analyze), added First Message Protocol section, added Violation Recovery section, and split the single ANCHOR into 5 granular sections for better retrieval. Fixed database issues by cleaning 886 orphaned vectors and successfully indexed the constitutional memory with all 55 trigger phrases.
 
 **Details:** constitutional memory | token budget | 2000 tokens | gate enforcement | always surfaces | ANCHOR sections | trigger phrases | First Message Protocol | Violation Recovery | orphaned vectors | importance tier | constitutional tier | gate-enforcement.md | constitutional README
-<!-- /ANCHOR:implementation-comprehensive-constitutional-memory-system-a2562f14-session-1766832908883-en89zozsd -->
 
-<!-- ANCHOR:implementation-technical-implementation-details-02d153bf-session-1766832908883-en89zozsd -->
 ### IMPLEMENTATION: Technical Implementation Details
 
 rootCause: Constitutional token budget was 500 tokens but gate-enforcement.md was ~1600 tokens, causing truncation. Additionally, 886 orphaned vectors in database blocked new indexing.; solution: Updated token budget to 2000 across 8 files, cleaned orphaned vectors, re-indexed constitutional memory with proper tier and trigger phrases.; patterns: Used 5-agent parallel analysis for comprehensive research. Used 4-agent parallel implementation for codebase-wide updates. Created cleanup script for database maintenance.
 
-<!-- /ANCHOR:implementation-technical-implementation-details-02d153bf-session-1766832908883-en89zozsd -->
-
-<!-- /ANCHOR:detailed-changes-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
-
 ---
 
-<!-- ANCHOR:decisions-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 <a id="decisions"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -294,9 +267,11 @@ rootCause: Constitutional token budget was 500 tokens but gate-enforcement.md wa
   | Yes        | Yes          | No       | 4              |
   | Yes        | Yes          | Yes      | 5              |
 -->
+
+---
+
 ## 4. DECISIONS
 
-<!-- ANCHOR:decision-increased-constitutional-token-budget-555f4cdc-session-1766832908883-en89zozsd -->
 ### Decision 1: Decision: Increased constitutional token budget from 500 to 2000 because gate
 
 **Context**: enforcement.md was ~1600 tokens and exceeded the old budget, causing potential truncation
@@ -319,11 +294,9 @@ rootCause: Constitutional token budget was 500 tokens but gate-enforcement.md wa
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-increased-constitutional-token-budget-555f4cdc-session-1766832908883-en89zozsd -->
 
 ---
 
-<!-- ANCHOR:decision-selected-option-moderate-optimization-a6fbc19c-session-1766832908883-en89zozsd -->
 ### Decision 2: Decision: Selected Option B (Moderate) optimization for gate
 
 **Context**: enforcement.md because it adds missing functionality while maintaining self-containment, without aggressive trimming that would reduce clarity
@@ -346,11 +319,9 @@ rootCause: Constitutional token budget was 500 tokens but gate-enforcement.md wa
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-selected-option-moderate-optimization-a6fbc19c-session-1766832908883-en89zozsd -->
 
 ---
 
-<!-- ANCHOR:decision-split-single-anchor-into-f6f9e36d-session-1766832908883-en89zozsd -->
 ### Decision 3: Decision: Split single ANCHOR into 5 sections (gate
 
 **Context**: hard-blocks, gate-behavioral, gate-soft-advisory, gate-edge-cases, gate-quick-reference) because granular anchors enable section-level retrieval with 93% token savings
@@ -373,11 +344,9 @@ rootCause: Constitutional token budget was 500 tokens but gate-enforcement.md wa
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-split-single-anchor-into-f6f9e36d-session-1766832908883-en89zozsd -->
 
 ---
 
-<!-- ANCHOR:decision-first-message-protocol-hard-fbacfd10-session-1766832908883-en89zozsd -->
 ### Decision 4: Decision: Added First Message Protocol as HARD BLOCK because first
 
 **Context**: turn enforcement is critical - urgency bypasses process without explicit gate question
@@ -400,11 +369,9 @@ rootCause: Constitutional token budget was 500 tokens but gate-enforcement.md wa
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-first-message-protocol-hard-fbacfd10-session-1766832908883-en89zozsd -->
 
 ---
 
-<!-- ANCHOR:decision-cleaned-886-orphaned-vectors-3ad8136e-session-1766832908883-en89zozsd -->
 ### Decision 5: Decision: Cleaned 886 orphaned vectors from database before re
 
 **Context**: indexing because UNIQUE constraint errors were blocking new constitutional memory indexing
@@ -427,13 +394,9 @@ rootCause: Constitutional token budget was 500 tokens but gate-enforcement.md wa
 #### Trade-offs
 
 **Confidence**: 80%
-<!-- /ANCHOR:decision-cleaned-886-orphaned-vectors-3ad8136e-session-1766832908883-en89zozsd -->
 
 ---
 
-<!-- /ANCHOR:decisions-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
-
-<!-- ANCHOR:session-history-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 <a id="conversation"></a>
 
 <!-- DYNAMIC SECTION NUMBERING:
@@ -441,6 +404,9 @@ rootCause: Constitutional token budget was 500 tokens but gate-enforcement.md wa
   See DECISIONS section comment for the full matrix.
   Range: 3-6 depending on optional sections present.
 -->
+
+---
+
 ## 5. CONVERSATION
 
 Complete timestamped dialogue capturing all user interactions, AI responses, tool executions, and code changes during the session.
@@ -461,11 +427,8 @@ Comprehensive constitutional memory system optimization session. Started with 5-
 
 ---
 
-<!-- /ANCHOR:session-history-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
-
 ---
 
-<!-- ANCHOR:recovery-hints-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 <a id="recovery-hints"></a>
 
 ## RECOVERY HINTS
@@ -487,10 +450,8 @@ Comprehensive constitutional memory system optimization session. Started with 5-
 3. **Review last session state** - Check PROJECT STATE SNAPSHOT
 4. **Validate pending tasks** - Review CONTINUE SESSION section
 5. **Resume with handover prompt** - Use continuation template above
-<!-- /ANCHOR:recovery-hints-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 ---
 
-<!-- ANCHOR:postflight-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 <a id="postflight-learning-delta"></a>
 
 ## POSTFLIGHT LEARNING DELTA
@@ -513,14 +474,11 @@ Comprehensive constitutional memory system optimization session. Started with 5-
 
 **Session Learning Summary:**
 This session was migrated from an older format. Learning metrics were not captured in the original format.
-<!-- /ANCHOR:postflight-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 ---
 
 <a id="memory-metadata"></a>
 
 ## MEMORY METADATA
-
-<!-- ANCHOR:metadata-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 
 > **Machine-Readable Section** - This YAML block is parsed by the semantic memory indexer for search optimization and decay calculations.
 
@@ -622,8 +580,6 @@ embedding_model: "nomic-ai/nomic-embed-text-v1.5"
 embedding_version: "1.0"
 chunk_count: 1
 ```
-
-<!-- /ANCHOR:metadata-session-1766832908883-en89zozsd-003-memory-and-spec-kit/047-constitutional-readme -->
 
 ---
 

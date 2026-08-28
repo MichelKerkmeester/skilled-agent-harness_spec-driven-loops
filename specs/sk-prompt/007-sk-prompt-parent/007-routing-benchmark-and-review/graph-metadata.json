@@ -41,37 +41,16 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
       "spec.md",
-      ".opencode/skills/sk-prompt/hub-router.json",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "load-playbook-scenarios.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "loop-host.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
         "source": "derived"
       },
       {
@@ -193,11 +172,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The merged `sk-prompt` hub will serve two modes that were previously independent skills, so routing, discovery, and efficiency cannot be treated as safe by inspection alone",
     "created_at": "2026-07-09T13:34:36Z",
-    "last_save_at": "2026-07-15T10:52:35.756Z",
+    "last_save_at": "2026-08-28T15:53:23.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:671721f3b227e19f7b93ee6ac3b551062b66e084c20992da1e1ced1e4b5c0fea",
+    "source_fingerprint": "sha256:11fdfc277659fd33c3d7970a59a9eec91bb595662e9202b790d3f11c405cfe68",
     "source_doc_hashes": {
-      "spec.md": "52427933cfdf63c4ce6e8e32f930936bc340e0344b137b2ce8834ebaf8d14b12",
-      "plan.md": "99c6b72954aea33b15299183fa48c95d1a87b9f60de9894d2de8a35b658665d0",
-      "tasks.md": "f7d5d2d87b057f3a429690f1263b345d9a4138abcbf80dc182d4a043aa7a6649",
-      "implementation-summary.md": "6cb22ead82ff5a5387d97ca54a8d2cd730675389cb2ec37f02a925a395490c40"
+      "spec.md": "e2a7ce20211c2c50b916aa4a9c779294de1bfba402a9bdb242f5a46440f8d47a",
+      "plan.md": "f4d3243ebf53ee7a54e9d39f6b7e5ac595eee2a901f7589456e2e113062d2dac",
+      "tasks.md": "820cc561a17deeda930079790ebb4de072ed88c6484da0d1021ab6b90f67c57b",
+      "implementation-summary.md": "e944f29fed6769de7b9d338bce0eb4fe61890c839fe505bae489743f1ff40d93"
     },
     "last_active_child_id": null,
     "last_active_at": null

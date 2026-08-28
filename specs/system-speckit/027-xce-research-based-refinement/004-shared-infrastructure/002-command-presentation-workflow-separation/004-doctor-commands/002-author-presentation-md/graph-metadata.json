@@ -173,7 +173,7 @@
     ],
     "causal_summary": "Doctor Commands needs a scoped author presentation markdown phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:43.594Z",
+    "last_save_at": "2026-08-28T16:00:10.199Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -182,12 +182,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9bd5d3da5bec91a75e814ff4492f480b32e5dc4e0a86e197222f4df45ce83c8b",
+    "source_fingerprint": "sha256:7b91f0c24697c18bbdbc0d610c240707bafeab1b46d8a35b5b1f5c9357bb9b8a",
     "source_doc_hashes": {
       "spec.md": "ed1c141f32f28788eff7e32e5df28a10b9f2b6351986ac166c69c5bdc0f0255c",
       "plan.md": "e88ca6fce0b319343c0d52d950968eefcc113fe8ebf1ba979e7ceb9997c6ae0a",
       "tasks.md": "91cdf2dcfc16b412ee42ad6fc23554a87cc491f045c333d823ea69fae4196a82",
-      "implementation-summary.md": "8fc92fd35f3bf772e0908c956aff8a6d65901613dd9f8300c1f07d592ab0b444"
+      "implementation-summary.md": "449b375ff0668c64ba7285a5a7bedc20980ebdd199f9a21dba95e4599dcec4d6"
     },
     "last_active_child_id": null,
     "last_active_at": null

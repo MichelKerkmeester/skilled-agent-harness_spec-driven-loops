@@ -15,6 +15,8 @@ trigger_phrases:
 
 `tests/` contains self-running Node scripts. Each script invokes its assertions directly, prints a pass line and exits nonzero on failure.
 
+---
+
 ## 2. CONTENTS
 
 | File | Responsibility |
@@ -30,6 +32,8 @@ trigger_phrases:
 | `validate-compiled-routing-scenarios.test.cjs` | Tests compiled-routing scenario admission fixtures. |
 | `validate-playbook-topology.test.cjs` | Tests playbook topology parsing and validation. |
 
+---
+
 ## 3. VALIDATION
 
 Run the source inventory from the repository root:
@@ -40,6 +44,8 @@ for test_file in ./*.test.cjs; do node "$test_file"; done
 ```
 
 Expected result: every script prints its pass line and exits successfully. The recorded source run passed the full current test inventory.
+
+---
 
 ## 4. RELATED
 

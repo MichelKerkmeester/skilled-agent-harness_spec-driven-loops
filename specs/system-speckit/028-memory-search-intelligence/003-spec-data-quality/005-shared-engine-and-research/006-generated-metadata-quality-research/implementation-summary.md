@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 031-generated-metadata-quality-research |
+| **Spec Folder** | 006-generated-metadata-quality-research |
 | **Completed** | 2026-06-22 |
 | **Level** | 2 |
 | **Type** | Research-only study, no code or doc mutation |

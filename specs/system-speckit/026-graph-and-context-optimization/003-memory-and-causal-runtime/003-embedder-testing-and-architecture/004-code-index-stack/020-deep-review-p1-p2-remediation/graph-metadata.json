@@ -46,7 +46,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "benchmarks/README.md",
       "decision-record.md",
       "spec.md",
       "checklist.md",
@@ -69,12 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "benchmarks/README.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 019 deep-review packet found nine P1 defects across the mcp-coco-index stack: stale defaults, docs that contradicted production behavior, unsafe env parsing, misleading success reporting, benchmark evidence hazards, overpowering hybrid boosts, and missing RCA for query-expansion regression",
     "created_at": "2026-05-19T17:59:30Z",
-    "last_save_at": "2026-07-17T17:19:23.902Z",
+    "last_save_at": "2026-08-28T15:59:42.729Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df99b1b830c38213d7e7498b10592bb7f9d6a6d3185db8590fd87141218d6007",
+    "source_fingerprint": "sha256:6444aca8a696e36a4a422a680cd721c3e6ea760e4b1a2103756845a3d6092147",
     "source_doc_hashes": {
       "spec.md": "ad8dcdeb3505a7ba059a3a95f30df1981fd2b7f3224e543d65be91a3346b8390",
       "plan.md": "2c0eea3c007d12e04f6ff1ab1453b24118f95b98059ee9b7c3dcf2fbf01089b4",
       "tasks.md": "e590ca8021f3482f4649a11e66bad7e67f96cbbb35eb9909682268fc5e8f5570",
       "checklist.md": "ae67e4d6d3be13eee86b1264433cb101eafc7a343e7f61d6011507b54caedf63",
       "decision-record.md": "5d0f838fb43ade2a5a2a113cdb9fd953c38a68d42ebc8b1b4ed2ddd529d0e6a5",
-      "implementation-summary.md": "474c69e009f4e1a31949e12eddb023bfce4c3f26a800c5c0c3cb7f81d2ce8e20"
+      "implementation-summary.md": "be8004e7b3328f37df38c4a8ccc1473c9dc77fbb68088e27c0a6572ffc82220d"
     },
     "last_active_child_id": null,
     "last_active_at": null

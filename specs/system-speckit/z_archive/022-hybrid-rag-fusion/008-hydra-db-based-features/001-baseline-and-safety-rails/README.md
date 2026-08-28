@@ -13,19 +13,7 @@ contextType: "general"
 
 > This folder contains the Level 3+ execution package for the Hydra roadmap baseline phase, including buildability, rollout controls, checkpoint safety, baseline evaluation hooks, and documentation hardening.
 
-## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
-
-- [1. OVERVIEW](#1--overview)
-- [2. DOCUMENTS](#2--documents)
-- [3. SCOPE BOUNDARY](#3--scope-boundary)
-- [4. RELATED](#4--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
-
 ## 1. OVERVIEW
-<!-- ANCHOR:overview -->
 
 | Field | Value |
 |-------|-------|
@@ -34,10 +22,9 @@ contextType: "general"
 | **Current Truth** | Phase documentation and implementation summary align to shipped baseline hardening work; residual follow-up items stay explicitly out of scope. |
 | **Next Phase** | `../002-versioned-memory-state/` |
 
-<!-- /ANCHOR:overview -->
+---
 
 ## 2. DOCUMENTS
-<!-- ANCHOR:documents -->
 
 - `spec.md` defines the scope, requirements, governance, and acceptance scenarios for Phase 1.
 - `plan.md` breaks the baseline work into safety, telemetry, migration, and release-gate tracks.
@@ -46,10 +33,9 @@ contextType: "general"
 - `decision-record.md` captures the phase-local architecture choices.
 - `implementation-summary.md` records what has and has not been delivered so far.
 
-<!-- /ANCHOR:documents -->
+---
 
 ## 3. SCOPE BOUNDARY
-<!-- ANCHOR:scope-boundary -->
 
 Included here:
 - Build and runtime packaging correctness for the MCP server.
@@ -62,14 +48,12 @@ Explicitly not included here:
 - Unified graph retrieval implementation.
 - Adaptive ranking, governance enforcement, or shared-memory release work.
 
-<!-- /ANCHOR:scope-boundary -->
+---
 
 ## 4. RELATED
-<!-- ANCHOR:related -->
 
 - Parent roadmap: `../spec.md`
 - Parent decisions: `../decision-record.md`
 - Research grounding: `../research/001 - analysis-hydradb-architecture-and-turso-fit.md`
 - Research recommendations: `../research/002 - recommendations-turso-migration-and-hydradb-inspired-roadmap.md`
 
-<!-- /ANCHOR:related -->

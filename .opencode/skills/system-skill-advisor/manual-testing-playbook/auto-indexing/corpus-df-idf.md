@@ -104,41 +104,41 @@ Read-only advisor status check:
 Active `SKILL.md` path check:
 
 ```text
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-git/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/cli-opencode/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-click-up/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-research/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-code-mode/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-figma/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/sk-design-md-generator/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/sk-design-interface/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/sk-code-review/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/design-foundations/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-improvement/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-review/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/design-audit/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/design-motion/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-design/sk-design-interface/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/runtime/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt-models/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/cli-claude-code/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-prompt/SKILL.md
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-chrome-devtools/SKILL.md
+<repo-root>/.opencode/skills/sk-git/SKILL.md
+<repo-root>/.opencode/skills/cli-opencode/SKILL.md
+<repo-root>/.opencode/skills/mcp-click-up/SKILL.md
+<repo-root>/.opencode/skills/system-deep-loop/SKILL.md
+<repo-root>/.opencode/skills/system-deep-loop/deep-research/SKILL.md
+<repo-root>/.opencode/skills/mcp-code-mode/SKILL.md
+<repo-root>/.opencode/skills/sk-doc/SKILL.md
+<repo-root>/.opencode/skills/mcp-figma/SKILL.md
+<repo-root>/.opencode/skills/system-deep-loop/SKILL.md
+<repo-root>/.opencode/skills/sk-design/sk-design-md-generator/SKILL.md
+<repo-root>/.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md
+.opencode/skills/sk-design/SKILL.md
+<repo-root>/.opencode/skills/sk-code/sk-code-review/SKILL.md
+<repo-root>/.opencode/skills/sk-design/SKILL.md
+<repo-root>/.opencode/skills/system-skill-advisor/SKILL.md
+<repo-root>/.opencode/skills/sk-design/design-foundations/SKILL.md
+<repo-root>/.opencode/skills/system-deep-loop/deep-improvement/SKILL.md
+<repo-root>/.opencode/skills/system-deep-loop/deep-review/SKILL.md
+<repo-root>/.opencode/skills/sk-design/design-audit/SKILL.md
+<repo-root>/.opencode/skills/sk-design/design-motion/SKILL.md
+.opencode/skills/sk-design/SKILL.md
+<repo-root>/.opencode/skills/system-deep-loop/runtime/SKILL.md
+<repo-root>/.opencode/skills/sk-prompt-models/SKILL.md
+<repo-root>/.opencode/skills/system-spec-kit/SKILL.md
+<repo-root>/.opencode/skills/sk-code/SKILL.md
+<repo-root>/.opencode/skills/cli-claude-code/SKILL.md
+<repo-root>/.opencode/skills/sk-prompt/SKILL.md
+<repo-root>/.opencode/skills/mcp-chrome-devtools/SKILL.md
 ```
 
 Archive/future precondition checks:
 
 ```text
 z_archive glob output included:
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/z_archive/cli-codex-retired/SKILL.retired.md
+<repo-root>/.opencode/skills/z_archive/cli-codex-retired/SKILL.retired.md
 
 z_future glob output:
 No files found

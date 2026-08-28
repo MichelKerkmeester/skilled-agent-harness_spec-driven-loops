@@ -3,6 +3,7 @@
   "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter",
   "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/002-cocoindex-ollama-adapter",
   "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,7 +42,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "lib/embedders/adapters/ollama.ts",
       "implementation-summary.md",
       "spec.md",
       "checklist.md",
@@ -49,12 +49,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "ollama.ts",
-        "kind": "code",
-        "path": "lib/embedders/adapters/ollama.ts",
-        "source": "derived"
-      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
@@ -192,11 +186,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Add Ollama provider support to CocoIndex's embedder registry. Today CocoIndex's MANIFESTS is sbert-only; the config.py comment claims non-sbert names route via LiteLLM, but the path is unverified. This packet verifies that path or extends the loader, registers at least one Ollama embedder (e.g., ollama/nomic-embed-text), and smoke-tests end-to-end indexing + search.",
     "created_at": "2026-05-18T17:44:39.189Z",
-    "last_save_at": "2026-07-17T17:19:26.148Z",
+    "last_save_at": "2026-08-28T15:59:47.113Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d08be3b2829f165ddbd1eaf6f2a9b7a37ef95fa8eeab38ec751317327a72c148",
+    "source_fingerprint": "sha256:07bc8a898f6c491ad16469095588d624525cf72545abb0af003c73374b4c69b3",
     "source_doc_hashes": {
       "spec.md": "128c91717bb8ace5d4d3ba795a1dec372ccf455d0e5266e5adc313aaf3faf4b0",
       "plan.md": "fd7899068775913c70712ea17a7364f2b7cebc1af6277ae1e76a0faf106f236f",
       "tasks.md": "d6ad68250235301901e931bb0fd23dcc132b934dae58e5f7d53e1fc893c5ceb7",
       "checklist.md": "62b083401786a87caff261384b1777f19fc35e38a8b6bd4fea0e376f4af15bec",
-      "implementation-summary.md": "f038e2e028eaa76736123ae6e00a0da67a8e553224dad26daf697ad2e257c3e1"
+      "implementation-summary.md": "aab4c850692f32361b0434fd06ba8eb467e98be81e1362891e2d5f6b394a24f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

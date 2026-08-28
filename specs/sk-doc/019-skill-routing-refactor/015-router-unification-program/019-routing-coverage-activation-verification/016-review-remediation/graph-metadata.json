@@ -38,8 +38,6 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/bin/lib/compiled-route-manifest.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs",
       "plan.md",
       "checklist.md",
       "tasks.md",
@@ -47,18 +45,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "compiled-route-manifest.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/compiled-route-manifest.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "cutover-playbook-executor.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -190,11 +176,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two independent GPT-5.6 deep reviews (LUNA xhigh, SOL high; ten non-converging iterations each) audited the v4 compiled-routing landing (packet `013-compiled-coverage-buildout`)",
     "created_at": "2026-07-22T06:15:19.898Z",
-    "last_save_at": "2026-07-24T12:11:50.530Z",
+    "last_save_at": "2026-08-28T15:53:20.283Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,9 +202,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:61983b370386a78f69c03b7913bc0b60ec93d72a66616fa97feebccae9a7816b",
+    "source_fingerprint": "sha256:5acdced8a78cfbc6240ba9766f6207a21786936ddb1bb0ddc61c76dc81a18ee5",
     "source_doc_hashes": {
-      "spec.md": "21cbae70e46dd35ddfc385f34a902b278226ce8c16b5d3f1e7b7046a8cdc84fa",
+      "spec.md": "a3e1c323fb49949e9957761672ea481bcebd883295d007fa8a44121c6d641d3e",
       "plan.md": "33ea9976131b93f66613a990208b511ef632640b0336b7b2ef98d80f5feeb5d2",
       "tasks.md": "958a16621449779cfcc36e7449929721d4ee1a1623ceaf5a341edcce243e1f4c",
       "checklist.md": "7b6b4cc49915209b6b727934d0e5e81da89437b8d85bacce4ec431b27c0dc2b1",

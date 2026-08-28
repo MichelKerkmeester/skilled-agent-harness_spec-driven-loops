@@ -35,31 +35,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
       "spec.md",
       "implementation-summary.md",
       "tasks.md",
-      "plan.md",
-      "scripts/validation/generated-metadata-integrity.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts",
-      "tests/feature-flag-reference-docs.vitest.ts",
-      "mcp_server/lib/validation/orchestrator.ts"
+      "plan.md"
     ],
     "entities": [
-      {
-        "name": "graph-metadata-parser.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/orchestrator.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -82,30 +63,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "generated-metadata-integrity.ts",
-        "kind": "code",
-        "path": "scripts/validation/generated-metadata-integrity.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-schema.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generated-metadata-integrity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/generated-metadata-integrity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "feature-flag-reference-docs.vitest.ts",
-        "kind": "test",
-        "path": "tests/feature-flag-reference-docs.vitest.ts",
         "source": "derived"
       },
       {
@@ -191,11 +148,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`deriveStatus` (`graph-metadata-parser.ts:1185-1195`) reads any doc's own explicit `status:` frontmatter field or `spec.md`'s METADATA table status, ranked `implementation-summary.md` > `checklist.md` > `tasks.md` > `plan.md` > `spec.md`, and returns that value immediately when present — including `complete` — before the phase-010 completion-evidence fallback (`:1215-1239`) ever runs",
     "created_at": "2026-07-02T15:04:28.309Z",
-    "last_save_at": "2026-07-17T17:19:53.471Z",
+    "last_save_at": "2026-08-28T16:00:24.164Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76d54abee5f49c679b828882379e2bcd75183a3a12ff0d6fb1ac888fe0150406",
+    "source_fingerprint": "sha256:888da8fe4273e3692b739443a7dcb981613046f76dbf131ce6a11d7acd192e89",
     "source_doc_hashes": {
       "spec.md": "308936b358ae464fec0d1deccb7f0795bae839b67e5e2a84837fd9847ec62253",
       "plan.md": "d43be3d1aaa5aa79f1bed1c3083f8510fbe8410e0a979ad36bbc4f85397e1d27",
       "tasks.md": "b5edfd2365c22bf2c639182d2d9a4b44bd39c7a934f8c8014d65d74b38a761ce",
-      "implementation-summary.md": "2a8f3b9d02941926eb3f3ff99c7207fba0dac536665284a2b90dde75a364becb"
+      "implementation-summary.md": "64c2a896b9708a3b6e95002ab08686f3a6dcf6e30f050e8ac44a9fb0aa34771e"
     },
     "last_active_child_id": null,
     "last_active_at": null

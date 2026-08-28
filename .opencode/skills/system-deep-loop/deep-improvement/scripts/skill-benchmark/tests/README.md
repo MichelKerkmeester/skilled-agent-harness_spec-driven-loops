@@ -15,6 +15,8 @@ trigger_phrases:
 
 This folder contains the current Vitest suites for the skill-benchmark lane. The tests read the lane and sibling skill trees from stable repository paths, use real in-repo routing targets and send generated reports to operating-system temporary directories.
 
+---
+
 ## 2. CONTENTS
 
 | File | Responsibility |
@@ -40,11 +42,15 @@ This folder contains the current Vitest suites for the skill-benchmark lane. The
 | `skill-benchmark.vitest.ts` | Covers lane orchestration, routing replay, contamination, connectivity, scoring and report generation. |
 | `surface-slice-sync.vitest.ts` | Checks surface-slice synchronization. |
 
+---
+
 ## 3. BOUNDARIES
 
 - Tests import lane modules and Node builtins without mutating production source.
 - Routing fixtures use repository skills or temporary negative fixtures.
 - Reports and malformed fixtures are created under operating-system temporary directories.
+
+---
 
 ## 4. VALIDATION
 
@@ -55,6 +61,8 @@ npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/skill-
 ```
 
 The command was attempted in this worktree. No local Vitest executable is installed, so `npx --no-install` timed out while package resolution was unavailable. The documented command is marked as an example until the dependency is installed.
+
+---
 
 ## 5. RELATED
 

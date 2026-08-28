@@ -13,9 +13,13 @@ trigger_phrases:
 
 `tests/lib/runtime/` verifies process-lifetime helpers under `lib/runtime/`.
 
+---
+
 ## 2. OWNERSHIP
 
 These tests mirror the runtime helper folder and should stay focused on process cleanup contracts.
+
+---
 
 ## 3. KEY FILES
 
@@ -24,15 +28,21 @@ These tests mirror the runtime helper folder and should stay focused on process 
 | `shutdown-hooks.vitest.ts` | Covers shutdown callback registration and drain behavior. |
 | `timer-registry.vitest.ts` | Covers tracked timers and cleanup behavior. |
 
+---
+
 ## 4. BOUNDARIES
 
 - Avoid real process exits.
 - Clean any timers created during tests.
 - Do not start the MCP stdio server from these tests.
 
+---
+
 ## 5. ENTRYPOINTS
 
 Run from `mcp-server/`.
+
+---
 
 ## 6. VALIDATION
 

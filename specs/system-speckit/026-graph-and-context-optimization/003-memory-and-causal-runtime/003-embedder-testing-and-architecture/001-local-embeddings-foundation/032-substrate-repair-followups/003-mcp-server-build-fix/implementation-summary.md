@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix` |
+| **Spec Folder** | 003-mcp-server-build-fix |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -43,44 +43,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-shard-read-path-resilience.vitest.ts",
-      "tests/vector-shard-read-path-resilience.vitest.ts",
-      "lib/search/vector-index-store.ts",
-      "lib/embedders/reindex.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/observability/retrieval-observability.ts"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reindex.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retrieval-observability.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/observability/retrieval-observability.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-shard-read-path-resilience.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-shard-read-path-resilience.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -200,11 +168,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built Vector",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Durable Repair Sentinel The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Based Boot Assessment",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Vector-shard quarantine previously relied on process memory plus a per-shard sentinel",
     "created_at": "2026-06-11T06:25:38Z",
-    "last_save_at": "2026-07-17T17:19:40.740Z",
+    "last_save_at": "2026-08-28T16:00:05.870Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:830a70efea0aa44c9058f3d3bde8ddd47ede943ffb0d90e88bb4e4ad5667b2e8",
+    "source_fingerprint": "sha256:df7fa9d06c64ecf238385bf7c8ea4db8a0f25d7182c65f3149640f074556e7c1",
     "source_doc_hashes": {
       "spec.md": "df2d7251428fcb56bb84703517757b54462284fa4624a4cc67e226e7e3dd3315",
       "plan.md": "3b5a8e34f478147d09d389234feae9848adaf48c8d21c8f0696658305a0a26e9",
       "tasks.md": "90443599d731f0e37d2adaeef0a7c8f71b6616a2619953f518d0771e9da2a579",
-      "implementation-summary.md": "8a6556087af1864719cacd880b9b752e0646dd9504d8e9ec735d090ac296d971"
+      "implementation-summary.md": "013492117b7e5626de214aec254b7ead6634fd19a91b890f81e15a302919e88a"
     },
     "last_active_child_id": null,
     "last_active_at": null

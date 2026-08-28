@@ -38,7 +38,7 @@ _memory:
 | **Feature** | deferred-followups |
 | **Status** | Complete |
 | **Completed** | 2026-05-01 |
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/008-template-levels/004-fix-template-deferred-followups` |
+| **Spec Folder** | 004-fix-template-deferred-followups |
 <!-- /ANCHOR:metadata -->
 
 ---

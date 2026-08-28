@@ -45,14 +45,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "lib/feedback/shadow-scoring.ts",
       "implementation-summary.md",
-      "lib/eval/ablation-framework.ts",
-      "lib/eval/eval-metrics.ts",
-      "lib/feedback/shadow-evaluation-runtime.ts",
-      "lib/feedback/rank-metrics.ts",
-      "tests/ablation-framework.vitest.ts",
-      "tests/eval-metrics.vitest.ts",
       "decision-record.md"
     ],
     "entities": [
@@ -81,51 +74,9 @@
         "source": "derived"
       },
       {
-        "name": "shadow-scoring.ts",
-        "kind": "code",
-        "path": "lib/feedback/shadow-scoring.ts",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "ablation-framework.ts",
-        "kind": "code",
-        "path": "lib/eval/ablation-framework.ts",
-        "source": "derived"
-      },
-      {
-        "name": "eval-metrics.ts",
-        "kind": "code",
-        "path": "lib/eval/eval-metrics.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shadow-evaluation-runtime.ts",
-        "kind": "code",
-        "path": "lib/feedback/shadow-evaluation-runtime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "rank-metrics.ts",
-        "kind": "code",
-        "path": "lib/feedback/rank-metrics.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ablation-framework.vitest.ts",
-        "kind": "test",
-        "path": "tests/ablation-framework.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "eval-metrics.vitest.ts",
-        "kind": "test",
-        "path": "tests/eval-metrics.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,11 +150,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP ships a live retrieval eval harness that is already ~75-85% built [CONFIRMED: iter-011 \"extend-not-greenfield … honest figure ≈ 75-85%\"]: a 110-query graded golden set (290 relevance judgments, grades 1-3, 93 real production memory IDs, 0 placeholders), a 12-metric library (`computeAllMetrics`, `eval-metrics.ts:586`, MRR/nDCG/recall/precision/F1/MAP/hitRate + 5 diagnostics), a live end-to-end runner `evalrunablation` driving real `hybridSearchEnhanced` against the golden set with per-channel recall deltas + paired sign-test p-values, a baseline runner, a dashboard, an alignment",
     "created_at": "2026-06-19T05:52:29.575Z",
-    "last_save_at": "2026-07-12T13:24:51.418Z",
+    "last_save_at": "2026-08-28T16:00:14.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9297564844854aeb045e13fe8ece13fc6c55f0e4a4c4d3994f6982709d8afd1d",
+    "source_fingerprint": "sha256:5c3b863bebe40f0f1e653c348b2a88b55253d0182a99acdf1fabfdbe1641c820",
     "source_doc_hashes": {
       "spec.md": "c24336e6a8defbb85a4d8cc0e2d8304ee7b049bc4c590a7898e937b6206108e1",
       "plan.md": "3391386b4a4244f637fc7bf5cc508aac907ddd0e9a14f4587a260a42d608a406",
       "tasks.md": "e30b1db999e08d8b0f6889f1f4bc67df229c924d35c3127e7a1fecccf51ae8ec",
       "checklist.md": "f6302304705ffcdd07e5b726a25388cdc34a504b1f9f9649205a58370bceff76",
       "decision-record.md": "518a93fe9cdfbf5e1b2862b35683efb1acb4c823784ec8f966aef1694c1fe6c3",
-      "implementation-summary.md": "c871a0ffd8ec4b51bab3dd8abad9e9cbf497dc0cdb5a799da7dda69c7b076094"
+      "implementation-summary.md": "a5e159fcf91709acd461100507ed17a711840b1cbbb657d7fd3644e1e0510ced"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -43,21 +43,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/README.md",
-      "templates/scratch/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tools/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/README.md",
-      ".opencode/skills/system-spec-kit/scripts/README.md",
-      ".opencode/skills/system-spec-kit/scripts/lib/README.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/README.md",
-      ".opencode/skills/system-spec-kit/scripts/memory/README.md",
-      ".opencode/skills/system-spec-kit/templates/README.md",
-      ".opencode/skills/system-spec-kit/templates/scratch/README.md",
       "implementation-summary.md",
       "checklist.md",
       "spec.md",
@@ -65,12 +50,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/shared/README.md",
-        "source": "derived"
-      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
@@ -208,11 +187,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The README template work changed two `sk-doc` documentation templates and needed packet-local status, checklist, and verification evidence before release cleanup could treat the work as complete",
     "created_at": "2026-05-02T11:03:13Z",
-    "last_save_at": "2026-07-17T17:19:10.136Z",
+    "last_save_at": "2026-08-28T15:59:27.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2a2c6c476ab7b2aa2c8ab8a3d8c4ae38dd7f658a655b9a2281f70c62a2ea8818",
+    "source_fingerprint": "sha256:f4fb57020dc5d54a25f92b96353f1e46e57986e62b2361f620ac7c287cad2422",
     "source_doc_hashes": {
       "spec.md": "50c8395c5d122870029386ad3b8db0534a7f42c046b8c8100ca33df509039253",
       "plan.md": "571f86a3ab463bbbe697b5aacad1c9ffc5f4f3b95f82d951e5642e64e2a7ab29",
       "tasks.md": "fa15a12b51238cc646d3a3dcc28cad40ac306ff5e09e5118e97f456a0c2e185c",
       "checklist.md": "bb411626f7b3040eca9614e4e56ecefbd5a4834670ec659c9a85416d71470b60",
-      "implementation-summary.md": "dd61575657b863eaeef67d0237c3e66ffcbf29ec52fac2a55b97cc99e446afc5"
+      "implementation-summary.md": "3fec936c91a7cd964e1fd9da10db9b12f44353949b5d8bb2e05e05aa28da3c10"
     },
     "last_active_child_id": null,
     "last_active_at": null

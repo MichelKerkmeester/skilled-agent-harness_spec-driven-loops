@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 020-maintenance-grace-background-embedding |
+| **Spec Folder** | 019-maintenance-grace-background-embedding |
 | **Completed** | 2026-06-17 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

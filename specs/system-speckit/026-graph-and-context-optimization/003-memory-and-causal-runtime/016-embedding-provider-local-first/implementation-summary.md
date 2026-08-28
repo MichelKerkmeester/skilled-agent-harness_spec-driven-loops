@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/132-embedding-provider-local-first` |
+| **Spec Folder** | 016-embedding-provider-local-first |
 | **Completed** | 2026-06-02 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

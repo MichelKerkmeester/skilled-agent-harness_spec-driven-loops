@@ -34,12 +34,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/scoped-backfill-boundary.vitest.ts",
-      "api/index.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -47,36 +41,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "backfill-graph-metadata.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
-        "source": "derived"
-      },
-      {
-        "name": "folder-discovery.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index-scope.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/utils/index-scope.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/api/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scoped-backfill-boundary.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/scoped-backfill-boundary.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -190,11 +154,41 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit generators that produce `graph-metadata.json` and `description.json` over-reach and churn, and the 031 research traced three residual defects in the backfill and exclusion paths",
     "created_at": "2026-06-27T17:15:41.714Z",
-    "last_save_at": "2026-07-17T17:19:52.522Z",
+    "last_save_at": "2026-08-28T16:00:19.556Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2e2a925c77f7a18ce1f8c568862f0d127ab07123e6370d9f18d714cf491756fa",
+    "source_fingerprint": "sha256:23354ca1f60d54570019812c486c6fec1e792eac11267d5047492b5dccc03748",
     "source_doc_hashes": {
       "spec.md": "69be958c0bd361ef295047414458d9393d771a61474149b0707e65217f40b6bf",
       "plan.md": "505ac21207a3fb0fcaca58f841701581ece2e00b297f155c15d34cd844d66d4c",
       "tasks.md": "488ce35775d1491fdc5123a92e13b2257bec3f5176bf7750d61f7fb81a7cf805",
       "checklist.md": "a4242cfdc4b799adabe916394b66930eefd1cb727c5d3800b6f101e55a46c7ac",
-      "implementation-summary.md": "299ba731903b374eeb8490fd1051570292637e2f3acd6b0e42f599167625d3ae"
+      "implementation-summary.md": "bbd551e9a0a881b83e36fea7674c83640d7f0410c8b957e78c0a7b65917b645d"
     },
     "last_active_child_id": null,
     "last_active_at": null

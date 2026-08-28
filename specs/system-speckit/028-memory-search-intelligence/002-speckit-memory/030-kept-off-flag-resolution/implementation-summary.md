@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 022-kept-off-flag-resolution |
+| **Spec Folder** | 030-kept-off-flag-resolution |
 | **Completed** | 2026-06-20 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

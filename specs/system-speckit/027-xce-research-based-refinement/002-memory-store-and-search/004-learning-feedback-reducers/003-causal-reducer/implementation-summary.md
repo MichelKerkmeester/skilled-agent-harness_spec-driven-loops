@@ -28,7 +28,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `003-causal-reducer` |
+| **Spec Folder** | 003-causal-reducer |
 | **Level** | 2 |
 | **Status** | Implemented |
 <!-- /ANCHOR:metadata -->

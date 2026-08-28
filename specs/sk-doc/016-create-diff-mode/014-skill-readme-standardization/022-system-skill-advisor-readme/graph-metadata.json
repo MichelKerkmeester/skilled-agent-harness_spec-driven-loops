@@ -34,19 +34,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -184,11 +177,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-skill-advisor README is a tabular reference card with no problem-first entry point",
     "created_at": "2026-06-07T16:45:00Z",
-    "last_save_at": "2026-07-17T13:38:46.348Z",
+    "last_save_at": "2026-08-28T15:59:23.690Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +196,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:682d41a96cc306214a735e2ed0841da9cb1badba3b912f00da4eab3cb6d2d29a",
+    "source_fingerprint": "sha256:37b45a421f730a01db3561a6cccf6ea8df5e09f0fe940f3712933daa4a11716a",
     "source_doc_hashes": {
-      "spec.md": "469ba4803234ac08dd2dfca9b922fd29c983926894c2f9655e687cc0aa010db2",
-      "plan.md": "ec5788024fe628fd9126f8e577448cff234de9936a8b7410f0d4541936586b37",
-      "tasks.md": "5273632e6bd25c08c68c5a79c5be167906b012eb74065459a6f3fc4d88077b6d",
-      "implementation-summary.md": "f9cc18eb7a49b77e93c00cf5fcf0931a45bc848506edfc0d5e802dc2a7085636"
+      "spec.md": "fa40731edb52416e24705467cbb794ea02f121f854037f560c30245c18148749",
+      "plan.md": "fe92af1cc49a24272c1525f4c8843ac40b4561c836d58358c324e5bd9ad952de",
+      "tasks.md": "f7eee76632f1d47aaa8378759d6198b1d84c9c516399f1b5d761b8d080e81aea",
+      "implementation-summary.md": "5027ebd666083e359001bf73fe6845c090174d56e55fac20096107748a78c120"
     },
     "last_active_child_id": null,
     "last_active_at": null

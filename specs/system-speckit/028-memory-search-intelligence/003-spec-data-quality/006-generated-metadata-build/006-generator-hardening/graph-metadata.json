@@ -34,19 +34,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/access-telemetry.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/generator-hardening.vitest.ts",
-      "lib/validation/generated-metadata-integrity.ts",
-      "scripts/tests/phase-parent-pointer.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
-      "mcp_server/tests/generator-hardening.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -54,72 +41,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "graph-metadata-parser.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "capability-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "is-phase-parent.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
-        "source": "derived"
-      },
-      {
-        "name": "access-telemetry.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/access-telemetry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "resume-ladder.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generated-metadata-integrity.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/generated-metadata-integrity.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "generator-hardening.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/generator-hardening.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "phase-parent-pointer.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/phase-parent-pointer.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "folder-discovery.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/folder-discovery.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -197,11 +118,77 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The graph-metadata generator and the JSON it produces carry two residual hardening gaps that the 031 research ranked P2 because neither is a fix for a live crash, both are protections against silent drift and churn",
     "created_at": "2026-06-27T17:15:42.806Z",
-    "last_save_at": "2026-07-17T17:19:52.816Z",
+    "last_save_at": "2026-08-28T16:00:20.856Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7e3ff33f6e3a413d2030d7e28b67e43fcf6fa7f5705d2bbcc97327b9c9dc361",
+    "source_fingerprint": "sha256:ea49715d204df8f702b1ac885b65214e577eece739cb68a1810fc3387ff892ef",
     "source_doc_hashes": {
       "spec.md": "6ace75abe4827cf4955e8151d0d7a6b7184052d7a4e8a2437c0d5c958ac0bb9c",
       "plan.md": "b12a3a7e540e78f34aee5420d6a5a4abd268c2e2dae3e9827a921fe728cb26a2",
       "tasks.md": "cbfe481730846c779380b5736d1c3d0f1f7b4aba8ac906eb4517e1cd3b652203",
       "checklist.md": "b739b0db1dcb9d16ea48c0a53fb7d9d2f9093af50c9e5e3cd4300cdb4d9e805d",
-      "implementation-summary.md": "044368927f7b08aa82c2f848960565883c24aa2683986adc14a57c3d8d094447"
+      "implementation-summary.md": "c0f277ae8e7718a914e37da3d5bce0389fea5d37836c6532cb4583f2797d4de6"
     },
     "last_active_child_id": null,
     "last_active_at": null

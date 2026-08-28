@@ -10,8 +10,8 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-design/017-design-skill"
-    last_updated_at: "2026-08-28T05:16:38Z"
+    packet_pointer: "sk-design/017-design-skill/001-skill-build"
+    last_updated_at: "2026-08-28T12:30:04Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Renamed to sk-design and closed every open note and conflict"
     next_safe_action: "Commit the packet and the skill"
@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 017-design-skill |
+| **Spec Folder** | 001-skill-build |
 | **Completed** | 2026-08-28 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
@@ -63,7 +63,7 @@ The repo could measure a design but could not decide one. `sk-design-md-generato
 
 `SKILL.md` carries eight fixed scales — spacing, type, weight, color, elevation, radius, opacity and duration — with the reasoning that makes each list defensible rather than arbitrary. They stay inline because every task needs at least one of them, so deferring them to a reference would add a load and a failure mode without saving anything. Alongside them sit the seven-step working procedure and the hierarchy technique that does most of the visible work: three tiers carried by weight and color, emphasis achieved by softening competitors, actions styled by hierarchy rather than semantics.
 
-### Eight references, one per routed intent
+### Nine references, one per routed intent
 
 The build procedure carries the seven-step order of work for something new. Hierarchy carries the full method behind the four operative rules that stay inline. Palette construction covers building a nine-shade HSL ramp from the edges inward, keeping saturation alive as lightness leaves the middle, hue rotation, dark mode, and two escape hatches for reaching contrast ratios without draining the color. The diagnosis table maps vague complaints to mechanical causes across five grouped tables. Depth and detail covers light-source emulation, the three shadow systems and how to choose one, shadow color on non-white surfaces, the six-layer button anatomy, typography detail, concentric radius, layout and images. Interaction craft covers inputs, touch, hit areas, focus, keyboard, performance and feedback placement. Motion principles adapts the twelve animation principles and pairs them with an enforceable ruleset. UX laws cover target sizing, choice count, chunking, response budgets, grouping and expectation. The review checklist runs a severity-tiered WCAG pass over real code.
 

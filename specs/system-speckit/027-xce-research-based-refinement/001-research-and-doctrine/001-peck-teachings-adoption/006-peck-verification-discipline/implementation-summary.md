@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/006-peck-verification-discipline` |
+| **Spec Folder** | 006-peck-verification-discipline |
 | **Completed** | 2026-06-10 |
 | **Level** | 3 |
 | **Status** | Complete |

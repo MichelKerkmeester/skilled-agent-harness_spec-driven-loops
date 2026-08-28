@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `015-cascade-reorder-and-nomic-hf-local-default` |
+| **Spec Folder** | 015-cascade-reorder-and-nomic-hf-local-default |
 | **Completed** | 2026-05-19 |
 | **Level** | 1 |
 | **ADR shipped** | ADR-014 in `../004-spec-memory-embedder-bake-off/decision-record.md` |

@@ -34,19 +34,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -184,11 +177,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skills index is a tabular reference card that has drifted: it counts 21 skill folders when there are 22, miscategorizes system-code-graph as a semantic-search MCP skill, lists it twice in the structure tree, references a non-existent skill, and pins per-skill version numbers that age immediately",
     "created_at": "2026-06-07T19:05:00Z",
-    "last_save_at": "2026-07-17T13:38:46.901Z",
+    "last_save_at": "2026-08-28T15:59:24.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +196,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9497446c089987d9fe52e9537816393dbca00a8b5390778a0b104f6c542598e4",
+    "source_fingerprint": "sha256:cb7d40ad3aa4734e9ee4edb0eab504cbe4a8b53b7bb82c783c722e2fbe342da7",
     "source_doc_hashes": {
-      "spec.md": "d55aa20b5398ce38caf36d2e88cd03e44184647ad2632281fe19e2099eaa5b4a",
-      "plan.md": "c7398b99a5dd6da571598bf737a7a7fe5b668551f1dd2fee04caade3d5ccf388",
-      "tasks.md": "6eb5b4bf94967141dc5cce247d31363dfd445e3571ebebf0d9d67e9cd8b724ba",
-      "implementation-summary.md": "74642042111e497f95cc0a62caa8a7d3cd2262b74172971a3d1fb18bf92cb17f"
+      "spec.md": "411effdf08157e50026a076109f7a65b489646bf9f48ea5be9594b50571d8b5e",
+      "plan.md": "f8dadc4c8cfd89310a029bcfc2d84382478df1d6f40a4f79e94f48a6c905f09b",
+      "tasks.md": "fe8804417b77f3c942b7c585438c97b9f2f4ae7d0fe6729a09a00970383a4479",
+      "implementation-summary.md": "e22d31c8d38e08ca70146ea927ede5b39e09c8019f33c5abc037eea3f4b4571e"
     },
     "last_active_child_id": null,
     "last_active_at": null

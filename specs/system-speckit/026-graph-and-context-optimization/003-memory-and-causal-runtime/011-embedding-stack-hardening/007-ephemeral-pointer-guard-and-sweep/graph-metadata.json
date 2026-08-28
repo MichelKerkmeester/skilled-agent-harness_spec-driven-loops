@@ -36,20 +36,12 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/validation/ephemeral-pointer-audit.mjs",
-      "scripts/validation/ephemeral-pointer-audit.mjs",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "ephemeral-pointer-audit.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/validation/ephemeral-pointer-audit.mjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -187,11 +179,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 006 cleaned ephemeral-artifact pointers from code comments using hand-rolled grep patterns",
     "created_at": "2026-05-29T20:35:49.807Z",
-    "last_save_at": "2026-07-17T17:19:30.573Z",
+    "last_save_at": "2026-08-28T15:59:51.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +198,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a65db3799259c64d96f33f0bd5d667d4819c5d206156acc4f8a8e739f94b8ec",
+    "source_fingerprint": "sha256:2a28453e524310ec4fa9ab499361ce093bd17b2f1338aca478f11e4950ae0666",
     "source_doc_hashes": {
       "spec.md": "1909349899b6cc6ecf040373bda501083088e71b89564c6d408404e628042705",
       "plan.md": "eb60fe6c2ae9322cdbc38dea417f17108ad7b7598a913b739e7cbd857ff43eb0",
       "tasks.md": "4dac82d18a033a4bf20bcd81b3f12ca20a45a9ee1bc1e353fe5cb80675b63268",
-      "implementation-summary.md": "6f85d80e69e1559d84c78b0b518f5ba266a5d2118d3edae163cf5e1f41bf9e69"
+      "implementation-summary.md": "2ece4adb3b30b994ae5afd0a71ad8d09d3c383dfc85e2f41cc646878e62623b9"
     },
     "last_active_child_id": null,
     "last_active_at": null

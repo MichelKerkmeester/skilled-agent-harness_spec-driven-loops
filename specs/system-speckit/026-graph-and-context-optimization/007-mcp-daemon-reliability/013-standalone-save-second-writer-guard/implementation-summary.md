@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `013-standalone-save-second-writer-guard` |
+| **Spec Folder** | 013-standalone-save-second-writer-guard |
 | **Completed** | 2026-05-29 |
 | **Level** | 2 |
 | **Status** | implemented |

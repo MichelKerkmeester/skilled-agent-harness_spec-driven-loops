@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/027-xce-research-based-refinement/002-memory-store-and-search/011-vector-resilience-durability` |
+| **Spec Folder** | 011-vector-resilience-durability |
 | **Completed** | 2026-06-11 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

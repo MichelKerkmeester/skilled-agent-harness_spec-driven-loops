@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 024-reranker-research |
+| **Spec Folder** | 034-reranker-research |
 | **Completed** | 2026-06-21 |
 | **Level** | 2 |
 | **Phase type** | Research, read-only, no code shipped |

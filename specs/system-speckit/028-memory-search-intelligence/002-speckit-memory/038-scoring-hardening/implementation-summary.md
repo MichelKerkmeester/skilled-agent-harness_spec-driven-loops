@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-scoring-hardening |
+| **Spec Folder** | 038-scoring-hardening |
 | **Completed** | 2026-06-22 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

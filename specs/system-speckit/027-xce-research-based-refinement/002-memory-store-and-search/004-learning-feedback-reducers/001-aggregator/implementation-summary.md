@@ -28,7 +28,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `005-learning-feedback-reducers/001-aggregator` |
+| **Spec Folder** | 001-aggregator |
 | **Level** | 2 |
 | **Status** | Complete |
 <!-- /ANCHOR:metadata -->

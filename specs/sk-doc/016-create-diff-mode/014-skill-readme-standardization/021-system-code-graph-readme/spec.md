@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-skill-readme-standardization/021-system-code-graph-readme"
+    packet_pointer: "sk-doc/016-create-diff-mode/014-skill-readme-standardization/021-system-code-graph-readme"
     last_updated_at: "2026-06-07T15:16:11Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped system-code-graph README via deep-context + dual-draft"

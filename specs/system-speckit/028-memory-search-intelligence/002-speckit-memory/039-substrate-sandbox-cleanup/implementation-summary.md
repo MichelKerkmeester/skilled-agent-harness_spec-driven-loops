@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 029-substrate-sandbox-cleanup |
+| **Spec Folder** | 039-substrate-sandbox-cleanup |
 | **Completed** | 2026-06-23 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

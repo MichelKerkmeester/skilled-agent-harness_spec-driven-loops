@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 054-archive-renumber-010-044-to-001-023 |
+| **Spec Folder** | 020-archive-renumber-010-044-to-001-023 |
 | **Completed** | 2026-07-08 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

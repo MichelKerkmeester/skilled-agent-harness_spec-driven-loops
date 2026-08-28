@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-skill-readme-standardization/019-sk-prompt-small-model-readme"
+    packet_pointer: "sk-doc/016-create-diff-mode/014-skill-readme-standardization/019-sk-prompt-small-model-readme"
     last_updated_at: "2026-06-07T14:42:36Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped sk-prompt-models README; Batch D 5 of 6"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 019-sk-prompt-models-readme |
+| **Spec Folder** | 019-sk-prompt-small-model-readme |
 | **Completed** | 2026-06-07 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

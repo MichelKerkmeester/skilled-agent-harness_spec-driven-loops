@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The sk-prompt-models README is a tabular reference card with no problem-first entry point, and it carries a stale version line plus a wrong \"five executors\" claim (the hub dispatches through two active executors, cli-devin and cli-opencode, plus an optional third)",
     "created_at": "2026-06-07T14:42:36Z",
-    "last_save_at": "2026-07-17T13:38:45.503Z",
+    "last_save_at": "2026-08-28T15:59:22.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +196,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83a0efc8f8d6b87fe927ab345725716e4f0ab40c0479e80a9fd689034628ae72",
+    "source_fingerprint": "sha256:f5b6f8a39bdda86925bdb4e51ad9ba3b9e5d10061dded2ec0be79a856bcd2ce4",
     "source_doc_hashes": {
-      "spec.md": "2ec3b5fa4bc4492f949ce9cbe4f1381a9251f3bd74d7704e2b481c2a753f2e9f",
-      "plan.md": "22f532c7e6e387589ae62e73cea0f45a5a5ba6644f5d4707b0bbdbd1f06a2a06",
-      "tasks.md": "d36416d08c8c593755dff6c2af42573c3e1949835fbb207cf3993c031fb8f57b",
-      "implementation-summary.md": "32450ce3d8f048115eb3351495d76bf6ef5a48e4d50844236cccf88fe3da21b0"
+      "spec.md": "f730b3fdcb063c710e815062abd2ecc74d7f10187608a900514ff165aa171b70",
+      "plan.md": "494fa595ae3702afe21e588dd39f59e3eeb31511f40e6ff5dc9b48664db4bf06",
+      "tasks.md": "808c9367d5b14a99b4c283bac5d46e4a322dc323846fd927a531fe6da1bcc4b5",
+      "implementation-summary.md": "172e4c7b62e3b3d72bc46a97f232f82a2719ce8113066cc61e3730d62f851673"
     },
     "last_active_child_id": null,
     "last_active_at": null

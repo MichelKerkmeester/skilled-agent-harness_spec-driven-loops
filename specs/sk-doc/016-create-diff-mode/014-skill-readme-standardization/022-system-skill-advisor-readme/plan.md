@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-skill-readme-standardization/022-system-skill-advisor-readme"
+    packet_pointer: "sk-doc/016-create-diff-mode/014-skill-readme-standardization/022-system-skill-advisor-readme"
     last_updated_at: "2026-06-07T16:30:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped system-skill-advisor README; Batch E 2 of 3"

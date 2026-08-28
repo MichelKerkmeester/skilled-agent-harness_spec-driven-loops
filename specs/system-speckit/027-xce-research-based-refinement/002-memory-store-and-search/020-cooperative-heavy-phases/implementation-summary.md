@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 021-cooperative-heavy-phases |
+| **Spec Folder** | 020-cooperative-heavy-phases |
 | **Completed** | 2026-06-17 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

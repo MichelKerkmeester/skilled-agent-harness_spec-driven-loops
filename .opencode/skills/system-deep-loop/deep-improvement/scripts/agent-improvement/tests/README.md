@@ -15,6 +15,8 @@ trigger_phrases:
 
 This folder contains the Vitest suites for the agent-improvement scripts in the parent directory. The suite files are position-stable and resolve their script-under-test from the workspace root. Cache-oriented tests use operating-system temporary directories and do not write repository state.
 
+---
+
 ## 2. CONTENTS
 
 | File | Responsibility |
@@ -26,11 +28,15 @@ This folder contains the Vitest suites for the agent-improvement scripts in the 
 | `score-candidate-security.vitest.ts` | Tests cache integrity and resource-reference sanitization. |
 | `trade-off-detector.vitest.ts` | Tests dimension thresholds, trajectories and Pareto dominance. |
 
+---
+
 ## 3. BOUNDARIES
 
 - Imports target Node builtins, Vitest and the scripts under test.
 - Filesystem-touching cases use temporary directories and clean them after each test.
 - The suites are read-only against the agent-improvement source tree.
+
+---
 
 ## 4. VALIDATION
 
@@ -41,6 +47,8 @@ npx vitest run .opencode/skills/system-deep-loop/deep-improvement/scripts/agent-
 ```
 
 The command was attempted in this worktree. No local Vitest executable is installed, so `npx` could not resolve the package without network access. The source inventory and all non-Vitest command evidence remain independent of that dependency.
+
+---
 
 ## 5. RELATED
 
