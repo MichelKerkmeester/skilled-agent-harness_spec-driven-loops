@@ -37,7 +37,7 @@
       "portable"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -87,15 +87,15 @@
     ],
     "causal_summary": "Six host configurations launch the `codemode` MCP server with `/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node`",
     "created_at": "2026-08-28T16:11:19Z",
-    "last_save_at": "2026-08-28T16:19:37.938Z",
+    "last_save_at": "2026-08-28T18:09:14.097Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ce183ae959931b2e71ca7b2e43209b32d8f0b3fca17e578ea12ae3d51141b722",
+    "source_fingerprint": "sha256:28f14bcbb3fc89d1da2455f5ba87d4783fd5c12b9f52ac96239ed0ff9515dddf",
     "source_doc_hashes": {
-      "spec.md": "bdc8c95576491ffcefe813ace19dbbc8bfc59e2a0c99096c462b44cf4945384c"
+      "spec.md": "363e11a6b36f72d0f6baa807520ae544169572373806cc4af0b858672f37a572"
     },
     "last_active_child_id": "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor",
     "last_active_at": null

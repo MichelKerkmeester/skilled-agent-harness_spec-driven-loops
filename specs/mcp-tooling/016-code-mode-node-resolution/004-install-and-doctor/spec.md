@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-28 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -76,9 +76,9 @@ Close the loop so the portable shape survives a fresh install, an unsatisfiable 
 
 ### In Scope
 
-- The two install scripts that write the code_mode registration
-- The two install guides that document its setup
-- The diagnostic route's MCP target
+- The installer that writes the code_mode registration, reached through either of its two paths
+- The install guide that documents its setup, reached through either of its two paths
+- The diagnostic script that runs the per-server code_mode checks
 - The authoring checklist that currently restates the absolute path
 
 ### Out of Scope
@@ -91,10 +91,8 @@ Close the loop so the portable shape survives a fresh install, an unsatisfiable 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/mcp-code-mode/scripts/install.sh` | Modify | Write the portable registration |
-| `.opencode/install-guides/install-scripts/install-code-mode.sh` | Modify | Write the portable registration |
-| `.opencode/install-guides/MCP - Code Mode.md` | Modify | Document the range and the refusal message |
 | `.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md` | Modify | Document the range and the refusal message |
-| `.opencode/commands/doctor/mcp.md` | Modify | Report a host with no satisfying interpreter |
+| `.opencode/commands/doctor/scripts/mcp-doctor.sh` | Modify | Report a host with no satisfying interpreter |
 | `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md` | Modify | Record the constraint rather than one machine's path |
 <!-- /ANCHOR:scope -->
 

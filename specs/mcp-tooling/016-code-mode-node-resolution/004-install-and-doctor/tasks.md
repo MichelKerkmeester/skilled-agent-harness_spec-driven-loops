@@ -31,9 +31,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Run each installer against a scratch configuration and record what it writes today
-- [ ] T002 Confirm the resolver reports the declared range alongside an absent answer, so the diagnosis can quote it
-- [ ] T003 [P] Read the diagnostic route's MCP target and locate where a per-server check belongs
+- [x] T001 Record what the installer writes today — evidence: it emitted `"command": ["node", ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js"]`, launching the server under whatever interpreter is on PATH
+- [x] T002 Confirm the resolver reports the declared range alongside an absent answer — evidence: an unsatisfiable fixture returns `{path: null, range: '>=99.0.0 <100.0.0', reason: 'unsatisfied'}`
+- [x] T003 [P] Locate where a per-server check belongs — evidence: `.opencode/commands/doctor/mcp.md` is a thin router; the per-server work lives in `diagnose_code_mode()` in `.opencode/commands/doctor/scripts/mcp-doctor.sh`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,12 +41,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Emit the launcher-based registration (`.opencode/skills/mcp-code-mode/scripts/install.sh`)
-- [ ] T005 [P] Emit the launcher-based registration (`.opencode/install-guides/install-scripts/install-code-mode.sh`)
-- [ ] T006 Add a check that asks the resolver whether this host satisfies the declared range (`.opencode/commands/doctor/mcp.md`)
-- [ ] T007 [P] State the supported range and the refusal behavior (`.opencode/install-guides/MCP - Code Mode.md`)
-- [ ] T008 [P] State the supported range and the refusal behavior (`.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md`)
-- [ ] T009 Replace the restated path with the constraint and its consequence (`.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md`)
+- [x] T004 Emit the launcher-based registration (`.opencode/skills/mcp-code-mode/scripts/install.sh`) — evidence: the installer now writes `["node", ".opencode/bin/mcp-code-mode-launcher.cjs"]`
+- [x] T005 [P] No second installer edit was needed — evidence: `.opencode/install-guides/install-scripts/install-code-mode.sh` is a symlink to the file changed in T004
+- [x] T006 Add a check that asks the resolver whether this host satisfies the declared range (`.opencode/commands/doctor/scripts/mcp-doctor.sh`) — evidence: the diagnosis reports `[PASS] Node engine range satisfied by /Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node`
+- [x] T007 [P] No second guide edit was needed — evidence: `.opencode/install-guides/MCP - Code Mode.md` is a symlink to the file changed in T008
+- [x] T008 [P] State the supported range and the refusal behavior (`.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md`) — evidence: the guide claimed "Node.js 18+" in six places and now states Node 24 with the segfault reason; zero stale mentions remain
+- [x] T009 Replace the restated path with the constraint and its consequence (`.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md`) — evidence: the entry now describes the launcher-fronted pattern and why, with no absolute interpreter path
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -54,10 +54,10 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Re-run each installer against a scratch configuration and confirm no absolute interpreter path is written
-- [ ] T011 Force the range unsatisfiable and confirm the diagnosis reports the gap rather than health
-- [ ] T012 Scan the changed installers, guides and checklist for absolute interpreter paths and confirm none remain
-- [ ] T013 Validate the changed markdown against its document type
+- [x] T010 Confirm no absolute interpreter path is written — evidence: `bash -n` passes and the emitted registration names `node` plus the launcher
+- [x] T011 Force the range unsatisfiable and confirm the diagnosis reports the gap — evidence: with the manifest range set to `>=99.0.0 <100.0.0` the diagnosis reported `[FAIL] No Node.js interpreter satisfies >=99.0.0 <100.0.0 (unsatisfied)`, and the manifest was restored byte-identical
+- [x] T012 Scan the changed installer, guide and checklist for absolute interpreter paths — evidence: a scan of `.opencode/skills/mcp-code-mode/scripts/install.sh`, `.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md` and `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md` returns no `/Users/` interpreter path in any of the three
+- [x] T013 Validate the changed markdown against its document type — evidence: the guide validates as `install_guide` and the checklist as `asset`, both VALID
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] A fresh install is portable and an unsatisfiable host is reported before a tool call finds it
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] A fresh install is portable and an unsatisfiable host is reported before a tool call finds it
 <!-- /ANCHOR:completion -->
 
 ---
@@ -98,9 +98,9 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Each installer's current output is captured by running it against a scratch configuration
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Each installer's current output is captured by running it against a scratch configuration
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -108,9 +108,9 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The diagnosis reads the declared range through the resolver rather than restating a version
-- [ ] CHK-011 [P0] Installers emit the same registration shape the cutover established
-- [ ] CHK-012 [P1] No document names an absolute interpreter path for this server
+- [x] CHK-010 [P0] The diagnosis reads the declared range through the resolver rather than restating a version
+- [x] CHK-011 [P0] Installers emit the same registration shape the cutover established
+- [x] CHK-012 [P1] No document names an absolute interpreter path for this server
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -118,9 +118,9 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria in spec.md are met
-- [ ] CHK-021 [P0] Each installer, re-run against a scratch configuration, writes no absolute interpreter path
-- [ ] CHK-022 [P1] A forced-unsatisfiable range makes the diagnosis report the gap rather than health
+- [x] CHK-020 [P0] All acceptance criteria in spec.md are met
+- [x] CHK-021 [P0] Each installer, re-run against a scratch configuration, writes no absolute interpreter path
+- [x] CHK-022 [P1] A forced-unsatisfiable range makes the diagnosis report the gap rather than health
 <!-- /ANCHOR:testing -->
 
 ---
@@ -128,9 +128,9 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Every installer was executed, not only edited
-- [ ] CHK-FIX-002 [P0] The changed markdown validates against its document type
-- [ ] CHK-FIX-003 [P1] Evidence is pinned to the commit that shipped this phase, not a moving range
+- [x] CHK-FIX-001 [P0] Every installer was executed, not only edited
+- [x] CHK-FIX-002 [P0] The changed markdown validates against its document type
+- [x] CHK-FIX-003 [P1] Evidence is pinned to the commit that shipped this phase, not a moving range
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -138,8 +138,8 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Scratch configurations used for installer runs are removed afterwards
+- [x] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-031 [P0] Scratch configurations used for installer runs are removed afterwards
 <!-- /ANCHOR:security -->
 
 ---
@@ -147,8 +147,8 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan and tasks stay synchronized with what shipped
-- [ ] CHK-041 [P1] Both guides state the supported range and the refusal behavior
+- [x] CHK-040 [P1] Spec, plan and tasks stay synchronized with what shipped
+- [x] CHK-041 [P1] Both guides state the supported range and the refusal behavior
 <!-- /ANCHOR:docs -->
 
 ---
@@ -156,8 +156,8 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -167,11 +167,11 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 0/8 |
-| P1 Items | 7 | 0/7 |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 7 | 7/7 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: Pending
+**Verification Date**: 2026-08-28
 <!-- /ANCHOR:summary -->
 
 ---

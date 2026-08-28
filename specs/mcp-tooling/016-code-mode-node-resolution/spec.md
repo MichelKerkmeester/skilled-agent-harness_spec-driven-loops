@@ -14,15 +14,15 @@ _memory:
     packet_pointer: "mcp-tooling/016-code-mode-node-resolution"
     last_updated_at: "2026-08-28T00:00:00Z"
     last_updated_by: "session"
-    recent_action: "Author the phase-parent root from the launch-path investigation"
-    next_safe_action: "Execute 001-resolution-contract"
+    recent_action: "All four phases shipped"
+    next_safe_action: "None; the packet is complete"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-28 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -79,13 +79,13 @@ Launch `code_mode` through a resolver that reads the required range from the ser
 - A resolver that selects an interpreter satisfying the engine range the server already declares.
 - A launcher that fronts the server in every host config, replacing the absolute path.
 - The six host configurations that register `code_mode`.
-- The two absolute paths in `.codex/config.toml` for servers that have no engine constraint.
+- Whether the two absolute paths in `.codex/config.toml` are load-bearing, verified by execution rather than assumed.
 - Install scripts, install guides and the diagnostic route that write or check the launch command.
 
 ### Out of Scope
 
 - Removing the Node 24 requirement. Rebuilding or replacing `isolated-vm` is a different problem with a different risk profile; this decomposition takes the constraint as given.
-- The other two MCP servers' behavior. They are touched only where `.codex/config.toml` disagrees with the five configs that already launch them portably.
+- The other two MCP servers' launch paths. Execution showed the advisor's absolute interpreter is load-bearing and the memory server's test was inconclusive, so both were left as they were.
 - Benchmark run records and playbook transcripts that quote a historical absolute path as captured evidence.
 
 ### Files to Change
@@ -103,12 +103,10 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | `.cursor/mcp.json` | Modify | 003 | Launch through the launcher |
 | `.pi/mcp.json` | Modify | 003 | Launch through the launcher |
 | `opencode.json` | Modify | 003 | Launch through the launcher |
-| `.codex/config.toml` | Modify | 003 | Launcher for code_mode; drop two unconstrained absolute paths |
-| `.opencode/skills/mcp-code-mode/scripts/install.sh` | Modify | 004 | Stop writing an absolute interpreter path |
-| `.opencode/install-guides/install-scripts/install-code-mode.sh` | Modify | 004 | Stop writing an absolute interpreter path |
-| `.opencode/install-guides/MCP - Code Mode.md` | Modify | 004 | Document the resolver and its failure message |
-| `.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md` | Modify | 004 | Document the resolver and its failure message |
-| `.opencode/commands/doctor/mcp.md` | Modify | 004 | Diagnose a host with no satisfying interpreter |
+| `.codex/config.toml` | Modify | 003 | Launcher for code_mode; the other two absolute paths retained with their reason recorded |
+| `.opencode/skills/mcp-code-mode/scripts/install.sh` | Modify | 004 | Register the launcher instead of the entrypoint (a symlink covers the install-guides copy) |
+| `.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md` | Modify | 004 | State the real Node requirement and the refusal behavior (a symlink covers the install-guides copy) |
+| `.opencode/commands/doctor/scripts/mcp-doctor.sh` | Modify | 004 | Diagnose a host with no satisfying interpreter |
 | `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md` | Modify | 004 | Record the constraint instead of restating one path |
 <!-- /ANCHOR:scope -->
 
@@ -121,10 +119,10 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-resolution-contract/ | Decide where the required range comes from and build a tested resolver against it, with no runtime wired to it yet | Pending |
-| 2 | 002-launcher-shim/ | Front the server with a launcher that execs a satisfying interpreter and fails loudly when none exists | Pending |
-| 3 | 003-host-config-cutover/ | Point all six host configs at the launcher and remove the two unconstrained absolute paths | Pending |
-| 4 | 004-install-and-doctor/ | Stop installers writing absolute paths, and let the diagnostic route detect a host that cannot satisfy the range | Pending |
+| 1 | 001-resolution-contract/ | Decide where the required range comes from and build a tested resolver against it, with no runtime wired to it yet | Complete |
+| 2 | 002-launcher-shim/ | Front the server with a launcher that execs a satisfying interpreter and fails loudly when none exists | Complete |
+| 3 | 003-host-config-cutover/ | Point all six host configs at the launcher; the other two absolute paths were kept after execution proved one load-bearing | Complete |
+| 4 | 004-install-and-doctor/ | Stop the installer writing a registration that would segfault, and let the diagnosis detect a host that cannot satisfy the range | Complete |
 
 ### Phase Transition Rules
 

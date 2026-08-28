@@ -17,7 +17,9 @@
       "isolated-vm constraint documentation",
       "code mode install plan",
       "doctor mcp diagnosis design",
-      "code mode install tasks"
+      "code mode install tasks",
+      "code mode install doctor summary",
+      "install and doctor shipped"
     ],
     "key_topics": [
       "code",
@@ -34,11 +36,12 @@
       "constraint"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "tasks.md",
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -57,6 +60,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -150,6 +159,12 @@
         "source": "derived"
       },
       {
+        "name": "No Node",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -162,27 +177,35 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Three",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Two install scripts write MCP registrations, so a fresh install would reintroduce whatever shape they encode regardless of what the cutover fixed",
     "created_at": "2026-08-28T16:11:22Z",
-    "last_save_at": "2026-08-28T16:24:38.867Z",
+    "last_save_at": "2026-08-28T18:08:12.860Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:96d9c639a7efdb6f0dc4bda03b093149f24dd89aa71ef5b8be2d96eb38eed0f4",
+    "source_fingerprint": "sha256:46377901c3b242f2759bf2ebe5bafa00dce45f07fe39e0b3d77bedc18b5a07fc",
     "source_doc_hashes": {
-      "spec.md": "d2cd288f8b77ee84d3ab10dae06cdda5f523a97907fadf0c38a036d3fd9010fe",
+      "spec.md": "8c7a9a769a3d79840a6e116994b83a32a108084c7a82b084505c6881cdeb94e8",
       "plan.md": "b5976970158a7cced7972006848261562435e3b30575c92ecd064fc757b349f2",
-      "tasks.md": "c0036b6092b684b4601e5121e96714d5a20c4823afcbd8f1b44f2e1d28b0a290"
+      "tasks.md": "4908ad5399cf98dc84ef5aa13d5503d67d2a80eb7d3470cece423ae078e11e9e",
+      "implementation-summary.md": "b7a2b032dbbf06495b565cecf6e1e1036df5ba7e57ee090c3811cea1c2453c6a"
     },
     "last_active_child_id": null,
     "last_active_at": null
