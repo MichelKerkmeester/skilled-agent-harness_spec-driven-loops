@@ -22,9 +22,19 @@ jobs:
         with:
           node-version: '22'
 
+      # The validator this sweep shells out to loads TypeScript rule modules that
+      # import across the mcp-server package, so installing only the sweep's own
+      # scripts leaves every one of those rules erroring. That reads as thousands
+      # of failing packets rather than as a missing toolchain, which is how this
+      # job stayed red while looking like a content problem.
       - name: Install spec-kit dependencies
-        working-directory: .opencode/skills/system-spec-kit/scripts
-        run: npm ci
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-spec-kit/mcp-server ci
+          npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
+          npm --prefix .opencode/skills/system-spec-kit/scripts ci
 
       - name: Restore previous strict-pass freshness report
         uses: actions/cache@v4
