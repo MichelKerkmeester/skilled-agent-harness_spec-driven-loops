@@ -48,16 +48,11 @@
       "scratch/probe-1k-results.json",
       "scratch/bench-final-results.json",
       "scratch/end-to-end-smoke.md",
-      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
       "scratch/probe-1k-results.md",
       "scratch/migration-runbook.md",
       "scratch/rollback.md",
-      "shared/embeddings/factory.ts",
       "scratch/pre-flight-notes.md",
-      "scratch/migration-targets.md",
-      ".codex/config.toml",
-      ".claude/mcp.json"
+      "scratch/migration-targets.md"
     ],
     "entities": [
       {
@@ -115,18 +110,6 @@
         "source": "derived"
       },
       {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
-        "source": "derived"
-      },
-      {
         "name": "probe-1k-results.md",
         "kind": "doc",
         "path": "scratch/probe-1k-results.md",
@@ -154,18 +137,6 @@
         "name": "migration-targets.md",
         "kind": "doc",
         "path": "scratch/migration-targets.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
         "source": "derived"
       },
       {
@@ -203,11 +174,35 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Source Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Candidate Provider",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migration Result",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 015 and 016 showed that `llama-cpp` is much faster than the current `hf-local` Memory MCP embedding backend and that the smaller 200-row retrieval probe was rank-equivalent",
     "created_at": "2026-05-13T11:10:00Z",
-    "last_save_at": "2026-07-17T17:19:18.820Z",
+    "last_save_at": "2026-08-28T16:28:22.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T11:10:00Z",
     "source_docs": [
@@ -217,13 +212,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d6574d04773dbf3c90b601d5fd181ad95153b1754a21c4a1529ea4dee782488b",
+    "source_fingerprint": "sha256:a7abe8e83cb14afa5642169b55cae0885edc913bee82c80e0967a428c95dd8d9",
     "source_doc_hashes": {
       "spec.md": "43db7e84a6a002f73e09c188668ac534126c71a4ed66e8f375d9fc09f0731eb1",
       "plan.md": "98675d2c368bbee0479e4c9e3846fde24b6569788909cc1a348eda923ebc24ed",
       "tasks.md": "3af3f3be16c51b13a097583b014f6ebcd6549329f6ad9e7fea43a2bc24899e44",
       "checklist.md": "5b68df8377982498896107dedb50819d5e8c9c3df0041132ca947c998ae86909",
-      "implementation-summary.md": "745aa76faca86fda5c99c61dd617ac254c493525ec621b270a81bec94ff23106"
+      "implementation-summary.md": "9591f30d53f1d2d90d74e8a5a398025b6de10f45a78ce6a0441db7cef3d8680c"
     },
     "last_active_child_id": null,
     "last_active_at": null

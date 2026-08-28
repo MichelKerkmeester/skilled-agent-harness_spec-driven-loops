@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-07-05"
     last_updated_by: "openai-gpt-5.5"
     recent_action: "Recorded accepted baseline ownership decisions for Phase 001."
-    next_safe_action: "Later phases may proceed only while preserving these ownership, threshold, rollback, and parent-invariant decisions."
+    next_safe_action: "Align later phases to these ownership, threshold, rollback, parent-invariant decisions"
 ---
 # Decision Record: Phase 001 — Baseline Ownership Gate
 

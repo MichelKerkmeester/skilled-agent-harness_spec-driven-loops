@@ -43,64 +43,13 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
-      ".codex/config.toml",
-      ".claude/mcp.json",
       "spec.md",
-      ".opencode/install_guides/README.md",
-      ".opencode/skills/system-spec-kit/shared/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
-      "shared/embeddings/profile.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/package.json",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js",
-      ".opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/test-utils.js"
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retry-manager.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
-        "source": "derived"
-      },
-      {
-        "name": "recovery-hints.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "response-builder.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -108,69 +57,27 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/install_guides/README.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "ENV_REFERENCE.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "embedding_resilience.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "environment_variables.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
-        "source": "derived"
-      },
-      {
-        "name": "profile.ts",
-        "kind": "code",
-        "path": "shared/embeddings/profile.ts",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "test-embeddings-behavioral.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js",
-        "source": "derived"
-      },
-      {
-        "name": "test-embeddings-factory.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js",
-        "source": "derived"
-      },
-      {
-        "name": "memory-pipeline-regressions.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "manual-playbook-fixture.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts",
-        "source": "derived"
-      },
-      {
-        "name": "test-utils.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-utils.js",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -208,11 +115,89 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "gpt-5.5",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "EMBEDDINGS_PROVIDER",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. APPROACH",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PER-BATCH DISPATCH CONTRACTS",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "final",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK BREAKDOWN",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "DEPENDENCIES",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "ESTIMATED WALLTIME",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "description:",
+        "kind": "quoted",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Evidence Location",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31)",
     "created_at": "2026-05-13T14:30:00Z",
-    "last_save_at": "2026-07-17T17:19:19.140Z",
+    "last_save_at": "2026-08-28T16:28:23.138Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:00:00Z",
     "source_docs": [
@@ -222,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ce706d6b464e3049d0474015b5a78c8e24a56449071f570ccc4a48a3ee6c294",
+    "source_fingerprint": "sha256:0f6e29433a72e8c77e281a5b7eb2228af1989d13bda7f86b6417ba8577a20b19",
     "source_doc_hashes": {
       "spec.md": "f5930735428f3e639a25c04949a0218ccece7ac1a6c241f66976aebb889103ad",
       "plan.md": "7490f903b2af859122958f6e538fb9caa925a73d917e03411582cdbab2642be5",
       "tasks.md": "f926c119368040077553692fbe59c76217dffa484e80ba101a7298d19049d463",
       "checklist.md": "f583645ea9b00e2854ded45a40d179d1d705da627747bf12dbba75f473508a3e",
-      "implementation-summary.md": "6c9b3c39a1b8029f3c978526b09e0caa622c86697b4273812c8a28cb8d57072a"
+      "implementation-summary.md": "410f43217bca5c91bc4884bdd1f1c0ea2a7933587260c70506e02879aa04c444"
     },
     "last_active_child_id": null,
     "last_active_at": null

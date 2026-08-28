@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-05-13T11:10:00Z"
     last_updated_by: "codex-gpt-5"
     recent_action: "Closed packet with operator-accepted llama-cpp auto-cascade flip"
-    next_safe_action: "Keep auto-cascade semantics documented: Voyage -> OpenAI -> llama-cpp when GGUF runtime is installed -> hf-local"
+    next_safe_action: "Document the auto-cascade: Voyage to OpenAI to llama-cpp (GGUF installed) to hf-local"
     blockers: []
     key_files:
       - "implementation-summary.md"

@@ -15,27 +15,34 @@
       "supportsLongCacheRetention snippet fix",
       "pi-cache-optimizer verify-first optional",
       "deepseek compat consistency",
-      "cache-optimizer fix long retention"
+      "cache-optimizer fix long retention",
+      "deepseek compat consistency plan",
+      "long retention optional plan",
+      "deepseek compat consistency tasks",
+      "deepseek compat consistency summary",
+      "long retention optional summary"
     ],
     "key_topics": [
       "deepseek",
-      "compat",
+      "long",
+      "retention",
+      "advice",
       "supportslongcacheretention",
+      "snippet",
+      "pi-cache-optimizer",
       "verify-first",
       "optional",
-      "pi-cache-optimizer",
-      "snippet",
-      "warning",
-      "fix",
-      "consistency"
+      "compat",
+      "consistency",
+      "cache-optimizer"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -51,21 +58,141 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retention Advice Consistency",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement In",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Align",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Required",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "test",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Aligned the DeepSeek compat path with the verify-first OpenAI-proxy pattern so supportsLongCacheRetention is optional, not required/auto-written; 53/53 tests green.",
+    "causal_summary": "In the vendored `pi-cache-optimizer` fork, the DeepSeek compat path treated `supportsLongCacheRetention` as a required/missing flag: it appeared in the \"merged compat lacks …\" startup warning, in the copyable \"Recommended DeepSeek compat snippet\", and in the `/cache-optimizer fix` auto-write set",
     "created_at": "2026-08-13T00:00:00.000Z",
-    "last_save_at": "2026-08-13T00:00:00.000Z",
+    "last_save_at": "2026-08-28T16:28:16.065Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -74,9 +201,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad7e925b482d358c7375c9f0ec7cbbb290e0809c16f8e3e2e297954d2b8e7a96",
+    "source_fingerprint": "sha256:34700c1f1de627b0f6a1d148353b08eb420cd6a2fb4144704084493d690e368f",
     "source_doc_hashes": {
-      "spec.md": "bd2d7c53f5550d7809c67667613ca3eabec42883f81fbc33f68225b272811d0f",
+      "spec.md": "375c252571c6e71fa9b0000609b285672aad889d3b5992907dc34acef9a79d68",
       "plan.md": "b6a0a783345856ab4436dabab1c32b3bc60c51944b8c6e2dfd9d6098d6173661",
       "tasks.md": "873ec28f577fb5a283ef0e2d0d5e19bbe84c718964401d75e03aadb4d265943f",
       "implementation-summary.md": "51dbe09b6830c4f8b5db8ad433805a4bae8f233a8655959a544f91857aedcaa2"

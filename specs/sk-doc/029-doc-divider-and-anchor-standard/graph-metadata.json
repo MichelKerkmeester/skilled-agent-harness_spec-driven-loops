@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Two documented conventions are unenforced and have drifted across 8,620 structured `.md` files",
     "created_at": "2026-08-13T06:06:24Z",
-    "last_save_at": "2026-08-28T15:53:23.574Z",
+    "last_save_at": "2026-08-28T16:28:20.614Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +211,14 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:ccda31cd235aae77e6583547d0c81d9e50e82f19e3c51a9de163078cb64e78bd",
+    "source_fingerprint": "sha256:30fbd2ae5fd22b4ea9a56d663aa3b8ef4600a19b7dc361d656fe72097f70ae31",
     "source_doc_hashes": {
-      "spec.md": "a8b1989619ab405f0dce7c140b52a00560af5b887ca3a672c4428b1ee7874772",
+      "spec.md": "9b9d31ec7da26033e395697c1a04fe9b12c157f09797c282e86b340c71858ed6",
       "plan.md": "89777bca884c473b450645c10a5682bc17c8860ef6542517c4303b4d03f64d29",
       "tasks.md": "d8e7029c00290fd1fcd3bf57a05110ebdf0b6dba889fe808cdac50bb48e432d5",
       "checklist.md": "d57384cf6588be417e4eac468ebd4a0f7a861b4dedaa8b8a5b37a8af96175d70",
       "decision-record.md": "eaa2ee31921b9313ca917a2b4faf5acaf5bca9fcd5cf663b45d1c3b20f480787",
-      "implementation-summary.md": "e89f35b693b5d1cac6506720901c482366f03c23b7eaae156c80e2892f81f80a",
+      "implementation-summary.md": "a1296ffd348a048f2d18e7fe019b31ac20e717630152006c1b29cec961c0e4d3",
       "research.md": "de58e2c466174daa4b0a5630e96e624606f5307baa5feb356a492ff770c67005"
     },
     "last_active_child_id": null,

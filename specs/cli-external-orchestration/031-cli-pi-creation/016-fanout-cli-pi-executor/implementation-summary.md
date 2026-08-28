@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "cli-external-orchestration/031-cli-pi-creation/016-fanout-cli-pi-executor"
     last_updated_at: "2026-07-29T10:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Superseded by mainline cli-pi fan-out (d9e5678edd/2ddbe3c82e); adopted that version in the v4 merge, 179 tests pass"
+    recent_action: "Superseded by mainline cli-pi fan-out d9e5678edd; adopted in v4 merge, 179 tests pass"
     next_safe_action: "None — feature shipped via the mainline implementation; packet retained as record"
     blockers: []
     completion_pct: 100

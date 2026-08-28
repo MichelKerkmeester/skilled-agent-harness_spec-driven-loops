@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor"
     last_updated_at: "2026-07-06T10:00:05.000Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Executed in ../015-design-commands-implementation/ (2026-07-06); this doc's Known Limitations #1 updated to cross-reference it"
-    next_safe_action: "None - the router+assets refactor is implemented; see ../015-design-commands-implementation/ for its own follow-ups"
+    recent_action: "Executed in 015-design-commands-implementation on 2026-07-06; Known Limitations #1 updated"
+    next_safe_action: "Complete; router+assets refactor shipped, follow-ups live in 015-design-commands-implementation"
     completion_pct: 100
 ---
 # Implementation Summary: Phase 013 - Design Commands Refactor (Assets, Workflow YAML, Presentation Dashboard)

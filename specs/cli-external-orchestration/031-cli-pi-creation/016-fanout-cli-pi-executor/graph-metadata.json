@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Replace the throwing cli-pi command-builder stub with a real print-mode dispatch so cli-pi runs as a genuine deep-loop lineage.",
     "created_at": "2026-07-29T06:55:51.972Z",
-    "last_save_at": "2026-08-28T15:52:55.058Z",
+    "last_save_at": "2026-08-28T16:28:14.978Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,13 +195,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:63d4b09b2db09940ce658b10565373af0189cfcc693fd10b1ee8ecd6af0d097b",
+    "source_fingerprint": "sha256:73d496c13c271c6ba719618c8a296b0739cc4a70aec3c906159ed16f58bdb625",
     "source_doc_hashes": {
       "spec.md": "d64b84c8f97d32e5396103a5e2efd1e7894990d80288c64d66c5ec164ba10534",
       "plan.md": "d0df2c8ac919d8d67cd529d49ee5caf4fab953c87ce77fcf6bfe7640ef8447ea",
       "tasks.md": "0c554b543bf3781d63f9a27e21c5d5556580b0ad2eb5eeacfc5d92ee2d77e2cc",
       "checklist.md": "736472b8c079ebce825ec59795cbe54cb0aed3b44d3c9a07b7bd98e94d699351",
-      "implementation-summary.md": "283e8aa461afba182904e597a8a13747e3e31d4c7d7c6d21f02e96795c27f977"
+      "implementation-summary.md": "076506dca398dba428216aaa2b9c31c830cad09895ec4d14ec52f17e98eecbcf"
     },
     "last_active_child_id": null,
     "last_active_at": null

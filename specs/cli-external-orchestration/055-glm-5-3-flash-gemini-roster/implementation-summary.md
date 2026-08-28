@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "cli-external-orchestration/055-glm-5-3-flash-gemini-roster"
     last_updated_at: "2026-08-27T07:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Retired Ox Alpha; routed GLM-5.3-Flash + Gemini 3.7 Flash across docs, .pi config, and the fan-out roster; live-verified and pushed to both branches"
+    recent_action: "Retired Ox Alpha; routed GLM-5.3-Flash + Gemini 3.7 Flash into docs and roster; live-verified"
     next_safe_action: "None — committed, pushed, live-verified"
     blockers: []
     key_files:

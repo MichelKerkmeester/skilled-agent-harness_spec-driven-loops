@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-runtime-bootstrap.sh",
-        "kind": "script",
-        "path": ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "key_phrase",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Cluster A — last_active_child_id + parent status drift (P1)",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 013 deep-review identified that 013 + 001 + 002 spec docs lie about completion state (checklists 100% unchecked while implementation-summaries claim 95% complete; `lastactivechildid` null despite handover claiming it is set; resource-maps say \"PLANNED\" while files are on disk)",
     "created_at": "2026-05-11T08:32:25Z",
-    "last_save_at": "2026-07-17T17:19:32.771Z",
+    "last_save_at": "2026-08-28T16:28:23.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6653568b8d128f06749f33277c8f726c4f2d0f588445131e8d274e1cba66c88f",
+    "source_fingerprint": "sha256:2ce97a4eda9093131b1a4c9f20015682eff174aa6878dfa49f077e27222df3ab",
     "source_doc_hashes": {
       "spec.md": "98faa9913731ef238f15802d0a89e737eb3c98b8faa0e29a94402ef5d680efae",
       "plan.md": "0a47ea9e8ecafae09a96a29ac0467f249d47d8ee211ee972a9c60f6415532e6f",
       "tasks.md": "78a4566b44a6ec810e42623a0d737f5ba88b55978b7ce2a151fcb7380383cefd",
       "checklist.md": "013cfb7911124bd0ef7be2fc33b2dfb11490c673e475cc3d93fab62adff121c7",
-      "implementation-summary.md": "f26821f5cfce612a9f54ac56683e5c558bc2116907370f0c9b7a4f62efd0784b"
+      "implementation-summary.md": "15344ad1505f385d10d7dbaf24a62f4f2239c6c81a9ec5337b4e27ea40efbd6a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "mcp-tooling/013-mcp-obsidian/009-community-plugin-support"
     last_updated_at: "2026-08-02T16:22:12Z"
     last_updated_by: "claude-opus"
-    recent_action: "Deepened the 3 community-plugin references (beancount-finance/obsidian-tables/obsidian42-brat) + remediated the hub integration audit"
+    recent_action: "Deepened beancount/tables/brat plugin references; remediated hub integration audit"
     next_safe_action: "Commit and push the expansion to skilled/v4.0.0.0"
     blockers: []
     key_files:

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Execute the Fable-5-validated refinement backlog for the sk-code code-opencode surface sub-skill: 24 P1 + 21 P2 + 7 P3 documentation/asset fixes across ~14 files in 7 sequenced phases, plus the sk-code-owned C1 validator retirement. code-opencode is this repo's playbook for writing code in its own .opencode/ tree; the research proved it teaches patterns that fail to compile, fabricates removed hook infrastructure, and misses the verify-doctrine reality. This packet makes the docs describe reality; underlying-code bugs C2-C8 are handed off to owning surfaces, not implemented here.",
     "created_at": "2026-07-08T14:11:39.565Z",
-    "last_save_at": "2026-08-28T15:53:00.541Z",
+    "last_save_at": "2026-08-28T16:28:18.317Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed5c39a4da58561d2e8a97af3bd38a0d81440c5c0a8648ec3fcfeba90da0a5c1",
+    "source_fingerprint": "sha256:64bbd5cd0676a4cedf636f7e8187bd95f8b9c460b62e6ada26919563125e5b45",
     "source_doc_hashes": {
-      "spec.md": "d2d32ff72d98ec8fa02625447434dd5d809659d28e705372256c4a19ac7325e9",
-      "plan.md": "6b2ee6fbd39ec1c8d315b2f74c4203e60712d16f841b5664665fb3ce1d986f53",
-      "tasks.md": "4b1951efef9636725d64301b22facd1384c97d1ba273f4a9f44f7f163bc69bd0",
+      "spec.md": "6d612ba9e21649ad31f75287800579c7ce35b16ea3b1ee97c9e9f1fbb921a203",
+      "plan.md": "79f2fc20208c697d640f27d9bc9e800b977ddd2e8e9183ddaece9034eaa8140a",
+      "tasks.md": "d9d6237f988c54c5d51a11315d49dfa5b771a75ae3c10443cb4d18b96566c321",
       "checklist.md": "24daf95a7f17385f358bcd51caa7afadd7f812a197d83dc5ff0218998e1e5374",
-      "implementation-summary.md": "12b74ad4a50b30c896a55f13f8e107b5e788ecdd5926e8d6570827d2e96a9837"
+      "implementation-summary.md": "60a3ac897d3dfea5f7e871dbda218261498b6482f6d04f26bab5e2642eb4c4b7"
     },
     "last_active_child_id": null,
     "last_active_at": null

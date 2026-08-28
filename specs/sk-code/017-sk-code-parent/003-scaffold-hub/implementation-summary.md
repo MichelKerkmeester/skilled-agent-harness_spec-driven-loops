@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-07-03T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Completed and documented the sk-code parent-hub scaffold"
-    next_safe_action: "Proceed to 004-onboard-implement to relocate implement, quality, debug, and verify contracts into packets and shared/"
+    next_safe_action: "Continue in 004-onboard-implement; move implement/quality/debug/verify into packets + shared/"
     blockers: []
     key_files:
       - ".opencode/skills/sk-code/SKILL.md"

@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Close the three rename-fallout follow-ups the LUNA review surfaced: a stale pre-rename test import, sk-doc compiled-routing drift, and the blocked strict-validation dist.",
     "created_at": "2026-07-29T16:39:37.878Z",
-    "last_save_at": "2026-08-28T15:53:22.073Z",
+    "last_save_at": "2026-08-28T16:28:20.257Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:b14831fe1b455ecca7414a1b18fbf8ec23c02ed2f595c729c34f9f2804128a03",
+    "source_fingerprint": "sha256:ba39b1814e3157955c70c1dd91e764c207c73cc790bd035f6d26e9f5f1cad260",
     "source_doc_hashes": {
       "spec.md": "e06b284bbd6f2dafacf419bcd3c4e9ef984d3bd8afaa87af26505adc1424a7e2",
       "plan.md": "c0bc00f1f8bca61f806e639f672c59996689e5fcb7cb47e454e1f6f99d88e812",
       "tasks.md": "a05fea2d9f1edf08767272b0dc1b4ffbdc0707a0d3c42098c89c8fcce88260fa",
       "checklist.md": "fb93bc617c860b16975525e81029de4fec2826488c59618d989c11aacbde8e15",
-      "implementation-summary.md": "6826ae62ba10cb75cca084dde47052754d5fb5952010180e32ae5f8c0c93a20f",
+      "implementation-summary.md": "bbe833ea30a78eede0ee094fbc3d5599d2e8b14b91d1a915bc3720632b9d55fb",
       "handover.md": "2746db7c74ab31ca78ea654529cf6fe71433f1a0c2760c0dd303b78262a2a0a5"
     },
     "last_active_child_id": null,

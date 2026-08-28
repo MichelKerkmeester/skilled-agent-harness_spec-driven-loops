@@ -13,7 +13,7 @@ _memory:
   continuity:
     packet_pointer: "system-speckit/028-memory-search-intelligence/002-speckit-memory/028-query-time-filter-benchmark"
     last_updated_at: "2026-07-10T04:43:21Z"
-    last_updated_by: "openai/gpt-5.6-terra"
+    last_updated_by: "openai-gpt-5.6-terra"
     recent_action: "Implemented and verified the benchmark, soak test, e2e flow, and aggregate telemetry"
     next_safe_action: "No implementation work remains; use the recorded benchmark evidence for a future flag-graduation decision"
     blockers: []

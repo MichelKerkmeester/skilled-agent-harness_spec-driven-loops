@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/011-rename-fallout-remediation"
     last_updated_at: "2026-07-29T18:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Fixed 6 stale rename refs in sk-code-router-sync.vitest.ts (10/10 pass); documented REQ-2 operator-gated and REQ-3 externally blocked"
-    next_safe_action: "Operator: recompile sk-doc compiled routing to re-activate the compiled path (REQ-2); rebuild mcp-server dist once the pi-hooks land (REQ-3)"
+    recent_action: "Fixed 6 stale rename refs, 10/10 pass; REQ-2 operator-gated, REQ-3 externally blocked"
+    next_safe_action: "Build sk-doc compiled routing (REQ-2); rebuild mcp-server dist when pi-hooks land (REQ-3)"
     blockers: []
     completion_pct: 100
 ---

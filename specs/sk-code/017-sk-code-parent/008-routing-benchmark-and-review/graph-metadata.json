@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The restructured hub had never been benchmarked or reviewed as a family",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-08-28T15:52:57.176Z",
+    "last_save_at": "2026-08-28T16:28:17.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e184ae8b186e068e657532f1d76e215d91d73c8438ea2bec74502f5ffe0c7590",
+    "source_fingerprint": "sha256:d696b39f10c43a20bfc94f91d53d78460709fa2d088c1d9099ca61ac1974b3a3",
     "source_doc_hashes": {
-      "spec.md": "52fc0891aa7e45df8e83d6862ca492e270d0dc682db2e3f5028f07c2d947df8f",
+      "spec.md": "2a8692dabf553b63d0a4244d4bf9ce5507638841317453dfab887e0027d56f17",
       "plan.md": "e74462ed6d9e4c2773ab5777c6f81f3d8fc32c679cc79e3a093d7b53a4520530",
       "tasks.md": "967b962a49d6a10eeca1ffcb2de936d090457f4544e233f77cb5e6356016eaea",
       "checklist.md": "21162aa3eb6d429d99131febbda9b3d7494b32f35748959330467f4c8d050b1f",
-      "implementation-summary.md": "f3c8f6dca9806b3da045c75cdefcca3fdb6dacb801d9f09a300022727e080517"
+      "implementation-summary.md": "ac73e8af8d437739faa28ffebf55bd8ae13748151985953e91abeed234262799"
     },
     "last_active_child_id": null,
     "last_active_at": null

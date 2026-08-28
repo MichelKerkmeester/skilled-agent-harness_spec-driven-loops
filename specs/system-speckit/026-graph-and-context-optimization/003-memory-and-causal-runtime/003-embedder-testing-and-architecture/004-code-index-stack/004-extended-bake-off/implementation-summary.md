@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-05-18T17:10:00Z"
     last_updated_by: "main_agent"
     recent_action: "Wrote benchmark-results.md (11 sections, full per-probe + per-embedder analysis)"
-    next_safe_action: "Tier-1 actions: fix stella mps_compatible metadata + tighten harness pre-pull check. Tier-2: 3-run confirmation of bge-code-v1 lead before promoting as default."
+    next_safe_action: "Fix stella mps_compatible metadata + harness pre-pull check; 3-run bge-code-v1 before default"
     blockers: []
     key_files:
       - "benchmark-results.md"

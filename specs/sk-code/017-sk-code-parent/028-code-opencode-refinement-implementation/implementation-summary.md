@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-code/017-sk-code-parent/028-code-opencode-refinement-implementation"
     last_updated_at: "2026-07-08T20:00:00.000Z"
     last_updated_by: "claude-opus"
-    recent_action: "Shipped all 7 phases as individually Sonnet-verified scratch-index commits (66fdb0bd, 7fdd7a07, c3a8ef45, 71dcf9af, 752d018e, d73db9a2, 38785a1f); parent-skill-check STRICT 0"
-    next_safe_action: "Register 028 under the 017 parent (children_ids + description.json/graph-metadata.json) once the memory daemon is healthy; file owner hand-offs C2/C4-C8 + Codex"
+    recent_action: "Shipped all 7 phases as Sonnet-verified scratch-index commits; parent-skill-check STRICT 0"
+    next_safe_action: "Add 028 to 017 parent children_ids + metadata when daemon healthy; file C2/C4-C8 hand-offs"
     blockers:
       - "028 registration under 017 needs generate-context.js (memory daemon), currently operator-gated"
     key_files:

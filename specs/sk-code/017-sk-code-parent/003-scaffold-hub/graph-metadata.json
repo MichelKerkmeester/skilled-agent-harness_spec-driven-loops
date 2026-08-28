@@ -41,57 +41,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/SKILL.md",
-      ".opencode/skills/sk-code/mode-registry.json",
-      ".opencode/skills/sk-code/hub-router.json",
-      ".opencode/skills/sk-code/graph-metadata.json",
-      ".opencode/skills/sk-code/README.md",
-      ".opencode/skills/sk-code/changelog/v4.0.0.0.md",
-      ".opencode/skills/sk-code/shared/README.md",
       "fixtures/routing-parity-fixtures.md",
-      "shared/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v4.0.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/changelog/v4.0.0.0.md",
-        "source": "derived"
-      },
       {
         "name": "routing-parity-fixtures.md",
         "kind": "doc",
@@ -199,11 +155,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "five",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "existing",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The accepted architecture needed a safe intermediate state before content relocation",
     "created_at": "2026-07-03T00:00:00Z",
-    "last_save_at": "2026-07-07T17:16:28.137Z",
+    "last_save_at": "2026-08-28T16:28:17.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8770db3b50cc0af91b54dd1fa91bcfce190b2f9f76db4f1a688cfd99f1df791f",
+    "source_fingerprint": "sha256:9ceb5e0bc83e822c4c39cf7da13177235ebe1d2f819862ebcdf057053f6ea4d9",
     "source_doc_hashes": {
-      "spec.md": "2453dcbf0422561a355a342863aaa205294c159c3781211d362d5a9f0562757b",
-      "plan.md": "69bee2d521b16618e2c4be1728ae2d285d758562053e39107b31abbd6fb057c8",
-      "tasks.md": "ee3ae915defdcc356bb74a74fa8959417571358d273aaacd397c4b14371cb5c4",
-      "implementation-summary.md": "6609d97f1b09e8bfd0f2bb4b6d66a623645cea1835b88215579788038003b017"
+      "spec.md": "57da8d51970df4430f9265167f0a3e111d9107707544410303b005f0d0881641",
+      "plan.md": "1650ab1af84ab2ef051380caf78d56a6f2d0d7e4f8d3c2ecce96f0a25114041b",
+      "tasks.md": "06e0ce4db3a9bbdf073274f26ced066d5b866bcd2cdf929e15a72aa15391155f",
+      "implementation-summary.md": "25c88eadb0713e4b839c2761d3db062b3af723cf457903db4c1fdaa99a5ef792"
     },
     "last_active_child_id": null,
     "last_active_at": null

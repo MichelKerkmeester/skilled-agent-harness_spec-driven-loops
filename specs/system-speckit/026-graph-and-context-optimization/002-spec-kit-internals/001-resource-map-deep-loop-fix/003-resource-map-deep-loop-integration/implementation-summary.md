@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration"
     last_updated_at: "2026-04-24T17:00:00+02:00"
     last_updated_by: "codex"
-    recent_action: "Closed F001/F002/F003/F004 from 7-iter deep-review; F001 file:line normalization in extract-from-evidence.cjs + F003 regression vitest + F004 {artifact_dir} doc alignment in deep-review.md/deep-research.md + F002 T035 deferred with reconciled status across tasks.md/checklist.md/implementation-summary.md"
-    next_safe_action: "T035 validator still deferred on pre-existing out-of-scope packet-doc drift; optional follow-up: packet-doc integrity cleanup pass"
+    recent_action: "Closed F001/F003/F004 from the 7-iter deep-review; F002 T035 deferred with status reconciled"
+    next_safe_action: "Run the optional packet-doc integrity cleanup; T035 deferred on out-of-scope drift"
     blockers: []
     completion_pct: 100
     status: "conditional"

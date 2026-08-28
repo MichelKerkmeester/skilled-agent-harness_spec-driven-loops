@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "hooks/008-pi-caching-like-reasonix/014-fix-deepseek-compat-snippet-consistency"
     last_updated_at: "2026-08-13T00:00:00Z"
     last_updated_by: "spec-author"
-    recent_action: "Aligned DeepSeek long-retention advice with the verify-first OpenAI-proxy pattern; 53/53 tests green"
+    recent_action: "Aligned DeepSeek long-retention advice to the verify-first OpenAI-proxy pattern; 53/53 green"
     next_safe_action: "Optionally upstream the fix to jiangge/pi-cache-optimizer"
     blockers: []
     key_files:

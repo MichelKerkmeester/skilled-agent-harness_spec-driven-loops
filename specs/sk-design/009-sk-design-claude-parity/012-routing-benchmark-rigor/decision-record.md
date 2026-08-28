@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor"
     last_updated_at: "2026-07-06T00:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Reconciled ADR-001/ADR-002 to real evidence; added ADR-003 for accepted descope; added ADR-004 resolving the P2-002 duplicate-benchmark-naming finding from the 009 packet's review"
-    next_safe_action: "No further action required; future phase may pick up ADR-003 descoped items or ADR-004's optional cleanup"
+    recent_action: "Reconciled ADR-001/002 to evidence; added ADR-003 descope and ADR-004 duplicate-naming fix"
+    next_safe_action: "Complete; a future phase may pick up ADR-003 descoped items or ADR-004 cleanup"
 ---
 # Decision Record: Phase 012 - Rigorous Routing Benchmark and Skill-Advisor Verification
 

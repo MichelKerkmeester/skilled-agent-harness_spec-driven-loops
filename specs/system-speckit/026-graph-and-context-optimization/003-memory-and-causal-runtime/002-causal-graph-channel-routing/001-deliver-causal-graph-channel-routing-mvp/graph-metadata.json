@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The query complexity router (`query-router.ts:75-79`) only includes the `graph` channel for queries classified as `complex` (`>8 terms` per `query-classifier.ts:29`)",
     "created_at": "2026-05-19T15:28:02.708Z",
-    "last_save_at": "2026-08-28T15:59:32.761Z",
+    "last_save_at": "2026-08-28T16:28:22.490Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "handover.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:54c21f2f88d81c648cc5c0ff561a36b439a8ce02dabcffe43de3185b283daf94",
+    "source_fingerprint": "sha256:d17efdcf3ab299080c74aa6faa808ccd82c4bd65db65a9f6d171832a6f44b572",
     "source_doc_hashes": {
       "spec.md": "d9800365a44923551c90e5963cd7ae7511518987153d40740748dc5fc63ea361",
       "plan.md": "ea88ea1cb919c769af393228596703721695b62634001df57fac10bb4d590974",
       "tasks.md": "a297855bee89497dec7f298af16e2ede620779937dbb6db14edf215faebcc2e7",
       "checklist.md": "3452d7d746a9b60eb1ea054436db77a1b4d64b11eb7270965d4967e88fbf6897",
       "implementation-summary.md": "7a9e7b8d31f11da237fe6e2f15fdaff76f2eb59012dc39f149a331b56865086a",
-      "handover.md": "7e3f00c1cb1921d988e05f5be00fd0fa06bd18ee9a033e70159cb353012ecbba",
+      "handover.md": "d9342d76549a1e80c24548b78ecca64fb2ee7186043a7d9645e9d464e6d95642",
       "resource-map.md": "438d3da398bf3e052ae7e935ef5eb0b0cb261954f6f67ea137dd87eca9d28390"
     },
     "last_active_child_id": null,

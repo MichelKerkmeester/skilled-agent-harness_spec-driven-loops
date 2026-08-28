@@ -41,21 +41,13 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
       "plan.md",
       "spec.md",
-      ".github/workflows/routing-registry-drift.yml",
       "implementation-summary.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -66,12 +58,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "routing-registry-drift.yml",
-        "kind": "config",
-        "path": ".github/workflows/routing-registry-drift.yml",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Bearing Verification",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cutover removes `sk-code-review` as a routing identity and cuts the release",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-07-07T17:16:28.920Z",
+    "last_save_at": "2026-08-28T16:28:18.023Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4c34ba56c56676077a4cd137041928a55e250507c2c483f5ca0ca35e0d42dc9f",
+    "source_fingerprint": "sha256:49a389fa25853b3247f867397176deda855f0cdfc344ecb4e7c849b118d1243a",
     "source_doc_hashes": {
       "spec.md": "97dacc2342b3cfc0833aa86acee517d6d825c527627be13433f7c1bda795d29d",
       "plan.md": "aabaa08d0b974178cdd7d474cb4fd113059f46f79c2bedcb1b545493d869f43f",
       "tasks.md": "555a4a498697de2835bbea56f3aa9903b2ed79b8c292cdd1abf58d2e7c1b94e7",
       "checklist.md": "e6644b1e9c7fb0e074e32cc3462b863db28d3d70eb945df1ab0cbf7e1d960b2d",
-      "implementation-summary.md": "8b854e5497b7b74f9bc6c624e94db27b4f5b93445e5e08a1a958025a8ae0895f"
+      "implementation-summary.md": "ed00b570472476b2c4c569fb762ebef096b918914ef81b489a87a8891963afb2"
     },
     "last_active_child_id": null,
     "last_active_at": null

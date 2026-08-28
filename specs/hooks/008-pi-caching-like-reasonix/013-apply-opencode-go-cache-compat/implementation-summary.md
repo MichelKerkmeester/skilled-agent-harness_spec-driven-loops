@@ -12,7 +12,7 @@ _memory:
     last_updated_at: "2026-08-13T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Overlay applied, symlinked, documented, and validated"
-    next_safe_action: "Optionally verify Zen gateway long-retention support before enabling supportsLongCacheRetention per-model"
+    next_safe_action: "Verify Zen gateway long-retention support before enabling supportsLongCacheRetention per-model"
     blockers: []
     key_files:
       - ".pi/models.json"

@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-code/017-sk-code-parent/007-advisor-and-integration"
     last_updated_at: "2026-07-04T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Repointed all references broken by the relocation/fold and integrated review keywords into the hub advisor node"
+    recent_action: "Repointed references broken by the relocation/fold; added review keywords to hub advisor"
     next_safe_action: "phase 008 routing-benchmark-and-review"
     blockers: []
     key_files: []

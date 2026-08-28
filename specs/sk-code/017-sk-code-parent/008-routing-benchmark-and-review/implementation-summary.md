@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-code/017-sk-code-parent/008-routing-benchmark-and-review"
     last_updated_at: "2026-07-04T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Ran the deterministic routing benchmark, a three-lens family deep-review, re-layered the skill-benchmark harness for hubs + fixed its negative-scoring, and repaired a merge-blocking canary gate"
+    recent_action: "Ran deterministic routing benchmark + three-lens deep-review; re-layered harness; fixed canary"
     next_safe_action: "phase 009 cutover-and-rollout"
     blockers: []
     key_files:

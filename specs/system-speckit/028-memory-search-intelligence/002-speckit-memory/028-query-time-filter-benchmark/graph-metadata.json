@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Four narrow, evidence-backed gaps remain open around an otherwise-complete, already-tested feature:",
     "created_at": "2026-07-09T20:30:03.148Z",
-    "last_save_at": "2026-08-28T16:00:14.457Z",
+    "last_save_at": "2026-08-28T16:30:17.373Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83517978aac4010bf3ff2d6aa345d28fae59723bc5faa037868277fb0c1d1400",
+    "source_fingerprint": "sha256:b8311fabf8ac5bf39bc3d87bad5064de620f99cd181846c8130092d110a27f68",
     "source_doc_hashes": {
-      "spec.md": "c0eccb14cfdb06c8edc5d5b4cdc2846627d471254646fa8322944728c91904f7",
+      "spec.md": "b7f2ca8161dadc709c996411f9d035474cea7bb8185bf9190206fcbb44348020",
       "plan.md": "0e31dfa08c2fee06af8b08a23c0928f46dfc3a04bf6ee9d4c9dedcdd5f59c63a",
-      "tasks.md": "5164a5b22910e878ffff659667eec65d37dddff795b0c9ffc790818f3b52084f",
-      "checklist.md": "c1466bed7a7292a04723a0c354c5370855d9ea061933ca1847019b30051c3834",
-      "implementation-summary.md": "eb5b96001963e27c849f8d75d1ad0e0f0f02d6b270c44da39a4deed7f75d97ba"
+      "tasks.md": "624b286d37f96279450bc0f2d55f397306df04505ea0f7e54b90938ab09cd4e7",
+      "checklist.md": "5c70590ba4f8534ac34d50fb5da1df4d15d341fc927f5c98fa13ea849e6f2e56",
+      "implementation-summary.md": "4a384a8c46a8b18778ac7d4437bf5bca4dfe76383469f7f3474a86bffce09c74"
     },
     "last_active_child_id": null,
     "last_active_at": null
