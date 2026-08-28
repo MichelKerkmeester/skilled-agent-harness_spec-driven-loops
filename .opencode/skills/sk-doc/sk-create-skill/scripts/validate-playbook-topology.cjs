@@ -209,6 +209,17 @@ function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }
 
+// The typed-gold contract this gate enforces exists only for a hub: a scenario
+// declares which workflowMode it should resolve to, and that only means something
+// where several modes compete. A standalone root has exactly one mode, so its
+// scenarios legitimately carry no mode declaration and would every one report as a
+// schema failure. Class is read the same way the metadata contract reads it - the
+// registry and router pair is the authored discriminator.
+function isHubRoot(skillDir) {
+  return fs.existsSync(path.join(skillDir, 'mode-registry.json'))
+    && fs.existsSync(path.join(skillDir, 'hub-router.json'));
+}
+
 function loadManifestLeaves(skillDir) {
   const manifestPath = path.join(skillDir, 'leaf-manifest.json');
   if (!fs.existsSync(manifestPath)) {
@@ -403,6 +414,7 @@ module.exports = {
   statusToVerdict,
   parseFixture,
   walkFixtureFiles,
+  isHubRoot,
   loadManifestLeaves,
   assertPlaybookBoundary,
   resolvePlaybookBoundary,
@@ -416,6 +428,15 @@ if (require.main === module) {
   const skillDir = path.resolve(args.skillDir || path.resolve(__dirname, '..', '..'));
 
   try {
+    if (!isHubRoot(skillDir)) {
+      const name = path.basename(skillDir);
+      if (args.format === 'json') {
+        process.stdout.write(`${JSON.stringify({ skill: name, applicable: false, reason: 'standalone root: no workflowMode axis to validate gold against' }, null, 2)}\n`);
+      } else {
+        process.stdout.write(`SKIP  ${name}: standalone root — the typed-gold gate applies to hubs only\n`);
+      }
+      process.exit(0);
+    }
     const playbookDir = resolvePlaybookBoundary(skillDir, args.dir);
     const report = runValidation({ playbookDir, skillDir });
     if (args.format === 'json') {
