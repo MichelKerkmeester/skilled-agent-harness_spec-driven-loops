@@ -233,7 +233,7 @@ The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [c
 3. Delegate execution to the shared deep-loop runtime.
 4. Choose print, JSON, or RPC deliberately. RPC is persistent and is not a print-mode alias.
 5. Capture and inspect output text for provider and extension failures.
-6. Use the prompt-quality card's three-tier precedence rule.
+6. Use the prompt-quality card's two-tier precedence rule.
 7. Apply the least-permissive tool set that satisfies the task.
 8. Validate Pi-generated changes with the repository's code and test gates.
 9. Keep the current runtime as conductor and Pi as delegated executor.

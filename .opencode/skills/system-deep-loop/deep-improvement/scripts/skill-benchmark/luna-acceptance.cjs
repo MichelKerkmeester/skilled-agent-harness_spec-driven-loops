@@ -82,8 +82,8 @@ const SCENARIO_MAP = Object.freeze({
     holdout: { id: 'LUNA-CE-H', prompt: 'Hand this whole task off to the external agent runtime with its full plugin and memory stack, and run the ablation batch there.', goldMode: 'cli-opencode', matchTokens: ['cli-opencode', 'opencode'] },
   },
   'sk-prompt': {
-    routing: { id: 'LUNA-SP-R', prompt: 'Help me write a better prompt for a customer support chatbot.', goldMode: 'prompt-improve', matchTokens: ['prompt-improve'] },
-    holdout: { id: 'LUNA-SP-H', prompt: 'This instruction I wrote for a support assistant keeps producing weak replies — rewrite it to be much stronger.', goldMode: 'prompt-improve', matchTokens: ['prompt-improve'] },
+    routing: { id: 'LUNA-SP-R', prompt: 'Help me write a better prompt for a customer support chatbot.', goldMode: 'sk-prompt', matchTokens: ['sk-prompt'] },
+    holdout: { id: 'LUNA-SP-H', prompt: 'This instruction I wrote for a support assistant keeps producing weak replies — rewrite it to be much stronger.', goldMode: 'sk-prompt', matchTokens: ['sk-prompt'] },
   },
   'sk-design': {
     routing: { id: 'LUNA-SDG-R', prompt: 'Extract the design system from https://example.com into a DESIGN.md with tokens.json evidence.', goldMode: 'md-generator', matchTokens: ['md-generator', 'design-md', 'DESIGN.md'] },

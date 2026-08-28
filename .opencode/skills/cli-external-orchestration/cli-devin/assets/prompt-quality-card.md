@@ -23,11 +23,11 @@ This card is the Devin CLI fast-path prompt-quality reference; it delegates the 
 
 ### Usage
 
-Compose a dispatch prompt by starting from the shared layer (canonical card), applying the Devin model overrides, and following the precedence rule.
+Compose a dispatch prompt by starting from the shared layer (canonical card) and following the precedence rule.
 
 ---
 
-## 2. 3-TIER PRECEDENCE RULE
+## 2. 2-TIER PRECEDENCE RULE
 
 Two tiers govern how a Devin CLI dispatch prompt is built, from fastest to most thorough. Evaluate in order — stop at the first tier that fully covers the task.
 
@@ -35,7 +35,7 @@ Two tiers govern how a Devin CLI dispatch prompt is built, from fastest to most 
 Build the prompt directly from the canonical card (`../../../sk-prompt/assets/cli-prompt-quality-card.md`). Select a framework from the table in §2, apply the task-to-framework map in §3, run the CLEAR pre-dispatch check in §4, and dispatch. No additional skill loading required for routine work.
 
 **Tier 2 — Deep path (escalation)**
-Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when any canonical **Tier 3** trigger applies — the trigger list lives in `../../../sk-prompt/assets/cli-prompt-quality-card.md` under "Tier 2 — Deep path"; do not re-enumerate it here.
+Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when any canonical **Tier 2** trigger applies — the trigger list lives in `../../../sk-prompt/assets/cli-prompt-quality-card.md` under "Tier 2 — Deep path"; do not re-enumerate it here.
 
 ---
 

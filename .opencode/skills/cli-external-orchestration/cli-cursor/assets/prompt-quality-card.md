@@ -51,7 +51,7 @@ These are mechanical facts about how Cursor CLI receives and processes a prompt 
 
 ## 4. DELEGATION / PRECEDENCE
 
-The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../../sk-prompt/assets/cli-prompt-quality-card.md` and restated in `../SKILL.md`.
+The 2-tier precedence rule (fast path -> deep path) is canonical in `../../../sk-prompt/assets/cli-prompt-quality-card.md` and restated in `../SKILL.md`.
 
 Cursor-specific escalation example: if the task needs a prompt disambiguating execution mode (default vs. `--mode plan`/`--mode ask`) plus explicit model-id selection across Cursor's wide roster, dispatch `@prompt-improver` via the Task tool first and hand the returned `ENHANCED_PROMPT` to Cursor CLI. Escalate on any canonical Tier 3 trigger.
 

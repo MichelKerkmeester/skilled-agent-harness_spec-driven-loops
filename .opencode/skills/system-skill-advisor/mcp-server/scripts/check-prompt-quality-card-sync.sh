@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ====================================================================
-# check-prompt-quality-card-sync.sh — Drift guard for the 3-layer
-#                                      prompt-knowledge architecture
+# check-prompt-quality-card-sync.sh — Drift guard for the shared
+#                                      prompt-knowledge layers
 # ====================================================================
 # Enforces "one home per fact" across sk-prompt (framework engine) and
 # the 4 cli-* executors.
@@ -11,7 +11,7 @@
 #   CHECK 1 — Table inlining: the 7-framework selection table and the
 #             CLEAR table live ONLY in their canonical sk-prompt home,
 #             never inlined in a cli-* executor card.
-#   CHECK 2 — Tier-3 pointer-only: no cli-*/SKILL.md re-enumerates the
+#   CHECK 2 — Deep-path pointer-only: no cli-*/SKILL.md re-enumerates the
 #             canonical Tier-3 escalation triggers; it must point to the
 #             canonical card instead (prevents the precedence drift class).
 #
@@ -55,6 +55,8 @@ cli_cards=(
   "$ROOT/.opencode/skills/cli-external-orchestration/cli-claude-code/assets/prompt-quality-card.md"
   "$ROOT/.opencode/skills/cli-external-orchestration/cli-cursor/assets/prompt-quality-card.md"
   "$ROOT/.opencode/skills/cli-external-orchestration/cli-pi/assets/prompt-quality-card.md"
+  "$ROOT/.opencode/skills/cli-external-orchestration/cli-codex/assets/prompt-quality-card.md"
+  "$ROOT/.opencode/skills/cli-external-orchestration/cli-devin/assets/prompt-quality-card.md"
 )
 
 echo "CHECK 1 — framework / CLEAR table inlining"
@@ -81,13 +83,13 @@ done
 # The enumerated trigger list is canonical ONLY in the sk-prompt card.
 # A cli-*/SKILL.md that re-enumerates it (signature: a line naming both
 # "stakeholder" and "ambiguous requirement") has drifted — must point.
-echo "CHECK 2 — Tier-3 pointer-only (no inlined escalation triggers)"
-cli_skills=(cli-external-orchestration/cli-opencode cli-external-orchestration/cli-claude-code cli-external-orchestration/cli-cursor cli-external-orchestration/cli-pi)
+echo "CHECK 2 — Deep-path pointer-only (no inlined escalation triggers)"
+cli_skills=(cli-external-orchestration/cli-opencode cli-external-orchestration/cli-claude-code cli-external-orchestration/cli-cursor cli-external-orchestration/cli-pi cli-external-orchestration/cli-codex cli-external-orchestration/cli-devin)
 for skill in "${cli_skills[@]}"; do
   f="$ROOT/.opencode/skills/$skill/SKILL.md"
   if [[ ! -f "$f" ]]; then echo "  MISSING: $skill/SKILL.md"; overall_exit=1; continue; fi
   if grep -Eiq -- 'stakeholder' "$f" && grep -Eiq -- 'ambiguous requirement' "$f"; then
-    printf '  FAIL  %s/SKILL.md  [re-enumerates Tier-3 triggers — point to the canonical card instead]\n' "$skill"
+    printf '  FAIL  %s/SKILL.md  [re-enumerates deep-path triggers — point to the canonical card instead]\n' "$skill"
     overall_exit=1
   elif ! grep -q 'cli-prompt-quality-card.md' "$f"; then
     local_card="$ROOT/.opencode/skills/$skill/assets/prompt-quality-card.md"
@@ -104,7 +106,7 @@ done
 
 # ── Summary ─────────────────────────────────────────────────────────
 if [[ $overall_exit -eq 0 ]]; then
-  echo "GUARD PASS — tables not inlined, Tier-3 pointer-only"
+  echo "GUARD PASS — tables not inlined, deep-path pointer-only"
 else
   echo "GUARD FAIL — see FAIL lines above" >&2
 fi
