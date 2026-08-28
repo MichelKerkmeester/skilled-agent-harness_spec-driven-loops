@@ -49,6 +49,34 @@ function resolveSpecFolderForDescription(folderPath: string, legacyValue: string
   return legacyValue;
 }
 
+const LEVEL_MARKER_RE = /<!--\s*SPECKIT_LEVEL:\s*(\d\+?)\s*-->/;
+const LEVEL_MARKER_DOCS = ['spec.md', 'tasks.md', 'plan.md', 'checklist.md'];
+
+// The level is required of every description record, but it used to be written
+// only when the caller passed it explicitly. A folder generated without it was
+// born invalid, and regenerating a valid folder silently dropped the field and
+// broke it. So fall back to what the record already carries, then to the level
+// the packet's own documents declare, and only give up when neither exists.
+function resolveLevel(
+  folderPath: string,
+  explicitLevel: string | null,
+  existing: PerFolderDescription | null,
+): string | null {
+  if (explicitLevel) return explicitLevel;
+  const carried = (existing as (PerFolderDescription & { level?: unknown }) | null)?.level;
+  if (typeof carried === 'string' && carried) return carried;
+  if (typeof carried === 'number') return String(carried);
+  for (const doc of LEVEL_MARKER_DOCS) {
+    try {
+      const match = fs.readFileSync(path.join(folderPath, doc), 'utf8').match(LEVEL_MARKER_RE);
+      if (match) return match[1];
+    } catch {
+      // Document absent or unreadable; try the next one.
+    }
+  }
+  return null;
+}
+
 function main(): void {
   const args = process.argv.slice(2);
   if (args.length < 2) {
@@ -112,13 +140,18 @@ function main(): void {
       parentChain,
       memorySequence: existingData?.memorySequence ?? 0,
       memoryNameHistory: existingData?.memoryNameHistory ?? [],
-      ...(explicitLevel ? { level: explicitLevel } : {}),
+      ...(() => {
+        const level = resolveLevel(folderPath, explicitLevel, existingData);
+        return level ? { level } : {};
+      })(),
     };
   } else {
     // Generate from spec.md
     desc = generatePerFolderDescription(folderPath, basePath);
-    if (desc && explicitLevel) {
-      (desc as PerFolderDescription & { level?: string }).level = explicitLevel;
+    if (desc) {
+      const prior = loadExistingDescription(folderPath);
+      const level = resolveLevel(folderPath, explicitLevel, prior.ok ? prior.data : null);
+      if (level) (desc as PerFolderDescription & { level?: string }).level = level;
     }
   }
 
