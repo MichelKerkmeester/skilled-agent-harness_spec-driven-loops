@@ -1,6 +1,6 @@
 ---
 name: sk-vision
-description: "Local vision for text-only models: OCR, inspect, detect and pixel analysis on screenshots and mockups via a private Moondream runtime in OpenCode, Pi, Cursor and Devin."
+description: "Local vision for text-only models: OCR, inspect, detect and pixel analysis on screenshots via a private Moondream runtime."
 allowed-tools: [Read, Bash]
 version: 0.2.0.0
 ---
