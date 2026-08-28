@@ -1,17 +1,34 @@
 ---
 name: sk-communication
-description: Portable CLI projection layer that rewrites terse agent output to plain English while keeping canonical bytes unchanged.
-allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.0.0
+description: Projects terse CLI output to plain English byte-safely, and explains a topic or reply as the smallest visual at a chosen depth.
+allowed-tools: [Read, Write, Bash, Grep, Glob]
+version: 1.1.0.0
 ---
 
-<!-- Keywords: communication projection, claudish to english, rewrite CLI output, plain-english projection, presentation projection, privacy-first rewrite, full-projection, safe-native, provider adapters, exact-original fallback, deepseek ollama llama.cpp, blind non-inferiority evaluation, compatibility doctor, release gate -->
+<!-- Keywords: communication projection, claudish to english, rewrite CLI output, plain-english projection, presentation projection, privacy-first rewrite, full-projection, safe-native, provider adapters, exact-original fallback, deepseek ollama llama.cpp, blind non-inferiority evaluation, compatibility doctor, release gate, visual explanation, explain visually, diagram this, draw the flow, visualize, explain simply, explain from zero, modality selection, depth rubric -->
 
 # Communication Projection
 
 Make supported CLI and agent output read like careful plain English, across Claude, Codex, Pi, OpenCode, Devin, and Cursor, while leaving the canonical event stream, transcript, tool data, and model context byte-for-byte unchanged. Every unsafe or failed path returns the exact original. The implementation is the `@portable-cli/communication-projection` package under `.opencode/skills/sk-communication/cli-communication-projection/`; this skill routes you to the right part of it and enforces its invariants.
 
 Projection is off by default for everyone. Nothing rewrites CLI output until an operator opts in on their own machine, by setting `COMMUNICATION_PROJECTION_ENABLED` or by adding a git-ignored `enablement.local.json` at the package root. Every activation path checks `isProjectionEnabled()` first. This skill is also held out of advisor routing on purpose. `sk-communication` is on the advisor route-exclusions denylist (`.opencode/skills/system-skill-advisor/mcp-server/config/route-exclusions.json`), so the recommender never surfaces it and you invoke it by hand.
+
+### Two lanes
+
+The skill adapts an explanation on three axes. Lane A moves one of them; Lane B moves the other two.
+
+| | **Lane A — Projection** | **Lane B — Explanation** |
+|---|---|---|
+| **Axis** | Register: the same content in plainer words | Modality (prose → visual) and depth (assumed knowledge) |
+| **Acts on** | An existing byte stream of agent output | A topic, or the prior reply, explained anew |
+| **Produces** | A display-only re-render of that stream | A new diagram, tree, or artifact |
+| **Reaches a model?** | May call a local or hosted model | In-context only |
+| **Gating** | Off by default; egress rules apply | Always available by command; no enablement flag |
+| **Entry point** | `/rewrite:response`, `/rewrite:response-by-external-agent` | `/rewrite:explain-visually` |
+
+The gating asymmetry is deliberate and load-bearing. Lane A is flagged because it rewrites canonical output and may ship that content to a model. Lane B synthesizes new material in-context and touches nothing canonical, so **the enablement flag and egress rules do not apply to it**. Do not extend Lane A's default-off posture to Lane B; that would disable a lane that carries none of the risk the flag exists to contain.
+
+Both lanes stay off advisor routing. Neither is discoverable by recommendation; both are invoked by hand.
 
 ---
 
@@ -28,9 +45,18 @@ Use this skill when the request involves:
 - Deciding a presentation tier: full 1:1 projection versus a safe-native fallback.
 - Measuring whether rewritten output reads as well as a human reference (blind non-inferiority evaluation), or gating a release on that evidence.
 
+Lane B (explanation) additionally covers:
+
+- Turning an explanation into a picture — control flow, structure, sequence, or what changed — instead of more prose.
+- Re-rendering the previous reply as a diagram rather than as plainer wording.
+- Explaining a topic to a reader with little or no background, leading with imagery over text.
+- Choosing which visual form fits the content, and how much prior knowledge to assume.
+
 ### Keyword Triggers
 
 `communication projection`, `claudish to english`, `rewrite CLI output`, `plain-english projection`, `privacy-first rewrite`, `full-projection`, `safe-native`, `provider adapters`, `exact-original fallback`, `compatibility doctor`, `release gate`, `non-inferiority evaluation`.
+
+Lane B: `explain visually`, `diagram this`, `draw the flow`, `visualize this`, `sketch the structure`, `explain simply`, `explain from zero`, `explain like i know nothing`, `walk me through it visually`.
 
 ### When NOT to Use
 
@@ -38,14 +64,15 @@ Use this skill when the request involves:
 - Authoring documentation or markdown → `sk-doc`.
 - Live-website CSS to a measured Style Reference → `sk-design-md-generator`.
 - Git worktrees, commits, or PRs → `sk-git`.
-- Rewriting durable Markdown or any on-disk file. That changes canonical bytes and is explicitly out of scope; it needs a separate opt-in product contract, not this projection layer.
+- Rewriting durable Markdown or any on-disk file. That changes canonical bytes and is explicitly out of scope; it needs a separate opt-in product contract, not this projection layer. This bars *editing existing files*. It does not bar Lane B from **creating** a new, self-contained explanatory artifact when the operator passes `--artifact` — a new file is not a rewrite of canonical bytes.
 
 ### Operator Trigger Commands
 
-Two slash commands expose sk-communication as an on-demand trigger surface. Projection stays off by default; neither command changes that global state persistently.
+Three slash commands expose sk-communication as an on-demand trigger surface. Projection stays off by default; no command changes that global state persistently.
 
 - `/rewrite:response` — the active AI re-renders its own most recent reply in plain English, entirely in-context. No local or external LLM. Display-only: canonical bytes stay unchanged.
 - `/rewrite:response-by-external-agent` — a one-shot projection of a target through a chosen engine (an external `cli-*` skill, native in-context, or a local LLM). It sets `COMMUNICATION_PROJECTION_ENABLED` inline for the single run so the flag falls away immediately afterward, keeping the default-off invariant even on error. It never writes `enablement.local.json`.
+- `/rewrite:explain-visually` — Lane B. Explains a named topic, or the prior reply when no topic is given, as the smallest visual that answers the question, at a chosen depth (`expert` | `plain` | `novice`). Entirely in-context: no local or external LLM, so no enablement flag applies. Display-only unless `--artifact` is passed, which creates one new self-contained HTML file. Modality table and depth rubric: `references/visual-explanation.md`.
 
 ---
 
@@ -55,25 +82,30 @@ Two slash commands expose sk-communication as an on-demand trigger surface. Proj
 
 The capability is one package split by responsibility. Route to the subsystem the request needs:
 
-| Request signal | Package surface |
-|---|---|
-| Assemble a whole message, bound context, versioned prompt profile | `src/core/`, `src/context/`, `src/contracts/` |
-| Preserve protected spans, validate meaning, decide how to display | `src/fidelity/`, `src/render/` |
-| Pick a local vs hosted model under privacy rules | `src/privacy/`, `src/providers/` |
-| Wire a specific CLI adapter or its display | `src/runtimes/`, `src/clients/` |
-| Score quality or aggregate private telemetry | `src/evaluation/`, `src/observability/` |
-| Check compatibility, gate a release, or roll back | `src/doctor/`, `src/release/` |
+| Request signal | Package surface | Public entry points |
+|---|---|---|
+| Assemble a whole message, bound context, versioned prompt profile | `src/core/`, `src/context/`, `src/contracts/` | `MessageAssembler`, `selectBoundedContext`, `validateContract` |
+| Preserve protected spans, validate meaning, decide how to display | `src/fidelity/`, `src/render/` | `protectMarkdown`, `restoreProtectedSpans`, `validateProjectionCandidate`, `decideRender` |
+| Pick a local vs hosted model under privacy rules | `src/privacy/`, `src/providers/` | `selectPrivacyRoute`, `executeProviderRoute` |
+| Wire a specific CLI adapter or its display | `src/runtimes/`, `src/clients/` | the runtime adapters' `adapt` / `present`; client display and sidecar |
+| Score quality or aggregate private telemetry | `src/evaluation/`, `src/observability/` | `evaluateReleaseGate`, `createReleaseReport`, content-free aggregation |
+| Check compatibility, gate a release, or roll back | `src/doctor/`, `src/release/` | `runCompatibilityDoctor`, `evaluateReleaseReadiness`, `planRollback` |
+| Explain a topic or the prior reply as a visual, or pick a depth | Lane B — no package surface | `references/visual-explanation.md` |
+
+Read `src/<subsystem>/index.ts` for the exact public surface before integrating against it.
 
 ### Resource Domains
 
-- The package itself under `.opencode/skills/sk-communication/cli-communication-projection/` is the primary resource; its `docs/` folder holds install, configuration, privacy, support-matrix, rollback, and runbook guidance.
+- The package itself under `.opencode/skills/sk-communication/cli-communication-projection/` is the primary resource; its `docs/` folder holds install, configuration, privacy, support-matrix, rollback, and runbook guidance. The subsystem map above is the routing layer and lives inline in this document.
 - The design and requirements history lives in the spec epic under `specs/cli-external-orchestration/035-improved-communication/`.
+- Lane B has no package surface. Its whole contract is `references/visual-explanation.md` plus the command file `.opencode/commands/rewrite/explain-visually.md`.
 
 ### Loading Levels
 
 - ALWAYS: read the relevant `src/<subsystem>/index.ts` exports before integrating against them.
 - CONDITIONAL: read the matching `docs/*.md` when the task is install, privacy, support, or rollback.
 - ON_DEMAND: read the spec epic only for the "why" behind a frozen invariant.
+- LANE B: read `references/visual-explanation.md` before choosing a visual form or a depth; nothing under the package applies.
 
 ### Smart Router Pseudocode
 
@@ -105,10 +137,31 @@ def _guard_in_skill(relative_path: str) -> str:
         raise ValueError("Only skill-local markdown resources are routable")
     return resolved.relative_to(SKILL_ROOT).as_posix()
 
+EXPLANATION_SIGNALS = (
+    "explain visually", "diagram", "draw the flow", "visualize", "sketch",
+    "explain simply", "explain from zero", "walk me through",
+    "modality", "depth", "explain-visually",
+)
+
+def select_lane(request) -> str:
+    """Lane B owns visual explanation; everything else is projection."""
+    text = str(getattr(request, "text", request)).lower()
+    return "explanation" if any(s in text for s in EXPLANATION_SIGNALS) else "projection"
+
+# Projection routing lives inline in this document's subsystem map, so that lane
+# loads no extra file. Only the explanation lane has a separate reference.
+LANE_RESOURCES = {
+    "projection": [],
+    "explanation": ["references/visual-explanation.md"],
+}
+
 def route_resources(request):
     inventory = discover_markdown_resources()
-    selected = ["references/package-map.md"] if inventory else []
-    if not selected:
+    lane = select_lane(request)
+    selected = LANE_RESOURCES[lane]
+    if lane == "projection":
+        return {"lane": lane, "resources": [], "note": "subsystem map is inline in SKILL.md"}
+    if not selected or not inventory:
         return {**UNKNOWN_FALLBACK, "resources": []}
     loaded = []
     for relative_path in selected:
@@ -116,7 +169,7 @@ def route_resources(request):
         if guarded in inventory and guarded not in loaded:
             load(guarded)
             loaded.append(guarded)
-    return {"resources": loaded}
+    return {"lane": select_lane(request), "resources": loaded}
 ```
 
 ---
@@ -137,6 +190,14 @@ canonical event/transcript ──> unchanged persistence + model context
 ```
 
 Consume it through the package's subpath exports (`@portable-cli/communication-projection`, plus `./contracts`, `./versioning`, `./providers`, `./privacy`, `./runtimes`, `./evaluation`, `./observability`, `./doctor`, `./release`). Key entry points: `selectPrivacyRoute` then `executeProviderRoute`; the runtime adapters' `adapt`/`present`; `runCompatibilityDoctor`; `evaluateReleaseReadiness`.
+
+### Invariants Each Subsystem Upholds
+
+- **core / fidelity / render** — the canonical original is never mutated; a rejected candidate returns exact-original bytes.
+- **privacy / providers** — classification and consent run before ranking; no silent local-to-hosted egress; credentials are references, never values.
+- **runtimes / clients** — every path declares full-projection or safe-native; safe-native never suppresses the original before a validated replacement exists.
+- **evaluation / observability** — telemetry is content-free with rotating keyed digests; a release needs a human-certified non-inferiority result, never a provisional one.
+- **doctor / release** — unknown or stale facts fail closed to original-only; the release gate blocks until every evidence lane passes.
 
 ### The Two Presentation Tiers
 
@@ -179,7 +240,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 
 ### Core
 
-- `references/package-map.md` — the subsystem-to-path map and the public entry points; the smart router loads it.
+- `references/visual-explanation.md` — Lane B: the content-to-modality table, the three-level depth rubric, protected spans, and the lane boundary.
 - `.opencode/skills/sk-communication/cli-communication-projection/` — the implementation; read `src/<subsystem>/index.ts` for the public surface.
 - `.opencode/skills/sk-communication/cli-communication-projection/docs/` — install, configuration, privacy, support-matrix, rollback, and runbook.
 

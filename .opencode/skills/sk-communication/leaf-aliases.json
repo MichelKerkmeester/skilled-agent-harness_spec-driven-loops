@@ -21,6 +21,16 @@
   },
   {
     "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/explanation/depth-calibrated-explanation.md",
+    "diskPath": "feature-catalog/explanation/depth-calibrated-explanation.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "feature-catalog/explanation/modality-selection.md",
+    "diskPath": "feature-catalog/explanation/modality-selection.md"
+  },
+  {
+    "workflowMode": "sk-communication",
     "leafResourceId": "feature-catalog/fidelity-and-render/capability-aware-presentation.md",
     "diskPath": "feature-catalog/fidelity-and-render/capability-aware-presentation.md"
   },
@@ -66,6 +76,16 @@
   },
   {
     "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/explanation/depth-flag-changes-words-not-facts.md",
+    "diskPath": "manual-testing-playbook/explanation/depth-flag-changes-words-not-facts.md"
+  },
+  {
+    "workflowMode": "sk-communication",
+    "leafResourceId": "manual-testing-playbook/explanation/explain-visually-selects-modality.md",
+    "diskPath": "manual-testing-playbook/explanation/explain-visually-selects-modality.md"
+  },
+  {
+    "workflowMode": "sk-communication",
     "leafResourceId": "manual-testing-playbook/fidelity-and-privacy/exact-original-fidelity-fallback.md",
     "diskPath": "manual-testing-playbook/fidelity-and-privacy/exact-original-fidelity-fallback.md"
   },
@@ -106,7 +126,7 @@
   },
   {
     "workflowMode": "sk-communication",
-    "leafResourceId": "references/package-map.md",
-    "diskPath": "references/package-map.md"
+    "leafResourceId": "references/visual-explanation.md",
+    "diskPath": "references/visual-explanation.md"
   }
 ]

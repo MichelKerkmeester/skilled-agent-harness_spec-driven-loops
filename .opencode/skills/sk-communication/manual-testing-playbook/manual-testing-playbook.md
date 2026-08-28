@@ -113,6 +113,7 @@ Run scenarios in dependency order so failures are localized:
 | 2 | Fidelity And Privacy | `COMM-002..COMM-003`, `COMM-009` | Confirm immutable fallback, privacy-before-ranking, and external-cli fail-closed dispatch. |
 | 3 | Presentation Tiers | `COMM-004..COMM-005` | Confirm atomic ownership and original visibility. |
 | 4 | Release Gating | `COMM-006..COMM-008` | Confirm provisional evidence, doctor blocks, and human-certified release evidence. |
+| 5 | Explanation | `COMM-010..COMM-011` | Confirm modality selection renders a control-flow subject as a diagram and depth calibration preserves every protected span. |
 
 Finish each wave before beginning the next. Persist results after each scenario so a later operator can distinguish an unexecuted scenario from an executed failure.
 
@@ -215,7 +216,29 @@ Prompt: `Verify that only a complete, fresh, passing, human-certified evidence b
 
 ---
 
-## 11. AUTOMATED TEST CROSS-REFERENCE
+## 11. EXPLANATION
+
+### COMM-010 | Explain-visually selects modality
+
+Verify a runtime control-flow subject renders as a call tree, not prose, with protected identifiers and paths reproduced byte-exact.
+
+Prompt: `/rewrite:explain-visually how does route_resources in .opencode/skills/sk-communication/SKILL.md decide the lane using select_lane, discover_markdown_resources, and EXPLANATION_SIGNALS`
+
+> **Feature File:** [COMM-010](explanation/explain-visually-selects-modality.md)
+> **Catalog:** [Modality selection](../feature-catalog/explanation/modality-selection.md)
+
+### COMM-011 | Depth flag changes words, not facts
+
+Verify running the same subject at `--depth=expert` and `--depth=novice` changes vocabulary and framing while every identifier, path, and number stays identical.
+
+Prompt: `/rewrite:explain-visually how does route_resources in .opencode/skills/sk-communication/SKILL.md decide the lane using select_lane, discover_markdown_resources, and EXPLANATION_SIGNALS`
+
+> **Feature File:** [COMM-011](explanation/depth-flag-changes-words-not-facts.md)
+> **Catalog:** [Depth-calibrated explanation](../feature-catalog/explanation/depth-calibrated-explanation.md)
+
+---
+
+## 12. AUTOMATED TEST CROSS-REFERENCE
 
 The complete automated suite lives under [`.opencode/skills/sk-communication/cli-communication-projection/test/`](../../../../.opencode/skills/sk-communication/cli-communication-projection/test/). Focused scenario commands use only files in that tree; final release review also runs `npm run check` from the package directory.
 
@@ -233,7 +256,7 @@ The complete automated suite lives under [`.opencode/skills/sk-communication/cli
 
 ---
 
-## 12. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 13. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Category | Feature ID | Feature File | Catalog Entry | Critical Path |
 |---|---|---|---|---|
