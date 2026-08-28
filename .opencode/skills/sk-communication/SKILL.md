@@ -82,19 +82,21 @@ Three slash commands expose sk-communication as an on-demand trigger surface. Pr
 
 The capability is one package split by responsibility. Route to the subsystem the request needs:
 
-| Request signal | Package surface |
-|---|---|
-| Assemble a whole message, bound context, versioned prompt profile | `src/core/`, `src/context/`, `src/contracts/` |
-| Preserve protected spans, validate meaning, decide how to display | `src/fidelity/`, `src/render/` |
-| Pick a local vs hosted model under privacy rules | `src/privacy/`, `src/providers/` |
-| Wire a specific CLI adapter or its display | `src/runtimes/`, `src/clients/` |
-| Score quality or aggregate private telemetry | `src/evaluation/`, `src/observability/` |
-| Check compatibility, gate a release, or roll back | `src/doctor/`, `src/release/` |
-| Explain a topic or the prior reply as a visual, or pick a depth | `references/visual-explanation.md` (Lane B; no package surface) |
+| Request signal | Package surface | Public entry points |
+|---|---|---|
+| Assemble a whole message, bound context, versioned prompt profile | `src/core/`, `src/context/`, `src/contracts/` | `MessageAssembler`, `selectBoundedContext`, `validateContract` |
+| Preserve protected spans, validate meaning, decide how to display | `src/fidelity/`, `src/render/` | `protectMarkdown`, `restoreProtectedSpans`, `validateProjectionCandidate`, `decideRender` |
+| Pick a local vs hosted model under privacy rules | `src/privacy/`, `src/providers/` | `selectPrivacyRoute`, `executeProviderRoute` |
+| Wire a specific CLI adapter or its display | `src/runtimes/`, `src/clients/` | the runtime adapters' `adapt` / `present`; client display and sidecar |
+| Score quality or aggregate private telemetry | `src/evaluation/`, `src/observability/` | `evaluateReleaseGate`, `createReleaseReport`, content-free aggregation |
+| Check compatibility, gate a release, or roll back | `src/doctor/`, `src/release/` | `runCompatibilityDoctor`, `evaluateReleaseReadiness`, `planRollback` |
+| Explain a topic or the prior reply as a visual, or pick a depth | Lane B — no package surface | `references/visual-explanation.md` |
+
+Read `src/<subsystem>/index.ts` for the exact public surface before integrating against it.
 
 ### Resource Domains
 
-- The package itself under `.opencode/skills/sk-communication/cli-communication-projection/` is the primary resource; its `docs/` folder holds install, configuration, privacy, support-matrix, rollback, and runbook guidance.
+- The package itself under `.opencode/skills/sk-communication/cli-communication-projection/` is the primary resource; its `docs/` folder holds install, configuration, privacy, support-matrix, rollback, and runbook guidance. The subsystem map above is the routing layer and lives inline in this document.
 - The design and requirements history lives in the spec epic under `specs/cli-external-orchestration/035-improved-communication/`.
 - Lane B has no package surface. Its whole contract is `references/visual-explanation.md` plus the command file `.opencode/commands/rewrite/explain-visually.md`.
 
@@ -146,15 +148,20 @@ def select_lane(request) -> str:
     text = str(getattr(request, "text", request)).lower()
     return "explanation" if any(s in text for s in EXPLANATION_SIGNALS) else "projection"
 
+# Projection routing lives inline in this document's subsystem map, so that lane
+# loads no extra file. Only the explanation lane has a separate reference.
 LANE_RESOURCES = {
-    "projection": ["references/package-map.md"],
+    "projection": [],
     "explanation": ["references/visual-explanation.md"],
 }
 
 def route_resources(request):
     inventory = discover_markdown_resources()
-    selected = LANE_RESOURCES[select_lane(request)] if inventory else []
-    if not selected:
+    lane = select_lane(request)
+    selected = LANE_RESOURCES[lane]
+    if lane == "projection":
+        return {"lane": lane, "resources": [], "note": "subsystem map is inline in SKILL.md"}
+    if not selected or not inventory:
         return {**UNKNOWN_FALLBACK, "resources": []}
     loaded = []
     for relative_path in selected:
@@ -183,6 +190,14 @@ canonical event/transcript ──> unchanged persistence + model context
 ```
 
 Consume it through the package's subpath exports (`@portable-cli/communication-projection`, plus `./contracts`, `./versioning`, `./providers`, `./privacy`, `./runtimes`, `./evaluation`, `./observability`, `./doctor`, `./release`). Key entry points: `selectPrivacyRoute` then `executeProviderRoute`; the runtime adapters' `adapt`/`present`; `runCompatibilityDoctor`; `evaluateReleaseReadiness`.
+
+### Invariants Each Subsystem Upholds
+
+- **core / fidelity / render** — the canonical original is never mutated; a rejected candidate returns exact-original bytes.
+- **privacy / providers** — classification and consent run before ranking; no silent local-to-hosted egress; credentials are references, never values.
+- **runtimes / clients** — every path declares full-projection or safe-native; safe-native never suppresses the original before a validated replacement exists.
+- **evaluation / observability** — telemetry is content-free with rotating keyed digests; a release needs a human-certified non-inferiority result, never a provisional one.
+- **doctor / release** — unknown or stale facts fail closed to original-only; the release gate blocks until every evidence lane passes.
 
 ### The Two Presentation Tiers
 
@@ -225,7 +240,6 @@ Run the package's authoritative gate from the package directory: `npm run check`
 
 ### Core
 
-- `references/package-map.md` — the subsystem-to-path map and the public entry points; the smart router loads it.
 - `references/visual-explanation.md` — Lane B: the content-to-modality table, the three-level depth rubric, protected spans, and the lane boundary.
 - `.opencode/skills/sk-communication/cli-communication-projection/` — the implementation; read `src/<subsystem>/index.ts` for the public surface.
 - `.opencode/skills/sk-communication/cli-communication-projection/docs/` — install, configuration, privacy, support-matrix, rollback, and runbook.

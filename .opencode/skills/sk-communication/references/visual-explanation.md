@@ -106,7 +106,3 @@ It writes a file only when the operator passes `--artifact`, and then only a new
 
 - [SKILL.md](../SKILL.md) — the two-lane model, triggers, and operator trigger commands.
 - `.opencode/commands/rewrite/explain-visually.md` — the command contract: `/rewrite:explain-visually [--depth=expert|plain|novice] [--artifact] [topic]`.
-
-### Related
-
-- [package-map.md](./package-map.md) — the projection lane's subsystem-to-path map.

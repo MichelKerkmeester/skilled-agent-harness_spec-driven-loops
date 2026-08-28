@@ -126,11 +126,6 @@
   },
   {
     "workflowMode": "sk-communication",
-    "leafResourceId": "references/package-map.md",
-    "diskPath": "references/package-map.md"
-  },
-  {
-    "workflowMode": "sk-communication",
     "leafResourceId": "references/visual-explanation.md",
     "diskPath": "references/visual-explanation.md"
   }

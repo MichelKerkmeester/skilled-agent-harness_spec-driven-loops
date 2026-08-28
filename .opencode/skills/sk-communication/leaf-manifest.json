@@ -27,7 +27,6 @@
         "manual-testing-playbook/release-gating/compatibility-doctor-selects-original-only.md",
         "manual-testing-playbook/release-gating/human-certified-bundle-gates-release.md",
         "manual-testing-playbook/release-gating/provisional-evaluation-blocks-release.md",
-        "references/package-map.md",
         "references/visual-explanation.md"
       ],
       "packet": ".",

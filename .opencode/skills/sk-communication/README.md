@@ -33,7 +33,7 @@ Coding CLIs often emit terse, robotic status text. The communication-projection 
 
 That is Lane A. Lane B answers a different failure: sometimes the problem is not that the words are dense, it is that words are the wrong medium, or that the reader lacks the background the text assumes. Lane B explains a topic — or the previous reply — as the smallest visual that answers the question, at a depth you choose. It runs in-context, reaches no model, and writes nothing unless you ask for an artifact.
 
-This skill is the entry point for both. It does not duplicate the code — it routes a request to the right lane and enforces the load-bearing invariants. The runtime contract lives in [SKILL.md](SKILL.md); the subsystem-to-path detail lives in [references/package-map.md](references/package-map.md); the visual rubrics live in [references/visual-explanation.md](references/visual-explanation.md).
+This skill is the entry point for both. It does not duplicate the code — it routes a request to the right lane and enforces the load-bearing invariants. The runtime contract lives in [SKILL.md](SKILL.md); the subsystem map is inline in [SKILL.md](SKILL.md); the visual rubrics live in [references/visual-explanation.md](references/visual-explanation.md).
 
 ---
 
@@ -62,9 +62,8 @@ For what it deliberately does **not** cover (general code, docs, design, git), s
 ## 3. QUICK START
 
 ```bash
-# 1. Read the routing contract and the subsystem map
+# 1. Read the routing contract and the subsystem map (both live in SKILL.md)
 #    .opencode/skills/sk-communication/SKILL.md
-#    .opencode/skills/sk-communication/references/package-map.md
 
 # 2. Integrate against the package's subpath exports, then run the gate
 cd .opencode/skills/sk-communication/cli-communication-projection
@@ -98,7 +97,6 @@ Consume the package through its subpath exports — `@portable-cli/communication
 
 ## 5. PACKAGE MAP AND DEEPER DOCS
 
-- [references/package-map.md](references/package-map.md) — subsystem-to-path map and public entry points.
 - [references/visual-explanation.md](references/visual-explanation.md) — Lane B: modality table, depth rubric, protected spans, lane boundary.
 - [feature-catalog/feature-catalog.md](feature-catalog/feature-catalog.md) — the current shipped-behavior inventory.
 - [manual-testing-playbook/manual-testing-playbook.md](manual-testing-playbook/manual-testing-playbook.md) — deterministic operator validation scenarios.
