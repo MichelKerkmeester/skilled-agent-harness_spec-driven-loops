@@ -25,6 +25,10 @@ interface SweepResult {
   exitCode: number | null;
   errors: number;
   warnings: number;
+  // Which rules actually objected, worst severity first. Counts alone say a
+  // packet failed but not why, so a report full of them cannot be acted on and
+  // cannot distinguish one systemic rule from many unrelated defects.
+  failedRules?: string[];
   message: string;
 }
 
@@ -202,6 +206,41 @@ function readBaseline(baselinePath: string | null): Baseline {
   };
 }
 
+// The validator emits two shapes depending on the schema a packet resolves to:
+// older packets report under `entries`, newer ones under `results`. Reading only
+// one silently yields no rules for half the fleet, which looks like "no detail
+// available" rather than a parsing gap.
+interface ValidateRow {
+  rule?: string;
+  check?: string;
+  status?: string;
+  severity?: string;
+}
+
+interface ValidateOutput {
+  passed?: boolean;
+  summary?: { errors?: number; warnings?: number };
+  results?: ValidateRow[];
+  entries?: ValidateRow[];
+}
+
+const FAILING_SEVERITIES = new Set(['error', 'warn', 'warning']);
+
+function extractFailedRules(parsed: ValidateOutput): string[] {
+  const rows = [...(parsed.results ?? []), ...(parsed.entries ?? [])];
+  const errorRules = new Set<string>();
+  const warnRules = new Set<string>();
+  for (const row of rows) {
+    const severity = String(row.status ?? row.severity ?? '').toLowerCase();
+    if (!FAILING_SEVERITIES.has(severity)) continue;
+    const name = row.rule ?? row.check;
+    if (!name) continue;
+    (severity === 'error' ? errorRules : warnRules).add(name);
+  }
+  // Errors first: when a packet trips both, the error is the actionable one.
+  return [...[...errorRules].sort(), ...[...warnRules].sort().filter((r) => !errorRules.has(r))];
+}
+
 function runValidate(folder: string, baseline: Baseline): SweepResult {
   const relativeFolder = path.relative(repoRoot, folder) || '.';
   const result = spawnSync('bash', [validateScript, folder, '--strict', '--json', '--no-recursive'], {
@@ -212,22 +251,23 @@ function runValidate(folder: string, baseline: Baseline): SweepResult {
   const exitCode = result.status ?? 1;
   const stdout = result.stdout ?? '';
   try {
-    const parsed = JSON.parse(stdout) as { passed?: boolean; summary?: { errors?: number; warnings?: number } };
+    const parsed = JSON.parse(stdout) as ValidateOutput;
     const errors = Number(parsed.summary?.errors ?? 0);
     const warnings = Number(parsed.summary?.warnings ?? 0);
     const failed = exitCode !== 0 || parsed.passed === false;
+    const failedRules = extractFailedRules(parsed);
     const wasBaselinePass = baseline.passes.has(relativeFolder);
     if (failed && wasBaselinePass) {
-      return { folder: relativeFolder, status: 'regression', exitCode, errors, warnings, message: 'strict validation no longer passes' };
+      return { folder: relativeFolder, status: 'regression', exitCode, errors, warnings, failedRules, message: 'strict validation no longer passes' };
     }
     if (failed && !baseline.isLoaded) {
-      return { folder: relativeFolder, status: 'first-run', exitCode, errors, warnings, message: 'strict validation fails but no baseline exists to compare against (first run, not a regression)' };
+      return { folder: relativeFolder, status: 'first-run', exitCode, errors, warnings, failedRules, message: 'strict validation fails but no baseline exists to compare against (first run, not a regression)' };
     }
     if (failed && baseline.seen.has(relativeFolder)) {
-      return { folder: relativeFolder, status: 'known-failure', exitCode, errors, warnings, message: 'strict validation still fails, exactly as it did in the baseline' };
+      return { folder: relativeFolder, status: 'known-failure', exitCode, errors, warnings, failedRules, message: 'strict validation still fails, exactly as it did in the baseline' };
     }
     if (failed) {
-      return { folder: relativeFolder, status: 'new-failure', exitCode, errors, warnings, message: 'strict validation fails and the folder is absent from the baseline entirely' };
+      return { folder: relativeFolder, status: 'new-failure', exitCode, errors, warnings, failedRules, message: 'strict validation fails and the folder is absent from the baseline entirely' };
     }
     return { folder: relativeFolder, status: 'pass', exitCode, errors, warnings, message: 'strict validation passes' };
   } catch {
@@ -240,6 +280,16 @@ function runValidate(folder: string, baseline: Baseline): SweepResult {
       message: `validate.sh --json returned malformed output: ${(stdout || result.stderr || '').trim().slice(0, 200)}`,
     };
   }
+}
+
+function tallyRules(results: SweepResult[]): Record<string, number> {
+  const counts = new Map<string, number>();
+  for (const result of results) {
+    for (const rule of result.failedRules ?? []) {
+      counts.set(rule, (counts.get(rule) ?? 0) + 1);
+    }
+  }
+  return Object.fromEntries([...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])));
 }
 
 function main(): void {
@@ -262,6 +312,10 @@ function main(): void {
     firstRun: firstRun.length,
     knownFailures: knownFailures.length,
     errors: errors.length,
+    // How many packets each rule accounts for. One systemic rule and hundreds of
+    // unrelated defects produce the same failure count, and only this tells them
+    // apart — which decides whether the fix is one change or hundreds.
+    ruleTally: tallyRules(results),
     results,
   };
   if (options.format === 'text') {
