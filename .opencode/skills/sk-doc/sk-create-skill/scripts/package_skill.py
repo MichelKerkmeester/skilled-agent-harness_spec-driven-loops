@@ -137,20 +137,27 @@ RESOURCE_DOC_SUBTREES = ['references', 'assets']
 TOOL_MANDATED_FILENAMES = {
     '.utcp_config.json',
     'README.md',
+    'ROUTER.md',
     'SKILL.md',
     'action.yaml',
     'action.yml',
     'conftest.py',
     'package-lock.json',
 }
+# Subtrees whose leaf names are identifiers rather than filesystem slugs.
+# Behavior-benchmark scenarios are addressed as `<PREFIX>-NNN-<slug>` scenario
+# IDs, and fixtures deliberately carry the shapes they exercise, so neither is
+# free to be renamed into kebab-case without breaking what refers to it.
 EXEMPT_SUBTREES = {
     '__mocks__',
     '__pycache__',
     '__snapshots__',
     'changelog',
     'dist',
+    'fixtures',
     'node_modules',
     'reports',
+    'scenarios',
     'z_archive',
 }
 KEBAB_CASE_SLUG_RE = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
