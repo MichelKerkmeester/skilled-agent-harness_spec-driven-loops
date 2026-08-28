@@ -17,7 +17,9 @@
       "mcp registration parity",
       "mcp cutover plan",
       "host config parity design",
-      "mcp cutover tasks"
+      "mcp cutover tasks",
+      "mcp cutover summary",
+      "host config cutover shipped"
     ],
     "key_topics": [
       "mcp",
@@ -34,11 +36,12 @@
       "parity"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "tasks.md",
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -57,6 +60,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -166,23 +175,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Every",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Nineteen server registrations span six configuration files",
     "created_at": "2026-08-28T16:11:21Z",
-    "last_save_at": "2026-08-28T16:24:37.986Z",
+    "last_save_at": "2026-08-28T17:58:32.079Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04ff6ae7ec7a7eebba2c688b39a1b97cd5929da42004f14a71b33e991b4e8a37",
+    "source_fingerprint": "sha256:a54567c131930c9031a8b1c3260757031139b3b8f058d8a510d6462f259fcf5d",
     "source_doc_hashes": {
-      "spec.md": "c898800d7aa9412b7e7df2ec626ac9edd9b864a1e6153986a803e1685a3b9e61",
+      "spec.md": "5a570b43c2ba55b00a5814353c043c380d33af299dbf7ef7e0389de38a22ff18",
       "plan.md": "b3507b18873aa90fde6b32d34555bc64bf6ddea1188c655140b5ec9f005d8038",
-      "tasks.md": "69d53e96decc3011075e54be4d68cd5944bcd7bfd10e3a062f9eebaf74fa80a2"
+      "tasks.md": "2a461987592c3ea099557a3b1b243f76d3af20b954236c1c3abc03053d1d1c07",
+      "implementation-summary.md": "09602d64eb69257ae9b4b7bd5ef15d1eb2cf7766490bcc53e6150fde7b627094"
     },
     "last_active_child_id": null,
     "last_active_at": null
