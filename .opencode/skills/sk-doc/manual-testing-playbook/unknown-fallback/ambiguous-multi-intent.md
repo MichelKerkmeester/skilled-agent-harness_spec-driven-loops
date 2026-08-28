@@ -22,9 +22,9 @@ expected_leaf_resources:
   - workflow_mode: sk-create-quality-control
     leaf_resource_id: references/evergreen-packet-id-rule.md
   - workflow_mode: sk-create-diagram
-    leaf_resource_id: assets/simple-workflow.md
+    leaf_resource_id: assets/ascii-patterns/simple-workflow.md
   - workflow_mode: sk-create-diagram
-    leaf_resource_id: assets/decision-tree-flow.md
+    leaf_resource_id: assets/ascii-patterns/decision-tree-flow.md
 version: 1.8.0.6
 ---
 
