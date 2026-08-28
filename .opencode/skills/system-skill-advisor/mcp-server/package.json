@@ -11,10 +11,10 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@spec-kit/shared": "file:../../system-spec-kit/shared",
     "@huggingface/transformers": "^3.8.1",
     "@modelcontextprotocol/sdk": "^1.24.3",
-    "better-sqlite3": "^12.6.2",
+    "@spec-kit/shared": "file:../../system-spec-kit/shared",
+    "better-sqlite3": "^12.11.1",
     "chokidar": "^4.0.3",
     "zod": "^4.1.12"
   },

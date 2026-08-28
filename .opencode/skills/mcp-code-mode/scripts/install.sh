@@ -276,7 +276,7 @@ add_to_opencode_json() {
     # This requires: npm install in mcp-server/ directory (done in verify step)
     local mcp_config='{
         "type": "local",
-        "command": ["node", ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js"],
+        "command": ["node", ".opencode/bin/mcp-code-mode-launcher.cjs"],
         "environment": {
             "UTCP_CONFIG_FILE": ".utcp_config.json"
         }
@@ -353,8 +353,8 @@ print_summary() {
     echo "  - .utcp_config.json : UTCP configuration (add MCP tools here)"
     echo "  - .env.example      : API key templates"
     echo ""
-    echo "MCP Server location:"
-    echo "  - .opencode/skills/mcp-code-mode/mcp-server/dist/index.js"
+    echo "MCP Server registration:"
+    echo "  - .opencode/bin/mcp-code-mode-launcher.cjs"
     echo ""
     echo "Next steps:"
     echo "  1. Copy API keys from .env.example to .env"

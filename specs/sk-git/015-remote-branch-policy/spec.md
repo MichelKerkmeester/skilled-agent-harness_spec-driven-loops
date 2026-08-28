@@ -44,7 +44,7 @@ sk-git and its git hooks currently let any locally-created branch reach `origin`
 
 **Key Decisions**: Ask before *every* push to a non-allowlisted branch, not just its first creation (operator's explicit choice over the recommended lighter option); the continuous-integration autosync's live-branch publish stays exempt (scoped narrowly) so it doesn't regress a working, documented feature.
 
-**Critical Dependencies**: Must not break `git-sync.sh`'s "never asks the caller mid-hook" contract ([continuous-integration.md](../../../skills/sk-git/references/continuous-integration.md)), and must not silently widen what reaches origin if its own config file is missing or broken (fail-open must narrow, never widen).
+**Critical Dependencies**: Must not break `git-sync.sh`'s "never asks the caller mid-hook" contract ([continuous-integration.md](../../../.opencode/skills/sk-git/references/continuous-integration.md)), and must not silently widen what reaches origin if its own config file is missing or broken (fail-open must narrow, never widen).
 
 ---
 
@@ -81,7 +81,7 @@ No branch reaches `origin` — new or updated — without either an explicit use
 - A remote-branch allowlist (`main`, `skilled/v*` built in; operator-extensible via a config file)
 - A pre-push git hook gate that blocks any push (new branch or update) to a non-allowlisted branch unless bypassed for that invocation
 - An sk-git SKILL.md behavioral rule: ask before every such push, with an explicit user push instruction counting as the go-ahead (no redundant double-ask)
-- A scoped, documented exception for the continuous-integration autosync's live-branch publish (see [continuous-integration.md](../../../skills/sk-git/references/continuous-integration.md))
+- A scoped, documented exception for the continuous-integration autosync's live-branch publish (see [continuous-integration.md](../../../.opencode/skills/sk-git/references/continuous-integration.md))
 - Updated tests for the pre-push hook (existing scenarios whose expected outcome changes, plus new coverage)
 - Cross-references: `finish-workflows.md` (Option 2's push step), `install-git-hooks.sh` header, feature-catalog entry
 - A summary row in root `CLAUDE.md` §5 Git Workspace Safety table (operator-approved)

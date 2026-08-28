@@ -17,7 +17,9 @@
       "isolated-vm segfault guard",
       "code mode launcher plan",
       "launcher exec handoff design",
-      "code mode launcher tasks"
+      "code mode launcher tasks",
+      "code mode launcher summary",
+      "launcher shim shipped"
     ],
     "key_topics": [
       "code",
@@ -34,11 +36,12 @@
       "segfault"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "tasks.md",
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -57,6 +60,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -166,23 +175,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built An",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Host configurations currently name an interpreter directly, which is why they had to name an absolute one",
     "created_at": "2026-08-28T16:11:20Z",
-    "last_save_at": "2026-08-28T16:24:36.959Z",
+    "last_save_at": "2026-08-28T17:37:22.166Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd8ec7ae86ea2377efcae25dfd9102dcb771546a29ecaa3d8705602c8e8e193f",
+    "source_fingerprint": "sha256:442279badbb9a5758fb1a106abe8a9a811a52356a159247871de8d713fec1a5d",
     "source_doc_hashes": {
-      "spec.md": "1e45fa015db1fc2eced46e182826eabec1577d5a133ba785665fa54e1fbb1cbd",
+      "spec.md": "15376030d8fa081f9293524a75f2e6db20d42b6c2434a86e04596bbcc312ed66",
       "plan.md": "1a25e792619380c16dfd3f7933a88ff6b6e035725dbe584f6f2c6d85360eaab7",
-      "tasks.md": "427489e8edbabd21bc15b41b59831514d660cc9382e1ec0983df4d0182ff6c33"
+      "tasks.md": "1e1b76b6d456f6c34b89b08330f1fdcdcc7ee8192f7d1296cee3e5136087b334",
+      "implementation-summary.md": "7af3ac4a0b15c10681c42cedef6d3f3543ea57383838676d674c634fcab8067b"
     },
     "last_active_child_id": null,
     "last_active_at": null

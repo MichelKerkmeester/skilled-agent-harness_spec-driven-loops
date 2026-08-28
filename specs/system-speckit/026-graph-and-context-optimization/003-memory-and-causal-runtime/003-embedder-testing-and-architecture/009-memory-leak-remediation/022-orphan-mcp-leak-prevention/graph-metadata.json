@@ -41,46 +41,15 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/scripts/orphan-mcp-sweeper.sh",
-      ".opencode/scripts/claude-session-cleanup.sh",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/ipc/socket-server.ts",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/ipc/socket-server.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/ipc/socket-server.ts",
-      ".opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "spec.md",
-      ".opencode/scripts/README.md",
       "implementation-summary.md",
       "handover.md"
     ],
     "entities": [
-      {
-        "name": "orphan-mcp-sweeper.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
-        "source": "derived"
-      },
-      {
-        "name": "claude-session-cleanup.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/claude-session-cleanup.sh",
-        "source": "derived"
-      },
-      {
-        "name": "socket-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/ipc/socket-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "com.michelkerkmeester.orphan-sweep.plist",
-        "kind": "file",
-        "path": ".opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -109,12 +78,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/scripts/README.md",
         "source": "derived"
       },
       {
@@ -200,11 +163,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Manual cleanup on 2026-05-24 found repeated orphan MCP stacks under Codex.app and stale Claude Code launcher children",
     "created_at": "2026-05-24T06:58:36Z",
-    "last_save_at": "2026-07-17T17:19:29.604Z",
+    "last_save_at": "2026-08-28T18:16:23.017Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +209,14 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:cd96445f53651d1fb06ae77d72c3c176d2bc2d0da41405517ce07bfdc34255ae",
+    "source_fingerprint": "sha256:31773e17a0ceb8d8a4f0d26a10af25859d6fafa505b9a4dc9f159f8de9b25e4a",
     "source_doc_hashes": {
       "spec.md": "34dfd9978535d4da994610bdccc1046a0637356eda7688c6a204b02c28d00d89",
       "plan.md": "bc90d442a5dec1a03b5525189c0425c018a89abadaa2b0d0a9838812e5032a8d",
       "tasks.md": "fe6d9865868e29e70a415a487239bf7a1c69454c640e1b14e28e19dd66e7d5a6",
       "checklist.md": "f798396d620fa032e33c6ff402a5eb69ee4e39542dee22bb43b042663d263fc8",
       "decision-record.md": "a922fcc0ca5436f721ed064be553799f2f811030c9927d11df5c6a1fc9b41806",
-      "implementation-summary.md": "dd22711ee32d25c91c7a7275182c39d8f2c56b71d3b0dfd8812b8b4a0838cce6",
+      "implementation-summary.md": "6352ade5fc36bef9412571d7b9cd16f2e9c11d2ada85edcf768c30cb9b416d44",
       "handover.md": "2e58b52e87ba7ed6bf696e4eb8a84794abf7904d16959f10701f1bdc4773db0f"
     },
     "last_active_child_id": null,

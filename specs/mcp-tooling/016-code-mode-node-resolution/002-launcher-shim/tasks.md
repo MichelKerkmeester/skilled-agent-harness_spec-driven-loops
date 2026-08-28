@@ -31,9 +31,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Capture the initialize response from a direct launch under the pinned interpreter, as the comparison baseline
-- [ ] T002 Record the exact cleanup and sweeper matcher patterns so the identity test asserts against the shipped ones
-- [ ] T003 [P] Confirm the repository-root resolution used by the two existing launchers, and reuse it
+- [x] T001 Capture the initialize response from a direct launch under the pinned interpreter, as the comparison baseline — evidence: direct launch returns `serverInfo {"name":"CodeMode-MCP","version":"1.0.0"}` with `protocolVersion 2024-11-05`
+- [x] T002 Record the exact cleanup and sweeper matcher patterns so the identity test asserts against the shipped ones — evidence: `.opencode/scripts/session-cleanup.sh:109` and `.opencode/scripts/orphan-mcp-sweeper.sh:212` both match the substring `mcp-code-mode/mcp-server/dist/index.js`
+- [x] T003 [P] Confirm the repository-root resolution used by the two existing launchers, and reuse it — evidence: `.opencode/bin/mcp-code-mode-launcher.cjs` derives `REPOSITORY_ROOT` with `path.resolve(__dirname, '..', '..')`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,11 +41,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Locate the server manifest and entrypoint from the launcher's own position (`.opencode/bin/mcp-code-mode-launcher.cjs`)
-- [ ] T005 Ask the resolver for an interpreter and exit non-zero with the required range when none satisfies (`.opencode/bin/mcp-code-mode-launcher.cjs`)
-- [ ] T006 Start the server with the resolved interpreter and the entrypoint path, keeping that path in the command line (`.opencode/bin/mcp-code-mode-launcher.cjs`)
-- [ ] T007 Wire standard streams straight through so the protocol stream is unmodified (`.opencode/bin/mcp-code-mode-launcher.cjs`)
-- [ ] T008 Pass the server's exit status and termination signals back to the host (`.opencode/bin/mcp-code-mode-launcher.cjs`)
+- [x] T004 Locate the server manifest and entrypoint from the launcher's own position (`.opencode/bin/mcp-code-mode-launcher.cjs`)
+- [x] T005 Ask the resolver for an interpreter and exit non-zero with the required range when none satisfies (`.opencode/bin/mcp-code-mode-launcher.cjs`)
+- [x] T006 Start the server with the resolved interpreter and the entrypoint path, keeping that path in the command line (`.opencode/bin/mcp-code-mode-launcher.cjs`)
+- [x] T007 Wire standard streams straight through so the protocol stream is unmodified (`.opencode/bin/mcp-code-mode-launcher.cjs`)
+- [x] T008 Pass the server's exit status and termination signals back to the host (`.opencode/bin/mcp-code-mode-launcher.cjs`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -53,11 +53,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Assert the launcher's initialize response matches the captured direct-launch baseline (`.opencode/bin/mcp-code-mode-launcher.test.cjs`)
-- [ ] T010 Assert the shipped cleanup matcher classifies a launcher-started command line (`.opencode/bin/mcp-code-mode-launcher.test.cjs`)
-- [ ] T011 Assert a forced-unsatisfiable range exits non-zero, names the range, and starts no server (`.opencode/bin/mcp-code-mode-launcher.test.cjs`)
-- [ ] T012 Assert a terminated server returns its own exit status through the launcher (`.opencode/bin/mcp-code-mode-launcher.test.cjs`)
-- [ ] T013 Run the workspace node gate and confirm the new tests are collected and green
+- [x] T009 Assert the launcher's initialize response matches the captured direct-launch baseline (`.opencode/bin/mcp-code-mode-launcher.test.cjs`) — evidence: launcher handshake returns a byte-identical initialize result to the direct launch
+- [x] T010 Assert the shipped cleanup matcher classifies a launcher-started command line (`.opencode/bin/mcp-code-mode-launcher.test.cjs`) — evidence: the launcher's own child carries `/v24.9.0/bin/node …/mcp-code-mode/mcp-server/dist/index.js`, which contains the sweeper substring
+- [x] T011 Assert a forced-unsatisfiable range exits non-zero, names the range, and starts no server (`.opencode/bin/mcp-code-mode-launcher.test.cjs`)
+- [x] T012 Assert a terminated server returns its own exit status through the launcher (`.opencode/bin/mcp-code-mode-launcher.test.cjs`)
+- [x] T013 Run the workspace node gate and confirm the new tests are collected and green — evidence: `node .opencode/scripts/run-node-tests.mjs` reports 75 files, 762 pass, 0 fail
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -65,9 +65,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The launcher is proven equivalent to the direct launch and visible to the cleanup matchers
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] The launcher is proven equivalent to the direct launch and visible to the cleanup matchers
 <!-- /ANCHOR:completion -->
 
 ---
@@ -98,9 +98,9 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] The direct-launch initialize response is captured as the comparison baseline
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] The direct-launch initialize response is captured as the comparison baseline
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -108,9 +108,9 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The launcher hands off rather than supervising, so no process layer is added beneath the server
-- [ ] CHK-011 [P0] Standard streams pass through unmodified
-- [ ] CHK-012 [P1] Refusal names the required range and the candidates rejected
+- [x] CHK-010 [P0] The launcher hands off rather than supervising, so no process layer is added beneath the server
+- [x] CHK-011 [P0] Standard streams pass through unmodified
+- [x] CHK-012 [P1] Refusal names the required range and the candidates rejected
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -118,9 +118,9 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria in spec.md are met
-- [ ] CHK-021 [P0] The launcher's initialize response matches the captured direct-launch baseline
-- [ ] CHK-022 [P1] A terminated server returns its own exit status through the launcher
+- [x] CHK-020 [P0] All acceptance criteria in spec.md are met
+- [x] CHK-021 [P0] The launcher's initialize response matches the captured direct-launch baseline
+- [x] CHK-022 [P1] A terminated server returns its own exit status through the launcher
 <!-- /ANCHOR:testing -->
 
 ---
@@ -128,9 +128,9 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] The shipped cleanup matcher classifies a launcher-started command line
-- [ ] CHK-FIX-002 [P0] A forced-unsatisfiable range starts no server, asserted as absence rather than as a caught error
-- [ ] CHK-FIX-003 [P1] Evidence is pinned to the commit that shipped this phase, not a moving range
+- [x] CHK-FIX-001 [P0] The shipped cleanup matcher classifies a launcher-started command line
+- [x] CHK-FIX-002 [P0] A forced-unsatisfiable range starts no server, asserted as absence rather than as a caught error
+- [x] CHK-FIX-003 [P1] Evidence is pinned to the commit that shipped this phase, not a moving range
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -138,8 +138,8 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] The launcher passes no new environment or arguments to the server beyond what the host supplied
+- [x] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-031 [P0] The launcher passes no new environment or arguments to the server beyond what the host supplied
 <!-- /ANCHOR:security -->
 
 ---
@@ -147,8 +147,8 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan and tasks stay synchronized with what shipped
-- [ ] CHK-041 [P1] The refusal message is quoted in the phase summary so its wording is reviewable
+- [x] CHK-040 [P1] Spec, plan and tasks stay synchronized with what shipped
+- [x] CHK-041 [P1] The refusal message is quoted in the phase summary so its wording is reviewable
 <!-- /ANCHOR:docs -->
 
 ---
@@ -156,8 +156,8 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -167,11 +167,11 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 0/8 |
-| P1 Items | 7 | 0/7 |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 7 | 7/7 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: Pending
+**Verification Date**: 2026-08-28
 <!-- /ANCHOR:summary -->
 
 ---

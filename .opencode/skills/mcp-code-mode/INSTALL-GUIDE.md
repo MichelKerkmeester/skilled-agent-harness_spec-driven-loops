@@ -4,7 +4,7 @@ Complete installation and configuration guide for the Code Mode MCP server. This
 
 > **Version:** 2.0.0
 > **Part of OpenCode Installation.** See the [Master Installation Guide](../../install-guides/README.md) for complete setup.
-> **Package**: `@utcp/code-mode-mcp` | **Dependencies**: Node.js 18+, .utcp_config.json
+> **Package**: `@utcp/code-mode-mcp` | **Dependencies**: Node.js 24 (see Prerequisites), .utcp_config.json
 
 ---
 
@@ -16,7 +16,7 @@ Complete installation and configuration guide for the Code Mode MCP server. This
 I want to install the MCP Code Mode server for TypeScript tool orchestration.
 
 Please help me:
-1. Check if I have Node.js 18+ installed
+1. Check whether I have a Node 24 interpreter available for this server
 2. Verify I have npx available for running MCP servers
 3. Create the required configuration files (.utcp_config.json and .env)
 4. Configure Code Mode for my AI environment (I'm using: [Claude Code / OpenCode / VS Code Copilot])
@@ -30,7 +30,7 @@ Guide me through each step with the exact commands and configuration needed.
 ```
 
 **What the AI will do:**
-- Verify Node.js 18+ is available on your system
+- Verify a Node 24 interpreter is available for this server; it does not have to be your default
 - Create `.utcp_config.json` configuration file
 - Create `.env` file for API keys and secrets (with proper security)
 - Configure Code Mode for your specific AI platform
@@ -144,11 +144,23 @@ Before installing Code Mode MCP, ensure you have the following.
 
 ### Required
 
-- **Node.js 18 or higher**
+- **Node.js 24** — not 18, and not 25 or newer
+
+  This server runs every tool chain inside an `isolated-vm` V8 isolate. `isolated-vm`
+  has no Node 25+ build and segfaults at isolate creation under V8 14.1. A segfault
+  cannot be caught, so the wrong interpreter does not fail at startup — it kills the
+  MCP connection on the first tool call. The exact range is declared by the server
+  itself in `engines.node`.
+
   ```bash
   node --version
-  # Should show v18.x or higher
+  # A host-wide v24 is convenient but not required; see below.
   ```
+
+  You do not have to make Node 24 your default. The registered command is
+  `.opencode/bin/mcp-code-mode-launcher.cjs`, which reads the required range from the
+  server manifest, finds a satisfying interpreter among the ones you have installed,
+  and refuses to start with a message naming the range when none does.
 
 - **npm/npx** (comes with Node.js)
   ```bash
@@ -175,7 +187,7 @@ Before installing Code Mode MCP, ensure you have the following.
 ### Validation: `phase_1_complete`
 
 **Checklist:**
-- [ ] Node.js 18+ installed
+- [ ] A Node 24 interpreter available (not necessarily the default)
 - [ ] .env file exists with API keys
 - [ ] .utcp_config.json exists
 
@@ -1544,7 +1556,7 @@ call_tool_chain({
 
 **Installation:**
 ```
-[ ] Node.js 18+ installed
+[ ] A Node 24 interpreter available for this server
 [ ] .utcp_config.json created and valid
 [ ] .env created with required keys
 [ ] .env in .gitignore

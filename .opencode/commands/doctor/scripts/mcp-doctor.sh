@@ -287,6 +287,8 @@ diagnose_code_mode() {
   local srv="code_mode"
   local skill_dir="$PROJECT_ROOT/.opencode/skills/mcp-code-mode"
   local dist_entry="$skill_dir/mcp-server/dist/index.js"
+  local resolver="$PROJECT_ROOT/.opencode/bin/lib/node-engine-resolver.cjs"
+  local manifest="$skill_dir/mcp-server/package.json"
   local utcp_config="$PROJECT_ROOT/.utcp_config.json"
   local needs_fix=false
 
@@ -298,7 +300,32 @@ diagnose_code_mode() {
     return
   fi
 
-  # Check 1: dist/index.js exists
+  # Check 1: resolve the interpreter before MCP startup can fail on an unsupported host
+  local interpreter_resolution
+  if interpreter_resolution="$(node -e '
+    const [resolverPath, manifestPath] = process.argv.slice(1);
+    const result = require(resolverPath).resolveNodeInterpreter({ manifestPath });
+    if (result.path) {
+      process.stdout.write(`resolved\t${result.path}\t${result.range ?? "unknown"}\n`);
+    } else {
+      process.stdout.write(`unresolved\t${result.range ?? "unknown"}\t${result.reason ?? "unknown"}\n`);
+    }
+  ' "$resolver" "$manifest" 2>&1)"; then
+    local resolution_status resolution_value resolution_detail
+    IFS=$'\t' read -r resolution_status resolution_value resolution_detail <<< "$interpreter_resolution"
+    if [[ "$resolution_status" == "resolved" ]]; then
+      record_pass "$srv" "node_engine" "Resolved interpreter: $resolution_value (range: $resolution_detail)"
+      _log log_pass "Node engine range satisfied by $resolution_value"
+    else
+      record_fail "$srv" "node_engine" "Required range: $resolution_value; reason: $resolution_detail"
+      _log log_fail "No Node.js interpreter satisfies $resolution_value ($resolution_detail)"
+    fi
+  else
+    record_fail "$srv" "node_engine" "Resolver failed: ${interpreter_resolution:-unknown error}"
+    _log log_fail "Node engine resolver failed"
+  fi
+
+  # Check 2: dist/index.js exists
   if [[ -f "$dist_entry" ]]; then
     record_pass "$srv" "dist_exists" "$dist_entry"
     _log log_pass "dist/index.js exists"
@@ -308,7 +335,7 @@ diagnose_code_mode() {
     needs_fix=true
   fi
 
-  # Check 2: .utcp_config.json exists and is valid JSON
+  # Check 3: .utcp_config.json exists and is valid JSON
   if [[ -f "$utcp_config" ]]; then
     if node -e "JSON.parse(require('fs').readFileSync('$utcp_config','utf8'))" 2>/dev/null; then
       record_pass "$srv" "utcp_config" "Valid JSON"
@@ -322,7 +349,7 @@ diagnose_code_mode() {
     _log log_warn ".utcp_config.json not found — Code Mode needs this config"
   fi
 
-  # Check 3: .env file (needed for API keys if external servers configured)
+  # Check 4: .env file (needed for API keys if external servers configured)
   local env_file="$PROJECT_ROOT/.env"
   if [[ -f "$env_file" ]]; then
     record_pass "$srv" "env_file" "Exists"
@@ -332,7 +359,7 @@ diagnose_code_mode() {
     _log log_info ".env not found — only needed if external MCP servers require API keys"
   fi
 
-  # Check 4: node_modules exist
+  # Check 5: node_modules exist
   if [[ -d "$skill_dir/mcp-server/node_modules" ]]; then
     record_pass "$srv" "node_modules" "Installed"
     _log log_pass "node_modules installed"

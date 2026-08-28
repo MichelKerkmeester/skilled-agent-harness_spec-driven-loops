@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Make cli-devin a first-class deep-loop executor across the codebase",
     "created_at": "2026-05-15T19:00:00Z",
-    "last_save_at": "2026-08-28T15:59:39.614Z",
+    "last_save_at": "2026-08-28T18:17:45.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:10aee93fba8457764d874afe2c096c7030adf7cffaa4dbfe409068f4cfdc7d36",
+    "source_fingerprint": "sha256:7c9e797009510584a1e141ea1ef225751922ee727425e47da4b92d316bbe6064",
     "source_doc_hashes": {
       "spec.md": "0b23e5a1e93a9d678c01bd544b780210f7dc472a9e3f3f3a7bfbc6bad8acb4b6",
       "plan.md": "834d00cc76eee3e5c4a2ee170b872fa56571e264aff0dde839e95f1cd97b15dc",
       "tasks.md": "b45e7bd41cb80fedaf980587897ef0339627643c8ae3875f8341677a512eb331",
-      "implementation-summary.md": "c33f45b83e372d1a292dcdc4b3bacb4f197b85dcc7a3c5e6b9df3c3ec731a750",
+      "implementation-summary.md": "a3a83f2c43d7351cba23082a1a2e47c7f83f8c8245f928ecc142f756ca1c81ec",
       "resource-map.md": "e2352186d1354866b6a11bdedaf283d1e285bde3f6c295d822c006aa023c15a1"
     },
     "last_active_child_id": null,

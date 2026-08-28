@@ -17,7 +17,9 @@
       "interpreter candidate search",
       "node engine resolver plan",
       "interpreter selection design",
-      "node engine resolver tasks"
+      "node engine resolver tasks",
+      "node engine resolver summary",
+      "resolution contract shipped"
     ],
     "key_topics": [
       "node",
@@ -34,11 +36,12 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "tasks.md",
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -57,6 +60,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -166,23 +175,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The requirement is published in two places already: the server manifest declares `engines.node` as `>=24.0.0 <25.0.0`, and a postinstall check warns when the installing module ABI is not 137",
     "created_at": "2026-08-28T16:11:19Z",
-    "last_save_at": "2026-08-28T16:24:36.072Z",
+    "last_save_at": "2026-08-28T17:30:23.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:185dcd15cf49fe73b6c48234c613b8265e923e623974663635a445396d0abaf6",
+    "source_fingerprint": "sha256:40601a71a586046cae7f75272bc94a3cf3e9e76fc1cf718fa1a7014a23dc3cf3",
     "source_doc_hashes": {
-      "spec.md": "04366935173590a400b2ee246be8c4d2d1e244a7105abce38645865639466bae",
+      "spec.md": "1f7378efe7594ea4a91fd4e94cae32ade7c5ff72fede27f69a2389ab20b2495d",
       "plan.md": "d1cfe1d7583f5cdce40cf1a066039795c0eb1f06e76f705204c041deeaf6ffb9",
-      "tasks.md": "262b98839daa6794191f7f5fe8f7ea499c35c29e099d86ff9e1c068aa1959873"
+      "tasks.md": "6e297ab850ff2f4ba280546497f6578c89d4f32736985a7edd7cae6a5be3ae9d",
+      "implementation-summary.md": "c4f8d90e1506534e10ad7489c171378db5e8d2ba836170976b5fd201e2313bb0"
     },
     "last_active_child_id": null,
     "last_active_at": null

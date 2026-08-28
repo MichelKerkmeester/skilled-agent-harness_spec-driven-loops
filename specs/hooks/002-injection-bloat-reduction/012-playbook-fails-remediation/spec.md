@@ -91,14 +91,14 @@ Define the smallest complete follow-on that updates every affected oracle, repai
 - IN-REPO FIX work grouped by runtime and shared root cause, including Codex command/profile/child-state drift, OpenCode variadic `-f` ordering, Pi mirror and event/report identity bugs, Cursor Shell-hook delivery and roster drift, and Devin native-surface/lifecycle drift.
 - OPERATOR-ACTION instructions for four layered Codex profile files, the Codex hook installation, and Cursor MCP approval. These actions are prerequisites, not committed repository changes.
 - RECLASSIFY-TO-SKIP edits for the no-TTY review scenario, the cite-only or unavailable Pi MCP scenarios, and the unavailable headless Devin permission-event comparison. The Cursor trust scenario also records a conditional SKIP when approval is unavailable.
-- A follow-on rerun of the affected runtime suites through the [011 manual scenario wrapper](../../../../skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs), using the [011 results contract](../011-playbook-results-automation/spec.md).
+- A follow-on rerun of the affected runtime suites through the [011 manual scenario wrapper](../../../../.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs), using the [011 results contract](../011-playbook-results-automation/spec.md).
 - A final assertion that affected `results.csv` rows contain only PASS or documented SKIP outcomes.
 
 ### Out of Scope
 
 - Implementing any remediation or running the affected suites in this design-authoring packet.
 - Writing or changing `~/.codex/config.toml`, `~/.codex/*.config.toml`, `~/.codex/hooks.json`, Cursor approval state, or any other operator machine-local configuration.
-- Changing the normative D1-D5 scoring formulas or duplicating the [scoring contract](../../../../skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md); the follow-on links to that authority.
+- Changing the normative D1-D5 scoring formulas or duplicating the [scoring contract](../../../../.opencode/skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md); the follow-on links to that authority.
 - Rewriting unrelated manual scenarios, historical benchmark records, or the 011 wrapper/results schema.
 - Treating a missing TTY, missing optional host, trust prompt, or unavailable upstream event as a repository defect.
 
@@ -249,5 +249,5 @@ No design question blocks the follow-on. The implementation pass must confirm th
 | [`checklist.md`](./checklist.md) | Evidence-bearing acceptance checks for design, fixes, operator state, and zero-FAIL rerun |
 | [`implementation-summary.md`](./implementation-summary.md) | Design-authored state; remediation remains pending |
 | [`011-playbook-results-automation`](../011-playbook-results-automation/spec.md) | Predecessor wrapper/results contract |
-| [`scoring-contract.md`](../../../../skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) | Normative scoring authority used by the rerun |
+| [`scoring-contract.md`](../../../../.opencode/skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) | Normative scoring authority used by the rerun |
 <!-- /RELATED DOCUMENTS -->

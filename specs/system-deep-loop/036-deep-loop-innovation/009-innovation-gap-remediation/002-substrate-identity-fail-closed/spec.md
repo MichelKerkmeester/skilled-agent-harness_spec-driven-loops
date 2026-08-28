@@ -55,7 +55,7 @@ _memory:
 
 The program architecture calls for a typed append-only ledger behind a fail-closed transition-authorization gateway,
 followed by per-mode cutover only after evidence and rollback controls pass
-([`goal.md:25-29`](../../goal.md#L25-L29)). The shared gateway does not currently meet that identity posture. It calls
+([`goal.md:25-29`](../../scratch/goal.md#L25-L29)). The shared gateway does not currently meet that identity posture. It calls
 identity checking only when `identityResolver` is configured, treats a missing resolver or null resolution as no denial,
 and marks only positively pinned fields as verified
 ([`transition-authorization-gateway.ts:747-797`](../../../../../.opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts#L747-L797)).

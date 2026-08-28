@@ -110,7 +110,7 @@ The follow-on consumes the verified reconciliation as a frozen input. It repairs
 
 ### Contract Boundary
 
-The follow-on uses the [011 manual scenario wrapper](../../../../skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs) and [011 results contract](../011-playbook-results-automation/spec.md). It delegates scoring to the [scoring contract](../../../../skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) and does not clone that contract into scenario files.
+The follow-on uses the [011 manual scenario wrapper](../../../../.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs) and [011 results contract](../011-playbook-results-automation/spec.md). It delegates scoring to the [scoring contract](../../../../.opencode/skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) and does not clone that contract into scenario files.
 <!-- /ANCHOR:architecture -->
 
 ---

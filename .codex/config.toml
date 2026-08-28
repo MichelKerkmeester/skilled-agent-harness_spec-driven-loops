@@ -18,7 +18,9 @@ SPECKIT_RETRY_QUEUE_MAX_PENDING = "300000"
 [mcp_servers."system-spec-memory".tools.memory_match_triggers]
 approval_mode = "approve"
 
-# Keep this runtime aligned with the installed better-sqlite3 native-module ABI.
+# Keep this runtime aligned with the installed better-sqlite3 native-module ABI:
+# the built addon here is compiled for one NODE_MODULE_VERSION, and a launcher
+# started on any other Node aborts in dlopen before the daemon comes up.
 [mcp_servers.system_skill_advisor]
 command = "/opt/homebrew/bin/node"
 args = [".opencode/bin/system-skill-advisor-launcher.cjs"]
@@ -32,12 +34,16 @@ SPECKIT_ADVISOR_DOC_TRIGGERS = "true"
 SPECKIT_IPC_SOCKET_DIR = "/tmp/system-skill-advisor"
 SPECKIT_MAX_SECONDARY_CLIENTS = "64"
 
-# Pinned to Node 24, unlike its siblings above: the server bundles isolated-vm,
-# a native module built against the v24 ABI, and its package declares
-# engines >=24.0.0 <25.0.0. Launching it on v22 aborts in dlopen.
+# Unlike its siblings above, this server cannot run on just any Node: it bundles
+# isolated-vm, which has no Node 25+ build and segfaults at isolate creation
+# there. A segfault cannot be caught, so a wrong interpreter kills the whole MCP
+# connection on the first tool call rather than failing at startup. The launcher
+# reads the required range from the server's own package manifest and refuses to
+# start when the host cannot satisfy it, which keeps the requirement with the
+# package instead of with one machine's filesystem.
 [mcp_servers.code_mode]
-command = "/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node"
-args = [".opencode/skills/mcp-code-mode/mcp-server/dist/index.js"]
+command = "node"
+args = [".opencode/bin/mcp-code-mode-launcher.cjs"]
 
 [mcp_servers.code_mode.env]
 UTCP_CONFIG_FILE = ".utcp_config.json"

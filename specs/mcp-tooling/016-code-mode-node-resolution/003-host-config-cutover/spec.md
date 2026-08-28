@@ -22,7 +22,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-08-28 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -61,7 +61,9 @@ This is **Phase 3** of the portable Node resolution specification.
 
 Nineteen server registrations span six configuration files. Fifteen of them name the interpreter as `node` and work anywhere. Four name an absolute path, and they divide into two unrelated cases.
 
-Six registrations of code_mode name the pinned interpreter, and that pin is real but expressed as one machine's filesystem. Two registrations in the Codex configuration name absolute paths for the memory and advisor servers, and those are not real: the same two servers are registered as `node` in the other five configurations, and both were observed starting under the search-path interpreter. One of those two paths points into a Homebrew prefix that is wrong on an Intel Mac and on Linux.
+Six registrations of code_mode name the pinned interpreter, and that pin is real but expressed as one machine's filesystem. Two registrations in the Codex configuration name absolute paths for the memory and advisor servers, and those looked like accretion: the same two servers are registered as `node` in the other five configurations.
+
+Execution disproved that reading for one of them. Started under the search-path interpreter the advisor launcher aborts in `dlopen` — its `better-sqlite3` addon is built for a different `NODE_MODULE_VERSION` than that interpreter provides — while the same launcher under the Homebrew interpreter reaches its database and embedder. The Codex file's own comment already said to keep that runtime aligned with the installed addon ABI, and it was right. That dependency is also being rebuilt concurrently by other work, so its satisfying interpreter is a moving target.
 
 ### Purpose
 
@@ -76,7 +78,7 @@ Leave every registration naming either the launcher or the search-path interpret
 ### In Scope
 
 - The six code_mode registrations, repointed at the launcher
-- The two absolute paths in the Codex configuration for the memory and advisor servers
+- Verification of whether the two absolute paths in the Codex configuration are load-bearing
 - Verification that every registered server still attaches in the runtimes available here
 
 ### Out of Scope
@@ -105,9 +107,9 @@ Leave every registration naming either the launcher or the search-path interpret
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | No configuration names an interpreter by absolute path | A scan of the six files finds no absolute interpreter path |
+| REQ-001 | No configuration names an interpreter by absolute path for a server whose constraint the launcher can satisfy | A scan of the six files finds no absolute interpreter path for code_mode |
 | REQ-002 | Every registered server still attaches | Each server responds to an initialize request through its configured command |
-| REQ-003 | The two unconstrained servers are declared identically across all six files | The memory and advisor registrations name the same command in every configuration |
+| REQ-003 | A registration keeps an absolute interpreter only when execution proves it load-bearing | Each retained absolute path has a recorded A/B showing the server starting under it and failing without it |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -123,7 +125,7 @@ Leave every registration naming either the launcher or the search-path interpret
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Cloning the repository onto a machine that never saw this checkout leaves every MCP registration launchable.
-- **SC-002**: A scan for the author's home directory across the six configuration files returns nothing.
+- **SC-002**: Every remaining absolute interpreter path in the six configuration files is one that execution proved necessary, with the evidence recorded next to it.
 
 <!-- /ANCHOR:success-criteria -->
 
@@ -145,7 +147,7 @@ Leave every registration naming either the launcher or the search-path interpret
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether the Codex configuration has a reason to name absolute commands that the other five do not, beyond the accretion this phase assumes.
+- Whether the advisor's addon can be rebuilt to widen its ABI so its registration becomes portable too, which is a dependency question rather than a configuration one.
 - Whether any host caches a resolved command across restarts in a way that outlives the configuration edit.
 <!-- /ANCHOR:questions -->
 
