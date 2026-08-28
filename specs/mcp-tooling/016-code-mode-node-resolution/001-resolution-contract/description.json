@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/016-code-mode-node-resolution/001-resolution-contract",
+  "description": "The requirement is published in two places already: the server manifest declares `engines.node` as `>=24.0.0 <25.0.0`, and a postinstall check warns",
+  "keywords": [
+    "requirement",
+    "published",
+    "two",
+    "places",
+    "already",
+    "server",
+    "manifest",
+    "declares",
+    "engines",
+    "node",
+    "postinstall",
+    "check",
+    "warns"
+  ],
+  "lastUpdated": "2026-08-28T16:24:14.534Z",
+  "specId": "001",
+  "folderSlug": "resolution-contract",
+  "parentChain": [
+    "mcp-tooling",
+    "016-code-mode-node-resolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/016-code-mode-node-resolution/002-launcher-shim",
+  "description": "Host configurations currently name an interpreter directly, which is why they had to name an absolute one",
+  "keywords": [
+    "host",
+    "configurations",
+    "currently",
+    "name",
+    "interpreter",
+    "directly",
+    "absolute",
+    "one"
+  ],
+  "lastUpdated": "2026-08-28T16:24:14.534Z",
+  "specId": "002",
+  "folderSlug": "launcher-shim",
+  "parentChain": [
+    "mcp-tooling",
+    "016-code-mode-node-resolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "mcp-tooling/016-code-mode-node-resolution/003-host-config-cutover",
+  "description": "Nineteen server registrations span six configuration files",
+  "keywords": [
+    "nineteen",
+    "server",
+    "registrations",
+    "span",
+    "six",
+    "configuration",
+    "files"
+  ],
+  "lastUpdated": "2026-08-28T16:24:14.536Z",
+  "specId": "003",
+  "folderSlug": "host-config-cutover",
+  "parentChain": [
+    "mcp-tooling",
+    "016-code-mode-node-resolution"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

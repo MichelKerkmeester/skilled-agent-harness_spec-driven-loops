@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/016-code-mode-node-resolution/003-host-config-cutover",
+  "spec_folder": "mcp-tooling/016-code-mode-node-resolution/003-host-config-cutover",
+  "parent_id": "mcp-tooling/016-code-mode-node-resolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp host config cutover",
+      "mcp.json absolute node path",
+      "codex config toml node path",
+      "mcp registration parity",
+      "mcp cutover plan",
+      "host config parity design",
+      "mcp cutover tasks"
+    ],
+    "key_topics": [
+      "mcp",
+      "host",
+      "config",
+      "cutover",
+      "json",
+      "absolute",
+      "node",
+      "path",
+      "codex",
+      "toml",
+      "registration",
+      "parity"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "tasks.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Nineteen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Convergence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Codex",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Nineteen server registrations span six configuration files",
+    "created_at": "2026-08-28T16:11:21Z",
+    "last_save_at": "2026-08-28T16:24:37.986Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:04ff6ae7ec7a7eebba2c688b39a1b97cd5929da42004f14a71b33e991b4e8a37",
+    "source_doc_hashes": {
+      "spec.md": "c898800d7aa9412b7e7df2ec626ac9edd9b864a1e6153986a803e1685a3b9e61",
+      "plan.md": "b3507b18873aa90fde6b32d34555bc64bf6ddea1188c655140b5ec9f005d8038",
+      "tasks.md": "69d53e96decc3011075e54be4d68cd5944bcd7bfd10e3a062f9eebaf74fa80a2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

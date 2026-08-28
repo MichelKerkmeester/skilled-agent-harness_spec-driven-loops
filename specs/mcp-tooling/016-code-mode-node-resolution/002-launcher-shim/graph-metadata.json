@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/016-code-mode-node-resolution/002-launcher-shim",
+  "spec_folder": "mcp-tooling/016-code-mode-node-resolution/002-launcher-shim",
+  "parent_id": "mcp-tooling/016-code-mode-node-resolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code mode launcher shim",
+      "mcp launcher exec",
+      "orphan sweeper process identity",
+      "isolated-vm segfault guard",
+      "code mode launcher plan",
+      "launcher exec handoff design",
+      "code mode launcher tasks"
+    ],
+    "key_topics": [
+      "code",
+      "mode",
+      "launcher",
+      "shim",
+      "mcp",
+      "exec",
+      "orphan",
+      "sweeper",
+      "process",
+      "identity",
+      "isolated-vm",
+      "segfault"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "tasks.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Host",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Handoff",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Host configurations currently name an interpreter directly, which is why they had to name an absolute one",
+    "created_at": "2026-08-28T16:11:20Z",
+    "last_save_at": "2026-08-28T16:24:36.959Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:dd8ec7ae86ea2377efcae25dfd9102dcb771546a29ecaa3d8705602c8e8e193f",
+    "source_doc_hashes": {
+      "spec.md": "1e45fa015db1fc2eced46e182826eabec1577d5a133ba785665fa54e1fbb1cbd",
+      "plan.md": "1a25e792619380c16dfd3f7933a88ff6b6e035725dbe584f6f2c6d85360eaab7",
+      "tasks.md": "427489e8edbabd21bc15b41b59831514d660cc9382e1ec0983df4d0182ff6c33"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
