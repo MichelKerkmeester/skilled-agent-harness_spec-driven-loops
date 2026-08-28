@@ -72,103 +72,47 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.json",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/spec.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/plan.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/checklist.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/decision-record.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/implementation-summary.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/release-report.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/description.json",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json",
-      ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.md",
-      ".opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/checklist.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/decision-record.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "report.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.json",
-        "source": "derived"
-      },
-      {
-        "name": "release-report.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/release-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "report.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/benchmark/reports/2026-07-06--after-009--router/report.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark-report.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/benchmark/reports/baseline/skill-benchmark-report.json",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -236,11 +180,53 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The parity refactor can look correct at the router layer while still failing live design usefulness, procedure selection, proof discipline, anti-slop judgment, accessibility, hierarchy, interaction quality, polish, or md-generator preservation",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-07-06T05:47:25.939Z",
+    "last_save_at": "2026-08-28T15:53:02.017Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -251,14 +237,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:284368a407b2a2c6f8d2708a1b9e06da0d456437a685e4a80c00f846f4df057d",
+    "source_fingerprint": "sha256:7b17f1bc9e14b080ef0a6651fa3dccefb6a3ea6280abde0bbeb3c5e075a0b58f",
     "source_doc_hashes": {
-      "spec.md": "de8cf6bf1d5adb5f04fa45a34554ee01c7f7066f51a7377d6ca85f6875e05077",
-      "plan.md": "057bbf144533ce3fa45ace5b60c9545af4b3623b3f305e3c431ea144ad1eef42",
-      "tasks.md": "e0dcd6b3e24e3df372ecaecebcb7052cfb3014ee1016e7450327073b9ee4c94b",
-      "checklist.md": "428d6a8a163c338f9128d251977c63a541411cc27604d328cbc00489c71e19cf",
+      "spec.md": "3acc9aa3fc19f3797225100efa4e69c020834f71a38ddfd947a7354f98a3527f",
+      "plan.md": "4c2e521eaa2fd8625fc69d9bbeaccb6ec5594ef37e36d574f086ffe99df8ca0e",
+      "tasks.md": "034d08cc45a552cd9dcf20df506501185cee8092dc973877bbd66cb772d25d65",
+      "checklist.md": "50b989b9a65e3185e8c763c3638c48c7b39de67860ae5b53351eaf72d9c1fd60",
       "decision-record.md": "f22c093313c06a750e18016c29634318faf8b84f8fa5b7c90c51b9160bffec3b",
-      "implementation-summary.md": "3b4f887bc4ee108003ac5e20629abef206dca4d22046032b450ab8afa249de54"
+      "implementation-summary.md": "e195a40bcdaa14f317d7db9039eb0be29182fbe43b9bf08534a3543d677635b5"
     },
     "last_active_child_id": null,
     "last_active_at": null

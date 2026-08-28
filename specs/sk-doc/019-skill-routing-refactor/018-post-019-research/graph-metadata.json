@@ -190,6 +190,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Problem Statement Packet",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 019 surfaced high-value questions about fleet-wide routing decomposition, confidence calibration, leaf-use telemetry, route-budget selection, and fixture generalization, but did not settle them with operational evidence",
     "created_at": "2026-07-25T07:41:40.340Z",
-    "last_save_at": "2026-07-25T07:49:56.060Z",
+    "last_save_at": "2026-08-28T15:53:20.853Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,9 +221,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c3a56fba4b98bce72e2e0ef18015752009e6c984203d607df7e06610646732b9",
+    "source_fingerprint": "sha256:484218ab799b4e3b14f7f0f470e7f70117c6e5b247ba3caf107ab8e2480fd4dc",
     "source_doc_hashes": {
-      "spec.md": "1ad1a56a654c4720d424d871f037fd0122e85909990fb10064107db89525c7cf",
+      "spec.md": "faf4c9c63de2a938b2219f69deafd865e6f6377ec464f956943f4415bdf425e9",
       "plan.md": "d41371b20a8d7ca105b65265d5921b6f66f84bdce3ec251ccbfe39ec97a60402",
       "tasks.md": "7b91df5106449fe85f2718fab6b0c7981d353b8c5db53f38092bc18f8ef7ab02",
       "checklist.md": "1b4ef8f38e06118dd655059f698e00f89518eee15e42682d64205d3ebda17286",

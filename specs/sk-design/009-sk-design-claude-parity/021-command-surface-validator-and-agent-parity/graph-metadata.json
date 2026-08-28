@@ -41,13 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
-      ".opencode/skills/sk-design/command-metadata.json",
-      ".opencode/skills/sk-design/feature_catalog/feature_catalog.md",
-      ".opencode/agents/design.md",
-      ".claude/agents/design.md",
-      ".opencode/skills/sk-design/SKILL.md",
-      "feature_catalog/feature_catalog.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -55,36 +48,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "design-command-surface-check.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/shared/scripts/design-command-surface-check.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "command-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/command-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/feature_catalog/feature_catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "design.md",
-        "kind": "doc",
-        "path": ".opencode/agents/design.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -198,11 +161,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 020 deep-research audit (`../020-drift-and-improvement-audit/research/research.md`) found `design-command-surface-check.mjs` reporting `STATUS=INVALID STAGE=metadata` with 10 errors, attributed to `:auto|:confirm` modeled as a flag and missing `design-mcp-open-design` sibling coverage",
     "created_at": "2026-07-07T09:58:04.406Z",
-    "last_save_at": "2026-07-09T10:02:44.560Z",
+    "last_save_at": "2026-08-28T15:53:06.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e75aed24616854acfea4273912b568a60188a375c3c21c6e2c84ca28b88866a6",
+    "source_fingerprint": "sha256:fe2f9dc61fd9cc5069d9449d598273d8459cbaf663200cc0615e11ceb431e9c8",
     "source_doc_hashes": {
       "spec.md": "bbb12e0783a1df39f7fd2cf3182c2768170f209de88e02e20790612a8d68e8e8",
       "plan.md": "b61b0824f723a046d9901291ff2c2652e5ad502fbdadab743eae70a8a698bd8b",
       "tasks.md": "ca3e3a3bfc22b2f88bb2377e3e38fd87bc8ea0a344e61aade77884a09e52901a",
       "checklist.md": "7e879675b519e2812262c4ac4af0a351daba9442ea135035fa8e4acd18612046",
-      "implementation-summary.md": "26956ba8fd4ee6ddb74faee971b9c1e622374f338f2140e508c7826dca375a77"
+      "implementation-summary.md": "83d24bff72c8771e50f4b377c0ccb10151e3c6112abc615246545bf0eba7d325"
     },
     "last_active_child_id": null,
     "last_active_at": null

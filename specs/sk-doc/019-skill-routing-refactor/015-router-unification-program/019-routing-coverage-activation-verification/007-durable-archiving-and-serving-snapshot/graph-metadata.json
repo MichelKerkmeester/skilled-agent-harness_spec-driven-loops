@@ -44,8 +44,7 @@
       "implementation-summary.md",
       "checklist.md",
       "tasks.md",
-      "plan.md",
-      ".opencode/skills/sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md"
+      "plan.md"
     ],
     "entities": [
       {
@@ -76,12 +75,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark-storage-guide.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Compiled-routing evidence is neither durable, joined, portable, nor safely archived: a run can silently overwrite or vanish, no single artifact answers \"what is this hub's compiled-routing state right now,\" reports carry a stale absolute path the moment they are copied anywhere else, and nothing stops a future archive run from being generated against a `006` shadow candidate instead of the actually-serving `010` manifest — which would archive a decision that was never live",
     "created_at": "2026-07-20T21:51:37.595Z",
-    "last_save_at": "2026-07-24T12:11:49.093Z",
+    "last_save_at": "2026-08-28T15:53:18.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +204,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:544f9bcf53ce4dce75dd06edfd8a013ba2d082200eca5ce7efcdeef9d6061171",
+    "source_fingerprint": "sha256:8aa5011a70dd39fbbf992021617e83a6251b2d5b768ac6a726167ac09d979cae",
     "source_doc_hashes": {
-      "spec.md": "4b5e4dd3c848652e1f0d848cc785c359e16ee2b35ac2e789271d5f958fc9378a",
-      "plan.md": "76891d1b55e51abd7e227055bd5ea4471e658ee36016cfd6b9efc53edd72f4c3",
+      "spec.md": "eabcaa530d6bf2c0c3082d4db18b15022389fc2685eb5fdd64dfb1ba88f7424e",
+      "plan.md": "e08ead2a2c41f5de7af4e72f397e288c7b52ac6396710cc291e7c0dae605bb4a",
       "tasks.md": "a84eb261ed4c15e01358a32c398f08d8f6aaaeb6fe4d5db98aad761a817dea52",
       "checklist.md": "6436581bbef609af806a32de69c7b2e9ba08dd23c83be1a92b03a8adb1a8d8c0",
       "implementation-summary.md": "460d40f63425ec2241c4c78fb16fc28dfe4b115e86bc3946eb2f67b82f01280e"

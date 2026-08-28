@@ -34,13 +34,20 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "handover.md"
     ],
     "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -66,9 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "handover.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -178,17 +185,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "root",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Close the three rename-fallout follow-ups the LUNA review surfaced: a stale pre-rename test import, sk-doc compiled-routing drift, and the blocked strict-validation dist.",
     "created_at": "2026-07-29T16:39:37.878Z",
-    "last_save_at": "2026-07-29T16:39:37.878Z",
+    "last_save_at": "2026-08-28T15:53:22.073Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,15 +197,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
-    "source_fingerprint": "sha256:022ee08c69fb69d43da5ee8f9c7628103b3d66b94a77612089cb0c1c20a7e207",
+    "source_fingerprint": "sha256:b14831fe1b455ecca7414a1b18fbf8ec23c02ed2f595c729c34f9f2804128a03",
     "source_doc_hashes": {
       "spec.md": "e06b284bbd6f2dafacf419bcd3c4e9ef984d3bd8afaa87af26505adc1424a7e2",
       "plan.md": "c0bc00f1f8bca61f806e639f672c59996689e5fcb7cb47e454e1f6f99d88e812",
       "tasks.md": "a05fea2d9f1edf08767272b0dc1b4ffbdc0707a0d3c42098c89c8fcce88260fa",
       "checklist.md": "fb93bc617c860b16975525e81029de4fec2826488c59618d989c11aacbde8e15",
-      "implementation-summary.md": "6826ae62ba10cb75cca084dde47052754d5fb5952010180e32ae5f8c0c93a20f"
+      "implementation-summary.md": "6826ae62ba10cb75cca084dde47052754d5fb5952010180e32ae5f8c0c93a20f",
+      "handover.md": "2746db7c74ab31ca78ea654529cf6fe71433f1a0c2760c0dd303b78262a2a0a5"
     },
     "last_active_child_id": null,
     "last_active_at": null

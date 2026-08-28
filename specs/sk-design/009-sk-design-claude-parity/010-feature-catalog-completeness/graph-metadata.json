@@ -45,22 +45,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-design/design-foundations/feature_catalog/03--procedure-cards/foundations-procedure-card-inventory.md",
-      ".opencode/skills/sk-design/design-motion/feature_catalog/feature_catalog.md",
-      ".opencode/skills/sk-design/design-motion/feature_catalog/02--build-cards/motion-fill-in-cards.md",
-      ".opencode/skills/sk-design/design-motion/feature_catalog/03--procedure-cards/motion-procedure-card-inventory.md",
-      ".opencode/skills/sk-design/design-audit/feature_catalog/feature_catalog.md",
-      ".opencode/skills/sk-design/design-audit/feature_catalog/02--ai-tell-catalog/ai-fingerprint-tell-catalog.md",
-      ".opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md",
-      ".opencode/skills/sk-design/design-md-generator/feature_catalog/08--procedure-cards/md-generator-procedure-card-inventory.md",
-      ".opencode/skills/sk-design/design-md-generator/feature_catalog/feature_catalog.md",
-      ".opencode/skills/sk-design/graph-metadata.json",
-      ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/skills/sk-design/feature_catalog/feature_catalog.md",
-      ".opencode/skills/sk-design/shared/procedure_card_schema.md",
-      ".opencode/skills/sk-design/design-interface/feature_catalog/feature_catalog.md",
-      ".opencode/skills/sk-design/design-foundations/feature_catalog/feature_catalog.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -91,66 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "foundations-procedure-card-inventory.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-foundations/feature_catalog/03--procedure-cards/foundations-procedure-card-inventory.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature_catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-motion/feature_catalog/feature_catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "motion-fill-in-cards.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-motion/feature_catalog/02--build-cards/motion-fill-in-cards.md",
-        "source": "derived"
-      },
-      {
-        "name": "motion-procedure-card-inventory.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-motion/feature_catalog/03--procedure-cards/motion-procedure-card-inventory.md",
-        "source": "derived"
-      },
-      {
-        "name": "ai-fingerprint-tell-catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-audit/feature_catalog/02--ai-tell-catalog/ai-fingerprint-tell-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "audit-procedure-card-inventory.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-audit/feature_catalog/03--procedure-cards/audit-procedure-card-inventory.md",
-        "source": "derived"
-      },
-      {
-        "name": "md-generator-procedure-card-inventory.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/feature_catalog/08--procedure-cards/md-generator-procedure-card-inventory.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "procedure_card_schema.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/shared/procedure_card_schema.md",
         "source": "derived"
       },
       {
@@ -206,11 +131,71 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Coverage Inventory",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Read",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Planned Catalog Package Layout",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Only one of the six `sk-design` packages — `design-md-generator` — has a `featurecatalog/` package (`design-md-generator/featurecatalog/featurecatalog.md`, 7 categories)",
     "created_at": "2026-07-06T04:35:22.460Z",
-    "last_save_at": "2026-07-09T10:02:44.489Z",
+    "last_save_at": "2026-08-28T15:53:03.203Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:91565a702a08ba839d29fb68c68be8e5168bb560405f190d7116c48fa8578df0",
+    "source_fingerprint": "sha256:299af75f71930a1aa07a180b8493c328dfdb4528f677e472c588a9b620b92ab9",
     "source_doc_hashes": {
-      "spec.md": "b40caca682569a46ef5a103d97072c056fedd54f4997d30653c976a36b0475d4",
-      "plan.md": "9cc7a884bb20799d83a37d3f05b42bf8db6ccdcc7a6c2bdbff812b4709846698",
-      "tasks.md": "68502dfc022a915dd8520eb099ee9b0f3afe92424e8e6ec4e1bc56b0bfc47b80",
-      "checklist.md": "c485db9ea29aa84b91fed6a9109f9592f9cb0833fdfc1a156bcd9d3b2a00993b",
-      "implementation-summary.md": "2024aca77f383be8adb7693d77783af85b0873667da45201f2d868fa03530946"
+      "spec.md": "5f8873f4884f6c605a74486e2a1190728ef9257d5675de0ea08bc2790c0f6f65",
+      "plan.md": "417e19aed8ac9268a5322d49e6176f15241dfca2a9c60ec88ae3156609291581",
+      "tasks.md": "bf3cc38803cdb5c1d650d0592f51cb0b5df3202ef6a845d63ca1649ce6ac6f18",
+      "checklist.md": "1710fc668021a823d61d0a8756ad56641daf3deadf20abd58357b3599b74c675",
+      "implementation-summary.md": "344f2220438250a748c4ed0839e3c99ddc15fb0e9fc8b22c8ec5b37e9cce0a35"
     },
     "last_active_child_id": null,
     "last_active_at": null

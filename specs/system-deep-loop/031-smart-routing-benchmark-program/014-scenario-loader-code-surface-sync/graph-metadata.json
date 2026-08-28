@@ -41,13 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/spec.md",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/plan.md",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/tasks.md",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/checklist.md",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/implementation-summary.md",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/description.json",
-      ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/graph-metadata.json",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -58,43 +51,31 @@
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/checklist.md",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/system-deep-loop/031-smart-routing-benchmark-program/014-scenario-loader-code-surface-sync/graph-metadata.json",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -198,11 +179,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Lane-C benchmark parses each playbook scenario's expected-resource gold (and, in live mode, the model's observed resource reads) with path-extraction regexes that recognized only the `references/`, `assets/`, and `../shared/` prefixes",
     "created_at": "2026-07-05T18:53:23.765Z",
-    "last_save_at": "2026-07-16T16:33:17.225Z",
+    "last_save_at": "2026-08-28T15:53:24.751Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04587926dda141665ff3588bef0fe1bbba3b056d1cc0f5f4576dda109d53b46a",
+    "source_fingerprint": "sha256:57cdd4a23b709ddcc849976c4f0344961c0725e0b828a5278eb1ed24db4d6fd4",
     "source_doc_hashes": {
       "spec.md": "e2ec948a4218de71b33466ad4297efe7eb04e836ae3364def2b19d90096ef6c9",
-      "plan.md": "c62486d1b967245099b66a291bc18ece114cfbddca3eb1566372cd8aa2246b97",
-      "tasks.md": "4d2762d734b46b230ed082f78090a3418ff7fde1735f53999f3ad1f2d131d573",
-      "checklist.md": "33670933ed1d0a5342150a6f2a4d8288fed3903df2c68d1bcbd45fa4b574970d",
-      "implementation-summary.md": "6fd9dd4bd59f0a1844d29ff238f01b138b1bf0ad80a98835f1e8fd45b14f3146"
+      "plan.md": "434e8e710f0498ac492828e4bdc8fde3453bcca1cf711c1b872773d101b7479f",
+      "tasks.md": "589566d66c9476cfaf62bac3242d9bf25b4e9d25e5b5d62031df4026879b5a7b",
+      "checklist.md": "a812cba14d5c8487051c142741e0b025fc4f654d5191aa8c687ba2b87401d833",
+      "implementation-summary.md": "b254590715d1b653d6bb3c21e04debf2f1654cef0554f4b8afd8600e178c56d5"
     },
     "last_active_child_id": null,
     "last_active_at": null

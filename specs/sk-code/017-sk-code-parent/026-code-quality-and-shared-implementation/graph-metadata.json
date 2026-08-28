@@ -41,19 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/hooks/README.md",
-      ".opencode/agents/code.md",
-      ".opencode/skills/sk-code/shared/README.md",
-      ".opencode/skills/sk-code/code-quality/SKILL.md",
-      ".opencode/skills/sk-code/code-quality/README.md",
-      ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-code/manual_testing_playbook/09--tooling-and-hooks/comment-hygiene-hook.md",
-      ".opencode/skills/sk-code/manual_testing_playbook/09--tooling-and-hooks/check-dist-staleness-hook.md",
-      ".opencode/skills/sk-code/mode-registry.json",
-      ".opencode/skills/sk-code/hub-router.json",
-      ".opencode/skills/sk-code/graph-metadata.json",
-      ".opencode/specs/sk-code/017-sk-code-parent/graph-metadata.json",
-      "shared/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -61,60 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/hooks/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "code.md",
-        "kind": "doc",
-        "path": ".opencode/agents/code.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-quality/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "comment-hygiene-hook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/manual_testing_playbook/09--tooling-and-hooks/comment-hygiene-hook.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-dist-staleness-hook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/manual_testing_playbook/09--tooling-and-hooks/check-dist-staleness-hook.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/graph-metadata.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -204,11 +137,65 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Severity Promotion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optional Catalogs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sibling research packet `025-code-quality-and-shared-research` ran ten capped-converged deep-research iterations and produced a ranked, owner-bounded backlog of five upgrade proposals for the `sk-code/code-quality` sub-skill and `sk-code/shared` assets",
     "created_at": "2026-07-07T00:00:00.000Z",
-    "last_save_at": "2026-07-09T10:02:44.224Z",
+    "last_save_at": "2026-08-28T15:53:00.192Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a75f155987039c24d811c163631df25485592b7a64c19304577643634ac7cedd",
+    "source_fingerprint": "sha256:89aacff7280eeefc180d334a9c565a1229a379c20da74b9481b394b8634207e6",
     "source_doc_hashes": {
-      "spec.md": "8a6528fdb1f1d64a7cc6097e0b3b11466d9d5bc85c5c15c0c6dc7e9c914c75df",
+      "spec.md": "433a61969f69644fd5f69fb93a6102aa3d4b24909609c7cc7057f77f380b1a20",
       "plan.md": "159161ab57d90a4a52dbb84b03bcebe13136300c5ca92dc7e8a56729efec6ed5",
       "tasks.md": "ac27d6357030bd8efc87fdf5d12fb8ad8bc33074ed2fa83c35e9dab9ed0b4ac0",
-      "checklist.md": "bc8ff5fa5c1c73f4aec522721fb9f1d4b722af97db208adbfc3faedb92e2fa69",
-      "implementation-summary.md": "eaad1ebe085e72e4d84c941567ba12ab50dedde9c8da63dfac62eb90a35927b8"
+      "checklist.md": "09fe2369494511f2ac269a3ef781760c6b72ff4d50714d42dd25b96412f40fbd",
+      "implementation-summary.md": "5e804ae664e96123729d5d88ba37829f5517aa74254695327820f29ccb08aeb8"
     },
     "last_active_child_id": null,
     "last_active_at": null

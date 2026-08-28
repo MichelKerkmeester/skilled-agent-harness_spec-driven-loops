@@ -211,7 +211,7 @@
     ],
     "causal_summary": "`sk-git` carries a standalone authored `INTENTSIGNALS`/`RESOURCEMAP` router, but the rollout program has no target-local compiled policy, typed scorer fixtures, or fenced rollback proof for it",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-07-24T12:11:55.601Z",
+    "last_save_at": "2026-08-28T15:53:14.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,9 +221,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18a47fe3c8020a17b9c0a5edc0d8d167dfa3c70c5142205bd29e1fc30227c898",
+    "source_fingerprint": "sha256:88597418a77305ab30a710a5b51d49389771cd5c56bdbd710e20011bf1d254a1",
     "source_doc_hashes": {
-      "spec.md": "6570938bcc40536661ff0a021da65683afcd4af7178f587e93175439cbbfd489",
+      "spec.md": "d3c9b216a9c57224b304234d27629b916a386f5376fc3cc986a3ec3ac93d6574",
       "plan.md": "0ab9d79822c013d9694a3bddf8ffd7a31f311d5cac85ccd7ce1253b389b5658a",
       "tasks.md": "2aa32d09312fbf93223ccd98d74ed75a9fd1a00ff0ef083f8d6a8a97856406bd",
       "checklist.md": "8320fb36ab62fc70d987a429957c73d3a122a3a5e344ffe4e775016839101962",

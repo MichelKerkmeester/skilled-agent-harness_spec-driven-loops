@@ -45,56 +45,37 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/spec.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/plan.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/tasks.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/checklist.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/implementation-summary.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/dispatch-log.md",
-      ".opencode/skills/sk-design/manual_testing_playbook/05--shared-reference-base/hub-routing-only.md"
+      "checklist.md"
     ],
     "entities": [
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/implementation-summary.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/plan.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/tasks.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-log.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/007-shared-base-and-parity-core/dispatch-log.md",
-        "source": "derived"
-      },
-      {
-        "name": "hub-routing-only.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/05--shared-reference-base/hub-routing-only.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,11 +179,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Executed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 023 (full manual playbook execution) requires every `manualtestingplaybook` scenario to be dispatched for real through `cli-opencode` with the raw scenario prompt, not the Lane C harness's routing-analysis-only wrapper, and graded against that scenario file's own Pass/Fail Criteria",
     "created_at": "2026-07-07T15:11:26.139Z",
-    "last_save_at": "2026-07-09T10:02:44.611Z",
+    "last_save_at": "2026-08-28T15:53:11.184Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,10 +205,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e6df86019d30ef443b4f293b4d73bf79bfc9b460b58a0d25b82d10ba52c07a51",
+    "source_fingerprint": "sha256:172e6b7113b174548866fa001fa55844a3d7c77d73e10c844d327f37e1e4b881",
     "source_doc_hashes": {
-      "spec.md": "d8c3c84e7ff7946f10b398a97b802d0a7c60a93b8f4cd090770e6ee515d232a1",
-      "plan.md": "1016a198d41f4f0b78429a529bbf65c5a51223a2f268d81842189b992ac53abf",
+      "spec.md": "91bb0c9ebca370c7c334e0bb01b8fe8ba65e2391da015872e2bb3678c9a1b1da",
+      "plan.md": "fcca035a5300892105d1421d97ab220a8bdd8987bdb3d2688faded1c4afd0477",
       "tasks.md": "eaee187cc7b3d65e378fadac95eaadb796035d88de8134fc8096ecc68bc89ff2",
       "checklist.md": "c06195864112c54a4abde9a0cd73cb979c3c5da36ca86a6c9ccdc84f399045a6",
       "implementation-summary.md": "4382ebe70c610e0930604c80deeba74c267ba56235bb92d1ab7a1d7bbaa94335"

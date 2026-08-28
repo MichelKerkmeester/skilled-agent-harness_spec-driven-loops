@@ -45,8 +45,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/positive-design-controls.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "positive-design-controls.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/positive-design-controls.md",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`AI-001: Positive Design Controls` defines a single 6-probe battery (P1-P6) verifying that the advisor picks the single public `sk-design` identity — never a child mode as a separate identity — for every positive design-family prompt, and that the hub then resolves each probe to its documented `workflowMode` and packet",
     "created_at": "2026-07-07T15:17:02.203Z",
-    "last_save_at": "2026-07-09T10:02:44.590Z",
+    "last_save_at": "2026-08-28T15:53:09.630Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +205,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5963ab6f7b4f4e9d61bcc309df4e6cb0240b0348f495dc7b620946244c5fa02d",
+    "source_fingerprint": "sha256:7d6c6c9d8ec59ca2eb77f13445b0d0f4c1687178ce9ee4addad5b8a3fb62c883",
     "source_doc_hashes": {
-      "spec.md": "027e9e214bb815b61cfd73b728b891b611630dd1221043f0d4cb625a782843fd",
-      "plan.md": "b4ce6dfb282da2731310d607322b90ba0775a6939f3874b062cd8d70a4d5a3a0",
+      "spec.md": "31ffaf6d9310da512226873da32e3c694974994556bef2c580248fcfba31629b",
+      "plan.md": "999e029892aa4cd450e9b9a272b3d8d8d3d102d4994d198acf6864aedf9564f5",
       "tasks.md": "fe0ee130e0c3fed3507ebaca28ed4b1df7259aa25034151a5c490d5d1db98d94",
       "checklist.md": "28210780fb52fe134c1743d42bfa807235d169fef428d96862ddbe365efc59e3",
       "implementation-summary.md": "dc09997845a9b7a9b2997807d5331ea1d67decad33469c59de8d48fdc24006fc"

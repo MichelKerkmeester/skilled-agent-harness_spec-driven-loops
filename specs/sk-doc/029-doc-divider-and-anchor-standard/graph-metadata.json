@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "029-doc-divider-and-anchor-standard",
-  "spec_folder": "029-doc-divider-and-anchor-standard",
+  "packet_id": "sk-doc/029-doc-divider-and-anchor-standard",
+  "spec_folder": "sk-doc/029-doc-divider-and-anchor-standard",
   "parent_id": null,
   "children_ids": [],
   "manual": {
@@ -9,18 +9,219 @@
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "section divider standard",
+      "readme toc anchor convention",
+      "numbered h2 divider drift",
+      "doc structure reconciliation",
+      "validate_document divider enforcement",
+      "divider anchor plan",
+      "validate_document enforcement plan",
+      "fleet normalization plan",
+      "doc standard reconciliation plan",
+      "divider anchor tasks",
+      "fleet normalization tasks",
+      "validate_document tasks"
+    ],
+    "key_topics": [
+      "section",
+      "divider",
+      "standard",
+      "readme",
+      "toc",
+      "anchor",
+      "convention",
+      "numbered",
+      "drift",
+      "doc",
+      "structure",
+      "reconciliation"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"],
-    "entities": [],
-    "causal_summary": "Reconcile the numbered ALL-CAPS H2 section-divider convention and the TOC/anchor navigation convention across the structured .md documentation fleet, and close the validator enforcement gaps that let both drift",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "decision-record.md",
+      "research.md",
+      "checklist.md",
+      "scratch/fix_dividers.py",
+      "scratch/census.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "fix_dividers.py",
+        "kind": "file",
+        "path": "scratch/fix_dividers.py",
+        "source": "derived"
+      },
+      {
+        "name": "census.py",
+        "kind": "file",
+        "path": "scratch/census.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose One",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Table",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two documented conventions are unenforced and have drifted across 8,620 structured `.md` files",
     "created_at": "2026-08-13T06:06:24Z",
-    "last_save_at": "2026-08-13T06:06:24Z",
+    "last_save_at": "2026-08-28T15:53:23.574Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research.md"
+    ],
+    "source_fingerprint": "sha256:ccda31cd235aae77e6583547d0c81d9e50e82f19e3c51a9de163078cb64e78bd",
+    "source_doc_hashes": {
+      "spec.md": "a8b1989619ab405f0dce7c140b52a00560af5b887ca3a672c4428b1ee7874772",
+      "plan.md": "89777bca884c473b450645c10a5682bc17c8860ef6542517c4303b4d03f64d29",
+      "tasks.md": "d8e7029c00290fd1fcd3bf57a05110ebdf0b6dba889fe808cdac50bb48e432d5",
+      "checklist.md": "d57384cf6588be417e4eac468ebd4a0f7a861b4dedaa8b8a5b37a8af96175d70",
+      "decision-record.md": "eaa2ee31921b9313ca917a2b4faf5acaf5bca9fcd5cf663b45d1c3b20f480787",
+      "implementation-summary.md": "e89f35b693b5d1cac6506720901c482366f03c23b7eaae156c80e2892f81f80a",
+      "research.md": "de58e2c466174daa4b0a5630e96e624606f5307baa5feb356a492ff770c67005"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

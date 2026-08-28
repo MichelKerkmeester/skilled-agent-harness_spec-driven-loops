@@ -40,12 +40,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-design/design-interface/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-design/design-foundations/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-design/design-motion/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-design/design-audit/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-design/design-md-generator/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -53,12 +47,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -196,11 +184,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design hub and mode-packet manual testing playbooks did not fully exercise behavior added by earlier parity-refactor work:",
     "created_at": "2026-07-06T04:31:56.870Z",
-    "last_save_at": "2026-07-09T10:02:44.493Z",
+    "last_save_at": "2026-08-28T15:53:03.628Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f2f79147367c01520cdff0489c0674cc41ebe1ce374bf49b7ab56424c2e899b",
+    "source_fingerprint": "sha256:ef071f61c6811a610c352c5613155784c45eb664354415868c5ec69ffd5a1049",
     "source_doc_hashes": {
-      "spec.md": "d1e5a2b2e4f48b196e2f6d56e13e217d2fbcb02da967dd84540757c77db5c940",
-      "plan.md": "145bab2be227261eb0e0b7db265193acfdcad09e93d3db556d7a6a9654742094",
-      "tasks.md": "c77f2d90336fb856d7b3e92938cda40168556ed8d88f551a8f0b295c4b763532",
+      "spec.md": "60990b4935ebe2670a9f06322ca2fe026e63996804f45f8ff733d235172c4c99",
+      "plan.md": "b8115f400b91e2d42c590830bc81326a48111433a6a5667b0ff8598db3249268",
+      "tasks.md": "f2ec1f6f2edae4c9fe26bd00e6c2cd7233fe37c24c9a661bc0cc9a0dc98c498e",
       "checklist.md": "73eb3b11ce4e665758066bde11bdfa2b1a3fdc24948908c1bec8856d99778456",
-      "implementation-summary.md": "f863d885ba4bf87216d0dad2b1d9e82e50283b4c41d94e1b6fdbe0618d70e6a6"
+      "implementation-summary.md": "094c17632312c11786f5a103ca61bc4e186afe98b25c38154bd84cd10983da23"
     },
     "last_active_child_id": null,
     "last_active_at": null

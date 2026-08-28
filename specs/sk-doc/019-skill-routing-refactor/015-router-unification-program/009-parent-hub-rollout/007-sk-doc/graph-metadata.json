@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Compile the authored sk-doc documentation hub into the frozen router contract, exercise its exact ordered bundle and negative outcomes through the shared projector and real scorer, and retain legacy authority behind a fenced rollback path.",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-07-24T12:11:54.309Z",
+    "last_save_at": "2026-08-28T15:53:14.570Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,9 +212,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31e008c5797da374cb370af3ceeb983cab753e4d966b8fbe0d2110373172c37b",
+    "source_fingerprint": "sha256:d29390662a5641d912e98ee5b8fe877061c5bc0cfa7f645c48031db45786d133",
     "source_doc_hashes": {
-      "spec.md": "1c551de60c4a0843cd2827a6cc830bd2ec350eab8d570237ecd8fcc662654f99",
+      "spec.md": "8cbe51daa22adaa3a380cc1ccce9b5f6def3b0fe2097c174453203842f4e86f0",
       "plan.md": "16c711da9ede730911c3738ecfab3ce1b8e84d5857c483b43736e23570ce7fad",
       "tasks.md": "9f0295b6e5ae296aed36b0c401431fa9315e433af7bde3ffce164e5b98e5c9da",
       "checklist.md": "f9f28e48785fe7f739c455199ed4f884dd4770b918dcdea13bfa694a2c68a9c0",

@@ -41,10 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
-      ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json",
-      ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.md",
-      ".opencode/skills/sk-code/benchmark/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -52,30 +48,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark-report.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark-report.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/benchmark/README.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -98,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -195,11 +173,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optional Catalogs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold — the references and assets a correct route should load for each prompt",
     "created_at": "2026-07-05T19:09:55.824Z",
-    "last_save_at": "2026-07-09T10:02:44.206Z",
+    "last_save_at": "2026-08-28T15:52:58.674Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:84fd624df903bfdb5fa235c5bf05cab0ede99d8555b2077325e9fa5b1d794a01",
+    "source_fingerprint": "sha256:a4cffd03bff243e186eaefc87ea89ae9c31322fac2db0868cf2fb32577848839",
     "source_doc_hashes": {
-      "spec.md": "b7b08c85224d78c73403493fe7007d151178f16940cac93f27b16967423f1e7f",
-      "plan.md": "df13be5a73304775d50bbfa09d0b4e5300a78bc27deeeceb047fc260908c5f2b",
-      "tasks.md": "45b9feab9a087b0b2593f9bea79a8ace8a5872737baa2c230f199f00630a6afe",
-      "checklist.md": "e93ea4d1ffafa4b571531adbeceff1a8e03bdf308e15a6aff7974d77e5a3299c",
-      "implementation-summary.md": "fa5432d7f27fe75174936df1678fc28bf1e29ae63765c29c8dd4d7057b33171e"
+      "spec.md": "4c4bad5a9f2ff90f51029e45d9cb9c1f1ac30e3771977ee43cb34e534084288c",
+      "plan.md": "8172d8bbb8c9482e0b5c9bedf5ec69cf2c22f562e708dcc9807ad96505639d5c",
+      "tasks.md": "8a2a65f7fed580cf209eb0c56456aa173c00ca7984beaaf4ea709c14e7cd6b6b",
+      "checklist.md": "3e15b80fd9cb2a73b49b0e02552456d3d92ad7d2da6c07a821ba5fe38e0be8b2",
+      "implementation-summary.md": "4836abd46e9738210b9b08e60c4ea67e084e01f6a51eb04c879b31e5c488eea4"
     },
     "last_active_child_id": null,
     "last_active_at": null

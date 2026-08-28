@@ -41,11 +41,6 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-code/code-review/scripts/check-rule-copies.js",
-      ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md",
-      ".opencode/skills/sk-code/code-review/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-code/benchmark/README.md",
-      ".opencode/skills/sk-code/code-review/SKILL.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -53,36 +48,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "check-rule-copies.js",
-        "kind": "code",
-        "path": ".opencode/skills/sk-code/code-review/scripts/check-rule-copies.js",
-        "source": "derived"
-      },
-      {
-        "name": "opencode-config.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-review/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/benchmark/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-review/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -196,11 +161,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bearing Verification",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The restructured hub had never been benchmarked or reviewed as a family",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-07-09T10:02:44.144Z",
+    "last_save_at": "2026-08-28T15:52:57.176Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:edde3938459f56adc31926f22ccb746b66caf6773960d5604edfd3a68730e0b7",
+    "source_fingerprint": "sha256:e184ae8b186e068e657532f1d76e215d91d73c8438ea2bec74502f5ffe0c7590",
     "source_doc_hashes": {
-      "spec.md": "9a6fbfd294b60ee5c6e6b7399d54143797f4d98898bdc1bfbd777f154fae2b59",
-      "plan.md": "20392d808a26aff4234465a26ef5d8be1499b7a39d64b83f7d8f03144d2d449d",
-      "tasks.md": "0b0ac12a5ae254b6489d6195917cb4b10c7d988184c6a8c5b707bf3ed25d0ed5",
-      "checklist.md": "8f12d2ee15b78f4855b8114841ce3fc02c3b02959e096d1338ec1eeac693d6b3",
-      "implementation-summary.md": "ce0bfcde119995c3a0c46f8b7b175977bf1208efcacc5d4f4b480f6d0a2cb660"
+      "spec.md": "52fc0891aa7e45df8e83d6862ca492e270d0dc682db2e3f5028f07c2d947df8f",
+      "plan.md": "e74462ed6d9e4c2773ab5777c6f81f3d8fc32c679cc79e3a093d7b53a4520530",
+      "tasks.md": "967b962a49d6a10eeca1ffcb2de936d090457f4544e233f77cb5e6356016eaea",
+      "checklist.md": "21162aa3eb6d429d99131febbda9b3d7494b32f35748959330467f4c8d050b1f",
+      "implementation-summary.md": "f3c8f6dca9806b3da045c75cdefcca3fdb6dacb801d9f09a300022727e080517"
     },
     "last_active_child_id": null,
     "last_active_at": null

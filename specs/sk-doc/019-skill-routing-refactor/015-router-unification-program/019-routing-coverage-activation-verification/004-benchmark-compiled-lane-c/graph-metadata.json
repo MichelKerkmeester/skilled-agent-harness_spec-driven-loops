@@ -3,6 +3,7 @@
   "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c",
   "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c",
   "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -40,11 +41,6 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs",
-      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -52,36 +48,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "compiled-routing-parity.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/compiled-routing-parity.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-resource-contract.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "run-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "build-report.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "loop-host.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -195,11 +161,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Strict Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Lane C never exercises the compiled routing path, and it fits in two non-frozen files (CF-BM-1)",
     "created_at": "2026-07-20T21:51:29.784Z",
-    "last_save_at": "2026-07-24T12:11:50.197Z",
+    "last_save_at": "2026-08-28T15:53:16.919Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +205,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc283058df1b03ff9ba7a00f685b66fe23c7f7c0f0454595d0b12fb66bf94821",
+    "source_fingerprint": "sha256:9086740fc29106c6840e93cdb2e00010dc2223e4c049b3f3f86a8865eff7c4a3",
     "source_doc_hashes": {
-      "spec.md": "84e640969cf5c72f90eddbadca86372b0cbbb77f2d5b065d567278bac143cb9e",
+      "spec.md": "a9feed3b91a1299fa766c0d7b424b0e07e01af5e25d7512af8d110d450bd8c83",
       "plan.md": "8c8cc6954112fd5395043c01c1f90cd5fce8b56e4a7432c74ebbc09cc2145552",
       "tasks.md": "16aebb92542238611cb8e3bb9235e5176e849ca9a7da0b3ca2b110b0039efb38",
       "checklist.md": "a5e1c3b2c469c79c88ce26eea9a268635697a5d4aa057a2a66230ef2b65c0c63",
