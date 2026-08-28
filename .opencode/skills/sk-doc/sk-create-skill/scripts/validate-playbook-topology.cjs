@@ -131,18 +131,17 @@ function parseFixture(absPath, playbookDir) {
   const block = extractFrontmatter(text);
   if (!block) return { ok: false, path: absPath, error: 'NO_FRONTMATTER' };
 
-  // Routing gold is opt-in. A playbook holds two kinds of scenario: routing
-  // fixtures, which declare a stage or category and assert which mode and leaves
-  // a prompt should select, and behavioural ones that exercise a script or a
-  // hook and have no routing intent at all. Demanding typed gold from the second
-  // kind invites a fabricated expectation, which is worse than an absent one --
-  // so enrolment is a declaration the author makes, not a consequence of the
-  // file's location.
-  // Two ways in, because either alone is unsound. Declaring a stage or category
-  // enrols a scenario even if its gold is missing or broken, so a routing fixture
-  // cannot dodge the gate by deleting what it asserts. Declaring any gold field
-  // enrols it even without a stage, so a fixture that makes a routing claim is
-  // always held to it. Only a scenario doing neither is treated as behavioural.
+  // Routing gold is opt-in, because a playbook holds two kinds of scenario:
+  // routing fixtures that assert which mode and leaves a prompt should select,
+  // and behavioural ones that exercise a script or a hook and make no routing
+  // claim. Demanding gold from the second kind invites a fabricated expectation,
+  // which is worse than an absent one.
+  //
+  // Two ways in, since either alone is unsound. A stage or category enrols a
+  // fixture even when its gold is missing or broken, so it cannot dodge the gate
+  // by deleting what it asserts. Any gold field enrols it even without a stage,
+  // so a routing claim is always held to. Only a scenario doing neither is
+  // treated as behavioural, and that count is reported rather than hidden.
   const declaresGold = /(?:^|\n)[ \t]*(?:expected_workflow_mode|expected_leaf_resources|expected_intent|expected_resources):/.test(block);
   const enrolledM = /(?:^|\n)[ \t]*(?:stage|category):[ \t]*\S/.test(block) || declaresGold;
 
