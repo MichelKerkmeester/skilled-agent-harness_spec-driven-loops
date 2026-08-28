@@ -200,4 +200,4 @@ A: This skill is the transport that reads and writes Figma content. `sk-design-m
 | [`references/tool-surface.md`](./references/tool-surface.md) | The read-only, mutating and destructive command taxonomy, the destructive set, the `eval/raw/run` rule and the export no-overwrite rule |
 | [`references/mcp-wiring.md`](./references/mcp-wiring.md) | The optional Figma MCP (Framelink `figma`) through Code Mode: the registered manual, the `.env` token, discovery and a `call_tool_chain` example |
 | [`references/troubleshooting.md`](./references/troubleshooting.md) | Failure modes and fixes for the binary collision, Desktop not running, daemon Unauthorized, port conflicts and the Code Mode env-var prefix |
-| [Skills Library](../../README.md) | The skill catalog and routing front door |
+| [Skills Library](../../README.txt) | The skill catalog and routing front door |

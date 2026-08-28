@@ -215,4 +215,4 @@ Live-call checks require an authenticated Pro (or higher) account and are operat
 | [`examples/README.md`](./examples/README.md) | Worked Code Mode walkthroughs: the full funnel, a metadata-first lookup and a screen-image fetch |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory by layer (styles, screens, flows) with one per-tool leaf per documented tool |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Operator validation scenarios (read-only, SKIP-allowed for paid/OAuth steps) |
-| [Skills Library](../../README.md) | The skill catalog and routing front door |
+| [Skills Library](../../README.txt) | The skill catalog and routing front door |

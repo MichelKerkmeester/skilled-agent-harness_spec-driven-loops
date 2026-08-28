@@ -2,7 +2,7 @@
 
 Complete installation and configuration guide for Chrome DevTools browser debugging, providing AI assistants with browser control through two approaches. The CLI tool (bdg) offers direct, fast, token-efficient browser debugging. The MCP fallback runs through Code Mode for multi-tool orchestration and parallel browser testing. Covers screenshot capture, DOM inspection, console evaluation, network monitoring and performance profiling.
 
-> **Part of OpenCode Installation.** See the [Master Installation Guide](../../README.md) for complete setup.
+> **Part of OpenCode Installation.** See the [Master Installation Guide](../../../install-guides/README.md) for complete setup.
 > **Package:** `browser-debugger-cli@alpha` | **Dependencies:** Node.js 18+, Chrome/Chromium
 
 **Version:** 2.1.0 | **Updated:** 2026-02-20 | **Protocol:** Chrome DevTools Protocol (CDP)

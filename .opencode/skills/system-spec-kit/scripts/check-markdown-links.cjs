@@ -146,7 +146,15 @@ function resolves(file, raw) {
   const cands = t.startsWith('/')
     ? [path.join('.', t)]
     : [path.join(path.dirname(file), t), path.join('.', t)];
-  return cands.some((c) => { try { return fs.existsSync(c); } catch { return false; } });
+  // A candidate that climbs out of the checkout must not count. Otherwise a
+  // link like ../../README.md is judged against whatever happens to sit above
+  // the repo, so it passes on one machine and fails on another — and the way
+  // it fails is by hiding a broken link, which is the direction that matters.
+  const inside = (c) => {
+    const rel = path.relative('.', path.resolve(c));
+    return rel === '' || (!rel.startsWith('..') && !path.isAbsolute(rel));
+  };
+  return cands.some((c) => { try { return inside(c) && fs.existsSync(c); } catch { return false; } });
 }
 
 // `--self-test`: assert inline-code handling on synthetic inputs (no filesystem walk). A guard's
