@@ -835,7 +835,12 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
     if not valid:
         return False, message, all_warnings
 
-    if not is_surface:
+    # A hub delegates routing to its root ROUTER.md, the stage-two control
+    # document enforced by the root-router contract, so its SKILL.md carries no
+    # inline discovery pseudocode to find. Standalone skills own their router
+    # inline and are still checked.
+    routes_via_root_router = is_hub and (skill_path / 'ROUTER.md').is_file()
+    if not is_surface and not routes_via_root_router:
         valid, message, warnings = validate_smart_router(content)
         all_warnings.extend(warnings)
         if not valid:
