@@ -12,6 +12,9 @@ End-to-end manual testing reference for the md-generator skill. Every scenario v
 
 ---
 
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **COMPLETION:** A scenario run is incomplete until its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `../benchmark/reports/<dated-run-label>/`. Generated report markdown is renderer-owned and is never hand-authored.
+
 **EXECUTION POLICY:** Every default scenario in this playbook is SAFE to execute for real: it extracts from a live URL, validates the output, and inspects file content. None of the default scenarios fabricate tokens, overwrite production files, or mutate anything outside the `--output` spec folder passed to extraction. Run actual commands, inspect real outputs, and call the real embedded tool. Valid statuses are PASS, FAIL, or SKIP with a documented blocker. The escalation scenario exercises the anti-bot refusal gate as a negative control: it proves the skill escalates rather than fabricates. Fabricating tokens in any scenario is a HARD FAIL.
 
 ---
@@ -38,11 +41,10 @@ End-to-end manual testing reference for the md-generator skill. Every scenario v
 | Guided Run | 1 | GUIDED-014 |
 | Study | 1 | STUDY-015 |
 | Procedure Card Contract | 3 | PROCCARD-001..003 |
-| **TOTAL** | **18** | **18 scenarios** |
 
-This playbook defines 18 deterministic scenarios across 16 categories validating the full surface of the `md-generator` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-21 plus the procedure-card contract section, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 23.
+This playbook defines a deterministic scenario per capability across the categories above, validating the full surface of the `md-generator` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-22, and links to a dedicated per-scenario file with the full execution contract. The cross-reference index is Section 23.
 
-> **Per-scenario files:** The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside category folders at the playbook root. The cross-reference index in Section 21 lists every scenario file.
+> **Per-scenario files:** The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside category folders at the playbook root. The cross-reference index in Section 23 lists every scenario file.
 
 ### Realistic Test Model
 
@@ -146,7 +148,7 @@ Release is READY only when no scenario verdict is FAIL, all critical-path scenar
 
 ### Root-vs-Feature Rule
 
-Keep global verdict logic in this root playbook. Put scenario-specific acceptance caveats in the matching per-scenario file (see Section 21).
+Keep global verdict logic in this root playbook. Put scenario-specific acceptance caveats in the matching per-scenario file (see Section 23).
 
 ---
 
@@ -479,17 +481,6 @@ Prompt: `"Walk through each value in this design system and tell me where it cam
 
 ---
 
-## 20. AUTOMATED TEST CROSS-REFERENCE
-
-| Test Module | Coverage | Playbook Overlap |
-|---|---|---|
-| `backend/tests/cluster.test.ts` | OKLCH clustering and L1-L4 stability classification | CLUSTER-001, FIDELITY-001 |
-| `backend/tests/validate.test.ts` | Hex-accuracy, v3 Style Reference section recognition, and Quick-Start fidelity validation | VALIDATE-001 |
-
-The vitest suite (68 tests across 7 files) covers the deterministic clustering and validation logic. The manual scenarios cover the live-crawl, fidelity, dark-mode gate, setup, escalation, authoring-boundary and source-of-truth provenance behavior that automated tests cannot exercise end to end. The authoring-boundary and source-of-truth scenarios are judgment checks on value provenance that no unit test replaces.
-
----
-
 ## 20. GUIDED RUN (`GUIDED-014`)
 
 The guided wrapper smoke lane checks runtime readiness, runs extraction, saves the write prompt and stops before validation when `DESIGN.md` has not been authored.
@@ -549,6 +540,15 @@ Each scenario maps to exactly one per-scenario file in a category folder at the 
 | PROCCARD-002 | md-generator no-card fallback | Procedure Card Contract | [procedure-card-contract/no-card-fallback.md](procedure-card-contract/no-card-fallback.md) | N/A |
 | PROCCARD-003 | md-generator backend-preserving direct fallback | Procedure Card Contract | [procedure-card-contract/backend-preserving-direct-fallback.md](procedure-card-contract/backend-preserving-direct-fallback.md) | N/A |
 
-This index lists 18 scenario IDs and ships 18 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (18), so keep them in sync as scenarios are added or revised.
+Every scenario ID in this table maps to exactly one per-scenario file, and the package validator derives and enforces that bijection at run time. A hand-typed count would only add a second source of truth to keep in sync, so none is stated here.
 
-Total: 18 scenarios = 18 per-scenario files.
+---
+
+## 24. AUTOMATED TEST CROSS-REFERENCE
+
+| Test Module | Coverage | Playbook Overlap |
+|---|---|---|
+| `backend/tests/cluster.test.ts` | OKLCH clustering and L1-L4 stability classification | CLUSTER-001, FIDELITY-001 |
+| `backend/tests/validate.test.ts` | Hex-accuracy, v3 Style Reference section recognition, and Quick-Start fidelity validation | VALIDATE-001 |
+
+The vitest suite (68 tests across 7 files) covers the deterministic clustering and validation logic. The manual scenarios cover the live-crawl, fidelity, dark-mode gate, setup, escalation, authoring-boundary and source-of-truth provenance behavior that automated tests cannot exercise end to end. The authoring-boundary and source-of-truth scenarios are judgment checks on value provenance that no unit test replaces.

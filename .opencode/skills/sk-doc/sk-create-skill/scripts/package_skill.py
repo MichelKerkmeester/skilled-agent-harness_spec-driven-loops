@@ -136,29 +136,39 @@ RESOURCE_DOC_SUBTREES = ['references', 'assets']
 # output. Their spellings are contracts rather than authored filesystem slugs.
 TOOL_MANDATED_FILENAMES = {
     '.utcp_config.json',
-    'DESIGN.md',
-    'README.md',
-    'ROUTER.md',
-    'SKILL.md',
+    'LICENSE',
     'action.yaml',
     'action.yml',
     'conftest.py',
+    'mcp_config.json',
     'package-lock.json',
 }
+# Documentation whose name is the contract: an all-caps stem is how these are
+# addressed across the repo and by the tools that read them, so it is not a
+# slug an author may lowercase. Covers README/SKILL/ROUTER/DESIGN and the
+# install, architecture, contract and reference docs that follow the same rule.
+ALL_CAPS_DOC_RE = re.compile(r'^[A-Z][A-Z0-9+-]*$')
 # Subtrees whose leaf names are identifiers rather than filesystem slugs.
 # Behavior-benchmark scenarios are addressed as `<PREFIX>-NNN-<slug>` scenario
 # IDs, and fixtures deliberately carry the shapes they exercise, so neither is
 # free to be renamed into kebab-case without breaking what refers to it.
 EXEMPT_SUBTREES = {
+    'benchmarks',
     'changelog',
+    'database',
     'dist',
-    'fixtures',
     'node_modules',
     'reports',
     'scenarios',
     'z_archive',
 }
-KEBAB_CASE_SLUG_RE = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
+KEBAB_CASE_SLUG_RE = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*\+?$')
+# A name may carry uppercase identifier segments among its kebab segments, as
+# scenario and matrix-runner files do: the segment addresses a case by its ID
+# rather than describing where the file sits, so lowercasing it renames the case.
+IDENTIFIER_TOKEN_SLUG_RE = re.compile(
+    r'^(?:[a-z0-9]+|[A-Z][A-Z0-9]*)(?:-+(?:[a-z0-9]+|[A-Z][A-Z0-9]*))*$'
+)
 
 # Smart-router resilience markers expected in SKILL.md Section 2 (SMART ROUTING)
 # per skill_smart_router.md. A skill carrying the canonical pseudocode block
@@ -499,9 +509,24 @@ def _is_exempt_package_path(path: Path, relative_path: Path) -> bool:
     # __mocks__/__snapshots__), not authored slugs a maintainer may rename.
     if any(part.startswith('__') and part.endswith('__') for part in relative_path.parts):
         return True
+    # Fixture trees hold the shapes they exercise, so their leaf names mirror
+    # the inputs under test rather than naming a place in the package.
+    if any(part.endswith('fixtures') for part in relative_path.parts):
+        return True
+    # A leading underscore marks a module as internal to its directory; the
+    # marker is the meaning, so stripping it to satisfy a slug rule changes it.
+    if path.name.startswith('_'):
+        return True
+    # A test file is named for the symbol it exercises, so its stem mirrors that
+    # symbol's own casing rather than describing a place in the package.
+    if any(path.name.endswith(suffix)
+           for suffix in ('.test.ts', '.test.js', '.vitest.ts', '.spec.ts', '.test.cjs')):
+        return True
     if path.is_dir():
         return _is_python_package_directory(path)
     if path.name in TOOL_MANDATED_FILENAMES:
+        return True
+    if ALL_CAPS_DOC_RE.fullmatch(path.name.split('.')[0]):
         return True
     if path.suffix == '.py' or path.name.endswith('.tsbuildinfo'):
         return True
@@ -527,6 +552,8 @@ def validate_generated_paths(skill_path: Path) -> Tuple[bool, str, List[str]]:
 
         slug = path.name if path.is_dir() else path.name.split('.')[0]
         if KEBAB_CASE_SLUG_RE.fullmatch(slug):
+            continue
+        if IDENTIFIER_TOKEN_SLUG_RE.fullmatch(slug):
             continue
 
         path_kind = 'directory' if path.is_dir() else 'file'
@@ -757,6 +784,10 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
         return False, f"Failed to read SKILL.md: {str(e)}", all_warnings
 
     is_surface = get_packet_kind(content) == 'surface'
+    # A hub root describes every mode it routes to, so its description carries a
+    # whole family rather than one skill's purpose. The soft target is sized for
+    # a standalone skill; the hard cap still applies to both.
+    is_hub = (skill_path / 'mode-registry.json').is_file()
 
     valid, message, warnings, parsed = validate_frontmatter(content)
     all_warnings.extend(warnings)
@@ -812,9 +843,10 @@ def validate_skill(skill_path: Path, strict: bool = False) -> Tuple[bool, str, L
 
     if strict:
         promoted, advisory = _partition_strict(all_warnings)
-        if is_surface:
-            # Surface descriptions bundle a whole sub-surface; the 130-char
-            # soft target is a standalone-skill target, so keep it advisory.
+        if is_surface or is_hub:
+            # Surface and hub descriptions bundle a whole sub-surface or mode
+            # family; the 130-char soft target is a standalone-skill target, so
+            # keep it advisory here.
             advisory = advisory + [p for p in promoted if 'exceeds soft target' in p]
             promoted = [p for p in promoted if 'exceeds soft target' not in p]
         if promoted:

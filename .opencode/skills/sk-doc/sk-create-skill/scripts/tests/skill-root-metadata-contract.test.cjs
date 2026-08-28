@@ -41,6 +41,7 @@ const EXPECTED_CLASSES = {
   'mcp-code-mode': contract.CLASS_STANDALONE,
   'mcp-tooling': contract.CLASS_HUB,
   'sk-code': contract.CLASS_HUB,
+  'sk-design': contract.CLASS_STANDALONE,
   'sk-design-md-generator': contract.CLASS_STANDALONE,
   'sk-doc': contract.CLASS_HUB,
   'sk-git': contract.CLASS_STANDALONE,

@@ -1,5 +1,6 @@
 ---
 title: Daemon CLI Reference
+description: The daemon-backed CLI shims, their warm-only policy, exit-code taxonomy, and when to use CLI transport instead of MCP.
 trigger_phrases:
   - "daemon cli reference"
   - "daemon-backed cli shims"
