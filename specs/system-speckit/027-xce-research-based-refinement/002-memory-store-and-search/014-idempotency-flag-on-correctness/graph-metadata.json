@@ -43,37 +43,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-idempotency-and-near-duplicate.vitest.ts",
       "checklist.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "tests/memory-idempotency-and-near-duplicate.vitest.ts",
-      "lib/storage/idempotency-receipts.ts",
-      "handlers/memory-save.ts",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "idempotency-receipts.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-idempotency-and-near-duplicate.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-idempotency-and-near-duplicate.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "checklist.md",
         "kind": "doc",
@@ -199,11 +175,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The default-off idempotency path had correctness defects that only matter when `SPECKITMEMORYIDEMPOTENCY` is explicitly enabled:",
     "created_at": "2026-06-11T12:35:00Z",
-    "last_save_at": "2026-07-17T17:19:41.053Z",
+    "last_save_at": "2026-08-28T16:00:06.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:111581b2fdc5c0ea5a6cd19ae0edd8c0553a2f894860db846ad603a417a5297e",
+    "source_fingerprint": "sha256:1728bfdb162e566cfff7d815af56b312eda04d63c874252466e6ac4cc5a4e7c9",
     "source_doc_hashes": {
       "spec.md": "dbe4d250d6e00bf097000332ba818ccf521a695a0d09a72026038050876fe7e8",
       "plan.md": "76936cf8ce9e9267fbd297f27b149d278ccb487a4f7a6d2dfe31518730920049",
       "tasks.md": "3f2a877fee395683b4bf6b40597e7f23f42de8bdcbec97485dcd72c7b57e32ca",
       "checklist.md": "1a33fdb5b872545726d20793c05c712169caa4efead4fd54d1e9b6c0315a5d5d",
-      "implementation-summary.md": "a801cb29940c1aedb2427c3d12dd19258dd3e18716810db945ff9b0679629fe3"
+      "implementation-summary.md": "caa686ec89a383fd9d6ad872c9d58e2f82ab5578df58405822b46cc8f76df564"
     },
     "last_active_child_id": null,
     "last_active_at": null

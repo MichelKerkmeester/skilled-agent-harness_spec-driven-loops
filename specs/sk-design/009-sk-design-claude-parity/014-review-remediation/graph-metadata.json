@@ -44,22 +44,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md",
-      ".opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts",
-      ".opencode/skills/sk-design/design-md-generator/backend/scripts/render-safety.ts",
-      ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
-      ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
-      ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
-      ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
-      ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
-      ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts",
-      ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts",
-      ".opencode/skills/sk-design/design-md-generator/feature_catalog/05--report-preview/report-preview.md",
-      ".opencode/skills/sk-design/shared/procedure_card_schema.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/012-routing-benchmark-rigor/decision-record.md",
       "plan.md",
-      "spec.md",
-      ".opencode/skills/sk-design/shared/scripts/procedure-card-schema-check.mjs"
+      "spec.md"
     ],
     "entities": [
       {
@@ -81,78 +67,6 @@
         "source": "derived"
       },
       {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "output-policy.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/output-policy.ts",
-        "source": "derived"
-      },
-      {
-        "name": "render-safety.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/render-safety.ts",
-        "source": "derived"
-      },
-      {
-        "name": "build-write-prompt.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/build-write-prompt.ts",
-        "source": "derived"
-      },
-      {
-        "name": "extract.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/extract.ts",
-        "source": "derived"
-      },
-      {
-        "name": "guided-run.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/guided-run.ts",
-        "source": "derived"
-      },
-      {
-        "name": "report-gen.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/report-gen.ts",
-        "source": "derived"
-      },
-      {
-        "name": "preview-gen.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/preview-gen.ts",
-        "source": "derived"
-      },
-      {
-        "name": "proof.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/proof.ts",
-        "source": "derived"
-      },
-      {
-        "name": "css-analyzer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/sk-design/design-md-generator/backend/scripts/css-analyzer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "report-preview.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/feature_catalog/05--report-preview/report-preview.md",
-        "source": "derived"
-      },
-      {
-        "name": "procedure_card_schema.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/shared/procedure_card_schema.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -162,12 +76,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "procedure-card-schema-check.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/shared/scripts/procedure-card-schema-check.mjs",
         "source": "derived"
       },
       {
@@ -205,11 +113,89 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Artifact Policy",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Prompt Data",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Component Facts",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 10-iteration deep review of the sk-design Claude-parity packet (`.opencode/specs/sk-design/009-sk-design-claude-parity/review/review-report.md`) returned verdict CONDITIONAL with 8 P1 and 3 P2 active findings, all concentrated in the `design-md-generator` backend: missing component facts in the WRITE prompt, unsanitized prompt-data and CSS-value injection surfaces, an output-path guard that doesn't enforce the documented spec-folder/sandbox boundary, a comma-splitting bug in transition-shorthand parsing, and a feature-catalog claim that doesn't match code behavior",
     "created_at": "2026-07-06T17:16:14.933Z",
-    "last_save_at": "2026-07-09T10:02:44.517Z",
+    "last_save_at": "2026-08-28T15:53:05.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,10 +205,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1eacd6e6cfea15bb9b3a8257de539fe0e884316ee230ae8598b82e0e143851d5",
+    "source_fingerprint": "sha256:c6c888c09ef7cf527c7fd4e91272c2a54b59201af4daf5b441b8c85bf0125586",
     "source_doc_hashes": {
-      "spec.md": "3007e8721ed25b2d6b46810e5367944e7f8302e832474f3d4b605836a06724c4",
-      "plan.md": "19cc414f00ca1e3353354c61e8c2194e3fcc26c6ffebc701e98cd5066b4cbd28",
+      "spec.md": "85545c47ad4033e966f42f7c01e6956aff60aad7c0449d3452b46bfe3ba9030b",
+      "plan.md": "4cac44d0bda4db258239e9a981aa76a4eb322258ecb9eb6de693176b93443123",
       "tasks.md": "fc4902706d886e9ca7e44c14dbb70dc8338c4ec6e65dd863fb455f5e9660f75e",
       "checklist.md": "d993e25b9f0a57a714cc7b15c0251b100c55f53fbc1f8243a3c1392e35705861",
       "implementation-summary.md": "f3f5e4814e836cb77878691189a8d00e5617be9276101b6c74c4e8129d7b1db9"

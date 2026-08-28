@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test |
+| **Spec Folder** | 001-live-two-launcher-test |
 | **Completed** | 2026-05-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

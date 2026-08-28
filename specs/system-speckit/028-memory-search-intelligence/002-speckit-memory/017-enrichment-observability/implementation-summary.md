@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 013-enrichment-observability |
+| **Spec Folder** | 017-enrichment-observability |
 | **Completed** | Yes |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

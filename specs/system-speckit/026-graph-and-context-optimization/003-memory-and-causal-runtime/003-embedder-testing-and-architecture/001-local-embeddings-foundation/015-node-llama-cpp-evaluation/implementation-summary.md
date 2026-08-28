@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `015-node-llama-cpp-evaluation` |
+| **Spec Folder** | 015-node-llama-cpp-evaluation |
 | **Completed** | 2026-05-13 |
 | **Level** | 2 |
 | **Status** | Complete |

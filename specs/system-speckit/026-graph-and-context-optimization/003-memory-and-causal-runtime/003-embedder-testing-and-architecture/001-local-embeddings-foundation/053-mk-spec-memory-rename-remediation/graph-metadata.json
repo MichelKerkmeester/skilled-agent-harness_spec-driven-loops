@@ -40,33 +40,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/doctor/_routes.yaml",
-      ".opencode/commands/memory/manage.md",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/_routes.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "manage.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/manage.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +171,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Closed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 052 rename shipped functionally, but deep review found command-layer namespace regressions and stale packet documentation",
     "created_at": "2026-05-15T05:59:52Z",
-    "last_save_at": "2026-07-17T17:19:20.758Z",
+    "last_save_at": "2026-08-28T15:59:39.278Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:81cbfcbf77991c2d8dfdf87fd7a5374e797bcc9fce41ae135fd06239b9b66e55",
+    "source_fingerprint": "sha256:7f7375b837f47d39049ff1faf6ccdb512ff6486703cc3a460d3145642ff7422b",
     "source_doc_hashes": {
       "spec.md": "39b30cdae6207fdd9f8f902d3fb37a0d5b9a50b32954ea2f4fa6ceac9077647e",
       "plan.md": "bb49b7efcbd3639caaec9a5499e83bd630c571789a682cc449ee8d0a36c0892a",
       "tasks.md": "d39fc253167fb6eab681ed402ebc473634c9ad9166986b7e006f4871bd72aa11",
-      "implementation-summary.md": "296c025d8a38803aa9d22319de17ed8771a4fb37590617ac1e65e5f7fac9ee53"
+      "implementation-summary.md": "63c27d78f2a408b59c801d0c0acf8008e7482b058910927ca70537316c752cee"
     },
     "last_active_child_id": null,
     "last_active_at": null

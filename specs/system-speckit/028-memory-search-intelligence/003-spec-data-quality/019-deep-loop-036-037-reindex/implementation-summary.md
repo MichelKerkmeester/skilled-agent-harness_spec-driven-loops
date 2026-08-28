@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 053-deep-loop-036-037-reindex |
+| **Spec Folder** | 019-deep-loop-036-037-reindex |
 | **Completed** | Reindex complete and verified (both folders 0/0); spec-folder completion-save pending |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

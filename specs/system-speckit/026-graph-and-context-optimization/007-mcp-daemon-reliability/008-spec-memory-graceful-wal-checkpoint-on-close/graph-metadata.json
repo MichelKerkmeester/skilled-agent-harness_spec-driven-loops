@@ -42,9 +42,6 @@
     "key_files": [
       "spec.md",
       "implementation-summary.md",
-      "mcp_server/lib/search/vector-index-store.ts",
-      "mcp_server/tests/vector-index-store.vitest.ts",
-      "lib/search/vector-index-store.ts",
       "plan.md",
       "tasks.md",
       "checklist.md"
@@ -60,18 +57,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/vector-index-store.vitest.ts",
         "source": "derived"
       },
       {
@@ -193,11 +178,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `mk-spec-memory` close path (`closedb` in `vector-index-store.ts`) closes `context-index.sqlite` without first checkpointing its WAL",
     "created_at": "2026-05-29T12:05:57.545Z",
-    "last_save_at": "2026-07-17T17:19:34.001Z",
+    "last_save_at": "2026-08-28T15:59:53.702Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51183a6209315c023ec1d2d93ac2b02a4ffd29bfdb6776ab5fece17ccbc7313e",
+    "source_fingerprint": "sha256:9f7e5a14598b9b8fe5a5fa79b04fda7a47f05987c0b0e1cdd8d72851e32498c9",
     "source_doc_hashes": {
       "spec.md": "c38ae26524ea6ebe1c2f5e7a21fc992e05e02be81b4013243826dc8309de3ae5",
       "plan.md": "c5e88ceeb55020040b94049373bc31a3c8df460499c1d575b6c9682cee1e4f0b",
       "tasks.md": "b6dfa0362491ed78399630590ca9432142ccf057125d880a0d5c5042e2fffbff",
       "checklist.md": "47d5f2a0adca1f2be8fdb4f35c3f87e6bf08d0e3a7883d79677aadae79ebfe5b",
-      "implementation-summary.md": "83ee9d06b13db8d8ca37318385f9aede60ad5ecf9b4d4c41a9dd4d19f83f6a7c"
+      "implementation-summary.md": "5a3c06e87d21c36a5c87b531124622f92bb867b60a45a17bc8d372d6b44d5859"
     },
     "last_active_child_id": null,
     "last_active_at": null

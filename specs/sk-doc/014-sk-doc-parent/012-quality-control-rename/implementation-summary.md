@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/012-quality-control-rename"
+    packet_pointer: "sk-doc/014-sk-doc-parent/012-quality-control-rename"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus"
     recent_action: "Reconciled 104 doc-quality references; parent-skill-check 0 warnings"

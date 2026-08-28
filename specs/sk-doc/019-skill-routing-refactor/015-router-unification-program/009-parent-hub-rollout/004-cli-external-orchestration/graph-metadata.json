@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The authored hub declares three equally weighted external CLI executors and supports explicit multi-executor dispatch, but its compiled contract needs a deterministic representation that the shared decision parser, projector, scorer, and execution plane can all consume",
     "created_at": "2026-07-19T00:00:00.000Z",
-    "last_save_at": "2026-07-24T12:11:51.045Z",
+    "last_save_at": "2026-08-28T15:53:14.204Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,9 +214,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:81ec2699b19285a4ce4f915c3d6f8281ef44975568ef12e610cd04a39ff0fe2e",
+    "source_fingerprint": "sha256:d3bc71164cdfd42b3bf8e6b36e01384831cac255a89902697ac2365fab598d3e",
     "source_doc_hashes": {
-      "spec.md": "09195ed7e0b3f8942d9636e005908aef56fd26bb9db9bccfc90654cf0b8f41ce",
+      "spec.md": "96bbbf62b0b762c188390bfef81b3d799c4dcbc1eac2a3b63ad6f60eb0380091",
       "plan.md": "3fe6703e8f708cf63b90de6528361e55edce40854b0e1cd2692d5e509da9fcbb",
       "tasks.md": "7ecb4b487c18c237af6a4f418ed8dbc2f02cf861e83be581cc7d9509246ee64c",
       "checklist.md": "d7a472be5bfc889c339e0220d34c8f8aee4440516e40ecf17714183c3ea8239a",

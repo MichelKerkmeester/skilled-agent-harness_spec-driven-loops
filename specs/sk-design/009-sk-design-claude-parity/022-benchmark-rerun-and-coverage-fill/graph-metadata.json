@@ -41,12 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/interface-variation-set-selection-proof.md",
-      ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/code-review-routes-skcode.md",
-      ".opencode/skills/sk-design/manual_testing_playbook/04--md-generator-pipeline/brief-only-authoring-boundary.md",
-      ".opencode/skills/sk-design/manual_testing_playbook/08--hub-manager-intake/design-mode-pairing-before-run.md",
-      ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-design/README.md",
       "implementation-summary.md",
       "plan.md",
       "tasks.md",
@@ -54,42 +48,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "interface-variation-set-selection-proof.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/06--parity-behavior/interface-variation-set-selection-proof.md",
-        "source": "derived"
-      },
-      {
-        "name": "code-review-routes-skcode.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/02--advisor-integration/code-review-routes-skcode.md",
-        "source": "derived"
-      },
-      {
-        "name": "brief-only-authoring-boundary.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/04--md-generator-pipeline/brief-only-authoring-boundary.md",
-        "source": "derived"
-      },
-      {
-        "name": "design-mode-pairing-before-run.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/08--hub-manager-intake/design-mode-pairing-before-run.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/README.md",
-        "source": "derived"
-      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
@@ -197,11 +155,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Update Advisor Integration",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 021 rewrote `design-command-surface-check.mjs` and fixed the remaining 020 deep-research findings, but the Lane C skill-benchmark had not been re-run since before that work, so there was no fresh evidence it didn't regress anything",
     "created_at": "2026-07-07T13:00:00.167Z",
-    "last_save_at": "2026-07-09T10:02:44.567Z",
+    "last_save_at": "2026-08-28T15:53:07.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2dcbaead718bd23ec7ea370d6d1c2826501e45c85d266d70b21494869ad368c8",
+    "source_fingerprint": "sha256:e4e00b001ef54e1f2d6e7e29147d060bbd39608145127fcf2829aa2a4336ffde",
     "source_doc_hashes": {
-      "spec.md": "196d3d7d5248f4052d5dac81c0944d37ad8aec077aa0ab41c3fa7db1cf6df790",
-      "plan.md": "6c6f707f1397d7d865a80fbd4d7df15dd7a697aec68061b5fdbce6ae26cff003",
+      "spec.md": "aa5ca2b46a0d3179534459647c5ac6e9394f2b68d6bdf75ba7db917589ab9e12",
+      "plan.md": "c2f66903439ee73acc9b49c197ccc8b4349db5484f2e01984c15a26b5e454efb",
       "tasks.md": "df04e02615551c1ff355b9ebb2b903fab63f90e1b2a2637205250f592d299fc7",
       "checklist.md": "50b795d921ea292e548080ce838add8a999afcae58f3593f2c4f41d9c983a4e3",
-      "implementation-summary.md": "977a7785bab4c2b8d3c4eb21758538f7a071e4b1b34b4c2b4d0b2d4fbed454f1"
+      "implementation-summary.md": "fa72e8031570f144a6e82e6d69f3116d1ac41d026a837ec926223274b55a345a"
     },
     "last_active_child_id": null,
     "last_active_at": null

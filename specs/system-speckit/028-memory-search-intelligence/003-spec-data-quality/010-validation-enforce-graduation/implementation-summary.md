@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 019-validation-enforce-graduation |
+| **Spec Folder** | 010-validation-enforce-graduation |
 | **Status** | Complete — all 3 phases landed, tree-wide post-flip sweep clean |
 | **Completed** | All 3 phases (2026-07-10) |
 | **Level** | 3 |

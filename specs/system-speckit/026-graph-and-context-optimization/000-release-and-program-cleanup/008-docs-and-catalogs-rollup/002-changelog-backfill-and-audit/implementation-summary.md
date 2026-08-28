@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-changelog-backfill-and-audit |
+| **Spec Folder** | 002-changelog-backfill-and-audit |
 | **Completed** | In progress (setup phase done 2026-05-31) |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

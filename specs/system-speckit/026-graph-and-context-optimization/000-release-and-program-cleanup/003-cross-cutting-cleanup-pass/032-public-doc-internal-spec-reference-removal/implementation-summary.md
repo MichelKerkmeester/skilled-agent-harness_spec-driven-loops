@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `032-public-doc-internal-spec-reference-removal` |
+| **Spec Folder** | 032-public-doc-internal-spec-reference-removal |
 | **Completed** | 2026-05-18 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

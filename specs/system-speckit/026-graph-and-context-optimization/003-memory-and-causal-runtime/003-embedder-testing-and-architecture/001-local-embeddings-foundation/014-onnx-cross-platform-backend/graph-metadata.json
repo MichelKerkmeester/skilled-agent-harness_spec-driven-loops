@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Cocoindex currently encodes embeddings via sentence-transformers on PyTorch",
     "created_at": "2026-05-13T09:55:00Z",
-    "last_save_at": "2026-07-17T17:19:18.823Z",
+    "last_save_at": "2026-08-28T15:59:33.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T11:15:00Z",
     "source_docs": [
@@ -210,14 +210,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cdf39d6f72a3372df59f69abc318b6697c8e61dd1e49d2c40e6b9a9cf569efa6",
+    "source_fingerprint": "sha256:7420821456b7211a52731025db0e4a91a2fa063ac720fe40a403db3d7a5017c7",
     "source_doc_hashes": {
       "spec.md": "52a5c247b5fd8a29c4cbffeea5cb7aa0adbba2c3f7e4cf13e5771c85161b30b5",
       "plan.md": "008bef5304900ca92cdbfb7094574fadd51106fe56377b37f264a93f23138dd8",
       "tasks.md": "a679a987c0954413fe65c3785c50a62662359f1a6bb57b150fb5409b086d3750",
       "checklist.md": "8e94f18c7e9201f8c8a929aaf7d594dd27a63dfdf779efa4c631bc63f78a0fcf",
       "decision-record.md": "ced4ff21ab839afa5da60b7b60f55fb3684df908a14968d882af1c7b0b201d92",
-      "implementation-summary.md": "fcf30c2ac71592ff9bc98ef1c6d6575f96b7294950480bdca325b46e052d52f0"
+      "implementation-summary.md": "f4a0fe7f2a2fea919b279d471e41fe06094593c0d33fc54f26e0e380d53fa470"
     },
     "last_active_child_id": null,
     "last_active_at": null

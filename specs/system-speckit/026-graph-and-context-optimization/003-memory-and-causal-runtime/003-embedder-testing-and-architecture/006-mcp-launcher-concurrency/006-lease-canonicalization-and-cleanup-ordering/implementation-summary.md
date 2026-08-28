@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `006-lease-canonicalization-and-cleanup-ordering` |
+| **Spec Folder** | 006-lease-canonicalization-and-cleanup-ordering |
 | **Completed** | 2026-05-18 |
 | **Level** | 2 |
 | **Status** | Implementation complete; commit blocked by sandbox Git index permissions |

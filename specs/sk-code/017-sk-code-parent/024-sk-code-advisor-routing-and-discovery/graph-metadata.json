@@ -41,9 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/shared/references/smart_routing.md",
-      ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/cwv-gates-animation-heavy.md",
-      ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/prefers-reduced-motion.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -51,24 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "smart_routing.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
-        "source": "derived"
-      },
-      {
-        "name": "cwv-gates-animation-heavy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/cwv-gates-animation-heavy.md",
-        "source": "derived"
-      },
-      {
-        "name": "prefers-reduced-motion.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/prefers-reduced-motion.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -194,11 +173,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optional Catalogs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two sk-code discovery scenarios failed because the references they needed already existed in `sk-code/shared/references/smartrouting.md` RESOURCEMAP, but the prompts did not fire the intents that map to those references",
     "created_at": "2026-07-06T09:31:15.780Z",
-    "last_save_at": "2026-07-09T10:02:44.216Z",
+    "last_save_at": "2026-08-28T15:52:59.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33a39456078e6a82c1c2f14a78c1b112cf8301b08f24cb6b2efb5b7697531fb4",
+    "source_fingerprint": "sha256:f60351bf6ae3cd04a56ce4474231177e21f3c928be327e733f626cadc318f6dc",
     "source_doc_hashes": {
-      "spec.md": "5cecf7c8506672e054524f3623acf4663dc7eb56c3527349f37790f62ee690c9",
-      "plan.md": "d85731122a7c372358466ea5bdd77f0335082172543b8bbe39f399429638178f",
+      "spec.md": "ec233702021fed2c682491c433c052400fdf4e90d33a498dfd18ceb25b9e9b78",
+      "plan.md": "3abc5947f2217a68a6d6869c7d571a972a289ed2a40c4d54e949a62ae51a56ab",
       "tasks.md": "16a431ea6aff2c8215fe035963d95c61f01618551b87b68ca428c2263ccce3d0",
-      "checklist.md": "27c112e1a2ed7ba66b65a0fe0dbf4de1e376b6dde68ea734a3316aee2c38f8ef",
-      "implementation-summary.md": "7c98f2bfe5c9b2dc164d2f1104fac71f86681e02c9f37f0adf65d290e3d2d658"
+      "checklist.md": "d8b4b9ca7b685b0cd3f51e884cd736df3c6aa6a662c81dcf0a4285074b68fd54",
+      "implementation-summary.md": "dbc1c19f5c12a611b1ee4efa7ab531ee1913c1ebac018e65466b8375e080686e"
     },
     "last_active_child_id": null,
     "last_active_at": null

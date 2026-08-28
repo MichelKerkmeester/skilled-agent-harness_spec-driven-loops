@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 019-eval-harness-extension |
+| **Spec Folder** | 026-eval-harness-extension |
 | **Level** | 3 |
 | **Status** | complete (partial scope: C9 implemented, A8 pending) |
 | **Candidate** | `eval-harness-spine` (C9-1/C9-2/C9-3 DONE, A8-1/A8-2/A8-5/A8-4 PENDING) |

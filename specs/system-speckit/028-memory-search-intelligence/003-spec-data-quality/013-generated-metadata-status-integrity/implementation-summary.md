@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 047-generated-metadata-status-integrity |
+| **Spec Folder** | 013-generated-metadata-status-integrity |
 | **Status** | Complete |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

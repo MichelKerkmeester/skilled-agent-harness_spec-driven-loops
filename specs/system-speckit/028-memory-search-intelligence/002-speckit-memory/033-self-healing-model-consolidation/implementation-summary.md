@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 023-self-healing-model-consolidation |
+| **Spec Folder** | 033-self-healing-model-consolidation |
 | **Status** | COMPLETE |
 | **Completed** | 2026-07-10 |
 | **Level** | 2 |

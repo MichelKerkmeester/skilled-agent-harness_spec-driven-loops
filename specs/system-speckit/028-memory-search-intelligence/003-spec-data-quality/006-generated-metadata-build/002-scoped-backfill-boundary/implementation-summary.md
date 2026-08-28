@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 034-scoped-backfill-boundary |
+| **Spec Folder** | 002-scoped-backfill-boundary |
 | **Completed** | 2026-06-22, status COMPLETE |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

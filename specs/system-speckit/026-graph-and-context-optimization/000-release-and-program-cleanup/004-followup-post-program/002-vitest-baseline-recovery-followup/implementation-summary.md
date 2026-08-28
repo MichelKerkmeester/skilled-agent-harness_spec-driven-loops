@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `026-graph-and-context-optimization/000-release-cleanup/002-vitest-baseline-recovery-followup` |
+| **Spec Folder** | 002-vitest-baseline-recovery-followup |
 | **Completed** | 2026-05-09 |
 | **Level** | 1 |
 | **Status** | Complete |

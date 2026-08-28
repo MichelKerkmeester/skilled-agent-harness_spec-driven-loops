@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience |
+| **Spec Folder** | 010-daemon-resilience |
 | **Completed** | 2026-05-07 |
 | **Level** | 2 |
 | **Implementation commit (Phase 2)** | `1bbe80986` |

@@ -49,7 +49,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 007-search-index-integrity-sweep |
+| **Spec Folder** | 008-search-index-integrity-sweep |
 | **Status** | PARTIAL — data-integrity sweep, dedup cleanup, and re-embed drain verified complete; blocked on broad-test-suite green state and the original sweep's checkpoint_restore rehearsal |
 | **Completed** | No |
 | **Level** | 2 |

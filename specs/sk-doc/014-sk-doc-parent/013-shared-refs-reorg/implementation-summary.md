@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/013-shared-refs-reorg"
+    packet_pointer: "sk-doc/014-sk-doc-parent/013-shared-refs-reorg"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "claude-opus"
     recent_action: "Moved 6 docs, repointed all citations, fixed relative-link depth"

@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/002-command-presentation-workflow-separation/001-memory-commands/004-verify-and-ux |
+| **Spec Folder** | 004-verify-and-ux |
 | **Completed** | 2026-06-10 |
 | **Level** | 1 |
 | **Status** | Completed |

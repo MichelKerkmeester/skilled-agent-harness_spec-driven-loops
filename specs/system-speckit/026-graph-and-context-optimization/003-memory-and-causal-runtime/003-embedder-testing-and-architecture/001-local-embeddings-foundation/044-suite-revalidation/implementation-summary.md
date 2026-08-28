@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/044-suite-revalidation` |
+| **Spec Folder** | 044-suite-revalidation |
 | **Started** | 2026-05-14 |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |

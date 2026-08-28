@@ -41,13 +41,6 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/sk-doc/mode-registry.json",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
-      ".claude/agents/markdown.md",
-      ".opencode/skills/sk-doc/SKILL.md",
-      ".opencode/agents/markdown.md",
-      ".opencode/commands/create/README.txt",
-      ".opencode/commands/README.txt",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -55,36 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "aliases.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
-        "source": "derived"
-      },
-      {
-        "name": "markdown.md",
-        "kind": "doc",
-        "path": ".claude/agents/markdown.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/commands/create/README.txt",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -198,11 +161,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two gaps in the sk-doc `/create:` command surface: (1) three packets (`create-command`, `create-benchmark`, `create-flowchart`) had no bound command — their `mode-registry.json` `command` field was `null`; and (2) four commands drifted from their packet names (`sk-skill`, `sk-skill-parent`, `folderreadme`, `testing-playbook`) so the public ids no longer matched `/create:<packet>`",
     "created_at": "2026-07-07T12:40:40.991Z",
-    "last_save_at": "2026-07-17T14:37:00.661Z",
+    "last_save_at": "2026-08-28T15:58:17.312Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a81db732ead960d572b846ebc5828837f0e3c735106808ba7b1b2b30573a006",
+    "source_fingerprint": "sha256:6e9f7c6b5e7c629b3ece58e0e971a620c41ddf38b6b84e0c7be28118a2dd087c",
     "source_doc_hashes": {
-      "spec.md": "6010f11d91a3b1086eebe9f16f2cc9f14dda26eebe5af42516a410adb6a8e2e6",
-      "plan.md": "3d30162a80166c28baaf717be664e7a078ebf9dae4582cf2d380665e29b93c75",
-      "tasks.md": "3dee0c795c34573d2e57c6e625bca70d67c882b80ee862d031b62f3f163968ff",
-      "checklist.md": "8e0b1b357ae339c052afd442db63b05dac7430e40f3aaa2d0e8148c06196661a",
-      "implementation-summary.md": "e15ff4d398a2e40955ee1df13a1468f2fa710492d654b799fed6ef6b70b861f5"
+      "spec.md": "3a87cd89600fd6ebd1b42ac3b4bdb50e93048c02e35b555a3d33f5a970064ccc",
+      "plan.md": "9556650f764d730613499ca091bb4003d2a043673abf7a5dd89f0892a90c668d",
+      "tasks.md": "125e8e9db8217901522be2ad8f95cc9f5da5ac5872ca7cbc3ad4306b5f9b677f",
+      "checklist.md": "b68152fee3804adcb32a604284873e965f26627c8f809d646f22751bac004bef",
+      "implementation-summary.md": "2628f73decfda6abe5d5134edfbb14e3b0d4006e429eb669f6e05ab490743efc"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The new-feature arc closed with a hard architectural finding",
     "created_at": "2026-06-21T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:49.319Z",
+    "last_save_at": "2026-08-28T16:00:16.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +209,13 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:087f9b0f4b84b0edd074bc09079ea082eb54a8bc4084b8948c0a7462728cf0e4",
+    "source_fingerprint": "sha256:abb984e6d2f066fd7bf824f7c09ee6fb0f40b4427bf37284ca5ad279092d03b6",
     "source_doc_hashes": {
       "spec.md": "8c724418681c303976a6ad743743fc6dfd45cbe0e46167d2393b9e9a6c101456",
       "plan.md": "ae627d340e247ef5fb133ce701ff706bd1b72ff045067dd3c5347bec0470b84d",
       "tasks.md": "217a9bc2249187725c0d0cb1d78ab7f6323a2a22fdda1350ed3498e5550de6ef",
       "checklist.md": "afe67a1185005919892c7a18fc7676300d24dbb09180d993924b50bf62caa248",
-      "implementation-summary.md": "2e80aa508fa5e0d03d5eaf4f1898726086692cca299bf1ea6a34e415043f4c3b",
+      "implementation-summary.md": "7c2c02f550aa989c1bdfe590793422da4098c393944e68b5d0d451f87e3da59a",
       "research.md": "da2a9661059df8a5a5a439d9187884c0f484bc39cd4f82b9afb8f55363c03a95"
     },
     "last_active_child_id": null,

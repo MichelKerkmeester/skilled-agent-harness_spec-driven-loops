@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `010-multi-client-stdio-socket-bridge` |
+| **Spec Folder** | 010-multi-client-stdio-socket-bridge |
 | **Completed** | 2026-05-19 |
 | **Level** | 1 |
 | **Status** | Complete with sandbox-limited live probe |

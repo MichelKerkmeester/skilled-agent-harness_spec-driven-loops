@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/035-cocoindex-mcp-reliability` |
+| **Spec Folder** | 035-cocoindex-mcp-reliability |
 | **Started** | 2026-05-14 |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |

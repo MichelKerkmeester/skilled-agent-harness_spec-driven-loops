@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 031-embedding-stack-hardening/008-deep-review-correctness-edges |
+| **Spec Folder** | 008-deep-review-correctness-edges |
 | **Completed** | 2026-05-29 |
 | **Level** | 1 |
 

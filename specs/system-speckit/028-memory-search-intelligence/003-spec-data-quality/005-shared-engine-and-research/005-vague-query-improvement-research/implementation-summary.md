@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 030-vague-query-improvement-research |
+| **Spec Folder** | 005-vague-query-improvement-research |
 | **Completed** | 2026-06-22 |
 | **Level** | 2 |
 | **Type** | Research-only study, no code or doc mutation |

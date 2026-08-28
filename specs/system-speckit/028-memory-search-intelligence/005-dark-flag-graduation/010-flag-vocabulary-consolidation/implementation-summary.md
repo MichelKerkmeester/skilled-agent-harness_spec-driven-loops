@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 017-flag-vocabulary-consolidation |
+| **Spec Folder** | 010-flag-vocabulary-consolidation |
 | **Completed** | 2026-07-09 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

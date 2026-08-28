@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `004-newer-text-embedders-survey` |
+| **Spec Folder** | 004-newer-text-embedders-survey |
 | **Completed** | 2026-05-18 |
 | **Level** | 1 |
 | **Scope** | Research-only |

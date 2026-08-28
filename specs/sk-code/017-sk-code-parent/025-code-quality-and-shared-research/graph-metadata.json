@@ -42,25 +42,13 @@
     "status": "complete",
     "key_files": [
       "research/research.md",
-      "shared/README.md",
-      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/spec.md",
-      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/research.md",
-      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-001.md",
-      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-strategy.md",
-      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/description.json",
-      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/graph-metadata.json",
-      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/plan.md",
-      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/tasks.md",
-      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/checklist.md",
-      ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/implementation-summary.md",
-      ".opencode/specs/sk-code/017-sk-code-parent/graph-metadata.json",
-      ".opencode/commands/deep/research.md",
       "spec.md",
       "research/iterations/iteration-001.md",
       "plan.md",
       "checklist.md",
       "research/deep-research-config.json",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -70,63 +58,27 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "shared/README.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "iteration-001.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-strategy.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/graph-metadata.json",
+        "path": "research/iterations/iteration-001.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -136,13 +88,19 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -167,6 +125,12 @@
       },
       {
         "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -206,11 +170,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Integration",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code `code-quality` sub-skill carries one of the highest-leverage jobs in the coding lifecycle — judging whether code is correct, clean, and safe — yet it has grown independently and its real usefulness is unproven",
     "created_at": "2026-07-07T00:00:00.000Z",
-    "last_save_at": "2026-07-09T10:02:44.220Z",
+    "last_save_at": "2026-08-28T15:52:59.833Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,9 +209,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:54b252d460a94cc8884652fda2907e167ce57b5b2f054f129e1231708582cf3a",
+    "source_fingerprint": "sha256:e9f7421bcedca9b7456c5eeebb6b129b21fc7536e0a005c3c3f57e078c9a804d",
     "source_doc_hashes": {
-      "spec.md": "b0f8613dc8d9c8713831129567f38861457d4b87d5993c82a7fa831db6f3209a",
+      "spec.md": "11223c3e9bf473331f211fcd5d3c4a2599d225493bd28e3a4dc378c8ca2fd6cd",
       "plan.md": "f0cc40f7cdd5345697c65bd4be524cef6d7e575efe1627efeb1abc63b863067a",
       "tasks.md": "2c6583a4dfc775a44c7dc3f538ba1fabd05b5011cc39ccca7d3346cb46ff3380",
       "checklist.md": "d74b7e684e3cf603d877340407ea0d5544a59af2c991efa0bf44d6eb94f4fa75",

@@ -41,7 +41,6 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/shared/references/smart_routing.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -49,12 +48,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "smart_routing.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -92,12 +85,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -117,6 +104,12 @@
       },
       {
         "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `sk-code` parent hub carries eight sub-skills split across two axes: three surface skills (`code-opencode`, `code-webflow`, `code-animation`) and five workflow-mode skills (`code-implement`, `code-debug`, `code-verify`, `code-quality`, `code-review`)",
     "created_at": "2026-07-06T06:49:42.937Z",
-    "last_save_at": "2026-07-09T10:02:44.209Z",
+    "last_save_at": "2026-08-28T15:52:59.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:befcabfb40d569f40ddb62b029f045b386ef6c5789d0b25085ba9c3eac9005d3",
+    "source_fingerprint": "sha256:5e7267f9bb61f2ddf12a313462e47d50bf78024096309e7605a32d6ee00be210",
     "source_doc_hashes": {
-      "spec.md": "bb3635a19cc80f581bca5a83b94fef49927d34d26281cb1794869bad19888de8",
-      "plan.md": "3ea9987bddff0e2fb22437e72418efc88a420dd9d391d54c9cff5b128e08ce3c",
+      "spec.md": "9dad2c0d0c520438be4068aeb4bda2e82c87d420dc0a2c0493b146ba47a6d42d",
+      "plan.md": "88adf6b09dc9436408b8ecac2e515d5ff1aeddfa55098fbcfd679c8ff94597ab",
       "tasks.md": "19f38d89fdcb8d2187c62d10a22614cf18adbab60776fd98ba3e7522d80b350e",
-      "checklist.md": "952efb1cf3364248bbcd7bbefb3dc824899f7500adeeeae5fd7c7e48281e770e",
-      "implementation-summary.md": "6a395cd1b2cf98ad89315edbb4e66dfbc7b297bbbbccb0717afe8e7f77bb824b"
+      "checklist.md": "d7207a5f1dd620f6f5b04f2336db3c29de265c246e050bd5759a6bfedd819113",
+      "implementation-summary.md": "19451ac329999010f74ef726d8542a34ebd1da8383e74e3aa44ad01e238bb9c5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -46,17 +46,7 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/commands/speckit/plan.md",
-      ".opencode/commands/design/interface.md",
-      ".opencode/commands/design/foundations.md",
-      ".opencode/commands/design/motion.md",
-      ".opencode/commands/design/audit.md",
-      ".opencode/commands/design/md-generator.md",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/description.json",
-      ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/graph-metadata.json",
-      ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/commands/speckit/assets/speckit_plan_presentation.txt"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -93,60 +83,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "interface.md",
-        "kind": "doc",
-        "path": ".opencode/commands/design/interface.md",
-        "source": "derived"
-      },
-      {
-        "name": "foundations.md",
-        "kind": "doc",
-        "path": ".opencode/commands/design/foundations.md",
-        "source": "derived"
-      },
-      {
-        "name": "motion.md",
-        "kind": "doc",
-        "path": ".opencode/commands/design/motion.md",
-        "source": "derived"
-      },
-      {
-        "name": "audit.md",
-        "kind": "doc",
-        "path": ".opencode/commands/design/audit.md",
-        "source": "derived"
-      },
-      {
-        "name": "md-generator.md",
-        "kind": "doc",
-        "path": ".opencode/commands/design/md-generator.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "speckit_plan_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/speckit/assets/speckit_plan_presentation.txt",
         "source": "derived"
       },
       {
@@ -202,11 +138,65 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Families",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Architecture Key Components",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Question Design",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five `/design:` commands (`interface`, `foundations`, `motion`, `audit`, `md-generator`) are currently flat, single-file commands with no `assets/` folder",
     "created_at": "2026-07-06T04:33:03.987Z",
-    "last_save_at": "2026-07-09T10:02:44.512Z",
+    "last_save_at": "2026-08-28T15:53:04.540Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,9 +207,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dbf0d948cf1d7c28db7b5fd699d11f98b60e3e3392f79a446e70c29247b32beb",
+    "source_fingerprint": "sha256:845a0299e686241660bd5ab1c69579aba7def575ca86ac2dadc9a153eafe0fec",
     "source_doc_hashes": {
-      "spec.md": "64db5b188431fef0287331d85c6a9e016637fca96dfcf555e3fd2052b2e84355",
+      "spec.md": "0d0a23132c2ecae30e1a1c735c4f6e10d5ae9897c830dd0c8830dafb0326ecc0",
       "plan.md": "bb9f5f9084dc14e6618ec43fe3dcfaaf4822ed5d9e211b5375e1ff848f204651",
       "tasks.md": "c400fe670d06bb285644af8b14db759583c0732becba5daad3bba6ad88ba4b29",
       "checklist.md": "c470f180d79002406952b0d1abd7f136ad666873a8d29d92bb467c6d4d287993",

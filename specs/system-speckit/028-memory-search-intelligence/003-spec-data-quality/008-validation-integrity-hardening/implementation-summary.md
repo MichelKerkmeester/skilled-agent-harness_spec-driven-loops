@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-validation-integrity-hardening |
+| **Spec Folder** | 008-validation-integrity-hardening |
 | **Status** | Shipped |
 | **Completed** | Yes |
 | **Level** | 2 |

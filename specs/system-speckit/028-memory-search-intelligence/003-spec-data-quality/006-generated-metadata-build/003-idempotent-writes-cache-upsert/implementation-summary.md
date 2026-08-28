@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 035-idempotent-writes-cache-upsert |
+| **Spec Folder** | 003-idempotent-writes-cache-upsert |
 | **Completed** | 2026-06-22, status COMPLETE |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

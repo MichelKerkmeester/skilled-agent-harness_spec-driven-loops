@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 025-off-corpus-eval-fixture-gate |
+| **Spec Folder** | 035-off-corpus-eval-fixture-gate |
 | **Completed** | 2026-06-22, status COMPLETE |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

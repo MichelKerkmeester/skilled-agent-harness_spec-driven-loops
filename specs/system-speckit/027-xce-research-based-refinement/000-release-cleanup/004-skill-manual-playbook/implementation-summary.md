@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/004-skill-manual-playbook |
+| **Spec Folder** | 004-skill-manual-playbook |
 | **Completed** | 2026-06-10 |
 | **Level** | 1 |
 | **Status** | Complete |

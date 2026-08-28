@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 023-new-feature-research-build |
+| **Spec Folder** | 032-new-feature-research-build |
 | **Completed** | 2026-06-20 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

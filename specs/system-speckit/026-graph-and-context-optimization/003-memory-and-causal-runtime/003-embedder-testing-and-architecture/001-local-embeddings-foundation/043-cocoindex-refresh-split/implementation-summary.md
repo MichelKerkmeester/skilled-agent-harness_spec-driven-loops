@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/043-cocoindex-refresh-split` |
+| **Spec Folder** | 043-cocoindex-refresh-split |
 | **Started** | 2026-05-14 |
 | **Completed** | 2026-05-14 |
 | **Level** | 3 |

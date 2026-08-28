@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 026-lexical-grounding-floor |
+| **Spec Folder** | 036-lexical-grounding-floor |
 | **Completed** | 2026-06-22, status COMPLETE |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 020-query-time-filter-benchmark |
+| **Spec Folder** | 028-query-time-filter-benchmark |
 | **Status** | Completed |
 | **Completed** | 2026-07-10 |
 | **Level** | 2 |

@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/009-spec-memory-runtime-retention-cleanup` |
+| **Spec Folder** | 009-spec-memory-runtime-retention-cleanup |
 | **Prepared** | 2026-05-22 |
 | **Completed** | 2026-05-22 |
 | **Level** | 1 |

@@ -193,9 +193,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "The sk-design `manualtestingplaybook`'s `01--mode-routing` category has never been dispatched for real",
+    "causal_summary": "The sk-design `manualtestingplaybook`'s `mode-routing` category has never been dispatched for real",
     "created_at": "2026-07-07T15:09:43.419Z",
-    "last_save_at": "2026-07-09T10:02:44.580Z",
+    "last_save_at": "2026-08-28T15:53:08.282Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b6408e137aef46ed8960ce7e5199f551e0c14670245565afecaadc25d4104a2e",
+    "source_fingerprint": "sha256:7dbcbee38b572ad26c3ba19c4ab3e86a760c3cc9f20f935cc3c892596a6aae7d",
     "source_doc_hashes": {
-      "spec.md": "22e73e9185c7dee7ef73bc19036a497f34161c71bacc5e196aa4063923fae313",
-      "plan.md": "2bd2df4fb9e1fee24b5be69545c9e753c2288818ea5068a6cb592ee7cb2dc4c4",
+      "spec.md": "7181dbde2a62ceee5ba80baa083c25246bcfaab82e174b38223b7fb0df431f7d",
+      "plan.md": "3e6543bc79a9d0110d46077d225296a6230ee6fccd99502aa0eda1fa963ef6fa",
       "tasks.md": "b1177a870fb410fd0c756cd46be0e00190eec45876e56aafeb714533aab6177f",
       "checklist.md": "407c94fca15edc060229cdca3a6fb188c72b951a0f9f324ba7ff9b9e9c9aa0a9",
       "implementation-summary.md": "e65dfba662c32bb16c03578e5b8ea0de29049e53b707192aaa161fa2382a8714"

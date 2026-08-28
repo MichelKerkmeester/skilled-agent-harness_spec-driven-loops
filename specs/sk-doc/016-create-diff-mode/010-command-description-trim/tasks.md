@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/010-command-description-trim"
+    packet_pointer: "sk-doc/016-create-diff-mode/010-command-description-trim"
     last_updated_at: "2026-05-06T14:45:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Tasks authored"

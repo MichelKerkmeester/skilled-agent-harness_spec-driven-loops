@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/014-skill-readme-standardization/023-system-spec-kit-readme"
+    packet_pointer: "sk-doc/016-create-diff-mode/014-skill-readme-standardization/023-system-spec-kit-readme"
     last_updated_at: "2026-06-07T17:55:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Shipped system-spec-kit README restyle; Batch E complete (3 of 3)"

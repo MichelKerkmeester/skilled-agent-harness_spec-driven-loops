@@ -197,7 +197,7 @@
     ],
     "causal_summary": "mcp-coco-index search cost scaled unexpectedly with `offset`, `limit`, path filters, and multi-language requests",
     "created_at": "2026-05-19T20:10:29Z",
-    "last_save_at": "2026-07-17T17:19:23.902Z",
+    "last_save_at": "2026-08-28T15:59:43.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8735cf26be7cde1a326a4da4fcb36d5f607a56c47defe6f9bacb6f136486b11f",
+    "source_fingerprint": "sha256:267908a67c867594115fe212d31c3e05bb10752ee9654357e7fae76a5a69c767",
     "source_doc_hashes": {
       "spec.md": "f7c7f8e2680261890e6f61cfd0e8c7e1ce71946bc4322e2e99db354edf4c3acd",
       "plan.md": "7e8c401f3617ee1fe1120d3b4c41eac78a69fd9adb441f594528258e63a0e94d",
       "tasks.md": "e24c62a4351aa7ef37ab4fc120230246ff91c6e9a7585c040488c763d477856d",
       "checklist.md": "33441a4b100df99b54bdd983abd37dd55b464c662be294e3b3d403385739083a",
-      "implementation-summary.md": "27b84a425ac57e643ca9bbac78f19bf53eb67ef4d8474e5b63f2d553d1cbfd26"
+      "implementation-summary.md": "57a9cc60d54c7ea1436acc3638f6f3acc1b54ee99e912c7ff65f44e7d065ae6a"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -46,9 +46,7 @@
       "checklist.md",
       "decision-record.md",
       "research/skills-audit.md",
-      "implementation-summary.md",
-      ".opencode/skills/README.md",
-      ".codex/config.toml"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -91,18 +89,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -194,11 +180,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill docs have accumulated mixed current-state language across recent restructures: standalone `systemskilladvisor`, the `mk-code-index` code-graph rename, post-040 embedding behavior, and sk-doc template hardening",
     "created_at": "2026-05-14T18:47:27Z",
-    "last_save_at": "2026-07-17T17:19:20.759Z",
+    "last_save_at": "2026-08-28T15:59:38.255Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34cd4e95e03f9cc6cdf31023c9d38c4dc50bf64df93d89000defde82b5a8c0b6",
+    "source_fingerprint": "sha256:405ad86393d10dc093eafb745fa44f8ffd0c7b91cee434ee275ee98c1917d874",
     "source_doc_hashes": {
       "spec.md": "a1c2d4bafb61e650f536c2dc620816498694508d3a5178d60e02cfcb95cecaca",
       "plan.md": "68b83c4dbaf75dbe248409323899b8f6161bbd090e5321e17915ab3844cb7b37",
       "tasks.md": "bb7e71b64627312a37d527a5a7e7fe6b567fbac764799d0d4c747072be48641a",
       "checklist.md": "0b3fa16a64bc0af0fa5a9e464b4ef8402670792a162e7b74490d069af96bf83d",
       "decision-record.md": "05fb5462bf0c26209717fc815bf3a52a13cfd5ebe09ddb262ae8a35e9254e321",
-      "implementation-summary.md": "8bdf662a03c835c00665cb8922e3cd30c18d1ab6e6b7735aac833f3a30c6bf61"
+      "implementation-summary.md": "39e1511c0b05b6e1516bd516e934b15f3931778859ffeff7c803156037400446"
     },
     "last_active_child_id": null,
     "last_active_at": null

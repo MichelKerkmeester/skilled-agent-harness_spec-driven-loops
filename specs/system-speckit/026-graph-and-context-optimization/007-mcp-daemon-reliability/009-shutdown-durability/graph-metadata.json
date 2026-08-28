@@ -43,9 +43,6 @@
     "key_files": [
       "spec.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md"
@@ -61,24 +58,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,11 +173,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 008 made `closedb()` run `PRAGMA walcheckpoint(TRUNCATE)` on graceful close, but the daemon shutdown path still allowed two durability gaps",
     "created_at": "2026-05-29T13:03:59.425Z",
-    "last_save_at": "2026-07-17T17:19:34.006Z",
+    "last_save_at": "2026-08-28T15:59:54.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fb61285295b67dbb712f93de7989e69dcd732a9aea07c1506f0abbb8f8fd52d6",
+    "source_fingerprint": "sha256:41ff35782ce395021878fe27572a06692e9071e2014b7e24286a4f43e3c13197",
     "source_doc_hashes": {
       "spec.md": "92bb71cc2795ace6469c018e124c82fd4bce6c8594a17c226599031b5e09eb97",
       "plan.md": "51b5ccf4ae19f9fee4517b18c05e2dd1a96500ace12f2dbd6fce44b1936d2c16",
       "tasks.md": "c1eb65681997966b74931fc03b889d4bddec96c7ccf45d7b42fcba62a1f417c9",
       "checklist.md": "0a54ea9987bba392155e33e0e227527e330fa8f8d70431c352eb5e5998659002",
-      "implementation-summary.md": "f905767abac30487ef87034ea9743fce0f1e0f1faf6d0451429aa12a306bb4e4"
+      "implementation-summary.md": "09efb4f7fde02a7832ce7ce449c7113bf1e2ea949dadf29b0abb48693bd87b2a"
     },
     "last_active_child_id": null,
     "last_active_at": null

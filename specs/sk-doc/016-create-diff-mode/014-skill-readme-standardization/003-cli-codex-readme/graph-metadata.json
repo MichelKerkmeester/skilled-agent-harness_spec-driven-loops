@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The cli-codex README is a tabular reference card with no problem-first entry point",
     "created_at": "2026-06-07T10:30:00Z",
-    "last_save_at": "2026-07-17T13:38:43.554Z",
+    "last_save_at": "2026-08-28T15:59:21.442Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +197,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:132c03cc8bf148e3bfc9488db68bb680ba9ea431933675c4afa2616f72c7c1ad",
+    "source_fingerprint": "sha256:bafeffb7871e0b953dc37244447637313fc4ff0f4b5df8ce9c5b128437d55702",
     "source_doc_hashes": {
-      "spec.md": "8f98d684c8c1f67ed8994b4d0a1b6966c1675724cc70e4008a335805ee1497e4",
-      "plan.md": "94318746dceeb011a42fc605f1ab61f7738261ba72b46f22892cd703715f5d42",
-      "tasks.md": "258163afcd1c4414aa31029a5811a11bdf361bc6bdcd29888baf379eead61ff2",
-      "implementation-summary.md": "f1429023b3ec7d88dca3001670c44727ed4eab3f01a4a87cb2660137ac1d0a5d"
+      "spec.md": "25eaef16c30acb8a7ebb451de8a506f25dfdc0092f19544b2dada619c3f634ed",
+      "plan.md": "30c31bf773973787e4abb741fbb650fec7b36a9f48003d0c1539fecda2714c69",
+      "tasks.md": "9bb0fb88c581766d264833837ff9b22eb5412737989ccc2aab06e967090783a5",
+      "implementation-summary.md": "47fb548c140d271d962c9a5dc0f910c091bbc781b087ee4409b444ae60834f9a"
     },
     "last_active_child_id": null,
     "last_active_at": null

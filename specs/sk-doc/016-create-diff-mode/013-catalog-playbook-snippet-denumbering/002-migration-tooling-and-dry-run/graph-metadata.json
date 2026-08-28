@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Renaming 1,531 files and rewriting ~2,275 link occurrences by hand is error-prone: a single missed `SOURCE METADATA` self-path or root-doc link silently breaks navigation, and two known slug collisions would overwrite real content if a rename ran blind",
     "created_at": "2026-06-06T06:46:12.386Z",
-    "last_save_at": "2026-07-17T13:38:41.010Z",
+    "last_save_at": "2026-08-28T15:59:19.379Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b2d5538da7d8f68ea42b15123e40eb5960aa52d6c5b65c72d1963edbdcd0604",
+    "source_fingerprint": "sha256:3b99a00da6c3faa5c5f13f8d9c544551f816700c27ea6188ce175faffb718c24",
     "source_doc_hashes": {
-      "spec.md": "bbb2799392abdaf4391eaa00a61b0edf4e9dd1a19e61edebc6d06f4fd1fadf73",
-      "plan.md": "dd419a9314c780640b1c704d39945c628e0df460cda74ae7b4b7823f8640e5fc",
-      "tasks.md": "39b12f1140caa388275ddac5f24dae14e4db7854aaa53c933b1a4ed745988e7f",
-      "checklist.md": "defbedaa8480f0118c98122baaa2657d8be83fcd8def98d86e1db42c56703beb",
-      "implementation-summary.md": "da41b0f0c51cf9ae7fcfd08103254961001fae47488c652168fb0072291bc39c"
+      "spec.md": "f9c3a22c419ea905a982dd034cb38dde860d786fb58b0e7c4503a172fc15512e",
+      "plan.md": "67c1570e7131cdef87f976fb1be419e545708488b71323f4a2edba68416b54b1",
+      "tasks.md": "b26baea9a5c3db39031ec8a9a8ba0fe0764de0f00c7e8a24e5e97d52f5bf14f7",
+      "checklist.md": "d6166ac1fbe2c9b2e087c426b8e3c4a1e48c7f1ea1b9d9700c5a3a41c135d6a6",
+      "implementation-summary.md": "e43a48df07d5891562169236f6bd8145ecdf872ab713d4886087ccdd367cd442"
     },
     "last_active_child_id": null,
     "last_active_at": null

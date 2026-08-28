@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 014-packed-bm25-field-weights |
+| **Spec Folder** | 009-packed-bm25-field-weights |
 | **Completed** | 2026-06-10 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

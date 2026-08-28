@@ -189,7 +189,7 @@
     ],
     "causal_summary": "The single-executor path of the auto loop YAMLs (`deep-review-auto`, `deep-research-auto`, `deep-alignment-auto`) dispatches per iteration via `phasemainloop`'s `branchon: config.executor.kind` (research uses `config.executor.type`)",
     "created_at": "2026-08-27T06:39:36.883Z",
-    "last_save_at": "2026-08-27T06:46:33.572Z",
+    "last_save_at": "2026-08-28T15:53:25.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57b32c34ee55af40ed8ce0789ebfc5b1cc0a0e70c895f5116918ac6f5eb027df",
+    "source_fingerprint": "sha256:63ed16b29b96b6444b9780c523556a66f553fc91a547377bd47ca0389d3f22f7",
     "source_doc_hashes": {
       "spec.md": "4eec0beba733544f31759e932a249177351fe945fb2ba585249897ff5c2574ac",
       "plan.md": "e585bf47d4814b8c1cf3297c0db43bee42bcd14b34ba57a4dffab8762bfbb2f4",
       "tasks.md": "6a199e7061291a499602d19e3ed76f2c56df83ad0ed3a33bab8c00bfe9f2c670",
-      "checklist.md": "101a36fbd02d7665f89952b09e95bc31a8eef8c89b0ed4cf5b50c141f9ea8eaf",
+      "checklist.md": "de6207e283726170574dfcc2b095cb8d5bcbc2ade178e7ea67ae452cd9b9239b",
       "implementation-summary.md": "efabfff43f2f724d4c7ad6fc29d82c84479747596ccf482f08fa9fde09b09490"
     },
     "last_active_child_id": null,

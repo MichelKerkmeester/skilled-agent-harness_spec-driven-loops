@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/011-skill-anchor-toc-removal/003-anchor-comment-removal"
+    packet_pointer: "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal/003-anchor-comment-removal"
     last_updated_at: "2026-05-26T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Removed standalone anchor comments from skill markdown"
@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 117-skill-anchor-toc-removal/003-anchor-comment-removal |
+| **Spec Folder** | 003-anchor-comment-removal |
 | **Completed** | 2026-05-26 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

@@ -36,23 +36,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/timer-registry.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/shutdown-hooks.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/memory-runtime-guard.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/enrichment/retry-budget.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -80,102 +64,6 @@
         "source": "derived"
       },
       {
-        "name": "bounded-cache.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
-        "source": "derived"
-      },
-      {
-        "name": "audit-rotation.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/audit-rotation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "timer-registry.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/timer-registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shutdown-hooks.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/shutdown-hooks.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-runtime-guard.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/runtime/memory-runtime-guard.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retry-manager.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-cache.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/tool-cache.ts",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph-boundary.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/code-graph-boundary.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retry-budget.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/enrichment/retry-budget.ts",
-        "source": "derived"
-      },
-      {
-        "name": "core.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/errors/core.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shadow-evaluation-runtime.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "job-queue.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
-        "source": "derived"
-      },
-      {
-        "name": "content-router.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/routing/content-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "bm25-index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
-        "source": "derived"
-      },
-      {
         "name": "Spec Memory Runtime Retention Cleanup",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -198,11 +86,101 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bound Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Focused Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "max-size LRU",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The broad system-spec-kit audit found in-process retention risks inside memory scan, routing, search, ingest, retry, audit, and embedder paths",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-07-17T17:19:27.703Z",
+    "last_save_at": "2026-08-28T15:59:49.858Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +189,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0eedbeeac35952585bcc67f3b13b3d033914e5478825e6bc08c800d68a025867",
+    "source_fingerprint": "sha256:82449f04fe43da316cb599a3b632fdf7687064b879f9aac7f0c2f6163f146478",
     "source_doc_hashes": {
       "spec.md": "80948f11c38868332fab3fcb8fc7563625c15ff79905d1e5f8714b19c38e993a",
       "plan.md": "e015ee38063f8d8ef0b692c3710fddeaeab6e6c51fb1a9c80a809bb4c401a845",
       "tasks.md": "daf65bc7ef932fd71f68674aefc5e5c9e622adafbef87d8b3f691f1c4d4e4f3e",
-      "implementation-summary.md": "6eca5570dfe2ad29627dbec4072469e16b7b5e57532482f0cb14b08c80514c60"
+      "implementation-summary.md": "2b13ab28a8b09f47dd556cfd1f895a1d3a32b371287be3429c927b5a0c612a18"
     },
     "last_active_child_id": null,
     "last_active_at": null

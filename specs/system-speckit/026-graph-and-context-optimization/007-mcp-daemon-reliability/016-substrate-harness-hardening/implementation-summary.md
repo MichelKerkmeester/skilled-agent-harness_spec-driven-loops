@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening |
+| **Spec Folder** | 016-substrate-harness-hardening |
 | **Completed** | 2026-05-31 |
 | **Level** | 3 |
 | **Actual Effort** | ~2.5 hours |

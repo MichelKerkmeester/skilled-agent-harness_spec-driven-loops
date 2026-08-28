@@ -35,7 +35,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 046-drift-audit-deep-history-correction |
+| **Spec Folder** | 012-drift-audit-deep-history-correction |
 | **Completed** | 2026-07-01 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

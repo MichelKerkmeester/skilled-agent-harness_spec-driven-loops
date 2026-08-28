@@ -45,8 +45,7 @@
       "research.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "lib/utils/index-scope.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "index-scope.ts",
-        "kind": "code",
-        "path": "lib/utils/index-scope.ts",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Headline Table",
+        "kind": "proper_noun",
+        "path": "research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Map each retrieval/dispatch system (CocoIndex, mk-spec-memory, code-graph, AI council, deep-research, deep-review, sk-doc, skill-advisor) to its indexer + content type (code / text / both / none). Read-only research packet producing a single research.md table + per-system evidence.",
     "created_at": "2026-05-18T16:52:17.344Z",
-    "last_save_at": "2026-07-17T17:19:26.146Z",
+    "last_save_at": "2026-08-28T15:59:46.764Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +205,12 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:c5f61e384f1d6fe2a46da9d8c8fb9cf546db0d43360f13a9c8af11a757dd1e97",
+    "source_fingerprint": "sha256:29d0ca205ad63795e32109c2e36d4ee8e0048bb83ac6edda8b7c0cfd17bf8a97",
     "source_doc_hashes": {
       "spec.md": "7b2a8dcacef20116df1d0c1655304c88a5fa4bff5f0d37666896100412938a0e",
       "plan.md": "af00bdea19c302b26cf9ddcd82093494e93f5f54bbce58e733d7565863d65c31",
       "tasks.md": "9f67e042e4374e70c69bad0304cdcc4011d8a592a3180ac7ff7e57c1a943a592",
-      "implementation-summary.md": "576831322985c950842cb0a01ad90d36926b25d3254f07def6ec0a3fd1013782",
+      "implementation-summary.md": "c2d6c67df33ff55a58127074a377fc60636028f98a26235db5bb1ef4d99ebb13",
       "research.md": "3781e807fb30c88174a0f0997448ee2ab04f2cfa856859e2311ed76c549e98fc"
     },
     "last_active_child_id": null,

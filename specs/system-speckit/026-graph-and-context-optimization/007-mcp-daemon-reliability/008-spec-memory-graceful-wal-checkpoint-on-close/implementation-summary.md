@@ -33,7 +33,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `008-spec-memory-graceful-wal-checkpoint-on-close` |
+| **Spec Folder** | 008-spec-memory-graceful-wal-checkpoint-on-close |
 | **Completed** | 2026-05-29 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

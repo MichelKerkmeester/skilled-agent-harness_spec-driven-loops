@@ -40,8 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "benchmarks/README.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -66,12 +65,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "benchmarks/README.md",
         "source": "derived"
       },
       {
@@ -187,11 +180,17 @@
         "kind": "heading",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase A — Convention layer",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Cross-cutting introduction of a new `mcp_server/benchmarks/` convention for any MCP server in this repo (our own + forks). Promotes spec-packet bake-off evidence + curated headline docs from `specs/` into skill-local discoverable locations. First two adopters: mk-spec-memory (May 17, 2026 text-embedder bake-off) and mcp-coco-index (May 18, 2026 code-embedder bake-off). Includes historical FORMAT.md convention doc + per-skill READMEs + per-bench dated subfolders with structured benchmark_report.md per sk-doc standards.",
     "created_at": "2026-05-18T17:04:31.398Z",
-    "last_save_at": "2026-07-17T17:19:24.852Z",
+    "last_save_at": "2026-08-28T15:53:26.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:38380a406ebea0c0d8a43b0fc262f7d2acc6df29953eae6bbf5b19bea883e4d0",
+    "source_fingerprint": "sha256:d1e00366835978d4d384cf9583234fec367d8e793937b7c4841d730fbf67bf9d",
     "source_doc_hashes": {
       "spec.md": "6406e06e9c68fd24ab59a80924610531dcddc89484c457006eeea1006d9c6eb3",
       "plan.md": "c665c44886f74a988b2458a0ae25dcb814d78eb5515acf2e36022410addc50c5",
       "tasks.md": "0315e889e626ff7b82d0d1ae1bb8ebc7d37eb37aba36837cd743f5b79199798c",
-      "implementation-summary.md": "ef6ad0205697539cdae5f9688cd79f2d00f69e37d7557ce0c89c4592e6e06e73"
+      "implementation-summary.md": "a5819ef24234cf9eaff1650d7f43b178ae0c2c890c613d0e99a80f5b8ab45bd6"
     },
     "last_active_child_id": null,
     "last_active_at": null

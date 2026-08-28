@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate` |
+| **Spec Folder** | 005-reviewer-prompt-benchmark-substrate |
 | **Completed** | 2026-06-10 |
 | **Level** | 2 |
 | **Status** | Completed |

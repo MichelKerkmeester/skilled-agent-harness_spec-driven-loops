@@ -43,18 +43,10 @@
     "key_files": [
       "spec.md",
       "decision-record.md",
-      ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
-      ".opencode/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
-      ".opencode/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-      ".opencode/skills/sk-doc/shared/assets/template-rules.json",
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-      ".opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
-      ".pi/extensions/README.md",
-      ".github/workflows/README.md",
       "tasks.md",
       "plan.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -67,54 +59,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "readme-code-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "quality-and-checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "template-rules.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/shared/assets/template-rules.json",
-        "source": "derived"
-      },
-      {
-        "name": "validate_document.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "audit_readmes.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".pi/extensions/README.md",
         "source": "derived"
       },
       {
@@ -133,6 +77,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,11 +150,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Confirm And Decide",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authoring Surface",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fixture Corpus",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three defects in the governing surface, each independently confirmed against source:",
     "created_at": "2026-07-30T18:58:50.551Z",
-    "last_save_at": "2026-07-30T19:14:39.704Z",
+    "last_save_at": "2026-08-28T15:53:22.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,15 +204,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d01a901e4d18c7b324898dc41c5e4e3da7fceb3c6e02ac87789850995edf376f",
+    "source_fingerprint": "sha256:4619fd1b88dfb7de1966f0c55c174264c987e1484bfe91e10586637a27f6a221",
     "source_doc_hashes": {
       "spec.md": "8f97e0e9fe242e3efa8b65197f03d80e46321ced9cc07e6b95971f7930f3d4c2",
       "plan.md": "2aa6bd4302feeabb1bd7ccea5b04200c25e5c61c8dfc88ebc8fdd69ffca32108",
       "tasks.md": "da8b617201d99f97a97559ccf9a88a3ccbd91d751ae8540801525ec306d6961e",
       "checklist.md": "19dfae536faa42adddc8d0280ef3bc9844d2f383739a66c4f646b77c036b823a",
-      "decision-record.md": "44d0059289b8e5634de493c56ecc6084153959ace7d34a4fb2c6f46dab3f933d"
+      "decision-record.md": "44d0059289b8e5634de493c56ecc6084153959ace7d34a4fb2c6f46dab3f933d",
+      "implementation-summary.md": "f6fa8afe778d1eff1d05963426748a01e5994b8d220e98ed813f9473f2bee352"
     },
     "last_active_child_id": null,
     "last_active_at": null

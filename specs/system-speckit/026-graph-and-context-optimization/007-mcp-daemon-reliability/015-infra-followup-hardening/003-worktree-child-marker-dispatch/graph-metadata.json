@@ -38,21 +38,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/bin/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
-      ".opencode/bin/worktree-session.sh",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/bin/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,12 +61,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "worktree-session.sh",
-        "kind": "script",
-        "path": ".opencode/bin/worktree-session.sh",
         "source": "derived"
       },
       {
@@ -190,11 +176,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 035 built `worktree-session.sh`, which isolates each top-level AI session in its own git worktree but exec's in place for orchestrated children",
     "created_at": "2026-05-30T20:56:41.887Z",
-    "last_save_at": "2026-07-17T17:19:34.610Z",
+    "last_save_at": "2026-08-28T15:59:56.030Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +202,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ad3c06ed36aa62a350a4852fe7f9dfbf0da25b0718be69e9a0c86616fb3cbe1",
+    "source_fingerprint": "sha256:d10cfc03243c8a072f138b15ed121e055f737fa00ef9bc88341c1cf097d12ed2",
     "source_doc_hashes": {
       "spec.md": "0d3ec8e6f661dc15e37e335e61acb9d537529c8a22032964ae089f2d4b2f002b",
       "plan.md": "cef6cbb9e7a4b1ac0b8652fc56096bfdf5b61cf7c9f38f270315c9d0a4021e9b",
       "tasks.md": "af2539cf9e23459b3fff399449183414be896c3c6c632deab28dc838fbb455db",
       "checklist.md": "47c05808289a3e56379fbfddf2e90cf6ad8940ca5f836f56d470ed373e4bdd78",
-      "implementation-summary.md": "1a902139ea6b5314b5d0fc1521ac647c1cd216fc2b1982d4edec467a73a7d41c"
+      "implementation-summary.md": "7ece73ea4617801a567d440386878839eac40dbc3035d2d89541490e9577f9e7"
     },
     "last_active_child_id": null,
     "last_active_at": null

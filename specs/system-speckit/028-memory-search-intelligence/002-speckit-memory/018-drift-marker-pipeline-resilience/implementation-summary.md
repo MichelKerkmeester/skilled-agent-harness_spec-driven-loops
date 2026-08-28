@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 013-drift-marker-pipeline-resilience |
+| **Spec Folder** | 018-drift-marker-pipeline-resilience |
 | **Status** | Complete -- F3 and F4 implemented, verified, `validate.sh --strict` passed |
 | **Completed** | Yes |
 | **Level** | 2 |

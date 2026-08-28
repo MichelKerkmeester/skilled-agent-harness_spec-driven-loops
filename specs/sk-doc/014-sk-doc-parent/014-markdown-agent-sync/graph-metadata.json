@@ -38,27 +38,12 @@
     "importance_tier": "important",
     "status": "draft",
     "key_files": [
-      ".opencode/agents/markdown.md",
-      ".claude/agents/markdown.md",
-      ".opencode/skills/sk-doc/mode-registry.json",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "markdown.md",
-        "kind": "doc",
-        "path": ".opencode/agents/markdown.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/mode-registry.json",
-        "source": "derived"
-      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
@@ -190,11 +175,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/agents/markdown.md` and `.claude/agents/markdown.md` are the two runtime mirrors of the markdown-authoring agent, and both cite `sk-doc` packet paths directly (template paths per `/create:` command, the required-reading table, and the resource inventory)",
     "created_at": "2026-07-07T04:51:45.089Z",
-    "last_save_at": "2026-07-17T14:36:59.650Z",
+    "last_save_at": "2026-08-28T15:58:16.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b0d3cd86b3d1c2e72b3ac2b97225389b9b092a7d634d344dccb6c1d040375de1",
+    "source_fingerprint": "sha256:1668929bdec8ae870b5b6c1a547e581853ec163101dc38b5bce712fcb7668869",
     "source_doc_hashes": {
-      "spec.md": "dc95ffc6ba810e31f1bdaa6bc0bd7f608b95cbe869a10a7b4551ff0b89473fda",
-      "plan.md": "7c0c9b5e03aac7c02b56bef4689db497814ea4d6638c1119b2b5976959089d0d",
-      "tasks.md": "8a865d15105a0d497c5af4f5180b205d4d4a94b1474ad4a90aa1b8d5b19c4263",
-      "implementation-summary.md": "f32f837aa9aa4d66b1fff9e92a0c686a4f45cf6682f9e93854efa20a97663247"
+      "spec.md": "6f9ccfe1dbcac3a72be48a4eaebf8d3e6b4144544045890835433dfdcf5ced3e",
+      "plan.md": "573f9a7474e67019a071afe508f5f52af62fbf34ae469cbb7da2c89e1ff2418d",
+      "tasks.md": "e9fa6c78af73a5c25d63b050fea60d79a3b5d2306088c66c1d125fe03c2a2d11",
+      "implementation-summary.md": "f7cc2eb44b86b9e6a2fcb74543dca6254c891e5b37b54023322c78e6f16a40ce"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -48,7 +48,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 008-metadata-rename-reconciliation |
+| **Spec Folder** | 007-metadata-rename-reconciliation |
 | **Status** | COMPLETE with known unrelated test-infrastructure failures documented |
 | **Completed** | 2026-07-09 |
 | **Level** | 2 |

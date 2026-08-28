@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 021-residual-correctness |
+| **Spec Folder** | 029-residual-correctness |
 | **Completed** | 2026-06-19, both candidates DONE in this phase |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

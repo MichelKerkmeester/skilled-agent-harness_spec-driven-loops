@@ -43,106 +43,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/write-provenance.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/pe-gating-provenance.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/pe-orchestration-provenance.vitest.ts",
-      "lib/storage/lineage-state.ts",
-      "handlers/memory-save.ts",
-      "lib/search/auto-promotion.ts",
       "checklist.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "handlers/memory-index.ts",
-      "handlers/memory-ingest.ts"
+      "spec.md",
+      "review/review-report.md"
     ],
     "entities": [
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-ingest.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "pe-orchestration.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/pe-orchestration.ts",
-        "source": "derived"
-      },
-      {
-        "name": "pe-gating.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/pe-gating.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handler-memory-index.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-index.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handler-memory-ingest.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-ingest.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "write-provenance.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/write-provenance.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "pe-gating-provenance.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/pe-gating-provenance.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "pe-orchestration-provenance.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/pe-orchestration-provenance.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lineage-state.ts",
-        "kind": "code",
-        "path": "lib/storage/lineage-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "auto-promotion.ts",
-        "kind": "code",
-        "path": "lib/search/auto-promotion.ts",
-        "source": "derived"
-      },
       {
         "name": "checklist.md",
         "kind": "doc",
@@ -165,6 +73,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -208,11 +128,77 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Small",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The provenance-injection change correctly introduced write-path tagging, but review found two regressions and one verification question:",
     "created_at": "2026-06-11T12:10:00Z",
-    "last_save_at": "2026-07-17T17:19:41.054Z",
+    "last_save_at": "2026-08-28T16:00:06.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +208,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba1e23102b1f8d88529a7093c791885ca24f4956806adb696de2c9ec1b242c45",
+    "source_fingerprint": "sha256:ad7275b4b838147bf81a2f3dd518c87e67d98c9366c23c58f808b2fba1fe5577",
     "source_doc_hashes": {
       "spec.md": "82439bf4033f84842181b70b8b9110d07b32cc3b617dd05fd857093194fa8b9e",
       "plan.md": "55124ba15b7b34863501c30d85aa3d86c19d32b363a0c6618bdda44e6fb74dca",
       "tasks.md": "c438648ac125774b9650fe3be2d9a8b49829d8f6f03c3abe747cd4938c106802",
       "checklist.md": "1b90f778e9e1495c7547a0e5935f008c5af0d2d81ec35b534ececfb1f2339f1e",
-      "implementation-summary.md": "af1300fd4716457415a7d9bc4b11f3a1b43904a3c0c6a9de84de7a4353c129ea"
+      "implementation-summary.md": "593c90f2a5e0ea21e9548aba9b44cf2f8a56c18aeeaed9674900c729578292ca"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 010-query-channel-calibration |
+| **Spec Folder** | 012-query-channel-calibration |
 | **Status** | IMPLEMENTED, verification-limited |
 | **Completed** | Packet scope implemented; package-wide full-suite gates still have unrelated failures |
 | **Level** | 2 |

@@ -41,10 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/commands/memory/save.md",
-      ".opencode/commands/memory/search.md",
-      ".opencode/commands/memory/manage.md",
-      ".opencode/commands/memory/learn.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,30 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "manage.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/manage.md",
-        "source": "derived"
-      },
-      {
-        "name": "learn.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/learn.md",
         "source": "derived"
       },
       {
@@ -191,11 +163,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Inventoried",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Inventory",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Memory Commands needs a scoped inventory and extract phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:42.943Z",
+    "last_save_at": "2026-08-28T16:00:08.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e850e5a97dbf0bb33b98c827859b3521bfd7ba4711ef11e331c4b5cc0d65467b",
+    "source_fingerprint": "sha256:d8fac76ec1d999bc9ab0eef54654941631ce3f167679616d0c5c99447bf0a25f",
     "source_doc_hashes": {
       "spec.md": "b08febf49e4d06191b9c794e8264efd3109f79b3ad6a149315464d87774d8e73",
       "plan.md": "dbfee6c1c408314581ec26383d6b45fb22007993eb212e98fa645aad14dc11b8",
       "tasks.md": "b4134f639ac68cdfe7fd0bcf38de5b8d69ae4c37c14402f4746236b88646ba2a",
-      "implementation-summary.md": "a0dfe8620f28f486813fcbb80d2aa67c4533ddfdfddddda0f3473700b8a91f74"
+      "implementation-summary.md": "58a11344fe399c9b23ccabade8af658b76a667cc9462de47a21edaf385846cbe"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -46,13 +46,7 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/bin/lib/compiled-route-manifest.cjs",
-      ".opencode/bin/compiled-route-manifest.cjs",
-      ".opencode/bin/compiled-route-status.cjs",
-      ".opencode/bin/compiled-route-sync.cjs",
-      ".opencode/bin/tests/compiled-route-manifest.test.cjs",
-      ".opencode/bin/compiled-route.cjs"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -89,36 +83,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-route-manifest.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/compiled-route-manifest.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-route-status.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/compiled-route-status.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-route-sync.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/compiled-route-sync.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-route-manifest.test.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/tests/compiled-route-manifest.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "compiled-route.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/compiled-route.cjs",
         "source": "derived"
       },
       {
@@ -198,11 +162,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "final",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The seven current activation manifests were produced by fixed per-hub build harnesses",
     "created_at": "2026-07-21T04:50:51Z",
-    "last_save_at": "2026-07-24T12:11:49.556Z",
+    "last_save_at": "2026-08-28T15:53:19.659Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,9 +207,9 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ebc6fcdeb76992c967070cfb42bdca82040385ac5348ddd0f2465ac93c2b79b",
+    "source_fingerprint": "sha256:24857e6f557ab21fd1775858d54eb62c9812eb2c6e1d8c1684aada16bd5af617",
     "source_doc_hashes": {
-      "spec.md": "dd27c16059ad432a057e3ed2422a194d416d6a9ba97834a4fa202a9fa61025f1",
+      "spec.md": "6c58c1d62a1f76ffc2ffd2d393c29bf4c5edb6ee91ceb6951065ec46b5913459",
       "plan.md": "379b9006e6067e4da27fdf4ed4e86934705592a04eb4f7fa0d7ccef030e0ccd9",
       "tasks.md": "4070b0e5645927a964b502af02b7156cf77f1b953026f2ae57dbe3399a66e210",
       "checklist.md": "309f25598a9458eae3ddc1d31ef70f0268c801099d4ea087569f3487c4e05789",

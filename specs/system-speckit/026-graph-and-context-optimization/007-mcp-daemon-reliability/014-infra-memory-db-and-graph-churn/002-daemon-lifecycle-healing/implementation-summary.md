@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/002-daemon-lifecycle-healing |
+| **Spec Folder** | 002-daemon-lifecycle-healing |
 | **Completed** | 2026-05-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

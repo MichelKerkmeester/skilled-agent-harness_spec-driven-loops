@@ -48,7 +48,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-causal-graph-channel-routing |
+| **Spec Folder** | 001-deliver-causal-graph-channel-routing-mvp |
 | **Completed** | 2026-05-08 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

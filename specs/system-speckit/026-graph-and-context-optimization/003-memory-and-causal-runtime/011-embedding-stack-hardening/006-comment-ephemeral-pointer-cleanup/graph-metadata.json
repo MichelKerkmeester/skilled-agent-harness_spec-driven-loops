@@ -38,26 +38,12 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-      ".opencode/bin/mk-code-index-launcher.cjs",
       "tasks.md",
       "spec.md",
       "plan.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
       {
         "name": "tasks.md",
         "kind": "doc",
@@ -189,11 +175,23 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code canonical rule `codestyleguide.md` §4 \"No ephemeral-artifact pointers\" forbids code comments from embedding a spec folder/number, a packet/phase/task/checklist/requirement id (`T###`, `CHK-###`, `REQ-###`), a feature-catalog entry, an ADR id, a review-finding id, or a ticket id",
     "created_at": "2026-05-29T19:34:18.681Z",
-    "last_save_at": "2026-07-17T17:19:30.573Z",
+    "last_save_at": "2026-08-28T15:59:51.408Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d27b2dc1c7e5c6728269774af8c1f14212c5fdedb2413b36f137693e0c86a58b",
+    "source_fingerprint": "sha256:f0ce8ddf0aa1ea29405867df3b3427dd27927315e8d247c1785d85be6393d23d",
     "source_doc_hashes": {
-      "spec.md": "8a72f8c90402ea6a1f1cdc0528cf7d922e13822a78143eb14beaab1c4ae6ccda",
+      "spec.md": "4a97ae2ae2a742df57b9d50c9e12c4ae873a876142e306c0cd495208a184e233",
       "plan.md": "e5c711a1b17cceb476d6249737aaf718a8f44d3a94de6e2934ddcc5410314d91",
       "tasks.md": "f4c84cc548ca5a9f87878116c24aeaa42a5cbf4f0273b115ed1c09acca5b7cce",
-      "implementation-summary.md": "2573f1a8b968b4752b9eb6f2f80abb6c2de1008c52ae379cdc591cb5cfe6bb12"
+      "implementation-summary.md": "f1567f08b420ce4719e0f3e078f91dbcb293d30b745703b0303637caaf903365"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -187,7 +187,7 @@
     ],
     "causal_summary": "The mcp-chrome-devtools README is a tabular reference card with a table of contents and no problem-first entry point",
     "created_at": "2026-06-07T12:35:00Z",
-    "last_save_at": "2026-07-17T13:38:44.474Z",
+    "last_save_at": "2026-08-28T15:59:22.194Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +196,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bab55055e63fb2241eefcedf51658324395f4f7294251d881ecafa6fb1a03cb3",
+    "source_fingerprint": "sha256:6baf35e2d124b3ec947c327fed3a84451fc83228b5c789a98d789a3a0c06f628",
     "source_doc_hashes": {
-      "spec.md": "de4a123013c7abb39cb37d2a4da6dfe053961b753d835a1a5d8c1bc0f1e75465",
-      "plan.md": "459d128c9bec052f79b8f142113a0ecda0ed91c84a32846ed7cefccf535cd080",
-      "tasks.md": "0f6bb6620bbb23d2a0a9807dc1c9978239e105ab26dfc2d0094ef2574e735496",
-      "implementation-summary.md": "4597dfc4c67e3b5ee9c843cc2ac568affd4b68a1693ed93b69e5d6f3cffa4a4a"
+      "spec.md": "71d6907ea3ba5a6bc8fcb164333f7ea56369f0345c9a33a393e7048335bdb831",
+      "plan.md": "d0d67e5e650e10c24e111ebc64671f62475965e9bb20d17cf5e9b10346608a6a",
+      "tasks.md": "fd357d9c1c9e63197c47c0eededa2b40f7f2ef0f0947fe36be921a1d5beb68f5",
+      "implementation-summary.md": "c7d1cc6f1d88623a2116e6755e1324da78d98767436074242c264d41342ebd98"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -58,9 +58,7 @@
       "research/iterations/iteration-009.md",
       "research/iterations/iteration-010.md",
       "plan.md",
-      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/sk-doc/hub-router.json"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -166,21 +164,9 @@
         "source": "derived"
       },
       {
-        "name": "leaf-resource-contract.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -206,11 +192,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Outcome The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Tier-2 gpt-5.6-luna skill-benchmark scored sk-doc at 20/100 with roughly 19% exact-resource recall",
     "created_at": "2026-07-16T07:29:53.884Z",
-    "last_save_at": "2026-07-24T11:03:16.509Z",
+    "last_save_at": "2026-08-28T15:59:24.442Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +218,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:3e467bad675e613ea8ef5795175136c52dbda54ee4fe5db2cad70da40424e7f7",
+    "source_fingerprint": "sha256:4258d3c28326c758223db1f564236b9862fcf17c3ceb6e22c10cd149d99e3be0",
     "source_doc_hashes": {
       "spec.md": "2071f55315bfb483b8cef0ad4fa8d9a562a16907f908a1fad758662862dfa22a",
       "plan.md": "2e3f23276758e001d707fbe44d5d219327271f95d236718cf6921c9a434ce9b9",
       "tasks.md": "1bbccd254fe762e0a9019d0bcd4a7b4e280400f15bd47f77f8f129805c5c554b",
-      "implementation-summary.md": "cc56dc34f17227df6f71a432357d23930eb528ba46015058515f9850d9f28d12",
+      "implementation-summary.md": "7c9c2c28721c57b9cf70f1ec287b7d977f8f48753921f2a78f27d3b87e91353a",
       "research/research.md": "991295513681cbb3fb11cd2383afb375bfed66a25360a6aca30ada34f008422e"
     },
     "last_active_child_id": null,

@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/053-mk-spec-memory-rename-remediation |
+| **Spec Folder** | 053-mk-spec-memory-rename-remediation |
 | **Completed** | 2026-05-15 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

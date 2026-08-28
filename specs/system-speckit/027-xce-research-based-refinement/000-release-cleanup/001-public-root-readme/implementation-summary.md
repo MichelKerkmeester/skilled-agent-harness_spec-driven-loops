@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/001-public-root-readme |
+| **Spec Folder** | 001-public-root-readme |
 | **Completed** | 2026-06-10 |
 | **Level** | 1 |
 | **Status** | Completed |

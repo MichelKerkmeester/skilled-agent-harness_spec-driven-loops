@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 003-incremental-index-foundation |
+| **Spec Folder** | 001-incremental-index-foundation |
 | **Completed** | 2026-06-10 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

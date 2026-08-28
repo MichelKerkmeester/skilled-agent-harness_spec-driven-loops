@@ -41,19 +41,12 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-git/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc skill-README template encodes a tabular reference-card layout: a feature inventory, a structure tree and a settings table, with no human entry point",
     "created_at": "2026-06-07T08:58:31Z",
-    "last_save_at": "2026-07-17T13:38:42.907Z",
+    "last_save_at": "2026-08-28T15:59:20.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ddce68b874cdec15d31518d3beefd61589e7c2d6a6fa92f87c03609fcc02359b",
+    "source_fingerprint": "sha256:3080bd46d81017b528e28a14c03e73e3c98b113cf5f716182f1f0a195cf62200",
     "source_doc_hashes": {
-      "spec.md": "560f391e7c7e48478f71101aa016c004b4b07eb0f3689934c0cb122a0ede4a87",
-      "plan.md": "24a696a3efb5cb954abd688b2d902be8c49d73dff77c99674181dd6503055f7c",
-      "tasks.md": "7d87f5fce8823f9542d7402bdc04f81689f5109d1ebcafeb0a606e5d5d173856",
-      "implementation-summary.md": "b43a397f3d3c5cc19c37c4ac9c7ed41c7df1e450fdba3fb872aecd96f74c9ba8"
+      "spec.md": "27b7de00d555d4140fdd2ab9fb78783a34287f903a5795ad468bcc2a6d04dc99",
+      "plan.md": "85e57d7d9162eb64940006b9740d09db51cdaf61a096453bc30afb492bf95717",
+      "tasks.md": "33cef99996b5038aef1571c5c73c4eef67c461f440c240f46579d5e71fd66aa2",
+      "implementation-summary.md": "7305d374d0b58a46c660069a51c945ab0251a86d8921c54b92b1932be170fd5d"
     },
     "last_active_child_id": null,
     "last_active_at": null

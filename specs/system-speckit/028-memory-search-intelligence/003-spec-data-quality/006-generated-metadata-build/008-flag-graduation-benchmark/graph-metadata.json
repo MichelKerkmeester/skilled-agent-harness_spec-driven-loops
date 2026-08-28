@@ -34,23 +34,15 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md",
       "scripts/flag-graduation-benchmark.mjs",
       "scripts/benchmark-report.json",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "feature-flags.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-speckit/028-memory-search-intelligence/feature-flags.md",
-        "source": "derived"
-      },
       {
         "name": "flag-graduation-benchmark.mjs",
         "kind": "file",
@@ -67,12 +59,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "capability-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/config/capability-flags.ts",
         "source": "derived"
       },
       {
@@ -188,11 +174,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This program shipped each behavioral change behind a default-OFF flag so the rollout never mass-failed existing files or silently shifted ranking",
     "created_at": "2026-06-27T17:15:43.353Z",
-    "last_save_at": "2026-07-17T17:19:52.826Z",
+    "last_save_at": "2026-08-28T16:00:21.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d15094f72253f7d5aaa3a25fc821d5e87c8b047d6decabcd377e28de7881c98f",
+    "source_fingerprint": "sha256:4490999050bd4031f9c62e450b5bdcd16a396ac36a6b8ee710fc70158288332c",
     "source_doc_hashes": {
       "spec.md": "c60fde8458709953296ab66ae58450d7392b7bc7e4b720d5e66ab521d208e246",
       "plan.md": "eafa2fe39853af823a660da66fd63e73ef835a77a088b368e1d2e146075ca650",
       "tasks.md": "3bed705de698807f36be83c52c77ef64beb992d597b8265b2778383b996c0b1a",
       "checklist.md": "cfaf71d23f79cde11ba47414efaf2ef865829e1f46a9ca51e1a782eaa0947729",
-      "implementation-summary.md": "500d091e4599b75ca092ef105261692821821196a8457a644ec9d392ee9bb36b"
+      "implementation-summary.md": "524a4131751712fc4b2ae40213d1aac6ee23c4b29a3999f5dbb59fbe02353109"
     },
     "last_active_child_id": null,
     "last_active_at": null

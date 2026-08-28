@@ -45,8 +45,7 @@
       "plan.md",
       "implementation-summary.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/skills/sk-design/design-md-generator/SKILL.md"
+      "checklist.md"
     ],
     "entities": [
       {
@@ -77,12 +76,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/SKILL.md",
         "source": "derived"
       },
       {
@@ -192,11 +185,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The `md-generator` mode is the only `sk-design` mode with `mutatesWorkspace: true` and `Write`/`Edit`/`Bash` tool access, so its manual-testing-playbook scenarios (mode routing, positive advisor control P5, parity preservation, the full four-scenario `04--md-generator-pipeline/` set, and both md-generator variants of the fallback-and-resilience negative controls) had never been run through a real `opencode run` dispatch that actually performs a live URL crawl and writes files",
+    "causal_summary": "The `md-generator` mode is the only `sk-design` mode with `mutatesWorkspace: true` and `Write`/`Edit`/`Bash` tool access, so its manual-testing-playbook scenarios (mode routing, positive advisor control P5, parity preservation, the full four-scenario `md-generator-pipeline/` set, and both md-generator variants of the fallback-and-resilience negative controls) had never been run through a real `opencode run` dispatch that actually performs a live URL crawl and writes files",
     "created_at": "2026-07-07T16:16:46.832Z",
-    "last_save_at": "2026-07-09T10:02:44.629Z",
+    "last_save_at": "2026-08-28T15:53:12.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +205,10 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:529b15a4f879fa905dfdd0b0fbc62e82312e0cb30f5a1960e85b88db33e2ff90",
+    "source_fingerprint": "sha256:a1c3003c4372059612e034eed3f13280423c37773b54e234ad1f823be94dd7b8",
     "source_doc_hashes": {
-      "spec.md": "65a23af1befe26d631dee652254ae218e94810f122f0afa5d01cc129bcdd9c43",
-      "plan.md": "48ced3a346cde7a38d8763537acc08bef48bc6f1fa8f446e6ba4b6a25be28118",
+      "spec.md": "4da8cdabe9553b0b043e3292a0657d5f757fbd28ca27e12ea197de77a2d3e578",
+      "plan.md": "2a09df5529f3f566946a08a11dcf30ae5c29a400ec8fb0d2f8ad6fe2e3c29608",
       "tasks.md": "47ad5cbc2cd2d6c5d38d3e23e12f8e9105a66ebf47d6e603eb9e4a9c1f291f8c",
       "checklist.md": "815bbb71eb14ff341cce8cbba77bfeefcfc2869a7e46997fc06ce7df9fdabffa",
       "implementation-summary.md": "f67987faa8375484e1451df5dd2e448be2adbb7de3b554d6b873c27b39fd3dcb"

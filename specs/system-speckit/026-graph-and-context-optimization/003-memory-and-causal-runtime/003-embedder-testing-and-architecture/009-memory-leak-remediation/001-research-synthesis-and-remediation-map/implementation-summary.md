@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map` |
+| **Spec Folder** | 001-research-synthesis-and-remediation-map |
 | **Prepared** | 2026-05-22 |
 | **Completed** | 2026-05-22 |
 | **Level** | 3 |

@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-research-and-doctrine/002-gem-team-adoption/003-planner-review-focus-and-drift-hint` |
+| **Spec Folder** | 003-planner-review-focus-and-drift-hint |
 | **Completed** | 2026-06-10 |
 | **Level** | 1 |
 | **Status** | Completed |

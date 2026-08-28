@@ -11,7 +11,7 @@ contextType: "implementation"
 parent: "skilled-agent-orchestration/125-sk-doc-parent"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/018-swimlane-revert"
+    packet_pointer: "sk-doc/014-sk-doc-parent/018-swimlane-revert"
     last_updated_at: "2026-07-07T11:15:05.809Z"
     last_updated_by: "claude-opus"
     recent_action: "Restored original geometry + re-added 2 labels + normalized 1 outlier box"

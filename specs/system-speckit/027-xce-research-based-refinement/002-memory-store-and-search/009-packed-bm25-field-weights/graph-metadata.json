@@ -36,45 +36,13 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/fixtures/bm25-packed-fixture.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-packed-inmemory.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "mcp_server/lib/storage/canonical-fingerprint.ts",
-      "scripts/deploy-mcp.sh",
-      "mcp_server/lib/search/bm25-index.ts",
-      "mcp_server/lib/eval/bm25-baseline.ts",
       "scratch/rss-probe-evidence.md"
     ],
     "entities": [
-      {
-        "name": "bm25-index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/bm25-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "bm25-baseline.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/bm25-baseline.ts",
-        "source": "derived"
-      },
-      {
-        "name": "bm25-packed-fixture.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/fixtures/bm25-packed-fixture.ts",
-        "source": "derived"
-      },
-      {
-        "name": "bm25-packed-inmemory.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/bm25-packed-inmemory.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -97,18 +65,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "canonical-fingerprint.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/canonical-fingerprint.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deploy-mcp.sh",
-        "kind": "script",
-        "path": "scripts/deploy-mcp.sh",
         "source": "derived"
       },
       {
@@ -194,11 +150,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "measured",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Status",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packed Engine Design The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The in-memory BM25 fallback channel has two latent defects at the measured corpus (10,245 docs, 69.2 MB indexed text)",
     "created_at": "2026-06-10T17:48:33Z",
-    "last_save_at": "2026-07-17T17:19:40.745Z",
+    "last_save_at": "2026-08-28T16:00:05.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8a45930dfcdb3d43c90f48c768268d062efe2d0de98da094aaf10aceada5051d",
+    "source_fingerprint": "sha256:97a4405bb63b1b0420745852e25dd2214c579a71ff876a8578f0c7a07381e21a",
     "source_doc_hashes": {
       "spec.md": "3a821681a956a240a82b15d5af55efc9789ae6cf6a723631852a813445354dff",
       "plan.md": "88fab17277feea1926ea75a853186735f52fc59fe5cc6b1ff5c6e0f3eaebca21",
       "tasks.md": "2559be5635bb71e52d07f1d2b5235e4f9c3defb7c15295392122a1a8272a27df",
-      "implementation-summary.md": "d438cdc3026f909cdb14489e369e002cfabc602be027afcdc7c6d0df8bc81107"
+      "implementation-summary.md": "d214d6fed17978ecd37007222287f87b6cbab19ab79c546739a3922a58a49aa6"
     },
     "last_active_child_id": null,
     "last_active_at": null

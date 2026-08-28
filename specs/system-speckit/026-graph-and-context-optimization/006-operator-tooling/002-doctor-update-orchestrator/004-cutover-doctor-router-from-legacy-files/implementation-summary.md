@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files` |
+| **Spec Folder** | 004-cutover-doctor-router-from-legacy-files |
 | **Status** | Placeholder |
 | **Level** | 2 |
 | **Phase** | [004-cutover-doctor-router-from-legacy-files] |
