@@ -18,11 +18,15 @@ contextType: "general"
 
 TODO describe what this skill is benchmarked on and by which harness.
 
+---
+
 ## 2. LAYOUT
 
 | Path | Contents |
 |---|---|
 | [`reports/`](./reports/) | One folder per run, indexed by `reports/README.md` |
+
+---
 
 ## 3. RUNNING A BENCHMARK
 

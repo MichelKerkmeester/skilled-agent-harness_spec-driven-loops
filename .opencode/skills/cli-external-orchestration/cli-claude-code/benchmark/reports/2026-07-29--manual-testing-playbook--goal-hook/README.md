@@ -6,7 +6,15 @@ _Derived after the fact from this run's stored record, not written at run time._
 
 **Verdict: SKIP**
 
-## Run
+---
+
+## 1. OVERVIEW
+
+This is a curated, hand-derived report, not a Lane C harness run. Claude Code ships its own native `/goal` session-goal feature; the cross-runtime goal-hook port at `.opencode/hooks/goal/` deliberately ships no `claude/` adapter, and there is no headless model-turn surface to dispatch against. Every file here is generated from the stored `CC-029` scenario record in the goal-hook manual-testing-playbook: a field this run did not capture reads as not recorded rather than being filled in.
+
+---
+
+## 2. RUN
 
 | Field | Value |
 |---|---|
@@ -18,7 +26,9 @@ _Derived after the fact from this run's stored record, not written at run time._
 | Scenarios | 1 |
 | Outcome tally | 1 SKIP |
 
-## Files
+---
+
+## 3. FILES
 
 | File | Contents |
 |---|---|
@@ -29,6 +39,3 @@ _Derived after the fact from this run's stored record, not written at run time._
 | [`findings-and-recommendations.md`](./findings-and-recommendations.md) | Failures grouped by their recorded reason |
 | [`source.md`](./source.md) | Where the corpus, the gold and the raw evidence live |
 
-## Reading This Folder
-
-This is a curated, hand-derived report, not a Lane C harness run. Claude Code ships its own native `/goal` session-goal feature; the cross-runtime goal-hook port at `.opencode/hooks/goal/` deliberately ships no `claude/` adapter, and there is no headless model-turn surface to dispatch against. Every file here is generated from the stored `CC-029` scenario record in the goal-hook manual-testing-playbook: a field this run did not capture reads as not recorded rather than being filled in.

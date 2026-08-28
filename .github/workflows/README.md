@@ -21,6 +21,8 @@ The live guard workflows that matter for the current README coverage are `naming
 isolation-check.yml
 ```
 
+---
+
 ## 2. CONTENTS
 
 | Workflow | Responsibility |
@@ -37,9 +39,13 @@ isolation-check.yml
 | `spec-root-resolution-matrix.yml` | Exercises spec-root resolution across its configured matrix. |
 | `strict-pass-freshness-sweep.yml` | Runs the scheduled strict-pass freshness sweep. |
 
+---
+
 ## 3. GUARD ENTRYPOINTS
 
 The naming guard runs the naming checker and its focused tests. The runtime-import guard runs the real-tree check plus clean and failing fixtures. The spec-root matrix installs its script dependencies, verifies collection and runs the configured resolution rows.
+
+---
 
 ## 4. RELATED
 

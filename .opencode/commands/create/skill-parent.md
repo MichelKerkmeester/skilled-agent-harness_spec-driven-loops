@@ -72,6 +72,8 @@ The router must not invent visible wording for those surfaces; it only resolves 
 
 The bound workflow YAML (`create-skill-parent-auto.yaml` for `:auto`, `create-skill-parent-confirm.yaml` for `:confirm` or an omitted mode) runs the parent-skill scaffolding workflow step by step after Phase 0 verification and setup resolution, then routes to the resolved `create` or `update` operation branch. `:auto` executes autonomously; `:confirm` runs the same steps as an interactive checkpointed workflow. All user-facing prompts, setup/status dashboards, and result display come from the presentation contract, not this router.
 
+---
+
 ## 7. ROOT ROUTER STATE CLASSIFICATION
 
 Both workflows classify the target's root `ROUTER.md` on `update` and emit exactly one action line before mutating anything:
@@ -89,6 +91,8 @@ Both workflows classify the target's root `ROUTER.md` on `update` and emit exact
 - Ordinary `migrate` preserves the inner machine-block bytes exactly (hash before == hash after); only the deliberate, documented sk-code one-resource amendment may change a machine block.
 - `conflict` and `malformed` always stop the workflow; the classifier never picks a side for a dual or unreadable router.
 - The `:auto` and `:confirm` workflows share this exact classification and action set; they differ only in checkpointing.
+
+---
 
 ## 8. WHAT THIS SCAFFOLDS
 

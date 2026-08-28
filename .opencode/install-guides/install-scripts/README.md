@@ -17,6 +17,8 @@ trigger_phrases:
 
 The Chrome DevTools entrypoint is currently unavailable because its symlink target is absent. It is not part of the available installer surface.
 
+---
+
 ## 2. CONTENTS
 
 | File | Role | Availability |
@@ -32,6 +34,8 @@ The unavailable symlink is recorded here for diagnosis only:
 install-chrome-devtools.sh -> ../../skills/mcp-chrome-devtools/scripts/install.sh
 ```
 
+---
+
 ## 3. USAGE
 
 Run an available installer from the repository root. Start with the component-specific help output before allowing a script to modify configuration.
@@ -41,6 +45,8 @@ bash .opencode/install-guides/install-scripts/install-all.sh --help
 ```
 
 The component symlinks resolve to their owning skill directories. Do not treat the unavailable Chrome DevTools symlink as an install command.
+
+---
 
 ## 4. VALIDATION
 
@@ -57,6 +63,8 @@ find .opencode/install-guides/install-scripts -type l ! -exec test -e {} \; -pri
 ```
 
 Expected result: the syntax loop exits successfully. The symlink check reports the unavailable Chrome DevTools entrypoint until its owning installer is restored.
+
+---
 
 ## 5. RELATED
 

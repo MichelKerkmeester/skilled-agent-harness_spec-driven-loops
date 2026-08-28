@@ -12,6 +12,8 @@ description: "Discovery-only symlinks for the repository's Cursor hook scripts; 
 
 Four compiled ESM lifecycle adapters do not execute through their symlink because `runCursorHook()` compares the invocation path with the resolved module URL. Plain `.mjs` proxies do not use that guard, but all runtime wiring stays on one consistent set of real paths.
 
+---
+
 ## 2. ENTRYPOINT BEHAVIOR
 
 | Script | Through Mirror | Through Real Path |
@@ -21,6 +23,8 @@ Four compiled ESM lifecycle adapters do not execute through their symlink becaus
 | `user-prompt-submit.js` | No output | Valid Cursor hook response |
 | `precompact.js` | No output | Valid Cursor hook response |
 | Plain `.mjs` and shell files | Matches real-path behavior | Authoritative runtime behavior |
+
+---
 
 ## 3. INVENTORY
 
@@ -35,6 +39,8 @@ Four compiled ESM lifecycle adapters do not execute through their symlink becaus
 
 `spec-gate-prebind.mjs` is wired on `sessionStart` through its real path. Its mirror is discovery-only, like every other entry here.
 
+---
+
 ## 4. VALIDATION
 
 ```bash
@@ -48,6 +54,8 @@ test -L .cursor/hooks/mcp-route-guard.mjs && test -e .cursor/hooks/mcp-route-gua
 ```
 
 Expected result: exit 0, proving the discovery link exists and resolves.
+
+---
 
 ## 5. RELATED RESOURCES
 

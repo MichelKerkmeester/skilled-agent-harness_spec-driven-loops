@@ -33,27 +33,15 @@ _memory:
 
 Level 2 remediation packet that fixes the four daemon concurrency findings (F-001-A1-01..04) surfaced by packet 046 deep research iteration-001.
 
-## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
-
-- [1. OVERVIEW](#1-overview)
-- [2. FILES](#2-files)
-- [3. FINDINGS ADDRESSED](#3-findings-addressed)
-- [4. SOURCE](#4-source)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ## 1. OVERVIEW
-<!-- ANCHOR:overview -->
 
 - Level 2 packet — verification-focused (NFRs, edge cases, P0/P1/P2 checklist).
 - Scope: 4 product file edits + 2 stress test additions.
 - Status: Complete; full stress suite green (56 files / 163 tests / exit 0).
 
-<!-- /ANCHOR:overview -->
+---
 
 ## 2. FILES
-<!-- ANCHOR:files -->
 
 - `spec.md` — problem, scope, requirements, NFRs, edge cases per finding
 - `plan.md` — architecture, phases, rollback procedure
@@ -61,10 +49,9 @@ Level 2 remediation packet that fixes the four daemon concurrency findings (F-00
 - `checklist.md` — P0/P1/P2 verification (all green)
 - `implementation-summary.md` — what shipped, decisions, verification table, limitations
 
-<!-- /ANCHOR:files -->
+---
 
 ## 3. FINDINGS ADDRESSED
-<!-- ANCHOR:findings -->
 
 | ID | Priority | Locus | Fix |
 |----|----------|-------|-----|
@@ -73,12 +60,10 @@ Level 2 remediation packet that fixes the four daemon concurrency findings (F-00
 | F-001-A1-03 | P1 | `generation.ts` | token-tagged lock with owner-checked release and CAS stale reclamation |
 | F-001-A1-04 | P2 | `cache-invalidation.ts` | drop events older than `lastInvalidation.generation` before listener fan-out |
 
-<!-- /ANCHOR:findings -->
+---
 
 ## 4. SOURCE
-<!-- ANCHOR:source -->
 
 - Findings table: `../003-system-bug-improvement-research/research/iterations/iteration-001.md` (Findings section)
 - Parent remediation series: `005-review-remediation/`
 
-<!-- /ANCHOR:source -->

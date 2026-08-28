@@ -12,18 +12,7 @@ contextType: "general"
 
 > This root README is the navigation layer for the Hydra coordination pack and points to six shipped phase folders that hold implementation-detail history.
 
-## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
-
-- [1. OVERVIEW](#1--overview)
-- [2. PHASE PACKS](#2--phase-packs)
-- [3. DOCUMENTS](#3--documents)
-- [4. RESEARCH AND ARCHIVE NOTES](#4--research-and-archive-notes)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ## 1. OVERVIEW
-<!-- ANCHOR:overview -->
 
 | Field | Value |
 |-------|-------|
@@ -32,10 +21,9 @@ contextType: "general"
 | **Level** | 3 (root coordination) |
 | **Phase Model** | Six Level 3+ child phase folders |
 
-<!-- /ANCHOR:overview -->
+---
 
 ## 2. PHASE PACKS
-<!-- ANCHOR:phases -->
 
 - `001-baseline-and-safety-rails/`
 - `002-versioned-memory-state/`
@@ -44,10 +32,9 @@ contextType: "general"
 - `005-hierarchical-scope-governance/`
 - `006-shared-memory-rollout/`
 
-<!-- /ANCHOR:phases -->
+---
 
 ## 3. DOCUMENTS
-<!-- ANCHOR:documents -->
 
 - `spec.md`: root coordination scope and acceptance boundaries
 - `plan.md`: closure implementation and verification plan
@@ -56,12 +43,10 @@ contextType: "general"
 - `decision-record.md`: root ADRs for roadmap sequencing and architecture
 - `implementation-summary.md`: delivered outcomes and verified command evidence
 
-<!-- /ANCHOR:documents -->
+---
 
 ## 4. RESEARCH AND ARCHIVE NOTES
-<!-- ANCHOR:research-archive -->
 
 - `research/` contains long-lived research and retained historical artifacts.
 - Quarantined legacy memory artifacts are reclassified under `research/legacy-memory-quarantine/` to keep `scratch/` disposable.
 
-<!-- /ANCHOR:research-archive -->

@@ -4,23 +4,14 @@ This folder contains actual outputs from the complexity detection and template e
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1.  OVERVIEW]](#1--overview)
-
 ---
-<!-- /ANCHOR:table-of-contents -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 This README documents the purpose and usage of this spec folder and links to the primary artifacts in this directory.
 
 ---
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:directory-structure -->
 ## Directory Structure
 
 ```
@@ -49,9 +40,7 @@ scratch/
 ```
 
 ---
-<!-- /ANCHOR:directory-structure -->
 
-<!-- ANCHOR:detection-outputs-summary -->
 ## Detection Outputs Summary
 
 | Level | Score | Task Description |
@@ -62,9 +51,7 @@ scratch/
 | **3+** | 83/100 | Enterprise-scale rewrite (500+ files, 50k LOC) |
 
 ---
-<!-- /ANCHOR:detection-outputs-summary -->
 
-<!-- ANCHOR:template-output-sizes-bytes -->
 ## Template Output Sizes (bytes)
 
 | Template | Level 1 | Level 2 | Level 3 | Level 3+ |
@@ -76,9 +63,7 @@ scratch/
 | decision-record.md | - | - | 9,610 | 9,610 |
 
 ---
-<!-- /ANCHOR:template-output-sizes-bytes -->
 
-<!-- ANCHOR:test-results -->
 ## Test Results
 
 **Total Tests**: 171 passing, 0 failing
@@ -92,9 +77,7 @@ scratch/
 | CLI Scripts | 16 |
 
 ---
-<!-- /ANCHOR:test-results -->
 
-<!-- ANCHOR:viewing-files -->
 ## Viewing Files
 
 ```bash
@@ -109,9 +92,6 @@ cat test-outputs/full-test-run.txt
 ```
 
 ---
-<!-- /ANCHOR:viewing-files -->
 
-<!-- ANCHOR:generated-2026-01-16 -->
 ## Generated: 2026-01-16
-<!-- /ANCHOR:generated-2026-01-16 -->
 

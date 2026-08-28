@@ -13,9 +13,13 @@ trigger_phrases:
 
 `tests/search/` holds focused search regression suites that are easier to keep separate from the larger root-level search tests.
 
+---
+
 ## 2. OWNERSHIP
 
 These tests belong to `lib/search/` and related retrieval behavior.
+
+---
 
 ## 3. KEY FILES
 
@@ -23,15 +27,21 @@ These tests belong to `lib/search/` and related retrieval behavior.
 |---|---|
 | `deep-review-remediation.vitest.ts` | Guards search fixes raised by review. |
 
+---
+
 ## 4. BOUNDARIES
 
 - Keep corpus setup minimal and explicit.
 - Do not write to production database paths.
 - Put broad pipeline integration tests in root-level `tests/*.vitest.ts`.
 
+---
+
 ## 5. ENTRYPOINTS
 
 Run from `mcp-server/`.
+
+---
 
 ## 6. VALIDATION
 

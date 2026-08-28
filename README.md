@@ -22,32 +22,6 @@
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-
-## TABLE OF CONTENTS
-
-- [OVERVIEW](#1--overview)
-- [QUICK START](#2--quick-start)
-- [FEATURES](#3--features)
-  - [SPEC KIT FRAMEWORK](#spec-kit-framework)
-  - [MEMORY ENGINE](#memory-engine)
-  - [SKILL ADVISOR](#skill-advisor)
-  - [DEEP LOOP](#deep-loop)
-  - [SKILLS LIBRARY](#skills-library)
-  - [AGENT NETWORK](#agent-network)
-  - [COMMANDS](#commands)
-  - [GOAL PLUGIN](#goal-plugin)
-  - [CODE MODE MCP](#code-mode-mcp)
-- [CONFIGURATION](#4--configuration)
-- [FAQ](#5--faq)
-- [RELATED DOCUMENTS](#6--related-documents)
-
-<!-- /ANCHOR:table-of-contents -->
-
-<!-- ANCHOR:overview -->
-
-&nbsp;
-
 ## 1. OVERVIEW
 
 ### What This Framework Does
@@ -59,7 +33,6 @@ The framework adds three layers on top of the base platform:
 1. **Structured documentation** (Spec Kit) - every file change gets a spec folder recording what changed, why and how. Like a lab notebook for software.
 2. **Cognitive memory** (MCP server) - a local-first memory engine storing decisions, context and project history in a searchable database. Like a personal librarian who remembers every conversation.
 3. **Coordinated agents and skills** - 12 specialized agents routed by a gate system that loads the right skills at the right time.
-
 
 ### How It All Connects
 
@@ -111,10 +84,6 @@ The framework adds three layers on top of the base platform:
          └──────────────────────────────────────────┘
 ```
 
-<!-- /ANCHOR:overview -->
-
-<!-- ANCHOR:quick-start -->
-
 ---
 
 ## 2. QUICK START
@@ -136,8 +105,6 @@ npm install
 node .opencode/bin/system-spec-memory-launcher.cjs --help
 node .opencode/bin/system-skill-advisor-launcher.cjs --help
 ```
-
-
 
 ### Set Up Embedding Provider
 
@@ -183,11 +150,6 @@ This creates a spec folder, runs research, builds a plan and begins implementati
 This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `system-deep-loop`, `cli-external-orchestration`, `mcp-tooling`) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
 
 See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
-
-<!-- /ANCHOR:quick-start -->
-
-
-<!-- ANCHOR:features -->
 
 ---
 
@@ -356,7 +318,6 @@ For the full spec folder workflow, Level contract template architecture, gate de
 The Memory Engine is a local-first cognitive memory system built as an MCP server. `generate-context.js` updates canonical packet continuity and may emit supporting generated context artifacts inside the spec folder. Canonical continuity lives in the spec packet itself: use `/speckit:resume` as the recovery surface, then rebuild context in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs. The MCP server indexes those packet-local sources with vector embeddings, BM25 and FTS5 full-text search. `memory_match_triggers()` can still surface relevant prior context automatically when deeper retrieval is needed.
 
 `/memory:save` refreshes packet metadata on every invocation. `session_resume` binds `args.sessionId` to transport caller context by default. Set `MCP_SESSION_RESUME_AUTH_MODE=permissive` for rollout canaries. Copilot and Claude share the same compact-cache provenance path.
-
 
 Expired ephemeral rows are cleaned by a retention sweep on startup and hourly by default. Use `memory_retention_sweep` for manual or dry-run cleanup. The handler is defined at [memory-retention-sweep.ts](.opencode/skills/system-spec-kit/mcp-server/handlers/memory-retention-sweep.ts), with `SPECKIT_RETENTION_SWEEP` and `SPECKIT_RETENTION_SWEEP_INTERVAL_MS` controlling the background interval.
 
@@ -1107,8 +1068,6 @@ Canonical native server set:
 | `sequential_thinking`  | 1     | Structured multi-step reasoning for complex problems                   |
 | **Total**              | **64** |                                                                        |
 
-
-
 &nbsp;
 #### Code Mode Tools (7)
 
@@ -1151,11 +1110,6 @@ For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the
 The repo runs a live-sync loop around the worktree-per-session model. Every launch-wrapper session commits in its own isolated worktree and then auto-publishes each commit to a shared live branch. The main checkout auto-follows that branch, so the IDE always shows the combined state of every concurrent session's committed work.
 
 The loop is **on by default** in the main checkout. SessionStart self-heals the git hook install and backgrounds the IDE follower automatically. Disable the whole loop with `SYSTEM_LIVE_SYNC_DISABLED=1`. Finer switches stay available: `SPECKIT_AUTOSYNC=0` for one publish, `SPECKIT_GIT_HOOKS_GUARD=off` for the guard, and `SYSTEM_LIVE_FOLLOW_DISABLED=1` for the follower. See `sk-git/references/continuous-integration.md` for the full model.
-
-<!-- /ANCHOR:features -->
-
-
-<!-- ANCHOR:configuration -->
 
 ---
 
@@ -1217,7 +1171,6 @@ Default repo-local database path: `.opencode/skills/system-spec-kit/mcp-server/d
 > [!TIP]
 > If no API key is set, the memory engine auto-detects the local Ollama endpoint serving **nomic-embed-text-v1.5** (current default per ADR-013/014), then falls back to **HuggingFace Local** embeddings.
 
-
 &nbsp;
 ### Memory Feature Flags
 
@@ -1246,7 +1199,6 @@ The runtime centers on a SQLite `memory_index` table (schema v37 baseline) plus 
 &nbsp;
 ### MCP Config Shape
 
-
 ```json
 {
   "mcp": {
@@ -1267,11 +1219,6 @@ The runtime centers on a SQLite `memory_index` table (schema v37 baseline) plus 
   }
 }
 ```
-
-<!-- /ANCHOR:configuration -->
-
-
-<!-- ANCHOR:faq -->
 
 ---
 
@@ -1315,12 +1262,6 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 
 **Q: What is the feature catalog?**
 
-
-<!-- /ANCHOR:faq -->
-
-
-<!-- ANCHOR:related-documents -->
-
 ---
 
 ## 6. RELATED DOCUMENTS
@@ -1349,4 +1290,3 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 - **[→ Voyage AI](https://www.voyageai.com/)** - Cloud embedding provider (opt-in)
 - **[→ HuggingFace](https://huggingface.co/)** - Free local embedding alternative
 
-<!-- /ANCHOR:related-documents -->

@@ -22,6 +22,8 @@ Use this reference when changing, validating, or operating the local `/goal` Ope
 
 This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not a daemon-backed CLI bridge. The plugin is documented here because it participates in the same OpenCode runtime-injection layer as the Spec Kit memory, code graph, and skill-advisor plugin surfaces.
 
+---
+
 ## 2. RUNTIME SURFACES
 
 | Surface | Path | Role |
@@ -30,6 +32,8 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 | Command | `.opencode/commands/goal-opencode.md` | State-free `/goal` router for `set`, `show`, `history`, `doctor`, `health`, `clear`, `complete`, `pause`, and `resume`. |
 | State | `.opencode/skills/.state/goal/` | Runtime JSON state, keyed by a fixed SHA-256 digest of the session id, intentionally outside spec docs. |
 | Tests | `.opencode/plugins/tests/opencode-goal-*.test.cjs` | Unit coverage for state, tool path, lifecycle, supervisor, continuation, export contract, and injection behavior. |
+
+---
 
 ## 3. BEHAVIOR CONTRACT
 
@@ -44,6 +48,8 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 - The `event` hook restores active goals on `session.created`, records usage/evidence on `message.updated`, tracks prompt blockers, verifies on `session.idle`, and attempts continuation only when autonomy gates pass. Provider usage-limit recovery is lazy: a retry-after deadline recorded from a 429 payload is evaluated on the next `message.updated` or `session.idle`, with no timer.
 - Idle verification uses an injected `supervisorVerifier` when tests or callers provide one; otherwise it uses the production default verifier. The default is a fail-closed heuristic over the latest assistant evidence and the goal objective. Set `OPENCODE_GOAL_VERIFIER=llm` to opt into the model-backed verifier that calls `ctx.client.session.promptAsync` and parses a structured verdict.
 - `/goal show` and `opencode_goal_status` expose the exact injection preview plus prompt metadata so operators can inspect what the model receives.
+
+---
 
 ## 4. ENVIRONMENT VARIABLES
 
@@ -62,6 +68,8 @@ This is a local OpenCode plugin contract, not a Spec Kit Memory MCP tool and not
 | `OPENCODE_GOAL_STATE_ARCHIVE_RETENTION_DAYS` | `90` | Days before an archived goal-state file is pruned. |
 | `OPENCODE_GOAL_STATE_ACTIVE_RETENTION_DAYS` | `2` | Age threshold before an orphaned active-state file is swept and archived. |
 | `OPENCODE_GOAL_STATE_SWEEP_INTERVAL_MS` | `3600000` (1 hour) | Minimum interval between orphaned-active-state sweep passes. |
+
+---
 
 ## 5. OUTPUT FIELDS
 
@@ -88,6 +96,8 @@ The default heuristic marks a goal `met` only when the latest assistant evidence
 
 `budget_tokens_used` and `budget_usage_source` are legacy-compatible aliases for the same values. They remain in output for existing tests, docs, and operators that read the budget-prefixed field names, but new integrations should read `tokens_used` and `usage_source`.
 
+---
+
 ## 6. BOUNDARIES
 
 - Keep `.opencode/commands/goal-opencode.md` as a thin one-tool router. Do not duplicate state parsing or prompt construction in command markdown.
@@ -95,6 +105,8 @@ The default heuristic marks a goal `met` only when the latest assistant evidence
 - Do not store objective-derived runtime state in spec docs or memory rows unless the user explicitly asks to save continuity.
 - Do not auto-run shell commands inferred from the goal objective. Verification evidence must come from explicit tests, command output, or supervisor-safe state.
 - Restart OpenCode after changing `.opencode/plugins/opencode-goal.js`, `.opencode/commands/goal-opencode.md`, or this plugin's load-time configuration.
+
+---
 
 ## 7. VERIFICATION
 
@@ -113,6 +125,8 @@ python3 .opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.s
 ```
 
 For documentation-only changes, also run the relevant `sk-doc` structure check and the active spec folder's strict validation.
+
+---
 
 ## 8. CROSS-RUNTIME RELATIONSHIP
 
@@ -139,6 +153,8 @@ This plugin is the OpenCode-native goal system. Cursor and Pi reach the same pas
 | Pi | `/goal-pi` | Registered by `.opencode/hooks/goal/pi/goal-context.ts` | Shared CLI with native runtime/session/workspace flags appended by the extension |
 
 The shared CLI keeps the base OpenCode action envelope and adds explicit `legacy-inspect`, `legacy-migrate`, and `legacy-archive` actions. All current-session actions require explicit native binding; only aggregate diagnostics and non-binding legacy inspection/archive work without it. See `.opencode/hooks/goal/README.md` for state layout, error behavior, rollback, and verification.
+
+---
 
 ## 9. RELATED REFERENCES
 

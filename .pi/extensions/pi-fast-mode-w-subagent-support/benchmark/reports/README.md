@@ -18,11 +18,15 @@ contextType: "general"
 
 Each row below is one run folder. Rows are written by the benchmark harness at the moment it writes the report, so this table cannot fall behind the folders beside it.
 
+---
+
 ## 2. RUN INDEX
 
 | Executed | Folder | Runtime | Result | Verdict | Source |
 |---|---|---|---|---|---|
 | 2026-08-17 | [`2026-08-17--manual-testing-playbook--fast-mode-usage/`](./2026-08-17--manual-testing-playbook--fast-mode-usage/) | fast-mode-usage | 1 PASS | **PASS** | `manual-testing-playbook` |
+
+---
 
 ## 3. STORAGE RULE
 

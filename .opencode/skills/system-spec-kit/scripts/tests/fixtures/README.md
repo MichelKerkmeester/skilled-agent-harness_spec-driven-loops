@@ -11,6 +11,8 @@ description: "Fixed input files and generator helpers consumed by the vitest and
 
 `scripts/tests/fixtures/` holds static test data and fixture-generating helpers for the test suites in `scripts/tests/`. It owns no test logic itself. Each subfolder groups the fixed inputs one test file reads by path. The loose top-level files are generators or shared factories imported by name.
 
+---
+
 ## 2. CONTENTS
 
 | File or Folder | Purpose |
@@ -27,9 +29,13 @@ description: "Fixed input files and generator helpers consumed by the vitest and
 | `post-save-render/` | A sample packet and title fixture for post-save render tests. |
 | `sync-phase-map-status/` | A mixed-parent fixture for the `sync-phase-map-status.vitest.ts` suite. |
 
+---
+
 ## 3. TESTS
 
 Consuming suites live in the parent [`scripts/tests/`](../README.md) directory, for example `optimizer-replay-runner.vitest.ts`, `manual-playbook-runner.vitest.ts`, `template-structure.vitest.ts` and `sync-phase-map-status.vitest.ts`.
+
+---
 
 ## 4. RELATED
 

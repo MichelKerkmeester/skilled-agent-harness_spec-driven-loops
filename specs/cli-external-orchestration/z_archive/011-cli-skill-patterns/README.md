@@ -28,22 +28,7 @@ _memory:
 
 Use for medium-scope work that needs explicit validation.
 
-## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
-
-- [1. OVERVIEW](#1-overview)
-- [2. REQUIRED FILES](#2-required-files)
-- [3. OPTIONAL FILES](#3-optional-files)
-- [4. LEVEL 2 ADDITIONS](#4-level-2-additions)
-- [5. QUICK START](#5-quick-start)
-- [6. WORKFLOW NOTES](#6-workflow-notes)
-- [7. PHASE DECOMPOSITION](#7-phase-decomposition)
-- [8. RELATED](#8-related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ## 1. OVERVIEW
-<!-- ANCHOR:overview -->
 
 - Typical size is 100-499 LOC.
 - Quality gates and edge-case tracking are required.
@@ -51,10 +36,9 @@ Use for medium-scope work that needs explicit validation.
 
 Escalate to Level 3 for architecture-heavy decisions.
 
-<!-- /ANCHOR:overview -->
+---
 
 ## 2. REQUIRED FILES
-<!-- ANCHOR:files -->
 
 - `spec.md`
 - `plan.md`
@@ -62,26 +46,23 @@ Escalate to Level 3 for architecture-heavy decisions.
 - `checklist.md`
 - `implementation-summary.md`
 
-<!-- /ANCHOR:files -->
+---
 
 ## 3. OPTIONAL FILES
-<!-- ANCHOR:optional-files -->
 
 - `resource-map.md` - lean, scannable catalog of every path analyzed, created, updated, or removed (copy from `../resource-map.md`).
 
-<!-- /ANCHOR:optional-files -->
+---
 
 ## 4. LEVEL 2 ADDITIONS
-<!-- ANCHOR:additions -->
 
 - Verification-first `checklist.md` with P0/P1/P2 priorities.
 - NFR and edge-case sections in `spec.md`.
 - Stronger execution and rollback detail in `plan.md`.
 
-<!-- /ANCHOR:additions -->
+---
 
 ## 5. QUICK START
-<!-- ANCHOR:quick-start -->
 
 ### Primary Path — Canonical Intake
 
@@ -103,10 +84,9 @@ cp .opencode/skills/system-spec-kit/templates/level_2/*.md specs/###-feature-nam
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/###-feature-name/
 ```
 
-<!-- /ANCHOR:quick-start -->
+---
 
 ## 6. WORKFLOW NOTES
-<!-- ANCHOR:workflow-notes -->
 
 - Keep checklist current during implementation.
 - Completion checks run in priority order: P0, then P1, then P2.
@@ -114,23 +94,20 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/###-feature
 - Resume active packet work through `/speckit:resume`, which rebuilds continuity from `handover.md -> _memory.continuity -> spec docs`.
 - Save continuity with `/memory:save`, which routes updates into canonical packet docs such as `implementation-summary.md`, `decision-record.md`, and `handover.md` when those surfaces apply.
 
-<!-- /ANCHOR:workflow-notes -->
+---
 
 ## 7. PHASE DECOMPOSITION
-<!-- ANCHOR:phase -->
 
 Consider phase decomposition for multi-sprint Level 2 tasks where work naturally divides into ordered stages. Use Gate 3 Option E to target a specific phase child and `/speckit:plan :with-phases` to create the phase structure. If that target phase packet is still `no-spec`, `partial-folder`, `repair-mode`, or `placeholder-upgrade`, `/speckit:plan` delegates to the shared intake contract in [`../../references/intake-contract.md`](../../references/intake-contract.md) before phase setup continues.
 
 See the Phase System in the [main templates README](../README.md#phase-system) for full details.
 
-<!-- /ANCHOR:phase -->
+---
 
 ## 8. RELATED
-<!-- ANCHOR:related -->
 
 - `../level_1/README.md`
 - `../level_3/README.md`
 - `../addendum/level2-verify/`
 - `../../references/validation/validation_rules.md`
 
-<!-- /ANCHOR:related -->

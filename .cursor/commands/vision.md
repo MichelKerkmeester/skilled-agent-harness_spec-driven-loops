@@ -10,15 +10,21 @@ allowed-tools: Read, mcp__sk-vision__sk_vision_inspect
 
 Use Cursor's sk-vision MCP tool to read the user's most recent image locally, then answer from the returned evidence.
 
+---
+
 ## 2. OVERVIEW
 
 Cursor reaches sk-vision through its MCP tools. The `sk_vision_inspect` tool accepts the attached image or its path and returns a `<SK-VISION>` block containing scene analysis, a caption, and exact OCR, or an answer to a supplied question.
+
+---
 
 ## 3. CONTRACT
 
 **Input:** `$ARGUMENTS` — an optional question about the most recent image.
 
 **Output:** A concise answer synthesized from the `sk_vision_inspect` result. Treat OCR as exact evidence; treat scene and caption as interpretation.
+
+---
 
 ## 4. INSTRUCTIONS
 
@@ -28,6 +34,8 @@ Cursor reaches sk-vision through its MCP tools. The `sk_vision_inspect` tool acc
 4. Answer using the tool's `<SK-VISION>` output. Synthesize the evidence instead of dumping the raw block.
 5. Treat OCR as exact and verbatim. Treat scene and caption as interpretation and hedge uncertain claims.
 6. Never invent details beyond the tool evidence.
+
+---
 
 ## 5. HARD RULES
 

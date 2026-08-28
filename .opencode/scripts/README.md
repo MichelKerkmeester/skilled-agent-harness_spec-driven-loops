@@ -15,6 +15,8 @@ trigger_phrases:
 
 `.opencode/scripts/` owns repository-level scripts for local operators and automated workflows. The direct entrypoints cover session cleanup, orphan-process review, Git-hook installation, Skill Advisor distribution data and Node test discovery.
 
+---
+
 ## 2. CONTENTS
 
 | Entry | Responsibility |
@@ -28,12 +30,16 @@ trigger_phrases:
 | `git-hooks/` | Contains hook entrypoints, shared helpers and harnesses. |
 | `launchagents/` | Contains the macOS LaunchAgent template for orphan-process checks. |
 
+---
+
 ## 3. BOUNDARIES
 
 - Prefer session-scoped cleanup over global process selection.
 - Review dry-run output before enabling live orphan cleanup.
 - Change Git-hook behavior in `git-hooks/` and install it through `install-git-hooks.sh`.
 - Use `copy-skill-advisor-dist-data.sh` for generated advisor data.
+
+---
 
 ## 4. VALIDATION
 
@@ -53,6 +59,8 @@ Review the orphan sweeper without changing processes:
 ```bash
 bash .opencode/scripts/orphan-mcp-sweeper.sh --dry-run --verbose
 ```
+
+---
 
 ## 5. RELATED
 

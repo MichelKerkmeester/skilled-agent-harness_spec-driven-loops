@@ -13,9 +13,13 @@ trigger_phrases:
 
 `tests/lib/memory/` verifies small memory helper modules without starting the MCP server.
 
+---
+
 ## 2. OWNERSHIP
 
 These tests mirror `lib/memory/`.
+
+---
 
 ## 3. KEY FILES
 
@@ -24,15 +28,21 @@ These tests mirror `lib/memory/`.
 | `audit-rotation.vitest.ts` | Covers JSONL audit rotation behavior. |
 | `bounded-cache.vitest.ts` | Covers cache eviction and bounds. |
 
+---
+
 ## 4. BOUNDARIES
 
 - Use temporary audit files.
 - Do not touch `mcp-server/data/search-decisions.jsonl`.
 - Keep runtime database setup out of these tests.
 
+---
+
 ## 5. ENTRYPOINTS
 
 Run from `mcp-server/`.
+
+---
 
 ## 6. VALIDATION
 

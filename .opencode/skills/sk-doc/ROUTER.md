@@ -289,6 +289,8 @@ RESOURCE_MAP = {
 }
 ```
 
+---
+
 ## 4. HOW TO READ THIS
 
 - One dominant intent routes to one mode's leaf set.

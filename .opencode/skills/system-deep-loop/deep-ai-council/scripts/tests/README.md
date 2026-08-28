@@ -11,6 +11,8 @@ description: "Integration + parity vitests for deep-ai-council orchestration: or
 
 vitest harnesses validating deep-ai-council orchestration and registry behavior. Run via the sibling `system-spec-kit` vitest config.
 
+---
+
 ## 2. TEST INVENTORY
 
 | Test File | Coverage |
@@ -20,6 +22,8 @@ vitest harnesses validating deep-ai-council orchestration and registry behavior.
 | `findings-registry.vitest.ts` | Canonical fingerprint append + loadRegistry + getCrossTopicPriors |
 | `integration-deep-mode-e2e.vitest.ts` | Full session through orchestrators + registry + state hierarchy |
 
+---
+
 ## 3. HOW TO RUN
 
 ```bash
@@ -27,6 +31,8 @@ cd .opencode/skills/system-spec-kit/mcp-server
 node_modules/.bin/vitest run --no-coverage \
   /absolute/path/to/.opencode/skills/system-deep-loop/deep-ai-council/scripts/tests/<filename>.vitest.ts
 ```
+
+---
 
 ## 4. RELATED RESOURCES
 

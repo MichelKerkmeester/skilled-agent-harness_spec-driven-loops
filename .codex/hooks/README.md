@@ -12,6 +12,8 @@ description: "Discovery-only symlinks for the repository's Codex hook scripts; r
 
 Two compiled ESM adapters do not execute through their symlink because their direct-entry guards compare the invocation path with the resolved module URL. Invoke those files through the real command path used by `hooks.json`.
 
+---
+
 ## 2. ENTRYPOINT BEHAVIOR
 
 | Script | Through Mirror | Through Real Path |
@@ -19,6 +21,8 @@ Two compiled ESM adapters do not execute through their symlink because their dir
 | `session-start.js` | No output | Valid `SessionStart` envelope |
 | `user-prompt-submit.js` | No output | Valid `UserPromptSubmit` envelope |
 | Other 14 scripts | Matches real-path behavior | Authoritative runtime behavior |
+
+---
 
 ## 3. INVENTORY
 
@@ -29,6 +33,8 @@ Two compiled ESM adapters do not execute through their symlink because their dir
 | Dispatch and MCP guards | `dispatch-preflight-lint.mjs`, `dispatch-audit-posttooluse.mjs`, `mcp-route-guard.cjs` |
 | Edit quality | `post-edit-quality.cjs` |
 | Repository hygiene | `worktree-guard.sh`, `check-git-hooks.sh`, `check-dist-staleness.sh` |
+
+---
 
 ## 4. VALIDATION
 
@@ -43,6 +49,8 @@ node .opencode/bin/install-codex-hooks.mjs --check
 ```
 
 Expected result: the managed Codex hook installation reports no drift.
+
+---
 
 ## 5. RELATED RESOURCES
 

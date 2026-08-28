@@ -11,12 +11,16 @@ description: "Tests that pin default, JSON-override and environment-override pre
 
 Test suite for `../resolve-injection-mode.cjs`. Pins the default `fallback` resolution, a per-command override from the JSON mode map and environment-variable override precedence over that map, for both slash and path command name forms.
 
+---
+
 ## 2. CONTENTS
 
 | File | Purpose |
 |------|---------|
 | `resolve-injection-mode.test.cjs` | Nine assertions run against temporary config files: default fallback with an empty mode map, string and evidence-bearing JSON overrides, and `SPECKIT_COMMAND_INJECTION_MODE` env override precedence. |
 | `validate-rollout.test.cjs` | Validates the repaired rollout, a complete evidence-bearing `fix` entry and each missing evidence field, including the legacy string form. |
+
+---
 
 ## 3. VALIDATION
 
@@ -26,6 +30,8 @@ node .opencode/skills/system-deep-loop/shared/rollout/tests/validate-rollout.tes
 ```
 
 Expected: both commands exit 0; the resolver reports 9 assertions and the validator reports 12 assertions.
+
+---
 
 ## 4. RELATED
 

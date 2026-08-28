@@ -11,21 +11,7 @@ contextType: "general"
 
 Use when implementation needs explicit architecture and risk management.
 
-## TABLE OF CONTENTS
-<!-- ANCHOR:table-of-contents -->
-
-- [1. OVERVIEW](#1--overview)
-- [2. REQUIRED FILES](#2--required-files)
-- [3. LEVEL 3 ADDITIONS](#3--level-3-additions)
-- [4. QUICK START](#4--quick-start)
-- [5. WORKFLOW NOTES](#5--workflow-notes)
-- [6. PHASE DECOMPOSITION](#6--phase-decomposition)
-- [7. RELATED](#7--related)
-
-<!-- /ANCHOR:table-of-contents -->
-
 ## 1. OVERVIEW
-<!-- ANCHOR:overview -->
 
 - Typical size is 500+ LOC.
 - Architecture decisions need durable records.
@@ -33,10 +19,9 @@ Use when implementation needs explicit architecture and risk management.
 
 Use Level 3+ if governance and formal approvals are required.
 
-<!-- /ANCHOR:overview -->
+---
 
 ## 2. REQUIRED FILES
-<!-- ANCHOR:files -->
 
 - `spec.md`
 - `plan.md`
@@ -45,19 +30,17 @@ Use Level 3+ if governance and formal approvals are required.
 - `decision-record.md`
 - `implementation-summary.md`
 
-<!-- /ANCHOR:files -->
+---
 
 ## 3. LEVEL 3 ADDITIONS
-<!-- ANCHOR:additions -->
 
 - Architecture-focused sections in spec and plan templates.
 - Risk/dependency/critical-path detail for execution control.
 - `decision-record.md` for major technical decisions.
 
-<!-- /ANCHOR:additions -->
+---
 
 ## 4. QUICK START
-<!-- ANCHOR:quick-start -->
 
 ```bash
 mkdir -p specs/###-feature-name
@@ -65,32 +48,28 @@ cp .opencode/skills/system-spec-kit/templates/level_3/*.md specs/###-feature-nam
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/###-feature-name/
 ```
 
-<!-- /ANCHOR:quick-start -->
+---
 
 ## 5. WORKFLOW NOTES
-<!-- ANCHOR:workflow-notes -->
 
 - Keep `decision-record.md` updated as decisions are made.
 - Keep checklist evidence current before completion claims.
 - Finalize `implementation-summary.md` at the end of delivery.
 
-<!-- /ANCHOR:workflow-notes -->
+---
 
 ## 6. PHASE DECOMPOSITION
-<!-- ANCHOR:phase -->
 
 Phase decomposition is recommended for Level 3 tasks exceeding 500 LOC across multiple subsystems. Breaking large architectural work into ordered phases improves delivery control and risk management. Use Gate 3 Option E to target a specific phase child and `/speckit:phase` to create the phase structure.
 
 See the Phase System in the [main templates README](../README.md#phase-system) for full details.
 
-<!-- /ANCHOR:phase -->
+---
 
 ## 7. RELATED
-<!-- ANCHOR:related -->
 
 - `../../../skill/system-spec-kit/templates/level_2/README.md`
 - `../../../skill/system-spec-kit/templates/level_3+/README.md`
 - `../../../skill/system-spec-kit/templates/addendum/level3-arch/`
 - `../../../skill/system-spec-kit/templates/README.md`
 
-<!-- /ANCHOR:related -->

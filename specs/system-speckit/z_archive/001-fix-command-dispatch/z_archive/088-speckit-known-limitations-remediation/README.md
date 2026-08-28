@@ -4,20 +4,8 @@
 
 ---
 
-<!-- ANCHOR:table-of-contents -->
-## TABLE OF CONTENTS
-
-- [1.  OVERVIEW]](#1--overview)
-- [2.  QUICK START]](#2--quick-start)
-- [3.  STRUCTURE]](#3--structure)
-- [4.  FEATURES]](#4--features)
-- [5. ️ TROUBLESHOOTING]](#5--troubleshooting)
-- [6.  RELATED DOCUMENTS]](#6--related-documents)
-
 ---
-<!-- /ANCHOR:table-of-contents -->
 
-<!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
 **Purpose**: Level 2 templates provide enhanced documentation for medium-sized features that require systematic validation, non-functional requirements, and explicit edge case handling.
@@ -56,9 +44,7 @@ Level 2 includes **5 template files**:
 **Total Files**: 5 (Level 1 has 4, Level 3 has 6)
 
 ---
-<!-- /ANCHOR:overview -->
 
-<!-- ANCHOR:quick-start -->
 ## 2. QUICK START
 
 ### 30-Second Setup
@@ -98,9 +84,7 @@ node .opencode/skills/system-spec-kit/scripts/validate-spec.js specs/###-feature
 ```
 
 ---
-<!-- /ANCHOR:quick-start -->
 
-<!-- ANCHOR:structure -->
 ## 3. STRUCTURE
 
 Level 2 spec folder structure:
@@ -125,9 +109,7 @@ specs/###-feature-name/
 | `plan.md` | Implementation plan with effort estimates |
 
 ---
-<!-- /ANCHOR:structure -->
 
-<!-- ANCHOR:features -->
 ## 4. FEATURES
 
 ### Enhanced Specifications
@@ -155,9 +137,7 @@ specs/###-feature-name/
 Automated validation ensures all required sections and formatting standards are met.
 
 ---
-<!-- /ANCHOR:features -->
 
-<!-- ANCHOR:troubleshooting -->
 ## 5. ️ TROUBLESHOOTING
 
 ### Common Issues
@@ -216,9 +196,7 @@ diff specs/###-feature-name/checklist.md .opencode/skills/system-spec-kit/templa
 ```
 
 ---
-<!-- /ANCHOR:troubleshooting -->
 
-<!-- ANCHOR:related-documents -->
 ## 6. RELATED DOCUMENTS
 
 ### Internal Documentation
@@ -234,5 +212,4 @@ diff specs/###-feature-name/checklist.md .opencode/skills/system-spec-kit/templa
 | [system-spec-kit SKILL.md](../../SKILL.md) | Primary skill documentation |
 
 ---
-<!-- /ANCHOR:related-documents -->
 

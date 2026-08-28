@@ -447,6 +447,8 @@ directives directly.
 Nothing writes, reads or reviews a rule file any more. Treat any older reference to a rule path as
 historical record.
 
+---
+
 ## 9. SESSION DEDUPLICATION
 
 > [VERIFIED: matches source code as of 2026-02-08]
