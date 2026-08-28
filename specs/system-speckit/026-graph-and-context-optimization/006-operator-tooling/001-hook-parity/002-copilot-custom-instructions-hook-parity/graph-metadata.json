@@ -43,37 +43,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
-      ".github/hooks/scripts/user-prompt-submitted.sh",
-      "tests/copilot-user-prompt-submit-hook.vitest.ts",
-      "hooks/claude/user-prompt-submit.ts",
       "implementation-summary.md",
       "decision-record.md",
-      ".github/hooks/scripts/session-start.sh",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "user-prompt-submit.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/user-prompt-submit.ts",
-        "source": "derived"
-      },
-      {
-        "name": "user-prompt-submitted.sh",
-        "kind": "script",
-        "path": ".github/hooks/scripts/user-prompt-submitted.sh",
-        "source": "derived"
-      },
-      {
-        "name": "copilot-user-prompt-submit-hook.vitest.ts",
-        "kind": "test",
-        "path": "tests/copilot-user-prompt-submit-hook.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
@@ -84,12 +61,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-start.sh",
-        "kind": "script",
-        "path": ".github/hooks/scripts/session-start.sh",
         "source": "derived"
       },
       {
@@ -199,11 +170,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two distinct runtime behaviors diverge across CLIs:",
     "created_at": "2026-04-22T06:13:42.052Z",
-    "last_save_at": "2026-07-17T17:19:32.460Z",
+    "last_save_at": "2026-08-28T18:47:10.690Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:733d8a92aac8e62d5118862875f794392961744ac0484ebacdfa5b47c522e00d",
+    "source_fingerprint": "sha256:9dc3f2af581fe8b7cb44e1ae444b3315cef51469ef91874ce04e84f665d9d582",
     "source_doc_hashes": {
       "spec.md": "c183410804ea1904d89425d83cbb231a014fa187bc208ded4ead94a0bff2333e",
       "plan.md": "147fb651cdd5b869aed4b7ee70314e0367002a65bf675b0892a1886f69e59cfc",
       "tasks.md": "2134ed2a3d915ced0beab57caa6aa77b9df4da229f7419d81a4da269e2fedf5a",
       "checklist.md": "f10ec4b29e6035956a3adbc629c995fdf205d4bc55f9059525255b0111b090b2",
       "decision-record.md": "8e6551b37211108dcf9769ee1b0a38760536fb3dde3a8ac4811b545d0fb83f12",
-      "implementation-summary.md": "aa8ec699d202d730fccaa70f53e2077c2e35f5d5991791d7dc7a209519220154"
+      "implementation-summary.md": "00134a3c337724f85a0127b5b0671a8a9e31452c101e2d061e81d6a8dcba83be"
     },
     "last_active_child_id": null,
     "last_active_at": null

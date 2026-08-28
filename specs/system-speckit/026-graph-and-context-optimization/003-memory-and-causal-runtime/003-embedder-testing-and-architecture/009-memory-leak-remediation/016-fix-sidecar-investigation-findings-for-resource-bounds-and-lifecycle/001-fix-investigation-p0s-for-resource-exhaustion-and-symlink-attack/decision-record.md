@@ -52,6 +52,7 @@ Set `MAX_LINE_BYTES = 1024 * 1024` (1MB) on both client stdout (`sidecar-client.
 
 ---
 
+<!-- /ANCHOR:adr-001 -->
 <!-- ANCHOR:adr-002 -->
 ## ADR-002: Stdout buffer cap value — 10MB
 
@@ -75,6 +76,7 @@ Set `MAX_STDOUT_BUFFER_BYTES = 10 * 1024 * 1024` (10MB). On overflow, drop the b
 
 ---
 
+<!-- /ANCHOR:adr-002 -->
 <!-- ANCHOR:adr-003 -->
 ## ADR-003: Crypto-random temp file suffix + exclusive create
 
@@ -105,6 +107,7 @@ Replace predictable suffix with `crypto.randomBytes(16).toString('hex')` and use
 
 ---
 
+<!-- /ANCHOR:adr-003 -->
 <!-- ANCHOR:adr-004 -->
 ## ADR-004: Input array length cap — 500 items
 
@@ -130,3 +133,4 @@ Set `MAX_INPUT_ITEMS = 500`. In `parseRequest()`, reject embed requests where `i
 <!-- /ANCHOR: adr-002 -->
 <!-- /ANCHOR: adr-003 -->
 <!-- /ANCHOR: adr-004 -->
+<!-- /ANCHOR:adr-004 -->

@@ -79,7 +79,7 @@ The DeepSeek compat path in the vendored `pi-cache-optimizer` fork now treats `s
 - **`fix` stops auto-enabling long retention.** The prior behavior flipped a `supportsLongCacheRetention: false` override to `true`, which is exactly the 400 risk the README warns about. The corrected fix-command test asserts the `false` override now survives.
 - **Affinity + reasoning/thinking stay required.** Only the risky long-retention flag moved to optional; the safe DeepSeek flags remain safe-fixable.
 - **Comment hygiene.** Code comments state the durable WHY (automatic prefix caching, 400 on unsupported `prompt_cache_retention`) with no spec/task identifiers.
-<!-- /ANCHOR:how-delivered -->
+<!-- /ANCHOR:decisions -->
 
 ---
 

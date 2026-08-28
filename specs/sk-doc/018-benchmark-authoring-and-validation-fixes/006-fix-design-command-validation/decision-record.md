@@ -51,6 +51,7 @@ Enforcement lands at the source-of-truth layer and covers all 5 commands + both 
 
 ---
 
+<!-- /ANCHOR:adr-001 -->
 <!-- ANCHOR:adr-002 -->
 ## ADR-002: Structural (not positional) choreography contract
 
@@ -77,6 +78,7 @@ The check becomes meaningful and stable across the thin-router architecture. Neg
 
 ---
 
+<!-- /ANCHOR:adr-002 -->
 <!-- ANCHOR:adr-003 -->
 ## ADR-003: De-mask the recipe test and document the lane's layering debt
 
@@ -99,3 +101,4 @@ De-mask the test so it loads committed gold, and refresh the stale fixture to cu
 ### Consequences
 Fixture drift becomes catchable. The layering debt is documented rather than silently carried.
 <!-- /ANCHOR:adr-003-consequences -->
+<!-- /ANCHOR:adr-003 -->

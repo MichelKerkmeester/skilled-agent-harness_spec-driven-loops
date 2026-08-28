@@ -131,6 +131,20 @@ function parseFixture(absPath, playbookDir) {
   const block = extractFrontmatter(text);
   if (!block) return { ok: false, path: absPath, error: 'NO_FRONTMATTER' };
 
+  // Routing gold is opt-in, because a playbook holds two kinds of scenario:
+  // routing fixtures that assert which mode and leaves a prompt should select,
+  // and behavioural ones that exercise a script or a hook and make no routing
+  // claim. Demanding gold from the second kind invites a fabricated expectation,
+  // which is worse than an absent one.
+  //
+  // Two ways in, since either alone is unsound. A stage or category enrols a
+  // fixture even when its gold is missing or broken, so it cannot dodge the gate
+  // by deleting what it asserts. Any gold field enrols it even without a stage,
+  // so a routing claim is always held to. Only a scenario doing neither is
+  // treated as behavioural, and that count is reported rather than hidden.
+  const declaresGold = /(?:^|\n)[ \t]*(?:expected_workflow_mode|expected_leaf_resources|expected_intent|expected_resources):/.test(block);
+  const enrolledM = /(?:^|\n)[ \t]*(?:stage|category):[ \t]*\S/.test(block) || declaresGold;
+
   const idM = /(?:^|\n)[ \t]*id:[ \t]*["']?([A-Za-z0-9-]+)/.exec(block);
   const modeM = /(?:^|\n)[ \t]*expected_workflow_mode:[ \t]*["']?([^"'\n]+?)["']?[ \t]*(?:\n|$)/.exec(block);
   const fullInventoryM = /(?:^|\n)[ \t]*full_inventory_intent:[ \t]*["']?(true|false)["']?/.exec(block);
@@ -138,6 +152,7 @@ function parseFixture(absPath, playbookDir) {
 
   return {
     ok: true,
+    enrolled: enrolledM,
     id: idM ? idM[1].trim() : null,
     relPath: path.relative(playbookDir, absPath),
     expectedWorkflowMode: modeM ? modeM[1].trim() : null,
@@ -344,6 +359,17 @@ function runValidation({ playbookDir, skillDir }) {
       });
       continue;
     }
+    if (!fixture.enrolled) {
+      results.push({
+        id: fixture.id,
+        relPath: fixture.relPath,
+        status: 'unenrolled',
+        verdict: VERDICT.SKIP,
+        errorClass: null,
+        problems: [],
+      });
+      continue;
+    }
     const verdict = classifyFixture(fixture, leavesByMode);
     results.push({
       id: fixture.id,
@@ -358,14 +384,15 @@ function runValidation({ playbookDir, skillDir }) {
   }
 
   const validCount = results.filter((r) => r.status === 'valid').length;
-  const blockedCount = results.length - validCount;
+  const unenrolledCount = results.filter((r) => r.status === 'unenrolled').length;
+  const blockedCount = results.length - validCount - unenrolledCount;
   // Unified run-level verdict over every recursively-walked leaf: any blocked
   // leaf fails the whole surface, so a per-feature-file defect can never pass
   // because the root looked clean. An empty tree is SKIP, not a false PASS.
-  const runVerdict = results.length === 0
+  const runVerdict = (results.length - unenrolledCount) === 0
     ? VERDICT.SKIP
     : (blockedCount > 0 ? VERDICT.FAIL : VERDICT.PASS);
-  return { results, validCount, blockedCount, verdict: runVerdict };
+  return { results, validCount, blockedCount, unenrolledCount, verdict: runVerdict };
 }
 
 function formatReport(report) {
@@ -380,7 +407,9 @@ function formatReport(report) {
     }
   }
   lines.push('');
-  lines.push(`verdict=${report.verdict} valid=${report.validCount} blocked=${report.blockedCount} total=${report.results.length}`);
+  // The unenrolled count is printed, never hidden: a routing fixture that
+  // forgot its stage/category would land here silently otherwise.
+  lines.push(`verdict=${report.verdict} valid=${report.validCount} blocked=${report.blockedCount} unenrolled=${report.unenrolledCount || 0} total=${report.results.length}`);
   return lines.join('\n');
 }
 

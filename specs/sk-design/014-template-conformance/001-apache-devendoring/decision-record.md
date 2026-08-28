@@ -94,3 +94,4 @@ _memory:
 - `changelog/v1.1.0.0.md` is the permanent record of why the license disappeared, which matters for anyone auditing the skill's history later.
 - Three documents that claimed the live-read grounding policy "keeps the skill Apache-2.0 only" were corrected in the same commit — that claim became false in a new way once the skill carried no such licence. Two passages describing which licences *would* attach if external content were copied were deliberately left untouched, since they remain accurate.
 <!-- /ANCHOR:adr-001-consequences -->
+<!-- /ANCHOR:adr-001 -->

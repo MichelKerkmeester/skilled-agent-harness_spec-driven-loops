@@ -41,43 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-design/design-interface/references/design-process/design-principles.md",
-      ".opencode/skills/sk-design/design-interface/SKILL.md",
-      ".opencode/skills/sk-design/design-interface/README.md",
-      ".opencode/skills/sk-design/design-interface/changelog/v1.1.0.0.md",
       "decision-record.md",
       "checklist.md",
       "plan.md",
       "tasks.md",
-      ".opencode/specs/sk-design/014-template-conformance/spec.md",
       "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "design-principles.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/references/design-process/design-principles.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.1.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/changelog/v1.1.0.0.md",
-        "source": "derived"
-      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -197,11 +168,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "on-disk",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/sk-design/design-interface/LICENSE.txt` was the full Apache-2.0 text, committed in the skill's first commit (`c9c2d381c34`) as the compliance artefact for content vendored verbatim from Anthropic's `frontend-design` skill",
     "created_at": "2026-07-27T14:48:39.949Z",
-    "last_save_at": "2026-07-27T18:38:44.738Z",
+    "last_save_at": "2026-08-28T18:47:03.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +207,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa603ca9b7f2c9b142f1a2a0b8937a2718e66a08b6f64f5bfdd53072b3d33e03",
+    "source_fingerprint": "sha256:e560405f76446e8eaebf883115694d5f14843bf19ae8f1fdb8c62bc7058de4c1",
     "source_doc_hashes": {
       "spec.md": "26d19b33dd682302d609efc6ad9bb6771d2ff23ab49c82aef26f269a3c200721",
       "plan.md": "01d377e8c865fe963398543f8033eac06a9dc60d1a5c8a1224eb14e250d94490",
       "tasks.md": "65018b5f63e68c12f2a9c5cad22fb1bcdc9efdc4ab9a93df0dc4a2ddf7fe53cf",
       "checklist.md": "93e7014d5dbecbe4d40eaa9903c4af3314c5335c4625e6ccfecb224ec4ddd7d7",
-      "decision-record.md": "ef92254f747a5063ebb57b712d581d078acf7a81b062801c30e3464b2d8107e5",
+      "decision-record.md": "55ce5d4f977a751c8c9c5743b8bb9f4d0aafdcedc191772364b24a6269b5267f",
       "implementation-summary.md": "114f6c4868fe94a9f0198b26d6d5c7bd6bb00be406a9122b1967b292ce5f9b13"
     },
     "last_active_child_id": null,
