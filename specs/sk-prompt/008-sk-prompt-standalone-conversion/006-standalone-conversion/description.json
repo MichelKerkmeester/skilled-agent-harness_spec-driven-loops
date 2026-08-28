@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/006-standalone-conversion",
+  "description": "With one workflow packet left, the hub shape is pure overhead: four authored routing files, a stage-two router document and a nested packet directory",
+  "keywords": [
+    "one",
+    "workflow",
+    "packet",
+    "left",
+    "hub",
+    "shape",
+    "pure",
+    "overhead",
+    "four",
+    "authored",
+    "routing",
+    "files",
+    "stage-two",
+    "router",
+    "document",
+    "nested",
+    "directory"
+  ],
+  "lastUpdated": "2026-08-28T09:56:44.393Z",
+  "specId": "006",
+  "folderSlug": "standalone-conversion",
+  "parentChain": [
+    "sk-prompt",
+    "008-sk-prompt-standalone-conversion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

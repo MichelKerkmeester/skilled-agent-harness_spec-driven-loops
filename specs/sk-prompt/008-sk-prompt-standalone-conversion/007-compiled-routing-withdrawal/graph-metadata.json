@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/008-sk-prompt-standalone-conversion/007-compiled-routing-withdrawal",
+  "spec_folder": "sk-prompt/008-sk-prompt-standalone-conversion/007-compiled-routing-withdrawal",
+  "parent_id": "sk-prompt/008-sk-prompt-standalone-conversion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008 phase 007",
+      "sk-prompt compiled-routing-withdrawal",
+      "compiled-routing-withdrawal",
+      "008 phase 007 plan",
+      "compiled-routing-withdrawal plan",
+      "008 phase 007 tasks",
+      "compiled-routing-withdrawal tasks",
+      "008 phase 007 summary",
+      "compiled-routing-withdrawal results"
+    ],
+    "key_topics": [
+      "phase",
+      "sk-prompt",
+      "compiled-routing-withdrawal",
+      "plan",
+      "tasks",
+      "summary",
+      "results",
+      "compiled",
+      "routing",
+      "serves",
+      "six",
+      "parent"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Compiled",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Compiled",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dual",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "recorded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Compiled routing serves six parent hubs from a promoted closure with a per-hub activation fence",
+    "created_at": "2026-08-28T08:49:39Z",
+    "last_save_at": "2026-08-28T09:56:47.384Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:fd973384b42ff0866edf2ec5c606cb5fc05ad77d7d1c1d2f8fd8e8f639b448ce",
+    "source_doc_hashes": {
+      "spec.md": "baccaab889a02f3f974e84582e07a4c4d71296c7b7cf44efd5e2c7b2b00a7a1b",
+      "plan.md": "82711f01b98f2aca87add1c8987827e8d04c52fd5d871e35273ee0056fd9dfe4",
+      "tasks.md": "00c1d97a246b0c504aa9320e6a05a1123854d491d29d27cade9cd9d84035f638",
+      "implementation-summary.md": "e0cc5a8bcbb93fee0d60c46a614bc62a30368308f1825ee62532d5d022ec0808"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

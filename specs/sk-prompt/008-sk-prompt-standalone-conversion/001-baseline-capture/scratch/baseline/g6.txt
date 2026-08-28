@@ -1,0 +1,8 @@
+
+WEIGHT-BAND WARNINGS (2):
+  - WEIGHT-BAND: sk-design edges.siblings[0] weight 0.7 outside recommended band [0.4, 0.6]
+  - WEIGHT-BAND: sk-design-md-generator edges.siblings[0] weight 0.7 outside recommended band [0.4, 0.6]
+Discovered 14 skill graph-metadata.json files
+Excluded 1 route-excluded skill graph-metadata.json file(s)
+VALIDATION PASSED: all metadata files are valid
+exit=0

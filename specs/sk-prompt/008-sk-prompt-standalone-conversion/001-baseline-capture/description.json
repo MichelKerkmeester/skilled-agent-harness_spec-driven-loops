@@ -1,0 +1,29 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/001-baseline-capture",
+  "description": "The teardown deliberately reds several gates before it fixes them, and two of the routing metrics are already sitting exactly at their CI ceilings",
+  "keywords": [
+    "teardown",
+    "deliberately",
+    "reds",
+    "several",
+    "gates",
+    "them",
+    "two",
+    "routing",
+    "metrics",
+    "already",
+    "sitting",
+    "exactly",
+    "ceilings"
+  ],
+  "lastUpdated": "2026-08-28T09:56:44.395Z",
+  "specId": "001",
+  "folderSlug": "baseline-capture",
+  "parentChain": [
+    "sk-prompt",
+    "008-sk-prompt-standalone-conversion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

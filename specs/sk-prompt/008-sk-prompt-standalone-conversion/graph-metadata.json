@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/008-sk-prompt-standalone-conversion",
+  "spec_folder": "sk-prompt/008-sk-prompt-standalone-conversion",
+  "parent_id": null,
+  "children_ids": [
+    "sk-prompt/008-sk-prompt-standalone-conversion/001-baseline-capture",
+    "sk-prompt/008-sk-prompt-standalone-conversion/002-models-packet-deletion",
+    "sk-prompt/008-sk-prompt-standalone-conversion/003-routing-baseline-recapture",
+    "sk-prompt/008-sk-prompt-standalone-conversion/004-card-sync-guard-rewrite",
+    "sk-prompt/008-sk-prompt-standalone-conversion/005-cli-orchestration-repoint",
+    "sk-prompt/008-sk-prompt-standalone-conversion/006-standalone-conversion",
+    "sk-prompt/008-sk-prompt-standalone-conversion/007-compiled-routing-withdrawal",
+    "sk-prompt/008-sk-prompt-standalone-conversion/008-docs-and-final-gate"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008-sk-prompt-standalone-conversion",
+      "sk-prompt standalone",
+      "deprecate sk-prompt-models",
+      "sk-prompt hub to standalone",
+      "prompt-models deletion"
+    ],
+    "key_topics": [
+      "008-sk-prompt-standalone-conversion",
+      "sk-prompt",
+      "standalone",
+      "deprecate",
+      "sk-prompt-models",
+      "hub",
+      "prompt-models",
+      "deletion",
+      "carries",
+      "two",
+      "workflow",
+      "packets"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`sk-prompt` carries two workflow packets behind one advisor identity, but only one of them is a prompt-engineering workflow",
+    "created_at": "2026-08-28T08:49:34Z",
+    "last_save_at": "2026-08-28T09:55:23.275Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:3b404d314cdd9ed175d93c248c8698cb408de9507bc00e5e5fbe003e1c4008aa",
+    "source_doc_hashes": {
+      "spec.md": "5ccdfd41ab915fb501ebb0a59b2f3a203b58d8a3c174eeea399ce97d5355f5cc"
+    },
+    "last_active_child_id": "sk-prompt/008-sk-prompt-standalone-conversion/008-docs-and-final-gate",
+    "last_active_at": null
+  }
+}

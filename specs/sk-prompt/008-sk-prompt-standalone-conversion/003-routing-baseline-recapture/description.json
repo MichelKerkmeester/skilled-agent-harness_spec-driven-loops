@@ -1,0 +1,31 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/003-routing-baseline-recapture",
+  "description": "The ratchet pins exact counts and the corpus files are sha256-pinned, so a deliberate capability removal reds two gates that are working correctly",
+  "keywords": [
+    "ratchet",
+    "pins",
+    "exact",
+    "counts",
+    "corpus",
+    "files",
+    "sha256-pinned",
+    "deliberate",
+    "capability",
+    "removal",
+    "reds",
+    "two",
+    "gates",
+    "working",
+    "correctly"
+  ],
+  "lastUpdated": "2026-08-28T09:56:44.392Z",
+  "specId": "003",
+  "folderSlug": "routing-baseline-recapture",
+  "parentChain": [
+    "sk-prompt",
+    "008-sk-prompt-standalone-conversion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

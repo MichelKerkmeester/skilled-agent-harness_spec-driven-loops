@@ -114,7 +114,6 @@ Beyond Law 4 (uncertainty, line-number mismatch, failing tests), also halt on:
 | Rule | Requirement |
 |------|-------------|
 | **CLI dispatch** | Before composing any `cli-X` prompt, MUST `Read` `.opencode/skills/cli-external-orchestration/cli-X/SKILL.md` first. |
-| **Small-model dispatch** | Before dispatching to small models (MiniMax, Kimi, Qwen, etc.), MUST consult `sk-prompt/sk-prompt-models`. |
 | **Agent I/O pointer** | Optional dispatch headers documented in `.opencode/skills/system-spec-kit/references/workflows/agent-io-contract.md`. |
 
 ---

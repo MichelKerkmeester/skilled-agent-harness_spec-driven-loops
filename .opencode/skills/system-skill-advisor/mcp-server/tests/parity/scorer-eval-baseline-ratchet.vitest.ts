@@ -81,7 +81,7 @@ const SENTINEL = '.opencode/skills/system-spec-kit/SKILL.md';
 // sample, and growing the corpus is a separate, reviewed change.
 const REVIEW_MIN_N = 31;
 const MEMORY_SAVE_MIN_N = 32;
-const DELEGATION_MIN_N = 11;
+const DELEGATION_MIN_N = 9;
 
 function sha256File(path: string): string {
   return `sha256:${createHash('sha256').update(readFileSync(path)).digest('hex')}`;

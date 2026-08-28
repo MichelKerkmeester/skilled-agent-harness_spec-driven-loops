@@ -52,7 +52,7 @@
     "id": "command-prompt-improver",
     "command": "/prompt",
     "skillId": "sk-prompt",
-    "ownerMode": "sk-prompt-improve",
+    "ownerMode": "sk-prompt",
     "reason": "The Python compatibility scorer still recognizes legacy /prompt while JSON declares /prompt:improve."
   }
 ]

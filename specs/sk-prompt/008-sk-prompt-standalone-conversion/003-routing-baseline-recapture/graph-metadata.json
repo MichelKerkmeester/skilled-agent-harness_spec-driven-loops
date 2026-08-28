@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/008-sk-prompt-standalone-conversion/003-routing-baseline-recapture",
+  "spec_folder": "sk-prompt/008-sk-prompt-standalone-conversion/003-routing-baseline-recapture",
+  "parent_id": "sk-prompt/008-sk-prompt-standalone-conversion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008 phase 003",
+      "sk-prompt routing-baseline-recapture",
+      "routing-baseline-recapture",
+      "008 phase 003 plan",
+      "routing-baseline-recapture plan",
+      "008 phase 003 tasks",
+      "routing-baseline-recapture tasks",
+      "008 phase 003 summary",
+      "routing-baseline-recapture results"
+    ],
+    "key_topics": [
+      "phase",
+      "sk-prompt",
+      "routing-baseline-recapture",
+      "plan",
+      "tasks",
+      "summary",
+      "results",
+      "ratchet",
+      "pins",
+      "exact",
+      "counts",
+      "corpus"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "recorded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "rows",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The ratchet pins exact counts and the corpus files are sha256-pinned, so a deliberate capability removal reds two gates that are working correctly",
+    "created_at": "2026-08-28T08:49:36Z",
+    "last_save_at": "2026-08-28T09:56:45.706Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1adfaf64c97a65474316b5f96f6ee6cbefa690ef990e3965e23257c5743d3d3b",
+    "source_doc_hashes": {
+      "spec.md": "8e7493b55d8a2ec2a8eaed73c09228251aa98df29507257f6304ba96b2d1402a",
+      "plan.md": "8aae995ccb87a1765e7028e2a65246e81bb7c76dfdcbf8ac35aaac71be5f9ca1",
+      "tasks.md": "710283270dc9d3958b313ba6bc79589ff4232d2d0226d968c30b3e92c9931efe",
+      "implementation-summary.md": "29cd8bb2f09e780b9084b2a68aacfcc225e65fbe34e9a9c54aeec05f214d5529"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

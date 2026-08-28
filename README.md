@@ -841,9 +841,9 @@ These skills let you run **cross-CLI agent teams from supported runtimes**. Clau
 - **Scaffolds components** (skills, agents, commands) and handles README templates, frontmatter validation, feature-catalog authoring and install guides
 
 **sk-prompt**
-- **Parent hub for prompt engineering.** Routes through `mode-registry.json` to `prompt-improve` (turn a rough ask into a strong prompt) and `prompt-models` (per-model prompt-craft profiles)
-- **`prompt-improve`** — auto-selects from 7 frameworks (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT), then refines and scores: DEPTH thinking across 3-10 rounds, then CLEAR scoring (Clarity, Logic, Expression, Reliability) against a 40+/50 pass threshold
-- **`prompt-models`** — a discovery anchor that points to executor-owned pattern files rather than hosting the logic itself. Covers the active matrix: DeepSeek-v4-pro, Kimi-k2.7-code, MiniMax-M3, MiMo-V2.5-Pro and GLM-5.2 via `cli-opencode`, with DeepSeek-v4-pro, MiniMax-M3, and MiMo-V2.5-Pro also reachable via `cli-pi`, plus Composer-2.5 (Cursor's own native model) via `cli-cursor`. `references/pattern-index.md` maps each pattern (context budget, output verification, permissions, quota fallback, model profiles, tool scoring) to its canonical location. Pool-aware quota fallback routes to a different pool only, never same-pool retries. Frontier models (Opus, Sonnet, gpt-5.5) stay out of scope
+- **Standalone prompt-engineering skill.** Turns a rough ask into a structured, scored prompt
+- **Auto-selects from 7 frameworks** (RCAF, COSTAR, RACE, CIDI, TIDD-EC, CRISPE, CRAFT), then refines and scores: DEPTH thinking across 3-10 rounds, then CLEAR scoring (Correctness, Logic, Expression, Arrangement, Reusability) against a fixed threshold
+- **Owns the canonical CLI prompt-quality card** that every `cli-*` executor's local card delegates to for framework selection and the CLEAR pre-dispatch check
 
 ---
 

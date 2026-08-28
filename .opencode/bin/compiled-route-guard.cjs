@@ -47,7 +47,6 @@ const HUBS = [
   'mcp-tooling',
   'sk-code',
   'sk-doc',
-  'sk-prompt',
   'system-deep-loop',
 ];
 

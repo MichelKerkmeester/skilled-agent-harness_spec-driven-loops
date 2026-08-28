@@ -49,7 +49,7 @@ The hub holds no packet-local logic. Every request routes to exactly one of six 
 
 | Mode | What the packet dispatches |
 |---|---|
-| **`cli-opencode`** ([README](./cli-opencode/README.md), [SKILL.md](./cli-opencode/SKILL.md)) | OpenCode CLI dispatch: full-runtime and parallel sessions, detached sessions, the plugin, skill, MCP and Spec-Kit-Memory runtime plus small-model dispatch for DeepSeek, Kimi, MiniMax, MiMo and GLM. Small-model prompt profiles: [`../sk-prompt/sk-prompt-models/README.md`](../sk-prompt/sk-prompt-models/README.md) |
+| **`cli-opencode`** ([README](./cli-opencode/README.md), [SKILL.md](./cli-opencode/SKILL.md)) | OpenCode CLI dispatch: full-runtime and parallel sessions, detached sessions, the plugin, skill, MCP and Spec-Kit-Memory runtime plus small-model dispatch for DeepSeek, Kimi, MiniMax, MiMo and GLM. |
 | **`cli-claude-code`** ([README](./cli-claude-code/README.md), [SKILL.md](./cli-claude-code/SKILL.md)) | Claude Code CLI dispatch: Anthropic-backed extended thinking, surgical code edits, structured JSON-schema output, agent delegation and cross-AI second opinions |
 | **`cli-codex`** ([README](./cli-codex/README.md), [SKILL.md](./cli-codex/SKILL.md)) | Codex CLI dispatch: OpenAI-backed coding, repo analysis, PR review, web research and cross-model validation. Fails closed when the `codex` binary is absent |
 | **`cli-cursor`** ([README](./cli-cursor/README.md), [SKILL.md](./cli-cursor/SKILL.md)) | Cursor CLI dispatch: Composer-model dispatch, read-only `--mode plan` and `--mode ask` exploration, native git worktree isolation, a cloud `worker` and a shared `.cursor/` hooks, MCP and rules config surface with the Cursor editor |
@@ -104,7 +104,7 @@ Use the hub when a request belongs to an external CLI runtime: full-runtime Open
 
 | Skill | Relationship |
 |---|---|
-| `sk-prompt` | `cli-opencode` small-model dispatch is a sentinel for `sk-prompt/sk-prompt-models` profiles (enhances edge, weight 0.5) |
+| `sk-prompt` | Owns the canonical CLI prompt-quality card every executor's local card delegates to (enhances edge, weight 0.5) |
 | `system-spec-kit` | Manual dependency. A full-runtime `cli-opencode` dispatch carries the Spec-Kit-Memory runtime |
 | `sk-code` | Owns code implementation, review and debugging inside the dispatched session |
 | `system-deep-loop` | Related. Ablation-suite and worker-farm patterns dispatch parallel `cli-opencode` sessions |

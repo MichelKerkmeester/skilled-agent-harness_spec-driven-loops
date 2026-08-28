@@ -1,0 +1,12 @@
+{
+  "workflowMode": "sk-prompt",
+  "packet": ".",
+  "leafRoots": [
+    "references",
+    "assets",
+    "manual-testing-playbook"
+  ],
+  "excludeIndexFiles": true,
+  "resourceContractVersion": 1,
+  "_note": "Standalone single-mode manifest config. sk-prompt is a normal skill (no mode-registry.json); its references/assets/playbook docs are the routed leaves that the in-SKILL.md INTENT_SIGNALS + RESOURCE_MAP router selects. benchmark/ and changelog/ are not routable leaves and are excluded because they sit outside leafRoots. Consumed by generate-leaf-manifest.cjs to emit leaf-manifest.json; leaf-aliases.json is the derived identity projection of that manifest, so regenerate both together via ci-skill-root-metadata.cjs --fix."
+}

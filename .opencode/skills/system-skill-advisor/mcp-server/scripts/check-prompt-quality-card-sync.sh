@@ -3,10 +3,10 @@
 # check-prompt-quality-card-sync.sh — Drift guard for the 3-layer
 #                                      prompt-knowledge architecture
 # ====================================================================
-# Enforces "one home per fact" across sk-prompt (framework engine),
-# sk-prompt (prompt-models packet), and the 4 cli-* executors.
-# Four structural checks (no semantic/NLP matching — pointer presence,
-# table absence, registry completeness, trigger membership):
+# Enforces "one home per fact" across sk-prompt (framework engine) and
+# the 4 cli-* executors.
+# Two structural checks (no semantic/NLP matching — pointer presence and
+# table absence):
 #
 #   CHECK 1 — Table inlining: the 7-framework selection table and the
 #             CLEAR table live ONLY in their canonical sk-prompt home,
@@ -14,18 +14,10 @@
 #   CHECK 2 — Tier-3 pointer-only: no cli-*/SKILL.md re-enumerates the
 #             canonical Tier-3 escalation triggers; it must point to the
 #             canonical card instead (prevents the precedence drift class).
-#   CHECK 3 — Registry/profile/_index completeness: every adopted model
-#             (a model_profiles.json entry with recommended_frameworks)
-#             has a references/models/<id>.md profile AND an _index.md
-#             row, and every profile maps back to a registry id
-#             (prevents zero-hub-weight entries).
-#   CHECK 4 — Discovery reachability: every adopted model is reachable by
-#             name in EACH dispatching executor's graph-metadata.json
-#             (prevents the model-unreachable-by-name class, e.g. qwen3.6).
 #
 # Canonical locations (allowed to carry the tables / the Tier-3 list):
-#   .opencode/skills/sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md
-#   .opencode/skills/sk-prompt/sk-prompt-improve/references/patterns-evaluation.md
+#   .opencode/skills/sk-prompt/assets/cli-prompt-quality-card.md
+#   .opencode/skills/sk-prompt/references/patterns-evaluation.md
 #
 # Exit codes:
 #   0 — all checks pass
@@ -110,92 +102,9 @@ for skill in "${cli_skills[@]}"; do
   fi
 done
 
-# ── CHECK 3 + 4 — completeness + discovery reachability ─────────────
-# Registry parse in python3 (no jq dependency); pure structural asserts.
-echo "CHECK 3 — registry / profile / _index completeness"
-echo "CHECK 4 — discovery reachability (model name in each executor's triggers)"
-if python3 - <<'PY'
-import json, os, re, glob, sys
-
-ROOT = os.environ["ROOT"]
-H = f"{ROOT}/.opencode/skills/sk-prompt/sk-prompt-models"
-reg = json.load(open(f"{H}/assets/model-profiles.json"))
-idx = open(f"{H}/references/models/_index.md").read()
-all_ids = {m["id"] for m in reg["models"]}
-# Unconfirmed optional stubs carry schema-shaped recommendation metadata but are
-# not adopted prompt-craft profiles until their framework is verified.
-adopted = [m for m in reg["models"] if m.get("recommended_frameworks") and m["recommended_frameworks"].get("status") != "unconfirmed"]
-
-# Family token used for reachability (first id segment by default).
-FAMILY = {"deepseek-v4-pro": "deepseek", "kimi-k2.6": "kimi",
-          "qwen3.6": "qwen", "glm-5.1": "glm", "minimax-m3": "minimax",
-          "minimax-2.7": "minimax", "mimo-v2.5-pro": "mimo"}
-
-c3, c4 = [], []
-
-# CHECK 3 — registry(adopted) -> profile + _index row
-for m in adopted:
-    mid = m["id"]
-    if not os.path.isfile(f"{H}/references/models/{mid}.md"):
-        c3.append(f"adopted model '{mid}' has NO profile references/models/{mid}.md (zero-hub-weight entry)")
-    if mid not in idx:
-        c3.append(f"adopted model '{mid}' missing from references/models/_index.md")
-# CHECK 3 — profile -> registry id (no orphan profiles)
-for p in sorted(glob.glob(f"{H}/references/models/*.md")):
-    b = os.path.basename(p)
-    if b == "_index.md":
-        continue
-    txt = open(p).read()
-    mo = re.search(r'(?m)^model_id:\s*"?([^"\n]+)"?', txt)
-    if not mo:
-        c3.append(f"profile {b} has no model_id frontmatter")
-    elif mo.group(1).strip() not in all_ids:
-        c3.append(f"profile {b} model_id '{mo.group(1).strip()}' not in the registry")
-
-# CHECK 4 — each adopted model reachable by family token in each dispatching executor
-# cli-opencode and cli-claude-code no longer carry their own graph-metadata.json
-# (the hub fold-in dissolved both into one hub identity); both
-# resolve to the shared cli-external-orchestration/graph-metadata.json, which folds the union
-# of both former identities' trigger_phrases. Any other executor keeps the
-# flat per-skill path.
-CLI_EXECUTOR_HUB_METADATA = {
-    "cli-opencode": "cli-external-orchestration/graph-metadata.json",
-    "cli-claude-code": "cli-external-orchestration/graph-metadata.json",
-    "cli-cursor": "cli-external-orchestration/graph-metadata.json",
-    "cli-pi": "cli-external-orchestration/graph-metadata.json",
-}
-gm_cache = {}
-def gm(executor):
-    if executor not in gm_cache:
-        rel = CLI_EXECUTOR_HUB_METADATA.get(executor, f"{executor}/graph-metadata.json")
-        path = f"{ROOT}/.opencode/skills/{rel}"
-        gm_cache[executor] = open(path).read().lower() if os.path.isfile(path) else None
-    return gm_cache[executor]
-
-for m in adopted:
-    mid = m["id"]
-    tok = FAMILY.get(mid, mid.split("-")[0]).lower()
-    for ex in sorted({e.get("executor") for e in m.get("executors", []) if e.get("executor")}):
-        blob = gm(ex)
-        if blob is None:
-            c4.append(f"{mid} -> {ex}: executor graph-metadata.json not found")
-        elif tok not in blob:
-            c4.append(f"{mid} -> {ex}: not reachable by name (token '{tok}' absent from trigger_phrases)")
-
-for label, fails in (("CHECK 3", c3), ("CHECK 4", c4)):
-    if fails:
-        for fmsg in fails:
-            print(f"  FAIL  [{label}] {fmsg}")
-    else:
-        print(f"  PASS  [{label}] all clear")
-
-sys.exit(1 if (c3 or c4) else 0)
-PY
-then :; else overall_exit=1; fi
-
 # ── Summary ─────────────────────────────────────────────────────────
 if [[ $overall_exit -eq 0 ]]; then
-  echo "GUARD PASS — tables not inlined, Tier-3 pointer-only, registry complete, all models discoverable"
+  echo "GUARD PASS — tables not inlined, Tier-3 pointer-only"
 else
   echo "GUARD FAIL — see FAIL lines above" >&2
 fi

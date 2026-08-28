@@ -503,7 +503,7 @@ def _command_bridge_owner(command_name: str, command: str) -> Dict[str, str]:
     if command.startswith("/create:"):
         return {"skillId": "sk-doc", "ownerMode": f"sk-create-{command.split(':', 1)[1]}"}
     if command == "/prompt":
-        return {"skillId": "sk-prompt", "ownerMode": "sk-prompt-improve"}
+        return {"skillId": "sk-prompt", "ownerMode": "sk-prompt"}
     return {
         "skillId": str(owner or ""),
         "ownerMode": "",
@@ -2342,7 +2342,7 @@ GENERATED_COMMAND_BRIDGES = {
         "inventory_id": "command-prompt-improver",
         "command": "/prompt",
         "skill_id": "sk-prompt",
-        "owner_mode": "sk-prompt-improve",
+        "owner_mode": "sk-prompt",
         "routing_enabled": True,
     },
     "command-create-agent": {
@@ -2436,6 +2436,24 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "sk-create-diff",
         "routing_enabled": False,
     },
+    "command-create-skill-parent": {
+        "description": "",
+        "slash_markers": ["/create:skill-parent"],
+        "inventory_id": "command-create-skill-parent",
+        "command": "/create:skill-parent",
+        "skill_id": "sk-doc",
+        "owner_mode": "sk-create-skill-parent",
+        "routing_enabled": False,
+    },
+    "command-deep-ai-council": {
+        "description": "",
+        "slash_markers": ["/deep:ai-council"],
+        "inventory_id": "command-deep-ai-council",
+        "command": "/deep:ai-council",
+        "skill_id": "system-deep-loop",
+        "owner_mode": "ai-council",
+        "routing_enabled": False,
+    },
     "command-deep-model-benchmark": {
         "description": "",
         "slash_markers": ["/deep:model-benchmark"],
@@ -2452,15 +2470,6 @@ GENERATED_COMMAND_BRIDGES = {
         "command": "/deep:skill-benchmark",
         "skill_id": "system-deep-loop",
         "owner_mode": "skill-benchmark",
-        "routing_enabled": False,
-    },
-    "command-prompt-improve": {
-        "description": "",
-        "slash_markers": ["/prompt:improve"],
-        "inventory_id": "command-prompt-improve",
-        "command": "/prompt:improve",
-        "skill_id": "sk-prompt",
-        "owner_mode": "sk-prompt-improve",
         "routing_enabled": False,
     },
     "memory:save": {
@@ -3654,8 +3663,7 @@ def _load_cli_hub_executors() -> List[Dict[str, Any]]:
     executor-delegation source of truth (mirror of the TS loadCliHubExecutors).
 
     A missing or malformed registry degrades to zero hub executors, never a
-    hard failure — mirrors the model_profiles.json degrade-on-error convention
-    below.
+    hard failure: an unreadable registry must not take the whole scorer down.
     """
     registry_path = os.path.join(SKILLS_DIR, "cli-external-orchestration", "mode-registry.json")
     executors: List[Dict[str, Any]] = []
@@ -3693,8 +3701,7 @@ def _build_executor_alias_table() -> Dict[str, Any]:
     aliases[] instead avoids both failure modes; no noun is ever derived from
     the hub id itself, only from each mode's packetSkillName.
 
-    Model aliases come from the shared small-model profile registry;
-    suppressed aliases come from archived cli executors. Derived KEYWORDS
+    Suppressed aliases come from archived cli executors. Derived KEYWORDS
     are intentionally excluded (they carry file paths / doc names that
     would over-match general prompts).
     """
@@ -3717,36 +3724,6 @@ def _build_executor_alias_table() -> Dict[str, Any]:
             spaced = noun.replace("-", " ")
             if spaced != noun:
                 orchestrator.setdefault(spaced, skill_id)
-
-    model_profiles_path = os.path.join(SKILLS_DIR, "sk-prompt", "sk-prompt-models", "assets", "model-profiles.json")
-    try:
-        with open(model_profiles_path, "r", encoding="utf-8") as handle:
-            profiles = json.load(handle)
-    except (OSError, ValueError, json.JSONDecodeError):
-        profiles = {}
-    models = profiles.get("models") if isinstance(profiles, dict) else None
-    for model in models or []:
-        if not isinstance(model, dict):
-            continue
-        executors = model.get("executors") or []
-        active_executor = next(
-            (entry for entry in executors if isinstance(entry, dict) and entry.get("status") == "active"),
-            None,
-        )
-        if not active_executor or not isinstance(active_executor.get("executor"), str):
-            continue
-        executor_id = active_executor["executor"]
-        if executor_id not in active_executor_ids:
-            continue
-        model_phrases: List[str] = []
-        if isinstance(model.get("id"), str):
-            model_phrases.append(model["id"])
-        capability = model.get("capability")
-        if isinstance(capability, dict) and isinstance(capability.get("model_slug"), str):
-            model_phrases.append(capability["model_slug"])
-        for phrase in model_phrases:
-            for variant in _executor_alias_variants(phrase):
-                active.setdefault(variant, executor_id)
 
     archive_root = os.path.join(SKILLS_DIR, "z_archive")
     if os.path.isdir(archive_root):

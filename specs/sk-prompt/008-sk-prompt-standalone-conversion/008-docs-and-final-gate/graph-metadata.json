@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-prompt/008-sk-prompt-standalone-conversion/008-docs-and-final-gate",
+  "spec_folder": "sk-prompt/008-sk-prompt-standalone-conversion/008-docs-and-final-gate",
+  "parent_id": "sk-prompt/008-sk-prompt-standalone-conversion",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "008 phase 008",
+      "sk-prompt docs-and-final-gate",
+      "docs-and-final-gate",
+      "008 phase 008 plan",
+      "docs-and-final-gate plan",
+      "008 phase 008 tasks",
+      "docs-and-final-gate tasks",
+      "008 phase 008 summary",
+      "docs-and-final-gate results"
+    ],
+    "key_topics": [
+      "phase",
+      "sk-prompt",
+      "docs-and-final-gate",
+      "plan",
+      "tasks",
+      "summary",
+      "results",
+      "framework",
+      "document",
+      "carried",
+      "hard",
+      "rule"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      "tasks.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Edit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Operator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "recorded",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the FAQ",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute None",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The framework document carried a hard rule requiring consultation of the deleted packet before any small-model dispatch, and several catalogs still described sk-prompt as a parent hub with two packets",
+    "created_at": "2026-08-28T08:49:40Z",
+    "last_save_at": "2026-08-28T11:37:16.803Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:35493d551cfc6addda0122a0ddaaf56a12b7b5986a63abf38114cbda277e7e9b",
+    "source_doc_hashes": {
+      "spec.md": "6f2fd6330e9405e375771e0216c6b9e51fa137c90e8973d0a7bd91e0520c9a39",
+      "plan.md": "b2ac5a1070dcdba5a5d45689b4c5748cd44ff92e9893e03c14642f88a48c290d",
+      "tasks.md": "2d31c4e807323807eaf48db9ec362391672f2b59d1d52dc62e305ed8f9f45be2",
+      "implementation-summary.md": "1e32aa9a595aa1e7916e45d8c3ab7ce89ca34705aaf4650a70077c512be76327"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

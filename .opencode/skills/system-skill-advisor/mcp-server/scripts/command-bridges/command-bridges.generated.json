@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
-    "commandMetadata": 20,
+    "commandMetadata": 17,
     "allowList": 8,
-    "generated": 28,
+    "generated": 25,
     "typescriptActive": 6,
     "pythonActive": 16
   },
@@ -455,25 +455,10 @@
       }
     },
     {
-      "id": "command-prompt-improve",
-      "command": "/prompt:improve",
-      "skillId": "sk-prompt",
-      "ownerMode": "sk-prompt-improve",
-      "source": ".opencode/skills/sk-prompt/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
-        }
-      }
-    },
-    {
       "id": "command-prompt-improver",
       "command": "/prompt",
       "skillId": "sk-prompt",
-      "ownerMode": "sk-prompt-improve",
+      "ownerMode": "sk-prompt",
       "source": "scripts/command-bridges/allow-list.json",
       "runtime": {
         "typescript": {

@@ -5,7 +5,7 @@ on:
 
 jobs:
   card-sync:
-    name: 3-layer prompt-knowledge drift guard
+    name: Prompt-knowledge drift guard
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,8 +17,7 @@ jobs:
             echo "::warning::card-sync guard not found at $GUARD — skipping"
             exit 0
           fi
-          # Structural drift guard for the sk-prompt hub (prompt-improve + prompt-models packets) / cli-* layers:
-          # table inlining, Tier-3 escalation-rule drift, registry/profile/_index completeness,
-          # and per-model discovery reachability. python3 is preinstalled on ubuntu-latest.
+          # Structural drift guard across sk-prompt and the cli-* executor layers:
+          # framework/CLEAR table inlining and Tier-3 escalation-rule drift.
           bash "$GUARD" .
           echo "All clear — prompt-knowledge layers are in sync."

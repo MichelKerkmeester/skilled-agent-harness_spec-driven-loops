@@ -47,7 +47,7 @@ function leaseFile(workspaceRoot) {
 }
 
 function legacyLeaseFile(workspaceRoot) {
-  return path.join(canonicalizePath(workspaceRoot), '.opencode', 'skills', '.advisor-state', 'skill-graph-daemon-lease.sqlite');
+  return path.join(canonicalizePath(workspaceRoot), '.opencode', 'skills', '.state', 'advisor', 'skill-graph-daemon-lease.sqlite');
 }
 
 function readLease(filePath) {
@@ -384,7 +384,7 @@ describe('system-skill-advisor launcher lease', () => {
     const workspace = createWorkspace();
     const holder = await createLivePid();
     const startedAt = '2026-05-18T00:00:00.000Z';
-    const legacyPath = join(workspace.root, '.opencode', 'skills', '.advisor-state', 'skill-graph-daemon-lease.sqlite');
+    const legacyPath = join(workspace.root, '.opencode', 'skills', '.state', 'advisor', 'skill-graph-daemon-lease.sqlite');
 
     try {
       mkdirSync(dirname(legacyPath), { recursive: true });

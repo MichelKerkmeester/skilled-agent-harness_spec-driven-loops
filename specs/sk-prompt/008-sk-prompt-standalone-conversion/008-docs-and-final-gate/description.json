@@ -1,0 +1,30 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/008-docs-and-final-gate",
+  "description": "The framework document carried a hard rule requiring consultation of the deleted packet before any small-model dispatch, and several catalogs still",
+  "keywords": [
+    "framework",
+    "document",
+    "carried",
+    "hard",
+    "rule",
+    "requiring",
+    "consultation",
+    "deleted",
+    "packet",
+    "small-model",
+    "dispatch",
+    "several",
+    "catalogs",
+    "still"
+  ],
+  "lastUpdated": "2026-08-28T11:37:16.453Z",
+  "specId": "008",
+  "folderSlug": "docs-and-final-gate",
+  "parentChain": [
+    "sk-prompt",
+    "008-sk-prompt-standalone-conversion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -167,7 +167,7 @@ This section records wave planning and capacity guidance for the manual testing 
 
 ### Recommended Wave Layout
 
-- Wave 1 (parallel-safe, read-only or isolated-`/tmp`): `CU-001`, `CU-002`, `CU-003`, `CU-004`, `CU-005`, `CU-009`, `CU-011`, `CU-012`, `CU-013`, `CU-014`, `CU-017`, `CU-018`, `CU-019`, `CU-020`, `CU-021`
+- Wave 1 (parallel-safe, read-only or isolated-`/tmp`): `CU-001`, `CU-002`, `CU-003`, `CU-004`, `CU-005`, `CU-009`, `CU-011`, `CU-012`, `CU-013`, `CU-014`, `CU-017`, `CU-018`, `CU-020`, `CU-021`
 - Wave 2 (write-capable, serial on overlapping paths and shared approval/sandbox state): `CU-006`, `CU-007`, `CU-008`
 - Wave 3 (session continuity, requires a prior session id): `CU-015`, `CU-016`
 - Wave 4 (DESTRUCTIVE/opt-in, isolated, requires approval): `CU-010`
@@ -572,7 +572,7 @@ Desired user-visible outcome: Confirmation the cloud-worker subcommand surface m
 
 ---
 
-## 15. PROMPT TEMPLATES (`CU-018..CU-019`)
+## 15. PROMPT TEMPLATES (`CU-018`)
 
 This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract.
 
@@ -580,7 +580,7 @@ This category covers 2 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify the CLEAR 5-check is applied before dispatch (via the canonical card at `sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md`, reached through the local `assets/prompt-quality-card.md` delegation) and that an under-scored prompt is escalated to a structured framework before dispatch.
+Verify the CLEAR 5-check is applied before dispatch (via the canonical card at `sk-prompt/assets/cli-prompt-quality-card.md`, reached through the local `assets/prompt-quality-card.md` delegation) and that an under-scored prompt is escalated to a structured framework before dispatch.
 
 #### Scenario Contract
 
@@ -593,28 +593,6 @@ Desired user-visible outcome: An auditable trail showing the prompt-quality disc
 #### Test Execution
 
 > **Feature File:** [CU-018](../manual-testing-playbook/prompt-templates/clear-scoring-quality-card.md)
-
-### CU-019 | Composer RCAF template dispatch
-
-#### Description
-
-Verify Composer's RCAF prompt-craft profile (`sk-prompt/sk-prompt-models/references/models/composer-2.5.md`, `status: default-unverified`) produces a working generation when a task is filled into its scaffold and dispatched with `--model composer-2.5`.
-
-#### Scenario Contract
-
-Prompt: `Fill Composer's RCAF scaffold (Role/Context/Action/Format) for a small isolate/tmp TypeScript task and dispatch it with --model composer-2.5 --auto-review --sandbox enabled.`
-
-Expected signals: `cursor-agent -p ... --model composer-2.5` exits 0. The filled RCAF prompt names a clear Role, file-anchored Context, one Action, and an explicit Format contract. The generated file matches the Format contract's output shape.
-
-Desired user-visible outcome: A working generation from Composer's own scaffold, recorded as real first-time empirical dispatch data against a profile the registry still honestly labels `default-unverified` (this scenario does not itself update the profile's benchmark status - that is out of scope for this phase).
-
-#### Test Execution
-
-> **Feature File:** [CU-019](../manual-testing-playbook/prompt-templates/composer-rcaf-template-dispatch.md)
-
----
-
-## 16. AGENTS, COMMANDS, MIRRORS AND AUTOMATED TEST CROSS-REFERENCE
 
 ### Agent and command parity scenarios
 
@@ -697,7 +675,6 @@ This category covers Cursor's session-bound `sessionStart` adapter. It proves A/
 ### PROMPT TEMPLATES
 
 - CU-018: [CLEAR scoring via quality card](../manual-testing-playbook/prompt-templates/clear-scoring-quality-card.md)
-- CU-019: [Composer RCAF template dispatch](../manual-testing-playbook/prompt-templates/composer-rcaf-template-dispatch.md)
 
 ### GIT PREFLIGHT ADVISORY
 

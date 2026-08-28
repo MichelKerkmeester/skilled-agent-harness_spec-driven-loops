@@ -1,0 +1,16 @@
+CHECK 1 — framework / CLEAR table inlining
+  PASS  cli-opencode/assets/prompt-quality-card.md
+  PASS  cli-claude-code/assets/prompt-quality-card.md
+  PASS  cli-cursor/assets/prompt-quality-card.md
+  PASS  cli-pi/assets/prompt-quality-card.md
+CHECK 2 — Tier-3 pointer-only (no inlined escalation triggers)
+  PASS  cli-external-orchestration/cli-opencode/SKILL.md
+  PASS  cli-external-orchestration/cli-claude-code/SKILL.md
+  PASS  cli-external-orchestration/cli-cursor/SKILL.md
+  PASS  cli-external-orchestration/cli-pi/SKILL.md
+CHECK 3 — registry / profile / _index completeness
+CHECK 4 — discovery reachability (model name in each executor's triggers)
+  PASS  [CHECK 3] all clear
+  PASS  [CHECK 4] all clear
+GUARD PASS — tables not inlined, Tier-3 pointer-only, registry complete, all models discoverable
+exit=0

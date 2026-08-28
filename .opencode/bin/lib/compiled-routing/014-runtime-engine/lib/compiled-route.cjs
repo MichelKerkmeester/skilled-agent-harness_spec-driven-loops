@@ -32,7 +32,6 @@ const HUB_CHILD = Object.freeze({
   'system-deep-loop': '009-parent-hub-rollout/002-system-deep-loop',
   'mcp-tooling': '009-parent-hub-rollout/003-mcp-tooling',
   'cli-external-orchestration': '009-parent-hub-rollout/004-cli-external-orchestration',
-  'sk-prompt': '009-parent-hub-rollout/005-sk-prompt',
   'sk-doc': '009-parent-hub-rollout/007-sk-doc',
 });
 

@@ -1,0 +1,27 @@
+{
+  "level": "phase",
+  "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion",
+  "description": "`sk-prompt` carries two workflow packets behind one advisor identity, but only one of them is a prompt-engineering workflow",
+  "keywords": [
+    "sk-prompt",
+    "carries",
+    "two",
+    "workflow",
+    "packets",
+    "behind",
+    "one",
+    "advisor",
+    "identity",
+    "only",
+    "them",
+    "prompt-engineering"
+  ],
+  "lastUpdated": "2026-08-28T08:51:05.340Z",
+  "specId": "008",
+  "folderSlug": "sk-prompt-standalone-conversion",
+  "parentChain": [
+    "sk-prompt"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
