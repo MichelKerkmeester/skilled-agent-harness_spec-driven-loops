@@ -336,7 +336,7 @@ document.addEventListener('visibilitychange', () => {
 });
 ```
 
-See [performance-patterns.js](../../assets/patterns/performance-patterns.js) for production-ready throttle/debounce utilities with cancel methods.
+See [performance-patterns.js](../../../assets/patterns/performance-patterns.js) for production-ready throttle/debounce utilities with cancel methods.
 
 **Lazy Loading with IntersectionObserver:**
 ```javascript

@@ -270,7 +270,7 @@ log('Processing item:', item.id);
 
 ### Copy-paste template
 
-- [`../../../assets/webflow/templates/component-template.js`](../../assets/templates/component-template.js) — production-style annotated JS template implementing every convention in this guide (file header, sections, IIFE, INIT_FLAG, snake_case, function preambles, cleanup hook, public API)
+- [`../../../assets/templates/component-template.js`](../../../assets/templates/component-template.js) — production-style annotated JS template implementing every convention in this guide (file header, sections, IIFE, INIT_FLAG, snake_case, function preambles, cleanup hook, public API)
 
 ### Production reference files (for copying conventions verbatim)
 

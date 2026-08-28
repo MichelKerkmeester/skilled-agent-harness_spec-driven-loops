@@ -175,10 +175,10 @@ window.addEventListener('offline', handleOffline);
 - [Enforcement Guide](../enforcement.md)
 
 ### Implementation Workflows
-- [implementation/](../implementation) — Implementation workflows directory
-- [debugging/](../debugging) — Debugging workflows directory
-- [verification/](../verification) — Verification workflows directory
-- [deployment/](../deployment) — Deployment workflows directory
+- [implementation/](../../implementation) — Implementation workflows directory
+- [debugging/](../../debugging) — Debugging workflows directory
+- [verification/](../../verification) — Verification workflows directory
+- [deployment/](../../deployment) — Deployment workflows directory
 
 ### Related Skills
 - `mcp-chrome-devtools` — Chrome DevTools reference and CLI-based browser automation via browser-debugger-cli (bdg)

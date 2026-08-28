@@ -54,7 +54,7 @@ Expected result: a `verdict=` line on stdout plus `skill-benchmark-report.json` 
 |---|---|
 | [`cli-claude-code`](../SKILL.md) | The skill under measurement |
 | [`goal-hook.md`](../manual-testing-playbook/goal-hook/goal-hook.md) | The `CC-029` scenario this run's entry derives from |
-| [`goal-prompting-runtime-specific.md`](../../../system-spec-kit/constitutional/goal-prompting-runtime-specific.md) | The constitutional routing rule: Claude Code native `/goal`, cross-runtime routing for Devin/Cursor/Pi |
+| [`hooks/goal/README.md`](../../../../hooks/goal/README.md) | The per-runtime goal routing contract (§3): Claude Code native `/goal`, cross-runtime delivery for Devin/Cursor/Pi |
 | [`deep-improvement`](../../../system-deep-loop/deep-improvement/SKILL.md) | Owns the Lane C skill-benchmark harness, runner, and scoring |
 | [`skill-benchmark-storage-guide.md`](../../../sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md) | The storage and naming standard this tree follows |
 | [`scoring-contract.md`](../../../system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) | The normative Lane C measurement contract a future live verdict would be scored against |

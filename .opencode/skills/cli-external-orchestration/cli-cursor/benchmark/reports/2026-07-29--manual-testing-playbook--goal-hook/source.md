@@ -11,8 +11,8 @@ This map separates the canonical contracts, the private gold, and the curated ou
 | Target skill | `.opencode/skills/cli-external-orchestration/cli-cursor` |
 | Scenario corpus | `.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/goal-hook/goal-hook.md` (`CU-027`) |
 | Scoring method | `not recorded` |
-| Spec packet | `.opencode/specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation` |
-| Raw evidence | [`cursor-recorded-evidence.txt`](../../../../../../specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/cursor-recorded-evidence.txt) |
+| Spec packet | `.opencode/specs/hooks/004-goal-hook-playbooks-and-validation` |
+| Raw evidence | [`cursor-recorded-evidence.txt`](../../../../../../specs/hooks/004-goal-hook-playbooks-and-validation/evidence/cursor-recorded-evidence.txt) |
 | Machine record | [`skill-benchmark-report.json`](./skill-benchmark-report.json) |
 | Curated result set | [`results.csv`](./results.csv) |
 

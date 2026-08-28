@@ -152,5 +152,5 @@ Expected result: no syntax errors (repeat for the codex/cursor/devin siblings).
 - [`../../claude/README.md`](../../claude/README.md), [`../../codex/README.md`](../../codex/README.md), [`../../cursor/README.md`](../../cursor/README.md), [`../../devin/README.md`](../../devin/README.md): per-runtime hook folders that wire these adapters.
 - [`../../../../shared/gate-3-classifier.ts`](../../../../shared/gate-3-classifier.ts): the compiled classifier this core imports from `shared/dist/`.
 - [`../../../README.md`](../../../README.md): the owning skill's hook contract.
-- [`../../../../hooks/README.md`](../../../../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix.
-- [`../../../../plugins/README.md`](../../../../plugins/README.md): the OpenCode plugins folder that loads `system-spec-gate.js`.
+- [`.opencode/hooks/README.md`](../../../../../../hooks/README.md): the unified hooks tree with the kill-switch index and coverage matrix.
+- [`.opencode/plugins/README.md`](../../../../../../plugins/README.md): the OpenCode plugins folder that loads `system-spec-gate.js`.

@@ -173,7 +173,7 @@ A `tool.execute.before` hook resolves the real target agent (`orchestrate` alway
 
 #### Source Files
 
-See [`validation/system-deep-loop-guard.md`](../feature-catalog/validation/system-deep-loop-guard.md) for full implementation and validation file listings.
+See [`validation/mk-deep-loop-guard.md`](../feature-catalog/validation/mk-deep-loop-guard.md) for full implementation and validation file listings.
 
 ---
 
