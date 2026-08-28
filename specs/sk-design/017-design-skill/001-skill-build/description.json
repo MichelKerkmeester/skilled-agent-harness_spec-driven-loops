@@ -1,0 +1,30 @@
+{
+  "level": "3",
+  "specFolder": "sk-design/017-design-skill/001-skill-build",
+  "description": "Agents building UI in this repo have no source of design values, so they invent them: 17px padding, a hand-picked hex, a 400ms transition because 400",
+  "keywords": [
+    "agents",
+    "repo",
+    "source",
+    "design",
+    "values",
+    "invent",
+    "them",
+    "17px",
+    "padding",
+    "hand-picked",
+    "hex",
+    "400ms",
+    "transition",
+    "because"
+  ],
+  "lastUpdated": "2026-08-28T12:28:51.536Z",
+  "specId": "001",
+  "folderSlug": "skill-build",
+  "parentChain": [
+    "sk-design",
+    "017-design-skill"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

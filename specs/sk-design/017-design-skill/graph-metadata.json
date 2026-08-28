@@ -3,7 +3,10 @@
   "packet_id": "sk-design/017-design-skill",
   "spec_folder": "sk-design/017-design-skill",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "sk-design/017-design-skill/001-skill-build",
+    "sk-design/017-design-skill/002-agent-alignment"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -11,61 +14,31 @@
   },
   "derived": {
     "trigger_phrases": [
-      "sk-design skill",
-      "refactoring ui skill conversion",
-      "sk-design",
-      "external design skill rework",
-      "ui design value scales",
-      "sk-design skill implementation plan",
-      "standalone skill scaffold plan",
-      "four source design skill",
-      "class-S skill build",
-      "sk-design plan",
-      "sk-design skill tasks",
-      "sk-design verification"
+      "sk-design program",
+      "design skill packet",
+      "design authoring skill",
+      "design agent alignment"
     ],
     "key_topics": [
       "sk-design",
-      "skill",
-      "refactoring",
-      "conversion",
-      "external",
+      "program",
       "design",
-      "rework",
-      "value",
-      "scales",
-      "implementation",
-      "plan",
-      "standalone"
+      "skill",
+      "packet",
+      "authoring",
+      "agent",
+      "alignment",
+      "root",
+      "surfaces",
+      "route",
+      "phased"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "plan.md",
-      "tasks.md",
-      "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -73,13 +46,13 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "Design Skill Program",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Design Skill Program Root",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -91,129 +64,37 @@
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
+        "name": "Phase Transition Rules",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Critical Dependencies",
+        "name": "Phase Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Problem Statement Agents",
-        "kind": "proper_noun",
+        "name": "nine",
+        "kind": "key_phrase",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose One",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Scaffold",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Progressive",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Web Interface Guidelines",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Visual Design",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Agents building UI in this repo have no source of design values, so they invent them: 17px padding, a hand-picked hex, a 400ms transition because 400 is round",
+    "causal_summary": "Root packet for the sk-design authoring skill and the surfaces that route to it, phased by delivery.",
     "created_at": "2026-08-28T03:53:46Z",
-    "last_save_at": "2026-08-28T05:16:54.658Z",
+    "last_save_at": "2026-08-28T12:06:33.219Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "decision-record.md",
-      "implementation-summary.md"
+      "spec.md"
     ],
-    "source_fingerprint": "sha256:d41966749b43918f3ed53d4ca8a6d7a74f8e964e1482f54b8a04a8ec4fcbcbdd",
+    "source_fingerprint": "sha256:7a4a6d0937744c3bbc4d4488678386ac124a948f8e2ec635ef6b25dbadf55aae",
     "source_doc_hashes": {
-      "spec.md": "9b3114926729649842161de5acaf0bc456729e505d4682099d8b0078506e3d27",
-      "plan.md": "8ccadacfc8f00902148b3de9239170d27b13de91fc245559008e0e9b2bdaf83c",
-      "tasks.md": "e39fee12da021037044a68d796709d94132e7f5bf2a6b7e6b2809534536f3557",
-      "decision-record.md": "e34e6d1fa307368e859756ea0c239ef9db20897415384b58ebdd181317c07b91",
-      "implementation-summary.md": "20159c65a8922bbac2cd4e5f2aa3812f7e5f8dd670974ef5330f4116741a2430"
+      "spec.md": "7f3d9b24e8a9599cda140dc93d73b275020d3eea11be19edd402602723e26960"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-design/017-design-skill/002-agent-alignment",
     "last_active_at": null
   }
 }

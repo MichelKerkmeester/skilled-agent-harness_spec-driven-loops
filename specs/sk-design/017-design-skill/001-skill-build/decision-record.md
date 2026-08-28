@@ -11,8 +11,8 @@ importance_tier: "normal"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "sk-design/017-design-skill"
-    last_updated_at: "2026-08-28T05:16:38Z"
+    packet_pointer: "sk-design/017-design-skill/001-skill-build"
+    last_updated_at: "2026-08-28T12:30:04Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored six ADRs"
     next_safe_action: "Retry the advisor routing probe"
