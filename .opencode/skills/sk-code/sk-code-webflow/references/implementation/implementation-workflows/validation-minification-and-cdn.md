@@ -195,7 +195,7 @@ const name = user.name ?? 'Anonymous';
 
 ### Complete Example: Contact Form with Multi-Layer Validation
 
-See [validation-patterns.js](../../assets/patterns/validation-patterns.js) for full implementation including:
+See [validation-patterns.js](../../../assets/patterns/validation-patterns.js) for full implementation including:
 - Field-level validation (email, phone, required fields)
 - Real-time validation on blur
 - Form submission with sanitization
@@ -224,7 +224,7 @@ See [validation-patterns.js](../../assets/patterns/validation-patterns.js) for f
 - Chain property access without null checks (`user.profile.avatar.url`)
 - Skip type checking function parameters
 
-**See also:** [validation-patterns.js](../../assets/patterns/validation-patterns.js) for production-ready validation templates
+**See also:** [validation-patterns.js](../../../assets/patterns/validation-patterns.js) for production-ready validation templates
 
 ---
 
@@ -317,8 +317,8 @@ function sanitizeText(text) {
 - [code-quality-standards.md](../../javascript/quality-standards/init-dom-error-and-async.md) - CDN-safe initialization pattern and naming conventions
 
 ### Templates
-- [wait-patterns.js](../../assets/patterns/wait-patterns.js) - Production-ready condition-based waiting templates with error handling
-- [validation-patterns.js](../../assets/patterns/validation-patterns.js) - Defense-in-depth validation templates for forms and APIs
+- [wait-patterns.js](../../../assets/patterns/wait-patterns.js) - Production-ready condition-based waiting templates with error handling
+- [validation-patterns.js](../../../assets/patterns/validation-patterns.js) - Defense-in-depth validation templates for forms and APIs
 
 ### Standards
 - **Browser APIs used**: `document.readyState`, `element.addEventListener('transitionend')`, `video.addEventListener('canplay')`, `document.fonts.ready`, `Promise.race()`, `Promise.all()`, optional chaining (`?.`), nullish coalescing (`??`)
@@ -327,5 +327,5 @@ function sanitizeText(text) {
 ---
 
 **For complete code examples and templates:**
-- [wait-patterns.js](../../assets/patterns/wait-patterns.js) - Condition-based waiting examples
-- [validation-patterns.js](../../assets/patterns/validation-patterns.js) - Defense-in-depth templates
+- [wait-patterns.js](../../../assets/patterns/wait-patterns.js) - Condition-based waiting examples
+- [validation-patterns.js](../../../assets/patterns/validation-patterns.js) - Defense-in-depth templates

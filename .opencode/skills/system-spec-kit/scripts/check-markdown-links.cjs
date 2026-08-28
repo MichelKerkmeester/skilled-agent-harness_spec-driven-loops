@@ -66,6 +66,9 @@ const ALLOWLIST = new Set([
   '.opencode/skills/sk-doc/sk-create-readme/assets/install-guide-template.md::../../../../../install-guides/MCP%20-%20Code%20Mode.md',
   // illustrative client-domain example path
   '.opencode/skills/sk-code/sk-code-webflow/references/performance/webflow-constraints.md::/specs/005-example.com/024-performance-optimization/decision-record.md',
+  // runtime-generated, gitignored advisory log — written only when the sentinel emits one,
+  // so it is never a committed file; the referring row itself says "when the log exists"
+  '.opencode/skills/.completion-sentinel-state/README.md::../../logs/completion-sentinel-advisories.log',
 ]);
 
 function excluded(p) { return EXCLUDE_SEGMENTS.some((seg) => p.includes(seg)); }

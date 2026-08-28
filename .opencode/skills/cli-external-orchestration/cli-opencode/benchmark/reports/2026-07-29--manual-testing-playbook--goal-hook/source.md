@@ -11,8 +11,8 @@ This map separates the canonical contracts, the private evidence, and the curate
 | Target skill | `.opencode/skills/cli-external-orchestration/cli-opencode` |
 | Scenario corpus | [`cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md`](../../../manual-testing-playbook/goal-hook/goal-hook.md) (`CO-039`) |
 | Scoring method | `not-recorded` |
-| Source packet | [`034-goal-hook-playbooks-and-validation`](../../../../../../specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/spec.md) |
-| Raw evidence | [`evidence/opencode-mkgoal-finding.txt`](../../../../../../specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt) |
+| Source packet | [`004-goal-hook-playbooks-and-validation`](../../../../../../specs/hooks/004-goal-hook-playbooks-and-validation/spec.md) |
+| Raw evidence | [`evidence/opencode-mkgoal-finding.txt`](../../../../../../specs/hooks/004-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt) |
 | Machine record | [`skill-benchmark-report.json`](./skill-benchmark-report.json) |
 | Curated result set | [`results.csv`](./results.csv) |
 

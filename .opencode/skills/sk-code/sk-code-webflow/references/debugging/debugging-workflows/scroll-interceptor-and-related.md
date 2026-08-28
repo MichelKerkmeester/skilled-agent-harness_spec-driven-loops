@@ -361,7 +361,7 @@ bdg stop 2>&1
 - [dev_workflow.md](../../shared/dev-workflow/overview-nav-and-logging.md) - Use common DevTools and logging patterns
 
 ### Asset Files
-- [lenis-patterns.js](../../assets/integrations/lenis-patterns.js) - Complete Lenis smooth scroll integration patterns
+- [lenis-patterns.js](../../../assets/integrations/lenis-patterns.js) - Complete Lenis smooth scroll integration patterns
 - [debugging_checklist.md](../../../assets/webflow-debugging-checklist.md) - Systematic debugging checklist
 
 ### Related Skills

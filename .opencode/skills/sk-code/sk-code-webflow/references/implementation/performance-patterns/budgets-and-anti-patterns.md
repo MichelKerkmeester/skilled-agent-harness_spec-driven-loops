@@ -214,7 +214,7 @@ echo "✅ PASS: Animation performance budgets met"
 
 ### Topical performance deep-dives (`webflow/performance/`)
 
-This file is the high-level checklist + budgets + anti-patterns index. For deep-dive topical guidance on each performance area, load the matching file under [`../performance/`](../performance/):
+This file is the high-level checklist + budgets + anti-patterns index. For deep-dive topical guidance on each performance area, load the matching file under [`../../performance/`](../../performance/):
 
 - [`../../performance/cwv-remediation.md`](../../performance/cwv-remediation.md) — LCP / FCP / TBT / CLS deep remediation playbook with measurement tooling and per-metric implementation checklists
 - [`../../performance/resource-loading.md`](../../performance/resource-loading.md) — preconnect, dns-prefetch, preload, prefetch, async CSS loading, script loading patterns (referenced by §2 "Asset Optimization" + "Request Optimization" above)

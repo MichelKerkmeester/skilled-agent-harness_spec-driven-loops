@@ -11,8 +11,8 @@ This map separates the canonical contracts, the private evidence, and the curate
 | Target skill | `.opencode/skills/cli-external-orchestration/cli-pi` |
 | Scenario corpus | [`cli-pi/manual-testing-playbook/goal-hook/goal-hook.md`](../../../manual-testing-playbook/goal-hook/goal-hook.md) (`PI-021`) |
 | Scoring method | `not-recorded` |
-| Source packet | [`034-goal-hook-playbooks-and-validation`](../../../../../../specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/spec.md) |
-| Raw evidence | [`evidence/pi-injection-excerpt.txt`](../../../../../../specs/cli-external-orchestration/034-goal-hook-playbooks-and-validation/evidence/pi-injection-excerpt.txt) |
+| Source packet | [`004-goal-hook-playbooks-and-validation`](../../../../../../specs/hooks/004-goal-hook-playbooks-and-validation/spec.md) |
+| Raw evidence | [`evidence/pi-injection-excerpt.txt`](../../../../../../specs/hooks/004-goal-hook-playbooks-and-validation/evidence/pi-injection-excerpt.txt) |
 | Machine record | [`skill-benchmark-report.json`](./skill-benchmark-report.json) |
 | Curated result set | [`results.csv`](./results.csv) |
 

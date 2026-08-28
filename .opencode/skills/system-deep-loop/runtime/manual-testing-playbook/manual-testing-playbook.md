@@ -227,7 +227,7 @@ Prompt: `Verify system-deep-loop-guard still detects a Deep Route mode mismatch 
 Expected signals: Hook fires and logs a warning on mismatch or loop-repeat (default); throws and blocks the dispatch when the matching reject env var is set; stays silent on matching modes, command-driven iterations, non-deep/non-loop-executor `subagent_type` values, and when the registry/state directory is unreadable. A stale per-session state file is archived (not deleted) on the next `session.created` sweep.
 
 #### Test Execution
-> **Feature File:** [DLR-052](../manual-testing-playbook/validation/system-deep-loop-guard.md)
+> **Feature File:** [DLR-052](../manual-testing-playbook/validation/mk-deep-loop-guard.md)
 
 ---
 
@@ -930,5 +930,5 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-049 | [F047 Unified observability event envelope](../feature-catalog/observability/unified-observability-event-envelope.md) | [observability/unified-observability-event-envelope.md](../manual-testing-playbook/observability/unified-observability-event-envelope.md) |
 | DLR-050 | [F048 Hermetic test isolation](../feature-catalog/testing/hermetic-test-isolation.md) | [testing/hermetic-test-isolation.md](../manual-testing-playbook/testing/hermetic-test-isolation.md) |
 | DLR-051 | [F049 Record-replay cassette harness](../feature-catalog/testing/record-replay-cassette-harness.md) | [testing/record-replay-cassette-harness.md](../manual-testing-playbook/testing/record-replay-cassette-harness.md) |
-| DLR-052 | [F050 system-deep-loop-guard](../feature-catalog/validation/system-deep-loop-guard.md) | [validation/system-deep-loop-guard.md](../manual-testing-playbook/validation/system-deep-loop-guard.md) |
+| DLR-052 | [F050 system-deep-loop-guard](../feature-catalog/validation/mk-deep-loop-guard.md) | [validation/mk-deep-loop-guard.md](../manual-testing-playbook/validation/mk-deep-loop-guard.md) |
 | DLR-054 | [F052 Torn-tail recovery marker ordering](../feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md) | [state-safety/torn-tail-recovery-marker-ordering.md](../manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md) |

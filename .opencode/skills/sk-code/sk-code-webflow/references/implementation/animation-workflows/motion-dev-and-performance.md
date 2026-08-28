@@ -33,7 +33,7 @@ How to wire motion.dev into a Webflow project and keep it performant: integratio
 
 ## 2. MOTION.DEV INTEGRATION
 
-> **Cross-stack motion.dev reference**: The full Motion.dev knowledge base lives at [`../animation/`](../animation/). Load by topic:
+> **Cross-stack motion.dev reference**: The full Motion.dev knowledge base lives at [`../../animation/`](../../animation/). Load by topic:
 >
 > - [`quick-start.md`](../../animation/quick-start.md) — install modes, API availability, first-call patterns
 > - [`animation-principles.md`](../../animation/animation-principles.md) — timing, easing, stagger direction, anticipation, arc, and depth vocabulary

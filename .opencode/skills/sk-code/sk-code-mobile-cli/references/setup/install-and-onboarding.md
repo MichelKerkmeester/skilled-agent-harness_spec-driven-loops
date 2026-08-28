@@ -443,7 +443,7 @@ The repository cannot run these itself. Verify them on the target environment be
 | `deploy/serve.env`                | Deployment configuration copied from the example |
 | `deploy/setup-tailscale-serve.sh` | Foreground deployment and Serve route setup      |
 | `deploy/containment/pi-remote.sb` | macOS sandbox profile for protected execution    |
-| `../ARCHITECTURE.md`              | Full system architecture                         |
+| `ARCHITECTURE.md` (app repo root) | Full system architecture                         |
 | `../standards/security.md`        | Posture boundaries and approval contracts        |
 | `../operations/operations.md`     | Runtime operations                               |
 | `../operations/incident-playbooks.md` | Recovery runbooks                            |
@@ -474,7 +474,7 @@ npm test -w @pi-remote/approval-extension
 
 - [Setup](setup.md) for the detailed setup runbook
 - [Security](../standards/security.md) for the posture boundaries
-- [Architecture](../ARCHITECTURE.md) for the system reference
+- `ARCHITECTURE.md` at the Mobile CLI app repo root for the system reference
 - [Release Verification](../release/release-verification.md) for machine gates and staged readiness
 
 ---

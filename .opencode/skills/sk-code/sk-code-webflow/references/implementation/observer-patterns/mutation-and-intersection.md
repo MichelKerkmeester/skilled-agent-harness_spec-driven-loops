@@ -255,7 +255,7 @@ observe_autoplay(swipers, {
 | `[0]` | Simple lazy loading (trigger when any pixel visible) |
 | `[1]` | Trigger only when fully visible |
 
-See [performance-patterns.js](../../assets/patterns/performance-patterns.js) for production-ready `observe_autoplay()` utility.
+See [performance-patterns.js](../../../assets/patterns/performance-patterns.js) for production-ready `observe_autoplay()` utility.
 
 ### rootMargin for Offset
 

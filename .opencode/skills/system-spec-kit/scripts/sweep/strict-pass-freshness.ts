@@ -19,7 +19,9 @@ interface SweepResult {
   folder: string;
   // 'first-run': the folder currently fails but no baseline exists to compare
   // against, so nothing has actually regressed (see runValidate()).
-  status: 'pass' | 'regression' | 'new-failure' | 'first-run' | 'error';
+  // 'known-failure': the folder was already failing in the baseline and still
+  // is. Standing debt, not a change, so it is reported without failing the run.
+  status: 'pass' | 'regression' | 'new-failure' | 'first-run' | 'known-failure' | 'error';
   exitCode: number | null;
   errors: number;
   warnings: number;
@@ -29,6 +31,10 @@ interface SweepResult {
 interface Baseline {
   isLoaded: boolean;
   passes: Set<string>;
+  // Every folder the baseline saw, whatever its status. Without this a folder
+  // that was already failing is indistinguishable from one seen for the first
+  // time, so a static failure would be re-reported as new on every run.
+  seen: Set<string>;
 }
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
@@ -177,13 +183,15 @@ function discoverSpecFolders(root: string): string[] {
 }
 
 function readBaseline(baselinePath: string | null): Baseline {
-  if (!baselinePath) return { isLoaded: false, passes: new Set() };
+  if (!baselinePath) return { isLoaded: false, passes: new Set(), seen: new Set() };
   const resolved = resolveInsideRepo(baselinePath);
-  if (!fs.existsSync(resolved)) return { isLoaded: false, passes: new Set() };
+  if (!fs.existsSync(resolved)) return { isLoaded: false, passes: new Set(), seen: new Set() };
   const parsed = JSON.parse(fs.readFileSync(resolved, 'utf8')) as { results?: SweepResult[] };
+  const results = parsed.results ?? [];
   return {
     isLoaded: true,
-    passes: new Set((parsed.results ?? []).filter((result) => result.status === 'pass').map((result) => result.folder)),
+    passes: new Set(results.filter((result) => result.status === 'pass').map((result) => result.folder)),
+    seen: new Set(results.map((result) => result.folder)),
   };
 }
 
@@ -208,8 +216,11 @@ function runValidate(folder: string, baseline: Baseline): SweepResult {
     if (failed && !baseline.isLoaded) {
       return { folder: relativeFolder, status: 'first-run', exitCode, errors, warnings, message: 'strict validation fails but no baseline exists to compare against (first run, not a regression)' };
     }
+    if (failed && baseline.seen.has(relativeFolder)) {
+      return { folder: relativeFolder, status: 'known-failure', exitCode, errors, warnings, message: 'strict validation still fails, exactly as it did in the baseline' };
+    }
     if (failed) {
-      return { folder: relativeFolder, status: 'new-failure', exitCode, errors, warnings, message: 'strict validation fails and the folder was absent from the loaded baseline passes' };
+      return { folder: relativeFolder, status: 'new-failure', exitCode, errors, warnings, message: 'strict validation fails and the folder is absent from the baseline entirely' };
     }
     return { folder: relativeFolder, status: 'pass', exitCode, errors, warnings, message: 'strict validation passes' };
   } catch {
@@ -235,17 +246,19 @@ function main(): void {
   const newFailures = results.filter((result) => result.status === 'new-failure');
   const errors = results.filter((result) => result.status === 'error');
   const firstRun = results.filter((result) => result.status === 'first-run');
+  const knownFailures = results.filter((result) => result.status === 'known-failure');
   const payload = {
     roots: roots.map((root) => path.relative(repoRoot, root) || '.'),
     inspected: results.length,
     regressions: regressions.length,
     newFailures: newFailures.length,
     firstRun: firstRun.length,
+    knownFailures: knownFailures.length,
     errors: errors.length,
     results,
   };
   if (options.format === 'text') {
-    console.log(`strict-pass-freshness: inspected=${payload.inspected} regressions=${payload.regressions} newFailures=${payload.newFailures} firstRun=${payload.firstRun} errors=${payload.errors}`);
+    console.log(`strict-pass-freshness: inspected=${payload.inspected} regressions=${payload.regressions} newFailures=${payload.newFailures} firstRun=${payload.firstRun} knownFailures=${payload.knownFailures} errors=${payload.errors}`);
     for (const result of results.filter((entry) => entry.status !== 'pass')) {
       console.log(`${result.status}\t${result.folder}\t${result.message}\terrors=${result.errors}\twarnings=${result.warnings}`);
     }

@@ -49,8 +49,8 @@ The checker scans YAML assets under these command families by default:
 
 - `create`
 - `deep`
+- `design`
 - `doctor`
-- `interface`
 - `memory`
 - `prompt`
 - `scripts`
@@ -126,4 +126,4 @@ The command exits with status `0` only when the fixture produces violations and 
 - [Commands directory](../)
 - [Create command assets](../create/assets/)
 - [Deep command assets](../deep/assets/)
-- [Interface command assets](../interface/assets/)
+- [Design command assets](../design/assets/)

@@ -269,4 +269,4 @@ A: This skill captures what exists on a live site. `interface` invents new direc
 | [`references/authoring-boundary.md`](./references/authoring-boundary.md) | The line between measured, brief-provided, inferred and absent values, plus why forward-authoring from a brief stays out of scope |
 | [`assets/source-of-truth-router-card.md`](./assets/source-of-truth-router-card.md) | Fill-in card that sorts each value by origin before writing, so nothing is fabricated or backfilled |
 | [`procedures/design-system-extraction.md`](./procedures/design-system-extraction.md) | Maintainer-facing procedure card for extraction evidence after `md-generator` is selected |
-| [Skills Library](../README.md) | The skill catalog and routing front door |
+| [Skills Library](../README.txt) | The skill catalog and routing front door |

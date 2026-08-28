@@ -66,7 +66,8 @@ Inspect envelope budget enforcement -> Check display-floor constant behavior -> 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- Regression test: [mcp-server/tests/token-budget-constitutional-sync.vitest.ts](../../mcp-server/tests/token-budget-constitutional-sync.vitest.ts) — `T207: display floor + compact overflow`
+- Implementation: [mcp-server/context-server.ts](../../mcp-server/context-server.ts) — `ENVELOPE_RESULT_DISPLAY_FLOOR` and `compactEnvelopeResultRow()`
+- Regression test: none. The `T207: display floor + compact overflow` suite lived in `mcp-server/tests/token-budget-constitutional-sync.vitest.ts`, which was removed with the constitutional-memory layer; verify against the implementation above until coverage is re-added.
 
 ---
 

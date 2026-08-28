@@ -101,4 +101,4 @@ Rendered output should match the intended public Level contract and must not lea
 | Document | Role |
 |---|---|
 | [Templates README](../README.md) | Parent template package overview. |
-| [Changelog templates](../changelog/README.md) | Packet-local changelog template notes. |
+| [Changelog templates](changelog/README.md) | Packet-local changelog template notes. |
