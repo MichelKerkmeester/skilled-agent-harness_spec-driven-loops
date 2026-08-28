@@ -85,7 +85,7 @@ The calling AI remains the conductor. It classifies the task, selects the output
 
 The pinned contract confirms these distinctions, while native skills and prompt-template discovery remain documented but unconfirmed for this packet. The exact source links and confidence labels live in [native-skills-and-extensions.md](./references/native-skills-and-extensions.md).
 
-Prompt quality follows the shared three-tier rule in [prompt-quality-card.md](./assets/prompt-quality-card.md). The card delegates framework selection to sk-prompt and adds only Pi dispatch mechanics.
+Prompt quality follows the shared two-tier rule in [prompt-quality-card.md](./assets/prompt-quality-card.md). The card delegates framework selection to sk-prompt and adds only Pi dispatch mechanics.
 
 ### The Conservative Guard
 

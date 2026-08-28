@@ -51,7 +51,7 @@ No per-model overrides today — Haiku is an unverified stub.
 
 ## 4. DELEGATION / PRECEDENCE
 
-The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in ../../../sk-prompt/assets/cli-prompt-quality-card.md and restated in ../SKILL.md.
+The 2-tier precedence rule (fast path -> deep path) is canonical in ../../../sk-prompt/assets/cli-prompt-quality-card.md and restated in ../SKILL.md.
 
 Claude Code escalation example: if the task would otherwise need a long `claude -p` prompt plus `--permission-mode plan`, ask `@prompt-improver` for the final `ENHANCED_PROMPT` first and then pass that result to Claude Code.
 

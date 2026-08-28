@@ -13,7 +13,7 @@ version: 1.0.0.0
 
 # Pi CLI - Prompt Quality Card
 
-**Three-tier precedence rule: sk-prompt framework first, model-hub profile second, this card's Pi dispatch addenda third.**
+**Two-tier precedence rule: sk-prompt framework first, this card's Pi dispatch addenda second.**
 
 This is a thin delegator. The canonical prompt-models packet owns the framework table, task mapping, density guidance, anti-hallucination checks, and CLEAR questions. This card adds only mechanics that are specific to constructing a safe Pi dispatch.
 

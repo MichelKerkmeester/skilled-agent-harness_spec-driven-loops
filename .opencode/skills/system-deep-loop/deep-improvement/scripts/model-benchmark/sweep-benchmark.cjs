@@ -38,7 +38,7 @@ const dispatcher = require('./dispatch-model.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SCRIPTS_ROOT = __dirname;
-// Canonical framework definitions live in the sk-prompt prompt-improve sub-hub;
+// Canonical framework definitions live in the sk-prompt skill;
 // benchmark consumes them. From scripts/model-benchmark/, the skills root is four
 // levels up (model-benchmark -> scripts -> deep-improvement -> system-deep-loop ->
 // skills); sk-prompt holds the framework registry there.

@@ -44,7 +44,7 @@ OpenCode dispatches the MiniMax, MiMo, DeepSeek-v4-pro, Kimi-K2.7, and GLM small
 
 ## 4. DELEGATION / PRECEDENCE
 
-The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../../sk-prompt/assets/cli-prompt-quality-card.md` and restated in `../SKILL.md`.
+The 2-tier precedence rule (fast path -> deep path) is canonical in `../../../sk-prompt/assets/cli-prompt-quality-card.md` and restated in `../SKILL.md`.
 
 OpenCode-specific escalation example: if the task would otherwise need a long `opencode run` prompt plus an explicit Memory Epilogue and a parallel-session decision, ask `@prompt-improver` for the final `ENHANCED_PROMPT` first, then pass that result to OpenCode.
 
