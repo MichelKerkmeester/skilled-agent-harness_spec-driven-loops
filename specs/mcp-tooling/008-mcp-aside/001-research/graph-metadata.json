@@ -41,10 +41,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/spec.md",
-      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/plan.md",
-      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/tasks.md",
-      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/context/website-link.md",
       "research/research.md",
       "research/resource-map.md",
       "research/deep-research-findings-registry.json",
@@ -53,38 +49,9 @@
       "spec.md",
       "plan.md",
       "context/website-link.md",
-      "research/orchestration-status.log",
-      ".opencode/skills/mcp-tooling/mode-registry.json",
-      "scripts/doctor.sh",
-      ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
-      ".opencode/skills/mcp-code-mode/SKILL.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "website-link.md",
-        "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/context/website-link.md",
-        "source": "derived"
-      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -104,27 +71,27 @@
         "source": "derived"
       },
       {
-        "name": "orchestration-status.log",
-        "kind": "file",
-        "path": "research/orchestration-status.log",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": "scripts/doctor.sh",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-chrome-devtools/SKILL.md",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "website-link.md",
+        "kind": "doc",
+        "path": "context/website-link.md",
         "source": "derived"
       },
       {
@@ -204,11 +171,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Aside browser's developer surface is unverified: the program assumes an Aside CLI (primary) plus an Aside MCP server (fallback through Code Mode), but no one has confirmed the CLI exists as a real standalone binary, what tools the MCP server exposes, or how auth works",
     "created_at": "2026-07-16T09:39:14Z",
-    "last_save_at": "2026-07-17T06:03:52.667Z",
+    "last_save_at": "2026-08-28T14:22:27.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +209,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4dafc33c06beee1572ccae6ebe2ff0d3a0368e1621936c2f9e9cf5aa46233272",
+    "source_fingerprint": "sha256:045a3914e4d4c7c56247a85581cffca3908783ff4f9fbb3af8e14e8922cf3682",
     "source_doc_hashes": {
       "spec.md": "324c06201afc546ad036a7c331d34f548fa29614d70ec15881312c42cb00ee5a",
       "plan.md": "cba8744c11eab19a1212c3d2b785772b7010a095f2f86ff84b3f88a15e0dfe02",
       "tasks.md": "4b16d1a3047cbd4dec035a0d8f505e419185f4498cc0bdc676a42645261b851d",
       "implementation-summary.md": "514276f58dd49801f941f2de5b227b90e9ee1fab06ad19b6c8ef5e73f5dafca3",
-      "research/research.md": "da264abe33970a9355b60986af726869484d41ee681225334e1bd31056892965"
+      "research/research.md": "13df54351c38414130352b8988055369db88abcf312a25e78e52ab4fcf26ced9"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -56,5 +56,6 @@
     "001-continuity-memory-runtime"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "3+"
 }
