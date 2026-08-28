@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The sk-code family's mode composition and migration path are undecided",
     "created_at": "2026-07-03T00:00:00Z",
-    "last_save_at": "2026-07-07T17:16:27.872Z",
+    "last_save_at": "2026-08-28T16:28:16.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +210,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b6cc8541161bffba67d966d3820c021d5cbba34a7986c31148a493685aa5c5c8",
+    "source_fingerprint": "sha256:03eaa35508f91c59b945f39d1380f1a1fa9e9618b99f964abf3c7e7c87dcc3d1",
     "source_doc_hashes": {
-      "spec.md": "62c6de8349a549649e4654503105d8df13ff26daa1feeab37fa332619dd607be",
+      "spec.md": "ba50b622859ec5d15bc6e202b38cdaa96c11d89f2b20d9858c187a5ef117cd87",
       "plan.md": "2c5466d46a28effd4cbaee1177f43af65fe9c7f8367089d24039e41fbd1bd6eb",
       "tasks.md": "bd15ac607161001dba9059122d40d6b67577e6081dce4433e5a7dee54508216e",
-      "implementation-summary.md": "4943065d4bc7ec0b881340a12b350ac5f0c5dc395fba293679d8d2930f60caef",
+      "implementation-summary.md": "d998ae93ac3685783e67665de5d6a18d43cd862ed9c31a8ebffdd676aec8ce1c",
       "research/research.md": "32d6a984e61d4a9a2cdaa44d6f0c187fd6abf25e074648a329597fe21d9a36f1"
     },
     "last_active_child_id": null,

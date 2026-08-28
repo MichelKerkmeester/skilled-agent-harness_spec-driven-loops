@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "sk-design/009-sk-design-claude-parity/006-parent-skill-canon-verification"
     last_updated_at: "2026-07-06T00:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
-    recent_action: "Re-confirmed ADR-001 grounding with fresh Phase 006 execution evidence and accepted the decision."
-    next_safe_action: "Phase 007 designs an sk-design-local procedure-card template (Path B), not a new sk-doc-wide template family."
+    recent_action: "Re-confirmed ADR-001 grounding with fresh Phase 006 evidence and accepted the decision"
+    next_safe_action: "Build the sk-design-local procedure-card template (Path B), not an sk-doc-wide family"
 ---
 # Decision Record: Phase 006 — Parent-Skill Canon Verification & Procedures Pattern Formalization
 

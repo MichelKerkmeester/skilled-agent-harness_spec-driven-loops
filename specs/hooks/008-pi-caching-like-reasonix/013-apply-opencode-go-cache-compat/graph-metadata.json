@@ -15,27 +15,36 @@
       "pi models.json overlay",
       "sendSessionAffinityHeaders opencode",
       "deepseek-v4-pro compat warning",
-      "pi cache affinity override"
+      "pi cache affinity override",
+      "opencode-go compat plan",
+      "models.json overlay plan",
+      "pi cache affinity plan",
+      "opencode-go compat tasks",
+      "models.json overlay tasks",
+      "opencode-go compat summary",
+      "models.json overlay summary"
     ],
     "key_topics": [
       "opencode-go",
       "cache",
       "compat",
+      "models",
+      "json",
       "overlay",
-      "session",
+      "sendsessionaffinityheaders",
+      "opencode",
+      "deepseek-v4-pro",
+      "warning",
       "affinity",
-      "models.json",
-      "deepseek",
-      "pi-cache-optimizer",
-      "prefix"
+      "override"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -51,21 +60,141 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affinity Compat Overlay",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Zen",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Silence",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Applied a provider-level sendSessionAffinityHeaders overlay for opencode-go so the pi-cache-optimizer DeepSeek compat warning stops and the prefix cache stays warm; long-retention deliberately deferred.",
+    "causal_summary": "The vendored `pi-cache-optimizer` fork emits a startup warning that `opencode-go/deepseek-v4-pro` is DeepSeek-like but its merged compat lacks `sendSessionAffinityHeaders` (and `supportsLongCacheRetention`), so a multi-upstream proxy may split provider-side prompt caches and reduce or hide cache hits",
     "created_at": "2026-08-13T00:00:00.000Z",
-    "last_save_at": "2026-08-13T00:00:00.000Z",
+    "last_save_at": "2026-08-28T16:28:15.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -74,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de6d483fd7ebda0baaa4d6299c8c04ba3d7b594dac21f8c0f24cd0828c9c9812",
+    "source_fingerprint": "sha256:c65bf9305604a2a6d51252da5652a7a8e164b15736a4fc55322dae113629c2c6",
     "source_doc_hashes": {
-      "spec.md": "6e425d3f1cfc21edef77a80766ef29836bf6e7be48d8b75e2790ffe279eec255",
+      "spec.md": "8abcf6f744ff27dbcd85d371a2b846b81ce121450e41f835a62f3807a569e015",
       "plan.md": "1e5de3c56eb2fb817da9761d69ec9df403d4e207afbd1b77d13b90ef98c07a9f",
       "tasks.md": "5656095162a8c0a8cef89d9f29110e1f9926eedd3a423d07e0412a1ab26df717",
-      "implementation-summary.md": "3fbfa9a3c0ccbb56eb504582572e954e4b2c4636bfe26bf9707c9e63fb89dd5d"
+      "implementation-summary.md": "a09e0fad46cc3f25609d7184e8c0b957e7f732f67713c073ea4415b1e7a5ebea"
     },
     "last_active_child_id": null,
     "last_active_at": null

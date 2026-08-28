@@ -54,10 +54,7 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-design/mode-registry.json",
-      ".opencode/skills/sk-design/shared/procedure_card_schema.md",
-      ".opencode/skills/sk-design/SKILL.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -94,24 +91,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "procedure_card_schema.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/shared/procedure_card_schema.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
         "source": "derived"
       },
       {
@@ -203,11 +182,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Local Convention",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Phase",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001-005 refactored `sk-design` toward Claude Design-like manager behavior while preserving the OpenCode-native parent-hub shape: one advisor identity, registry-driven routing, five public modes",
     "created_at": "2026-07-06T04:36:21.215Z",
-    "last_save_at": "2026-07-09T10:02:44.453Z",
+    "last_save_at": "2026-08-28T16:28:18.885Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +215,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5e557e445e57bb886c0f4d9ece78cb1a47fdef4ef58ac94ac76b7e3529a4437e",
+    "source_fingerprint": "sha256:b4415d960cc994e67384cef2d8fbc1e194e27c991e8e688271be32af3c06e29d",
     "source_doc_hashes": {
       "spec.md": "1ef1042f02bbdacca5c79310d551f00ca98c8637be1635a6b83c8b78faeed852",
       "plan.md": "58f61e8e52cfe4c51bb1982b4879db83d7de21dbc55e7b2864951821c271002f",
       "tasks.md": "1e6b8de6495715398a0712fe83015d8d2bee697fc09e5f4dd5397f7d66b263fc",
       "checklist.md": "1b272a438694b0dc3bb26129fb321a80b2e65b7d971871953d6ff4fba6d12480",
-      "decision-record.md": "702c7e4a2d363c4e53fb34c3310285a8f6ceff10be82ae47c139b19f327bb41c",
+      "decision-record.md": "072166ce28d01dd7e2a215c7d7c719dfdde755a9249c7399b75edaf3e0e951fb",
       "implementation-summary.md": "943eb6d11944b6c98051fc7f02bafdbab81232d81e352967ff998ef4bd749a90"
     },
     "last_active_child_id": null,

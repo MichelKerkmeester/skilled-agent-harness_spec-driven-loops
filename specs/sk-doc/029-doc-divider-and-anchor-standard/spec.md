@@ -14,7 +14,7 @@ _memory:
     packet_pointer: "sk-doc/029-doc-divider-and-anchor-standard"
     last_updated_at: "2026-08-13T06:10:00Z"
     last_updated_by: "spec-author"
-    recent_action: "Authored Level 3 spec after fleet-wide investigation; operator ratified bare numbered-H2 as the single truth"
+    recent_action: "Authored Level 3 spec; operator ratified bare numbered-H2 as the single truth"
     next_safe_action: "Review plan.md, then confirm before touching validate_document.py or normalizing the fleet"
     blockers: []
     key_files:

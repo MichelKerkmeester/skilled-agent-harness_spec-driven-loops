@@ -12,7 +12,7 @@ _memory:
     packet_pointer: "sk-code/017-sk-code-parent/009-cutover-and-rollout"
     last_updated_at: "2026-07-04T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Landed the branch-side cutover prep (verified cleanup + fold-fixes) and the rollout runbook; a post-commit deep review then canonical-scoped parent-skill-check (all three hubs now pass in-branch), added the reviewer keyword, and corrected the runbook ordering"
+    recent_action: "Landed branch-side cutover prep + rollout runbook; parent-skill-check passes on all three hubs"
     next_safe_action: "Merge the branch, then execute the main-side rollout runbook (§ Main-Side Rollout Runbook)"
     blockers:
       - "Main-side rollout steps require the compiled dist (post-merge): advisor scorer removal, corpora rebaseline, skill-graph regen, reindex"

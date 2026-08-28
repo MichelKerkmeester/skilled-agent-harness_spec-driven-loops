@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "sk-doc/029-doc-divider-and-anchor-standard"
     last_updated_at: "2026-08-13T06:20:00Z"
     last_updated_by: "spec-author"
-    recent_action: "Closed: flag-gated validator + 1,009-file divider normalization + 7-file TOC/anchor strip + anchor-check false-positive fix + HVR reconcile — all shipped to origin/v4 and verified (0 divider/TOC/anchor blocking across 8,627 files)"
-    next_safe_action: "Only T013 remains: flip SKDOC_ENFORCE_STRUCTURE to default-on in a quiet window (operator-gated). validate.sh --strict blocked by the pre-existing mcp-server zod install."
+    recent_action: "Closed: flag-gated validator + 1,009-file divider normalization + TOC/anchor strip, shipped"
+    next_safe_action: "Update SKDOC_ENFORCE_STRUCTURE to default-on in a quiet window (T013, operator-gated)"
     blockers:
       - "Phase 3 bulk fleet edit needs explicit operator go-ahead (high blast radius)"
       - "Concurrent session activity in specs/sk-doc reverted docs mid-authoring; confirm no other session owns 029 before executing"

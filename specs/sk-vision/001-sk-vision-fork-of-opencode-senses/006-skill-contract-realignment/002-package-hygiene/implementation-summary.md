@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-08-16T12:00:00.000Z"
     last_updated_by: "pi"
     recent_action: "Child created; implementation pending."
-    next_safe_action: "Closed (reconciled by 010-quality-gate): package.json neutralized, .venv removed, hermetic tests green."
+    next_safe_action: "Complete via 010-quality-gate: package.json neutralized, .venv removed, tests green"
     blockers: []
     key_files:
       - "spec.md"

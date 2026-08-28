@@ -41,10 +41,6 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".claude/settings.json",
-      ".github/workflows/comment-hygiene.yml",
-      ".opencode/skills/sk-code/graph-metadata.json",
-      ".opencode/agents/deep-review.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -52,30 +48,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "comment-hygiene.yml",
-        "kind": "config",
-        "path": ".github/workflows/comment-hygiene.yml",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-review.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -195,11 +167,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bearing Verification",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The relocation (004) and fold (005) moved or deleted files that external code and docs still referenced by their old paths",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-07-09T10:02:44.136Z",
+    "last_save_at": "2026-08-28T16:28:17.434Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,9 +205,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34ceba90876e86d225e0e58d4ff0c0ef6e1d4d68e7e8f25347d55dc35bb02d5f",
+    "source_fingerprint": "sha256:2fa49cb6c597ac6ab1d360b97d7a2d71dc5cbf4c51b499dae8d4381416c6d1b9",
     "source_doc_hashes": {
-      "spec.md": "010fc81c6878568256638d18cd06bfb904c2b14e5cc757962ab802c0cb41367e",
+      "spec.md": "8d1790a8163116c2dda4aacc23027279af85b47b6cd45e42e8c8a17aaa14605e",
       "plan.md": "21fadb18cdb8da75a0c13fe818d955c694cfd3019540697bb9893c1922995e69",
       "tasks.md": "bcbe2598a17c01014bd22bf05fd83666e5334769b89ca3044d4766c4253fd438",
       "checklist.md": "79cd3b8757227be9813c8f4d7af382720b181c937b6fadaff76401d78a07e4b4",

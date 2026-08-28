@@ -15,7 +15,7 @@ _memory:
     last_updated_at: "2026-08-13T00:00:00Z"
     last_updated_by: "spec-author"
     recent_action: "Applied provider-level sendSessionAffinityHeaders overlay for opencode-go and documented it"
-    next_safe_action: "Optionally verify long-retention support on the Zen gateway before enabling supportsLongCacheRetention"
+    next_safe_action: "Verify Zen gateway long-retention support before enabling supportsLongCacheRetention"
     blockers: []
     key_files:
       - ".pi/models.json"

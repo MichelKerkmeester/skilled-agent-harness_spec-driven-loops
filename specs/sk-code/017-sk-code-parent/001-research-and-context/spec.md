@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-07-03T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored phase-1 research-and-context spec"
-    next_safe_action: "Confirm the cli-opencode GPT-5.5 executor, then write the deep-research fan-out config and the deep-context sweep config"
+    next_safe_action: "Verify the cli-opencode GPT-5.5 executor, then write deep-research and deep-context configs"
     blockers: []
     key_files: []
     session_dedup:
