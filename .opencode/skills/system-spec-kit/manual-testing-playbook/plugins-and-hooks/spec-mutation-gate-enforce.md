@@ -148,7 +148,7 @@ Expected: all three return `{"status":"closed","question":null}`.
 11. Measure the real advise/would-deny/deny rate from this repo's own live telemetry (produced by real Claude Code sessions running this exact plugin under the project's actual `SYSTEM_SPEC_GATE_ENFORCE=0` wiring):
 
 ```bash
-LOG=.opencode/skills/.spec-gate-state/spec-gate-warnings.log
+LOG=.opencode/skills/.state/spec-gate/spec-gate-warnings.log
 wc -l "$LOG"
 awk -F'|' '{gsub(/^ +| +$/,"",$5); print $5}' "$LOG" | sort | uniq -c
 awk -F'|' '{gsub(/^ +| +$/,"",$3); print $3}' "$LOG" | sort | uniq -c
@@ -259,8 +259,8 @@ None of the three read-only/review-shaped prompts opened the gate -- zero false 
 Real production telemetry, this repo's own `spec-gate-warnings.log` (step 11, produced by real Claude Code sessions running this exact plugin, `SYSTEM_SPEC_GATE_ENFORCE=0`):
 
 ```text
-$ wc -l .opencode/skills/.spec-gate-state/spec-gate-warnings.log
-     188 .opencode/skills/.spec-gate-state/spec-gate-warnings.log
+$ wc -l .opencode/skills/.state/spec-gate/spec-gate-warnings.log
+     188 .opencode/skills/.state/spec-gate/spec-gate-warnings.log
 
 $ awk -F'|' '{gsub(/^ +| +$/,"",$5); print $5}' spec-gate-warnings.log | sort | uniq -c
  167 advise
@@ -299,7 +299,7 @@ $ grep -n "SYSTEM_SPEC_GATE_ENFORCE" .claude/settings.json
 - Shared Gate-3 classifier consumed by the core: `.opencode/skills/system-spec-kit/shared/dist/gate-3-classifier.js`
 - Hook wiring: `.claude/settings.json` (`PreToolUse` matchers `Write|Edit` and `Bash`; `UserPromptSubmit` matcher `""`; `env.SYSTEM_SPEC_GATE_ENFORCE`)
 - Deny-predicate documentation: `.opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/README.md`
-- Live telemetry: `.opencode/skills/.spec-gate-state/spec-gate-warnings.log` (real, project-local, gitignored state)
+- Live telemetry: `.opencode/skills/.state/spec-gate/spec-gate-warnings.log` (real, project-local, gitignored state)
 
 ---
 

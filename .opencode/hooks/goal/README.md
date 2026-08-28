@@ -36,10 +36,10 @@ The core owns scope validation, opaque path resolution, atomic state I/O, the go
 
 **Verification.** `verifyGoalHeuristic()` is ported from `opencode-goal`'s default heuristic supervisor. Blocking language (`blocked`, `error`, `failed`, `cannot`, `incomplete`, `pending`, ...) → `not-met`; an explicit completion signal (`done`, `completed`, `shipped`, `tests passed`, ...) tied to the objective's keywords → `met` (confidence 0.72); ambiguous or mixed evidence stays `unclear` rather than `met`. It never forces continuation — non-OpenCode runtimes have no native continuation surface.
 
-**State layout.** The default state root is `.opencode/skills/.goal-state/` (override with `OPENCODE_GOAL_STATE_DIR` for tests/probes):
+**State layout.** The default state root is `.opencode/skills/.state/goal/` (override with `OPENCODE_GOAL_STATE_DIR` for tests/probes):
 
 ```text
-.goal-state/
+.state/goal/
 +-- <sha256-of-canonical-scope>.json
 +-- .locks/
 |   `-- <sha256-of-lock-identity>.lock/
@@ -116,7 +116,7 @@ The concern is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `OPENCODE_GOAL_DISABLED=1` | Disables goal behavior and management across this core and the OpenCode plugin. The shared resolver (`isHookEnabled('goal')`) short-circuits every adapter. |
 | `OPENCODE_GOAL_PLUGIN_DISABLED=1` | Legacy alias of the canonical flag. Also the OpenCode plugin's own `DISABLED_ENV`. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
-| `OPENCODE_GOAL_STATE_DIR` | Override the state root (tests and isolated probes use this to avoid touching the real `.goal-state/` tree). |
+| `OPENCODE_GOAL_STATE_DIR` | Override the state root (tests and isolated probes use this to avoid touching the real `.state/goal/` tree). |
 
 Set a flag inline for one command, export it for a session, or persist it in `.opencode/hooks/hook-flags.env` (copied from `hook-flags.env.example`, gitignored). The environment always wins over the file, so a persisted default can be overridden for a single session. Pi discovery can additionally be disabled with `-extensions/goal-context.ts` in `.pi/settings.json`.
 

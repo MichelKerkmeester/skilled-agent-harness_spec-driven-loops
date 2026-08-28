@@ -143,7 +143,7 @@ export function workspaceRootFor(input: ClaudeUserPromptSubmitInput): string {
       : process.cwd();
   // Anchor to the real repo root. A raw session cwd inside a specs/<packet>
   // directory would otherwise become the "workspace root", and the advisor's
-  // state writers materialize a stray .advisor-state tree under it.
+  // state writers materialize a stray .state/advisor tree under it.
   return findAdvisorWorkspaceRoot(start);
 }
 

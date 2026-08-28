@@ -25,7 +25,7 @@ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const PLUGIN_ID = 'opencode-goal';
-const DEFAULT_STATE_DIR = fileURLToPath(new URL('../skills/.goal-state/', import.meta.url));
+const DEFAULT_STATE_DIR = fileURLToPath(new URL('../skills/.state/goal/', import.meta.url));
 const DEFAULT_MAX_OBJECTIVE_CHARS = 4000;
 const DEFAULT_MAX_GOAL_PROMPT_CHARS = 4000;
 const DEFAULT_MAX_INJECTION_CHARS = 4800;

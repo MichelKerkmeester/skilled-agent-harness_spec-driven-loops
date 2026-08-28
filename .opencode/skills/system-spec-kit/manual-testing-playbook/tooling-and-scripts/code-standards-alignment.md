@@ -54,7 +54,7 @@ Command 1, inspect affected files:
 
 ```text
 $ git diff --name-only
-.opencode/skills/.goal-state/7365735f306463616135393733666665726954414658627031394f6e6d33.json
+.opencode/skills/.state/goal/7365735f306463616135393733666665726954414658627031394f6e6d33.json
 .opencode/skills/system-deep-loop/runtime/database/observability-events.jsonl
 .opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts
 .opencode/skills/system-deep-loop/runtime/scripts/convergence.cjs

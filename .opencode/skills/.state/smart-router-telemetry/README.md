@@ -16,11 +16,11 @@ version: 1.0.0.2
 
 ## 1. OVERVIEW
 
-The Smart Router telemetry implementation in [`smart-router-telemetry.ts`](../system-spec-kit/scripts/observability/smart-router-telemetry.ts) writes routing compliance records to this folder. The state exists so maintainers can compare a selected skill's predicted resource route with the skill resources actually read during execution. Measurement and analysis scripts use that comparison to report routing readiness, over-load, under-load and on-demand behavior. The records present today come from the static measurement path described in section 4, not from live per-prompt capture.
+The Smart Router telemetry implementation in [`smart-router-telemetry.ts`](../../system-spec-kit/scripts/observability/smart-router-telemetry.ts) writes routing compliance records to this folder. The state exists so maintainers can compare a selected skill's predicted resource route with the skill resources actually read during execution. Measurement and analysis scripts use that comparison to report routing readiness, over-load, under-load and on-demand behavior. The records present today come from the static measurement path described in section 4, not from live per-prompt capture.
 
-No `.opencode/plugins/*.js` entrypoint directly owns this folder. A repository search for `.smart-router-telemetry` under `.opencode/plugins/*.js` returns no matches. The System Spec Kit observability scripts own its read and write behavior.
+No `.opencode/plugins/*.js` entrypoint directly owns this folder. A repository search for `.state/smart-router-telemetry` under `.opencode/plugins/*.js` returns no matches. The System Spec Kit observability scripts own its read and write behavior.
 
-The related [`system-skill-advisor.js`](../../plugins/system-skill-advisor.js) plugin performs a different part of the routing lifecycle. It sends each OpenCode prompt to the standalone Skill Advisor bridge, receives an advisor brief and adds that brief to model system context through `experimental.chat.system.transform`. It does not import the telemetry writer or append `compliance.jsonl`.
+The related [`system-skill-advisor.js`](../../../plugins/system-skill-advisor.js) plugin performs a different part of the routing lifecycle. It sends each OpenCode prompt to the standalone Skill Advisor bridge, receives an advisor brief and adds that brief to model system context through `experimental.chat.system.transform`. It does not import the telemetry writer or append `compliance.jsonl`.
 
 The raw runtime data in this folder is git-ignored. Only this `README.md` is tracked, so external users can see the folder and understand its purpose without receiving machine-specific telemetry.
 
@@ -29,7 +29,7 @@ The raw runtime data in this folder is git-ignored. Only this `README.md` is tra
 ## 2. STRUCTURE
 
 ```text
-.smart-router-telemetry/
+.state/smart-router-telemetry/
 +-- README.md
 +-- compliance.jsonl
 `-- compliance.jsonl.1
@@ -72,18 +72,18 @@ Example record:
 | `SPECKIT_SMART_ROUTER_TELEMETRY_DIR` | Not set | Replaces the telemetry directory while retaining the `compliance.jsonl` file name. |
 | `SPECKIT_SMART_ROUTER_TELEMETRY_MAX_BYTES` | `1048576` | Sets the active stream size limit before rotation. |
 
-The full-path override takes precedence over the directory override. Without either override, the writer uses `.opencode/skills/.smart-router-telemetry/compliance.jsonl`.
+The full-path override takes precedence over the directory override. Without either override, the writer uses `.opencode/skills/.state/smart-router-telemetry/compliance.jsonl`.
 
 ---
 
 ## 4. RELATED SKILL LOGIC
 
-[`system-skill-advisor`](../system-skill-advisor/SKILL.md) provides Gate 2 routing for non-trivial requests. Its runtime flow separates skill selection from skill-local resource loading:
+[`system-skill-advisor`](../../system-skill-advisor/SKILL.md) provides Gate 2 routing for non-trivial requests. Its runtime flow separates skill selection from skill-local resource loading:
 
 1. The standalone `system_skill_advisor` MCP scores the prompt and returns recommendations with confidence and uncertainty values.
 2. Prompt-time hooks or the OpenCode plugin render recommendations that pass their thresholds as a compact advisor brief.
 3. The agent invokes the selected skill. That skill's own Smart Router logic determines which local documentation resources are always required, conditionally relevant or available on demand.
-4. A telemetry step records the selected skill and its predicted route for that prompt. Two evidence paths can supply a compliance record: the static measurement harness [`smart-router-measurement.ts`](../system-spec-kit/scripts/observability/smart-router-measurement.ts), which records the predicted route and advisor label, and a live-capture wrapper [`live-session-wrapper.ts`](../system-spec-kit/scripts/observability/live-session-wrapper.ts) designed to observe qualifying `Read` calls and record the resources actually read.
+4. A telemetry step records the selected skill and its predicted route for that prompt. Two evidence paths can supply a compliance record: the static measurement harness [`smart-router-measurement.ts`](../../system-spec-kit/scripts/observability/smart-router-measurement.ts), which records the predicted route and advisor label, and a live-capture wrapper [`live-session-wrapper.ts`](../../system-spec-kit/scripts/observability/live-session-wrapper.ts) designed to observe qualifying `Read` calls and record the resources actually read.
 5. Finalization writes one compliance record for the prompt. Analysis tools later aggregate those records by selected skill.
 
 **Current wiring status.** The records in `compliance.jsonl` today come from the static measurement path. The live-capture wrapper is defined but NOT wired into any plugin, hook or CLI entry point, so nothing invokes it during real sessions. Its read matcher also resolves the skill root as `.opencode/skill` rather than `.opencode/skills`, so it cannot match real skill reads even when called. As a result `observedSkill` and `actualReads` stay effectively unpopulated by live capture, and the measurement reports keep live routing readiness blocked until the wrapper is wired and its path matcher is corrected.
@@ -131,9 +131,9 @@ The analyzer parses valid records, counts malformed lines as parse errors and co
 
 | Resource | Purpose |
 |---|---|
-| [`system-skill-advisor/SKILL.md`](../system-skill-advisor/SKILL.md) | Defines Gate 2 skill selection and the related skill's intent-domain Smart Router. |
-| [`system-skill-advisor.js`](../../plugins/system-skill-advisor.js) | Injects prompt-time Skill Advisor briefs into OpenCode context without writing this telemetry stream. |
-| [`live-session-wrapper.ts`](../system-spec-kit/scripts/observability/live-session-wrapper.ts) | Defines the live-capture flow for active prompts and qualifying skill-resource `Read` calls. Not currently wired into any plugin or hook. |
-| [`smart-router-telemetry.ts`](../system-spec-kit/scripts/observability/smart-router-telemetry.ts) | Builds, writes, rotates, parses and reads compliance records. |
-| [`smart-router-measurement.ts`](../system-spec-kit/scripts/observability/smart-router-measurement.ts) | Predicts resource routes, writes optional static telemetry and reads the live stream for readiness reporting. |
-| [`smart-router-analyze.ts`](../system-spec-kit/scripts/observability/smart-router-analyze.ts) | Aggregates the JSON Lines stream into overall and per-skill compliance reports. |
+| [`system-skill-advisor/SKILL.md`](../../system-skill-advisor/SKILL.md) | Defines Gate 2 skill selection and the related skill's intent-domain Smart Router. |
+| [`system-skill-advisor.js`](../../../plugins/system-skill-advisor.js) | Injects prompt-time Skill Advisor briefs into OpenCode context without writing this telemetry stream. |
+| [`live-session-wrapper.ts`](../../system-spec-kit/scripts/observability/live-session-wrapper.ts) | Defines the live-capture flow for active prompts and qualifying skill-resource `Read` calls. Not currently wired into any plugin or hook. |
+| [`smart-router-telemetry.ts`](../../system-spec-kit/scripts/observability/smart-router-telemetry.ts) | Builds, writes, rotates, parses and reads compliance records. |
+| [`smart-router-measurement.ts`](../../system-spec-kit/scripts/observability/smart-router-measurement.ts) | Predicts resource routes, writes optional static telemetry and reads the live stream for readiness reporting. |
+| [`smart-router-analyze.ts`](../../system-spec-kit/scripts/observability/smart-router-analyze.ts) | Aggregates the JSON Lines stream into overall and per-skill compliance reports. |

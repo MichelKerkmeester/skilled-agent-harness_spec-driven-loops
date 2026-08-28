@@ -27,7 +27,7 @@ The runtime state in this folder is machine-local and git-ignored. Only this `RE
 ## 2. STRUCTURE
 
 ```text
-.authority-state/
+.state/authority/
 +-- README.md
 +-- authority-<mode>.json
 ```

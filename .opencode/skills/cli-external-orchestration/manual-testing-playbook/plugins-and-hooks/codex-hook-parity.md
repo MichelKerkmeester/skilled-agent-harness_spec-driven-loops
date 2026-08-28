@@ -46,7 +46,7 @@ This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (al
 
 - Preconditions: the eight adapter files exist on disk; the neutral cores are byte-unchanged; `codex` (0.144.x) is on `PATH`; the repo `.codex/hooks.json` registers every adapter; `install-codex-hooks.mjs` has merged the set into `~/.codex/hooks.json`. Node is on `PATH`. For the spec-gate adapters, the compiled `system-spec-kit/shared/dist/gate-3-classifier.js` must be present (a normal built checkout has it).
 - Real user-facing trigger: any Codex CLI session. SessionStart + UserPromptSubmit hooks fire on every turn; the tool-level guards fire when the model makes an `exec`/`apply_patch`/`edit` tool call; the Stop chain fires at turn end.
-- Expected signals: the fixture matrix reports every adapter exits 0 on empty/malformed stdin, `spec-gate-enforce` emits a `permissionDecision:"deny"` envelope when the gate is open + enforce is set, `spec-gate-classify` emits the Gate-3 `additionalContext`, and `dispatch-audit` writes one `runtime:"codex"` JSONL line for a `codex exec -p` shape; a live `codex exec` run shows `hook: SessionStart/UserPromptSubmit … Completed`, writes a session-scoped `.spec-gate-state/<hex(session_id)>.json` with `status:"open"`, and the model's first response acts on the injected A–E Gate-3 menu.
+- Expected signals: the fixture matrix reports every adapter exits 0 on empty/malformed stdin, `spec-gate-enforce` emits a `permissionDecision:"deny"` envelope when the gate is open + enforce is set, `spec-gate-classify` emits the Gate-3 `additionalContext`, and `dispatch-audit` writes one `runtime:"codex"` JSONL line for a `codex exec -p` shape; a live `codex exec` run shows `hook: SessionStart/UserPromptSubmit … Completed`, writes a session-scoped `.state/spec-gate/<hex(session_id)>.json` with `status:"open"`, and the model's first response acts on the injected A–E Gate-3 menu.
 - Pass/fail: PASS if every adapter fails open, the deny/advise/additionalContext/audit envelopes are produced for their trigger inputs, the live run fires SessionStart+UserPromptSubmit to completion and the Gate-3 advisory reaches the model, and the installer preserves pre-existing entries idempotently. FAIL if any adapter throws instead of failing open, a deny/advise envelope is malformed or absent for its trigger, a neutral core is modified, or the installer overwrites a pre-existing hook entry.
 
 ---
@@ -60,9 +60,9 @@ This scenario validates: a fixture stdin-pipe smoke matrix for every adapter (al
 ```bash
 # deny path — real permissionDecision:"deny". The apply_patch target lives in the
 # patch body (tool_input.command: "*** Add File: <path>"), not a file_path field.
-PROJ="$HOME/.codex-hook-fixtures/proj"; mkdir -p "$PROJ/.opencode/skills/.spec-gate-state"
+PROJ="$HOME/.codex-hook-fixtures/proj"; mkdir -p "$PROJ/.opencode/skills/.state/spec-gate"
 HEX=$(python3 -c "print('fix-sess'.encode().hex())")
-printf '{"status":"open","askedAtMs":1}\n' > "$PROJ/.opencode/skills/.spec-gate-state/$HEX.json"
+printf '{"status":"open","askedAtMs":1}\n' > "$PROJ/.opencode/skills/.state/spec-gate/$HEX.json"
 printf '%s' "{\"tool_name\":\"apply_patch\",\"tool_input\":{\"command\":\"*** Begin Patch\n*** Add File: src/app.ts\n+export const x=1;\n*** End Patch\"},\"cwd\":\"$PROJ\",\"session_id\":\"fix-sess\"}" \
   | SYSTEM_SPEC_GATE_ENFORCE=1 node .opencode/skills/system-spec-kit/mcp-server/hooks/codex/spec-gate-enforce.mjs; echo "  exit=$?"
 
@@ -93,7 +93,7 @@ tail -1 "$PROJ/.opencode/logs/cli-dispatch-audit.log"
 PROJ="$HOME/.codex-live-test/proj"; rm -rf "$HOME/.codex-live-test"; mkdir -p "$PROJ"
 timeout 90 codex exec -C "$PROJ" --skip-git-repo-check --dangerously-bypass-hook-trust -s read-only \
   "add a new function to parser.ts and fix the failing test" 2>&1 | grep -E 'hook: (SessionStart|UserPromptSubmit|Stop)|option E|no spec'
-find "$PROJ/.opencode/skills/.spec-gate-state" -name '*.json' -exec cat {} \;
+find "$PROJ/.opencode/skills/.state/spec-gate" -name '*.json' -exec cat {} \;
 ```
 
 5. Installer idempotency + preservation (dry-run then real, then re-run):
@@ -110,7 +110,7 @@ grep -c 'notify.sh' "$HOME/.codex/hooks.json"                        # Superset 
 - Step 1: deny run prints `{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny",…}}` and `exit=0`; empty/malformed both `exit=0` with no output.
 - Step 2: prints `{"hookSpecificOutput":{"hookEventName":"UserPromptSubmit","additionalContext":"SPEC FOLDER QUESTION: …"}}`, `exit=0`.
 - Step 3: appends one JSONL line with `"runtime":"codex"`, `"skill":"cli-codex"`.
-- Step 4: `hook: SessionStart … Completed` and `hook: UserPromptSubmit … Completed` lines; a `.spec-gate-state/<hex>.json` file with `{"status":"open",…}` whose hex decodes to the run's session id; the model's response references choosing option E / no spec folder.
+- Step 4: `hook: SessionStart … Completed` and `hook: UserPromptSubmit … Completed` lines; a `.state/spec-gate/<hex>.json` file with `{"status":"open",…}` whose hex decodes to the run's session id; the model's response references choosing option E / no spec folder.
 - Step 5: dry-run reports 14 added / 2 skipped; real run creates a `.bak-<ts>` backup; re-run reports `added: 0`; `notify.sh` count unchanged (3).
 
 ---
@@ -176,7 +176,7 @@ hook: UserPromptSubmit Completed (×3)
 `spec-gate-classify` wrote a real session-scoped gate-state during the live run; the filename hex decodes to the exact Codex session id (`019f5cc0-5cc8-76e3-8c24-a5088e055c33`), proving the adapter read Codex's snake_case `session_id` + `cwd` and persisted state:
 
 ```text
-.opencode/skills/.spec-gate-state/30313966356363302d356363382d373665332d386332342d613530383865303535633333.json
+.opencode/skills/.state/spec-gate/30313966356363302d356363382d373665332d386332342d613530383865303535633333.json
 ```
 ```json
 { "status": "open", "askedAtMs": 1783967540852 }

@@ -34,7 +34,7 @@ Bind routing to these resolved `ARGS_PRESENT`, `QUERY`, `FIRST`, and `REST` valu
 **Inputs:** `$ARGUMENTS` — `set <objective> [--budget N] | show | history | doctor | health | clear | complete | pause [reason] | resume`
 **Outputs:** `STATUS=<OK|FAIL> ACTION=<set|clear|complete|pause|resume|history|doctor|health|show>`
 
-This command is state-free. It never reads or writes `.opencode/skills/.goal-state` directly.
+This command is state-free. It never reads or writes `.opencode/skills/.state/goal` directly.
 
 - Empty arguments or `show` route to `opencode_goal_status`.
 - `set <objective> --budget N` routes to `opencode_goal` with `action: "set"`, `objective` with the budget suffix removed, and `tokenBudget: N`.

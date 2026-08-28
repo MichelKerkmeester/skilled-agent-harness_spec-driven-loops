@@ -377,7 +377,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".opencode/skills/.advisor-state/README.md",
+      "file": ".opencode/skills/.state/advisor/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -387,7 +387,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".opencode/skills/.completion-sentinel-state/README.md",
+      "file": ".opencode/skills/.state/completion-sentinel/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -397,7 +397,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".opencode/skills/.goal-state/README.md",
+      "file": ".opencode/skills/.state/goal/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -407,7 +407,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".opencode/skills/.loop-guard-state/README.md",
+      "file": ".opencode/skills/.state/loop-guard/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -417,7 +417,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".opencode/skills/.smart-router-telemetry/README.md",
+      "file": ".opencode/skills/.state/smart-router-telemetry/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -427,7 +427,7 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".opencode/skills/.spec-gate-state/README.md",
+      "file": ".opencode/skills/.state/spec-gate/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -2886,303 +2886,6 @@
       "return_code": 1,
       "total_issues": 1,
       "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-improve/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-improve/benchmark/reports/2026-07-10--router-mode-a--router/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-improve/benchmark/reports/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-06-01--prompt-framework--mimo/eval/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-06-02--minimax-capability-discrimination--mimo/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-06-15--discriminating--kimi-k2-7/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-06-15--prompt-framework--kimi-k2-7/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-06-28--prompt-framework--glm-5-2/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-07-10--eval-loop--swe-1-6/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-07-10--eval-loop--swe-1-6/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-07-10--extraction-rerun--swe-1-6/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-07-10--extraction-rerun--swe-1-6/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-07-10--prompt-framework--minimax/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-07-10--prompt-framework--minimax/eval-loop/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-07-10--prompt-framework--minimax/eval-rig/fixtures/fix-003-bundle-gate-smoke-run/seed/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [
-        {
-          "fix_hint": "Add section with name containing \"overview\"",
-          "message": "Missing required section: overview",
-          "severity": "blocking",
-          "type": "missing_required_section"
-        }
-      ],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-07-10--prompt-framework--minimax/eval-rig/fixtures/fix-006-adversarial-path-traversal/seed/README.md",
-      "return_code": 1,
-      "total_issues": 1,
-      "valid": false,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-07-10--prompt-framework--minimax/eval-rig/grader/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-07-10--prompt-framework--minimax/eval-rig/lib/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-07-10--prompt-framework--minimax/eval-rig/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".opencode/skills/sk-prompt/sk-prompt-models/benchmarks/2026-07-10--prompt-framework--minimax/eval-rig/scripts/deterministic/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
       "warnings": []
     },
     {

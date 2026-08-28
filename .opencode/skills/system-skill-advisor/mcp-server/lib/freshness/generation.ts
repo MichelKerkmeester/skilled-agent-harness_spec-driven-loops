@@ -10,7 +10,7 @@ import { findAdvisorWorkspaceRoot } from '../utils/workspace-root.js';
 import { invalidateSkillGraphCaches, type CacheInvalidationEvent } from './cache-invalidation.js';
 import type { SkillGraphTrustState } from './trust-state.js';
 
-const GENERATION_RELATIVE_PATH = join('.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json');
+const GENERATION_RELATIVE_PATH = join('.opencode', 'skills', '.state', 'advisor', 'skill-graph-generation.json');
 const GENERATION_LOCK_STALE_MS = 30_000;
 const GENERATION_LOCK_WAIT_MS = 250;
 
@@ -30,7 +30,7 @@ export interface PublishGenerationResult {
 export function getSkillGraphGenerationPath(workspaceRoot: string): string {
   // Anchor to the real repo root before joining the state-relative path. A
   // caller passing a specs/<packet> cwd would otherwise write its counter into
-  // that packet, leaving a stray .advisor-state tree behind; the anchored
+  // that packet, leaving a stray .state/advisor tree behind; the anchored
   // resolver structurally can never return a directory inside an .opencode tree.
   return join(findAdvisorWorkspaceRoot(workspaceRoot), GENERATION_RELATIVE_PATH);
 }

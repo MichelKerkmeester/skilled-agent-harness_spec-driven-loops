@@ -708,7 +708,7 @@ Environment variables consumed by the local `.opencode/plugins/opencode-goal.js`
 |----------|---------|------|-------------|--------|
 | `OPENCODE_GOAL_PLUGIN_DISABLED` | unset (enabled) | boolean (`"1"`) | Disables goal injection and goal plugin behavior for the running OpenCode process. Restart OpenCode after changing it. | `.opencode/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_AUTONOMY` | unset (continuation suppressed) | enum (`active`, `smoke`, `passive`, unset) | `active` enables guarded continuation, `smoke` logs would-fire decisions without sending a prompt, `passive` explicitly suppresses continuation, and unset is treated as disabled. | `.opencode/plugins/opencode-goal.js` |
-| `OPENCODE_GOAL_DEBUG` | unset (off) | boolean (`"1"`) | Writes bounded debug events into `.opencode/skills/.goal-state/.goal-events.log`. | `.opencode/plugins/opencode-goal.js` |
+| `OPENCODE_GOAL_DEBUG` | unset (off) | boolean (`"1"`) | Writes bounded debug events into `.opencode/skills/.state/goal/.goal-events.log`. | `.opencode/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_VERIFIER` | `heuristic` | enum (`heuristic`, `llm`) | Selects the production default completion verifier when no injected `supervisorVerifier` is provided. `heuristic` is deterministic and fail-closed; `llm` opts into `ctx.client.session.promptAsync` semantic verdicts. Invalid values fall back to `heuristic`. | `.opencode/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_MAX_OBJECTIVE_CHARS` | `4000` | number (positive int) | Maximum stored raw objective length. | `.opencode/plugins/opencode-goal.js` |
 | `OPENCODE_GOAL_MAX_GOAL_PROMPT_CHARS` | `4000` | number (positive int, clamped to 4000) | Maximum generated `goalPrompt` length. | `.opencode/plugins/opencode-goal.js` |

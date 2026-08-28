@@ -236,7 +236,7 @@ Pass condition: rollback and re-enable need no state cleanup.
 | No brief appears in any runtime | Disable flag set, advisor script missing, or prompt policy skipped | Unset `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`, check `skill_advisor.py`, use a work-intent prompt |
 | Brief appears in Claude but not Copilot | Runtime registration drift or Copilot custom-instructions target mismatch | Check `.github/hooks/*.json`, `SPECKIT_COPILOT_INSTRUCTIONS_PATH`, and the managed block in `$HOME/.copilot/copilot-instructions.md` |
 | JSONL sink empty or unbounded | Metrics root misconfigured, `SKILL_ADVISOR_DEBUG` unset, or rotation disabled | Check `TMPDIR`, confirm `SKILL_ADVISOR_DEBUG=1`, confirm `.opencode/skills/system-skill-advisor/mcp-server/lib/metrics.ts` sink wiring, and verify rotation bounds |
-| `freshness: "unavailable"` persists | Probe failure, missing graph, or corrupt generation counter | Check `.opencode/skills/.advisor-state/generation.json`, `skill-graph.sqlite`, and JSONL `errorCode` |
+| `freshness: "unavailable"` persists | Probe failure, missing graph, or corrupt generation counter | Check `.opencode/skills/.state/advisor/generation.json`, `skill-graph.sqlite`, and JSONL `errorCode` |
 | Fail-open rate exceeds 5% | Python missing, timeout, invalid JSON, SQLite busy or script missing | Inspect `speckit_advisor_hook_fail_open_total` by `errorCode`, then fix the top code |
 
 ---

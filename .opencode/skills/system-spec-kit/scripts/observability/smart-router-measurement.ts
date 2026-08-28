@@ -134,7 +134,7 @@ const DEFAULT_CORPUS_PATH = '.opencode/specs/system-spec-kit/026-graph-and-conte
 const DEFAULT_REPORT_PATH = '.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-report.md';
 const DEFAULT_JSONL_PATH = '.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl';
 const DEFAULT_STATIC_COMPLIANCE_PATH = '.opencode/reports/smart-router-static/compliance.jsonl';
-const DEFAULT_LIVE_COMPLIANCE_PATH = '.opencode/skills/.smart-router-telemetry/compliance.jsonl';
+const DEFAULT_LIVE_COMPLIANCE_PATH = '.opencode/skills/.state/smart-router-telemetry/compliance.jsonl';
 const UNKNOWN_RESOURCE = '__unknown_unparsed__';
 const IS_CLI_ENTRY = process.argv[1]
   ? path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
@@ -810,7 +810,7 @@ export function formatMeasurementReport(summary: MeasurementSummary): string {
     '- This report measures advisor output and the predicted SMART ROUTING resource route only.',
     '- It does not measure actual AI tool reads, skipped SKILL.md behavior, or whether a model followed a route.',
     '- Compliance JSONL records emitted by this static harness intentionally stay on the static stream and classify as `unknown_unparsed` to avoid implying live-session compliance.',
-    '- Readiness stays blocked until the live wrapper captures actual reads in `.opencode/skills/.smart-router-telemetry/compliance.jsonl`.',
+    '- Readiness stays blocked until the live wrapper captures actual reads in `.opencode/skills/.state/smart-router-telemetry/compliance.jsonl`.',
     '',
   );
 

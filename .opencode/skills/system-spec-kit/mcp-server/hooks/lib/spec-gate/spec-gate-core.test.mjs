@@ -8,7 +8,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync, chmodSync, symlinkSync, realpathSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, dirname } from 'node:path';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
@@ -960,7 +960,7 @@ test('fail-open: unwritable state directory never blocks classify or enforce', (
     const sessionID = nextSessionID();
     const { stateDir } = core.resolveGuardPaths(root);
     // Occupy the state-dir path with a plain file so mkdirSync(recursive) fails.
-    mkdirSync(join(root, '.opencode', 'skills'), { recursive: true });
+    mkdirSync(dirname(stateDir), { recursive: true });
     writeFileSync(stateDir, 'not a directory');
 
     // Classify is advisory-only: even though the write fails (and the answer
@@ -981,7 +981,7 @@ test('fail-open: unwritable state directory never blocks classify or enforce', (
     });
     assert.equal(mutation.decision, 'allow');
   } finally {
-    try { chmodSync(join(root, '.opencode', 'skills', '.spec-gate-state'), 0o644); } catch (_) { /* best-effort */ }
+    try { chmodSync(join(root, '.opencode', 'skills', '.state', 'spec-gate'), 0o644); } catch (_) { /* best-effort */ }
     cleanup(root);
   }
 });
@@ -1003,7 +1003,7 @@ test('fail-open: unexpected argument shape never throws and always allows', () =
 // boundary, so classifyIntent(null)/evaluateMutation(null) threw a raw
 // TypeError instead of failing open. Isolated to a fresh empty cwd (via
 // process.chdir) so the "no real gate state present" assumption holds
-// regardless of this repo's own ambient .spec-gate-state contents.
+// regardless of this repo's own ambient .state/spec-gate contents.
 // ─────────────────────────────────────────────────────────────────────────────
 
 test('classifyIntent(null) fails open: never throws, returns the closed/no-question shape', () => {
@@ -1620,12 +1620,12 @@ test('HIGHEST BLAST proof: every known error path resolves to allow, even with e
     try {
       const sessionID = nextSessionID();
       const { stateDir } = core.resolveGuardPaths(root);
-      mkdirSync(join(root, '.opencode', 'skills'), { recursive: true });
+      mkdirSync(dirname(stateDir), { recursive: true });
       writeFileSync(stateDir, 'not a directory');
       const result = core.evaluateMutation({ tool: 'write', filePath: 'src/login.ts', sessionID, projectDir: root, env: enforceEnv });
       assert.notEqual(result.decision, 'deny');
     } finally {
-      try { chmodSync(join(root, '.opencode', 'skills', '.spec-gate-state'), 0o644); } catch (_) { /* best-effort */ }
+      try { chmodSync(join(root, '.opencode', 'skills', '.state', 'spec-gate'), 0o644); } catch (_) { /* best-effort */ }
       cleanup(root);
     }
   }

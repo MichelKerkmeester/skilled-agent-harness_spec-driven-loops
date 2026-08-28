@@ -41,7 +41,7 @@ const { isHookEnabled } = require('../../shared/hook-flags.cjs');
 
 const STATE_DIR_ENV = 'OPENCODE_GOAL_STATE_DIR';
 const DISABLED_ENV = 'OPENCODE_GOAL_PLUGIN_DISABLED';
-const STATE_SUBDIR = '.opencode/skills/.goal-state';
+const STATE_SUBDIR = '.opencode/skills/.state/goal';
 const LEGACY_STATE_FILENAME = 'active-goal.json';
 const ARCHIVE_SUBDIR = '.archive';
 const LEGACY_ARCHIVE_SUBDIR = '.legacy';
@@ -140,7 +140,7 @@ function resolveRepoRoot(startDir = process.cwd()) {
 /**
  * Resolve the workspace state directory. Precedence: explicit `stateDir` option,
  * then `OPENCODE_GOAL_STATE_DIR` env override (tests use this to avoid touching the
- * real `.goal-state/` tree), then the default path under the resolved repo root.
+ * real `.state/goal/` tree), then the default path under the resolved repo root.
  */
 function resolveStateDir(rawOptions = {}) {
   const explicit = typeof rawOptions.stateDir === 'string' && rawOptions.stateDir.trim();

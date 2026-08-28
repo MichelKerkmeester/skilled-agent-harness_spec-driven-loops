@@ -168,7 +168,7 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
   },
   {
     surfaceId: 'model-benchmark-hub-output', format: 'mixed',
-    pathTemplate: '.opencode/skills/sk-prompt/sk-prompt-models/benchmarks/{run_label}/',
+    pathTemplate: '.opencode/skills/system-deep-loop/deep-improvement/benchmark/model-benchmark/{run_label}/',
     legacyWriter: 'model-benchmark lane', readers: ['model benchmark report and promotion tools'],
     fixture: CONTROL_FIXTURE, disposition: 'retain-legacy-input', serializerId: null,
     refreshBoundary: null, nonProjectableReason: 'Write-once benchmark evidence remains source-owned',
@@ -227,7 +227,7 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
   },
   {
     surfaceId: 'loop-guard-session-state', format: 'json',
-    pathTemplate: '.opencode/skills/.loop-guard-state/{hex(session_id)}.json',
+    pathTemplate: '.opencode/skills/.state/loop-guard/{hex(session_id)}.json',
     legacyWriter: 'runtime dispatch guard shared by OpenCode and Claude adapters',
     readers: ['dispatch guard reads active session state; operators may inspect archived state'],
     fixture: CONTROL_FIXTURE, disposition: 'project', serializerId: 'legacy-compact-json-v1',
@@ -235,7 +235,7 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
   },
   {
     surfaceId: 'loop-guard-archive', format: 'json',
-    pathTemplate: '.opencode/skills/.loop-guard-state/.archive/{hex(session_id)}.json',
+    pathTemplate: '.opencode/skills/.state/loop-guard/.archive/{hex(session_id)}.json',
     legacyWriter: 'runtime dispatch guard retention sweep',
     readers: ['operators only; the guard prunes by mtime and does not restore archived sessions'],
     fixture: CONTROL_FIXTURE, disposition: 'project', serializerId: 'legacy-compact-json-v1',

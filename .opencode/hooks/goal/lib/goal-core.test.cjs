@@ -5,7 +5,7 @@
 // ║          compatibility, hardening, verifier verdicts, and CLI envelope   ║
 // ║          coverage for the goal core + manage CLI. Every test points      ║
 // ║          `stateDir` at a fresh temp directory so the real                ║
-// ║          `.opencode/skills/.goal-state/` tree is never touched.          ║
+// ║          `.opencode/skills/.state/goal/` tree is never touched.          ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

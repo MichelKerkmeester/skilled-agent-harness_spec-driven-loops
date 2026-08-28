@@ -40,7 +40,7 @@ Every file in this folder is a symlink. The real per-runtime adapters live in `s
 
    If the folder has no `checklist.md` (Level 1), it stats `implementation-summary.md` instead and advises when the file is absent: `claimed done but no implementation-summary.md recorded in <folder>`.
 
-4. Applies per-spec-folder dedup. A fingerprint of `specFolder + claimText` is stored in `.opencode/skills/.completion-sentinel-state/advisory-dedup.json`; if the same packet+message pair was already advised, the advisory is suppressed. A persistence failure fails open to "not deduped" — the worst case is one extra advisory, never a blocked turn.
+4. Applies per-spec-folder dedup. A fingerprint of `specFolder + claimText` is stored in `.opencode/skills/.state/completion-sentinel/advisory-dedup.json`; if the same packet+message pair was already advised, the advisory is suppressed. A persistence failure fails open to "not deduped" — the worst case is one extra advisory, never a blocked turn.
 5. Returns `{decision:'advise', detail, deduped}` or `{decision:'ok', detail:null, deduped}`.
 
 The adapter invokes `appendAdvisoryLog(projectDir, detail)` to write the bounded log line (256 KB, rotated to `.1`):
@@ -133,7 +133,7 @@ Set a flag inline for one command, export it for a session, or persist it in `.o
 | Decisions | `ok` or `advise`. Never `block` — the sentinel is advisory-only for the entire v1 rollout. A bug or false-positive can never force continuation. |
 | Evidence | The core checks recorded artifacts only: `check-completion.sh --json` output (checklist folders) or a `stat` of `implementation-summary.md` (Level 1 folders). It never runs a test, build, or `validate.sh`. |
 | Failure | Fail-open on every path: missing payload, missing spec folder, missing checklist, spawn failure, timeout, non-zero exit with no recoverable stdout, dedup persistence error, log write error, sweep error — all resolve to `{decision:'ok'}` or a no-op. |
-| State | Dedup store at `.opencode/skills/.completion-sentinel-state/advisory-dedup.json` (atomic writes, per-spec-folder fingerprint). Advisory log at `.opencode/logs/completion-sentinel-advisories.log` (256 KB, rotated to `.1`). Sweep prunes entries older than the retention window. |
+| State | Dedup store at `.opencode/skills/.state/completion-sentinel/advisory-dedup.json` (atomic writes, per-spec-folder fingerprint). Advisory log at `.opencode/logs/completion-sentinel-advisories.log` (256 KB, rotated to `.1`). Sweep prunes entries older than the retention window. |
 | Output | The core never writes stdout/stderr. Adapters log to the bounded advisory log; the Stop-event adapters also warn to stderr; Pi sends a model-visible `pi.sendMessage`; OpenCode logs to file only (TUI constraint). |
 
 ---

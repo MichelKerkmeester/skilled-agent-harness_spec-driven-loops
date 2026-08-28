@@ -67,5 +67,5 @@ export function resolveAuthorityRoot(options?: ResolveAuthorityRootOptions): str
     return isAbsolute(configuredRoot) ? configuredRoot : resolve(base, configuredRoot);
   }
 
-  return join(base, '.opencode/skills/.authority-state');
+  return join(base, '.opencode/skills/.state/authority');
 }
