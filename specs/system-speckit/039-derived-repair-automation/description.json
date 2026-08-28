@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/039-derived-repair-automation",
+  "description": "Repair the spec-packet validation failures that are recomputable from repository state, and refuse the ones that record work a person did.",
+  "keywords": [
+    "repair",
+    "spec-packet",
+    "validation",
+    "failures",
+    "recomputable",
+    "repository",
+    "state",
+    "refuse",
+    "ones",
+    "record",
+    "work",
+    "person"
+  ],
+  "lastUpdated": "2026-08-28T19:52:54.673Z",
+  "specId": "039",
+  "folderSlug": "derived-repair-automation",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
