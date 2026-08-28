@@ -161,11 +161,51 @@ function discover(root) {
   return out.sort();
 }
 
+const USAGE = 'Usage: repair-derived.cjs [--folder <packet>] [--roots <dir>] [--apply]';
+
+function flagValue(argv, name) {
+  const at = argv.indexOf(name);
+  if (at === -1) return undefined;
+  const value = argv[at + 1];
+  if (value === undefined || value.startsWith('--')) fail(`${name} needs a path`);
+  return value;
+}
+
+function fail(message) {
+  process.stderr.write(`${message}\n${USAGE}\n`);
+  process.exit(2);
+}
+
+// A repair writes into whatever it is pointed at, so the target is confined to
+// the packet tree before anything is read. Without this a mistyped or relative
+// path could rewrite files elsewhere in the repository, and the tool would have
+// no way to notice it had done so.
+function insideSpecs(target) {
+  const resolved = path.resolve(REPO, target);
+  const specsRoot = path.resolve(REPO, 'specs');
+  const rel = path.relative(specsRoot, resolved);
+  return resolved === specsRoot || (rel !== '' && !rel.startsWith('..') && !path.isAbsolute(rel));
+}
+
 function main() {
   const argv = process.argv.slice(2);
+  const known = new Set(['--folder', '--roots', '--apply']);
+  for (let i = 0; i < argv.length; i += 1) {
+    const token = argv[i];
+    if (token.startsWith('--')) {
+      if (!known.has(token)) fail(`unknown argument: ${token}`);
+      if (token !== '--apply') i += 1;
+    }
+  }
+
   const apply = argv.includes('--apply');
-  const folderArg = argv[argv.indexOf('--folder') + 1];
-  const targets = argv.includes('--folder') && folderArg ? [folderArg] : discover(argv[argv.indexOf('--roots') + 1] || 'specs');
+  const folderArg = flagValue(argv, '--folder');
+  const rootsArg = flagValue(argv, '--roots') || 'specs';
+  for (const candidate of [folderArg, rootsArg].filter(Boolean)) {
+    if (!insideSpecs(candidate)) fail(`refusing a target outside the packet tree: ${candidate}`);
+    if (!fs.existsSync(path.resolve(REPO, candidate))) fail(`no such path: ${candidate}`);
+  }
+  const targets = folderArg ? [folderArg] : discover(rootsArg);
 
   let repaired = 0, pending = 0, failed = 0;
   const blocked = new Map();

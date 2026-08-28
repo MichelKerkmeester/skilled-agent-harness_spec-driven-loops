@@ -56,15 +56,15 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## PHASE 2: IMPLEMENTATION
 
-- [ ] T-101 [P0] Validate arguments and refuse any target outside the specs tree.
-- [ ] T-102 [P0] Return distinct exit codes for clean, repairable-while-reporting, and repair-failed.
-- [ ] T-103 [P1] Read both validator report shapes so no packet appears trivially clean.
-- [ ] T-104 [P0] Build fixture packets, one broken per derived class and one carrying only authored failures.
-- [ ] T-105 [P0] Assert the authored fixture is byte-identical after a run.
-- [ ] T-106 [P1] Assert a second run over a repaired fixture changes nothing.
-- [ ] T-107 [P1] Audit the generators that emit derived fields for the omission already found in one of them.
-- [ ] T-108 [P1] Add a reporting-mode step to an existing workflow, never applying repairs.
-- [ ] T-109 [P2] Write the tool's readme, stating what it repairs, what it refuses, and why the refusal is deliberate.
+- [x] T-101 [P0] Validate arguments and refuse any target outside the specs tree.
+- [x] T-102 [P0] Return distinct exit codes for clean, repairable-while-reporting, and repair-failed.
+- [x] T-103 [P1] Read both validator report shapes so no packet appears trivially clean.
+- [x] T-104 [P0] Build fixture packets, one broken per derived class and one carrying only authored failures.
+- [x] T-105 [P0] Assert the authored fixture is byte-identical after a run.
+- [x] T-106 [P1] Assert a second run over a repaired fixture changes nothing.
+- [x] T-107 [P1] Audit the generators that emit derived fields for the omission already found in one of them.
+- [x] T-108 [P1] Add a reporting-mode step to an existing workflow, never applying repairs.
+- [x] T-109 [P2] Write the tool's readme, stating what it repairs, what it refuses, and why the refusal is deliberate.
 
 <!-- /ANCHOR:phase-2 -->
 
@@ -73,7 +73,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## PHASE 3: VERIFICATION
 
-- [ ] T-201 [P0] Run the tool's tests and read the result.
+- [x] T-201 [P0] Run the tool's tests and read the result.
 - [ ] T-202 [P0] Dry run across the specs tree; confirm no repairable derived failures remain.
 - [ ] T-203 [P0] Confirm every remaining failure belongs to an authored rule, with counts by rule.
 - [ ] T-204 [P1] Confirm the workflow step passes in reporting mode.
@@ -136,9 +136,9 @@ assertion that a rule stopped firing.
 <!-- ANCHOR:code-quality -->
 ## CODE QUALITY
 
-- [ ] CHK-010 [P0] Repairable rules are an explicit allow-list, so an unlisted rule is refused by construction.
-- [ ] CHK-011 [P0] Every written value is recomputed from repository state.
-- [ ] CHK-012 [P1] Comments explain why a repair is safe, not which packet prompted it.
+- [x] CHK-010 [P0] Repairable rules are an explicit allow-list, so an unlisted rule is refused by construction.
+- [x] CHK-011 [P0] Every written value is recomputed from repository state.
+- [x] CHK-012 [P1] Comments explain why a repair is safe, not which packet prompted it.
 
 <!-- /ANCHOR:code-quality -->
 
@@ -147,9 +147,9 @@ assertion that a rule stopped firing.
 <!-- ANCHOR:testing -->
 ## TESTING CHECKLIST
 
-- [ ] CHK-020 [P0] A fixture broken in each derived way is repaired.
-- [ ] CHK-021 [P0] A fixture carrying only authored failures is byte-identical afterwards.
-- [ ] CHK-022 [P1] A second run over a repaired fixture changes nothing.
+- [x] CHK-020 [P0] A fixture broken in each derived way is repaired.
+- [x] CHK-021 [P0] A fixture carrying only authored failures is byte-identical afterwards.
+- [x] CHK-022 [P1] A second run over a repaired fixture changes nothing.
 
 <!-- /ANCHOR:testing -->
 
@@ -168,8 +168,8 @@ assertion that a rule stopped firing.
 <!-- ANCHOR:security -->
 ## SECURITY
 
-- [ ] CHK-040 [P0] A target outside the specs tree is refused.
-- [ ] CHK-041 [P1] Writes stay within the packet under repair.
+- [x] CHK-040 [P0] A target outside the specs tree is refused.
+- [x] CHK-041 [P1] Writes stay within the packet under repair.
 
 <!-- /ANCHOR:security -->
 
@@ -178,7 +178,7 @@ assertion that a rule stopped firing.
 <!-- ANCHOR:docs -->
 ## DOCUMENTATION
 
-- [ ] CHK-050 [P1] Readme states what is repaired, what is refused, and why the refusal is deliberate.
+- [x] CHK-050 [P1] Readme states what is repaired, what is refused, and why the refusal is deliberate.
 
 <!-- /ANCHOR:docs -->
 
@@ -187,7 +187,7 @@ assertion that a rule stopped firing.
 <!-- ANCHOR:file-org -->
 ## FILE ORGANIZATION
 
-- [ ] CHK-060 [P1] Tool sits beside the validator it reads; tests sit with the other script tests.
+- [x] CHK-060 [P1] Tool sits beside the validator it reads; tests sit with the other script tests.
 
 <!-- /ANCHOR:file-org -->
 
