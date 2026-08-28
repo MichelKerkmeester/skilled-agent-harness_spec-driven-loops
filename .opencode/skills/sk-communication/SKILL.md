@@ -1,6 +1,6 @@
 ---
 name: sk-communication
-description: Comprehension layer for agent output — projects terse CLI output into plain English byte-safely, and explains a topic or a prior reply as the smallest visual at a chosen depth.
+description: Projects terse CLI output to plain English byte-safely, and explains a topic or reply as the smallest visual at a chosen depth.
 allowed-tools: [Read, Write, Bash, Grep, Glob]
 version: 1.1.0.0
 ---
@@ -90,17 +90,20 @@ The capability is one package split by responsibility. Route to the subsystem th
 | Wire a specific CLI adapter or its display | `src/runtimes/`, `src/clients/` |
 | Score quality or aggregate private telemetry | `src/evaluation/`, `src/observability/` |
 | Check compatibility, gate a release, or roll back | `src/doctor/`, `src/release/` |
+| Explain a topic or the prior reply as a visual, or pick a depth | `references/visual-explanation.md` (Lane B; no package surface) |
 
 ### Resource Domains
 
 - The package itself under `.opencode/skills/sk-communication/cli-communication-projection/` is the primary resource; its `docs/` folder holds install, configuration, privacy, support-matrix, rollback, and runbook guidance.
 - The design and requirements history lives in the spec epic under `specs/cli-external-orchestration/035-improved-communication/`.
+- Lane B has no package surface. Its whole contract is `references/visual-explanation.md` plus the command file `.opencode/commands/rewrite/explain-visually.md`.
 
 ### Loading Levels
 
 - ALWAYS: read the relevant `src/<subsystem>/index.ts` exports before integrating against them.
 - CONDITIONAL: read the matching `docs/*.md` when the task is install, privacy, support, or rollback.
 - ON_DEMAND: read the spec epic only for the "why" behind a frozen invariant.
+- LANE B: read `references/visual-explanation.md` before choosing a visual form or a depth; nothing under the package applies.
 
 ### Smart Router Pseudocode
 
@@ -132,9 +135,25 @@ def _guard_in_skill(relative_path: str) -> str:
         raise ValueError("Only skill-local markdown resources are routable")
     return resolved.relative_to(SKILL_ROOT).as_posix()
 
+EXPLANATION_SIGNALS = (
+    "explain visually", "diagram", "draw the flow", "visualize", "sketch",
+    "explain simply", "explain from zero", "walk me through",
+    "modality", "depth", "explain-visually",
+)
+
+def select_lane(request) -> str:
+    """Lane B owns visual explanation; everything else is projection."""
+    text = str(getattr(request, "text", request)).lower()
+    return "explanation" if any(s in text for s in EXPLANATION_SIGNALS) else "projection"
+
+LANE_RESOURCES = {
+    "projection": ["references/package-map.md"],
+    "explanation": ["references/visual-explanation.md"],
+}
+
 def route_resources(request):
     inventory = discover_markdown_resources()
-    selected = ["references/package-map.md"] if inventory else []
+    selected = LANE_RESOURCES[select_lane(request)] if inventory else []
     if not selected:
         return {**UNKNOWN_FALLBACK, "resources": []}
     loaded = []
@@ -143,7 +162,7 @@ def route_resources(request):
         if guarded in inventory and guarded not in loaded:
             load(guarded)
             loaded.append(guarded)
-    return {"resources": loaded}
+    return {"lane": select_lane(request), "resources": loaded}
 ```
 
 ---

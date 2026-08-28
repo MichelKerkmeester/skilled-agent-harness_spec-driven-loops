@@ -223,3 +223,37 @@ Fails a release closed unless every dated evidence lane passes, and supplies a p
 #### Source Files
 
 See [`packaging-and-release/release-readiness-and-rollback.md`](packaging-and-release/release-readiness-and-rollback.md) for full implementation and test file listings.
+
+---
+
+## 8. EXPLANATION
+
+### Modality selection
+
+#### Description
+
+Maps content to the smallest visual form that answers the question and applies the selection rules that keep the rendered explanation minimal.
+
+#### Current Reality
+
+The command resolves the subject, then walks a content-to-form table — pseudocode, call tree, component tree, file tree, Mermaid, `diff`, code block, or HTML — choosing the plainest form that fits. It includes only what resolves the current question, reads code before diagramming it, and skips rendering when no visual would clarify a plain factual answer.
+
+#### Source Files
+
+See [`explanation/modality-selection.md`](explanation/modality-selection.md) for full implementation and test file listings.
+
+---
+
+### Depth-calibrated explanation
+
+#### Description
+
+Applies one of three depth levels to an explanation under the rule that simplification changes words, never facts.
+
+#### Current Reality
+
+`--depth=expert|plain|novice` selects vocabulary and framing for a peer, a non-specialist, or a zero-background reader while protected spans — code, paths, commands, URLs, numbers, and identifiers — stay byte-exact at every depth. An unrecognized depth value fails closed rather than silently defaulting.
+
+#### Source Files
+
+See [`explanation/depth-calibrated-explanation.md`](explanation/depth-calibrated-explanation.md) for full implementation and test file listings.

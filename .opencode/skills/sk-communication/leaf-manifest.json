@@ -6,6 +6,8 @@
         "feature-catalog/assembly-and-context/generation-keyed-message-assembly.md",
         "feature-catalog/evaluation-and-observability/blind-non-inferiority-evaluation.md",
         "feature-catalog/evaluation-and-observability/content-free-observability.md",
+        "feature-catalog/explanation/depth-calibrated-explanation.md",
+        "feature-catalog/explanation/modality-selection.md",
         "feature-catalog/fidelity-and-render/capability-aware-presentation.md",
         "feature-catalog/fidelity-and-render/protected-span-fidelity-validation.md",
         "feature-catalog/packaging-and-release/compatibility-doctor.md",
@@ -15,6 +17,8 @@
         "feature-catalog/provider-and-privacy/provider-adapters-and-execution.md",
         "feature-catalog/runtime-adapters/six-runtime-adapter-matrix.md",
         "manual-testing-playbook/advisor-routing/advisor-routes-projection-request.md",
+        "manual-testing-playbook/explanation/depth-flag-changes-words-not-facts.md",
+        "manual-testing-playbook/explanation/explain-visually-selects-modality.md",
         "manual-testing-playbook/fidelity-and-privacy/exact-original-fidelity-fallback.md",
         "manual-testing-playbook/fidelity-and-privacy/external-cli-provider-fallback.md",
         "manual-testing-playbook/fidelity-and-privacy/privacy-precedes-provider-ranking.md",
@@ -23,7 +27,8 @@
         "manual-testing-playbook/release-gating/compatibility-doctor-selects-original-only.md",
         "manual-testing-playbook/release-gating/human-certified-bundle-gates-release.md",
         "manual-testing-playbook/release-gating/provisional-evaluation-blocks-release.md",
-        "references/package-map.md"
+        "references/package-map.md",
+        "references/visual-explanation.md"
       ],
       "packet": ".",
       "workflowMode": "sk-communication"
