@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-communication/003-visual-explanation-lane",
+  "description": "`sk-communication` adapts an explanation on exactly one axis: register",
+  "keywords": [
+    "visual",
+    "explanation",
+    "lane",
+    "sk-communication",
+    "explain-visually",
+    "modality",
+    "depth",
+    "rewrite",
+    "command",
+    "diagram",
+    "modality",
+    "depth",
+    "novice"
+  ],
+  "lastUpdated": "2026-08-28T00:45:00.000Z",
+  "specId": "003",
+  "folderSlug": "visual-explanation-lane",
+  "parentChain": [
+    "sk-communication"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": []
+}

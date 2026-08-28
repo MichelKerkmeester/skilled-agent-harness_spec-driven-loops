@@ -1,17 +1,34 @@
 ---
 name: sk-communication
-description: Portable CLI projection layer that rewrites terse agent output to plain English while keeping canonical bytes unchanged.
-allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.0.0.0
+description: Comprehension layer for agent output — projects terse CLI output into plain English byte-safely, and explains a topic or a prior reply as the smallest visual at a chosen depth.
+allowed-tools: [Read, Write, Bash, Grep, Glob]
+version: 1.1.0.0
 ---
 
-<!-- Keywords: communication projection, claudish to english, rewrite CLI output, plain-english projection, presentation projection, privacy-first rewrite, full-projection, safe-native, provider adapters, exact-original fallback, deepseek ollama llama.cpp, blind non-inferiority evaluation, compatibility doctor, release gate -->
+<!-- Keywords: communication projection, claudish to english, rewrite CLI output, plain-english projection, presentation projection, privacy-first rewrite, full-projection, safe-native, provider adapters, exact-original fallback, deepseek ollama llama.cpp, blind non-inferiority evaluation, compatibility doctor, release gate, visual explanation, explain visually, diagram this, draw the flow, visualize, explain simply, explain from zero, modality selection, depth rubric -->
 
 # Communication Projection
 
 Make supported CLI and agent output read like careful plain English, across Claude, Codex, Pi, OpenCode, Devin, and Cursor, while leaving the canonical event stream, transcript, tool data, and model context byte-for-byte unchanged. Every unsafe or failed path returns the exact original. The implementation is the `@portable-cli/communication-projection` package under `.opencode/skills/sk-communication/cli-communication-projection/`; this skill routes you to the right part of it and enforces its invariants.
 
 Projection is off by default for everyone. Nothing rewrites CLI output until an operator opts in on their own machine, by setting `COMMUNICATION_PROJECTION_ENABLED` or by adding a git-ignored `enablement.local.json` at the package root. Every activation path checks `isProjectionEnabled()` first. This skill is also held out of advisor routing on purpose. `sk-communication` is on the advisor route-exclusions denylist (`.opencode/skills/system-skill-advisor/mcp-server/config/route-exclusions.json`), so the recommender never surfaces it and you invoke it by hand.
+
+### Two lanes
+
+The skill adapts an explanation on three axes. Lane A moves one of them; Lane B moves the other two.
+
+| | **Lane A — Projection** | **Lane B — Explanation** |
+|---|---|---|
+| **Axis** | Register: the same content in plainer words | Modality (prose → visual) and depth (assumed knowledge) |
+| **Acts on** | An existing byte stream of agent output | A topic, or the prior reply, explained anew |
+| **Produces** | A display-only re-render of that stream | A new diagram, tree, or artifact |
+| **Reaches a model?** | May call a local or hosted model | In-context only |
+| **Gating** | Off by default; egress rules apply | Always available by command; no enablement flag |
+| **Entry point** | `/rewrite:response`, `/rewrite:response-by-external-agent` | `/rewrite:explain-visually` |
+
+The gating asymmetry is deliberate and load-bearing. Lane A is flagged because it rewrites canonical output and may ship that content to a model. Lane B synthesizes new material in-context and touches nothing canonical, so **the enablement flag and egress rules do not apply to it**. Do not extend Lane A's default-off posture to Lane B; that would disable a lane that carries none of the risk the flag exists to contain.
+
+Both lanes stay off advisor routing. Neither is discoverable by recommendation; both are invoked by hand.
 
 ---
 
@@ -28,9 +45,18 @@ Use this skill when the request involves:
 - Deciding a presentation tier: full 1:1 projection versus a safe-native fallback.
 - Measuring whether rewritten output reads as well as a human reference (blind non-inferiority evaluation), or gating a release on that evidence.
 
+Lane B (explanation) additionally covers:
+
+- Turning an explanation into a picture — control flow, structure, sequence, or what changed — instead of more prose.
+- Re-rendering the previous reply as a diagram rather than as plainer wording.
+- Explaining a topic to a reader with little or no background, leading with imagery over text.
+- Choosing which visual form fits the content, and how much prior knowledge to assume.
+
 ### Keyword Triggers
 
 `communication projection`, `claudish to english`, `rewrite CLI output`, `plain-english projection`, `privacy-first rewrite`, `full-projection`, `safe-native`, `provider adapters`, `exact-original fallback`, `compatibility doctor`, `release gate`, `non-inferiority evaluation`.
+
+Lane B: `explain visually`, `diagram this`, `draw the flow`, `visualize this`, `sketch the structure`, `explain simply`, `explain from zero`, `explain like i know nothing`, `walk me through it visually`.
 
 ### When NOT to Use
 
@@ -38,14 +64,15 @@ Use this skill when the request involves:
 - Authoring documentation or markdown → `sk-doc`.
 - Live-website CSS to a measured Style Reference → `sk-design-md-generator`.
 - Git worktrees, commits, or PRs → `sk-git`.
-- Rewriting durable Markdown or any on-disk file. That changes canonical bytes and is explicitly out of scope; it needs a separate opt-in product contract, not this projection layer.
+- Rewriting durable Markdown or any on-disk file. That changes canonical bytes and is explicitly out of scope; it needs a separate opt-in product contract, not this projection layer. This bars *editing existing files*. It does not bar Lane B from **creating** a new, self-contained explanatory artifact when the operator passes `--artifact` — a new file is not a rewrite of canonical bytes.
 
 ### Operator Trigger Commands
 
-Two slash commands expose sk-communication as an on-demand trigger surface. Projection stays off by default; neither command changes that global state persistently.
+Three slash commands expose sk-communication as an on-demand trigger surface. Projection stays off by default; no command changes that global state persistently.
 
 - `/rewrite:response` — the active AI re-renders its own most recent reply in plain English, entirely in-context. No local or external LLM. Display-only: canonical bytes stay unchanged.
 - `/rewrite:response-by-external-agent` — a one-shot projection of a target through a chosen engine (an external `cli-*` skill, native in-context, or a local LLM). It sets `COMMUNICATION_PROJECTION_ENABLED` inline for the single run so the flag falls away immediately afterward, keeping the default-off invariant even on error. It never writes `enablement.local.json`.
+- `/rewrite:explain-visually` — Lane B. Explains a named topic, or the prior reply when no topic is given, as the smallest visual that answers the question, at a chosen depth (`expert` | `plain` | `novice`). Entirely in-context: no local or external LLM, so no enablement flag applies. Display-only unless `--artifact` is passed, which creates one new self-contained HTML file. Modality table and depth rubric: `references/visual-explanation.md`.
 
 ---
 
@@ -180,6 +207,7 @@ Run the package's authoritative gate from the package directory: `npm run check`
 ### Core
 
 - `references/package-map.md` — the subsystem-to-path map and the public entry points; the smart router loads it.
+- `references/visual-explanation.md` — Lane B: the content-to-modality table, the three-level depth rubric, protected spans, and the lane boundary.
 - `.opencode/skills/sk-communication/cli-communication-projection/` — the implementation; read `src/<subsystem>/index.ts` for the public surface.
 - `.opencode/skills/sk-communication/cli-communication-projection/docs/` — install, configuration, privacy, support-matrix, rollback, and runbook.
 
