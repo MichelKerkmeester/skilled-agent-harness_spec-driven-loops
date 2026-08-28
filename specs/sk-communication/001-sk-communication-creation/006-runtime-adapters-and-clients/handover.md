@@ -38,6 +38,14 @@ Phase 006 provides the six-runtime adapter boundary, the client-owned presentati
 
 ---
 
+<!-- ANCHOR:when-to-use -->
+## WHEN TO USE THIS TEMPLATE
+
+Read this to pick up the runtime adapter work: the six-runtime adapter boundary, the client-owned presentation layer, and the tier-honest content-free telemetry are implemented and tested, and hand off to the evaluation and observability phase that aggregates them. Status: **complete**.
+<!-- /ANCHOR:when-to-use -->
+
+---
+
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
@@ -146,3 +154,11 @@ telemetry (all outcomes)         -> content-free reason codes + tier + status
 
 Runtime and client presentation is implemented and tier-honest, but the powered blind parity evaluation and its human-adjudicated non-inferiority gate are not yet complete. Phase 007 owns that evaluation, and Phase 008 owns packaging plus the first live credentialed smoke.
 <!-- /ANCHOR:session-notes -->
+
+---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file only when the latest validation result, blocker, or next safe action changes. Keep planning and scaffolding evidence separate from implementation claims, preserve the template source marker and the anchor pairs, and refresh the indexed continuity after any material update.
+<!-- /ANCHOR:template-instructions -->
