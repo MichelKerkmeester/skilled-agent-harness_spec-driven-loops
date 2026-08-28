@@ -280,7 +280,7 @@ Every spec folder (Level 1+) MUST contain:
 - **Plan before acting** on multi-step work. Decide which files to read first, which tools to use, and how the result will be verified before making changes.
 - **Define proof before implementation.** Convert acceptance criteria into observable checks and identify the authoritative final gate before changing files.
 - **Use a research-first approach.** Read the actual code, docs, and local instructions first; prefer surgical edits over broad rewrites.
-- **Apply project-specific conventions from `AGENTS.md`** before acting.
+- **Apply project-specific conventions from `REPO RULES.md`** before acting, when the repository has one. This document is shared across repositories — several read it through a symlinked `AGENTS.md` — so conventions that belong to one repository live beside it rather than in here. Its verification commands and local contracts bind exactly as this document's do.
 
 **Ownership & Completion:**
 - **Take responsibility for issues encountered during execution.** Do not dodge ownership with phrases like `not caused by my changes` or `pre-existing issue`; work toward the fix.
