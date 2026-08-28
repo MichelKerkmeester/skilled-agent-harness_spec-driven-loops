@@ -37,6 +37,13 @@ interface Baseline {
   seen: Set<string>;
 }
 
+// Trees the sweep will not descend into. Beyond the obvious build and VCS
+// directories, archived and scratch-backup packets are frozen copies kept for
+// history: they are never going to be brought back up to current template
+// standards, so measuring their freshness reports permanent debt that no one
+// can act on and buries the packets that are still worked on.
+const SKIPPED_TREES = new Set(['node_modules', '.git', 'z_archive', 'scratch']);
+
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(scriptDir, '..', '..');
 const repoRoot = path.resolve(skillRoot, '..', '..', '..');
@@ -175,7 +182,7 @@ function discoverSpecFolders(root: string): string[] {
     }
     for (const entry of entries) {
       if (!entry.isDirectory()) continue;
-      if (entry.name === 'node_modules' || entry.name === '.git') continue;
+      if (SKIPPED_TREES.has(entry.name)) continue;
       stack.push(path.join(current, entry.name));
     }
   }
