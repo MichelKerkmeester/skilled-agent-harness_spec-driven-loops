@@ -1,0 +1,34 @@
+{
+  "modes": [
+    {
+      "leaves": [
+        "assets/token-starter-set.md",
+        "assets/tokens.css",
+        "manual-testing-playbook/boundary/extraction-defers-to-md-generator.md",
+        "manual-testing-playbook/boundary/implementation-defers-to-sk-code.md",
+        "manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
+        "manual-testing-playbook/conflict-handling/project-system-precedence.md",
+        "manual-testing-playbook/conflict-handling/shadow-system-consistency.md",
+        "manual-testing-playbook/routing/diagnose-entry.md",
+        "manual-testing-playbook/routing/motion-entry.md",
+        "manual-testing-playbook/routing/procedure-entry.md",
+        "manual-testing-playbook/routing/review-entry.md",
+        "manual-testing-playbook/value-discipline/no-runtime-shades.md",
+        "manual-testing-playbook/value-discipline/on-scale-values.md",
+        "manual-testing-playbook/value-discipline/unit-discipline.md",
+        "references/build-procedure.md",
+        "references/color-system.md",
+        "references/depth-and-detail.md",
+        "references/diagnosis-table.md",
+        "references/hierarchy.md",
+        "references/interaction-craft.md",
+        "references/motion-principles.md",
+        "references/review-checklist.md",
+        "references/ux-laws.md"
+      ],
+      "packet": ".",
+      "workflowMode": "sk-design"
+    }
+  ],
+  "resourceContractVersion": 1
+}

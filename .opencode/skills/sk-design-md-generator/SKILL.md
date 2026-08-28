@@ -11,7 +11,7 @@ version: 1.0.2.0
 
 Captures a live website's **real, measured CSS** into a publication-quality `DESIGN.md` — a v3 **Style Reference**: a named, role-driven, ship-ready design-system handoff (named colour tokens, semantic type scale, named components, Surfaces, Elevation, Agent Prompt Guide, Similar Brands, and copy-paste Quick Start CSS + Tailwind) that AI agents build against without hallucinating colors, fonts, spacing, or shadows. Runs a three-phase pipeline (extract, write, validate) through an embedded Playwright crawler that samples five viewports and emits verbatim `tokens.json`. Deep operational detail lives in [`references/`](references/).
 
-> **Boundary.** This skill is the **extraction and format-fidelity engine** for design references. It captures what already exists — it does not invent **new** distinctive direction (palette, type, anti-default critique), which is out of scope. The transport — `mcp-figma` — moves design data; this skill produces the authoritative measured reference that transport and downstream implementers (`sk-code`) consume.
+> **Boundary.** This skill is the **extraction and format-fidelity engine** for design references. It captures what already exists — it does not decide values for a surface that does not exist yet, which belongs to the sibling skill `sk-design`. The transport — `mcp-figma` — moves design data; this skill produces the authoritative measured reference that transport and downstream implementers (`sk-code`) consume. Where both skills apply to the same surface, a measured reference from here outranks `sk-design`'s defaults; where no measurement exists, `sk-design` decides.
 
 ---
 

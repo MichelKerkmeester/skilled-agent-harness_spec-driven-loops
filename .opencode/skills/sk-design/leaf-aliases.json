@@ -1,0 +1,117 @@
+[
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "assets/token-starter-set.md",
+    "diskPath": "assets/token-starter-set.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "assets/tokens.css",
+    "diskPath": "assets/tokens.css"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "manual-testing-playbook/boundary/extraction-defers-to-md-generator.md",
+    "diskPath": "manual-testing-playbook/boundary/extraction-defers-to-md-generator.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "manual-testing-playbook/boundary/implementation-defers-to-sk-code.md",
+    "diskPath": "manual-testing-playbook/boundary/implementation-defers-to-sk-code.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "manual-testing-playbook/conflict-handling/contrast-escape-hatches.md",
+    "diskPath": "manual-testing-playbook/conflict-handling/contrast-escape-hatches.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "manual-testing-playbook/conflict-handling/project-system-precedence.md",
+    "diskPath": "manual-testing-playbook/conflict-handling/project-system-precedence.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "manual-testing-playbook/conflict-handling/shadow-system-consistency.md",
+    "diskPath": "manual-testing-playbook/conflict-handling/shadow-system-consistency.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "manual-testing-playbook/routing/diagnose-entry.md",
+    "diskPath": "manual-testing-playbook/routing/diagnose-entry.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "manual-testing-playbook/routing/motion-entry.md",
+    "diskPath": "manual-testing-playbook/routing/motion-entry.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "manual-testing-playbook/routing/procedure-entry.md",
+    "diskPath": "manual-testing-playbook/routing/procedure-entry.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "manual-testing-playbook/routing/review-entry.md",
+    "diskPath": "manual-testing-playbook/routing/review-entry.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "manual-testing-playbook/value-discipline/no-runtime-shades.md",
+    "diskPath": "manual-testing-playbook/value-discipline/no-runtime-shades.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "manual-testing-playbook/value-discipline/on-scale-values.md",
+    "diskPath": "manual-testing-playbook/value-discipline/on-scale-values.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "manual-testing-playbook/value-discipline/unit-discipline.md",
+    "diskPath": "manual-testing-playbook/value-discipline/unit-discipline.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "references/build-procedure.md",
+    "diskPath": "references/build-procedure.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "references/color-system.md",
+    "diskPath": "references/color-system.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "references/depth-and-detail.md",
+    "diskPath": "references/depth-and-detail.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "references/diagnosis-table.md",
+    "diskPath": "references/diagnosis-table.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "references/hierarchy.md",
+    "diskPath": "references/hierarchy.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "references/interaction-craft.md",
+    "diskPath": "references/interaction-craft.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "references/motion-principles.md",
+    "diskPath": "references/motion-principles.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "references/review-checklist.md",
+    "diskPath": "references/review-checklist.md"
+  },
+  {
+    "workflowMode": "sk-design",
+    "leafResourceId": "references/ux-laws.md",
+    "diskPath": "references/ux-laws.md"
+  }
+]

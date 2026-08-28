@@ -15,6 +15,11 @@
     ],
     "siblings": [
       {
+        "target": "sk-design",
+        "weight": 0.7,
+        "context": "The reading half of a pair: this skill measures a surface that already exists, sk-design decides values for one that does not. A measured Style Reference outranks sk-design's defaults for the surface it covers"
+      },
+      {
         "target": "mcp-tooling",
         "weight": 0.45,
         "context": "The mcp-figma / mcp-refero / mcp-mobbin design transports move design data; this skill produces the authoritative measured reference they pair with"
@@ -125,7 +130,7 @@
         "source": "authored"
       }
     ],
-    "causal_summary": "sk-design-md-generator is a standalone design skill that extracts a live website's real, measured CSS into a v3 Style Reference DESIGN.md through an embedded Playwright extract-write-validate pipeline (playwright-extract backend), so AI agents build against measured ground truth rather than hallucinated colors, fonts, spacing, or shadows. Graduated from the retired sk-design hub (which routed a separate interface direction mode that was deprecated), it also carries a condensed general design-knowledge layer distilled from the hub's shared reference base (anti-slop principles, cognitive and numeric design laws, design-token vocabulary, the Brand-versus-Product register, and structural-fingerprint pattern cards) so the surviving skill knows design, not only extraction. Its styles corpus and style database live under styles/ and are resolved self-relatively.",
+    "causal_summary": "sk-design-md-generator is a standalone design skill that extracts a live website's real, measured CSS into a v3 Style Reference DESIGN.md through an embedded Playwright extract-write-validate pipeline (playwright-extract backend), so AI agents build against measured ground truth rather than hallucinated colors, fonts, spacing, or shadows. Graduated from the retired sk-design parent hub (which routed a separate interface direction mode that was deprecated; the sk-design name now belongs to the standalone authoring skill that is this skill's sibling), it also carries a condensed general design-knowledge layer distilled from the hub's shared reference base (anti-slop principles, cognitive and numeric design laws, design-token vocabulary, the Brand-versus-Product register, and structural-fingerprint pattern cards) so the surviving skill knows design, not only extraction. Its styles corpus and style database live under styles/ and are resolved self-relatively.",
     "source_docs": [
       "SKILL.md"
     ],
