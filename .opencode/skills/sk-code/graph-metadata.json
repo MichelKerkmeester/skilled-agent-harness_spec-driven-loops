@@ -28,6 +28,11 @@
         "target": "sk-git",
         "weight": 0.4,
         "context": "commit hygiene pairs with code standards"
+      },
+      {
+        "target": "sk-vision",
+        "weight": 0.4,
+        "context": "vision evidence for text-only coding models"
       }
     ],
     "conflicts_with": [],
