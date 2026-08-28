@@ -7,71 +7,71 @@ version: 1.5.2.0
 hard_rules:
   - id: commit-scope-drops-untracked
     check: commit-scope-drops-untracked
-    message: "Untracked files sit inside the scope of this commit and will be silently excluded — exit 0, no warning. Naming an untracked file directly would error; naming its directory does not. Run `git status` first, or check `git show --name-only HEAD` against what you expected."
+    message: "Untracked files inside this commit's scope are silently excluded (exit 0, no warning). Naming the file directly errors; naming its directory doesn't. Run `git status` or check `git show --name-only HEAD`."
     severity: warn
   - id: commit-pathspec-empty-change
     check: commit-pathspec-empty-change
-    message: "A named path has nothing staged or modified under it, so it contributes nothing to this commit. Confirm the path is the one you meant."
+    message: "This path has nothing staged or modified — it contributes nothing to the commit. Confirm it's the one you meant."
     severity: warn
   - id: add-pathspec-matches-nothing
     check: add-pathspec-matches-nothing
-    message: "This pathspec matches no files, so nothing will be staged and git will not say so. Check the path and the working directory."
+    message: "This pathspec matches no files — nothing will be staged, and git won't say so. Check the path and working directory."
     severity: warn
   - id: add-pathspec-only-ignored
     check: add-pathspec-only-ignored
-    message: "Every file this pathspec matches is ignored, so nothing will be staged. Use `git add -f` if that is genuinely intended."
+    message: "Every file this pathspec matches is ignored, so nothing will be staged. Use `git add -f` if intended."
     severity: warn
   - id: add-update-skips-untracked
     check: add-update-skips-untracked
-    message: "`add -u` stages tracked modifications only, and untracked files are present. If a new file is part of this change, it will be left behind."
+    message: "`add -u` stages tracked modifications only; any new file in this change will be left behind."
     severity: warn
   - id: restore-discards-over-staged
     check: restore-discards-over-staged
-    message: "This path has staged content. Restoring the working tree leaves the index copy in place, so the change appears reverted while a stale version stays staged. Add `--staged` to clear the index too."
+    message: "Restoring this staged path's working tree leaves the index copy in place — it looks reverted while a stale version stays staged. Add `--staged` to clear both."
     severity: warn
   - id: checkout-from-ref-stages-silently
     check: checkout-from-ref-stages-silently
-    message: "Restoring from a ref writes the index as well as the working tree, so this content is staged without an add. Check `git diff --cached` before committing."
+    message: "Restoring from a ref writes the index as well as the working tree, staging this content without an add. Check `git diff --cached` before committing."
     severity: warn
   - id: merge-strategy-resolves-one-sided
     check: merge-strategy-resolves-one-sided
-    message: "A one-sided strategy option resolves every conflict automatically and reports a clean result, so the discarded side is never shown. Nothing in the output will distinguish this from a merge that had no conflicts."
+    message: "A one-sided strategy resolves every conflict automatically and reports a clean result — the discarded side is never shown, indistinguishable from a conflict-free merge."
     severity: warn
   - id: case-only-pathspec-folds
     check: case-only-pathspec-folds
-    message: "This path differs from a tracked file only by case, and the filesystem folds case. Git will resolve it to the existing path, so a case rename will silently not happen."
+    message: "This path differs from a tracked file only by case, and the filesystem folds case: git resolves to the existing path, so the rename silently fails."
     severity: warn
   - id: staged-path-rewritten-by-filter
     check: staged-path-rewritten-by-filter
-    message: "A path here passes through a clean filter, so the committed content differs from the file on disk. Reading the working copy will not tell you what you are committing; use `git show HEAD:<path>` to see the committed form."
+    message: "This path passes through a clean filter, so committed content differs from disk. The working copy won't show what you're committing — use `git show HEAD:<path>` to see the committed form."
     severity: warn
   - id: reset-hard-discards-changes
     check: reset-hard-discards-changes
-    message: "The working tree has modifications and `reset --hard` destroys them unrecoverably — the reflog protects commits, never uncommitted work. Stash first, or run `git status` to see what is about to be lost."
+    message: "The working tree has modifications, and `reset --hard` destroys them unrecoverably (the reflog protects commits, never uncommitted work). Stash first, or run `git status` to see what's at risk."
     severity: warn
   - id: clean-force-deletes-files
     check: clean-force-deletes-files
-    message: "This clean would actually delete files — with `-x` including everything gitignore protects, such as dependency trees and databases. `git clean -n` with the same flags shows the exact list before it is gone."
+    message: "This clean would delete files — with `-x`, even what gitignore protects, like dependency trees and databases. `git clean -n` with the same flags previews the exact list."
     severity: warn
   - id: branch-force-delete-unmerged
     check: branch-force-delete-unmerged
-    message: "This branch holds commits not merged into HEAD, which is exactly the situation `-d` refuses and `-D` bypasses. Note the branch tip SHA first; after deletion the reflog is the only way back."
+    message: "This branch holds commits not merged into HEAD — exactly what `-d` refuses and `-D` bypasses. Note the branch tip SHA first: after deletion, only the reflog gets you back."
     severity: warn
   - id: stash-clear-drops-entries
     check: stash-clear-drops-entries
-    message: "Stash entries exist and `stash clear` discards all of them unrecoverably. `git stash list` shows what is about to be dropped; `stash drop` removes one entry by name instead."
+    message: "Stash entries exist, and `stash clear` discards all unrecoverably. `git stash list` shows what's about to drop; `stash drop` removes one entry by name instead."
     severity: warn
   - id: history-expiry-defeats-recovery
     check: history-expiry-defeats-recovery
-    message: "Immediate expiry deletes the reflog safety net that every other git recovery relies on. After this runs, dropped commits and resets are genuinely gone rather than recoverable."
+    message: "Immediate expiry deletes the reflog safety net every git recovery relies on — dropped commits and resets are then gone for good."
     severity: warn
   - id: push-deletes-remote-ref
     check: push-deletes-remote-ref
-    message: "This push deletes a ref on the remote — destructive at a distance and invisible locally. Confirm the branch name and that nobody else's work rides on it."
+    message: "This push deletes a ref on the remote — destructive at a distance, invisible locally. Confirm the branch name and that nobody else's work rides on it."
     severity: warn
   - id: force-push-without-lease
     check: force-push-without-lease
-    message: "Plain `--force` overwrites the remote even if someone pushed after you last fetched. `--force-with-lease` fails in that case instead, which is the entire difference between rewriting your own history and destroying someone else's."
+    message: "Plain `--force` overwrites the remote even if someone pushed after you last fetched; `--force-with-lease` fails instead — the entire difference between rewriting your own history and destroying someone else's."
     severity: warn
 ---
 
@@ -86,22 +86,19 @@ Unified workflow guidance across workspace isolation, commit hygiene, and work c
 
 ### When to Use This Guide
 
-Use this guide when:
-- Starting new git-based work
-- Unsure which git skill to use
-- Following complete git workflow (setup → work → complete)
-- Looking for git best practices (branch naming, commit conventions)
+Use this guide when starting new git-based work, following a complete git workflow (setup, work,
+complete), unsure which git skill to use, or seeking git best practices (branch naming, commits).
 
 ### When NOT to Use
 
-- Simple `git status` or `git log` queries (use Bash directly)
+- Simple `git status`/`git log` queries (use Bash directly)
 - Non-git version control systems
 
 ### Keyword Triggers
 
-**Owned (route here):** `git worktree`, `worktree`, `create worktree`, `numbered worktree`, `restructure worktrees`, `worktree prefix`, `wt/ branch`, `worktree branch`, `branch naming allocator`, `skilled branch`, `branch`, `commit`, `conventional commits`, `pull request`, `pr`, `pr review`, `merge`, `rebase`, `finish work`, `integrate changes`, `git workflow`, `github`, `issue`, `gitkraken`, `gitlens`, `gitlens launchpad`, `commit composer`
+**Owned:** `git worktree`, `worktree`, `create worktree`, `numbered worktree`, `restructure worktrees`, `worktree prefix`, `wt/ branch`, `worktree branch`, `branch naming allocator`, `skilled branch`, `branch`, `commit`, `conventional commits`, `pull request`, `pr`, `pr review`, `merge`, `rebase`, `finish work`, `integrate changes`, `git workflow`, `github`, `issue`, `gitkraken`, `gitlens`, `gitlens launchpad`, `commit composer`
 
-**Not owned (do NOT claim):** spec folders / memory / continuity / save context → `system-spec-kit`; code implementation / writing tests → `sk-code`. This skill commits and integrates that work; it does not author it.
+**Not owned:** spec folders / memory / continuity / save context → `system-spec-kit`; code implementation / writing tests → `sk-code`.
 
 ---
 
@@ -118,7 +115,7 @@ Use this guide when:
 
 ### Smart Router Pseudocode
 
-The authoritative routing logic for scoped loading, weighted intent scoring, and ambiguity handling.
+Authoritative routing logic: scoped loading, weighted intent scoring, ambiguity handling.
 
 ```python
 import re
@@ -276,123 +273,79 @@ def route_git_resources(task):
 
 ### Workspace Choice Enforcement
 
-**MANDATORY**: The AI must NEVER autonomously decide between creating a git worktree or using the current branch.
+**MANDATORY**: The AI must NEVER autonomously choose between a git worktree and the current branch, and must NEVER create a branch directly with `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`.
 
-The AI must NEVER create a new branch directly with `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`.
-
-When git workspace triggers are detected (new feature, worktree, isolated workspace, etc.), the AI MUST ask the user to explicitly choose:
+When a git workspace trigger fires, the AI MUST ask the user to explicitly choose:
 
 | Option                        | Description                              | Best For                        |
 | ----------------------------- | ---------------------------------------- | ------------------------------- |
 | **A) Create a git worktree**  | Isolated workspace in separate directory | Parallel work, complex features |
 | **B) Work on current branch** | No new worktree created                  | Trivial changes, exploration    |
 
-**AI Behavior**: ASK before proceeding, WAIT for explicit selection (A/B), NEVER assume, RESPECT choice throughout. Once chosen, reuse preference for the session unless the user requests a change. If a new branch is needed, create it only through `git worktree add -b ...`.
+**AI Behavior**: ASK before proceeding, WAIT for explicit selection (A/B), NEVER assume, RESPECT choice for the session unless the user requests a change. Create any needed branch only through `git worktree add -b ...`.
 
 ### Launch-Wrapper Worktrees vs the In-Session Ask-First Rule
 
-The ask-first rule above governs **in-session** decisions: once an AI is running, it must not autonomously create a worktree. That is distinct from `.opencode/bin/worktree-session.sh`, a **launch wrapper** the operator opts into at the shell (e.g. `alias claude='bash /abs/.opencode/bin/worktree-session.sh claude'`). The wrapper runs *before* the AI starts and places each top-level session in its own worktree + branch + isolated MCP databases automatically; orchestrated children (`AI_SESSION_CHILD=1`, or already inside a linked worktree) exec in place. Because the wrapper acts pre-session at operator opt-in, it does not violate the in-session ask-first rule — the operator made the choice by aliasing the launch.
+The ask-first rule above governs **in-session** decisions: once running, an AI must not autonomously create a worktree. `.opencode/bin/worktree-session.sh`, a **launch wrapper** the operator opts into at the shell, is different: it runs *before* the AI starts, placing each top-level session in its own worktree + branch + isolated MCP databases (orchestrated children with `AI_SESSION_CHILD=1`, or already inside a linked worktree, exec in place) — acting pre-session at operator opt-in, so it doesn't violate the ask-first rule.
 
-**Deliberate per-session deps override.** The wrapper **symlinks** the shared `node_modules`/`dist` from the main checkout into each worktree and gives each worktree its own MCP DBs (via `SPEC_KIT_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`). This is an intentional exception to the §4 "bare worktree lacks gitignored deps / DBs are a single global instance" guidance: that guidance is about *ad-hoc* worktrees for large reorgs, whereas the wrapper purpose-builds an isolated-but-runnable worktree. Strict-validate and memory reindex still run on `main`, never inside a wrapper worktree.
+**Deliberate per-session deps override.** The wrapper **symlinks** the shared `node_modules`/`dist` into each worktree and gives each its own MCP DBs (via `SPEC_KIT_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`) — an intentional exception to the §4 "bare worktree lacks gitignored deps" guidance, which targets *ad-hoc* large-reorg worktrees, not this one. Strict-validate and memory reindex run on `main` only.
 
 ### Continuous Integration — the always-current live branch
 
-Worktree isolation keeps concurrent, multi-runtime sessions safe, but it also hides each session's work from the operator's IDE (which is open on the primary checkout). The **continuous-integration workflow** resolves that without giving up isolation: each launch-wrapper session keeps its own worktree but **autosyncs** every commit to one shared **live branch** — whatever branch the primary checkout is on — and the IDE fast-forward-follows it, so the operator always sees what is currently active, seconds behind each commit. The wrapper bases the session worktree on the live branch and exports `SPECKIT_LIVE_BRANCH` + `SPECKIT_AUTOSYNC`; the `post-commit` hook then publishes via `git-sync.sh` (fetch → fast-forward-or-rebase-abort → non-force push). Visibility is at commit granularity only — never another session's un-committed buffer. Full model, safety contract, and operator setup: [continuous-integration.md](references/continuous-integration.md).
+Worktree isolation keeps concurrent, multi-runtime sessions safe but hides each session's work from the operator's IDE. The **continuous-integration workflow** fixes this: each launch-wrapper session **autosyncs** every commit to one shared **live branch** (whatever branch the primary checkout is on), fast-forward-followed by the IDE — the operator sees what's active seconds behind each commit. The wrapper exports `SPECKIT_LIVE_BRANCH` + `SPECKIT_AUTOSYNC`; the `post-commit` hook publishes via `git-sync.sh` (fetch → fast-forward-or-rebase-abort → non-force push), commit-granularity only. Full model: [continuous-integration.md](references/continuous-integration.md).
 
 ### Remote Push Permission Enforcement
 
-**MANDATORY**: The AI must NEVER push a branch to `origin` outside the remote allowlist without a fresh, explicit go-ahead for THAT push — a prior approval to push the same branch does not carry forward to its next push.
+**MANDATORY**: The AI must NEVER push a branch to `origin` outside the remote allowlist without a fresh, explicit go-ahead for THAT push — a prior approval doesn't carry forward to the next push.
 
-The remote allowlist is `main`, `skilled/v*` release branches, plus anything the operator has added to [remote-branch-allowlist.txt](scripts/remote-branch-allowlist.txt). Everything else needs an ask before every single push that reaches origin, whether it creates the branch or only updates one already there.
+The remote allowlist is `main`, `skilled/v*` release branches, plus anything in [remote-branch-allowlist.txt](scripts/remote-branch-allowlist.txt). Everything else needs an ask before every push to origin.
 
-"Explicit go-ahead" is satisfied by either:
-- An in-turn user instruction that already names the push (e.g. selecting the finish-flow's "Push and create a Pull Request" option, or directly saying "push this branch") — do NOT ask a second time in the same breath; the instruction itself is the permission.
-- A direct question the AI asks and the operator answers yes to, when no such instruction was given (e.g. the AI would otherwise push on its own initiative).
+"Explicit go-ahead" is either an in-turn instruction that already names the push (e.g. "push this branch" — do NOT ask again), or a direct question the AI asks that the operator answers yes to.
 
-Once permission is granted, set `SPECKIT_ALLOW_REMOTE_PUSH=1` for that one `git push` invocation only — never export it for the session or persist it beyond the single command. The [pre-push hook](../../scripts/git-hooks/pre-push) enforces the same allowlist as a technical backstop: it blocks any push (new or update) to a non-allowlisted branch unless that env var is set for the invocation, so a push issued without asking is blocked rather than silently landing on origin. Full contract: [remote-branch-policy.md](references/remote-branch-policy.md).
+Once granted, set `SPECKIT_ALLOW_REMOTE_PUSH=1` for that one `git push` only, never the session. The [pre-push hook](../../scripts/git-hooks/pre-push) backstops this, blocking any push to a non-allowlisted branch unless that env var is set — an unasked push fails instead of landing silently. Full contract: [remote-branch-policy.md](references/remote-branch-policy.md).
 
-**Continuous-integration exception**: the launch-wrapper's autosync publish (ALWAYS #16) targets exactly one branch per session — `$SPECKIT_LIVE_BRANCH`, the primary checkout's own branch chosen before the session started — and is exempt from this ask, because `git-sync.sh`'s own contract never blocks mid-hook (see [continuous-integration.md](references/continuous-integration.md)). The exemption is scoped to that one branch; autosync publishing to any OTHER branch still asks.
+**Continuous-integration exception**: the launch-wrapper's autosync publish (ALWAYS #16) targets only `$SPECKIT_LIVE_BRANCH` (chosen before the session started) and is exempt because `git-sync.sh` never blocks mid-hook (see [continuous-integration.md](references/continuous-integration.md)). Autosync to any OTHER branch still asks.
 
 ### Preflight Advisory — the rules reach you at command time
 
-The `hard_rules:` block at the top of this file is not documentation — it is executed. A
-preflight advisory hook evaluates every visible `git` command against those rules using live
-repository state, and prints the matching rule at the moment the command is typed. It advises
-and never blocks: enforcement stays with the pre-commit, commit-msg and pre-push hooks.
+The `hard_rules:` block at the top of this file is executed, not just documentation: a preflight
+advisory hook evaluates every visible `git` command against those rules and live repository state
+— firing only on the specific risky state, never a bare verb match — and prints the matching rule
+as typed. It advises and never blocks; enforcement stays with the pre-commit, commit-msg, and
+pre-push hooks.
 
-Every rule is a state discriminator, never a verb match — a `reset --hard` warns only when the
-working tree holds changes it would destroy; a directory-scoped commit warns only when untracked
-files sit inside that scope. Measured fire rate across ordinary commands is zero.
+All six AI runtimes carry the same shared hook (Claude/Codex/Devin via PreToolUse, Cursor via a
+Shell-payload proxy, OpenCode via the `sk-git-preflight-advisory` plugin, Pi via a native
+extension). Full docs: [scripts/hooks/README.md](scripts/hooks/README.md) (registration, delivery,
+fail-open), [scripts/lib/README.md](scripts/lib/README.md) (rule engine, tests), and
+[manual-testing-playbook/](manual-testing-playbook/manual-testing-playbook.md) (operator scenario).
 
-All six AI runtimes carry the same shared hook: Claude and Codex/Devin via their PreToolUse hook
-configs, Cursor via a Shell-payload proxy, OpenCode via the `sk-git-preflight-advisory` plugin,
-and Pi via a native extension. Registration paths, delivery channels, and the fail-open contract:
-[scripts/hooks/README.md](scripts/hooks/README.md). The rule engine and its tests:
-[scripts/lib/README.md](scripts/lib/README.md). Operator test scenario: the
-`git-preflight-advisory/` feature in [manual-testing-playbook/](manual-testing-playbook/manual-testing-playbook.md).
-
-Suppression tiers: `SKGIT_ADVISORY=0` (global), `SKGIT_ADVISORY_SKIP=<rule-id>` (one rule), or a
-prefix like `SKGIT_ADVISORY_SKIP=commit` (a family).
+Suppression: `SKGIT_ADVISORY=0` (global), `SKGIT_ADVISORY_SKIP=<rule-id>` (one rule), or a
+`SKGIT_ADVISORY_SKIP=commit`-style prefix (a family).
 
 ### Git Development Lifecycle Map
 
 Git development flows through 3 phases:
 
-**Phase 1: Workspace Setup** (Isolate your work)
-- Create an isolated workspace with short-lived temp branches
-- Prevents: Branch juggling, stash chaos, context switching
-- Output: Clean workspace ready for focused development
-- **See**: [worktree-workflows.md](./references/worktree-workflows.md)
-
-**Phase 2: Work & Commit** (Make clean commits)
-- Analyze changes, filter artifacts, and write Conventional Commits
-- Prevents: Accidental artifact commits, unclear commit history
-- Output: Professional commit history following conventions
-- **See**: [commit-workflows.md](./references/commit-workflows.md)
-
-**Phase 3: Complete & Integrate** (Finish the work)
-- Merge, create a PR, or discard work with the tests gate
-- Prevents: Incomplete work merged, untested code integrated
-- Output: Work successfully integrated or cleanly discarded
-- **See**: [finish-workflows.md](./references/finish-workflows.md)
+| Phase | Goal | Prevents | Output | See |
+|-------|------|----------|--------|-----|
+| **1. Workspace Setup** | Isolate work in a short-lived temp branch | Branch juggling, stash chaos | Clean, focused workspace | [worktree-workflows.md](./references/worktree-workflows.md) |
+| **2. Work & Commit** | Analyze changes, filter artifacts, write Conventional Commits | Bad commits, unclear history | Clean commit history | [commit-workflows.md](./references/commit-workflows.md) |
+| **3. Complete & Integrate** | Merge, create a PR, or discard work (tests-gated) | Untested code merged | Work integrated or discarded | [finish-workflows.md](./references/finish-workflows.md) |
 
 ### Phase Transitions
-- Setup → Work: Worktree created, ready to code
-- Work → Complete: Changes committed, tests passing
-- Complete → Setup: Work integrated, start next task
+Setup (worktree created) → Work → Complete (committed, tests passing) → back to Setup (integrated).
 
 ### Workflow Selection Guide
-
-**Workspace Setup (Phase 1)**:
-- Starting new feature/fix? → Use the workspace setup phase (isolated workspace)
-- Quick fix on current branch? → Skip to Phase 2
-
-**Work & Commit (Phase 2)**:
-- Ready to commit? → Use the work and commit phase (analyze, filter, write Conventional Commits)
-- No changes yet? → Continue coding
-
-**Complete & Integrate (Phase 3)**:
-- Tests pass? → Use the complete and integrate phase (merge, PR, keep, or discard)
-- Tests failing? → Return to Phase 2
+- New feature/fix → Phase 1; quick fix → Phase 2.
+- Ready to commit → Phase 2; no changes yet → keep coding.
+- Tests pass → Phase 3; failing → return to Phase 2.
 
 ### Common Workflow Patterns
 
-**Full Workflow** (new feature):
-```
-Workspace Setup → Code → Work & Commit → Complete & Integrate
-```
-
-**Quick Fix** (current branch):
-```
-Code → Work & Commit → Complete & Integrate
-```
-
-**Parallel Work** (multiple features):
-```
-Workspace Setup (feature A) → Code → Work & Commit
-Workspace Setup (feature B) → Code → Work & Commit
-Complete & Integrate (feature A) → Complete & Integrate (feature B)
-```
+- **Full**: all 3 phases.
+- **Quick fix**: skip Phase 1.
+- **Parallel**: repeat Phases 1-2 per feature, then Phase 3 for each.
 
 ---
 
@@ -403,40 +356,36 @@ Complete & Integrate (feature A) → Complete & Integrate (feature B)
 1. **Use deterministic conventional commit format** - All authored commits follow `type(scope): summary`; preserve the explicitly exempt Git-generated subjects defined below
 2. **Create worktree for parallel work** - Never work on multiple features in the same worktree
 3. **Verify branch is up-to-date** - Pull latest changes before creating PR
-4. **Name worktree-created branches with the numbered-worktree grammar** - Format: `worktrees/{NNN}-{slug}` for a worktree-backed branch with matching directory `{base}/{NNN}-{slug}`, or `branches/{NNN}-{slug}` for a dedicated branch with no worktree. `{base}` defaults to `.worktrees` inside the checkout; set git config `speckit.worktreeBase` (or env `SPECKIT_WORKTREE_BASE`) to an absolute path to relocate worktrees OUT of the checkout so its file-watchers (Git status/fsmonitor, GUIs, sync clients) stop scanning every worktree's `node_modules`. The allocator, launch wrapper, and reaper all resolve this base; `is_valid_pair` accepts both the configured base and the legacy `.worktrees` layout. `{NNN}` is a 3-digit zero-padded per-namespace counter (001..999) — `worktrees/` and `branches/` each number independently, strictly sequential, never skipped or reused, and a `worktrees/003` and a `branches/003` may coexist. `{slug}` is a lowercase-kebab description (e.g., `worktrees/0001-auth-hardening`, `branches/0002-external-dep`). Flat spec-style namespaces make a Git-UI branch tree legible as a few clean folders instead of a per-skill pile. Never hand-compute `{NNN}` — allocate it through `.opencode/skills/sk-git/scripts/worktree-naming.sh` (`create <slug> [base]` to create the worktree directly, `create-branch <slug> [base]` for a dedicated branch without a worktree, or `allocate [worktrees|branches]` to just reserve a number), which holds a clone-wide lock and seeds each namespace's counter from its stored high-water mark plus every matching local/remote ref and (for `worktrees/`) every registered worktree basename, so a number is never reissued. `skilled/v*` release branches and `main` are reserved; `backup/<anything>` safety refs are legal but not numbered. This is distinct from the launch wrapper's ephemeral per-session worktrees (`work/{runtime}/{slug}` + `.worktrees/{runtime}-{slug}`), which stay a separate, machine-owned, auto-managed and auto-reaped lane, intentionally not numbered.
+4. **Name worktree-created branches with the numbered-worktree grammar** - `worktrees/{NNN}-{slug}` (directory `{base}/{NNN}-{slug}`) for a worktree-backed branch, or `branches/{NNN}-{slug}` for a dedicated branch with none. `{base}` defaults to `.worktrees`; set git config `speckit.worktreeBase` (or env `SPECKIT_WORKTREE_BASE`) to an absolute path to relocate worktrees OUT of the checkout (all tooling resolves this base, including the legacy `.worktrees` layout). `{NNN}` is a 3-digit zero-padded per-namespace counter (001..999): `worktrees/` and `branches/` number independently, sequential, never skipped or reused, so `worktrees/003` and `branches/003` may coexist. `{slug}` is lowercase-kebab (e.g., `worktrees/0001-auth-hardening`). Never hand-compute `{NNN}`: allocate via `.opencode/skills/sk-git/scripts/worktree-naming.sh` (`create <slug> [base]`, `create-branch <slug> [base]`, or `allocate [worktrees|branches]`) — it locks and seeds each counter from its high-water mark plus every matching ref. `skilled/v*` and `main` are reserved; `backup/<anything>` refs are legal but unnumbered. Distinct from the launch wrapper's unnumbered `work/{runtime}/{slug}` + `.worktrees/{runtime}-{slug}` lane (see above).
 5. **Reference spec folder in commits** - Include spec folder path in commit body when applicable
 6. **Clean up after merge** - Delete local and remote feature branches after successful merge
 7. **Squash commits for clean history** - Use squash merge for feature branches with many WIP commits
-8. **Defer toolchain + DB work to main on large reorgs** - For large rename/reorg, do file/`git mv` ops in the worktree but run the spec-kit toolchain (strict validate, generators, metadata regen) and ALL memory reindex/re-embed on `main` AFTER merge. A bare worktree lacks gitignored deps (`node_modules`/`dist`) and the memory/vector DBs are a single global instance — never per-worktree. See [large-reorg-playbook.md](references/large-reorg-playbook.md).
-9. **Scan for gitignored leftovers after a rename wave** - After `git mv` + merge, detect dirs with disk files but 0 tracked files (`git ls-files <dir>` empty and `git status --porcelain --untracked-files=all` clean) and `rm -rf` them — they are stale ignored cruft (`.DS_Store`, `*.log`, `*.pyc`) left behind by `git mv`.
+8. **Defer toolchain + DB work to main on large reorgs** - Do file/`git mv` ops in the worktree, but run the spec-kit toolchain and ALL memory reindex/re-embed on `main` after merge: a bare worktree lacks gitignored deps (`node_modules`/`dist`), and the memory/vector DBs are a single global instance, never per-worktree. See [large-reorg-playbook.md](references/large-reorg-playbook.md).
+9. **Scan for gitignored leftovers after a rename wave** - After `git mv` + merge, detect dirs with disk files but 0 tracked files (`git ls-files <dir>` empty, `git status --porcelain --untracked-files=all` clean) and `rm -rf` them — stale cruft left by `git mv`.
 10. **Verify rename history is preserved** - After a rename wave confirm `R`-status (not delete+add) before commit, and after merge confirm the tree has no old+new duplicate folders.
-11. **GitHub release bodies never start with an H1** - The release title field already renders `vX.X.X.X — Title`; a body-leading `# vX.X.X.X` duplicates it on the Releases page. The H1 belongs ONLY to the changelog md file in the repo. When publishing from a changelog file, strip the leading H1 (and following blank lines) into a temp notes file before `gh release create/edit --notes-file`. Full mechanics: [finish-workflows.md](references/finish-workflows.md) Step 6.
-12. **Route GitKraken MCP's local-mutation tools back to Bash** - GitKraken MCP (`gitkraken.gitkraken_*`) exposes `git_add_or_commit`, `git_push`, `git_pull`, `git_fetch`, `git_checkout`, `git_branch`, `git_worktree`, and `git_stash`, which duplicate local git mutations already gated by this skill's no-direct-branch-creation rule (❌ NEVER #2), numbered worktree naming (✅ ALWAYS #4), and the commit-message logic below. Never call these GitKraken MCP tools as a substitute for the existing Bash-based workflow; reserve GitKraken MCP for GitLens AI workflows and cross-platform issue/PR/repository operations with no local equivalent. Full detail: [gitkraken-mcp-integration.md](references/gitkraken-mcp-integration.md) §2.
-13. **Honor an authorized operator's explicit direct-push directive on a protected branch** - Protected-branch rules (PR-required, verified signatures, code scanning) primarily gate EXTERNAL contributors. When the operator holds bypass rights and explicitly asks to commit/push directly to a protected branch, do a direct `git push` — do NOT default to a PR detour, re-ask whether to use a PR, or frame the bypass / resulting unsigned commit as a problem. Still apply full commit hygiene: scope the commit to the intended files only (a shared or dirty tree may hold concurrent work — never blind `git add -A`), use Conventional Commits, and report plainly that the push bypassed protection. Whether a given operator/repo grants that bypass authority is recorded in operator memory, not in this codebase-agnostic skill.
-14. **Commit substantial work before an autostash-prone operation** - `git merge|pull|rebase --autostash` (and any `pull.rebase=true` / `rebase.autoStash=true` config) stashes the uncommitted tree, runs the operation, then re-applies it — but on a re-apply CONFLICT git leaves the whole changeset stranded in the stash behind a warning that tool-driven git easily swallows, one `git stash drop`/`clear`/gc away from permanent loss. Before merging/pulling/rebasing a large or shared-branch changeset, COMMIT it (or make an explicit `git stash` you own and pop yourself) instead of relying on `--autostash` for the changeset. The `post-merge`/`post-rewrite` guard ([git-hooks/lib/autostash-orphan-guard.sh](../../scripts/git-hooks/lib/autostash-orphan-guard.sh)) is a safety net, not a substitute: it anchors every autostash under `refs/autostash-rescue/<sha>` (GC-proof) and prints a visible, logged alert. If that alert is still present after the operation completes, your work was NOT re-applied — recover with `git stash pop` and commit immediately, BEFORE any `git stash drop/clear`.
-15. **Reconcile the primary checkout after pushing a detached/worktree HEAD to a shared branch** - `git push origin HEAD:<branch>` from a detached HEAD or an isolated worktree advances the REMOTE `<branch>` but never moves the local `<branch>` ref that another checkout (typically the operator's primary tree) has checked out, so the pushed work is safe on origin yet INVISIBLE there until a separate sync — the work looks "lost" when it is not. After such a push, verify the primary checkout's `<branch>` actually contains the pushed commit; if it does not, state plainly that the work is on origin but not yet in that tree and hand over the safe sync recipe. NEVER stash/rebase/reset a primary tree that is dirty, diverged, or owned by a concurrent session (its own stash on the stack, its HEAD moving between commands) — forcing a sync there risks orphaning that session's autostash (ALWAYS #14) or clobbering its in-flight commits; give the operator the recipe to run from a clean tree instead. See [finish-workflows.md](references/finish-workflows.md) Step 5b.
-16. **Let launch-wrapper sessions autosync; never hand-roll the publish** - Under the continuous-integration model, a launch-wrapper session publishes each commit to the live branch automatically via the `post-commit` hook calling `git-sync.sh` (gated on the wrapper-injected `SPECKIT_AUTOSYNC=1` + `SPECKIT_LIVE_BRANCH`). Do NOT manually `git push origin HEAD:<live>` or manually rebase onto the live branch to "make work visible" — `git-sync.sh` already fast-forwards-or-rebases and never force-pushes; a hand-rolled push risks the exact non-force / abort-on-conflict invariants it protects. If autosync is blocked (a printed conflict), resolve per its message; do not force it. The primary checkout follows via `git-live-follow.sh` (fast-forward-only) and is never worked in. Full contract: [continuous-integration.md](references/continuous-integration.md).
-17. **Reap worktrees before branches, and only the exempt wrapper lane** - When cleaning up a finished worktree, always remove the worktree directory (`git worktree remove`) BEFORE deleting its branch (`git branch -d`) — a branch still checked out by a worktree cannot be deleted, so removal must lead. `.opencode/bin/worktree-reaper.sh` auto-reaps ONLY the launch-wrapper lane (`work/{runtime}/{slug}` pairs), and only when all three hold: the tree is clean, the branch is merged into the LIVE integration tip (the primary checkout's actual `HEAD`, not a possibly-stale local `main`), and the session is proven inactive by its marker file (`<common-git-dir>/worktree-sessions/<runtime>-<slug>.pid` recording a now-dead pid). Human task worktrees (`worktrees/NNN-slug`), dedicated branches (`branches/NNN-slug`), detached worktrees, and any wrapper worktree with a missing/unreadable marker or a live pid are always report-only — the reaper never removes them; absence of proof is never proof of absence. Enforcement of the naming grammar itself is a migration-tolerant pre-push hook: it only gates the creation of brand-new remote branches (existing non-conformant branches are never rewritten or blocked), and it never blocks `skilled/v*` release branches.
-18. **Ask before every push to a branch outside the remote allowlist** - `origin` only ever receives `main`, `skilled/v*` release branches, and anything listed in `remote-branch-allowlist.txt` without asking; every other push (new branch or update to one already on origin) needs a fresh, in-the-moment go-ahead first — an explicit user push instruction counts as that go-ahead, a prior approval for an earlier push does not. See [Remote Push Permission Enforcement](#remote-push-permission-enforcement) and [remote-branch-policy.md](references/remote-branch-policy.md).
+11. **GitHub release bodies never start with an H1** - The release title field already renders `vX.X.X.X — Title`, so a body-leading `# vX.X.X.X` duplicates it — the H1 belongs ONLY to the repo's changelog md. When publishing from a changelog, strip the leading H1 (and blank lines) into a temp notes file before `gh release create/edit --notes-file`. Full mechanics: [finish-workflows.md](references/finish-workflows.md) Step 6.
+12. **Route GitKraken MCP's local-mutation tools back to Bash** - GitKraken MCP (`gitkraken.gitkraken_*`) exposes `git_add_or_commit`, `git_push`, `git_pull`, `git_fetch`, `git_checkout`, `git_branch`, `git_worktree`, and `git_stash` — duplicates of mutations already gated by NEVER #2, ALWAYS #4, and the commit-message logic. Never call these as a Bash substitute; reserve it for GitLens AI workflows and cross-platform issue/PR/repository ops with no local equivalent. Full detail: [gitkraken-mcp-integration.md](references/gitkraken-mcp-integration.md) §2.
+13. **Honor an authorized operator's explicit direct-push directive on a protected branch** - Protected-branch rules primarily gate EXTERNAL contributors. When the operator holds bypass rights and explicitly asks for one, do it — do NOT default to a PR detour, re-ask, or frame the bypass as a problem. Still apply full commit hygiene (scope to intended files, never blind `git add -A`; use Conventional Commits) and report plainly the push bypassed protection. Bypass authority lives in operator memory, not this codebase-agnostic skill.
+14. **Commit substantial work before an autostash-prone operation** - `git merge|pull|rebase --autostash` (or `pull.rebase=true`/`rebase.autoStash=true`) stashes the tree, runs the operation, then re-applies it — but a re-apply CONFLICT strands the changeset behind an easily-missed warning, one `git stash drop`/`clear`/gc from permanent loss. Before merging/pulling/rebasing a large or shared-branch changeset, COMMIT it (or stash and pop it yourself) instead of `--autostash`. The `post-merge`/`post-rewrite` guard ([git-hooks/lib/autostash-orphan-guard.sh](../../scripts/git-hooks/lib/autostash-orphan-guard.sh)) is a safety net, not a substitute: it anchors autostashes under `refs/autostash-rescue/<sha>` and alerts visibly if not re-applied — recover with `git stash pop` and commit immediately, before any `git stash drop/clear`.
+15. **Reconcile the primary checkout after pushing a detached/worktree HEAD to a shared branch** - `git push origin HEAD:<branch>` from a detached HEAD or isolated worktree advances the REMOTE `<branch>` but never the local ref in the primary checkout — the work is safe on origin yet INVISIBLE there until a separate sync. Verify the primary checkout's `<branch>` contains the commit; if not, say plainly it's on origin but not yet there, and hand over the safe sync recipe. NEVER stash/rebase/reset a primary tree that is dirty, diverged, or concurrently owned — forcing a sync risks orphaning its autostash (ALWAYS #14) or clobbering commits; give the operator the recipe for a clean tree instead. See [finish-workflows.md](references/finish-workflows.md) Step 5b.
+16. **Let launch-wrapper sessions autosync; never hand-roll the publish** - Under the continuous-integration model (see above), autosync already publishes every commit to the live branch via `git-sync.sh`. Do NOT manually `git push origin HEAD:<live>` or rebase onto the live branch to "make work visible" — a hand-rolled push risks the invariants `git-sync.sh` protects. If autosync is blocked (a printed conflict), resolve per its message; don't force it. The primary checkout follows via `git-live-follow.sh` (fast-forward-only) and is never worked in. Full contract: [continuous-integration.md](references/continuous-integration.md).
+17. **Reap worktrees before branches, and only the exempt wrapper lane** - Always remove a finished worktree's directory (`git worktree remove`) BEFORE deleting its branch (`git branch -d`) — a checked-out branch can't be deleted. `.opencode/bin/worktree-reaper.sh` auto-reaps ONLY the launch-wrapper lane (`work/{runtime}/{slug}` pairs), and only when all hold: clean tree, branch merged into the LIVE integration tip (the primary checkout's real `HEAD`, not a stale local `main`), and the session proven inactive by its marker file (`<common-git-dir>/worktree-sessions/<runtime>-<slug>.pid`, a dead pid). Human task worktrees, dedicated branches, detached worktrees, and any wrapper worktree with a missing/unreadable marker or live pid stay report-only — absence of proof is never proof of absence. Naming-grammar enforcement is a migration-tolerant pre-push hook: new remote branches only, never `skilled/v*`.
+18. **Ask before every push to a branch outside the remote allowlist** - See [Remote Push Permission Enforcement](#remote-push-permission-enforcement) above for mechanics; a prior approval never carries forward to the next push. Allowlist: [remote-branch-policy.md](references/remote-branch-policy.md).
 
 ### Commit Message Logic (Human-Clear and AI-Deterministic)
 
-Use this logic whenever an AI writes or rewrites a commit message. The goal is
-a subject that explains the outcome in `git log --oneline` and a body that
-explains the reason without requiring packet knowledge or internal jargon.
-Enforced structurally (not clarity semantics) by the `commit-msg` hook — see
+Use this logic whenever an AI writes or rewrites a commit message: the subject explains the
+outcome in `git log --oneline`, and the body explains the reason without packet knowledge or
+jargon. The `commit-msg` hook enforces structure, not clarity — see
 [git-hooks/commit-msg](../../scripts/git-hooks/commit-msg); bypass with
-`SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...` only when the hook is
-genuinely wrong about a specific message, not to skip writing a real one.
+`SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git commit ...` only when the hook is genuinely wrong, never
+to skip writing a real message.
 
 #### 1. Classify Special Git Messages
 
-Preserve Git-generated subjects unchanged when they begin with `Merge `,
-`Revert "`, `fixup! `, `squash! `, or `amend! `.
-
-Intentional checkpoints are not exempt. Write them as
-`chore(wip): checkpoint <specific state>` or use the documented bypass when
-a deliberately non-conventional message is required.
+Preserve Git-generated subjects unchanged when they begin with `Merge `, `Revert "`, `fixup! `,
+`squash! `, or `amend! `. Intentional checkpoints are not exempt: write them as
+`chore(wip): checkpoint <specific state>`, or use the documented bypass when required.
 
 #### 2. Authored Subject Contract
 
@@ -446,96 +395,81 @@ Format:
 type(scope)[!]: imperative summary
 ```
 
-Allowed types:
-
-`build`, `chore`, `ci`, `docs`, `feat`, `fix`, `merge`, `perf`, `refactor`,
-`release`, `revert`, `style`, `test`.
-
 Hard requirements:
 
-- Type and scope are required for every authored subject.
-- Scope is lowercase kebab-case, a stable subsystem name, and not a packet,
-  phase, task, or other numeric-only identifier.
-- Summary starts with a lowercase imperative verb.
-- Summary names the changed behavior or artifact, not the work process.
-- Summary does not end with punctuation or contain repeated spaces.
-- Summary is specific enough to distinguish this commit from adjacent work.
-- Subject should be at most 80 characters and must not exceed 100 characters.
+- Type and scope are required; scope is lowercase kebab-case, a stable subsystem name, never a
+  packet, phase, task, or other numeric-only identifier.
+- Summary starts with a lowercase imperative verb, names the changed behavior or artifact (not
+  the work process), ends without punctuation, has no repeated spaces, and is specific enough to
+  distinguish this commit from adjacent work.
+- Subject should be at most 80 characters and must not exceed 100.
 - A `!` requires a `BREAKING CHANGE:` footer.
 
-Do not use vague summaries such as `update`, `changes`, `fix bug`, `cleanup`,
-`misc changes`, `work in progress`, or `update stuff`.
+Do not use vague summaries like `update`, `changes`, `cleanup`, or `work in progress`.
 
-Move process metadata such as packet numbers, phases, waves, lanes, task
-counts, model names, review rounds, remediation labels, and verification
-claims to the body or `Refs:` line unless the term is part of the behavior
-being changed.
+Move process metadata (packet numbers, phases, waves, lanes, task counts, model names, review
+rounds, remediation labels, verification claims) to the body or `Refs:` line unless part of the
+behavior being changed.
 
 #### 3. Type Selection Order
 
 Use first match:
 
-1. `release` for publishing a version or release.
-2. `docs` when every substantive changed path is documentation.
-3. `fix` when existing behavior was incorrect, unsafe, or failing.
-4. `feat` when the commit adds new usable behavior or support.
-5. `perf` when measured performance improves without changing behavior.
-6. `refactor` when implementation structure changes without behavior changes.
-7. `test` when only tests or test fixtures change.
-8. `ci` when only CI workflow behavior changes.
-9. `build` when only build or dependency mechanics change.
-10. `style` when only formatting changes.
-11. `revert` or `merge` for authored revert or merge messages.
-12. `chore` only when no more specific type applies.
+1. `release` — publishing a release.
+2. `docs` — every substantive path is documentation.
+3. `fix` — existing behavior was incorrect, unsafe, or failing.
+4. `feat` — adds new usable behavior or support.
+5. `perf` — measured performance improves, behavior unchanged.
+6. `refactor` — structure changes without behavior changes.
+7. `test` — only tests or fixtures change.
+8. `ci` — only CI workflow behavior changes.
+9. `build` — only build or dependency mechanics change.
+10. `style` — only formatting changes.
+11. `revert`/`merge` — authored revert or merge messages.
+12. `chore` — no more specific type applies.
 
-Tests and documentation shipped with a feature or fix inherit that feature or
-fix type. Do not choose `chore` merely because the commit touches many files.
+Tests and documentation shipped with a feature or fix inherit that feature or fix type; do not
+choose `chore` merely because the commit touches many files.
 
 #### 4. Scope Selection Order
 
-Use first match after identifying the one logical owner:
+First match, by logical owner:
 
-1. One owning `.opencode/skills/<name>/...` subsystem -> `<name>`.
-2. `.opencode/scripts/git-hooks/...` or its installer -> `git-hooks`.
+1. `.opencode/skills/<name>/...` -> `<name>`.
+2. `.opencode/scripts/git-hooks/...` or installer -> `git-hooks`.
 3. `AGENTS.md` or runtime agent definitions -> `agents`.
 4. `.opencode/commands/...` -> `commands`.
-5. `opencode.json`, `.utcp_config.json`, or equivalent root config -> `config`.
+5. `opencode.json`, `.utcp_config.json`, or equivalent config -> `config`.
 6. Root `README.md` only -> `readme`.
-7. Spec-document or generated packet-metadata maintenance only -> `specs`.
+7. Spec-doc or generated packet-metadata maintenance only -> `specs`.
 8. Documentation spanning multiple owners -> `docs`.
-9. One dominant top-level component -> that component's lowercase name.
+9. A dominant top-level component -> its lowercase name.
 10. Inseparable cross-repository change -> `repo`.
 
-If two independent owners remain, split the commit instead of inventing a
-combined scope. Never use a numeric packet identifier as the scope.
+If two independent owners remain, split the commit instead of inventing a combined scope.
 
 #### 5. Summary Construction
 
 Apply this sequence:
 
 1. State the primary outcome of the staged diff.
-2. Start with the action: `add`, `prevent`, `preserve`, `route`, `remove`,
-   `restore`, `clarify`, `split`, or another precise imperative verb.
-3. Name the affected behavior or artifact.
-4. Add the user-visible or system-visible effect when the object alone is
-   ambiguous.
-5. Remove implementation chronology, review claims, packet labels, and
-   duplicate Conventional Commit prefixes.
-6. Read only the subject and ask: "Would a maintainer understand what changed
-   without opening the packet?" If not, rewrite it.
+2. Start with a precise imperative action (`add`, `remove`, `route`, `clarify`, etc.) naming the
+   affected behavior or artifact.
+3. Add the visible effect when the object alone is ambiguous.
+4. Remove chronology, review claims, and duplicate Conventional Commit prefixes.
+5. Read only the subject and ask: "Would a maintainer understand what changed without opening
+   the packet?" If not, rewrite it.
 
 #### 6. Body Contract
 
 A body is required when any condition applies:
 
 - Four or more paths are staged.
-- The change fixes a regression, failure, race, security issue, or data risk.
+- The change fixes a regression, failure, race, security issue, or data risk — or is breaking / has migration requirements.
 - The reason or tradeoff is not obvious from the subject.
-- The change is breaking or has migration requirements.
 - The commit spans code plus generated metadata or multiple repository areas.
 
-A body may be omitted only for a small, self-explanatory change affecting at
-most three paths.
+Omit a body only for a small, self-explanatory change affecting at most three paths.
 
 Preferred structure:
 
@@ -552,46 +486,37 @@ Verification:
 Refs: <issue, PR, or spec path>
 ```
 
-Use only sections that carry useful information. Explain internal terms on
-first use. Verification claims must state what actually ran and its result.
+Use only sections that carry useful information, explain internal terms on first use, and state
+in verification what actually ran and its result.
 
 #### 7. Deterministic Self-Check
 
-Before committing, verify in order:
-
-1. Special Git-generated message, or valid authored format.
-2. Type selected by the first matching type rule.
-3. Scope selected by the first matching scope rule and not numeric-only.
-4. Summary contains an imperative action and a concrete object.
-5. Subject is understandable without packet or workflow context.
-6. Subject is at most 100 characters; rewrite when over 80 if possible.
-7. Required body explains why and records meaningful verification.
-8. Breaking behavior has `!` and a `BREAKING CHANGE:` footer.
-9. The same staged diff and metadata would produce the same subject again.
+Before committing, verify message format (§1-2), type (§3), scope (§4), summary (§5), and body
+(§6) satisfy their rule, and that the same staged diff would produce the same subject again.
 
 ### ⛔ NEVER
 
 1. **Force push to main/master** - Protected branches must never receive force pushes
-2. **Never create branches directly** - Use `git worktree add -b ...`; never use `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`
-3. **Commit directly to protected branches WITHOUT operator authorization** - Default to feature branches + PRs. EXCEPTION: when the operator has bypass authority on that branch and explicitly directs a direct commit/push, honor it (see ALWAYS #13) — do not force a PR detour.
+2. **Never create branches directly** - Via `git worktree add -b ...`; never `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`
+3. **Commit directly to protected branches WITHOUT operator authorization** - Default to feature branches + PRs, except when the operator has bypass authority and explicitly directs a direct commit/push (see ALWAYS #13) — don't force a PR detour.
 4. **Leave worktrees uncleaned** - Remove worktree directories after merge
 5. **Commit secrets or credentials** - Use environment variables or secret management
 6. **Create PRs without description** - Always include context, changes, and testing notes
 7. **Merge without CI passing** - Wait for all checks to complete
 8. **Rebase public/shared branches** - Only rebase local, unpushed commits
-9. **Bypass a git hook with `--no-verify`** - Never skip commit-msg, pre-commit, or pre-push validation with `--no-verify`; if a hook is genuinely wrong about a specific case, fix the hook or use its own documented override (e.g. `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1`), not a blanket hook bypass
-10. **Amend a commit that has already been pushed or merged** - Rewriting published history breaks other clones' ancestry and any autosynced live branch; commit a new change (or `git revert`) instead once a commit has left the local repo
+9. **Bypass a git hook with `--no-verify`** - Never skip commit-msg, pre-commit, or pre-push validation this way; if a hook is genuinely wrong, fix it or use its documented override (e.g. `SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1`), not a blanket bypass
+10. **Amend a commit that has already been pushed or merged** - Rewriting published history breaks other clones and any autosynced live branch; commit a new change (or `git revert`) instead once it's left the local repo
 
 ### ⚠️ ESCALATE IF
 
-1. **Merge conflicts cannot be auto-resolved** - Complex conflicts require human decision on which changes to keep
+1. **Merge conflicts cannot be auto-resolved** - Needs a human decision on which changes to keep
 2. **GitHub MCP returns authentication errors** - Token may be expired or permissions insufficient
 3. **Worktree directory is locked or corrupted** - May require manual cleanup with `git worktree prune`
-4. **Force push to protected branch is requested** - This requires explicit approval and understanding of consequences
+4. **Force push to protected branch is requested** - Requires explicit approval and understanding of consequences
 5. **CI/CD pipeline fails repeatedly** - May indicate infrastructure issues beyond code problems
-6. **Branch divergence exceeds 50 commits** - Large divergence suggests need for incremental merging strategy
-7. **Submodule conflicts detected** - Submodule updates require careful coordination
-8. **Strict-validate run inside a bare worktree** - Its exit code is meaningless (missing gitignored deps may make it silently no-op on zero files). Re-run on `main` post-merge before trusting any result. See [large-reorg-playbook.md](references/large-reorg-playbook.md).
+6. **Branch divergence exceeds 50 commits** - Suggests an incremental merging strategy
+7. **Submodule conflicts detected** - Updates require careful coordination
+8. **Strict-validate run inside a bare worktree** - Its exit code is meaningless (ALWAYS #8: missing gitignored deps). Re-run on `main` post-merge before trusting any result. See [large-reorg-playbook.md](references/large-reorg-playbook.md).
 
 ---
 
@@ -600,45 +525,39 @@ Before committing, verify in order:
 ### Core Workflows
 | Document | Purpose | Key Insight |
 |----------|---------|-------------|
-| [worktree-workflows.md](references/worktree-workflows.md) | 7-step workspace creation | Directory selection, branch strategies, large-reorg caveats (§8b) |
-| [large-reorg-playbook.md](references/large-reorg-playbook.md) | Step-ordered large rename/reorg runbook | Worktree-only renames; toolchain + DB run on main post-merge |
-| [commit-workflows.md](references/commit-workflows.md) | 7-step commit workflow | Artifact filtering, Conventional Commits, scoped-staging discipline for a dirty tree / unrelated WIP (§3 Step 7) |
+| [worktree-workflows.md](references/worktree-workflows.md) | 7-step workspace creation | Directory selection, branch strategies, large-reorg caveats |
+| [large-reorg-playbook.md](references/large-reorg-playbook.md) | Step-ordered large rename/reorg runbook | Worktree-only renames; toolchain + DB run on main |
+| [commit-workflows.md](references/commit-workflows.md) | 7-step commit workflow | Artifact filtering, Conventional Commits, scoped-staging |
 | [finish-workflows.md](references/finish-workflows.md) | 5-step completion flow | PR creation, cleanup, merge |
-| [continuous-integration.md](references/continuous-integration.md) | Always-current live branch | Autosync each commit to a shared live branch the IDE follows; per-session isolation preserved; non-force / abort-on-conflict safety contract |
-| [shared-patterns.md](references/shared-patterns.md) | Reusable git patterns | Error recovery, conflict resolution, rename-heavy / large-reorg merge verification (§10) |
+| [continuous-integration.md](references/continuous-integration.md) | Always-current live branch | Autosync each commit; the IDE follows |
+| [shared-patterns.md](references/shared-patterns.md) | Reusable git patterns | Error recovery, conflict resolution, large-reorg verification |
 | [quick-reference.md](references/quick-reference.md) | Command cheat sheet | Common operations |
 | [github-mcp-integration.md](references/github-mcp-integration.md) | GitHub MCP remote ops | PRs, issues, CI/CD via Code Mode |
-| [gitkraken-mcp-integration.md](references/gitkraken-mcp-integration.md) | GitKraken MCP cross-platform ops | GitLens AI workflows, PRs/issues across GitHub/GitLab/Azure DevOps/Bitbucket/Jira via Code Mode |
+| [gitkraken-mcp-integration.md](references/gitkraken-mcp-integration.md) | GitKraken MCP cross-platform ops | GitLens AI, cross-platform PRs/issues |
 
 ### Assets
-| Asset | Purpose | Usage |
-|-------|---------|-------|
-| [worktree-checklist.md](assets/worktree-checklist.md) | Worktree creation checklist | Pre-flight verification |
-| [commit-message-template.md](assets/commit-message-template.md) | Commit format guide | Conventional Commits |
-| [pr-template.md](assets/pr-template.md) | PR description template | Consistent PR format |
+| Asset | Purpose |
+|-------|---------|
+| [worktree-checklist.md](assets/worktree-checklist.md) | Worktree creation checklist |
+| [commit-message-template.md](assets/commit-message-template.md) | Commit format guide |
+| [pr-template.md](assets/pr-template.md) | PR description template |
 
 ---
 
 ## 6. SUCCESS CRITERIA
 
 ### Workspace Setup Complete
-- Workspace prepared in the selected mode (`git worktree` or current branch)
-- If a worktree was selected, it was created in the correct directory (`.worktrees/` or user-specified)
-- Any worktree-created branch naming follows convention (`worktrees/{NNN}-{slug}` or `branches/{NNN}-{slug}`)
-- User confirmed workspace choice (worktree/current branch)
+- Workspace prepared in the selected mode (`git worktree` or current branch), user-confirmed
+- Any worktree lives in the correct directory (`.worktrees/` or user-specified), branch named per convention (`worktrees/{NNN}-{slug}` or `branches/{NNN}-{slug}`)
 
 ### Commit Complete
-- All changes reviewed and categorized
-- Artifacts filtered out (build files, coverage, etc.)
+- All changes reviewed, categorized, and artifact-filtered (build files, coverage, etc.); only public-value files staged
 - Commit message follows Conventional Commits format
-- Only public-value files staged
 
 ### Integration Complete
-- Tests pass before merge/PR
+- Tests pass and branch up-to-date before merge/PR
 - PR description includes context, changes, and testing notes
-- Branch up-to-date with base branch
-- Worktree cleaned up after merge (if used)
-- Local and remote feature branches deleted
+- Worktree cleaned up and local/remote feature branches deleted after merge (if used)
 
 ### Quality Gates
 
@@ -656,17 +575,15 @@ Before committing, verify in order:
 
 ### Framework Integration
 
-This skill operates within the behavioral framework defined in [AGENTS.md](../../../AGENTS.md).
-
-Key integrations:
+This skill operates within the framework in [AGENTS.md](../../../AGENTS.md):
 - **Gate 2**: Skill routing via `skill_advisor.py`
-- **Gate 3**: File modifications require spec folder question per AGENTS.md Gate 3 (HARD BLOCK)
-- **Tool Routing**: Per AGENTS.md Section 6 decision tree
-- **Continuity**: `/speckit:resume` is the recovery surface; canonical packet context is read from `handover.md -> _memory.continuity -> spec docs`
+- **Gate 3**: File modifications require the spec folder question (AGENTS.md, HARD BLOCK)
+- **Tool Routing**: AGENTS.md Section 6 decision tree
+- **Continuity**: see Continuity Integration below
 
 ### Continuity Integration
 
-Use canonical packet continuity for context recovery first, then use Spec Kit Memory MCP only when packet-native sources are exhausted:
+Recovery sequence (Memory MCP only once packet-native sources are exhausted):
 
 ```text
 // Recover the active packet before planning git work
@@ -680,24 +597,18 @@ memory_search({ query: "branch strategy decisions", includeContent: true })
 // Save context with: /memory:save or "save context to [spec-folder]"
 ```
 
-**Best Practices**:
-- Use `/speckit:resume` at session start to recover active packet context
-- Prefer `handover.md`, `_memory.continuity`, and canonical spec docs before broader memory queries
-- Save context after significant commits or before ending a session
-- Reference spec folder in commit messages for traceability
-
 ---
 
 ## 8. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/quick-reference.md`, `references/worktree-workflows.md`, `references/commit-workflows.md`, `references/finish-workflows.md`, `references/github-mcp-integration.md`, `references/shared-patterns.md`, `assets/commit-message-template.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically from `references/`, `assets/`, and `scripts/` — see §5 for the core set.
 
 ### Manual Testing Playbook
 
-Manual testing scenarios for this skill live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus per-feature scenario files (`GIT-001`..`GIT-042`) across 8 category directories under `manual-testing-playbook/<topic>/<scenario>.md` — worktree setup, commit formation, safety refusals, integration and PR, recovery and edge cases, cross-CLI orchestration, numbered worktree tooling, and Git preflight advisory. Run scenarios via `bash .opencode/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md` for structural validation; execute scenarios in opencode/Claude/OpenCode sessions for behavioral verification.
+Manual testing scenarios live in `manual-testing-playbook/manual-testing-playbook.md` (root index) plus scenario files (`GIT-001`..`GIT-042`) across 8 categories under `manual-testing-playbook/<topic>/<scenario>.md`. Run `bash .opencode/skills/sk-doc/scripts/validate_document.py manual-testing-playbook/manual-testing-playbook.md` for structural validation; run scenarios in opencode/Claude/OpenCode for behavioral checks.
 
 ### Feature Catalog
 
-A companion `feature-catalog/feature-catalog.md` package catalogs every sk-git capability with its entry point — the numbered-worktree naming allocator/validators (`scripts/worktree-naming.sh`), launch-wrapper session isolation (`.opencode/bin/worktree-session.sh`), the worktree reaper (`.opencode/bin/worktree-reaper.sh`), the pre-push naming hook (`.opencode/scripts/git-hooks/pre-push`), continuous-integration autosync, and the worktree/commit/finish/GitKraken/GitHub/large-reorg workflows.
+A companion `feature-catalog/feature-catalog.md` catalogs every sk-git capability's entry point — naming allocator/validators (`scripts/worktree-naming.sh`), launch-wrapper isolation (`.opencode/bin/worktree-session.sh`), worktree reaper (`.opencode/bin/worktree-reaper.sh`), naming hook (`.opencode/scripts/git-hooks/pre-push`), CI autosync, and the worktree/commit/finish/GitKraken/GitHub/large-reorg workflows.
 
-Related skills: `system-spec-kit` for packet recovery and continuity, and `sk-doc` for PR, release, and documentation quality.
+Related: `system-spec-kit` (packet recovery, continuity), `sk-doc` (PR, release, documentation quality).
