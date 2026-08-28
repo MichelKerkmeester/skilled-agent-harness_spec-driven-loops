@@ -237,6 +237,32 @@ describe('spec-doc-structure contract', () => {
     expect(result.status).toBe('pass');
   });
 
+  it('does not read quoted anchor syntax in prose or fenced code as real anchors', () => {
+    const folder = copyFixture('063-template-compliant-level3');
+    const specPath = path.join(folder, 'spec.md');
+    fs.appendFileSync(
+      specPath,
+      [
+        '',
+        'Anchors such as `<!-- ANCHOR:id -->` are the contract, not headings.',
+        '',
+        '```md',
+        '<!-- ANCHOR:example -->',
+        'body',
+        '```',
+        '',
+      ].join('\n'),
+      'utf8',
+    );
+    const result = runSpecDocStructureRule({
+      folder,
+      level: '3',
+      rule: 'SPEC_DOC_SUFFICIENCY',
+    });
+
+    expect(result.details.join(' ')).not.toMatch(/anchor parse failure/u);
+  });
+
   it('warns when the canonical implementation-summary.md is missing the _memory block', () => {
     const folder = copyFixture('063-template-compliant-level3');
     stripMemoryBlock(path.join(folder, 'implementation-summary.md'));

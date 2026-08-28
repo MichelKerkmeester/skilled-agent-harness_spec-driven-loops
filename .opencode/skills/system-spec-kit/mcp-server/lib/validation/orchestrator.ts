@@ -8,7 +8,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { resolveLevelContract, type SpecKitLevel } from '../templates/level-contract-resolver.js';
 import { isPhaseParent } from '../spec/is-phase-parent.js';
-import { runSpecDocStructureRule, type RuleResult, type SpecDocRuleName } from './spec-doc-structure.js';
+import { runSpecDocStructureRule, FREEFORM_WORKFLOW_DOCS, type RuleResult, type SpecDocRuleName } from './spec-doc-structure.js';
 import {
   checkGeneratedMetadataIntegrity,
   resolveGeneratedMetadataIntegrity,
@@ -428,7 +428,10 @@ function validationDocsForLevel(folder: string, level: SpecKitLevel): string[] {
   const docs = [...docsForLevel(level)];
   const presentLifecycleDocs = lifecycleRequiredDocsForLevel(level)
     .filter((docName) => fs.existsSync(path.join(folder, docName)));
+  // Workflow loops generate their own artifacts with a shape the authored template
+  // never described, so comparing them against it reports every such packet as broken.
   const presentAddons = [...contract.optionalAddonDocs, ...contract.lazyAddonDocs]
+    .filter((docName) => !FREEFORM_WORKFLOW_DOCS.has(docName))
     .filter((docName) => fs.existsSync(path.join(folder, docName)));
   for (const docName of [...presentLifecycleDocs, ...presentAddons]) {
     if (!docs.includes(docName)) docs.push(docName);

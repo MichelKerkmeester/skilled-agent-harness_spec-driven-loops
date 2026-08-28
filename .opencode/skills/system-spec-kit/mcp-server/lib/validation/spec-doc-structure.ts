@@ -184,7 +184,7 @@ function normalizeSpecKitLevel(raw: string): SpecKitLevel {
 // schema and no spec-doc anchors, so they are exempt from the _memory-block and
 // anchor-sufficiency gates. No numbered level references these, so the exclusion
 // is inert for Levels 1-3+ and phase parents.
-const FREEFORM_WORKFLOW_DOCS = new Set(['review/review-report.md']);
+export const FREEFORM_WORKFLOW_DOCS = new Set(['review/review-report.md', 'research/research.md']);
 const CANONICAL_CONTINUITY_DOC = 'implementation-summary.md';
 const OPTIONAL_CONTINUITY_DOCS = new Set([
   'spec.md',
@@ -540,12 +540,29 @@ function parseAnchors(content: string): { anchors: AnchorOccurrence[]; errors: s
   const errors: string[] = [];
   const lines = content.replace(/\r\n/g, '\n').split('\n');
   const stack: Array<{ id: string; startLine: number; bodyLines: string[] }> = [];
+  let inFence = false;
 
   for (let index = 0; index < lines.length; index += 1) {
     const line = lines[index];
     const lineNumber = index + 1;
-    const openMatch = line.match(/<!--\s*ANCHOR:([A-Za-z0-9][A-Za-z0-9_-]*)\s*-->/);
-    const closeMatch = line.match(/<!--\s*\/ANCHOR:([A-Za-z0-9][A-Za-z0-9_-]*)\s*-->/);
+
+    // A document that explains the anchor contract quotes anchor syntax as an example.
+    // Matching inside code would read those examples as real anchors and report the
+    // surrounding document as corrupt, so fenced blocks are skipped entirely and inline
+    // code spans are blanked before matching.
+    if (/^\s*(```|~~~)/.test(line)) {
+      inFence = !inFence;
+      if (stack.length > 0) stack[stack.length - 1].bodyLines.push(line);
+      continue;
+    }
+    if (inFence) {
+      if (stack.length > 0) stack[stack.length - 1].bodyLines.push(line);
+      continue;
+    }
+    const scannable = line.replace(/`+[^`]*`+/g, '');
+
+    const openMatch = scannable.match(/<!--\s*ANCHOR:([A-Za-z0-9][A-Za-z0-9_-]*)\s*-->/);
+    const closeMatch = scannable.match(/<!--\s*\/ANCHOR:([A-Za-z0-9][A-Za-z0-9_-]*)\s*-->/);
 
     if (openMatch) {
       const existingIndex = stack.findIndex((entry) => entry.id === openMatch[1]);
