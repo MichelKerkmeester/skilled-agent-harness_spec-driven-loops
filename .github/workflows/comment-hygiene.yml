@@ -24,7 +24,11 @@ jobs:
           HEAD="${{ github.event.pull_request.head.sha }}"
           while IFS= read -r file; do
             if [ -f "$file" ]; then
-              python3 "$CHECKER" "$file" 2>/dev/null; CHECKER_RC=$?
+              # The checker exits 2 for any file it does not handle, so let a
+              # non-zero status reach CHECKER_RC instead of tripping errexit and
+              # killing the loop before the remaining files are ever checked.
+              CHECKER_RC=0
+              python3 "$CHECKER" "$file" 2>/dev/null || CHECKER_RC=$?
               if [ "$CHECKER_RC" -eq 1 ]; then
                 VIOLATIONS=$((VIOLATIONS + 1))
                 echo "::error file=$file::Ephemeral-artifact pointer found in code comment"
