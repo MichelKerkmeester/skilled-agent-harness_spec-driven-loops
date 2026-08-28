@@ -16,6 +16,14 @@ Continuation state for an independent operator or agent to check the committed r
 
 ---
 
+<!-- ANCHOR:when-to-use -->
+## WHEN TO USE THIS TEMPLATE
+
+Open this handover to independently check the committed Phase 020 root-router work and finish its publication. Implementation, routing verification, and the local integration repair are done and sit as two commits in an isolated worktree, but the push is deliberately unfinished: the plan-named recursive strict gate still exits 2 on unrelated older packets, and both remote targets moved after the integration rebase. Read it before touching that worktree, the dirty primary checkout, or either remote.
+<!-- /ANCHOR:when-to-use -->
+
+---
+
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
@@ -172,3 +180,11 @@ Before handover:
 
 The implementation is locally recoverable and independently reviewable. Do not interpret the green routing battery as permission to push: the exact recursive validation command remains red under the current validator, and both remote targets moved after the first integration. No push was attempted after either condition was observed.
 <!-- /ANCHOR:session-notes -->
+
+---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file when the recursive gate result, the recorded remote tips, or the push status changes, and record each new blocker together with the observation that produced it. Preserve the anchors and the template source marker.
+<!-- /ANCHOR:template-instructions -->

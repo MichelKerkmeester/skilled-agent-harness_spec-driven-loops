@@ -393,3 +393,9 @@ After verification session consumes this handover:
 <!-- /ANCHOR:session-notes -->
 
 ---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file as the three queued verification scenarios land, replacing the queued and expected readings with observed ones before any closeout commit. Preserve the anchors and the template source marker, and refresh `description.json` and `graph-metadata.json` after a material edit.
+<!-- /ANCHOR:template-instructions -->

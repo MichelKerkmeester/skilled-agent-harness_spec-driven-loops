@@ -46,6 +46,14 @@ _memory:
 
 ---
 
+<!-- ANCHOR:when-to-use -->
+## WHEN TO USE THIS TEMPLATE
+
+Open this handover before touching the orphan MCP sweeper, the launcher idle timeout, or the Claude session-exit cleanup. Implementation, documentation, and the dry-run review are complete and pushed to `origin/main` at `e85fb49e27`. What is deliberately not done is activation: the LaunchAgent was never installed or loaded and the home-level Claude config was never modified, so a next session starts with dry-run and read-only checks and asks before any real sweep.
+<!-- /ANCHOR:when-to-use -->
+
+---
+
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
@@ -178,3 +186,11 @@ The pushed commit was large and included other staged repo work in addition to t
 
 If the next session tests this work, use dry-run and read-only checks first. Real sweeps, LaunchAgent loading, and home-level config writes need fresh operator approval.
 <!-- /ANCHOR:session-notes -->
+
+---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file when activation state changes: LaunchAgent installation, a live session-exit smoke, or a home-level config decision. Preserve the anchors and the template source marker, and refresh packet metadata after a material edit.
+<!-- /ANCHOR:template-instructions -->

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Build the runtime-neutral core that normalizes events, assembles one deterministic message, and selects the bounded conversational context that made the reference effective without changing canonical state",
     "created_at": "2026-08-11T10:04:29Z",
-    "last_save_at": "2026-08-11T17:08:48.404Z",
+    "last_save_at": "2026-08-28T19:09:01.054Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:46fa6e178b70df4fea133565d4405460b70f81f5eab9f8288d409004c1f78759",
+    "source_fingerprint": "sha256:fc7a685fb2e78e4faf0ae20e524ccc1e37e7f033d6de6aba110143010a7494a8",
     "source_doc_hashes": {
       "spec.md": "78f1bbbc449acfc10034fbd7072d9f10455d40ce4e01eefa861913fe0df1e985",
       "plan.md": "84fe979d44dd287d99984404d6be587c59791805c3252c9bb4f895b91bd3a11e",
@@ -217,7 +217,7 @@
       "checklist.md": "9634f69982fd67873d5578a6681322a96ca6f8c2f9f4f51a17bc8278f47ae5f1",
       "decision-record.md": "ca1aa964d888d5d3db995e52776e06c134bfd5c8ceb8c0879476200498e17b0e",
       "implementation-summary.md": "84330b5f335b33b622bb31f5ab53b584acb1b6998bf1a9418ccf2d0937386b9a",
-      "handover.md": "a49b8522059bf985de791c519b40f2f41a6d8a1f2692de0f0053707857c16c38"
+      "handover.md": "6e2c1af592214d15fff404145eb173ad934da2a3526d4e893a47f60fed7f6611"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -36,6 +36,14 @@ _memory:
 
 ---
 
+<!-- ANCHOR:when-to-use -->
+## WHEN TO USE THIS TEMPLATE
+
+Open this handover to run the mk-spec-memory stress test: all 39 MCP tools plus all 345 manual-testing-playbook scenarios, executed for real now that packet 113 un-excluded z_archive and 2,618 archived rows are indexed. The work has barely started — this document is the baseline capture and dispatch plan, the next action is the Phase 0 baseline checks, and two dispatch questions are still open for the operator.
+<!-- /ANCHOR:when-to-use -->
+
+---
+
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
@@ -299,3 +307,11 @@ Before declaring Phase 4 complete:
 | `956595dbd` | Cosmetic doc fixes for 113 strict-validate PASS |
 | `280fe4888` | `.mcp.json` → `.claude/mcp.json` symlink for Claude Code MCP discovery |
 <!-- /ANCHOR:session-notes -->
+
+---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file as each dispatch batch completes: replace planned estimates with observed results, and close the open dispatch questions once the operator answers them. Preserve the anchors and the template source marker, and refresh packet metadata after a material edit.
+<!-- /ANCHOR:template-instructions -->

@@ -42,7 +42,7 @@ Recovery state for continuing the improved-communication epic without repeating 
 ---
 
 <!-- ANCHOR:when-to-use -->
-## When to Use This Handover
+## When to Use This Template
 
 Use this handover when starting Phase 003. Phase 001 research and Phase 002 contracts-and-fixtures are complete. The package is a verified contract boundary, but it does not yet normalize runtime streams, call providers, protect spans, or render into any CLI.
 
@@ -173,7 +173,7 @@ Use this handover when starting Phase 003. Phase 001 research and Phase 002 cont
 ---
 
 <!-- ANCHOR:template-instructions -->
-## Handover Maintenance
+## Template Instructions
 
 Update this file only when the latest validation result, blocker, or next safe action changes. Keep planning/scaffolding evidence separate from implementation claims, preserve the template source marker and anchors, and refresh indexed continuity after material updates.
 <!-- /ANCHOR:template-instructions -->

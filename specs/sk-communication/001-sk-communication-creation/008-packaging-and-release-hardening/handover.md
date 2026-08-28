@@ -38,6 +38,14 @@ Phase 008 completes the implementation of the portable CLI communication project
 
 ---
 
+<!-- ANCHOR:when-to-use -->
+## WHEN TO USE THIS TEMPLATE
+
+Open this handover when taking the parent packet's release decision. Phase 008 is complete at checkpoint `aea92b33b6` and finishes the implementation of the portable CLI communication projection: packaging, the compatibility doctor, the release gate, original-only rollback, docs, and rehearsals are all built and verified. The release is blocked on operator-supplied evidence — the human non-inferiority study, a live credentialed smoke, and fresh provider facts — not on more code.
+<!-- /ANCHOR:when-to-use -->
+
+---
+
 <!-- ANCHOR:handover-summary -->
 ## 1. Handover Summary
 
@@ -142,3 +150,11 @@ The release gate is built and enforced, but `evaluateReleaseReadiness` stays `bl
 
 The portable CLI communication projection is implemented across all eight phases and verified on the branch. The release gate is built and correctly blocks until the human non-inferiority study, the live credentialed smoke, and fresh provider facts are supplied. The merge to the release branch and any push remain operator-gated.
 <!-- /ANCHOR:session-notes -->
+
+---
+
+<!-- ANCHOR:template-instructions -->
+## TEMPLATE INSTRUCTIONS
+
+Update this file as each operator release prerequisite is satisfied, and again when the parent release decision is recorded. Preserve the anchors and the template source marker, and refresh indexed continuity after a material edit.
+<!-- /ANCHOR:template-instructions -->

@@ -46,7 +46,7 @@ The implementation is complete and Pi is re-enabled. The original last-writer-wi
 ---
 
 <!-- ANCHOR:when-to-use -->
-## WHEN TO USE THIS HANDOVER
+## WHEN TO USE THIS TEMPLATE
 
 Read this document first when:
 
@@ -377,7 +377,7 @@ The packet currently appears as one untracked directory, so a future Git operati
 ---
 
 <!-- ANCHOR:template-instructions -->
-## 6. Recovery and Maintenance Instructions
+## 6. TEMPLATE INSTRUCTIONS
 
 When a future report says “the wrong goal appeared,” treat it as a hypothesis until the ownership chain is observed:
 

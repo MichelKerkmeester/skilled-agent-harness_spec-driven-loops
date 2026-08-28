@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Add model-scoped hosted and local provider adapters behind privacy-first routing and explicit egress consent",
     "created_at": "2026-08-11T10:04:30Z",
-    "last_save_at": "2026-08-12T04:19:31.237Z",
+    "last_save_at": "2026-08-28T19:09:01.496Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,7 +209,7 @@
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:9fd6fe0ef0d16ac12eef9bd67954ff901d1f4ca7c9d090d77e16df1d05229ddc",
+    "source_fingerprint": "sha256:bba84d3c2409684fe2d59e2fc0be8fa49539c1c537f2db7458105e4548dc25d2",
     "source_doc_hashes": {
       "spec.md": "4bf6acffc7e27da9d3453d7d75c5af6601e75c2b3b76529d972f95def8f2f3bd",
       "plan.md": "52282cd601e9e76abc1932d24e5f4e843f1bb64141610b3123dc90aec9a76ad1",
@@ -217,7 +217,7 @@
       "checklist.md": "3687c637dcec65cab02c01a401feb32cdcfdff45203e4450ac7512eeb8fb89d7",
       "decision-record.md": "680883d20767bafb9d4a07c97f2d4e55d3f1ac18fb030fc7898265a130426608",
       "implementation-summary.md": "7f8806181398b98209383ef56387fd2def95a8864e6eaf486a5650ae72358c5e",
-      "handover.md": "e0487f5596026f454f2cec5a48a0b59ec69587cbb87c81e375ee7ea006ce892d"
+      "handover.md": "3380e61c144a921d24b51c6d0481abe93c5510d9dd1af80b14c620a2a523747a"
     },
     "last_active_child_id": null,
     "last_active_at": null
