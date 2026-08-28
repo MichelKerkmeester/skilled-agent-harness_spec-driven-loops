@@ -1,0 +1,32 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/004-card-sync-guard-rewrite",
+  "description": "The guard ran four structural checks; two of them read the deleted model registry directly and now crash with a FileNotFoundError before reporting",
+  "keywords": [
+    "guard",
+    "ran",
+    "four",
+    "structural",
+    "checks",
+    "two",
+    "them",
+    "read",
+    "deleted",
+    "model",
+    "registry",
+    "directly",
+    "now",
+    "crash",
+    "filenotfounderror",
+    "reporting"
+  ],
+  "lastUpdated": "2026-08-28T09:56:44.395Z",
+  "specId": "004",
+  "folderSlug": "card-sync-guard-rewrite",
+  "parentChain": [
+    "sk-prompt",
+    "008-sk-prompt-standalone-conversion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

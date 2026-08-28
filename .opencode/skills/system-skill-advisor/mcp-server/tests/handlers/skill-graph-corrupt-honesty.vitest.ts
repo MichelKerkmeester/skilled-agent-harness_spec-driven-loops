@@ -62,11 +62,11 @@ describe('advisor status corruption downgrades freshness', () => {
 
   function workspace(): string {
     const root = mkdtempSync(join(tmpdir(), 'advisor-corrupt-'));
-    mkdirSync(join(root, '.opencode', 'skills', '.advisor-state'), { recursive: true });
+    mkdirSync(join(root, '.opencode', 'skills', '.state', 'advisor'), { recursive: true });
     mkdirSync(join(root, '.opencode', 'skills', 'system-skill-advisor', 'mcp-server', 'database'), { recursive: true });
     mkdirSync(join(root, '.opencode', 'skills', 'alpha'), { recursive: true });
     writeFileSync(join(root, '.opencode', 'skills', 'alpha', 'graph-metadata.json'), '{"skill_id":"alpha"}\n', 'utf8');
-    writeFileSync(join(root, '.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json'), `${JSON.stringify({
+    writeFileSync(join(root, '.opencode', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), `${JSON.stringify({
       generation: 3,
       updatedAt: '2026-04-20T00:00:00.000Z',
       sourceSignature: null,

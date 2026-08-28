@@ -292,7 +292,7 @@ function hasValidSkillMarkdown(skillPath: string): boolean {
 }
 
 function quarantineDbPath(workspaceRoot: string, override?: string): string {
-  return override ?? join(resolve(workspaceRoot), '.opencode', 'skills', '.advisor-state', 'skill-graph-daemon-lease.sqlite');
+  return override ?? join(resolve(workspaceRoot), '.opencode', 'skills', '.state', 'advisor', 'skill-graph-daemon-lease.sqlite');
 }
 
 function initializeQuarantineDb(db: { exec: (sql: string) => void }): void {

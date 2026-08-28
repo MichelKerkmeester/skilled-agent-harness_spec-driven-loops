@@ -55,7 +55,8 @@ const LEASE_DB_FILENAME = 'skill-graph-daemon-lease.sqlite';
 const LEGACY_LEASE_RELATIVE_PATH = join(
   '.opencode',
   'skills',
-  '.advisor-state',
+  '.state',
+  'advisor',
   LEASE_DB_FILENAME,
 );
 

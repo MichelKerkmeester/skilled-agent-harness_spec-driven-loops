@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/005-cli-orchestration-repoint",
+  "description": "The CLI executor hub carried 46 references into the deleted packet across 20 files",
+  "keywords": [
+    "cli",
+    "executor",
+    "hub",
+    "carried",
+    "references",
+    "deleted",
+    "packet",
+    "across",
+    "files"
+  ],
+  "lastUpdated": "2026-08-28T09:56:44.393Z",
+  "specId": "005",
+  "folderSlug": "cli-orchestration-repoint",
+  "parentChain": [
+    "sk-prompt",
+    "008-sk-prompt-standalone-conversion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

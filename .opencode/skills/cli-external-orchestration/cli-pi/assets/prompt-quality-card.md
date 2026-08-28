@@ -21,26 +21,21 @@ This is a thin delegator. The canonical prompt-models packet owns the framework 
 
 Load:
 
-- [Canonical CLI prompt-quality card](../../../sk-prompt/sk-prompt-models/assets/cli-prompt-quality-card.md)
-- [Canonical model profiles](../../../sk-prompt/sk-prompt-models/references/models/)
+- [Canonical CLI prompt-quality card](../../../sk-prompt/assets/cli-prompt-quality-card.md)
 
 Do not copy the canonical taxonomy into this card. Do not create a second STAR, BUILD, ATLAS, or CONTEXT table here.
 
 ---
 
-## 2. THREE TIERS
+## 2. TWO TIERS
 
 ### Tier 1 - Fast Path
 
 Use the canonical card for ordinary Pi dispatches. Select the framework there, apply its task mapping, run its CLEAR check, then add the Pi mechanics in this file.
 
-### Tier 2 - Model Override
+### Tier 2 - Deep Path
 
-If the selected Pi provider/model has a profile in sk-prompt/sk-prompt-models, that profile overrides the cross-model default. Read the profile before composing the prompt.
-
-### Tier 3 - Deep Path
-
-Use the canonical card's Tier 3 trigger list. When it calls for prompt improvement, dispatch the approved prompt-improver workflow rather than loading the full prompt system inline.
+Use the canonical card's deep-path trigger list. When it calls for prompt improvement, dispatch the approved prompt-improver workflow rather than loading the full prompt system inline.
 
 ---
 

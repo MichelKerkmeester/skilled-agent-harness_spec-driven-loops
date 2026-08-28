@@ -59,7 +59,7 @@ Each skill name links to its own README. One-line descriptions reflect current b
 | [`sk-doc`](sk-doc/README.md) | Documentation and component-authoring parent hub: workflow packets for skills, hubs, READMEs/install-guides, agents, commands, catalogs and playbooks, plus deterministic validation and DQI scoring |
 | [`sk-git`](sk-git/README.md) | Git workflow in one skill: numbered worktrees, Conventional Commits, PRs, merge/rebase and finish |
 | [`sk-design-md-generator`](sk-design-md-generator/README.md) | Extracts a live website's real, measured CSS into a v3 Style Reference DESIGN.md (named tokens, type scale, components, Quick Start CSS/Tailwind) — measured ground truth for sk-code to build against, plus a condensed general design-knowledge layer |
-| [`sk-prompt`](sk-prompt/README.md) | Prompt engineering parent hub: routes by `workflowMode` to `prompt-improve` (7-framework, DEPTH-thinking, CLEAR-scored prompt enhancement) and `prompt-models` (read-only per-model prompt-craft profiles) — packets housed at `sk-prompt-improve/` and `sk-prompt-models/` |
+| [`sk-prompt`](sk-prompt/README.md) | Prompt engineering: turns a request into a structured, scored prompt via 7 frameworks, DEPTH thinking and CLEAR scoring; owns the canonical CLI prompt-quality card |
 
 ### system-*: Deep Loops and the Runtime Foundation
 
@@ -190,4 +190,3 @@ The family is the prefix before the first hyphen: `cli-*`, `mcp-*`, `sk-*` or `s
 | [`sk-git/README.md`](sk-git/README.md) | Git workflow: worktrees, Conventional Commits and PR integration |
 | [`sk-doc/README.md`](sk-doc/README.md) | Documentation quality, validation scripts and the DQI score |
 | [`sk-prompt/README.md`](sk-prompt/README.md) | Structured prompt engineering across seven frameworks |
-| [`sk-prompt/sk-prompt-models/README.md`](sk-prompt/sk-prompt-models/README.md) | Per-model prompt-craft profiles for small-model dispatch |

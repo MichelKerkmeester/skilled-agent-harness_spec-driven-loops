@@ -41,11 +41,11 @@ const SCRIPTS_ROOT = __dirname;
 // Canonical framework definitions live in the sk-prompt prompt-improve sub-hub;
 // benchmark consumes them. From scripts/model-benchmark/, the skills root is four
 // levels up (model-benchmark -> scripts -> deep-improvement -> system-deep-loop ->
-// skills); sk-prompt/sk-prompt-improve holds the framework registry there.
+// skills); sk-prompt holds the framework registry there.
 const DEFAULT_REGISTRY_PATH = path.resolve(
   SCRIPTS_ROOT,
   '..', '..', '..', '..',
-  'sk-prompt', 'sk-prompt-improve', 'assets', 'framework-registry.json',
+  'sk-prompt', 'assets', 'framework-registry.json',
 );
 
 // ─────────────────────────────────────────────────────────────────────────────

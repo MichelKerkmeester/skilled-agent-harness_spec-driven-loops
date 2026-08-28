@@ -23,7 +23,7 @@ const ADVISOR_DB_RELATIVE_PATH = join(
 
 function workspace(name: string): string {
   const root = mkdtempSync(join(tmpdir(), `advisor-status-${name}-`));
-  mkdirSync(join(root, '.opencode', 'skills', '.advisor-state'), { recursive: true });
+  mkdirSync(join(root, '.opencode', 'skills', '.state', 'advisor'), { recursive: true });
   mkdirSync(join(root, '.opencode', 'skills', 'system-skill-advisor', 'mcp-server', 'database'), { recursive: true });
   mkdirSync(join(root, '.opencode', 'skills', 'alpha'), { recursive: true });
   writeFileSync(join(root, '.opencode', 'skills', 'alpha', 'graph-metadata.json'), '{"skill_id":"alpha"}\n', 'utf8');
@@ -31,7 +31,7 @@ function workspace(name: string): string {
 }
 
 function writeGeneration(root: string, state: 'live' | 'stale' | 'absent' | 'unavailable', generation = 1): void {
-  writeFileSync(join(root, '.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json'), `${JSON.stringify({
+  writeFileSync(join(root, '.opencode', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), `${JSON.stringify({
     generation,
     updatedAt: '2026-04-20T00:00:00.000Z',
     sourceSignature: null,
@@ -170,7 +170,7 @@ describe('advisor_status handler', () => {
     utimesSync(dbPath, new Date('2026-04-19T00:00:00.000Z'), new Date('2026-04-19T00:00:00.000Z'));
     utimesSync(metadataPath, new Date('2026-04-21T00:00:00.000Z'), new Date('2026-04-21T00:00:00.000Z'));
     const sourceSignature = computeAdvisorSourceSignature(root);
-    writeFileSync(join(root, '.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json'), `${JSON.stringify({
+    writeFileSync(join(root, '.opencode', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), `${JSON.stringify({
       generation: 9,
       updatedAt: '2026-04-22T00:00:00.000Z',
       sourceSignature,
@@ -224,7 +224,7 @@ describe('advisor_status handler', () => {
   // drift: verified against shipped behavior during Unit H
   it('reports unavailable for corrupt generation metadata', () => {
     const root = workspace('unavailable');
-    writeFileSync(join(root, '.opencode', 'skills', '.advisor-state', 'skill-graph-generation.json'), '{', 'utf8');
+    writeFileSync(join(root, '.opencode', 'skills', '.state', 'advisor', 'skill-graph-generation.json'), '{', 'utf8');
 
     const status = readAdvisorStatus({ workspaceRoot: root });
 

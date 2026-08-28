@@ -2,37 +2,44 @@
   "modes": [
     {
       "leaves": [
+        "assets/cli-prompt-quality-card.md",
         "assets/format-guide-json.md",
         "assets/format-guide-markdown.md",
         "assets/format-guide-yaml.md",
         "assets/framework-registry.json",
+        "manual-testing-playbook/clear-scoring/clear-five-dimensions.md",
+        "manual-testing-playbook/clear-scoring/dimension-drilldown-rationale.md",
+        "manual-testing-playbook/clear-scoring/dimension-floors-block.md",
+        "manual-testing-playbook/clear-scoring/forty-of-fifty-threshold.md",
+        "manual-testing-playbook/depth-clear-loop/depth-five-phases-order.md",
+        "manual-testing-playbook/depth-clear-loop/depth-iteration-cap.md",
+        "manual-testing-playbook/depth-clear-loop/mechanism-first-prototype.md",
+        "manual-testing-playbook/depth-clear-loop/perspectives-floor-three.md",
+        "manual-testing-playbook/depth-clear-loop/phase-exit-gate-blocking.md",
+        "manual-testing-playbook/depth-clear-loop/ricce-validation-gate.md",
+        "manual-testing-playbook/escalation-tiers/cli-card-five-question-fast-path.md",
+        "manual-testing-playbook/escalation-tiers/escalation-trigger-thresholds.md",
+        "manual-testing-playbook/escalation-tiers/prompt-improver-input-payload.md",
+        "manual-testing-playbook/escalation-tiers/prompt-improver-output-block.md",
+        "manual-testing-playbook/format-modes/format-guide-on-demand.md",
+        "manual-testing-playbook/format-modes/format-mode-delivery.md",
+        "manual-testing-playbook/framework-selection/framework-by-complexity.md",
+        "manual-testing-playbook/framework-selection/framework-rationale-required.md",
+        "manual-testing-playbook/framework-selection/framework-switch-mid-flight.md",
+        "manual-testing-playbook/framework-selection/user-named-framework-override.md",
+        "manual-testing-playbook/mode-detection/default-mode-routing.md",
+        "manual-testing-playbook/mode-detection/mode-prefix-keyword-collision.md",
+        "manual-testing-playbook/mode-detection/raw-mode-passthrough.md",
+        "manual-testing-playbook/mode-detection/short-mode-three-rounds.md",
+        "manual-testing-playbook/smart-routing/ambiguity-delta-tiebreaker.md",
+        "manual-testing-playbook/smart-routing/intent-model-keyword-scoring.md",
+        "manual-testing-playbook/smart-routing/on-demand-keyword-loading.md",
+        "manual-testing-playbook/smart-routing/unknown-fallback-checklist.md",
         "references/depth-framework.md",
         "references/patterns-evaluation.md"
       ],
-      "packet": "sk-prompt-improve",
-      "workflowMode": "sk-prompt-improve"
-    },
-    {
-      "leaves": [
-        "assets/cli-prompt-quality-card.md",
-        "assets/confidence-scoring-rubric.md",
-        "assets/model-profiles.json",
-        "assets/per-model-budgets.json",
-        "references/context-budget.md",
-        "references/models/_index.md",
-        "references/models/composer-2.5.md",
-        "references/models/deepseek-v4-pro.md",
-        "references/models/glm-5.2.md",
-        "references/models/kimi-k2.7-code.md",
-        "references/models/mimo-v2.5-pro.md",
-        "references/models/minimax-m3.md",
-        "references/output-verification.md",
-        "references/pattern-index.md",
-        "references/quota-fallback.md",
-        "references/vision-audit-benchmark.md"
-      ],
-      "packet": "sk-prompt-models",
-      "workflowMode": "sk-prompt-models"
+      "packet": ".",
+      "workflowMode": "sk-prompt"
     }
   ],
   "resourceContractVersion": 1

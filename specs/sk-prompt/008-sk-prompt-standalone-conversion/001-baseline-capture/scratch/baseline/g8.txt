@@ -1,0 +1,32 @@
+Skill graph: loaded from SQLite
+{
+  "dataset": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/labeled-prompts.jsonl",
+  "rows": 195,
+  "advisor": {
+    "total": 195,
+    "correct": 110,
+    "accuracy": 0.5641,
+    "missed_skill_fires": 37,
+    "wrong_skill_fires": 43,
+    "false_fires_on_none": 5
+  },
+  "gate3": {
+    "tp": 125,
+    "fp": 2,
+    "fn": 2,
+    "tn": 66,
+    "precision": 0.9843,
+    "recall": 0.9843,
+    "f1": 0.9843,
+    "historical_false_positive_regressions": []
+  },
+  "joint": {
+    "TT": 107,
+    "TF": 84,
+    "FT": 3,
+    "FF": 1
+  },
+  "semantic_enabled": false,
+  "threshold_failures": [],
+  "overall_pass": true
+}

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "description": "Shared executor-delegation routing cases consumed by both the TS-native scorer and the Python local scorer. Each case pins the strict top-1 skill so TS-native == Python for the same prompt. Cases are drawn from real executor/model metadata aliases and cover every resolver branch.",
+  "description": "Shared executor-delegation routing cases consumed by both the TS-native scorer and the Python local scorer. Each case pins the strict top-1 skill so TS-native == Python for the same prompt. Cases are drawn from real executor metadata aliases and cover every resolver branch.",
   "cases": [
     {
       "id": "direct-alias-cli-opencode-literal",
@@ -13,18 +13,6 @@
       "prompt": "delegate to opencode and run the ablation suite",
       "expectedTop": "cli-opencode",
       "branch": "direct-alias"
-    },
-    {
-      "id": "direct-alias-model-minimax",
-      "prompt": "dispatch this to MiniMax-M3",
-      "expectedTop": "cli-opencode",
-      "branch": "direct-alias-model"
-    },
-    {
-      "id": "direct-alias-model-kimi-slug",
-      "prompt": "send it to kimi-for-coding/k2p7",
-      "expectedTop": "cli-opencode",
-      "branch": "direct-alias-model"
     },
     {
       "id": "direct-alias-cli-claude-code-literal",

@@ -16,7 +16,6 @@ export const COMPILED_ROUTING_HUBS: ReadonlySet<string> = new Set([
   'mcp-tooling',
   'system-deep-loop',
   'cli-external-orchestration',
-  'sk-prompt',
   'sk-doc',
 ]);
 
@@ -33,7 +32,6 @@ export const DEFAULT_ON_HUBS: ReadonlySet<string> = new Set([
   'mcp-tooling',
   'system-deep-loop',
   'cli-external-orchestration',
-  'sk-prompt',
   'sk-doc',
 ]);
 

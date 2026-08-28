@@ -39,11 +39,9 @@ The compiled router serves exactly **seven parent hubs**, enumerated as `HUB_CHI
 | `system-deep-loop` | `006-parent-hub-rollout/002-system-deep-loop` |
 | `mcp-tooling` | `006-parent-hub-rollout/003-mcp-tooling` |
 | `cli-external-orchestration` | `006-parent-hub-rollout/004-cli-external-orchestration` |
-| `sk-prompt` | `006-parent-hub-rollout/005-sk-prompt` |
-| `sk-design` | `006-parent-hub-rollout/006-sk-design` |
 | `sk-doc` | `006-parent-hub-rollout/007-sk-doc` |
 
-This same seven-hub set is independently pinned in `.opencode/bin/lib/compiled-routing/serving-closure.manifest.json`, the promoted runtime's own inventory of every file the compiled router is allowed to depend on.
+This same hub set is independently pinned in `.opencode/bin/lib/compiled-routing/serving-closure.manifest.json`, the promoted runtime's own inventory of every file the compiled router is allowed to depend on.
 
 The router only ever selects **within** an already-identified hub — which of that hub's `workflowMode`/`packetKind` entries a prompt should resolve to. It never decides which hub owns a prompt in the first place; that step stays the advisor's job.
 

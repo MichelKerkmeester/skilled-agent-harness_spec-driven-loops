@@ -130,12 +130,6 @@ describe('executor-delegation resolver (pure detector)', () => {
     expect(decision?.executorSkillId).toBe('cli-opencode');
   });
 
-  it('routes a direct model alias to its executor', () => {
-    const decision = resolveExecutorDelegation('dispatch this to minimax-m3', table);
-    expect(decision?.action).toBe('route');
-    expect(decision?.executorSkillId).toBe('cli-opencode');
-  });
-
   it('routes an orchestrator noun co-occurring with a delegation cue', () => {
     const decision = resolveExecutorDelegation(
       'ask opencode with a small-model executor to sweep the architecture and report what this repo is missing.',
@@ -180,7 +174,10 @@ describe('executor-delegation shared fixture (TS native + Python parity)', () =>
 
   it('has a well-formed non-trivial fixture', () => {
     expect(fixture.version).toBe(1);
-    expect(fixture.cases.length).toBeGreaterThanOrEqual(10);
+    // Floor guards against the fixture being gutted, not against it shrinking for
+    // a real reason: the model-alias branch was retired with its profile registry,
+    // so the three branches below are what non-trivial now means.
+    expect(fixture.cases.length).toBeGreaterThanOrEqual(9);
     const branches = new Set(fixture.cases.map((entry) => entry.branch));
     for (const branch of ['direct-alias', 'orchestrator-cue', 'negative-guard']) {
       expect(branches.has(branch)).toBe(true);

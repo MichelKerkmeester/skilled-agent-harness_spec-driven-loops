@@ -109,17 +109,6 @@ export interface ExecutorDelegationContext {
   readonly uncertaintyThreshold: number;
 }
 
-interface ModelExecutorEntry {
-  readonly executor?: unknown;
-  readonly status?: unknown;
-}
-
-interface ModelProfileEntry {
-  readonly id?: unknown;
-  readonly executors?: unknown;
-  readonly capability?: { readonly model_slug?: unknown } | unknown;
-}
-
 interface ArchivedGraphMetadata {
   readonly family?: unknown;
   readonly intent_signals?: unknown;
@@ -150,9 +139,8 @@ interface HubExecutorEntry {
   readonly aliases: readonly string[];
 }
 
-/** Filesystem-derived alias data (model registry + archived executors + hub executors). */
+/** Filesystem-derived alias data (archived executors + hub executors). */
 interface FilesystemAliasData {
-  readonly modelAliases: ReadonlyMap<string, string>;
   readonly suppressedAliases: ReadonlySet<string>;
   readonly hubExecutors: readonly HubExecutorEntry[];
 }
@@ -228,10 +216,6 @@ function stringArray(value: unknown): string[] {
 function loadFilesystemAliasData(workspaceRoot: string | undefined): FilesystemAliasData {
   const cacheKey = workspaceRoot ?? '';
   const skillsRoot = join(workspaceRoot ?? process.cwd(), '.opencode', 'skills');
-  // Path is coupled to the on-disk sk-prompt mode-packet directory name; keep it
-  // in sync with that folder or model aliases silently empty and bare model
-  // mentions (e.g. MiniMax, Kimi) stop routing to their executor.
-  const modelProfilesPath = join(skillsRoot, 'sk-prompt', 'sk-prompt-models', 'assets', 'model-profiles.json');
   const archiveRoot = join(skillsRoot, 'z_archive');
   const cliHubRegistryPath = join(skillsRoot, 'cli-external-orchestration', 'mode-registry.json');
   const cached = filesystemAliasCache.get(cacheKey);
@@ -239,39 +223,8 @@ function loadFilesystemAliasData(workspaceRoot: string | undefined): FilesystemA
   // mtimes keep the common cache-hit path stat-only instead of re-reading JSON.
   if (cached && sourceMtimesMatch(cached.sourceMtimes)) return cached.data;
 
-  const modelAliases = new Map<string, string>();
   const suppressedAliases = new Set<string>();
-  const sourcePaths = new Set<string>([modelProfilesPath, archiveRoot, cliHubRegistryPath]);
-
-  // Model -> executor aliases from the shared small-model profile registry.
-  // Only active executor paths lift; an optional/unverified path is recorded
-  // nowhere so a bare model mention never auto-routes to it.
-  try {
-    if (existsSync(modelProfilesPath)) {
-      const parsed = JSON.parse(readFileSync(modelProfilesPath, 'utf8')) as { models?: unknown };
-      const models = Array.isArray(parsed.models) ? (parsed.models as ModelProfileEntry[]) : [];
-      for (const model of models) {
-        const executors = Array.isArray(model.executors) ? (model.executors as ModelExecutorEntry[]) : [];
-        const activeExecutor = executors.find((entry) => entry.status === 'active');
-        if (!activeExecutor || typeof activeExecutor.executor !== 'string') continue;
-        const executorId = activeExecutor.executor;
-        const modelPhrases: string[] = [];
-        if (typeof model.id === 'string') modelPhrases.push(model.id);
-        const capability = model.capability;
-        if (capability && typeof capability === 'object' && 'model_slug' in capability) {
-          const slug = (capability as { model_slug?: unknown }).model_slug;
-          if (typeof slug === 'string') modelPhrases.push(slug);
-        }
-        for (const phrase of modelPhrases) {
-          for (const variant of aliasVariantsOf(phrase)) {
-            if (!modelAliases.has(variant)) modelAliases.set(variant, executorId);
-          }
-        }
-      }
-    }
-  } catch {
-    // A malformed registry degrades to no model aliases, never a hard failure.
-  }
+  const sourcePaths = new Set<string>([archiveRoot, cliHubRegistryPath]);
 
   // Retired/archived executor aliases. Any archived cli-family skill's declared
   // triggers become a suppressed set so "use codex …" abstains instead of
@@ -312,7 +265,7 @@ function loadFilesystemAliasData(workspaceRoot: string | undefined): FilesystemA
 
   const hubExecutors = loadCliHubExecutors(cliHubRegistryPath);
 
-  const data: FilesystemAliasData = { modelAliases, suppressedAliases, hubExecutors };
+  const data: FilesystemAliasData = { suppressedAliases, hubExecutors };
   filesystemAliasCache.set(cacheKey, { data, sourceMtimes: snapshotSourceMtimes(sourcePaths) });
   return data;
 }
@@ -371,14 +324,6 @@ export function buildExecutorAliasTable(
       const spaced = noun.replace(/-/g, ' ');
       if (spaced !== noun) orchestratorNouns.set(spaced, executor.id);
     }
-  }
-
-  // Model aliases back-stop the registry: any active model whose executor is
-  // a routable cli-external-orchestration mode contributes its aliases even if the
-  // executor's registry aliases[] has not yet been re-synced with that model.
-  for (const [alias, executorId] of filesystem.modelAliases) {
-    if (!activeExecutorIds.has(executorId)) continue;
-    if (!activeAliases.has(alias)) activeAliases.set(alias, executorId);
   }
 
   return {

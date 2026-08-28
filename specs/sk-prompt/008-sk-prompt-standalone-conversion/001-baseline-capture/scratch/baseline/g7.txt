@@ -1,0 +1,6 @@
+cli-external-orchestration                    PASS
+mcp-tooling                                   PASS
+sk-code                                       PASS
+sk-doc                                        PASS
+sk-prompt                                     PASS
+system-deep-loop                              PASS

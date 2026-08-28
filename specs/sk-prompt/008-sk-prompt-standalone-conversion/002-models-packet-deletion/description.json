@@ -1,0 +1,28 @@
+{
+  "level": "1",
+  "specFolder": "sk-prompt/008-sk-prompt-standalone-conversion/002-models-packet-deletion",
+  "description": "The sk-prompt-models packet is not documentation: its model-profiles.json is read at runtime by two parallel scorer implementations and enforced by a",
+  "keywords": [
+    "sk-prompt-models",
+    "packet",
+    "documentation",
+    "model-profiles",
+    "json",
+    "read",
+    "runtime",
+    "two",
+    "parallel",
+    "scorer",
+    "implementations",
+    "enforced"
+  ],
+  "lastUpdated": "2026-08-28T09:56:44.397Z",
+  "specId": "002",
+  "folderSlug": "models-packet-deletion",
+  "parentChain": [
+    "sk-prompt",
+    "008-sk-prompt-standalone-conversion"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

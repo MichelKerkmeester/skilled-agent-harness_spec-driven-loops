@@ -1,0 +1,9 @@
+  cli-external-orchestration  fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-doc                      fresh
+  sk-prompt                   fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit=0

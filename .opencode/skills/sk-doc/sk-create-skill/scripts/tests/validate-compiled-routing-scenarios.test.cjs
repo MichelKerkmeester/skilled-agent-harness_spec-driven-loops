@@ -23,14 +23,14 @@ id: T-CR-001
 category: compiled_routing
 stage: routing
 route_shape: default
-expected_intent: sk-prompt-improve
+expected_intent: sk-create-skill
 expected_resources:
-  - sk-prompt-improve/references/depth-framework.md
-expected_workflow_mode: sk-prompt-improve
+  - sk-create-skill/references/skill/creation-workflow.md
+expected_workflow_mode: sk-create-skill
 expected_leaf_resources:
-  - workflow_mode: sk-prompt-improve
-    leaf_resource_id: references/depth-framework.md
-evidence_compiled_route: sk-prompt/sk-prompt-improve
+  - workflow_mode: sk-create-skill
+    leaf_resource_id: references/skill/creation-workflow.md
+evidence_compiled_route: sk-doc/sk-create-skill
 evidence_serving_authority: compiled
 evidence_flag_state: unset
 evidence_fallback_cause: compiled-serving
