@@ -176,7 +176,7 @@ export function telemetryFilePath(outputPath?: string): string {
   }
 
   const repoRoot = locateRepoRoot(process.cwd());
-  return path.join(repoRoot, '.opencode', 'skills', '.smart-router-telemetry', 'compliance.jsonl');
+  return path.join(repoRoot, '.opencode', 'skills', '.state', 'smart-router-telemetry', 'compliance.jsonl');
 }
 
 function positiveIntFromEnv(envName: string, fallback: number): number {
