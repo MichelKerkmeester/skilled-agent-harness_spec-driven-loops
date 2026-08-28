@@ -41,83 +41,19 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-git/scripts/worktree-naming.sh",
-      ".opencode/skills/sk-git/SKILL.md",
       "decision-record.md",
-      ".opencode/skills/sk-git/scripts/remote-branch-allowlist.txt",
-      ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
-      ".opencode/scripts/install-git-hooks.sh",
-      ".opencode/skills/sk-git/references/remote-branch-policy.md",
-      ".opencode/skills/sk-git/references/finish-workflows.md",
-      ".opencode/skills/sk-git/references/continuous-integration.md",
-      ".opencode/skills/sk-git/feature-catalog/feature-catalog.md",
       "research.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md",
-      ".opencode/bin/git-sync.sh"
+      "spec.md"
     ],
     "entities": [
-      {
-        "name": "worktree-naming.sh",
-        "kind": "script",
-        "path": ".opencode/skills/sk-git/scripts/worktree-naming.sh",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "remote-branch-allowlist.txt",
-        "kind": "file",
-        "path": ".opencode/skills/sk-git/scripts/remote-branch-allowlist.txt",
-        "source": "derived"
-      },
-      {
-        "name": "pre-push.test.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
-        "source": "derived"
-      },
-      {
-        "name": "install-git-hooks.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/install-git-hooks.sh",
-        "source": "derived"
-      },
-      {
-        "name": "remote-branch-policy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/references/remote-branch-policy.md",
-        "source": "derived"
-      },
-      {
-        "name": "finish-workflows.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/references/finish-workflows.md",
-        "source": "derived"
-      },
-      {
-        "name": "continuous-integration.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/references/continuous-integration.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
@@ -154,12 +90,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "git-sync.sh",
-        "kind": "script",
-        "path": ".opencode/bin/git-sync.sh",
         "source": "derived"
       },
       {
@@ -203,11 +133,71 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Allowlist Mechanism",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Push Hook Permission Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Suite Update",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Local branch/worktree creation in this repo is cheap and unrestricted by design (numbered worktrees, owner-first naming) — but every one of those branches can currently reach `origin` with an ordinary `git push`, with nothing asking whether it should",
     "created_at": "2026-07-17T15:57:59.140Z",
-    "last_save_at": "2026-07-17T16:29:07.069Z",
+    "last_save_at": "2026-08-28T18:15:32.884Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,9 +209,9 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:b3e9961e9409fa994edbd48d1cf1db9348735a117ff0762749a0a12864a8f89e",
+    "source_fingerprint": "sha256:70d69e88fc73494f16f5e91d9c87c7ead2294110c88fc02d18631e10c8e269db",
     "source_doc_hashes": {
-      "spec.md": "2fff27aac7d81291654da4acfdd0a2c26af95aa4195d8f827b5e8e05ca0db939",
+      "spec.md": "bb2b588b80104b822087c73903252b95bba215b7d12292189b2605b252279483",
       "plan.md": "bc0c23227b98729c0fc3026c26deac611373351fc093352f7438eb07c457ccc7",
       "tasks.md": "9f433135ecd4c683f33f28bb9ef77006b96833845a4ed18fff0306422aec366c",
       "checklist.md": "5db6ddf8ce9a6001b19281ca50d69edde576f3c7d058a261cb0e99b6fba4c898",

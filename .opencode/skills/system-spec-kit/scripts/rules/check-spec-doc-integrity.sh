@@ -74,6 +74,13 @@ extract_markdown_link_targets() {
         /^[[:space:]]*(```|~~~)/ { in_fence = !in_fence; next }
         in_fence { next }
 
+        # Blank paired inline code spans before parsing. A link written inside
+        # backticks is literal text illustrating link syntax, not a reference to
+        # follow, so probing it reports a missing file for a document that is
+        # correct. Only matched pairs are removed, so an odd stray backtick
+        # leaves the line intact and a real link stays checkable.
+        { gsub(/`[^`]*`/, " ") }
+
         # Format 3: Reference definition  [label]: ./path.md  (line start, optional title in quotes)
         # Captures the target up to the first whitespace.
         match($0, /^[[:space:]]*\[[^]]+\][[:space:]]*:[[:space:]]*[^[:space:]>]+\.md([#?][^[:space:]]*)?/) {

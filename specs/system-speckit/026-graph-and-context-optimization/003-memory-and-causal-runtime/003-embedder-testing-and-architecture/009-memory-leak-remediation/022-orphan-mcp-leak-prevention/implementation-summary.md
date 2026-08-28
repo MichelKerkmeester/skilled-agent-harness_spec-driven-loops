@@ -20,9 +20,9 @@ _memory:
       - ".opencode/scripts/claude-session-cleanup.sh"
       - ".opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist"
       - ".claude/settings.local.json"
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/ipc/launcher-idle-timeout.ts"
-      - ".opencode/skills/system-skill-advisor/mcp_server/lib/ipc/launcher-idle-timeout.ts"
-      - ".opencode/skills/system-code-graph/mcp_server/lib/ipc/launcher-idle-timeout.ts"
+      - ".opencode/skills/system-spec-kit/mcp-server/lib/ipc/launcher-idle-timeout.ts"
+      - ".opencode/skills/system-skill-advisor/mcp-server/lib/ipc/launcher-idle-timeout.ts"
+      - ".opencode/skills/system-code-graph/mcp-server/lib/ipc/launcher-idle-timeout.ts"
     session_dedup:
       fingerprint: "sha256:0220220220220220220220220220220220220220220220220220220220220220"
       session_id: "2026-05-24-orphan-mcp-leak-prevention-implemented"
@@ -98,10 +98,10 @@ The implementation details remain in this packet. Operator and AI wayfinding now
 | Surface | Link | Purpose |
 |---|---|---|
 | Root README | [README.md](../../../../../../../README.md) | Quick-start and related-doc pointers for the native MCP lifecycle guardrails. |
-| Scripts runbook | [.opencode/scripts/README.md](../../../../../../scripts/README.md) | Dry-run sweeper command, preservation rules, Claude cleanup, and LaunchAgent template boundary. |
-| Spec Kit MCP runtime README | [mcp_server/README.md](../../../../../../skills/system-spec-kit/mcp_server/README.md) | Runtime lifecycle guardrail summary and canonical env reference links. |
-| Feature catalog | [orphan sweeper](../../../../../../skills/system-spec-kit/feature_catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md), [idle timeout](../../../../../../skills/system-spec-kit/feature_catalog/feature-flag-reference/launcher-idle-timeout.md) | Planning-time feature discovery for AI agents. |
-| Manual playbook | [419 orphan MCP runtime lifecycle guardrails](../../../../../../skills/system-spec-kit/manual_testing_playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md) | Manual dry-run, plist lint, script syntax, and discoverability checks. |
+| Scripts runbook | [.opencode/scripts/README.md](../../../../../../../.opencode/scripts/README.md) | Dry-run sweeper command, preservation rules, Claude cleanup, and LaunchAgent template boundary. |
+| Spec Kit MCP runtime README | [mcp-server/README.md](../../../../../../../.opencode/skills/system-spec-kit/mcp-server/README.md) | Runtime lifecycle guardrail summary and canonical env reference links. |
+| Feature catalog | [orphan sweeper](../../../../../../../.opencode/skills/system-spec-kit/feature-catalog/tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md), [idle timeout](../../../../../../../.opencode/skills/system-spec-kit/feature-catalog/feature-flag-reference/launcher-idle-timeout.md) | Planning-time feature discovery for AI agents. |
+| Manual playbook | [419 orphan MCP runtime lifecycle guardrails](../../../../../../../.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md) | Manual dry-run, plist lint, script syntax, and discoverability checks. |
 
 <!-- /ANCHOR:documentation-index -->
 

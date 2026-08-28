@@ -130,7 +130,7 @@ Five phases, executed across 2026-05-15:
 ## Known Limitations
 
 - Agent-config JSON smoke-test is lightweight (`-p` mode with one-line prompt) — confirms parse + dispatch but doesn't exercise full iter prompt body. Real iter use will reveal whether per-recipe `system_instructions` arrays carry enough framing.
-- The 3 JSONs capture devin 2026.5.6-8's accepted schema; future devin CLI versions may add/remove keys or tighten validation, requiring a recipe resync and a `v1.0.X.0` bump per [versioning policy](../../../../.opencode/skills/cli-devin/references/deep-loop-iter-contract.md).
+- The 3 JSONs capture devin 2026.5.6-8's accepted schema; future devin CLI versions may add/remove keys or tighten validation, requiring a recipe resync and a `v1.0.X.0` bump per the versioning policy that lived in the cli-devin iter-contract reference. That document is no longer present, and the skill has since moved under the CLI orchestration hub; the policy is unrecorded until it is rewritten there.
 - cli-devin SKILL.md grew from 468 to 471 lines — well under the 500-LOC cap. Future iter-contract evolution that exceeds the cap must move bulk content out of SKILL.md into the reference docs.
 - The `<repo-root>` substitution happens at dispatch time in the `if_cli_devin:` YAML branches via inline `sed`. Both `deep_start-research-loop_auto.yaml` (research-iter recipe) and `deep_start-review-loop_auto.yaml` (review-iter recipe) now wire `--agent-config` into the dispatch wording. The synthesis recipe still requires manual dispatch (the synthesis pass is operator-driven, not loop-driven, so it does not sit in the iter dispatcher).
 <!-- /ANCHOR:limitations -->
