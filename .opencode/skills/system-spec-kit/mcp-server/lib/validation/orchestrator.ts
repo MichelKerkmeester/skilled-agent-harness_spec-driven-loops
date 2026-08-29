@@ -228,6 +228,19 @@ function entry(rule: string, status: ValidationEntry['status'], message: string,
   return { rule, status, message, details };
 }
 
+const PACKET_FOLDER_RE = /^\d{3}-[a-z0-9-]+$/u;
+
+// A track sits directly inside the specs root, is named for the track rather
+// than numbered like a packet, and has no spec of its own — it is the drawer,
+// not a document in it. Requiring all three keeps a genuine packet from taking
+// the exemption just because of where it happens to sit.
+function isTrackRoot(folder: string): boolean {
+  const resolved = path.resolve(folder);
+  if (path.basename(path.dirname(resolved)) !== 'specs') return false;
+  if (PACKET_FOLDER_RE.test(path.basename(resolved))) return false;
+  return !fs.existsSync(path.join(resolved, 'spec.md'));
+}
+
 function isRegistryEntry(value: unknown): value is ValidatorRegistryEntry {
   if (!value || typeof value !== 'object') return false;
   const candidate = value as Record<string, unknown>;
@@ -935,6 +948,23 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
     throw new Error(`Folder not found: ${folderPath}`);
   }
   resetRuleSubset();
+
+  // A track is the directory packets are filed under, not a packet. It carries
+  // metadata so the tracks are searchable, which is enough to make it look like
+  // a phase parent, and it then fails rules it can never satisfy — its name is
+  // a track name and will never match the packet naming convention.
+  if (isTrackRoot(folder)) {
+    const entries = [entry('TRACK_ROOT', 'info', 'Track directory, not a packet; no packet rules apply')];
+    return {
+      folder,
+      level: '1',
+      engine: ENGINE_NAME,
+      entries,
+      summary: { errors: 0, warnings: 0, info: entries.length },
+      passed: true,
+    };
+  }
+
   const level = normalizeLevel(opts.strict && isPhaseParent(folder) ? 'phase' : detectLevel(folder));
   const entries: ValidationEntry[] = [];
 

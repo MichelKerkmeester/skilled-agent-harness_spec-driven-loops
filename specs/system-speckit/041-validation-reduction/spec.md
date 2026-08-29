@@ -131,8 +131,8 @@ the corpus being told it is broken by rules nothing consumes.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | `001-warnings-stop-blocking` | Strict mode stops promoting warnings to errors | Planned |
-| 2 | `002-scope-what-is-graded` | Archives and track roots leave the graded set | Planned |
+| 1 | `001-warnings-stop-blocking` | Strict mode stops promoting warnings to errors | Complete |
+| 2 | `002-tracks-are-not-packets` | Track directories stop being graded as packets | Complete |
 | 3 | `003-delete-taste-rules` | Remove rules that encode taste with no consumer | Planned |
 | 4 | `004-delete-template-conformance` | Remove prose-shape grading and its unreachable twins | Planned |
 | 5 | `005-scaffold-parity` | A fresh scaffold passes the gate it ships with | Planned |
@@ -152,7 +152,7 @@ the corpus being told it is broken by rules nothing consumes.
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
 | 001 | 002 | Warnings no longer fail a strict run | Pass rate measured on a fixed sample before and after |
-| 002 | 003 | Archived folders and track roots are out of the graded set | Folder count entering the walker drops by the archived total |
+| 002 | 003 | Track directories report nothing and no packet is exempted | All fourteen tracks pass; a packet in a track's position still fails |
 | 003 | 004 | Deleted rules are gone from registry, disk, tests and docs | No reference survives outside history |
 | 004 | 005 | Prose-shape grading is removed and nothing references it | Rule inventory shrinks; no packet changes verdict for a reason other than the removal |
 | 005 | 006 | A scaffold created with no human input passes | The scaffold-parity check runs in CI |

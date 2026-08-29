@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-speckit/041-validation-reduction/002-tracks-are-not-packets",
+  "description": "A track directory stops being graded as though it were a packet.",
+  "keywords": [
+    "track",
+    "directory",
+    "stops",
+    "graded",
+    "though",
+    "packet"
+  ],
+  "lastUpdated": "2026-08-29T17:34:28.231Z",
+  "specId": "002",
+  "folderSlug": "tracks-are-not-packets",
+  "parentChain": [
+    "system-speckit",
+    "041-validation-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
