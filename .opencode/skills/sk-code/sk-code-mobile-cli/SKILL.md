@@ -2,7 +2,7 @@
 name: sk-code-mobile-cli
 description: "Read-only Svelte design-system and source-convention evidence for the Pi Remote Mobile-CLI app."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.1.7.1
+version: 0.1.8.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -63,6 +63,7 @@ primary and mutates nothing. It supplies evidence while the acting workflow appl
 | [`references/a11y-parity.md`](references/a11y-parity.md) | The react-aria → bits-ui accessibility parity contract and the `use:hover`/`use:press`/`use:focusVisible` action pattern. |
 | [`references/browser-free-verification-recipe.md`](references/browser-free-verification-recipe.md) | The `token-identity` snapshot/diff/verify commands and the `*-cdp.mjs` render gates, and why the CSP forbids screenshot value checks. |
 | [`references/component-story-upkeep.md`](references/component-story-upkeep.md) | The `story:new` → `story:coverage` → `catalog-smoke-cdp.mjs` catalog contract for every renderable component change. |
+| [`references/screenshot-archive.md`](references/screenshot-archive.md) | The tracked screenshot archive: how a shot is taken, transparent versus page-tone grounds, what its determinism is worth, and how an agent and a designer each use the catalog. |
 | [`references/skill-reference-integrity.md`](references/skill-reference-integrity.md) | The cross-repo `scan-skill-references.mjs` drift guard that resolves every app path this surface names (expects `broken : 0`). |
 | [`references/workflow-implement.md`](references/workflow-implement.md) · [`workflow-debug.md`](references/workflow-debug.md) · [`workflow-verify.md`](references/workflow-verify.md) | The shared implement → debug → verify doctrine (symlinked from `../../shared/references/`). |
 
@@ -130,6 +131,7 @@ RESOURCE_MAP = {
         "references/comment-grammar.md",
         "references/folder-docs.md",
         "references/component-story-upkeep.md",
+        "references/screenshot-archive.md",
         "assets/guardrail-audit-checklist.md",
         "assets/bem-rename-checklist.md",
         "assets/story-coverage-checklist.md",

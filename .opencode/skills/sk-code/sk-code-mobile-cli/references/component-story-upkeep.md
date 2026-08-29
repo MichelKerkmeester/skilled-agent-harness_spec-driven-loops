@@ -98,14 +98,24 @@ visual-regression — there is no paid visual-diff step.
 
 The catalog is not just a render surface. Its addons are part of the contract: **a11y** runs automatic
 contrast and accessibility checks on the component in view, **themes** drives the system / light / dark
-toolbar through `data-theme` so every surface re-inks through the real tokens, **designs** places a
-Figma frame beside each surface, and **autodocs** generates a per-component docs page from each story's
-`autodocs` tag. A story authored with real fixtures makes all four addons truthful at once.
+toolbar through `data-theme` so every surface re-inks through the real tokens, and **autodocs**
+generates a per-component docs page from each story's `autodocs` tag. A story authored with real
+fixtures makes all three truthful at once.
+
+**designs** is installed but wired to nothing — no story declares a `design:` parameter, because there
+is no Figma source for this app; the design system was authored in code with `app.css` as its origin.
+The addon stays installed so links can be added if that changes. Treat any claim that a Figma frame
+sits beside a surface as false until a `design:` parameter actually exists.
+
+Two further catalog surfaces are tooling rather than product, and live in `.storybook/` so they never
+reach the app bundle: a **token playground** that retunes the design system across every story, and an
+**editable seams** reference read out of the source at build time.
 
 ---
 
 ## 6. RELATED REFERENCES
 
+- `screenshot-archive.md` — the tracked archive, and how an agent and a designer each use the catalog.
 - `browser-free-verification-recipe.md` — how `catalog-smoke-cdp.mjs` fits the app's CDP mount gates.
 - `a11y-parity.md` — the accessibility contract the catalog's a11y panel checks per surface.
 - `skill-reference-integrity.md` — the guard that keeps this reference's paths from rotting.
