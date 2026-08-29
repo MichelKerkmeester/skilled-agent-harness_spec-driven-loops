@@ -41,19 +41,19 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "plan.md",
       "spec.md",
-      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "implementation-summary.md",
+      ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/scratch/styles.sha256.before",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
+      "mcp-server/lib/search/folder-discovery.ts",
+      "mcp-server/tests/handler-memory-save.vitest.ts",
+      "mcp-server/lib/validation/spec-doc-structure.ts"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -61,9 +61,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -73,9 +79,33 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "styles.sha256.before",
+        "kind": "file",
+        "path": ".opencode/specs/sk-design/012-sk-design-program/006-design-mode-consolidation/scratch/styles.sha256.before",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-save.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/tests/handler-memory-save.vitest.ts",
         "source": "derived"
       },
       {
@@ -167,35 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Validation Warning",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verified Phases",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`007-consolidation-remediation` shipped nine fixes and reached a full green gate set, but it explicitly recorded five items as deferred rather than dropped: two verification gates were never run (styles SHA-256 equality, the design benchmark), one validator warning on the sibling `006` packet was never diagnosed, and one capability decision (AI-tell fixture restoration) was left for the operator",
     "created_at": "2026-07-27T08:54:36.515Z",
-    "last_save_at": "2026-08-29T09:58:33.810Z",
+    "last_save_at": "2026-08-29T13:09:59.235Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

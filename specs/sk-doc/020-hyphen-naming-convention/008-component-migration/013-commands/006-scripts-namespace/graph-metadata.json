@@ -43,8 +43,12 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      ".opencode/commands/scripts/README.md",
+      ".opencode/commands/scripts/validate-command-references.cjs",
+      ".opencode/commands/scripts/fixtures/broken-command-refs.yaml",
+      ".opencode/commands/scripts/fixtures/README.md"
     ],
     "entities": [
       {
@@ -60,15 +64,33 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/commands/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-references.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/scripts/validate-command-references.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "broken-command-refs.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/scripts/fixtures/broken-command-refs.yaml",
         "source": "derived"
       },
       {
@@ -172,29 +194,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The scripts namespace is part of the commands filesystem surface, so it must be checked against the program's canonical kebab-case rule",
     "created_at": "2026-07-14T15:18:35Z",
-    "last_save_at": "2026-08-29T10:00:36.833Z",
+    "last_save_at": "2026-08-29T13:10:06.720Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

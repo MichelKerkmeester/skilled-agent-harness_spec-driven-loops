@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md"
     session_dedup:
-      fingerprint: "sha256:8b1de50185aaabedc28db0c69984681a5810f48d1c3ae766411fd7888b2304bc"
+      fingerprint: "sha256:b1fbe6ac4f5ffa3f5deaf8dd37ae6d1606a042ef1c99be9a9fe28082b994a42e"
       session_id: "2026-08-07-hooks-002-009"
       parent_session_id: null
     completion_pct: 100

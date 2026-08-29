@@ -42,17 +42,26 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "plan.md"
+      ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-surface-fold.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -80,9 +89,21 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "legacy-projection-surface-fold.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/legacy-projection-surface-fold.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-state-contract.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-projection-coverage.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/check-projection-coverage.cjs",
         "source": "derived"
       },
       {
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The fleet flip moved all eight modes to ledger authority, but the projection library ships exactly one",
     "created_at": "2026-08-23T06:30:00.000Z",
-    "last_save_at": "2026-08-29T09:58:17.904Z",
+    "last_save_at": "2026-08-29T13:09:56.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -41,7 +41,10 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      ".codex/config.toml"
     ],
     "entities": [
       {
@@ -72,6 +75,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
         "source": "derived"
       },
       {
@@ -169,29 +190,11 @@
         "kind": "heading",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "2. PRE-IMPLEMENTATION",
-        "kind": "heading",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. CODE QUALITY",
-        "kind": "heading",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Investigation revealed .codex/agents/ is NOT empty (11 .toml files mirror .opencode/agents/) AND [agents.ai-council] IS declared in .codex/config.toml at line 139. Audit P0 was stale. Phase 003 reduces to JUST 2 P1 (proposed) qualifier removals from deep-research.md:51 + deep-review.md:45 since deep-ai-council rename arc has shipped.",
     "created_at": "2026-05-23T17:05:00.000000Z",
-    "last_save_at": "2026-08-29T09:58:47.170Z",
+    "last_save_at": "2026-08-29T13:10:01.071Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

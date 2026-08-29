@@ -43,21 +43,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "scratch/sk-doc-sweep-tally.csv",
       "spec.md",
       "plan.md",
+      "tasks.md",
+      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "tasks.md",
-      "checklist.md"
+      "scratch/sk-doc-sweep-tally.csv"
     ],
     "entities": [
-      {
-        "name": "sk-doc-sweep-tally.csv",
-        "kind": "file",
-        "path": "scratch/sk-doc-sweep-tally.csv",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -68,6 +62,18 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -83,15 +89,9 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "sk-doc-sweep-tally.csv",
+        "kind": "file",
+        "path": "scratch/sk-doc-sweep-tally.csv",
         "source": "derived"
       },
       {
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Arc 020 closed the deferred-P2 behavior and API changes, but its child packet docs need a final sk-doc structure sweep before arc 021 can close",
     "created_at": "2026-05-23T14:00:00Z",
-    "last_save_at": "2026-08-29T10:00:13.886Z",
+    "last_save_at": "2026-08-29T13:10:02.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

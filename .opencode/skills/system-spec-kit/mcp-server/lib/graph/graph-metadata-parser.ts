@@ -844,11 +844,18 @@ function selectFirstValue(values: Array<string | null | undefined>, fallback: st
   return fallback;
 }
 
+// Spec packets used to live under `.opencode/specs` and now sit at the
+// repository root. Recognising only the old shape makes this return null for
+// every current packet, which costs the caller its repository root and makes
+// every repo-relative key file fail to resolve and silently disappear.
 function findSpecsRoot(specFolderPath: string): string | null {
   let current = path.resolve(specFolderPath);
   while (true) {
-    if (path.basename(current) === 'specs' && path.basename(path.dirname(current)) === '.opencode') {
-      return current;
+    if (path.basename(current) === 'specs') {
+      const parent = path.dirname(current);
+      if (path.basename(parent) === '.opencode' || fs.existsSync(path.join(parent, '.opencode'))) {
+        return current;
+      }
     }
     const parent = path.dirname(current);
     if (parent === current) {
@@ -856,6 +863,14 @@ function findSpecsRoot(specFolderPath: string): string | null {
     }
     current = parent;
   }
+}
+
+// Works for both layouts: the legacy root is two levels up from `specs`, the
+// current one is a single level up.
+function repoRootFromSpecsRoot(specsRoot: string | null): string | null {
+  if (!specsRoot) return null;
+  const parent = path.dirname(specsRoot);
+  return path.basename(parent) === '.opencode' ? path.dirname(parent) : parent;
 }
 
 function isExistingFile(filePath: string): boolean {
@@ -958,7 +973,7 @@ function resolveKeyFileCandidate(
   }
 
   const specsRoot = findSpecsRoot(specFolderPath);
-  const repoRoot = specsRoot ? path.dirname(path.dirname(specsRoot)) : null;
+  const repoRoot = repoRootFromSpecsRoot(specsRoot);
   const currentTrack = specFolder.split('/').filter(Boolean)[0] ?? null;
   const candidates = [normalized];
   const swapped = swapCrossTrackPath(normalized, currentTrack);
@@ -1127,7 +1142,10 @@ function deriveKeyFiles(specFolderPath: string, specFolder: string, docs: Parsed
   const fallbackRefs = docs
     .flatMap((doc) => extractReferencedFilePaths(doc.content))
     .filter(keepKeyFile);
-  const merged = normalizeUnique([...frontmatterKeyFiles, ...referenced, ...fallbackRefs, ...docs.map((doc) => doc.relativePath)]);
+  // The packet's own documents lead: the list is capped, so whatever sorts last
+  // is what a well-referenced packet loses first, and losing its own spec to a
+  // cap filled with incidental references is the wrong trade.
+  const merged = normalizeUnique([...docs.map((doc) => doc.relativePath), ...frontmatterKeyFiles, ...referenced, ...fallbackRefs]);
   const resolved = merged
     .map((candidate) => resolveKeyFileCandidate(specFolderPath, specFolder, candidate))
     .filter((candidate): candidate is string => Boolean(candidate));

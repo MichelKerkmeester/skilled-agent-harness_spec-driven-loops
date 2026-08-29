@@ -28,7 +28,7 @@ _memory:
       - ".opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs"
       - ".opencode/skills/sk-git/scripts/tests/git-preflight-advisory.test.mjs"
     session_dedup:
-      fingerprint: "sha256:be8a5f030c705cc4b6233a68a2c48c9a2a4d18deff93e8b20f0525cdac779d6f"
+      fingerprint: "sha256:2c796ef36867d3cb8ed4be3eb8bc080cd4cce44882fe149437e7b3c777465f9c"
       session_id: "2026-08-08-hooks-002-012"
       parent_session_id: null
     completion_pct: 100

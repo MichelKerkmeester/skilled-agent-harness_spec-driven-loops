@@ -43,9 +43,11 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "decision-record.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "decision-record.md",
+      ".opencode/commands/deep/assets/compiled/README.md",
+      ".opencode/commands/scripts/README.md"
     ],
     "entities": [
       {
@@ -61,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -73,9 +75,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/README.md",
         "source": "derived"
       },
       {
@@ -185,17 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The commands surface stores workflow, presentation, legacy, compiled, fixture, and reference-like files under several namespace asset directories",
     "created_at": "2026-07-14T15:18:37Z",
-    "last_save_at": "2026-08-29T10:00:34.732Z",
+    "last_save_at": "2026-08-29T13:10:06.715Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

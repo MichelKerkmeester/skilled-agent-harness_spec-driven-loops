@@ -43,11 +43,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "evidence/baseline.txt",
-      "evidence/p2-canary-adjudication.txt",
-      "implementation-summary.md",
+      "checklist.md",
       "decision-record.md",
-      "checklist.md"
+      "implementation-summary.md",
+      "evidence/baseline.txt",
+      "evidence/p2-canary-adjudication.txt"
     ],
     "entities": [
       {
@@ -69,21 +69,9 @@
         "source": "derived"
       },
       {
-        "name": "baseline.txt",
-        "kind": "file",
-        "path": "evidence/baseline.txt",
-        "source": "derived"
-      },
-      {
-        "name": "p2-canary-adjudication.txt",
-        "kind": "file",
-        "path": "evidence/p2-canary-adjudication.txt",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -93,9 +81,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "evidence/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "p2-canary-adjudication.txt",
+        "kind": "file",
+        "path": "evidence/p2-canary-adjudication.txt",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The sk-design hub was dissolved from the skill tree, leaving the compiled-routing engine encoding a stale 7-hub topology; migrate the engine to the 6 surviving hubs, remove the mcp-tooling cross-hub judgment coupling to sk-design, and re-run the freshness ceremony so all 6 hubs resolve compiled again.",
     "created_at": "2026-08-22T08:41:36.413Z",
-    "last_save_at": "2026-08-29T10:01:20.581Z",
+    "last_save_at": "2026-08-29T13:10:18.130Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

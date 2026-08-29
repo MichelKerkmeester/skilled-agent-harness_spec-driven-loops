@@ -42,22 +42,17 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "checklist.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "tests/launcher-lease.vitest.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -73,9 +68,21 @@
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-lease.vitest.ts",
+        "kind": "test",
+        "path": "tests/launcher-lease.vitest.ts",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Each",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The spawned-launcher lease integration suite (`tests/launcher-lease.vitest.ts`) sat behind `describe.skip` with the comment \"known launcher process lifecycle flake.\" It is the only harness that boots a real `mk-spec-memory` launcher to exercise lease write/read end-to-end, and packet 020's `lease.socketPath` persistence was therefore verified by unit tests only, never by a real spawned launcher",
     "created_at": "2026-06-04T11:36:31.373Z",
-    "last_save_at": "2026-08-29T09:58:43.042Z",
+    "last_save_at": "2026-08-29T13:10:00.503Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
