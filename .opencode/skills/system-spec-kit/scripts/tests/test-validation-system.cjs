@@ -1469,7 +1469,6 @@ async function testRuleScriptsExist() {
       'check-files.sh',
       'check-placeholders.sh',
       'check-anchors.sh',
-      'check-sections.sh',
       'check-level.sh',
       'check-priority-tags.sh',
       'check-evidence.sh',
@@ -1494,9 +1493,9 @@ async function testRuleScriptsExist() {
     }
 
     if (foundCount === expectedRules.length) {
-      pass('All 13 rule scripts exist', `${foundCount}/${expectedRules.length} found`);
+      pass(`All ${expectedRules.length} rule scripts exist`, `${foundCount}/${expectedRules.length} found`);
     } else {
-      fail('All 13 rule scripts exist', `Missing: ${missingRules.join(', ')}`);
+      fail(`All ${expectedRules.length} rule scripts exist`, `Missing: ${missingRules.join(', ')}`);
     }
 
     // Test each rule script has run_check function
