@@ -21,7 +21,32 @@ into a surface you did not mean to touch.
 
 ---
 
-## 1. START HERE — PICK BY WHAT YOU ARE CHANGING
+## 1. OVERVIEW
+
+### Core Principle
+
+Three decisions govern every visual change, and they must be made in order: **what a value is**
+(the token layers), **where its rule lives** (scoped `<style>` versus `app.css`), and **what the
+class is called** (the BEM grammar). Get any one wrong and the change either renders as nothing or
+leaks into a surface you did not mean to touch.
+
+### When to Use
+
+- Changing a colour, spacing or radius and unsure which layer owns it
+- Retinting one surface without moving the rest of the system
+- Making light and dark disagree, or asking why a role stays literal
+- Deciding whether a rule belongs in a component or in `app.css`
+- Naming a class, or renaming a block of them
+
+### Key Sources
+
+- `app-mobile/src/app.css` — the token foundation all three layers resolve through
+- `scripts/token-identity.mjs` — the frozen goldens; the one authority on a token value
+- `assets/token-retint-checklist.md`, `assets/bem-rename-checklist.md`
+
+---
+
+## 2. PICK BY WHAT YOU ARE CHANGING
 
 | You are… | Read |
 |---|---|
@@ -34,7 +59,7 @@ into a surface you did not mean to touch.
 
 ---
 
-## 2. THE THREE DECISIONS, IN ORDER
+## 3. THE THREE DECISIONS, IN ORDER
 
 ### Which layer owns the value
 
@@ -58,7 +83,7 @@ names, and only a before/after image diff caught it.
 
 ---
 
-## 3. THE RULE THAT OUTRANKS THE REST
+## 4. THE RULE THAT OUTRANKS THE REST
 
 **A token value changes only through its own gate.** `token-identity.mjs` holds the frozen goldens
 across light, dark and system; a change that moves one without updating the goldens is a regression
@@ -67,19 +92,19 @@ reason — it hands back text to paste, so the gate stays the one authority.
 
 ---
 
-## 4. PROVING THE CHANGE
+## 5. PROVING THE CHANGE
 
 The app's strict CSP renders it unstyled headless, so **screenshots cannot prove a value**. Use the
 browser-free resolvers instead — see [`../verification/verification.md`](../verification/verification.md)
-for the command set and [`../verification/browser-free-verification-recipe.md`](../verification/browser-free-verification-recipe.md)
+for the command set and [`../verification/verification.md`](../verification/verification.md)
 for why. Screenshots remain the right tool for the other half: layout, legibility, and whether two
 states actually look different.
 
 ---
 
-## 5. RELATED REFERENCES
+## 6. RELATED REFERENCES
 
 - [`../conventions/comment-grammar.md`](../conventions/comment-grammar.md) — the purpose comment that records *why* a value is what it is.
 - [`../conventions/editability-guardrails.md`](../conventions/editability-guardrails.md) — the `Do not edit — <why>` notes that fence a frozen value.
 - [`../storybook/storybook.md`](../storybook/storybook.md) — seeing every surface in both themes, and retuning tokens live.
-- [`../svelte/svelte-runes-effects.md`](../svelte/svelte-runes-effects.md) — the runtime side of the same components.
+- [`../svelte/svelte.md`](../svelte/svelte.md) — the runtime side of the same components.

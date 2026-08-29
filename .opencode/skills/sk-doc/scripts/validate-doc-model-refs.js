@@ -271,9 +271,13 @@ function scanDoc(filePath, canonicalModels, verbose = false) {
       const contextEnd = Math.min(line.length, matchEnd + 50);
       const context = line.substring(contextStart, contextEnd).toLowerCase();
 
-      // Check for default markers
+      // Check for default markers. `context.includes('default')` also fires inside code
+      // identifiers such as PI_DEFAULT_MODEL, which is how an allowlist TABLE listing every
+      // supported id — and naming the real default in the same cell — flagged each id as if
+      // it were being cited as the default. Blank the identifiers before testing for prose.
+      const prose = context.replace(/[a-z0-9]*_default_[a-z0-9_]*/gi, ' ');
       const hasDefaultMarker = DEFAULT_MARKER_WORDS.some((word) =>
-        context.includes(word)
+        prose.includes(word)
       );
 
       // Check for intentional markers

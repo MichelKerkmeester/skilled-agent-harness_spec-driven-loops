@@ -19,7 +19,31 @@ version: 1.2.0.3
 
 ---
 
-## How to capture this baseline
+---
+
+## 1. OVERVIEW
+
+### Core Principle
+
+A relay that starts is not a relay that launched the *intended* child. This baseline exists because
+"the relay is up" and "the relay is running full-access Pi RPC with a working mode transition" are
+different claims, and only the second one licenses phone-control work.
+
+### When to Use
+
+- Before any phone-control work proceeds against a deployed relay
+- After changing how the relay launches its Pi child, or which Pi version is pinned
+- When a `/plan` mode transition does not appear on the phone and you need to tell a client bug from a relay one
+
+### Key Sources
+
+- The live verifier pass, which is operator-run — no machine gate can produce these rows
+- [`../operations/operations.md`](../operations/operations.md) — running the live relay
+- [`../release/release-verification.md`](../release/release-verification.md) — the surrounding release gates
+
+---
+
+## 2. HOW TO CAPTURE THIS BASELINE
 
 Run the black-box verifier against the live pi installation used by the deployment:
 
@@ -36,7 +60,7 @@ downstream phone control dark.
 
 ---
 
-## Fixed contract (verified in code, not operator-entered)
+## 3. FIXED CONTRACT (VERIFIED IN CODE, NOT OPERATOR-ENTERED)
 
 | Field                               | Value                                                                 |
 | ----------------------------------- | --------------------------------------------------------------------- |
@@ -51,7 +75,7 @@ without migration is guarded by the rollback drill.
 
 ---
 
-## Operator-observed evidence (fill from a live verifier pass)
+## 4. OPERATOR-OBSERVED EVIDENCE (FILL FROM A LIVE VERIFIER PASS)
 
 | Field                                | Value                                                 |
 | ------------------------------------ | ----------------------------------------------------- |
@@ -71,7 +95,7 @@ without migration is guarded by the rollback drill.
 
 ---
 
-## Rollback
+## 5. ROLLBACK
 
 Runtime and visible-phase rollback requires no database or schema migration. To roll back:
 
@@ -89,7 +113,7 @@ that the full-access posture relaunches against the restored database without a 
 
 ---
 
-## Baseline screenshots
+## 6. BASELINE SCREENSHOTS
 
 Capture the current app appearance before any Foundation (F1) restyle work begins, so the
 inert-restyle phases can be proven pixel-stable against this reference. Record the file

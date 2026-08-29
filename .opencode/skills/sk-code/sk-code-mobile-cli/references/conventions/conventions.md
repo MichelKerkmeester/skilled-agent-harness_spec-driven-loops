@@ -20,7 +20,29 @@ explains itself. They are conventions, not preferences — a gate enforces each 
 
 ---
 
-## 1. START HERE — PICK BY WHAT YOU ARE DOING
+## 1. OVERVIEW
+
+### Core Principle
+
+These contracts decide what a reader sees before they read any logic. The durable WHY is the whole
+point: a comment that restates the code is noise, and a comment that records the constraint behind a
+value is the only place that reasoning survives.
+
+### When to Use
+
+- Writing or editing any comment, banner or section divider
+- Touching something marked frozen, or adding a new fence
+- Adding a folder, or asking whether one owes documentation
+
+### Key Sources
+
+- `app-mobile/src/app.css` and any component's scoped `<style>` — where purpose comments live
+- `assets/guardrail-audit-checklist.md`
+- The repository-wide comment-hygiene gate, which blocks ephemeral artifact pointers at commit time
+
+---
+
+## 2. PICK BY WHAT YOU ARE DOING
 
 | You are… | Read |
 |---|---|
@@ -30,7 +52,7 @@ explains itself. They are conventions, not preferences — a gate enforces each 
 
 ---
 
-## 2. THE CONVENTIONS IN ONE PARAGRAPH EACH
+## 3. THE CONVENTIONS IN ONE PARAGRAPH EACH
 
 ### Comment grammar
 
@@ -54,7 +76,7 @@ so does a doc for a folder that no longer qualifies, so the set cannot rot into 
 
 ---
 
-## 3. THE HARD RULE
+## 4. THE HARD RULE
 
 **Never write an ephemeral artifact pointer into a code comment.** No spec paths, no packet or phase
 numbers, no `REQ-`/`CHK-`/task/ADR ids. Those identifiers are meaningful for weeks and confusing
@@ -63,7 +85,7 @@ instead: not *which ticket asked for this*, but *what breaks if it changes*.
 
 ---
 
-## 4. RELATED REFERENCES
+## 5. RELATED REFERENCES
 
 - [`../design-system/css-class-naming-bem.md`](../design-system/css-class-naming-bem.md) — the class grammar these purpose comments annotate.
 - [`../design-system/scoped-style-ownership.md`](../design-system/scoped-style-ownership.md) — where an owned CSS rule lives, which a folder's `CODE.md` records.

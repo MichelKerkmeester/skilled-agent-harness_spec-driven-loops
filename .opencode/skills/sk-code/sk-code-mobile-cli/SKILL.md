@@ -2,7 +2,7 @@
 name: sk-code-mobile-cli
 description: "Read-only Svelte design-system and source-convention evidence for the Pi Remote Mobile-CLI app."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.1.9.0
+version: 0.1.10.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -49,12 +49,12 @@ primary and mutates nothing. It supplies evidence while the acting workflow appl
 | Folder | Read first | What the folder carries |
 | --- | --- | --- |
 | `references/design-system/` | [`design-system.md`](references/design-system/design-system.md) | How the app looks. The three-layer token model (`token-library`), per-surface Layer-3 families (`component-tokens`), the light/dark role remap (`theme-remap`), two worked retints (`retint-recipes`), which file a rule belongs in (`scoped-style-ownership`), and the `block--element` class grammar (`css-class-naming-bem`). |
-| `references/verification/` | [`verification.md`](references/verification/verification.md) | Proving a change. The browser-free resolver method and command set, why the CSP forbids screenshot value checks (`browser-free-verification-recipe`), and the cross-repo path drift guard (`skill-reference-integrity`). |
+| `references/verification/` | [`verification.md`](references/verification/verification.md) | Proving a change. The browser-free resolver method, the value oracle, the CDP structural gates and the workspace gate in one document, plus the cross-repo path drift guard (`skill-reference-integrity`). |
 | `references/conventions/` | [`conventions.md`](references/conventions/conventions.md) | How source reads. Banner and comment grammar (`comment-grammar`), the `Do not edit — <why>` fences (`editability-guardrails`), and when a folder owes a `CODE.md` (`folder-docs`). |
-| `references/svelte/` | [`svelte.md`](references/svelte/svelte.md) | Runtime correctness a green suite cannot see. The `$effect` self-invalidation trap and `untrack` doctrine (`svelte-runes-effects`), and the react-aria → bits-ui accessibility contract (`a11y-parity`). |
-| `references/storybook/` | [`storybook.md`](references/storybook/storybook.md) | The component catalog and its screenshot archive: both audiences, the gates in the order they bite (`component-story-upkeep`, `screenshot-archive`). |
+| `references/svelte/` | [`svelte.md`](references/svelte/svelte.md) | Runtime correctness a green suite cannot see, in one document: the `$effect` self-invalidation trap and the `untrack` doctrine, then the react-aria → bits-ui accessibility contract and the four interaction actions. |
+| `references/storybook/` | [`storybook.md`](references/storybook/storybook.md) | The component catalog and its screenshot archive: both audiences, the gates in the order they bite (`component-story-upkeep`, `screenshot-archive`), and how to start it for someone (`running-storybook`). |
 | `references/operations/` | [`operations.md`](references/operations/operations.md) | Running the live relay: `incident-playbooks`, `rollback`. |
-| `references/setup/` | [`setup.md`](references/setup/setup.md) | First run: `install-and-onboarding`. |
+| `references/setup/` | [`setup.md`](references/setup/setup.md) | First run: `install-and-onboarding`, and putting the whole app on a phone-shaped screen — Chrome emulation, the iOS Simulator, an Android emulator, or a real phone (`device-preview`). |
 | `references/standards/` | — | The rules a change must hold: `code-standards`, `security`, `platform-support`. |
 | `references/release/` | — | Shipping a build: `ai-deploy-playbook`, `release-verification`. |
 | `references/quality/` | — | The doc-quality gate and the full-access-runtime baseline. |
@@ -116,6 +116,7 @@ RESOURCE_MAP = {
     ],
     "CODE_QUALITY": [
         "references/conventions/conventions.md",
+        "references/storybook/running-storybook.md",
         "references/conventions/editability-guardrails.md",
         "references/design-system/css-class-naming-bem.md",
         "references/conventions/comment-grammar.md",
@@ -131,12 +132,11 @@ RESOURCE_MAP = {
         "references/svelte/svelte.md",
         "references/verification/verification.md",
         "references/design-system/component-tokens.md",
-        "references/svelte/svelte-runes-effects.md",
         "assets/runes-effect-audit-checklist.md",
     ],
     "VERIFICATION": [
         "references/verification/verification.md",
-        "references/verification/browser-free-verification-recipe.md",
+        "references/setup/device-preview.md",
         "references/verification/skill-reference-integrity.md",
         "assets/ds-verification-checklist.md",
     ],
@@ -146,14 +146,14 @@ RESOURCE_MAP = {
         "references/design-system/theme-remap.md",
         "references/design-system/scoped-style-ownership.md",
         "references/design-system/css-class-naming-bem.md",
-        "references/svelte/svelte-runes-effects.md",
+        "references/svelte/svelte.md",
         "references/conventions/comment-grammar.md",
         "references/conventions/folder-docs.md",
     ],
     "ACCESSIBILITY": [
         "references/conventions/editability-guardrails.md",
         "references/verification/verification.md",
-        "references/svelte/a11y-parity.md",
+        "references/svelte/svelte.md",
         "assets/a11y-parity-checklist.md",
     ],
 }
@@ -198,7 +198,7 @@ surface MUST honor them:
 This is the current source authority for the Mobile CLI tree. Apply it together with the frozen design
 and security standards above. Each convention below has a detailed, executable-backed reference pulled on
 demand — `references/design-system/scoped-style-ownership.md`, `references/design-system/css-class-naming-bem.md`,
-`references/svelte/svelte-runes-effects.md`, `references/conventions/comment-grammar.md`, and `references/conventions/folder-docs.md`.
+`references/svelte/svelte.md`, `references/conventions/comment-grammar.md`, and `references/conventions/folder-docs.md`.
 
 ### Naming and routing
 

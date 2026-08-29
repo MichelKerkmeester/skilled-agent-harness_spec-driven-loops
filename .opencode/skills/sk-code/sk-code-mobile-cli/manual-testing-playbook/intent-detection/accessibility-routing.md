@@ -97,7 +97,7 @@ excerpt.
    `references/`.
 2. Diff this scenario's `expected_resources` against the step-2 `RESOURCE_MAP["ACCESSIBILITY"]` excerpt to
    see whether the drift is a stale scenario file or a stale `SKILL.md` map — note that `RESOURCE_MAP`
-   also carries `references/svelte/a11y-parity.md` and `assets/a11y-parity-checklist.md`, which this scenario's
+   also carries `references/svelte/svelte.md` and `assets/a11y-parity-checklist.md`, which this scenario's
    curated core subset omits by design.
 
 ---

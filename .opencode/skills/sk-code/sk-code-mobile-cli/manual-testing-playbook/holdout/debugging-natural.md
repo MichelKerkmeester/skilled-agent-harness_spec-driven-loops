@@ -8,7 +8,7 @@ expected_intent: DEBUGGING
 expected_resources:
   - references/verification/verification.md
   - references/design-system/component-tokens.md
-  - references/svelte/svelte-runes-effects.md
+  - references/svelte/svelte.md
   - assets/runes-effect-audit-checklist.md
 version: 1.0.0.0
 ---
@@ -75,7 +75,7 @@ Something's off — the slash panel's accent changed color too, but we only mean
 
 1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/debugging-natural.md`
 2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"DEBUGGING":/p'` — confirm none of its listed keyword substrings appear in the exact prompt.
-3. `for p in references/verification/verification.md references/design-system/component-tokens.md references/svelte/svelte-runes-effects.md assets/runes-effect-audit-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/verification/verification.md references/design-system/component-tokens.md references/svelte/svelte.md assets/runes-effect-audit-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

@@ -17,10 +17,10 @@ expected_resources:
   - references/conventions/folder-docs.md
   - references/component-story-upkeep.md
   - references/verification/verification.md
-  - references/svelte/svelte-runes-effects.md
-  - references/verification/browser-free-verification-recipe.md
+  - references/svelte/svelte.md
+  - references/verification/verification.md
   - references/verification/skill-reference-integrity.md
-  - references/svelte/a11y-parity.md
+  - references/svelte/svelte.md
   - assets/token-retint-checklist.md
   - assets/guardrail-audit-checklist.md
   - assets/bem-rename-checklist.md
@@ -100,7 +100,7 @@ Run a full pre-release design-system review of this component: tokens, guardrail
 
 1. `sed -n '1,30p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/token-cost-baseline/ceiling-load-all.md`
 2. `sed -n '/^RESOURCE_MAP = {/,/^}/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md`
-3. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md references/design-system/component-tokens.md references/design-system/retint-recipes.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md references/conventions/editability-guardrails.md references/design-system/css-class-naming-bem.md references/conventions/folder-docs.md references/component-story-upkeep.md references/verification/verification.md references/svelte/svelte-runes-effects.md references/verification/browser-free-verification-recipe.md references/verification/skill-reference-integrity.md references/svelte/a11y-parity.md assets/token-retint-checklist.md assets/guardrail-audit-checklist.md assets/bem-rename-checklist.md assets/story-coverage-checklist.md assets/runes-effect-audit-checklist.md assets/ds-verification-checklist.md assets/a11y-parity-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done | tee /tmp/pr018-check.txt`
+3. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md references/design-system/component-tokens.md references/design-system/retint-recipes.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md references/conventions/editability-guardrails.md references/design-system/css-class-naming-bem.md references/conventions/folder-docs.md references/component-story-upkeep.md references/verification/verification.md references/svelte/svelte.md references/verification/verification.md references/verification/skill-reference-integrity.md references/svelte/svelte.md assets/token-retint-checklist.md assets/guardrail-audit-checklist.md assets/bem-rename-checklist.md assets/story-coverage-checklist.md assets/runes-effect-audit-checklist.md assets/ds-verification-checklist.md assets/a11y-parity-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done | tee /tmp/pr018-check.txt`
 4. `grep -c '^OK' /tmp/pr018-check.txt`
 
 ### Expected

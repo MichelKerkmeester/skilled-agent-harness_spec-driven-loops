@@ -70,6 +70,7 @@ each one can and cannot catch.
 
 | Document | Read it for |
 |---|---|
+| [`running-storybook.md`](running-storybook.md) | Starting the catalog for someone: the one command, the port, what to tell them, the static build, and the failures that actually happen. |
 | [`component-story-upkeep.md`](component-story-upkeep.md) | The rule that every renderable component carries a co-located story showing what the app actually renders, and the two gates that enforce it: `story:coverage` and the CDP render gate. |
 | [`screenshot-archive.md`](screenshot-archive.md) | How a shot is taken, why some are transparent and some sit on the page tone, what the archive's determinism is really worth measured rather than assumed, and how an agent and a designer each use the catalog. |
 
@@ -119,9 +120,9 @@ entire defect class once existed only in dark.
 
 ## 6. RELATED REFERENCES
 
-- [`../browser-free-verification-recipe.md`](../verification/browser-free-verification-recipe.md) — token resolution without a browser, and how the CDP gates fit.
+- [`../browser-free-verification-recipe.md`](../verification/verification.md) — token resolution without a browser, and how the CDP gates fit.
 - [`../verification.md`](../verification/verification.md) — the verification command set for this surface.
-- [`../a11y-parity.md`](../svelte/a11y-parity.md) — the accessibility contract the catalog's a11y panel checks.
+- [`../a11y-parity.md`](../svelte/svelte.md) — the accessibility contract the catalog's a11y panel checks.
 - [`../scoped-style-ownership.md`](../design-system/scoped-style-ownership.md) — why a class can render unstyled in the wrong component.
 - [`../skill-reference-integrity.md`](../verification/skill-reference-integrity.md) — the guard that keeps these paths from rotting.
 - [`../../assets/story-coverage-checklist.md`](../../assets/story-coverage-checklist.md) — the per-change checklist.
