@@ -45,8 +45,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "research/research.md",
       "implementation-summary.md",
+      "research/research.md",
       "handover.md"
     ],
     "entities": [
@@ -75,15 +75,15 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Packet 036 authored 445 planning documents across 17 phases against a tree state frozen on 2026-07-16, and has",
     "created_at": "2026-07-19T12:13:37.963Z",
-    "last_save_at": "2026-08-29T09:57:29.648Z",
+    "last_save_at": "2026-08-29T13:09:48.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

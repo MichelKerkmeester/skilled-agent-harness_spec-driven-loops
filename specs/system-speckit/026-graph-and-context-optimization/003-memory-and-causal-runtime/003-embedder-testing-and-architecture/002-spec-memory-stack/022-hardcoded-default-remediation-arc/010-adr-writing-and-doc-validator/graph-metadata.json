@@ -42,20 +42,19 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/scripts/validate-doc-model-refs.js",
+      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/profile.test.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts"
     ],
     "entities": [
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -81,9 +80,45 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-doc-model-refs.js",
+        "kind": "code",
+        "path": ".opencode/skills/sk-doc/scripts/validate-doc-model-refs.js",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/profile.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts",
         "source": "derived"
       },
       {
@@ -163,41 +198,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "2. PHASE 1: SETUP",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "valid",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. VERIFICATION PROTOCOL",
-        "kind": "heading",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. PRE-IMPLEMENTATION",
-        "kind": "heading",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Closing the 022 hardcoded-default-remediation arc by authoring 4 ADRs governing what was implemented across packets 022/001, 022/004a, and 022/004b, plus a sk-doc validator that catches future doc-implementation drift early. ADR-A: skill-advisor calibration as contractual constants. ADR-B: verification clause amendment for ADR-013 + ADR-014. ADR-C: profile.ts scope coverage (parallel resolution chains). ADR-D: doc-implementation cross-checking mandate with validate-doc-model-refs.js script.",
     "created_at": "2026-05-23T15:17:00.000000Z",
-    "last_save_at": "2026-08-29T09:58:45.921Z",
+    "last_save_at": "2026-08-29T13:10:01.056Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

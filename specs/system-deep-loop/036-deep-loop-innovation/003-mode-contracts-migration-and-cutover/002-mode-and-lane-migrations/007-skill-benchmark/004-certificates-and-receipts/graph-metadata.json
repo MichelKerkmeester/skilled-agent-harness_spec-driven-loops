@@ -43,9 +43,9 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -61,9 +61,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -73,9 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Skill Benchmark certificates and receipts over the deep-improvement-common backbone: attest paired skill scenarios, scoring evidence, replay inputs, validity domains, and transition outcomes while leaving shared services single-sourced and independently verifiable offline.",
     "created_at": "2026-07-16T03:43:41.856Z",
-    "last_save_at": "2026-08-29T09:58:04.042Z",
+    "last_save_at": "2026-08-29T13:09:54.376Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

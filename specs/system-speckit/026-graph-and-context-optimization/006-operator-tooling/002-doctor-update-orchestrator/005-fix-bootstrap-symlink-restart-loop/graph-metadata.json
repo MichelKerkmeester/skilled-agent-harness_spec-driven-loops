@@ -34,7 +34,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh"
     ],
     "entities": [
       {
@@ -65,6 +66,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-bootstrap.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
         "source": "derived"
       },
       {
@@ -174,17 +181,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Before Three",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Feature Specification: Fix Doctor Bootstrap Symlink Restart Loop",
     "created_at": "2026-07-10T06:24:11.204Z",
-    "last_save_at": "2026-08-29T09:58:38.917Z",
+    "last_save_at": "2026-08-29T13:09:59.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
