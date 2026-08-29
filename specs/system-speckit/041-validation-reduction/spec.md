@@ -135,10 +135,11 @@ the corpus being told it is broken by rules nothing consumes.
 | 2 | `002-tracks-are-not-packets` | Track directories stop being graded as packets | Complete |
 | 3 | `003-scaffold-parity` | A fresh scaffold passes the gate it ships with | Complete |
 | 4 | `004-stop-grading-prose-shape` | Remove prose-shape grading; narrow anchors to their consumers | Complete |
-| 5 | `005-delete-taste-rules` | Remove rules that encode taste with no consumer | Deferred |
-| 6 | `006-derive-not-grade` | Stop copying derived facts into authored prose | Deferred |
-| 7 | `007-the-small-gate` | Collapse to the checks with a machine consumer | Deferred |
-| 8 | `008-retire-the-sweep` | Replace the weekly cron with a changed-packet check | Deferred |
+| 5 | `005-framework-doc-matches-behaviour` | The always-loaded document describes the gate that exists | Complete |
+| 6 | `006-delete-taste-rules` | Remove rules that encode taste with no consumer | Deferred |
+| 7 | `007-derive-not-grade` | Stop copying derived facts into authored prose | Deferred |
+| 8 | `008-the-small-gate` | Collapse to the checks with a machine consumer | Deferred |
+| 9 | `009-retire-the-sweep` | Replace the weekly cron with a changed-packet check | Deferred |
 
 ### Phase Transition Rules
 
