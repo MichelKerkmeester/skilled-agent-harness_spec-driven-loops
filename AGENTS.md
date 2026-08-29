@@ -232,14 +232,14 @@ The Completion Verification Rule remains an additional requirement for spec-pack
 
 #### COMPLETION VERIFICATION RULE [HARD] BLOCK
 Trigger: Claiming "done", "complete", "finished", "works"
-1. Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` (exit 0 = pass · 1 = user error, meaning the run never validated anything · 2 = validation error · 3 = system error). `--strict` promotes warnings to validation errors, so a warnings-only packet exits 2, never 1..
+1. Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` (exit 0 = pass, including a run that reported warnings · 1 = user error, meaning the run never validated anything · 2 = validation error · 3 = system error). A warning is advice and does not fail the run: `--strict` selects the rules that only run under strict, and no longer decides what a warning means. A rule that should block says so itself by reporting an error.
 2. Load `checklist.md` → verify ALL items → mark `[x]` with evidence.
 3. Reconcile completion metadata so packet docs do not claim conflicting completion states — covers:
    - `spec.md` status and shipped/current-state claims.
    - `plan.md` / `tasks.md` / `checklist.md` evidence rows.
    - `handover.md` or `_memory.continuity` fields when present.
    - `implementation-summary.md` final state, validation evidence, and continuation notes.
-4. When `SPECKIT_COMPLETION_FRESHNESS=true`, completion claims must also pass `CONTINUITY_FRESHNESS`: the stored `session_dedup.fingerprint` matches recomputed content and packet-scoped paths are clean. Under `--strict` a stale result blocks completion (exit 2) for non-grandfathered packets regardless of `SPECKIT_COMPLETION_FRESHNESS_ENFORCE`; that flag only reclassifies the inner result label `warn`→`error`, it does not make the warn tier non-blocking under `--strict`.
+4. When `SPECKIT_COMPLETION_FRESHNESS=true`, completion claims must also pass `CONTINUITY_FRESHNESS`: the stored `session_dedup.fingerprint` matches recomputed content and packet-scoped paths are clean. The rule decides its own applicability at its entry point, so every caller gets the same answer, and it reports nothing when the flag is off. A stale result reports a warning, which does not block; `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` escalates it to an error, which does.
 - Skip: Level 1 tasks (checklist.md is optional at every level).
 
 ##### Invoking validate.sh — four ways a run lies
