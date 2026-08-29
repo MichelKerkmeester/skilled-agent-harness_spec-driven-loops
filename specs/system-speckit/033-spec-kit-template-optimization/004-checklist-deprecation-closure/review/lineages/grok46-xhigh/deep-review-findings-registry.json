@@ -1,0 +1,761 @@
+{
+  "sessionId": "fanout-grok46-xhigh-1788039066008-zwm1sm",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "timestamp": "2026-08-29T21:52:40.000Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "plan.md specifies a goal-document validator instead of the AC_COVERAGE evidence-source fix",
+      "file": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/plan.md",
+      "line": 8,
+      "description": "Rewrite plan.md architecture and frontmatter to the canonical evidence read, precedence, and lifecycle activation actually shipped",
+      "findingClass": "architecture-claim-drift",
+      "deltaStatus": null,
+      "scopeProof": "Read plan.md:8-85 vs spec.md:59-69 vs check-ac-coverage.sh:50-179 vs check-goal-shape architecture",
+      "affectedSurfaceHints": [
+        "plan.md",
+        "spec.md",
+        "check-ac-coverage.sh"
+      ],
+      "contentHash": "9b2c3d79c1bedb3af0ae426034e2a7d9d77fd30a9211bc4321d3d557d9860a82",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "`plan.md` specifies a goal-document validator, not the AC_COVERAGE evidence-source fix, `specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/plan.md:8`, [Evidence: frontmatter description is \"A present-file rule that checks a goal document's shape: its durable and log headings, a binding block on phase parents, listed child paths that exist, and a durable slice within its character budget.\" Architecture §3 (`plan.md:78-85`) lists Shape/Binding/Path/Budget checks and a data flow that \"reads the goal document if present.\" That is the 042 `GOAL_SHAPE` rule. This packet's spec (`spec.md:59-69`) and shipped code (`check-ac-coverage.sh:179` `_ac_analyze_canonical`, `:72` `_ac_traceability_file`) implement an evidence-source repair. A resume agent following `plan.md` would implement the wrong rule.]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Parent phase map still lists this packet as Pending",
+      "file": "specs/system-speckit/033-spec-kit-template-optimization/spec.md",
+      "line": 111,
+      "description": "Mark phase 4 Complete and fill handoff criteria, or record an explicit owner for the parent map",
+      "findingClass": "stale-current-state",
+      "deltaStatus": null,
+      "scopeProof": "Read parent spec.md:106-126 vs child spec.md:99 vs 002 implementation-summary.md:43",
+      "affectedSurfaceHints": [
+        "033-spec-kit-template-optimization/spec.md",
+        "004 spec.md"
+      ],
+      "contentHash": "3e08954a1c4118bc3623b9c7ec97896df9d260ce846813a82e79e2b869296a02",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Parent phase map still lists this packet as Pending, `specs/system-speckit/033-spec-kit-template-optimization/spec.md:111`, [Evidence: Files to Change in this packet (`spec.md:99`) requires `specs/.../033-*/spec.md` to \"Phase map records phase 2 as shipped.\" The parent map row for phase 4 is `| 4 | 004-checklist-deprecation-closure/ | [Phase 4 scope] | Pending |`. Handoff criteria `003 → 004` are still `[Criteria TBD]` (`parent spec.md:126`). Phase 2 of the parent (002-acceptance-criteria-template) is already Complete (`parent spec.md:108`); the unedited row is this packet's own map entry.]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "completion_pct 0 and implement next_safe_action coexist with Status Complete and checked tasks",
+      "file": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/spec.md",
+      "line": 27,
+      "description": "Reconcile continuity blocks and next_safe_action to the shipped summary",
+      "findingClass": "stale-continuity",
+      "deltaStatus": null,
+      "scopeProof": "Read spec.md:18-47 plan.md:17-25 tasks.md:15-81 implementation-summary.md:25-44",
+      "affectedSurfaceHints": [
+        "spec.md",
+        "plan.md",
+        "tasks.md",
+        "implementation-summary.md"
+      ],
+      "contentHash": "7c22824e187ad337c15b00750b9e5e8445fa32e4d78f3f11d162079806f755f8",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Packet completion metadata contradicts Status Complete, `specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/spec.md:27`, [Evidence: spec.md `_memory.continuity.completion_pct: 0` and `next_safe_action: Validate the packet and close it out` (`spec.md:18,27`) while metadata Status is Complete (`spec.md:47`). plan.md `completion_pct: 0` and `next_safe_action: Implement the canonical evidence read` (`plan.md:17,25`). tasks.md `completion_pct: 0` (`tasks.md:25`) while T001–T012 are `[x]` (`tasks.md:56-81`). implementation-summary.md `completion_pct: 100` and Status Complete (`implementation-summary.md:25,44`). A resume agent would re-implement shipped work.]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "description.json level is 1 while the packet is Level 2",
+      "file": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/description.json",
+      "line": 17,
+      "description": "Regenerate description.json level from spec metadata",
+      "findingClass": "stale-doc-claim",
+      "deltaStatus": null,
+      "scopeProof": "Read description.json:17 vs spec.md:36,45",
+      "affectedSurfaceHints": [
+        "description.json",
+        "spec.md"
+      ],
+      "contentHash": "d3194df6cd5d0ad2b0216773a983c238bf334ca863518e546014955821ee93e3",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Generated `description.json` still says Level 1, `specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/description.json:17`, [Evidence: `\"level\": \"1\"` vs `<!-- SPECKIT_LEVEL: 2 -->` (`spec.md:36`) and metadata Level 2 (`spec.md:45`). Advisor/routing metadata would mis-score this packet.]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Lifecycle Status glob matches incomplete as complete",
+      "file": ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
+      "line": 66,
+      "description": "Parse the Status value cell and match anchored tokens",
+      "findingClass": "over-accept",
+      "deltaStatus": null,
+      "scopeProof": "Read check-ac-coverage.sh:64-66; no Incomplete fixture in tests",
+      "affectedSurfaceHints": [
+        "check-ac-coverage.sh",
+        "_ac_lifecycle_active"
+      ],
+      "contentHash": "6340b596cb98c41587161240ef901cc3a53c20ee1f9de4d8bd93470e4a671180",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "title": "Lifecycle Status match treats \"incomplete\" as \"complete\", `.opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh:66`, [Evidence: `[[ \"$status\" == *\"complete\"* ]]` is a glob on the whole Status table row after lowercasing. The substring `complete` occurs inside `incomplete`, so a packet whose Status is Incomplete would activate the gate. Intended tokens include in-progress/implemented/complete/shipped. Edge-case prose wants mid-implementation measured, so this is over-accept rather than under-measure.]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Canonical row count binds AC-ID as awk $2 not by header",
+      "file": ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
+      "line": 139,
+      "description": "Bind AC-ID by header in the count path, matching analyze",
+      "findingClass": "parser-fragility",
+      "deltaStatus": null,
+      "scopeProof": "Read check-ac-coverage.sh:139 vs :200-208 vs :330-332 vs tests:88-92",
+      "affectedSurfaceHints": [
+        "check-ac-coverage.sh",
+        "REQ-005"
+      ],
+      "contentHash": "f179a10ece2bef36b1494a0ac01e2c66d86adacd3328b5d0c3131a70a66f1e41",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Canonical row count still binds AC-ID as awk `$2`, not by header name, `.opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh:139`, [Evidence: `_ac_count_canonical_rows` uses `id = norm($2)` while `_ac_analyze_canonical` binds `ac-id` by header (`:200-208`). REQ-005 and the extra-column test (`scripts/tests/check-ac-coverage.sh:88-92`) cover Verification shift, not an inserted column before AC-ID. If rows > total, `:330-332` bumps total to rows, so the ratio still cannot under-count; it is a residual split of the class of bug this packet exists to close.]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "tasks.md Completion Criteria remain unchecked after T-tasks are done",
+      "file": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/tasks.md",
+      "line": 89,
+      "description": "Check the Completion Criteria rows or label them non-authoritative",
+      "findingClass": "stale-completion-ledger",
+      "deltaStatus": null,
+      "scopeProof": "Read tasks.md:56-91 vs implementation-summary.md:120",
+      "affectedSurfaceHints": [
+        "tasks.md"
+      ],
+      "contentHash": "536a152d5a185bcf4637ed092fbfe508b22b6f4682d10e0e7fdf50e1d304ce2b",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "tasks.md Completion Criteria remain unchecked after every T-task is `[x]`, `specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/tasks.md:89`, [Evidence: T001–T012 are `[x]` (`tasks.md:56-81`) with file:line citations. Completion Criteria still has `- [ ] All tasks marked [x]` (`:89-91`). Leftover CHK-001..CHK-051 rows are `[ ]` by documented design (`implementation-summary.md:120`, spec.md:87). The Completion Criteria block is not that exemption; it is a false pending flag in the same file that lists the work as done.]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "No playbook scenario pins count-versus-evidence remaining joined",
+      "file": ".opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/review-packet-type-marker-gated-validation.md",
+      "line": 106,
+      "description": "Add a canonical-vs-legacy evidence-source scenario or mark overlay notApplicable with rationale",
+      "findingClass": "overlay-gap",
+      "deltaStatus": null,
+      "scopeProof": "Grep playbook AC_COVERAGE; Read spec-validation-rule-engine.md:68",
+      "affectedSurfaceHints": [
+        "manual-testing-playbook",
+        "feature-catalog"
+      ],
+      "contentHash": "c6abcf3b34fbd8d6aaa806d3196ffe9bcf9d7a61f34627e10ff5752f8c1ef791",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "No playbook scenario pins count-vs-evidence remaining joined, `.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/review-packet-type-marker-gated-validation.md:106`, [Evidence: playbook grep hits one incidental `AC_COVERAGE: Acceptance coverage gate not active...` line. Catalog mentions `check-ac-coverage.sh` only in a representative-subset footnote (`feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md:68`). Overlay is advisory.]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "title": "tasks.md frontmatter description still advertises a goal validator",
+      "file": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/tasks.md",
+      "line": 3,
+      "description": "Rewrite tasks.md frontmatter to coverage-source vocabulary",
+      "findingClass": "stale-doc-claim",
+      "deltaStatus": null,
+      "scopeProof": "Read tasks.md:3-7 vs plan.md:8 vs T001-T012",
+      "affectedSurfaceHints": [
+        "tasks.md",
+        "plan.md"
+      ],
+      "contentHash": "07d3bc826ffc0b156c41fa5c9e9e8e1095cf3f16b579a2d41e8e877af2cbccf7",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "title": "tasks.md frontmatter description is the same GOAL_SHAPE copy as plan.md, `specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/tasks.md:3`, [Evidence: description field is \"A present-file rule that checks a goal document's shape: its durable and log headings...\" identical to `plan.md:8`. Trigger phrases are `goal validator`, `durable slice cap`, `binding block check` (`tasks.md:5-7`). That vocabulary belongs to packet 042, not this evidence-source fix. Related to F001; separate because tasks.md is a second canonical doc a search agent would trust.]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "title": "session_dedup fingerprints are the all-zero placeholder",
+      "file": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/spec.md",
+      "line": 24,
+      "description": "Let generate-context.js write real fingerprints or omit until then",
+      "findingClass": "stale-continuity",
+      "deltaStatus": null,
+      "scopeProof": "Read spec.md:24 and matching fingerprint fields in sibling packet docs",
+      "affectedSurfaceHints": [
+        "spec.md",
+        "plan.md",
+        "tasks.md"
+      ],
+      "contentHash": "0399488e49efdfe2c65b9d340828d21bb203b461a38fcfafbbeaf94b478730c6",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "title": "session_dedup fingerprints are the all-zero placeholder across packet docs, `specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/spec.md:24`, [Evidence: `sha256:0000…0000` in spec.md, plan.md, tasks.md, acceptance-criteria.md, implementation-summary.md, and goal.md. Continuity freshness is off unless `SPECKIT_COMPLETION_FRESHNESS` is set; still a resume/dedup landmine.]",
+      "file": null,
+      "line": null,
+      "description": "",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 14
+  },
+  "openFindingsCount": 20,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.8200000000000001,
+  "graphConvergenceScore": 0.75,
+  "graphDecision": "CONTINUE",
+  "graphBlockers": [
+    "coverage_incomplete",
+    "max_iterations_not_reached"
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.75,
+    "findingStability": 0.2,
+    "p0ResolutionRate": 1,
+    "evidenceDensity": 1.3,
+    "hotspotSaturation": 0.5
+  },
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 4,
+      "executed": 4,
+      "pass": 1,
+      "partial": 3,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 6,
+          "partial": 3,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "plan.md:8",
+          "spec.md:111",
+          "spec.md:27"
+        ],
+        "findingRefs": [
+          "F001",
+          "F002",
+          "F003"
+        ],
+        "summary": "Replay confirmed F001-F003 still active"
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 1,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "tasks.md:89"
+        ],
+        "findingRefs": [
+          "F007"
+        ],
+        "summary": "Completion Criteria still pending"
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "spec-folder target"
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "spec-folder target"
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 1,
+          "partial": 0,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "spec-validation-rule-engine.md:68"
+        ],
+        "findingRefs": [],
+        "summary": "Catalog names check-ac-coverage.sh default-on"
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "review-packet-type-marker-gated-validation.md:106"
+        ],
+        "findingRefs": [
+          "F008"
+        ],
+        "summary": "Incidental AC_COVERAGE line only"
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

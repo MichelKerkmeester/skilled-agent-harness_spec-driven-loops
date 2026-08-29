@@ -103,15 +103,15 @@
     ],
     "causal_summary": "The spec-kit document templates carry two unresolved costs",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-08-29T20:42:18.515Z",
+    "last_save_at": "2026-08-29T21:56:44.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:767a485ab8241e5a3affdae4b200e3a8297bdab5c6921b15caa3fc803bba8348",
+    "source_fingerprint": "sha256:6f6c8b89a3272d8597640e9829d1a6270b4ecaba7483835b039da653bb24eb0a",
     "source_doc_hashes": {
-      "spec.md": "5a4abd34001fd23f18fb56a3b4d2335aa6f103a34a64248c5cfb27f97e80ef3b"
+      "spec.md": "96f98f6cd3a526a4d93cf678118ba7e812f58ec35c7de9e20e094712bd8e71e1"
     },
     "last_active_child_id": "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
     "last_active_at": null

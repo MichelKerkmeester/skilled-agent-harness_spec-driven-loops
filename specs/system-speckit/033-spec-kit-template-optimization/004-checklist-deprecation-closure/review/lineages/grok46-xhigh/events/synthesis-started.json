@@ -1,0 +1,33 @@
+{
+  "stem": "deep_review.synthesis_started",
+  "scope": {
+    "runId": "fanout-grok46-xhigh-1788039066008-zwm1sm",
+    "sessionId": "fanout-grok46-xhigh-1788039066008-zwm1sm",
+    "reportRevisionId": "report-1"
+  },
+  "data": {
+    "finalizedEventRange": {
+      "firstEventId": "event-7a0b5a01-cc1f-4d49-b1f9-5114b62b6a8b",
+      "lastEventId": "event-7b387c46-85a1-4995-89fd-3354a88d7c9c"
+    },
+    "findingRegistryInputDigest": "09428ab340b6a0d4025c4197f7bf1d6045c2f2d8aa99628db441d5e0905d8089",
+    "deduplicationPolicyDigest": "ab0cc99b2e4226c1b83731f230c36f2bcb0dca0d95b623a6344a59d1525366e4",
+    "verdictInputDigests": [
+      "88f93d14e7038d38484c36cc1dc40cbbc92fa2d2a3b1109f82d8296bcd017e59"
+    ],
+    "unresolvedFindingIds": [
+      "F001",
+      "F002",
+      "F003"
+    ],
+    "deferredFindingIds": [
+      "F004",
+      "F005",
+      "F006",
+      "F007",
+      "F008",
+      "F009",
+      "F010"
+    ]
+  }
+}

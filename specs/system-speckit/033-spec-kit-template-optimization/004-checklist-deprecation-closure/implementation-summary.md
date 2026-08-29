@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-08-29T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Shipped the canonical evidence read, the source precedence and the rule's first unit suite"
-    next_safe_action: "Run the deep review over this fix and packet 042"
+    next_safe_action: "None; the review is complete and its findings are dispositioned"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh"
@@ -66,7 +66,7 @@ An advisory that measures the document it counts from. Phase 2 moved acceptance 
 | File | Action | Purpose |
 |------|--------|---------|
 | `scripts/rules/check-ac-coverage.sh` | Modified | Canonical evidence read, source precedence, lifecycle activation, remediation wording |
-| `scripts/tests/check-ac-coverage.sh` | Created | The rule's first unit suite, 14 cases |
+| `scripts/tests/check-ac-coverage.sh` | Created | The rule's first unit suite, 16 cases |
 | `specs/.../042-*/00*/acceptance-criteria.md` | Modified | Citations backfilled into 20 Verification cells |
 | `specs/.../042-*/00*/checklist.md` | Deleted | Four unfilled 26-item scaffolds of a deprecated document |
 | `specs/.../033-*/002-*/implementation-summary.md` | Modified | Added the missing Status row |
@@ -102,7 +102,7 @@ The pre-change reading was captured as the negative control before any edit, and
 
 | Check | Result |
 |-------|--------|
-| `scripts/tests/check-ac-coverage.sh` | 14/14, 11 of them asserting the reported ratio |
+| `scripts/tests/check-ac-coverage.sh` | 16/16, 13 of them asserting the reported ratio |
 | Negative control after the fix | Prose-only verification still scores `0/2` |
 | Live symptom | Four packet-042 phases: `0/5` → `5/5` |
 | Legacy path unchanged | A pre-merge packet still resolves to `checklist.md` |
@@ -112,12 +112,55 @@ The pre-change reading was captured as the negative control before any edit, and
 
 ---
 
+<!-- ANCHOR:review -->
+## Deep Review
+
+A 4-iteration deep review ran against this packet after the first commit
+(`cli-cursor`, `cursor-grok-4.6-xhigh`, forced depth, `stopReason:
+maxIterationsReached`). Verdict CONDITIONAL: 0 P0, 3 P1, 7 P2. Every finding was
+reproduced against the files before being acted on.
+
+Two were real defects in this change and are fixed here:
+
+| ID | Defect | Fix |
+|----|--------|-----|
+| F006 | The row count parsed `AC-ID` positionally while the evidence read bound it by header. A column inserted before `AC-ID` dropped the count to zero, which short-circuits the gate to "no criteria found" - the packet goes unmeasured rather than reporting a low ratio. The same split this packet exists to close, reopened in the other direction. | `_ac_count_canonical_rows` now delegates to the evidence parser, so one pass yields both halves of the ratio |
+| F005 | `_ac_lifecycle_active` substring-matched `*"complete"*` against the whole rendered Status row, so a packet marked `Incomplete` activated the gate | Reads the Status cell and matches it whole, mirroring the closure rule |
+
+Both were invisible to the original suite: its column-shift case inserted the
+column after `AC-ID`, and it had no Incomplete fixture. Two cases were added.
+
+Five were stale documents in this packet, all corrected: a plan and tasks
+frontmatter still describing the goal-shape validator they were seeded from
+(F001, F009), continuity claiming zero percent beside a Complete status (F003),
+an unfilled parent phase-map row and handoff (F002), and unchecked completion
+criteria under finished tasks (F007).
+
+Three are declined, with reasons:
+
+| ID | Finding | Why not fixed |
+|----|---------|---------------|
+| F004 | `description.json` level disagrees with the spec's level marker | Fleet-wide and derived: 927 of 4,022 packets carry the same disagreement, and regenerating this one leaves it unchanged. A generator fix is a migration, not this packet's scope |
+| F010 | Continuity fingerprints are the all-zero placeholder | The template default, present in 2,218 spec documents. Changing one packet buys nothing |
+| F008 | No playbook scenario pins count-versus-evidence | The unit suite pins it directly, and a scenario would restate what 16 cases already assert |
+<!-- /ANCHOR:review -->
+
+---
+
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
 1. **2,262 packets still carry a pre-merge `checklist.md`.** They validate today and the fallback still reads them. Retiring those files is a migration this packet deliberately did not start.
 2. **A citation is checked for shape, not for truth.** `file:line` proves an author pointed somewhere, not that the line says what the row claims. Nothing here reads the target.
-3. **Phase 2's own checklist keeps 36 unchecked boilerplate items.** They were never applicable to a validation-rule packet. Ticking them to close the packet is the failure this advisory exists to catch, so they were left as they are.
+3. **The review lineage split its state log across two paths.** It wrote
+   `deep-review-state.jsonl` both at the lineage root (15 events, all four
+   iterations) and under a nested `review/` subdirectory (8 events, including
+   `synthesis_started` and `run_completed`, which the root log lacks). Neither
+   file alone is the complete record. The fan-out prompt tells the lineage to
+   bind `artifact_dir` directly to the override and not to run the artifact-root
+   resolver; it appears to have partly done both. Both files are kept because
+   each holds events the other does not.
+4. **Phase 2's own checklist keeps 36 unchecked boilerplate items.** They were never applicable to a validation-rule packet. Ticking them to close the packet is the failure this advisory exists to catch, so they were left as they are.
 <!-- /ANCHOR:limitations -->
 
 ---

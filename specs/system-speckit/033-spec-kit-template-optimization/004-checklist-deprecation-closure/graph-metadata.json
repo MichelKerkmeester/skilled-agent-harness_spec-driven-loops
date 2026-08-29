@@ -12,14 +12,9 @@
   "derived": {
     "trigger_phrases": [
       "ac coverage evidence source",
-      "checklist deprecation",
       "traceability precedence",
-      "acceptance coverage advisory",
-      "merged tasks verification",
-      "goal validator",
-      "durable slice cap",
-      "binding block check",
-      "child path existence",
+      "canonical criteria read",
+      "checklist deprecation",
       "checklist deprecation closure",
       "traceability precedence fixed"
     ],
@@ -27,15 +22,15 @@
       "coverage",
       "evidence",
       "source",
-      "checklist",
-      "deprecation",
       "traceability",
       "precedence",
-      "acceptance",
-      "advisory",
-      "merged",
-      "tasks",
-      "verification"
+      "canonical",
+      "criteria",
+      "read",
+      "checklist",
+      "deprecation",
+      "closure",
+      "phase"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -198,7 +193,7 @@
     ],
     "causal_summary": "Phase 2 moved acceptance criteria into `acceptance-criteria.md` and repointed the advisory's total at that document",
     "created_at": "2026-08-29T20:32:46Z",
-    "last_save_at": "2026-08-29T20:41:00.953Z",
+    "last_save_at": "2026-08-29T21:57:59.097Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +202,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:680055a1782e59d1a15a73ef19f52398a739c05949f3782b7e2710fa64aa5beb",
+    "source_fingerprint": "sha256:45789b31e5f998378dc2791e3626d3f81abe0dd85465a34547bccf657e0a90aa",
     "source_doc_hashes": {
-      "spec.md": "59202599815dbda6dba2e11441b810154512acae57760bc3fac8d410fcccbf61",
-      "plan.md": "5725c0b8f4d5ff6bc81868d3ee3260f3dffec4178e83ef3e0c622a799d9a5e27",
-      "tasks.md": "ee43560994b59fba59639e3f4531f03ae3e5588a84f21024619a04e9b6dc78e6",
-      "implementation-summary.md": "df5f45de42d0f87003d0eab19f6497f478a3e8aca97db1f50030943ae04783f3"
+      "spec.md": "44feb56fefeadfbb955aca90dae1777c29498cf01c22f585cbcc53611e00264d",
+      "plan.md": "aa89085852241bbca2bdad4fa83f00821cdb396ad99befed7f206c8201b6e2b2",
+      "tasks.md": "8763427c86d302c55528403fc83ef29683bc748b638214cb401a02e83b46d026",
+      "implementation-summary.md": "7f7e41bebaa7a5237aaa2d9c5ccd480a6cfa5b04c2fc55e13010a471197377de"
     },
     "last_active_child_id": null,
     "last_active_at": null

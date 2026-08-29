@@ -1,12 +1,11 @@
 ---
 title: "Feature Specification: Checklist Deprecation Closure"
-description: "Point the acceptance-coverage advisory at the same document it counts from. The total was read from acceptance-criteria.md while the evidence was read from a separate traceability table, so every packet that documented its criteria still reported zero coverage."
+description: "Repoint the acceptance-coverage advisory at the document it counts from, correct the traceability-source precedence the tasks/checklist merge left backwards, and give the rule its first unit suite."
 trigger_phrases:
   - "ac coverage evidence source"
-  - "checklist deprecation"
   - "traceability precedence"
-  - "acceptance coverage advisory"
-  - "merged tasks verification"
+  - "canonical criteria read"
+  - "checklist deprecation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -15,7 +14,7 @@ _memory:
     last_updated_at: "2026-08-29T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Repointed the coverage advisory at the canonical document and added its first unit suite"
-    next_safe_action: "Validate the packet and close it out"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh"
@@ -24,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-29-033-004-checklist-deprecation-closure"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "The evidence source follows the count: canonical when acceptance-criteria.md exists, legacy otherwise"

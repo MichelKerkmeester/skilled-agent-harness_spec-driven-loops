@@ -1,0 +1,114 @@
+{
+  "topic": "Review of spec folder 004-checklist-deprecation-closure: canonical AC_COVERAGE evidence read, legacy source precedence, lifecycle activation, unit suite, and packet-042/033 backfill",
+  "mode": "review",
+  "reviewTarget": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "sessionId": "fanout-grok46-xhigh-1788039066008-zwm1sm",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 4,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed",
+    "divergent": {}
+  },
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure",
+  "createdAt": "2026-08-29T21:35:00Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "stopPolicy": "max-iterations",
+  "executor": {
+    "kind": "cli-cursor",
+    "model": "cursor-grok-4.6-xhigh",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900
+  },
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "reviewScopeFiles": [
+    "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/spec.md",
+    "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/plan.md",
+    "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/tasks.md",
+    "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/acceptance-criteria.md",
+    "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/implementation-summary.md",
+    "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/goal.md",
+    "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/description.json",
+    "specs/system-speckit/033-spec-kit-template-optimization/spec.md",
+    "specs/system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template/implementation-summary.md",
+    ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
+    ".opencode/skills/system-spec-kit/scripts/tests/check-ac-coverage.sh",
+    ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+    "specs/system-speckit/042-nested-goal-template-addon/001-manifest-and-goal-template/acceptance-criteria.md",
+    "specs/system-speckit/042-nested-goal-template-addon/002-durable-slice-validator/acceptance-criteria.md",
+    "specs/system-speckit/042-nested-goal-template-addon/003-runtime-neutral-goal-dispatch/acceptance-criteria.md",
+    "specs/system-speckit/042-nested-goal-template-addon/004-parent-set-string-playbook/acceptance-criteria.md"
+  ]
+}

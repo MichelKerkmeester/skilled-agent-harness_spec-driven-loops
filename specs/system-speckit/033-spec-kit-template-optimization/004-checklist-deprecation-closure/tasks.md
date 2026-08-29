@@ -1,11 +1,11 @@
 ---
 title: "Tasks: Checklist Deprecation Closure"
-description: "A present-file rule that checks a goal document's shape: its durable and log headings, a binding block on phase parents, listed child paths that exist, and a durable slice within its character budget."
+description: "Repoint the acceptance-coverage advisory at the document it counts from, correct the traceability-source precedence the tasks/checklist merge left backwards, and give the rule its first unit suite."
 trigger_phrases:
-  - "goal validator"
-  - "durable slice cap"
-  - "binding block check"
-  - "child path existence"
+  - "ac coverage evidence source"
+  - "traceability precedence"
+  - "canonical criteria read"
+  - "checklist deprecation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-08-29T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Shipped the canonical evidence read, the source precedence and the unit suite"
-    next_safe_action: "Validate the packet and close it out"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/"
@@ -22,10 +22,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-29-033-004-checklist-deprecation-closure"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "The cap applies to the durable slice only; a progress log is not a defect"
+      - "One parser serves the count and the evidence read, so they cannot disagree"
 ---
 
 # Tasks: Checklist Deprecation Closure
@@ -86,9 +86,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] All tasks marked `[x]` - T001-T012
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed - 16/16 suite, live run across five packets
 <!-- /ANCHOR:completion -->
 
 ---

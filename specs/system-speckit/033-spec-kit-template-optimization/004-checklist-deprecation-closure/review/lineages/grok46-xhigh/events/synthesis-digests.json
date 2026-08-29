@@ -1,0 +1,21 @@
+{
+  "reportDigest": "44ff4a85ba6de981018547ac60aa4461c6731917a9e9a1fc1fd305a9369dc50e",
+  "registryDigest": "09428ab340b6a0d4025c4197f7bf1d6045c2f2d8aa99628db441d5e0905d8089",
+  "dedupDigest": "ab0cc99b2e4226c1b83731f230c36f2bcb0dca0d95b623a6344a59d1525366e4",
+  "verdictDigest": "88f93d14e7038d38484c36cc1dc40cbbc92fa2d2a3b1109f82d8296bcd017e59",
+  "manifestDigest": "3bbfc2348ee184229406a03b08f24398ecbab99cc424d7b953bc9e965e22ff4f",
+  "sections": [
+    "executive-summary",
+    "planning-trigger",
+    "active-finding-registry",
+    "remediation-workstreams",
+    "spec-seed",
+    "plan-seed",
+    "traceability-status",
+    "deferred-items",
+    "search-ledger",
+    "audit-appendix"
+  ],
+  "firstEvent": "event-7a0b5a01-cc1f-4d49-b1f9-5114b62b6a8b",
+  "lastPass": "event-7b387c46-85a1-4995-89fd-3354a88d7c9c"
+}

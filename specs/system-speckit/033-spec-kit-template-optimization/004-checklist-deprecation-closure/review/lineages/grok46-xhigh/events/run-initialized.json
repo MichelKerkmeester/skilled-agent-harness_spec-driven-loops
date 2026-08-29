@@ -1,0 +1,22 @@
+{
+  "stem": "deep_review.run_initialized",
+  "scope": {
+    "runId": "fanout-grok46-xhigh-1788039066008-zwm1sm",
+    "sessionId": "fanout-grok46-xhigh-1788039066008-zwm1sm",
+    "generation": 1
+  },
+  "data": {
+    "target": {
+      "targetId": "target-004-checklist-deprecation-closure",
+      "targetType": "directory",
+      "artifactRef": "artifact:004-checklist-deprecation-closure",
+      "sourceDigest": "02ad11a753d1f284fcd1cab981eb9f38bbfbb1af96f1655706f6c05d2527e933",
+      "contentDigest": "5e1a4bf11a9f9d60e3b8680b9f0c0983f14870708606f6386d522868931d570b"
+    },
+    "lineageMode": "fresh",
+    "maxIterations": 4,
+    "convergencePolicyVersion": "convergence@1",
+    "reviewModeContractDigest": "9f456443e53cef7c01825e8c37feda1f93d5bbd098ae8b3396bd8647041926ca",
+    "initialReleaseReadinessState": "not-assessed"
+  }
+}

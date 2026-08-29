@@ -1,0 +1,29 @@
+{
+  "stem": "deep_review.dimension_pass_completed",
+  "scope": {
+    "runId": "fanout-grok46-xhigh-1788039066008-zwm1sm",
+    "sessionId": "fanout-grok46-xhigh-1788039066008-zwm1sm",
+    "generation": 1,
+    "iterationId": "iteration-2",
+    "dimensionId": "security"
+  },
+  "data": {
+    "passNumber": 2,
+    "targetRefs": [
+      "target:security"
+    ],
+    "filesReviewed": [
+      "file:security"
+    ],
+    "searchCoverageDigest": "211fe91f0b049e4061c967576cccfdf86fa76b7e38ec5535f720cf244e21fbd9",
+    "passStatus": "complete",
+    "rawFindingCounts": {
+      "candidates": 2,
+      "adjudicated": 2,
+      "p0": 0,
+      "p1": 0,
+      "p2": 2
+    },
+    "nextFocusRef": "focus:traceability"
+  }
+}

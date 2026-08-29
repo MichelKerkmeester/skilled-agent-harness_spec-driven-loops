@@ -91,6 +91,23 @@ d="$TMP/shifted"; mkpacket "$d"; ac "$d" '| AC-ID | REQ | Owner | Given / When /
 | AC-001 | REQ-001 | me | Given x, When y, Then z | `a.sh:9` | Met | - |'
 expect "an extra column does not shift Verification" "1/1" "$d"
 
+# A column BEFORE AC-ID is the case that matters: it shifts the count path, not
+# the evidence path, and a zero count short-circuits the gate to "no criteria
+# found" - the packet goes unmeasured instead of reporting a low ratio.
+d="$TMP/shifted-left"; mkpacket "$d"; ac "$d" '| Owner | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
+|-------|-------|-----|---------------------|--------------|--------|--------|
+| me | AC-001 | REQ-001 | Given x, When y, Then z | `a.sh:1` | Met | - |
+| me | AC-002 | REQ-002 | Given x, When y, Then z | `b.sh:2` | Met | - |'
+expect "a column before AC-ID does not zero the count" "2/2" "$d"
+
+# "Incomplete" contains "complete"; a substring test on the rendered row
+# activates the gate on a packet that says it is not finished.
+d="$TMP/incomplete"; mkpacket "$d"
+printf '# Implementation Summary\n\n| Field | Value |\n|-------|-------|\n| **Status** | Incomplete |\n' > "$d/implementation-summary.md"
+ac "$d" "$AC_HEAD
+| AC-001 | REQ-001 | Given x, When y, Then z | \`a.sh:1\` | Met | - |"
+expect "an Incomplete packet does not activate the gate" "inactive" "$d"
+
 d="$TMP/fenced"; mkpacket "$d"; ac "$d" "$AC_HEAD
 | AC-001 | REQ-001 | Given x, When y, Then z | \`a.sh:1\` | Met | - |
 

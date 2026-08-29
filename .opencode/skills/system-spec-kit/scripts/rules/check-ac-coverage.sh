@@ -60,10 +60,25 @@ _ac_lifecycle_active() {
     fi
     [[ -f "$summary_file" ]] || return 1
 
-    local status_line status
-    status_line="$(awk 'BEGIN { IGNORECASE = 1 } /\|[[:space:]]*\*\*Status\*\*[[:space:]]*\|/ { print; exit }' "$summary_file")"
-    status="$(_ac_lower "$status_line")"
-    [[ "$status" == *"in-progress"* || "$status" == *"in progress"* || "$status" == *"implemented"* || "$status" == *"complete"* || "$status" == *"completed"* || "$status" == *"done"* || "$status" == *"shipped"* || "$status" == *"delivered"* ]]
+    # Read the Status CELL and match it whole. A substring test against the
+    # rendered row matches "incomplete" inside "complete", which activates the
+    # gate on a packet that says it is not finished.
+    local status
+    status="$(awk -F'|' '
+        function norm(v) {
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", v)
+            gsub(/\*\*|`|\.$/, "", v)
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", v)
+            return tolower(v)
+        }
+        /^[[:space:]]*\|/ {
+            if (norm($2) == "status") { print norm($3); exit }
+        }
+    ' "$summary_file")"
+    case "$status" in
+        in-progress|"in progress"|implemented|complete|completed|done|shipped|delivered) return 0 ;;
+    esac
+    return 1
 }
 
 # The merged tasks document is the current home for verification traceability.
@@ -122,25 +137,14 @@ _ac_count_requirement_table() {
     ' "$spec_file"
 }
 
+# Delegates to the same parser that reads the evidence, so the total and the
+# covered count can never disagree about which rows are criteria. A second
+# parser here read AC-ID positionally: one column inserted before it dropped the
+# count to zero, which short-circuits the whole gate to "no criteria found" -
+# a silent bypass rather than a visible undercount.
 _ac_count_canonical_rows() {
     local ac_file="$1"
-    awk -F'|' '
-        function norm(v) {
-            gsub(/^[[:space:]]+|[[:space:]]+$/, "", v)
-            gsub(/\*\*|`/, "", v)
-            gsub(/^[[:space:]]+|[[:space:]]+$/, "", v)
-            return toupper(v)
-        }
-        /^[[:space:]]*(```|~~~)/ { in_fence = !in_fence; next }
-        in_fence { next }
-        /^\|/ {
-            # Bold and backticked ids are the same criterion; the AC-ID header is
-            # excluded because it carries no digits.
-            id = norm($2)
-            if (id ~ /^AC-[0-9]+[0-9A-Za-z]*$/) count++
-        }
-        END { print count + 0 }
-    ' "$ac_file"
+    _ac_analyze_canonical "$ac_file" | cut -f1
 }
 
 _ac_count_total() {

@@ -1,11 +1,11 @@
 ---
 title: "Implementation Plan: Checklist Deprecation Closure"
-description: "A present-file rule that checks a goal document's shape: its durable and log headings, a binding block on phase parents, listed child paths that exist, and a durable slice within its character budget."
+description: "Repoint the acceptance-coverage advisory at the document it counts from, correct the traceability-source precedence the tasks/checklist merge left backwards, and give the rule its first unit suite."
 trigger_phrases:
-  - "goal validator"
-  - "durable slice cap"
-  - "binding block check"
-  - "child path existence"
+  - "ac coverage evidence source"
+  - "traceability precedence"
+  - "canonical criteria read"
+  - "checklist deprecation"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -14,7 +14,7 @@ _memory:
     last_updated_at: "2026-08-29T00:00:00Z"
     last_updated_by: "claude-code"
     recent_action: "Planned the coverage-source fix against the merge that caused the split"
-    next_safe_action: "Implement the canonical evidence read and its unit suite"
+    next_safe_action: "None; the phase is closed"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/"
@@ -22,10 +22,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-29-033-004-checklist-deprecation-closure"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
-      - "The cap applies to the durable slice only; a progress log is not a defect"
+      - "One parser serves the count and the evidence read, so they cannot disagree"
 ---
 
 # Implementation Plan: Checklist Deprecation Closure
@@ -76,13 +76,13 @@ The advisory reads its evidence from whichever document it counted its total fro
 Registry-bridged shell rule, matching every other rule in the set: the registry binds id and severity, the orchestrator sources the module and reads its result variables.
 
 ### Key Components
-- **Shape check**: durable and log headings present and distinguishable
-- **Binding check**: a phase-parent document carries its binding block
-- **Path check**: every listed child path resolves inside the packet
-- **Budget check**: the durable slice measured on its own
+- **Canonical read**: evidence taken from the criteria table's Verification column
+- **Single parser**: the total and the covered count come from one pass, so they cannot disagree about which rows are criteria
+- **Header binding**: `AC-ID`, `Verification` and `Status` are located by name, not by position
+- **Legacy fallback**: the merged tasks document first, the pre-merge checklist second
 
 ### Data Flow
-The orchestrator resolves the packet level, sources the rule, and the rule reads the goal document if present. Absent, it returns immediately with no finding.
+The orchestrator resolves the packet level and sources the rule. When the packet carries a criteria document, one awk pass yields both the row count and the covered count; otherwise the legacy traceability read runs unchanged.
 <!-- /ANCHOR:architecture -->
 
 ---

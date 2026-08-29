@@ -108,7 +108,7 @@ Summary for audit trail only; per-phase detail lives in each child's `plan.md`.
 | 2 | 002-acceptance-criteria-template/ | A canonical `acceptance-criteria.md` for Levels 2, 3 and 3+ that gates packet closure, with ADR-backed waiver and supersede paths | Complete |
 
 | 3 | 003-restore-level-upgrade-and-vocabulary-invariance/ | Restore the level-upgrade path after the template restructure and clear the public-surface vocabulary invariance | Complete |
-| 4 | 004-checklist-deprecation-closure/ | [Phase 4 scope] | Pending |
+| 4 | 004-checklist-deprecation-closure/ | Point the acceptance-coverage advisory at the document it counts from, and correct the traceability-source precedence the tasks/checklist merge left backwards | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -123,7 +123,7 @@ Summary for audit trail only; per-phase detail lives in each child's `plan.md`.
 | 001 | 002 | Acceptance-coverage advisory exists and is registered, giving phase 2 a rule to promote rather than invent | `AC_COVERAGE` present in `scripts/lib/validator-registry.json` |
 | 002 | — | Closure gate blocks an unmet, unwaived acceptance criterion under `--strict`, and the Level contract requires the document at Levels 2, 3 and 3+ | `validate.sh <folder> --strict` exit code, negative control included |
 | 002 | 003 | The closure gate exists, so an upgrade that omits its document is a real defect worth fixing | Upgrade to Level 2 creates acceptance-criteria.md |
-| 003-restore-level-upgrade-and-vocabulary-invariance | 004-checklist-deprecation-closure | [Criteria TBD] | [Verification TBD] |
+| 003-restore-level-upgrade-and-vocabulary-invariance | 004-checklist-deprecation-closure | The acceptance-criteria document exists and the closure gate enforces it, so a coverage advisory over it is meaningful | AC_CLOSURE reports a closeable packet; AC_COVERAGE reports a ratio rather than a no-op |
 <!-- /ANCHOR:phase-map -->
 
 ---

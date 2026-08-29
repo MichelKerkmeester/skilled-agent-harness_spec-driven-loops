@@ -1,0 +1,59 @@
+{
+  "run_id": "1788039066008-zwm1sm",
+  "loop_type": "review",
+  "spec_folder": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure",
+  "base_artifact_dir": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "grok46-xhigh",
+      "state_log": "specs/system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure/review/lineages/grok46-xhigh/deep-review-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-08-29T21:31:06.012Z",
+        "end_at_iso": "2026-08-29T21:53:25.736Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 3,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 15
+      },
+      "sample": [
+        {
+          "index": 10,
+          "reason": "after_window",
+          "timestamp": "2026-08-29T21:55:50.000Z",
+          "deltaMs": 24264
+        },
+        {
+          "index": 11,
+          "reason": "after_window",
+          "timestamp": "2026-08-29T21:56:00.000Z",
+          "deltaMs": 34264
+        },
+        {
+          "index": 12,
+          "reason": "after_window",
+          "timestamp": "2026-08-29T21:56:10.000Z",
+          "deltaMs": 44264
+        }
+      ]
+    }
+  ]
+}

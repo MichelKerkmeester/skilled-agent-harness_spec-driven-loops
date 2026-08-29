@@ -1,0 +1,25 @@
+{
+  "stem": "deep_review.run_completed",
+  "scope": {
+    "runId": "fanout-grok46-xhigh-1788039066008-zwm1sm",
+    "sessionId": "fanout-grok46-xhigh-1788039066008-zwm1sm"
+  },
+  "data": {
+    "terminalStatus": "incomplete",
+    "convergenceEventId": "event-7b387c46-85a1-4995-89fd-3354a88d7c9c",
+    "synthesisEventId": "event-ea50ac6e-9868-4ec6-9bf8-7ef6166216e7",
+    "reportEventId": "event-0b3eed66-15dc-4531-9e1e-b138b6a787b6",
+    "continuityEventId": "event-7a0b5a01-cc1f-4d49-b1f9-5114b62b6a8b",
+    "finalLedgerTailHash": "8dba1e31103ef0bda8e5f923ab6cc5d8f72ff8c2b935719277e3c956220f6165",
+    "counts": {
+      "dimensions": 4,
+      "iterations": 4,
+      "candidates": 10,
+      "findings": 10,
+      "evidence": 10
+    },
+    "verdict": "incomplete",
+    "completionReason": null,
+    "incompleteReason": "Fan-out write surface skipped generate-context.js; stopPolicy max-iterations reached with 3 active P1 findings."
+  }
+}
