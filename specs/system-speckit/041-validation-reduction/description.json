@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-speckit/041-validation-reduction",
+  "description": "The completion gate fails roughly two thirds of the live corpus, and the",
+  "keywords": [
+    "completion",
+    "gate",
+    "fails",
+    "roughly",
+    "two",
+    "thirds",
+    "live",
+    "corpus"
+  ],
+  "lastUpdated": "2026-08-29T17:12:20.729Z",
+  "specId": "041",
+  "folderSlug": "validation-reduction",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

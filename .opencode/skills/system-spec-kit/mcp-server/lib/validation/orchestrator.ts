@@ -973,7 +973,12 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
     engine: ENGINE_NAME,
     entries,
     summary,
-    passed: summary.errors === 0 && !(opts.strict && summary.warnings > 0),
+    // A warning is advice. Promoting every one of them to a hard failure under
+    // strict made the registry's severity tiers decorative and left the gate
+    // red for most of the corpus, which is how a gate stops being read at all.
+    // Strict still decides which rules RUN; it no longer decides what a warning
+    // MEANS.
+    passed: summary.errors === 0,
   };
 }
 

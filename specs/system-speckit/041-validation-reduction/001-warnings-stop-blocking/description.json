@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/041-validation-reduction/001-warnings-stop-blocking",
+  "description": "Strict mode decides which rules run; it stops deciding what a warning means.",
+  "keywords": [
+    "strict",
+    "mode",
+    "decides",
+    "rules",
+    "run",
+    "stops",
+    "deciding",
+    "warning",
+    "means"
+  ],
+  "lastUpdated": "2026-08-29T17:24:32.652Z",
+  "specId": "001",
+  "folderSlug": "warnings-stop-blocking",
+  "parentChain": [
+    "system-speckit",
+    "041-validation-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

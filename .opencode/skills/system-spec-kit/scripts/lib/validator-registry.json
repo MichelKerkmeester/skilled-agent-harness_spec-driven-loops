@@ -51,7 +51,7 @@
       "CROSS_DOC_STATUS"
     ],
     "script_path": "rules/check-status-cross-doc-consistency.sh",
-    "severity": "warn",
+    "severity": "error",
     "category": "authored_template",
     "description": "Advisory-by-default check that spec.md and implementation-summary.md status fields classify to the same delivery state."
   },
@@ -301,7 +301,7 @@
       "DISK_PATH_CONSISTENCY"
     ],
     "script_path": "rules/check-metadata-disk-consistency.sh",
-    "severity": "warn",
+    "severity": "error",
     "category": "structural",
     "description": "Advisory-by-default check that description.json, graph-metadata.json, and continuity ids match the real on-disk spec-folder path."
   },

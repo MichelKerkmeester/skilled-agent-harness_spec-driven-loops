@@ -77,7 +77,7 @@ run_check() {
     done < <(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); for (const item of data.mismatches || []) console.log(item);' 2>/dev/null || true)
 
     if speckit_flag_enabled "${SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE:-true}"; then
-        RULE_STATUS="warn"
+        RULE_STATUS="fail"
         RULE_MESSAGE="Generated metadata path drift detected against on-disk folder: $actual_path"
         RULE_REMEDIATION="Refresh description.json and graph-metadata.json from the canonical save path so stored ids match the real folder."
     else

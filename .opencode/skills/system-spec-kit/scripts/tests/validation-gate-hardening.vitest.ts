@@ -220,7 +220,7 @@ describe('validation gate hardening', () => {
       tasks: '- [x] T001 [P0] Fixture validates -- validation-gate-hardening.vitest.ts:200 asserts the command output includes 25/25 passing.\n',
     });
     const bareResult = runValidate(bare, 'EVIDENCE_CITED');
-    expect(bareResult.code).toBe(2);
+    expect(bareResult.code).toBe(0);
     expect(bareResult.stdout).toContain('Found 2 completed item(s) without evidence');
 
     const proseResult = runValidate(prose, 'EVIDENCE_CITED');
@@ -247,7 +247,7 @@ describe('validation gate hardening', () => {
       ].join('\n'),
     });
     const result = runValidate(folder, 'EVIDENCE_CITED');
-    expect(result.code).toBe(2);
+    expect(result.code).toBe(0);
     expect(result.stdout).toContain('Found 2 completed item(s) without evidence');
     expect(result.stdout).toContain('CHK-001');
     expect(result.stdout).toContain('CHK-004');
@@ -289,13 +289,16 @@ describe('validation gate hardening', () => {
     const folder = createPacket(workspace, 'test-track/991-known-failing', {
       specStatus: 'Complete',
       implementationStatus: 'Complete',
-      checklist: '- [x] CHK-001 [P0] Something with no evidence at all here whatsoever\n',
     });
+    // The fixture has to fail on something that actually blocks. Advisory rules
+    // report without failing, so a missing required document is what makes this
+    // a known-failing folder rather than a merely untidy one.
+    fs.rmSync(path.join(folder, 'plan.md'), { force: true });
     const relativeFolder = path.relative(repoRoot, folder);
 
     // Confirm this fixture is a genuine known-failing folder before trusting
     // the sweep's classification of it.
-    const directCheck = runValidate(folder, 'EVIDENCE_CITED');
+    const directCheck = runValidate(folder, 'FILE_EXISTS');
     expect(directCheck.code).toBe(2);
 
     const noBaseline = spawnSync('node', ['--import', tsxLoader, sweepScript, '--roots', specsRoot, '--format', 'json'], {

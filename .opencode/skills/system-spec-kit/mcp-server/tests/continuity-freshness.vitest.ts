@@ -181,7 +181,9 @@ describe('completion continuity freshness', () => {
     const result = runValidate(folder, { SPECKIT_COMPLETION_FRESHNESS: 'true' });
     const parsed = JSON.parse(result.stdout) as { entries: Array<{ rule: string; status: string; message: string }> };
 
-    expect(result.status).toBe(2);
+    // A warning reports without blocking; only the enforced tier fails the run,
+    // which the next test covers.
+    expect(result.status).toBe(0);
     expect(parsed.entries[0].rule).toBe('CONTINUITY_FRESHNESS');
     expect(parsed.entries[0].status).toBe('warn');
     expect(parsed.entries[0].message).toContain('stored continuity fingerprint does not match current content');
