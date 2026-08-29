@@ -138,6 +138,11 @@ function expectedTarget(mirrorRelative, sourceRelative) {
   );
 }
 
+/** Build output is regenerated, never committed, so its absence is not drift. */
+function isBuildArtifact(target) {
+  return target.split('/').includes('dist');
+}
+
 function inspect(link) {
   const absolute = path.join(REPO_ROOT, link.mirror);
   let stat = null;
@@ -148,9 +153,17 @@ function inspect(link) {
     return { state: 'MISSING' };
   }
   if (!stat.isSymbolicLink()) return { state: 'STALE', why: 'not a symlink (silent fork risk)' };
-  if (!fs.existsSync(absolute)) return { state: 'STALE', why: 'broken symlink' };
   const want = expectedTarget(link.mirror, link.source);
-  if (fs.readlinkSync(absolute) !== want) return { state: 'STALE', why: `points at ${fs.readlinkSync(absolute)}, expected ${want}` };
+  const actual = fs.readlinkSync(absolute);
+  if (actual !== want) return { state: 'STALE', why: `points at ${actual}, expected ${want}` };
+  // A mirror aimed at the right place but resolving to nothing is either a deleted source
+  // or an unbuilt artifact, and only the first is drift. Build output is gitignored, so a
+  // fresh checkout has none of it — treating that as drift makes this gate fail on every
+  // run in CI while passing on any machine that happens to have built, which reports
+  // build state as mirror integrity and trains readers to ignore the result.
+  if (!fs.existsSync(absolute) && !isBuildArtifact(want)) {
+    return { state: 'STALE', why: 'broken symlink (source is gone)' };
+  }
   return { state: 'OK' };
 }
 
