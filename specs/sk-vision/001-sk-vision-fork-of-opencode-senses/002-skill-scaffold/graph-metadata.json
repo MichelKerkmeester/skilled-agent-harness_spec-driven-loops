@@ -33,17 +33,52 @@
       "copy"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-skill-md/spec.md",
-      "002-metadata-and-manifests/spec.md"
+      "002-metadata-and-manifests/spec.md",
+      ".opencode/skills/sk-vision/SKILL.md",
+      ".opencode/skills/sk-vision/graph-metadata.json",
+      ".opencode/skills/sk-vision/leaf-manifest.config.json",
+      ".opencode/skills/sk-vision/leaf-manifest.json",
+      ".opencode/skills/sk-vision/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-vision/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.config.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/leaf-manifest.config.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-vision/README.md",
         "source": "derived"
       },
       {
@@ -85,7 +120,7 @@
     ],
     "causal_summary": "Text-only models need a legal standalone skill root before any runtime copy",
     "created_at": "2026-08-15T16:25:59.005Z",
-    "last_save_at": "2026-08-16T08:37:44.621Z",
+    "last_save_at": "2026-08-29T15:22:05.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

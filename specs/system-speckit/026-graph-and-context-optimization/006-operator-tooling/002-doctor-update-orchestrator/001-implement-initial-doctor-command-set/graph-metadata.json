@@ -45,11 +45,15 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "resource-map.md",
       "decision-record.md",
       "implementation-summary.md",
+      "handover.md",
+      "resource-map.md",
+      ".opencode/commands/doctor/update.md",
+      ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
       "ai-council/council-report.md",
-      "handover.md"
+      ".opencode/commands/doctor/scripts/audit_descriptions.py",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh"
     ],
     "entities": [
       {
@@ -77,12 +81,6 @@
         "source": "derived"
       },
       {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -95,15 +93,45 @@
         "source": "derived"
       },
       {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-runtime-bootstrap.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/doctor-runtime-bootstrap.sh",
+        "source": "derived"
+      },
+      {
         "name": "council-report.md",
         "kind": "doc",
         "path": "ai-council/council-report.md",
         "source": "derived"
       },
       {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
+        "name": "audit_descriptions.py",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/audit_descriptions.py",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
         "source": "derived"
       },
       {
@@ -171,35 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Range",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implement Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "tier",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "forced-failure",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A user at spec-kit `v3.3.0.0` (or any version older than `v3.4.1.0`) has 6+ databases that drift out of alignment with their codebase: `context-index.sqlite` (memory FTS+vector, 134M+362M), `code-graph.sqlite` (51M structural index), `skill-graph.sqlite` (148K), `deep-loop-graph.sqlite` (84K coverage graphs), `speckit-eval.db` (16M ablation results), and `causaledges` table (in context-index, lazy-init)",
     "created_at": "2026-05-09T12:15:31.296Z",
-    "last_save_at": "2026-08-28T23:06:08.039Z",
+    "last_save_at": "2026-08-29T15:22:17.542Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

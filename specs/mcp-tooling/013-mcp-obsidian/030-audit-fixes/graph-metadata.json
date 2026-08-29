@@ -28,18 +28,13 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "specs/mcp-tooling/graph-metadata.json"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -56,6 +51,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/mcp-tooling/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -145,7 +152,7 @@
     ],
     "causal_summary": "Fix the three defects from the two fresh-Opus bug audits of the `mcp-obsidian` mode skill and its `mcp-tooling` parent integration",
     "created_at": "2026-08-06T13:47:25.994Z",
-    "last_save_at": "2026-08-28T22:06:52.004Z",
+    "last_save_at": "2026-08-29T15:21:54.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

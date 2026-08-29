@@ -42,7 +42,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/description.json",
+      ".opencode/skills/sk-doc/graph-metadata.json"
     ],
     "entities": [
       {
@@ -67,6 +71,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -164,35 +192,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc `doc-quality` workflow packet (built in the original phase map's `012-doc-quality/`) is named as if it were a mode or feature flag rather than a create- authoring packet, which is inconsistent with the hub's naming convention and undersells what the packet actually does: validate, score, and optimize an existing document — the same job the bound `/doc:quality` command already describes",
     "created_at": "2026-07-07T04:51:44.810Z",
-    "last_save_at": "2026-08-28T15:58:15.888Z",
+    "last_save_at": "2026-08-29T15:22:00.806Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -41,15 +41,22 @@
       "indexer"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "graph-metadata.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "graph-metadata.json",
         "source": "derived"
       },
       {
@@ -91,7 +98,7 @@
     ],
     "causal_summary": "Phase parent. 4 sub-phases: (001) investigate what each retrieval system actually indexes, (002) add Ollama adapter to CocoIndex via LiteLLM, (003) 3-run-confirm + promote bge-code-v1 as the CocoIndex default, (004) survey newer text embedders released after May 2026 — only bench if a clearly stronger candidate emerges (mk-spec-memory bake-off already shipped jina-embeddings-v3 + rescue per ADR-012). Outcome: clear embedder routing + Ollama support + validated defaults across CocoIndex and mk-spec-memory.",
     "created_at": "2026-05-18T16:52:17.347Z",
-    "last_save_at": "2026-07-17T17:19:26.140Z",
+    "last_save_at": "2026-08-29T15:22:15.491Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -101,7 +108,7 @@
     "source_doc_hashes": {
       "spec.md": "d62cac502dd0836d03fe8315d9478c1d6a1dff099487e76ab63eee5299c7e01d"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion/003-bge-code-v1-confirmation-and-promote",
     "last_active_at": null
   }
 }

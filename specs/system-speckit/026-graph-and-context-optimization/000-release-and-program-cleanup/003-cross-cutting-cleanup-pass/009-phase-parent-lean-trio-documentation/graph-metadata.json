@@ -48,9 +48,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "resource-map.md",
       "001-phase-parent-validator-docs/spec.md",
       "002-phase-parent-generator-pointer-polish/spec.md",
-      "resource-map.md"
+      "templates/README.md"
     ],
     "entities": [
       {
@@ -63,6 +64,12 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "templates/README.md",
         "source": "derived"
       },
       {
@@ -140,7 +147,7 @@
     ],
     "causal_summary": "A spec folder with phase children carries duplicate state at the parent level: `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md` describe program-level intent at the time of decomposition, but the children own the real work and pivot as they execute",
     "created_at": "2026-04-27T08:55:00Z",
-    "last_save_at": "2026-08-28T22:51:32.667Z",
+    "last_save_at": "2026-08-29T15:22:09.784Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

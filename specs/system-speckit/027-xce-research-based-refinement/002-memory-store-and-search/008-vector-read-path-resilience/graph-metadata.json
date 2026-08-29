@@ -40,7 +40,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tests/openltm-retrieval-observability.vitest.ts",
+      "tests/vector-shard-read-path-resilience.vitest.ts",
+      "tests/vector-dimension-source.vitest.ts"
     ],
     "entities": [
       {
@@ -65,6 +68,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "openltm-retrieval-observability.vitest.ts",
+        "kind": "test",
+        "path": "tests/openltm-retrieval-observability.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-shard-read-path-resilience.vitest.ts",
+        "kind": "test",
+        "path": "tests/vector-shard-read-path-resilience.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-dimension-source.vitest.ts",
+        "kind": "test",
+        "path": "tests/vector-dimension-source.vitest.ts",
         "source": "derived"
       },
       {
@@ -168,17 +189,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A live defect class was observed on 2026-06-10: the active embedder shard context-vectorsollamanomic-embed-text-v1.5768.sqlite reported database disk image is malformed and vec768 was missing from context-index.sqlite - the provider cascade silently degraded vector search with no health surface, no quarantine, and no rebuild",
     "created_at": "2026-06-10T17:48:33Z",
-    "last_save_at": "2026-08-28T16:00:04.885Z",
+    "last_save_at": "2026-08-29T15:22:19.620Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

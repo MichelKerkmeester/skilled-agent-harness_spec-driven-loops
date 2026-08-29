@@ -41,19 +41,14 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "research/research.md"
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -73,9 +68,21 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Before building an Obsidian mode we do not know Obsidian's real automation surface: whether there is a first-party CLI, which community CLIs exist and are maintained, which MCP servers exist and how they authenticate (Local REST API token vs direct vault filesystem), and whether any of it works headlessly without the desktop app running",
     "created_at": "2026-08-02T05:50:26Z",
-    "last_save_at": "2026-08-28T22:05:55.730Z",
+    "last_save_at": "2026-08-29T15:21:54.011Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

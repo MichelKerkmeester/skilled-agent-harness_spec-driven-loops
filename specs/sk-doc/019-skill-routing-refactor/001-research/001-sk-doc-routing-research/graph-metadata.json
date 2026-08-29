@@ -41,9 +41,11 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "research/research.md",
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md",
+      "research/research.md",
       "research/deep-research-dashboard.md",
       "research/findings-registry.json",
       "research/deep-research-state.jsonl",
@@ -57,16 +59,10 @@
       "research/iterations/iteration-008.md",
       "research/iterations/iteration-009.md",
       "research/iterations/iteration-010.md",
-      "plan.md",
-      "tasks.md"
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/hub-router.json"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -74,9 +70,27 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -158,15 +172,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
         "source": "derived"
       },
       {
@@ -192,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Outcome The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Tier-2 gpt-5.6-luna skill-benchmark scored sk-doc at 20/100 with roughly 19% exact-resource recall",
     "created_at": "2026-07-16T07:29:53.884Z",
-    "last_save_at": "2026-08-28T15:59:24.442Z",
+    "last_save_at": "2026-08-29T15:22:01.533Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

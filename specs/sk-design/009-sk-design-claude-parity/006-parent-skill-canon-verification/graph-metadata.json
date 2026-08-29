@@ -54,7 +54,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
       {
@@ -91,6 +92,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
         "source": "derived"
       },
       {
@@ -194,17 +201,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Context Phase",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 001-005 refactored `sk-design` toward Claude Design-like manager behavior while preserving the OpenCode-native parent-hub shape: one advisor identity, registry-driven routing, five public modes",
     "created_at": "2026-07-06T04:36:21.215Z",
-    "last_save_at": "2026-08-28T16:28:18.885Z",
+    "last_save_at": "2026-08-29T15:21:58.989Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -44,7 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/specs/descriptions.json"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator renamed `.opencode/specs/system-deep-loop/037-router-replay-surface-slice-sync` to `036-router-replay-surface-slice-sync` and added a new `037-scenario-loader-code-surface-sync`",
     "created_at": "2026-07-06T06:03:40Z",
-    "last_save_at": "2026-08-28T16:00:24.478Z",
+    "last_save_at": "2026-08-29T15:22:23.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

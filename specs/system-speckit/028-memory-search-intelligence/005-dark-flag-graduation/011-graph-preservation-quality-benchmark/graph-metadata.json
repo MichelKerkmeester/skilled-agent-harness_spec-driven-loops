@@ -43,10 +43,21 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
+      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "tasks.md",
-      "checklist.md"
+      "benchmark-results.md",
+      "handlers/memory-crud-health.ts",
+      "tests/handler-memory-crud.vitest.ts",
+      "scripts/evals/run-retrieval-flag-eval.mjs",
+      "scripts/evals/run-graph-preservation-flag-eval.mjs",
+      "lib/eval/graph-preservation-ground-truth-data.ts",
+      "lib/eval/data/graph-preservation-ground-truth.json",
+      "tests/graph-preservation-ground-truth.vitest.ts",
+      "tests/graph-preservation-flag-eval-driver.vitest.ts",
+      "tests/ground-truth.vitest.ts",
+      "shared/paths.ts"
     ],
     "entities": [
       {
@@ -62,6 +73,18 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -74,15 +97,69 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "benchmark-results.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "benchmark-results.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-crud.vitest.ts",
+        "kind": "test",
+        "path": "tests/handler-memory-crud.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-retrieval-flag-eval.mjs",
+        "kind": "file",
+        "path": "scripts/evals/run-retrieval-flag-eval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-graph-preservation-flag-eval.mjs",
+        "kind": "file",
+        "path": "scripts/evals/run-graph-preservation-flag-eval.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "graph-preservation-ground-truth-data.ts",
+        "kind": "code",
+        "path": "lib/eval/graph-preservation-ground-truth-data.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-preservation-ground-truth.json",
+        "kind": "config",
+        "path": "lib/eval/data/graph-preservation-ground-truth.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-preservation-ground-truth.vitest.ts",
+        "kind": "test",
+        "path": "tests/graph-preservation-ground-truth.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-preservation-flag-eval-driver.vitest.ts",
+        "kind": "test",
+        "path": "tests/graph-preservation-flag-eval-driver.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth.vitest.ts",
+        "kind": "test",
+        "path": "tests/ground-truth.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "paths.ts",
+        "kind": "code",
+        "path": "shared/paths.ts",
         "source": "derived"
       },
       {
@@ -126,77 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fixture Authoring",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Benchmark Driver",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Counter Wiring",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two routing-affecting flags carry the identical unmet obligation in their own source comments:",
     "created_at": "2026-07-09T20:28:59.939Z",
-    "last_save_at": "2026-08-28T16:00:25.685Z",
+    "last_save_at": "2026-08-29T15:22:24.223Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

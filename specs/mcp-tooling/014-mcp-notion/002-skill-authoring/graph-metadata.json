@@ -41,18 +41,16 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/README.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/INSTALL-GUIDE.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/changelog/v0.1.0.0.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +67,36 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL-GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/INSTALL-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "v0.1.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/changelog/v0.1.0.0.md",
         "source": "derived"
       },
       {
@@ -166,35 +194,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After Phase 1, the research verdict exists but nothing tells an agent how to reach Notion: which backend to use (headless stdio vs interactive OAuth), which of the 24 tools serves which operation, where the 5 direct-API gaps are, or how the API 2.0 data-source model differs from a plain database id",
     "created_at": "2026-08-21T15:00:45.750Z",
-    "last_save_at": "2026-08-21T15:51:37.685Z",
+    "last_save_at": "2026-08-29T15:21:54.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

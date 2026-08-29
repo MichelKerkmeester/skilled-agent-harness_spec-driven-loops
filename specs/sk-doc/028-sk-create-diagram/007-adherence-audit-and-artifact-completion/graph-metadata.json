@@ -3,6 +3,7 @@
   "packet_id": "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
   "spec_folder": "sk-doc/028-sk-create-diagram/007-adherence-audit-and-artifact-completion",
   "parent_id": "sk-doc/028-sk-create-diagram",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -13,18 +14,26 @@
     "trigger_phrases": [
       "sk-create-diagram adherence audit",
       "diagram playbook and catalog",
-      "sk-create-skill template verification"
+      "sk-create-skill template verification",
+      "diagram adherence audit plan",
+      "diagram adherence audit tasks",
+      "diagram adherence audit checklist",
+      "diagram audit decision record",
+      "diagram adherence audit summary"
     ],
     "key_topics": [
-      "phase",
-      "validate_skill_package",
-      "ci-skill-root-metadata",
-      "validate",
-      "recursive",
-      "strict",
-      "structural",
-      "metadata",
-      "gates"
+      "sk-create-diagram",
+      "adherence",
+      "audit",
+      "diagram",
+      "playbook",
+      "catalog",
+      "sk-create-skill",
+      "template",
+      "verification",
+      "plan",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -34,12 +43,162 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
+      ".opencode/commands/create/diagram.md",
+      ".opencode/skills/sk-code/sk-code-opencode/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-feature-catalog/SKILL.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase 006 ran `validate_skill_package.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` \u2014 all structural/metadata gates \u2014 but never diffed the authored `SKILL.md`, 37 references, and 39 assets against `sk-create-skill`'s literal templates section-by-section, and never checked the 2 Python extraction scripts or the config/YAML surfaces against `sk-code-opencode`'s language standards",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "diagram.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/diagram.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Deepseek",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Sequential",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-opencode",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 006 ran `validateskillpackage.py`, `ci-skill-root-metadata.cjs`, and `validate.sh --recursive --strict` — all structural/metadata gates — but never diffed the authored `SKILL.md`, 37 references, and 39 assets against `sk-create-skill`'s literal templates section-by-section, and never checked the 2 Python extraction scripts or the config/YAML surfaces against `sk-code-opencode`'s language standards",
     "created_at": "2026-08-12T00:00:00.000Z",
-    "last_save_at": "2026-08-12T18:40:07.000Z",
+    "last_save_at": "2026-08-29T15:22:04.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

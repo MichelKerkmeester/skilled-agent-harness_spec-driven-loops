@@ -60,14 +60,21 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "006-cocoindex-dedup-from-shared-sidecar/spec.md",
-      "spec.md"
+      "lib/search/pipeline/stage3-rerank.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank.ts",
+        "kind": "code",
+        "path": "lib/search/pipeline/stage3-rerank.ts",
         "source": "derived"
       },
       {
@@ -109,7 +116,7 @@
     ],
     "causal_summary": "Umbrella for the 5-phase arc that brings a shared Python cross-encoder reranker (Qwen3-Reranker-0.6B) to both mk-spec-memory and mk-coco-index via a new `system-rerank-sidecar` skill. Closes the gap where cross-encoder.ts has a pre-wired `local` HTTP provider slot but no sidecar runs at localhost:8765, leaving every memory_search at HIGH_THRESHOLD=0.7 with positional fallback scores capped at ~0.5 (quality=weak).",
     "created_at": "2026-05-23T11:55:15.599Z",
-    "last_save_at": "2026-08-28T23:02:16.235Z",
+    "last_save_at": "2026-08-29T15:22:15.520Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

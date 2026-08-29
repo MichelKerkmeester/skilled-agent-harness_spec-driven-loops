@@ -47,7 +47,18 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "research/research.md"
+      "research/research.md",
+      ".opencode/hooks/README.md",
+      ".opencode/hooks/hook-flags.env.example",
+      ".opencode/hooks/shared/hook-flags.cjs",
+      ".opencode/hooks/shared/hook-flags.sh",
+      ".opencode/bin/worktree-guard.sh",
+      ".opencode/bin/check-git-hooks.sh",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/bin/install-codex-hooks.mjs",
+      ".opencode/hooks/injection-contract.md",
+      ".opencode/hooks/coverage-rationale.md",
+      ".opencode/hooks/shared/README.md"
     ],
     "entities": [
       {
@@ -93,6 +104,66 @@
         "source": "derived"
       },
       {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".opencode/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.sh",
+        "kind": "script",
+        "path": ".opencode/hooks/shared/hook-flags.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-guard.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-guard.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/bin/check-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-codex-hooks.mjs",
+        "kind": "file",
+        "path": ".opencode/bin/install-codex-hooks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-rationale.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/coverage-rationale.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -133,71 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Runtime Surfaces",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Guard Contract",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Complete Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Run Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Equivalent hooks used different runtime adapters, module formats, and shell entrypoints",
     "created_at": "2026-08-13T17:49:26.189Z",
-    "last_save_at": "2026-08-14T10:11:56.390Z",
+    "last_save_at": "2026-08-29T15:21:53.176Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

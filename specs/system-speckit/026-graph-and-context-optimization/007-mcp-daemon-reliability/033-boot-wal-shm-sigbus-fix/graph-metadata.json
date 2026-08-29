@@ -47,46 +47,17 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/startup-checks.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/startup-checks.vitest.ts",
       "spec.md",
       "plan.md",
-      "tests/context-server.vitest.ts",
-      ".opencode/bin/mk-code-index-launcher.cjs",
-      "lib/search/vector-index-store.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
+      "tasks.md",
       "implementation-summary.md",
-      "mcp_server/context-server.ts",
-      "tests/startup-checks.vitest.ts",
-      "tasks.md"
+      "tests/context-server.vitest.ts",
+      "dist/startup-checks.js",
+      "dist/context-server.js",
+      "lib/search/vector-index-store.ts",
+      "tests/startup-checks.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "startup-checks.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/startup-checks.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "startup-checks.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/startup-checks.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -100,15 +71,9 @@
         "source": "derived"
       },
       {
-        "name": "context-server.vitest.ts",
-        "kind": "test",
-        "path": "tests/context-server.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -118,9 +83,33 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": "tests/context-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "startup-checks.js",
+        "kind": "code",
+        "path": "dist/startup-checks.js",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "startup-checks.vitest.ts",
+        "kind": "test",
+        "path": "tests/startup-checks.vitest.ts",
         "source": "derived"
       },
       {
@@ -206,11 +195,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A boot-time health check in context-server.ts silently reverts the deliberate journal-mode-DELETE fix back to WAL on every daemon restart, re-exposing the WAL/mmap'd -shm SIGBUS class that fix was written to close",
     "created_at": "2026-07-08T16:02:23Z",
-    "last_save_at": "2026-07-17T17:19:35.592Z",
+    "last_save_at": "2026-08-29T15:22:18.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

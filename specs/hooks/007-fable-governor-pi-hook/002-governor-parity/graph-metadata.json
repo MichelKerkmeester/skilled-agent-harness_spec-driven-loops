@@ -37,7 +37,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/hooks/injection-contract.md"
     ],
     "entities": [
       {
@@ -62,6 +63,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/injection-contract.md",
         "source": "derived"
       },
       {
@@ -177,17 +184,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The per-turn governor capsule is inconsistent across runtimes: canonical composition points carry hygiene + governor + proof-over-appearance (`render.ts:53-69,204-215`, `mk-skill-advisor.js:48-52`), but the OpenCode bridge's inline fallback omits the proof directive (`mk-skill-advisor-bridge.mjs:319-373`), and its fallback branch falls back to drift-prone inline code (`:376-379`)",
     "created_at": "2026-08-04T12:04:52Z",
-    "last_save_at": "2026-08-11T06:50:05.095Z",
+    "last_save_at": "2026-08-29T15:21:51.909Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

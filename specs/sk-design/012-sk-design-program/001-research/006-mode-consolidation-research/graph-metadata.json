@@ -33,18 +33,19 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "research/deep-research-state.jsonl",
-      "research/research.md",
-      "research/resource-map.md",
-      "research/lineages/sol/.deep-research.lock",
       "spec.md",
-      "handover.md"
+      "research/research.md",
+      "handover.md",
+      "research/deep-research-state.jsonl",
+      "research/resource-map.md",
+      ".opencode/package.json",
+      "research/lineages/sol/.deep-research.lock"
     ],
     "entities": [
       {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -54,21 +55,27 @@
         "source": "derived"
       },
       {
-        "name": ".deep-research.lock",
-        "kind": "file",
-        "path": "research/lineages/sol/.deep-research.lock",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/package.json",
+        "source": "derived"
+      },
+      {
+        "name": ".deep-research.lock",
+        "kind": "file",
+        "path": "research/lineages/sol/.deep-research.lock",
         "source": "derived"
       },
       {
@@ -176,7 +183,7 @@
     ],
     "causal_summary": "sk-design has grown to seven modes — interface, foundations, motion, audit, md-generator, the design-mcp-open-design transport, plus a large `styles` resource tree",
     "created_at": "2026-07-25T13:39:24.267Z",
-    "last_save_at": "2026-08-28T22:14:13.260Z",
+    "last_save_at": "2026-08-29T15:22:00.069Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

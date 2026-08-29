@@ -36,24 +36,36 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "tasks.md",
+      "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md",
+      ".opencode/skills/sk-git/leaf-manifest.json",
+      ".opencode/skills/sk-git/leaf-aliases.json",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/utils/index-scope.ts",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      "scripts/lib/README.md",
       "scratch/.gitkeep"
     ],
     "entities": [
       {
-        "name": "tasks.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -69,9 +81,39 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-git/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-aliases.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-git/leaf-aliases.json",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "scripts/lib/README.md",
         "source": "derived"
       },
       {
@@ -151,47 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "All Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "it",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`scripts/setup-maintainer-filters.sh` (removed in this session's step-11 cleanup) installed a git clean/smudge filter keeping `SPECKITCODEGRAPHINDEX{SKILLS,AGENTS,COMMANDS,SPECS,PLUGINS}` `\"true\"` locally for maintainers while committing `\"false\"`",
     "created_at": "2026-08-07T08:47:41Z",
-    "last_save_at": "2026-08-08T10:52:23.738Z",
+    "last_save_at": "2026-08-29T15:22:24.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

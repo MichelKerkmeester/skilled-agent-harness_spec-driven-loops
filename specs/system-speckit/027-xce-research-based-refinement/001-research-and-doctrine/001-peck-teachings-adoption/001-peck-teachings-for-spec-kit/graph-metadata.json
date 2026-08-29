@@ -45,20 +45,13 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "research/research.md",
+      "peck-teachings-analysis.md",
       "scripts/utils/template-structure.js",
       "scripts/rules/check-template-headers.sh",
-      "references/validation/template_compliance_contract.md",
       "scripts/rules/check-phase-parent-content.sh",
       "scripts/lib/validator-registry.json",
-      "references/validation/validation_rules.md",
-      "constitutional/README.md",
-      "references/memory/memory_system.md",
-      "mcp_server/lib/cognitive/fsrs-scheduler.ts",
-      "scripts/spec/validate.sh",
-      "mcp_server/lib/validation/save-quality-gate.ts",
-      "mcp_server/handlers/memory-save.ts",
-      "references/config/environment_variables.md",
-      "research/research.md"
+      "scripts/spec/validate.sh"
     ],
     "entities": [
       {
@@ -86,6 +79,18 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "peck-teachings-analysis.md",
+        "kind": "doc",
+        "path": "peck-teachings-analysis.md",
+        "source": "derived"
+      },
+      {
         "name": "template-structure.js",
         "kind": "code",
         "path": "scripts/utils/template-structure.js",
@@ -95,12 +100,6 @@
         "name": "check-template-headers.sh",
         "kind": "script",
         "path": "scripts/rules/check-template-headers.sh",
-        "source": "derived"
-      },
-      {
-        "name": "template_compliance_contract.md",
-        "kind": "doc",
-        "path": "references/validation/template_compliance_contract.md",
         "source": "derived"
       },
       {
@@ -116,57 +115,9 @@
         "source": "derived"
       },
       {
-        "name": "validation_rules.md",
-        "kind": "doc",
-        "path": "references/validation/validation_rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "constitutional/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory_system.md",
-        "kind": "doc",
-        "path": "references/memory/memory_system.md",
-        "source": "derived"
-      },
-      {
-        "name": "fsrs-scheduler.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/cognitive/fsrs-scheduler.ts",
-        "source": "derived"
-      },
-      {
         "name": "validate.sh",
         "kind": "script",
         "path": "scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "save-quality-gate.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/validation/save-quality-gate.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "environment_variables.md",
-        "kind": "doc",
-        "path": "references/config/environment_variables.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -204,11 +155,53 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Explore",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Exploration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The user asked whether the external repo `gytis-ivaskevicius/peck` contains any teachings that could",
     "created_at": "2026-06-02T08:38:07Z",
-    "last_save_at": "2026-07-17T17:19:38.805Z",
+    "last_save_at": "2026-08-29T15:22:18.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

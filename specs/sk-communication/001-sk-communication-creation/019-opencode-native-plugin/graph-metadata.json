@@ -46,7 +46,9 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tests/README.md",
+      ".opencode/plugins/README.md"
     ],
     "entities": [
       {
@@ -83,6 +85,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "tests/README.md",
         "source": "derived"
       },
       {
@@ -186,17 +194,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode is the only supported runtime with a native output-transform hook, but no runtime yet consumes the projection core, so the enablement flag gates nothing end-to-end",
     "created_at": "2026-08-14T05:28:35.233Z",
-    "last_save_at": "2026-08-14T08:00:47.856Z",
+    "last_save_at": "2026-08-29T15:21:58.124Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

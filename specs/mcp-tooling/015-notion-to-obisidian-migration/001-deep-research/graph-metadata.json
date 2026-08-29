@@ -40,11 +40,16 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "research/research.md",
       "plan.md",
+      "tasks.md",
+      "research/research.md",
+      "prior-findings.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
       "research/findings-registry.json",
-      "research/fanout-attribution.md",
-      "tasks.md"
+      "research/fanout-attribution.md"
     ],
     "entities": [
       {
@@ -54,15 +59,33 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "prior-findings.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "prior-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
         "source": "derived"
       },
       {
@@ -75,12 +98,6 @@
         "name": "fanout-attribution.md",
         "kind": "doc",
         "path": "research/fanout-attribution.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -178,23 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "cli-devin",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Notion Markdown",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "We need to flawlessly migrate a COMPLEX Notion environment — databases, relations, rollups, formulas, nested pages, files, comments, views — fully into Obsidian, using `mcp-notion` (the 24-tool Notion MCP mode) and `mcp-obsidian` (Local REST API + notesmd CLI + plugins) as the migration engine",
     "created_at": "2026-08-21T20:10:21.172Z",
-    "last_save_at": "2026-08-23T03:33:51.202Z",
+    "last_save_at": "2026-08-29T15:21:54.524Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -33,19 +33,15 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "research/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/agents/markdown.md",
+      ".opencode/agents/code.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -68,6 +64,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".opencode/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".opencode/agents/code.md",
         "source": "derived"
       },
       {
@@ -171,23 +185,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Building the two trigger commands safely requires knowing exactly how the projection layer activates, what runnable surface it exposes, which engines exist, and what invariants must hold",
     "created_at": "2026-08-19T04:33:57.534Z",
-    "last_save_at": "2026-08-20T21:06:42.843Z",
+    "last_save_at": "2026-08-29T15:21:58.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

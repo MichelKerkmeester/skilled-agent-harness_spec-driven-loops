@@ -44,7 +44,17 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/notion-bases.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/data-model.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/workflows.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/troubleshooting.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/notion-bases.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-relation-rollup.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json"
     ],
     "entities": [
       {
@@ -75,6 +85,54 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "notion-bases.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/notion-bases.md",
+        "source": "derived"
+      },
+      {
+        "name": "data-model.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/data-model.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "notion-bases-relation-rollup.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-relation-rollup.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
         "source": "derived"
       },
       {
@@ -142,59 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Install Verification",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`mcp-obsidian` already knows Core Bases and Dataview in full, but research §8 confirms it has no knowledge of the Notion Bases community plugin — the single plugin the research verdict ranks P0-required because it recovers two-way relations, 7 rollup functions, 7 view types, self-relation subtasks, and Lookup columns that Core Bases alone cannot",
     "created_at": "2026-08-21T21:57:58.523Z",
-    "last_save_at": "2026-08-22T06:18:19.394Z",
+    "last_save_at": "2026-08-29T15:21:54.572Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -39,9 +39,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
+      "plan.md",
       "tasks.md",
-      "plan.md"
+      "implementation-summary.md",
+      ".github/workflows/prompt-card-sync.yml"
     ],
     "entities": [
       {
@@ -51,9 +52,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -63,9 +64,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-card-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/prompt-card-sync.yml",
         "source": "derived"
       },
       {
@@ -181,17 +188,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The guard ran four structural checks; two of them read the deleted model registry directly and now crash with a FileNotFoundError before reporting anything",
     "created_at": "2026-08-28T08:49:37Z",
-    "last_save_at": "2026-08-28T09:56:46.122Z",
+    "last_save_at": "2026-08-29T15:22:05.670Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

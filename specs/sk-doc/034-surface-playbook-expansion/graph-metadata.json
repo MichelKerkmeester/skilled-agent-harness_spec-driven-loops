@@ -27,38 +27,25 @@
       "playbook",
       "expansion",
       "sk-code",
-      "sk-doc",
-      "operator-scenario",
       "coverage",
+      "operator-scenario",
+      "categories",
       "category",
       "taxonomy",
-      "agent-dispatch",
-      "waiver",
-      "routing-gold"
+      "alignment",
+      "plan",
+      "tasks"
     ],
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook",
-      ".opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
     ],
     "entities": [
-      {
-        "name": ".opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook",
-        "kind": "file",
-        "path": ".opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook",
-        "source": "derived"
-      },
-      {
-        "name": ".opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook",
-        "kind": "file",
-        "path": ".opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,37 +71,61 @@
         "source": "derived"
       },
       {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Surface Playbook Expansion",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "1. METADATA",
-        "kind": "heading",
+        "name": "Spec Folder",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "2. PROBLEM & PURPOSE",
-        "kind": "heading",
+        "name": "sk-doc",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "3. SCOPE",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "4. REQUIREMENTS",
-        "kind": "heading",
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Expand",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Adopt",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -126,7 +137,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Pi Remote",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -144,6 +155,18 @@
         "source": "derived"
       },
       {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -156,13 +179,13 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built",
+        "name": "What Was Built Both",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "How It Was Delivered",
+        "name": "How It Was Delivered Read",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -170,7 +193,7 @@
     ],
     "causal_summary": "Give the two sk-code SURFACE playbooks the coverage breadth of the sk-doc corpus without leaving the operator-scenario contract they already passed.",
     "created_at": "2026-08-29T10:24:54.000Z",
-    "last_save_at": "2026-08-29T10:24:54.000Z",
+    "last_save_at": "2026-08-29T15:21:58.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -43,8 +43,11 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      "dist/lib/search/search-flags.js",
+      "dist/lib/config/capability-flags.js",
+      "dist/lib/search/query-router.js"
     ],
     "entities": [
       {
@@ -60,15 +63,33 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "search-flags.js",
+        "kind": "code",
+        "path": "dist/lib/search/search-flags.js",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.js",
+        "kind": "code",
+        "path": "dist/lib/config/capability-flags.js",
+        "source": "derived"
+      },
+      {
+        "name": "query-router.js",
+        "kind": "code",
+        "path": "dist/lib/search/query-router.js",
         "source": "derived"
       },
       {
@@ -170,7 +191,7 @@
     ],
     "causal_summary": "F5 — RESOLVED: two different homes for new feature flags, with opposite default-polarity",
     "created_at": "2026-07-09T15:11:30.263Z",
-    "last_save_at": "2026-08-28T16:00:25.134Z",
+    "last_save_at": "2026-08-29T15:22:24.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

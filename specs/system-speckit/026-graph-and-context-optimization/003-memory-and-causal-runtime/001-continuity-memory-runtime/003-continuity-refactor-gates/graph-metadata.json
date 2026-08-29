@@ -48,12 +48,21 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "resource-map.md",
       "research/research.md",
+      "handover.md",
+      "resource-map.md",
+      "lib/resume/resume-ladder.ts",
       "scratch/verify-phases-review.md",
       "scratch/phase-017-rerun-seed.md",
-      "handover.md",
-      "prompts/research-prompt-impact.md"
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      "lib/routing/content-router.ts",
+      "prompts/research-prompt-impact.md",
+      "scripts/memory/generate-context.ts",
+      "scripts/core/workflow.ts",
+      "scripts/core/post-save-review.ts",
+      "scripts/core/memory-indexer.ts",
+      "scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md"
     ],
     "entities": [
       {
@@ -87,15 +96,27 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
+        "name": "resume-ladder.ts",
+        "kind": "code",
+        "path": "lib/resume/resume-ladder.ts",
         "source": "derived"
       },
       {
@@ -111,15 +132,51 @@
         "source": "derived"
       },
       {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "content-router.ts",
+        "kind": "code",
+        "path": "lib/routing/content-router.ts",
         "source": "derived"
       },
       {
         "name": "research-prompt-impact.md",
         "kind": "doc",
         "path": "prompts/research-prompt-impact.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "scripts/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-save-review.ts",
+        "kind": "code",
+        "path": "scripts/core/post-save-review.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-indexer.ts",
+        "kind": "code",
+        "path": "scripts/core/memory-indexer.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
         "source": "derived"
       },
       {
@@ -151,59 +208,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Kit Memory",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Parent",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`006-continuity-refactor-gates/` now owns only the six execution gates that remain after the reorganization promoted former follow-on work into sibling top-level phases `007` through `010`",
     "created_at": "2026-04-12T09:02:53.476Z",
-    "last_save_at": "2026-08-28T22:56:40.997Z",
+    "last_save_at": "2026-08-29T15:22:13.502Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

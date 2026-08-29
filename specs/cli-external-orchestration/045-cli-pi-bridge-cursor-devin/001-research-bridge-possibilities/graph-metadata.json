@@ -33,27 +33,16 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research/research.md",
       "research/lineages/grok-cursor/research.md",
       "research/lineages/glm-devin/research.md",
-      "implementation-summary.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+      ".pi/models.json"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -70,6 +59,24 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
         "source": "derived"
       },
       {
@@ -179,17 +186,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Consolidated Research",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`cli pi` lists models in its own `/model` picker from pi's provider roster",
     "created_at": "2026-08-17T09:56:22.263Z",
-    "last_save_at": "2026-08-17T11:47:01.602Z",
+    "last_save_at": "2026-08-29T15:21:51.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

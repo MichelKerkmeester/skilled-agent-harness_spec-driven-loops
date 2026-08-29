@@ -50,9 +50,11 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "lumo.md",
       "001-research/research/research.md",
       "002-synthesis-and-decision/decision-record.md",
       "005-verification-and-decision-reconciliation/decision-record.md",
+      ".pi/settings.json",
       "003-fork-and-guard-cache-optimizer/spec.md",
       "003-fork-and-guard-cache-optimizer/checklist.md",
       "004-adopt-deep-pi-deepseek/checklist.md",
@@ -65,6 +67,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "lumo.md",
+        "kind": "doc",
+        "path": "lumo.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
         "source": "derived"
       },
       {
@@ -104,9 +118,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A captured external-AI conversation (`lumo.md`) claims that Reasonix \u2014 a DeepSeek-native CLI agent \u2014 is engineered around prefix caching (asserting a ~99.8% cache-hit rate and a single-day cost drop from ~$61 to ~$12), while Pi offers provider-agnostic caching plus a `pi-cache-optimizer` extension",
+    "causal_summary": "A captured external-AI conversation (`lumo.md`) claims that Reasonix — a DeepSeek-native CLI agent — is engineered around prefix caching (asserting a ~99.8% cache-hit rate and a single-day cost drop from ~$61 to ~$12), while Pi offers provider-agnostic caching plus a `pi-cache-optimizer` extension",
     "created_at": "2026-08-06T09:15:11.929Z",
-    "last_save_at": "2026-08-11T06:43:21.313Z",
+    "last_save_at": "2026-08-29T15:21:51.981Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

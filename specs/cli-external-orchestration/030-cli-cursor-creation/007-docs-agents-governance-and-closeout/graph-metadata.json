@@ -37,24 +37,22 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "README.md",
       ".opencode/agents/deep-improvement.md",
       ".claude/agents/deep-improvement.md",
-      "spec.md",
-      "checklist.md",
-      "tasks.md",
-      "plan.md",
       ".opencode/agents/context.md",
       ".opencode/agents/deep-research.md",
-      "implementation-summary.md",
+      ".cursor/hooks.json",
       ".opencode/skills/cli-external-orchestration/README.md"
     ],
     "entities": [
-      {
-        "name": "deep-improvement.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-improvement.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -62,9 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -74,9 +72,39 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": "CLAUDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "README.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-improvement.md",
         "source": "derived"
       },
       {
@@ -92,15 +120,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/README.md",
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
         "source": "derived"
       },
       {
@@ -174,29 +196,11 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Adding a 4th CLI mode is not complete when the packet and runtime wiring exist — the new executor must also appear wherever its 3 siblings already do: in the agent rosters (per-runtime `context`/`deep-research`/`deep-review`/`deep-improvement` agent docs across `.opencode/`, `.claude/`, `.codex/`), in governance docs (`AGENTS.md`, `CLAUDE.md`, `README.md`), and in cross-skill sibling mentions",
     "created_at": "2026-07-24T04:56:11.705Z",
-    "last_save_at": "2026-07-24T11:26:00.427Z",
+    "last_save_at": "2026-08-29T15:21:50.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

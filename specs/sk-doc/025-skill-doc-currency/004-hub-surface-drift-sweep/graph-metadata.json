@@ -41,16 +41,57 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "baselines/link-resolver-pre-edit.txt",
       "baselines/link-resolver-post-edit.txt",
       "baselines/install-entries-post-edit.txt",
-      "tasks.md",
-      "plan.md",
-      "checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      ".opencode/install-guides/README.md",
+      ".opencode/install-guides/install-scripts/install-all.sh",
+      ".opencode/skills/sk-code/sk-code-webflow/SKILL.md",
+      ".opencode/skills/sk-code/sk-code-opencode/SKILL.md",
+      ".opencode/skills/sk-code/sk-code-webflow/references/html/style-guide.md",
+      ".opencode/skills/sk-code/sk-code-webflow/references/performance/third-party.md",
+      ".opencode/skills/sk-code/benchmark/README.md",
+      ".opencode/skills/sk-git/references/quick-reference.md",
+      ".opencode/skills/sk-git/assets/worktree-checklist.md",
+      ".opencode/skills/sk-git/references/gitkraken-mcp-integration.md",
+      ".opencode/install-guides/MCP - Chrome Dev Tools.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "link-resolver-pre-edit.txt",
         "kind": "file",
@@ -70,33 +111,57 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/install-guides/README.md",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "install-all.sh",
+        "kind": "script",
+        "path": ".opencode/install-guides/install-scripts/install-all.sh",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": ".opencode/skills/sk-code/sk-code-webflow/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "style-guide.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-code/sk-code-webflow/references/html/style-guide.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "third-party.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/sk-code/sk-code-webflow/references/performance/third-party.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/assets/worktree-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "gitkraken-mcp-integration.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/gitkraken-mcp-integration.md",
+        "source": "derived"
+      },
+      {
+        "name": "MCP - Chrome Dev Tools.md",
+        "kind": "doc",
+        "path": ".opencode/install-guides/MCP - Chrome Dev Tools.md",
         "source": "derived"
       },
       {
@@ -140,65 +205,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Measure",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Disk",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Chrome Dev Tools",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A naming migration and a hub consolidation each moved real things, and each left the prose behind",
     "created_at": "2026-07-30T19:29:17.197Z",
-    "last_save_at": "2026-08-28T22:32:54.192Z",
+    "last_save_at": "2026-08-29T15:22:03.994Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

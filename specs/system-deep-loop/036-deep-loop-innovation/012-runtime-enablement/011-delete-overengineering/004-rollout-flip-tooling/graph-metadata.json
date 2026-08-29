@@ -35,29 +35,19 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "tasks.md",
       "spec.md",
-      "checklist.md",
       "plan.md",
-      "implementation-summary.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "scripts/README.md",
+      "lib/README.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -67,9 +57,27 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -179,17 +187,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Wave 4 of the over-engineering removal program: delete the one-time fleet-enablement stack (F3) — enable-modes.cjs plus lib/fleet-enablement/ — and its two tests. It drove modes from legacy to new_authoritative_final; all 8 modes are already there, so it has zero operational callers. F4 (flip-authority.cjs) was resequenced into phase 005 because it shares the authority-finalize.vitest.ts test file with the phase-005 CAS mutators, so the two remove together as one whole-file test deletion.",
     "created_at": "2026-08-24T17:06:19.731Z",
-    "last_save_at": "2026-08-24T19:26:35.766Z",
+    "last_save_at": "2026-08-29T15:22:08.075Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

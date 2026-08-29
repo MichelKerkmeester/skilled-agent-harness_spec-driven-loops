@@ -41,22 +41,10 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "tests/matrix-adapter-test-utils.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-claude-code.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-opencode.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-test-utils.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "resource-map.md",
+      "audit-findings.md",
+      "tests/matrix-adapter-test-utils.ts"
     ],
     "entities": [
       {
@@ -84,87 +72,27 @@
         "source": "derived"
       },
       {
-        "name": "matrix-adapter-test-utils.ts",
-        "kind": "code",
-        "path": "tests/matrix-adapter-test-utils.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-retention-sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scope-governance.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-manager.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adapter-cli-claude-code.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-claude-code.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adapter-cli-opencode.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-cli-opencode.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adapter-common.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
-        "source": "derived"
-      },
-      {
-        "name": "run-matrix.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/run-matrix.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "matrix-adapter-claude-code.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-claude-code.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "matrix-adapter-opencode.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/matrix-adapter-opencode.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-findings.md",
+        "kind": "doc",
+        "path": "audit-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "matrix-adapter-test-utils.ts",
+        "kind": "code",
+        "path": "tests/matrix-adapter-test-utils.ts",
         "source": "derived"
       },
       {
@@ -202,11 +130,71 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Standards",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Packet",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 033, 034, and 036 added retention-sweep, half-auto advisor, hook freshness, and matrix-runner code",
     "created_at": "2026-04-29T15:28:00.000Z",
-    "last_save_at": "2026-07-17T17:19:10.740Z",
+    "last_save_at": "2026-08-29T15:22:10.786Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

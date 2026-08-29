@@ -46,7 +46,17 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "handover.md"
+      "handover.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".codex/AGENTS.md",
+      ".codex/config.toml",
+      ".opencode/skills/system-spec-kit/scripts/validate-command-tree-parity.sh",
+      ".claude/SYNC.md",
+      ".devin/hooks.v1.json",
+      ".opencode/hooks/goal/goal-plugin.md",
+      ".opencode/hooks/goal/lib/goal-core.test.cjs",
+      ".opencode/hooks/goal/pi/goal-context.ts",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs"
     ],
     "entities": [
       {
@@ -83,6 +93,66 @@
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": ".codex/AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "validate-command-tree-parity.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/validate-command-tree-parity.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".claude/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.test.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
         "source": "derived"
       },
       {
@@ -132,71 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Active Devin",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Review Repair",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`mk-goal.js` derives a state filename by hex-encoding the full OpenCode session id",
     "created_at": "2026-08-10T17:42:43Z",
-    "last_save_at": "2026-08-11T06:50:09.331Z",
+    "last_save_at": "2026-08-29T15:21:53.176Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

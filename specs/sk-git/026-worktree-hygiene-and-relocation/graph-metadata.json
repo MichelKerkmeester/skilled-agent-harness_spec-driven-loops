@@ -39,7 +39,14 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-git/scripts/worktree-naming.sh",
+      ".opencode/bin/worktree-session.sh",
+      ".opencode/bin/worktree-reaper.sh",
+      ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/scripts/README.md",
+      ".opencode/skills/sk-git/changelog/v1.5.2.0.md"
     ],
     "entities": [
       {
@@ -64,6 +71,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.2.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/changelog/v1.5.2.0.md",
         "source": "derived"
       },
       {
@@ -143,53 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built All",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered Files",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repo carried 24 git worktrees nested inside the primary checkout at",
     "created_at": "2026-08-21T13:13:55.971Z",
-    "last_save_at": "2026-08-21T14:16:44.595Z",
+    "last_save_at": "2026-08-29T15:22:05.669Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

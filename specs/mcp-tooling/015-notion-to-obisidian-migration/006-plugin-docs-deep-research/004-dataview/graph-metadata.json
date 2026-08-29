@@ -36,21 +36,16 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "research/research.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "research/research.md",
+      "synthesis.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -63,6 +58,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis.md",
+        "kind": "doc",
+        "path": "synthesis.md",
         "source": "derived"
       },
       {
@@ -178,17 +185,11 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "Query Grammar",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped mcp-obsidian Dataview reference docs are a disciplined file-layer contract but are materially thin on the query language itself: the DataviewJS API section documents roughly 5 methods against the plugin's real ~30+, and two existing statements (inline-field multiline continuation, and an implied fixed DQL command-resolution order) are contradicted by the plugin's actual behavior",
     "created_at": "2026-08-23T03:43:07.446Z",
-    "last_save_at": "2026-08-23T03:43:07.446Z",
+    "last_save_at": "2026-08-29T15:21:54.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

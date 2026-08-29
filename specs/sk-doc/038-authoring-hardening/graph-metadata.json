@@ -37,13 +37,48 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      ".opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+      ".opencode/skills/sk-doc/sk-create-command/assets/command-template.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      ".github/workflows/playbook-operator-contract.yml",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-operator-contract.yml",
+        "kind": "config",
+        "path": ".github/workflows/playbook-operator-contract.yml",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-failclosed-allowlist.txt",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
         "source": "derived"
       },
       {
@@ -85,7 +120,7 @@
     ],
     "causal_summary": "Manual testing playbooks across the skill fleet had drifted to roughly 2,600 contract violations, and no build ever failed",
     "created_at": "2026-08-29T11:34:45.442Z",
-    "last_save_at": "2026-08-29T11:34:45.442Z",
+    "last_save_at": "2026-08-29T15:21:58.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

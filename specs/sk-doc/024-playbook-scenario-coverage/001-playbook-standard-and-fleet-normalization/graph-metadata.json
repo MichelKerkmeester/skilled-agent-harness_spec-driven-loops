@@ -46,7 +46,12 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
+      ".opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs"
     ],
     "entities": [
       {
@@ -83,6 +88,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-snippet-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-topology.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs",
         "source": "derived"
       },
       {
@@ -162,41 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two contracts share one directory name, and only one of them is checked",
     "created_at": "2026-07-30T19:29:15.567Z",
-    "last_save_at": "2026-08-28T22:32:40.251Z",
+    "last_save_at": "2026-08-29T15:22:03.989Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

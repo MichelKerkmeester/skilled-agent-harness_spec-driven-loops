@@ -45,8 +45,15 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "decision-record.md"
+      "lib/feedback/shadow-scoring.ts",
+      "lib/eval/ablation-framework.ts",
+      "lib/eval/eval-metrics.ts",
+      "lib/feedback/shadow-evaluation-runtime.ts",
+      "lib/feedback/rank-metrics.ts",
+      "tests/ablation-framework.vitest.ts",
+      "tests/eval-metrics.vitest.ts"
     ],
     "entities": [
       {
@@ -74,15 +81,57 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
+        "name": "shadow-scoring.ts",
+        "kind": "code",
+        "path": "lib/feedback/shadow-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ablation-framework.ts",
+        "kind": "code",
+        "path": "lib/eval/ablation-framework.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-metrics.ts",
+        "kind": "code",
+        "path": "lib/eval/eval-metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-evaluation-runtime.ts",
+        "kind": "code",
+        "path": "lib/feedback/shadow-evaluation-runtime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rank-metrics.ts",
+        "kind": "code",
+        "path": "lib/feedback/rank-metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ablation-framework.vitest.ts",
+        "kind": "test",
+        "path": "tests/ablation-framework.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eval-metrics.vitest.ts",
+        "kind": "test",
+        "path": "tests/eval-metrics.vitest.ts",
         "source": "derived"
       },
       {
@@ -150,53 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Milestone Reference",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Context The",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Alternatives Considered",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP ships a live retrieval eval harness that is already ~75-85% built [CONFIRMED: iter-011 \"extend-not-greenfield … honest figure ≈ 75-85%\"]: a 110-query graded golden set (290 relevance judgments, grades 1-3, 93 real production memory IDs, 0 placeholders), a 12-metric library (`computeAllMetrics`, `eval-metrics.ts:586`, MRR/nDCG/recall/precision/F1/MAP/hitRate + 5 diagnostics), a live end-to-end runner `evalrunablation` driving real `hybridSearchEnhanced` against the golden set with per-channel recall deltas + paired sign-test p-values, a baseline runner, a dashboard, an alignment",
     "created_at": "2026-06-19T05:52:29.575Z",
-    "last_save_at": "2026-08-28T16:00:14.144Z",
+    "last_save_at": "2026-08-29T15:22:21.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

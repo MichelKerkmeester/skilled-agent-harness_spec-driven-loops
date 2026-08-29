@@ -39,7 +39,9 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tests/README.md",
+      "scripts/README.md"
     ],
     "entities": [
       {
@@ -70,6 +72,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "tests/README.md",
         "source": "derived"
       },
       {
@@ -179,17 +187,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`corpus/` is not one of the three canonical bundled-resource categories (`scripts/`, `references/`, `assets/`) documented in `create-skill/references/shared/overview.md` §2, so no authored template governs it directly",
     "created_at": "2026-07-27T14:56:08.426Z",
-    "last_save_at": "2026-08-28T22:15:30.091Z",
+    "last_save_at": "2026-08-29T15:22:00.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

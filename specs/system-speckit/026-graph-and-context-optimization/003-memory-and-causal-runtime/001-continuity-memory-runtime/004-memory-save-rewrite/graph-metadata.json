@@ -48,7 +48,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "api/indexing.ts"
     ],
     "entities": [
       {
@@ -85,6 +86,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "indexing.ts",
+        "kind": "code",
+        "path": "api/indexing.ts",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`/memory:save` mutated by default, did work that had nothing to do with the caller's intent, and still honored an artifact family that had supposedly been retired",
     "created_at": "2026-04-15T10:00:01Z",
-    "last_save_at": "2026-08-28T15:59:31.351Z",
+    "last_save_at": "2026-08-29T15:22:13.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

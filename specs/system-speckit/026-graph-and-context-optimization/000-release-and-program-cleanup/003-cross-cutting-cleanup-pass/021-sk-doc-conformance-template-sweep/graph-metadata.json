@@ -48,8 +48,11 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       "handover.md",
-      "implementation-summary.md"
+      "audit-findings.md",
+      ".opencode/plugins/README.md",
+      "templates/changelog/README.md"
     ],
     "entities": [
       {
@@ -83,15 +86,27 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "audit-findings.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "audit-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
         "source": "derived"
       },
       {
@@ -183,23 +198,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The user spotted format drift in two cited manualtestingplaybook examples (`system-spec-kit/mcpserver/skilladvisor/` and `.../codegraph/`)",
     "created_at": "2026-05-18T08:15:53.141Z",
-    "last_save_at": "2026-08-28T22:52:03.888Z",
+    "last_save_at": "2026-08-29T15:22:10.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

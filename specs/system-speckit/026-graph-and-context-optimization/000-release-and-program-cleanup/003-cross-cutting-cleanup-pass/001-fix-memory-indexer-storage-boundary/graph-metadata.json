@@ -46,17 +46,24 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md"
+      "implementation-summary.md",
+      "tests/fixtures/memory-index-db.ts",
+      ".opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts",
+      "tests/checkpoint-restore-readme-poisoning.vitest.ts",
+      "scripts/memory/cleanup-index-scope-violations.ts",
+      "lib/parsing/memory-parser.ts",
+      "lib/utils/index-scope.ts",
+      "tests/index-scope.vitest.ts"
     ],
     "entities": [
       {
-        "name": "implementation-summary.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -78,9 +85,45 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index-db.ts",
+        "kind": "code",
+        "path": "tests/fixtures/memory-index-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cleanup-index-scope-violations.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/cleanup-index-scope-violations.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoint-restore-readme-poisoning.vitest.ts",
+        "kind": "test",
+        "path": "tests/checkpoint-restore-readme-poisoning.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-parser.ts",
+        "kind": "code",
+        "path": "lib/parsing/memory-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": "lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.vitest.ts",
+        "kind": "test",
+        "path": "tests/index-scope.vitest.ts",
         "source": "derived"
       },
       {
@@ -160,47 +203,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Append Repair",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 005-memory-indexer-invariants deep review surfaced one release-blocker correctness gap (P1-001) and 13 advisory cleanup items (P2-001..P2-013)",
     "created_at": "2026-04-28T15:15:00.000Z",
-    "last_save_at": "2026-08-28T22:51:17.068Z",
+    "last_save_at": "2026-08-29T15:22:09.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -13,32 +13,195 @@
     "trigger_phrases": [
       "create:diagram command",
       "sk-create-diagram hub registration",
-      "mode-registry hub-router wiring"
+      "mode-registry hub-router wiring",
+      "diagram hub wiring plan",
+      "diagram hub wiring tasks",
+      "diagram hub wiring checklist",
+      "diagram hub wiring summary"
     ],
     "key_topics": [
+      "diagram",
+      "command",
+      "sk-create-diagram",
       "hub",
-      "wiring",
+      "registration",
       "mode-registry",
       "hub-router",
-      "command-metadata",
-      "create-diagram",
-      "sk-doc",
-      "advisor",
-      "routing"
+      "wiring",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/mode-registry.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/command-metadata.json",
+      ".opencode/commands/create/diagram.md",
+      ".opencode/commands/create/assets/create-diagram-presentation.txt",
+      ".opencode/commands/create/assets/create-diagram-auto.yaml",
+      ".opencode/commands/create/assets/create-diagram-confirm.yaml",
+      ".opencode/skills/sk-doc/sk-create-diagram/README.md",
+      ".opencode/skills/sk-doc/sk-create-diagram/changelog/v1.0.0.0.md",
+      ".opencode/skills/sk-doc/leaf-manifest.json",
+      ".opencode/commands/create/diff.md"
     ],
-    "entities": [],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "diagram.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/diagram.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-diagram-presentation.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/assets/create-diagram-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "create-diagram-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create-diagram-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "create-diagram-confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create-diagram-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/changelog/v1.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "diff.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/diff.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Register",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
     "causal_summary": "The packet exists on disk but is invisible to the advisor and unreachable by any command — `sk-doc` doesn't know it exists",
     "created_at": "2026-08-12T05:53:36.000Z",
-    "last_save_at": "2026-08-12T06:53:44.000Z",
+    "last_save_at": "2026-08-29T15:22:04.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

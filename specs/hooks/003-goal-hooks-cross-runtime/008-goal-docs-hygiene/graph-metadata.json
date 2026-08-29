@@ -37,18 +37,26 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "feature-catalog/ux-hooks/goal-opencode-plugin.md",
+      ".opencode/hooks/goal/README.md",
+      "feature-catalog/feature-catalog.md",
+      "references/config/hook-system.md",
+      "manual-testing-playbook/ux-hooks/goal-opencode-plugin.md",
+      ".opencode/commands/goal-opencode.md",
+      ".cursor/commands/goal-cursor.md",
+      ".pi/prompts/goal-pi.md",
+      ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/command-scope.cjs",
+      ".devin/hooks.v1.json",
+      "hooks/README.md",
+      ".devin/SYNC.md",
+      ".opencode/skills/system-spec-kit/feature-catalog/ux-hooks/goal-opencode-plugin.md",
+      ".opencode/hooks/goal/bin/goal.cjs"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -65,6 +73,78 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode-plugin.md",
+        "kind": "doc",
+        "path": "feature-catalog/ux-hooks/goal-opencode-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-system.md",
+        "kind": "doc",
+        "path": "references/config/hook-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-opencode.md",
+        "kind": "doc",
+        "path": ".opencode/commands/goal-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-cursor.md",
+        "kind": "doc",
+        "path": ".cursor/commands/goal-cursor.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.md",
+        "kind": "doc",
+        "path": ".pi/prompts/goal-pi.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-scope.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/command-scope.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/bin/goal.cjs",
         "source": "derived"
       },
       {
@@ -120,77 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Docs",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Control Flow Grep",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Runtime Relationship",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "deps",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decommissioned Devin",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `/goal:goal-opencode` command's file moved into a `commands/goal/` subfolder during an earlier rename, but four references across the repo still point at the retired flat path or form, and one test resolves a path that no longer exists so it fails",
     "created_at": "2026-07-28T17:26:48.730Z",
-    "last_save_at": "2026-08-11T06:50:04.785Z",
+    "last_save_at": "2026-08-29T15:21:51.912Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -45,7 +45,11 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      ".opencode/bin/git-sync.sh",
+      ".opencode/bin/git-live-follow.sh",
+      ".opencode/bin/worktree-status.sh",
+      ".opencode/scripts/git-hooks/tests/pre-push.test.sh"
     ],
     "entities": [
       {
@@ -76,6 +80,30 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-sync.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-live-follow.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-live-follow.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-status.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-status.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
         "source": "derived"
       },
       {
@@ -167,35 +195,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "location-derived",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Four spec-kit audit helpers hard-code the same absolute developer checkout root — seven `/Users/…` literals across four files — so they work on exactly one machine and silently produce wrong or empty results anywhere else, including inside a `git worktree` at a different path",
     "created_at": "2026-07-30T19:25:15.091Z",
-    "last_save_at": "2026-08-28T22:09:50.811Z",
+    "last_save_at": "2026-08-29T15:21:57.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -43,7 +43,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "dist/context-server.js"
     ],
     "entities": [
       {
@@ -68,6 +69,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
         "source": "derived"
       },
       {
@@ -183,17 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Cocoindex's benchmark (2026-05-20-expanded, 73 probes on code chunks) showed Qwen3-Reranker-0.6B winning by `+1 hit / 73` over jina-v3 — a hit-rate delta of +1.4 pp",
     "created_at": "2026-05-23T11:55:15.610Z",
-    "last_save_at": "2026-08-28T15:53:27.212Z",
+    "last_save_at": "2026-08-29T15:22:15.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -41,21 +41,14 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/package.json",
-      "mcp_server/package.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "dist/tsconfig.tsbuildinfo"
     ],
     "entities": [
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.tsbuildinfo",
+        "kind": "file",
+        "path": "dist/tsconfig.tsbuildinfo",
         "source": "derived"
       },
       {
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "The `@spec-kit/mcp-server` build runs `prebuild` → `clean` → `rmSync('dist', {recursive,force})`, deleting the live `dist/` before `tsc --build` repopulates it over several seconds",
     "created_at": "2026-05-28T18:15:02Z",
-    "last_save_at": "2026-07-17T17:19:34.001Z",
+    "last_save_at": "2026-08-29T15:22:17.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

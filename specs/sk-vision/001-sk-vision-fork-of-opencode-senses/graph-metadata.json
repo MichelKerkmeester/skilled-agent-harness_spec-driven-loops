@@ -21,7 +21,10 @@
     "sk-vision/001-sk-vision-fork-of-opencode-senses/017-cursor-devin-testing-playbook",
     "sk-vision/001-sk-vision-fork-of-opencode-senses/018-host-adapter-findings-fixes",
     "sk-vision/001-sk-vision-fork-of-opencode-senses/019-guaranteed-vision-for-text-only-models",
-    "sk-vision/001-sk-vision-fork-of-opencode-senses/020-cursor-mcp-decoupling"
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/020-cursor-mcp-decoupling",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/021-mcp-server-process-lifecycle",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/022-opencode-plugin-runtime-resolution",
+    "sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown"
   ],
   "manual": {
     "depends_on": [],
@@ -56,6 +59,7 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "handover.md",
       "001-research/spec.md",
       "002-skill-scaffold/001-skill-md/spec.md",
       "003-runtime-fork/001-copy-shipped-files/spec.md",
@@ -68,19 +72,24 @@
       "010-quality-gate/spec.md",
       "context/README.md",
       "context/PLAN.md",
-      "002-skill-scaffold/002-metadata-and-manifests/spec.md",
-      "003-runtime-fork/002-rebrand-identifiers/spec.md",
-      "003-runtime-fork/003-build-and-tests/spec.md",
-      "003-runtime-fork/004-gpu-smoke/spec.md",
-      "004-opencode-adapter/002-readme-and-proof/spec.md",
-      "005-pi-adapter/002-symlink-and-dry-factory/spec.md",
-      "006-skill-contract-realignment/001-skill-md-and-readme/spec.md"
+      ".opencode/skills/sk-vision/SKILL.md",
+      ".opencode/skills/sk-vision/graph-metadata.json",
+      ".opencode/skills/sk-vision/leaf-manifest.config.json",
+      ".opencode/skills/sk-vision/leaf-manifest.json",
+      ".opencode/skills/sk-vision/leaf-aliases.json",
+      ".opencode/skills/sk-vision/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -93,6 +102,36 @@
         "name": "PLAN.md",
         "kind": "doc",
         "path": "context/PLAN.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-vision/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.config.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/leaf-manifest.config.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-aliases.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/leaf-aliases.json",
         "source": "derived"
       },
       {
@@ -170,7 +209,7 @@
     ],
     "causal_summary": "Text-only coding models in OpenCode and Pi cannot read screenshots, mockups, or error images",
     "created_at": "2026-08-15T15:38:25Z",
-    "last_save_at": "2026-08-18T08:34:23.405Z",
+    "last_save_at": "2026-08-29T15:22:05.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

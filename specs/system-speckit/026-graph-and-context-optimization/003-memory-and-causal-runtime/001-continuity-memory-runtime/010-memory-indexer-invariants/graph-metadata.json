@@ -48,7 +48,21 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handlers/save/pe-orchestration.ts",
+      "handlers/pe-gating.ts",
+      "handlers/save/types.ts",
+      "handlers/memory-index.ts",
+      "handlers/memory-save.ts",
+      "tests/pe-orchestration.vitest.ts",
+      "tests/handler-memory-index.vitest.ts",
+      "lib/governance/scope-governance.ts",
+      "scripts/memory/cleanup-index-scope-violations.ts",
+      "tests/memory-governance.vitest.ts",
+      "tests/stage3-rerank-regression.vitest.ts",
+      "lib/utils/index-scope.ts",
+      "lib/utils/canonical-path.ts",
+      "handlers/memory-index-discovery.ts"
     ],
     "entities": [
       {
@@ -88,6 +102,90 @@
         "source": "derived"
       },
       {
+        "name": "pe-orchestration.ts",
+        "kind": "code",
+        "path": "handlers/save/pe-orchestration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pe-gating.ts",
+        "kind": "code",
+        "path": "handlers/pe-gating.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "handlers/save/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pe-orchestration.vitest.ts",
+        "kind": "test",
+        "path": "tests/pe-orchestration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-index.vitest.ts",
+        "kind": "test",
+        "path": "tests/handler-memory-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scope-governance.ts",
+        "kind": "code",
+        "path": "lib/governance/scope-governance.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cleanup-index-scope-violations.ts",
+        "kind": "code",
+        "path": "scripts/memory/cleanup-index-scope-violations.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-governance.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-governance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage3-rerank-regression.vitest.ts",
+        "kind": "test",
+        "path": "tests/stage3-rerank-regression.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": "lib/utils/index-scope.ts",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-path.ts",
+        "kind": "code",
+        "path": "lib/utils/canonical-path.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index-discovery.ts",
+        "kind": "code",
+        "path": "handlers/memory-index-discovery.ts",
+        "source": "derived"
+      },
+      {
         "name": "Memory Indexer Invariants",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -110,95 +208,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Constitutional Tier",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Merged Track",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Breakdown",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two distinct invariant failures showed up simultaneously in the memory indexer:",
     "created_at": "2026-04-24T17:21:38.685Z",
-    "last_save_at": "2026-08-28T15:59:32.367Z",
+    "last_save_at": "2026-08-29T15:22:13.874Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

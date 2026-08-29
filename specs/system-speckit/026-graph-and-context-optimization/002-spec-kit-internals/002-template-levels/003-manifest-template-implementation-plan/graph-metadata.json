@@ -41,44 +41,32 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      "checklist.md",
-      "resource-map.md",
-      "decision-record.md",
+      "spec.md",
       "plan.md",
-      "templates/manifest/spec-kit-docs.json",
-      "mcp_server/lib/validation/spec-doc-structure.ts",
       "tasks.md",
-      "mcp_server/lib/templates/level-contract-resolver.ts",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md",
       "scripts/tests/workflow-invariance.vitest.ts",
       "scripts/templates/inline-gate-renderer.ts",
       "scripts/templates/inline-gate-renderer.sh",
       ".opencode/skills/system-spec-kit/SKILL.md",
-      "templates/manifest/README.md",
       "scripts/tests/level-contract-resolver.vitest.ts",
       "scripts/tests/inline-gate-renderer.vitest.ts",
       "scripts/tests/scaffold-golden-snapshots.vitest.ts",
       "scripts/spec/create.sh",
       "scripts/spec/scaffold-debug-delegation.sh",
-      "templates/manifest/debug-delegation.md.tmpl",
-      "scripts/spec/recommend-level.sh"
+      "scripts/spec/recommend-level.sh",
+      "scripts/spec/upgrade-level.sh",
+      "scripts/rules/check-files.sh",
+      "scripts/rules/check-template-headers.sh"
     ],
     "entities": [
       {
-        "name": "checklist.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -88,27 +76,33 @@
         "source": "derived"
       },
       {
-        "name": "spec-kit-docs.json",
-        "kind": "config",
-        "path": "templates/manifest/spec-kit-docs.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec-doc-structure.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/validation/spec-doc-structure.ts",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "level-contract-resolver.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/templates/level-contract-resolver.ts",
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -133,12 +127,6 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "templates/manifest/README.md",
         "source": "derived"
       },
       {
@@ -172,15 +160,27 @@
         "source": "derived"
       },
       {
-        "name": "debug-delegation.md.tmpl",
-        "kind": "file",
-        "path": "templates/manifest/debug-delegation.md.tmpl",
-        "source": "derived"
-      },
-      {
         "name": "recommend-level.sh",
         "kind": "script",
         "path": "scripts/spec/recommend-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-level.sh",
+        "kind": "script",
+        "path": "scripts/spec/upgrade-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-files.sh",
+        "kind": "script",
+        "path": "scripts/rules/check-files.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-template-headers.sh",
+        "kind": "script",
+        "path": "scripts/rules/check-template-headers.sh",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Today's spec-kit template system has 86 files / ~13K LOC split across `core/`, `addendum/{level2-verify, level3-arch, level3-plus-govern, phase}/`, four materialized `levelN/` outputs, `phaseparent/`, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
     "created_at": "2026-05-01T12:37:22Z",
-    "last_save_at": "2026-07-17T17:19:16.310Z",
+    "last_save_at": "2026-08-29T15:22:13.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

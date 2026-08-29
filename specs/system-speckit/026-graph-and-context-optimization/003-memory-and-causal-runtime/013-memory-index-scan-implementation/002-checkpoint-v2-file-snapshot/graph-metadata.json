@@ -43,45 +43,27 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
       "lib/storage/checkpoints.ts",
       "lib/search/vector-index-store.ts",
       "lib/search/vector-index-schema.ts",
       "handlers/checkpoints.ts",
       "lib/search/db-shard-migration.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "spec.md",
       "tests/checkpoints-v2-create.vitest.ts",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
       "shared/embeddings/factory.ts",
-      "implementation-summary.md",
-      "handover.md"
+      "dist/context-server.js"
     ],
     "entities": [
       {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "lib/storage/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "db-shard-migration.ts",
-        "kind": "code",
-        "path": "lib/search/db-shard-migration.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -109,30 +91,6 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoints-v2-create.vitest.ts",
-        "kind": "test",
-        "path": "tests/checkpoints-v2-create.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": "shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -142,6 +100,48 @@
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": "lib/storage/checkpoints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "db-shard-migration.ts",
+        "kind": "code",
+        "path": "lib/search/db-shard-migration.ts",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints-v2-create.vitest.ts",
+        "kind": "test",
+        "path": "tests/checkpoints-v2-create.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
         "source": "derived"
       },
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`checkpointcreate` takes a full rollback snapshot before risky migrations by serializing the entire database with one `JSON.stringify(snapshot)` call (`lib/storage/checkpoints.ts:1604`)",
     "created_at": "2026-06-01T16:00:00.000Z",
-    "last_save_at": "2026-07-17T17:19:30.884Z",
+    "last_save_at": "2026-08-29T15:22:17.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

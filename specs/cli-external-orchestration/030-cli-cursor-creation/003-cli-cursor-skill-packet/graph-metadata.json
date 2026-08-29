@@ -46,13 +46,10 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       "manual-testing-playbook/manual-testing-playbook.md",
-      ".opencode/skills/sk-prompt/prompt-models/assets/cli-prompt-quality-card.md",
-      ".opencode/skills/sk-doc/create-skill/SKILL.md",
-      ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py",
-      "implementation-summary.md"
+      ".cursor/hooks.json",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
       {
@@ -86,45 +83,27 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": "manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
-        "name": "cli-prompt-quality-card.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/prompt-models/assets/cli-prompt-quality-card.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skills-nested-packets.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
         "source": "derived"
       },
       {
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validate_skill_package.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -198,11 +177,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "siblings",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Cursor CLI (`cursor-agent`) has no presence in this repo — no standalone skill, no hub mode, no archived packet",
     "created_at": "2026-07-24T04:34:03.998Z",
-    "last_save_at": "2026-07-24T07:23:12.904Z",
+    "last_save_at": "2026-08-29T15:21:50.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

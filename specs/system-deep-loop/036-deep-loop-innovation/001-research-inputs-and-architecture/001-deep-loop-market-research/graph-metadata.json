@@ -41,8 +41,12 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
+      "tasks.md",
+      "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       "research/research.md",
       "research/findings-registry.json",
       "research/deep-research-state.jsonl",
@@ -51,12 +55,15 @@
       "scratch/deep-loop-driver.cjs",
       "scratch/angle-schedule.json",
       "scratch/synthesis-digest.md",
-      "tasks.md",
-      "checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-deep-loop/deep-research/SKILL.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -64,9 +71,27 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -118,27 +143,9 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
         "source": "derived"
       },
       {
@@ -194,17 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Eliminated Alternatives",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`system-deep-loop` improvements are currently sourced only from local incident experience; the repo has no systematic map of what the wider ecosystem has learned about running agentic/iterative loops (termination policy, evaluator loops, reflection, durable state, fan-out determinism, novelty-driven broadening, budget control, observability)",
     "created_at": "2026-07-15T19:00:45.940Z",
-    "last_save_at": "2026-08-18T11:06:16.712Z",
+    "last_save_at": "2026-08-29T15:22:06.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

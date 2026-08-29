@@ -48,7 +48,9 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "research/research.md",
       "handover.md",
+      "context-index.md",
       "scratch/topology-migration-manifest.json",
       "001-release-cleanup/spec.md",
       "002-speckit-memory/spec.md",
@@ -57,8 +59,9 @@
       "005-dark-flag-graduation/spec.md",
       "006-speckit-surface-alignment/spec.md",
       "scratch/topology-migration-log.md",
-      "003-spec-data-quality/implementation-summary.md",
-      "research/research.md"
+      "formatters/search-results.ts",
+      "lib/eval/README.md",
+      "003-spec-data-quality/implementation-summary.md"
     ],
     "entities": [
       {
@@ -68,9 +71,21 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.md",
+        "kind": "doc",
+        "path": "context-index.md",
         "source": "derived"
       },
       {
@@ -86,9 +101,15 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
         "kind": "doc",
-        "path": "research/research.md",
+        "path": "lib/eval/README.md",
         "source": "derived"
       },
       {
@@ -186,23 +207,11 @@
         "kind": "proper_noun",
         "path": "handover.md",
         "source": "derived"
-      },
-      {
-        "name": "Context Transfer",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "For Next Session",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 028 accumulated memory-search, data-quality, release, review, flag-governance and surface-alignment work at the root",
     "created_at": "2026-06-16T14:27:21.650Z",
-    "last_save_at": "2026-08-28T23:46:32.575Z",
+    "last_save_at": "2026-08-29T15:22:20.972Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

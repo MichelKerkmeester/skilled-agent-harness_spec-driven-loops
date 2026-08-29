@@ -40,19 +40,44 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "research/research.md",
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/sk-code/SKILL.md",
       "research/iterations/iteration-001.md",
       "research/resource-map.md",
       "research/deep-research-state.jsonl",
       "research/findings-registry.json",
       "research/deep-research-strategy.md",
-      "research/deep-research-dashboard.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "research/deep-research-dashboard.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
@@ -60,9 +85,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-code/SKILL.md",
         "source": "derived"
       },
       {
@@ -93,24 +118,6 @@
         "name": "deep-research-dashboard.md",
         "kind": "doc",
         "path": "research/deep-research-dashboard.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,17 +197,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-code routing could not be measured honestly on the canonical typed-pair surface",
     "created_at": "2026-07-24T12:00:18.909Z",
-    "last_save_at": "2026-08-28T15:53:13.861Z",
+    "last_save_at": "2026-08-29T15:22:01.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -53,6 +53,7 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      "shared/README.md",
       "scratch/checkpoints/mcp-tooling/checkpoint-close.md",
       "scratch/checkpoints/cli-external-orchestration/checkpoint-close.md",
       "scratch/checkpoints/sk-design/checkpoint-close.md",
@@ -96,6 +97,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/README.md",
         "source": "derived"
       },
       {
@@ -199,17 +206,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Six class-H hubs still load their stage-two router from `shared/references/smart-routing.md`, while mcp-tooling already serves a root `ROUTER.md`",
     "created_at": "2026-08-15T13:45:00Z",
-    "last_save_at": "2026-08-16T07:41:07.311Z",
+    "last_save_at": "2026-08-29T15:22:02.626Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

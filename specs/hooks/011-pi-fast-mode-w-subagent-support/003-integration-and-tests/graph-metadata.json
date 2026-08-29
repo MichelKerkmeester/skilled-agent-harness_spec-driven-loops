@@ -36,13 +36,34 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      ".pi/settings.json",
+      ".pi/PLUGINS.md",
+      ".pi/SYNC.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "PLUGINS.md",
+        "kind": "doc",
+        "path": ".pi/PLUGINS.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".pi/SYNC.md",
         "source": "derived"
       },
       {
@@ -84,7 +105,7 @@
     ],
     "causal_summary": "Unit tests cannot prove that the extension loader, settings transition, duplicate command registry, custom footer, RPC surface, and real child process work together",
     "created_at": "2026-08-16T07:07:48Z",
-    "last_save_at": "2026-08-17T03:34:48.673Z",
+    "last_save_at": "2026-08-29T15:21:53.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -40,7 +40,9 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "lib/eval/data/ground-truth.json",
+      "dist/lib/eval/eval-metrics.js"
     ],
     "entities": [
       {
@@ -71,6 +73,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ground-truth.json",
+        "kind": "config",
+        "path": "lib/eval/data/ground-truth.json",
+        "source": "derived"
+      },
+      {
+        "name": "eval-metrics.js",
+        "kind": "code",
+        "path": "dist/lib/eval/eval-metrics.js",
         "source": "derived"
       },
       {
@@ -174,23 +188,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 029 model benchmark found that `/memory:search` confidently cited an off-corpus term",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-08-28T16:00:16.833Z",
+    "last_save_at": "2026-08-29T15:22:22.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

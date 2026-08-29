@@ -33,9 +33,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
+      "plan.md",
       "tasks.md",
-      "plan.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-vision/vision-runtime/python/runtime.py"
     ],
     "entities": [
       {
@@ -45,9 +46,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -57,9 +58,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-vision/vision-runtime/python/runtime.py",
         "source": "derived"
       },
       {
@@ -175,17 +182,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "004/005 attach smokes need a known GPU result",
     "created_at": "2026-08-16T07:22:45Z",
-    "last_save_at": "2026-08-16T08:19:15.473Z",
+    "last_save_at": "2026-08-29T15:22:06.039Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

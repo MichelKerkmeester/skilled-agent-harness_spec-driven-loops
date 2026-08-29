@@ -38,7 +38,10 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/core/post-save-review.ts",
+      "scripts/evals/import-policy-rules.ts",
+      "scripts/evals/check-no-mcp-lib-imports.ts"
     ],
     "entities": [
       {
@@ -69,6 +72,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-save-review.ts",
+        "kind": "code",
+        "path": "scripts/core/post-save-review.ts",
+        "source": "derived"
+      },
+      {
+        "name": "import-policy-rules.ts",
+        "kind": "code",
+        "path": "scripts/evals/import-policy-rules.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-mcp-lib-imports.ts",
+        "kind": "code",
+        "path": "scripts/evals/check-no-mcp-lib-imports.ts",
         "source": "derived"
       },
       {
@@ -166,29 +187,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Five keystone consumers converge on one shared core that does not exist yet (`research.md` section 4)",
     "created_at": "2026-06-27T17:15:39.553Z",
-    "last_save_at": "2026-08-29T00:37:39.675Z",
+    "last_save_at": "2026-08-29T15:22:22.722Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

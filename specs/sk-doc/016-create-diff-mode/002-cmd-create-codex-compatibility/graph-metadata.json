@@ -41,18 +41,19 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "decision-record.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/commands/create/agent.md"
     ],
     "entities": [
       {
-        "name": "decision-record.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -74,15 +75,21 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "agent.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/commands/create/agent.md",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Grep Verification Checks",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Codex misinterprets agent routing metadata in create command files in three ways:",
     "created_at": "2026-04-12T09:02:50.215Z",
-    "last_save_at": "2026-08-28T22:19:43.016Z",
+    "last_save_at": "2026-08-29T15:22:00.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

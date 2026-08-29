@@ -41,13 +41,27 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "decision-record.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/authority-root/resolve-authority-root.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs",
+      ".opencode/scripts/run-node-tests.mjs",
+      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -73,9 +87,51 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "completion-evidence-sentinel.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/hooks/completion-evidence-sentinel.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "resolve-authority-root.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/authority-root/resolve-authority-root.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/lib/spec-gate/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-node-tests.mjs",
+        "kind": "file",
+        "path": ".opencode/scripts/run-node-tests.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-markdown-links.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
         "source": "derived"
       },
       {
@@ -143,59 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Seven hidden state directories sit directly under `.opencode/skills/`: advisor, authority, completion-sentinel, goal, loop-guard, smart-router-telemetry and spec-gate",
     "created_at": "2026-08-28T08:49:09Z",
-    "last_save_at": "2026-08-28T09:06:37.799Z",
+    "last_save_at": "2026-08-29T15:22:24.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

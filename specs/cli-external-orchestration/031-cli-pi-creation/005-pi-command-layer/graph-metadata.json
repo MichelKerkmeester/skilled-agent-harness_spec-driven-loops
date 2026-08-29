@@ -41,30 +41,27 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
-      "plan.md",
       "spec.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
-      "scripts/README.md"
+      "implementation-summary.md",
+      ".pi/settings.json",
+      ".pi/mcp.json",
+      "scripts/README.md",
+      ".pi/prompts/agent-router.md"
     ],
     "entities": [
       {
-        "name": "implementation-summary.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -80,9 +77,33 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".pi/mcp.json",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-router.md",
+        "kind": "doc",
+        "path": ".pi/prompts/agent-router.md",
         "source": "derived"
       },
       {
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Deferred",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the Task-dependency",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This repository organizes 36 invokable operator commands (plus 13 non-command supporting files) as nested Markdown under `.opencode/commands/{create,deep,doctor,interface,memory,prompt,speckit}/.md` plus 2 top-level files, using Claude Code's colon-namespaced invocation (`/deep:research`, `/create:skill`) and a single opaque `$ARGUMENTS` string that each command's own router logic parses for flags and mode suffixes",
     "created_at": "2026-07-27T06:48:17.724Z",
-    "last_save_at": "2026-07-27T10:00:41.123Z",
+    "last_save_at": "2026-08-29T15:21:51.482Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,11 +211,11 @@
     ],
     "source_fingerprint": "sha256:b3a08c1d574172181adca6a4548f33491214c645ef7c84d559306fd7b6af625c",
     "source_doc_hashes": {
-      "spec.md": "babbc10803b0cdc7ae64a26a661f8382f14af84624c6fe035e8b89b8c0be953c",
-      "plan.md": "74a84c9b59cf56a56f960ab48f70fa16cbd3f37eb7ebbd67a9e824e00354dc12",
-      "tasks.md": "a1df1d5b1fbe04c5f915a95bc940e2eb98feda95ad08e00a5996490e4e8a48ad",
-      "checklist.md": "6c13db314ddae5795e1c1164d2ab0c0d0e38ac6e2cc5ff9af37ee3fd3eb51d81",
-      "implementation-summary.md": "044457b1872aba1af86c638cc13293bfa9e8356e7827c40de54d3dbd736f6417"
+      "spec.md": "148acf7616e09081e7ff69e85f640fe9542e5a1490625c9547fe6c1f69fde765",
+      "plan.md": "21b9cac8ffb31115cef1dc0b66be138052b99fdb8f6c02369546d4118377f305",
+      "tasks.md": "1ea622b6f2532618fcce2066bdd2b0649e44184f77231b4a8182a59cddc55dcf",
+      "checklist.md": "9c1c5758e932e720a2dea5fd4f6da14db2a97c121b4fb42a18ab7339f4fd1d9d",
+      "implementation-summary.md": "72e685cfccda411a5bb2ebc588132eeda6c55ad9bc75b7b342b711a2daf9118f"
     },
     "last_active_child_id": null,
     "last_active_at": null

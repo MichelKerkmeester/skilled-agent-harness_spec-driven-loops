@@ -41,24 +41,39 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      "tasks.md",
+      "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-command-metadata-template.json",
+      ".opencode/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+      ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+      ".opencode/skills/sk-doc/shared/references/core-standards.md",
+      ".opencode/skills/sk-doc/mode-registry.json"
     ],
     "entities": [
       {
-        "name": "tasks.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -74,15 +89,63 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skills-nested-packets.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-hub-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-hub-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-command-metadata-template.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-command-metadata-template.json",
+        "source": "derived"
+      },
+      {
+        "name": "examples-and-maintenance.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-hub-router-schema.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/parent-skill/parent-hub-router-schema.md",
+        "source": "derived"
+      },
+      {
+        "name": "core-standards.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/core-standards.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/mode-registry.json",
         "source": "derived"
       },
       {
@@ -138,65 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Module",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Records",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "one",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A canon that contradicts itself cannot be enforced, and this one contradicts itself in the most consequential place",
     "created_at": "2026-07-30T19:29:16.753Z",
-    "last_save_at": "2026-08-28T22:32:50.217Z",
+    "last_save_at": "2026-08-29T15:22:03.994Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

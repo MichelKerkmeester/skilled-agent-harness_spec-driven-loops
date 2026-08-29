@@ -43,11 +43,15 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "research/research.md",
-      "decision-record.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".pi/extensions/sk-vision.ts",
+      "specs/sk-vision/description.json",
+      ".opencode/skills/sk-communication/SKILL.md",
+      ".pi/extensions/deep-pi/extensions/deeppi/hashlines.ts"
     ],
     "entities": [
       {
@@ -63,18 +67,6 @@
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -87,9 +79,45 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.ts",
+        "kind": "code",
+        "path": ".pi/extensions/sk-vision.ts",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/sk-vision/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "hashlines.ts",
+        "kind": "code",
+        "path": ".pi/extensions/deep-pi/extensions/deeppi/hashlines.ts",
         "source": "derived"
       },
       {
@@ -169,35 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Checklist Before",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execution Rules",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The workspace has an OpenCode Senses source dump but no spec, no skill, and no Pi path",
     "created_at": "2026-08-15T15:38:25Z",
-    "last_save_at": "2026-08-16T06:28:43.872Z",
+    "last_save_at": "2026-08-29T15:22:05.687Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

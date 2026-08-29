@@ -65,7 +65,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-009 | REQ-007 | Given a caller narrowing the run to a named subset, When a name is not recognised, Then the gate refuses rather than passing | An unknown name exits 1 naming it. Before the fix a typo reported `PASSED` for a packet no rule had examined | Met | - |
 | AC-010 | REQ-007 | Given a restored check that would newly fail packets, When it lands, Then the surfaced faults are repaired rather than left to erode trust in the gate | 384 titles corrected, derived metadata re-derived; those packets went from 243 passing to 286 | Met | - |
 | AC-011 | REQ-006 | Given the change set, When the repository's validation suites run, Then they are not left worse than they were | Measured as a delta against the previous commit. The chained suite that had stopped running entirely now runs: 96, 39 and 121 cases | Met | - |
-| AC-012 | REQ-007 | Given a mass re-derive of packet metadata, When it completes, Then no live graph reference is lost | A specs-root lookup recognising only the pre-move layout had dropped 471 references across 137 packets. After the fix and a re-derive: zero live references missing, 272 recovered, 211 dropped that point at paths which no longer exist | Met | - |
+| AC-012 | REQ-007 | Given a mass re-derive of packet metadata, When it completes, Then the corpus matches what the derivation produces | A specs-root lookup recognising only the pre-move layout had dropped repository-relative key files on every save since packets moved. Comparing every packet against the shipped derivation reached zero divergence over 617 packets and 2272 recovered entries. The first audit reported far less because it re-implemented the extractor instead of calling it | Met | - |
+| AC-013 | REQ-007 | Given the derived key-file list is capped, When declared entries are admitted, Then what they displace is stated rather than described as lossless | Re-deriving evicts 47 entries that still exist, on the 50 packets that land at the twenty-entry cap, against 2272 recovered. Every candidate in the list already exists on disk, so this is priority between real files — a declaration outranks a name guessed from prose — not the loss of a live reference | Met | - |
 
 ### Status values
 
@@ -107,4 +108,19 @@ Left out deliberately: 21 packets carry checklist fingerprints that were stale
 before this work, and refreshing them would attest to verification nobody re-ran.
 The aggregate description index is likewise left stale rather than regenerated,
 because its refresh sweeps in unrelated packets.
+
+Known and unfixed, each measured rather than assumed:
+
+- The derivation reads `key_files` from `spec.md` only. Other canonical
+  documents declare far more, and 369 packets name a real file in one of them
+  that never reaches the graph. This predates the work here and is a coverage
+  gap, not a regression.
+- The containment guard rejects a declaration by looking for parent segments in
+  the string rather than by resolving it. Of 338 such declarations, none escape
+  the repository and 152 name a real file, mostly sibling phases in the same
+  tree. The argument that admitted declared entries applies here too; expanding
+  it was judged a separate change.
+- One archived packet declares a bare `SKILL.md` that resolves, through a
+  workspace-root fallback, to a different skill's file. The fallback roots make
+  "resolves to something" a weak proxy for "is what the author meant".
 <!-- /ANCHOR:closure -->

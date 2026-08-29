@@ -44,54 +44,17 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts",
-      ".opencode/bin/spec-memory.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/package.json",
-      ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
-      "mcp_server/spec-memory-cli.ts",
-      "mcp_server/tests/spec-memory-cli.vitest.ts",
-      "mcp_server/package.json",
-      "mcp_server/tsconfig.json",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "dist/spec-memory-cli.js",
+      ".opencode/bin/spec-memory.cjs"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec-memory-cli.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/spec-memory-cli.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-memory.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/spec-memory.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec-memory-cli.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/spec-memory-cli.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "tsconfig.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tsconfig.json",
         "source": "derived"
       },
       {
@@ -110,6 +73,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory-cli.js",
+        "kind": "code",
+        "path": "dist/spec-memory-cli.js",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/spec-memory.cjs",
         "source": "derived"
       },
       {
@@ -201,11 +176,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Zod",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "targeted",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mk-spec-memory daemon already speaks JSON-RPC over its IPC socket, but the only client surface was the MCP protocol layer — which dies permanently on mid-session transport disconnects, costs schema tokens every session, and needs per-runtime registration",
     "created_at": "2026-06-06T14:09:11.246Z",
-    "last_save_at": "2026-07-17T17:19:42.320Z",
+    "last_save_at": "2026-08-29T15:22:20.085Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

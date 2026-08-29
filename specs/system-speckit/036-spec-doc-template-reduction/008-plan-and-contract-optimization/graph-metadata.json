@@ -44,7 +44,22 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/templates/level-contract-resolver.ts",
+      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh",
+      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+      ".opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
+      "templates/core/plan.md.tmpl",
+      ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
       {
@@ -69,6 +84,90 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/core/plan.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "level-contract-resolver.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/templates/level-contract-resolver.ts",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-files.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-level-match.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "level-contract-resolver.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-health.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -106,71 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Contract Optimization",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built This",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Lifecycle Contract Alignment The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Plan Template Reduction The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The manifest declares `implementation-summary.md` in `requiredCoreDocs` for every numbered level, including Level 1 at `.opencode/skills/system-spec-kit/templates/spec-kit-docs.json:163-167`, Level 2 at `:290-295`, Level 3 at `:460-464`, and Level 3+ at `:657-662`",
     "created_at": "2026-08-27T17:51:28.951Z",
-    "last_save_at": "2026-08-27T20:20:59.358Z",
+    "last_save_at": "2026-08-29T15:22:24.669Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

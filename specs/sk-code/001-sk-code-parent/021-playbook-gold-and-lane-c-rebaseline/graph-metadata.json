@@ -41,13 +41,23 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
+      ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json",
+      ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.md",
+      ".opencode/skills/sk-code/benchmark/README.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -73,9 +83,21 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-code/benchmark/reports/2026-06-01--router-final--router/skill-benchmark-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/README.md",
         "source": "derived"
       },
       {
@@ -173,29 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Parent Rollup",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Optional Catalogs",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code `manualtestingplaybook` scenarios assert an expected-resource gold — the references and assets a correct route should load for each prompt",
     "created_at": "2026-07-05T19:09:55.824Z",
-    "last_save_at": "2026-08-28T15:52:58.674Z",
+    "last_save_at": "2026-08-29T15:21:56.195Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

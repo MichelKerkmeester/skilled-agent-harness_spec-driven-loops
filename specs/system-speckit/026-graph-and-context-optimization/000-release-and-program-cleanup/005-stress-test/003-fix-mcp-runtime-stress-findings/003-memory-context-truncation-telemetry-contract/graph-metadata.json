@@ -44,7 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "dist/handlers/memory-context.js"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.js",
+        "kind": "code",
+        "path": "dist/handlers/memory-context.js",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built Implemented",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 005 post-remediation verification (2026-04-26 18:49) showed that the Cluster 1 truncation fix is NOT live in the daemon: `memorycontext({input:\"Semantic Search\"})` still returns `meta.tokenBudgetEnforcement.{enforced:true, truncated:true, returnedResultCount:3, originalResultCount:5}` while `actualTokens=65 / budgetTokens=3500` (1.9% utilization) and `data.content[0].text` still contains `{\"count\":0,\"results\":[]}`",
     "created_at": "2026-04-27T07:29:35.265Z",
-    "last_save_at": "2026-08-28T22:53:07.133Z",
+    "last_save_at": "2026-08-29T15:22:11.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

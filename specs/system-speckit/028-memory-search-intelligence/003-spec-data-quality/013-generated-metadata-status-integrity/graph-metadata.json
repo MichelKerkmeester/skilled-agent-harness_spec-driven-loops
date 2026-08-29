@@ -36,24 +36,13 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
-      "tasks.md",
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-integrity.ts"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -64,6 +53,24 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-integrity.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-integrity.ts",
         "source": "derived"
       },
       {
@@ -179,17 +186,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`deriveStatus` (`graph-metadata-parser.ts:1215-1218`) returns `status: 'complete'` whenever `implementation-summary.md` exists and `checklist.md` does not, regardless of whether the doc is a real completed summary or an unfilled Level-1 scaffold",
     "created_at": "2026-07-02T03:22:45Z",
-    "last_save_at": "2026-08-28T16:00:23.524Z",
+    "last_save_at": "2026-08-29T15:22:23.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

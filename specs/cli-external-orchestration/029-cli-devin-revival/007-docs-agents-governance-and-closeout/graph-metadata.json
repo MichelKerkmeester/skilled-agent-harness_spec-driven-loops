@@ -39,10 +39,15 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       ".opencode/agents/context.md",
-      ".opencode/skills/README.md",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "README.md",
       ".opencode/skills/system-skill-advisor/mcp-server/lib/advisor-runtime-values.ts",
-      ".opencode/skills/system-spec-kit/constitutional/post-implementation-deep-review.md",
       ".claude/agents/context.md",
       ".codex/agents/context.toml",
       ".opencode/agents/deep-research.md",
@@ -53,14 +58,33 @@
       ".codex/agents/deep-review.toml",
       ".opencode/agents/deep-improvement.md",
       ".claude/agents/deep-improvement.md",
-      ".codex/agents/deep-improvement.toml",
-      "tasks.md",
-      "checklist.md",
-      ".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh",
-      "spec.md",
-      "plan.md"
+      ".codex/agents/deep-improvement.toml"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "context.md",
         "kind": "doc",
@@ -68,21 +92,27 @@
         "source": "derived"
       },
       {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": "CLAUDE.md",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/skills/README.md",
+        "path": "README.md",
         "source": "derived"
       },
       {
         "name": "advisor-runtime-values.ts",
         "kind": "code",
         "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/advisor-runtime-values.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-implementation-deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/post-implementation-deep-review.md",
         "source": "derived"
       },
       {
@@ -125,36 +155,6 @@
         "name": "deep-improvement.toml",
         "kind": "file",
         "path": ".codex/agents/deep-improvement.toml",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "check-prompt-quality-card-sync.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The 2026-06-08 deprecation (`zarchive/022-cli-devin-deprecation`) stripped `cli-devin`/`devin` mentions from all 3 runtime agent rosters, top-level governance docs (`AGENTS.md`, `CLAUDE.md`, `README.md`), and cross-skill sibling docs, and its own removal touch-list recorded the exact file paths and line numbers it edited",
     "created_at": "2026-07-23T19:51:59.259Z",
-    "last_save_at": "2026-07-24T06:50:52.723Z",
+    "last_save_at": "2026-08-29T15:21:50.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

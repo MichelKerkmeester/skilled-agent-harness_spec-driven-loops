@@ -43,9 +43,9 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "research/prompts/iteration-001.md",
-      "mcp_server/matrix_runners/README.md",
-      "resource-map.md"
+      "resource-map.md",
+      "rename-log.md",
+      "research/prompts/iteration-001.md"
     ],
     "entities": [
       {
@@ -79,21 +79,21 @@
         "source": "derived"
       },
       {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/prompts/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "mcp_server/matrix_runners/README.md",
-        "source": "derived"
-      },
-      {
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "rename-log.md",
+        "kind": "doc",
+        "path": "rename-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-001.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The CLI matrix runner folder used kebab-case while adjacent MCP server support directories use snakecase",
     "created_at": "2026-05-18T08:15:53.134Z",
-    "last_save_at": "2026-07-17T17:19:09.803Z",
+    "last_save_at": "2026-08-29T15:22:10.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

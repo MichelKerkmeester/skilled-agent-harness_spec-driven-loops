@@ -42,13 +42,21 @@
     "importance_tier": "normal",
     "status": "blocked",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      "shared/dist/embeddings.js",
+      "shared/dist/embeddings/profile.js"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -74,9 +82,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "embeddings.js",
+        "kind": "code",
+        "path": "shared/dist/embeddings.js",
+        "source": "derived"
+      },
+      {
+        "name": "profile.js",
+        "kind": "code",
+        "path": "shared/dist/embeddings/profile.js",
         "source": "derived"
       },
       {
@@ -180,23 +194,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The active Memory MCP database has historical rows in `memoryindex` with `embeddingstatus='failed'`",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-08-28T22:58:16.815Z",
+    "last_save_at": "2026-08-29T15:22:14.302Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:10:00Z",
     "source_docs": [

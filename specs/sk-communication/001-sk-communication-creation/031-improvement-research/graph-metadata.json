@@ -45,9 +45,11 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "implementation-summary.md",
       "research/research.md",
       "research/resource-map.md",
-      "implementation-summary.md"
+      ".pi/settings.json",
+      "specs/sk-communication/001-sk-communication-creation/031-improvement-research/research/resource-map.md"
     ],
     "entities": [
       {
@@ -75,15 +77,21 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
         "source": "derived"
       },
       {
@@ -187,17 +195,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Produce a grounded and ranked recommendation set that identifies what to improve next, why each improvement matters, and the rough effort required",
     "created_at": "2026-08-15T05:31:15.872Z",
-    "last_save_at": "2026-08-15T08:34:10.957Z",
+    "last_save_at": "2026-08-29T15:21:58.513Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

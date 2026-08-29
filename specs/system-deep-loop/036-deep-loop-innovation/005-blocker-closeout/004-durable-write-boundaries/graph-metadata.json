@@ -44,13 +44,20 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      "handover.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/durable-orchestrator.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/effect-gateway.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/replay-fingerprint-attestation.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts",
       "scratch/chk-120-rollback-rehearsal.md",
       "scratch/t015-verification-evidence.md",
-      "scratch/chk-110-aggregate-delta.md",
-      "scratch/chk-111-append-fence-overhead.md",
-      "scratch/append-fence-overhead-bench.vitest.ts.txt",
-      "scratch/open-finding-writer-lock-reclaim.md",
-      "handover.md"
+      "scratch/chk-110-aggregate-delta.md"
     ],
     "entities": [
       {
@@ -90,6 +97,72 @@
         "source": "derived"
       },
       {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "append-only-ledger.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts",
+        "source": "derived"
+      },
+      {
+        "name": "transition-authorization-gateway.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-authorization-gateway.ts",
+        "source": "derived"
+      },
+      {
+        "name": "transition-policy-registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/transition-policy-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "immutable-frame-store.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/immutable-frame-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "durable-orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/branch-leases-waves/durable-orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "effect-gateway.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/receipts-and-effect-recovery/effect-gateway.ts",
+        "source": "derived"
+      },
+      {
+        "name": "replay-fingerprint-attestation.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/replay-fingerprint/replay-fingerprint-attestation.ts",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/loop-lock.ts",
+        "source": "derived"
+      },
+      {
+        "name": "atomic-state.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "authorized-ledger.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/authorized-ledger.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "chk-120-rollback-rehearsal.md",
         "kind": "doc",
         "path": "scratch/chk-120-rollback-rehearsal.md",
@@ -105,30 +178,6 @@
         "name": "chk-110-aggregate-delta.md",
         "kind": "doc",
         "path": "scratch/chk-110-aggregate-delta.md",
-        "source": "derived"
-      },
-      {
-        "name": "chk-111-append-fence-overhead.md",
-        "kind": "doc",
-        "path": "scratch/chk-111-append-fence-overhead.md",
-        "source": "derived"
-      },
-      {
-        "name": "append-fence-overhead-bench.vitest.ts.txt",
-        "kind": "file",
-        "path": "scratch/append-fence-overhead-bench.vitest.ts.txt",
-        "source": "derived"
-      },
-      {
-        "name": "open-finding-writer-lock-reclaim.md",
-        "kind": "doc",
-        "path": "scratch/open-finding-writer-lock-reclaim.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -154,53 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Enumerate",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "(Resolved — historical problem statement.) The defects below describe the pre-fix state that this packet closed; they are retained for provenance",
     "created_at": "2026-07-31T01:25:20.017Z",
-    "last_save_at": "2026-08-18T20:22:22.011Z",
+    "last_save_at": "2026-08-29T15:22:07.250Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
