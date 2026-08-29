@@ -42,23 +42,18 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "decision-record.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/mode-registry.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -80,9 +75,21 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "per-finding",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A 10-iteration deep-review Pass A (executor `openai/gpt-5.6-sol-fast`, reasoning `xhigh`) of the whole 059 deep-alignment packet returned FAIL with 2 P0 and 8 P1 active findings",
     "created_at": "2026-07-13T06:01:09.541Z",
-    "last_save_at": "2026-08-29T09:58:23.920Z",
+    "last_save_at": "2026-08-29T13:09:57.428Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

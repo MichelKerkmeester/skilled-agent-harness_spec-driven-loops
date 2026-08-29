@@ -45,7 +45,11 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
+      ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_harness.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py",
+      ".opencode/skills/sk-doc/scripts/tests/fixtures/rename-tooling/corpus.json"
     ],
     "entities": [
       {
@@ -76,6 +80,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rename_tooling_fixture_core.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
+        "source": "derived"
+      },
+      {
+        "name": "rename_tooling_fixture_harness.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_harness.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_rename_tooling_fixture_harness.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_rename_tooling_fixture_harness.py",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/scripts/tests/fixtures/rename-tooling/corpus.json",
         "source": "derived"
       },
       {
@@ -167,35 +195,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The rename engine and reference checker need representative, repeatable evidence before a real migration run. This phase builds disposable fixtures and a dry-run harness for semantic names, exemptions, collisions, references, idempotency, rollback, and empty scans.",
     "created_at": "2026-07-14T15:16:49Z",
-    "last_save_at": "2026-08-29T10:01:08.228Z",
+    "last_save_at": "2026-08-29T13:10:15.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

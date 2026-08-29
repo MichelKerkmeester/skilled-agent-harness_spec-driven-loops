@@ -338,11 +338,14 @@ run_validation() {
 
 main() {
     parse_args "$@"
+    # Environment overrides are read before anything prints: the auto-recursion
+    # notice below is suppressed in JSON mode, and reading the flags afterwards
+    # let that prose land in front of the JSON and make it unparseable.
+    apply_env_overrides
     if ! $RECURSIVE && ! $RECURSIVE_OPT_OUT && has_phase_children "$FOLDER_PATH"; then
         RECURSIVE=true
         ! $JSON_MODE && ! $QUIET_MODE && echo "Auto-enabled recursive validation: phase child folders detected."
     fi
-    apply_env_overrides
     resolve_orchestrator
 
     local rc=0

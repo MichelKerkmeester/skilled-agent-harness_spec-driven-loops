@@ -43,10 +43,10 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -59,12 +59,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -83,6 +77,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Implemented Deep Research shadow parity over the typed event-ledger substrate, with independent legacy and ledger executors, strict event and projection comparison, reproducible receipts, and a fail-closed successor gate input. The legacy path remains authoritative.",
     "created_at": "2026-07-16T03:43:31.690Z",
-    "last_save_at": "2026-08-29T09:57:59.619Z",
+    "last_save_at": "2026-08-29T13:09:53.827Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

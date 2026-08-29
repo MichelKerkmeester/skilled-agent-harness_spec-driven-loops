@@ -37,16 +37,22 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "plan.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -65,12 +71,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "`create a benchmark package` mis-routed to `create-skill`: create-benchmark's alias class held only artifact-path terms (`benchmarkreport.md`, `skill-benchmark`, `model-benchmark`, …) and no phrase matching that prompt, so it tied on the generic authoring verb and lost the tiebreak",
     "created_at": "2026-07-13T13:51:00.677Z",
-    "last_save_at": "2026-08-29T10:01:18.048Z",
+    "last_save_at": "2026-08-29T13:10:17.506Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

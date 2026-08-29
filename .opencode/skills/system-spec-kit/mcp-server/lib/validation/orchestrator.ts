@@ -87,6 +87,7 @@ const OPTIONAL_CONTINUITY_DOCS = new Set([
 ]);
 const REQUIRED_FRONTMATTER_KEYS = ['packet_pointer', 'last_updated_at', 'last_updated_by', 'recent_action', 'next_safe_action'];
 const REQUIRED_SCALAR_FRONTMATTER_FIELDS = ['title', 'description', 'importance_tier', 'contextType'];
+const SCALAR_FRONTMATTER_DOCS = ['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'decision-record.md', 'implementation-summary.md'];
 // Named in the report so a verdict can be attributed to what produced it.
 const ENGINE_NAME = 'orchestrator';
 const CHECKLIST_H1_PREFIX = '# Verification Checklist:';
@@ -891,10 +892,19 @@ function validateFrontmatterBasics(folder: string, level: SpecKitLevel): Validat
     }
   }
 
-  // The scalar fields feed retrieval, so every authored doc must carry them.
-  // A document with no frontmatter block at all is a different fault, owned by
-  // the rules that check document shape; it is not five empty fields.
-  for (const docName of authoredDocsForLevel(level, folder)) {
+  // The scalar fields feed retrieval, so the core documents must carry them.
+  // The set is fixed rather than derived from the level contract: deriving it
+  // pulls in whatever add-ons a packet happens to have, which quietly widens
+  // what the rule demands as packets grow optional documents.
+  for (const docName of SCALAR_FRONTMATTER_DOCS) {
+    const content = readIfExists(path.join(folder, docName));
+    if (content === null) continue;
+    // An opened-but-unterminated block is its own fault, and reporting it as a
+    // set of empty fields would send the reader looking for the wrong thing.
+    if (/^---\r?\n/u.test(content) && frontmatterOf(docName) === null) {
+      empty.push(`${docName}: Unclosed YAML frontmatter (missing closing ---)`);
+      continue;
+    }
     const frontmatter = frontmatterOf(docName);
     if (frontmatter === null) continue;
     for (const field of emptyRequiredFrontmatterFields(frontmatter)) {
@@ -902,7 +912,7 @@ function validateFrontmatterBasics(folder: string, level: SpecKitLevel): Validat
     }
   }
   if (empty.length > 0) {
-    return entry('FRONTMATTER_VALID', 'error', `${empty.length} empty required frontmatter field(s)`, [...empty, ...missing]);
+    return entry('FRONTMATTER_VALID', 'error', `Found ${empty.length} frontmatter issue(s)`, [...empty, ...missing]);
   }
   return missing.length === 0
     ? entry('FRONTMATTER_VALID', 'pass', 'Frontmatter continuity basics present')

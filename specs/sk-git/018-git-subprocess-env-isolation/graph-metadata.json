@@ -38,9 +38,22 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs",
+      ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
+      ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+      ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+      ".opencode/skills/sk-doc/shared/scripts/git_env.py",
+      ".opencode/skills/sk-doc/shared/scripts/rename_engine_core.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_reference_checker.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_semantic_rename_engine.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts"
     ],
     "entities": [
       {
@@ -56,12 +69,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -71,6 +78,90 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-git/scripts/lib/git-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rename_tooling_fixture_core.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.test.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/tests/worktree-naming.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git_env.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/git_env.py",
+        "source": "derived"
+      },
+      {
+        "name": "rename_engine_core.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/rename_engine_core.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_reference_checker.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_reference_checker.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_reference_rewrite_executor.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_semantic_rename_engine.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_semantic_rename_engine.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_no_new_snake_case_guard.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_no_new_snake_case_guard.py",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/write-containment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-enrichment.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/session-enrichment.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "auto-detection-fixes.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/auto-detection-fixes.vitest.ts",
         "source": "derived"
       },
       {
@@ -108,89 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. SUMMARY",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "FIX ADDENDUM: AFFECTED SURFACES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "T008",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three git-family test/tool helpers create throwaway git repositories and write config into them, isolating those writes only by passing a `cwd`/`-C <dir>` to git",
     "created_at": "2026-07-29T06:06:33.668Z",
-    "last_save_at": "2026-08-29T10:01:28.937Z",
+    "last_save_at": "2026-08-29T13:10:19.750Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

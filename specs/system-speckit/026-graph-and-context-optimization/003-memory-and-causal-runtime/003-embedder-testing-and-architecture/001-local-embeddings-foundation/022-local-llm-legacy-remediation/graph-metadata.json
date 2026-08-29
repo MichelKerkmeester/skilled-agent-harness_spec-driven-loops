@@ -47,7 +47,19 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".codex/config.toml",
+      ".claude/mcp.json",
+      ".opencode/skills/system-spec-kit/shared/README.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      "shared/embeddings/profile.ts",
+      ".opencode/skills/system-spec-kit/package.json",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js",
+      ".opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-utils.js"
     ],
     "entities": [
       {
@@ -78,6 +90,72 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": "shared/embeddings/profile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "test-embeddings-behavioral.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js",
+        "source": "derived"
+      },
+      {
+        "name": "test-embeddings-factory.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js",
+        "source": "derived"
+      },
+      {
+        "name": "memory-pipeline-regressions.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "manual-playbook-fixture.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-utils.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-utils.js",
         "source": "derived"
       },
       {
@@ -127,77 +205,11 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "zero",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "EMBEDDINGS_PROVIDER",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. APPROACH",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. PER-BATCH DISPATCH CONTRACTS",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "acceptance",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "final",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "TASK BREAKDOWN",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "DEPENDENCIES",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "ESTIMATED WALLTIME",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "description:",
-        "kind": "quoted",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31)",
     "created_at": "2026-05-13T14:30:00Z",
-    "last_save_at": "2026-08-29T09:58:48.400Z",
+    "last_save_at": "2026-08-29T13:10:01.575Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:00:00Z",
     "source_docs": [

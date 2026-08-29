@@ -41,19 +41,15 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      "plan.md",
       "spec.md",
-      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "implementation-summary.md",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      ".github/workflows/routing-registry-drift.yml"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -61,9 +57,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -73,9 +75,21 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "routing-registry-drift.yml",
+        "kind": "config",
+        "path": ".github/workflows/routing-registry-drift.yml",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Bearing Verification",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The cutover removes `sk-code-review` as a routing identity and cuts the release",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-08-29T09:58:25.518Z",
+    "last_save_at": "2026-08-29T13:09:58.040Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

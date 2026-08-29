@@ -69,8 +69,12 @@ first. Two real checks existed solely in the deleted engine:
   document titled `# Checklist: X` instead of `# Verification Checklist: X`
   passed.
 
-Both now run on the surviving engine and report the same findings, line for
-line, as the engine that was removed.
+Both now run on the surviving engine. Their findings match the removed engine's
+line for line, with one deliberate difference: the title check anchors the
+expected text to the start of the heading, where the original accepted it
+anywhere in the line. That is the stricter reading and it rejects nothing in the
+corpus — every checklist title was measured against both rules and none passes
+one while failing the other — but it is a difference, not a faithful copy.
 
 Four smaller things came with it. The freshness rule's applicability is decided
 once, at the rule's own entry point, so it cannot depend on who asked. The
@@ -168,5 +172,14 @@ refuses an unrecognised name outright.
 3. **The failure-rate figures are sampled.** The engine comparison used 150
    packets and the co-occurrence measurement 220; the whole-corpus rate was not
    measured.
+4. **An independent review found three defects after this shipped**, all since
+   fixed and covered by tests: a mistyped rule subset reported a clean pass for
+   a packet nothing had examined; a third rule-script inventory still named the
+   deleted rule, which failed the first suite in a chained command and stopped
+   the other two from running at all; and re-deriving metadata at scale ran into
+   a specs-root lookup that only recognised the pre-move layout, dropping every
+   repository-relative key file from the derived graph. The last was the
+   expensive one, and it was a pre-existing bug this work happened to run 384
+   times.
 
 <!-- /ANCHOR:limitations -->

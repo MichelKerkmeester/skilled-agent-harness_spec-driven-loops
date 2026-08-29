@@ -41,18 +41,23 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "decision-record.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/system-deep-loop/runtime/lib/next-focus/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/next-focus.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/pivot-candidates.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+      ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json"
     ],
     "entities": [
       {
-        "name": "decision-record.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -74,15 +79,45 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/next-focus/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "next-focus.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/next-focus.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "pivot-candidates.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/pivot-candidates.ts",
+        "source": "derived"
+      },
+      {
+        "name": "divergent-pivot.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "phase-tree.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/manifest/phase-tree.json",
         "source": "derived"
       },
       {
@@ -162,41 +197,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "typed",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan typed, deterministic next-focus semantics that rank coverage gaps, open contradictions, and under-covered semantic communities from ledger-derived novelty signals, then record the selected region and complete decision basis for replay.",
     "created_at": "2026-07-16T03:43:52.164Z",
-    "last_save_at": "2026-08-29T09:57:45.626Z",
+    "last_save_at": "2026-08-29T13:09:51.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -98,9 +98,6 @@ function runValidate(folder: string, env: Record<string, string | undefined> = {
     ...process.env,
     SPECKIT_RULES: 'CONTINUITY_FRESHNESS',
   };
-  if (!isEnabledEnv(env.SPECKIT_COMPLETION_FRESHNESS)) {
-    childEnv.SPECKIT_VALIDATE_LEGACY = '1';
-  }
   for (const [key, value] of Object.entries(env)) {
     if (value === undefined) {
       delete childEnv[key];
@@ -118,10 +115,6 @@ function runValidate(folder: string, env: Record<string, string | undefined> = {
     stdout: result.stdout ?? '',
     stderr: result.stderr ?? '',
   };
-}
-
-function isEnabledEnv(value: string | undefined): boolean {
-  return ['1', 'true', 'yes', 'on'].includes((value ?? '').toLowerCase().trim());
 }
 
 function withFakeGit<T>(root: string, statusOutput: string, callback: () => T): T {
@@ -186,12 +179,12 @@ describe('completion continuity freshness', () => {
     fs.appendFileSync(path.join(folder, 'checklist.md'), '\nEdited after green evidence.\n', 'utf8');
 
     const result = runValidate(folder, { SPECKIT_COMPLETION_FRESHNESS: 'true' });
-    const parsed = JSON.parse(result.stdout) as { results: Array<{ rule: string; status: string; message: string }> };
+    const parsed = JSON.parse(result.stdout) as { entries: Array<{ rule: string; status: string; message: string }> };
 
     expect(result.status).toBe(2);
-    expect(parsed.results[0].rule).toBe('CONTINUITY_FRESHNESS');
-    expect(parsed.results[0].status).toBe('warn');
-    expect(parsed.results[0].message).toContain('stored continuity fingerprint does not match current content');
+    expect(parsed.entries[0].rule).toBe('CONTINUITY_FRESHNESS');
+    expect(parsed.entries[0].status).toBe('warn');
+    expect(parsed.entries[0].message).toContain('stored continuity fingerprint does not match current content');
   });
 
   it('promotes the stale completion fingerprint to an error in enforce mode', () => {
@@ -203,10 +196,10 @@ describe('completion continuity freshness', () => {
       SPECKIT_COMPLETION_FRESHNESS: 'true',
       SPECKIT_COMPLETION_FRESHNESS_ENFORCE: 'true',
     });
-    const parsed = JSON.parse(result.stdout) as { results: Array<{ status: string }> };
+    const parsed = JSON.parse(result.stdout) as { entries: Array<{ status: string }> };
 
     expect(result.status).toBe(2);
-    expect(parsed.results[0].status).toBe('error');
+    expect(parsed.entries[0].status).toBe('error');
   });
 
   it('passes unchanged completion content with a recomputed matching fingerprint', () => {

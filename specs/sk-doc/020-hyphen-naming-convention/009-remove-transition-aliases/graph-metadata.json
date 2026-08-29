@@ -40,8 +40,12 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration/spec.md",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+      ".opencode/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py"
     ],
     "entities": [
       {
@@ -57,15 +61,33 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "load-playbook-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check_no_hyphenated_catalog_content.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py",
         "source": "derived"
       },
       {
@@ -169,29 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The migration has completed and the bounded coexistence window from phase 002 is closed, but runtime consumers still carry compatibility paths for the old underscore catalog and playbook roots and indexes. This phase removes those aliases and makes unsupported legacy names fail explicitly without falling through to a generic document classification.",
     "created_at": "2026-07-14T15:22:41Z",
-    "last_save_at": "2026-08-29T10:01:05.141Z",
+    "last_save_at": "2026-08-29T13:10:15.181Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

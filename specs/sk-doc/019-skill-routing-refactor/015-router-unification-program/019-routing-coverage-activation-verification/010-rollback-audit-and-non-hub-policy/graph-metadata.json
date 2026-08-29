@@ -41,33 +41,24 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      "references/compiled-routing-canary-profile.md",
-      "verification/rollback-audit-drill.cjs",
-      "verification/non-hub-eligibility-fixtures.cjs",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md",
+      "references/compiled-routing-canary-profile.md",
+      "verification/rollback-audit-drill.cjs",
+      "verification/non-hub-eligibility-fixtures.cjs",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/session/session-snapshot.ts",
+      ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts",
       "references/flip-history-schema.md"
     ],
     "entities": [
       {
-        "name": "compiled-routing-canary-profile.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "references/compiled-routing-canary-profile.md",
-        "source": "derived"
-      },
-      {
-        "name": "rollback-audit-drill.cjs",
-        "kind": "file",
-        "path": "verification/rollback-audit-drill.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "non-hub-eligibility-fixtures.cjs",
-        "kind": "file",
-        "path": "verification/non-hub-eligibility-fixtures.cjs",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -95,9 +86,39 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "compiled-routing-canary-profile.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "references/compiled-routing-canary-profile.md",
+        "source": "derived"
+      },
+      {
+        "name": "rollback-audit-drill.cjs",
+        "kind": "file",
+        "path": "verification/rollback-audit-drill.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "non-hub-eligibility-fixtures.cjs",
+        "kind": "file",
+        "path": "verification/non-hub-eligibility-fixtures.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-snapshot.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/session/session-snapshot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit-resume-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-prime.ts",
         "source": "derived"
       },
       {
@@ -177,29 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Strict Level",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three related integrity gaps sit at the P1 rollback/audit/policy layer of the activation program",
     "created_at": "2026-07-20T21:51:45.508Z",
-    "last_save_at": "2026-08-29T10:01:22.220Z",
+    "last_save_at": "2026-08-29T13:10:18.130Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

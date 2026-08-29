@@ -51,7 +51,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts"
     ],
     "entities": [
       {
@@ -82,6 +83,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "3 inline cascade-probe timing constants in auto-select.ts (DEFAULT_TIMEOUT_MS=2500, DEFAULT_LOCK_STALE_MS=30000, DEFAULT_SLEEP_MS=25) now accept env-var overrides via SPECKIT_CASCADE_PROBE_TIMEOUT_MS / _LOCK_STALE_MS / _SLEEP_MS. Closes 1 P1 multi-site finding.",
     "created_at": "2026-05-23T17:55:00.000000Z",
-    "last_save_at": "2026-08-29T09:58:46.499Z",
+    "last_save_at": "2026-08-29T13:10:01.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

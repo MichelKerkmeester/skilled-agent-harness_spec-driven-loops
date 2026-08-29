@@ -45,7 +45,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      ".opencode/skills/system-deep-loop/runtime/package-lock.json"
     ],
     "entities": [
       {
@@ -76,6 +77,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/runtime/package-lock.json",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The runtime tree has six snake_case directories and 108 underscore-bearing files across its catalog, playbook, libraries, scripts, and tests. This phase renames those in-scope names to kebab-case and updates path consumers while preserving the package workspace, tool-mandated files, database contracts, and all code/data identifiers.",
     "created_at": "2026-07-14T15:17:48Z",
-    "last_save_at": "2026-08-29T10:00:34.339Z",
+    "last_save_at": "2026-08-29T13:10:06.048Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

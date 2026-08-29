@@ -11,7 +11,7 @@ expected_leaf_resources: []
 
 ## 1. OVERVIEW
 
-This scenario verifies the hard backstop in `run_node_orchestrator()` inside `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`. Before delegating a validation run to the compiled Node orchestrator (`mcp-server/dist/lib/validation/orchestrator.js`), `validate.sh` calls the shared `checkPackageFreshness()` helper from `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` (the same module that backs the CLI shim guard in playbook entry [429](../../manual-testing-playbook/tooling-and-scripts/cli-dist-freshness-guard.md)) scoped to the `validation-orchestrator` entry of the `system-spec-kit/mcp-server` package.
+This scenario verifies the hard backstop in `resolve_orchestrator()` inside `.opencode/skills/system-spec-kit/scripts/spec/validate.sh`. Before delegating a validation run to the compiled Node orchestrator (`mcp-server/dist/lib/validation/orchestrator.js`), `validate.sh` calls the shared `checkPackageFreshness()` helper from `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` (the same module that backs the CLI shim guard in playbook entry [429](../../manual-testing-playbook/tooling-and-scripts/cli-dist-freshness-guard.md)) scoped to the `validation-orchestrator` entry of the `system-spec-kit/mcp-server` package.
 
 Unlike the CLI shims, which are a client convenience, this is a NEW hard backstop: if the compiled orchestrator is stale relative to its TypeScript source (`mcp-server/lib/validation/orchestrator.ts` and its `lib/validation`, `lib/templates`, `lib/spec`, `lib/graph`, `lib/config`, and `lib/description` source trees), `validate.sh` refuses to fall through to the possibly-outdated compiled JS. It prints `ERROR: validate.sh compiled validation orchestrator is stale.`, the freshness checker's own message and rebuild command, and exits **3** — it does not attempt to auto-rebuild, and it does not silently fall back to the shell-only validator path. Auto-rebuild was deliberately rejected here: a validate.sh call under this backstop is often running concurrently with other active editing sessions against the same shared, gitignored `dist/` output, and an automatic rebuild risks compiling in another session's unrelated uncommitted changes into that shared artifact. Failing closed and asking the operator to rebuild explicitly avoids that cross-session contamination risk.
 
@@ -89,7 +89,7 @@ Shell transcript with both exit codes, the stale-run stderr block, and the resto
 
 ### Failure Triage
 
-If the stale run does not exit 3, confirm `SPECKIT_VALIDATE_LEGACY` and `SPECKIT_RULES` are unset in the shell — both short-circuit `run_node_orchestrator()` before the freshness check runs, per `validate.sh:970-973`. If the restored run still exits 3, the mtime restore likely did not apply — re-run the `python3 os.utime` restore lines, or simply `touch "$DIST"` so its mtime is unambiguously newer than the source, and delete any stray `.dist-freshness-*.json` cache file next to the dist entry. If `git diff` on `orchestrator.ts` is non-empty after the test, the content restore did not land — reapply `cp "$BAK" "$SOURCE"` from the backup before doing anything else.
+If the stale run does not exit 3, confirm a compiled `orchestrator.js` is present: the freshness check only runs against a compiled build, and a source-only checkout takes the loader path instead. If the restored run still exits 3, the mtime restore likely did not apply — re-run the `python3 os.utime` restore lines, or simply `touch "$DIST"` so its mtime is unambiguously newer than the source, and delete any stray `.dist-freshness-*.json` cache file next to the dist entry. If `git diff` on `orchestrator.ts` is non-empty after the test, the content restore did not land — reapply `cp "$BAK" "$SOURCE"` from the backup before doing anything else.
 
 ---
 
@@ -107,7 +107,7 @@ If the stale run does not exit 3, confirm `SPECKIT_VALIDATE_LEGACY` and `SPECKIT
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | `run_node_orchestrator()` hard backstop (exit 3), lines ~969-1001 |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | `resolve_orchestrator()` hard backstop (exit 3), lines ~270-296 |
 | `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` | Shared `checkPackageFreshness()` module the backstop calls with `--package system-spec-kit/mcp-server --entry validation-orchestrator` |
 | `.opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts` | Watched TypeScript source for the compiled orchestrator entry |
 | `.opencode/skills/system-spec-kit/scripts/tests/test-dist-freshness.sh` | Automated equivalent of this manual scenario (stale-then-fresh assertion pair) |

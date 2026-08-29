@@ -42,7 +42,11 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts",
+      ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts"
     ],
     "entities": [
       {
@@ -73,6 +77,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "voyage.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts",
+        "source": "derived"
+      },
+      {
+        "name": "openai.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
         "source": "derived"
       },
       {
@@ -164,35 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "3. PHASE 2: IMPLEMENTATION",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "4. PHASE 3: VERIFICATION",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. VERIFICATION PROTOCOL",
-        "kind": "heading",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "cli-opencode + deepseek-v4-pro --variant high dispatched: extended registry.ts with RerankerProvider type + RERANKER_CANONICAL frozen object + getRerankerFallback helper; consolidated providers/voyage.ts + providers/openai.ts + auto-select.ts + cross-encoder.ts to import from registry. Closes 7 P1 cleanup findings.",
     "created_at": "2026-05-23T18:10:00.000000Z",
-    "last_save_at": "2026-08-29T09:58:43.600Z",
+    "last_save_at": "2026-08-29T13:10:00.518Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -31,27 +31,15 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      "research.md",
-      "luna-raw-findings.txt",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research.md",
+      "luna-raw-findings.txt"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research.md",
-        "source": "derived"
-      },
-      {
-        "name": "luna-raw-findings.txt",
-        "kind": "file",
-        "path": "luna-raw-findings.txt",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -80,6 +68,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "luna-raw-findings.txt",
+        "kind": "file",
+        "path": "luna-raw-findings.txt",
         "source": "derived"
       },
       {
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Take sk-design to PASS by loading exactly the resources each scenario expects, moving no other scenario",
     "created_at": "2026-07-29T06:29:16.120Z",
-    "last_save_at": "2026-08-29T10:01:25.175Z",
+    "last_save_at": "2026-08-29T13:10:18.702Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
