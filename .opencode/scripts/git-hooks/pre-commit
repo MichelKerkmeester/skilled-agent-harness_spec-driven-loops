@@ -54,22 +54,9 @@ if [[ -f "$MASS_DEL_GUARD" ]]; then
   fi
 fi
 
-VALIDATOR="$REPO_ROOT/.opencode/skills/sk-doc/scripts/validate-doc-model-refs.js"
-if [[ "${SPECKIT_SKIP_DOC_MODEL_VALIDATE:-0}" != "1" && -f "$VALIDATOR" ]] && command -v node >/dev/null 2>&1; then
-  # Advisory failure must never skip the independent blocking gates below.
-  RC=0
-  OUT="$(node "$VALIDATOR" 2>&1)" || RC=$?
-
-  if [[ "$RC" -ne 0 ]]; then
-    echo "" >&2
-    echo "⚠️  doc-model-refs drift detected (advisory; commit not blocked):" >&2
-    echo "$OUT" | head -30 >&2 || true
-    echo "" >&2
-    echo "Bypass next time: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..." >&2
-    echo "Fix: update docs to cite canonical model names from registry.ts" >&2
-    echo "" >&2
-  fi
-fi
+# The doc-model reference validator moved to CI. It scanned the whole tree on every
+# commit for output that was advisory and could not block, which made it the single
+# most expensive thing here for no enforcement in return.
 
 # --- Comment hygiene gate (blocking) ---
 # Blocks commits that add ephemeral-artifact pointers in code comment lines.

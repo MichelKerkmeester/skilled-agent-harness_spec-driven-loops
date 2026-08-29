@@ -263,26 +263,30 @@ if [[ "${SPECKIT_SKIP_PREPUSH_SKILL_GATE:-0}" != "1" ]]; then
   fi
 fi
 
-# ── Test gate (third gate, independently bypassable) ─────────────────────────
+# ── Compiled-routing gate (third gate, independently bypassable) ─────────────
+# Editing a hub's routing inputs invalidates its minted manifest, which silently
+# drops that hub to legacy routing. Nothing errors locally and nothing logs, so it
+# was only ever found after the push, as a failed CI mail — this one check produced
+# the large majority of them. It is dependency-free and runs in a fraction of a
+# second, so it belongs here where it can be acted on rather than after the fact.
 #
-# Runs the repository's discovered test suites before anything reaches origin.
-# This gate exists because *.test.mjs files here were silently never run by any
-# harness — suites passed by hand and rotted in place, and one live suite was
-# found genuinely broken only when discovery finally happened.
-#
-# Report-only by default: known-failing suites predate this gate, and blocking
-# every session's pushes on another surface's rot would be hostage-taking.
-# Flip to blocking with SPECKIT_PREPUSH_TESTS_ENFORCE=1 once those are green.
-# Skip entirely with SPECKIT_SKIP_PREPUSH_TESTS=1.
-if [[ "${SPECKIT_SKIP_PREPUSH_TESTS:-0}" != "1" ]]; then
-  TEST_RUNNER="$REPO_ROOT/.opencode/scripts/run-node-tests.mjs"
-  if [[ -f "$TEST_RUNNER" ]]; then
-    if ! node "$TEST_RUNNER" >&2; then
-      if [[ "${SPECKIT_PREPUSH_TESTS_ENFORCE:-0}" = "1" ]]; then
-        echo "BLOCKED [gate:test-suites]: test suites failed and SPECKIT_PREPUSH_TESTS_ENFORCE=1 is set." >&2
-        exit 1
-      fi
-      echo "WARNING: test suites failed (report-only; enforce with SPECKIT_PREPUSH_TESTS_ENFORCE=1)." >&2
+# The test suites that used to run here moved to CI. They were report-only, so the
+# forty seconds they cost every push bought nothing that could block, and their
+# output was filtered too narrowly to say what had failed.
+# Skip with SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1.
+if [[ "${SPECKIT_SKIP_PREPUSH_ROUTE_GATE:-0}" != "1" ]]; then
+  ROUTE_GUARD="$REPO_ROOT/.opencode/bin/compiled-route-guard.cjs"
+  if [[ -f "$ROUTE_GUARD" ]]; then
+    if ! node "$ROUTE_GUARD" >&2; then
+      {
+        echo ""
+        echo "BLOCKED [gate:compiled-routing]: a hub's routing manifest is stale or drifted."
+        echo "Fix: refresh the hub, then resync its authored copy in the same change —"
+        echo "     refreshing alone leaves the runtime and authored manifests disagreeing."
+        echo "Skip: SPECKIT_SKIP_PREPUSH_ROUTE_GATE=1 git push ..."
+        echo ""
+      } >&2
+      exit 1
     fi
   fi
 fi

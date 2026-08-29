@@ -3,8 +3,10 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - '.opencode/skills/*/references/**'
-      - '.opencode/skills/*/assets/**'
+      # A single * does not cross a slash, so this once matched only top-level
+      # skills and ignored every packet-owned doc — the bulk of the corpus.
+      - '.opencode/skills/**/references/**'
+      - '.opencode/skills/**/assets/**'
 
 jobs:
   frontmatter-coverage:
