@@ -64,7 +64,7 @@ Command 2:
 ```text
 $ cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launcher-stop-hook-orphan-sweep.vitest.ts
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)

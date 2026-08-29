@@ -46,6 +46,16 @@ This scenario validates: the plugin loads and exports only the factory function;
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+- Prompt: `Validate the Spec Memory OpenCode Plugin end to end against the commands below, and report a PASS or FAIL verdict with cited command output.`
+
+```text
+a user has an OpenCode chat session open; on every turn the plugin's `system.transform` hook should quietly attach current Spec Kit continuity (or nothing, if the daemon is cold) to the model's system context, and the user (or an operator) can run the `system_spec_memory_status` tool to check whether the warm bridge is healthy
+```
+
+### Commands
+
 1. Run the shipped regression suite:
 
 ```bash
@@ -122,237 +132,34 @@ rm /tmp/system-spec-memory-live-check.mjs
 
 Expected: `enabled=false`, `disabled_reason=SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED`, `bridge_invocations=0`.
 
-7. If a live OpenCode session is available, restart OpenCode after any plugin edit and run the `system_spec_memory_status` tool directly, then compare its fields against step 5's output. If a live OpenCode session is unavailable (the common case for an automated operator), rely on steps 1, 3, 4, 5, and 6 as the evidentiary fallback and classify the live-session-only portion SKIP with that reason.
+7. If a live OpenCode session is available, restart OpenCode after any plugin edit and run the `system_spec_memory_status` tool directly, then compare its fields against step 5's output. If a live OpenCode session is unavailable (the common case for an automated operator), rely on steps 1, 3, 4, 5, and 6 as the evidentiary fallback and classify the live-session-only portion SKIP, naming the unavailable live OpenCode session as the blocker.
+
+### Evidence
+
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
+
+### Pass / Fail
+
+- **Pass**: The unit-test suite is fully green, the real bridge script (invoked directly and through the plugin factory) returns a well-formed, truthfully-labeled response for the daemon's actual live state, and the kill-switch envs prevent any bridge subprocess spawn.
+- **Fail**: The plugin fabricates a brief when the bridge fails, omits `disabled_reason`/`last_error_code`, lets a stale in-flight lookup overwrite a newer one, or the kill-switch envs are ignored.
+
+### Failure Triage
+
+1. Re-run each command in the sequence on its own and record its exit status; the first non-zero exit names the failing step.
+2. Confirm the plugin host, bridge, and core files listed in section 4 are the ones actually loaded, and that any compiled output is current.
+3. Compare the observed output field by field against the expected signals in section 2, and quote the first field that disagrees.
+
 
 ---
 
-## 4. EVIDENCE
+## 4. SOURCE FILES
 
-Preconditions observed (real `wc -l`):
-
-```text
-.opencode/plugins/system-spec-memory.js: 551 lines
-.opencode/plugins/tests/system-spec-memory.test.cjs: 396 lines
-.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/system-spec-memory-bridge.mjs: 387 lines
-.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/spec-kit-opencode-message-schema.mjs: 147 lines
-.opencode/bin/spec-memory.cjs: 168 lines
-```
-
-Unit test command:
-
-```bash
-node .opencode/plugins/tests/system-spec-memory.test.cjs
-```
-
-Unit test output (tail):
-
-```text
-# Subtest: exports only the OpenCode plugin factory
-ok 1 - exports only the OpenCode plugin factory
-# Subtest: reports missing, malformed, unreadable, and valid configuration safely
-ok 2 - reports missing, malformed, unreadable, and valid configuration safely
-# Subtest: uses stable bounded markers and keeps ordinary message events inside the TTL
-ok 3 - uses stable bounded markers and keeps ordinary message events inside the TTL
-# Subtest: does not let an invalidated in-flight result replace a newer lookup
-ok 4 - does not let an invalidated in-flight result replace a newer lookup
-# Subtest: accepts bridge stdout at the ceiling and rejects the first byte over it
-ok 5 - accepts bridge stdout at the ceiling and rejects the first byte over it
-# Subtest: fails open when the bridge exits before consuming stdin
-ok 6 - fails open when the bridge exits before consuming stdin
-# Subtest: status names the runtime continuity capability boundaries
-ok 7 - status names the runtime continuity capability boundaries
-# Subtest: deduplicates marked synthetic text parts with unrelated extra fields
-ok 8 - deduplicates marked synthetic text parts with unrelated extra fields
-# Subtest: UserPromptSubmit passes through one valid JSON line
-ok 9 - UserPromptSubmit passes through one valid JSON line
-# Subtest: UserPromptSubmit maps malformed and nonzero child output to the safe JSON default
-ok 10 - UserPromptSubmit maps malformed and nonzero child output to the safe JSON default
-# Subtest: UserPromptSubmit terminates a hanging child inside the outer hook budget
-ok 11 - UserPromptSubmit terminates a hanging child inside the outer hook budget
-# Subtest: UserPromptSubmit bounds both stdin and captured child output
-ok 12 - UserPromptSubmit bounds both stdin and captured child output
-# Subtest: Claude hook sources pin bounded, truthful, snapshot-consistent behavior
-ok 13 - Claude hook sources pin bounded, truthful, snapshot-consistent behavior
-1..13
-# tests 13
-# suites 0
-# pass 13
-# fail 0
-# cancelled 0
-# skipped 0
-# todo 0
-# duration_ms 4456.269291
-```
-
-Host-import isolation check:
-
-```bash
-node -e "import('@opencode-ai/plugin/tool').then(()=>console.log('resolved')).catch(e=>console.log('FAIL', e.code || e.message))"
-```
-
-```text
-FAIL ERR_MODULE_NOT_FOUND
-```
-
-Direct real-bridge invocation, `request:"status"` (daemon cold, no `/tmp/system-spec-memory` socket present):
-
-```bash
-printf '%s' '{"request":"status","workspaceRoot":"'"$PWD"'"}' \
-  | node .opencode/skills/system-spec-kit/mcp-server/plugin-bridges/system-spec-memory-bridge.mjs
-```
-
-```json
-{"status":"skipped","brief":null,"data":null,"metadata":{"route":"warm_probe","retryable":true,"durationMs":1,"socketPath":"[spec-memory-socket]","exitCode":75},"error":"SOCKET_ABSENT"}
-```
-
-Direct real-bridge invocation, `request:"brief"` (same cold-daemon state):
-
-```bash
-printf '%s' '{"request":"brief","workspaceRoot":"'"$PWD"'"}' \
-  | node .opencode/skills/system-spec-kit/mcp-server/plugin-bridges/system-spec-memory-bridge.mjs
-```
-
-```json
-{"status":"skipped","brief":null,"data":null,"metadata":{"route":"warm_probe","retryable":true,"durationMs":1,"socketPath":"[spec-memory-socket]","exitCode":75},"error":"SOCKET_ABSENT"}
-```
-
-Live plugin-factory invocation (real bridge script, real cache/session state, only the host-only `tool` import stubbed):
-
-```text
---- system_spec_memory_status.execute() ---
-plugin_id=system-spec-memory
-enabled=true
-disabled_reason=none
-config_status=missing
-config_error_code=none
-cache_ttl_ms=5000
-max_brief_chars=2400
-max_cache_entries=200
-runtime_ready=false
-node_binary=node
-bridge_timeout_ms=3000
-cli_timeout_ms=2500
-bridge_path=[spec-memory-bridge]
-last_bridge_status=skipped
-last_error_code=SOCKET_ABSENT
-last_duration_ms=38
-bridge_invocations=1
-continuity_lookups=0
-cache_entries=0
-cache_hits=0
-cache_misses=0
-cache_hit_rate=0
-continuity_recovery=per_transform_warm
-continuity_compaction=unsupported_runtime_event
-continuity_autosave=unsupported_runtime_event
-warm_status=skipped
-warm_error=SOCKET_ABSENT
-warm_route=warm_probe
-warm_retryable=true
-warm_exit_code=75
-
---- experimental.chat.system.transform() ---
-{
-  "system": []
-}
-
---- system_spec_memory_status.execute() AFTER transform ---
-plugin_id=system-spec-memory
-enabled=true
-disabled_reason=none
-config_status=missing
-config_error_code=none
-cache_ttl_ms=5000
-max_brief_chars=2400
-max_cache_entries=200
-runtime_ready=false
-node_binary=node
-bridge_timeout_ms=3000
-cli_timeout_ms=2500
-bridge_path=[spec-memory-bridge]
-last_bridge_status=skipped
-last_error_code=SOCKET_ABSENT
-last_duration_ms=37
-bridge_invocations=3
-continuity_lookups=1
-cache_entries=0
-cache_hits=0
-cache_misses=1
-cache_hit_rate=0
-continuity_recovery=per_transform_warm
-continuity_compaction=unsupported_runtime_event
-continuity_autosave=unsupported_runtime_event
-warm_status=skipped
-warm_error=SOCKET_ABSENT
-warm_route=warm_probe
-warm_retryable=true
-warm_exit_code=75
-```
-
-Kill-switch check (`SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED=1`, same script, fixture still present because the teardown now runs after this step):
-
-```text
---- system_spec_memory_status.execute() ---
-plugin_id=system-spec-memory
-enabled=false
-disabled_reason=SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED
-config_status=missing
-config_error_code=none
-cache_ttl_ms=5000
-max_brief_chars=2400
-max_cache_entries=200
-runtime_ready=false
-node_binary=node
-bridge_timeout_ms=3000
-cli_timeout_ms=2500
-bridge_path=[spec-memory-bridge]
-last_bridge_status=uninitialized
-last_error_code=none
-last_duration_ms=0
-bridge_invocations=0
-continuity_lookups=0
-cache_entries=0
-cache_hits=0
-cache_misses=0
-cache_hit_rate=0
-continuity_recovery=per_transform_warm
-continuity_compaction=unsupported_runtime_event
-continuity_autosave=unsupported_runtime_event
-warm_status=skipped
-warm_error=SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED
-warm_route=unknown
-warm_retryable=false
-warm_exit_code=none
-
---- experimental.chat.system.transform() ---
-{
-  "system": []
-}
-```
-
-Claude Code hook wiring evidence from `.claude/settings.json` (the sibling continuity delivery path for the Claude runtime, not this OpenCode plugin):
-
-```text
-SessionStart -> node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/session-prime.js
-PreCompact   -> node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/compact-inject.js
-UserPromptSubmit -> node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/user-prompt-submit.js
-Stop         -> node .opencode/skills/system-spec-kit/mcp-server/dist/hooks/claude/session-stop.js (async)
-```
-
-OpenCode MCP daemon registration evidence from `opencode.json` (the standalone daemon this plugin's bridge probes; distinct from the plugin's own file-based auto-discovery):
-
-```json
-"system-spec-memory": {
-  "type": "local",
-  "command": ["node", ".opencode/bin/system-spec-memory-launcher.cjs"],
-  "environment": { "SPECKIT_IPC_SOCKET_DIR": "/tmp/system-spec-memory", "...": "..." }
-}
-```
-
----
-
-## 5. SOURCE FILES
-
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - `.opencode/plugins/system-spec-memory.js`
 - `.opencode/plugins/tests/system-spec-memory.test.cjs`
 - `.opencode/skills/system-spec-kit/mcp-server/plugin-bridges/system-spec-memory-bridge.mjs`
@@ -372,19 +179,9 @@ OpenCode MCP daemon registration evidence from `opencode.json` (the standalone d
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugins And Hooks
 - Playbook ID: spec-memory-plugin
 - Canonical root source: manual-testing-playbook.md
 - Feature file path: plugins-and-hooks/spec-memory-plugin.md
-
----
-
-## 7. PASS/FAIL
-
-PASS
-
-All 13 unit-test cases in `system-spec-memory.test.cjs` passed (`# pass 13`, `# fail 0`). The real bridge script, invoked directly and through a live plugin-factory instantiation with only the host-only `@opencode-ai/plugin/tool` import stubbed (the same technique the shipped test itself uses, never a mock of plugin logic), truthfully reported the actual cold-daemon state (`status:"skipped"`, `error:"SOCKET_ABSENT"`, `retryable:true`, `exitCode:75`) instead of fabricating a continuity brief, and correctly produced an empty `output.system` for that turn. The kill-switch env (`SYSTEM_SPEC_MEMORY_PLUGIN_DISABLED=1`) suppressed the bridge entirely (`enabled=false`, `bridge_invocations=0`) as designed.
-
-SKIP (documented, not blocking the PASS above): full end-to-end continuity-brief injection — a non-empty `output.system` entry ending in a real `[system-spec-memory:continuity:...]` marker sourced from a warm daemon inside a live OpenCode session — was not observed, because no OpenCode session was live in this environment and the shared `system-spec-memory` MCP daemon was cold (`/tmp/system-spec-memory` had no daemon socket, only an unrelated `hf-embed.pid`/`relaunch.log`). That path is covered functionally by unit test 3 (`uses stable bounded markers and keeps ordinary message events inside the TTL`), which exercises the identical code path against a scripted warm bridge stand-in.

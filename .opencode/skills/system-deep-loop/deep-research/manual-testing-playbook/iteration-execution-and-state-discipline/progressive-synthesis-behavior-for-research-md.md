@@ -86,4 +86,4 @@ Use the runtime agent’s Step 7 and the README configuration table to resolve t
 - Playbook ID: DR-010
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/progressive-synthesis-behavior-for-research-md.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

@@ -49,7 +49,7 @@ Validate Feature catalog annotation name validity against the documented validat
 
 ### Evidence
 
-Executed from repository root: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.
+Executed from repository root: `.`.
 
 Command 1, annotation extraction:
 
@@ -194,7 +194,7 @@ Observed catalog location check:
 ```text
 .opencode/skills/system-spec-kit/feature-catalog contains feature-catalog.md
 Glob **/FEATURE-CATALOG.md returned only:
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/mcp-click-up/feature-catalog/FEATURE-CATALOG.md
+.opencode/skills/mcp-click-up/feature-catalog/FEATURE-CATALOG.md
 ```
 
 Supplemental cross-reference against the available system-spec-kit catalog file:

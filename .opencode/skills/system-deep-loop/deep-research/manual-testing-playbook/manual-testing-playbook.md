@@ -804,6 +804,119 @@ Expected signals: `if_absent` command unchanged; both fan-out steps have `skip_w
 
 ---
 
+## 16. INTRA ROUTING RECALL
+
+This category covers 8 scenarios validating the `deep-research` packet's own intra-packet
+smart router (`SKILL.md` §2 `Smart Router Pseudocode`): each scenario confirms one
+`INTENT_SIGNALS` key scores as the dominant intent for a shaped prompt and loads the matching
+`RESOURCE_MAP` resource set.
+
+### DR-R01 | Deep research loop setup routing
+
+#### Description
+Verify a loop-setup-shaped request scores the `LOOP_SETUP` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Start an autoresearch deep research loop and handle setup and init for this investigation.`
+
+Expected signals: `LOOP_SETUP` is the dominant intent; the loaded resource set matches `RESOURCE_MAP["LOOP_SETUP"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DR-R01](../manual-testing-playbook/intra-routing-recall/loop-setup.md)
+
+### DR-R02 | Deep research iteration routing
+
+#### Description
+Verify a iteration-shaped request scores the `ITERATION` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Continue research with the next round, capture the delta, and choose the next focus for this research cycle.`
+
+Expected signals: `ITERATION` is the dominant intent; the loaded resource set matches `RESOURCE_MAP["ITERATION"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DR-R02](../manual-testing-playbook/intra-routing-recall/iteration.md)
+
+### DR-R03 | Deep research convergence routing
+
+#### Description
+Verify a convergence-shaped request scores the `CONVERGENCE` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Evaluate convergence, the stop condition, diminishing returns, and newInfoRatio before ending the investigation.`
+
+Expected signals: `CONVERGENCE` is the dominant intent; the loaded resource set matches `RESOURCE_MAP["CONVERGENCE"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DR-R03](../manual-testing-playbook/intra-routing-recall/convergence.md)
+
+### DR-R04 | Deep research recovery routing
+
+#### Description
+Verify a recovery-shaped request scores the `RECOVERY` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `The research loop is stuck after a timeout; run recovery, reconstruct state, and resolve the blocked stop.`
+
+Expected signals: `RECOVERY` is the dominant intent; the loaded resource set matches `RESOURCE_MAP["RECOVERY"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DR-R04](../manual-testing-playbook/intra-routing-recall/recovery.md)
+
+### DR-R05 | Deep research state routing
+
+#### Description
+Verify a state-shaped request scores the `STATE` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Explain the state file, jsonl strategy, dashboard, registry, and lineage records for a research session.`
+
+Expected signals: `STATE` is the dominant intent; the loaded resource set matches `RESOURCE_MAP["STATE"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DR-R05](../manual-testing-playbook/intra-routing-recall/state.md)
+
+### DR-R06 | Deep research spec anchoring routing
+
+#### Description
+Verify a spec-anchoring-shaped request scores the `SPEC_ANCHORING` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Use spec anchoring with a generated fence, folder_state classification, and lock handling for the research run.`
+
+Expected signals: `SPEC_ANCHORING` is the dominant intent; the loaded resource set matches `RESOURCE_MAP["SPEC_ANCHORING"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DR-R06](../manual-testing-playbook/intra-routing-recall/spec-anchoring.md)
+
+### DR-R07 | Deep research runtime parity routing
+
+#### Description
+Verify a runtime-parity-shaped request scores the `RUNTIME_PARITY` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Check runtime capability parity between opencode and claude before dispatching the research loop.`
+
+Expected signals: `RUNTIME_PARITY` is the dominant intent; the loaded resource set matches `RESOURCE_MAP["RUNTIME_PARITY"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DR-R07](../manual-testing-playbook/intra-routing-recall/runtime-parity.md)
+
+### DR-R08 | Deep research resource map routing
+
+#### Description
+Verify a resource-map-shaped request scores the `RESOURCE_MAP` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Use the resource map inventory and coverage gate while preparing the research loop.`
+
+Expected signals: `RESOURCE_MAP` is the dominant intent; the loaded resource set matches `RESOURCE_MAP["RESOURCE_MAP"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DR-R08](../manual-testing-playbook/intra-routing-recall/resource-map.md)
+
+---
+
 ## 15. AUTOMATED TEST CROSS-REFERENCE
 
 - `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`: runtime mirror alignment, capability matrix coverage, and artifact naming.

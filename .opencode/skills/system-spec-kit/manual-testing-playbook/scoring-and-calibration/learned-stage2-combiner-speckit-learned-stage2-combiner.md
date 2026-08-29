@@ -67,7 +67,7 @@ Verify isLearnedStage2CombinerEnabled() → Check model training succeeded (non-
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [scoring-and-calibration/learned-stage2-weight-combiner.md](../../feature-catalog/scoring-and-calibration/learned-stage2-weight-combiner.md)
-- Feature flag reference: [feature-flag-reference/1-search-pipeline-features-speckit.md](../../manual-testing-playbook/feature-flag-reference/1-search-pipeline-features-speckit.md)
+- Feature flag reference: [feature-flag-reference/1-search-pipeline-features-speckit.md](../../manual-testing-playbook/feature-flag-reference/search-pipeline-features-speckit.md)
 - Source file: `shared/ranking/learned-combiner.ts`
 
 ---

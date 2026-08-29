@@ -26,11 +26,11 @@ The local-LLM stack must support interactive use. Targets:
 
 - Objective: Confirm interactive-grade latency + throughput.
 - Real user request: `Run 50 mixed queries through Memory MCP and report p50/p95/p99 latency + queries-per-second. Confirm the stack meets interactive targets.`
-- RCAF Prompt: `As a query-intelligence validation operator, fire 50 mixed-load queries through memory_search and report p50/p95/p99 + sustained throughput. Return a pass/fail verdict against the documented interactive targets.`
+- Operator prompt: `As a query-intelligence validation operator, fire 50 mixed-load queries through memory_search and report p50/p95/p99 + sustained throughput. Return a pass/fail verdict against the documented interactive targets.`
 - Expected execution process: run the canned 50-query workload, time each call, compute percentiles + throughput.
 - Expected signals: p50 ≤ 200 ms, p95 ≤ 800 ms, p99 ≤ 2 s, throughput ≥ 5 qps.
 - Desired user-visible outcome: `PASS — p50 142 ms / p95 612 ms / p99 1.8 s / 7.2 qps; meets all interactive targets.`
-- Pass/fail: PASS if ALL 4 targets met; PARTIAL if 2-3 met; FAIL if ≤ 1 met.
+- Pass/fail: PASS only if ALL 4 targets are met; FAIL if any target is missed — meeting 2-3 of 4 is a FAIL, not partial credit.
 
 ---
 
@@ -82,18 +82,26 @@ STEADY    (2nd pass, warm provider):     p50=142 ms  p95=612 ms  p99=1.8 s  qps=
 
 ### Evidence
 
-- BLOCKED before workload execution.
-- Scenario command 1 requires preparing `_sandbox/local-llm-query-intelligence/410/workload.json` with 50 queries.
-- User constraint: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
-- Allowed write path: `.opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/query-latency-and-throughput.md`.
-- Because `_sandbox/local-llm-query-intelligence/410/workload.json` is outside the allowed write path, the required workload file could not be created and the workload could not be run exactly as written.
-- No `memory_search` latency samples were collected; no p50/p95/p99/qps values are available.
-- Pass/Fail: BLOCKED — required workload file creation is forbidden by the allowed write path for this run.
+Capture, for every step in the Commands sequence above:
 
----
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
-## 4. NOTES
+### Pass / Fail
 
+- **Pass**: ALL 4 targets are met.
+- **Fail**: Any target is missed — meeting 2-3 of 4 is a FAIL, not partial credit.
+
+### Failure Triage
+
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
+
+### Notes
 This scenario is sensitive to system load. Run it when no other heavy processes are active on the machine. Repeat 3 times and report the median of medians if results are noisy.
 
 If targets are missed:
@@ -103,8 +111,22 @@ If targets are missed:
 
 This is the only scenario in the suite that captures wall-clock performance. The mechanical bench files under `performance/*.bench.ts` measure embedding-only latency at finer granularity; this playbook entry measures the **end-to-end search experience** the operator actually sees.
 
+### Clean-Up
+No cleanup needed; this scenario is read-only against the production DB. The workload JSON can stay under `_sandbox/local-llm-query-intelligence/410/` for future reruns.
+
 ---
 
-## 5. CLEANUP
+## 4. SOURCE FILES
 
-No cleanup needed; this scenario is read-only against the production DB. The workload JSON can stay under `_sandbox/local-llm-query-intelligence/410/` for future reruns.
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 410
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/query-latency-and-throughput.md`

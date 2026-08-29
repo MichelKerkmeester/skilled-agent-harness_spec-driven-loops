@@ -51,12 +51,12 @@ CRUD mutations are atomic (all-or-nothing); error handling cleans up partial sta
 
 ### Evidence
 
-Executed from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit`.
+Executed from `.opencode/skills/system-spec-kit`.
 
 Command: `npx vitest run mcp-server/tests/handler-memory-save.vitest.ts -t "cleans up a newly created chunk tree when chunked PE supersede finalize fails" --reporter verbose`
 
 ```text
- RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.6 .opencode/skills/system-spec-kit
 
 (node:89440) ExperimentalWarning: SQLite is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
@@ -71,7 +71,7 @@ Command: `npx vitest run mcp-server/tests/handler-memory-save.vitest.ts -t "clea
 Command: `npx vitest run mcp-server/tests/chunking-orchestrator-swap.vitest.ts --reporter verbose`
 
 ```text
- RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.6 .opencode/skills/system-spec-kit
 
 (node:89246) ExperimentalWarning: SQLite is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
@@ -114,10 +114,10 @@ stderr | mcp-server/tests/chunking-orchestrator-swap.vitest.ts > T013: staged sw
 Command: `npx vitest run mcp-server/tests/memory-crud-extended.vitest.ts mcp-server/tests/deferred-features-integration.vitest.ts mcp-server/tests/transaction-manager.vitest.ts mcp-server/tests/preflight.vitest.ts --reporter verbose`
 
 ```text
- RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.6 .opencode/skills/system-spec-kit
 
 stderr | mcp-server/tests/transaction-manager.vitest.ts
-[factory] Failed to read active-embedder metadata from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite: database is locked; continuing provider cascade.
+[factory] Failed to read active-embedder metadata from .opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite: database is locked; continuing provider cascade.
 
  ✓ mcp-server/tests/transaction-manager.vitest.ts > Transaction Manager Unit Tests > Execute atomic save with rollback 1ms
  ✓ mcp-server/tests/transaction-manager.vitest.ts > Transaction Manager Unit Tests > Execute atomic save with pending file cleanup on failure 0ms
@@ -141,7 +141,8 @@ stderr | mcp-server/tests/memory-crud-extended.vitest.ts > handleMemoryUpdate - 
 
 ### Pass / Fail
 
-- **BLOCKED**: The executable safe-swap/BM25 rollback and CRUD/transaction cleanup surfaces passed, but the required chunked PE finalize cleanup scenario is currently inside `describe.skip('atomic-save failure injection', ...)`; Vitest reported `Test Files  1 skipped (1)` and `Tests  66 skipped (66)`, so the staged chunk-tree cleanup expectation could not be executed in the current repo state.
+- **Pass**: All mutation paths are atomic, error handling leaves no partial state, and chunked-save rollback paths preserve old children/BM25 while cleaning staged replacements.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

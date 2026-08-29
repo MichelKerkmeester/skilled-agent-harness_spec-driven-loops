@@ -27,11 +27,11 @@ This scenario probes whether the LLM's pretraining recognizes these domain-speci
 
 - Objective: Confirm contextual disambiguation across 3 senses of "save context".
 - Real user request: `Verify that adding context-disambiguating phrases to a polysemous query 'save context' steers Memory MCP and Code Graph to the correct sense.`
-- RCAF Prompt: `As a query-intelligence validation operator, fire 3 variants of a polysemous query 'save context' (each adding a different disambiguator) and verify the top-3 results match the intended sense. Return a pass/fail verdict.`
+- Operator prompt: `As a query-intelligence validation operator, fire 3 variants of a polysemous query 'save context' (each adding a different disambiguator) and verify the top-3 results match the intended sense. Return a pass/fail verdict.`
 - Expected execution process: fire 3 query variants, inspect top-3 results for each, mark which sense the top-3 represents.
 - Expected signals: each variant's top-3 is dominated by its intended sense (≥ 2 of 3 results match).
 - Desired user-visible outcome: `PASS — all 3 variants disambiguate correctly; top-3 dominated by intended sense.`
-- Pass/fail: PASS if all 3 variants correctly disambiguate; PARTIAL if 2 of 3; FAIL if ≤ 1.
+- Pass/fail: PASS only if all 3 variants correctly disambiguate; FAIL if any variant does not — 2 of 3 is a FAIL, not partial credit.
 
 ---
 
@@ -92,8 +92,34 @@ For each variant:
 - An honest note if a particular variant's top-3 mixes senses — list which senses appeared and discuss whether the mixing is reasonable (e.g., a `memory_save` file might appear in the git-sense query because both involve "saving").
 - Active provider from memory_health.
 
+### Pass / Fail
+
+- **Pass**: All 3 variants correctly disambiguate.
+- **Fail**: Any variant does not — 2 of 3 is a FAIL, not partial credit.
+
+### Failure Triage
+
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
+
+### Notes
+This scenario stresses the embedding's ability to distinguish senses based on surrounding context. Current local and Ollama models should handle these common English-language disambiguations cleanly, but ambiguous queries (e.g., bare "save context" without a qualifier) may legitimately return mixed top-K — that's not a failure of the disambiguation itself.
+
 ---
 
-## 4. NOTES
+## 4. SOURCE FILES
 
-This scenario stresses the embedding's ability to distinguish senses based on surrounding context. Current local and Ollama models should handle these common English-language disambiguations cleanly, but ambiguous queries (e.g., bare "save context" without a qualifier) may legitimately return mixed top-K — that's not a failure of the disambiguation itself.
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 404
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/disambiguation-under-context.md`

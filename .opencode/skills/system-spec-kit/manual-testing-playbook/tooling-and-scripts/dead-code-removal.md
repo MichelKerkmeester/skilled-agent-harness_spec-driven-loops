@@ -65,7 +65,7 @@ Command: `rg -n "decayInterval|attentionDecayRate|minAttentionScore" .opencode/s
 Command: `npx vitest run tests/dead-code-regression.vitest.ts tests/memory-crud-extended.vitest.ts tests/intent-routing.vitest.ts`
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  3 passed (3)

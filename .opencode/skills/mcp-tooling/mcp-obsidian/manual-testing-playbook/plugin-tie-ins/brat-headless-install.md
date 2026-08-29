@@ -102,7 +102,7 @@ Install a tagged beta plugin headlessly through BRAT by staging its release asse
    jq empty "$COMMUNITY"
    ~~~
 
-4. Verify: confirm the exact repo/tag and manifest ID with jq, confirm the staged files are non-empty, and reload Obsidian only after all three stages pass. Record a local obsidian --help/reload boundary as SKIP if no app is available; it does not invalidate the file-layer result.
+4. Verify: confirm the exact repo/tag and manifest ID with jq, confirm the staged files are non-empty, and reload Obsidian only after all three stages pass. Record a local obsidian --help/reload boundary as SKIP when the Obsidian desktop app is unavailable in this environment; it does not invalidate the file-layer result.
 
 ### Expected
 

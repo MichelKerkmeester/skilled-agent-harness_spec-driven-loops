@@ -513,7 +513,17 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 
 ---
 
-## 12. SUMMARY
+## 12. RELATED RESOURCES
+
+- `.opencode/skills/sk-code/SKILL.md` — the single smart-router skill loaded on every invocation.
+- `.opencode/agents/orchestrate.md` — the required dispatcher; @code halts without its `Depth: 1` marker.
+- `.opencode/agents/markdown.md` — the redirect target for skill/agent/command component-authoring requests.
+- `.opencode/agents/review.md` — the formal reviewer the orchestrator dispatches separately after implementation.
+- `.opencode/agents/debug.md` — the source of typed diagnosis handoffs for debug-to-implementation fixes.
+
+---
+
+## 13. SUMMARY
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐

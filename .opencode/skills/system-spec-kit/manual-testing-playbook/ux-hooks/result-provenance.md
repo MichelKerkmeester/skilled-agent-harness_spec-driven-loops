@@ -57,7 +57,7 @@ Validate result provenance and confirm graphEvidence surfaces edge IDs, communit
 
 ### Evidence
 
-- Scenario file read in full from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/result-provenance.md`.
+- Scenario file read in full from `.opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/result-provenance.md`.
 - Stable record IDs selected from `memory_list({ limit: 10, offset: 0, specFolder: "", sortBy: "importance_weight", includeChunks: false })`:
   ```json
   {
@@ -78,7 +78,7 @@ Validate result provenance and confirm graphEvidence surfaces edge IDs, communit
           "updatedAt": "2026-06-05 15:26:09",
           "importanceWeight": 1,
           "triggerCount": 19,
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+          "filePath": ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
           "compact": true
         },
         {
@@ -89,7 +89,7 @@ Validate result provenance and confirm graphEvidence surfaces edge IDs, communit
           "updatedAt": "2026-06-11 09:32:52",
           "importanceWeight": 1,
           "triggerCount": 8,
-          "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/constitutional/spec-folder-naming.md",
+          "filePath": ".opencode/skills/system-spec-kit/constitutional/spec-folder-naming.md",
           "compact": true
         }
       ]
@@ -163,7 +163,7 @@ Validate result provenance and confirm graphEvidence surfaces edge IDs, communit
   ```
   Output:
   ```text
-   RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+   RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
    Test Files  1 passed (1)
@@ -174,7 +174,8 @@ Validate result provenance and confirm graphEvidence surfaces edge IDs, communit
 
 ### Pass / Fail
 
-- **BLOCKED**: The scenario could not obtain the required default-on `memory_search` response because the native MCP tool rejected initial-search cursor parameters and the daemon CLI reported `@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build`; without that response, the boosted result, unboosted result, and flag-off provenance assertions could not be evaluated. The temporary causal edge was cleaned up and the targeted Vitest exited 0.
+- **Pass**: `graphEvidence` surfaces for graph-boosted results, contains documented fields, and the kill-switch strips the field.
+- **Fail**: The field is missing for boosted results, content is incomplete, or the kill-switch has no effect.
 
 ### Failure Triage
 

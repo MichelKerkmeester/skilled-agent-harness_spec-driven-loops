@@ -88,4 +88,4 @@ Privilege the convergence reference for gate definitions and the YAML workflow f
 - Playbook ID: DRV-018
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/review-quality-guards-block-premature-stop.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

@@ -22,11 +22,11 @@ This scenario fires 3 queries about the same topic (BGE local fallback local emb
 
 - Objective: Confirm specificity-aware ranking.
 - Real user request: `Verify that abstract vs specific queries about BGE local fallback return level-appropriate results, not all collapsing to the same most-specific match.`
-- RCAF Prompt: `As a query-intelligence validation operator, fire 3 queries on the same topic at 3 specificity levels, and verify the top-3 of each is calibrated to that level. Return a pass/fail verdict.`
+- Operator prompt: `As a query-intelligence validation operator, fire 3 queries on the same topic at 3 specificity levels, and verify the top-3 of each is calibrated to that level. Return a pass/fail verdict.`
 - Expected execution process: fire 3 queries, inspect top-3 of each, classify each result as ABSTRACT / MID / SPECIFIC, verify the top-3 weighted average matches the query level.
 - Expected signals: abstract query's top-3 weighted average is more abstract than the specific query's top-3; the specific query's top-3 includes the exact code reference; the abstract query's top-3 does NOT lead with the exact code reference.
 - Desired user-visible outcome: `PASS — all 3 levels return level-appropriate top-3; ranking is calibrated by specificity.`
-- Pass/fail: PASS if all 3 levels distinguish correctly; PARTIAL if 2 of 3; FAIL if all 3 collapse to the same top-3.
+- Pass/fail: PASS only if all 3 levels distinguish correctly; FAIL if any level does not — both the 2-of-3 case and the all-3-collapse case are FAIL.
 
 ---
 
@@ -75,74 +75,46 @@ For each level, classify the top-3 results as:
 
 ### Evidence
 
-- The 3 queries verbatim:
-  - `local embeddings for memory and code search`
-  - `Q8_0 GGUF quantization for sentence embeddings via ollama`
-  - `OLLAMA_DEFAULT_MODEL_PATH constant in ollama-availability`
-- Search transport attempted because the direct `memory_search` MCP tool was not exposed in this runtime's visible tool namespace:
-  - `node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"local embeddings for memory and code search","limit":5}' --format json --timeout-ms 10000`
-- Actual output from the Level 1 search attempt:
-  ```
-  @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
-  ```
-- Top-5 file paths for each:
-  - Level 1: BLOCKED before results; no top-5 returned.
-  - Level 2: BLOCKED because the Level 1 required command showed the Spec Kit Memory MCP server dist is stale; no top-5 returned.
-  - Level 3: BLOCKED because the Level 1 required command showed the Spec Kit Memory MCP server dist is stale; no top-5 returned.
-- Classification table mapping each top-3 result to A/M/S level:
-  | Level | Top-3 result | Class | Evidence |
-  |-------|--------------|-------|----------|
-  | 1 (ABS) | BLOCKED | N/A | `@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build` |
-  | 2 (MID) | BLOCKED | N/A | Not run after required memory_search transport was confirmed unavailable/stale. |
-  | 3 (SPEC) | BLOCKED | N/A | Not run after required memory_search transport was confirmed unavailable/stale. |
-- Honest note for Level 1: no result was returned, so there is no #1 result to classify as a reasonable abstract answer or a miscalibrated source-file match.
-- Active provider from memory_health:
-  - `node .opencode/bin/spec-memory.cjs memory_health --format json --timeout-ms 10000`
-  - Actual output:
-    ```
-    @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
-    ```
-  - Active provider could not be observed because `memory_health` was blocked by the stale Spec Kit MCP server dist.
-- Spec Kit Memory plugin status observed via `system_spec_memory_status()`:
-  ```
-  plugin_id=system-spec-memory
-  enabled=true
-  disabled_reason=none
-  cache_ttl_ms=5000
-  max_brief_chars=2400
-  max_cache_entries=200
-  runtime_ready=false
-  node_binary=node
-  bridge_timeout_ms=3000
-  cli_timeout_ms=2500
-  bridge_path=[spec-memory-bridge]
-  last_bridge_status=fail_open
-  last_error_code=EXIT_69
-  last_duration_ms=50
-  bridge_invocations=8
-  continuity_lookups=7
-  cache_entries=0
-  cache_hits=0
-  cache_misses=7
-  cache_hit_rate=0
-  warm_status=fail_open
-  warm_error=EXIT_69
-  warm_route=cli
-  warm_retryable=false
-  warm_exit_code=69
-  ```
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass/Fail
 
-BLOCKED — The required Spec Kit Memory search and health commands could not run because the local MCP server dist is stale; fixing it would require running the requested build command, which would write outside the single allowed scenario file.
+- **Pass**: All 3 levels distinguish correctly.
+- **Fail**: Any level does not — both the 2-of-3 case and the all-3-collapse case are FAIL.
 
----
+### Failure Triage
 
-## 4. NOTES
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
 
+### Notes
 This is the most subjective of the scenarios — A/M/S classification requires judgment. To make the assessment fair:
 - Files with a clear narrative introduction count as A even if they're source code.
 - Files dominated by code without prose count as S.
 - Reference docs (decision-record.md, ADRs) count as M.
 
 If reviewers consistently disagree on classification, that's a signal the corpus content boundaries are fuzzy — not necessarily a ranker failure.
+
+---
+
+## 4. SOURCE FILES
+
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 406
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/specificity-ladder.md`

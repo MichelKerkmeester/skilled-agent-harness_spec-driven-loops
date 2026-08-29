@@ -53,11 +53,11 @@ Symbol search output:
 
 ```text
 Found 2 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts:
+.opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts:
   Line 856: // ShouldApplyPostSearchIntentWeighting, postSearchPipeline) removed in
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/tests/pipeline-v2.vitest.ts:
+.opencode/skills/system-spec-kit/mcp-server/tests/pipeline-v2.vitest.ts:
   Line 292:   // isPipelineV2Enabled() was always true and has been deleted, along with its tests.
 ```
 
@@ -68,7 +68,7 @@ Validation test command output:
 > vitest run tests/hybrid-search.vitest.ts tests/search-flags.vitest.ts
 
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 (node:57401) ExperimentalWarning: SQLite is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
@@ -112,13 +112,13 @@ warm_exit_code=none
 V2 pipeline source evidence:
 
 ```text
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts
+.opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts
 16: // 4-stage pipeline architecture
 17: import { executePipeline } from '../lib/search/pipeline/index.js';
 1226:     // V2 pipeline is the only path (legacy V1 removed from the runtime pipeline)
 1266:     const pipelineResult: PipelineResult = await executePipeline(pipelineConfig);
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/pipeline/orchestrator.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/search/pipeline/orchestrator.ts
 4: // 4-stage pipeline execution with per-stage error handling and timeouts.
 30: import { executeStage1 } from './stage1-candidate-gen.js';
 31: import { executeStage2 } from './stage2-fusion.js';

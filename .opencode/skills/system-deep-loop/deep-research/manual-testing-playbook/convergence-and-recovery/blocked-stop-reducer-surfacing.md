@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates blocked-stop reducer surfacing for `DR-032`. The objective is to verify that a research packet with at least one `blocked_stop` event surfaces that event into reducer-owned `blockedStopHistory`, the `BLOCKED STOPS` dashboard section, and the strategy `next-focus` anchor.
+This scenario validates blocked-stop reducer surfacing for `DR-032`. The objective is to verify that a research packet with at least one `blocked_stop` event surfaces that event into reducer-owned `blockedStopHistory`, the `Blocked Stops` dashboard section, and the strategy `next-focus` anchor.
 
 ### WHY THIS MATTERS
 
@@ -27,12 +27,12 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Title: Research reducer surfaces blocked-stop history across registry, dashboard, and next-focus.
 - Given: A research packet with at least one `blocked_stop` event, using `.opencode/skills/system-deep-loop/deep-research/scripts/tests/fixtures/interrupted-session/` once T048 lands or a hand-constructed minimal example that includes `blockedBy`, `gateResults`, `recoveryStrategy`, and `timestamp`.
 - When: The operator runs `node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder>`.
-- Then: `findings-registry.json` exposes `blockedStopHistory` entries, `deep-research-dashboard.md` renders a `BLOCKED STOPS` section for each entry, and the `ANCHOR:next-focus` block in `deep-research-strategy.md` contains the blocked-stop recovery strategy.
+- Then: `findings-registry.json` exposes `blockedStopHistory` entries, `deep-research-dashboard.md` renders a `Blocked Stops` section for each entry, and the `ANCHOR:next-focus` block in `deep-research-strategy.md` contains the blocked-stop recovery strategy.
 - Real user request: If research STOP gets vetoed, where can I see that decision afterward and what guidance does the reducer surface so I know how to recover?
 - Prompt: `Validate blocked-stop reducer output surfaces history, dashboard guidance, and recovery-focused next focus.`
 - Expected execution process: Run the reducer first, then inspect the reducer-owned registry, dashboard, and strategy anchor in that order so the source-of-truth state is checked before the rendered summaries.
 - Desired user-visible outcome: The user can see that blocked-stop state is persisted in three operator-facing surfaces and can explain which recovery hint the reducer chose.
-- Expected signals: `blockedStopHistory` is non-empty; each entry exposes `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, and `timestamp`; `BLOCKED STOPS` renders the same blocked-stop data; the strategy `next-focus` anchor includes the recovery hint from the latest blocked-stop event.
+- Expected signals: `blockedStopHistory` is non-empty; each entry exposes `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, and `timestamp`; `Blocked Stops` renders the same blocked-stop data; the strategy `next-focus` anchor includes the recovery hint from the latest blocked-stop event.
 - Pass/fail posture: PASS if all three reducer-owned surfaces show the blocked-stop data and the recovery strategy is visible in the strategy anchor; FAIL if any surface is missing, stale, or inconsistent with the reducer-owned registry.
 
 ---
@@ -52,14 +52,14 @@ Validate blocked-stop reducer output surfaces history, dashboard guidance, and r
 ### Commands
 1. `bash: node .opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder}`
 2. `bash: cat {spec_folder}/research/findings-registry.json | jq '.blockedStopHistory'`
-3. `bash: grep -A 5 "BLOCKED STOPS" {spec_folder}/research/deep-research-dashboard.md`
+3. `bash: grep -A 5 -i "Blocked Stops" {spec_folder}/research/deep-research-dashboard.md`
 4. `bash: sed -n '/ANCHOR:next-focus/,/\/ANCHOR:next-focus/p' {spec_folder}/research/deep-research-strategy.md`
 
 ### Expected
-`blockedStopHistory` contains reducer-promoted blocked-stop entries; `BLOCKED STOPS` renders each blocked-stop event; `ANCHOR:next-focus` includes the recovery strategy from the latest blocked-stop record.
+`blockedStopHistory` contains reducer-promoted blocked-stop entries; `Blocked Stops` renders each blocked-stop event; `ANCHOR:next-focus` includes the recovery strategy from the latest blocked-stop record.
 
 ### Evidence
-Capture the populated `blockedStopHistory` array, the dashboard `BLOCKED STOPS` excerpt, and the strategy `next-focus` anchor showing the recovery guidance.
+Capture the populated `blockedStopHistory` array, the dashboard `Blocked Stops` excerpt, and the strategy `next-focus` anchor showing the recovery guidance.
 
 ### Pass/Fail
 PASS if all three surfaces show the same blocked-stop data and recovery hint; FAIL if any surface is missing the blocked-stop data or shows stale content after the reducer run.
@@ -81,8 +81,8 @@ Privilege `findings-registry.json` as the reducer-owned source of truth. If the 
 
 | File | Role |
 |---|---|
-| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Canonical reducer implementation; promotes `blocked_stop` into `blockedStopHistory`, renders `BLOCKED STOPS`, and rewrites `ANCHOR:next-focus` |
-| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Research state contract; defines `blockedStopHistory`, dashboard `BLOCKED STOPS`, and reducer-driven strategy next-focus override |
+| `.opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Canonical reducer implementation; promotes `blocked_stop` into `blockedStopHistory`, renders `Blocked Stops`, and rewrites `ANCHOR:next-focus` |
+| `.opencode/skills/system-deep-loop/deep-research/references/state/state-format.md` | Research state contract; defines `blockedStopHistory`, dashboard `Blocked Stops`, and reducer-driven strategy next-focus override |
 
 ---
 
@@ -92,4 +92,4 @@ Privilege `findings-registry.json` as the reducer-owned source of truth. If the 
 - Playbook ID: DR-032
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/blocked-stop-reducer-surfacing.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-04-11.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

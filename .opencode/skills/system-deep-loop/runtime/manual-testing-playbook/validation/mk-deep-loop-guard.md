@@ -36,9 +36,13 @@ If this plugin silently stops firing (hook deregistered, registry path resolutio
 
 - Working directory is repository root.
 - `opencode` CLI is installed and reachable (`opencode --version`).
-- Feature catalog entry exists at `feature-catalog/validation/system-deep-loop-guard.md`.
+- Feature catalog entry exists at `feature-catalog/validation/mk-deep-loop-guard.md`.
 
-### Steps
+### Prompt
+
+- Prompt: `Verify system-deep-loop-guard still detects a Deep Route mode mismatch and a loop-like repeated dispatch, and respects SYSTEM_DEEP_LOOP_GUARD_REJECT / SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP.`
+
+### Commands
 
 1. Run the automated regression test: `node .opencode/plugins/tests/system-deep-loop-guard.test.cjs` and require EXIT 0 (covers identity resolution, loop-repeat thresholds, command-driven exemption, non-loop-executor exemption, cross-session isolation, and both fail-open paths hermetically).
 2. Live warn-mode check: dispatch a Task call with a prompt containing `Agent: @ai-council` (or a direct `subagent_type=ai-council`) and `mode=research` via `opencode run --agent general "..."`; confirm a `[system-deep-loop-guard] WARN: ... mode mismatch ...` line is appended to `.opencode/skills/.state/loop-guard/guard-warnings.log` (not printed to the console/TUI) and the dispatch still completes.
@@ -47,13 +51,20 @@ If this plugin silently stops firing (hook deregistered, registry path resolutio
 5. Live passthrough check: with reject mode still on, dispatch `subagent_type=review` (not a registry entry); confirm it completes normally.
 6. Confirm no `.opencode/skills/.state/loop-guard/` file is created for a non-loop-executor target (e.g. `ai-council`) after any of the above live dispatches.
 7. Retention check: with `SYSTEM_DEEP_LOOP_GUARD_ACTIVE_RETENTION_DAYS=1` set, write a per-session state file, backdate its mtime with `touch -t` (or `utimes`) to more than 1 day in the past, then fire a `session.created` event (a fresh OpenCode session, or the automated test's direct `hooks.event({ event: { type: 'session.created' } })` call); confirm the file moves into `.state/loop-guard/.archive/`. Confirm a recently-touched sibling file stays in the active directory.
-8. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
+8. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
 ### Expected Outcome
 
 The automated test passes, and the live-dispatch checks (warn, reject with correct identity resolution, fail-open, passthrough, no stray loop-guard state for non-loop-executors) match their expected signal.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `.opencode/plugins/system-deep-loop-guard.js` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `.opencode/plugins/tests/system-deep-loop-guard.test.cjs` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - Hook never fires (plugin loader silently drops the file — check for accidental named exports alongside the default export; the `.opencode/plugins/README.md` load-bearing warning covers this).
 - `SYSTEM_DEEP_LOOP_GUARD_REJECT=1` or `SYSTEM_DEEP_LOOP_GUARD_REJECT_LOOP=1` no longer blocks the dispatch (OpenCode host behavior change, or a regression in either throw path).
@@ -66,7 +77,7 @@ The automated test passes, and the live-dispatch checks (warn, reject with corre
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -82,11 +93,12 @@ The automated test passes, and the live-dispatch checks (warn, reject with corre
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Validation
 - Playbook ID: DLR-052
-- Feature catalog entry: `feature-catalog/validation/system-deep-loop-guard.md`
-- Scenario file path: `manual-testing-playbook/validation/system-deep-loop-guard.md`
+- Feature catalog entry: `feature-catalog/validation/mk-deep-loop-guard.md`
+- Scenario file path: `manual-testing-playbook/validation/mk-deep-loop-guard.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Expected verdict mode: GREEN when the automated test and all live-dispatch checks pass
 - Wall-time estimate: 10-20 min (live checks require real `opencode` dispatches)

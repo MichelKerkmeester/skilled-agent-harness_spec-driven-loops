@@ -6,7 +6,13 @@ version: "2.0.0.0"
 
 # system-deep-loop: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Every scenario MUST be executed against the live `system-deep-loop` skill and its real `mode-registry.json` source of truth. No mocks, no stubs, and no invented routing behavior. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP with a documented sandbox blocker.
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and reason are persisted through
+> `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs`
+> into `.opencode/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.
+
+> **EXECUTION POLICY**: Every scenario MUST be executed against the live `system-deep-loop` skill and its real `mode-registry.json` source of truth. No mocks, no stubs, and no invented routing behavior. Acceptable verdicts are PASS, FAIL, or SKIP with a documented sandbox blocker.
 
 This document combines the manual-validation contract for the `system-deep-loop` parent-skill hub into a single operator reference. The root playbook acts as the directory, review protocol, and orchestration guide. Per-feature files provide the deeper execution contract for each scenario, including the user request, expected mode, command, agent, backend, artifact root, registry evidence, and binary validation criteria.
 
@@ -26,7 +32,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 19 deterministic scenarios across 5 categories validating the `system-deep-loop` parent-skill hub. Each scenario keeps its stable `{PREFIX}-NNN` ID in a dedicated per-scenario file whose YAML frontmatter carries the typed routing gold and whose body holds the full execution contract.
+This playbook validates the `system-deep-loop` parent-skill hub through the operator-scenario set enumerated in Section 6 (Category Index) and Section 8 (Scenario Directory), which are the source of truth for the current scenario and category totals. Each scenario keeps its stable `{PREFIX}-NNN` ID in a dedicated per-scenario file whose YAML frontmatter carries the typed routing gold and whose body holds the full execution contract. A separate `compiled-routing/` directory carries one routing-gold bundle (`DL-CR-001`) outside this operator-scenario set; it is exempt from this playbook's contract and scored elsewhere.
 
 Coverage note: the playbook covers the hub's registry-driven routing at version `2.0.0.0`. It exercises:
 - Dominant-intent routing for the lexical modes: `research`, `review`, and `ai-council`.
@@ -75,7 +81,7 @@ Coverage note: the playbook covers the hub's registry-driven routing at version 
 - The registry fields used to justify the route.
 - The resolved command, agent, packet, backend, and artifact root.
 - The AI's user-visible response.
-- The scenario verdict: PASS, PARTIAL, FAIL, or SKIP with one-line rationale.
+- The scenario verdict: PASS, FAIL, or SKIP with one-line rationale.
 - Output transcripts saved under `/tmp/dlw-<SCENARIO-ID>/`.
 
 ---
@@ -99,7 +105,7 @@ Coverage note: the playbook covers the hub's registry-driven routing at version 
 2. Per-feature files under `manual-testing-playbook/{NN--category-name}/`.
 3. Scenario execution evidence: advisor outputs, command transcripts, registry excerpts, and AI responses.
 4. Feature-to-scenario coverage map in this file.
-5. Triage notes for all PARTIAL and FAIL outcomes.
+5. Triage notes for all FAIL outcomes.
 
 ### Scenario Acceptance Rules
 
@@ -114,15 +120,13 @@ For each executed scenario, check:
 
 ### Verdict Rules
 
-- `PASS`: all 7 acceptance checks true.
-- `PARTIAL`: selected mode is correct but secondary evidence is incomplete, such as missing artifact-root transcript.
-- `FAIL`: wrong skill, wrong mode, wrong command, wrong agent, wrong backend, wrong artifact root, invented registry behavior, or flattened per-mode logic.
+- `PASS`: all 7 acceptance checks true, including that every field the scenario's "Expected route" or "Desired user-visible outcome" explicitly names is present in the evidence (a correct mode selection with a missing named field, such as an omitted artifact-root transcript, is not PASS — see FAIL).
+- `FAIL`: wrong skill, wrong mode, wrong command, wrong agent, wrong backend, wrong artifact root, invented registry behavior, flattened per-mode logic, or a correct mode selection missing a field the scenario explicitly requires in its evidence.
 - `SKIP`: documented external blocker, such as advisor binary unavailable in the sandbox.
 
 ### Feature Verdict Rules
 
 - `PASS`: all mapped scenarios for the feature are PASS.
-- `PARTIAL`: at least one mapped scenario is PARTIAL, none are FAIL.
 - `FAIL`: any mapped scenario is FAIL.
 
 ### Release Readiness Rule
@@ -145,45 +149,45 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
-| `MO-001` | Research Routing | Outward investigation request resolves to `research` | `mode-routing/research-routing.md` | Yes |
-| `MO-002` | Review Routing | Iterative review request resolves to `review` | `mode-routing/review-routing.md` | Yes |
-| `MO-003` | AI Council Routing | Multi-seat planning deliberation resolves to `ai-council` | `mode-routing/ai-council-routing.md` | Yes |
-| `MO-004` | Mode-Hint Override | Explicit `research:` hint overrides ambiguous wording | `mode-routing/mode-hint-override.md` | No |
+| `MO-001` | Research Routing | Outward investigation request resolves to `research` | [mode-routing/research-routing.md](mode-routing/research-routing.md) | Yes |
+| `MO-002` | Review Routing | Iterative review request resolves to `review` | [mode-routing/review-routing.md](mode-routing/review-routing.md) | Yes |
+| `MO-003` | AI Council Routing | Multi-seat planning deliberation resolves to `ai-council` | [mode-routing/ai-council-routing.md](mode-routing/ai-council-routing.md) | Yes |
+| `MO-004` | Mode-Hint Override | Explicit `research:` hint overrides ambiguous wording | [mode-routing/mode-hint-override.md](mode-routing/mode-hint-override.md) | No |
 
 ### Improvement Lane Routing (`IL-001..IL-003`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
-| `IL-001` | Agent Improvement | Alias-fold default routes agent evaluation to `agent-improvement` | `improvement-lane-routing/agent-improvement.md` | Yes |
-| `IL-002` | Model Benchmark | `/deep:model-benchmark` command routes to `model-benchmark` | `improvement-lane-routing/model-benchmark.md` | Yes |
-| `IL-003` | Skill Benchmark | `/deep:skill-benchmark` command routes to `skill-benchmark` | `improvement-lane-routing/skill-benchmark.md` | Yes |
+| `IL-001` | Agent Improvement | Alias-fold default routes agent evaluation to `agent-improvement` | [improvement-lane-routing/agent-improvement.md](improvement-lane-routing/agent-improvement.md) | Yes |
+| `IL-002` | Model Benchmark | `/deep:model-benchmark` command routes to `model-benchmark` | [improvement-lane-routing/model-benchmark.md](improvement-lane-routing/model-benchmark.md) | Yes |
+| `IL-003` | Skill Benchmark | `/deep:skill-benchmark` command routes to `skill-benchmark` | [improvement-lane-routing/skill-benchmark.md](improvement-lane-routing/skill-benchmark.md) | Yes |
 
 ### Advisor Integration (`AI-001..AI-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
-| `AI-001` | Single Advisor Identity | Positive deep-loop controls surface `system-deep-loop` as the hub identity | `advisor-integration/single-advisor-identity.md` | Yes |
-| `AI-002` | Lexical Mode Scoring | Lexical modes are scored through their `legacyAdvisorId` entries | `advisor-integration/lexical-mode-scoring.md` | No |
-| `AI-003` | Command-Bridge Guard | Command-bridge modes do not fire from bare advisor aliases | `advisor-integration/command-bridge-guard.md` | No |
-| `AI-004` | No False Fire | Plain code-edit prompt routes to `sk-code`, not deep-loop | `advisor-integration/no-false-fire-code-edit.md` | Yes |
+| `AI-001` | Single Advisor Identity | Positive deep-loop controls surface `system-deep-loop` as the hub identity | [advisor-integration/single-advisor-identity.md](advisor-integration/single-advisor-identity.md) | Yes |
+| `AI-002` | Lexical Mode Scoring | Lexical modes are scored through their `legacyAdvisorId` entries | [advisor-integration/lexical-mode-scoring.md](advisor-integration/lexical-mode-scoring.md) | No |
+| `AI-003` | Command-Bridge Guard | Command-bridge modes do not fire from bare advisor aliases | [advisor-integration/command-bridge-guard.md](advisor-integration/command-bridge-guard.md) | No |
+| `AI-004` | No False Fire | Plain code-edit prompt routes to `sk-code`, not deep-loop | [advisor-integration/no-false-fire-code-edit.md](advisor-integration/no-false-fire-code-edit.md) | Yes |
 
 ### Runtime and Backend (`RB-001..RB-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
-| `RB-001` | Runtime Loop Research | `research` resolves to `runtime-loop-type` and `runtimeLoopType: research` | `runtime-and-backend/runtime-loop-research.md` | Yes |
-| `RB-002` | Runtime Loop Council | `ai-council` resolves to `runtime-loop-type` and `runtimeLoopType: council` | `runtime-and-backend/runtime-loop-council.md` | No |
-| `RB-003` | Improvement Host | `agent-improvement` resolves to `improvement-host` and null runtime loop type | `runtime-and-backend/improvement-host.md` | Yes |
-| `RB-004` | Retired Backend | Retired runtime-and-backend scenario; no active mode uses this backend (negative marker) | `runtime-and-backend/external-adapter.md` | No |
+| `RB-001` | Runtime Loop Research | `research` resolves to `runtime-loop-type` and `runtimeLoopType: research` | [runtime-and-backend/runtime-loop-research.md](runtime-and-backend/runtime-loop-research.md) | Yes |
+| `RB-002` | Runtime Loop Council | `ai-council` resolves to `runtime-loop-type` and `runtimeLoopType: council` | [runtime-and-backend/runtime-loop-council.md](runtime-and-backend/runtime-loop-council.md) | No |
+| `RB-003` | Improvement Host | `agent-improvement` resolves to `improvement-host` and null runtime loop type | [runtime-and-backend/improvement-host.md](runtime-and-backend/improvement-host.md) | Yes |
+| `RB-004` | Retired Backend | Retired runtime-and-backend scenario; no active mode uses this backend (negative marker) | [runtime-and-backend/external-adapter.md](runtime-and-backend/external-adapter.md) | No |
 
 ### State and Convergence Discipline (`SC-001..SC-004`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
-| `SC-001` | Externalized State | Runtime modes use packet-owned externalized state, not manual `/tmp` state | `state-and-convergence-discipline/externalized-state.md` | Yes |
-| `SC-002` | Artifact Root Writes | Iterations write to the mode's registry artifact root | `state-and-convergence-discipline/artifact-root-writes.md` | Yes |
-| `SC-003` | Convergence Stop | Convergence detection ends the loop rather than continuing indefinitely | `state-and-convergence-discipline/convergence-stop.md` | No |
-| `SC-004` | Hub Logic Boundary | Hub holds no per-mode convergence, state, or synthesis logic | `state-and-convergence-discipline/hub-logic-boundary.md` | Yes |
+| `SC-001` | Externalized State | Runtime modes use packet-owned externalized state, not manual `/tmp` state | [state-and-convergence-discipline/externalized-state.md](state-and-convergence-discipline/externalized-state.md) | Yes |
+| `SC-002` | Artifact Root Writes | Iterations write to the mode's registry artifact root | [state-and-convergence-discipline/artifact-root-writes.md](state-and-convergence-discipline/artifact-root-writes.md) | Yes |
+| `SC-003` | Convergence Stop | Convergence detection ends the loop rather than continuing indefinitely | [state-and-convergence-discipline/convergence-stop.md](state-and-convergence-discipline/convergence-stop.md) | No |
+| `SC-004` | Hub Logic Boundary | Hub holds no per-mode convergence, state, or synthesis logic | [state-and-convergence-discipline/hub-logic-boundary.md](state-and-convergence-discipline/hub-logic-boundary.md) | Yes |
 
 ---
 

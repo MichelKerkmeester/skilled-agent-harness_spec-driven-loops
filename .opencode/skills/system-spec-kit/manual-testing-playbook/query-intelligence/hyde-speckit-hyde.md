@@ -21,7 +21,7 @@ This scenario validates HyDE (SPECKIT_HYDE) for `162`. It focuses on enabling th
 
 - Objective: Verify HyDE pseudo-document generation for low-confidence deep queries.
 - Real user request: `Please validate HyDE (SPECKIT_HYDE) against SPECKIT_HYDE=true and tell me whether the expected signals are present: HyDEResult contains pseudoDocument (non-empty) and embedding (Float32Array); low-confidence threshold (top score < 0.45) triggers generation; LLM cache shared with reformulation; active mode (default): results merged into candidates; shadow mode (SPECKIT_HYDE_ACTIVE=false): results logged but not merged.`
-- RCAF Prompt: `As a query-intelligence validation operator, validate HyDE (SPECKIT_HYDE) against SPECKIT_HYDE=true. Verify hyDE pseudo-document generation for low-confidence deep queries. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a query-intelligence validation operator, validate HyDE (SPECKIT_HYDE) against SPECKIT_HYDE=true. Verify hyDE pseudo-document generation for low-confidence deep queries. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: HyDEResult contains pseudoDocument (non-empty) and embedding (Float32Array); low-confidence threshold (top score < 0.45) triggers generation; LLM cache shared with reformulation; active mode (default): results merged into candidates; shadow mode (SPECKIT_HYDE_ACTIVE=false): results logged but not merged
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -281,7 +281,8 @@ Observed result: no `HyDEResult`, no `pseudoDocument`, no `Float32Array` embeddi
 
 ### Pass / Fail
 
-- **BLOCKED**: `LLM_REFORMULATION_ENDPOINT_present` is `false`; HyDE generation cannot produce `HyDEResult.pseudoDocument` or `HyDEResult.embedding`, so active merge, shadow-only logging, and cache population cannot be verified in this repo state.
+- **Pass**: Pseudo-document generated for low-confidence query and results are merged by default (active mode), and stay shadow-only when SPECKIT_HYDE_ACTIVE=false.
+- **Fail**: No pseudo-document generated or merge behavior does not match flag state.
 
 ### Failure Triage
 

@@ -48,12 +48,12 @@ The health suites pass, unconfirmed `autoRepair:true` requests return confirmati
 
 ### Evidence
 
-Command run from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server`:
+Command run from `.opencode/skills/system-spec-kit/mcp-server`:
 
 ```text
 npx vitest run tests/handler-memory-health-edge.vitest.ts tests/memory-crud-extended.vitest.ts
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  2 passed (2)

@@ -6,7 +6,13 @@ version: 1.4.0.15
 
 # runtime/: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Every scenario MUST be executed against real files, scripts, and test fixtures. Use SKIP only when a concrete sandbox blocker prevents execution.
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and reason are persisted through
+> `.opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs`
+> into `.opencode/skills/system-deep-loop/benchmark/reports/<dated-run-label>/`.
+
+> **EXECUTION POLICY**: Every scenario MUST be executed against real files, scripts, and test fixtures. Acceptable verdicts are PASS, FAIL, or SKIP; use SKIP only when a concrete sandbox blocker prevents execution.
 
 This document combines the operator-facing manual validation contract for the `runtime/` skill into a single reference. The root playbook acts as the directory, review protocol, and orchestration guide while per-feature files carry scenario-specific execution truth.
 
@@ -39,7 +45,7 @@ This playbook provides 54 deterministic scenarios across 12 categories validatin
 2. Inspect public skill docs before lower-level runtime files when that order matters.
 3. Execute the real script, test, or source-inspection command named in the scenario.
 4. Capture enough evidence for another operator to reproduce the verdict.
-5. Return PASS, PARTIAL, FAIL, or SKIP with rationale.
+5. Return PASS or FAIL with rationale; return SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
 ---
 
@@ -80,9 +86,9 @@ This playbook provides 54 deterministic scenarios across 12 categories validatin
 ### Inputs Required
 
 1. `manual-testing-playbook.md`
-2. Referenced per-feature files under `manual-testing-playbook/NN__category_name/`
+2. Referenced per-feature files under `manual-testing-playbook/<category>/`
 3. Scenario execution evidence
-4. Feature-to-scenario coverage map in section 14
+4. Feature-to-scenario coverage map in section 19
 5. Triage notes for all non-pass outcomes
 
 ### Scenario Acceptance Rules
@@ -93,13 +99,12 @@ This playbook provides 54 deterministic scenarios across 12 categories validatin
 4. Evidence is complete and readable.
 5. The final outcome references the user-visible runtime behavior.
 
-Scenario verdict:
-- `PASS`: all acceptance checks true
-- `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete
-- `FAIL`: expected behavior missing, contradictory output, or critical check failed
-- `SKIP`: concrete sandbox blocker prevents execution and is documented
+Scenario verdict — three outcomes only:
+- `PASS`: every acceptance check is true and the evidence is complete
+- `FAIL`: expected behavior is missing, output contradicts the contract, a critical check failed, or the core behavior worked but the required evidence or metadata is incomplete. An outcome another operator cannot reproduce from the captured evidence is a `FAIL`, not a partial pass.
+- `SKIP`: a concrete sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevented execution, and the run record names it
 
-Release is `READY` only when all 54 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
+Release is cleared only when all 54 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
 
 ---
 
@@ -504,7 +509,7 @@ Expected signals: Similarity thresholding, category guard, bounded namespace beh
 
 ## 12. SCRIPT ENTRY POINTS
 
-This category covers 4 scenarios while the linked feature files remain the canonical execution contract.
+This category covers 5 scenarios while the linked feature files remain the canonical execution contract.
 
 ### DLR-014 | convergence.cjs
 
@@ -557,6 +562,19 @@ Expected signals: JSON-only stdout, exit code 0 for valid input, exit code 3 for
 
 #### Test Execution
 > **Feature File:** [DLR-017](../manual-testing-playbook/script-entry-points/status-script.md)
+
+### DLR-055 | append-mode-event.cjs
+
+#### Description
+Authorizes a mode event against the mode's durable authority record, appends it to the typed ledger behind a fence, returns a receipt, and refreshes the legacy projection so existing consumers keep reading the same file.
+
+#### Scenario Contract
+Prompt: `Validate append-mode-event.cjs and report whether the current source, script surface, and tests agree with the runtime/ contract.`
+
+Expected signals: stdout JSON with `"ok":true` and a receipt carrying `ledger_id`, `sequence`, `event_id`, `event_type`, `canonicalEventHash`, `recordHash`, and an `authorizationRef`; exit code 0 for an authorized, prefixed-stem event; exit code 2 when the write is refused at the authority boundary; `projectionRefreshed` reported separately from the exit status.
+
+#### Test Execution
+> **Feature File:** [DLR-055](../manual-testing-playbook/script-entry-points/append-mode-event-script.md)
 
 ---
 
@@ -932,3 +950,4 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-051 | [F049 Record-replay cassette harness](../feature-catalog/testing/record-replay-cassette-harness.md) | [testing/record-replay-cassette-harness.md](../manual-testing-playbook/testing/record-replay-cassette-harness.md) |
 | DLR-052 | [F050 system-deep-loop-guard](../feature-catalog/validation/mk-deep-loop-guard.md) | [validation/mk-deep-loop-guard.md](../manual-testing-playbook/validation/mk-deep-loop-guard.md) |
 | DLR-054 | [F052 Torn-tail recovery marker ordering](../feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md) | [state-safety/torn-tail-recovery-marker-ordering.md](../manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md) |
+| DLR-055 | [F051 append-mode-event.cjs](../feature-catalog/script-entry-points/append-mode-event-script.md) | [script-entry-points/append-mode-event-script.md](../manual-testing-playbook/script-entry-points/append-mode-event-script.md) |

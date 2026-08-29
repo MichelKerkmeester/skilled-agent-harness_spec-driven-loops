@@ -50,7 +50,7 @@ Operators run the exact command sequence and verify only file and text signals.
 set -uo pipefail
 rm -rf /tmp/cp-054-sandbox /tmp/cp-054-sandbox-baseline /tmp/cp-054-spec
 mkdir -p /tmp/cp-054-spec/applied
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup_cp_sandbox.sh --sandbox-dir /tmp/cp-054-sandbox
+.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-054-sandbox
 cat > /tmp/cp-054-spec/resource-map.md <<'MAP'
 # Resource Map
 
@@ -65,11 +65,11 @@ target_files:
 - /tmp/cp-054-sandbox/targets/review-target.js
 TASK
 cp -a /tmp/cp-054-sandbox /tmp/cp-054-sandbox-baseline
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 git status --porcelain -- /tmp/cp-054-sandbox /tmp/cp-054-spec > /tmp/cp-054-pre.txt
 cd /tmp/cp-054-sandbox
 opencode run "/deep:review:auto \"targets/review-target.js\" --spec-folder=/tmp/cp-054-spec --max-iterations=1 --convergence=0.10. Use target type files and dimensions traceability. Treat resource-map.md as first-class coverage input." --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-054-sandbox </dev/null 2>&1 | tee /tmp/cp-054-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-054-B-exit.txt
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 find /tmp/cp-054-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-054-B-artifacts.txt 2>/dev/null || touch /tmp/cp-054-B-artifacts.txt
 find /tmp/cp-054-spec -type f > /tmp/cp-054-B-files.txt 2>/dev/null || touch /tmp/cp-054-B-files.txt
 cat /tmp/cp-054-B-command.txt /tmp/cp-054-B-artifacts.txt /tmp/cp-054-B-files.txt > /tmp/cp-054-B-combined.txt
@@ -95,17 +95,18 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 | File | Lines | Role |
 |---|---:|---|
 | `.opencode/commands/deep/review.md` | 186-188, 238-245 | Review packet outputs and YAML handoff |
 | `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 233-251, 496-503 | Resource-map coverage behavior and report expectations |
 | `.opencode/agents/deep-review.md` | 245-252, 424-435 | Traceability dimension and pre-delivery verification |
+| [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Command-flow stress tests
 - Playbook ID: CP-054

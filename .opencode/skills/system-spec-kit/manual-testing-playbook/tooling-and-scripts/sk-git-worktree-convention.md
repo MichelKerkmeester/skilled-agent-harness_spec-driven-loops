@@ -145,7 +145,8 @@ Allowed write path from the user instruction:
 
 ### Pass / Fail
 
-- **BLOCKED**: the required `git worktree add` command would create a worktree directory outside the only allowed write path, so the branch/path registration and directory-existence checks could not be executed without violating the scenario runner constraints.
+- **Pass**: every signal named in the Expected block above is present in the captured output.
+- **Fail**: any signal named in the Expected block is absent, or a command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

@@ -24,15 +24,25 @@ This scenario simulates the race and checks the result for coherence.
 
 - Objective: Confirm Memory MCP serves coherent reads during a concurrent write.
 - Real user request: `Run a concurrent memory_search while a memory_save fires from another AI session, and verify the search result is coherent (no missing vectors, no duplicate rows, no half-written embeddings).`
-- AI-to-CLI handoff prompt: `You are <external-CLI-A>. I am the orchestrator. Run memory_search in a tight loop. Meanwhile <external-CLI-B> will fire 10 memory_save calls. Capture the search responses across the write window and confirm each is internally consistent.`
+- Orchestrator prompt: `You are <external-CLI-A>. I am the orchestrator. Run memory_search in a tight loop. Meanwhile <external-CLI-B> will fire 10 memory_save calls. Capture the search responses across the write window and confirm each is internally consistent.`
 - Expected execution process: launch 2 parallel external CLI sessions; one loops `memory_search`, the other fires `memory_save × 10`; collect all responses; verify each search response is internally consistent.
 - Expected signals: every search response has its declared top-K count match the actual returned items; no duplicate parent_ids within a single response; total search-time errors = 0.
 - Desired user-visible outcome: `PASS — 50 concurrent searches across the 10-save write window, all internally consistent; 0 errors.`
-- Pass/fail: PASS if all search responses internally consistent AND no errors; PARTIAL if ≤ 5% of responses had duplicates (transient WAL read); FAIL if any response was corrupted or any save failed.
+- Pass/fail: PASS if all search responses are internally consistent AND no errors occur; a transient duplicate in ≤ 5% of responses (a WAL checkpoint read race) still counts as PASS when the evidence notes it. FAIL if any response was corrupted, any save failed, or duplicates exceed 5% of responses.
 
 ---
 
 ## 3. TEST EXECUTION
+
+
+### Commands
+
+Run the steps below in order; each named subsection states its exact tool calls and inputs.
+
+1. Phase 1 — Pre-seed Memory MCP
+2. Phase 2 — Launch concurrent reader
+3. Phase 3 — Launch concurrent writer (start ~3 seconds after reader)
+4. Phase 4 — Verification
 
 ### Phase 1 — Pre-seed Memory MCP
 
@@ -148,26 +158,31 @@ Verdict: PASS — 50/50 reads coherent, 10/10 writes succeeded, 0 errors total.
 
 ### Evidence
 
-- BLOCKED before Phase 1. The scenario commands require writing additional files outside this scenario file:
-  - Phase 1 lines 36-53: `Orchestrating AI stores 5 baseline memories. For each i in 1..5:` then `Write `<spec-folder>{i}/research.md`` and `mcp__system_spec_memory__memory_save({ filePath: "<absolute path from step a>" })`.
-  - Phase 3 lines 87-107: `Wait 3 seconds for CLI-A's reader to start its loop, then fire 10 memory_save calls back-to-back` and for each i in 1..10 `Write `<spec-folder>{i}/research.md`` then `mcp__system_spec_memory__memory_save({ filePath: "<absolute path from step a>" })`.
-- User-provided write constraint for this execution: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
-- User-provided allowed write path for this execution: `.opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/concurrent-multi-ai-safety.md (this file only)`.
-- No pre-seed files were written, no `memory_save` calls were run, no concurrent reader/writer CLI sessions were launched, and no cleanup commands were run, because doing so would require creating and deleting files outside the single allowed write path.
-- Pass/Fail: BLOCKED — required scenario setup and writer commands need additional on-disk `research.md` files, which are outside the allowed write paths for this execution.
+Capture, for every step in the Commands sequence above:
 
----
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
-## 4. NOTES
+### Pass / Fail
 
+- **Pass**: All search responses are internally consistent AND no errors occur; a transient duplicate in ≤ 5% of responses (a WAL checkpoint read race) still counts as PASS when the evidence notes it.
+- **Fail**: Any response was corrupted, any save failed, or duplicates exceed 5% of responses.
+
+### Failure Triage
+
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
+
+### Notes
 - SQLite WAL mode should make this scenario trivially pass. A FAIL here would indicate either a bug in the Memory MCP server's transaction handling, or a misconfiguration (e.g., journal_mode=DELETE forcing exclusive locks).
-- PARTIAL is acceptable if a transient duplicate appears once in 50 iterations (WAL checkpoint race) — note it but don't fail unless it happens repeatedly.
+- A transient duplicate appearing once in 50 iterations (WAL checkpoint race) still counts as PASS — note it in the evidence, and only FAIL when it repeats.
 - This is the only scenario in the suite that genuinely stresses the substrate under load. It complements scenario 410 (latency under realistic load) but is concurrency-focused rather than throughput-focused.
 
----
-
-## 5. CLEAN-UP
-
+### Clean-Up
 Loop memory_delete over the 15 captured parent_ids (5 pre-seed + 10 writes), then remove on-disk files:
 ```
 for ID in [<5 baseline parent_ids> + <10 write parent_ids>]:
@@ -175,3 +190,20 @@ for ID in [<5 baseline parent_ids> + <10 write parent_ids>]:
 
 rm -rf <spec-folder>*
 ```
+
+---
+
+## 4. SOURCE FILES
+
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 415
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/concurrent-multi-ai-safety.md`

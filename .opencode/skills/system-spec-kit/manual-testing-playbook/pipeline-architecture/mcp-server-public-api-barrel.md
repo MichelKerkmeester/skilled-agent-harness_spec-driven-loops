@@ -204,15 +204,15 @@ const checks = {
 };
 console.log(JSON.stringify(checks, null, 2));
 EOF
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159
+.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159
 export = Database;
          ^
 
 ReferenceError: Database is not defined
-    at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
-    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
+    at <anonymous> (.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
+    at Object.<anonymous> (.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
     at Module._compile (node:internal/modules/cjs/loader:1781:14)
-    at Object.transformer (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:3176)
+    at Object.transformer (.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:3176)
     at Module.load (node:internal/modules/cjs/loader:1505:32)
     at Function._load (node:internal/modules/cjs/loader:1309:12)
     at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
@@ -232,7 +232,7 @@ $ npm test -- --run tests/api-public-surfaces.vitest.ts
 > node scripts/run-tests.mjs --run tests/api-public-surfaces.vitest.ts
 
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)

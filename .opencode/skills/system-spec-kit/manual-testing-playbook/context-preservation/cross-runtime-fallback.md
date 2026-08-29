@@ -93,13 +93,13 @@ Check env var detection order in `runtime-detection.ts` — OPENCODE_CLI or OPEN
 ### Prompt
 
 ```
-As a context-and-code-graph validation operator, validate Copilot CLI detects wrapper-backed hook wiring dynamically against cd .opencode/skills/system-spec-kit/mcp-server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts. Verify detectRuntime() with COPILOT_CLI=1 returns { runtime: 'copilot-cli', hookPolicy: 'enabled' } in this repo when `.claude/settings.local.json` carries the Copilot-safe top-level wrapper fields plus the `UserPromptSubmit` / `SessionStart` writer commands, and disabled_by_scope in a temp repo without that wrapper config. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a context-and-code-graph validation operator, validate Copilot CLI detects wrapper-backed hook wiring dynamically against cd .opencode/skills/system-spec-kit/mcp-server && TMPDIR=/tmp/speckit-manual-playbook-vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts. Verify detectRuntime() with COPILOT_CLI=1 returns { runtime: 'copilot-cli', hookPolicy: 'enabled' } in this repo when `.claude/settings.local.json` carries the Copilot-safe top-level wrapper fields plus the `UserPromptSubmit` / `SessionStart` writer commands, and disabled_by_scope in a temp repo without that wrapper config. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
 
 1. jq '{UserPromptSubmit: (.hooks.UserPromptSubmit[0] | {type, bash, timeoutSec}), SessionStart: (.hooks.SessionStart[0] | {type, bash, timeoutSec})}' .claude/settings.local.json
-2. cd .opencode/skills/system-spec-kit/mcp-server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts
+2. cd .opencode/skills/system-spec-kit/mcp-server && TMPDIR=/tmp/speckit-manual-playbook-vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts
 
 ### Expected
 

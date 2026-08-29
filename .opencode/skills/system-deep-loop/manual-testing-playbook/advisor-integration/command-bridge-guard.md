@@ -53,6 +53,11 @@ Benchmark a skill against routing prompts.
 1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the two command-bridge entries.
 2. Skill advisor is callable.
 
+### Prompt
+
+- Prompt: `Benchmark a model against prompt framework candidates.`
+- Additional bare-wording probe: `Benchmark a skill against routing prompts.`
+
 ### Exact Command Sequence
 
 1. **Run bare advisor probes**: run the skill advisor once for each bare prompt and append output to `/tmp/dlw-AI-003/bare-advisor.jsonl`.
@@ -69,11 +74,16 @@ Benchmark a skill against routing prompts.
 | 3 | Command prompts resolve to `model-benchmark` and `skill-benchmark`. |
 | 4 | Each command route matches the registry command, agent, backend, and artifact root. |
 
+### Evidence
+
+- Bare-advisor probe log: `/tmp/dlw-AI-003/bare-advisor.jsonl`.
+- Command-route transcript: `/tmp/dlw-AI-003/command-routes.txt`.
+- The hub's response text for each bare prompt, showing whether it declined or asked for the command instead of firing the lane.
+
 ### Pass/Fail Criteria
 
-- **PASS** iff bare prompts do not fire command-bridge modes and command prompts do fire the exact matching modes.
-- **PARTIAL** iff command prompts route correctly but bare prompt behavior is ambiguous and asks for clarification.
-- **FAIL** iff a bare advisor alias directly selects a command-bridge lane, or a command prompt routes to the wrong lane.
+- **PASS**: bare prompts never directly select `model-benchmark` or `skill-benchmark` — either declining the lane or asking for the explicit command — and both `/deep:*` command prompts resolve to their exact matching modes with the registry's command, agent, and artifact root.
+- **FAIL**: a bare advisor alias directly selects a command-bridge lane, or a command prompt routes to the wrong lane or omits a registry-matching field.
 
 ### Failure Triage
 
@@ -87,6 +97,7 @@ Benchmark a skill against routing prompts.
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - command-bridge entries and contract definition.
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---
 

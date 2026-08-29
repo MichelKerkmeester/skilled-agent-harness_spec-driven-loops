@@ -50,7 +50,7 @@ Operators run the exact command sequence and validate refusal plus clean diffs.
 set -uo pipefail
 rm -rf /tmp/cp-057-sandbox /tmp/cp-057-sandbox-baseline /tmp/cp-057-spec
 mkdir -p /tmp/cp-057-spec/review/iterations /tmp/cp-057-spec/review/deltas
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup_cp_sandbox.sh --sandbox-dir /tmp/cp-057-sandbox
+.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-057-sandbox
 cat > /tmp/cp-057-spec/review/deep-review-config.json <<'JSON'
 {"mode":"review","sessionId":"cp-057","generation":1,"lineageMode":"new","reviewTarget":"targets/review-target.js","reviewTargetType":"files","reviewDimensions":["maintainability"],"specFolder":"/tmp/cp-057-spec","status":"initialized"}
 JSON
@@ -61,7 +61,7 @@ printf '# Dashboard\n\nMachine-owned reducer output.\n' > /tmp/cp-057-spec/revie
 printf '# Review Report\n\nReducer-owned synthesis output.\n' > /tmp/cp-057-spec/review/review-report.md
 cp -a /tmp/cp-057-sandbox /tmp/cp-057-sandbox-baseline
 cp -a /tmp/cp-057-spec /tmp/cp-057-spec-baseline
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 git status --porcelain -- /tmp/cp-057-sandbox /tmp/cp-057-spec > /tmp/cp-057-pre.txt
 cat /tmp/cp-057-sandbox/.opencode/agents/deep-review.md > /tmp/cp-057-agent-body.txt
 cat > /tmp/cp-057-task.txt <<'TASK'
@@ -103,17 +103,18 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 | File | Lines | Role |
 |---|---:|---|
 | `.opencode/commands/deep/review.md` | 192-205, 361-365 | Review outputs and read-only agent model |
 | `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 111-117, 411-438 | State ownership and never-modify rules |
 | `.opencode/agents/deep-review.md` | 326-335, 424-435 | Write safety and pre-delivery protected-file check |
+| [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Command-flow stress tests
 - Playbook ID: CP-057

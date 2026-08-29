@@ -54,59 +54,17 @@ Validate retrieval observability with memory_search includeTrace, degraded-vecto
 
 ### Evidence
 
-BLOCKED before baseline capture because the Spec Memory transport was unavailable and rebuilding it would modify files outside this scenario's allowed write path.
+Capture, for every step in the Commands sequence above:
 
-Command: `node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"manual playbook observability probe","limit":5}' --format json --timeout-ms 3000`
-
-Output:
-
-```text
-@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
-```
-
-Native plugin status from `system_spec_memory_status()`:
-
-```text
-plugin_id=system-spec-memory
-enabled=true
-disabled_reason=none
-cache_ttl_ms=5000
-max_brief_chars=2400
-max_cache_entries=200
-runtime_ready=false
-node_binary=node
-bridge_timeout_ms=3000
-cli_timeout_ms=2500
-bridge_path=[spec-memory-bridge]
-last_bridge_status=fail_open
-last_error_code=EXIT_69
-last_duration_ms=53
-bridge_invocations=6
-continuity_lookups=5
-cache_entries=0
-cache_hits=0
-cache_misses=5
-cache_hit_rate=0
-warm_status=fail_open
-warm_error=EXIT_69
-warm_route=cli
-warm_retryable=false
-warm_exit_code=69
-```
-
-Command: `node .opencode/bin/spec-memory.cjs memory_health --json '{"reportMode":"full"}' --format json --timeout-ms 3000`
-
-Output:
-
-```text
-@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
-```
-
-The scenario commands require `memory_search`, `memory_health`, `memory_index_scan`, `memory_embedding_reconcile`, and `memory_retention_sweep`, plus a sandbox DB where a vector-degraded condition can be marked or created. The current repo state is missing an available Spec Memory runtime (`runtime_ready=false`, `EXIT_69`) and the suggested remediation (`npm run build` under `.opencode/skills/system-spec-kit/mcp-server`) would modify files outside `.opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/retrieval-observability-trace-and-health.md`.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: Spec Memory commands cannot run because `@spec-kit/mcp-server dist is stale` and the native plugin reports `runtime_ready=false` / `EXIT_69`; rebuilding the MCP server and creating or marking the required sandbox degraded-vector DB would require writes outside the single allowed scenario file.
+- **Pass**: Diagnostics appear under opt-ins or health surfaces and do not change ranking or mutate search state.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

@@ -221,7 +221,7 @@ Research source: the SmallCode deep-research record and its patch-ready deepenin
 The incident doc records:
 
 - Date: 2026-05-04.
-- Executor: `deepseek/deepseek-v4-pro`.
+- Executor: `opencode-go/deepseek-v4-flash`.
 - Mode: `/deep:review:auto`.
 - Flag: `--dangerously-skip-permissions`.
 - Damage: 44 files deleted across two phase children.

@@ -61,7 +61,7 @@ The active cli-opencode small-model set is registry-driven, not duplicated here.
 
 | Model | Context window | cli-opencode note |
 | --- | ---: | --- |
-| `deepseek-v4-pro` | 64,000 | Default cli-opencode model; keep prompts tight. |
+| `opencode-go/deepseek-v4-flash` | — | Default cli-opencode model; window not re-verified on this install — confirm via `opencode models opencode-go` before budget-sensitive dispatches. |
 | `kimi-k2.7-code` | 262,144 | Largest active window (256k via `kimi-for-coding/k2p7`; supersedes the retired `kimi-k2.6`); useful for long-file inspection, still follows the budget discipline. At `--variant high` cap reads + budget 1200s+ (over-explores broad scopes — observed 2026-06-17). |
 | `qwen3.6` | 32,000 | Smallest active cli-opencode window; needs the strictest scope and file anchors. |
 

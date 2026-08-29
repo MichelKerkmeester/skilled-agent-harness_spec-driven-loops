@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-031` and confirm th
 - Prompt: `Configure a shared-path entry that tries to traverse outside the worktree, launch the wrapper, and confirm the traversal entry is skipped with a warning while the destination file is left untouched.`
 - Expected execution process: Set `SPECKIT_WORKTREE_SHARED_PATHS` to a traversal-shaped relative path (e.g. `../../victim`), launch the wrapper for real in a disposable fixture with a decoy file at the traversal target, and confirm the launch still succeeds but the traversal entry is skipped.
 - Expected signals: stderr contains `skipping unsafe shared path: ../../victim`; the decoy file at the traversal destination is unchanged and never replaced by a symlink; the launch still completes successfully.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox cannot create symlinks inside the disposable fixture.
 - Pass/fail: PASS if every traversal-shaped or outside-checkout shared path is skipped with a logged warning and the destination content is provably unchanged. FAIL if the traversal path is symlinked, if the decoy file's content changes, or if the skip is silent.
 
 ---

@@ -84,4 +84,4 @@ Check the strategy template for explicit dimension tracking sections and verify 
 - Playbook ID: DRV-010
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/strategy-next-focus-and-dimension-rotation.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

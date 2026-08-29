@@ -28,7 +28,7 @@ The command must stay read-only and refuse remediation. An empty graph without s
 - Expected signals: read-only diagnostic flow loads `doctor-deep-loop.yaml`; `empty_graph=true`; `iteration_folder_count=0`; `lazy_init.available=false`; status is `DEGRADED`, `EMPTY`, or equivalent attention state with no `deep_loop_graph_upsert` call.
 - Desired user-visible outcome: A concise diagnostic verdict saying no iteration source was detected and recommending `/deep:research` or `/deep:review` first.
 - Pass/fail: PASS if the command reports the empty graph and missing source clearly while performing no graph mutation.
-- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, `SKIP`, or `UNAUTOMATABLE`.
+- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable; a scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
 
@@ -68,10 +68,8 @@ No graph rows are inserted, no snapshot is taken, and no iteration markdown file
 
 ### Pass / Fail
 
-- **PASS**: command reports empty graph and no iteration source, recommends running a deep-loop workflow first, and performs no mutation.
-- **FAIL**: command attempts lazy-init without source files, calls `deep_loop_graph_upsert`, invents iteration data, or reports a healthy graph.
-- **SKIP**: the sandbox cannot remove or isolate iteration folders without touching active user data.
-- **UNAUTOMATABLE**: only valid if the runtime cannot execute `/doctor deep-loop` and no direct status diagnostic can be captured.
+- **Pass**: The command reports the empty graph and missing source clearly while performing no graph mutation.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

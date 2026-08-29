@@ -6,11 +6,11 @@ trigger_phrases:
   - "which model for pi dispatch"
   - "pi thinking reasoning effort"
   - "pi has no default model"
-  - "pi openai-codex deepseek minimax xiaomi"
+  - "pi openai-codex opencode-go minimax xiaomi"
   - "pi passthrough model selection"
 importance_tier: normal
 contextType: implementation
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 The single catalog of the providers, authenticated model ids, the `--thinking` effort lever, and dispatch shapes the cli-pi mode can reach. cli-pi is a multi-provider passthrough with no enforced model allowlist and no fixed default model — every dispatch names its provider and model explicitly.
@@ -47,22 +47,12 @@ The table below is the closed roster for cli-pi dispatch, sourced from the machi
 
 ### openai-codex
 
-Custom provider carrying the GPT-5.6 personas — see the effort cross-map in §4. Pi exposes the base persona slugs only (no `-fast` / `-pro` speed tiers). `gpt-5.6-terra` is in Pi's supported set but may not be authenticated on every machine — confirm via `models-store.json`.
+Custom provider carrying the GPT-5.6 personas — see the effort cross-map in §4. Pi exposes the base persona slugs only (no `-fast` / `-pro` speed tiers); confirm the authenticated set via `models-store.json`.
 
 | Model id | Notes |
 |----------|-------|
 | `gpt-5.6-sol` | GPT-5.6 Sol |
 | `gpt-5.6-luna` | GPT-5.6 Luna |
-| `gpt-5.6-terra` | GPT-5.6 Terra |
-
-### deepseek
-
-Policy: DeepSeek V4 Flash is a reasoning model (its `models-store.json` entry is `reasoning: true` with a `max` thinking level) and is dispatched **only at its max thinking tier**. The fan-out builder pins `deepseek-v4-flash` to `--thinking max` automatically, so a lineage requesting a lower effort is upgraded to max.
-
-| Model id | Notes |
-|----------|-------|
-| `deepseek-v4-flash` | Latency-optimized reasoning model, pinned to `--thinking max` by policy; a live `--provider deepseek --model deepseek-v4-flash -p` dispatch completed a real tool-using turn |
-| `deepseek-v4-pro` | Reasoning-optimized |
 
 ### minimax
 
@@ -87,7 +77,7 @@ OpenCode Go gateway passthrough (subsidized "2x usage" rate). Select with `--pro
 
 | Model id | Notes |
 |----------|-------|
-| `deepseek-v4-flash` | Latency-optimized reasoning model pinned to `--thinking max` by policy; opencode-go is the fan-out provider for this model. A live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07. Also reachable directly via `--provider deepseek` (see above) |
+| `deepseek-v4-flash` | Latency-optimized reasoning model pinned to `--thinking max` by policy; opencode-go is the fan-out provider for this model (the bare `deepseek-v4-flash` literal composes `opencode-go/deepseek-v4-flash`). A live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07 |
 | `qwen3.8-max` | Qwen 3.8 Max; a live `pi --provider opencode-go --model qwen3.8-max -p` dispatch completed a real turn 2026-08-07 |
 | `glm-5.3-flash` | Z.AI GLM-5.3-Flash via the Go gateway; reasoning model dispatched at its top tier `--thinking max`; list-verified in `opencode models opencode-go` on 2026-08-27 (not dispatch-tested). Reachable as `--provider opencode-go --model glm-5.3-flash` |
 
@@ -105,18 +95,17 @@ OpenRouter passthrough (base `https://openrouter.ai/api/v1`). Select with `--pro
 
 ### cline-pass
 
-Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible), added to Pi **by config** — a `providers.cline-pass` block in `.pi/models.json` (`api: openai-completions`, env-keyed `CLINE_API_KEY`) plus `enabledModels` entries in `.pi/settings.json`. It is not a Pi builtin; full setup and removal live in [.pi/custom-providers.md](../../../../../.pi/custom-providers.md). Select flash with `--provider cline-pass --model cline-pass/cline-pass/deepseek-v4-flash`, pro with `--model cline-pass/cline-pass/deepseek-v4-pro`, or GLM-5.3-Flash with `--model cline-pass/z-ai/glm-5.3-flash`. pi's default here is `defaultProvider: cline-pass` with `defaultModel` set in `.pi/settings.json` (currently `z-ai/glm-5.3-flash`; point it at any cline-pass model).
+Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible), added to Pi **by config** — a `providers.cline-pass` block in `.pi/models.json` (`api: openai-completions`, env-keyed `CLINE_API_KEY`) plus `enabledModels` entries in `.pi/settings.json`. It is not a Pi builtin; full setup and removal live in [.pi/custom-providers.md](../../../../../.pi/custom-providers.md). Select flash with `--provider cline-pass --model cline-pass/cline-pass/deepseek-v4-flash`, or GLM-5.3-Flash with `--model cline-pass/z-ai/glm-5.3-flash`. pi's default here is `defaultProvider: cline-pass` with `defaultModel` set in `.pi/settings.json` (currently `z-ai/glm-5.3-flash`; point it at any cline-pass model).
 
 Credential gotcha: the block's `apiKey` MUST use pi's own config-value syntax — `${CLINE_API_KEY}` (or `$CLINE_API_KEY`), never opencode's `{env:CLINE_API_KEY}`. pi has no `{env:...}` form; it takes the braced string as a **literal** key and Cline answers `401 Unauthorized` on the first real dispatch. Supply the key by exporting `CLINE_API_KEY` in `~/.zshenv` so dispatched and non-interactive shells inherit it. A `pi /login cline-pass` credential in `~/.pi/agent/auth.json` also works and takes precedence, but it is scoped to the resolved pi agent directory: any session with its own `PI_CODING_AGENT_DIR` or a different `HOME` loses it, and then reports either `401 Unauthorized` or `No models available. Use /login...` while the operator's interactive session keeps working. `pi auth check` cannot see any of this — it reports `ready` on an unresolved placeholder.
 
 Model-id gotcha: every reference here is **three-segment** (`<provider>/<modelType>/<model>`) because the model `id` in `.pi/models.json` keeps its `modelType/` prefix. The DeepSeek entries use `cline-pass/` (`cline-pass/cline-pass/deepseek-v4-flash`); **GLM-5.3-Flash uses the vendor prefix `z-ai/`** (`cline-pass/z-ai/glm-5.3-flash`, id = `z-ai/glm-5.3-flash`) — do NOT assume `cline-pass/glm-5.3-flash`, which the Cline API 404s. Cline requires the `modelType/model` shape: a bare id returns `400 "invalid model format"`, a wrong one returns `404 "model not found"`, and both hide from `pi --list-models` / `pi auth check` (which never send a completion), surfacing only on the first real dispatch.
 
-Policy: the DeepSeek V4 Flash, DeepSeek V4 Pro, and GLM-5.3-Flash entries here are reasoning models whose Cline thinking tiers top out at `xhigh` — there is **no `max` tier** on this provider. Dispatch them **only at `--thinking xhigh`**; do not request `max`. Pi's global `defaultThinkingLevel` is already `xhigh`, so an unqualified dispatch lands on the correct tier, but pass `--thinking xhigh` explicitly in fan-out for clarity. GLM-5.3-Flash's interactive picker additionally offers the lower tiers, but the config entry mirrors the DeepSeek `xhigh` ceiling for a single consistent cline-pass policy.
+Policy: the DeepSeek V4 Flash and GLM-5.3-Flash entries here are reasoning models whose Cline thinking tiers top out at `xhigh` — there is **no `max` tier** on this provider. Dispatch them **only at `--thinking xhigh`**; do not request `max`. Pi's global `defaultThinkingLevel` is already `xhigh`, so an unqualified dispatch lands on the correct tier, but pass `--thinking xhigh` explicitly in fan-out for clarity. GLM-5.3-Flash's interactive picker additionally offers the lower tiers, but the config entry mirrors the DeepSeek `xhigh` ceiling for a single consistent cline-pass policy.
 
 | Model id | Notes |
 |----------|-------|
-| `cline-pass/cline-pass/deepseek-v4-flash` | DeepSeek V4 Flash via the Cline provider; reasoning model dispatched **only at `--thinking xhigh`** (its top tier; no `max` here). Config-only provider, not a Pi builtin; live dispatch verified 2026-08-18 with a real `CLINE_API_KEY`. Three-segment reference (model `id` = `cline-pass/deepseek-v4-flash`). Distinct from the deepseek / opencode-go / openrouter Flash routes above |
-| `cline-pass/cline-pass/deepseek-v4-pro` | DeepSeek V4 Pro via the Cline provider; reasoning model dispatched **only at `--thinking xhigh`** (its top tier; no `max` here). Config-only provider, not a Pi builtin; context 1M, output 384K; live dispatch verified 2026-08-18 with a real `CLINE_API_KEY`. Three-segment reference (model `id` = `cline-pass/deepseek-v4-pro`). Distinct from the deepseek / opencode-go Pro routes above |
+| `cline-pass/cline-pass/deepseek-v4-flash` | DeepSeek V4 Flash via the Cline provider; reasoning model dispatched **only at `--thinking xhigh`** (its top tier; no `max` here). Config-only provider, not a Pi builtin; live dispatch verified 2026-08-18 with a real `CLINE_API_KEY`. Three-segment reference (model `id` = `cline-pass/deepseek-v4-flash`). Distinct from the opencode-go / openrouter Flash routes above |
 | `cline-pass/z-ai/glm-5.3-flash` | GLM-5.3-Flash via the Cline provider. Reasoning model dispatched **only at `--thinking xhigh`** (its top tier; no `max` here). Config-only provider, not a Pi builtin; context 1.31M, output 131K. Three-segment reference (model `id` = `z-ai/glm-5.3-flash`, the **`z-ai/` vendor prefix**, not `cline-pass/`); dispatch-verified via the local Cline runtime on 2026-08-27 (`cline-pass` session with `model: z-ai/glm-5.3-flash`). The **same underlying model** as `openrouter/z-ai/glm-5.3-flash`, reached through a different provider — pick the route deliberately. Direct-dispatch route (the deep-loop cli-pi fan-out routes the shared `z-ai/glm-5.3-flash` literal via OpenRouter) |
 
 Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `GEMINI_API_KEY`, `GROQ_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `MINIMAX_API_KEY`, `KIMI_API_KEY`, `QWEN_TOKEN_PLAN_API_KEY`, AWS). Documentation-only provider breadth is not a license to guess an unconfirmed model id — only the six authenticated providers above have a confirmed installed catalog.
@@ -137,8 +126,8 @@ Pi's `pi --help` also lists provider env vars beyond this roster (`ANTHROPIC_API
 ```bash
 # No default model — always name provider + model + effort explicitly:
 pi -p "<prompt>" \
-  --provider deepseek --model deepseek-v4-pro \
-  --thinking high --mode text
+  --provider opencode-go --model deepseek-v4-flash \
+  --thinking max --mode text
 ```
 
 Do not fabricate a default model when composing a cli-pi dispatch. If the task has no model-specific requirement, pick a provider/model from the authenticated roster (§2) deliberately and state the choice.
@@ -165,7 +154,6 @@ The GPT-5.6 tiers are reachable through Pi's `openai-codex` provider, but Pi's `
 |-------|---------------------------------|--------------------------------|
 | `gpt-5.6-sol` | `ultra` | Partially — Pi's `--thinking` scale stops at `max`; `ultra` has no Pi-side value |
 | `gpt-5.6-luna` | `max` | Yes — `max` is the top of Pi's own scale |
-| `gpt-5.6-terra` | `max` | Yes — `max` is the top of Pi's own scale |
 
 Confirm the target model actually honors the requested tier before assuming it changes behavior — the contract pin did not exhaustively test every model/tier pairing.
 
@@ -178,8 +166,8 @@ When dispatching as a non-interactive child (spec-gate-neutralized worker), pref
 
 ```bash
 SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 pi -p "<prompt>" \
-  --provider deepseek --model deepseek-v4-pro \
-  --thinking high --mode text --offline \
+  --provider opencode-go --model deepseek-v4-flash \
+  --thinking max --mode text --offline \
   > stdout.log 2> stderr.log
 ```
 

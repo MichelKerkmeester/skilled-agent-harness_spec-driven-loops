@@ -47,21 +47,17 @@ Path 1: exit 0, Path 2: exit 0, Path 3: exit 0
 
 ### Evidence
 
-BLOCKED before command execution.
+Capture, for every step in the Commands sequence above:
 
-Observed scenario command surface:
-
-```text
-1. node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '{"specFolder":"test","sessionSummary":"test"}' <spec-folder> -> expect exit 0
-2. printf '{"specFolder":"test","sessionSummary":"test"}' | node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --stdin <spec-folder> -> expect exit 0
-3. node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data-<session-id>.json <spec-folder> -> expect exit 0
-```
-
-Blocking condition: command 3 requires a concrete pre-existing `/tmp/save-context-data-<session-id>.json` file, but this scenario defines no Preconditions section and provides no command that creates or identifies that file. The current task also restricts writes to this scenario file only, so creating the required `/tmp/save-context-data-<session-id>.json` fixture or allowing `generate-context.js` to write save outputs outside this file was not permitted.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: command 3 is missing its required concrete positional JSON input file/precondition, and the current task's allowed write path does not permit creating that fixture or running save commands that may write outside this scenario file.
+- **Pass**: All three paths behave as documented.
+- **Fail**: Any path has unexpected behavior.
 
 ### Failure Triage
 
@@ -72,8 +68,7 @@ Check generate-context.ts argument parsing, loader routing, and structured-input
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/json-primary-deprecation-posture.md](../../feature-catalog/tooling-and-scripts/json-primary-deprecation-posture.md)
-- Source spec: [017-json-primary-deprecation/spec.md](../../../../<spec-folder>)
-
+- Source spec: the JSON-primary deprecation posture specification packet in this repository's spec tree
 ---
 
 ## 5. SOURCE METADATA

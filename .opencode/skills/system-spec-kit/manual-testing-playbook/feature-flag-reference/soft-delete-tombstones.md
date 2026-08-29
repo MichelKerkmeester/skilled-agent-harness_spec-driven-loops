@@ -56,30 +56,17 @@ Validate SPECKIT_SOFT_DELETE_TOMBSTONES with default hard-delete, enabled tombst
 
 ### Evidence
 
-BLOCKED before executing Commands step 1.
+Capture, for every step in the Commands sequence above:
 
-Actual scenario command requirement:
-
-```text
-1. Create an isolated DB sandbox and record its path in the transcript.
-```
-
-Actual user-level write constraint for this run:
-
-```text
-Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
-```
-
-```text
-ALLOWED WRITE PATHS
-- .opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/soft-delete-tombstones.md (this file only)
-```
-
-Because creating an isolated DB sandbox and saving sandbox memory files would create or modify files outside the single allowed write path, the scenario could not be executed without violating the run constraints. No sandbox DB path, `memory_save`, `memory_delete`, `deleted_at` inspection, retention preview, or sandbox cleanup transcript was produced.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: the required isolated DB sandbox and sandbox memory files cannot be created under the run's single-file write constraint.
+- **Pass**: Default and disabled paths are hard-delete and enabled path writes stable tombstone metadata.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

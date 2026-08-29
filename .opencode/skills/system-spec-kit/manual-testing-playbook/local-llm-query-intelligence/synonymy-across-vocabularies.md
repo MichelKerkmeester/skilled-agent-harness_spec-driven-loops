@@ -23,11 +23,11 @@ The behavior is user-observable: an operator new to the codebase uses casual phr
 
 - Objective: Confirm cross-vocabulary semantic mapping.
 - Real user request: `Verify that domain-jargon and plain-English versions of the same concept retrieve the same documents from Memory MCP and Code Graph.`
-- RCAF Prompt: `As a query-intelligence validation operator, run two queries that express the same concept with different vocabularies. Report the Jaccard overlap of the top-5 results between the two queries and whether the current canonical target appears in both variants. Return a concise pass/fail verdict and the overlap percentage.`
+- Operator prompt: `As a query-intelligence validation operator, run two queries that express the same concept with different vocabularies. Report the Jaccard overlap of the top-5 results between the two queries and whether the current canonical target appears in both variants. Return a concise pass/fail verdict and the overlap percentage.`
 - Expected execution process: fire 4 query pairs (memory + code), compute top-5 Jaccard overlap, record any divergence.
 - Expected signals: At least 2 of 4 query pairs have top-5 overlap >= 25%; no query returns zero hits; the current canonical target appears in BOTH variants. Calibration source: 016/004 post-surgery evidence showed the previous 3/4 at 60% bar was not empirically met even after live-ID remap, so this scenario now gates fair target visibility plus modest overlap.
 - Desired user-visible outcome: `PASS - 2/4 pairs at >= 25% top-5 Jaccard; canonical live targets present in both variants; remaining misses documented.`
-- Pass/fail: PASS if >= 2 of 4 pairs hit >= 25% overlap and all live canonical targets appear; PARTIAL if target visibility holds but only 1 pair reaches overlap; FAIL if any query returns zero relevant hits or a live canonical target is absent.
+- Pass/fail: PASS only if >= 2 of 4 pairs hit >= 25% overlap and all live canonical targets appear; FAIL if any query returns zero relevant hits, a live canonical target is absent, or only 1 pair reaches the overlap threshold even when target visibility holds.
 
 ---
 
@@ -85,5 +85,34 @@ For each pair, compute the Jaccard overlap of the top-5 result IDs:
   | A    |    72%  | PASS   |
   | B    |    64%  | PASS   |
   | C    |    66%  | PASS   |
-  | D    |    58%  | PARTIAL|
+  | D    |    58%  | PASS   |
   ```
+
+### Pass / Fail
+
+- **Pass**: >= 2 of 4 pairs hit >= 25% overlap and all live canonical targets appear.
+- **Fail**: Any query returns zero relevant hits, a live canonical target is absent, or only 1 pair reaches the overlap threshold even when target visibility holds.
+
+### Failure Triage
+
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
+
+---
+
+## 4. SOURCE FILES
+
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: local-llm-query-intelligence-synonymy-across-vocabularies
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/synonymy-across-vocabularies.md`

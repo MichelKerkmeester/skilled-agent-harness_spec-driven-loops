@@ -415,7 +415,16 @@ Use exact tools when the query gives exact evidence handles. When it does not, G
 
 ---
 
-## 11. SUMMARY
+## 11. RELATED RESOURCES
+
+- `.opencode/agents/orchestrate.md` — the orchestrator that routes ALL exploration through @context (Rules 1 and 4).
+- `.opencode/skills/system-spec-kit/SKILL.md` — the continuity-ladder discipline behind the Query Routing Matrix.
+- `.opencode/commands/speckit/plan.md` — dispatches @context to ground a spec folder before planning.
+- `.opencode/commands/create/agent.md` — dispatches @context before scaffolding a new agent.
+
+---
+
+## 12. SUMMARY
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐

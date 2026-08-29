@@ -63,12 +63,12 @@ Check env var checks: CLAUDE_CODE, CLAUDE_SESSION_ID, MCP_SERVER_NAME
 ### Prompt
 
 ```
-As a context-and-code-graph validation operator, validate All 3 runtimes produce correct hookPolicy values against cd .opencode/skills/system-spec-kit/mcp-server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts. Verify claude-code=enabled, opencode-cli=live or partial based on local OpenCode/settings availability, copilot-cli=enabled in this repo plus disabled_by_scope in the no-hook temp repo. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a context-and-code-graph validation operator, validate All 3 runtimes produce correct hookPolicy values against cd .opencode/skills/system-spec-kit/mcp-server && TMPDIR=/tmp/speckit-manual-playbook-vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts. Verify claude-code=enabled, opencode-cli=live or partial based on local OpenCode/settings availability, copilot-cli=enabled in this repo plus disabled_by_scope in the no-hook temp repo. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
 
-1. cd .opencode/skills/system-spec-kit/mcp-server && TMPDIR=/Users/michelkerkmeester/.tmp/vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts
+1. cd .opencode/skills/system-spec-kit/mcp-server && TMPDIR=/tmp/speckit-manual-playbook-vitest-tmp npx vitest run tests/runtime-detection.vitest.ts tests/cross-runtime-fallback.vitest.ts
 
 ### Expected
 

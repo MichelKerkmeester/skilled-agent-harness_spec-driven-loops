@@ -54,32 +54,17 @@ Second save produces filename with `-1` suffix; both files exist with distinct n
 
 ### Evidence
 
-BLOCKED before executing the scenario commands because the current run's write scope allows only this scenario file, while the scenario's Commands require memory-save writes outside that path.
+Capture, for every step in the Commands sequence above:
 
-Observed scenario commands that require out-of-scope writes:
-
-```text
-1. Save memory to a folder
-2. Save again with same slug within same minute
-4. Exhaust `-1` through `-100` collisions and save again
-5. Persist the first random fallback filename, repeat the save, and verify a second distinct random fallback is reserved
-7. Verify `description.json` increments `memorySequence` via `Number(existing.memorySequence) | 0` before incrementing
-8. Verify `memoryNameHistory` updated
-```
-
-Active write constraint from the user request:
-
-```text
-Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
-ALLOWED WRITE PATHS
-.opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/memory-filename-uniqueness-ensureuniquememoryfilename.md (this file only)
-```
-
-No memory-save command was run because it would necessarily create or modify memory/spec files outside the allowed path, so the expected filename collision and `description.json` signals could not be observed in this constrained run.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: scenario execution requires creating or modifying memory/spec files outside the single allowed write path, so the save/collision/fallback and `description.json` update paths could not be exercised without violating the task constraints.
+- **Pass**: Second save produces filename with -1 suffix; both files exist with distinct names; exhausting `-1` through `-100` collisions triggers a random 12-hex fallback suffix from `crypto.randomBytes(6).toString('hex')`, not SHA1; repeated fallback saves still reserve distinct filenames; `memorySequence` increments through the hardened `Number(existing.memorySequence).
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

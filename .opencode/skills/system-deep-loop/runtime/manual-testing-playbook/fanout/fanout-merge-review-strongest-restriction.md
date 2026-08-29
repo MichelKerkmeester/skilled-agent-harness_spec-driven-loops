@@ -39,7 +39,11 @@ Without this, a clean lineage could dilute a blocking lineage's P0 finding.
 - Working directory is repository root.
 - `scripts/fanout-merge.cjs` present.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate the review fan-out strongest-restriction merge and confirm all 5 review unit tests pass, covering every verdict combination and the duplicate escalation rule.`
+
+### Commands
 
 1. Inspect `scripts/fanout-merge.cjs` `mergeReviewRegistries` — confirm `SEVERITY_RANK` map (`{P0:3, P1:2, P2:1}`), `status !== 'active'` guard, `mergedVerdict` derivation formula.
 2. `bash: cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/unit/fanout-merge.vitest.ts --reporter=verbose`
@@ -49,7 +53,14 @@ Without this, a clean lineage could dilute a blocking lineage's P0 finding.
 
 5/5 review tests pass. All verdict combinations correct. Duplicate findingId gets highest severity. Non-active (resolved, `resolved_false_positive`) findings excluded from active counts.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `scripts/fanout-merge.cjs` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/unit/fanout-merge.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - SEVERITY_RANK missing: duplicate findingId keeps the first-seen severity instead of escalating.
 - `status` guard missing: resolved findings inflate `activeP0` and produce false FAILs.
@@ -57,7 +68,7 @@ Without this, a clean lineage could dilute a blocking lineage's P0 finding.
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -73,11 +84,12 @@ Without this, a clean lineage could dilute a blocking lineage's P0 finding.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Playbook ID: DLR-028
 - Feature catalog entry: `feature-catalog/fanout/fanout-merge.md`
 - Scenario file path: `manual-testing-playbook/fanout/fanout-merge-review-strongest-restriction.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Expected verdict mode: GREEN when all 5 review tests pass and source anchors agree
 - Wall-time estimate: 5-10 min

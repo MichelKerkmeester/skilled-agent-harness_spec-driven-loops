@@ -23,7 +23,7 @@ Notion ships two backends that split cleanly by runtime. Code Mode has no browse
 - Feature Name: Headless Backend Selection
 - Scenario Objective: Confirm the `notion` manual is registered against the local stdio transport and that a call resolves with no OAuth step.
 - Exact Prompt: `"In a headless run with NOTION_TOKEN set and no browser, confirm which backend the mode selects."`
-- Exact Command Sequence: `1. bash: grep -c '"name": "notion"' .utcp_config.json -> 2. inspect the notion manual's transport field in .utcp_config.json -> 3. notion["notion_retrieve-bot-user"]({})`
+- Exact Command Sequence: `1. bash: grep -c '"name": "notion"' .utcp_config.json -> 2. inspect the notion manual's transport field in .utcp_config.json -> 3. notion["notion_retrieve-bot-user"] ({})`
 - Expected Signals: Step 1 returns `1`; Step 2 shows `transport: "stdio"` and command `npx -y @notionhq/notion-mcp-server`; Step 3 resolves with no OAuth prompt.
 - Evidence: the `.utcp_config.json` manual entry, and the successful headless call transcript.
 - Pass/Fail Criteria: PASS if the mode selects local stdio (no OAuth step) and the call resolves; FAIL if the mode attempts remote OAuth in a headless context; SKIP if `.utcp_config.json` is unavailable or the `notion` manual is not registered at all.
@@ -45,7 +45,7 @@ Notion ships two backends that split cleanly by runtime. Code Mode has no browse
 
 1. `bash: grep -c '"name": "notion"' .utcp_config.json`.
 2. Inspect the `notion` manual's `transport` field in `.utcp_config.json`.
-3. `notion["notion_retrieve-bot-user"]({})`.
+3. `notion["notion_retrieve-bot-user"] ({})`.
 
 ### Expected
 
@@ -69,7 +69,7 @@ Capture the `.utcp_config.json` manual entry and the successful headless call tr
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| BACKEND-001 | Headless Backend Selection | Verify headless Code Mode always selects the local stdio backend | `"In a headless run with NOTION_TOKEN set and no browser, confirm which backend the mode selects."` | 1. `bash: grep -c '"name": "notion"' .utcp_config.json` -> 2. inspect `transport` field -> 3. `notion["notion_retrieve-bot-user"]({})` | `1` manual entry; `transport: "stdio"`; call resolves with no OAuth prompt | `.utcp_config.json` entry, successful headless call transcript | PASS if local stdio selected and call resolves; FAIL if OAuth attempted headlessly; SKIP if manual unregistered | Check manual config, check no OAuth injection, re-verify interactive branch is absent |
+| BACKEND-001 | Headless Backend Selection | Verify headless Code Mode always selects the local stdio backend | `"In a headless run with NOTION_TOKEN set and no browser, confirm which backend the mode selects."` | 1. `bash: grep -c '"name": "notion"' .utcp_config.json` -> 2. inspect `transport` field -> 3. `notion["notion_retrieve-bot-user"] ({})` | `1` manual entry; `transport: "stdio"`; call resolves with no OAuth prompt | `.utcp_config.json` entry, successful headless call transcript | PASS if local stdio selected and call resolves; FAIL if OAuth attempted headlessly; SKIP if manual unregistered | Check manual config, check no OAuth injection, re-verify interactive branch is absent |
 
 Cleanup: none (read-only inspection).
 

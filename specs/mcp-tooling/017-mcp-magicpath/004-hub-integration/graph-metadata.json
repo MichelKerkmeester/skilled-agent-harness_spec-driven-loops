@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/017-mcp-magicpath/004-hub-integration",
+  "spec_folder": "mcp-tooling/017-mcp-magicpath/004-hub-integration",
+  "parent_id": "mcp-tooling/017-mcp-magicpath",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp-magicpath hub routing",
+      "mode registry entry",
+      "leaf manifest regeneration",
+      "hub integration plan",
+      "mode registry entry design",
+      "hub integration tasks"
+    ],
+    "key_topics": [
+      "mcp-magicpath",
+      "hub",
+      "routing",
+      "mode",
+      "registry",
+      "entry",
+      "leaf",
+      "manifest",
+      "regeneration",
+      "integration",
+      "plan",
+      "design"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "tasks.md",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Decide",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Declaration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A packet nothing routes to is a document, not a capability",
+    "created_at": "2026-08-29T11:35:16.848Z",
+    "last_save_at": "2026-08-29T11:35:16.848Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "source_fingerprint": "sha256:b8f942e7215b0a9243ff791d54afd9c612cedf66edb4c4ba7372136070491d30",
+    "source_doc_hashes": {
+      "spec.md": "889db83b445ff0a1145112058e9fb162315a8580ce3ab6c302c8781fdee3b2e9",
+      "plan.md": "a0414a04186438dbb9ecff36eb4040dd65663138f431d6d354633e3bf07daebe",
+      "tasks.md": "fa2dc33d378fe47aa32aa0f99ca11e83e1e69abd8e2641b854c68cd053db8c8e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

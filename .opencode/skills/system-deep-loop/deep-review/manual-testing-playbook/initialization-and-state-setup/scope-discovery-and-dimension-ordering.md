@@ -84,4 +84,4 @@ Check the YAML step_scope_discovery resolve block for each target type (spec-fol
 - Playbook ID: DRV-007
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `initialization-and-state-setup/scope-discovery-and-dimension-ordering.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

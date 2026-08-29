@@ -27,9 +27,10 @@ End-to-end manual testing reference for the mcp-figma skill. Every scenario vali
 | Read-Only Access | 2 | INSPECT-001, EXPORT-001 |
 | Safety Gate | 1 | REFUSE-001 |
 | Optional MCP | 1 | MCP-001 |
-| **TOTAL** | **8** | **8 scenarios** |
+| Intra-Routing Recall | 9 | FG-R01, FG-R02, FG-R03, FG-R04, FG-R05, FG-R06, FG-H01, FG-H02, FG-N01 |
+| **TOTAL** | **17** | **17 scenarios** |
 
-This playbook defines 8 deterministic scenarios across 5 categories validating the safe surface of the `mcp-figma` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-11, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 12.
+This playbook defines 17 deterministic scenarios across 6 categories validating the safe surface and the smart-router intent classification of the `mcp-figma` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-12, and links to a dedicated per-scenario file with the full execution contract, with the cross-reference index in Section 13.
 
 > **Per-scenario files:** This package adopts the Feature Catalog split-document pattern. The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside category folders at the playbook root. The cross-reference index in Section 12 lists every scenario file. The validator checks this root file for markdown structure and does not recurse into category folders, so per-scenario file structure is checked manually, and cross-file markdown links are guarded in CI by `check-markdown-links.cjs`.
 
@@ -364,7 +365,29 @@ Prompt: `"What Figma MCP tools are available through Code Mode?"`
 
 ---
 
-## 12. SCENARIO CROSS-REFERENCE INDEX
+## 12. INTRA-ROUTING RECALL (`FG-R01`..`FG-R06`, `FG-H01`, `FG-H02`, `FG-N01`)
+
+This category validates the `mcp-figma` smart router itself (`SKILL.md` §2 `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live `figma-ds-cli` or Figma Desktop session. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Six scenarios (`FG-R01`-`FG-R06`) are fitted to each of the six declared intents, two (`FG-H01`, `FG-H02`) are natural-phrasing holdouts that decontaminate `FG-R01` and `FG-R03`, and one (`FG-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent.
+
+### Scenario Summary
+
+| ID | Category | Prompt (abridged) | Expected Intent | Feature File |
+|---|---|---|---|---|
+| FG-R01 | Routing | Create a new frame with a button component and an icon... | `CREATE_RENDER` | [intra-routing-recall/create-render.md](intra-routing-recall/create-render.md) |
+| FG-R02 | Routing | Extract the design system color tokens and variables... | `DESIGN_SYSTEM_TOKENS` | [intra-routing-recall/design-tokens.md](intra-routing-recall/design-tokens.md) |
+| FG-R03 | Routing | Inspect the selected node and export a screenshot... | `INSPECT_EXPORT` | [intra-routing-recall/inspect-export.md](intra-routing-recall/inspect-export.md) |
+| FG-R04 | Routing | Connect the local daemon and safely diagnose... | `CONNECT_SETUP_DAEMON` | [intra-routing-recall/connect-daemon.md](intra-routing-recall/connect-daemon.md) |
+| FG-R05 | Routing | Pull design context through code mode via the figma-developer-mcp wiring | `MCP_CONTEXT` | [intra-routing-recall/mcp-context.md](intra-routing-recall/mcp-context.md) |
+| FG-R06 | Routing | The command failed: the binary is not found and unauthorized... | `TROUBLESHOOT` | [intra-routing-recall/troubleshoot.md](intra-routing-recall/troubleshoot.md) |
+| FG-H01 | Holdout (decontaminates FG-R01) | Build me a new screen with a call-to-action... | `CREATE_RENDER` | [intra-routing-recall/holdout-create.md](intra-routing-recall/holdout-create.md) |
+| FG-H02 | Holdout (decontaminates FG-R03) | Grab the measurements and a picture of the selected element... | `INSPECT_EXPORT` | [intra-routing-recall/holdout-inspect.md](intra-routing-recall/holdout-inspect.md) |
+| FG-N01 | Negative | Refactor this Python function to run more efficiently. | `none` (`UNKNOWN_FALLBACK`) | [intra-routing-recall/negative.md](intra-routing-recall/negative.md) |
+
+Each per-scenario file carries the full frontmatter contract, the exact command sequence, expected signals, evidence, pass/fail criteria, and failure triage for its own ID.
+
+---
+
+## 13. SCENARIO CROSS-REFERENCE INDEX
 
 Each scenario maps to exactly one per-scenario file in a category folder at the playbook root, and to the matching feature-catalog area. Keep the per-scenario filenames stable once published.
 
@@ -378,5 +401,14 @@ Each scenario maps to exactly one per-scenario file in a category folder at the 
 | EXPORT-001 | Read-only export to an explicit path | Read-Only Access | [read-only/read-only-export.md](../manual-testing-playbook/read-only/read-only-export.md) | `../feature-catalog/export/export.md` |
 | REFUSE-001 | Destructive verb refused without confirmation + target | Safety Gate | [safety-gate/destructive-verb-refused.md](../manual-testing-playbook/safety-gate/destructive-verb-refused.md) | `../feature-catalog/tokens-and-variables/tokens-and-variables.md` |
 | MCP-001 | Optional Framelink MCP discovery via Code Mode | Optional MCP | [optional-mcp/framelink-discovery.md](../manual-testing-playbook/optional-mcp/framelink-discovery.md) | `../feature-catalog/optional-mcp/optional-mcp-context.md` |
+| FG-R01 | Create/render routing | Intra-Routing Recall | [intra-routing-recall/create-render.md](../manual-testing-playbook/intra-routing-recall/create-render.md) | n/a (routing-recall corpus) |
+| FG-R02 | Design system tokens routing | Intra-Routing Recall | [intra-routing-recall/design-tokens.md](../manual-testing-playbook/intra-routing-recall/design-tokens.md) | n/a (routing-recall corpus) |
+| FG-R03 | Inspect/export routing | Intra-Routing Recall | [intra-routing-recall/inspect-export.md](../manual-testing-playbook/intra-routing-recall/inspect-export.md) | n/a (routing-recall corpus) |
+| FG-R04 | Connect/setup daemon routing | Intra-Routing Recall | [intra-routing-recall/connect-daemon.md](../manual-testing-playbook/intra-routing-recall/connect-daemon.md) | n/a (routing-recall corpus) |
+| FG-R05 | MCP context routing | Intra-Routing Recall | [intra-routing-recall/mcp-context.md](../manual-testing-playbook/intra-routing-recall/mcp-context.md) | n/a (routing-recall corpus) |
+| FG-R06 | Troubleshoot routing | Intra-Routing Recall | [intra-routing-recall/troubleshoot.md](../manual-testing-playbook/intra-routing-recall/troubleshoot.md) | n/a (routing-recall corpus) |
+| FG-H01 | Blind holdout: build a screen | Intra-Routing Recall | [intra-routing-recall/holdout-create.md](../manual-testing-playbook/intra-routing-recall/holdout-create.md) | n/a (routing-recall corpus) |
+| FG-H02 | Blind holdout: measurements | Intra-Routing Recall | [intra-routing-recall/holdout-inspect.md](../manual-testing-playbook/intra-routing-recall/holdout-inspect.md) | n/a (routing-recall corpus) |
+| FG-N01 | Negative: out of domain | Intra-Routing Recall | [intra-routing-recall/negative.md](../manual-testing-playbook/intra-routing-recall/negative.md) | n/a (routing-recall corpus) |
 
-This index lists 8 scenario IDs and ships 8 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (8), so keep them in sync as scenarios are added or revised.
+This index lists 17 scenario IDs and ships 17 per-scenario files. The count of per-scenario files MUST equal the count of IDs in this table (17), so keep them in sync as scenarios are added or revised.

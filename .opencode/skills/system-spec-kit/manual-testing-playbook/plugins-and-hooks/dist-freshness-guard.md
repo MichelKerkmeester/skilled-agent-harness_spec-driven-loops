@@ -80,6 +80,16 @@ the real repository state.
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+- Prompt: `Validate the Dist Freshness Guard end to end against the commands below, and report a PASS or FAIL verdict with cited command output.`
+
+```text
+confirm the plugin (a) detects real stale/fresh dist state for every watched
+```
+
+### Commands
+
 1. Run the plugin's own regression suite:
 
    ```bash
@@ -160,111 +170,32 @@ the real repository state.
    early-return only when `DISABLED_ENV` is unset; setting it to `1` short-circuits the whole
    hook, including dist-staleness, before stdin is even read.
 
----
+### Evidence
 
-## 4. EVIDENCE
+Capture, for every step in the Commands sequence above:
 
-Step 1 -- unit test suite, real run against this checkout:
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
-```text
-TAP version 13
-# Subtest: exports only the OpenCode plugin factory
-ok 1 - exports only the OpenCode plugin factory
-# Subtest: injects stale and check-error diagnostics without terminal output
-ok 2 - injects stale and check-error diagnostics without terminal output
-# Subtest: invalidates a warm cache for watched source mutations
-ok 3 - invalidates a warm cache for watched source mutations
-# Subtest: bounds session state and rotates the audit log
-ok 4 - bounds session state and rotates the audit log
-# Subtest: evicts the oldest session ID when the deduplication cap is reached
-ok 5 - evicts the oldest session ID when the deduplication cap is reached
-# Subtest: requires staged build provenance and verifies source and dist content
-ok 6 - requires staged build provenance and verifies source and dist content
-# Subtest: refuses promotion when watched input changes during a build
-ok 7 - refuses promotion when watched input changes during a build
-# Subtest: keeps JSON build inputs watched and preserves checker mtime fallback
-ok 8 - keeps JSON build inputs watched and preserves checker mtime fallback
-# Subtest: prunes only old matching cache temporaries
-ok 9 - prunes only old matching cache temporaries
-# Subtest: reports aggregate checker errors as degraded with exit zero
-ok 10 - reports aggregate checker errors as degraded with exit zero
-# Subtest: Claude hook rejects malformed envelopes without traceback
-ok 11 - Claude hook rejects malformed envelopes without traceback
-# Subtest: Claude hook shares one deadline across sequential checkers
-ok 12 - Claude hook shares one deadline across sequential checkers
-# Subtest: standalone wrapper resolves the shared checker from a non-repo-root cwd
-ok 13 - standalone wrapper resolves the shared checker from a non-repo-root cwd
-# Subtest: standalone wrapper surfaces checker errors and stale results distinctly
-ok 14 - standalone wrapper surfaces checker errors and stale results distinctly
-# Subtest: standalone wrapper still prints the stale banner for a stale package
-ok 15 - standalone wrapper still prints the stale banner for a stale package
-1..15
-# tests 15
-# pass 15
-# fail 0
-# cancelled 0
-# skipped 0
-# todo 0
-```
+### Pass / Fail
 
-Step 2 -- live `check-all --json` against the real repository (real finding, not a fixture):
-exit code `69`, and the JSON `results` array shows 6 packages `"status":"fresh"` and one
-genuinely stale package:
+- **Pass**: The unit-test suite is green, a live check-all run against the real repo.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
-```json
-{"packageId":"sk-design/sk-design-md-generator/backend","packageName":"design-system-extractor","status":"stale","stale":true,"packageRoot":".../.opencode/skills/sk-design/sk-design-md-generator/backend","distEntry":".../dist/cli.js","entry":"default","rebuildCommand":"cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build","sourceCount":27,"newestSourceMtime":1783693794883.08,"newestSourceFile":".../scripts/report-gen.ts","distMtime":1782965858277.41,"message":"design-system-extractor dist is stale. Rebuild with: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build"}
-```
+### Failure Triage
 
-Step 3 -- live plugin `session.created` -> `experimental.chat.system.transform` injection,
-run against the same live repository (`ctx.directory = process.cwd()`), captured
-`output.system`:
+1. Re-run each command in the sequence on its own and record its exit status; the first non-zero exit names the failing step.
+2. Confirm the plugin host, bridge, and core files listed in section 4 are the ones actually loaded, and that any compiled output is current.
+3. Compare the observed output field by field against the expected signals in section 2, and quote the first field that disagrees.
 
-```json
-[
-  "[dist-freshness-guard] Local compiled dist is stale; affected outputs may be untrustworthy until rebuilt:\n- STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build"
-]
-```
-
-This matches step 2's live finding exactly, confirming the plugin's own diagnostic path
-produces the same verdict as the raw checker.
-
-Step 4 -- live risky-bash trigger (`tool.execute.before` with a `bash ... validate.sh ...`
-command), console.warn/error/log trapped:
-
-```text
-=== captured terminal output during risky-bash trigger (must be empty) ===
-[]
-```
-
-Real `.opencode/logs/dist-freshness-guard.log` tail after steps 3 and 4 (this file also
-carries prior `inject:`-prefixed lines from an actual concurrently running OpenCode session
-using this same plugin, confirming the log is genuinely live, not a fixture):
-
-```text
-2026-07-11T12:06:56.015Z [system-dist-freshness-guard] inject: STALE DIST WARNING: @spec-kit/shared -- run: cd .opencode/skills/system-spec-kit/shared && npm run build; STALE DIST WARNING: @spec-kit/system-skill-advisor -- run: cd .opencode/skills/system-skill-advisor/mcp-server && npm run build; STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
-2026-07-11T12:40:11.580Z [system-dist-freshness-guard] session.created: STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
-2026-07-11T12:40:40.362Z [system-dist-freshness-guard] risky-bash: STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
-```
-
-(The earlier `inject:` line also names `@spec-kit/shared` and
-`@spec-kit/system-skill-advisor` as stale; those two packages were rebuilt fresh between that
-concurrent session's check and this scenario's run, which is exactly the kind of point-in-time
-drift the guard exists to catch -- it does not indicate a bug in this scenario's evidence.)
-
-Step 5 -- Claude-side `SessionStart` sibling wrapper, live run:
-
-```text
-STALE DIST WARNING: design-system-extractor -- run: cd .opencode/skills/sk-design/sk-design-md-generator/backend && npm run build
-```
-
-Identical stale-package name and rebuild command to steps 2 and 3, confirming the OpenCode
-plugin and the Claude `SessionStart` hook agree on the same real repository state through the
-same shared `dist-freshness.cjs` core.
 
 ---
 
-## 5. SOURCE FILES
+## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Plugin: `.opencode/plugins/system-dist-freshness-guard.js`
 - Plugin unit test: `.opencode/plugins/tests/system-dist-freshness-guard.test.cjs`
 - Shared core: `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs`
@@ -276,26 +207,9 @@ same shared `dist-freshness.cjs` core.
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugins And Hooks
 - Playbook ID: dist-freshness-guard
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `plugins-and-hooks/dist-freshness-guard.md`
-
----
-
-## 7. PASS/FAIL
-
-PASS
-
-The plugin's own regression suite is green (15/15, 0 failures). A live invocation of the real
-plugin factory against this checkout's actual `ctx.directory` reproduced, through the
-documented `session.created` and risky-bash triggers, the exact same stale-package finding
-(`design-system-extractor`) that the raw `dist-freshness.cjs check-all --json` ground truth
-reported independently, with zero console.warn/error/log calls captured at any point -- the
-core no-terminal-output invariant holds. The Claude-side `SessionStart` sibling
-(`check-dist-staleness.sh --all`) surfaced the identical stale package and rebuild command
-through the same shared core, confirming the OpenCode plugin and its Claude-side equivalent
-stay in agreement. No fabricated output was used: every payload above is a direct capture from
-commands executed against this repository during this scenario's authoring.

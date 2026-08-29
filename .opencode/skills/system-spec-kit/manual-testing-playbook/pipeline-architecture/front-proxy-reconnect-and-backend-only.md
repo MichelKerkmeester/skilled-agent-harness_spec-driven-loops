@@ -56,26 +56,12 @@ The backend recycle is transparent: the reattach loop reconnects, the proxy retu
 
 ### Evidence
 
-Source contract review output:
+Capture, for every step in the Commands sequence above:
 
-```text
-27: const RETRYABLE_RECYCLE_ERROR = Object.freeze({
-28:   code: -32001,
-29:   message: 'backend recycled; retry',
-30:   data: { retryable: true },
-31: });
-```
-
-Sandbox front-proxy transcript:
-
-```text
-CASE recycle start
-RECYCLE_OUTPUT {"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2025-06-18","serverInfo":{"name":"recycle-gen1","version":"1"},"capabilities":{}}}
-RECYCLE_PROXY_LOG backend socket close; reattaching
-RECYCLE_OUTPUT {"jsonrpc":"2.0","id":2,"error":{"code":-32001,"message":"backend recycled; retry","data":{"retryable":true}}}
-RECYCLE_OUTPUT {"jsonrpc":"2.0","id":3,"result":{"backend":"recycle-gen2","method":"ping","tool":null}}
-RECYCLE_OBSERVED transition=REATTACHING->CONNECTED retryableCode=-32001 retryable=true replayBackend=recycle-gen2 logs=["backend socket close; reattaching"]
-```
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in section 3.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass / Fail
 
@@ -128,7 +114,8 @@ The command "Start the memory server with `SPECKIT_BACKEND_ONLY=1` in a sandbox"
 
 ### Pass / Fail
 
-- **BLOCKED**: the full backend-only startup command could not be run without violating the single-file write constraint; source inspection confirms the branch but no startup transcript was produced.
+- **Pass**: every signal named in the Expected block above is present in the captured output.
+- **Fail**: any signal named in the Expected block is absent, or a command in the sequence errors unexpectedly.
 
 ### Failure Triage
 
@@ -154,33 +141,12 @@ A protocol-version mismatch surfaces `-32002` with `retryable:false` ("client re
 
 ### Evidence
 
-Source contract review output:
+Capture, for every step in the Commands sequence above:
 
-```text
-32: const PROTOCOL_MISMATCH_ERROR = Object.freeze({
-33:   code: -32002,
-34:   message: 'backend protocol version changed; client reconnect required',
-35:   data: { retryable: false },
-36: });
-679:     const expectedProtocolVersion = tracker.getNegotiatedProtocolVersion();
-680:     if (handshake.handshakeObserved
-681:         && expectedProtocolVersion !== null
-682:         && (handshake.protocolVersion ?? null) !== expectedProtocolVersion) {
-687:       log(`backend protocol version drift: expected ${expectedProtocolVersion}, got ${handshake.protocolVersion ?? 'none'}; failing closed`);
-689:       state = 'CLOSED';
-690:       failPendingAndEndProtocolMismatch();
-```
-
-Sandbox front-proxy transcript:
-
-```text
-CASE protocol-mismatch start
-MISMATCH_OUTPUT {"jsonrpc":"2.0","id":10,"result":{"protocolVersion":"2025-06-18","serverInfo":{"name":"mismatch-gen1","version":"1"},"capabilities":{}}}
-MISMATCH_PROXY_LOG backend socket close; reattaching
-MISMATCH_PROXY_LOG backend protocol version drift: expected 2025-06-18, got 2099-01-01; failing closed
-MISMATCH_OUTPUT {"jsonrpc":"2.0","id":11,"error":{"code":-32002,"message":"backend protocol version changed; client reconnect required","data":{"retryable":false}}}
-MISMATCH_OBSERVED terminal=CLOSED code=-32002 retryable=false logs=["backend socket close; reattaching","backend protocol version drift: expected 2025-06-18, got 2099-01-01; failing closed"]
-```
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Expected block.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass / Fail
 

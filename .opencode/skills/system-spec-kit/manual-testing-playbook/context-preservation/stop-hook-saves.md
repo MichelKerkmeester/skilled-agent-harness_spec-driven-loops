@@ -50,7 +50,7 @@ parseTranscript()` returns correct `promptTokens`, `completionTokens`, `totalTok
 Command output observed from `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/hook-stop-token-tracking.vitest.ts`:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -88,7 +88,7 @@ As a context-and-code-graph validation operator, validate Cost estimation per mo
 Command output observed from `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/hook-stop-token-tracking.vitest.ts`:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -126,7 +126,7 @@ Parsing from `startOffset` skips prior lines, `newOffset` advances, metrics stor
 Command output observed from `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/hook-stop-token-tracking.vitest.ts`:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)

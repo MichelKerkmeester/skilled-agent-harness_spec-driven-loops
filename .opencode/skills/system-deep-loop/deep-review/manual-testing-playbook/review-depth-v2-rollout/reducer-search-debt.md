@@ -36,7 +36,11 @@ A v2 record may validate cleanly and still hide deferred or blocked candidate-se
 - A synthetic two-iteration session is available that includes deferred candidates in `searchLedger`.
 - Reducer output paths (registry, dashboard, report) are observable.
 
-### Steps
+### Prompt
+
+- Prompt: `Run the synthetic two-iteration v2 reducer fixture with deferred ledger rows and confirm registry exposure + dashboard Search Debt + report Search Ledger.`
+
+### Commands
 
 1. Prepare a synthetic two-iteration session with at least one `searchLedger` row using `disposition: 'deferred'` and populated `searchCoverage.deferred`.
 2. Run the reducer path used by `review-depth-reducer.vitest.ts`.
@@ -50,7 +54,12 @@ A v2 record may validate cleanly and still hide deferred or blocked candidate-se
 
 The reducer preserves `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`. The dashboard renders `## Search Debt`. The report renders `## Search Ledger`.
 
-### Failure Modes
+### Evidence
+
+- Reducer registry JSON output showing `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `cleanSearchProof`, and `searchCoverage`, captured to `/tmp/drv-060-registry.json`.
+- Dashboard markdown excerpt containing `## Search Debt`, and report markdown excerpt containing `## Search Ledger`, captured to `/tmp/drv-060-surfaces.txt`.
+
+### Failure Triage
 
 - Registry fields are empty: confirm the source session used v2 fields and at least one deferred `searchLedger` row.
 - Dashboard lacks `## Search Debt`: rerun reduction and inspect generated output rather than stale files.
@@ -58,16 +67,17 @@ The reducer preserves `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, `
 
 ---
 
-## 4. SOURCE REFERENCES
+## 4. SOURCE FILES
 
 - Reducer: `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` (registry return shape + dashboard verdict + active-risks rendering).
 - Report compiler: `.opencode/commands/deep/assets/deep-review-auto.yaml` (Search Ledger section in report-output step).
 - Fixture: `.opencode/skills/system-spec-kit/mcp-server/tests/deep-loop/review-depth-reducer.vitest.ts`.
 - ADR: complexity-search-ledger-persistence decision record (see this skill's changelog for provenance).
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Review-depth v2 rollout
 - Playbook ID: DRV-060

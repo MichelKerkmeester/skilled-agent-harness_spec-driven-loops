@@ -85,7 +85,7 @@ Output:
 
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation
+  Folder: .opencode/specs/system-speckit/028-memory-search-intelligence/007-dark-flag-graduation/010-dark-flag-validation
   Level:  review
 
 + FILE_EXISTS: All required files present for Level review

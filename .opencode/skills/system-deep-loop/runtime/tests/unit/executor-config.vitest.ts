@@ -821,13 +821,11 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
   it('contains exactly the operator-confirmed picker ids plus the OpenRouter-routed Flash/GLM/Gemini variants and the opencode-go GLM-5.3-Flash literal', () => {
     expect([...PI_SUPPORTED_MODELS].sort()).toEqual([
       'deepseek-v4-flash',
-      'deepseek-v4-pro',
       'deepseek/deepseek-v4-flash-latest',
       'glm-5.3-flash',
       'google/gemini-3.7-flash',
       'gpt-5.6-luna',
       'gpt-5.6-sol',
-      'gpt-5.6-terra',
       'mimo-v2.5-pro',
       'mimo-v2.5-pro-ultraspeed',
       'minimax-m3',
@@ -836,8 +834,8 @@ describe('PI_SUPPORTED_MODELS / isPiModelAllowed', () => {
     ]);
   });
 
-  it('defaults to deepseek-v4-pro, which is itself an allowed model', () => {
-    expect(PI_DEFAULT_MODEL).toBe('deepseek-v4-pro');
+  it('defaults to deepseek-v4-flash, which is itself an allowed model', () => {
+    expect(PI_DEFAULT_MODEL).toBe('deepseek-v4-flash');
     expect(isPiModelAllowed(PI_DEFAULT_MODEL)).toBe(true);
   });
 
@@ -869,7 +867,7 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
   it('does not match the devin -max uid, Gemini 3.7 Flash (tops at high), the OpenRouter Luna, or other models', () => {
     expect(isFlashMaxPinnedModel('deepseek-v4-flash-max')).toBe(false);
     expect(isFlashMaxPinnedModel('deepseek/deepseek-v4-flash-max')).toBe(false);
-    expect(isFlashMaxPinnedModel('deepseek-v4-pro')).toBe(false);
+    expect(isFlashMaxPinnedModel('qwen3.8-max')).toBe(false);
     expect(isFlashMaxPinnedModel('google/gemini-3.7-flash')).toBe(false);
     expect(isFlashMaxPinnedModel('openai/gpt-5.6-luna')).toBe(false);
   });
@@ -878,7 +876,7 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(pinReasoningEffortForModel('deepseek-v4-flash', 'high')).toBe('max');
     expect(pinReasoningEffortForModel('deepseek-v4-flash', null)).toBe('max');
     expect(pinReasoningEffortForModel('deepseek-v4-flash', undefined)).toBe('max');
-    expect(pinReasoningEffortForModel('deepseek-v4-pro', 'high')).toBe('high');
-    expect(pinReasoningEffortForModel('deepseek-v4-pro', null)).toBe(null);
+    expect(pinReasoningEffortForModel('minimax-m3', 'high')).toBe('high');
+    expect(pinReasoningEffortForModel('minimax-m3', null)).toBe(null);
   });
 });

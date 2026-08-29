@@ -62,7 +62,7 @@ Observed transcript:
 > node scripts/run-tests.mjs --run tests/memory-lineage-backfill.vitest.ts
 
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 {
   "drill": "lineage-backfill-rollback",

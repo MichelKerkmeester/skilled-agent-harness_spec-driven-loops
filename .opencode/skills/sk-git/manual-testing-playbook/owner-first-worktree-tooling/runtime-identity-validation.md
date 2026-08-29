@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-029` and confirm th
 - Prompt: `Run worktree-session.sh with a path-bearing runtime argument and confirm it is refused with no worktree created, then run it with a valid lowercase runtime name and confirm it is accepted.`
 - Expected execution process: Invoke the wrapper with a path-bearing token (e.g. `./bin/myrt`) and confirm rejection before invoking it with a normal lowercase runtime name present on `PATH`.
 - Expected signals: the path-bearing identity prints `invalid runtime identity: <value>` to stderr and exits non-zero with no `.worktrees/` directory created; the valid identity proceeds to the dry-run plan and forms a `work/<runtime>/...` branch.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox `PATH` carries no lowercase runtime binary to serve as the positive control.
 - Pass/fail: PASS if every path-bearing or non-conforming identity is rejected before any worktree allocation, and a normal identity is accepted and forms a legal wrapper branch name. FAIL if a path-bearing identity reaches worktree creation, or if the rejection produces a malformed double-slash branch name.
 
 ---

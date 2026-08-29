@@ -53,6 +53,10 @@ For deep research, explain how convergence detection ends the loop and which pac
 1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
 2. `.opencode/skills/system-deep-loop/deep-research/SKILL.md` documents convergence threshold semantics.
 
+### Prompt
+
+- Prompt: `For deep research, explain how convergence detection ends the loop and which packet owns the convergence math before starting any iterations.`
+
 ### Exact Command Sequence
 
 1. **Invoke hub**: `Skill(system-deep-loop, "For deep research, explain how convergence detection ends the loop and which packet owns the convergence math before starting any iterations.")`.
@@ -68,11 +72,14 @@ For deep research, explain how convergence detection ends the loop and which pac
 | 3 | Response says convergence can legally stop the loop. |
 | 3 | Response says deep-research owns the convergence math, not the hub. |
 
+### Evidence
+
+- Response transcript: `/tmp/dlw-SC-003/response.txt`, showing the stated stop condition and the named owner of the convergence math.
+
 ### Pass/Fail Criteria
 
-- **PASS** iff the route is research and convergence is described as a legal stop path owned by deep-research.
-- **PARTIAL** iff route is correct and convergence is named, but ownership is not explicit.
-- **FAIL** iff the AI says the loop must run indefinitely, the hub owns convergence math, or another mode's convergence semantics apply.
+- **PASS**: the route is `research`, convergence is described as a legal stop path, and the response explicitly names `deep-research` as the owner of the convergence math.
+- **FAIL**: the AI says the loop must run indefinitely, the hub owns convergence math, another mode's convergence semantics apply, or ownership is left unstated.
 
 ### Failure Triage
 
@@ -87,6 +94,7 @@ For deep research, explain how convergence detection ends the loop and which pac
 - `.opencode/skills/system-deep-loop/SKILL.md` - convergence backend and packet-owned convergence rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `research` runtime loop fields.
 - `.opencode/skills/system-deep-loop/deep-research/SKILL.md` - deep-research convergence semantics.
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---
 

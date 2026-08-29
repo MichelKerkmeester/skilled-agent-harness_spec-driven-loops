@@ -87,4 +87,4 @@ Privilege the state format reference for JSONL schema rules and the convergence 
 - Playbook ID: DRV-023
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

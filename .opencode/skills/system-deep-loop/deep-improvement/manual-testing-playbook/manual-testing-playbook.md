@@ -1,7 +1,7 @@
 ---
 title: "deep-improvement Manual Testing Playbook"
-description: "Operator-facing validation package for the deep-improvement skill covering integration scanning, dynamic profiling, 5-dimension scoring, benchmark integration, reducer dimensions, end-to-end loop execution, runtime-truth validation, and the model-benchmark and skill-benchmark lanes."
-version: 1.17.0.43
+description: "Operator-facing validation package for the deep-improvement skill covering integration scanning, dynamic profiling, 5-dimension scoring, benchmark integration, reducer dimensions, end-to-end loop execution, runtime-truth validation, intra-packet routing recall, and the model-benchmark and skill-benchmark lanes."
+version: 1.17.0.44
 ---
 
 # deep-improvement Manual Testing Playbook
@@ -16,7 +16,7 @@ Canonical package artifacts:
 - `manual-testing-playbook.md`
 - `integration-scanner/`
 - `profile-generator/`
-- `5d-scorer/`
+- `five-d-scorer/`
 - `benchmark-integration/`
 - `reducer-dimensions/`
 - `end-to-end-loop/`
@@ -24,16 +24,23 @@ Canonical package artifacts:
 - `agent-discipline-stress-tests/`
 - `model-benchmark-mode/`
 - `skill-benchmark/`
+- `intra-routing-recall/`
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and reason are persisted through `scripts/skill-benchmark/run-manual-playbook-scenario.cjs`
+> into `deep-improvement/benchmark/reports/<dated-run-label>/`. An outcome that exists only in a
+> terminal buffer is not a recorded result.
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08), the Lane B model-benchmark scenarios (09), and the Lane C skill-benchmark scenarios (10). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
+This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08), the Lane B model-benchmark scenarios (09), the Lane C skill-benchmark scenarios (10), and the packet's own intra-routing recall (11). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
 
 ### Lane Note
 
-Scenarios belong to one of three lanes, or are shared. Categories `integration-scanner`, `profile-generator`, `end-to-end-loop`, `runtime-truth`, and `agent-discipline-stress-tests` are Lane A (agent-improvement). Category `model-benchmark-mode` is Lane B (model-benchmark). Category `skill-benchmark` is Lane C (skill-benchmark). Categories `5d-scorer`, `benchmark-integration`, and `reducer-dimensions` are shared, since the agent-improvement and model-benchmark lanes can exercise the 5-dimension scorer, benchmark runner, and reducer surfaces. When an operator runs only one lane, skip the other lanes' categories and record the skip with the lane as the reason.
+Scenarios belong to one of three lanes, or are shared. Categories `integration-scanner`, `profile-generator`, `end-to-end-loop`, `runtime-truth`, and `agent-discipline-stress-tests` are Lane A (agent-improvement). Category `model-benchmark-mode` is Lane B (model-benchmark). Category `skill-benchmark` is Lane C (skill-benchmark). Categories `five-d-scorer`, `benchmark-integration`, and `reducer-dimensions` are shared, since the agent-improvement and model-benchmark lanes can exercise the 5-dimension scorer, benchmark runner, and reducer surfaces. Category `intra-routing-recall` is lane-independent: it exercises the packet's own smart router, which every lane enters through, so it runs whichever lane is under validation. When an operator runs only one lane, skip the other lanes' categories and record the skip with the lane as the reason.
 
 ### REALISTIC TEST MODEL
 
@@ -90,24 +97,24 @@ For each executed scenario, check:
 4. Evidence is complete, readable, and tied to the same run that produced the verdict.
 5. Outcome rationale is explicit and references the decisive user-visible result.
 
-Scenario verdict:
-- `PASS`: all acceptance checks true
-- `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete
-- `FAIL`: expected behavior missing, contradictory output, or critical check failed
+Scenario verdict — the vocabulary is closed, and every run lands on exactly one of these three:
+- `PASS`: all five acceptance checks are true.
+- `FAIL`: expected behavior is missing, output contradicts the expected signals, a critical check failed, or the evidence is incomplete. A run whose core behavior worked but whose evidence or metadata is incomplete grades `FAIL`, not partial credit — acceptance check 4 makes complete, same-run evidence a condition of passing, so re-run it and capture the missing evidence.
+- `SKIP`: the scenario could not be executed and the specific blocker is named — the scenario's lane is not the lane under validation, or a required executor CLI, credential, or sandbox capability is unavailable. A skip without a named blocker is a `FAIL`.
 
 ### Feature Verdict Rules
 
-- `PASS`: all mapped scenarios for feature are `PASS`
-- `PARTIAL`: at least one mapped scenario is `PARTIAL`, none are `FAIL`
-- `FAIL`: any mapped scenario is `FAIL`
+- `PASS`: every mapped scenario for the feature is `PASS`.
+- `FAIL`: any mapped scenario is `FAIL`.
+- `SKIP`: no mapped scenario is `FAIL` but at least one is `SKIP` — the feature is unproven, not passing. Carry the blocker up with the verdict.
 
 ### Release Readiness Rule
 
-Release is `READY` only when:
+Release passes only when:
 
 1. No feature verdict is `FAIL`.
-2. Closure-wave scenarios RT-022..RT-031 (runtime-truth), CP-032..037 (agent-discipline stress), MB-038..042 plus MB-R01 and MB-049 (model-benchmark), E2E-050 (accept/ship promotion), and SB-043..048 (skill-benchmark) have all been executed or explicitly skipped with a sandbox blocker.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement numbered subtotal is 50 scenarios (`IS-001..SB-048` plus MB-049, E2E-050, and the reviewer regression `MB-R01`).
+2. Closure-wave scenarios RT-022..RT-031 (runtime-truth), CP-032..037 (agent-discipline stress), MB-038..042 plus MB-R01 and MB-049 (model-benchmark), E2E-050 (accept/ship promotion), SB-043..048 (skill-benchmark), and DI-R01..DI-R08 plus DI-R10 (intra-routing recall) have all been executed or explicitly skipped with a named blocker.
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES`). The deep-improvement subtotal is 51 numbered scenarios (`IS-001..SB-048` plus MB-049, E2E-050, and the reviewer regression `MB-R01`) and 9 intra-routing-recall scenarios (`DI-R01..DI-R08` plus `DI-R10`).
 4. No unresolved blocking triage item remains.
 5. Drift between root summaries and per-feature files has been resolved, with the per-feature file treated as the temporary source of truth until resynchronized.
 
@@ -256,7 +263,7 @@ Prompt summary: As a manual-testing orchestrator, validate that dynamic 5D scori
 Expected signals: `evaluationMode` field equals `"dynamic-5d"`; `profileId` is derived from the agent name (e.g., `"orchestrate"`); `dimensions` array contains exactly 5 objects with names: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`; Each dimension has `score` (0-100), `weight`, and `details` array; NO `legacyScore` field (orchestrate has no static profile); No error about missing or unknown profile
 
 #### Test Execution
-> **Feature File:** [5D-009](../manual-testing-playbook/5d-scorer/dynamic-arbitrary.md)
+> **Feature File:** [5D-009](../manual-testing-playbook/five-d-scorer/dynamic-arbitrary.md)
 
 ### 5D-010 | Dimension Details Array with Individual Check Results
 
@@ -269,7 +276,7 @@ Prompt summary: As a manual-testing orchestrator, validate that each dimension i
 Expected signals: `dimensions` array contains 5 objects with names: `structural`, `ruleCoherence`, `integration`, `outputQuality`, `systemFitness`; Each dimension object has a `details` array of individual check objects; Each check object in `details` has at minimum:
 
 #### Test Execution
-> **Feature File:** [5D-010](../manual-testing-playbook/5d-scorer/dimension-details.md)
+> **Feature File:** [5D-010](../manual-testing-playbook/five-d-scorer/dimension-details.md)
 
 ### 5D-011 | Missing Candidate File Returns infra_failure
 
@@ -282,7 +289,7 @@ Prompt summary: As a manual-testing orchestrator, validate that providing a none
 Expected signals: Exit code is 1 (not 0); Output is valid JSON (no stack trace); `status` field equals `"infra_failure"`; `failureModes` array contains `"profile-generation-failure"`; No unhandled exception or stack trace is printed
 
 #### Test Execution
-> **Feature File:** [5D-011](../manual-testing-playbook/5d-scorer/missing-candidate.md)
+> **Feature File:** [5D-011](../manual-testing-playbook/five-d-scorer/missing-candidate.md)
 
 ---
 
@@ -585,7 +592,7 @@ Expected signals: `experiment-registry.json` contains:
 
 ## 14. AGENT DISCIPLINE STRESS TESTS (CP-032..CP-037)
 
-This section is the stress-test campaign for `@deep-improvement`. The 6 scenarios test the agent + command discipline using `/deep:agent-improvement` (CP-032/035/036/037) and `@deep-improvement` body (CP-033/034). Final composite score: **PASS 6 / PARTIAL 0 / FAIL 0** (after R3 CRITIC PASS verbatim emission requirement). See the local stress-test campaign notes for the full narrative.
+This section is the stress-test campaign for `@deep-improvement`. The 6 scenarios test the agent + command discipline using `/deep:agent-improvement` (CP-032/035/036/037) and `@deep-improvement` body (CP-033/034). The campaign clears only when all 6 scenarios grade `PASS`, including the R3 critic's verbatim-emission requirement; any `FAIL` in this section blocks the release readiness rule above.
 
 ### CP-032 | SKILL_LOAD_NOT_PROTOCOL script-routing fidelity **(SANDBOXED)**
 
@@ -872,7 +879,132 @@ Expected signals: the run exits 0 and writes both `skill-benchmark-report.json` 
 
 ---
 
-## 17. AUTOMATED TEST CROSS-REFERENCE
+## 17. INTRA ROUTING RECALL
+
+This category covers 9 scenario summaries while the linked feature files remain the canonical execution contract. Each scenario exercises the packet's own intra-packet smart router (`SKILL.md` §2 `Smart Router Pseudocode`): one `INTENT_SIGNALS` key must score as the dominant intent for a prompt shaped around its keywords, and the matching `RESOURCE_MAP` entries must load on top of `references/shared/quick-reference.md`, which `load_if_available(DEFAULT_RESOURCE)` loads unconditionally before the per-intent loop. The nine scenarios cover all nine intents, so a keyword collision that lets one intent absorb another's prompt fails here rather than silently mis-routing a real session.
+
+Five of these prompts also contain an `ON_DEMAND_KEYWORDS` term (`benchmark`, `score candidate`, `target profile`, `mirror drift`), which makes the router load every `RESOURCE_MAP` path in addition to the selected intent's set. For those scenarios the resource assertion is containment, not equality — see the per-feature file for which rule applies.
+
+### DI-R01 | Quick Reference Routing
+
+#### Description
+A quick-reference-shaped request scores the `QUICK_REFERENCE` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Give a quick reference short reminder with a command example for the improvement workflow.`
+
+Expected signals: `QUICK_REFERENCE` is the dominant intent; the loaded resource set covers `RESOURCE_MAP["QUICK_REFERENCE"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DI-R01](../manual-testing-playbook/intra-routing-recall/quick-reference.md)
+
+### DI-R02 | Loop Execution Routing
+
+#### Description
+A loop-execution-shaped request scores the `LOOP_EXECUTION` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Run loop execution to produce a proposal, candidate, score candidate result, and benchmark evidence.`
+
+Expected signals: `LOOP_EXECUTION` is the dominant intent; the loaded resource set covers `RESOURCE_MAP["LOOP_EXECUTION"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DI-R02](../manual-testing-playbook/intra-routing-recall/loop-execution.md)
+
+### DI-R03 | Evaluation Policy Routing
+
+#### Description
+An evaluation-policy-shaped request scores the `EVALUATION_POLICY` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Apply the evaluator rubric contract with repeatability checks and no-go policy before scoring.`
+
+Expected signals: `EVALUATION_POLICY` is the dominant intent; the loaded resource set covers `RESOURCE_MAP["EVALUATION_POLICY"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DI-R03](../manual-testing-playbook/intra-routing-recall/evaluation-policy.md)
+
+### DI-R04 | Promotion Operations Routing
+
+#### Description
+A promotion-operations-shaped request scores the `PROMOTION_OPERATIONS` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Handle promote and rollback operations with mirror drift review and an approval gate.`
+
+Expected signals: `PROMOTION_OPERATIONS` is the dominant intent; the loaded resource set covers `RESOURCE_MAP["PROMOTION_OPERATIONS"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DI-R04](../manual-testing-playbook/intra-routing-recall/promotion-operations.md)
+
+### DI-R05 | Target Onboarding Routing
+
+#### Description
+A target-onboarding-shaped request scores the `TARGET_ONBOARDING` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Onboard a new target with a target profile for a second target improvement run.`
+
+Expected signals: `TARGET_ONBOARDING` is the dominant intent; the loaded resource set covers `RESOURCE_MAP["TARGET_ONBOARDING"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DI-R05](../manual-testing-playbook/intra-routing-recall/target-onboarding.md)
+
+### DI-R06 | Integration Scan Routing
+
+#### Description
+An integration-scan-shaped request scores the `INTEGRATION_SCAN` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Run an integration scan surfaces pass with dynamic profile and 5-dimension scoring context.`
+
+Expected signals: `INTEGRATION_SCAN` is the dominant intent; the loaded resource set covers `RESOURCE_MAP["INTEGRATION_SCAN"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DI-R06](../manual-testing-playbook/intra-routing-recall/integration-scan.md)
+
+### DI-R07 | Model Benchmark Routing
+
+#### Description
+A model-benchmark-shaped request scores the `MODEL_BENCHMARK` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Benchmark a model and optimize a model using the model-benchmark lane and evaluator evidence.`
+
+Expected signals: `MODEL_BENCHMARK` is the dominant intent, outscoring the `LOOP_EXECUTION` and `EVALUATION_POLICY` keyword overlap; the loaded resource set covers `RESOURCE_MAP["MODEL_BENCHMARK"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DI-R07](../manual-testing-playbook/intra-routing-recall/model-benchmark.md)
+
+### DI-R08 | Skill Benchmark Routing
+
+#### Description
+A skill-benchmark-shaped request scores the `SKILL_BENCHMARK` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Benchmark a skill for skill routing, unprompted discovery, routing accuracy, and skill-benchmark diagnostics.`
+
+Expected signals: `SKILL_BENCHMARK` is the dominant intent, not the `LOOP_EXECUTION` intent its shared `benchmark` keyword also scores; the loaded resource set covers `RESOURCE_MAP["SKILL_BENCHMARK"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DI-R08](../manual-testing-playbook/intra-routing-recall/skill-benchmark.md)
+
+### DI-R10 | Full Setup Routing
+
+#### Description
+A full-setup-shaped request scores the `FULL_SETUP` intent and loads its resource set through the packet's own smart router.
+
+#### Scenario Contract
+Prompt summary: `Run full setup to initialize runtime with the charter and strategy for an improvement session.`
+
+Expected signals: `FULL_SETUP` is the dominant intent; the loaded resource set covers `RESOURCE_MAP["FULL_SETUP"]` plus the always-loaded default.
+
+#### Test Execution
+> **Feature File:** [DI-R10](../manual-testing-playbook/intra-routing-recall/full-setup.md)
+
+---
+
+## 18. AUTOMATED TEST CROSS-REFERENCE
 
 The manual scenarios exercise the operator-visible behavior. Runtime helper coverage lives lane-locally under each lane's `tests/` (`scripts/<lane>/tests/`; see `scripts/shared/tests/README.md` for the index) and should be used as regression evidence when a scenario touches the matching helper.
 
@@ -890,7 +1022,7 @@ The manual scenarios exercise the operator-visible behavior. Runtime helper cove
 
 ---
 
-## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 19. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 The feature catalog root is `.opencode/skills/system-deep-loop/deep-improvement/feature-catalog/feature-catalog.md`. Use it as the current-state capability index when a scenario needs source-of-truth feature context beyond the command transcript.
 

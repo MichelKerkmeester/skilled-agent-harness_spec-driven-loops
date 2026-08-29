@@ -51,110 +51,12 @@ First run is a miss; second identical run is a hit; cache key is stable for iden
 
 ### Evidence
 
-Executed 2026-07-02 using the daemon-backed Spec Memory CLI because the initial MCP tool calls timed out:
+Capture, for every step in the Commands sequence above:
 
-```text
-MCP system-spec-memory_memory_health(reportMode=full, includeFullReport=true): MCP error -32001: Request timed out
-MCP system-spec-memory_memory_search(...): MCP error -32001: Request timed out
-```
-
-Active cache settings confirmed from `mcp-server/lib/cache/tool-cache.ts`:
-
-```text
-enabled: process.env.ENABLE_TOOL_CACHE !== 'false'
-defaultTtlMs: parseInt(process.env.TOOL_CACHE_TTL_MS || '60000', 10) || 60000
-maxEntries: parseInt(process.env.TOOL_CACHE_MAX_ENTRIES || '1000', 10) || 1000
-cleanupIntervalMs: parseInt(process.env.TOOL_CACHE_CLEANUP_INTERVAL_MS || '30000', 10) || 30000
-```
-
-Identical request payload used for all three `memory_search` CLI runs:
-
-```json
-{"query":"tool-level ttl cache manual scenario 196 unique verification 2026-07-02T09:25Z","limit":2,"includeConstitutional":false,"includeTrace":true,"profile":"debug","bypassCache":false,"enableDedup":false,"trackAccess":false,"autoDetectIntent":false,"intent":"find_spec","includeContent":false,"rerank":true,"retrievalLevel":"auto"}
-```
-
-Stable SHA-256 key for `memory_search:` plus the canonicalized payload:
-
-```text
-{"autoDetectIntent":false,"bypassCache":false,"enableDedup":false,"includeConstitutional":false,"includeContent":false,"includeTrace":true,"intent":"find_spec","limit":2,"profile":"debug","query":"tool-level ttl cache manual scenario 196 unique verification 2026-07-02T09:25Z","rerank":true,"retrievalLevel":"auto","trackAccess":false}
-43a79db4e171207adf8cd7714784bfe24bfbbd1851fe0c000f5e7e2ad53ebe13
-```
-
-First `memory_search` run:
-
-```text
-"summary": "Found 2 memories"
-"timestamp": "2026-07-02T09:28:00.039Z"
-"traceId": "tr_mr3ax9pt_qhbuhe"
-"totalDurationMs": 2381
-"meta": {
-  "tool": "memory_search",
-  "tokenCount": 7848,
-  "latencyMs": 2463,
-  "cacheHit": false
-}
-```
-
-Second identical `memory_search` run inside the 60,000 ms TTL:
-
-```text
-"summary": "Found 2 memories"
-"timestamp": "2026-07-02T09:28:00.039Z"
-"traceId": "tr_mr3ax9pt_qhbuhe"
-"totalDurationMs": 2381
-"meta": {
-  "tool": "memory_search",
-  "tokenCount": 7303,
-  "latencyMs": 67,
-  "cacheHit": true
-}
-```
-
-Cache/health inspection after the miss-then-hit pair:
-
-```text
-"cache_byte_estimates": {
-  "tool_cache": {
-    "entries": 1,
-    "approx_bytes": 17371
-  }
-}
-"ipc_bridge": {
-  "socket_path": "/private/tmp/system-spec-memory/daemon-ipc.sock",
-  "secondary_clients_count": 1,
-  "total_secondary_messages_in": 21,
-  "total_secondary_messages_out": 16
-}
-"meta": {
-  "tool": "memory_health",
-  "tokenCount": 2437,
-  "latencyMs": 16811,
-  "cacheHit": false,
-  "tokenBudget": 1500
-}
-```
-
-TTL expiry path used instead of mutation because this scenario execution was explicitly restricted to modifying no files other than this scenario file. Command output for the wait:
-
-```text
-sleep 65
-(no output)
-```
-
-Third identical `memory_search` run after waiting past the 60,000 ms TTL:
-
-```text
-"summary": "Found 2 memories"
-"timestamp": "2026-07-02T09:30:38.312Z"
-"traceId": "tr_mr3b0ns9_8daxin"
-"totalDurationMs": 1739
-"meta": {
-  "tool": "memory_search",
-  "tokenCount": 7306,
-  "latencyMs": 1744,
-  "cacheHit": false
-}
-```
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in section 3.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass / Fail
 

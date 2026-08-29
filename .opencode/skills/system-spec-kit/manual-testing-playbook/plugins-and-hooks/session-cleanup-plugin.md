@@ -94,6 +94,15 @@ targets the same underlying cleanup script the plugin's `dispose()` calls.
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+- Prompt: `Validate the Session Cleanup Plugin end to end against the commands below, and report a PASS or FAIL verdict with cited command output.`
+
+```text
+OpenCode fires the `session.created` event when a new session starts
+```
+
+
 ### Commands
 
 1. Run the plugin's Node unit test suite:
@@ -198,133 +207,31 @@ matching `CLEANUP_SCRIPT` in the plugin source (`join(REPO_ROOT, '.opencode/scri
   `.opencode/scripts/session-cleanup.sh` with no session PID available, i.e. the Claude Code
   `SessionEnd` hook path or an ad hoc shell run.
 
----
+### Evidence
 
-## 4. EVIDENCE
+Capture, for every step in the Commands sequence above:
 
-Preconditions observed:
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
-```text
-.opencode/plugins/session-cleanup.js: 198 lines.
-.opencode/plugins/tests/session-cleanup.test.cjs: 388 lines.
-.opencode/scripts/session-cleanup.sh: 186 lines.
-.opencode/bin/worktree-guard.sh: 41 lines.
-.opencode/bin/check-git-hooks.sh: 97 lines.
-node --version: v22.23.1
-```
+### Pass / Fail
 
-Command:
+- **Pass**: Every expected signal in the Scenario Contract is observed in the captured output.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
-```bash
-node --test .opencode/plugins/tests/session-cleanup.test.cjs
-```
+### Failure Triage
 
-Real output (TAP, trimmed to per-suite summaries and the final tally; all 13 subtests ran `ok`):
+1. Re-run each command in the sequence on its own and record its exit status; the first non-zero exit names the failing step.
+2. Confirm the plugin host, bridge, and core files listed in section 4 are the ones actually loaded, and that any compiled output is current.
+3. Compare the observed output field by field against the expected signals in section 2, and quote the first field that disagrees.
 
-```text
-TAP version 13
-# Subtest: session-cleanup plugin lifecycle
-    ok 1 - uses canonical dispose once and keeps process signaling disabled
-    ok 2 - runs captured startup guards and injects warnings once per session
-    ok 3 - caps startup warning output before system-context injection
-    ok 4 - records one bounded diagnostic for nonzero exit
-    ok 5 - records one bounded diagnostic for launch error
-    ok 6 - records one bounded diagnostic for signal exit
-    1..6
-ok 1 - session-cleanup plugin lifecycle
-# Subtest: session-cleanup shell contracts
-    ok 1 - prefers neutral configuration and terminates descendants deepest-first
-    ok 2 - does not claim the workspace-scoped server pid as session ownership
-    ok 3 - warns for every shared-checkout branch
-    ok 4 - resolves the effective hooks path and rejects invalid symlinks
-    ok 5 - all modified shell scripts pass bash syntax validation
-    1..5
-ok 2 - session-cleanup shell contracts
-# Subtest: session-cleanup live process tree
-    ok 1 - collects the live descendant tree and terminates it deepest-first
-    ok 2 - never signals a reparented matched process outside the session subtree
-    1..2
-ok 3 - session-cleanup live process tree
-1..3
-# tests 13
-# suites 3
-# pass 13
-# fail 0
-# cancelled 0
-# skipped 0
-# todo 0
-# duration_ms 811.480459
-```
-
-Live invocation command (real plugin factory, real `spawnSync`, no test overrides, guard working
-directory pinned to a throwaway shared-checkout git repo so the real `worktree-guard.sh` emits
-deterministically, log path scoped to a scratch file):
-
-```bash
-SCRATCH="$(mktemp -d)"
-git -C "$SCRATCH" init -q -b sandbox-shared-checkout
-git -C "$SCRATCH" config user.email guard@fixture.local
-git -C "$SCRATCH" config user.name "guard fixture"
-SPECKIT_SKIP_COMMIT_MSG_VALIDATE=1 git -C "$SCRATCH" commit -q --allow-empty -m "chore(sandbox): init deterministic guard fixture"
-env -u AI_SESSION_CHILD GUARD_CWD="$SCRATCH" SESSION_CLEANUP_LOG_PATH=/tmp/session-cleanup-live.log node /tmp/live-session-cleanup.mjs
-rm -rf "$SCRATCH"
-```
-
-Real captured stdout:
-
-```text
---- session.created event (real worktree-guard.sh + check-git-hooks.sh) ---
---- experimental.chat.system.transform (injection preview) ---
-{
-  "system": [
-    "[session-cleanup] Startup safety warnings:\n[worktree-guard] This top-level session is running on the shared 'sandbox-shared-checkout' checkout, not an isolated worktree. Concurrent AI sessions here can collide (shared working tree + MCP databases). To isolate next time, launch via: bash .opencode/bin/worktree-session.sh <runtime>. (silence: SPECKIT_WORKTREE_GUARD=off)"
-  ]
-}
---- second transform call for same session (must be empty: injected once) ---
-{
-  "system": []
-}
---- session.deleted event (clears in-memory state) ---
---- dispose() (real session-cleanup.sh, forced no-session-pid safe path) ---
---- second dispose() call (must be idempotent no-op) ---
-DONE
-```
-
-Real content of `/tmp/session-cleanup-live.log` after the run (written by the real
-`session-cleanup.sh`, invoked once by `dispose()`, taking the safe no-session-pid branch because
-the plugin always forces `SESSION_CLEANUP_PID`/`CLAUDE_SESSION_PID` to `''`):
-
-```text
-2026-07-11T18:41:32+0200 action=skip reason=no-session-pid
-```
-
-The `check-git-hooks.sh` half of the startup guard produced no output in this run: from the scratch
-shared-checkout working directory it finds no versioned `.opencode/scripts/git-hooks/` source and
-exits silently, so only the `worktree-guard.sh` warning appears in the injected text -- consistent
-with the plugin joining only non-empty guard outputs (`session-cleanup.js:144-151`). Because the
-guard's warning is driven purely by git state (shared checkout vs. isolated worktree) and not by any
-debounce/state file, pinning the working directory to a freshly-initialized shared checkout makes
-this injection reproduce deterministically on any host, in or out of a worktree.
-
-Claude Code `SessionEnd` wiring command:
-
-```bash
-grep -n "session-cleanup.sh" .claude/settings.json
-```
-
-Real output:
-
-```text
-143:            "command": "bash -c 'cd \"${CLAUDE_PROJECT_DIR:-$PWD}\" && bash .opencode/scripts/session-cleanup.sh || true'",
-```
-
-This is the same `.opencode/scripts/session-cleanup.sh` path the plugin's `runCleanup()` resolves
-to via `CLEANUP_SCRIPT = join(REPO_ROOT, '.opencode/scripts/session-cleanup.sh')`
-(`session-cleanup.js:30`), confirming both runtimes converge on one cleanup script.
 
 ---
 
-## 5. SOURCE FILES
+## 4. SOURCE FILES
+
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Plugin source: `.opencode/plugins/session-cleanup.js`
@@ -336,33 +243,9 @@ to via `CLEANUP_SCRIPT = join(REPO_ROOT, '.opencode/scripts/session-cleanup.sh')
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugins And Hooks
 - Playbook ID: session-cleanup-plugin
 - Canonical root source: manual-testing-playbook.md
 - Feature file path: plugins-and-hooks/session-cleanup-plugin.md
-
----
-
-## 7. PASS/FAIL
-
-PASS
-
-The plugin's Node unit test suite ran clean: `# tests 13`, `# suites 3`, `# pass 13`, `# fail 0`,
-`# cancelled 0`, covering lifecycle dispose-once behavior, captured startup-guard injection and
-one-shot consumption, bounded warning truncation, bounded diagnostics on nonzero-exit/launch-error/
-signal-exit, static shell contracts (neutral config, deepest-first kill order, no-`process.pid`
-ownership claim, per-branch worktree warning, hook-symlink resolution, `bash -n` syntax validity),
-and two live process-tree tests that spawn real process trees and confirm deepest-first
-termination plus reparented-orphan non-interference. The separate live invocation reproduced the
-documented behavior end-to-end against the real repo scripts (not mocked): with the guard's working
-directory pinned to a throwaway shared-checkout git repo, the startup guard deterministically
-captured and injected the real `worktree-guard.sh` warning (for branch `sandbox-shared-checkout`)
-exactly once, the second `experimental.chat.system.transform` call for that session returned an
-empty `system` array (consumed exactly once), the second `dispose()` call made no further
-subprocess call, and
-`.opencode/scripts/session-cleanup.sh` took the safe no-session-pid branch and logged
-`action=skip reason=no-session-pid`, exiting `0`. The Claude Code `SessionEnd` wiring in
-`.claude/settings.json` was confirmed to target the identical `.opencode/scripts/session-cleanup.sh`
-path the plugin's `dispose()` resolves to.

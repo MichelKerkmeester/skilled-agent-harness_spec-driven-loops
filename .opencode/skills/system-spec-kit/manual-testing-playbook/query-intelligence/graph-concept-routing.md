@@ -174,7 +174,7 @@ Validate concept routing and confirm the d2-concept-routing trace entry appears 
 - Targeted Vitest command: `npm exec -- vitest run tests/concept-routing.vitest.ts` from `.opencode/skills/system-spec-kit/mcp-server`.
 
   ```text
-   RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+   RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
    Test Files  1 passed (1)

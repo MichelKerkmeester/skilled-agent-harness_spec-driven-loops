@@ -13,7 +13,7 @@ expected_leaf_resources: []
 
 This scenario validates cancellation safety for a full `/doctor memory --incremental=false` rebuild. It starts a real rebuild, sends Ctrl-C after roughly 30 seconds, and verifies the command lets the active per-file transaction settle, restores the pre-rebuild snapshot, records cancellation, and exits 130.
 
-This scenario is destructive and requires a disposable Docker-backed sandbox. If Docker is not available, the truthful verdict is `UNAUTOMATABLE`, because ADR-001 only matters when real per-file transactions are exercised under process cancellation.
+This scenario is destructive and requires a disposable Docker-backed sandbox. SKIP only when the Docker daemon is unavailable and `docker info` cannot connect — do not substitute a non-Docker sandbox, because ADR-001 only matters when real per-file transactions are exercised under process cancellation.
 
 ---
 
@@ -42,7 +42,7 @@ Start a full rebuild and Ctrl-C it after ~30 seconds. Verify the index isn't hal
 
 1. Verify Docker daemon availability:
    - `docker info`
-2. If Docker is unavailable, mark the scenario `UNAUTOMATABLE` and stop.
+2. If Docker is unavailable, record `SKIP` with that missing-runtime blocker named explicitly, and stop.
 3. Create a disposable Docker-backed workspace from the current repository.
 4. Confirm both memory DBs exist and at least one pre-doctor snapshot can be created.
 5. Record pre-rebuild checksums:
@@ -61,26 +61,14 @@ The command catches SIGINT during Phase 3, allows the active per-file transactio
 
 ### Evidence
 
-- `docker info` transcript:
-  ```text
-  Client:
-   Version:    29.3.1
-   Context:    desktop-linux
-   Debug Mode: false
-   Plugins:
-    scout: Docker Scout (Docker Inc.)
-      Version:  v1.20.4
-      Path:     /Users/michelkerkmeester/.docker/cli-plugins/docker-scout
-
-  Server:
-  failed to connect to the docker API at unix:///Users/michelkerkmeester/.docker/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/michelkerkmeester/.docker/run/docker.sock: connect: no such file or directory
-  ```
-- Result: Docker daemon was unavailable, so the scenario could not create the required disposable Docker-backed sandbox.
-- Per command step 2, execution stopped before creating a disposable workspace, recording checksums, starting `/doctor memory --incremental=false`, sending Ctrl-C, capturing a state log, or comparing post-cancel checksums.
+- `docker info` output: a reachable daemon prints a `Client:` block followed by a populated `Server:` block; an unreachable daemon prints a `Client:` block and then reports `failed to connect to the docker API at unix://<socket path>` under `Server:` with no server details.
+- When the daemon is reachable: the pre-rebuild and post-cancel checksums from Commands 5 and 10, the captured process exit code from Command 9, and the state log entry from Command 11 (cancellation timestamp and rollback reason).
+- When the daemon is unreachable: the exact `docker info` failure text, confirming execution stopped before creating a disposable workspace, recording checksums, starting `/doctor memory --incremental=false`, sending Ctrl-C, capturing a state log, or comparing post-cancel checksums.
 
 ### Pass / Fail
 
-- **BLOCKED**: Docker daemon is unavailable; `docker info` failed before the required disposable Docker-backed sandbox could be created.
+- **Pass**: exit code is 130 and the post-cancel index matches the pre-rebuild snapshot or the pre-run DB copy used as the comparison baseline.
+- **Fail**: exit code is not 130, the post-cancel index diverges from the snapshot, or the state log is missing the cancellation entry.
 
 ### Failure Triage
 

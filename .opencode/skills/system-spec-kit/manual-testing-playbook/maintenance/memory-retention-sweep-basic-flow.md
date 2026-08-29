@@ -91,6 +91,22 @@ In a second terminal, insert another expired row as in steps 1-2, wait at least 
 - Governance/audit evidence records `reason: "retention_expired"` and preserves the original `delete_after`.
 - Interval test removes the second expired row without manual sweep invocation.
 
+### Evidence
+
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Expected block.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
+
+### Failure Triage
+
+1. Re-run each command in the sequence on its own and record its exit status; the first non-zero exit names the failing step.
+2. Confirm the handler or script listed in section 4 is the one actually loaded, and that any compiled output under `dist/` is current for it.
+3. Compare the observed response field by field against the Expected block, and quote the first field that disagrees.
+
+
 ### Cleanup
 
 ```bash

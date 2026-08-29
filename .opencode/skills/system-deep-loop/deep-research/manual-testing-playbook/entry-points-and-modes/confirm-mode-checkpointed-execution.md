@@ -83,4 +83,4 @@ Inspect `gate_init_approval` first, then compare `phase_loop` and `state_paths` 
 - Playbook ID: DR-002
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `entry-points-and-modes/confirm-mode-checkpointed-execution.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

@@ -49,13 +49,13 @@ All 5 modules have accurate file lists and consumer mappings
 
 ### Evidence
 
-Executed from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit`.
+Executed from `.opencode/skills/system-spec-kit`.
 
 Initial MODULE_MAP location observation:
 
 ```text
-Read /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/MODULE-MAP.md
-File not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/MODULE-MAP.md
+Read .opencode/skills/system-spec-kit/MODULE-MAP.md
+File not found: .opencode/skills/system-spec-kit/MODULE-MAP.md
 ```
 
 The module entries used for comparison are present in `mcp-server/lib/MODULE-MAP.md`:

@@ -54,16 +54,17 @@ The command resolves `intent=DIAGNOSE`, loads `.opencode/commands/doctor/assets/
 
 ### Evidence
 
-- BLOCKED before scenario command execution because the scenario requires writes outside the single allowed file.
-- User allowed write path: `.opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-memory-drift-detection.md (this file only)`.
-- User banned operation: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
-- Scenario Command 3 requires forbidden writes: ``Pick three markdown files under `.opencode/specs/` and append a harmless sandbox-only marker line to each file.``
-- Scenario Command 7 also requires forbidden writes: `Revert or discard the sandbox edits after evidence capture.`
-- No `/doctor memory` diagnostic report, state log, or `memory_drift_why` output was captured because executing the scenario exactly as written would require modifying three markdown files outside the allowed write path.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: The scenario cannot be executed under the current task constraints because Commands 3 and 7 require modifying files outside the only allowed write path.
+- **Pass**: All three modified files are visible in drift evidence and the command recommends incremental apply.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

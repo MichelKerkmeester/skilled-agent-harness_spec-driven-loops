@@ -58,7 +58,7 @@ npx vitest run tests/chunk-thinning.vitest.ts --reporter verbose
 Actual output observed:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 stderr | mcp-server/tests/chunk-thinning.vitest.ts > R7 integration wiring > uses thinChunks retained set in indexChunkedMemoryFile active path
 [memory-save] Chunking /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/s6-r7-integration-w80M0o/chunked-memory.md: structure strategy, 5 chunks

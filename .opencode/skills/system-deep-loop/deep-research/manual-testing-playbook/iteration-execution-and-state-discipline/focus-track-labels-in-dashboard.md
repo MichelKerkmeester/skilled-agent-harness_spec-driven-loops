@@ -83,4 +83,4 @@ Privilege state-format.md as the canonical schema; use the dashboard asset and R
 - Playbook ID: DR-028
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/focus-track-labels-in-dashboard.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-24.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

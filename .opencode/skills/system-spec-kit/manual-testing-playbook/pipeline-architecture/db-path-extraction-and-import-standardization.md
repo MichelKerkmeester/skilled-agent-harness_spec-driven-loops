@@ -53,7 +53,7 @@ Real execution transcript and observed values:
 
 ```text
 $ pwd
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+.
 ```
 
 ```text
@@ -67,7 +67,7 @@ SPECKIT_DB_DIR=<unset>
 $ MEMORY_DB_PATH=.opencode/skills/system-spec-kit/mcp-server/database/manual-memory.sqlite SPEC_KIT_DB_DIR=.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-a SPECKIT_DB_DIR=.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-b node --input-type=module -e "const config = await import('./.opencode/skills/system-spec-kit/shared/dist/config.js'); const paths = await import('./.opencode/skills/system-spec-kit/shared/dist/paths.js'); console.log(JSON.stringify({getDbDir: config.getDbDir(), DB_PATH: paths.DB_PATH}, null, 2));"
 {
   "getDbDir": ".opencode/skills/system-spec-kit/mcp-server/database/spec-kit-a",
-  "DB_PATH": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/manual-memory.sqlite"
+  "DB_PATH": ".opencode/skills/system-spec-kit/mcp-server/database/manual-memory.sqlite"
 }
 ```
 
@@ -75,7 +75,7 @@ $ MEMORY_DB_PATH=.opencode/skills/system-spec-kit/mcp-server/database/manual-mem
 $ SPEC_KIT_DB_DIR=.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-a SPECKIT_DB_DIR=.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-b node --input-type=module -e "const config = await import('./.opencode/skills/system-spec-kit/shared/dist/config.js'); const paths = await import('./.opencode/skills/system-spec-kit/shared/dist/paths.js'); console.log(JSON.stringify({getDbDir: config.getDbDir(), DB_PATH: paths.DB_PATH}, null, 2));"
 {
   "getDbDir": ".opencode/skills/system-spec-kit/mcp-server/database/spec-kit-a",
-  "DB_PATH": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-a/context-index.sqlite"
+  "DB_PATH": ".opencode/skills/system-spec-kit/mcp-server/database/spec-kit-a/context-index.sqlite"
 }
 ```
 
@@ -83,7 +83,7 @@ $ SPEC_KIT_DB_DIR=.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-
 $ SPECKIT_DB_DIR=.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-b node --input-type=module -e "const config = await import('./.opencode/skills/system-spec-kit/shared/dist/config.js'); const paths = await import('./.opencode/skills/system-spec-kit/shared/dist/paths.js'); console.log(JSON.stringify({getDbDir: config.getDbDir(), DB_PATH: paths.DB_PATH}, null, 2));"
 {
   "getDbDir": ".opencode/skills/system-spec-kit/mcp-server/database/spec-kit-b",
-  "DB_PATH": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-b/context-index.sqlite"
+  "DB_PATH": ".opencode/skills/system-spec-kit/mcp-server/database/spec-kit-b/context-index.sqlite"
 }
 ```
 
@@ -134,14 +134,14 @@ scripts/evals/map-ground-truth-ids.ts:34: const DB_DIR = path.resolve(SCRIPTS_RO
 ```text
 $ SPEC_KIT_DB_DIR=.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-a SPECKIT_DB_DIR=.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-b node --input-type=module -e "import path from 'node:path'; const shared = await import('./.opencode/skills/system-spec-kit/shared/dist/paths.js'); const profile = await import('./.opencode/skills/system-spec-kit/shared/dist/embeddings/profile.js'); const evalDbDir = path.resolve('.opencode/skills/system-spec-kit/scripts', '../mcp-server/database'); console.log(JSON.stringify({shared_DB_PATH: shared.DB_PATH, eval_resolveActiveProfileDbPath_with_explicit_DB_DIR: profile.resolveActiveProfileDbPath(undefined, evalDbDir)}, null, 2));"
 {
-  "shared_DB_PATH": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-a/context-index.sqlite",
-  "eval_resolveActiveProfileDbPath_with_explicit_DB_DIR": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite"
+  "shared_DB_PATH": ".opencode/skills/system-spec-kit/mcp-server/database/spec-kit-a/context-index.sqlite",
+  "eval_resolveActiveProfileDbPath_with_explicit_DB_DIR": ".opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite"
 }
 ```
 
 ### Pass / Fail
 
-- **FAIL**: Catalog-listed consumers/tests passed and the shared resolver honors `MEMORY_DB_PATH > SPEC_KIT_DB_DIR > SPECKIT_DB_DIR`, but broader script/tool validation found eval entry points that pass an explicit `mcp-server/database` DB dir and resolve `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite` while the shared resolver resolves `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-a/context-index.sqlite` for the same `SPEC_KIT_DB_DIR`/`SPECKIT_DB_DIR` env vars.
+- **FAIL**: Catalog-listed consumers/tests passed and the shared resolver honors `MEMORY_DB_PATH > SPEC_KIT_DB_DIR > SPECKIT_DB_DIR`, but broader script/tool validation found eval entry points that pass an explicit `mcp-server/database` DB dir and resolve `.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite` while the shared resolver resolves `.opencode/skills/system-spec-kit/mcp-server/database/spec-kit-a/context-index.sqlite` for the same `SPEC_KIT_DB_DIR`/`SPECKIT_DB_DIR` env vars.
 
 ### Failure Triage
 

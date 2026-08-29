@@ -11,6 +11,24 @@ Creation-template router for stable `workflowMode=sk-design-md-generator`. Read 
 <!-- Shared lifecycle contract, expanded once: -->
 @.opencode/skills/sk-design-md-generator/references/creation-contract.md
 
+### MANDATORY INPUT GATE
+
+**STATUS: BLOCKED** until `live_url`, `output_dir`, and `execution_mode` are bound.
+
+1. Parse `$ARGUMENTS`; strip the `:auto` / `:confirm` suffix and the `--register` flag before resolving the required canonical URL.
+2. Treat an absent or whitespace-only `<live-url>` as missing. Do not infer it from conversation history, open files, screenshots, browser state, or repository contents.
+3. When the URL is missing, ask for the canonical source URL and the `--output <dir>` destination, stop, and wait for an explicit reply. Use only `$ARGUMENTS` or that reply.
+4. Bind `output_dir` from `--output`; never invent a destination or default to the working directory.
+5. In `:confirm` or no-suffix mode, confirm the resolved URL and destination before capture. In `:auto`, fail fast on a missing URL and continue only when every field is valid.
+
+| Field | Required | Source |
+|---|---:|---|
+| `live_url` | yes | explicit `<live-url>` positional or explicit reply |
+| `output_dir` | yes | explicit `--output <dir>` or explicit reply |
+| `execution_mode` | yes | suffix or confirmed choice |
+
+If any blocking phase was skipped, stop, state the skipped phase, return to it, and complete it before capture.
+
 ## 1. ROUTER CONTRACT
 
 This command serves the user job: "extract website css", "generate design reference", "capture design tokens".

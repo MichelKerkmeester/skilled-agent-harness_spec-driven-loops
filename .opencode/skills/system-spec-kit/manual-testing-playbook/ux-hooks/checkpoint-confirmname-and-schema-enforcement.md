@@ -54,7 +54,7 @@ Command 1, run from `.opencode/skills/system-spec-kit/mcp-server`:
 ```text
 $ npx vitest run tests/handler-checkpoints.vitest.ts tests/tool-input-schema.vitest.ts tests/mcp-input-validation.vitest.ts
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 (node:1154) ExperimentalWarning: SQLite is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
@@ -70,7 +70,7 @@ Command 2, run from `.opencode/skills/system-spec-kit/mcp-server`:
 ```text
 $ npx vitest run tests/context-server.vitest.ts
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)

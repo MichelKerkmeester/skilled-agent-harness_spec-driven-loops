@@ -22,11 +22,11 @@ The behavior is user-observable: developers asking implementation questions want
 
 - Objective: Confirm implementation-over-docs ranking for code-intent queries.
 - Real user request: `Verify that when I ask "how does X work?" through Code Graph, the implementation file outranks its README.`
-- RCAF Prompt: `As a query-intelligence validation operator, fire 4 question-form code queries through Code Graph and report whether the implementation file ranks above its README in each top-5. Return a pass/fail verdict and a table of rank pairs.`
+- Operator prompt: `As a query-intelligence validation operator, fire 4 question-form code queries through Code Graph and report whether the implementation file ranks above its README in each top-5. Return a pass/fail verdict and a table of rank pairs.`
 - Expected execution process: run 4 code-intent queries, identify implementation-file rank and README rank in each top-5, compare.
 - Expected signals: implementation rank < README rank in ≥ 3 of 4 queries; both files are present in top-10.
 - Desired user-visible outcome: `PASS — 3/4 queries rank implementation above README; the 1 inversion was a tied-content tiebreaker.`
-- Pass/fail: PASS if implementation outranks README in ≥ 3 of 4; PARTIAL if 2; FAIL if ≤ 1.
+- Pass/fail: PASS only if implementation outranks README in ≥ 3 of 4; FAIL at 2 of 4 or fewer.
 
 ---
 
@@ -91,121 +91,35 @@ A table like:
 
 ### Evidence
 
-- The top-10 result paths for each query.
-- The rank-pair table above.
-- An honest assessment: if implementation ranks below docs, IS the doc actually a better answer for this query? (Sometimes the inversion is correct — INSTALL_GUIDE may be more authoritative for setup-related questions.)
-- Active provider (memory_health) at time of test.
+Capture, for every step in the Commands sequence above:
 
-Observed 2026-07-03 in `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.
-
-
-```text
-cache_ttl_ms=5000
-spec_folder=auto
-resume_mode=minimal
-messages_transform_enabled=true
-messages_transform_mode=schema_aligned
-runtime_ready=false
-node_binary=node
-bridge_timeout_ms=15000
-last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
-cache_entries=0
-cache=empty
-```
-
-
-Query A payload:
-
-```json
-{"input":"how does embedding provider auto-cascade resolution work when no API keys are set","queryMode":"neighborhood"}
-```
-
-Query A output:
-
-```json
-{
-  "status": "error",
-  "exitCode": 75
-}
-```
-
-Query B payload:
-
-```json
-{"input":"how does the system detect whether ollama runtime is installed","queryMode":"neighborhood"}
-```
-
-Query B output:
-
-```json
-{
-  "status": "error",
-  "exitCode": 75
-}
-```
-
-Query C payload:
-
-```json
-{"input":"how is the sqlite-vec virtual table created and queried for embeddings","queryMode":"neighborhood"}
-```
-
-Query C output:
-
-```json
-{
-  "status": "error",
-  "exitCode": 75
-}
-```
-
-Query D payload:
-
-```json
-{"input":"how is the active profile sqlite filename derived from provider model dim and dtype","queryMode":"neighborhood"}
-```
-
-Query D output:
-
-```json
-{
-  "status": "error",
-  "exitCode": 75
-}
-```
-
-
-```json
-{
-  "status": "error",
-  "exitCode": 75
-}
-```
-
-Active provider via `memory_health` could not be observed. Direct MCP retries returned:
-
-```text
-MCP error -32001: backend recycled; retry
-```
-
-Daemon-backed `memory_health` returned:
-
-```text
-@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
-```
-
-
-Rank-pair table:
-
-```markdown
-| Query | Impl file | Impl rank | Doc file | Doc rank | Impl > Doc? |
-|-------|-----------|----------:|----------|---------:|------------|
-| A | shared/embeddings/factory.ts | unavailable | shared/embeddings/README.md | unavailable | BLOCKED |
-| B | shared/embeddings/ollama-availability.ts | unavailable | shared/embeddings/providers/README.md | unavailable | BLOCKED |
-| C | mcp-server/lib/search/vector-index-store.ts or vector-index-impl.ts | unavailable | references/memory/embedding-resilience.md | unavailable | BLOCKED |
-| D | shared/embeddings/profile.ts:resolveActiveProfileDbPath | unavailable | mcp-server/INSTALL-GUIDE.md | unavailable | BLOCKED |
-```
-
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass/Fail
 
+### Failure Triage
+
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
+
+---
+
+## 4. SOURCE FILES
+
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 403
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/code-intent-matching.md`

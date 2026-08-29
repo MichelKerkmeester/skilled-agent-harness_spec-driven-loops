@@ -52,7 +52,7 @@ Helper-based code paths are active; tests for the extracted helpers pass; routin
 Exhaustiveness suite:
 
 ```text
-RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -64,7 +64,7 @@ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.o
 `runEnrichmentStep()` suite:
 
 ```text
-RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -76,7 +76,7 @@ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.o
 Reconsolidation suite:
 
 ```text
-RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -88,7 +88,7 @@ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.o
 Routing nudge suite:
 
 ```text
-RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 (node:88250) ExperimentalWarning: SQLite is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)

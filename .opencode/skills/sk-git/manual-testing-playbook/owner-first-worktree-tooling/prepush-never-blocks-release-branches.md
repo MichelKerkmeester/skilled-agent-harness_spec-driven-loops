@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-039` and confirm th
 - RCAF Prompt: `As a git safety reviewer, push a new skilled/v* release branch and then an update to one, and verify both are exempt from the naming gate with no warning or rejection at all.`
 - Expected execution process: Feed a `skilled/vA.B.C.D` line as a new branch (zero remote sha) and as an update (nonzero remote sha), and confirm neither is evaluated by the grammar check at all.
 - Expected signals: both cases exit 0 with no naming-related stderr output for that ref line.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the `pre-push` hook script is missing from the checkout under test.
 - Pass/fail: PASS if every `skilled/v*` ref line — new or updated — is skipped by the release-branch short-circuit before grammar validation runs. FAIL if a `skilled/v*` push is ever rejected or produces a naming warning.
 
 ---

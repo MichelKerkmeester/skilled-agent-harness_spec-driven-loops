@@ -23,7 +23,7 @@ A silent empty success on a bad credential is the dangerous failure mode -- it l
 - Feature Name: Invalid Token
 - Scenario Objective: Confirm `retrieve-bot-user` surfaces `401` unauthorized for a wrong token, then restore the valid token and confirm recovery.
 - Exact Prompt: `"Call retrieve-bot-user with a deliberately wrong Notion token."`
-- Exact Command Sequence: `1. set notion_NOTION_TOKEN to a deliberately invalid value -> 2. notion["notion_retrieve-bot-user"]({}) -> 3. restore notion_NOTION_TOKEN to its valid value -> 4. notion["notion_retrieve-bot-user"]({})`
+- Exact Command Sequence: `1. set notion_NOTION_TOKEN to a deliberately invalid value -> 2. notion["notion_retrieve-bot-user"] ({}) -> 3. restore notion_NOTION_TOKEN to its valid value -> 4. notion["notion_retrieve-bot-user"] ({})`
 - Expected Signals: Step 2 surfaces a `401`/unauthorized error with a meaningful message and a non-zero exit; Step 4 succeeds and returns the bot user, confirming recovery.
 - Evidence: the error status code and body from Step 2, and the successful Step 4 response.
 - Pass/Fail Criteria: PASS if `401`/unauthorized is surfaced with a message and the token is restored and re-confirmed working; FAIL if the call returns an empty success instead of an error.
@@ -46,9 +46,9 @@ A valid `notion_NOTION_TOKEN` value is available to restore immediately after th
 ### Commands
 
 1. Set `notion_NOTION_TOKEN` to a deliberately invalid value.
-2. `notion["notion_retrieve-bot-user"]({})`.
+2. `notion["notion_retrieve-bot-user"] ({})`.
 3. Restore `notion_NOTION_TOKEN` to its valid value.
-4. `notion["notion_retrieve-bot-user"]({})` (confirm recovery).
+4. `notion["notion_retrieve-bot-user"] ({})` (confirm recovery).
 
 ### Expected
 
@@ -72,7 +72,7 @@ Capture the step-2 error status code and body, and the step-4 successful respons
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FAIL-002 | Invalid Token | Verify retrieve-bot-user surfaces 401 unauthorized for a wrong token, never a silent empty success | `"Call retrieve-bot-user with a deliberately wrong Notion token."`| 1. set invalid token -> 2. `notion["notion_retrieve-bot-user"]({})` -> 3. restore token -> 4. re-call | `401`/unauthorized with message; recovery succeeds | Error status/body, recovery response | PASS if 401 surfaced and recovery succeeds; FAIL if empty success returned | Confirm token applied, confirm status is 401, restore and re-verify |
+| FAIL-002 | Invalid Token | Verify retrieve-bot-user surfaces 401 unauthorized for a wrong token, never a silent empty success | `"Call retrieve-bot-user with a deliberately wrong Notion token."`| 1. set invalid token -> 2. `notion["notion_retrieve-bot-user"] ({})` -> 3. restore token -> 4. re-call | `401`/unauthorized with message; recovery succeeds | Error status/body, recovery response | PASS if 401 surfaced and recovery succeeds; FAIL if empty success returned | Confirm token applied, confirm status is 401, restore and re-verify |
 
 Cleanup: restore `notion_NOTION_TOKEN` to a valid value before any other scenario runs (done in step 3, confirmed in step 4).
 

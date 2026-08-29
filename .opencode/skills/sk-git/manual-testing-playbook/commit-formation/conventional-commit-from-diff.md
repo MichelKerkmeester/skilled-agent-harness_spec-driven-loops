@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-004` and confirm th
 - Prompt: `Commit the staged docs update with a Conventional Commit message and report the proposed message plus readiness verdict.`
 - Expected execution process: Inspect staged and unstaged changes, classify the logical change, infer type and scope, and produce the commit message before committing.
 - Expected signals: Subject uses Conventional Commits; staged diff is reviewed; body includes a useful why/spec reference when available.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox has no writable repository in which to stage the diff the message is derived from.
 - Pass/fail: PASS if the message follows `type(scope): summary` per `references/commit-workflows.md §3` and `assets/commit-message-template.md §2`. FAIL if the subject is vague, non-conventional, duplicates legacy prefixes, or omits available traceability.
 
 ---

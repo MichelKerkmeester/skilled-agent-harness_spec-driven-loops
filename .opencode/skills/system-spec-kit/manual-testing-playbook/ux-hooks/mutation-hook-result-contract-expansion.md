@@ -57,7 +57,7 @@ npx vitest run tests/mutation-hooks.vitest.ts tests/hooks-mutation-wiring.vitest
 Observed test transcript:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  3 passed (3)

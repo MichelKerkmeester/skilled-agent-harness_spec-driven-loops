@@ -23,7 +23,7 @@ This scenario validates the confirmed `notion_query-data-source` tool as a read-
 - Feature Name: Query a data source
 - Scenario Objective: Query a scratch data source for rows and confirm a paginated result resolves, empty or not.
 - Exact Prompt: `Query my scratch data source for any rows -- it's probably empty right now, that's fine.`
-- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_query-data-source") -> 3. Code Mode: call_tool_chain({ code: "const rows = await notion[\"notion_query-data-source\"]({ data_source_id: \"SCRATCH_DATA_SOURCE_ID\", page_size: 25 }); return rows;" })`
+- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_query-data-source") -> 3. Code Mode: call_tool_chain({ code: "const rows = await notion[\"notion_query-data-source\"] ({ data_source_id: \"SCRATCH_DATA_SOURCE_ID\", page_size: 25 }); return rows;" })`
 - Expected Signals: The live manual reports the callable name; the schema resolves; the response carries a `results` array (which may legitimately be `[]`), `has_more`, and `next_cursor`.
 - Evidence: `list_tools()` result, `tool_info()` result, Code Mode response, `SCRATCH_DATA_SOURCE_ID` used, and the `results` array (or explicit empty-array note).
 - Pass/Fail Criteria: PASS if the tool name and schema resolve and a well-formed paginated result returns, including an empty `results` array; SKIP if no scratch data source ID is available; FAIL if the call returns a `data_source_id` validation error (indicating a database ID was supplied instead) or if rows are fabricated where the source is empty.

@@ -31,7 +31,7 @@ Operators run the exact prompt and command sequence for `CMP-003` and confirm th
 - Expected execution process: the operator first checks `capabilities` for a detected PDF extractor, then supplies two small text-based PDFs; with an extractor present the engine extracts and compares the text layer via `compare-pair` and writes a report; with no extractor present the engine exits `3` and points the user at the explicit-pair fallback.
 - Expected signals: with an extractor, a `pdf, tier text*` summary, a written report, and a validator `PASS`; with no extractor, exit `3` and an actionable message (no fabricated diff, no report).
 - Desired user-visible outcome: a text diff of the PDFs, or a clear, non-fabricated explanation of why it could not run.
-- Pass/fail: PASS if (extractor present) the summary reports `pdf, tier text*` and the validator returns `PASS`, OR (extractor absent) the run exits `3` with a clear message and produces no report — a documented SKIP; FAIL if a diff is fabricated when no extractor is present, or the run crashes with an unhandled error.
+- Pass/fail: PASS if (extractor present) the summary reports `pdf, tier text*` and the validator returns `PASS`, OR (extractor absent) the run exits `3` with a clear message and produces no report — a documented SKIP that applies only when no PDF extractor (`pdftotext`, `pypdf`, `pdfplumber`) is unavailable in the environment; FAIL if a diff is fabricated when no extractor is present, or the run crashes with an unhandled error.
 
 ---
 
@@ -57,7 +57,7 @@ Capture the step 1 `capabilities` output showing the detected extractor (or its 
 
 ### Pass / Fail
 
-- **Pass**: with an extractor present, step 2 exits `0` with a `pdf, tier text*` summary and step 3 returns `PASS`; OR with no extractor present, step 2 exits `3` with a clear actionable message and no report (documented SKIP).
+- **Pass**: with an extractor present, step 2 exits `0` with a `pdf, tier text*` summary and step 3 returns `PASS`; OR with no extractor present, step 2 exits `3` with a clear actionable message and no report — a documented SKIP that applies only when no PDF extractor (`pdftotext`/`pypdf`/`pdfplumber`) is unavailable in the environment.
 - **Fail**: step 2 fabricates a diff or writes a report when no extractor is present, or the run crashes with an unhandled error instead of exit `3`.
 
 ### Failure Triage

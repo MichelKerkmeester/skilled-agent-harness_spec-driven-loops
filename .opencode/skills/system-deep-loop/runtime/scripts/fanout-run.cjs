@@ -1866,12 +1866,11 @@ const CURSOR_DEFAULT_MODEL = 'composer-2.5';
 // pass-through with no house model, so this synchronous duplicate keeps
 // command construction fail-closed without importing the TypeScript module.
 const PI_ALLOWED_MODELS = new Set([
-  'deepseek-v4-pro',
+  // Bare DeepSeek V4 Flash literal is opencode-go-fronted on pi (direct DeepSeek API retired).
   'deepseek-v4-flash',
   'minimax-m3',
   'gpt-5.6-luna',
   'gpt-5.6-sol',
-  'gpt-5.6-terra',
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
   'qwen3.8-max',
@@ -1887,7 +1886,7 @@ const PI_ALLOWED_MODELS = new Set([
   // literal maps to one provider, so the Cline route is direct-dispatch only and absent here.
   'glm-5.3-flash',
 ]);
-const PI_DEFAULT_MODEL = 'deepseek-v4-pro';
+const PI_DEFAULT_MODEL = 'deepseek-v4-flash';
 
 function buildCursorLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermission, options) {
   if (!isCursorBinaryAvailable(options.env || process.env)) {
@@ -2076,18 +2075,17 @@ function buildDevinLineageCommand(lineage, prompt, resolvedSandbox, resolvedPerm
 }
 
 // Provider that fronts each allowlisted Pi model, captured from `pi --list-models`
-// (openai-codex fronts the GPT-5.6 tunes; deepseek, minimax, and xiaomi front
-// their own families). Pi selects a model as `<provider>/<id>`; without the
+// (openai-codex fronts the GPT-5.6 tunes; minimax and xiaomi front their own families;
+// opencode-go fronts DeepSeek V4 Flash and Qwen 3.8 Max — the direct DeepSeek API
+// provider was retired from the roster). Pi selects a model as `<provider>/<id>`; without the
 // provider prefix it falls back to its default provider and dispatches the wrong
 // model. Hand-duplicated as a plain literal so command construction stays
 // synchronous and unit-testable, matching this file's per-kind convention.
 const PI_MODEL_PROVIDERS = new Map([
-  ['deepseek-v4-pro', 'deepseek'],
   ['deepseek-v4-flash', 'opencode-go'],
   ['minimax-m3', 'minimax'],
   ['gpt-5.6-luna', 'openai-codex'],
   ['gpt-5.6-sol', 'openai-codex'],
-  ['gpt-5.6-terra', 'openai-codex'],
   ['mimo-v2.5-pro', 'xiaomi'],
   ['mimo-v2.5-pro-ultraspeed', 'xiaomi'],
   ['qwen3.8-max', 'opencode-go'],

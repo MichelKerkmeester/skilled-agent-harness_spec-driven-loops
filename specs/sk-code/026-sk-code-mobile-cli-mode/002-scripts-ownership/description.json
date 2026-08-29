@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/026-sk-code-mobile-cli-mode/002-scripts-ownership",
+  "description": "Decision packet: the app keeps scripts/; the sk-code-mobile-cli surface skill references it, not hosts it. A read-only surface leaf cannot own executable, app-coupled, CI-wired tooling. Analysis only, no move.",
+  "keywords": [
+    "scripts",
+    "ownership",
+    "app",
+    "skill",
+    "references",
+    "tooling",
+    "decision",
+    "surface",
+    "read-only",
+    "npm",
+    "ci"
+  ],
+  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "specId": "002",
+  "folderSlug": "scripts-ownership",
+  "parentChain": [
+    "sk-code",
+    "026-sk-code-mobile-cli-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

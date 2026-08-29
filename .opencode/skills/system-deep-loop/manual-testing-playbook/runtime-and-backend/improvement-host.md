@@ -53,6 +53,10 @@ For an agent-improvement run, resolve the mode through the registry and state th
 1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `agent-improvement` mode entry.
 2. `.opencode/skills/system-deep-loop/SKILL.md` contains the backend and NEVER-infer rules.
 
+### Prompt
+
+- Prompt: `For an agent-improvement run, resolve the mode through the registry and state the backend, runtime loop type, loop host mode, command, agent, and artifact root before starting.`
+
 ### Exact Command Sequence
 
 1. **Invoke hub**: `Skill(system-deep-loop, "For an agent-improvement run, resolve the mode through the registry and state the backend, runtime loop type, loop host mode, command, agent, and artifact root before starting.")`.
@@ -67,11 +71,14 @@ For an agent-improvement run, resolve the mode through the registry and state th
 | 2 | Response names `backendKind: improvement-host`, `runtimeLoopType: null`, and `loopHostMode: agent-improvement`. |
 | 3 | Response does not infer `runtimeLoopType: improvement` or `runtimeLoopType: agent-improvement`. |
 
+### Evidence
+
+- Response transcript: `/tmp/dlw-RB-003/response.txt`, showing the stated backend, runtime loop type, and loop host mode.
+
 ### Pass/Fail Criteria
 
-- **PASS** iff agent-improvement resolves to `improvement-host` with null runtime loop type and expected loop host mode.
-- **PARTIAL** iff backend and null loop type are correct but the loop host mode is omitted.
-- **FAIL** iff any non-null runtime loop type is assigned or the runtime-loop backend is used.
+- **PASS**: agent-improvement resolves to `improvement-host` with null runtime loop type, and the response explicitly names the loop host mode `agent-improvement`.
+- **FAIL**: any non-null runtime loop type is assigned, the runtime-loop backend is used, or the response omits the loop host mode.
 
 ### Failure Triage
 
@@ -85,6 +92,7 @@ For an agent-improvement run, resolve the mode through the registry and state th
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - backend and NEVER-infer rules.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `agent-improvement` backend fields.
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---
 

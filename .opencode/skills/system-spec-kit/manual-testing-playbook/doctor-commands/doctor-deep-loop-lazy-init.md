@@ -28,7 +28,7 @@ The behavior is user-observable: an operator who has just completed a deep-resea
 - Expected signals: Phase 0 detects `empty_graph=true`; `lazy_init.available=true`; Phase 3 calls `deep_loop_graph_upsert` using iteration-derived batches; final status is applied with nonzero graph nodes and edges.
 - Desired user-visible outcome: A concise applied verdict naming the populated graph and the iteration sources used.
 - Pass/fail: PASS if post-run `deep_loop_graph_status()` reports a nonzero node count and cited source files match the discovered iteration folders.
-- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, `SKIP`, or `UNAUTOMATABLE`.
+- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable; a scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
 
@@ -70,10 +70,8 @@ The final report shows an applied status, nonzero graph node count, nonzero or e
 
 ### Pass / Fail
 
-- **PASS**: empty graph is detected, iteration folders are used as read-only inputs, `deep_loop_graph_upsert` runs, and post-run graph status reports nonzero nodes with matching source provenance.
-- **FAIL**: mutation flow refuses despite available iteration sources, mutates iteration markdown, skips snapshot without explicit `--no-snapshot`, or leaves the graph empty.
-- **SKIP**: no disposable workspace is available or no real runtime can invoke `/doctor deep-loop`.
-- **UNAUTOMATABLE**: only valid if the sandbox cannot provide any real research/review iteration folders and cannot safely create a disposable graph database.
+- **Pass**: Post-run `deep_loop_graph_status()` reports a nonzero node count and cited source files match the discovered iteration folders.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

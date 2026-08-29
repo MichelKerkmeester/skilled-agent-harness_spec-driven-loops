@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-015` and confirm th
 - Prompt: `Clean up the merged PR worktree and branches only after merge confirmation, then report cleanup evidence.`
 - Expected execution process: Confirm merged state, remove worktree, delete local branch safely, delete remote branch if appropriate, and verify no stale references remain.
 - Expected signals: Only merged branches are deleted; worktree list no longer includes removed path; remote delete is explicit.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when no authorized remote is configured to verify remote-branch deletion.
 - Pass/fail: PASS if cleanup follows `SKILL.md §4` ALWAYS rule 6 and `references/finish-workflows.md §3` Step 5 without force-deleting unmerged work. FAIL if unmerged branches are force-deleted, worktree removal runs with dirty changes, or stale entries remain untriaged.
 
 ---

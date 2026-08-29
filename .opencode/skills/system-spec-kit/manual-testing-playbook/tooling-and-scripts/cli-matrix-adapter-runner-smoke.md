@@ -19,10 +19,10 @@ This scenario validates the matrix runner surface. It exercises one cell through
 
 
 - Objective: Run a single matrix cell through `cli-opencode` and `cli-claude-code`, then verify per-cell JSONL and timeout behavior.
-- Real user request: `` Please validate CLI matrix adapter runner smoke against the documented validation surface and tell me whether the expected signals are present: Step 1 writes two files under `$OUT`: one each for `F5-cli-opencode` and `F5-cli-claude-code`.; Live cells may be `PASS`, `FAIL`, or `BLOCKED` depending on local CLI auth; `NA` is not expected for F5.; Every JSONL record has `cell_id`, `featureId`, `featureName`, `executor`, `status`, `durationMs`, `evidence.stdout`, `evidence.stderr`, and `evidence.exitCode`.; `summary.tsv` contains per-feature and per-executor aggregate rows.; The timeout test command passes and includes `TIMEOUT_CELL` assertions for every adapter suite. ``
+- Real user request: `` Please validate CLI matrix adapter runner smoke against the documented validation surface and tell me whether the expected signals are present: Step 1 writes two files under `$OUT`: one each for `F5-cli-opencode` and `F5-cli-claude-code`.; Live cells may be `PASS`, `FAIL`, or the spawn-blocked `AdapterStatus` member depending on local CLI auth; `NA` is not expected for F5.; Every JSONL record has `cell_id`, `featureId`, `featureName`, `executor`, `status`, `durationMs`, `evidence.stdout`, `evidence.stderr`, and `evidence.exitCode`.; `summary.tsv` contains per-feature and per-executor aggregate rows.; The timeout test command passes and includes `TIMEOUT_CELL` assertions for every adapter suite. ``
 - Prompt: `Validate CLI matrix adapter runner smoke against the documented validation surface and report cited pass/fail evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: Step 1 writes two files under `$OUT`: one each for `F5-cli-opencode` and `F5-cli-claude-code`.; Live cells may be `PASS`, `FAIL`, or `BLOCKED` depending on local CLI auth; `NA` is not expected for F5.; Every JSONL record has `cell_id`, `featureId`, `featureName`, `executor`, `status`, `durationMs`, `evidence.stdout`, `evidence.stderr`, and `evidence.exitCode`.; `summary.tsv` contains per-feature and per-executor aggregate rows.; The timeout test command passes and includes `TIMEOUT_CELL` assertions for every adapter suite
+- Expected signals: Step 1 writes two files under `$OUT`: one each for `F5-cli-opencode` and `F5-cli-claude-code`.; Live cells may be `PASS`, `FAIL`, or the spawn-blocked `AdapterStatus` member depending on local CLI auth; `NA` is not expected for F5.; Every JSONL record has `cell_id`, `featureId`, `featureName`, `executor`, `status`, `durationMs`, `evidence.stdout`, `evidence.stderr`, and `evidence.exitCode`.; `summary.tsv` contains per-feature and per-executor aggregate rows.; The timeout test command passes and includes `TIMEOUT_CELL` assertions for every adapter suite
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
 - Pass/fail: PASS if the expected signals are present without contradicting evidence; FAIL if required signals are missing or execution cannot complete.
 
@@ -50,11 +50,15 @@ cd .opencode/skills/system-spec-kit
   --working-dir "$(pwd)/../../.."
 ```
 
-2. Verify JSONL shape:
+2. Verify JSONL shape. The accepted status set is read from the `AdapterStatus` union itself, so this assertion cannot drift from the runner:
 
 ```bash
+ADAPTER_STATUSES=$(sed -n 's/^export type AdapterStatus = //p' \
+  mcp-server/matrix-runners/adapter-common.ts \
+  | tr -d "';" | tr '|' '\n' | sed 's/^ *//; s/ *$//' | jq -R . | jq -sc .)
+
 for file in "$OUT"/F5-*.jsonl; do
-  jq -e '
+  jq -e --argjson ok "$ADAPTER_STATUSES" '
     has("cell_id") and
     has("featureId") and
     has("featureName") and
@@ -66,7 +70,7 @@ for file in "$OUT"/F5-*.jsonl; do
     (.evidence | has("stderr")) and
     (.evidence | has("exitCode")) and
     (.featureId == "F5") and
-    (.status | IN("PASS","FAIL","TIMEOUT_CELL","NA","BLOCKED"))
+    (.status | IN($ok[]))
   ' "$file"
 done
 ```
@@ -90,7 +94,7 @@ npx vitest run \
 ### Expected Output / Verification
 
 - Step 1 writes two files under `$OUT`: one each for `F5-cli-opencode` and `F5-cli-claude-code`.
-- Live cells may be `PASS`, `FAIL`, or `BLOCKED` depending on local CLI auth; `NA` is not expected for F5.
+- Live cells may be `PASS`, `FAIL`, or the spawn-blocked `AdapterStatus` member (see `matrix-runners/adapter-common.ts`) depending on local CLI auth; `NA` is not expected for F5.
 - Every JSONL record has `cell_id`, `featureId`, `featureName`, `executor`, `status`, `durationMs`, `evidence.stdout`, `evidence.stderr`, and `evidence.exitCode`.
 - `summary.tsv` contains per-feature and per-executor aggregate rows.
 - The timeout test command passes and includes `TIMEOUT_CELL` assertions for every adapter suite.
@@ -147,7 +151,7 @@ F5-cli-opencode	F5	cli-opencode	PASS	19346
 Step 4 command output:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  2 passed (2)
@@ -160,6 +164,13 @@ Step 4 command output:
 
 FAIL. The runner wrote both F5 JSONL files, both live cells were `PASS`, JSONL shape checks returned `true` twice, and the timeout tests passed, but `summary.tsv` did not contain per-feature and per-executor aggregate rows; those aggregate rows appeared only in the Step 1 stdout.
 
+### Failure Triage
+
+1. Re-run each command in the sequence on its own and record its exit status; the first non-zero exit names the failing step.
+2. Confirm the handler or script listed in section 4 is the one actually loaded, and that any compiled output under `dist/` is current for it.
+3. Compare the observed response field by field against the Expected block, and quote the first field that disagrees.
+
+
 ### Cleanup
 
 ```bash
@@ -170,7 +181,7 @@ rm -rf "$OUT"
 
 - Run F11 with all executors and verify the applicable cells record `NA` from the matrix definition applicability rule where the rule excludes the executor.
 - Run `--filter F5,F6` to prove multiple code-graph cells produce separate JSONL records.
-- Run with one missing CLI binary and verify the adapter records `BLOCKED` rather than crashing the meta-runner.
+- Run with one missing CLI binary and verify the adapter records the spawn-blocked `AdapterStatus` member (`ENOENT` maps to it in `adapter-common.ts`) rather than crashing the meta-runner.
 
 ---
 

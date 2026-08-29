@@ -50,7 +50,7 @@ Validate code-index CLI blocked-read rendering: exit 0, status blocked, required
 
 
 ```text
- RUN  v4.1.7 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ RUN  v4.1.7 .
 
 
  Test Files  1 passed (1)

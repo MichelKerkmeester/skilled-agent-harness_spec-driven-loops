@@ -16,7 +16,7 @@ Validates that **Create Goal via MCP** behaves as defined in the feature catalog
 
 Verify `clickup_manage_goals` creates a goal and returns a goal_id is required for correct agent operation. Failure here means `id` missing or 403 plan limitation error.
 
-> **Capability status: SKIP.** Goals/OKR tools were confirmed absent from the last live `list_tools()` inventory (`references/mcp-tools.md`). Do not execute this scenario against the current server; it will fail with a tool-not-found error, not the pass/fail signals below. Re-enable only after a fresh `tool_info()`/`list_tools()` capture confirms an exact callable name and schema.
+> **Capability status: SKIP — Goals/OKR tools are missing from the live server's tool inventory.** They were confirmed absent from the last live `list_tools()` inventory (`references/mcp-tools.md`). Do not execute this scenario against the current server; it will fail with a tool-not-found error, not the pass/fail signals below. Re-enable only after a fresh `tool_info()`/`list_tools()` capture confirms an exact callable name and schema.
 
 ---
 

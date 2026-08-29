@@ -180,12 +180,13 @@ export const EXECUTOR_WEB_SEARCH_CAPABILITY_MATRIX = {
  * the operator-confirmed picker roster so generic provider routing cannot broaden it.
  */
 export const PI_SUPPORTED_MODELS = [
-  'deepseek-v4-pro',
+  // Bare DeepSeek V4 Flash literal is opencode-go-fronted on pi (the direct DeepSeek
+  // API provider was retired from the roster); `PI_MODEL_PROVIDERS` in fanout-run.cjs
+  // holds the provider mapping for it.
   'deepseek-v4-flash',
   'minimax-m3',
   'gpt-5.6-luna',
   'gpt-5.6-sol',
-  'gpt-5.6-terra',
   'mimo-v2.5-pro',
   'mimo-v2.5-pro-ultraspeed',
   'qwen3.8-max',
@@ -206,8 +207,8 @@ export const PI_SUPPORTED_MODELS = [
 ] as const;
 export type PiSupportedModel = typeof PI_SUPPORTED_MODELS[number];
 
-/** Use the registry's first-listed, broadly adopted rotation model as the stable default; this is not Pi-specific usage history. */
-export const PI_DEFAULT_MODEL: PiSupportedModel = 'deepseek-v4-pro';
+/** Stable rotation default; mirrors the cli-opencode default (`opencode-go/deepseek-v4-flash`) as the bare opencode-go-fronted literal. */
+export const PI_DEFAULT_MODEL: PiSupportedModel = 'deepseek-v4-flash';
 
 /** True when `model` is in the enforced cli-pi allowlist. */
 export function isPiModelAllowed(model: string): model is PiSupportedModel {
@@ -217,7 +218,8 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
 /**
  * DeepSeek V4 Flash and GLM-5.3-Flash are reasoning models whose top thinking tier is
  * `max`, and operator policy pins them there: they are never dispatched at a lower effort.
- * DeepSeek's id is bare on cli-pi (`deepseek-v4-flash`) and provider-prefixed on cli-opencode
+ * DeepSeek's id is bare on cli-pi (`deepseek-v4-flash`, fronted by opencode-go) and
+ * provider-prefixed on cli-opencode
  * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4-flash`); the OpenRouter `-latest`
  * variant (`deepseek/deepseek-v4-flash-latest`) is the same reasoning family and is pinned
  * too. GLM-5.3-Flash is matched on both its bare opencode-go literal (`glm-5.3-flash`) and

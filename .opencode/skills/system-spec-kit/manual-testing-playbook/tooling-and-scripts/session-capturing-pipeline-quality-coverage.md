@@ -128,9 +128,9 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
   To fix: either use @spec-kit/mcp-server/api/* or add to import-policy-allowlist.json
   npm error Lifecycle script `check` failed with error:
   npm error code 1
-  npm error path /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts
+  npm error path .opencode/skills/system-spec-kit/scripts
   npm error workspace @spec-kit/scripts@1.7.2
-  npm error location /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts
+  npm error location .opencode/skills/system-spec-kit/scripts
   npm error command failed
   npm error command sh -c npm run lint && npx tsx evals/check-no-mcp-lib-imports.ts && bash check-api-boundary.sh && npx tsx evals/check-architecture-boundaries.ts && npx tsx evals/check-allowlist-expiry.ts && npx tsx evals/check-source-dist-alignment.ts && npx tsx evals/check-no-mcp-lib-imports-ast.ts && npx tsx evals/check-handler-cycles-ast.ts
   ```
@@ -141,9 +141,9 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
 
   npm error Lifecycle script `lint` failed with error:
   npm error code 1
-  npm error path /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server
+  npm error path .opencode/skills/system-spec-kit/mcp-server
   npm error workspace @spec-kit/mcp-server@1.8.0
-  npm error location /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server
+  npm error location .opencode/skills/system-spec-kit/mcp-server
   npm error command failed
   npm error command sh -c eslint . --ext .ts
   ```
@@ -164,7 +164,7 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
 
   Spec Folder Validation v3.0.0
 
-    Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep
+    Folder: .opencode/specs/system-speckit/031-manual-playbook-execution-sweep
     Level:  phase
 
   x SPEC_DOC_SUFFICIENCY: 1 spec_doc_sufficiency issue(s) found
@@ -180,7 +180,7 @@ Coverage is sourced from the M-007 closure suite, including JSON authority, ship
 
   Spec Folder Validation v3.0.0
 
-    Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/001-findings-remediation
+    Folder: .opencode/specs/system-speckit/031-manual-playbook-execution-sweep/001-findings-remediation
     Level:  2
 
   x FILE_EXISTS: Missing 1 required file(s) for Level 2

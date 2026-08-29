@@ -147,7 +147,7 @@ Observed debug result excerpt: `why` and `why_ranked.channels` were present, but
         },
         "why_ranked": {
           "document": {
-            "path": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr/tasks.md",
+            "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr/tasks.md",
             "anchor": null
           },
           "rank": 1,
@@ -233,7 +233,7 @@ Verify isResultExplainEnabled() → Inspect extractSignals() for PipelineRow →
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/result-explainability.md](../../feature-catalog/ux-hooks/result-explainability.md)
-- Feature flag reference: [feature-flag-reference/1-search-pipeline-features-speckit.md](../../manual-testing-playbook/feature-flag-reference/1-search-pipeline-features-speckit.md)
+- Feature flag reference: [feature-flag-reference/1-search-pipeline-features-speckit.md](../../manual-testing-playbook/feature-flag-reference/search-pipeline-features-speckit.md)
 - Source file: `mcp-server/lib/search/result-explainability.ts`
 
 ---

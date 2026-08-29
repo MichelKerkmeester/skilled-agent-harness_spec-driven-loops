@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-020` and confirm th
 - RCAF Prompt: `As a cross-CLI conductor, delegate sk-git workflow planning against Claude Code native execution. Verify Claude Code preserves workspace-choice, commit-message, and finish safety gates. Return the command plan and evidence requirements.`
 - Expected execution process: Dispatch Claude Code with read-only planning, compare its command plan to sk-git policy, and reject unsafe deltas.
 - Expected signals: Plan asks before workspace choice, uses `git worktree add -b` for branches, and refuses unsafe finish shortcuts.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the Claude Code runtime is unavailable to this operator.
 - Pass/fail: PASS if native Claude Code output matches `SKILL.md §3-§6` and source anchors in `references/quick-reference.md`. FAIL if the delegated plan creates branches directly, bypasses checks, or omits cleanup gates.
 
 ---

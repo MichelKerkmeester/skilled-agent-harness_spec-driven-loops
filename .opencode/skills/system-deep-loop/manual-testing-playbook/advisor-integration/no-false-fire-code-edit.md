@@ -52,6 +52,10 @@ Update the TypeScript helper that formats CLI output so it trims trailing blank 
 2. `.opencode/skills/system-deep-loop/SKILL.md` contains the When NOT to Use rule.
 3. Skill advisor is callable.
 
+### Prompt
+
+- Prompt: `Update the TypeScript helper that formats CLI output so it trims trailing blank lines and run the relevant tests.`
+
 ### Exact Command Sequence
 
 1. **Advisor probe**:
@@ -70,11 +74,15 @@ Update the TypeScript helper that formats CLI output so it trims trailing blank 
 | 3 | Orchestrator uses code-work routing. |
 | 4 | No `workflowMode`, `/deep:*` command, deep-loop agent, backend, or artifact root is selected. |
 
+### Evidence
+
+- Advisor output: `/tmp/dlw-AI-004/advisor.txt` and `/tmp/dlw-AI-004/parsed.txt`.
+- Orchestrator response: `/tmp/dlw-AI-004/response.txt`, showing which skill was loaded and confirming no deep-loop mode fired.
+
 ### Pass/Fail Criteria
 
-- **PASS** iff the prompt routes to `sk-code` and deep-loop remains inactive.
-- **PARTIAL** iff advisor is unavailable but the orchestrator response clearly chooses code-work routing and does not invoke deep-loop.
-- **FAIL** iff `system-deep-loop` wins, a deep-loop mode is selected, or the AI starts a loop for the plain code edit.
+- **PASS**: `sk-code` wins and deep-loop stays inactive — whether the advisor was reachable or not — as long as the orchestrator response demonstrates code-work routing with no `workflowMode`, `/deep:*` command, deep-loop agent, backend, or artifact root selected.
+- **FAIL**: `system-deep-loop` wins, a deep-loop mode is selected, or the AI starts a loop for the plain code edit.
 
 ### Failure Triage
 
@@ -88,6 +96,7 @@ Update the TypeScript helper that formats CLI output so it trims trailing blank 
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - When NOT to Use and hub scope.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - finite list of deep-loop modes.
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---
 

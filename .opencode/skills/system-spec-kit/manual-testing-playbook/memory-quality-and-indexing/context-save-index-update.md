@@ -47,73 +47,12 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 
 ### Evidence
 
-- Command: `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js "/tmp/save-context-data-031-manual-playbook-execution-sweep.json" ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep"`
+Capture, for every step in the Commands sequence above:
 
-```text
-Starting memory skill...
-
-{"timestamp":"2026-07-02T10:41:31.545Z","level":"info","message":"Starting memory skill workflow...\n","component":"workflow"}
-{"timestamp":"2026-07-02T10:41:31.545Z","level":"info","message":"Step 1: Loading collected data...","component":"workflow"}
-(node:98797) ExperimentalWarning: SQLite is an experimental feature and might change at any time
-(Use `node --trace-warnings ...` to show where the warning was created)
-{"timestamp":"2026-07-02T10:41:31.546Z","level":"error","message":"Data file not found","filePath":"/tmp/save-context-data-031-manual-playbook-execution-sweep.json","error":"ENOENT: no such file or directory, open '/private/tmp/save-context-data-031-manual-playbook-execution-sweep.json'"}
-Unexpected Error: EXPLICIT_DATA_FILE_LOAD_FAILED: Data file not found: /tmp/save-context-data-031-manual-playbook-execution-sweep.json
-Error: EXPLICIT_DATA_FILE_LOAD_FAILED: Data file not found: /tmp/save-context-data-031-manual-playbook-execution-sweep.json
-    at loadCollectedData (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/loaders/data-loader.js:75:19)
-    at async file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:676:30
-    at async withWorkflowRunLock (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/core/workflow.js:308:16)
-    at async main (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js:742:13)
-```
-
-- Command: `memory_index_scan({ specFolder: ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep" })`
-
-```json
-{
-  "summary": "Error: An unexpected error occurred. Please check logs for details.",
-  "data": {
-    "error": "An unexpected error occurred. Please check logs for details.",
-    "code": "E040",
-    "details": {
-      "specFolder": ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep",
-      "force": false,
-      "includeConstitutional": false,
-      "includeSpecDocs": true,
-      "incremental": true,
-      "background": false,
-      "tenantId": "",
-      "userId": "",
-      "agentId": "",
-      "sessionId": "",
-      "provenanceSource": "",
-      "provenanceActor": "",
-      "governedAt": "",
-      "retentionPolicy": "keep",
-      "deleteAfter": ""
-    }
-  },
-  "hints": [
-    "Search operation failed.",
-    "Try simplifying your query",
-    "Check memory_health() for system status",
-    "If vector search failed, results may still include BM25 matches",
-    "memory_health()"
-  ],
-  "meta": {
-    "tool": "memory_index_scan",
-    "isError": true,
-    "severity": "medium"
-  }
-}
-```
-
-- Command: `node .opencode/skills/system-spec-kit/scripts/dist/memory/cleanup-index-scope-violations.js --verify`
-
-```text
-[cleanup-index-scope-violations] Error: Missing required database path. Pass --db <path> or set MEMORY_DB_PATH. Active-profile default would be: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite
-```
-
-- `memory_search` / `memory_context` discoverability was not reached because the context save command failed before producing saved context artifacts.
-- Tier-invariant spot-check, cleanup apply/rollback, restore validation, walker DoS, and promotion bypass checks were not reached because the documented command sequence was blocked before the expected cleanup counts and saved-artifact retrieval could be verified.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in section 3.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass/Fail
 

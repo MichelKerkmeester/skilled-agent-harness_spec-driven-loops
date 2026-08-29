@@ -60,7 +60,7 @@ cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/learned-f
 Observed transcript:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 (node:60946) ExperimentalWarning: SQLite is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)

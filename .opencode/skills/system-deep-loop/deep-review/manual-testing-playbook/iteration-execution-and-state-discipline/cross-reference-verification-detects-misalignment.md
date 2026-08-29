@@ -84,4 +84,4 @@ Check the review-mode-contract.yaml for the full cross-reference protocol defini
 - Playbook ID: DRV-011
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

@@ -47,7 +47,7 @@ Set up the Minimal theme in my vault and make the headings smaller with a snippe
 
    ~~~sh
    VB=/tmp/_pbtest-theme-activation
-   SRC=/Users/michelkerkmeester/MEGA/Documents/Obsidian/.obsidian
+   SRC="${OBSIDIAN_VAULT:?set OBSIDIAN_VAULT to an operator-owned vault with the Minimal theme installed}/.obsidian"
    THEME=Minimal
    rm -rf "$VB"
    mkdir -p "$VB/.obsidian/themes/$THEME" "$VB/.obsidian/snippets"
@@ -112,11 +112,11 @@ Set up the Minimal theme in my vault and make the headings smaller with a snippe
 |---|---|
 | PASS | Manifest parses and its `name` matches the theme folder, `cssTheme` equals the theme folder name, the snippet has balanced braces and a backup exists, the throwaway vault is removed and the real vault is untouched |
 | FAIL | Any parse error, `name`/folder mismatch, `cssTheme` mismatch, missing backup or a real vault file modified |
-| SKIP | No source theme package available at the real vault path |
+| SKIP | `OBSIDIAN_VAULT` is unset, or no source theme package is available in that vault in this environment |
 
 ---
 
-## 4. CLEANUP
+### Cleanup
 
 The test owns one directory, `/tmp/_pbtest-theme-activation`. Remove it with `rm -rf` after the run and verify the path is gone. The real vault files were only ever read as copy sources. The snippet enablement step is an in-app action (Settings → Appearance → CSS snippets) and is out of scope for the file-layer test.
 
@@ -124,7 +124,7 @@ Honest grading note: the file-layer checks prove files and keys, not rendered pi
 
 ---
 
-## 5. SOURCE FILES
+## 4. SOURCE FILES
 
 ### Playbook Sources
 
@@ -144,7 +144,7 @@ Honest grading note: the file-layer checks prove files and keys, not rendered pi
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugin tie-ins
 - Playbook ID: OBS-021

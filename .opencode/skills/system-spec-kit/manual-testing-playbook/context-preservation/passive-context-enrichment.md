@@ -146,7 +146,7 @@ Validate passive context enrichment and confirm tool responses carry triggered m
     }
   }
   ```
-- Mutation response envelope: no disposable file existed under `.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/`, and the user constraint prohibited creating one, so `memory_save` was run against the existing approved spec file `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/spec.md`. The first attempt returned:
+- Mutation response envelope: no disposable file existed under `.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/`, and the user constraint prohibited creating one, so `memory_save` was run against the existing approved spec file `.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/spec.md`. The first attempt returned:
   ```json
   {
     "summary": "Error: Governed ingest rejected: tenantId is required for governed ingest; sessionId is required for governed ingest; userId or agentId is required for governed ingest; provenanceSource is required for governed ingest; provenanceActor is required for governed ingest",
@@ -180,7 +180,7 @@ Validate passive context enrichment and confirm tool responses carry triggered m
       ]
     },
     "hints": [
-      "Planner prepared 1 proposed edit(s) for /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/spec.md",
+      "Planner prepared 1 proposed edit(s) for .opencode/specs/system-speckit/031-manual-playbook-execution-sweep/spec.md",
       "Available follow-up actions: apply, refresh-graph, reindex, reconsolidate",
       "3 advisory warning(s) remain after structural planning checks",
       "Resolve planner blockers before requesting full-auto apply mode",

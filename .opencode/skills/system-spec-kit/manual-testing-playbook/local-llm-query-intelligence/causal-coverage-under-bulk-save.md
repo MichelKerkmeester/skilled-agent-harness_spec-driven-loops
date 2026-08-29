@@ -24,11 +24,11 @@ This scenario stores 20 memories spanning 4 topics × 5 memories each, then insp
 
 - Objective: Confirm intra-cluster cohesion + inter-cluster separation in the auto-derived causal graph.
 - Real user request: `Save 20 memories spanning 4 topics, then verify causal_edges form within each topic and not across topics.`
-- AI-to-CLI handoff prompt: `You are <external-CLI>. I am Claude. Save 20 memories spanning 4 distinct topics (5 each), wait for indexing + edge derivation, then dump the edges and return the intra/inter cluster edge counts.`
+- Orchestrator prompt: `You are <external-CLI>. I am Claude. Save 20 memories spanning 4 distinct topics (5 each), wait for indexing + edge derivation, then dump the edges and return the intra/inter cluster edge counts.`
 - Expected execution process: bulk save, wait, dump edges, compute confusion matrix of edges-by-cluster-pair.
 - Expected signals: intra-cluster edges (same-topic) ≥ 2× inter-cluster edges (cross-topic); no single cross-topic pair dominates over its intra-cluster pair.
 - Desired user-visible outcome: `PASS — intra/inter ratio 3.4×; ratios per topic all ≥ 2×.`
-- Pass/fail: PASS if global intra/inter ≥ 2× AND each topic's intra-count is highest cell in its row; PARTIAL if global ratio ≥ 1.5×; FAIL if intra ≤ inter.
+- Pass/fail: PASS only if global intra/inter ≥ 2× AND each topic's intra-count is the highest cell in its row; FAIL if intra ≤ inter, and also FAIL when the global ratio lands between 1.5× and 2× or any row's diagonal is not its largest cell.
 
 ---
 
@@ -74,8 +74,15 @@ After all 20 saves complete, wait 8 seconds for indexing + edge derivation. Then
 1. Run mcp__system_spec_memory__memory_causal_stats({ spec_folder: "_sandbox/local-llm-query-intelligence/412" }).
 2. For each pair of the 20 parent IDs you saved, run mcp__system_spec_memory__memory_causal_link to enumerate edges.
 3. Build a 4×4 confusion matrix counting edges where source∈topic_i and target∈topic_j.
-4. Return JSON: { memories_by_topic: {1:[...],2:[...],3:[...],4:[...]}, confusion_matrix: [[..]×4], intra_count: N, inter_count: M, ratio: intra/inter, verdict: "PASS|PARTIAL|FAIL" with rationale }.
+4. Return JSON: { memories_by_topic: {1:[...],2:[...],3:[...],4:[...]}, confusion_matrix: [[..]×4], intra_count: N, inter_count: M, ratio: intra/inter, verdict: "PASS|FAIL" with rationale }.
 ```
+
+
+### Commands
+
+Run the steps below in order; each named subsection states its exact tool calls and inputs.
+
+1. Verification
 
 ### Verification
 
@@ -102,24 +109,26 @@ diagonal-row-leader check: 4/4 ✓
 
 ### Evidence
 
-- BLOCKED before executing scenario commands. The scenario's AI-to-CLI handoff requires creating 20 canonical research-doc files at `<spec-folder><topic>-<n>/research.md`, calling `memory_save({filePath})` for each, then the CLEAN-UP section requires `rm -rf <spec-folder>*` after `memory_delete`.
-- Current execution constraint from the user: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
-- Current allowed write path from the user: `.opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/causal-coverage-under-bulk-save.md (this file only)`
-- No `memory_save`, `memory_causal_stats`, `memory_causal_link`, `memory_delete`, or `rm -rf <spec-folder>*` commands were run because the scenario's required file creation/deletion would violate the allowed write scope.
-- The 20 parent IDs grouped by topic: not produced.
-- The full 4×4 confusion matrix: not produced.
-- intra_count, inter_count, ratio: not produced.
-- The "diagonal is row leader" check per topic: not produced.
-- Active provider from memory_health: not checked; blocked before scenario command execution.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass/Fail
 
-BLOCKED — The playbook requires creating and deleting files outside the only user-approved write path, so its required commands cannot be executed exactly as written in the current constrained run.
+- **Pass**: Global intra/inter ≥ 2× AND each topic's intra-count is the highest cell in its row.
+- **Fail**: Intra ≤ inter, and also FAIL when the global ratio lands between 1.5× and 2× or any row's diagonal is not its largest cell.
 
----
+### Failure Triage
 
-## 4. CLEAN-UP
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
 
+### Clean-Up
 Loop memory_delete over the 20 captured parent_ids, then remove on-disk files:
 ```
 for ID in <20 parent_ids>:
@@ -127,3 +136,20 @@ for ID in <20 parent_ids>:
 
 rm -rf <spec-folder>*
 ```
+
+---
+
+## 4. SOURCE FILES
+
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 412
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/causal-coverage-under-bulk-save.md`

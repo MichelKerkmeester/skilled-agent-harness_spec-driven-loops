@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-027` and confirm th
 - Prompt: `Launch a session through worktree-session.sh in dry-run mode and report the planned worktree path, branch name, database directories, and socket directory, confirming none collide with the main checkout.`
 - Expected execution process: Run `worktree-session.sh --dry-run <runtime>` from the main checkout and inspect the printed plan (worktree path, branch, `SPEC_KIT_DB_DIR`, `SPECKIT_IPC_SOCKET_DIR`, session-marker path, and shared-path symlink list) without launching anything.
 - Expected signals: the branch matches `work/<runtime_id>/<slug>`; the worktree path is under `.worktrees/`; both DB directories are nested inside the new worktree, not the main checkout; the socket directory is short and under `$HOME/.spk-wt-sock/`.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when `worktree-session.sh` is missing from the checkout under test.
 - Pass/fail: PASS if the dry-run plan shows a new worktree/branch pair distinct from any existing one and DB/socket paths scoped to that session. FAIL if the plan reuses the main checkout's paths, omits the branch/base, or shows a DB directory outside the new worktree.
 
 ---

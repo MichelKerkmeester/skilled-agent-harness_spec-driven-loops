@@ -28,7 +28,7 @@ End-to-end manual testing reference for the mcp-refero skill. Every scenario val
 | Design Pairing | 1 | PAIR-001 |
 | **TOTAL** | **9** | **9 scenarios** |
 
-This playbook defines 9 deterministic scenarios across 4 categories validating the full safe surface of the `mcp-refero` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-10, and links to a dedicated per-scenario file, with the cross-reference index in Section 11.
+This playbook defines 9 deterministic scenarios across 4 categories validating the full safe surface of the `mcp-refero` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-10, and links to a dedicated per-scenario file, with the cross-reference index in Section 12. The separate, benchmark-facing routing-recall set is summarized in Section 11.
 
 > **Per-scenario files:** This package adopts the split-document pattern used by the sibling `mcp-figma` playbook. The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside category folders at the playbook root. The `intra-routing-recall/` folder holds the benchmark-facing routing-recall set (routing prompts, two blind holdouts, and a negative control) and is NOT part of the scenario index count.
 
@@ -344,7 +344,28 @@ Prompt: `"Use Refero to pick the best visual style for our new pricing page and 
 
 ---
 
-## 11. SCENARIO CROSS-REFERENCE INDEX
+## 11. INTRA-ROUTING RECALL (`RF-R01`..`RF-R05`, `RF-H01`, `RF-H02`, `RF-N01`) -- BENCHMARK-FACING, NOT PART OF THE 9-SCENARIO COUNT
+
+This category validates the `mcp-refero` smart router itself (`SKILL.md` §2 `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live Refero call or auth state. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Five scenarios (`RF-R01`-`RF-R05`) are fitted to each of the five declared intents, two (`RF-H01`, `RF-H02`) are natural-phrasing holdouts that decontaminate `RF-R01` and `RF-R03`, and one (`RF-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. As noted in Section 1, this set is benchmark-facing and intentionally excluded from the 9-scenario operator count above, but every file is still linked here so nothing is orphaned from this root index.
+
+### Scenario Summary
+
+| ID | Category | Prompt (abridged) | Expected Intent | Feature File |
+|---|---|---|---|---|
+| RF-R01 | Routing | Search Refero styles for a bold editorial aesthetic... | `STYLES` | [intra-routing-recall/styles.md](intra-routing-recall/styles.md) |
+| RF-R02 | Routing | Find real app screens showing an empty state on a dashboard... | `SCREENS` | [intra-routing-recall/screens.md](intra-routing-recall/screens.md) |
+| RF-R03 | Routing | Get the Refero user flow for cancel subscription on iOS... | `FLOWS` | [intra-routing-recall/flows.md](intra-routing-recall/flows.md) |
+| RF-R04 | Routing | Verify the refero utcp manual wiring and mcp-remote oauth... | `WIRING_AUTH` | [intra-routing-recall/wiring.md](intra-routing-recall/wiring.md) |
+| RF-R05 | Routing | Every request failed: 401 unauthorized then connection closed... | `TROUBLESHOOT` | [intra-routing-recall/troubleshoot.md](intra-routing-recall/troubleshoot.md) |
+| RF-H01 | Holdout (decontaminates RF-R01) | The visual direction for our marketing site, editorial look and feel... | `STYLES` | [intra-routing-recall/holdout-styles.md](intra-routing-recall/holdout-styles.md) |
+| RF-H02 | Holdout (decontaminates RF-R03) | How real products structure the checkout journey from cart to confirmation | `FLOWS` | [intra-routing-recall/holdout-flows.md](intra-routing-recall/holdout-flows.md) |
+| RF-N01 | Negative | Refactor this Python function to run more efficiently. | `none` (`UNKNOWN_FALLBACK`) | [intra-routing-recall/negative.md](intra-routing-recall/negative.md) |
+
+Each per-scenario file carries the full frontmatter contract, the exact command sequence, expected signals, evidence, pass/fail criteria, and failure triage for its own ID.
+
+---
+
+## 12. SCENARIO CROSS-REFERENCE INDEX
 
 Each scenario maps to exactly one per-scenario file in a category folder at the playbook root, and to the matching feature-catalog area. Keep the per-scenario filenames stable once published.
 

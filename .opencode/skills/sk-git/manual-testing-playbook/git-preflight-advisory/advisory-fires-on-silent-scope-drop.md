@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-042` and confirm th
 - Prompt: `As a git safety reviewer, run the sk-git preflight advisory against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, the command still runs, and suppression silences it. Return the advisory text and a PASS/FAIL verdict.`
 - Expected execution process: Create a scratch repo with a modified tracked file and an untracked file under a subdir -> pipe a `Bash` payload for `git commit --only <dir> -m x` through the shared hook -> observe the `⚠ sk-git advisory` line naming `commit-scope-drops-untracked` -> repeat with `SKGIT_ADVISORY=0` and confirm silence -> run an ordinary clean commit and confirm silence.
 - Expected signals: advisory text contains the rule id `commit-scope-drops-untracked`; the advisory is `additionalContext` only (no denial); the commit itself still runs (advisory never blocks); the suppressed re-run prints nothing; the ordinary commit prints nothing.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the advisory text and the silence evidence.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the advisory text and the silence evidence; SKIP only when `node` is unavailable to run the shared advisory hook.
 - Pass/fail: PASS when the advisory names `commit-scope-drops-untracked` AND the command still executed AND the suppressed re-run prints nothing. FAIL if the command is blocked, or no advisory appears on the trap shape.
 
 ---
@@ -45,9 +45,9 @@ Operators run the exact prompt and command sequence for `GIT-042` and confirm th
 5. Run an ordinary clean commit and confirm silence.
 6. Return a concise user-facing verdict with the advisory text.
 
-|| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
-||---|---|---|---|---|---|---|---|---|
-|| GIT-042 | Advisory fires on silent scope drop | the preflight advisory fires when a directory-scoped commit would silently exclude untracked files, stays silent on an ordinary commit, and is suppressible | `As a git safety reviewer, run the sk-git preflight advisory against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, the command still runs, and suppression silences it. Return the advisory text and a PASS/FAIL verdict.` | 1. `bash: repo=$(mktemp -d "/tmp/sk-git-git042.XXXXXX") && git -C "$repo" init -q && git -C "$repo" config core.hooksPath "$repo/.no-hooks" && git -C "$repo" config user.email "t@example.invalid" && git -C "$repo" config user.name T && git -C "$repo" config commit.gpgsign false && mkdir -p "$repo/src" && cp .opencode/skills/sk-git/SKILL.md "$repo/.opencode/skills/sk-git/SKILL.md" 2>/dev/null || mkdir -p "$repo/.opencode/skills/sk-git" && cp .opencode/skills/sk-git/SKILL.md "$repo/.opencode/skills/sk-git/SKILL.md" && printf 'tracked seed\n' > "$repo/src/tracked.txt" && git -C "$repo" add src/tracked.txt && git -C "$repo" commit -q -m seed && printf 'tracked modified\n' > "$repo/src/tracked.txt" && printf 'untracked\n' > "$repo/src/untracked.txt"` -> 2. `bash: printf '%s' '{"tool_name":"Bash","tool_input":{"command":"git commit --only src -m x"},"cwd":"'"$repo"'"}' \| node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` -> 3. `bash: printf '%s' '{"tool_name":"Bash","tool_input":{"command":"git commit --only src -m x"},"cwd":"'"$repo"'"}' \| SKGIT_ADVISORY=0 node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` -> 4. `bash: clean=$(mktemp -d "/tmp/sk-git-git042-clean.XXXXXX") && git -C "$clean" init -q && git -C "$clean" config core.hooksPath "$clean/.no-hooks" && git -C "$clean" config user.email t@example.invalid && git -C "$clean" config user.name T && git -C "$clean" config commit.gpgsign false && printf 'seed\n' > "$clean/a.txt" && git -C "$clean" add a.txt && git -C "$clean" commit -q -m seed && printf 'change\n' >> "$clean/a.txt" && git -C "$clean" add a.txt && printf '%s' '{"tool_name":"Bash","tool_input":{"command":"git commit -m x"},"cwd":"'"$clean"'"}' \| node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Step 1: scratch repo built with `src/tracked.txt` modified and `src/untracked.txt` present; Step 2: stdout is JSON with `hookSpecificOutput.additionalContext` containing `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`, no denial field; Step 3: zero stdout; Step 4: zero stdout | Captured advisory JSON from Step 2, silence confirmation from Steps 3 and 4, terminal transcript | PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND Step 3 prints nothing AND Step 4 prints nothing; FAIL if the command is blocked (a denial/exit-non-zero field appears), no advisory appears on the trap shape, or suppression fails | Inspect the Step 2 JSON for the rule id first; if absent, confirm `src/untracked.txt` exists and the payload `cwd` points at the scratch repo; if suppression fails, confirm `SKGIT_ADVISORY=0` was set on the hook process |
+| Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|---|---|
+| GIT-042 | Advisory fires on silent scope drop | the preflight advisory fires when a directory-scoped commit would silently exclude untracked files, stays silent on an ordinary commit, and is suppressible | `As a git safety reviewer, run the sk-git preflight advisory against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, the command still runs, and suppression silences it. Return the advisory text and a PASS/FAIL verdict.` | 1. `bash: repo=$(mktemp -d "/tmp/sk-git-git042.XXXXXX") && git -C "$repo" init -q && git -C "$repo" config core.hooksPath "$repo/.no-hooks" && git -C "$repo" config user.email "t@example.invalid" && git -C "$repo" config user.name T && git -C "$repo" config commit.gpgsign false && mkdir -p "$repo/src" && cp .opencode/skills/sk-git/SKILL.md "$repo/.opencode/skills/sk-git/SKILL.md" 2>/dev/null \|\| mkdir -p "$repo/.opencode/skills/sk-git" && cp .opencode/skills/sk-git/SKILL.md "$repo/.opencode/skills/sk-git/SKILL.md" && printf 'tracked seed\n' > "$repo/src/tracked.txt" && git -C "$repo" add src/tracked.txt && git -C "$repo" commit -q -m seed && printf 'tracked modified\n' > "$repo/src/tracked.txt" && printf 'untracked\n' > "$repo/src/untracked.txt"` -> 2. `bash: printf '%s' '{"tool_name":"Bash","tool_input":{"command":"git commit --only src -m x"},"cwd":"'"$repo"'"}' \| node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` -> 3. `bash: printf '%s' '{"tool_name":"Bash","tool_input":{"command":"git commit --only src -m x"},"cwd":"'"$repo"'"}' \| SKGIT_ADVISORY=0 node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` -> 4. `bash: clean=$(mktemp -d "/tmp/sk-git-git042-clean.XXXXXX") && git -C "$clean" init -q && git -C "$clean" config core.hooksPath "$clean/.no-hooks" && git -C "$clean" config user.email t@example.invalid && git -C "$clean" config user.name T && git -C "$clean" config commit.gpgsign false && printf 'seed\n' > "$clean/a.txt" && git -C "$clean" add a.txt && git -C "$clean" commit -q -m seed && printf 'change\n' >> "$clean/a.txt" && git -C "$clean" add a.txt && printf '%s' '{"tool_name":"Bash","tool_input":{"command":"git commit -m x"},"cwd":"'"$clean"'"}' \| node .opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Step 1: scratch repo built with `src/tracked.txt` modified and `src/untracked.txt` present; Step 2: stdout is JSON with `hookSpecificOutput.additionalContext` containing `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`, no denial field; Step 3: zero stdout; Step 4: zero stdout | Captured advisory JSON from Step 2, silence confirmation from Steps 3 and 4, terminal transcript | PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND Step 3 prints nothing AND Step 4 prints nothing; FAIL if the command is blocked (a denial/exit-non-zero field appears), no advisory appears on the trap shape, or suppression fails | Inspect the Step 2 JSON for the rule id first; if absent, confirm `src/untracked.txt` exists and the payload `cwd` points at the scratch repo; if suppression fails, confirm `SKGIT_ADVISORY=0` was set on the hook process |
 
 ### Optional Supplemental Checks
 
@@ -61,20 +61,20 @@ Operators run the exact prompt and command sequence for `GIT-042` and confirm th
 
 ### Playbook Sources
 
-|| File | Role |
-||---|---|
-|| `manual-testing-playbook.md` | Root directory page and scenario summary |
-|| `git-preflight-advisory/advisory-fires-on-silent-scope-drop.md` | Canonical per-feature execution contract |
+| File | Role |
+|---|---|
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `git-preflight-advisory/advisory-fires-on-silent-scope-drop.md` | Canonical per-feature execution contract |
 
 ### Implementation Anchors
 
-|| File | Role |
-||---|---|
-|| `../../scripts/hooks/git-preflight-advisory.mjs` | The shared stdin hook that evaluates `Bash`, `exec`, and Cursor `Shell` payloads and emits `additionalContext` |
-|| `../../scripts/lib/git-rule-checks.mjs` | The `commit-scope-drops-untracked` check and the `GIT_SHAPE` gate |
-|| `../../scripts/lib/git-context.mjs` | The lazy repository-state collector the check reads |
-|| `../../SKILL.md` | The 17 `hard_rules:` frontmatter the hook parses |
-|| `../../scripts/hooks/README.md` | Runtime matrix, suppression tiers, and fail-open guarantees |
+| File | Role |
+|---|---|
+| `../../scripts/hooks/git-preflight-advisory.mjs` | The shared stdin hook that evaluates `Bash`, `exec`, and Cursor `Shell` payloads and emits `additionalContext` |
+| `../../scripts/lib/git-rule-checks.mjs` | The `commit-scope-drops-untracked` check and the `GIT_SHAPE` gate |
+| `../../scripts/lib/git-context.mjs` | The lazy repository-state collector the check reads |
+| `../../SKILL.md` | The 17 `hard_rules:` frontmatter the hook parses |
+| `../../scripts/hooks/README.md` | Runtime matrix, suppression tiers, and fail-open guarantees |
 
 ---
 

@@ -21,7 +21,7 @@ This scenario validates Channel min-representation (R2) for `035`. It focuses on
 
 - Objective: Confirm top-k channel diversity rule.
 - Real user request: `Please validate Channel min-representation (R2) against the documented validation surface and tell me whether the expected signals are present: Each channel represented in top-k results even when one channel dominates; quality floor prevents low-relevance injection.`
-- RCAF Prompt: `As a query-intelligence validation operator, validate Channel min-representation (R2) against the documented validation surface. Verify each channel represented in top-k results even when one channel dominates; quality floor prevents low-relevance injection. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a query-intelligence validation operator, validate Channel min-representation (R2) against the documented validation surface. Verify each channel represented in top-k results even when one channel dominates; quality floor prevents low-relevance injection. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Each channel represented in top-k results even when one channel dominates; quality floor prevents low-relevance injection
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -89,7 +89,7 @@ Dominance/pre-post representation validation command:
 ```text
 $ npx vitest run tests/channel-representation.vitest.ts tests/channel-enforcement.vitest.ts
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  2 passed (2)
@@ -103,7 +103,7 @@ Quality-floor targeted validation command:
 ```text
 $ npx vitest run tests/channel-enforcement.vitest.ts -t "T9: active channels below 0.005 still receive representatives" --reporter verbose
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
  ↓ mcp-server/tests/channel-enforcement.vitest.ts > T028 Channel Enforcement + Precision Verification > T1: enforcement applies when flag enabled and channel is missing
  ↓ mcp-server/tests/channel-enforcement.vitest.ts > T028 Channel Enforcement + Precision Verification > T2: enforcement does not apply when flag is disabled
@@ -157,7 +157,7 @@ Top-k representation targeted validation command:
 ```text
 $ npx vitest run tests/channel-enforcement.vitest.ts -t "reserves top-k slots for active channels even when their best result is below the floor" --reporter verbose
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
  ↓ mcp-server/tests/channel-enforcement.vitest.ts > T028 Channel Enforcement + Precision Verification > T1: enforcement applies when flag enabled and channel is missing
  ↓ mcp-server/tests/channel-enforcement.vitest.ts > T028 Channel Enforcement + Precision Verification > T2: enforcement does not apply when flag is disabled
@@ -215,7 +215,7 @@ node:internal/modules/package_json_reader:314
   throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
         ^
 
-Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'tsx' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'tsx' imported from .opencode/skills/system-spec-kit/mcp-server/
     at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
     at packageResolve (node:internal/modules/esm/resolve:768:81)
     at moduleResolve (node:internal/modules/esm/resolve:855:18)

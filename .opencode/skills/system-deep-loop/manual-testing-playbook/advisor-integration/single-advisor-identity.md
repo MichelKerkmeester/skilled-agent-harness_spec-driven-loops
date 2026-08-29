@@ -58,6 +58,11 @@ Evaluate and score an agent candidate for promotion or rollback.
 2. `.opencode/skills/system-deep-loop/mode-registry.json` contains the four tested mode entries.
 3. Skill advisor is callable.
 
+### Prompt
+
+- Prompt: `Use deep research to investigate registry drift and write a research summary.`
+- Additional probes: `Run a deep review and report P0/P1/P2 findings with a verdict.`, `Run an AI council deliberation with multiple planning seats and converge on a recommendation.`, and `Evaluate and score an agent candidate for promotion or rollback.`
+
 ### Exact Command Sequence
 
 1. **Run advisor probes**: run the skill advisor once for each prompt and append output to `/tmp/dlw-AI-001/advisor.jsonl`.
@@ -74,11 +79,15 @@ Evaluate and score an agent candidate for promotion or rollback.
 | 3 | No child packet advertises itself as a separate public advisor identity. |
 | 4 | Each command and agent pair matches `mode-registry.json`. |
 
+### Evidence
+
+- Advisor probe log: `/tmp/dlw-AI-001/advisor.jsonl`.
+- Route transcript: `/tmp/dlw-AI-001/routes.txt`, showing the resolved mode, command, and agent for each of the four prompts.
+
 ### Pass/Fail Criteria
 
-- **PASS** iff one public advisor identity is observed and all four resolved modes match the registry.
-- **PARTIAL** iff routing is correct but advisor output exposes a legacy identity in addition to the hub and the transcript clearly folds it back to `system-deep-loop`.
-- **FAIL** iff a child packet is treated as an independent public skill identity, a prompt resolves to multiple modes, or a route contradicts the registry.
+- **PASS**: one public advisor identity is functionally observed and all four resolved modes match the registry — including when a legacy identity also surfaces, as long as the transcript folds it back to `system-deep-loop`.
+- **FAIL**: a child packet is treated as an independent public skill identity, a prompt resolves to multiple modes, or a route contradicts the registry.
 
 ### Failure Triage
 
@@ -92,6 +101,7 @@ Evaluate and score an agent candidate for promotion or rollback.
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - public advisor identity and hub routing rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - advisor routing projection and mode fields.
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---
 

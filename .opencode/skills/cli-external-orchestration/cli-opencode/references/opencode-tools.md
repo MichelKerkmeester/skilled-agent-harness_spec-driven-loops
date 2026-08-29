@@ -56,9 +56,9 @@ A Claude Code CLI dispatch via `claude -p "<prompt>"` runs raw Claude with no pl
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
+  --model opencode-go/deepseek-v4-flash \
   --agent general \
-  --variant high \
+  --variant max \
   --format json \
   --dir "$REPO_ROOT" \
   "Analyze the spec-kit memory database health using memory_health, then propose three improvements with concrete file:line citations."
@@ -89,9 +89,9 @@ For ablation suites, worker farms, and parallel research sweeps, the operator wa
 opencode run \
   --share \
   --port 4096 \
-  --model deepseek/deepseek-v4-pro \
+  --model opencode-go/deepseek-v4-flash \
   --agent deep-research \
-  --variant high \
+  --variant max \
   --format json \
   --dir "$REPO_ROOT" \
   "Run iteration N of the deep-research loop for the approved spec folder. State file at scratch/iteration-N.jsonl."
@@ -116,9 +116,9 @@ External runtimes (Claude Code, OpenCode, Copilot) parse the event stream increm
 ```bash
 opencode run \
   --format json \
-  --model deepseek/deepseek-v4-pro \
+  --model opencode-go/deepseek-v4-flash \
   --agent general \
-  --variant high \
+  --variant max \
   --dir /repo \
   "<prompt>" 2>/dev/null | while IFS= read -r line; do
     type=$(echo "$line" | jq -r '.type')
@@ -147,8 +147,8 @@ Sibling cli-* skills that have agent equivalents (cli-claude-code's `--agent` fl
 ```bash
 opencode run \
   --agent deep-review \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir /repo \
   "Run iteration 3 of the deep-review loop for the approved spec folder. State file: review/deep-review-state.jsonl."
@@ -174,9 +174,9 @@ A calling AI in one repo (e.g. a sibling project) can dispatch into a different 
 # From a session in repo A, dispatch into repo B's runtime
 opencode run \
   --dir /path/to/other-repo \
-  --model deepseek/deepseek-v4-pro \
+  --model opencode-go/deepseek-v4-flash \
   --agent general \
-  --variant high \
+  --variant max \
   --format json \
   "Use Barter's spec-kit to draft a Level 1 spec for the X feature. Save context after."
 ```

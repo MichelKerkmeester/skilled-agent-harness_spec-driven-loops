@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-002` and confirm th
 - Prompt: `Use the current checkout for this docs tweak, create no worktree or branch, and report branch-state evidence.`
 - Expected execution process: Record the explicit current-branch choice, inspect status, continue without `git worktree add`, and report the unchanged workspace.
 - Expected signals: Branch remains unchanged; worktree list has no new entry; response names current-branch mode.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when no writable git checkout is available in this environment.
 - Pass/fail: PASS if no worktree is created after explicit current-branch selection per `SKILL.md §3` and `references/worktree-workflows.md §2`. FAIL if the agent creates a worktree, creates a branch, or treats current-branch mode as lower quality after the user chose it.
 
 ---

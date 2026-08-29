@@ -64,14 +64,14 @@ Sandbox rows created and captured:
 Initial CLI shim attempt was blocked by warm tool timeout, so the exported production handler was invoked directly against the live database. Direct handler invocation without override hit the live writer guard:
 
 ```text
-VectorIndexError: another live process holds the single-writer lock for /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite (held by pid 81733 since 2026-07-02T22:34:01.571Z); refusing to open a second writer on the same database
+VectorIndexError: another live process holds the single-writer lock for .opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite (held by pid 81733 since 2026-07-02T22:34:01.571Z); refusing to open a second writer on the same database
 ```
 
 The live lock holder was:
 
 ```text
   PID  PPID STAT COMMAND
-81733 81732 SNs  /Users/michelkerkmeester/.hermes/node/bin/node /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/dist/context-server.js
+81733 81732 SNs  node .opencode/skills/system-spec-kit/mcp-server/dist/context-server.js
 ```
 
 Tier downgrade refusal from `memory_update({ id: 38797, importanceTier: "normal" })`:

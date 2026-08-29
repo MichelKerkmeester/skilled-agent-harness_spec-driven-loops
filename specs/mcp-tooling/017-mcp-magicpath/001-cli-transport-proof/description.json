@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "mcp-tooling/017-mcp-magicpath/001-cli-transport-proof",
+  "description": "Every manual this repository has ever registered is `calltemplatetype: \"mcp\"`",
+  "keywords": [
+    "every",
+    "manual",
+    "repository",
+    "ever",
+    "registered",
+    "calltemplatetype",
+    "mcp"
+  ],
+  "lastUpdated": "2026-08-29T11:48:06.545Z",
+  "specId": "001",
+  "folderSlug": "cli-transport-proof",
+  "parentChain": [
+    "mcp-tooling",
+    "017-mcp-magicpath"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

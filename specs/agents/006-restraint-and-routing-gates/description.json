@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "agents/006-restraint-and-routing-gates",
+  "description": "Nine edits to root AGENTS.md so the restraint doctrine already owned by sk-code fires before the first write: a Gate 2 artifact trigger for code and markdown writes, a pointer to the Design Restraint Ladder, a systems-first pre-write pass, plus test-creation restraint, a doctrine-amendment path, and sk-communication routing for reader-comprehension failure.",
+  "keywords": [
+    "agents",
+    "restraint",
+    "ladder",
+    "artifact",
+    "routing",
+    "gate",
+    "over-engineering",
+    "test",
+    "bloat",
+    "doctrine",
+    "amendment",
+    "sk-code",
+    "sk-doc",
+    "sk-communication",
+    "pre-write"
+  ],
+  "lastUpdated": "2026-08-29T11:36:55.719Z",
+  "specId": "006",
+  "folderSlug": "restraint-and-routing-gates",
+  "parentChain": [
+    "agents"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

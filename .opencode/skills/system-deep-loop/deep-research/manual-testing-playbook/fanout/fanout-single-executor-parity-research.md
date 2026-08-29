@@ -37,7 +37,11 @@ If any `skip_when` guard is missing or `if_absent` was modified, every existing 
 
 - Working directory is repository root.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate single-executor parity for deep-research: confirm the fan-out YAML steps have correct skip_when guards and the if_absent branch is unchanged.`
+
+### Commands
 
 1. `bash: grep -n "if_absent\|skip_when\|resolveArtifactRoot" .opencode/commands/deep/assets/deep-research-auto.yaml | head -20`
 2. Confirm `if_absent.command` = `node -e "const { resolveArtifactRoot } = require('.opencode/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'research')));"` (unchanged from pre-fan-out).
@@ -57,7 +61,12 @@ If any `skip_when` guard is missing or `if_absent` was modified, every existing 
 
 Source inspection confirms all guards. vitest suite passes 197/197 with no new failures beyond the known loop-lock timing flake.
 
-### Failure Modes
+### Evidence
+
+- Grep output from steps 1 and 5, saved to `/tmp/dr-054-grep.txt`, showing the `if_absent` branch and both `skip_when` guards in `deep-research-auto.yaml` and `deep-research-confirm.yaml`.
+- Full vitest suite output from step 6, saved to `/tmp/dr-054-vitest.txt`, showing 197/197 passing.
+
+### Failure Triage
 
 - `if_absent` branch modified: single-executor artifact dir resolution breaks for all research runs.
 - `skip_when` guard missing on `step_fanout_spawn`: every single-executor run attempts to call `fanout-run.cjs` with absent fanout config, failing with exit code 3.
@@ -82,7 +91,7 @@ Source inspection confirms all guards. vitest suite passes 197/197 with no new f
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`

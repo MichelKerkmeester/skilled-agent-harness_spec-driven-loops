@@ -48,7 +48,7 @@ Vitest exits 0 with all 4 bucket assertions passing and the dedicated live-DB gu
 
 ```text
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 No test files found, exiting with code 1
 

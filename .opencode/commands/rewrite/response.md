@@ -1,6 +1,7 @@
 ---
 description: Rewrite the active AI's most recent reply into plain English in-context without changing files.
 argument-hint: "[--show-original]"
+allowed-tools: Read
 ---
 
 # Rewrite Response

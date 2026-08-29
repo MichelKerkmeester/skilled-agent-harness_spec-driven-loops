@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-033` and confirm th
 - Prompt: `Run the worktree reaper against a fixture containing a human numbered worktree, a detached worktree, a dirty wrapper worktree, a wrapper with a live-PID marker, and a wrapper with a malformed marker, and confirm every one of them is reported kept, not removed.`
 - Expected execution process: Build the five fixture worktrees, run the reaper with no flags, and inspect its log lines and post-run `git worktree list`/`git show-ref` state for each.
 - Expected signals: each case logs a `keep (...)` line naming the specific reason (human/detached/dirty/marker-ambiguous/non-wrapper-grammar); all five directories and any branch refs remain present afterward.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox cannot create the five fixture worktrees this scenario compares.
 - Pass/fail: PASS if all five non-qualifying worktrees and their branches still exist after the run, each with a `keep` log line naming the correct reason. FAIL if any of the five is removed, or if a `keep` reason is misattributed.
 
 ---

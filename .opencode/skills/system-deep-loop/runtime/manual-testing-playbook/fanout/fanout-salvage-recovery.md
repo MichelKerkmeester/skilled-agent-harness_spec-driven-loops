@@ -41,7 +41,11 @@ shared SQLite DB without any schema change.
 - Working directory is repository root.
 - `scripts/fanout-salvage.cjs` present.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate the fan-out salvage module and confirm the 11 unit tests pass, verifying opencode stdout parsing, iteration recovery, and per-sessionId coverage isolation.`
+
+### Commands
 
 1. Inspect `scripts/fanout-salvage.cjs` — confirm `extractTextFromOpencodeJson` JSON parse loop, 50-char minimum for raw fallback, `STATE_LOG_BY_LOOP_TYPE` mapping.
 2. Verify `runSalvageSweep` reads state log, iterates `type == 'iteration'` records, checks file existence via `statSync`.
@@ -52,15 +56,49 @@ shared SQLite DB without any schema change.
 
 11/11 pass. Salvage correctly recovers from opencode JSON format and raw stdout; appends `salvaged_from_stdout` event; writes placeholder when unrecoverable. Two lineage namespaces share the SQLite DB without collision.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `scripts/fanout-salvage.cjs` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/unit/fanout-salvage.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - `extractTextFromOpencodeJson` fails to parse opencode JSONL format: all opencode lineages produce failed-marker placeholders regardless of content.
 - State log scan misses iteration records: salvage never triggers even when files are missing.
 - Coverage-graph rows collide across session IDs: shared DB accumulates mixed lineage data.
 
+### Adversarial Regression
+
+> Regression guard for a fixed deep-review finding. This scenario is adversarial: it PASSES only
+> while the bug stays fixed and is phrased to FAIL the moment the regression returns.
+
+#### Adversarial Contract
+
+- Bug under guard: a lineage that exited 0 but wrote no iteration artifact was reported as
+  fulfilled instead of a salvage-miss, masking a silent fan-out failure.
+- Must-stay-true invariant: an exit-0/no-artifact lineage must be treated as a salvage-miss
+  (salvaged or retried, then failed if still missing), never counted as fulfilled.
+- Pass/fail: PASS only if the command below exits 0 AND `tests/unit/fanout-run.vitest.ts` still
+  contains the named assertions; FAIL if either is missing, renamed, skipped, or exits non-zero —
+  any of which means the false-fulfilled regression has returned.
+
+#### Adversarial Steps
+
+1. Run `cd .opencode/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/fanout-run.vitest.ts` and require EXIT 0.
+2. Confirm `tests/unit/fanout-run.vitest.ts` asserts both `retries a salvage-miss lineage once and exits ok when the retry succeeds` AND `treats an exit-0/no-artifact lineage as salvage-miss and fails it after retry (not fulfilled)` — the latter uses an exit-0 stub (`writeNoArtifactStubBinary`) to exercise the exact bug-under-guard path, and `records exit 3 (all failed) when the only lineage exits non-zero`.
+3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
+
+#### Regression Anchor
+
+| File | Role |
+|---|---|
+| `tests/unit/fanout-run.vitest.ts` | Fails if an exit-0/no-artifact lineage is counted as fulfilled instead of a salvage-miss. |
+
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -76,40 +114,12 @@ shared SQLite DB without any schema change.
 
 ---
 
-## 5. ADVERSARIAL REGRESSION
-
-> Regression guard for a fixed deep-review finding. This scenario is adversarial: it PASSES only
-> while the bug stays fixed and is phrased to FAIL the moment the regression returns.
-
-### Adversarial Contract
-
-- Bug under guard: a lineage that exited 0 but wrote no iteration artifact was reported as
-  fulfilled instead of a salvage-miss, masking a silent fan-out failure.
-- Must-stay-true invariant: an exit-0/no-artifact lineage must be treated as a salvage-miss
-  (salvaged or retried, then failed if still missing), never counted as fulfilled.
-- Pass/fail: PASS only if the command below exits 0 AND `tests/unit/fanout-run.vitest.ts` still
-  contains the named assertions; FAIL if either is missing, renamed, skipped, or exits non-zero —
-  any of which means the false-fulfilled regression has returned.
-
-### Adversarial Steps
-
-1. Run `cd .opencode/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/fanout-run.vitest.ts` and require EXIT 0.
-2. Confirm `tests/unit/fanout-run.vitest.ts` asserts both `retries a salvage-miss lineage once and exits ok when the retry succeeds` AND `treats an exit-0/no-artifact lineage as salvage-miss and fails it after retry (not fulfilled)` — the latter uses an exit-0 stub (`writeNoArtifactStubBinary`) to exercise the exact bug-under-guard path, and `records exit 3 (all failed) when the only lineage exits non-zero`.
-3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
-
-### Regression Anchor
-
-| File | Role |
-|---|---|
-| `tests/unit/fanout-run.vitest.ts` | Fails if an exit-0/no-artifact lineage is counted as fulfilled instead of a salvage-miss. |
-
----
-
-## 6. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Playbook ID: DLR-026
 - Feature catalog entry: `feature-catalog/fanout/fanout-salvage.md`
 - Scenario file path: `manual-testing-playbook/fanout/fanout-salvage-recovery.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Expected verdict mode: GREEN when 11/11 pass and source anchors agree
 - Wall-time estimate: 5-10 min

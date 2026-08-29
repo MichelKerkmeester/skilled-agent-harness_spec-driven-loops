@@ -38,28 +38,66 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 - `runtime/` source tree is present.
 - Feature catalog entry exists at `feature-catalog/state-safety/atomic-state-integrity-helpers.md`.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate Atomic-state integrity helpers and report whether the current source, script surface, and tests agree with the runtime/ contract.`
+
+### Commands
 
 1. Inspect `lib/deep-loop/atomic-state.ts` for the implementation contract.
 2. Inspect `tests/unit/atomic-state.vitest.ts` for the matching regression coverage.
 3. Run the matching test command for this feature and require EXIT 0; source inspection alone is not sufficient.
 4. Capture the source lines and EXIT 0 test command output that prove the expected signals.
-5. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
+5. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
 ### Expected Outcome
 
 Atomic-state integrity helpers matches the documented current reality, the source anchors are accurate, and validation evidence is reproducible.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `lib/deep-loop/atomic-state.ts` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/unit/atomic-state.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - Source file no longer exposes the documented function, type, script argument, output field, or YAML step.
 - Matching test coverage is missing, renamed, or contradicts the documented behavior.
 - Script, runtime, YAML, or dashboard output changes without corresponding catalog and playbook updates.
 - Evidence is inferred from memory instead of captured from current source or command output.
 
+### Adversarial Regression
+
+> Regression guard for a fixed deep-review finding. This scenario is adversarial: it PASSES only
+> while the bug stays fixed and is phrased to FAIL the moment the regression returns.
+
+#### Adversarial Contract
+
+- Bug under guard: `writeStateAtomic` given a non-representable top-level state (e.g. `undefined`)
+  silently created or replaced the target file with corrupt content instead of throwing.
+- Must-stay-true invariant: a non-representable top-level state must THROW and leave both a fresh
+  target and any prior file untouched.
+- Pass/fail: PASS only if the command below exits 0 AND `tests/unit/atomic-state.vitest.ts` still
+  contains the named assertions; FAIL if either is missing, renamed, skipped, or exits non-zero —
+  any of which means the silent-corruption regression has returned.
+
+#### Adversarial Steps
+
+1. Run `cd .opencode/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
+2. Confirm `tests/unit/atomic-state.vitest.ts` asserts `rejects non-representable top-level state without creating a file` and `rejects non-representable top-level state without replacing the prior file`.
+3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
+
+#### Regression Anchor
+
+| File | Role |
+|---|---|
+| `tests/unit/atomic-state.vitest.ts` | Fails if a non-representable state writes or clears a file instead of throwing. |
+
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -75,41 +113,13 @@ Atomic-state integrity helpers matches the documented current reality, the sourc
 
 ---
 
-## 5. ADVERSARIAL REGRESSION
-
-> Regression guard for a fixed deep-review finding. This scenario is adversarial: it PASSES only
-> while the bug stays fixed and is phrased to FAIL the moment the regression returns.
-
-### Adversarial Contract
-
-- Bug under guard: `writeStateAtomic` given a non-representable top-level state (e.g. `undefined`)
-  silently created or replaced the target file with corrupt content instead of throwing.
-- Must-stay-true invariant: a non-representable top-level state must THROW and leave both a fresh
-  target and any prior file untouched.
-- Pass/fail: PASS only if the command below exits 0 AND `tests/unit/atomic-state.vitest.ts` still
-  contains the named assertions; FAIL if either is missing, renamed, skipped, or exits non-zero —
-  any of which means the silent-corruption regression has returned.
-
-### Adversarial Steps
-
-1. Run `cd .opencode/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/atomic-state.vitest.ts` and require EXIT 0.
-2. Confirm `tests/unit/atomic-state.vitest.ts` asserts `rejects non-representable top-level state without creating a file` and `rejects non-representable top-level state without replacing the prior file`.
-3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
-
-### Regression Anchor
-
-| File | Role |
-|---|---|
-| `tests/unit/atomic-state.vitest.ts` | Fails if a non-representable state writes or clears a file instead of throwing. |
-
----
-
-## 6. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: State safety
 - Playbook ID: DLR-031
 - Feature catalog entry: `feature-catalog/state-safety/atomic-state-integrity-helpers.md`
 - Scenario file path: `manual-testing-playbook/state-safety/atomic-state-integrity-helpers.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/002-runtime//002-atomic-state-integrity-helpers`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

@@ -38,20 +38,31 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 - `runtime/` source tree is present.
 - Feature catalog entry exists at `feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md`.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate Torn-tail recovery marker ordering and report whether the current source, script surface, and tests agree with the runtime/ contract.`
+
+### Commands
 
 1. Inspect `lib/authorized-ledger/immutable-frame-store.ts` for the `quarantineTornTailUnlocked()` marker-before-rename ordering and the `readRecoveryEvidenceUnlocked()` replay branch.
 2. Inspect `tests/unit/authorized-ledger.vitest.ts` for the matching crash-injection regression coverage.
 3. Run the matching test command for this feature and require EXIT 0; source inspection alone is not sufficient:
    `./node_modules/.bin/vitest run --no-coverage tests/unit/authorized-ledger.vitest.ts -t "completes an interrupted quarantine"`
 4. Capture the source lines and EXIT 0 test command output that prove the expected signals.
-5. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
+5. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
 ### Expected Outcome
 
 Torn-tail recovery marker ordering matches the documented current reality, the source anchors are accurate, and validation evidence is reproducible.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `lib/authorized-ledger/immutable-frame-store.ts` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/unit/authorized-ledger.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - Source file no longer exposes the documented function, type, script argument, output field, or YAML step.
 - Matching test coverage is missing, renamed, or contradicts the documented behavior.
@@ -61,7 +72,7 @@ Torn-tail recovery marker ordering matches the documented current reality, the s
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -77,12 +88,13 @@ Torn-tail recovery marker ordering matches the documented current reality, the s
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: State safety
 - Playbook ID: DLR-054
 - Feature catalog entry: `feature-catalog/state-safety/torn-tail-recovery-marker-ordering.md`
 - Scenario file path: `manual-testing-playbook/state-safety/torn-tail-recovery-marker-ordering.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Source phase: `.opencode/specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/004-durable-write-boundaries`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

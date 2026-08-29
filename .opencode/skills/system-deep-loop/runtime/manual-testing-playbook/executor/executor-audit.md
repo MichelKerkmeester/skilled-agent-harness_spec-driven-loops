@@ -38,19 +38,30 @@ This feature is a shared runtime primitive. If it drifts, both deep-review and d
 - `runtime/` source tree is present.
 - Feature catalog entry exists at `feature-catalog/executor/executor-audit.md`.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate Executor audit and report whether the current source, script surface, and tests agree with the runtime/ contract.`
+
+### Commands
 
 1. Inspect `lib/deep-loop/executor-audit.ts` for the implementation contract.
 2. Inspect `tests/unit/executor-audit.vitest.ts` for the primary regression coverage.
 3. Run or inspect the matching test assertions for this feature.
 4. Capture the source lines, command output, or test assertions that prove the expected signals.
-5. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
+5. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
 ### Expected Outcome
 
 Executor audit matches the documented current reality, the source anchors are accurate, and validation evidence is reproducible.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `lib/deep-loop/executor-audit.ts` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/unit/executor-audit.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - Source file no longer exposes the documented function, type, script argument, or output field.
 - Matching test coverage is missing, renamed, or contradicts the documented behavior.
@@ -59,7 +70,7 @@ Executor audit matches the documented current reality, the source anchors are ac
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -75,12 +86,13 @@ Executor audit matches the documented current reality, the source anchors are ac
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Executor
 - Playbook ID: DLR-002
 - Feature catalog entry: `feature-catalog/executor/executor-audit.md`
 - Scenario file path: `manual-testing-playbook/executor/executor-audit.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min
 

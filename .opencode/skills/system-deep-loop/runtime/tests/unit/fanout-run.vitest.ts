@@ -1462,12 +1462,10 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
     const providerByModel: Record<string, string> = {
-      'deepseek-v4-pro': 'deepseek',
       'deepseek-v4-flash': 'opencode-go',
       'minimax-m3': 'minimax',
       'gpt-5.6-luna': 'openai-codex',
       'gpt-5.6-sol': 'openai-codex',
-      'gpt-5.6-terra': 'openai-codex',
       'mimo-v2.5-pro': 'xiaomi',
       'mimo-v2.5-pro-ultraspeed': 'xiaomi',
       'qwen3.8-max': 'opencode-go',
@@ -1502,7 +1500,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     }
   });
 
-  it('defaults an omitted model to deepseek-v4-pro with its provider prefix', () => {
+  it('defaults an omitted model to deepseek-v4-flash, max-pinned via its opencode-go provider prefix', () => {
     const binDir = makeTempDir('fanout-run-pi-default-model-');
     writeStubBinary(binDir, 'pi');
     const opts = { env: { ...process.env, PATH: `${binDir}:${process.env.PATH ?? ''}` } };
@@ -1513,8 +1511,8 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
       'default',
       opts,
     ) as { args: string[]; effectiveConfig: { model: string } };
-    expect(command.args).toEqual(['-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', 'bounded prompt']);
-    expect(command.effectiveConfig.model).toBe('deepseek-v4-pro');
+    expect(command.args).toEqual(['-p', '--offline', '--model', 'opencode-go/deepseek-v4-flash', '--thinking', 'max', 'bounded prompt']);
+    expect(command.effectiveConfig.model).toBe('deepseek-v4-flash');
   });
 
   it('pins cli-pi deepseek-v4-flash to --thinking max even when a lower effort is requested', () => {
@@ -1529,7 +1527,7 @@ describe('fanout-run.cjs — cli-pi adapter', () => {
     expect(flashHigh.effectiveConfig.reasoningEffort).toBe('max');
     // A non-flash pi model keeps the requested effort.
     const proHigh = buildLineageCommand(
-      { kind: 'cli-pi', model: 'deepseek-v4-pro', reasoningEffort: 'high' },
+      { kind: 'cli-pi', model: 'gpt-5.6-sol', reasoningEffort: 'high' },
       'p', 'workspace-write', 'default', opts,
     ) as { args: string[] };
     const idx = proHigh.args.indexOf('--thinking');

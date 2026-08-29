@@ -48,7 +48,7 @@ Startup output includes `Session Context` and `Recovery Tools`, and `Recovery To
 Command run serially after the scenario command was invoked in a normal operator shape:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -106,7 +106,7 @@ Startup output includes `Startup Payload Contract` with startup status, `"produc
 Command output:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -158,7 +158,7 @@ Startup path preserves graph-quality evidence through `Structural Context`, `gra
 Command output:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -212,7 +212,7 @@ Code Graph line reflects runtime availability or fallback startup behavior
 Command output:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -264,7 +264,7 @@ Output length <= 8000 chars (2000 tokens x 4 chars/token)
 Command output:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)

@@ -39,7 +39,11 @@ blocking issue in any lineage disappears from the final verdict.
 - Working directory is repository root.
 - `scripts/fanout-merge.cjs` present.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate the review fan-out strongest-restriction policy and confirm all 5 review unit tests pass covering every verdict combination and the duplicate escalation rule.`
+
+### Commands
 
 1. Inspect `scripts/fanout-merge.cjs` `mergeReviewRegistries` — confirm `SEVERITY_RANK` constant, `finding.status !== 'active'` filter, `mergedVerdict` derivation.
 2. `bash: cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/unit/fanout-merge.vitest.ts --reporter=verbose`
@@ -56,7 +60,12 @@ blocking issue in any lineage disappears from the final verdict.
 
 5/5 review tests pass. SEVERITY_RANK correctly escalates duplicates. Non-active findings excluded. mergedVerdict correct for all combinations.
 
-### Failure Modes
+### Evidence
+
+- Source inspection notes from step 1, saved to `/tmp/drv-065-source.txt`, showing `SEVERITY_RANK`, the `status !== 'active'` filter, and the `mergedVerdict` derivation.
+- `fanout-merge.vitest.ts` verbose output from step 2, saved to `/tmp/drv-065-vitest.txt`, showing all 5 review tests passing.
+
+### Failure Triage
 
 - `SEVERITY_RANK` missing: all duplicates keep first-seen severity regardless of lineage ordering.
 - `status !== 'active'` guard missing: `resolved_false_positive` findings inflate `activeP0`.
@@ -80,7 +89,7 @@ blocking issue in any lineage disappears from the final verdict.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`

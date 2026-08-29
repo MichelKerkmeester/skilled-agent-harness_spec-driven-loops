@@ -85,4 +85,4 @@ Privilege `coverage-graph-convergence.cjs` for the enforcement contract and `ref
 - Playbook ID: DR-031
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/graph-convergence-signals.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-04-10.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

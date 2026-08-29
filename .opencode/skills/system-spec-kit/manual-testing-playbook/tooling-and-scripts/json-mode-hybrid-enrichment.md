@@ -49,11 +49,17 @@ All structured fields present in output, counts match, file-backed JSON stays on
 
 ### Evidence
 
-BLOCKED before command execution: the Commands section requires running `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`, which writes rendered spec-doc/metadata outputs outside the only allowed write path (`.opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/json-mode-hybrid-enrichment.md`). The user explicitly banned modifying, creating, or deleting any file other than this scenario file, so no `generate-context.js` command was run and no CLI exit code 0 or rendered spec-doc record could be observed.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: Required playbook commands would write outside the single allowed write path, so the expected structured-field preservation outcome could not be verified in this run.
+- **Pass**: All structured fields survive rendering and hardening fixes hold.
+- **Fail**: Any field is lost or overwritten by heuristics.
 
 ### Failure Triage
 
@@ -544,8 +550,7 @@ Check resolveProjectPhase() in session-extractor.ts and projectPhase propagation
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [tooling-and-scripts/json-mode-hybrid-enrichment.md](../../feature-catalog/tooling-and-scripts/json-mode-hybrid-enrichment.md)
-- Source spec: [016-json-mode-hybrid-enrichment/spec.md](../../../../<spec-folder>)
-
+- Source spec: the JSON-mode hybrid-enrichment specification packet in this repository's spec tree
 ---
 
 ## 5. SOURCE METADATA

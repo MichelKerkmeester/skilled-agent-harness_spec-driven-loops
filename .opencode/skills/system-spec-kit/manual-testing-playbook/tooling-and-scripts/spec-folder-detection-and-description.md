@@ -102,13 +102,13 @@ TEST: Subfolder Resolution (subfolder-utils + core/index)
 
 🔬 findChildFolderSync: Finds existing unique child folder
    ✅ T-SF03a: Find existing child
-      Evidence: Found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/997-sync-parent-mr424gsa/996-sync-child-mr424gsa
+      Evidence: Found: specs/997-sync-parent-mr424gsa/996-sync-child-mr424gsa
 
 ── Category I: isValidSpecFolder Multi-Segment ──
 
 🔬 isValidSpecFolder: Rejects symlink escape outside approved roots
    ✅ T-SF09b: Reject symlink escape
-      Evidence: Spec folder must be under specs/ or .opencode/specs/: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/998-gc-symlink-mr424hpl/996-outside-child
+      Evidence: Spec folder must be under specs/ or .opencode/specs/: specs/998-gc-symlink-mr424hpl/996-outside-child
 
 RESULTS: 32 passed, 0 failed, 0 skipped
 ```
@@ -117,7 +117,8 @@ Command 4 was not executed: `npx tsx .opencode/skills/system-spec-kit/scripts/sp
 
 ### Pass / Fail
 
-- **BLOCKED**: all three test scripts pass, but the explicit description refresh could not be executed because it would write outside the single allowed scenario file.
+- **Pass**: The detection, alignment, and description-refresh surfaces all behave as documented.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

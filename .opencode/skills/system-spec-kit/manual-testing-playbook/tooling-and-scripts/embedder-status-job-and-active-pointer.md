@@ -20,11 +20,11 @@ This scenario covers the polling/readiness side of the embedder swap surface.
 
 - Objective: Validate embedder_status active pointer and unknown job edge.
 - Real user request: `Check embedder_status and prove unknown swap job IDs are handled cleanly.`
-- RCAF Prompt: `Run embedder_status without a job ID and with an impossible job ID; verify active state and error guidance.`
+- Operator prompt: `Run embedder_status without a job ID and with an impossible job ID; verify active state and error guidance.`
 - Expected execution process: Run the documented commands, capture output, compare against the expected signals, and return a cited verdict.
 - Expected signals: - Active embedder metadata is visible. - Unknown job ID returns NOT_FOUND-style guidance, not a generic crash. - Response can be cited by operators polling a real swap.
-- Desired user-visible outcome: A concise PASS/PARTIAL/FAIL verdict with cited evidence.
-- Pass/fail: PASS if all expected signals are present; PARTIAL if the happy path works but an edge signal is missing; FAIL if the tool errors unexpectedly or omits required evidence.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with cited evidence.
+- Pass/fail: PASS only if every expected signal is present; FAIL if the tool errors unexpectedly, omits required evidence, or the happy path works while any edge signal is missing.
 
 ---
 
@@ -48,6 +48,13 @@ Run embedder_status without a job ID and with an impossible job ID; verify activ
 - Active embedder metadata is visible.
 - Unknown job ID returns NOT_FOUND-style guidance, not a generic crash.
 - Response can be cited by operators polling a real swap.
+
+### Failure Triage
+
+1. Re-run each command in the sequence on its own and record its exit status; the first non-zero exit names the failing step.
+2. Confirm the handler or script listed in section 4 is the one actually loaded, and that any compiled output under `dist/` is current for it.
+3. Compare the observed response field by field against the Expected block, and quote the first field that disagrees.
+
 
 ### Cleanup
 
@@ -181,11 +188,13 @@ Command 3 (`embedder_status({ jobId: "emb-swap-does-not-exist" })`) returned str
 
 ### Pass/Fail
 
-BLOCKED: The unknown-job edge returned structured `not_found` output, but the no-job active-pointer command could not be completed because the native MCP wrapper rejects a missing/empty `jobId` and the CLI fallback is blocked by stale `.opencode/skills/system-spec-kit/mcp-server` dist output.
+- **Pass**: Every expected signal is present.
+- **Fail**: The tool errors unexpectedly, omits required evidence, or the happy path works while any edge signal is missing.
 
 ---
 
 ## 4. SOURCE FILES
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - `.opencode/skills/system-spec-kit/mcp-server/handlers/embedder-status.ts`
 
 ---

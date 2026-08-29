@@ -78,13 +78,16 @@ sharp:             [SKIP] not installed
 If any modules FAILED, run: bash scripts/setup/rebuild-native-modules.sh
 ```
 
+A `[SKIP]` module row is not a failure: it means that optional native module is missing from this environment and the probe skipped it.
+
 Command 3 was not run because `node scripts/setup/record-node-version.js` writes `.node-version-marker`, but the execution request allowed writes only to this scenario file.
 
 Command 4 was not run because `bash scripts/setup/install.sh --skip-verify` is an installer command that may modify MCP/setup configuration outside the only allowed write path.
 
 ### Pass / Fail
 
-- **BLOCKED**: the prerequisite command did not emit JSON and stopped with `ERROR: Not on a feature branch. Current: system-speckit/028-memory-search-intelligence`; the remaining write-capable setup commands could not be run under the request's allowed-write-path restriction.
+- **Pass**: Readiness, native-module health, marker recording, and installer behavior match the documented setup contract.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

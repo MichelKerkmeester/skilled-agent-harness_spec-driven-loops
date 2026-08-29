@@ -555,7 +555,18 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 
 ---
 
-## 9. SUMMARY
+## 9. RELATED RESOURCES
+
+- `.opencode/commands/deep/review.md` — the `/deep:review` loop owner that dispatches this agent once per iteration.
+- `.opencode/skills/sk-code/sk-code-review/references/review-core.md` — the shared review doctrine for severity and evidence.
+- `.opencode/skills/system-deep-loop/deep-review/SKILL.md` — the review-mode packet skill.
+- `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` — the reducer this agent's iterations feed.
+- `.opencode/agents/review.md` — the separate non-iterative reviewer this agent must not delegate to.
+- `.opencode/agents/deep-research.md` — the separate research-iteration agent this agent must not delegate review work to.
+
+---
+
+## 10. SUMMARY
 
 ```
 ┌──────────────────────────────────────────┐

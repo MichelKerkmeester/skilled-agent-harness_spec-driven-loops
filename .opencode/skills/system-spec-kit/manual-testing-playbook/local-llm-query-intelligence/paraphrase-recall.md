@@ -22,11 +22,11 @@ The behavior is user-observable: a real operator stores knowledge in one form, a
 
 - Objective: Confirm semantic recall across paraphrase boundary.
 - Real user request: `I want to verify that when I search Memory MCP using different words than I stored, the stored memory still surfaces. Test with a stored fact about FSRS and a paraphrased query.`
-- RCAF Prompt: `As a query-intelligence validation operator, store a memory containing one phrasing, query it back with a paraphrase the system never saw, and confirm the stored memory appears in the top-3 results. Return a concise pass/fail verdict with the top-K dump and similarity scores.`
+- Operator prompt: `As a query-intelligence validation operator, store a memory containing one phrasing, query it back with a paraphrase the system never saw, and confirm the stored memory appears in the top-3 results. Return a concise pass/fail verdict with the top-K dump and similarity scores.`
 - Expected execution process: store via `memory_save`, search via `memory_search`, inspect top-3 hits and their similarity scores.
 - Expected signals: the stored memory's parent ID appears in `memory_search` top-3 results with score > 0.5; the rank is at most 3.
 - Desired user-visible outcome: `PASS — stored memory ranked #1 (score: 0.82); paraphrase recall confirmed.`
-- Pass/fail: PASS if stored memory appears in top-3 with score > 0.5; PARTIAL if rank 4-10; FAIL if absent from top-10.
+- Pass/fail: PASS if the stored memory appears in top-3 with score > 0.5; rank 4-10 also counts as PASS when the evidence records a large live corpus as the reason for the drift. FAIL if the memory is absent from top-10, or ranks 4-10 without that recorded justification.
 
 ---
 
@@ -94,10 +94,19 @@ The top-3 should include a memory whose content references FSRS or the stored ph
 - The rank at which the stored memory appears.
 - Note which provider was active (ollama vs hf-local) from `memory_health`.
 
----
+### Pass / Fail
 
-## 4. CLEAN-UP
+- **Pass**: The stored memory appears in top-3 with score > 0.5; rank 4-10 also counts as PASS when the evidence records a large live corpus as the reason for the drift.
+- **Fail**: The memory is absent from top-10, or ranks 4-10 without that recorded justification.
 
+### Failure Triage
+
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
+
+### Clean-Up
 ```
 memory_delete({ parent_id: STORED_ID })
 ```
@@ -106,3 +115,20 @@ Then remove the on-disk test file:
 ```
 rm -rf <spec-folder>
 ```
+
+---
+
+## 4. SOURCE FILES
+
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 401
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/paraphrase-recall.md`

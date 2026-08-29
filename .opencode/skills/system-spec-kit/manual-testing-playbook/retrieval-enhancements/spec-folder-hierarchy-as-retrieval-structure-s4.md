@@ -21,7 +21,7 @@ This scenario validates Spec folder hierarchy as retrieval structure (S4) for `0
 
 - Objective: Confirm hierarchy-aware retrieval.
 - Real user request: `Please validate Spec folder hierarchy as retrieval structure (S4) against the documented validation surface and tell me whether the expected signals are present: Self-folder results ranked highest; parent and sibling folders contribute scored results; hierarchy depth reflected in ranking.`
-- RCAF Prompt: `As a retrieval-enhancement validation operator, validate Spec folder hierarchy as retrieval structure (S4) against the documented validation surface. Verify self-folder results ranked highest; parent and sibling folders contribute scored results; hierarchy depth reflected in ranking. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a retrieval-enhancement validation operator, validate Spec folder hierarchy as retrieval structure (S4) against the documented validation surface. Verify self-folder results ranked highest; parent and sibling folders contribute scored results; hierarchy depth reflected in ranking. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Self-folder results ranked highest; parent and sibling folders contribute scored results; hierarchy depth reflected in ranking
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -52,7 +52,7 @@ Self-folder results ranked highest; parent and sibling folders contribute scored
 Command: `npx vitest run tests/spec-folder-hierarchy.vitest.ts`
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -64,7 +64,7 @@ Command: `npx vitest run tests/spec-folder-hierarchy.vitest.ts`
 Command: `npx vitest run tests/spec-folder-hierarchy.vitest.ts -t "assigns correct relevance scores" --reporter verbose`
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
  ↓ mcp-server/tests/spec-folder-hierarchy.vitest.ts > getParentPath > returns parent for 3-segment path
  ↓ mcp-server/tests/spec-folder-hierarchy.vitest.ts > getParentPath > returns parent for 2-segment path

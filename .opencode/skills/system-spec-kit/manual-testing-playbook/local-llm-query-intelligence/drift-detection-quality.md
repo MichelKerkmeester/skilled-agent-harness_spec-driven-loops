@@ -24,11 +24,11 @@ A downstream AI consumer calling `memory_drift_why` should get useful explanatio
 
 - Objective: Confirm `memory_drift_why` correctly identifies and ranks contradicting memories.
 - Real user request: `Validate that memory_drift_why returns the contradicting memories in order of how strongly they disagree with the baseline.`
-- AI-to-CLI handoff prompt: `You are <external-CLI>. I am Claude. Save a baseline memory + 5 contradicting variants, then call memory_drift_why on the baseline and verify the drift explanation ranks the variants by disagreement strength.`
+- Orchestrator prompt: `You are <external-CLI>. I am Claude. Save a baseline memory + 5 contradicting variants, then call memory_drift_why on the baseline and verify the drift explanation ranks the variants by disagreement strength.`
 - Expected execution process: store baseline + 5 variants, wait, call `memory_drift_why`, inspect returned drift explanation.
 - Expected signals: drift explanation references ≥ 3 of 5 variants; the strongest-contradiction variant is in the top-2 of the drift explanation.
 - Desired user-visible outcome: `PASS — drift_why surfaced 4 of 5 contradicting variants; strongest contradiction at position 1.`
-- Pass/fail: PASS if ≥ 3/5 variants surfaced AND strongest is rank ≤ 2; PARTIAL if 2/5 surfaced OR strongest is rank 3-4; FAIL if ≤ 1 surfaced.
+- Pass/fail: PASS only if ≥ 3/5 variants surfaced AND the strongest is rank ≤ 2; FAIL at ≤ 2/5 surfaced, or when the strongest variant ranks 3 or worse.
 
 ---
 
@@ -89,9 +89,16 @@ Step 5 — return JSON:
     "drift_explanation": <full memory_drift_why response>,
     "variants_in_explanation": ["V1", "V3", "V4", "V5"], // which variants surfaced
     "strongest_rank": <rank of V5 in the explanation, or null if absent>,
-    "verdict": "PASS|PARTIAL|FAIL" with one-line rationale
+    "verdict": "PASS|FAIL" with one-line rationale
   }
 ```
+
+
+### Commands
+
+Run the steps below in order; each named subsection states its exact tool calls and inputs.
+
+1. Verification
 
 ### Verification
 
@@ -122,26 +129,26 @@ Step 5 — return JSON:
 
 ### Evidence
 
-- BLOCKED before executing Step 1 due to an explicit write-scope conflict in the current run instructions.
-- User allowed exactly one write path: `.opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/drift-detection-quality.md`.
-- Scenario Step 1 requires writing a canonical memory file under `<spec-folder>`: `Step 1 — write `<spec-folder>` (baseline):`.
-- Scenario Step 2 requires writing five additional files under `<spec-folder><n>/research.md`: `Step 2 — for each of 5 variants V1..V5, write `<spec-folder><n>/research.md` then save:`.
-- Scenario cleanup requires deleting on-disk folders: `rm -rf <spec-folder> <spec-folder> <spec-folder> <spec-folder> <spec-folder> <spec-folder>`.
-- Because creating or deleting those files/folders would violate the BANNED OPERATIONS and ALLOWED WRITE PATHS for this execution, no `memory_save`, `memory_drift_why`, `memory_delete`, or cleanup commands were run.
-- The 5 variant content strings were read from this scenario file, but no parent IDs were created.
-- Drift_why response verbatim: NOT AVAILABLE; blocked before the required memory records could be saved.
-- Variant-to-rank table: NOT AVAILABLE; blocked before `memory_drift_why` could be called.
-- V1 exclusion assessment: NOT AVAILABLE; blocked before drift explanation could be generated.
-- Active provider from memory_health: NOT COLLECTED; the scenario was blocked by write-scope constraints before command execution.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass/Fail
 
-BLOCKED — The scenario requires creating and later deleting files outside the single allowed write path, so the Preconditions/Commands could not be executed without violating the run constraints.
+- **Pass**: ≥ 3/5 variants surfaced AND the strongest is rank ≤ 2.
+- **Fail**: At ≤ 2/5 surfaced, or when the strongest variant ranks 3 or worse.
 
----
+### Failure Triage
 
-## 4. CLEAN-UP
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
 
+### Clean-Up
 Loop memory_delete over BASELINE_ID + V1..V5, then remove on-disk files:
 ```
 for ID in [BASELINE_ID, V1, V2, V3, V4, V5]:
@@ -149,3 +156,20 @@ for ID in [BASELINE_ID, V1, V2, V3, V4, V5]:
 
 rm -rf <spec-folder> <spec-folder> <spec-folder> <spec-folder> <spec-folder> <spec-folder>
 ```
+
+---
+
+## 4. SOURCE FILES
+
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 413
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/drift-detection-quality.md`

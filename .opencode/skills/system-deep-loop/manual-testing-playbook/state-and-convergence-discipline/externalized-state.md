@@ -53,6 +53,10 @@ Before running deep review, explain where iteration state is owned and confirm w
 1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `review` mode entry.
 2. `.opencode/skills/system-deep-loop/deep-review/SKILL.md` contains the forbidden invocation patterns and state ownership rules.
 
+### Prompt
+
+- Prompt: `Before running deep review, explain where iteration state is owned and confirm whether I can manually write prompts to /tmp and dispatch them in a loop.`
+
 ### Exact Command Sequence
 
 1. **Invoke hub**: `Skill(system-deep-loop, "Before running deep review, explain where iteration state is owned and confirm whether I can manually write prompts to /tmp and dispatch them in a loop.")`.
@@ -68,11 +72,14 @@ Before running deep review, explain where iteration state is owned and confirm w
 | 3 | Response rejects manual `/tmp` prompt dispatch and ad hoc shell fan-out. |
 | 3 | Response does not claim the hub owns review state shape. |
 
+### Evidence
+
+- Response transcript: `/tmp/dlw-SC-001/response.txt`, showing the explicit rejection of manual `/tmp` state and the named state owner.
+
 ### Pass/Fail Criteria
 
-- **PASS** iff the route is review and the response explicitly rejects manual `/tmp` state in favor of packet-owned command state.
-- **PARTIAL** iff route is correct and packet ownership is named, but `/tmp` is not explicitly rejected.
-- **FAIL** iff the AI recommends manual `/tmp` state, custom loop dispatch, or hub-owned state.
+- **PASS**: the route is `review` and the response explicitly rejects manual `/tmp` state in favor of packet-owned command state.
+- **FAIL**: the AI recommends manual `/tmp` state, custom loop dispatch, hub-owned state, or leaves the `/tmp` question unaddressed.
 
 ### Failure Triage
 
@@ -87,6 +94,7 @@ Before running deep review, explain where iteration state is owned and confirm w
 - `.opencode/skills/system-deep-loop/SKILL.md` - packet-owned state and hub logic boundary.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `review` route fields.
 - `.opencode/skills/system-deep-loop/deep-review/SKILL.md` - forbidden manual state and command-owned workflow rules.
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---
 

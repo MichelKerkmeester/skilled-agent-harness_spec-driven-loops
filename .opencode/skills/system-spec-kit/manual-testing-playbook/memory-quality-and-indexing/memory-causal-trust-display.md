@@ -122,7 +122,7 @@ Validate memory causal trust badges through response profiles.
 - Block A command 2, `git diff -- .opencode/skills/system-spec-kit/mcp-server/lib/storage/causal-edges.ts .opencode/skills/system-spec-kit/mcp-server/lib/search/causal-boost.ts`, returned no output.
 - Block A command 3, `cd .opencode/skills/system-spec-kit/mcp-server && npm exec -- vitest run tests/memory/trust-badges.test.ts tests/response-profile-formatters.vitest.ts`, returned:
   ```text
-   RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+   RUN  v4.1.9 .opencode/skills/system-spec-kit
 
   (node:49957) ExperimentalWarning: SQLite is an experimental feature and might change at any time
   (Use `node --trace-warnings ...` to show where the warning was created)

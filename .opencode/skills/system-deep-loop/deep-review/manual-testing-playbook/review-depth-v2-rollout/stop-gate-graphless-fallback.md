@@ -36,7 +36,11 @@ Empty graph CONTINUE has historically meant "no graph data, proceed to inline vo
 - A standard or complex v2 session can set `graphCoverageMode` to `graphless_fallback`.
 - The session can leave `searchLedger` empty for the gate to trip.
 
-### Steps
+### Prompt
+
+- Prompt: `Run a standard-scope v2 review iteration with graphCoverageMode set to graphless_fallback and empty searchLedger. Confirm STOP is blocked by graphlessFallbackGate.`
+
+### Commands
 
 1. Prepare a standard or complex v2 session with `searchCoverage.graphCoverageMode: 'graphless_fallback'`.
 2. Leave `searchLedger` empty.
@@ -48,7 +52,12 @@ Empty graph CONTINUE has historically meant "no graph data, proceed to inline vo
 
 With `graphCoverageMode: 'graphless_fallback'` and empty `searchLedger`, the review cannot legally stop and the blocked_stop output names `graphlessFallbackGate`. After cited fallback evidence is added, the gate stops blocking.
 
-### Failure Modes
+### Evidence
+
+- The `blocked_stop` event payload showing `blocked_gates[]` containing `graphlessFallbackGate` and a `recovery_strategy` naming fallback methods, captured to `/tmp/drv-062-blocked-stop.json`.
+- A follow-up run after adding a cited `searchLedger` row showing the gate no longer blocks, captured to `/tmp/drv-062-recovery.json`.
+
+### Failure Triage
 
 - The run asks for graph mode instead: verify the input uses `graphCoverageMode: 'graphless_fallback'`, not absence-of-mode.
 - The gate does not fire: confirm `searchLedger` is empty and the scope is not `trivial` (trivial+skip exemption bypasses the gate).
@@ -56,17 +65,18 @@ With `graphCoverageMode: 'graphless_fallback'` and empty `searchLedger`, the rev
 
 ---
 
-## 4. SOURCE REFERENCES
+## 4. SOURCE FILES
 
 - Workflow YAML: `.opencode/commands/deep/assets/deep-review-auto.yaml` (`step_check_convergence` legal-stop decision tree, graphlessFallbackGate branch).
 - Confirm mirror: `.opencode/commands/deep/assets/deep-review-confirm.yaml`.
 - Schema: `.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md` (`graphCoverageMode` enum + fallback-method conventions).
 - Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
 - ADR: complexity-candidate-saturation-gates decision record (see this skill's changelog for provenance).
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Review-depth v2 rollout
 - Playbook ID: DRV-062

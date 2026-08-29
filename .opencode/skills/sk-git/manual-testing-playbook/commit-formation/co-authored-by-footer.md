@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-007` and confirm th
 - Prompt: `Commit this change with the exact Claude Opus co-author footer and show the footer equality check.`
 - Expected execution process: Prepare the Conventional Commit message, append the footer on its own line, and compare it against the pinned string before commit.
 - Expected signals: Footer appears exactly once, with exact capitalization, spacing, model text, and email.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox has no writable repository in which to prepare a commit message.
 - Pass/fail: PASS if the footer exactly equals `Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>` and the subject follows `references/commit-workflows.md §3` and the footer matches the canonical line documented in project root `CLAUDE.md` "Committing changes with git" HEREDOC example. FAIL if capitalization, spacing, angle brackets, model text, or placement differs.
 
 ---

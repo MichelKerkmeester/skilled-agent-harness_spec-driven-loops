@@ -62,30 +62,17 @@ node .opencode/bin/spec-memory.cjs list-tools --format json >/dev/null; echo "re
 
 ### Evidence
 
-BLOCKED before executing the Commands block.
+Capture, for every step in the Commands sequence above:
 
-Required scenario commands would write outside the allowed scenario file:
-
-```bash
-SRC=.opencode/skills/system-spec-kit/mcp-server/spec-memory-cli.ts
-BAK=$(mktemp); cp "$SRC" "$BAK"                                  # exact content backup
-printf '\n// freshness probe: content change to trip the hash gate (reverted below)\n' >> "$SRC"
-cp "$BAK" "$SRC"; rm -f "$BAK"                                   # restore exact content (hash matches again)
-```
-
-User-provided constraint for this run:
-
-```text
-Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
-ALLOWED WRITE PATHS
-- .opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/cli-dist-freshness-guard.md (this file only)
-```
-
-The scenario also has no `### Preconditions` section to satisfy before the write-requiring Commands block.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: The scenario's required Commands block cannot be executed under this run's allowed-write constraint because it must append to and restore `.opencode/skills/system-spec-kit/mcp-server/spec-memory-cli.ts`, plus create/remove a temporary backup file outside the allowed write path.
+- **Pass**: All three phases behave as expected and the source content is restored byte-exact.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

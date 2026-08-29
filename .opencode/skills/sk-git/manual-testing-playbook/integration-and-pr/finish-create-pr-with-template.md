@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-013` and confirm th
 - Prompt: `Push this feature branch, open a PR with the sk-git template, and return the PR URL and template evidence.`
 - Expected execution process: Confirm PR option, push branch, create PR with title/body, and return URL plus body summary.
 - Expected signals: Branch is pushed; PR has Summary and Test Plan sections; user gets PR URL.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when no authorized remote and `gh` credential are available to open a real pull request.
 - Pass/fail: PASS if PR creation follows `references/finish-workflows.md §3` Option 2 and `assets/pr-template.md §3` complete template expectations. FAIL if PR lacks description, omits testing notes, uses a non-conventional title, or ignores GitHub MCP/gh error handling.
 
 ---

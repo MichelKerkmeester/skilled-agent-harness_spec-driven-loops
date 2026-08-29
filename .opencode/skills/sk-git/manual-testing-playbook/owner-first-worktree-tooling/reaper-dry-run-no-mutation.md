@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-034` and confirm th
 - Prompt: `Run the worktree reaper in --dry-run mode against a fixture with one reapable wrapper pair, confirm the plan names that pair, and confirm nothing on disk or in refs actually changed.`
 - Expected execution process: Build one qualifying (clean, merged, dead-marker) wrapper pair, run the reaper with `--dry-run`, and diff worktree/ref/marker state before and after.
 - Expected signals: stdout/stderr shows `DRY_RUN would: git worktree remove ...` and `DRY_RUN would: git branch -d ...` lines naming the qualifying pair; the worktree directory, branch ref, and marker file are all still present after the run.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox cannot create the qualifying fixture worktree pair.
 - Pass/fail: PASS if the dry-run output correctly names every action it would take and the repository state is unchanged afterward. FAIL if `--dry-run` performs any real mutation, or if its printed plan omits or misnames the qualifying pair.
 
 ---

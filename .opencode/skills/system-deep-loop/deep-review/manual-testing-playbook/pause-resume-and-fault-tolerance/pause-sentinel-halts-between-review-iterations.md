@@ -87,4 +87,4 @@ Use the loop protocol pause subsection as the canonical flow and verify both rev
 - Playbook ID: DRV-021
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `pause-resume-and-fault-tolerance/pause-sentinel-halts-between-review-iterations.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

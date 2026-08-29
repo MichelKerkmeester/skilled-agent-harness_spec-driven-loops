@@ -190,7 +190,8 @@ Native MCP debug profile returned a full response-shaped payload, but this does 
 
 ### Pass / Fail
 
-- **BLOCKED**: quick, research, and resume profile shapes matched the Expected fields, but the required full-response flag-off control could not be verified because `SPECKIT_RESPONSE_PROFILE=true node .opencode/bin/spec-memory.cjs memory_search --json '{"query":"test profiles","profile":"quick","limit":10}' --format json --timeout-ms 3000` returned `@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build`, and rebuilding would modify files outside the allowed write path.
+- **Pass**: Quick profile contains topResult + tokenReduction, research has evidenceDigest, resume has nextSteps, and full response when flag OFF.
+- **Fail**: Profile shape missing expected fields or token savings not calculated; memory_context now auto-routes an inferred profile when no explicit profile is supplied, so the profile surface is live on both search and context handlers even though this scenario stays search-first.
 
 ### Failure Triage
 
@@ -201,7 +202,7 @@ Verify SPECKIT_RESPONSE_PROFILE env → Inspect profile-formatters.ts profile ro
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [ux-hooks/mode-aware-response-profiles.md](../../feature-catalog/ux-hooks/mode-aware-response-profiles.md)
-- Feature flag reference: [feature-flag-reference/1-search-pipeline-features-speckit.md](../../manual-testing-playbook/feature-flag-reference/1-search-pipeline-features-speckit.md)
+- Feature flag reference: [feature-flag-reference/1-search-pipeline-features-speckit.md](../../manual-testing-playbook/feature-flag-reference/search-pipeline-features-speckit.md)
 - Source file: `mcp-server/lib/response/profile-formatters.ts`
 
 ---

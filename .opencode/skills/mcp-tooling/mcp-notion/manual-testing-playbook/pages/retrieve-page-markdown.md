@@ -23,11 +23,11 @@ The Markdown round trip is the highest-priority read path in the Notion tool set
 - Feature Name: Retrieve page as Markdown
 - Scenario Objective: Read a known scratch page's block content as Markdown.
 - Exact Prompt: `Fetch the content of our known scratch Notion page as Markdown and show me what it contains.`
-- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_retrieve-page-markdown") -> 3. Code Mode: call_tool_chain({ code: "return await notion[\"notion_retrieve-page-markdown\"]({ page_id: SCRATCH_PAGE_ID });" })`
+- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_retrieve-page-markdown") -> 3. Code Mode: call_tool_chain({ code: "return await notion[\"notion_retrieve-page-markdown\"] ({ page_id: SCRATCH_PAGE_ID });" })`
 - Expected Signals: The manual reports the callable name; the schema resolves; the call returns a Markdown string (possibly empty for a bare scratch page) rather than a 400 API-version error.
 - Evidence: `list_tools()` result, `tool_info()` result, Code Mode response, and the scratch page ID used.
 - Pass/Fail Criteria: PASS if the callable and schema resolve and a Markdown response is returned (empty content is a valid outcome for a bare page); SKIP if the manual, token, or a known scratch page ID is unavailable; FAIL if the call errors with a `2026-03-11` API-version mismatch or returns non-Markdown content.
-- Failure Triage: 1. Confirm `NOTION_TOKEN` is set and the scratch page is shared with the integration. 2. Re-run `list_tools()` and `tool_info()`. 3. Confirm the server pins `2026-03-11` for this tool before retrying.
+- Failure Triage: 1. Confirm `NOTION_TOKEN` is set and the scratch page is shared with the integration. 2. Confirm the server pins `2026-03-11` for this tool. 3. Repeat `list_tools()` and `tool_info()` before retrying.
 
 ---
 

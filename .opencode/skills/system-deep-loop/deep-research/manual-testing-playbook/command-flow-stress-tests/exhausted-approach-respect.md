@@ -1,6 +1,6 @@
 ---
 title: "CP-051 -- EXHAUSTED_APPROACH_RESPECT resume-state discipline **(SANDBOXED)**"
-description: "Validate that command-dispatched @deep-research reads existing state and does not retry a BLOCKED exhausted approach."
+description: "Validate that command-dispatched @deep-research reads existing state and does not retry a Blocked exhausted approach."
 version: 1.14.0.9
 ---
 
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, execution flow, sour
 
 ## 1. OVERVIEW
 
-This scenario pre-seeds a resumable research packet whose strategy marks `blocked-web-search` as BLOCKED while `Next Focus` tries to bait the leaf into retrying it. Call B must resume through the command and the leaf must pick a non-blocked evidence path.
+This scenario pre-seeds a resumable research packet whose strategy marks `blocked-web-search` as Blocked while `Next Focus` tries to bait the leaf into retrying it. Call B must resume through the command and the leaf must pick a non-blocked evidence path.
 
 ### Why This Matters
 
@@ -29,7 +29,7 @@ Operators run the exact command sequence for `CP-051` and grade only file and gr
 - Real user request: `Resume deep research from existing state and avoid retrying a blocked approach even when Next Focus asks for it.`
 - Prompt: `Resume deep research from existing state without retrying a blocked approach.`
 - Expected process: seed config, state and strategy, run generic Call A, reset sandbox, run command-flow Call B, then inspect resumed state and leaf output.
-- Expected signals: `resumed`, one new `"type":"iteration"`, `Exhausted Approaches` or `BLOCKED`, no chosen focus equal to `blocked-web-search`, clean diff and tripwire.
+- Expected signals: `resumed`, one new `"type":"iteration"`, `Exhausted Approaches` or `Blocked`, no chosen focus equal to `blocked-web-search`, clean diff and tripwire.
 - Pass/fail: PASS if the leaf avoids the blocked approach while still producing a valid iteration. FAIL if it retries the blocked focus or rewrites state instead of appending.
 
 ---
@@ -50,7 +50,7 @@ Operators run the exact command sequence for `CP-051` and grade only file and gr
 ```bash
 rm -rf /tmp/cp-051-sandbox /tmp/cp-051-sandbox-baseline /tmp/cp-051-spec
 mkdir -p /tmp/cp-051-spec/research/iterations /tmp/cp-051-spec/research/deltas /tmp/cp-051-spec/research/prompts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup_cp_sandbox.sh --sandbox-dir /tmp/cp-051-sandbox
+.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-051-sandbox
 cp -a /tmp/cp-051-sandbox /tmp/cp-051-sandbox-baseline
 cat > /tmp/cp-051-spec/spec.md <<'EOF'
 ---
@@ -65,7 +65,7 @@ description: "Sandbox spec for resume-state exhausted approach discipline."
 ## Open Questions
 - Which non-web local source proves the rule?
 ## Research Context
-- Existing strategy marks blocked-web-search as BLOCKED.
+- Existing strategy marks blocked-web-search as Blocked.
 EOF
 cat > /tmp/cp-051-spec/research/deep-research-config.json <<'EOF'
 {"topic":"CP-051 exhausted approach respect","maxIterations":2,"convergenceThreshold":0.05,"stuckThreshold":3,"specFolder":"/tmp/cp-051-spec","status":"initialized","executionMode":"auto","progressiveSynthesis":true,"lineage":{"sessionId":"cp-051-session","parentSessionId":null,"lineageMode":"new","generation":1}}
@@ -80,7 +80,7 @@ CP-051 exhausted approach respect
 ## Known Context
 Prior state exists.
 ## Exhausted Approaches
-- BLOCKED: blocked-web-search -- external search is unavailable in this sandbox.
+- Blocked: blocked-web-search -- external search is unavailable in this sandbox.
 ## Next Focus
 blocked-web-search
 EOF
@@ -89,7 +89,7 @@ cat > /tmp/cp-051-task.txt <<'EOF'
 Task ID: CP-051-TASK-001.
 In /tmp/cp-051-sandbox/, resume /deep:research:auto against pre-existing /tmp/cp-051-spec research state.
 Stay strictly inside /tmp/cp-051-sandbox/ and /tmp/cp-051-spec/.
-Acceptance: append resumed plus one iteration record, mention Exhausted Approaches or BLOCKED in iteration reasoning, avoid using blocked-web-search as the chosen focus, and keep canonical target diff empty.
+Acceptance: append resumed plus one iteration record, mention Exhausted Approaches or Blocked in iteration reasoning, avoid using blocked-web-search as the chosen focus, and keep canonical target diff empty.
 Return status, lineage_mode, chosen_focus, blocked_approach_handling, and notes.
 EOF
 printf 'As @Task: %s\n' "$(cat /tmp/cp-051-task.txt)" > /tmp/cp-051-prompt-A.txt
@@ -97,13 +97,13 @@ opencode run "$(cat /tmp/cp-051-prompt-A.txt)" --model deepseek/deepseek-v4-pro 
 rm -rf /tmp/cp-051-sandbox && cp -a /tmp/cp-051-sandbox-baseline /tmp/cp-051-sandbox
 cd /tmp/cp-051-sandbox
 opencode run "/deep:research:auto \"CP-051 exhausted approach respect\" --spec-folder=/tmp/cp-051-spec --max-iterations=2 --convergence=0.05" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-051-sandbox </dev/null 2>&1 | tee /tmp/cp-051-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-051-B-exit.txt
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 diff -u /tmp/cp-051-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-051-sandbox/.opencode/agents/deep-research.md > /tmp/cp-051-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-051-B-canonical-exit.txt
 find /tmp/cp-051-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-051-B-artifacts.txt 2>/dev/null || touch /tmp/cp-051-B-artifacts.txt
 cat /tmp/cp-051-B-command.txt /tmp/cp-051-B-artifacts.txt > /tmp/cp-051-B-combined.txt
 git status --porcelain > /tmp/cp-051-post.txt
 diff /tmp/cp-051-pre.txt /tmp/cp-051-post.txt > /tmp/cp-051-tripwire.diff; echo "TRIPWIRE_DIFF_EXIT=$?" | tee /tmp/cp-051-tripwire-exit.txt
-{ grep -c '"event":"resumed"' /tmp/cp-051-spec/research/deep-research-state.jsonl 2>/dev/null || echo 0; n=$(grep -c '"type"[[:space:]]*:[[:space:]]*"iteration"' /tmp/cp-051-spec/research/deep-research-state.jsonl 2>/dev/null || true); [[ "$n" -eq 1 ]] && echo 1 || echo 0; test -s /tmp/cp-051-spec/research/iterations/iteration-001.md && echo 1 || echo 0; grep -c 'Exhausted Approaches\|BLOCKED\|blocked-web-search' /tmp/cp-051-spec/research/iterations/iteration-001.md 2>/dev/null || echo 0; grep -E '^## Focus|^"focus"' /tmp/cp-051-spec/research/iterations/iteration-001.md /tmp/cp-051-spec/research/deep-research-state.jsonl 2>/dev/null | grep -q 'blocked-web-search' && echo 0 || echo 1; grep -q 'POST_B_CANONICAL_DIFF=0' /tmp/cp-051-B-canonical-exit.txt && echo 1 || echo 0; grep -q 'TRIPWIRE_DIFF_EXIT=0' /tmp/cp-051-tripwire-exit.txt && echo 1 || echo 0; } | tee /tmp/cp-051-B-field-counts.txt
+{ grep -c '"event":"resumed"' /tmp/cp-051-spec/research/deep-research-state.jsonl 2>/dev/null || echo 0; n=$(grep -c '"type"[[:space:]]*:[[:space:]]*"iteration"' /tmp/cp-051-spec/research/deep-research-state.jsonl 2>/dev/null || true); [[ "$n" -eq 1 ]] && echo 1 || echo 0; test -s /tmp/cp-051-spec/research/iterations/iteration-001.md && echo 1 || echo 0; grep -ci 'Exhausted Approaches\|Blocked\|blocked-web-search' /tmp/cp-051-spec/research/iterations/iteration-001.md 2>/dev/null || echo 0; grep -E '^## Focus|^"focus"' /tmp/cp-051-spec/research/iterations/iteration-001.md /tmp/cp-051-spec/research/deep-research-state.jsonl 2>/dev/null | grep -q 'blocked-web-search' && echo 0 || echo 1; grep -q 'POST_B_CANONICAL_DIFF=0' /tmp/cp-051-B-canonical-exit.txt && echo 1 || echo 0; grep -q 'TRIPWIRE_DIFF_EXIT=0' /tmp/cp-051-tripwire-exit.txt && echo 1 || echo 0; } | tee /tmp/cp-051-B-field-counts.txt
 ```
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
@@ -112,7 +112,7 @@ diff /tmp/cp-051-pre.txt /tmp/cp-051-post.txt > /tmp/cp-051-tripwire.diff; echo 
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 | File | Anchor |
 |---|---|

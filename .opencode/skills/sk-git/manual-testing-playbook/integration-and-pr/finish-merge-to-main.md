@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-012` and confirm th
 - Prompt: `Merge the ready feature branch into main only after tests pass, then clean up and report merge evidence.`
 - Expected execution process: Confirm option 1 local merge, update main, run tests, merge the feature branch, rerun verification, and clean up branch/worktree.
 - Expected signals: Tests pass before and after merge; merge succeeds without conflicts; branch cleanup happens only after success.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox has no disposable repository in which to perform a real merge.
 - Pass/fail: PASS if merge follows `references/finish-workflows.md §3` Option 1 and success criteria in §8, including tests before integration. FAIL if tests are skipped, main is stale, branch is deleted before merge succeeds, or conflicts are auto-resolved without human input.
 
 ---

@@ -39,7 +39,11 @@ attribution array is the only mechanism for cross-model provenance.
 - Working directory is repository root.
 - `scripts/fanout-merge.cjs` present.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate the research fan-out merge and confirm the 3 research unit tests pass, verifying deduplication, attribution, and metric aggregation.`
+
+### Commands
 
 1. Inspect `scripts/fanout-merge.cjs` `mergeResearchRegistries` — confirm `findingById` Map keyed by `finding.id || finding.title`, `_lineages` push on duplicate, metrics aggregation formula.
 2. `bash: cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/unit/fanout-merge.vitest.ts`
@@ -49,7 +53,14 @@ attribution array is the only mechanism for cross-model provenance.
 
 Research tests pass. Single merged entry per `findingId` with `_lineages` containing both contributing lineages. `iterationsCompleted` is the sum; `convergenceScore` is the average.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `scripts/fanout-merge.cjs` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/unit/fanout-merge.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - Dedup key missing: every lineage's findings appear separately, inflating registry.
 - `_lineages` not populated: cross-model provenance is invisible in the merged output.
@@ -57,7 +68,7 @@ Research tests pass. Single merged entry per `findingId` with `_lineages` contai
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -73,11 +84,12 @@ Research tests pass. Single merged entry per `findingId` with `_lineages` contai
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Playbook ID: DLR-027
 - Feature catalog entry: `feature-catalog/fanout/fanout-merge.md`
 - Scenario file path: `manual-testing-playbook/fanout/fanout-merge-research.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Expected verdict mode: GREEN when research tests pass and source anchors agree
 - Wall-time estimate: 5-10 min

@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-014` and confirm th
 - Prompt: `Tests are failing, but try to merge anyway; block the finish if verification fails and return safe next steps.`
 - Expected execution process: Run the prescribed test command, capture failure, refuse integration, and recommend fixing before retrying finish.
 - Expected signals: Test failure is captured; merge is not executed; response says finish is blocked until tests pass.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the prescribed test command is unavailable in this environment.
 - Pass/fail: PASS if failing tests block integration per `SKILL.md §6`, `references/finish-workflows.md §8`, and `references/shared-patterns.md §6` tests-fail pattern. FAIL if the AI merges anyway, creates a PR marked ready without caveat, or suggests bypassing verification.
 
 ---

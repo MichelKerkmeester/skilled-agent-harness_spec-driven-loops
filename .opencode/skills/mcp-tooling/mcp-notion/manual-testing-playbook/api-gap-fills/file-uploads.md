@@ -23,7 +23,7 @@ File uploads are a hard gap -- no MCP tool exists for any of the 5 endpoints. Wi
 - Feature Name: File Uploads
 - Scenario Objective: Create a file upload via direct REST, send its bytes, then attach the finished upload to a scratch page and confirm it is visible.
 - Exact Prompt: `"Upload a small image to Notion via the file-uploads REST endpoints and attach it to a scratch page."`
-- Exact Command Sequence: `1. POST https://api.notion.com/v1/file_uploads (Bearer $notion_NOTION_TOKEN, Notion-Version: 2026-03-11) -> 2. POST https://api.notion.com/v1/file_uploads/<file_upload_id>/send (multipart/form-data) -> 3. tool_info("notion.notion_append-block-children") -> 4. notion["notion_append-block-children"]({ block_id: "<scratch_page_id>", children: [{ type: "image", image: { type: "file_upload", file_upload: { id: "<file_upload_id>" } } }] }) -> 5. notion["notion_retrieve-block-children"]({ block_id: "<scratch_page_id>" })`
+- Exact Command Sequence: `1. POST https://api.notion.com/v1/file_uploads (Bearer $notion_NOTION_TOKEN, Notion-Version: 2026-03-11) -> 2. POST https://api.notion.com/v1/file_uploads/<file_upload_id>/send (multipart/form-data) -> 3. tool_info("notion.notion_append-block-children") -> 4. notion["notion_append-block-children"] ({ block_id: "<scratch_page_id>", children: [{ type: "image", image: { type: "file_upload", file_upload: { id: "<file_upload_id>" } } }] }) -> 5. notion["notion_retrieve-block-children"] ({ block_id: "<scratch_page_id>" })`
 - Expected Signals: Step 1 returns `{ id, status: "pending" }`; Step 2 returns `status: "uploaded"`; Step 3 resolves the append-block-children schema; Step 4 returns the new block id; Step 5 lists an image block referencing the `file_upload` id.
 - Evidence: create/send response bodies (never the token), the appended block id, the children-listing content.
 - Pass/Fail Criteria: PASS if the upload reaches `status: "uploaded"` and the image block appears in the children listing; SKIP if outbound HTTPS is unavailable in the Code Mode sandbox and the `curl` fallback is also blocked, or no scratch page is available; FAIL if any confirmed call errors or the image block never appears.
@@ -46,8 +46,8 @@ File uploads are a hard gap -- no MCP tool exists for any of the 5 endpoints. Wi
 1. `POST https://api.notion.com/v1/file_uploads` (Bearer `$notion_NOTION_TOKEN`, `Notion-Version: 2026-03-11`, body `{"mode":"single_part","filename":"playbook-test.png","content_type":"image/png"}`) -- capture the returned `id`.
 2. `POST https://api.notion.com/v1/file_uploads/<file_upload_id>/send` (`multipart/form-data`, field `file`) -- confirm `status` becomes `"uploaded"`.
 3. `tool_info("notion.notion_append-block-children")`.
-4. `notion["notion_append-block-children"]({ block_id: "<scratch_page_id>", children: [{ type: "image", image: { type: "file_upload", file_upload: { id: "<file_upload_id>" } } }] })`.
-5. `notion["notion_retrieve-block-children"]({ block_id: "<scratch_page_id>" })`.
+4. `notion["notion_append-block-children"] ({ block_id: "<scratch_page_id>", children: [{ type: "image", image: { type: "file_upload", file_upload: { id: "<file_upload_id>" } } }] })`.
+5. `notion["notion_retrieve-block-children"] ({ block_id: "<scratch_page_id>" })`.
 
 ### Expected
 
@@ -71,7 +71,7 @@ Capture both REST response bodies (redacting nothing but the token itself, which
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GAP-001 | File Uploads | Verify create -> send -> attach against a scratch page | `"Upload a small image to Notion via the file-uploads REST endpoints and attach it to a scratch page."` | 1. `POST /v1/file_uploads` -> 2. `POST /v1/file_uploads/<id>/send` -> 3. `tool_info("notion.notion_append-block-children")` -> 4. `notion["notion_append-block-children"]({...})` -> 5. `notion["notion_retrieve-block-children"]({...})` | Upload reaches `uploaded`; image block appended and listed | Create/send response bodies, block id, children listing | PASS if uploaded and visible in listing; SKIP if HTTPS/curl unavailable or no scratch page; FAIL if any call errors or block missing | Check version header, check token/sharing, re-run tool_info and compare schema |
+| GAP-001 | File Uploads | Verify create -> send -> attach against a scratch page | `"Upload a small image to Notion via the file-uploads REST endpoints and attach it to a scratch page."` | 1. `POST /v1/file_uploads` -> 2. `POST /v1/file_uploads/<id>/send` -> 3. `tool_info("notion.notion_append-block-children")` -> 4. `notion["notion_append-block-children"] ({...})` -> 5. `notion["notion_retrieve-block-children"] ({...})` | Upload reaches `uploaded`; image block appended and listed | Create/send response bodies, block id, children listing | PASS if uploaded and visible in listing; SKIP if HTTPS/curl unavailable or no scratch page; FAIL if any call errors or block missing | Check version header, check token/sharing, re-run tool_info and compare schema |
 
 Cleanup: archive the scratch page (the uploaded image block is trashed with it).
 

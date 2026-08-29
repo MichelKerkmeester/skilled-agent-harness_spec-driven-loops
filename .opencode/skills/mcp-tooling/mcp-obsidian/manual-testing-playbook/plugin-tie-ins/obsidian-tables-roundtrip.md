@@ -68,7 +68,7 @@ Create or update a scratch Obsidian Tables .table.md at the file layer, then ver
    PY
    ~~~
 
-3. obsidian --help to confirm the local app-action syntax, then open or reload "$TEST_TABLE" and capture the visible Tables render. If the exact action remains unconfirmed, record that prerequisite as SKIP rather than claiming a render pass.
+3. obsidian --help to confirm the local app-action syntax, then open or reload "$TEST_TABLE" and capture the visible Tables render. If Obsidian desktop is unavailable in this environment so the app-action syntax cannot be confirmed, record that prerequisite as SKIP rather than claiming a render pass.
 
 ### Expected
 

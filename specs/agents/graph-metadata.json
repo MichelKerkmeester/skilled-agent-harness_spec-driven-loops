@@ -7,7 +7,9 @@
     "agents/001-terminal-proof-discipline",
     "agents/002-runtime-surface-coverage",
     "agents/004-agents-md-bloat-audit",
-    "agents/005-git-workspace-repo-agnostic"
+    "agents/005-git-workspace-repo-agnostic",
+    "agents/003-communication-quality",
+    "agents/006-restraint-and-routing-gates"
   ],
   "manual": {
     "depends_on": [],
@@ -25,11 +27,11 @@
     "entities": [],
     "causal_summary": "Track folder consolidating agents packets.",
     "created_at": "2026-08-06T00:00:00.000Z",
-    "last_save_at": "2026-08-16T09:05:53.148Z",
+    "last_save_at": "2026-08-29T11:14:45.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [],
-    "source_fingerprint": "sha256:9550b75b076882427ba98826a49b873c7f5e575a0e561c1d101c993015dd9c7e",
+    "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
     "last_active_child_id": "agents/005-git-workspace-repo-agnostic",
     "last_active_at": "2026-08-16T09:05:53.148Z"

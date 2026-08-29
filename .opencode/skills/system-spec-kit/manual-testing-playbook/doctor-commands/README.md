@@ -29,7 +29,7 @@ After commit `1b8d4d691` (013 Phase 5 hard cutover), `/doctor:<name>` invocation
 
 ## Harness
 
-Each scenario has a Markdown file named for its topic (`doctor-<short-name>.md`, or `version-migration-<short-name>.md` for the version-migration group, with no numeric filename prefix) with its own numbered sections: overview, scenario contract, prompt, commands, expected results, evidence and pass/fail. Execute each scenario directly per the root playbook's execution policy: run the real commands, inspect real files and record a `PASS`, `FAIL`, `SKIP` or `UNAUTOMATABLE` verdict. See [`../manual-testing-playbook.md`](../manual-testing-playbook.md) for the full execution and evidence-capture policy.
+Each scenario has a Markdown file named for its topic (`doctor-<short-name>.md`, or `version-migration-<short-name>.md` for the version-migration group, with no numeric filename prefix) with its own numbered sections: overview, scenario contract, prompt, commands, expected results, evidence and pass/fail. Execute each scenario directly per the root playbook's execution policy: run the real commands, inspect real files and record a `PASS`, `FAIL`, or `SKIP` verdict; a scenario the harness cannot run deterministically is a `SKIP` whose blocker names that limitation. See [`../manual-testing-playbook.md`](../manual-testing-playbook.md) for the full execution and evidence-capture policy.
 
 ## See Also
 

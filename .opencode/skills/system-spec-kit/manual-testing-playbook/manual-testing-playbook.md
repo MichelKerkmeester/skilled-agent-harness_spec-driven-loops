@@ -7,7 +7,13 @@ version: 3.6.0.99
 
 # Spec Kit Memory: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Every scenario MUST be executed for real — not mocked and not stubbed. AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. Valid scenario classifications are `PASS`, `FAIL`, `SKIP` (with a specific sandbox or runtime blocker documented), or `UNAUTOMATABLE` (with the concrete reason the scenario cannot be truthfully executed through the direct-handler runner). Packet-level summaries may additionally use `PARTIAL` when core behavior was observed but supporting evidence remained incomplete.
+> **EXECUTION POLICY**: Every scenario MUST be executed for real — not mocked and not stubbed. AI agents executing these scenarios must run the actual commands, inspect real files, call real handlers, and verify real outputs. Valid scenario classifications are `PASS`, `FAIL`, and `SKIP` (with a specific sandbox, credential, or runtime blocker documented). A scenario that cannot be truthfully executed through the direct-handler runner is a `SKIP` whose blocker names that runner limitation.
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and its reason are persisted alongside the captured evidence for that run, so a later
+> reader can reconstruct which scenarios ran, what each returned, and why — without the original
+> operator. An outcome that exists only in a chat transcript does not count as persisted.
 
 This document combines the full manual-validation contract for the Spec Kit Memory MCP server into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide: it explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded, and where each per-feature validation file lives. The per-feature files provide the deeper execution contract for each scenario, including the user request, orchestrator prompt, execution process, source anchors, and validation criteria.
 
@@ -120,34 +126,33 @@ For each executed scenario, check:
 Scenario verdict:
 - `PASS`: all acceptance checks true
 - `FAIL`: expected behavior missing, contradictory output, or critical check failed
-- `SKIP`: a specific sandbox or runtime blocker prevented execution (document the blocker)
-- `UNAUTOMATABLE`: the scenario cannot be truthfully executed through the direct-handler runner (document why)
+- `SKIP`: a specific sandbox, credential, or runtime blocker prevented execution (document the blocker)
 
-`PARTIAL` is a packet-level summary classification only (core behavior observed, supporting evidence incomplete); it is not a valid per-scenario verdict.
+There is no partial-credit scenario verdict. A scenario whose core behavior was observed but whose supporting evidence is incomplete is a `FAIL` until the missing evidence is captured.
 
 ### Feature Verdict Rules
 
-`PARTIAL` is an aggregate evidence state, never inherited from a per-scenario `PARTIAL` (which is not a valid scenario verdict — see above):
+A feature verdict is derived from its mapped scenarios and uses the same three-outcome vocabulary:
 
-- `PASS`: all mapped scenarios for the feature are `PASS`
-- `PARTIAL`: no mapped scenario is `FAIL`, but core behavior is only partially evidenced — i.e. some mapped scenarios are `SKIP`/`UNAUTOMATABLE`, or supporting evidence for one or more `PASS` scenarios is incomplete
-- `FAIL`: any mapped scenario is `FAIL`
+- `PASS`: every mapped scenario for the feature is `PASS`
+- `SKIP`: no mapped scenario is `FAIL`, and at least one is `SKIP` with its blocker documented, so the feature is not yet evidenced
+- `FAIL`: any mapped scenario is `FAIL`, or supporting evidence for a `PASS` scenario is incomplete
 
 Hard rule:
 - Any critical-path scenario `FAIL` forces feature verdict to `FAIL`.
 
 ### Release Readiness Rule
 
-Release is `READY` only when:
+Release passes readiness only when:
 
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
-4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 421 executable scenario files (category README/package-map files are excluded) while the feature catalog contains 348 feature files.
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 422 executable scenario files (category README/package-map files are excluded) while the feature catalog contains 348 feature files.
 5. No unresolved blocking triage item remains.
-6. Orphan scenario count does not exceed the recorded reconciliation baseline (82 as of 2026-06-16 — legacy index debt, recomputed after excluding 3 category README files; the baseline may only ratchet DOWN), and zero index links are broken.
+6. Orphan scenario count is zero — every executable scenario file is linked from this root index — and zero index links are broken.
 
-Otherwise release is `NOT READY`.
+Otherwise release does not pass readiness.
 
 Deterministic coverage check (run from repository root):
 
@@ -324,7 +329,7 @@ Prompt: `Validate the 4-stage memory_search pipeline and confirm invariant-free 
 Deep-mode reformulation and HyDE candidates pass the same scope, tier, contextType and qualityThreshold filters before merge; constitutional injection obeys shouldApplyScopeFiltering; chunk reassembly accepts both snake_case and camelCase chunk metadata
 
 #### Test Execution
-> **Feature File:** [EX-005](../manual-testing-playbook/retrieval/4-stage-pipeline-architecture.md)
+> **Feature File:** [EX-005](../manual-testing-playbook/retrieval/four-stage-pipeline-architecture.md)
 > **Catalog:** [retrieval/4-stage-pipeline-architecture.md](../feature-catalog/retrieval/4-stage-pipeline-architecture.md)
 
 ### EX-006 | Memory indexing (memory_save)
@@ -662,7 +667,7 @@ Prompt: `Validate 1. Search Pipeline Features (SPECKIT_*) against memory_search(
 Accurate active/inert/retired classification; retired topics absent from active manual-test guidance
 
 #### Test Execution
-> **Feature File:** [EX-028](../manual-testing-playbook/feature-flag-reference/1-search-pipeline-features-speckit.md)
+> **Feature File:** [EX-028](../manual-testing-playbook/feature-flag-reference/search-pipeline-features-speckit.md)
 > **Catalog:** [feature-flag-reference/1-search-pipeline-features-speckit.md](../feature-catalog/feature-flag-reference/1-search-pipeline-features-speckit.md)
 
 ### EX-029 | 2. Session and Cache
@@ -676,7 +681,7 @@ Prompt: `Validate 2. Session and Cache against memory_search({ query:"DISABLE_SE
 Session/cache controls found
 
 #### Test Execution
-> **Feature File:** [EX-029](../manual-testing-playbook/feature-flag-reference/2-session-and-cache.md)
+> **Feature File:** [EX-029](../manual-testing-playbook/feature-flag-reference/session-and-cache.md)
 > **Catalog:** [feature-flag-reference/2-session-and-cache.md](../feature-catalog/feature-flag-reference/2-session-and-cache.md)
 
 ### EX-030 | 3. MCP Configuration
@@ -690,7 +695,7 @@ Prompt: `Validate 3. MCP Configuration against memory_search({ query:"MCP_MAX_ME
 MCP guardrails returned
 
 #### Test Execution
-> **Feature File:** [EX-030](../manual-testing-playbook/feature-flag-reference/3-mcp-configuration.md)
+> **Feature File:** [EX-030](../manual-testing-playbook/feature-flag-reference/mcp-configuration.md)
 > **Catalog:** [feature-flag-reference/3-mcp-configuration.md](../feature-catalog/feature-flag-reference/3-mcp-configuration.md)
 
 ### EX-031 | 4. Memory and Storage
@@ -704,7 +709,7 @@ Prompt: `Validate 4. Memory and Storage against memory_search({ query: "SPEC_KIT
 Precedence chain identified
 
 #### Test Execution
-> **Feature File:** [EX-031](../manual-testing-playbook/feature-flag-reference/4-memory-and-storage.md)
+> **Feature File:** [EX-031](../manual-testing-playbook/feature-flag-reference/memory-and-storage.md)
 > **Catalog:** [feature-flag-reference/4-memory-and-storage.md](../feature-catalog/feature-flag-reference/4-memory-and-storage.md)
 
 ### EX-032 | 5. Embedding and API
@@ -718,7 +723,7 @@ Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS
 Provider rules show explicit provider override, local-first auto mode (`ollama` before `hf-local`), cloud providers selected only by explicit `EMBEDDINGS_PROVIDER` or later fallback, and current `nomic-embed-text-v1.5` local default/fallback model IDs.
 
 #### Test Execution
-> **Feature File:** [EX-032](../manual-testing-playbook/feature-flag-reference/5-embedding-and-api.md)
+> **Feature File:** [EX-032](../manual-testing-playbook/feature-flag-reference/embedding-and-api.md)
 > **Catalog:** [feature-flag-reference/5-embedding-and-api.md](../feature-catalog/feature-flag-reference/5-embedding-and-api.md)
 
 ### EX-033 | 6. Debug and Telemetry
@@ -732,7 +737,7 @@ Prompt: `Validate 6. Debug and Telemetry against memory_search({ query:"DEBUG_TR
 Debug/telemetry controls identified
 
 #### Test Execution
-> **Feature File:** [EX-033](../manual-testing-playbook/feature-flag-reference/6-debug-and-telemetry.md)
+> **Feature File:** [EX-033](../manual-testing-playbook/feature-flag-reference/debug-and-telemetry.md)
 > **Catalog:** [feature-flag-reference/6-debug-and-telemetry.md](../feature-catalog/feature-flag-reference/6-debug-and-telemetry.md)
 
 ### EX-034 | 7. CI and Build (informational)
@@ -746,7 +751,7 @@ Prompt: `Validate 7. CI and Build (informational) against memory_search({ query:
 Branch source vars surfaced
 
 #### Test Execution
-> **Feature File:** [EX-034](../manual-testing-playbook/feature-flag-reference/7-ci-and-build-informational.md)
+> **Feature File:** [EX-034](../manual-testing-playbook/feature-flag-reference/ci-and-build-informational.md)
 > **Catalog:** [feature-flag-reference/7-ci-and-build-informational.md](../feature-catalog/feature-flag-reference/7-ci-and-build-informational.md)
 
 ### EX-035 | Startup runtime compatibility guards
@@ -1477,7 +1482,7 @@ Prompt: `Validate 4-stage pipeline refactor (R6) against the documented validati
 Query traverses all 4 stages in order; stage transitions visible in verbose metadata; stage-4 scores immutable after final stage
 
 #### Test Execution
-> **Feature File:** [049](../manual-testing-playbook/pipeline-architecture/4-stage-pipeline-refactor-r6.md)
+> **Feature File:** [049](../manual-testing-playbook/pipeline-architecture/four-stage-pipeline-refactor-r6.md)
 > **Catalog:** [pipeline-architecture/4-stage-pipeline-refactor.md](../feature-catalog/pipeline-architecture/4-stage-pipeline-refactor.md)
 
 ### 050 | MPAB chunk-to-memory aggregation (R1)
@@ -3399,7 +3404,7 @@ These 30 catalog entries are explicitly documented here even when validation is 
 | `pipeline-architecture/backend-storage-adapter-abstraction.md` | Automated only | Covered by `interfaces.vitest.ts`, `pipeline-architecture-remediation.vitest.ts`, and `vector-index-impl.vitest.ts`; no operator-facing manual step is required today |
 | `pipeline-architecture/atomic-write-then-index-api.md` | Indirect scenario coverage | Covered by 104 and atomic-save failure-injection tests |
 | `pipeline-architecture/embedding-retry-orchestrator.md` | Automated only | Covered by `retry-manager.vitest.ts` and `index-refresh.vitest.ts` |
-| `pipeline-architecture/7-layer-tool-architecture-metadata.md` | Automated only | Dispatch behavior is covered by context-server and dispatch-matrix tests |
+| `pipeline-architecture/seven-layer-tool-architecture-metadata.md` | Automated only | Dispatch behavior is covered by context-server and dispatch-matrix tests |
 | `retrieval-enhancements/contextual-tree-injection.md` | Manual + automated | Covered directly by 145 and `hybrid-search-context-headers.vitest.ts` |
 | `tooling-and-scripts/architecture-boundary-enforcement.md` | Build-time only | Enforced by build/test tooling rather than runtime playbook steps |
 | `tooling-and-scripts/watcher-delete-rename-cleanup.md` | Automated only | Covered by `mcp-server/tests/file-watcher.vitest.ts`; no dedicated manual operator scenario yet |
@@ -3548,7 +3553,7 @@ This split playbook keeps automated coverage references in three places:
 | EX-002 | Existing Features | Semantic and lexical search (memory_search) | [EX-002](../manual-testing-playbook/retrieval/semantic-and-lexical-search-memory-search.md) | [retrieval/semantic-and-lexical-search-memorysearch.md](../feature-catalog/retrieval/semantic-and-lexical-search-memorysearch.md) |
 | EX-003 | Existing Features | Trigger phrase matching (memory_match_triggers) | [EX-003](../manual-testing-playbook/retrieval/trigger-phrase-matching-memory-match-triggers.md) | [retrieval/trigger-phrase-matching-memorymatchtriggers.md](../feature-catalog/retrieval/trigger-phrase-matching-memorymatchtriggers.md) |
 | EX-004 | Existing Features | Hybrid search pipeline | [EX-004](../manual-testing-playbook/retrieval/hybrid-search-pipeline.md) | [retrieval/hybrid-search-pipeline.md](../feature-catalog/retrieval/hybrid-search-pipeline.md) |
-| EX-005 | Existing Features | 4-stage pipeline architecture | [EX-005](../manual-testing-playbook/retrieval/4-stage-pipeline-architecture.md) | [retrieval/4-stage-pipeline-architecture.md](../feature-catalog/retrieval/4-stage-pipeline-architecture.md) |
+| EX-005 | Existing Features | 4-stage pipeline architecture | [EX-005](../manual-testing-playbook/retrieval/four-stage-pipeline-architecture.md) | [retrieval/4-stage-pipeline-architecture.md](../feature-catalog/retrieval/4-stage-pipeline-architecture.md) |
 | EX-006 | Existing Features | Memory indexing (memory_save) | [EX-006](../manual-testing-playbook/mutation/memory-indexing-memory-save.md) | [mutation/memory-indexing-memorysave.md](../feature-catalog/mutation/memory-indexing-memorysave.md) |
 | EX-007 | Existing Features | Memory metadata update (memory_update) | [EX-007](../manual-testing-playbook/mutation/memory-metadata-update-memory-update.md) | [mutation/memory-metadata-update-memoryupdate.md](../feature-catalog/mutation/memory-metadata-update-memoryupdate.md) |
 | EX-008 | Existing Features | Single and folder delete (memory_delete) | [EX-008](../manual-testing-playbook/mutation/single-and-folder-delete-memory-delete.md) | [mutation/single-and-folder-delete-memorydelete.md](../feature-catalog/mutation/single-and-folder-delete-memorydelete.md) |
@@ -3571,13 +3576,13 @@ This split playbook keeps automated coverage references in three places:
 | EX-025 | Existing Features | Learning history (memory_get_learning_history) | [EX-025](../manual-testing-playbook/analysis/learning-history-memory-get-learning-history.md) | [analysis/learning-history-memorygetlearninghistory.md](../feature-catalog/analysis/learning-history-memorygetlearninghistory.md) |
 | EX-026 | Existing Features | Ablation studies (eval_run_ablation) | [EX-026](../manual-testing-playbook/evaluation/ablation-studies-eval-run-ablation.md) | [evaluation/ablation-studies-evalrunablation.md](../feature-catalog/evaluation/ablation-studies-evalrunablation.md) |
 | EX-027 | Existing Features | Reporting dashboard (eval_reporting_dashboard) | [EX-027](../manual-testing-playbook/evaluation/reporting-dashboard-eval-reporting-dashboard.md) | [evaluation/reporting-dashboard-evalreportingdashboard.md](../feature-catalog/evaluation/reporting-dashboard-evalreportingdashboard.md) |
-| EX-028 | Existing Features | 1. Search Pipeline Features (SPECKIT_*) | [EX-028](../manual-testing-playbook/feature-flag-reference/1-search-pipeline-features-speckit.md) | [feature-flag-reference/1-search-pipeline-features-speckit.md](../feature-catalog/feature-flag-reference/1-search-pipeline-features-speckit.md) |
-| EX-029 | Existing Features | 2. Session and Cache | [EX-029](../manual-testing-playbook/feature-flag-reference/2-session-and-cache.md) | [feature-flag-reference/2-session-and-cache.md](../feature-catalog/feature-flag-reference/2-session-and-cache.md) |
-| EX-030 | Existing Features | 3. MCP Configuration | [EX-030](../manual-testing-playbook/feature-flag-reference/3-mcp-configuration.md) | [feature-flag-reference/3-mcp-configuration.md](../feature-catalog/feature-flag-reference/3-mcp-configuration.md) |
-| EX-031 | Existing Features | 4. Memory and Storage | [EX-031](../manual-testing-playbook/feature-flag-reference/4-memory-and-storage.md) | [feature-flag-reference/4-memory-and-storage.md](../feature-catalog/feature-flag-reference/4-memory-and-storage.md) |
-| EX-032 | Existing Features | 5. Embedding and API | [EX-032](../manual-testing-playbook/feature-flag-reference/5-embedding-and-api.md) | [feature-flag-reference/5-embedding-and-api.md](../feature-catalog/feature-flag-reference/5-embedding-and-api.md) |
-| EX-033 | Existing Features | 6. Debug and Telemetry | [EX-033](../manual-testing-playbook/feature-flag-reference/6-debug-and-telemetry.md) | [feature-flag-reference/6-debug-and-telemetry.md](../feature-catalog/feature-flag-reference/6-debug-and-telemetry.md) |
-| EX-034 | Existing Features | 7. CI and Build (informational) | [EX-034](../manual-testing-playbook/feature-flag-reference/7-ci-and-build-informational.md) | [feature-flag-reference/7-ci-and-build-informational.md](../feature-catalog/feature-flag-reference/7-ci-and-build-informational.md) |
+| EX-028 | Existing Features | 1. Search Pipeline Features (SPECKIT_*) | [EX-028](../manual-testing-playbook/feature-flag-reference/search-pipeline-features-speckit.md) | [feature-flag-reference/1-search-pipeline-features-speckit.md](../feature-catalog/feature-flag-reference/1-search-pipeline-features-speckit.md) |
+| EX-029 | Existing Features | 2. Session and Cache | [EX-029](../manual-testing-playbook/feature-flag-reference/session-and-cache.md) | [feature-flag-reference/2-session-and-cache.md](../feature-catalog/feature-flag-reference/2-session-and-cache.md) |
+| EX-030 | Existing Features | 3. MCP Configuration | [EX-030](../manual-testing-playbook/feature-flag-reference/mcp-configuration.md) | [feature-flag-reference/3-mcp-configuration.md](../feature-catalog/feature-flag-reference/3-mcp-configuration.md) |
+| EX-031 | Existing Features | 4. Memory and Storage | [EX-031](../manual-testing-playbook/feature-flag-reference/memory-and-storage.md) | [feature-flag-reference/4-memory-and-storage.md](../feature-catalog/feature-flag-reference/4-memory-and-storage.md) |
+| EX-032 | Existing Features | 5. Embedding and API | [EX-032](../manual-testing-playbook/feature-flag-reference/embedding-and-api.md) | [feature-flag-reference/5-embedding-and-api.md](../feature-catalog/feature-flag-reference/5-embedding-and-api.md) |
+| EX-033 | Existing Features | 6. Debug and Telemetry | [EX-033](../manual-testing-playbook/feature-flag-reference/debug-and-telemetry.md) | [feature-flag-reference/6-debug-and-telemetry.md](../feature-catalog/feature-flag-reference/6-debug-and-telemetry.md) |
+| EX-034 | Existing Features | 7. CI and Build (informational) | [EX-034](../manual-testing-playbook/feature-flag-reference/ci-and-build-informational.md) | [feature-flag-reference/7-ci-and-build-informational.md](../feature-catalog/feature-flag-reference/7-ci-and-build-informational.md) |
 | EX-035 | Existing Features | Startup runtime compatibility guards | [EX-035](../manual-testing-playbook/maintenance/startup-runtime-compatibility-guards.md) | [maintenance/startup-runtime-compatibility-guards.md](../feature-catalog/maintenance/startup-runtime-compatibility-guards.md) |
 | 001 | Features | Graph channel ID fix (G1) | [001](../manual-testing-playbook/bug-fixes-and-data-integrity/graph-channel-id-fix-g1.md) | [bug-fixes-and-data-integrity/graph-channel-id-fix.md](../feature-catalog/bug-fixes-and-data-integrity/graph-channel-id-fix.md) |
 | 002 | Features | Chunk collapse deduplication (G3) | [002](../manual-testing-playbook/bug-fixes-and-data-integrity/chunk-collapse-deduplication-g3.md) | [bug-fixes-and-data-integrity/chunk-collapse-deduplication.md](../feature-catalog/bug-fixes-and-data-integrity/chunk-collapse-deduplication.md) |
@@ -3623,7 +3628,7 @@ This split playbook keeps automated coverage references in three places:
 | 046 | Features | Anchor-aware chunk thinning (R7) | [046](../manual-testing-playbook/memory-quality-and-indexing/anchor-aware-chunk-thinning-r7.md) | [memory-quality-and-indexing/anchor-aware-chunk-thinning.md](../feature-catalog/memory-quality-and-indexing/anchor-aware-chunk-thinning.md) |
 | 047 | Features | Encoding-intent capture at index time (R16) | [047](../manual-testing-playbook/memory-quality-and-indexing/encoding-intent-capture-at-index-time-r16.md) | [memory-quality-and-indexing/encoding-intent-capture-at-index-time.md](../feature-catalog/memory-quality-and-indexing/encoding-intent-capture-at-index-time.md) |
 | 048 | Features | Auto entity extraction (R10) | [048](../manual-testing-playbook/memory-quality-and-indexing/auto-entity-extraction-r10.md) | [memory-quality-and-indexing/auto-entity-extraction.md](../feature-catalog/memory-quality-and-indexing/auto-entity-extraction.md) |
-| 049 | Features | 4-stage pipeline refactor (R6) | [049](../manual-testing-playbook/pipeline-architecture/4-stage-pipeline-refactor-r6.md) | [pipeline-architecture/4-stage-pipeline-refactor.md](../feature-catalog/pipeline-architecture/4-stage-pipeline-refactor.md) |
+| 049 | Features | 4-stage pipeline refactor (R6) | [049](../manual-testing-playbook/pipeline-architecture/four-stage-pipeline-refactor-r6.md) | [pipeline-architecture/4-stage-pipeline-refactor.md](../feature-catalog/pipeline-architecture/4-stage-pipeline-refactor.md) |
 | 050 | Features | MPAB chunk-to-memory aggregation (R1) | [050](../manual-testing-playbook/pipeline-architecture/mpab-chunk-to-memory-aggregation-r1.md) | [pipeline-architecture/mpab-chunk-to-memory-aggregation.md](../feature-catalog/pipeline-architecture/mpab-chunk-to-memory-aggregation.md) |
 | 051 | Features | Chunk ordering preservation (B2) | [051](../manual-testing-playbook/pipeline-architecture/chunk-ordering-preservation-b2.md) | [pipeline-architecture/chunk-ordering-preservation.md](../feature-catalog/pipeline-architecture/chunk-ordering-preservation.md) |
 | 052 | Features | Template anchor optimization (S2) | [052](../manual-testing-playbook/pipeline-architecture/template-anchor-optimization-s2.md) | [pipeline-architecture/template-anchor-optimization.md](../feature-catalog/pipeline-architecture/template-anchor-optimization.md) |
@@ -3782,7 +3787,7 @@ This split playbook keeps automated coverage references in three places:
 | 202 | Features | Backend storage adapter abstraction | [202](../manual-testing-playbook/pipeline-architecture/backend-storage-adapter-abstraction.md) | [pipeline-architecture/backend-storage-adapter-abstraction.md](../feature-catalog/pipeline-architecture/backend-storage-adapter-abstraction.md) |
 | 203 | Features | Atomic write-then-index API | [203](../manual-testing-playbook/pipeline-architecture/atomic-write-then-index-api.md) | [pipeline-architecture/atomic-write-then-index-api.md](../feature-catalog/pipeline-architecture/atomic-write-then-index-api.md) |
 | 204 | Features | Embedding retry orchestrator | [204](../manual-testing-playbook/pipeline-architecture/embedding-retry-orchestrator.md) | [pipeline-architecture/embedding-retry-orchestrator.md](../feature-catalog/pipeline-architecture/embedding-retry-orchestrator.md) |
-| 205 | Features | 7-layer tool architecture metadata | [205](../manual-testing-playbook/pipeline-architecture/7-layer-tool-architecture-metadata.md) | [pipeline-architecture/7-layer-tool-architecture-metadata.md](../feature-catalog/pipeline-architecture/7-layer-tool-architecture-metadata.md) |
+| 205 | Features | 7-layer tool architecture metadata | [205](../manual-testing-playbook/pipeline-architecture/seven-layer-tool-architecture-metadata.md) | [pipeline-architecture/7-layer-tool-architecture-metadata.md](../feature-catalog/pipeline-architecture/7-layer-tool-architecture-metadata.md) |
 | 206 | Features | Architecture boundary enforcement | [206](../manual-testing-playbook/tooling-and-scripts/architecture-boundary-enforcement.md) | [tooling-and-scripts/architecture-boundary-enforcement.md](../feature-catalog/tooling-and-scripts/architecture-boundary-enforcement.md) |
 | 207 | Features | Watcher delete/rename cleanup | [207](../manual-testing-playbook/tooling-and-scripts/watcher-delete-rename-cleanup.md) | [tooling-and-scripts/watcher-delete-rename-cleanup.md](../feature-catalog/tooling-and-scripts/watcher-delete-rename-cleanup.md) |
 | 208 | Features | Template compliance contract enforcement | [208](../manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md) | [tooling-and-scripts/template-compliance-contract-enforcement.md](../feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md) |
@@ -3831,13 +3836,13 @@ This split playbook keeps automated coverage references in three places:
 | 331 | Doctor Commands | /doctor deep-loop lazy-init from iteration folders | [331](../manual-testing-playbook/doctor-commands/doctor-deep-loop-lazy-init.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
 | 332 | Doctor Commands | /doctor deep-loop empty graph + no iteration source | [332](../manual-testing-playbook/doctor-commands/doctor-deep-loop-empty-no-source.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
 | 333 | Doctor Commands | /doctor deep-loop convergence gold-battery ≥3 iterations | [333](../manual-testing-playbook/doctor-commands/doctor-deep-loop-convergence.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 338 | Doctor Commands | /doctor:update G5 failure injection mid-rebuild | [338](../manual-testing-playbook/doctor-commands/doctor-update-G5-confirm-failure-injection.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
-| 339 | Doctor Commands | /doctor:update G6 concurrent dispatch refusal via flock | [339](../manual-testing-playbook/doctor-commands/doctor-update-G6-concurrent.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
-| 340 | Doctor Commands | /doctor:update G7 SIGINT mid-rebuild + snapshot restore | [340](../manual-testing-playbook/doctor-commands/doctor-update-G7-sigint.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
-| 341 | Doctor Commands | /doctor:update G8 migration manifest gap detection | [341](../manual-testing-playbook/doctor-commands/doctor-update-G8-migration-gap.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
-| 342 | Doctor Commands | /doctor:update G9 cross-subsystem dashboard render | [342](../manual-testing-playbook/doctor-commands/doctor-update-G9-dashboard.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 338 | Doctor Commands | /doctor:update G5 failure injection mid-rebuild | [338](../manual-testing-playbook/doctor-commands/doctor-update-g5-confirm-failure-injection.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 339 | Doctor Commands | /doctor:update G6 concurrent dispatch refusal via flock | [339](../manual-testing-playbook/doctor-commands/doctor-update-g6-concurrent.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 340 | Doctor Commands | /doctor:update G7 SIGINT mid-rebuild + snapshot restore | [340](../manual-testing-playbook/doctor-commands/doctor-update-g7-sigint.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 341 | Doctor Commands | /doctor:update G8 migration manifest gap detection | [341](../manual-testing-playbook/doctor-commands/doctor-update-g8-migration-gap.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
+| 342 | Doctor Commands | /doctor:update G9 cross-subsystem dashboard render | [342](../manual-testing-playbook/doctor-commands/doctor-update-g9-dashboard.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
 | 344 | Doctor Commands | /doctor:update tier-aware single interactive flow | [344](../manual-testing-playbook/doctor-commands/doctor-update-tier-aware-default.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
-| 345 | Doctor Commands | Version migration 3.3.0.0 → 3.4.1.0 end-to-end | [345](../manual-testing-playbook/doctor-commands/version-migration-3.3.0.0-to-3.4.1.0.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
+| 345 | Doctor Commands | Version migration 3.3.0.0 → 3.4.1.0 end-to-end | [345](../manual-testing-playbook/doctor-commands/version-migration-3-3-0-0-to-3-4-1-0.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
 | 346 | Doctor Commands | Version migration cleanup-legacy with per-file prompts | [346](../manual-testing-playbook/doctor-commands/version-migration-cleanup-legacy.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
 | 347 | Doctor Commands | Version migration no-op (already-current) | [347](../manual-testing-playbook/doctor-commands/version-migration-no-op.md) | [migration-manifest.json](../../../specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
 | 416 | Memory Quality And Indexing | vec_memories KNN dual-write and factory shard fallback | [416](../manual-testing-playbook/memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md) | [memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md](../feature-catalog/memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md) |
@@ -3880,3 +3885,88 @@ This split playbook keeps automated coverage references in three places:
 | 455 | Tooling And Scripts | validate.sh dist-freshness backstop (compiled validation orchestrator, exit 3) | [455](../manual-testing-playbook/tooling-and-scripts/validate-sh-dist-freshness-backstop.md) | [tooling-and-scripts/dist-freshness-enforcement.md](../feature-catalog/tooling-and-scripts/dist-freshness-enforcement.md) |
 | 456 | Tooling And Scripts | Canonical-first spec-root resolution | [456](../manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md) | [tooling-and-scripts/canonical-first-spec-root-resolution.md](../feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md) |
 | 457 | UX Hooks | Cross-runtime directive-lifecycle dedup | [457](../manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md) | [ux-hooks/directive-lifecycle-dedup.md](../feature-catalog/ux-hooks/directive-lifecycle-dedup.md) |
+| analysis-causal-stats-empty-graph-edge | Analysis | Causal stats empty graph edge | [analysis-causal-stats-empty-graph-edge](../manual-testing-playbook/analysis/causal-stats-empty-graph-edge.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| analysis-code-graph-edge-explanation-blast-radius-uplift | Analysis | Code Graph edge explanation and blast radius uplift | [analysis-code-graph-edge-explanation-blast-radius-uplift](../manual-testing-playbook/analysis/code-graph-edge-explanation-blast-radius-uplift.md) | [analysis/code-graph-edge-explanation-blast-radius-uplift.md](../feature-catalog/analysis/code-graph-edge-explanation-blast-radius-uplift.md) |
+| bug-fixes-and-data-integrity-error-response-credential-sanitization | Bug Fixes And Data Integrity | Error response credential sanitization | [bug-fixes-and-data-integrity-error-response-credential-sanitization](../manual-testing-playbook/bug-fixes-and-data-integrity/error-response-credential-sanitization.md) | [bug-fixes-and-data-integrity/error-response-credential-sanitization.md](../feature-catalog/bug-fixes-and-data-integrity/error-response-credential-sanitization.md) |
+| bug-fixes-and-data-integrity-search-under-surfacing-display-floor | Bug Fixes And Data Integrity | Search under-surfacing display floor | [bug-fixes-and-data-integrity-search-under-surfacing-display-floor](../manual-testing-playbook/bug-fixes-and-data-integrity/search-under-surfacing-display-floor.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 288 | Context Preservation | Passive context enrichment | [288](../manual-testing-playbook/context-preservation/passive-context-enrichment.md) | [context-preservation/passive-context-enrichment.md](../feature-catalog/context-preservation/passive-context-enrichment.md) |
+| 287 | Context Preservation | Query-intent classifier | [287](../manual-testing-playbook/context-preservation/query-intent-classifier.md) | [context-preservation/query-intent-classifier.md](../feature-catalog/context-preservation/query-intent-classifier.md) |
+| context-preservation-resource-map-template | Context Preservation | Resource map template | [context-preservation-resource-map-template](../manual-testing-playbook/context-preservation/resource-map-template.md) | [context-preservation/resource-map-template.md](../feature-catalog/context-preservation/resource-map-template.md) |
+| discovery-detect-changes-preflight | Discovery | detect_changes preflight (Code Graph) | [discovery-detect-changes-preflight](../manual-testing-playbook/discovery/detect-changes-preflight.md) | [discovery/detect-changes-preflight.md](../feature-catalog/discovery/detect-changes-preflight.md) |
+| 015 | Discovery | Session bootstrap reader-ready context | [015](../manual-testing-playbook/discovery/session-bootstrap-reader-ready-context.md) | [discovery/session-bootstrap-reader-ready-context.md](../feature-catalog/discovery/session-bootstrap-reader-ready-context.md) |
+| discovery-session-health-shared-payload | Discovery | Session health shared payload | [discovery-session-health-shared-payload](../manual-testing-playbook/discovery/session-health-shared-payload.md) | [discovery/session-health-shared-payload.md](../feature-catalog/discovery/session-health-shared-payload.md) |
+| discovery-session-resume-continuity-ladder | Discovery | Session resume continuity ladder | [discovery-session-resume-continuity-ladder](../manual-testing-playbook/discovery/session-resume-continuity-ladder.md) | [discovery/session-resume-continuity-ladder.md](../feature-catalog/discovery/session-resume-continuity-ladder.md) |
+| 217 | Evaluation And Measurement | Evaluation API Surface | [217](../manual-testing-playbook/evaluation-and-measurement/evaluation-api-surface.md) | [evaluation-and-measurement/evaluation-api-surface.md](../feature-catalog/evaluation-and-measurement/evaluation-api-surface.md) |
+| evaluation-eval-ablation-edge-empty-dataset | Evaluation | Eval ablation edge empty dataset | [evaluation-eval-ablation-edge-empty-dataset](../manual-testing-playbook/evaluation/eval-ablation-edge-empty-dataset.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| evaluation-eval-dashboard-health-and-empty-state | Evaluation | Eval dashboard health and empty state | [evaluation-eval-dashboard-health-and-empty-state](../manual-testing-playbook/evaluation/eval-dashboard-health-and-empty-state.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 224 | Feature Flag Reference | Filter Config Contract | [224](../manual-testing-playbook/feature-flag-reference/filter-config-contract.md) | [feature-flag-reference/filter-config-contract.md](../feature-catalog/feature-flag-reference/filter-config-contract.md) |
+| feature-flag-reference-memory-roadmap-capability-flags | Feature Flag Reference | 125: Memory roadmap flags | [feature-flag-reference-memory-roadmap-capability-flags](../manual-testing-playbook/feature-flag-reference/memory-roadmap-capability-flags.md) | [feature-flag-reference/memory-roadmap-capability-flags.md](../feature-catalog/feature-flag-reference/memory-roadmap-capability-flags.md) |
+| 223 | Feature Flag Reference | Runtime Config Contract | [223](../manual-testing-playbook/feature-flag-reference/runtime-config-contract.md) | [feature-flag-reference/runtime-config-contract.md](../feature-catalog/feature-flag-reference/runtime-config-contract.md) |
+| 220 | Governance | Constitutional Gate-Enforcement Rule Pack | [220](../manual-testing-playbook/governance/constitutional-gate-enforcement-rule-pack.md) | [governance/constitutional-gate-enforcement-rule-pack.md](../feature-catalog/governance/constitutional-gate-enforcement-rule-pack.md) |
+| governance-governed-ingest-cancel-lifecycle | Governance | Governed ingest cancel lifecycle | [governance-governed-ingest-cancel-lifecycle](../manual-testing-playbook/governance/governed-ingest-cancel-lifecycle.md) | [governance/governed-ingest-cancel-lifecycle.md](../feature-catalog/governance/governed-ingest-cancel-lifecycle.md) |
+| graph-signal-activation-temporal-edges | Graph Signal Activation | Temporal edge validity | [graph-signal-activation-temporal-edges](../manual-testing-playbook/graph-signal-activation/temporal-edges.md) | [graph-signal-activation/temporal-edges.md](../feature-catalog/graph-signal-activation/temporal-edges.md) |
+| 232 | Implement And Remove Deprecated Features | Adaptive-fusion mode flag | [232](../manual-testing-playbook/implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md) | [implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md](../feature-catalog/implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md) |
+| 231 | Implement And Remove Deprecated Features | Inert scoring flags and compatibility shims | [231](../manual-testing-playbook/implement-and-remove-deprecated-features/inert-scoring-flags.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 229 | Implement And Remove Deprecated Features | Lazy-loading migration and warmup compatibility | [229](../manual-testing-playbook/implement-and-remove-deprecated-features/lazy-loading-migration.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 228 | Implement And Remove Deprecated Features | Retired runtime shims and inert compatibility flags | [228](../manual-testing-playbook/implement-and-remove-deprecated-features/retired-runtime-shims.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 230 | Implement And Remove Deprecated Features | Shadow-scoring retirement | [230](../manual-testing-playbook/implement-and-remove-deprecated-features/shadow-scoring-retirement.md) | [implement-and-remove-deprecated-features/shadow-scoring-retirement.md](../feature-catalog/implement-and-remove-deprecated-features/shadow-scoring-retirement.md) |
+| 407 | Local LLM Query Intelligence | Adversarial near-miss (lexical overlap, semantic distance) | [407](../manual-testing-playbook/local-llm-query-intelligence/adversarial-near-miss.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 412 | Local LLM Query Intelligence | Causal coverage under bulk save (does the local LLM cluster correctly?) | [412](../manual-testing-playbook/local-llm-query-intelligence/causal-coverage-under-bulk-save.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 411 | Local LLM Query Intelligence | Causal graph link quality (does the local LLM connect related memories?) | [411](../manual-testing-playbook/local-llm-query-intelligence/causal-graph-link-quality.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 403 | Local LLM Query Intelligence | Code-intent matching (implementation vs docs) | [403](../manual-testing-playbook/local-llm-query-intelligence/code-intent-matching.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 408 | Local LLM Query Intelligence | Compound concept synthesis | [408](../manual-testing-playbook/local-llm-query-intelligence/compound-concept-synthesis.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 415 | Local LLM Query Intelligence | Concurrent multi-AI safety (save during search) | [415](../manual-testing-playbook/local-llm-query-intelligence/concurrent-multi-ai-safety.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 414 | Local LLM Query Intelligence | Cross-AI memory handoff (one AI stores, another retrieves) | [414](../manual-testing-playbook/local-llm-query-intelligence/cross-ai-memory-handoff.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 404 | Local LLM Query Intelligence | Disambiguation under context | [404](../manual-testing-playbook/local-llm-query-intelligence/disambiguation-under-context.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 413 | Local LLM Query Intelligence | Drift detection quality (memory_drift_why explainability) | [413](../manual-testing-playbook/local-llm-query-intelligence/drift-detection-quality.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| local-llm-query-intelligence-llm-made-memory-recall | Local LLM Query Intelligence | 409 - LLM-made memory recall (round-trip quality) | [local-llm-query-intelligence-llm-made-memory-recall](../manual-testing-playbook/local-llm-query-intelligence/llm-made-memory-recall.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 405 | Local LLM Query Intelligence | Multi-aspect query synthesis | [405](../manual-testing-playbook/local-llm-query-intelligence/multi-aspect-query-synthesis.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 401 | Local LLM Query Intelligence | Paraphrase recall | [401](../manual-testing-playbook/local-llm-query-intelligence/paraphrase-recall.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 410 | Local LLM Query Intelligence | Query latency + throughput under realistic load | [410](../manual-testing-playbook/local-llm-query-intelligence/query-latency-and-throughput.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 406 | Local LLM Query Intelligence | Specificity ladder | [406](../manual-testing-playbook/local-llm-query-intelligence/specificity-ladder.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| local-llm-query-intelligence-synonymy-across-vocabularies | Local LLM Query Intelligence | 402 - Synonymy across vocabularies | [local-llm-query-intelligence-synonymy-across-vocabularies](../manual-testing-playbook/local-llm-query-intelligence/synonymy-across-vocabularies.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 279 | Maintenance | Retention sweep dry-run no-op | [279](../manual-testing-playbook/maintenance/retention-sweep-dry-run-no-op.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| memory-quality-and-indexing-canonical-continuity-save-substrate | Memory Quality And Indexing | Canonical continuity save substrate | [memory-quality-and-indexing-canonical-continuity-save-substrate](../manual-testing-playbook/memory-quality-and-indexing/canonical-continuity-save-substrate.md) | [memory-quality-and-indexing/canonical-continuity-save-substrate.md](../feature-catalog/memory-quality-and-indexing/canonical-continuity-save-substrate.md) |
+| memory-quality-and-indexing-memory-causal-trust-display | Memory Quality And Indexing | Memory causal trust display | [memory-quality-and-indexing-memory-causal-trust-display](../manual-testing-playbook/memory-quality-and-indexing/memory-causal-trust-display.md) | [memory-quality-and-indexing/memory-causal-trust-display.md](../feature-catalog/memory-quality-and-indexing/memory-causal-trust-display.md) |
+| 201 | Memory Quality And Indexing | Spec-doc structure validator and continuity frontmatter | [201](../manual-testing-playbook/memory-quality-and-indexing/spec-doc-structure-validator-and-continuity-frontmatter.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 219 | Pipeline Architecture | Embeddings and Retry API | [219](../manual-testing-playbook/pipeline-architecture/embeddings-and-retry-api.md) | [pipeline-architecture/embeddings-and-retry-api.md](../feature-catalog/pipeline-architecture/embeddings-and-retry-api.md) |
+| 218 | Pipeline Architecture | MCP Server Public API Barrel | [218](../manual-testing-playbook/pipeline-architecture/mcp-server-public-api-barrel.md) | [pipeline-architecture/mcp-server-public-api-barrel.md](../feature-catalog/pipeline-architecture/mcp-server-public-api-barrel.md) |
+| pipeline-architecture-routing-telemetry-and-graph-channel-invocation | Pipeline Architecture | Routing telemetry and graph-channel invocation (012) | [pipeline-architecture-routing-telemetry-and-graph-channel-invocation](../manual-testing-playbook/pipeline-architecture/routing-telemetry-and-graph-channel-invocation.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| plugins-and-hooks-completion-evidence-sentinel | Plugins And Hooks | Completion Evidence Sentinel | [plugins-and-hooks-completion-evidence-sentinel](../manual-testing-playbook/plugins-and-hooks/completion-evidence-sentinel.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| plugins-and-hooks-dist-freshness-guard | Plugins And Hooks | Dist Freshness Guard | [plugins-and-hooks-dist-freshness-guard](../manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| plugins-and-hooks-session-cleanup-plugin | Plugins And Hooks | Session Cleanup Plugin | [plugins-and-hooks-session-cleanup-plugin](../manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| plugins-and-hooks-spec-memory-plugin | Plugins And Hooks | Spec Memory OpenCode Plugin | [plugins-and-hooks-spec-memory-plugin](../manual-testing-playbook/plugins-and-hooks/spec-memory-plugin.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| plugins-and-hooks-spec-mutation-gate-enforce | Plugins And Hooks | Spec Mutation Gate Enforce | [plugins-and-hooks-spec-mutation-gate-enforce](../manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| plugins-and-hooks-speckit-completion-exposer | Plugins And Hooks | Speckit Completion Exposer | [plugins-and-hooks-speckit-completion-exposer](../manual-testing-playbook/plugins-and-hooks/speckit-completion-exposer.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| query-intelligence-graph-channel-preservation | Query Intelligence | Graph channel preservation | [query-intelligence-graph-channel-preservation](../manual-testing-playbook/query-intelligence/graph-channel-preservation.md) | [query-intelligence/graph-channel-preservation.md](../feature-catalog/query-intelligence/graph-channel-preservation.md) |
+| query-intelligence-graph-concept-routing | Query Intelligence | Graph concept routing | [query-intelligence-graph-concept-routing](../manual-testing-playbook/query-intelligence/graph-concept-routing.md) | [query-intelligence/graph-concept-routing.md](../feature-catalog/query-intelligence/graph-concept-routing.md) |
+| 227 | Remediation Revalidation | Feedback-driven revalidation | [227](../manual-testing-playbook/remediation-revalidation/feedback-driven-revalidation.md) | [remediation-revalidation/feedback-driven-revalidation.md](../feature-catalog/remediation-revalidation/feedback-driven-revalidation.md) |
+| 226 | Remediation Revalidation | Memory health auto-repair | [226](../manual-testing-playbook/remediation-revalidation/memory-health-auto-repair.md) | [remediation-revalidation/memory-health-auto-repair.md](../feature-catalog/remediation-revalidation/memory-health-auto-repair.md) |
+| 225 | Remediation Revalidation | Runtime remediation, revalidation, and auto-repair workflows | [225](../manual-testing-playbook/remediation-revalidation/remediation-runtime-surface.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| retrieval-enhancements-causal-boost-graduated | Retrieval Enhancements | Causal graph boost graduated | [retrieval-enhancements-causal-boost-graduated](../manual-testing-playbook/retrieval-enhancements/causal-boost-graduated.md) | [retrieval-enhancements/causal-boost-graduated.md](../feature-catalog/retrieval-enhancements/causal-boost-graduated.md) |
+| 148 | Retrieval Enhancements | Community-level search fallback | [148](../manual-testing-playbook/retrieval-enhancements/community-search-fallback.md) | [retrieval-enhancements/community-search-fallback.md](../feature-catalog/retrieval-enhancements/community-search-fallback.md) |
+| retrieval-enhancements-dual-level-retrieval | Retrieval Enhancements | Dual-level retrieval | [retrieval-enhancements-dual-level-retrieval](../manual-testing-playbook/retrieval-enhancements/dual-level-retrieval.md) | [retrieval-enhancements/dual-level-retrieval.md](../feature-catalog/retrieval-enhancements/dual-level-retrieval.md) |
+| retrieval-enhancements-session-boost-graduated | Retrieval Enhancements | Session attention boost graduated | [retrieval-enhancements-session-boost-graduated](../manual-testing-playbook/retrieval-enhancements/session-boost-graduated.md) | [retrieval-enhancements/session-boost-graduated.md](../feature-catalog/retrieval-enhancements/session-boost-graduated.md) |
+| 01 | Stress Testing | Run stress cycle | [01](../manual-testing-playbook/stress-testing/run-stress-cycle.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 430 | Tooling And Scripts | code-index CLI Blocked-Read Rendering | [430](../manual-testing-playbook/tooling-and-scripts/cli-blocked-read-rendering.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 437 | Tooling And Scripts | 028 CLI Stress: Numeric-Coercion Edge Args | [437](../manual-testing-playbook/tooling-and-scripts/cli-stress-numeric-coercion-edge-args.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 240 | Tooling And Scripts | Core Workflow Infrastructure | [240](../manual-testing-playbook/tooling-and-scripts/core-workflow-infrastructure.md) | [tooling-and-scripts/core-workflow-infrastructure.md](../feature-catalog/tooling-and-scripts/core-workflow-infrastructure.md) |
+| tooling-and-scripts-debug-delegation-scaffold-generator | Tooling And Scripts | DBG-SCAF-001 -- Debug-delegation scaffold generator + failure-threshold prompt rehearsal | [tooling-and-scripts-debug-delegation-scaffold-generator](../manual-testing-playbook/tooling-and-scripts/debug-delegation-scaffold-generator.md) | [tooling-and-scripts/debug-delegation-scaffold-generator.md](../feature-catalog/tooling-and-scripts/debug-delegation-scaffold-generator.md) |
+| 281 | Tooling And Scripts | Embedder list registry inventory | [281](../manual-testing-playbook/tooling-and-scripts/embedder-list-registry-inventory.md) | [tooling-and-scripts/embedder-list-registry-inventory.md](../feature-catalog/tooling-and-scripts/embedder-list-registry-inventory.md) |
+| 282 | Tooling And Scripts | Embedder set dry-run and validation | [282](../manual-testing-playbook/tooling-and-scripts/embedder-set-dry-run-and-validation.md) | [tooling-and-scripts/embedder-set-dry-run-and-validation.md](../feature-catalog/tooling-and-scripts/embedder-set-dry-run-and-validation.md) |
+| 283 | Tooling And Scripts | Embedder status job and active pointer | [283](../manual-testing-playbook/tooling-and-scripts/embedder-status-job-and-active-pointer.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 235 | Tooling And Scripts | Eval Runner CLI | [235](../manual-testing-playbook/tooling-and-scripts/eval-runner-cli.md) | [tooling-and-scripts/eval-runner-cli.md](../feature-catalog/tooling-and-scripts/eval-runner-cli.md) |
+| 245 | Tooling And Scripts | Evaluation, benchmark, and import-policy tooling | [245](../manual-testing-playbook/tooling-and-scripts/evaluation-benchmark-and-import-policy-tooling.md) | [tooling-and-scripts/evaluation-benchmark-and-import-policy-tooling.md](../feature-catalog/tooling-and-scripts/evaluation-benchmark-and-import-policy-tooling.md) |
+| tooling-and-scripts-graph-degraded-stress-cell-isolation | Tooling And Scripts | Graph degraded stress cell with SPEC_KIT_DB_DIR isolation | [tooling-and-scripts-graph-degraded-stress-cell-isolation](../manual-testing-playbook/tooling-and-scripts/graph-degraded-stress-cell-isolation.md) | [tooling-and-scripts/graph-degraded-stress-cell-isolation.md](../feature-catalog/tooling-and-scripts/graph-degraded-stress-cell-isolation.md) |
+| tooling-and-scripts-mcp-daemon-rebuild-restart-live-probe | Tooling And Scripts | MCP daemon rebuild, restart, and live-probe protocol | [tooling-and-scripts-mcp-daemon-rebuild-restart-live-probe](../manual-testing-playbook/tooling-and-scripts/mcp-daemon-rebuild-restart-live-probe.md) | [tooling-and-scripts/mcp-daemon-rebuild-restart-live-probe.md](../feature-catalog/tooling-and-scripts/mcp-daemon-rebuild-restart-live-probe.md) |
+| 239 | Tooling And Scripts | Memory Maintenance and Migration CLIs | [239](../manual-testing-playbook/tooling-and-scripts/memory-maintenance-and-migration-clis.md) | [tooling-and-scripts/memory-maintenance-and-migration-clis.md](../feature-catalog/tooling-and-scripts/memory-maintenance-and-migration-clis.md) |
+| 247 | Tooling And Scripts | Memory Quality KPI Reporting | [247](../manual-testing-playbook/tooling-and-scripts/memory-quality-kpi-reporting.md) | [tooling-and-scripts/memory-quality-kpi-reporting.md](../feature-catalog/tooling-and-scripts/memory-quality-kpi-reporting.md) |
+| 234 | Tooling And Scripts | Ops Self-Healing Runbooks | [234](../manual-testing-playbook/tooling-and-scripts/ops-self-healing-runbooks.md) | [tooling-and-scripts/ops-self-healing-runbooks.md](../feature-catalog/tooling-and-scripts/ops-self-healing-runbooks.md) |
+| 241 | Tooling And Scripts | Session Extraction and Enrichment | [241](../manual-testing-playbook/tooling-and-scripts/session-extraction-and-enrichment.md) | [tooling-and-scripts/session-extraction-and-enrichment.md](../feature-catalog/tooling-and-scripts/session-extraction-and-enrichment.md) |
+| 243 | Tooling And Scripts | Setup, Native Module Health, and MCP Installation | [243](../manual-testing-playbook/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md) | [tooling-and-scripts/setup-native-module-health-and-mcp-installation.md](../feature-catalog/tooling-and-scripts/setup-native-module-health-and-mcp-installation.md) |
+| 242 | Tooling And Scripts | Spec-Folder Detection and Description Metadata | [242](../manual-testing-playbook/tooling-and-scripts/spec-folder-detection-and-description.md) | [tooling-and-scripts/spec-folder-detection-and-description.md](../feature-catalog/tooling-and-scripts/spec-folder-detection-and-description.md) |
+| 237 | Tooling And Scripts | Spec Lifecycle Automation | [237](../manual-testing-playbook/tooling-and-scripts/spec-lifecycle-automation.md) | [tooling-and-scripts/spec-lifecycle-automation.md](../feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md) |
+| 119-A | UX Hooks | Comment Hygiene — Checker Script Baseline | [119-A](../manual-testing-playbook/ux-hooks/comment-hygiene-checker-baseline.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 119-B | UX Hooks | Comment Hygiene — Claude Code PostToolUse Hook | [119-B](../manual-testing-playbook/ux-hooks/comment-hygiene-claude-code-hook.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| 119-C | UX Hooks | Comment Hygiene — OpenCode Plugin Injection + Pre-Commit Gate | [119-C](../manual-testing-playbook/ux-hooks/comment-hygiene-opencode-plugin.md) | *(playbook-only scenario; no matching feature-catalog entry)* |
+| ux-hooks-result-provenance | UX Hooks | Result provenance (graph evidence) | [ux-hooks-result-provenance](../manual-testing-playbook/ux-hooks/result-provenance.md) | [ux-hooks/result-provenance.md](../feature-catalog/ux-hooks/result-provenance.md) |

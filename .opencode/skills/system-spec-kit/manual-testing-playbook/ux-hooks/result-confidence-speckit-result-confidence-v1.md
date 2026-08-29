@@ -174,8 +174,8 @@ No per-result confidence scores, label assignments, driver lists, or requestQual
 
 ### Pass / Fail
 
-- **Status**: BLOCKED
-- **Reason**: `SPECKIT_RESULT_CONFIDENCE` is unset, but the required real `memory_search` result output could not be produced because native MCP rejected the generated request and the CLI fallback reported stale dist artifacts requiring `npm run build`, which would modify files outside the allowed write path.
+- **Pass**: Per-result confidence uses 3-factor heuristic weighting (margin/channel/anchor) blended with a score-prior calibration term, labels match thresholds, and drivers are reported.
+- **Fail**: Heuristic factors missing, thresholds wrong, labels missing, or LLM called in hot path.
 
 ### Failure Triage
 

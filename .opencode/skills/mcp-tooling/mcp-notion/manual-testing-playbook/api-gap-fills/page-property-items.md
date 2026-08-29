@@ -23,7 +23,7 @@ Silent truncation is a correctness trap, not a crash -- an agent reading only `r
 - Feature Name: Page Property Items
 - Scenario Objective: Read a page's relation property via the MCP, confirm it is truncated (or note the item count), then fetch the same property via the direct endpoint and confirm it returns the full paginated set.
 - Exact Prompt: `"Read a page whose relation property has more than 25 items via the MCP, then fetch the full list via the direct property-item endpoint."`
-- Exact Command Sequence: `1. tool_info("notion.notion_retrieve-a-page") -> 2. notion["notion_retrieve-a-page"]({ page_id: "<page_id>" }) -> 3. GET https://api.notion.com/v1/pages/<page_id>/properties/<property_id>?page_size=100 (Bearer $notion_NOTION_TOKEN, Notion-Version: 2025-09-03), following start_cursor until has_more is false`
+- Exact Command Sequence: `1. tool_info("notion.notion_retrieve-a-page") -> 2. notion["notion_retrieve-a-page"] ({ page_id: "<page_id>" }) -> 3. GET https://api.notion.com/v1/pages/<page_id>/properties/<property_id>?page_size=100 (Bearer $notion_NOTION_TOKEN, Notion-Version: 2025-09-03), following start_cursor until has_more is false`
 - Expected Signals: Step 2 shows the relation property capped near 25 items; Step 3 returns the full item count via `next_url`/`start_cursor` pagination until `has_more: false`.
 - Evidence: the MCP-read item count, the direct-call paginated item count, and a side-by-side comparison of the two.
 - Pass/Fail Criteria: PASS if the direct call's item count exceeds the MCP's truncated count and matches the true total; SKIP if no scratch page pre-seeded with a many-item relation exists (named blocker: no scratch data ready); FAIL if the direct call also truncates or errors.
@@ -44,7 +44,7 @@ A scratch page pre-seeded with a relation property holding more than 25 items is
 ### Commands
 
 1. `tool_info("notion.notion_retrieve-a-page")`.
-2. `notion["notion_retrieve-a-page"]({ page_id: "<page_id>" })`.
+2. `notion["notion_retrieve-a-page"] ({ page_id: "<page_id>" })`.
 3. `GET https://api.notion.com/v1/pages/<page_id>/properties/<property_id>?page_size=100` (Bearer `$notion_NOTION_TOKEN`, `Notion-Version: 2025-09-03`); repeat with `start_cursor` until `has_more` is `false`.
 
 ### Expected
@@ -69,7 +69,7 @@ Capture the MCP-read item count, the direct-call's full paginated item count, an
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GAP-003 | Page Property Items | Verify the direct call recovers the full list past the ~25-item MCP truncation | `"Read a page whose relation property has more than 25 items via the MCP, then fetch the full list via the direct property-item endpoint."` | 1. `tool_info(...)` -> 2. `notion["notion_retrieve-a-page"]({...})` -> 3. `GET /v1/pages/<id>/properties/<id>?page_size=100` (paginated) | MCP shows truncated property; direct call returns full paginated set | MCP item count, direct-call item count, comparison | PASS if direct call exceeds and matches true total; SKIP if no pre-seeded scratch page; FAIL if direct call also truncates or errors | Confirm scratch data, confirm version header, confirm token source |
+| GAP-003 | Page Property Items | Verify the direct call recovers the full list past the ~25-item MCP truncation | `"Read a page whose relation property has more than 25 items via the MCP, then fetch the full list via the direct property-item endpoint."` | 1. `tool_info(...)` -> 2. `notion["notion_retrieve-a-page"] ({...})` -> 3. `GET /v1/pages/<id>/properties/<id>?page_size=100` (paginated) | MCP shows truncated property; direct call returns full paginated set | MCP item count, direct-call item count, comparison | PASS if direct call exceeds and matches true total; SKIP if no pre-seeded scratch page; FAIL if direct call also truncates or errors | Confirm scratch data, confirm version header, confirm token source |
 
 Cleanup: none (read-only). Reuse the existing pre-seeded scratch page; do not create new relation data.
 

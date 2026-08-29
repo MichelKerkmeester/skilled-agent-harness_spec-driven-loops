@@ -16,7 +16,7 @@ Validates that **Checklist Lifecycle — create, add item, check off, delete** b
 
 Verify full checklist CRUD: create checklist, add item, resolve item, delete checklist is required for correct agent operation. Failure here means any operation returns error or checklist persists after delete.
 
-> **Capability status: SKIP.** All checklist tools were confirmed absent from the last live `list_tools()` inventory (`references/mcp-tools.md`). Do not execute this scenario against the current server; it will fail with a tool-not-found error on step 1, not the pass/fail signals below. Re-enable only after a fresh `tool_info()`/`list_tools()` capture confirms exact callable names and schemas for all four checklist operations.
+> **Capability status: SKIP — all four checklist tools are missing from the live server's tool inventory.** They were confirmed absent from the last live `list_tools()` inventory (`references/mcp-tools.md`). Do not execute this scenario against the current server; it will fail with a tool-not-found error on step 1, not the pass/fail signals below. Re-enable only after a fresh `tool_info()`/`list_tools()` capture confirms exact callable names and schemas for all four checklist operations.
 
 ---
 

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/006-restraint-and-routing-gates",
+  "spec_folder": "agents/006-restraint-and-routing-gates",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pre-write restraint",
+      "artifact routing gate",
+      "over-engineering",
+      "test bloat",
+      "doctrine amendment",
+      "agents.md",
+      "restraint routing plan",
+      "agents.md plan",
+      "gate 2 artifact trigger",
+      "implementation",
+      "plan",
+      "tasks"
+    ],
+    "key_topics": [
+      "pre-write",
+      "restraint",
+      "artifact",
+      "routing",
+      "gate",
+      "over-engineering",
+      "test",
+      "bloat",
+      "doctrine",
+      "amendment",
+      "agents",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Restraint",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Artifact Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design Restraint Ladder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Principles",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every restraint rule this framework needs already exists somewhere, but not where it fires",
+    "created_at": "2026-08-29T11:13:34.480Z",
+    "last_save_at": "2026-08-29T11:36:55.719Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:33ee6d73e9722341921053650ffc79f959c7b67ef17b29eba299b059e2fada31",
+    "source_doc_hashes": {
+      "spec.md": "62d1b0cfffcecac19ee8e898b0a646e8ca21b743fd678507d59d6465652bd381",
+      "plan.md": "b4ec2ac4544f1e9e5eb470e0346d29ae7c430c8c465dae34eeb4ba7bec764c63",
+      "tasks.md": "4a6bd4846e9173195be1b506f15adde0c8cb786798cf4d773e76d714f84cef0c",
+      "checklist.md": "5027687ecc9aebfd24a18edc7b443cf27b500766c4e904d880151be80567dda6",
+      "implementation-summary.md": "02c4c6426385ad33e72b41b46fb470322ecd99587c4fd6895c6466a9489bc80e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -23,7 +23,7 @@ Most data sources -- including any newly created scratch one -- have no page tem
 - Feature Name: List data source templates
 - Scenario Objective: List a scratch data source's page templates and confirm the result resolves, empty or not.
 - Exact Prompt: `Does my scratch data source have any page templates set up?`
-- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_list-data-source-templates") -> 3. Code Mode: call_tool_chain({ code: "const templates = await notion[\"notion_list-data-source-templates\"]({ data_source_id: \"SCRATCH_DATA_SOURCE_ID\" }); return templates;" })`
+- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_list-data-source-templates") -> 3. Code Mode: call_tool_chain({ code: "const templates = await notion[\"notion_list-data-source-templates\"] ({ data_source_id: \"SCRATCH_DATA_SOURCE_ID\" }); return templates;" })`
 - Expected Signals: The live manual reports the callable name; the schema resolves; the response carries a `results`-style list (which may legitimately be `[]` for a scratch data source with no templates).
 - Evidence: `list_tools()` result, `tool_info()` result, Code Mode response, `SCRATCH_DATA_SOURCE_ID` used, and the returned template list (or explicit empty-list note).
 - Pass/Fail Criteria: PASS if the tool name and schema resolve and a well-formed listing returns, including an empty result; SKIP if no scratch data source ID is available; FAIL if the call errors or a non-empty template list is fabricated where none is configured.

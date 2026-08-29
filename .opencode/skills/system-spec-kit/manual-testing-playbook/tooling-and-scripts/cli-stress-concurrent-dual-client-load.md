@@ -69,13 +69,13 @@ echo "launchers before=$BEFORE after=$AFTER"
 ```text
 === round 1
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
- RUN  v4.1.7 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ RUN  v4.1.7 .
 
 
- RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server
+ RUN  v4.1.6 .opencode/skills/system-skill-advisor/mcp-server
 
 
  Test Files  1 passed (1)
@@ -98,13 +98,13 @@ echo "launchers before=$BEFORE after=$AFTER"
 
 === round 2
 
- RUN  v4.1.7 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ RUN  v4.1.7 .
 
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
- RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server
+ RUN  v4.1.6 .opencode/skills/system-skill-advisor/mcp-server
 
 
  Test Files  1 passed (1)
@@ -127,13 +127,13 @@ echo "launchers before=$BEFORE after=$AFTER"
 
 === round 3
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
- RUN  v4.1.7 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ RUN  v4.1.7 .
 
 
- RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server
+ RUN  v4.1.6 .opencode/skills/system-skill-advisor/mcp-server
 
 
  Test Files  1 passed (1)

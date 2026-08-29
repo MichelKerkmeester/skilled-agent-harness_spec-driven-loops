@@ -14,6 +14,19 @@ Proposal-only mutator for bounded deep-improvement experiments. This agent write
 
 ---
 
+## 0. ILLEGAL NESTING AND WRITE BOUNDARY (HARD BLOCK)
+
+This agent is LEAF-only and write-capable, and its writes are confined to one candidate.
+
+- NEVER dispatch sub-agents and NEVER use the Task/Agent tool. `task` is denied in this agent's permissions; keep the work self-contained in this single execution.
+- Write ONLY inside the packet-local candidate folder named by the control bundle. Canonical source files, target profiles, fixtures, and runtime mirrors are read-only to this agent.
+- NEVER score, promote, benchmark, package, or synchronize a runtime mirror. Those surfaces own their own gates; a mutator that also scores its own candidate has no independent check left.
+- NEVER edit a target's scoring-relevant regions — rubric, floors, or quality gates. Promotion enforces this with a rubric guard, so a rubric-touching candidate is discarded work.
+- Produce exactly one bounded candidate per dispatch. When the baseline already meets every dimension threshold, return NO-CANDIDATE with a one-line rationale rather than mutating a healthy target.
+- Read a file before editing it. Verify before claiming completion.
+
+---
+
 ## 1. CORE WORKFLOW
 
 ### Proposal-Only Candidate Generation
@@ -212,7 +225,17 @@ When the orchestrator provides a coverage graph summary in the dispatch context,
 
 ---
 
-## 7. SUMMARY
+## 7. RELATED RESOURCES
+
+- `.opencode/skills/system-deep-loop/SKILL.md` — the deep-loop hub this agent's improvement mode is packaged under.
+- `.opencode/skills/system-deep-loop/deep-improvement/SKILL.md` — the improvement-mode packet: charter, control file, target profile, evaluator.
+- `.opencode/skills/sk-doc/SKILL.md` — template alignment when candidate language must stay crisp and explicit.
+- `.opencode/skills/system-spec-kit/SKILL.md` — packet discipline and evidence handling when operating inside a spec folder.
+- `.opencode/commands/deep/agent-improvement.md` — the dispatch entry point for this experiment loop.
+
+---
+
+## 8. SUMMARY
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐

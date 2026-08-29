@@ -66,7 +66,7 @@ npx vitest run mcp-server/tests/mpab-aggregation.vitest.ts -t "T001a" --reporter
 Observed output:
 
 ```text
- RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.6 .opencode/skills/system-spec-kit
 
  ↓ mcp-server/tests/mpab-aggregation.vitest.ts > computeMPAB > N=0: returns 0 (no chunks = no signal)
  ↓ mcp-server/tests/mpab-aggregation.vitest.ts > computeMPAB > N=1: returns raw score (no bonus)

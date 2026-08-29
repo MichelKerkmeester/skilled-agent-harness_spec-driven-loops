@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-019` and confirm th
 - Prompt: `Tell me whether to rebase or merge this diverged branch, based on local commits and published history.`
 - Expected execution process: Inspect upstream/divergence state, determine whether commits are published, then recommend rebase or merge accordingly.
 - Expected signals: Decision names the publication state; no force push is suggested for shared branches; commands match the chosen path.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when no remote is configured to establish whether the local commits are already published.
 - Pass/fail: PASS if the decision follows `SKILL.md §4` NEVER rule 8 and `references/shared-patterns.md §6` failed-push pattern. FAIL if the AI blindly rebases public/shared commits, recommends force push to main, or omits publication-state reasoning.
 
 ---

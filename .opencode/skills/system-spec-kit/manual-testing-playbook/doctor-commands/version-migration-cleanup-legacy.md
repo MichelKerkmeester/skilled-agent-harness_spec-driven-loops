@@ -28,7 +28,7 @@ The scenario protects ADR-008. Detection can be automatic, but deletion must be 
 - Expected signals: each known legacy file gets a prompt; confirmed files are deleted; skipped or refused files remain; state log records cleanup choices.
 - Desired user-visible outcome: A cleanup verdict proving no legacy file is deleted without an explicit per-file confirmation.
 - Pass/fail: PASS if prompt sequence covers every known legacy file and filesystem results match choices.
-- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, `SKIP`, or `UNAUTOMATABLE`.
+- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable; a scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
 
@@ -65,10 +65,8 @@ The command reads `migration-manifest.json`, detects only manifest-listed legacy
 
 ### Pass / Fail
 
-- **PASS**: every manifest-listed legacy file is prompted individually, confirmed deletions occur, skipped files remain, and no unknown file is touched.
-- **FAIL**: any file is deleted without a prompt, prompts are batched without per-file choice, skipped files are removed, or unknown files are targeted.
-- **SKIP**: the disposable workspace has no manifest-listed legacy files to clean up.
-- **UNAUTOMATABLE**: the runtime cannot invoke `/doctor:update --cleanup-legacy` interactively.
+- **Pass**: Prompt sequence covers every known legacy file and filesystem results match choices.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

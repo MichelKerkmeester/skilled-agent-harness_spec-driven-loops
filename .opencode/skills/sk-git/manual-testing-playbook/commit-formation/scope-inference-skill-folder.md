@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-005` and confirm th
 - Prompt: `Commit these sk-git playbook docs, infer the scope from the staged path, and show the scope is deterministic.`
 - Expected execution process: Run staged diff inspection twice, infer the scope from the top-level skill folder, and compare the proposed subjects.
 - Expected signals: Both passes produce the same scope, ideally `sk-git`, with no path-sensitive drift.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox has no writable repository in which to stage the two diffs this scenario compares.
 - Pass/fail: PASS if scope inference is stable and follows first-match scope rules in `SKILL.md §4` and `assets/commit-message-template.md §4`. FAIL if the same diff produces different scopes or falls back to an unrelated generic scope without explanation.
 
 ---

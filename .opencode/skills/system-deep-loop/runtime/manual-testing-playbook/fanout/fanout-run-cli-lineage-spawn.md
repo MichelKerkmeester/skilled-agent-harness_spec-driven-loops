@@ -40,7 +40,11 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 - Working directory is repository root.
 - `scripts/fanout-run.cjs` and `scripts/fanout-salvage.cjs` present.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate the fan-out CLI lineage driver and confirm the 5 integration tests pass, verifying lineage isolation and orchestration artifact creation.`
+
+### Commands
 
 1. Inspect `scripts/fanout-run.cjs` — confirm `SPECKIT_STATE_ENV_BY_KIND` map, `computeLineageTimeoutMs` formula, `buildLineageCommand` per-kind branch.
 2. Verify `extraEnv` in the worker sets both `SPECKIT_FANOUT_LINEAGE_ID` and the kind-specific state dir var.
@@ -51,7 +55,14 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 
 5/5 pass. Lineage dirs created, `.executor-state` dirs distinct, `orchestration-summary.json` with `total_cli_lineages=2`, JSONL ledger written, native-only config returns early without spawning.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-pool.cjs` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/unit/fanout-run.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - Missing `SPECKIT_<KIND>_STATE_DIR` in env: same-kind replicas use the same state dir and may trip the loop-lock.
 - stdout not saved to `logs/fanout-lineage.out`: salvage sweep has no data to recover from.
@@ -59,7 +70,7 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -77,11 +88,12 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Playbook ID: DLR-025
 - Feature catalog entry: `feature-catalog/fanout/fanout-run.md`
 - Scenario file path: `manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Expected verdict mode: GREEN when 5/5 pass and source anchors agree
 - Wall-time estimate: 5-10 min

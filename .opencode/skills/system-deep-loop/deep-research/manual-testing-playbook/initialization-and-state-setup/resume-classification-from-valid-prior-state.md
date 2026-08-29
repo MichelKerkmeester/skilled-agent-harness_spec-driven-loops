@@ -84,4 +84,4 @@ Verify completed sessions route differently from active resumes and that both YA
 - Playbook ID: DR-005
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `initialization-and-state-setup/resume-classification-from-valid-prior-state.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

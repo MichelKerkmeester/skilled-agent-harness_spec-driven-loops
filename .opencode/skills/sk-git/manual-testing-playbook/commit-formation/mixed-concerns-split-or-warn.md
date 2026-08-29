@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-006` and confirm th
 - Prompt: `Review the staged changes for mixed concerns, split or block unsafe grouping, and return the recommended commit plan.`
 - Expected execution process: Inspect changed files, identify logical units, recommend one commit per concern, and avoid committing if grouping is unsafe.
 - Expected signals: Unrelated concerns are identified; command sequence uses targeted staging rather than `git add .`; no premature commit occurs.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox has no writable repository in which to stage a mixed-concern diff.
 - Pass/fail: PASS if mixed concerns are split or blocked per `references/commit-workflows.md §3` Step 4 and `assets/commit-message-template.md §9` bad example 5. FAIL if unrelated files are committed together without warning or if generated/internal artifacts are staged.
 
 ---

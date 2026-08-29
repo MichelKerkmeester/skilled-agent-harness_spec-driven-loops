@@ -1,0 +1,20 @@
+{
+  "specFolder": "cli-external-orchestration/056-roster-drop-deepseek-api-pro-terra",
+  "description": "The operator retired three dispatch targets:",
+  "keywords": [
+    "operator",
+    "retired",
+    "three",
+    "dispatch",
+    "targets"
+  ],
+  "lastUpdated": "2026-08-29T10:33:58.830Z",
+  "specId": "056",
+  "folderSlug": "roster-drop-deepseek-api-pro-terra",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

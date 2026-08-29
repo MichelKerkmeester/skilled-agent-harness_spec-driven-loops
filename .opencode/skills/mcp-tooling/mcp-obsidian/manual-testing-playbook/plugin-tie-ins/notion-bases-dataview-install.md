@@ -35,13 +35,9 @@ The real target vault is not a disposable fixture: it is a personal, iCloud-sync
 
 ### Recommended Orchestration Process
 
-The target vault is the operator's real, persistent vault at:
+The target vault is the operator's real, persistent vault — on macOS with iCloud sync this is typically the vault folder under `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/<vault-name>`, but the exact location is operator- and machine-specific.
 
-```
-/Users/michelkerkmeester/Library/Mobile Documents/iCloud~md~obsidian/Documents/Michel Kerkmeester
-```
-
-Set `TARGET_VAULT` to this exact path before running the commands below — the commands themselves stay parameterized on `$TARGET_VAULT` rather than hardcoding the path inline, so the same scenario also runs unmodified against a throwaway vault during a dry run. Close Obsidian before writing any of its JSON files, and confirm the exact Notion Bases release tag before fetching. Keep backups of BRAT's `data.json` and of `community-plugins.json` when they already exist; network access or a captured release fixture is required for staging. **Blast-radius flag**: this vault is iCloud-synced (`iCloud~md~obsidian`) and personal — a file-layer write can propagate to other synced devices before the operator reviews it, so every write below is backed up (or, when the file did not previously exist, recorded as newly created) and named in the rollback before it happens.
+Set `TARGET_VAULT` to that operator-owned vault path before running the commands below — the commands themselves stay parameterized on `$TARGET_VAULT` rather than hardcoding the path inline, so the same scenario also runs unmodified against a throwaway vault during a dry run. Close Obsidian before writing any of its JSON files, and confirm the exact Notion Bases release tag before fetching. Keep backups of BRAT's `data.json` and of `community-plugins.json` when they already exist; network access or a captured release fixture is required for staging. **Blast-radius flag**: this vault is iCloud-synced (`iCloud~md~obsidian`) and personal — a file-layer write can propagate to other synced devices before the operator reviews it, so every write below is backed up (or, when the file did not previously exist, recorded as newly created) and named in the rollback before it happens.
 
 ### Prompt
 
@@ -140,7 +136,7 @@ Install Notion Bases and Dataview into my real Obsidian vault headlessly — sta
    jq empty "$COMMUNITY"
    ~~~
 
-5. Verify: confirm the exact repo/tag and manifest ID for Notion Bases with `jq`, confirm the staged files are non-empty, confirm Dataview's presence check result matches the staging decision made in step 3, and reload Obsidian only after every stage passes. Record a local `obsidian --help`/reload boundary as `SKIP` if no app is available; it does not invalidate the file-layer result.
+5. Verify: confirm the exact repo/tag and manifest ID for Notion Bases with `jq`, confirm the staged files are non-empty, confirm Dataview's presence check result matches the staging decision made in step 3, and reload Obsidian only after every stage passes. Record a local `obsidian --help`/reload boundary as `SKIP` when the Obsidian desktop app is unavailable in this environment; it does not invalidate the file-layer result.
 
 ### Expected
 

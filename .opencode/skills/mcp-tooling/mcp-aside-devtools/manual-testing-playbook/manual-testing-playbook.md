@@ -23,11 +23,16 @@ Canonical package artifacts:
 - `recovery-and-failure/`
 - `intra-routing-recall/`
 
+### Result persistence
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `mcp-aside-devtools/benchmark/reports/<dated-run-label>/`.
+
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 21 deterministic scenarios across 7 categories (plus the routing-recall contracts) validating the `mcp-aside-devtools` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
+This playbook provides 29 deterministic scenarios across 8 categories (7 operator categories plus the routing-recall contracts) validating the `mcp-aside-devtools` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and feature-file reference.
 
 ### Realistic Test Model
 

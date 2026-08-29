@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/017-mcp-magicpath/001-cli-transport-proof",
+  "spec_folder": "mcp-tooling/017-mcp-magicpath/001-cli-transport-proof",
+  "parent_id": "mcp-tooling/017-mcp-magicpath",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "utcp cli transport proof",
+      "cli manual registration",
+      "code mode cli call",
+      "cli transport proof plan",
+      "probe manual design",
+      "cli transport proof tasks",
+      "cli transport proof summary",
+      "utcp cli discovery contract"
+    ],
+    "key_topics": [
+      "utcp",
+      "cli",
+      "transport",
+      "proof",
+      "manual",
+      "registration",
+      "code",
+      "mode",
+      "call",
+      "plan",
+      "probe",
+      "design"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every manual this repository has ever registered is `calltemplatetype: \"mcp\"`",
+    "created_at": "2026-08-29T11:28:53.691Z",
+    "last_save_at": "2026-08-29T11:48:57.067Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2412b5ed18831e7518a08ccb0f9463e1ed37401f2d1f41de45bcb3d54998d2b8",
+    "source_doc_hashes": {
+      "spec.md": "bb99caef2fdd391bfd6e6f96511d04c618c395cbbdf9b1fe088f41c6e412251d",
+      "plan.md": "1fb1c54c57ba831b5c032e949154f3eb123357b82ab0551496516c9a15ba7119",
+      "tasks.md": "af5c18da18528f9ac1e4169211add21c52868ab8627877025ef92018ae841d89",
+      "implementation-summary.md": "c9ef9ec50bb506c5c56951dbc3b79812349647d6162e50fae30dd343d8a62674"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

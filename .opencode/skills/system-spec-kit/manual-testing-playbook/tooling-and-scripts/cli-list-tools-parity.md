@@ -95,7 +95,7 @@ json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 code-index: ok 8
 skill-advisor: ok 9
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -104,7 +104,7 @@ skill-advisor: ok 9
    Duration  204ms (transform 89ms, setup 12ms, import 129ms, tests 4ms, environment 0ms)
 
 
- RUN  v4.1.7 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ RUN  v4.1.7 .
 
 
  Test Files  1 passed (1)
@@ -113,7 +113,7 @@ skill-advisor: ok 9
    Duration  150ms (transform 31ms, setup 0ms, import 41ms, tests 50ms, environment 0ms)
 
 
- RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server
+ RUN  v4.1.6 .opencode/skills/system-skill-advisor/mcp-server
 
  ❯ tests/skill-advisor-cli-parity.vitest.ts (1 test | 1 failed) 21874ms
      × keeps top recommendations identical across ten representative prompts 21873ms

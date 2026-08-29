@@ -146,7 +146,7 @@ function expectedRepresentativeArgs(kind: ExecutorKind, model: string | undefine
     case 'cli-devin':
       return ['-p', MATRIX_PROMPT, '--model', model ?? '', '--permission-mode', 'auto', '--respect-workspace-trust', 'false'];
     case 'cli-pi':
-      return ['-p', '--offline', '--model', 'deepseek/deepseek-v4-pro', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', MATRIX_PROMPT];
+      return ['-p', '--offline', '--model', 'opencode-go/deepseek-v4-flash', '--tools', 'read,grep,find,ls', '--no-extensions', '--no-skills', '--no-prompt-templates', '--thinking', 'max', MATRIX_PROMPT];
   }
 }
 

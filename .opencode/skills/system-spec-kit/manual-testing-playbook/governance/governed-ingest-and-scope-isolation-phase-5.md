@@ -82,7 +82,7 @@ Attempted valid governed `memory_save()` with full `{tenantId,userId,agentId,ses
   "summary": "Planner prepared a non-mutating canonical save plan.",
   "data": {
     "status": "planned",
-    "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/spec.md",
+    "filePath": ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep/spec.md",
     "specFolder": "system-speckit/031-manual-playbook-execution-sweep",
     "title": "Feature Specification: Manual Testing Playbook Execution Sweep",
     "plannerMode": "plan-only",
@@ -203,7 +203,8 @@ Queried `memory_index` for the same governed scope/provenance markers:
 
 ### Pass / Fail
 
-- **BLOCKED**: Missing provenance rejection and deny audit row were observed, but valid governed ingest could not complete because the selected existing spec document failed template-contract validation, MCP recycled/unavailable during the preflight-skipped retry, and the CLI fallback was blocked by stale `@spec-kit/mcp-server` dist output; therefore matching-scope retrieval, mismatched-scope isolation, and allow audit rows could not be verified.
+- **Pass**: Save/search outputs + DB query of scoped columns + audit rows showing allow/deny decisions.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

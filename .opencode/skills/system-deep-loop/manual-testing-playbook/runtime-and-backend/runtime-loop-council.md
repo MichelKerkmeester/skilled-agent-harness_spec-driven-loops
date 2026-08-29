@@ -52,6 +52,10 @@ For an AI council deliberation, resolve the mode through the registry and state 
 1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `ai-council` mode entry.
 2. `.opencode/skills/system-deep-loop/SKILL.md` contains the three-tier discriminator section.
 
+### Prompt
+
+- Prompt: `For an AI council deliberation, resolve the mode through the registry and state the backend, runtime loop type, command, agent, and artifact root before starting.`
+
 ### Exact Command Sequence
 
 1. **Invoke hub**: `Skill(system-deep-loop, "For an AI council deliberation, resolve the mode through the registry and state the backend, runtime loop type, command, agent, and artifact root before starting.")`.
@@ -66,11 +70,14 @@ For an AI council deliberation, resolve the mode through the registry and state 
 | 2 | Response names `backendKind: runtime-loop-type` and `runtimeLoopType: council`. |
 | 3 | Response does not infer runtime loop type from the workflow mode string. |
 
+### Evidence
+
+- Response transcript: `/tmp/dlw-RB-002/response.txt`, showing the stated backend, runtime loop type, command, agent, and artifact root.
+
 ### Pass/Fail Criteria
 
-- **PASS** iff council resolves to `runtime-loop-type` with `runtimeLoopType: council` and the expected command, agent, and artifact root.
-- **PARTIAL** iff backend is correct but the non-inference rule is not mentioned.
-- **FAIL** iff runtime loop type is `ai-council`, null, or any value other than `council`.
+- **PASS**: council resolves to `runtime-loop-type` with `runtimeLoopType: council` and the expected command, agent, and artifact root, whether or not the response also narrates the non-inference rule.
+- **FAIL**: runtime loop type is `ai-council`, null, or any value other than `council`.
 
 ### Failure Triage
 
@@ -84,6 +91,7 @@ For an AI council deliberation, resolve the mode through the registry and state 
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - three-tier discriminator and council mapping.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `ai-council` backend fields.
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---
 

@@ -30,7 +30,7 @@ Preconditions:
 
 - Objective: Produce reproducible release-readiness or regression evidence for a packet set.
 - Real user request: `Please validate Run stress cycle against the target packets, score every packet x dimension cell on the 0-2 rubric, write findings.md with evidence and verdicts, emit findings-rubric.json, compare against the prior cycle if present, capture measurements for wired runtime paths, and return a concise pass/fail verdict with cited evidence. and tell me whether the expected signals are present: fixed corpus, completed score cells, narrative findings, parseable sidecar, aggregate percent, comparison deltas, REGRESSION self-checks, optional telemetry samples, strict validator output.`
-- RCAF Prompt: `As a stress-cycle validation operator, run the frozen-corpus cycle for target packets and return a cited pass/fail verdict.`
+- Operator prompt: `As a stress-cycle validation operator, run the frozen-corpus cycle for target packets and return a cited pass/fail verdict.`
 - Expected execution process: Execute the documented validation request against the target packets, score every packet x dimension cell on the 0-2 rubric, write findings.md with evidence and verdicts, emit findings-rubric.json, compare against the prior cycle if present, capture measurements for wired runtime paths, and return a concise pass/fail verdict with cited evidence., capture the response and evidence, compare it against the expected signals, and return the pass/fail verdict.
 - Expected signals: fixed corpus, completed score cells, narrative findings, parseable sidecar, aggregate percent, comparison deltas, REGRESSION self-checks, optional telemetry samples, strict validator output
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -39,6 +39,26 @@ Preconditions:
 ---
 
 ## 3. TEST EXECUTION
+
+### Prompt
+
+- Prompt: `As a stress-cycle validation operator, run the frozen-corpus cycle for the target packets and return a cited PASS or FAIL verdict.`
+
+### Commands
+
+Run the numbered steps below in order; each named step states its exact commands and artifacts.
+
+1. Step 1: Freeze Baseline Corpus
+2. Step 2: Score Each Packet x Dimension
+3. Step 3: Author `findings.md`
+4. Step 4: Run Hunter -> Skeptic -> Referee For Every REGRESSION
+5. Step 5: Emit `findings-rubric.json`
+6. Step 6: Compute Aggregate
+7. Step 7: Compare To Prior Version
+8. Step 8: Capture Telemetry Samples
+9. Step 9: Run Strict Validator
+10. Step 9a: Run Automated Stress Slices When Applicable
+11. Step 10: Update Parent Packet's PHASE MAP
 
 ### Step 1: Freeze Baseline Corpus
 
@@ -152,9 +172,28 @@ Use `npm run stress` for the full opt-in harness. Use the domain scripts for tar
 
 Add the new cycle to the parent packet's PHASE MAP. Keep the update minimal: folder name, focus, and status. Do not narrate migration history in phase-parent specs.
 
----
+### Evidence
 
-## 4. VERIFICATION
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Expected block.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
+
+### Failure Triage
+
+1. Re-run each command in the sequence on its own and record its exit status; the first non-zero exit names the failing step.
+2. Confirm the handler or script listed in section 4 is the one actually loaded, and that any compiled output under `dist/` is current for it.
+3. Compare the observed response field by field against the Expected block, and quote the first field that disagrees.
+
+
+### Pass / Fail
+
+- **Pass**: The artifacts let a future investigator reproduce the verdict reasoning without the original operator.
+- **Fail**: Evidence, scoring, comparison, or strict validation is missing from the cycle artifacts.
+
+### Verification
 
 - Strict validator exits 0 for the cycle packet.
 - Applicable automated stress command exits with Vitest success or a clear benchmark failure.
@@ -169,7 +208,7 @@ Success criteria: a future investigator can read `findings.md`, `findings-rubric
 
 ---
 
-## 5. REFERENCES
+## 4. REFERENCES
 
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [stress-testing/category-overview.md](../../feature-catalog/stress-testing/category-overview.md)
@@ -184,55 +223,9 @@ Success criteria: a future investigator can read `findings.md`, `findings-rubric
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Stress testing
 - Playbook ID: 01
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `stress-testing/run-stress-cycle.md`
-
----
-
-## 7. EVIDENCE
-
-Read output for this scenario showed the required preconditions but no concrete target cycle inputs:
-
-```text
-14: Preconditions:
-15: 
-16: - Target system has a stable baseline or explicitly declared first-run baseline.
-17: - Prior cycle's `findings-rubric.json` is accessible when the run claims a comparison.
-18: - Scope, target packets, corpus, dimensions, and scoring owner are declared before scoring starts.
-19: - Runtime and measurement paths are stable enough that another operator can rerun or inspect the evidence.
-```
-
-The scenario's command section requires an unresolved placeholder path:
-
-```text
-118: ### Step 9: Run Strict Validator
-119: 
-120: Run:
-121: 
-122: ```bash
-123: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <path> --strict
-124: ```
-125: 
-126: Use the packet that owns the cycle artifacts as `<path>`. If the validator reports warnings, document whether they are pre-existing or caused by the cycle docs and fix in scope before claiming completion.
-```
-
-The scenario also requires writes outside the only allowed write path for this manual execution request:
-
-```text
-54: ### Step 3: Author `findings.md`
-78: ### Step 5: Emit `findings-rubric.json`
-107: ### Step 8: Capture Telemetry Samples
-128: ### Step 10: Update Parent Packet's PHASE MAP
-```
-
-No strict validator command was run because `<path>` is unspecified and the owning cycle artifact packet is not declared in this scenario file or the user request.
-
----
-
-## 8. PASS/FAIL
-
-BLOCKED - Required stress-cycle preconditions are missing: no target system baseline or first-run declaration, no declared target packets/corpus/dimensions/scoring owner, no prior sidecar path for any comparison claim, no runtime/measurement paths, and no concrete validator `<path>`.

@@ -55,20 +55,17 @@ Validate SPECKIT_MEMORY_IDEMPOTENCY with default-off save behavior, receipt repl
 
 ### Evidence
 
-BLOCKED before command execution.
+Capture, for every step in the Commands sequence above:
 
-Observed blocker:
-
-```text
-Scenario command 1 requires: Create a disposable spec-doc markdown file in a sandbox folder with title `Idempotency probe` and a unique body string.
-User constraint allows writes only to: .opencode/skills/system-spec-kit/manual-testing-playbook/feature-flag-reference/memory-idempotency-replay-and-conflict.md (this file only)
-```
-
-No sandbox file was created, no `memory_save` calls were run, and no vitest command was run because creating the required disposable spec-doc file would violate the allowed write path constraint.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: scenario command 1 requires creating a disposable sandbox spec-doc file, but this run only permits writes to this scenario file.
+- **Pass**: Replay and conflict behavior both occur with the flag enabled and disappear after the flag is disabled.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

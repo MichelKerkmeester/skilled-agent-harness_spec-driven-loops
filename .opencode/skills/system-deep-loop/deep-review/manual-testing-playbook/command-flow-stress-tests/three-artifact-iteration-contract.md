@@ -50,13 +50,13 @@ Operators run the exact command sequence and confirm the expected signals withou
 set -uo pipefail
 rm -rf /tmp/cp-053-sandbox /tmp/cp-053-sandbox-baseline /tmp/cp-053-spec
 mkdir -p /tmp/cp-053-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup_cp_sandbox.sh --sandbox-dir /tmp/cp-053-sandbox
+.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-053-sandbox
 cp -a /tmp/cp-053-sandbox /tmp/cp-053-sandbox-baseline
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 git status --porcelain -- /tmp/cp-053-sandbox /tmp/cp-053-spec > /tmp/cp-053-pre.txt
 cd /tmp/cp-053-sandbox
 opencode run "/deep:review:auto \"targets/review-target.js\" --spec-folder=/tmp/cp-053-spec --max-iterations=1 --convergence=0.10 --no-resource-map. Use target type files and dimensions correctness. Produce durable artifacts; do not ask setup questions." --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-053-sandbox </dev/null 2>&1 | tee /tmp/cp-053-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-053-B-exit.txt
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 find /tmp/cp-053-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-053-B-artifacts.txt 2>/dev/null || touch /tmp/cp-053-B-artifacts.txt
 find /tmp/cp-053-spec -type f > /tmp/cp-053-B-files.txt 2>/dev/null || touch /tmp/cp-053-B-files.txt
 cat /tmp/cp-053-B-command.txt /tmp/cp-053-B-artifacts.txt /tmp/cp-053-B-files.txt > /tmp/cp-053-B-combined.txt
@@ -84,17 +84,18 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 | File | Lines | Role |
 |---|---:|---|
 | `.opencode/commands/deep/assets/deep-review-presentation.txt` | 271-278, 396-400 | Workflow outputs and read-only agent model |
 | `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 354-356, 414-420 | Executor invariants and quality gates |
 | `.opencode/agents/deep-review.md` | 80-98, 177-195 | Single-iteration sequence and output verification |
+| [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Command-flow stress tests
 - Playbook ID: CP-053

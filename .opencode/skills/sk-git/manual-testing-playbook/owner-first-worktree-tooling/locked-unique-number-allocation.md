@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-023` and confirm th
 - Prompt: `Allocate the next worktree number for a task, prove it is seeded from existing worktrees/refs/high-water mark in the worktrees namespace, and show two concurrent allocations never collide.`
 - Expected execution process: Run `scan-max worktrees` to confirm the seed picks up the highest in-use number from the namespace's high-water file, worktree list, and local/remote refs, then run `allocate worktrees` sequentially and concurrently and confirm every returned number is distinct.
 - Expected signals: `scan-max worktrees` returns the true maximum across all sources; sequential `allocate` calls return strictly increasing 3-digit numbers; N concurrent calls under lock contention return N distinct numbers.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox cannot create the hermetic fixture repository the allocator locks against.
 - Pass/fail: PASS if `allocate` always returns a number one greater than the current high-water mark, the namespace's high-water file is updated atomically under `worktree-number.lock`, and 8 concurrent `allocate` calls produce 8 distinct numbers. FAIL if two calls return the same number, if `allocate` ever returns a number already in use, or if a lock held by a dead process is never reclaimed.
 
 ---

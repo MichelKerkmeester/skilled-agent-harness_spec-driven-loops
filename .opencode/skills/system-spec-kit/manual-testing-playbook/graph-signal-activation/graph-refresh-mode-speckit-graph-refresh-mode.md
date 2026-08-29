@@ -66,7 +66,7 @@ Check resolveGraphRefreshMode() → Verify SPECKIT_GRAPH_REFRESH_MODE env is set
 ## 4. SOURCE FILES
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [graph-signal-activation/graph-lifecycle-refresh.md](../../feature-catalog/graph-signal-activation/graph-lifecycle-refresh.md)
-- Feature flag reference: [feature-flag-reference/1-search-pipeline-features-speckit.md](../../manual-testing-playbook/feature-flag-reference/1-search-pipeline-features-speckit.md)
+- Feature flag reference: [feature-flag-reference/1-search-pipeline-features-speckit.md](../../manual-testing-playbook/feature-flag-reference/search-pipeline-features-speckit.md)
 - Source file: `mcp-server/lib/search/graph-lifecycle.ts`
 
 ---

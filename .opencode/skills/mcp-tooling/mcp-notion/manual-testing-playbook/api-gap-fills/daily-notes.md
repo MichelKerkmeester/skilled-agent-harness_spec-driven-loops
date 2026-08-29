@@ -23,7 +23,7 @@ Notion has no daily-notes endpoint, so this convention is the entire feature. An
 - Feature Name: Daily Notes
 - Scenario Objective: Query for today's daily note, create it if absent, then re-query to confirm exactly one page exists for the date.
 - Exact Prompt: `"Open today's daily note, creating it if it doesn't already exist."`
-- Exact Command Sequence: `1. tool_info("notion.notion_query-data-source") -> 2. notion["notion_query-data-source"]({ data_source_id: "<daily_notes_data_source_id>", filter: { property: "<title_property>", title: { equals: "<today_iso_date>" } } }) -> 3. if empty: tool_info("notion.notion_create-a-page") -> notion["notion_create-a-page"]({ parent: { data_source_id: "<daily_notes_data_source_id>" }, properties: { "<title_property>": { title: [{ text: { content: "<today_iso_date>" } }] } } }) -> 4. re-run step 2's query`
+- Exact Command Sequence: `1. tool_info("notion.notion_query-data-source") -> 2. notion["notion_query-data-source"] ({ data_source_id: "<daily_notes_data_source_id>", filter: { property: "<title_property>", title: { equals: "<today_iso_date>" } } }) -> 3. if empty: tool_info("notion.notion_create-a-page") -> notion["notion_create-a-page"] ({ parent: { data_source_id: "<daily_notes_data_source_id>" }, properties: { "<title_property>": { title: [{ text: { content: "<today_iso_date>" } }] } } }) -> 4. re-run step 2's query`
 - Expected Signals: Step 2 returns `[]` or the existing page; Step 3 (if run) returns a new `page_id`; Step 4 returns exactly one page matching today's date.
 - Evidence: both query responses, the create response (if a page was created), and the final page count for the date.
 - Pass/Fail Criteria: PASS if the convention resolves to exactly one page for today's date after create-or-reuse; SKIP if no "Daily Notes" data source exists and one cannot be created as scratch scaffolding (named blocker: no writable scratch parent available); FAIL if the sequence produces more than one page for the same date, or a call errors.
@@ -44,8 +44,8 @@ Notion has no daily-notes endpoint, so this convention is the entire feature. An
 ### Commands
 
 1. `tool_info("notion.notion_query-data-source")`.
-2. `notion["notion_query-data-source"]({ data_source_id: "<daily_notes_data_source_id>", filter: { property: "<title_property>", title: { equals: "<today_iso_date>" } } })`.
-3. If the result is empty: `tool_info("notion.notion_create-a-page")` then `notion["notion_create-a-page"]({ parent: { data_source_id: "<daily_notes_data_source_id>" }, properties: { "<title_property>": { title: [{ text: { content: "<today_iso_date>" } }] } } })`.
+2. `notion["notion_query-data-source"] ({ data_source_id: "<daily_notes_data_source_id>", filter: { property: "<title_property>", title: { equals: "<today_iso_date>" } } })`.
+3. If the result is empty: `tool_info("notion.notion_create-a-page")` then `notion["notion_create-a-page"] ({ parent: { data_source_id: "<daily_notes_data_source_id>" }, properties: { "<title_property>": { title: [{ text: { content: "<today_iso_date>" } }] } } })`.
 4. Re-run the step-2 query.
 
 ### Expected
@@ -70,7 +70,7 @@ Capture both query responses, the create response when a page was created, and t
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| GAP-005 | Daily Notes | Verify query-then-create resolves idempotently to one page per date | `"Open today's daily note, creating it if it doesn't already exist."` | 1. `tool_info(...)` -> 2. `notion["notion_query-data-source"]({...})` -> 3. create-if-absent -> 4. re-query | Exactly one page for today's date after the sequence | Both query responses, create response, final count | PASS if exactly one page exists; SKIP if no Daily Notes data source and none creatable; FAIL if duplicate created or call errors | Confirm data source/property, confirm date-format match, re-query before assuming duplicate |
+| GAP-005 | Daily Notes | Verify query-then-create resolves idempotently to one page per date | `"Open today's daily note, creating it if it doesn't already exist."` | 1. `tool_info(...)` -> 2. `notion["notion_query-data-source"] ({...})` -> 3. create-if-absent -> 4. re-query | Exactly one page for today's date after the sequence | Both query responses, create response, final count | PASS if exactly one page exists; SKIP if no Daily Notes data source and none creatable; FAIL if duplicate created or call errors | Confirm data source/property, confirm date-format match, re-query before assuming duplicate |
 
 Cleanup: archive the created daily-note page after the scenario. If a scratch "Daily Notes" data source was created for this test, leave it in place as reusable scratch scaffolding -- no MCP tool deletes a data source, so removing one is out of scope for a reversible scratch-safe scenario.
 

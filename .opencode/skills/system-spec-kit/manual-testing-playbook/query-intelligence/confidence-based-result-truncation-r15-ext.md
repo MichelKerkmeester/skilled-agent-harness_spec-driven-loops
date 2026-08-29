@@ -21,7 +21,7 @@ This scenario validates Confidence-based result truncation (R15-ext) for `036`. 
 
 - Objective: Confirm relevance-cliff cutoff.
 - Real user request: `Please validate Confidence-based result truncation (R15-ext) against the documented validation surface and tell me whether the expected signals are present: Results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace.`
-- RCAF Prompt: `As a query-intelligence validation operator, validate Confidence-based result truncation (R15-ext) against the documented validation surface. Verify results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a query-intelligence validation operator, validate Confidence-based result truncation (R15-ext) against the documented validation surface. Verify results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Results truncated at confidence cliff; minimum result count guaranteed; cutoff threshold documented in trace
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -159,7 +159,7 @@ npx vitest run tests/confidence-truncation.vitest.ts
 Observed output:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)

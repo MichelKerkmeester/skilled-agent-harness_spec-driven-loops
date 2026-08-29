@@ -29,7 +29,7 @@ End-to-end manual testing reference for the mcp-mobbin skill. Every scenario val
 | Measured-Reference Pairing | 1 | PAIR-001 |
 | **TOTAL** | **9** | **9 scenarios** |
 
-This playbook defines 9 deterministic scenarios across 5 categories validating the full safe surface of the `mcp-mobbin` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-11, and links to a dedicated per-scenario file, with the cross-reference index in Section 12.
+This playbook defines 9 deterministic scenarios across 5 categories validating the full safe surface of the `mcp-mobbin` skill. Each scenario keeps its own ID, is summarized inline in Sections 7-11, and links to a dedicated per-scenario file, with the cross-reference index in Section 13. The separate, benchmark-facing routing-recall set is summarized in Section 12.
 
 > **Per-scenario files:** This package adopts the split-document pattern used by the sibling `mcp-refero` and `mcp-figma` playbooks. The root playbook is the directory, review surface, and orchestration guide, while per-scenario execution detail lives in one file per scenario inside category folders at the playbook root. The `intra-routing-recall/` folder holds the benchmark-facing routing-recall set (routing prompts, two blind holdouts, and a negative control) and is NOT part of the scenario index count.
 
@@ -348,7 +348,29 @@ Prompt: `"Use Mobbin to pick the best onboarding design for our app and apply it
 
 ---
 
-## 12. SCENARIO CROSS-REFERENCE INDEX
+## 12. INTRA-ROUTING RECALL (`MB-R01`..`MB-R06`, `MB-H01`, `MB-H02`, `MB-N01`) -- BENCHMARK-FACING, NOT PART OF THE 9-SCENARIO COUNT
+
+This category validates the `mcp-mobbin` smart router itself (`SKILL.md` §2 `INTENT_MODEL`/`INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live Mobbin call or auth state. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Six scenarios (`MB-R01`-`MB-R06`) are fitted to each of the six declared intents, two (`MB-H01`, `MB-H02`) are natural-phrasing holdouts that decontaminate `MB-R02` and `MB-R03` (each with one recorded `blindExceptions` keyword), and one (`MB-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. As noted in Section 1, this set is benchmark-facing and intentionally excluded from the 9-scenario operator count above, but every file is still linked here so nothing is orphaned from this root index.
+
+### Scenario Summary
+
+| ID | Category | Prompt (abridged) | Expected Intent | Feature File |
+|---|---|---|---|---|
+| MB-R01 | Routing | Run app design research on Mobbin: an app comparison... | `APPS` | [intra-routing-recall/apps.md](intra-routing-recall/apps.md) |
+| MB-R02 | Routing | Find screen examples of an empty state dashboard... | `SCREENS` | [intra-routing-recall/screens.md](intra-routing-recall/screens.md) |
+| MB-R03 | Routing | Pull ux flow references from Mobbin for the signup process journey... | `FLOWS` | [intra-routing-recall/flows.md](intra-routing-recall/flows.md) |
+| MB-R04 | Routing | Show me the element in context on Mobbin: a bottom sheet... | `ELEMENTS` | [intra-routing-recall/elements.md](intra-routing-recall/elements.md) |
+| MB-R05 | Routing | Explain the mobbin utcp manual wiring, how mcp-remote handles oauth... | `WIRING_AUTH` | [intra-routing-recall/wiring.md](intra-routing-recall/wiring.md) |
+| MB-R06 | Routing | Every Mobbin request failed: first a 401, then a 429... | `TROUBLESHOOT` | [intra-routing-recall/troubleshoot.md](intra-routing-recall/troubleshoot.md) |
+| MB-H01 | Holdout (decontaminates MB-R02) | The moment a user first opens the app with nothing saved yet... | `SCREENS` | [intra-routing-recall/holdout-screens.md](intra-routing-recall/holdout-screens.md) |
+| MB-H02 | Holdout (decontaminates MB-R03) | Take someone who lost their account credential back into a working session, start to finish | `FLOWS` | [intra-routing-recall/holdout-flows.md](intra-routing-recall/holdout-flows.md) |
+| MB-N01 | Negative | Optimize this SQL query so the report loads faster. | `none` (`UNKNOWN_FALLBACK`) | [intra-routing-recall/negative.md](intra-routing-recall/negative.md) |
+
+Each per-scenario file carries the full frontmatter contract, the exact command sequence, expected signals, evidence, pass/fail criteria, and failure triage for its own ID.
+
+---
+
+## 13. SCENARIO CROSS-REFERENCE INDEX
 
 Each scenario maps to exactly one per-scenario file in a category folder at the playbook root, and to the matching feature-catalog area. Keep the per-scenario filenames stable once published.
 

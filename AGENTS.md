@@ -33,6 +33,7 @@ When an approved plan names a specific workflow, command, agent or skill (e.g., 
 1. **VERIFY, don't assume** — READ the named workflow's contract (its `SKILL.md` or command doc) to test any friction you believe it has.
 2. **FLAG deviations** — If it genuinely blocks the task, STATE the deviation to the user ("plan says X, I propose Y because Z") and get approval before proceeding.
 3. **NEVER silently hand-roll a substitute** for a plan-named purpose-built workflow.
+4. **PROPOSE the amendment, don't absorb it** — when the contract is readable but genuinely wrong for this case, follow it for this task AND name the fix in the same response: the file to change, the rule, and the one-line replacement. A silent workaround leaves the next run to rediscover the same friction.
 
 > Reinventing a workflow's core feature because you assumed friction you never checked against its contract is a HARD violation.
 
@@ -138,8 +139,9 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 2. B) Fallback: run `python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "[request]" --threshold 0.8` when no hook brief is present, when scripting a check, or when diagnosing hook behavior. When the advisor daemon is warm, the daemon-backed CLI is the alternative: `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --warm-only --format json` (see "Skill Advisor CLI Transport Fallback").
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
-- Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`
-- Skip: trivial queries only (greetings, single-line questions)
+- **Artifact trigger — binds on what you are about to write, independently of the advisor score.** Before the FIRST code write of a task, route through `sk-code`; before the FIRST `.md` write, route through `sk-doc` — except spec-folder docs, which are `system-spec-kit`'s. Each skill's own router owns what applies below it: never assume a surface, mode, or packet taxonomy, read what that repo's skill defines. Routing means LOADING what the router resolves — a route you named but did not load does not satisfy this, and a skill already in context is not re-read. If the resolved contract is wrong for the case at hand, follow it for this task and propose the amendment (§1 PLAN-WORKFLOW LOCK step 4).
+- Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`; when the artifact trigger fires, add `ARTIFACT: [skill] → [what its router resolved]`
+- Skip: trivial queries only (greetings, single-line questions). The artifact trigger skips only the §3 exemption class (a few characters in one file); any new behavior, API, or control flow loads the skill
 
 #### GATE 3: SPEC FOLDER QUESTION [HARD] BLOCK - PRIORITY GATE
 - **Overrides Gates 1-2:** If file modification detected → ask Gate 3 BEFORE any analysis/tool calls
@@ -280,18 +282,20 @@ Every spec folder (Level 1+) MUST contain:
 - **Plan before acting** on multi-step work. Decide which files to read first, which tools to use, and how the result will be verified before making changes.
 - **Define proof before implementation.** Convert acceptance criteria into observable checks and identify the authoritative final gate before changing files.
 - **Use a research-first approach.** Read the actual code, docs, and local instructions first; prefer surgical edits over broad rewrites.
+- **Walk the restraint ladder before adding code.** Stop at the first rung that holds: does this need to exist at all (YAGNI) → a language built-in or standard library → a native platform or runtime feature → an already-installed dependency → one line → only then the minimum code that works. Rungs 2-4 require reading what already exists, so this is a post-read reflex. Rung 1 concluding "unnecessary" never licenses a cut: implement the frozen scope AND raise the scope amendment in the same response. Authoritative rungs: `sk-code` → `shared/references/universal/code-quality-standards.md` §1.
+- **Read the system before the file.** For any change touching more than one file, name the owning module, its callers, and the contract that must not break before the first edit. Treat the SYSTEMS and SCOPE lenses below as this pre-write pass, not as a post-hoc review.
 - **Apply project-specific conventions from `REPO RULES.md`** before acting, when the repository has one. This document is shared across repositories — several read it through a symlinked `AGENTS.md` — so conventions that belong to one repository live beside it rather than in here. Its verification commands and local contracts bind exactly as this document's do.
 
 **Ownership & Completion:**
 - **Take responsibility for issues encountered during execution.** Do not dodge ownership with phrases like `not caused by my changes` or `pre-existing issue`; work toward the fix.
 - **Produce the smallest complete result early.** Prefer a complete in-scope artifact over scaffolding or parallel fallback paths that the target environment does not require.
 - **Do not stop early when the requested solution is still incomplete.** Do not frame partial progress as a `good stopping point`, `natural checkpoint`, or `future work` when a safe path forward exists.
-- **Do not ask for permission to continue when the next safe step is already clear and in scope.** Avoid `should I continue?` or `want me to keep going?` when you can proceed safely under the existing rules.
+- **Do not ask for permission to continue an already-approved step that is clear and in scope.** Avoid `should I continue?` or `want me to keep going?` when you can proceed safely under the existing rules. This never waives a mandatory wait — Gate 3, PLAN-WORKFLOW LOCK approval, the worktree-versus-branch choice, remote-push go-ahead, and the blast-radius "stop for yes" all still block.
 
 **Debugging & Iteration:**
 - Reproduce the exact symptom when safe, trace the responsible producer and its consumers, fix the root cause, and rerun the same check.
 - Law 4 keeps forward progress and completion blocked while a check fails; diagnosis and repair are the permitted bounded remediation loop, not permission to proceed past the failure.
-- If an attempt repeats without new evidence, inspect the available interface, change the approach, or follow Section 7 escalation. Do not repeat the same guess.
+- If an attempt repeats without new evidence, stop patching at the failure site: restate the problem one level up — at the interface, the data flow, or the module boundary — and inspect the available interface before trying again. A fix that works only by special-casing a caller is evidence the seam is wrong: name the seam and the files a seam fix would touch, then ask — SCOPE LOCK still binds, and editing outside scope needs a yes. Do not repeat the same guess; stop local retries at the code skill's repeated-failure limit and escalate per Section 7.
 
 **Verification & Reasoning:**
 - **Use frequent self-checks and reasoning loops** to catch and fix your own mistakes before asking for help.
@@ -307,6 +311,7 @@ Every spec folder (Level 1+) MUST contain:
 - **Prefer available project tools** — add a dependency only when the scoped result requires it
 - **Require fallbacks only for real constraints** — add a no-install path only when the target execution environment cannot rely on dependency installation
 - **Solve only the stated problem** — avoid over-engineering and premature optimization
+- **Test what changed, not what exists** — a new test earns its place by failing for one real reason no current test catches. Do not add a test per branch, re-assert the framework or the language, or mirror the implementation. Changed behavior gets coverage; unchanged behavior does not get new tests. The floor is `sk-code` → `shared/references/universal/code-quality-standards.md` §4 (happy path plus one edge case per public surface); this rule governs only tests above that floor and never waives it
 - **Verify with checks** — simplicity, performance, maintainability, scope before changes
 - **Truth over agreement** — correct user misconceptions with evidence; never agree for conversational flow
 
@@ -359,7 +364,7 @@ Every spec folder (Level 1+) MUST contain:
 
 #### Code Search Decision Tree
 
-Full routing and FTS fallback chain are described in the decision tree below
+Routing for each search need is in the decision tree below
 
 | Need | Use |
 | ------| -----|
@@ -467,6 +472,7 @@ Confidence stays <80% after two failed attempts → ask with 2-3 options. Blocke
 - **Separate required from optional** — mark must-do work distinctly from nice-to-have.
 - **Name the failure a best practice prevents** — never cite a best practice, guardrail, or extra layer without stating the specific bug, cost, or user problem it avoids. No abstract "best practice."
 - **State assumptions when evidence is missing** — make the assumption visible instead of guessing silently.
+- **When the reader signals they did not understand, change modality, not volume** — "I don't follow", "what?", "too abstract" all count; re-explaining at greater length rarely helps. Route to `sk-communication`: `/rewrite:response` for plainer wording, `/rewrite:explain-visually` for a diagram at a chosen depth. That skill is held off advisor routing on purpose, so this rule is the only thing that reaches it — and the closing caveat below does not waive it.
 
 #### Turn Framing — Ask→Do
 
@@ -507,7 +513,7 @@ Any agent writing authored spec-folder docs MUST use contract-backed templates a
 
 ### Skill Routing Reference
 
-Skills are on-demand domain expertise invoked through Gate 2 (§2): when the advisor confidence is ≥ 0.8, you MUST invoke the recommended skill. Invoking a skill means reading `.opencode/skills/<skill-name>/SKILL.md` plus its bundled `references/`, `scripts/`, and `assets/` resources, then following its instructions to completion. A skill already in context is not re-invoked.
+Skills are on-demand domain expertise invoked through Gate 2 (§2): when the advisor confidence is ≥ 0.8, you MUST invoke the recommended skill. Invoking a skill means reading its `SKILL.md` and the resources ITS router resolves for the task at hand, then following those instructions to completion. Read a `references/`, `scripts/`, or `assets/` file when the skill's own routing points at it — not the whole bundle by default; ingesting a skill tree wholesale costs more context than it returns and is not what this rule asks for. A skill already in context is not re-invoked.
 
 **Advisor metadata placement.** These filenames also name spec-folder continuity metadata (§3) under a completely separate schema — never the same file, never interchangeable. At a skill root, `graph-metadata.json` is the advisor identity file and is required at BOTH parent-hub and standalone roots; `description.json`, `mode-registry.json`, and `hub-router.json` are **hub-only** (forbidden on a standalone root). None of them live at a mode/packet or `shared/` sublevel. Full contract (per-class required/forbidden matrix, key schemas, hub doctrine, and the `ci-skill-root-metadata.cjs` fleet audit): `.opencode/skills/sk-doc/sk-create-skill/references/shared/skill-root-metadata-contract.md`.
 

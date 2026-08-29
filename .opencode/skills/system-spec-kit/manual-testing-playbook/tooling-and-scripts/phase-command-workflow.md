@@ -107,7 +107,8 @@ Execution stopped before Step 4 because the scenario requires `bash .opencode/sk
 
 ### Pass / Fail
 
-- **BLOCKED**: required Step 4 folder creation would write outside the only allowed write path for this run, so the full 7-step workflow could not be executed and the expected success signals could not be verified.
+- **Pass**: All 7 workflow steps complete without error, created folders match expected structure, link validation reports no warnings, and recursive validation exits 0.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

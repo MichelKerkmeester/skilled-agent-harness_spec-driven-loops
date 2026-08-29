@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-016` and confirm th
 - Prompt: `Merge this branch, surface any conflicts for my decision, and wait for resolved files and passing tests before finishing.`
 - Expected execution process: Attempt merge, capture conflict files, stop for user decision, mark resolved only after edits, then rerun tests.
 - Expected signals: Conflict files are listed; agent does not invent resolution; merge commit happens only after explicit resolution and tests.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox has no disposable repository in which to create a real merge conflict.
 - Pass/fail: PASS if conflict handling follows `references/shared-patterns.md §6` merge-conflict pattern and `references/finish-workflows.md §7` troubleshooting. FAIL if the AI silently chooses one side, commits unresolved markers, or skips tests after resolution.
 
 ---

@@ -47,7 +47,7 @@ Add a bar chart for weekly sales to a note and a doughnut chart with the legend 
 
    ~~~sh
    TEST_VAULT=/tmp/_pbtest-charts-render-block
-   REAL_MANIFEST="${OBSIDIAN_VAULT:-/Users/michelkerkmeester/MEGA/Documents/Obsidian}/.obsidian/plugins/obsidian-charts/manifest.json"
+   REAL_MANIFEST="${OBSIDIAN_VAULT:?set OBSIDIAN_VAULT to an operator-owned vault with obsidian-charts installed}/.obsidian/plugins/obsidian-charts/manifest.json"
    rm -rf "$TEST_VAULT"
    mkdir -p "$TEST_VAULT/.obsidian/plugins/obsidian-charts"
    cp "$REAL_MANIFEST" "$TEST_VAULT/.obsidian/plugins/obsidian-charts/manifest.json"
@@ -153,11 +153,11 @@ Add a bar chart for weekly sales to a note and a doughnut chart with the legend 
 |---|---|
 | PASS | Manifest version 3.9.0, both fence tokens correct, advanced-chart JSON parses with `type` and `data` keys, chart YAML parses with `type`/`labels`/`series` plus per-item `title`/`data`, defaults check stated with its limitation, throwaway vault removed |
 | FAIL | Any block fails to parse, a fence token or key differs from the data model, a write lands outside `/tmp/_pbtest-charts-render-block`, or cleanup leaves files |
-| SKIP | No real vault with obsidian-charts installed is available for the manifest copy |
+| SKIP | No vault with obsidian-charts installed is available in this environment for the manifest copy (`OBSIDIAN_VAULT` unset or the plugin is missing) |
 
 ---
 
-## 4. CLEANUP
+### Cleanup
 
 Remove the throwaway vault and confirm nothing remains. The real vault was used only as the read source for the manifest copy.
 
@@ -174,7 +174,7 @@ Every write in this scenario stays inside `/tmp/_pbtest-charts-render-block`. No
 
 ---
 
-## 5. SOURCE FILES
+## 4. SOURCE FILES
 
 ### Playbook Sources
 
@@ -195,7 +195,7 @@ Every write in this scenario stays inside `/tmp/_pbtest-charts-render-block`. No
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugin tie-ins
 - Playbook ID: OBS-016

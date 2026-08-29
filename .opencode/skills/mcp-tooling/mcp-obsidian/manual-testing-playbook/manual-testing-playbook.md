@@ -21,11 +21,16 @@ Canonical package artifacts:
 - `mcp-verification/`
 - `plugin-tie-ins/`
 
+### Result persistence
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `mcp-obsidian/benchmark/reports/<dated-run-label>/`.
+
 ---
 
 ## 1. OVERVIEW
 
-This package provides 21 deterministic scenarios across 6 categories:
+This package provides 30 deterministic scenarios across 6 categories:
 
 | Surface | Scenario IDs | Runtime requirement |
 |---|---|---|

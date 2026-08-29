@@ -24,11 +24,11 @@ The behavior is user-observable: a downstream AI consumer that calls `memory_dri
 
 - Objective: Confirm the causal-edge builder forms correct edges between semantically-related memories saved through `memory_save`.
 - Real user request: `Verify our causal graph correctly links a 3-step problem→cause→mitigation chain after Memory MCP indexes them.`
-- AI-to-CLI handoff prompt: `You are <external-CLI>. I am Claude running the validation workflow. Save a 3-step causal chain to our shared Memory MCP, then call memory_causal_stats and memory_causal_link to surface the chain. Return the resulting edge set as JSON.`
+- Orchestrator prompt: `You are <external-CLI>. I am Claude running the validation workflow. Save a 3-step causal chain to our shared Memory MCP, then call memory_causal_stats and memory_causal_link to surface the chain. Return the resulting edge set as JSON.`
 - Expected execution process: store 3 memories via `memory_save`, wait 5s for indexing, query causal stats, verify at least 2 edges link the 3 memories.
 - Expected signals: `memory_causal_stats` reports the new memories; at least 2 of 3 possible edges (chain-1→2, 2→3) are present; edge confidence ≥ 0.5.
 - Desired user-visible outcome: `PASS — 2 of 2 chain edges formed; confidences 0.78 and 0.71.`
-- Pass/fail: PASS if ≥ 2 chain edges with confidence ≥ 0.5; PARTIAL if 1 edge; FAIL if 0 edges or edges link wrong pairs.
+- Pass/fail: PASS only if ≥ 2 chain edges carry confidence ≥ 0.5; FAIL at 0 or 1 qualifying edge, or if any edge links the wrong pair.
 
 ---
 
@@ -80,9 +80,16 @@ You are <external-CLI>. I am Claude orchestrating a Memory MCP causal-graph vali
      "memories": [A_ID, B_ID, C_ID],
      "stats_after_save": <causal_stats output>,
      "edges_among_three": [{source, target, confidence, kind}],
-     "verdict": "PASS" | "PARTIAL" | "FAIL" with one-line rationale
+     "verdict": "PASS" | "FAIL" with one-line rationale
    }
 ```
+
+
+### Commands
+
+Run the steps below in order; each named subsection states its exact tool calls and inputs.
+
+1. Verification
 
 ### Verification
 
@@ -109,63 +116,26 @@ The orchestrating Claude (this playbook caller) verifies the external CLI's resp
 
 ### Evidence
 
-- The exact AI-to-CLI handoff prompt + the CLI's verbatim response.
-  - Handoff prompt was not sent to an external CLI because step 1 requires writing three canonical research-doc files, while the active run constraint allowed writes only to `.opencode/skills/system-spec-kit/manual-testing-playbook/local-llm-query-intelligence/causal-graph-link-quality.md`.
-  - Attempted Spec Memory CLI fallback discovery command:
-    ```
-    node ".opencode/bin/spec-memory.cjs" --help
-    ```
-  - Verbatim CLI output:
-    ```
-    @spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
-    ```
-  - Spec Memory plugin status tool output:
-    ```
-    plugin_id=system-spec-memory
-    enabled=true
-    disabled_reason=none
-    cache_ttl_ms=5000
-    max_brief_chars=2400
-    max_cache_entries=200
-    runtime_ready=false
-    node_binary=node
-    bridge_timeout_ms=3000
-    cli_timeout_ms=2500
-    bridge_path=[spec-memory-bridge]
-    last_bridge_status=fail_open
-    last_error_code=EXIT_69
-    last_duration_ms=50
-    bridge_invocations=6
-    continuity_lookups=5
-    cache_entries=0
-    cache_hits=0
-    cache_misses=5
-    cache_hit_rate=0
-    warm_status=fail_open
-    warm_error=EXIT_69
-    warm_route=cli
-    warm_retryable=false
-    warm_exit_code=69
-    ```
-- The 3 parent IDs.
-  - BLOCKED: no parent IDs were created because the scenario requires creating three canonical research-doc files first, and that write was outside the allowed write path for this run.
-- The causal_stats delta (pre vs post).
-  - BLOCKED: no pre/post causal stats were collected because the required `memory_save` setup could not be performed without out-of-scope file writes.
-- The edges_among_three list.
-  - BLOCKED: no `edges_among_three` list was produced because there were no A_ID/B_ID/C_ID values to pass to `memory_causal_link`.
-- Active provider from `memory_health`.
-  - BLOCKED: `memory_health` was not reachable through the available Spec Memory path; the CLI fallback reported stale dist, and rebuilding would modify files outside the allowed write path.
-- An honest note if extra edges formed (causal builder may legitimately link to unrelated memories — note but do not fail unless those wrongly-paired edges dominate the chain edges).
-  - No extra edges were observed because the scenario was blocked before memory creation and causal linking.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass/Fail
 
-BLOCKED — Missing permission to create the three canonical research-doc files required by step 1, and the Spec Memory CLI fallback reported a stale dist that could not be rebuilt under the allowed write-path restriction.
+- **Pass**: ≥ 2 chain edges carry confidence ≥ 0.5.
+- **Fail**: At 0 or 1 qualifying edge, or if any edge links the wrong pair.
 
----
+### Failure Triage
 
-## 4. CLEAN-UP
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
 
+### Clean-Up
 ```
 mcp__system_spec_memory__memory_delete({ parent_id: A_ID })
 mcp__system_spec_memory__memory_delete({ parent_id: B_ID })
@@ -178,3 +148,20 @@ rm -rf <spec-folder> <spec-folder> <spec-folder>
 ```
 
 Memory delete also removes the causal edges attached to those memories.
+
+---
+
+## 4. SOURCE FILES
+
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 411
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/causal-graph-link-quality.md`

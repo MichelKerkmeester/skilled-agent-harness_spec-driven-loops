@@ -50,13 +50,13 @@ Operators run the exact command sequence and inspect only grep-able transcript a
 set -uo pipefail
 rm -rf /tmp/cp-055-sandbox /tmp/cp-055-sandbox-baseline /tmp/cp-055-spec
 mkdir -p /tmp/cp-055-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup_cp_sandbox.sh --sandbox-dir /tmp/cp-055-sandbox
+.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-055-sandbox
 cp -a /tmp/cp-055-sandbox /tmp/cp-055-sandbox-baseline
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 git status --porcelain -- /tmp/cp-055-sandbox /tmp/cp-055-spec > /tmp/cp-055-pre.txt
 cd /tmp/cp-055-sandbox
 opencode run "/deep:review:auto \"targets/review-target.js\" --spec-folder=/tmp/cp-055-spec --max-iterations=1 --convergence=0.10 --no-resource-map. Use target type files and dimensions maintainability. Complete synthesis after max iterations and route continuity via generate-context.js." --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-055-sandbox </dev/null 2>&1 | tee /tmp/cp-055-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-055-B-exit.txt
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 find /tmp/cp-055-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-055-B-artifacts.txt 2>/dev/null || touch /tmp/cp-055-B-artifacts.txt
 find /tmp/cp-055-spec -type f > /tmp/cp-055-B-files.txt 2>/dev/null || touch /tmp/cp-055-B-files.txt
 cat /tmp/cp-055-B-command.txt /tmp/cp-055-B-artifacts.txt /tmp/cp-055-B-files.txt > /tmp/cp-055-B-combined.txt
@@ -85,17 +85,18 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 | File | Lines | Role |
 |---|---:|---|
 | `.opencode/commands/deep/assets/deep-review-presentation.txt` | 306-322, 345-361 | Success/failure output and memory integration |
 | `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 414-420, 430-434 | Loop completion, quality gates, continuity integration |
 | `.opencode/agents/deep-review.md` | 292-297, 503-520 | Reducer boundary and related resources |
+| [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Command-flow stress tests
 - Playbook ID: CP-055

@@ -58,7 +58,7 @@ npx vitest run tests/sqlite-fts.vitest.ts tests/bm25-index.vitest.ts tests/chann
 Observed output:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  3 passed (3)
@@ -136,17 +136,18 @@ warm_exit_code=75
 Ad-hoc direct TypeScript probe attempts were not used as pass evidence because the runtime loader failed before executing the probe:
 
 ```text
-Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'tsx' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'tsx' imported from .opencode/skills/system-spec-kit/mcp-server/
 ```
 
 ```text
 ReferenceError: Database is not defined
-    at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
+    at <anonymous> (.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
 ```
 
 ### Pass / Fail
 
-- **BLOCKED**: Targeted implementation tests for FTS5/BM25 tokenization and channel representation passed, but the required production heavy search query could not be executed because the Spec Memory backend was unavailable (`runtime_ready=false`; CLI returned `exitCode: 75` with `tools/call timed out` and `backend unavailable: timeout`).
+- **Pass**: Pipeline safely handles summary/lexical heavy queries with correct filtering and tokenization.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

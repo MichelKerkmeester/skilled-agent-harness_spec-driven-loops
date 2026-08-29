@@ -41,7 +41,11 @@ zero counts from the empty base artifact dir state log and produces an incorrect
 - Working directory is repository root.
 - `deep-review-auto.yaml` and `review.md` present.
 
-### Steps
+### Prompt
+
+- Prompt: `/deep:review:auto "skill:deep-research" --executor=cli-opencode --model=o4-mini --label=opencode --executor=cli-claude-code --model=claude-opus-4-8 --label=claude --concurrency=2`
+
+### Commands
 
 1. `bash: grep -n "step_fanout_spawn\|step_fanout_merge\|bind_from_output\|active_p0\|active_p1\|skip_when" .opencode/commands/deep/assets/deep-review-auto.yaml | head -25`
 2. Confirm `step_fanout_merge` has `bind_from_output:` mapping `active_p0` → `p0_count`, `active_p1` → `p1_count`, `active_p2` → `p2_count`.
@@ -62,7 +66,12 @@ zero counts from the empty base artifact dir state log and produces an incorrect
 
 Source inspection confirms `bind_from_output` mapping is present. Review command docs include strongest-restriction. fanout-merge.vitest.ts 10/10 pass.
 
-### Failure Modes
+### Evidence
+
+- Grep output from steps 1 and 4, saved to `/tmp/drv-064-grep.txt`, showing the `bind_from_output` mapping and the strongest-restriction note.
+- `fanout-merge.vitest.ts` verbose output from step 6, saved to `/tmp/drv-064-vitest.txt`, showing 10/10 passing.
+
+### Failure Triage
 
 - `bind_from_output` absent: `step_derive_verdict` reads zero counts → incorrect PASS even when lineages found P0.
 - `--loop-type research` used instead of `review` in CLI call: merge uses research dedup instead of strongest-restriction.
@@ -88,7 +97,7 @@ Source inspection confirms `bind_from_output` mapping is present. Review command
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`

@@ -105,7 +105,7 @@ Note on honest grading: an empty `git remote -v` output proves no remote is conf
 
 ---
 
-## 4. CLEANUP
+### Cleanup
 
 1. Remove the throwaway repo.
 
@@ -118,7 +118,7 @@ Note on honest grading: an empty `git remote -v` output proves no remote is conf
 
 ---
 
-## 5. SOURCE FILES
+## 4. SOURCE FILES
 
 ### Playbook Sources
 
@@ -140,7 +140,7 @@ Note on honest grading: an empty `git remote -v` output proves no remote is conf
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugin tie-ins
 - Playbook ID: OBS-019

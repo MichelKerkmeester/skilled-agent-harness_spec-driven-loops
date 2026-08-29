@@ -16,7 +16,7 @@ Validates that **Bulk Create Tasks via MCP** behaves as defined in the feature c
 
 Verify `clickup_create_bulk_tasks` creates 3+ tasks in one API call is required for correct agent operation. Failure here means fewer than 3 tasks returned or any task missing `id`.
 
-> **Capability status: SKIP.** Dedicated bulk-create was confirmed absent from the last live `list_tools()` inventory (`references/mcp-tools.md`) — this is not a naming issue, the capability itself was not found. Do not execute this scenario against the current server; it will fail with a tool-not-found error, not the pass/fail signals below. Use repeated single `clickup_create_task` calls instead. Re-enable only after a fresh `tool_info()`/`list_tools()` capture confirms an exact bulk-create callable name and schema.
+> **Capability status: SKIP — a dedicated bulk-create tool is missing from the live server's tool inventory.** It was confirmed absent from the last live `list_tools()` inventory (`references/mcp-tools.md`) — this is not a naming issue, the capability itself was not found. Do not execute this scenario against the current server; it will fail with a tool-not-found error, not the pass/fail signals below. Use repeated single `clickup_create_task` calls instead. Re-enable only after a fresh `tool_info()`/`list_tools()` capture confirms an exact bulk-create callable name and schema.
 
 ---
 

@@ -54,34 +54,34 @@ Command run from `.opencode/skills/system-spec-kit/mcp-server`:
 ```text
 npx vitest run tests/session-resume-auth.vitest.ts --reporter verbose
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 stderr | mcp-server/tests/session-resume-auth.vitest.ts > session-resume auth binding > proceeds when args.sessionId matches callerContext.sessionId
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
 stderr | mcp-server/tests/session-resume-auth.vitest.ts > session-resume auth binding > throws on mismatched sessionId in default strict mode
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
 stderr | mcp-server/tests/session-resume-auth.vitest.ts > session-resume auth binding > proceeds when callerContext.sessionId is null
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
 stderr | mcp-server/tests/session-resume-auth.vitest.ts > session-resume auth binding > proceeds when args.sessionId is not provided
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
 stderr | mcp-server/tests/session-resume-auth.vitest.ts > session-resume auth binding > re-reads auth mode at call time when strict follows permissive in one process
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
 stderr | mcp-server/tests/session-resume-auth.vitest.ts > session-resume auth binding > re-reads auth mode at call time when strict follows permissive in one process
 [session-resume] Session-ID mismatch: args.sessionId='requested-session' vs callerContext.sessionId='transport-session' (permissive mode — allowing)
 
 stderr | mcp-server/tests/session-resume-auth.vitest.ts > session-resume auth binding > defaults to strict mode when MCP_SESSION_RESUME_AUTH_MODE is unset
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
 stderr | mcp-server/tests/session-resume-auth.vitest.ts > session-resume auth binding > ignores non-string args.sessionId values
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
 stderr | mcp-server/tests/session-resume-auth.vitest.ts > session-resume auth binding > treats an empty string sessionId as not provided
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
  ✓ mcp-server/tests/session-resume-auth.vitest.ts > session-resume auth binding > proceeds when args.sessionId matches callerContext.sessionId 478ms
  ✓ mcp-server/tests/session-resume-auth.vitest.ts > session-resume auth binding > throws on mismatched sessionId in default strict mode 13ms
@@ -104,7 +104,7 @@ Command run from `.opencode/skills/system-spec-kit`:
 ```text
 npx vitest run scripts/tests/gate-3-classifier.vitest.ts -t "Gate 3 classifier — normalization" --reporter verbose
 
- RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.6 .opencode/skills/system-spec-kit
 
  ✓ scripts/tests/gate-3-classifier.vitest.ts > Gate 3 classifier — normalization > lowercases and collapses whitespace 1ms
  ✓ scripts/tests/gate-3-classifier.vitest.ts > Gate 3 classifier — normalization > applies NFKC and strips soft hyphen / zero-width characters before matching 0ms
@@ -123,7 +123,7 @@ Command run from `.opencode/skills/system-spec-kit/mcp-server`:
 ```text
 npx vitest run tests/hooks-shared-provenance.vitest.ts --reporter verbose
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
  ✓ mcp-server/tests/hooks-shared-provenance.vitest.ts > hooks/shared-provenance > escapeProvenanceField > url-encodes a plain string value 1ms
  ✓ mcp-server/tests/hooks-shared-provenance.vitest.ts > hooks/shared-provenance > escapeProvenanceField > url-encodes special characters that could break the marker line 0ms
