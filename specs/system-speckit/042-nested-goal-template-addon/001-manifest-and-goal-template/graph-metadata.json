@@ -14,7 +14,8 @@
       "goal manifest entry",
       "goal template",
       "lazy add-on goal",
-      "goal.md.tmpl"
+      "goal.md.tmpl",
+      "goal template shipped"
     ],
     "key_topics": [
       "goal",
@@ -24,22 +25,25 @@
       "lazy",
       "add-on",
       "tmpl",
+      "shipped",
       "document",
       "anywhere",
       "documentation-level",
-      "contract",
-      "feature"
+      "contract"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      "templates/addons/goal.md.tmpl",
       "templates/spec-kit-docs.json",
-      "scripts/utils/template-structure.js"
+      "scripts/utils/template-structure.js",
+      "scripts/tests/level-contract-resolver.vitest.ts"
     ],
     "entities": [
       {
@@ -67,15 +71,33 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "spec-kit-docs.json",
         "kind": "config",
         "path": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
         "source": "derived"
       },
       {
+        "name": "goal.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/goal.md.tmpl",
+        "source": "derived"
+      },
+      {
         "name": "template-structure.js",
         "kind": "code",
         "path": "scripts/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "level-contract-resolver.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/level-contract-resolver.vitest.ts",
         "source": "derived"
       },
       {
@@ -167,37 +189,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "There is no goal document anywhere in the documentation-level contract",
     "created_at": "2026-08-29T18:09:17Z",
-    "last_save_at": "2026-08-29T19:50:41.593Z",
+    "last_save_at": "2026-08-29T20:00:04.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e139977c1da853a19c7c4a7ecbfbd58a0a9de16b225d6fd67fddab71b5c9c87c",
+    "source_fingerprint": "sha256:16b858d949a87e3986b3c9e19a97ca028ffeff38904a3a10ea5bd2653819b8e5",
     "source_doc_hashes": {
-      "spec.md": "fa096632f657f907258b5b5e32e88a532a8635d63e9cc930858b405a2a84b288",
+      "spec.md": "76b101fbd09b894b8569ef99972784eba0a2a6f7d32be0e3e9d91742043c435a",
       "plan.md": "6ddaba1185a82b86e7abaf8eb5ff73c38c4eb561ba9e172e2bd68234ee03b276",
-      "tasks.md": "c6fc34c794a9ee411e57a5a5dbd1bba8fd3aef3f7f407f332fc6c3baf09da296",
-      "checklist.md": "d186cebacd1e5b009ad0ea321adaa751b68b0d7ab25e1fc340c19621bba76fca"
+      "tasks.md": "00745f802651296336e3db5f8fa0074f7fc4507d955d5eda259f1e6d89c228ff",
+      "checklist.md": "d186cebacd1e5b009ad0ea321adaa751b68b0d7ab25e1fc340c19621bba76fca",
+      "implementation-summary.md": "a2ba2a4953e5c4611d879d6c2c69ca2c828b65c38de1ce16eada9d9e4e370e55"
     },
     "last_active_child_id": null,
     "last_active_at": null

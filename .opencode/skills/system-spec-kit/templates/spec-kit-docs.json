@@ -18,7 +18,8 @@
     "before-after.md.tmpl": "v2.2",
     "timeline.md.tmpl": "v2.2",
     "roadmap.md.tmpl": "v2.2",
-    "acceptance-criteria.md.tmpl": "v2.2"
+    "acceptance-criteria.md.tmpl": "v2.2",
+    "goal.md.tmpl": "v2.2"
   },
   "privateTaxonomy": {
     "kinds": [
@@ -160,6 +161,12 @@
       "owner": "author",
       "creationTrigger": "scaffold",
       "absenceBehavior": "warn"
+    },
+    "goal.md": {
+      "template": "goal.md.tmpl",
+      "owner": "author",
+      "creationTrigger": "explicit-option",
+      "absenceBehavior": "silent-skip"
     }
   },
   "levels": {
@@ -186,7 +193,8 @@
         "before-after.md",
         "timeline.md",
         "roadmap.md",
-        "decision-record.md"
+        "decision-record.md",
+        "goal.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -516,7 +524,30 @@
           "2",
           "3",
           "3+"
-        ]
+        ],
+        "goal.md": {
+          "directive": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ],
+          "completion": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ],
+          "log": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ]
+        }
       }
     },
     "2": {
@@ -545,7 +576,8 @@
         "before-after.md",
         "timeline.md",
         "roadmap.md",
-        "decision-record.md"
+        "decision-record.md",
+        "goal.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -1029,6 +1061,29 @@
             "3",
             "3+"
           ]
+        },
+        "goal.md": {
+          "directive": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ],
+          "completion": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ],
+          "log": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ]
         }
       }
     },
@@ -1058,7 +1113,8 @@
         "before-after.md",
         "timeline.md",
         "roadmap.md",
-        "decision-record.md"
+        "decision-record.md",
+        "goal.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -1626,6 +1682,29 @@
             "3",
             "3+"
           ]
+        },
+        "goal.md": {
+          "directive": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ],
+          "completion": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ],
+          "log": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ]
         }
       }
     },
@@ -1655,7 +1734,8 @@
         "before-after.md",
         "timeline.md",
         "roadmap.md",
-        "decision-record.md"
+        "decision-record.md",
+        "goal.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -2238,6 +2318,29 @@
             "3",
             "3+"
           ]
+        },
+        "goal.md": {
+          "directive": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ],
+          "completion": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ],
+          "log": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ]
         }
       }
     },
@@ -2255,7 +2358,8 @@
         "before-after.md",
         "timeline.md",
         "roadmap.md",
-        "decision-record.md"
+        "decision-record.md",
+        "goal.md"
       ],
       "sectionGates": {
         "spec.md": {
@@ -2351,7 +2455,33 @@
         ],
         "phase-governance": [
           "phase"
-        ]
+        ],
+        "goal.md": {
+          "directive": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ],
+          "completion": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ],
+          "log": [
+            "1",
+            "2",
+            "3",
+            "3+",
+            "phase"
+          ],
+          "binding": [
+            "phase"
+          ]
+        }
       }
     },
     "review": {

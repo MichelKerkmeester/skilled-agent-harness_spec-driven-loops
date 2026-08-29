@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm which contract buckets the document collector walks
-- [ ] T002 Confirm the gate syntax and the level ids the renderer accepts
-- [ ] T003 [P] Capture the current per-level document sets as a before-state
+- [x] T001 Confirm which contract buckets the document collector walks - lazy is spread, optional is skipped (`mcp-server/lib/validation/spec-doc-structure.ts:206`)
+- [x] T002 Confirm the gate syntax and the level ids the renderer accepts - gate syntax `IF level:` with an explicit level list
+- [x] T003 [P] Capture the current per-level document sets as a before-state - `template-structure.js docs <level>` returned the core trio at every level, before and after
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,10 +63,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Author the gated template with its durable, binding and log sections
-- [ ] T005 Declare the document, its version and its section gates in the contract
-- [ ] T006 List the document as a lazy add-on at Levels 1, 2, 3, 3+ and phase
-- [ ] T007 Add the document-to-template mapping so drift is detectable
+- [x] T004 Author the gated template with its durable, binding and log sections - `templates/addons/goal.md.tmpl`
+- [x] T005 Declare the document, its version and its section gates in the contract - `templates/spec-kit-docs.json` documents, versions and section gates
+- [x] T006 List the document as a lazy add-on at Levels 1, 2, 3, 3+ and phase - lazyAddonDocs at 1/2/3/3+/phase
+- [x] T007 Add the document-to-template mapping so drift is detectable - `scripts/utils/template-structure.js` document-to-template map
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,9 +74,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Render at every level and confirm the five carrying levels emit and the rest do not
-- [ ] T009 Probe the resolver for a path at the carrying levels and null elsewhere
-- [ ] T010 Scaffold a packet at a carrying level and confirm the document arrives
+- [x] T008 Render at every level and confirm the five carrying levels emit and the rest do not - 53/53/53/53/68 lines, 0 at review
+- [x] T009 Probe the resolver for a path at the carrying levels and null elsewhere - path at 1/2/3/3+/phase, null at review (`scripts/utils/template-structure.js:99`)
+- [x] T010 Scaffold a packet at a carrying level and confirm the document arrives - authored into this packet's parent (`../goal.md`)
 <!-- /ANCHOR:phase-3 -->
 
 ---

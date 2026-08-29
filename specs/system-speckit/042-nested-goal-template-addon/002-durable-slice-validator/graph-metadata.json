@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Nothing checks a goal document",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-08-29T19:50:41.930Z",
+    "last_save_at": "2026-08-29T19:58:13.811Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,9 +197,9 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:57a40e6584f89ab6a68017c80036be38c3b8c35a9ca49c0c89f9da0b15f4814a",
+    "source_fingerprint": "sha256:2d5ab9cc0ea1fcf292aa20ae26ee1860e378c0ef8143a04ad6f7b71dcbde3c75",
     "source_doc_hashes": {
-      "spec.md": "ca2e0883e6c0ecc702191ece8c0cde8b0a86355be2d6952140a224e943bf2975",
+      "spec.md": "ba59989b06c61275a84be0de08e4d13a9fa8419b85fbd069cda2ae09f6127aea",
       "plan.md": "700946914b95a6d8f639e80c3baa02cc807213ad63796ee1fea6ab906397e691",
       "tasks.md": "6de8e6d7d5905bdd33203058acdf0a08e4b9edaa58e03ae38d36b42de937ac24",
       "checklist.md": "dadebf477ea422266053c236f39366ddc10e6f4b43724341acf4c9996ed18af4"

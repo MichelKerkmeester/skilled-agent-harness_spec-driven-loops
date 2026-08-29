@@ -189,7 +189,10 @@ A goal document that has drifted out of shape says so, before an operator discov
 
 ## 10. OPEN QUESTIONS
 
-- None.
+- The measured template boilerplate floor is 1276 characters at phase level, which leaves roughly 724 characters of
+  authored room under a 2000-character budget. A four-phase parent authored during phase 1 landed at 2023 before
+  trimming. This phase must decide whether the budget measures the whole durable slice or only authored content
+  outside the template's own instructional prose, and whether a phase parent needs a larger allowance than a leaf.
 <!-- /ANCHOR:questions -->
 
 ---

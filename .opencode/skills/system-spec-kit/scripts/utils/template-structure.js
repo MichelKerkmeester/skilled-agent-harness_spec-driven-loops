@@ -99,6 +99,7 @@ const DOC_TEMPLATE_NAMES = {
   'checklist.md': 'checklist.md.tmpl',
   'acceptance-criteria.md': 'acceptance-criteria.md.tmpl',
   'decision-record.md': 'decision-record.md.tmpl',
+  'goal.md': 'goal.md.tmpl',
   'handover.md': 'handover.md.tmpl',
   'debug-delegation.md': 'debug-delegation.md.tmpl',
   'research/research.md': 'research.md.tmpl',

@@ -22,6 +22,7 @@ describe('resolveLevelContract', () => {
       'timeline.md',
       'roadmap.md',
       'decision-record.md',
+      'goal.md',
     ]);
     expect(contract.frontmatterMarkerLevel).toBe(1);
   });
@@ -45,6 +46,7 @@ describe('resolveLevelContract', () => {
         'timeline.md',
         'roadmap.md',
         'decision-record.md',
+        'goal.md',
       ]);
     }
   });
@@ -61,6 +63,7 @@ describe('resolveLevelContract', () => {
       'timeline.md',
       'roadmap.md',
       'decision-record.md',
+      'goal.md',
     ]);
     expect(contract.sectionGates.get('phase-list')).toEqual(['phase']);
   });

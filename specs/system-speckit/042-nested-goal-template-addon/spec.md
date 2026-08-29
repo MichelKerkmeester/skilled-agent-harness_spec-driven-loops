@@ -108,7 +108,7 @@ Summary for audit trail only; per-phase detail lives in each child's `plan.md`.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-manifest-and-goal-template/ | Put `goal.md` in the Level contract as a lazy add-on for Levels 1, 2, 3, 3+ and phase, and author the gated template with its durable directive, binding block and optional log | Pending |
+| 1 | 001-manifest-and-goal-template/ | Put `goal.md` in the Level contract as a lazy add-on for Levels 1, 2, 3, 3+ and phase, and author the gated template with its durable directive, binding block and optional log | Complete |
 | 2 | 002-durable-slice-validator/ | A present-file rule: durable and log headings, a binding block on phase parents, listed child paths that exist, and a durable slice within its character budget | Pending |
 | 3 | 003-runtime-neutral-goal-dispatch/ | Make the speckit goal offer dispatch per runtime instead of calling one runtime's tool, and make the stale-filename assertion path-specific so a spec document named `goal.md` stops colliding with it | Pending |
 | 4 | 004-parent-set-string-playbook/ | The operator-facing contract for what gets set: a short pointer plus the completion bullets copied out, because no stop evaluator opens the file | Pending |
