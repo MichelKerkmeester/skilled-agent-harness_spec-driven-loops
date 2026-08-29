@@ -57,11 +57,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the set action, When it dispatches, Then it resolves by runtime rather than naming one runtime's tool unconditionally | Six workflow assets carry `dispatch_by_runtime` instead of one named tool | Met | - |
-| AC-002 | REQ-002 | Given the offer action, When it runs, Then it calls no tool | Offer and skip wording now says no goal tool is called in any runtime | Met | - |
-| AC-003 | REQ-003 | Given a command file naming the goal document, When the contract test runs, Then it passes | Control: a command file naming the goal document exits 0 | Met | - |
-| AC-004 | REQ-004 | Given a genuinely stale command reference, When the contract test runs, Then it still fails | Control: a stale `commands/goal.md` reference exits 1 | Met | - |
-| AC-005 | REQ-005 | Given a runtime that documents no adapter, When the set action resolves, Then it hands off rather than fabricating one | The dispatch table hands off for runtimes documenting no adapter | Met | - |
+| AC-001 | REQ-001 | Given the set action, When it dispatches, Then it resolves by runtime rather than naming one runtime's tool unconditionally | `speckit-plan-auto.yaml:134` `dispatch_by_runtime`, in all six workflow assets | Met | - |
+| AC-002 | REQ-002 | Given the offer action, When it runs, Then it calls no tool | Offer and skip name no tool; `speckit-plan-auto.yaml:134` dispatches by runtime instead | Met | - |
+| AC-003 | REQ-003 | Given a command file naming the goal document, When the contract test runs, Then it passes | Control A exits 0 (`.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs:109`) | Met | - |
+| AC-004 | REQ-004 | Given a genuinely stale command reference, When the contract test runs, Then it still fails | Control B exits 1 against `staleCommandRef` (`.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs:106`) | Met | - |
+| AC-005 | REQ-005 | Given a runtime that documents no adapter, When the set action resolves, Then it hands off rather than fabricating one | `speckit-plan-auto.yaml:151` `status_tool_by_runtime` hands off rather than naming an adapter | Met | - |
 
 ### Status values
 

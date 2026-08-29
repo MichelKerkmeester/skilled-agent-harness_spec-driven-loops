@@ -40,7 +40,8 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 002-acceptance-criteria-template |
-| **Completed** | In Progress |
+| **Status** | Complete |
+| **Completed** | 2026-08-29 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 

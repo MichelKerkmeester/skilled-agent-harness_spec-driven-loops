@@ -57,11 +57,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the playbook, When an operator follows it, Then they produce a set string without opening the packet | The playbook states the pointer, binding and copied-criteria shape | Met | - |
-| AC-002 | REQ-002 | Given the worked example, When measured, Then it fits inside the smallest documented runtime cap | Its worked example measures 529 characters, inside every documented cap | Met | - |
-| AC-003 | REQ-003 | Given the playbook, When read, Then it states the precedence rule between parent decisions and child detail | The precedence rule is stated explicitly | Met | - |
-| AC-004 | REQ-004 | Given the playbook, When read, Then it explains why completion criteria are copied rather than referenced | The reason criteria are copied rather than referenced is stated | Met | - |
-| AC-005 | REQ-005 | Given a durable slice that will not fit, When an operator consults the playbook, Then it tells them what to cut | A cut order is given for a slice that will not fit | Met | - |
+| AC-001 | REQ-001 | Given the playbook, When an operator follows it, Then they produce a set string without opening the packet | Pointer, binding and copied-criteria shape at `references/workflows/goal-set-string-playbook.md:23` | Met | - |
+| AC-002 | REQ-002 | Given the worked example, When measured, Then it fits inside the smallest documented runtime cap | Worked example measures 529 characters (`references/workflows/goal-set-string-playbook.md:85`), inside every documented cap | Met | - |
+| AC-003 | REQ-003 | Given the playbook, When read, Then it states the precedence rule between parent decisions and child detail | Precedence stated at `references/workflows/goal-set-string-playbook.md:29` | Met | - |
+| AC-004 | REQ-004 | Given the playbook, When read, Then it explains why completion criteria are copied rather than referenced | `references/workflows/goal-set-string-playbook.md:46` states why criteria are copied, not referenced | Met | - |
+| AC-005 | REQ-005 | Given a durable slice that will not fit, When an operator consults the playbook, Then it tells them what to cut | Cut order at `references/workflows/goal-set-string-playbook.md:54` | Met | - |
 
 ### Status values
 

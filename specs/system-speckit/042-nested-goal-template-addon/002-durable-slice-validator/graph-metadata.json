@@ -39,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scripts/rules/check-goal-shape.sh",
       "scripts/lib/validator-registry.json",
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,26 +184,30 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Nothing checks a goal document",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-08-29T20:18:33.341Z",
+    "last_save_at": "2026-08-29T20:42:31.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7fde0715f2ee9edbb8b563fa868e5bdfa6bf68ebe3563e41c920a230845c4dc",
+    "source_fingerprint": "sha256:761b99e9736bb101f989317ccc2413bf8810349aa17040afc765822660d30e81",
     "source_doc_hashes": {
       "spec.md": "ac9ef0060803535aa62a49656918137db698eb6cfed59eb06369c89fe267f9df",
       "plan.md": "700946914b95a6d8f639e80c3baa02cc807213ad63796ee1fea6ab906397e691",
       "tasks.md": "61e196672b6845081939e2b822f7d077f668f40305904f701e9354007efac6c6",
-      "checklist.md": "dadebf477ea422266053c236f39366ddc10e6f4b43724341acf4c9996ed18af4",
       "implementation-summary.md": "b2af759b858d7b965dfe137320361cff9ff275672079afc210bdcebc70fe41e3"
     },
     "last_active_child_id": null,

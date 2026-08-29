@@ -57,11 +57,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a packet with no goal document, When the rule runs, Then it reports nothing | `scripts/tests/check-goal-shape.sh` case: no goal document is a no-op | Met | - |
-| AC-002 | REQ-002 | Given a durable slice over budget, When the rule runs, Then it reports the overage and the measurement excludes the log | Case: over-budget slice reported with its measurement; same slice passes at parent budget | Met | - |
-| AC-003 | REQ-003 | Given a phase-parent document without a binding block, When the rule runs, Then it reports the missing block | Case: phase parent without binding reported | Met | - |
-| AC-004 | REQ-004 | Given a listed child path that does not resolve, When the rule runs, Then it names that path | Case: parent binding a missing child names that path | Met | - |
-| AC-005 | REQ-005 | Given a well-formed document, When the rule runs, Then it reports nothing | Live run: five folders in this packet, all PASS with their measurements | Met | - |
+| AC-001 | REQ-001 | Given a packet with no goal document, When the rule runs, Then it reports nothing | `scripts/tests/check-goal-shape.sh:51` no goal document is a no-op | Met | - |
+| AC-002 | REQ-002 | Given a durable slice over budget, When the rule runs, Then it reports the overage and the measurement excludes the log | `scripts/tests/check-goal-shape.sh:71` over-budget slice reported with its measurement; the same slice passes at the parent budget (`scripts/rules/check-goal-shape.sh:129`) | Met | - |
+| AC-003 | REQ-003 | Given a phase-parent document without a binding block, When the rule runs, Then it reports the missing block | `scripts/tests/check-goal-shape.sh:63` phase parent without a binding block is reported | Met | - |
+| AC-004 | REQ-004 | Given a listed child path that does not resolve, When the rule runs, Then it names that path | `scripts/tests/check-goal-shape.sh:58` parent binding a missing child names that path (`scripts/rules/check-goal-shape.sh:119`) | Met | - |
+| AC-005 | REQ-005 | Given a well-formed document, When the rule runs, Then it reports nothing | `scripts/tests/check-goal-shape.sh:52` well-formed leaf passes; live run across five folders in this packet, all PASS with measurements | Met | - |
 
 ### Status values
 

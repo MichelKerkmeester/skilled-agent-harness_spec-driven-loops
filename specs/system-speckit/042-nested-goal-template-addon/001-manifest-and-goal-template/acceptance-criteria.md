@@ -57,11 +57,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the contract, When a level's document set is resolved, Then the goal document appears for Levels 1, 2, 3, 3+ and phase and for no other level | `spec-kit-docs.json` lazyAddonDocs carries it at 1/2/3/3+/phase and not at review | Met | - |
-| AC-002 | REQ-002 | Given the template, When it is rendered at each level, Then the five carrying levels emit content and the rest emit nothing | Renders: 53 lines at 1/2/3/3+, 68 at phase, 0 at review | Met | - |
-| AC-003 | REQ-003 | Given the mapping, When the document is resolved to a template, Then a path is returned at the carrying levels and null elsewhere | `resolveTemplatePath` returns a path at the five carrying levels and null at review | Met | - |
-| AC-004 | REQ-004 | Given a rendered document, When its headings are read, Then the durable directive and the volatile log are separable by heading alone | Rendered document splits at `## 1. DURABLE DIRECTIVE` and `## 4. LOG` | Met | - |
-| AC-005 | REQ-005 | Given a phase-parent rendering, When it is read, Then it carries a binding block, and a standalone Level 1 rendering does not | BINDING block count: 1 at phase, 0 at Level 2 | Met | - |
+| AC-001 | REQ-001 | Given the contract, When a level's document set is resolved, Then the goal document appears for Levels 1, 2, 3, 3+ and phase and for no other level | `templates/spec-kit-docs.json:197` lazyAddonDocs carries it at 1/2/3/3+/phase and not at review | Met | - |
+| AC-002 | REQ-002 | Given the template, When it is rendered at each level, Then the five carrying levels emit content and the rest emit nothing | Gate `templates/addons/goal.md.tmpl:1` renders 53 lines at 1/2/3/3+, 68 at phase, 0 at review | Met | - |
+| AC-003 | REQ-003 | Given the mapping, When the document is resolved to a template, Then a path is returned at the carrying levels and null elsewhere | `scripts/utils/template-structure.js:102` maps the document to its template | Met | - |
+| AC-004 | REQ-004 | Given a rendered document, When its headings are read, Then the durable directive and the volatile log are separable by heading alone | Splits at `templates/addons/goal.md.tmpl:42` (durable) and `:93` (log) | Met | - |
+| AC-005 | REQ-005 | Given a phase-parent rendering, When it is read, Then it carries a binding block, and a standalone Level 1 rendering does not | Binding gated at `templates/addons/goal.md.tmpl:57`: 1 block at phase, 0 at Level 2 | Met | - |
 
 ### Status values
 

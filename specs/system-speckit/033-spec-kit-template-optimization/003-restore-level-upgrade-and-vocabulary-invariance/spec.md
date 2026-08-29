@@ -46,7 +46,7 @@ _memory:
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-speckit/033-spec-kit-template-optimization |
 | **Predecessor** | 002-acceptance-criteria-template |
-| **Successor** | None |
+| **Successor** | 004-checklist-deprecation-closure |
 <!-- /ANCHOR:metadata -->
 
 ---

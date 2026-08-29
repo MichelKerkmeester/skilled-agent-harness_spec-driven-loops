@@ -38,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
       ".opencode/commands/speckit/assets/speckit-complete-auto.yaml"
@@ -60,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,30 +176,34 @@
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The speckit commands already offer to set a session goal, and the offer calls one runtime's tool by name",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-08-29T20:18:35.648Z",
+    "last_save_at": "2026-08-29T20:42:33.371Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f63ba48ba1185c5ac4aa3d8f2bab30da3455af3f61208d7f3ea3333fa94450fc",
+    "source_fingerprint": "sha256:23fbab57c7bbb107dd6d7c11e0fd2a8c071298c768af3c42db91c81548a71de0",
     "source_doc_hashes": {
       "spec.md": "f9c9ff88c169cd83fa2c5606a0c1b221ad4aca883ea7392363d617b65515ee2a",
       "plan.md": "fc89732bcf40e00f193fa0b970f36a23f8df64adb77540f47dfd2932f90e0987",
       "tasks.md": "e2f1281e49827abdd6c2320a9b13d301917a26b1981880ee9ad854094092bca1",
-      "checklist.md": "9a2b091e5a5a40f010d4a1767c78ac2b768c2a7c66b31bc17f47ec338ca08386",
       "implementation-summary.md": "43d76ef661f29c251338102b255ffa06b6b3b6b824670cbb5e48554d50fa4008"
     },
     "last_active_child_id": null,

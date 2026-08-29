@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
       "templates/addons/goal.md.tmpl",
@@ -62,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -185,30 +178,34 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "There is no goal document anywhere in the documentation-level contract",
     "created_at": "2026-08-29T18:09:17Z",
-    "last_save_at": "2026-08-29T20:00:04.161Z",
+    "last_save_at": "2026-08-29T20:42:29.591Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16b858d949a87e3986b3c9e19a97ca028ffeff38904a3a10ea5bd2653819b8e5",
+    "source_fingerprint": "sha256:6e444789151ff5544466710ad3cb36df07300964750f1ddb926a17f7fc11dcc4",
     "source_doc_hashes": {
       "spec.md": "76b101fbd09b894b8569ef99972784eba0a2a6f7d32be0e3e9d91742043c435a",
       "plan.md": "6ddaba1185a82b86e7abaf8eb5ff73c38c4eb561ba9e172e2bd68234ee03b276",
       "tasks.md": "00745f802651296336e3db5f8fa0074f7fc4507d955d5eda259f1e6d89c228ff",
-      "checklist.md": "d186cebacd1e5b009ad0ea321adaa751b68b0d7ab25e1fc340c19621bba76fca",
       "implementation-summary.md": "a2ba2a4953e5c4611d879d6c2c69ca2c828b65c38de1ce16eada9d9e4e370e55"
     },
     "last_active_child_id": null,

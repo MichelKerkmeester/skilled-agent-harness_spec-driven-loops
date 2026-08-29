@@ -105,9 +105,10 @@ Summary for audit trail only; per-phase detail lives in each child's `plan.md`.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-spec-template-context-optimization/ | Level-gated research templates, single-sourced templates, rendered-view read guard, acceptance-coverage advisory, scope-adherence validator, and a `memory_search` token budget | Complete |
-| 2 | 002-acceptance-criteria-template/ | A canonical `acceptance-criteria.md` for Levels 2, 3 and 3+ that gates packet closure, with ADR-backed waiver and supersede paths | In Progress |
+| 2 | 002-acceptance-criteria-template/ | A canonical `acceptance-criteria.md` for Levels 2, 3 and 3+ that gates packet closure, with ADR-backed waiver and supersede paths | Complete |
 
 | 3 | 003-restore-level-upgrade-and-vocabulary-invariance/ | Restore the level-upgrade path after the template restructure and clear the public-surface vocabulary invariance | Complete |
+| 4 | 004-checklist-deprecation-closure/ | [Phase 4 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -122,6 +123,7 @@ Summary for audit trail only; per-phase detail lives in each child's `plan.md`.
 | 001 | 002 | Acceptance-coverage advisory exists and is registered, giving phase 2 a rule to promote rather than invent | `AC_COVERAGE` present in `scripts/lib/validator-registry.json` |
 | 002 | — | Closure gate blocks an unmet, unwaived acceptance criterion under `--strict`, and the Level contract requires the document at Levels 2, 3 and 3+ | `validate.sh <folder> --strict` exit code, negative control included |
 | 002 | 003 | The closure gate exists, so an upgrade that omits its document is a real defect worth fixing | Upgrade to Level 2 creates acceptance-criteria.md |
+| 003-restore-level-upgrade-and-vocabulary-invariance | 004-checklist-deprecation-closure | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

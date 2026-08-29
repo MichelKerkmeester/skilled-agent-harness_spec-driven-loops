@@ -196,7 +196,7 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
+        "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Acceptance criteria are split across two documents and owned by neither",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-08-29T16:24:18.154Z",
+    "last_save_at": "2026-08-29T20:42:22.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:85e9620fe4ff9018e3600d4bb80ca420da7a47a3e414d2fc97f956199a3d2aff",
+    "source_fingerprint": "sha256:b1061aca96278d8fe3da473efc87f7570c9a1962a3d0093f2373b0f2183f9dbf",
     "source_doc_hashes": {
-      "spec.md": "651636f6f7065ebad102f61e8a26b41be434a20f0caf49a220182b7c3bbbd5b4",
+      "spec.md": "b60a1d60ddf37c41dce04987015003398c83141e8d76f10678e27f822dc5c4db",
       "plan.md": "d626919caf0a4b0d7ef0fad0a4bc4a07d7a0ab0f66559c3fe7cc2088026f7ca9",
       "tasks.md": "d232952f27c37a1c5375f5aa3d0134e4273b44057b3df1fbdec675aeaf28cc6e",
       "checklist.md": "8eeb64bbcde58f67578649e27a9594e48326a43e39100968dc7a4bc99f8f3f1d",
       "decision-record.md": "47c753e2e8eae72d61a0ef3d01f8d5067391ed40623dde70821ddfc4c4033fda",
-      "implementation-summary.md": "f3c7215339d7dab4a6530f93495a63c3f30cfe5631bbc9095abc7455f9ef1f2a"
+      "implementation-summary.md": "cf1108243dabdb033bbdf97ee425a8a3a0fd0826289cbf6d91b2d39f9d1622f6"
     },
     "last_active_child_id": null,
     "last_active_at": null

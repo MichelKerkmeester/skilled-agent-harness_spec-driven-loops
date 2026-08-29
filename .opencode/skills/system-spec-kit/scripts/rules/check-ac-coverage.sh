@@ -53,7 +53,11 @@ _ac_lifecycle_active() {
     local summary_file="$folder/implementation-summary.md"
 
     [[ "$level_num" -lt 2 ]] && return 1
-    _ac_traceability_file "$folder" >/dev/null || return 1
+    # Either source can carry the evidence; requiring the legacy one would leave
+    # a canonical packet unmeasured.
+    if [[ ! -f "$folder/acceptance-criteria.md" ]]; then
+        _ac_traceability_file "$folder" >/dev/null || return 1
+    fi
     [[ -f "$summary_file" ]] || return 1
 
     local status_line status
@@ -62,14 +66,17 @@ _ac_lifecycle_active() {
     [[ "$status" == *"in-progress"* || "$status" == *"in progress"* || "$status" == *"implemented"* || "$status" == *"complete"* || "$status" == *"completed"* || "$status" == *"done"* || "$status" == *"shipped"* || "$status" == *"delivered"* ]]
 }
 
+# The merged tasks document is the current home for verification traceability.
+# A standalone checklist.md is a pre-merge artifact, so it is the fallback and
+# never the preference: a packet carrying both is a new packet with a stale file.
 _ac_traceability_file() {
     local folder="$1"
-    if [[ -f "$folder/checklist.md" ]]; then
-        printf '%s\n' "$folder/checklist.md"
-        return 0
-    fi
     if [[ -f "$folder/tasks.md" ]] && grep -q '<!-- ANCHOR:protocol -->' "$folder/tasks.md" 2>/dev/null; then
         printf '%s\n' "$folder/tasks.md"
+        return 0
+    fi
+    if [[ -f "$folder/checklist.md" ]]; then
+        printf '%s\n' "$folder/checklist.md"
         return 0
     fi
     return 1
@@ -163,6 +170,68 @@ _ac_count_total() {
     _ac_count_requirement_table "$spec_file"
 }
 
+# Reads evidence from the canonical criteria table, which is also where the
+# total comes from. Counting the denominator in one document and the numerator
+# in another guarantees an undercount for every packet that has both.
+# Columns are bound by header name so an added column cannot shift the read.
+# A waived or superseded criterion needs no file:line: the decision record it
+# names is what carries it, and AC_CLOSURE is what verifies that record exists.
+_ac_analyze_canonical() {
+    local ac_file="$1"
+    awk '
+        function norm(v) {
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", v)
+            gsub(/\*\*/, "", v)
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", v)
+            return v
+        }
+        function lower(v) { return tolower(v) }
+        function has_file_line(v) { return v ~ /(^|[[:space:](`])[^[:space:]|()`]+:[0-9]+([[:space:]).,;`]|$)/ }
+        BEGIN { fence = 0; in_table = 0; c_id = 0; c_ev = 0; c_status = 0; rows = 0; covered = 0; malformed = 0 }
+        /^[[:space:]]*(```|~~~)/ { fence = 1 - fence; next }
+        fence { next }
+        {
+            raw = $0
+            if (raw !~ /^[[:space:]]*\|/) { in_table = 0; next }
+            gsub(/\\\|/, "\001", raw)
+            n = split(raw, cell, "|")
+            for (i = 1; i <= n; i++) { gsub(/\001/, "|", cell[i]) }
+
+            found_id = 0
+            for (i = 1; i <= n; i++) if (lower(norm(cell[i])) == "ac-id") { found_id = i; break }
+            if (found_id) {
+                in_table = 1; c_id = found_id; c_ev = 0; c_status = 0
+                for (i = 1; i <= n; i++) {
+                    h = lower(norm(cell[i]))
+                    if (h == "verification") c_ev = i
+                    else if (h == "status") c_status = i
+                }
+                next
+            }
+            if (!in_table) next
+            if (raw ~ /^[[:space:]]*\|[[:space:]:*-]+\|?[[:space:]:|*-]*$/) next
+
+            id = norm(cell[c_id])
+            gsub(/`/, "", id)
+            if (toupper(id) !~ /^AC-[0-9]+[0-9A-Za-z]*$/) next
+            rows++
+
+            status = c_status ? lower(norm(cell[c_status])) : ""
+            if (status ~ /waived|superseded/) { covered++; next }
+
+            evidence = c_ev ? norm(cell[c_ev]) : ""
+            ev_l = lower(evidence)
+            if (ev_l == "" || ev_l == "-" || ev_l == "n/a") next
+            if (has_file_line(evidence)) { covered++; next }
+
+            malformed++
+            if (length(malformed_ids) > 0) malformed_ids = malformed_ids ", " toupper(id)
+            else malformed_ids = toupper(id)
+        }
+        END { printf "%d\t%d\t%d\t%s\n", rows, covered, malformed, malformed_ids }
+    ' "$ac_file"
+}
+
 _ac_analyze_traceability() {
     local checklist_file="$1"
     local merged_tasks="${2:-false}"
@@ -240,17 +309,22 @@ run_check() {
         return 0
     fi
 
-    local checklist_file
-    local merged_tasks=false
-    if ! checklist_file="$(_ac_traceability_file "$folder")"; then
-        RULE_MESSAGE="Acceptance coverage gate not active: no verification checklist source found"
-        return 0
-    fi
-    if [[ "$checklist_file" == "$folder/tasks.md" ]]; then
-        merged_tasks=true
-    fi
     local analysis rows covered malformed malformed_ids
-    analysis="$(_ac_analyze_traceability "$checklist_file" "$merged_tasks")"
+    local ac_file="$folder/acceptance-criteria.md"
+    if [[ -f "$ac_file" ]]; then
+        analysis="$(_ac_analyze_canonical "$ac_file")"
+    else
+        local checklist_file
+        local merged_tasks=false
+        if ! checklist_file="$(_ac_traceability_file "$folder")"; then
+            RULE_MESSAGE="Acceptance coverage gate not active: no verification checklist source found"
+            return 0
+        fi
+        if [[ "$checklist_file" == "$folder/tasks.md" ]]; then
+            merged_tasks=true
+        fi
+        analysis="$(_ac_analyze_traceability "$checklist_file" "$merged_tasks")"
+    fi
     IFS=$'\t' read -r rows covered malformed malformed_ids <<< "$analysis"
 
     if [[ "$rows" -gt "$total" ]]; then
@@ -270,6 +344,12 @@ run_check() {
 
     if [[ "$covered" -ge "$required" ]]; then
         RULE_MESSAGE="AC_COVERAGE advisory: ${covered}/${total} ACs have evidence; floor ${required}/${total}"
+        return 0
+    fi
+
+    if [[ -f "$ac_file" ]]; then
+        RULE_MESSAGE="AC_COVERAGE advisory (under floor): ${covered}/${total} ACs have evidence; floor ${required}/${total}. Cite file:line in the Verification cell, or retire the criterion through a decision record."
+        RULE_REMEDIATION="In acceptance-criteria.md, give each criterion's Verification cell a file:line citation. A criterion whose Status is Waived or Superseded needs no citation; its decision record carries it."
         return 0
     fi
 

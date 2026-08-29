@@ -1,97 +1,123 @@
 ---
 title: "Operator Goal: 033 Spec-Kit Template Optimization"
-description: "The operator-issued goal prompt governing packet 033, its decisions, constraints and proof plan, kept current as the phases execute."
+description: "The operator directive governing packet 033: a canonical, closure-blocking acceptance-criteria document for Levels 2, 3 and 3+, with the decisions that are not to be re-litigated."
 trigger_phrases:
   - "033 goal prompt"
   - "spec kit template optimization goal"
   - "acceptance criteria goal"
 importance_tier: "important"
 contextType: "planning"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/033-spec-kit-template-optimization"
+    last_updated_at: "2026-08-29T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Restructured this document to the goal template shape shipped by packet 042"
+    next_safe_action: "Run the deep review over phase 004 and packet 042"
+    blockers: []
+    key_files:
+      - "004-checklist-deprecation-closure/spec.md"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-29-033-spec-kit-template-optimization"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "D1, D2 and D3 were operator-confirmed on 2026-08-29 and are not re-litigated"
 ---
 
 # Operator Goal: 033 Spec-Kit Template Optimization
 
-> Issued 2026-08-29. This document is the directive the packet executes against.
-> It is kept current: the Progress section below is updated as phases land.
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
-## 1. OBJECTIVE
+<!-- ANCHOR:directive -->
+## 1. DURABLE DIRECTIVE
 
-Restructure `system-speckit/033` into a phase parent, then add a canonical,
-closure-blocking `acceptance-criteria.md` to the Level 2 / 3 / 3+ doc contract.
-A packet cannot close until every AC row is met, waived, or superseded by an ADR.
+**Objective:** Restructure `system-speckit/033` into a phase parent, then make
+`acceptance-criteria.md` a canonical, closure-blocking document at Levels 2, 3
+and 3+. A packet cannot close until every criterion is met, waived or superseded
+by a decision record that exists.
 
----
-
-## 2. GATE 3
-
-`specs/system-speckit/033-spec-kit-template-optimization/` — phase parent.
-Confirmed 2026-08-29; do not re-ask.
-
----
-
-## 3. DECISIONS (operator-confirmed — do not re-litigate)
+**Decisions — operator-confirmed 2026-08-29, do not re-litigate:**
 
 | ID | Decision |
 |----|----------|
-| **D1** | Restructure the existing `033-spec-template-context-optimization` in place: keep number 033, rename to `033-spec-kit-template-optimization`, demote its current docs into child `001-`. Do not absorb packet 036. |
-| **D2** | `acceptance-criteria.md` is the CANONICAL AC home. `spec.md` keeps REQ IDs and drops its AC column; user-story AC blocks move out. `check-ac-coverage.sh` counts from the new doc. |
-| **D3** | Forward-only rollout. Packets at/after a dated cutoff must carry the doc; older packets stay advisory. No backfill of the 2,588 existing Level 2/3/3+ packets. |
+| **D1** | Restructure `033` in place: keep the number, rename to `033-spec-kit-template-optimization`, demote its existing documents into child `001-`. Do not absorb packet 036. |
+| **D2** | `acceptance-criteria.md` is the canonical home. `spec.md` keeps requirement ids and drops its criteria column; the coverage advisory counts from the new document. |
+| **D3** | Forward-only rollout behind a dated cutoff. Packets created after it must carry the document; older packets stay advisory. No backfill of the existing tree. |
+
+**Constraints:** scope lock — no cleanup of packet 036 or adjacent packets. The
+parent stays a lean trio; heavy documents live in the children. No completion
+claim without `validate.sh <folder> --strict` at exit 0.
+<!-- /ANCHOR:directive -->
 
 ---
 
-## 4. PHASE MAP
+<!-- ANCHOR:binding -->
+## 2. BINDING
 
-| Phase | Folder | Role |
-|-------|--------|------|
-| 001 | `001-spec-template-context-optimization` | Existing complete packet, moved verbatim. Content frozen; only its path self-references change. |
-| 002 | `002-acceptance-criteria-template` | New. All build work below. |
-| 003 | `003-restore-level-upgrade-and-vocabulary-invariance` | Added after review: restores the level-upgrade path the template restructure broke, and clears the public-surface vocabulary invariance. |
+Read each phase's goal document before working that phase; its criteria bind as
+if written here. Parent decisions outrank child detail; child detail outranks
+any summary of it.
 
----
-
-## 5. PHASE 002 — BUILD
-
-1. **Template** `templates/addons/acceptance-criteria.md.tmpl`, gated for levels 2/3/3+. Row shape: `AC-ID | REQ | Given/When/Then | Verification | Status | Waiver`.
-2. **Contract** `templates/spec-kit-docs.json`: add the `documents` entry, a `versions` entry, `sectionGates`, and list it in `requiredAddonDocs` for `2`, `3`, `3+`. `check-files.sh` picks it up through `scripts/utils/template-structure.js` — no new file-presence rule needed.
-3. **Closure gate**: a new rule blocks completion under `--strict` on any unmet, unwaived AC row. Register it in `scripts/lib/validator-registry.json`.
-4. **Waiver path**: an AC row may only be scrapped or superseded by a decision record. The rule requires a `Waiver: ADR-NNN` cell AND that `decision-record.md` actually contains that ADR. A waiver naming a missing ADR is an error, not a pass.
-5. **Repoint** `check-ac-coverage.sh` to count ACs from `acceptance-criteria.md`, falling back to `spec.md` for pre-cutoff packets.
-6. **Grandfathering**: dated cutoff, mirroring the existing `LEGACY_GRANDFATHERED` (`validate.sh:175-182`) and `CANONICAL_SAVE_CUTOFF` patterns. Do not invent a third mechanism.
-7. **References**: `CLAUDE.md` §3 level table, system-spec-kit `SKILL.md`, `templates/README.md`, `templates/CONTRACT.md`, `examples/level-2|3|3+`, feature-catalog, `references/validation/validation-rules.md`, `mcp-server/ENV-REFERENCE.md`, **the system-spec-kit skill `README.md`, and the public root `README.md`**.
+| Phase | Goal document |
+|-------|---------------|
+| 001-spec-template-context-optimization | `001-spec-template-context-optimization/goal.md` |
+| 002-acceptance-criteria-template | `002-acceptance-criteria-template/goal.md` |
+| 003-restore-level-upgrade-and-vocabulary-invariance | `003-restore-level-upgrade-and-vocabulary-invariance/goal.md` |
+| 004-checklist-deprecation-closure | `004-checklist-deprecation-closure/goal.md` |
+<!-- /ANCHOR:binding -->
 
 ---
 
-## 6. RESTRUCTURE — PARENT
+<!-- ANCHOR:completion -->
+## 3. COMPLETION CRITERIA
 
-- `git mv` the existing docs into `001-`; author the parent lean trio from `packet-types/phase-parent.spec.md.tmpl` (root purpose + phase list only — no merge/migration narrative).
-- Regenerate `description.json` + `graph-metadata.json` for parent and both children.
-- Rewrite the 19 old-slug sites: `specs/descriptions.json`, `000-release` fragments/coverage/changelog-by-skill/graph-metadata, spec-kit `changelog/v3.9.0.0.md`, playbook `scope-adherence-advisory-rule.md`, one 036 research iteration, plus 033's own docs. Historical changelog prose keeps the old name where it records what shipped under it.
-
----
-
-## 7. CONSTRAINTS
-
-- SCOPE LOCK: no cleanup of packet 036 or adjacent packets.
-- Parent stays lean trio; heavy docs live in children.
-- No completion claim without `validate.sh <folder> --strict` exit 0.
+- [x] Recursive `validate.sh --strict` over the 033 tree reports zero errors.
+- [x] The renderer emits `acceptance-criteria.md` at 2/3/3+ and never at Level 1.
+- [x] A post-cutoff packet missing the document fails; adding it passes.
+- [x] A criterion waived against a real decision record passes; one naming a
+      missing record fails.
+- [x] `rg '033-spec-template-context-optimization'` returns only the intended
+      historical mentions.
+<!-- /ANCHOR:completion -->
 
 ---
 
-## 8. PROOF
+<!-- ANCHOR:log -->
+## 4. LOG
 
-| # | Check |
-|---|-------|
-| 1 | Recursive `validate.sh --strict` over the 033 tree: 0 errors. |
-| 2 | Renderer emits `acceptance-criteria.md` for 2/3/3+, never for Level 1. |
-| 3 | Negative control: post-cutoff packet missing the doc → exit 2; add it → 0. |
-| 4 | AC waived with a real ADR → pass; waived naming a missing ADR → fail. |
-| 5 | `rg '033-spec-template-context-optimization'` returns only the intended historical mentions. |
+Everything below is volatile: it records what happened, not what was directed.
 
----
+### Deviation from the directive as issued
 
-## 9. PROGRESS
+The directive above said the contract entry would go in `requiredAddonDocs`.
+It shipped in `optionalAddonDocs` instead, because a required entry hard-errors
+on every packet in the existing tree, which D3 forbids. Presence is enforced
+by the closure rule against the dated cutoff, which reaches the same outcome
+without breaking the packets D3 protects.
+
+### Phase 002 build steps as directed
+
+1. Template `templates/addons/acceptance-criteria.md.tmpl`, gated for 2/3/3+.
+2. Contract entry in `templates/spec-kit-docs.json` with version and section gates.
+3. A closure rule blocking completion under `--strict` on an unmet criterion.
+4. A waiver path requiring a decision record that actually contains the named ADR.
+5. The coverage advisory repointed at the canonical document.
+6. Grandfathering by dated cutoff, reusing the existing cutoff-constant pattern.
+7. Every reference surface that publishes the level contract, both READMEs included.
+
+### Parent restructure as directed
+
+`git mv` the existing documents into `001-`; author the parent lean trio; regenerate
+the generated metadata pair for parent and children; rewrite the old-slug sites,
+leaving historical changelog prose naming what shipped under the old name.
+
+### Progress
 
 Updated as phases land. Last updated 2026-08-29.
 
@@ -202,3 +228,5 @@ subsequently fixed on operator instruction.
 | The vocabulary invariance failed on nine lines across five documents | Real identifiers are exempted by token; four lines that used a reserved word as ordinary English were reworded instead | The suite passes 2/2 and its sentinel test still reports a planted leak |
 
 Full suite moved from 28 files / 50 tests failing to 27 / 49; no new failures.
+
+<!-- /ANCHOR:log -->
