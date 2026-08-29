@@ -128,7 +128,7 @@ if (nodeFiles.length > 0 && !fs.existsSync(path.join(REPO_ROOT, '.opencode', 'no
   const stat = (name) => Number((out.match(new RegExp(`^# ${name} (\\d+)`, 'm')) || [])[1] ?? NaN);
   const pass = stat('pass');
   const fail = stat('fail');
-  for (const line of out.split('\n')) if (/^not ok /.test(line)) console.log(line);
+  for (const line of out.split('\n')) if (/^\s*not ok /.test(line)) console.log(line);
   console.log(`node:test — ${nodeFiles.length} files · ${pass} pass · ${fail} fail`);
   // A run that produced no parseable summary is a broken run, not a green one.
   if (Number.isNaN(pass) || Number.isNaN(fail) || fail > 0) failed = true;

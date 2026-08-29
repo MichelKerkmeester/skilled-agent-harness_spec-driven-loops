@@ -1,0 +1,46 @@
+name: Advisory Checks
+on:
+  push:
+    branches: [main, 'skilled/**']
+  pull_request:
+  workflow_dispatch:
+
+# Home for checks that are worth seeing but must not block, and that were previously
+# paid for on every commit or push locally. Neither belongs in a hook: one is advisory
+# by design, and the other has a known-failing backlog that predates it. Running them
+# here keeps the signal and gives the output somewhere readable, without taxing the
+# working loop or mailing anyone about rot they did not cause.
+#
+# continue-on-error keeps the job green: a red X nobody is expected to act on is how a
+# gate becomes background noise. Read the step output, not the run status.
+jobs:
+  advisory:
+    name: Advisory — test suites and doc-model references
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Node test suites (report-only)
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          RUNNER=".opencode/scripts/run-node-tests.mjs"
+          if [ ! -f "$RUNNER" ]; then
+            echo "runner not present at $RUNNER — nothing to report"
+            exit 0
+          fi
+          node "$RUNNER" || true
+
+      - name: Doc-model reference drift (report-only)
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          VALIDATOR=".opencode/skills/sk-doc/scripts/validate-doc-model-refs.js"
+          if [ ! -f "$VALIDATOR" ]; then
+            echo "validator not present at $VALIDATOR — nothing to report"
+            exit 0
+          fi
+          node "$VALIDATOR" || echo "doc-model drift reported above; fix by citing canonical model names from registry.ts"

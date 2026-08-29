@@ -54,33 +54,24 @@ if [[ -f "$MASS_DEL_GUARD" ]]; then
   fi
 fi
 
-VALIDATOR="$REPO_ROOT/.opencode/skills/sk-doc/scripts/validate-doc-model-refs.js"
-if [[ "${SPECKIT_SKIP_DOC_MODEL_VALIDATE:-0}" != "1" && -f "$VALIDATOR" ]] && command -v node >/dev/null 2>&1; then
-  # Advisory failure must never skip the independent blocking gates below.
-  RC=0
-  OUT="$(node "$VALIDATOR" 2>&1)" || RC=$?
-
-  if [[ "$RC" -ne 0 ]]; then
-    echo "" >&2
-    echo "⚠️  doc-model-refs drift detected (advisory; commit not blocked):" >&2
-    echo "$OUT" | head -30 >&2 || true
-    echo "" >&2
-    echo "Bypass next time: SPECKIT_SKIP_DOC_MODEL_VALIDATE=1 git commit ..." >&2
-    echo "Fix: update docs to cite canonical model names from registry.ts" >&2
-    echo "" >&2
-  fi
-fi
+# The doc-model reference validator moved to CI. It scanned the whole tree on every
+# commit for output that was advisory and could not block, which made it the single
+# most expensive thing here for no enforcement in return.
 
 # --- Comment hygiene gate (blocking) ---
 # Blocks commits that add ephemeral-artifact pointers in code comment lines.
 # Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...
 # See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
-if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" ]]; then
-  COMMENT_CHECKER="${REPO_ROOT}/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
-  if [[ ! -x "$COMMENT_CHECKER" ]]; then
-    echo "BLOCKED [gate:comment-hygiene]: checker is missing or not executable." >&2
-    exit 1
-  fi
+COMMENT_CHECKER="${REPO_ROOT}/.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh"
+# This hook is installed globally and runs in repositories that never carried this
+# toolchain, where blocking would make an unrelated repo uncommittable for a gate with
+# nothing to check. A missing checker is out of scope there; inside a checkout that DOES
+# ship the skill it still means a broken install and still blocks.
+if [[ ! -x "$COMMENT_CHECKER" && -d "${REPO_ROOT}/.opencode/skills/sk-code" ]]; then
+  echo "BLOCKED [gate:comment-hygiene]: checker is missing or not executable." >&2
+  exit 1
+fi
+if [[ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" && -x "$COMMENT_CHECKER" ]]; then
 
   VIOLATIONS=0
   while IFS= read -r file; do
@@ -179,12 +170,13 @@ fi
 # --- Tool ownership map gate (blocking) ---
 # Blocks commits when the committed generated map no longer matches TOOL_DEFINITIONS.
 # Bypass: SPECKIT_SKIP_TOOL_OWNERSHIP_LINT=1 git commit ...
-if [[ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" ]]; then
-  OWNERSHIP_LINT="${REPO_ROOT}/.opencode/skills/system-spec-kit/mcp-server/tests/tool-ownership-lint-runner.mjs"
-  if [[ ! -f "$OWNERSHIP_LINT" ]]; then
-    echo "BLOCKED [gate:tool-ownership]: lint runner missing." >&2
-    exit 1
-  fi
+OWNERSHIP_LINT="${REPO_ROOT}/.opencode/skills/system-spec-kit/mcp-server/tests/tool-ownership-lint-runner.mjs"
+# Same reasoning as the comment-hygiene gate above.
+if [[ ! -f "$OWNERSHIP_LINT" && -d "${REPO_ROOT}/.opencode/skills/system-spec-kit" ]]; then
+  echo "BLOCKED [gate:tool-ownership]: lint runner missing." >&2
+  exit 1
+fi
+if [[ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" && -f "$OWNERSHIP_LINT" ]]; then
   if ! node "$OWNERSHIP_LINT" >/dev/null; then
     echo "" >&2
     echo "BLOCKED [gate:tool-ownership]: drift detected." >&2
