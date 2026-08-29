@@ -16,6 +16,8 @@
       "strict validation failure rate",
       "validation gate coherence plan",
       "validation gate coherence tasks",
+      "validation gate decision record",
+      "anchors template headers merge",
       "validation gate coherence status"
     ],
     "key_topics": [
@@ -30,14 +32,15 @@
       "rate",
       "plan",
       "tasks",
-      "status"
+      "decision"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
@@ -60,6 +63,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -153,25 +162,31 @@
         "source": "derived"
       },
       {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Constraints The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built One",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -179,20 +194,22 @@
     ],
     "causal_summary": "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet cannot satisfy from inside itself.",
     "created_at": "2026-08-29T07:44:49.812Z",
-    "last_save_at": "2026-08-29T14:32:54.271Z",
+    "last_save_at": "2026-08-29T14:44:45.230Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d3168c048226e063a9de6761528b779ab03f59a83930fb5bcd3e48acf5647e2a",
+    "source_fingerprint": "sha256:2db04d570d07dbb1eecdc5e2481315b6a528f29d450d27e69428dc35eeb066da",
     "source_doc_hashes": {
       "spec.md": "ca54a8ec56638bbbfa3f93622b9138c0a085fcb75918bad4ecdc45ad22e0c27f",
       "plan.md": "bb81d9745abe1ee9f179e35781d52193dcf4553ce0c6990935060aa07527e76a",
       "tasks.md": "4042a5376091505e132ad36377dc07fdbc84731d7d1d2f386259bf30d048d54d",
+      "decision-record.md": "9309012a6c48c32e86d79ed9898498ce8f7becc9fb9b9a7e5d175d5244851c34",
       "implementation-summary.md": "d0a915579e27761af48daa9062d3b99b859c0d40293c68819ed985f8412e1144"
     },
     "last_active_child_id": null,
