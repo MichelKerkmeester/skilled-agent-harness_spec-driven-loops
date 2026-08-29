@@ -1,0 +1,56 @@
+{
+  "measuredAt": "2026-08-28",
+  "measuredFrom": "worktrees/001-sk-code-obsidian-surface @ 6b3d77e",
+  "gateBaseline": {
+    "tsc": { "cmd": "npx tsc --noEmit", "exit": 0 },
+    "build": { "cmd": "npm run build", "exit": 0, "note": "produces no tracked diff; committed main.js matches a fresh build" },
+    "vitest": { "cmd": "npx vitest run", "exit": 0, "pass": 386, "files": 49 },
+    "screenshotsVerify": { "cmd": "npm run screenshots:verify", "exit": 0, "entries": 180 },
+    "lint": { "cmd": "npm run lint", "exit": 1, "problems": 115, "errors": 100, "warnings": 15, "autofixable": 42, "status": "known pre-existing baseline" }
+  },
+  "files": {
+    "srcTs": 240, "srcData": 128, "srcViews": 91, "srcViewsModals": 17,
+    "srcRoot": 3, "srcTests": 1, "toolsMjs": 9, "testFiles": 49,
+    "srcTotalLines": 87462
+  },
+  "naming": {
+    "pascalCase": 232, "kebabCase": 16,
+    "camelCase": ["textLinkScheme"], "underscore": ["_shared"],
+    "convention": "PascalCase dominant; no scanner enforces it"
+  },
+  "comments": {
+    "filesWithModuleBanner": 0,
+    "filesWithBoxDrawingRule": 4,
+    "filesWithLeadingBlockComment": 32,
+    "totalLineComments": 1423,
+    "commentedOutCodeLines": 1,
+    "outOf": 249,
+    "verdict": "no MODULE banner or numbered-section convention exists"
+  },
+  "folderDocs": {
+    "existing": 0,
+    "owesReadmeAndCode": ["src", "src/data", "src/views", "src/views/modals", "tools", "tools/screenshots", "tools/screenshots/scenarios"],
+    "owesReadmeOnly": ["src/__tests__", "src/data/__tests__"],
+    "threshold": ">=3 direct source files OR any child folder containing source"
+  },
+  "styles": {
+    "file": "styles.css", "lines": 18931, "bytes": 524126,
+    "boxDrawingRules": 0, "equalsBanners": 65, "cjkCommentLines": 312,
+    "distinctDbClasses": 1196, "distinctNoteDatabaseClasses": 11,
+    "referencedByFixtures": 427, "orphaned": 769
+  },
+  "renameBlastRadius": {
+    "relativeImportStatements": 1177,
+    "distinctLocalModulesImported": 303,
+    "srcPathsHardcodedInScenarios": 41,
+    "screenshotManifestCoupling": "verify.mjs hashes each source path in screenshots/manifest.json; renaming invalidates all 180 captures until 'npm run screenshots' regenerates the manifest",
+    "screenshotFixturesTest": "reads src/ recursively and styles.css; hard-codes no filename, so it survives a rename unchanged",
+    "chrome": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome present; SCREENSHOT_CHROME unset and not needed"
+  },
+  "knownOpenDebt": {
+    "note": "ENCODED AS EVIDENCE ONLY - not fixed by this packet",
+    "p0": ["008 CHK-026 passive listeners not registered in src/data/TouchEnvironment.ts:91-95", "006 CHK-011 CardFieldRenderer.test.ts lacks per-display-family render assertions"],
+    "p1": ["003 CHK-024 overlay edge-case matrix gaps", "006 CHK-036 empty-properties accordion never built", "009 CHK-019 and 010 CHK-023 need eyes on the running plugin"],
+    "coverage": "~145 surfaces unphotographed (88 P1, 85 P2, 13 P3); all 17 modals under src/views/modals/ unphotographed"
+  }
+}

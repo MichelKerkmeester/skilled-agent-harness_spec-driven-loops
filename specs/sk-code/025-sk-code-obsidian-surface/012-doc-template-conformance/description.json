@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/025-sk-code-obsidian-surface/012-doc-template-conformance",
+  "description": "Auditing every sk-code-obsidian packet markdown against the sk-doc templates it claims to follow, using the real validators, and recording what they find rather than what a manual read would guess.",
+  "keywords": [
+    "auditing",
+    "every",
+    "sk-code-obsidian",
+    "packet",
+    "markdown",
+    "against",
+    "sk-doc",
+    "templates",
+    "claims"
+  ],
+  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "specId": "012",
+  "folderSlug": "doc-template-conformance",
+  "parentChain": [
+    "sk-code",
+    "025-sk-code-obsidian-surface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/025-sk-code-obsidian-surface/013-surface-reality-conformance",
+  "description": "Building a cross-repo drift guard that proves every filename citation in the sk-code-obsidian packet resolves against the real plugin tree, and using it to find and repair the drift the 235-file rename left behind.",
+  "keywords": [
+    "building",
+    "cross-repo",
+    "drift",
+    "guard",
+    "proves",
+    "every",
+    "filename",
+    "citation",
+    "sk-code-obsidian"
+  ],
+  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "specId": "013",
+  "folderSlug": "surface-reality-conformance",
+  "parentChain": [
+    "sk-code",
+    "025-sk-code-obsidian-surface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
