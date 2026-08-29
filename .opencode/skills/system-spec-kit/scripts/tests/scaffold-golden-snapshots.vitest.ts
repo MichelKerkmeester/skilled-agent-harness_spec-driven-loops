@@ -136,7 +136,7 @@ describe('manifest template golden snapshots', () => {
   it('keeps legacy checklist optional while gating merged verification in tasks', () => {
     const contract = resolveLevelContract('2');
     expect(contract.requiredAddonDocs).not.toContain('checklist.md');
-    expect(contract.optionalAddonDocs).toEqual(['checklist.md']);
+    expect(contract.optionalAddonDocs).toEqual(['checklist.md', 'acceptance-criteria.md']);
 
     const renderedTasks = renderTemplate('tasks.md.tmpl', '2');
     expect(renderedTasks).toContain('## Verification Checklist');

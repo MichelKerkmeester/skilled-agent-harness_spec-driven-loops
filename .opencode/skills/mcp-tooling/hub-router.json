@@ -1,6 +1,6 @@
 {
  "skill": "mcp-tooling",
- "version": "1.1.4.0",
+ "version": "1.2.0.0",
  "routerPolicy": {
   "defaultMode": null,
   "ambiguityDelta": 1,
@@ -12,7 +12,8 @@
    "mcp-notion",
    "mcp-figma",
    "mcp-refero",
-   "mcp-mobbin"
+   "mcp-mobbin",
+   "mcp-magicpath"
   ],
   "outcomes": {
    "single": "one dominant tool signal routes to one mode",
@@ -118,6 +119,15 @@
    ],
    "resources": [
     "mcp-mobbin/SKILL.md"
+   ]
+  },
+  "mcp-magicpath": {
+   "weight": 4,
+   "classes": [
+    "magicpath-aliases"
+   ],
+   "resources": [
+    "mcp-magicpath/SKILL.md"
    ]
   }
  },
@@ -393,6 +403,16 @@
     "style settings",
     "appearance",
     "snippets"
+   ]
+  },
+  "magicpath-aliases": {
+   "keywords": [
+    "magicpath",
+    "magicpath ai",
+    "magicpath component",
+    "magicpath canvas",
+    "magicpath design system",
+    "magicpath.ai"
    ]
   }
  }

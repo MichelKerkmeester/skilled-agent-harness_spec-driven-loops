@@ -16,7 +16,9 @@
       "hub member packet shape",
       "mcp-magicpath packet plan",
       "hub member authoring",
-      "mcp-magicpath packet tasks"
+      "mcp-magicpath packet tasks",
+      "mcp-magicpath packet summary",
+      "magicpath skill authored"
     ],
     "key_topics": [
       "mcp-magicpath",
@@ -29,15 +31,16 @@
       "shape",
       "plan",
       "tasks",
-      "registered",
-      "manual"
+      "summary",
+      "authored"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "tasks.md",
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -59,7 +62,19 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -84,12 +99,6 @@
       },
       {
         "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -165,23 +174,37 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A registered manual is reachable but not discoverable",
     "created_at": "2026-08-29T11:35:16.212Z",
-    "last_save_at": "2026-08-29T11:35:16.212Z",
+    "last_save_at": "2026-08-29T12:32:40.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de4c29e60a900223985b6831bc8f713a7b4812f846422fab233e23f095b407e8",
+    "source_fingerprint": "sha256:496165bd350ff4051064df4a5db70c686db693d43f050ae941e110a93e96167f",
     "source_doc_hashes": {
-      "spec.md": "db2df154108376c1de2cbf72951fbc45da827d7170f03f000b9620ee3c9119f1",
+      "spec.md": "25da1f2de54d7e674e8ac894d1f84b361512ae937e9e8a132692d98ac63ce325",
       "plan.md": "143fc30098b2b9405f12cb91583f82659e17b01e7bf0476aefc7feb0ddcab516",
-      "tasks.md": "71328d2c630dd0dd6e027f42729b346716ac44db87b151752ef1c35000a8660c"
+      "tasks.md": "4d0fa06efc27111c2cb973c2fa8aa5b3c5b349f768ba7ef512adc9d575eaf352",
+      "implementation-summary.md": "7ea29e4f82e93e91c157a82fbabe639174dee66ce7208c99781544a31903b152"
     },
     "last_active_child_id": null,
     "last_active_at": null

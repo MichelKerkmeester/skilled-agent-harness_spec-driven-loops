@@ -1,26 +1,222 @@
 {
   "schema_version": 1,
-  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
-  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
-  "parent_id": null,
+  "packet_id": "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
+  "spec_folder": "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
+  "parent_id": "system-speckit/033-spec-kit-template-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "acceptance criteria template",
+      "acceptance criteria closure gate",
+      "ac waiver adr",
+      "level 2 3 3+ required docs",
+      "ac closure validator",
+      "acceptance criteria plan",
+      "ac closure rollout",
+      "closure gate implementation",
+      "acceptance criteria tasks",
+      "ac closure task list",
+      "closure gate tasks",
+      "acceptance criteria checklist"
+    ],
+    "key_topics": [
+      "acceptance",
+      "criteria",
+      "template",
+      "closure",
+      "gate",
+      "waiver",
+      "adr",
+      "level",
+      "required",
+      "docs",
+      "validator",
+      "plan"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 1: acceptance-criteria-template",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "checklist.md",
+      "decision-record.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria Template",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Closure Gate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Acceptance criteria are split across two documents and owned by neither",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-08-29T12:08:53Z",
+    "last_save_at": "2026-08-29T12:39:00.221Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4d51903a1870f1392b2891a04d3a5c173d539091efcb58d1968a32b5ccf60081",
+    "source_doc_hashes": {
+      "spec.md": "cca0c9fb7942ca8e8bec91bbf089d3796827f47cc9474941c29e176e5c2a326c",
+      "plan.md": "d626919caf0a4b0d7ef0fad0a4bc4a07d7a0ab0f66559c3fe7cc2088026f7ca9",
+      "tasks.md": "d232952f27c37a1c5375f5aa3d0134e4273b44057b3df1fbdec675aeaf28cc6e",
+      "checklist.md": "8eeb64bbcde58f67578649e27a9594e48326a43e39100968dc7a4bc99f8f3f1d",
+      "decision-record.md": "47c753e2e8eae72d61a0ef3d01f8d5067391ed40623dde70821ddfc4c4033fda",
+      "implementation-summary.md": "0593c197c47aa4477cda5fea0fdd4ef12897f2fb55490360ee86b2be97f6bd42"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

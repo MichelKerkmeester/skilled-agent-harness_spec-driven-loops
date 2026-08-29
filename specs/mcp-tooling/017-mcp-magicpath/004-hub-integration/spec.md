@@ -21,7 +21,7 @@ contextType: "implementation"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-08-29 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
@@ -153,8 +153,10 @@ Route the mode, and record honestly what kind of thing it is, rather than forcin
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether MagicPath belongs on the transport axis at all, or whether a CLI-backed bridge that can write to the working tree is closer to the hub's workflow members.
-- Whether the axis's `mutatesWorkspace:false` posture should gain a clarifier for tools that write into the calling project on request, as the export-only member already has one.
+Both questions this phase opened are answered by the registration it had to describe.
+
+- **Whether MagicPath belongs on the transport axis**: yes, and without stretching it. The concern assumed the mutating family would be exposed; it is not. Only read-only commands are registered, so `mutatesWorkspace:false` is literally true of this mode for the same reason it is true of the remote-MCP transports.
+- **Whether the axis needs a clarifier for tools that write into the calling project**: not for this mode, because no such tool is reachable through it. The vendor's file-writing commands exist, but they are absent from the emitted manual, so the boundary is enforced by what was registered rather than by a caveat in prose. If that family is ever registered, the axis question becomes live again and this is where it returns.
 <!-- /ANCHOR:questions -->
 
 ---

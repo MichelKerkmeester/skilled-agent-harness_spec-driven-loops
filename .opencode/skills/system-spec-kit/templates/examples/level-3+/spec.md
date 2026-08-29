@@ -111,26 +111,29 @@ Implement a production-ready, enterprise-grade email/password authentication sys
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Users can register with email/password | Form submits, user created in DB, success message shown |
-| REQ-002 | Users can log in with valid credentials | Token generated, stored in localStorage, redirected to dashboard |
-| REQ-003 | Passwords are hashed before storage | bcrypt hash with 10 rounds, raw password never stored |
-| REQ-004 | Input validation prevents malformed data | Email format validated, password minimum 8 chars |
-| REQ-005 | Protected routes require authentication | 401 returned without valid token |
-| REQ-006 | Security review completed | Security team sign-off obtained |
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | Users can register with email/password |
+| REQ-002 | Users can log in with valid credentials |
+| REQ-003 | Passwords are hashed before storage |
+| REQ-004 | Input validation prevents malformed data |
+| REQ-005 | Protected routes require authentication |
+| REQ-006 | Security review completed |
 
 ### P1 - Required (complete OR user-approved deferral)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-007 | Invalid login shows appropriate error | Generic message, no credential enumeration |
-| REQ-008 | Session persists across page refresh | Token in localStorage, auto-login on page load |
-| REQ-009 | Duplicate email registration prevented | Clear error message, no duplicate users in DB |
-| REQ-010 | Users can log out | Token cleared, redirected to login |
-| REQ-011 | Compliance documentation complete | All checkpoints documented |
+| ID | Requirement |
+|----|-------------|
+| REQ-007 | Invalid login shows appropriate error |
+| REQ-008 | Session persists across page refresh |
+| REQ-009 | Duplicate email registration prevented |
+| REQ-010 | Users can log out |
+| REQ-011 | Compliance documentation complete |
 
 
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
 <!-- /ANCHOR:requirements -->
 ---
 

@@ -1,8 +1,8 @@
 ---
 name: mcp-tooling
-description: "Parent hub for MCP tool bridges: routes to five workflow modes (mcp-chrome-devtools, mcp-click-up, mcp-obsidian for Obsidian vault note-management and markdown-note management via notesmd-cli, the official obsidian CLI, and the cyanheads MCP, mcp-aside-devtools, and mcp-notion for Notion workspace operations via the official @notionhq/notion-mcp-server over Code Mode) plus three design transports (mcp-figma, mcp-refero, mcp-mobbin) through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
+description: "Parent hub for MCP tool bridges: routes to five workflow modes (mcp-chrome-devtools, mcp-click-up, mcp-obsidian for Obsidian vault note-management and markdown-note management via notesmd-cli, the official obsidian CLI, and the cyanheads MCP, mcp-aside-devtools, and mcp-notion for Notion workspace operations via the official @notionhq/notion-mcp-server over Code Mode) plus four design transports (mcp-figma, mcp-refero, mcp-mobbin, and mcp-magicpath for MagicPath component and design-system lookup over a UTCP cli manual, its provider shipping no MCP server) through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.5.2.0
+version: 1.6.0.0
 metadata:
   author: OpenCode
   family: mcp
@@ -12,7 +12,7 @@ metadata:
 
 # MCP Tooling Hub (mcp-tooling)
 
-One skill, five workflow bridges plus three design transports, one shared `family: mcp` identity. `mcp-tooling` is the public, advisor-routable home for every MCP tool bridge in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own contract in its packet, and the hub only routes by `workflowMode`. `mcp-code-mode` is the shared MCP execution substrate all modes reach through the unchanged `code_mode` registration key; it is external infrastructure, not a hub member, and stays a flat standalone skill.
+One skill, five workflow bridges plus four design transports, one shared `family: mcp` identity. `mcp-tooling` is the public, advisor-routable home for every MCP tool bridge in this repo. Before routing, the hub reads `hub-router.json` to resolve a `workflowMode`, then delegates through `mode-registry.json`. This hub holds NO per-mode logic — each mode keeps its own contract in its packet, and the hub only routes by `workflowMode`. `mcp-code-mode` is the shared MCP execution substrate all modes reach through the unchanged `code_mode` registration key; it is external infrastructure, not a hub member, and stays a flat standalone skill.
 
 ---
 

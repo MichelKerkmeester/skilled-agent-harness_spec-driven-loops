@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "agents/006-restraint-and-routing-gates"
-    last_updated_at: "2026-08-29T12:38:30Z"
+    last_updated_at: "2026-08-29T13:43:03Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Recorded the operator-directed scope amendment"
     next_safe_action: "Packet complete; no further action pending"
@@ -134,3 +134,104 @@ The reviews also surfaced defects that predated this packet: an "invoke a skill"
 **How to roll back**: `git revert` the commit carrying these three lines, or re-apply the three original strings, which are quoted verbatim in the review findings. No runtime state to unwind; the change is instruction text only.
 <!-- /ANCHOR:adr-001-impl -->
 <!-- /ANCHOR:adr-001 -->
+
+---
+
+<!-- ANCHOR:adr-002 -->
+## ADR-002: Spend one line to close the gap the reviews found in this packet's own rule
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-08-29 |
+| **Deciders** | Operator, with the assistant proposing |
+
+---
+
+<!-- ANCHOR:adr-002-context -->
+### Context
+
+Two independent reviews ran against the applied change set. Between them they found six further defects in this packet's own rules, including the packet's new routing trigger requiring a file read without deferring to the priority gate that forbids reads before it is answered, and a debugging line that named two different repeated-failure counts in a single sentence.
+
+Five of the six fixes rewrite a line. The sixth adds one: the document's own pre-flight checklist, the mechanism meant to catch a missed obligation, had no entry for the obligation this packet introduced. There is no way to close that gap by rewriting an existing line, because the gap is an absent line.
+
+### Constraints
+
+- The prior record set the bar for the amended scope as no net line growth, and this breaks it by one.
+- The checklist is the document's own omission-catching mechanism; leaving the new rule out of it means the rule is unenforced by the very list that exists to enforce such rules.
+<!-- /ANCHOR:adr-002-context -->
+
+---
+
+<!-- ANCHOR:adr-002-decision -->
+### Decision
+
+**We chose**: add the checklist line, and supersede the no-growth criterion against this record rather than let it stand as met on evidence that is no longer true.
+
+**How it works**: the replacement criterion states the measurement that actually holds — one line of growth, every other change an in-place rewrite — and names what the line buys. The closure gate checks a row's status, not whether its evidence is still accurate, so a stale criterion left as met would have passed while being false. That is the exact failure this packet exists to reduce, so it would have been a poor place to tolerate it.
+<!-- /ANCHOR:adr-002-decision -->
+
+---
+
+<!-- ANCHOR:adr-002-alternatives -->
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Add the line, supersede the criterion** | The checklist covers every mandatory rule; the criteria stay true | One line of permanent context cost in every repo, every turn | 9/10 |
+| Leave the criterion as met | No new record | The gate would pass on evidence that is verifiably false, which is worse than the line | 1/10 |
+| Skip the checklist line to hold the bar | Bar intact | Keeps a bar by leaving the rule it was protecting unenforced | 3/10 |
+
+**Why this one**: the no-growth bar was a proxy for context cost, not an end in itself. One line that makes a mandatory rule checkable is a better trade than a checklist that silently omits it.
+<!-- /ANCHOR:adr-002-alternatives -->
+
+---
+
+<!-- ANCHOR:adr-002-consequences -->
+### Consequences
+
+**What improves**:
+- The routing trigger is now covered by the pre-flight checklist, so a missed route is catchable rather than silent.
+- Two rules that cited skill-internal file paths now name the skill and let its router resolve the file, removing a stale-pointer risk in a document copied across repositories.
+
+**What it costs**:
+- One line, paid on every turn in every consuming repository. Mitigation: six of the seven changes rewrite rather than add, so the net is the smallest that closes the gap.
+
+**Risks**:
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Each future review adds another checklist line until the list is noise | M | The list covers gate obligations only; a rule that is not a gate does not earn an entry |
+<!-- /ANCHOR:adr-002-consequences -->
+
+---
+
+<!-- ANCHOR:adr-002-five-checks -->
+### Five Checks Evaluation
+
+| # | Check | Result | Evidence |
+|---|-------|--------|----------|
+| 1 | **Necessary?** | PASS | The checklist omitted a rule the same packet made mandatory |
+| 2 | **Beyond Local Maxima?** | PASS | Three options weighed, including holding the bar and doing nothing |
+| 3 | **Sufficient?** | PASS | One line; the other five fixes add none |
+| 4 | **Fits Goal?** | PASS | An unenforced routing gate was the first review's central criticism |
+| 5 | **Open Horizons?** | PASS | Naming skills rather than their internal paths keeps the document portable |
+
+**Checks Summary**: 5/5 PASS
+<!-- /ANCHOR:adr-002-five-checks -->
+
+---
+
+<!-- ANCHOR:adr-002-impl -->
+### Implementation
+
+**What changes**:
+- Pre-flight checklist: one entry for the first code or markdown write of a task.
+- Restraint-ladder and test-floor rules: cite the owning skill, not a path inside it.
+- Routing trigger, amendment step, and debugging line: defer to the priority gate, distinguish a blocking contract from a merely wrong one, and name which repeated-failure count governs.
+
+**How to roll back**: revert the commit carrying these seven lines. The prior wording is recoverable from the review findings, which quote each original verbatim. Instruction text only; no runtime state to unwind.
+<!-- /ANCHOR:adr-002-impl -->
+<!-- /ANCHOR:adr-002 -->

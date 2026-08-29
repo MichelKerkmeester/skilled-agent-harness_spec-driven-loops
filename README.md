@@ -166,7 +166,7 @@ Documentation depth scales with task complexity.
 | Level  | LOC Guidance   | Required Files                                                          | When to Use                                                              |
 | ------ | -------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **1**  | < 100          | spec.md, plan.md, tasks.md, implementation-summary.md                   | Small features, bug fixes, single-file changes                           |
-| **2**  | 100 - 499      | Level 1 + checklist.md                                                  | Features needing QA verification, multi-file changes                     |
+| **2**  | 100 - 499      | Level 1 + acceptance-criteria.md (checklist.md optional)                | Features needing QA verification, multi-file changes                     |
 | **3**  | 500+           | Level 2 + decision-record.md                                            | Architecture changes, complex refactors                                  |
 | **3+** | Complexity 80+ | Level 3 + approval workflow, compliance checkpoints, stakeholder matrix | High-complexity work needing review tracking and workstream coordination |
 
@@ -183,6 +183,7 @@ specs/<###-feature-name>/
 ├── spec.md                      # What the feature is and why it exists
 ├── plan.md                      # How to implement it
 ├── tasks.md                     # Step-by-step task breakdown
+├── acceptance-criteria.md       # Criteria that gate packet closure (Level 2+)
 ├── checklist.md                 # QA validation gates (Level 2+)
 ├── decision-record.md           # Architecture decisions (Level 3+)
 ├── implementation-summary.md    # Post-implementation summary (all levels)

@@ -26,13 +26,13 @@ describe('resolveLevelContract', () => {
     expect(contract.frontmatterMarkerLevel).toBe(1);
   });
 
-  it('keeps decision records and new add-ons out of level requirements', () => {
+  it('keeps decision records lazy and carries acceptance criteria as a level add-on', () => {
     expect(resolveLevelContract('2').requiredAddonDocs).toEqual([]);
-    expect(resolveLevelContract('2').optionalAddonDocs).toEqual(['checklist.md']);
+    expect(resolveLevelContract('2').optionalAddonDocs).toEqual(['checklist.md', 'acceptance-criteria.md']);
     expect(resolveLevelContract('3').requiredAddonDocs).toEqual([]);
-    expect(resolveLevelContract('3').optionalAddonDocs).toEqual(['checklist.md']);
+    expect(resolveLevelContract('3').optionalAddonDocs).toEqual(['checklist.md', 'acceptance-criteria.md']);
     expect(resolveLevelContract('3+').requiredAddonDocs).toEqual([]);
-    expect(resolveLevelContract('3+').optionalAddonDocs).toEqual(['checklist.md']);
+    expect(resolveLevelContract('3+').optionalAddonDocs).toEqual(['checklist.md', 'acceptance-criteria.md']);
     for (const level of ['1', '2', '3', '3+'] as const) {
       expect(resolveLevelContract(level).lifecycleRequiredDocs).toEqual({
         afterImplementationStarts: ['implementation-summary.md'],
@@ -80,7 +80,7 @@ describe('resolveLevelContract', () => {
     const serialized = serializeLevelContract(resolveLevelContract('3'));
     expect(serialized.sectionGates['risk-matrix']).toEqual(['3', '3+']);
     expect(serialized.sectionGatesByDocument['checklist.md']['arch-verify']).toEqual(['3', '3+']);
-    expect(serialized.optionalAddonDocs).toEqual(['checklist.md']);
+    expect(serialized.optionalAddonDocs).toEqual(['checklist.md', 'acceptance-criteria.md']);
     expect(serialized.lifecycleRequiredDocs).toEqual({
       afterImplementationStarts: ['implementation-summary.md'],
     });

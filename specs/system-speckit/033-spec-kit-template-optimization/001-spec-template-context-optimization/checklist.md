@@ -1,18 +1,22 @@
 ---
 title: "Checklist: Spec-Kit Template & Context Optimizations"
 description: "QA checklist for the four-phase implementation of the six 033 recommendations — all items verified with evidence."
+trigger_phrases:
+  - "spec kit template qa checklist"
+  - "033 verification checklist"
+  - "template context optimization checklist"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-spec-template-context-optimization"
+    packet_pointer: "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization"
     last_updated_at: "2026-08-13T04:18:38Z"
     last_updated_by: "claude-code"
     recent_action: "Added AC traceability; remediated deferred findings"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
-      - "specs/system-speckit/033-spec-template-context-optimization/plan.md"
+      - "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/plan.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-12-system-speckit-034-optimizations"

@@ -92,23 +92,44 @@ Confirmed 2026-08-29; do not re-ask.
 
 ## 9. PROGRESS
 
-Updated as phases land.
+Updated as phases land. Last updated 2026-08-29.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Parent restructure (rename + demote to `001-`) | Done | `git mv`; parent holds lean trio + two children |
-| Parent lean spec authored | Done | `spec.md`, phase map with both children |
+| Parent restructure (rename + demote to `001-`) | Done | `git mv`; parent holds the lean trio plus two children |
+| Parent lean spec authored | Done | `spec.md` with the phase map; PHASE_PARENT_CONTENT passes |
 | Phase `002-` scaffolded at Level 3 | Done | `create.sh --phase --parent`, then contract templates rendered at level 3 |
-| Phase 002 planning docs | In Progress | `spec.md` authored |
-| Phase 002 build (items 1-7) | Pending | — |
-| Reference rewrite (19 sites) | Pending | — |
-| Metadata regeneration | Pending | — |
-| Proof run | Pending | — |
+| Phase 002 planning docs | Done | spec, plan, tasks, checklist, decision-record, implementation-summary, acceptance-criteria |
+| Build item 1 - gated template | Done | `templates/addons/acceptance-criteria.md.tmpl`; L1 = 0 lines, L2/L3/L3+ = 53 |
+| Build item 2 - Level contract | Done | `spec-kit-docs.json`: document, version, section gates, listed at 2/3/3+ |
+| Build item 3 - closure gate | Done | `scripts/rules/check-ac-closure.sh` registered as `AC_CLOSURE` (ERROR) |
+| Build item 4 - waiver path | Done | Waiver must cite an ADR present in `decision-record.md`; three waiver cases proven |
+| Build item 5 - coverage repoint | Done | `_ac_count_canonical_rows` takes precedence in `_ac_count_total` |
+| Build item 6 - grandfathering | Done | `SPECKIT_AC_CLOSURE_CUTOFF`, mirroring the `CANONICAL_SAVE_CUTOFF` pattern |
+| Build item 7 - references | Done | Both READMEs, `AGENTS.md`, `SKILL.md`, templates README + CONTRACT, validation-rules, ENV-REFERENCE, examples 2/3/3+ |
+| Reference rewrite (old slug) | Done | Live indexes repointed; historical records intentionally keep the old name |
+| Metadata regeneration | Done | `description.json` + `graph-metadata.json` for parent and both children |
+| Proof run | Done | Recursive `validate.sh --strict` exit 0: 3/3 folders, 0 errors, 0 warnings |
+
+### Proof results
+
+| # | Check | Result |
+|---|-------|--------|
+| 1 | Recursive `validate.sh --strict` over the 033 tree | PASS - exit 0, three folders, 0 errors and 0 warnings |
+| 2 | Renderer emits the document for 2/3/3+, never Level 1 | PASS - L1 = 0 lines; L2, L3, L3+ = 53 lines |
+| 3 | Post-cutoff packet missing the document blocks | PASS - fails; a pre-cutoff packet reports advisory instead |
+| 4 | Waiver with a real ADR passes; a missing ADR fails | PASS - real ADR closeable, missing ADR and no-ADR both fail |
+| 5 | Old-slug references | PASS - only historical records retain the old name |
+| 6 | Existing-packet regression | PASS - 12 sampled Level 2/3 packets, zero failures (PASS or grandfathered INFO) |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| `scripts/spec/upgrade-level.sh` | Broken independently of this work: it resolves `templates/addendum/level2-verify/checklist.md`, a path that no longer exists after the template folder restructure, so every L1→L2 upgrade fails and rolls back. Reported, not fixed — out of scope under the scope lock. |
-| Level 1 acceptance criteria | The goal says `spec.md` drops its AC column. Applied at Levels 2/3/3+ only: Level 1 has no `acceptance-criteria.md` in its contract, so dropping the column there would delete acceptance criteria outright rather than relocate them. |
-| Scope addition | Operator added the system-spec-kit skill `README.md` and the public root `README.md` to the reference set mid-session; folded into item 7. |
+| Build item 2 wording vs D3 | The goal said `requiredAddonDocs`. Reading the resolver showed `docs()` returns core plus required addons and `FILE_EXISTS` hard-errors with no cutoff awareness, so that placement would have failed all 2,588 existing Level 2/3/3+ packets and broken D3. The document is listed under `optionalAddonDocs` and `AC_CLOSURE`, which is cutoff-aware, owns presence. Recorded as ADR-002. |
+| Level 1 acceptance criteria | The goal said `spec.md` drops its AC column. Applied at Levels 2/3/3+ only: Level 1 has no acceptance-criteria document, so dropping the column there would delete criteria rather than relocate them. |
+| Scope addition | The operator added the system-spec-kit skill `README.md` and the public root `README.md` to the reference set mid-session; both are updated. |
+| `scripts/spec/upgrade-level.sh` | Broken independently of this work: it resolves `templates/addendum/level2-verify/checklist.md`, a path that no longer exists after the template folder restructure, so every L1 to L2 upgrade fails and rolls back. Reported, not fixed - outside this packet's scope lock. |
+| Child 001 pre-existing errors | The packet failed validation with 4 errors before this work (`TEMPLATE_HEADERS`, `ANCHORS_VALID`, `FRONTMATTER_VALID`, `GENERATED_METADATA_INTEGRITY`), measured at commit `4a6901096a`. Repaired structurally: real trigger phrases, path self-references, and ADR-001 anchors wrapped around prose that already existed. The two subsections the original never recorded (five-checks, implementation) are marked unrecorded rather than reconstructed. 001 now passes with 0 errors and 0 warnings. |
+| Two defects found by the negative controls | The criteria-table header `\| AC-ID \|` matched the AC-ID pattern and was counted as an unmet criterion, inflating totals and producing false failures in both the closure rule and the coverage advisory. Fixed by requiring a digit in the id before the fixture was accepted. |
+| Auto-commit during the session | The repository's sk-git live-sync committed this work as it was written (for example `e5a96897bf`), rather than leaving it staged for review. Flagged, not altered. |

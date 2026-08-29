@@ -108,24 +108,27 @@ Implement a production-ready email/password authentication system that provides 
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Users can register with email/password | Form submits, user created in DB, success message shown |
-| REQ-002 | Users can log in with valid credentials | Token generated, stored in localStorage, redirected to dashboard |
-| REQ-003 | Passwords are hashed before storage | bcrypt hash with 10 rounds, raw password never stored |
-| REQ-004 | Input validation prevents malformed data | Email format validated, password minimum 8 chars |
-| REQ-005 | Protected routes require authentication | 401 returned without valid token |
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | Users can register with email/password |
+| REQ-002 | Users can log in with valid credentials |
+| REQ-003 | Passwords are hashed before storage |
+| REQ-004 | Input validation prevents malformed data |
+| REQ-005 | Protected routes require authentication |
 
 ### P1 - Required (complete OR user-approved deferral)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-006 | Invalid login shows appropriate error | Generic message, no credential enumeration |
-| REQ-007 | Session persists across page refresh | Token in localStorage, auto-login on page load |
-| REQ-008 | Duplicate email registration prevented | Clear error message, no duplicate users in DB |
-| REQ-009 | Users can log out | Token cleared, redirected to login |
+| ID | Requirement |
+|----|-------------|
+| REQ-006 | Invalid login shows appropriate error |
+| REQ-007 | Session persists across page refresh |
+| REQ-008 | Duplicate email registration prevented |
+| REQ-009 | Users can log out |
 
 
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
 <!-- /ANCHOR:requirements -->
 ---
 

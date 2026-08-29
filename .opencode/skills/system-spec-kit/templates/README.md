@@ -101,6 +101,7 @@ templates/
 │   ├── tasks.md.tmpl
 │   └── implementation-summary.md.tmpl
 ├── addons/
+│   ├── acceptance-criteria.md.tmpl
 │   ├── checklist.md.tmpl
 │   ├── decision-record.md.tmpl
 │   ├── handover.md.tmpl
@@ -136,6 +137,7 @@ templates/
 | `core/plan.md.tmpl`                   | Renders implementation plan documents.                                           |
 | `core/tasks.md.tmpl`                  | Renders task breakdown documents.                                                |
 | `core/implementation-summary.md.tmpl` | Renders delivery summaries and continuity anchors.                               |
+| `addons/acceptance-criteria.md.tmpl`    | Renders the closure-gating acceptance criteria for Levels 2, 3 and 3+.           |
 | `addons/checklist.md.tmpl`              | Renders verification checklists.                                                 |
 | `addons/decision-record.md.tmpl`        | Renders architecture decision records.                                           |
 | `addons/handover.md.tmpl`               | Renders handover documents for memory-save workflows.                            |

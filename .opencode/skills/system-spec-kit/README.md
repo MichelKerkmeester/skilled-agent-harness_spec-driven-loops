@@ -201,6 +201,7 @@ specs/<###-feature-name>/
 ├── spec.md                      # What the feature is and why it exists
 ├── plan.md                      # How to implement it
 ├── tasks.md                     # Step-by-step task breakdown
+├── acceptance-criteria.md       # Criteria that gate packet closure (Level 2+)
 ├── checklist.md                 # QA validation gates (Level 2+)
 ├── decision-record.md           # Architecture decisions (Level 3+)
 ├── implementation-summary.md    # Post-implementation summary (all levels)
@@ -219,7 +220,7 @@ Not every change needs the same amount of paperwork. A one-line bug fix does not
 | Level | LOC guidance | Required files | When to use |
 |---|---|---|---|
 | **1** | under 100 | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | small features, bug fixes, single-file changes |
-| **2** | 100 to 499 | Level 1 plus `checklist.md` | features needing QA verification, multi-file changes |
+| **2** | 100 to 499 | Level 1 plus `acceptance-criteria.md`; `checklist.md` optional | features needing QA verification, multi-file changes |
 | **3** | 500 and up | Level 2 plus `decision-record.md` | architecture changes, complex refactors |
 | **3+** | complexity 80 and up | Level 3 plus approval workflow, compliance and stakeholders | high-complexity work needing review tracking |
 | **Phase Parent** | control files only | `spec.md`, `description.json`, `graph-metadata.json` | folder contains phase children with their own spec docs |
@@ -272,7 +273,7 @@ Templates live in one manifest source and render through the Level contract reso
 
 ```text
 Level 1:  spec.md, plan.md, tasks.md, implementation-summary.md
-Level 2:  Level 1 + checklist.md
+Level 2:  Level 1 + acceptance-criteria.md (checklist.md optional)
 Level 3:  Level 2 + decision-record.md
 Level 3+: Level 3 + extended governance sections
 Phase:    lean parent trio plus child phase folders

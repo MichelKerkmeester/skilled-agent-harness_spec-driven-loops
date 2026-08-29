@@ -1,10 +1,10 @@
 ---
 title: "Workflow-Vs-Transport Two-Axis Routing"
-description: "How the mcp-tooling hub scores and dispatches seven MCP-bridge packets across a workspace-mutating workflow axis and a non-mutating transport axis."
+description: "How the mcp-tooling hub scores and dispatches nine MCP-bridge packets across a workspace-mutating workflow axis and a non-mutating transport axis."
 trigger_phrases:
   - "workflow vs transport two-axis routing"
   - "mcp-tooling hub-router scoring"
-  - "mode-registry.json seven modes"
+  - "mode-registry.json nine modes"
   - "mcp-tooling smart routing"
 version: 1.0.0.0
 ---
@@ -15,7 +15,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-`mcp-tooling` is registry-driven: `mode-registry.json` lists all seven packets (four workflow, three transport) in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or a deferred disambiguation.
+`mcp-tooling` is registry-driven: `mode-registry.json` lists all nine packets (five workflow, four transport) in one `modes[]` array, and `hub-router.json` decides whether a request resolves to a single mode, an ordered bundle, or a deferred disambiguation.
 
 The hub's discriminator is `packetKind`, which separates packets that mutate this repository's workspace from packets that only bridge to an external tool.
 
@@ -25,7 +25,7 @@ The hub's discriminator is `packetKind`, which separates packets that mutate thi
 
 ### Two-Axis Model
 
-`packetKind: "workflow"` covers `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, and `mcp-aside-devtools`, all of which mutate this repository's workspace (`mutatesWorkspace: true`). `packetKind: "transport"` covers `mcp-figma` (Figma Desktop), `mcp-refero`, and `mcp-mobbin` (both Code-Mode-mediated remote MCP surfaces), none of which mutate this workspace (`mutatesWorkspace: false`); each transport packet is declared on a `transport-axis` extension carrying a mandatory cross-hub pairing back to `sk-design-md-generator` for a measured Style Reference (extracted design tokens), since a transport moves or fetches artifacts but never produces that measured reference itself.
+`packetKind: "workflow"` covers `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, and `mcp-notion`, all of which mutate this repository's workspace (`mutatesWorkspace: true`). `packetKind: "transport"` covers `mcp-figma` (Figma Desktop), `mcp-refero` and `mcp-mobbin` (Code-Mode-mediated remote MCP surfaces), and `mcp-magicpath` (a vendor CLI reached through Code Mode over a UTCP `cli` manual, its provider shipping no MCP server), none of which mutate this workspace (`mutatesWorkspace: false`); each transport packet is declared on a `transport-axis` extension carrying a mandatory cross-hub pairing back to `sk-design-md-generator` for a measured Style Reference (extracted design tokens), since a transport moves or fetches artifacts but never produces that measured reference itself.
 
 ### Routing Rule
 
@@ -44,7 +44,7 @@ The router resolves to `single` (one dominant tool signal), an `orderedBundle` (
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/mcp-tooling/SKILL.md` | Shared | States the two-axis model, routing rule, and outcome set. |
-| `.opencode/skills/mcp-tooling/mode-registry.json` | Shared | Declarative registry for all seven packets, including `packetKind` and `mutatesWorkspace`. |
+| `.opencode/skills/mcp-tooling/mode-registry.json` | Shared | Declarative registry for all nine packets, including `packetKind` and `mutatesWorkspace`. |
 | `.opencode/skills/mcp-tooling/hub-router.json` | Shared | Router signals, vocabulary classes, and tie-break policy. |
 
 ### Validation And Tests

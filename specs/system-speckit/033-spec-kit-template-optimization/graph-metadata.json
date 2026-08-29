@@ -1,26 +1,101 @@
 {
   "schema_version": 1,
-  "packet_id": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-speckit/033-spec-kit-template-optimization",
-  "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-speckit/033-spec-kit-template-optimization",
+  "packet_id": "system-speckit/033-spec-kit-template-optimization",
+  "spec_folder": "system-speckit/033-spec-kit-template-optimization",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization",
+    "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
+  "derived": {
+    "trigger_phrases": [
+      "spec kit template optimization",
+      "acceptance criteria template",
+      "spec doc closure gate",
+      "level 2 3 3+ template contract"
+    ],
+    "key_topics": [
+      "spec",
+      "kit",
+      "template",
+      "optimization",
+      "acceptance",
+      "criteria",
+      "doc",
+      "closure",
+      "gate",
+      "level",
+      "contract",
+      "spec-kit"
+    ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md"],
-    "entities": [],
-    "causal_summary": "Acceptance criteria template as canonical closure gate for Level 2 3 and 3+ spec packets",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "002-acceptance-criteria-template/decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Template Optimization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit document templates carry two unresolved costs",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-08-29T12:08:53Z",
+    "last_save_at": "2026-08-29T12:14:54.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md"]
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:71fbfbd30a23a70b6fb3386c3669ff8f74931213bff0a43133232870188f6461",
+    "source_doc_hashes": {
+      "spec.md": "a87136aaa3b1d73171d489dafa6688f9e3b44db1e804737bf16b7d8ef0e2c9a8"
+    },
+    "last_active_child_id": "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
+    "last_active_at": null
   }
 }

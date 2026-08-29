@@ -33,8 +33,8 @@ contextType: "implementation"
 
 - [x] T001 Capture the installed build's authoritative command surface — evidence: `magicpath-ai --help` on 2.6.1 lists 25 commands; `info -o json` claims 22 and omits `create-project` and `skills`, so `--help` is authoritative and `info` carries a stale list
 - [x] T002 Settle the version question — evidence: `npm install -g magicpath-ai@latest` moved 2.3.2 to 2.6.1 (75 packages changed); the bridge re-read it with no re-registration, returning `version_through_bridge 2.6.1`; rollback is `npm install -g magicpath-ai@2.3.2`
-- [ ] T003 [P] Read the secret-resolution convention from a registered manual that already uses it
-- [ ] T004 [P] Record the machine's starting authentication state, so a later credentialed result is a change rather than a coincidence
+- [x] T003 [P] Read the secret-resolution convention from a registered manual that already uses it — evidence: the Notion entry resolves `${notion_NOTION_TOKEN}` through the configured dotenv loader; MagicPath follows it as `${magicpath_MAGICPATH_TOKEN}`
+- [x] T004 [P] Record the machine's starting authentication state — evidence: `magicpath-ai info -o json` reports `auth.authenticated false`, so no credentialed call has been possible in this phase
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -42,12 +42,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Declare the read-only tools in `.utcp_config.json`, each requesting structured output
-- [ ] T006 Confirm every declared command appears in the installed build's command list
-- [ ] T007 Act on the mutating-family decision, and record the reason in the phase summary
-- [ ] T008 Express the mutation boundary so a reader of the config can see it without consulting prose
-- [ ] T009 Reference the token through the established convention, resolved at call time
-- [ ] T010 [P] Record the variable name and where to obtain it in `.env.example`, never its value
+- [x] T005 Declare the read-only tools — evidence: the `cli` transport takes no inline tool list, so `.opencode/bin/magicpath-utcp-manual.cjs` emits a 14-tool UTCP manual and `.utcp_config.json` registers it as the manual `magicpath`; every command ends `-o json`
+- [x] T006 Confirm every declared command exists — evidence: all 14 (`info whoami search inspect list-projects list-components list-teams list-members list-themes get-theme list-installed selection active-project share`) matched `magicpath-ai --help` on 2.6.1
+- [x] T007 Act on the mutating-family decision — evidence: operator chose read-only only; `add`, `code`, `image`, `create-project` and `clone` are absent from the emitter, so they are unreachable from a tool call
+- [x] T008 Express the mutation boundary — evidence: every emitted tool carries the `read-only` tag, and the emitter's header states which commands are withheld and why
+- [x] T009 Resolve the credential without a manual declaration — evidence: the manual declares no `env_vars` at all. A fresh server reported `Successfully registered manual 'magicpath' with 14 tools`, and the CLI falls through to the session `magicpath-ai login` stores; no credential value is in any tracked file
+- [x] T010 [P] Record the credential path in `.env.example` — evidence: the entry states that no namespaced variable exists, because a non-empty token overrides a stored login session, and that headless use exports `MAGICPATH_TOKEN` in the environment instead
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,11 +55,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Call a read-only tool without a credential and record the failure verbatim
+- [x] T011 Call a read-only tool without a credential — evidence: returns structured JSON `{"error":"Not authenticated. Set MAGICPATH_TOKEN or run `magicpath-ai login`.","code":"NOT_AUTHENTICATED","suggestion":"..."}` rather than an opaque failure
 - [ ] T012 Call the same tool with a credential and confirm it returns real account data
 - [ ] T013 [P] Confirm `selection` and `active-project` behave sanely with no browser session open
 - [ ] T014 Scan the working tree and the diff for any token value before close
-- [ ] T015 Confirm the config parses and the manuals this packet did not touch are unchanged
+- [x] T015 Confirm the config parses and untouched manuals are unchanged — evidence: `.utcp_config.json` parses with 14 manuals, `git diff --stat` shows 10 insertions and 0 deletions, and a fresh server registered the manual and discovered its 14 tools
 <!-- /ANCHOR:phase-3 -->
 
 ---

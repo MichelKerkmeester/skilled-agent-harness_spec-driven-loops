@@ -33,7 +33,7 @@ When an approved plan names a specific workflow, command, agent or skill (e.g., 
 1. **VERIFY, don't assume** — READ the named workflow's contract (its `SKILL.md` or command doc) to test any friction you believe it has.
 2. **FLAG deviations** — If it genuinely blocks the task, STATE the deviation to the user ("plan says X, I propose Y because Z") and get approval before proceeding.
 3. **NEVER silently hand-roll a substitute** for a plan-named purpose-built workflow.
-4. **PROPOSE the amendment, don't absorb it** — when the contract is readable but genuinely wrong for this case, follow it for this task AND name the fix in the same response: the file to change, the rule, and the one-line replacement. A silent workaround leaves the next run to rediscover the same friction.
+4. **PROPOSE the amendment, don't absorb it** — when the contract does NOT block the task (you can still comply) but is wrong for this case, follow it for this task AND name the fix in the same response: the file to change, the rule, and the one-line replacement. A blocking contract is step 2 and needs approval first; the difference is whether you can comply, not how wrong it feels. A silent workaround leaves the next run to rediscover the same friction.
 
 > Reinventing a workflow's core feature because you assumed friction you never checked against its contract is a HARD violation.
 
@@ -139,7 +139,7 @@ Trigger: EACH new user message (re-evaluate even in ongoing conversations)
 2. B) Fallback: run `python3 .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py "[request]" --threshold 0.8` when no hook brief is present, when scripting a check, or when diagnosing hook behavior. When the advisor daemon is warm, the daemon-backed CLI is the alternative: `node .opencode/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"[request]"}' --warm-only --format json` (see "Skill Advisor CLI Transport Fallback").
 3. C) Cite user's explicit direction: "User specified: [exact quote]"
 - Confidence ≥ 0.8 → MUST invoke skill | < 0.8 → general approach | User names skill → cite and proceed
-- **Artifact trigger — binds on what you are about to write, independently of the advisor score.** Before the FIRST code write of a task, route through `sk-code`; before the FIRST `.md` write, route through `sk-doc` — except spec-folder docs, which are `system-spec-kit`'s. Each skill's own router owns what applies below it: never assume a surface, mode, or packet taxonomy, read what that repo's skill defines. Routing means LOADING what the router resolves — a route you named but did not load does not satisfy this, and a skill already in context is not re-read. If the resolved contract is wrong for the case at hand, follow it for this task and propose the amendment (§1 PLAN-WORKFLOW LOCK step 4).
+- **Artifact trigger — binds on what you are about to write, independently of the advisor score.** Before the FIRST code write of a task, route through `sk-code`; before the FIRST `.md` write, route through `sk-doc` — except spec-folder docs, which are `system-spec-kit`'s. Each skill's own router owns what applies below it: never assume a surface, mode, or packet taxonomy, read what that repo's skill defines. Routing means LOADING what the router resolves — a route you named but did not load does not satisfy this, and a skill already in context is not re-read. That load is a Read, not a Gate Action, so on a file-modification request it queues behind Gate 3 like any other tool call. If the resolved contract is wrong for the case at hand, follow it for this task and propose the amendment (§1 PLAN-WORKFLOW LOCK step 4).
 - Output: `SKILL ROUTING: [result]` or `SKILL ROUTING: User directed → [name]`; when the artifact trigger fires, add `ARTIFACT: [skill] → [what its router resolved]`
 - Skip: trivial queries only (greetings, single-line questions). The artifact trigger skips only the §3 exemption class (a few characters in one file); any new behavior, API, or control flow loads the skill
 
@@ -220,6 +220,7 @@ Trigger: About to skip gates, or realized gates were skipped → STOP → STATE:
 #### Self-Check (before ANY tool-using response):
 - [ ] File modification? Asked spec folder question?
 - [ ] Skill routing verified?
+- [ ] First code or `.md` write? Routed per the Gate 2 artifact trigger and LOADED what it resolved?
 - [ ] Saving memory? Using `generate-context.js` (not Write tool)?
 - [ ] Aligned with ORIGINAL request? No scope drift?
 - [ ] Claiming completion? `checklist.md` verified?
@@ -235,9 +236,9 @@ Every conversation that modifies files MUST have a spec folder. **Full details:*
 | Level            | LOC            | Required Files | Optional Files | Lazy Add-ons | Use When |
 | ---------------- | -------------- | -------------- | -------------- | ------------ | -------- |
 | **1**            | <100           | spec.md, plan.md, tasks.md (+ implementation-summary.md once work starts) | — | before-after.md, timeline.md, roadmap.md, decision-record.md (+ existing lazy workflow add-ons) | All features (minimum) |
-| **2**            | 100-499        | spec.md, plan.md, tasks.md (+ implementation-summary.md once work starts) | checklist.md | before-after.md, timeline.md, roadmap.md, decision-record.md (+ existing lazy workflow add-ons) | QA validation needed |
-| **3**            | ≥500           | spec.md, plan.md, tasks.md (+ implementation-summary.md once work starts) | checklist.md | before-after.md, timeline.md, roadmap.md, decision-record.md (+ existing lazy workflow add-ons) | Complex/architecture changes |
-| **3+**           | Complexity 80+ | spec.md, plan.md, tasks.md (+ implementation-summary.md once work starts) | checklist.md | before-after.md, timeline.md, roadmap.md, decision-record.md (+ existing lazy workflow add-ons) | Multi-agent, enterprise governance |
+| **2**            | 100-499        | spec.md, plan.md, tasks.md, acceptance-criteria.md (+ implementation-summary.md once work starts) | checklist.md | before-after.md, timeline.md, roadmap.md, decision-record.md (+ existing lazy workflow add-ons) | QA validation needed |
+| **3**            | ≥500           | spec.md, plan.md, tasks.md, acceptance-criteria.md (+ implementation-summary.md once work starts) | checklist.md | before-after.md, timeline.md, roadmap.md, decision-record.md (+ existing lazy workflow add-ons) | Complex/architecture changes |
+| **3+**           | Complexity 80+ | spec.md, plan.md, tasks.md, acceptance-criteria.md (+ implementation-summary.md once work starts) | checklist.md | before-after.md, timeline.md, roadmap.md, decision-record.md (+ existing lazy workflow add-ons) | Multi-agent, enterprise governance |
 | **Phase Parent** | n/a            | spec.md, description.json, graph-metadata.json | — | handover.md, before-after.md, timeline.md, roadmap.md, decision-record.md | Folder contains phase children with spec files |
 
 #### Phase Parent Mode
@@ -282,7 +283,7 @@ Every spec folder (Level 1+) MUST contain:
 - **Plan before acting** on multi-step work. Decide which files to read first, which tools to use, and how the result will be verified before making changes.
 - **Define proof before implementation.** Convert acceptance criteria into observable checks and identify the authoritative final gate before changing files.
 - **Use a research-first approach.** Read the actual code, docs, and local instructions first; prefer surgical edits over broad rewrites.
-- **Walk the restraint ladder before adding code.** Stop at the first rung that holds: does this need to exist at all (YAGNI) → a language built-in or standard library → a native platform or runtime feature → an already-installed dependency → one line → only then the minimum code that works. Rungs 2-4 require reading what already exists, so this is a post-read reflex. Rung 1 concluding "unnecessary" never licenses a cut: implement the frozen scope AND raise the scope amendment in the same response. Authoritative rungs: `sk-code` → `shared/references/universal/code-quality-standards.md` §1.
+- **Walk the restraint ladder before adding code.** Stop at the first rung that holds, cheapest first — does this need to exist at all, then simpler alternatives, then the minimum that works. Reading what already exists is what makes the middle rungs answerable, so this is a post-read reflex. Concluding "unnecessary" never licenses a cut: implement the frozen scope AND raise the scope amendment in the same response. `sk-code`'s design-restraint doctrine owns the rungs and their order — read them there rather than from this line.
 - **Read the system before the file.** For any change touching more than one file, name the owning module, its callers, and the contract that must not break before the first edit. Treat the SYSTEMS and SCOPE lenses below as this pre-write pass, not as a post-hoc review.
 - **Apply project-specific conventions from `REPO RULES.md`** before acting, when the repository has one. This document is shared across repositories — several read it through a symlinked `AGENTS.md` — so conventions that belong to one repository live beside it rather than in here. Its verification commands and local contracts bind exactly as this document's do.
 
@@ -295,7 +296,7 @@ Every spec folder (Level 1+) MUST contain:
 **Debugging & Iteration:**
 - Reproduce the exact symptom when safe, trace the responsible producer and its consumers, fix the root cause, and rerun the same check.
 - Law 4 keeps forward progress and completion blocked while a check fails; diagnosis and repair are the permitted bounded remediation loop, not permission to proceed past the failure.
-- If an attempt repeats without new evidence, stop patching at the failure site: restate the problem one level up — at the interface, the data flow, or the module boundary — and inspect the available interface before trying again. A fix that works only by special-casing a caller is evidence the seam is wrong: name the seam and the files a seam fix would touch, then ask — SCOPE LOCK still binds, and editing outside scope needs a yes. Do not repeat the same guess; stop local retries at the code skill's repeated-failure limit and escalate per Section 7.
+- If an attempt repeats without new evidence, stop patching at the failure site: restate the problem one level up — at the interface, the data flow, or the module boundary — and inspect the available interface before trying again. A fix that works only by special-casing a caller is evidence the seam is wrong: name the seam and the files a seam fix would touch, then ask — SCOPE LOCK still binds, and editing outside scope needs a yes. Do not repeat the same guess; stop local retries at the code skill's repeated-failure limit — its count governs a debugging loop, not Section 7's — then escalate in Section 7's format.
 
 **Verification & Reasoning:**
 - **Use frequent self-checks and reasoning loops** to catch and fix your own mistakes before asking for help.
@@ -311,7 +312,7 @@ Every spec folder (Level 1+) MUST contain:
 - **Prefer available project tools** — add a dependency only when the scoped result requires it
 - **Require fallbacks only for real constraints** — add a no-install path only when the target execution environment cannot rely on dependency installation
 - **Solve only the stated problem** — avoid over-engineering and premature optimization
-- **Test what changed, not what exists** — a new test earns its place by failing for one real reason no current test catches. Do not add a test per branch, re-assert the framework or the language, or mirror the implementation. Changed behavior gets coverage; unchanged behavior does not get new tests. The floor is `sk-code` → `shared/references/universal/code-quality-standards.md` §4 (happy path plus one edge case per public surface); this rule governs only tests above that floor and never waives it
+- **Test what changed, not what exists** — the coverage floor comes first and this rule never waives it: happy path plus one edge case per public surface, per `sk-code`'s universal quality tiers. ABOVE that floor, a new test earns its place by failing for one real reason no current test catches. Do not add a test per branch, re-assert the framework or the language, or mirror the implementation. Changed behavior gets coverage; unchanged behavior does not get new tests
 - **Verify with checks** — simplicity, performance, maintainability, scope before changes
 - **Truth over agreement** — correct user misconceptions with evidence; never agree for conversational flow
 

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Every restraint rule this framework needs already exists somewhere, but not where it fires",
     "created_at": "2026-08-29T11:13:34.480Z",
-    "last_save_at": "2026-08-29T12:39:09.276Z",
+    "last_save_at": "2026-08-29T13:43:04.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe3cb80b875d21ce31c4516d14cafd43da6e12791908ae4a20ed4e5a24d7cd56",
+    "source_fingerprint": "sha256:fda610db4293f95905b69676db838ccb790f334c6f345d90f183e10bf76ef9bb",
     "source_doc_hashes": {
-      "spec.md": "62d1b0cfffcecac19ee8e898b0a646e8ca21b743fd678507d59d6465652bd381",
-      "plan.md": "b4ec2ac4544f1e9e5eb470e0346d29ae7c430c8c465dae34eeb4ba7bec764c63",
-      "tasks.md": "4a6bd4846e9173195be1b506f15adde0c8cb786798cf4d773e76d714f84cef0c",
-      "checklist.md": "5027687ecc9aebfd24a18edc7b443cf27b500766c4e904d880151be80567dda6",
-      "decision-record.md": "dc33441219a90e2e8e882e7ff49b50da46a15ca6b472e22d51c24fc9dd68e052",
-      "implementation-summary.md": "02c4c6426385ad33e72b41b46fb470322ecd99587c4fd6895c6466a9489bc80e"
+      "spec.md": "fa867a52ec0e7c51b3bbd01677ab4851c8c719cc9f3005ed04cf0ea46edf5747",
+      "plan.md": "3f4388ecba07793fb5643b8d20c0d27c5e1695f033a3b45162190e13802f55ac",
+      "tasks.md": "b6b97e6cb9d6c1cad2afb96977ff7a33ae7373de82566bd5c918e30a27821395",
+      "checklist.md": "44cd1781bd719f8de68823377447334b13fc361529bdd76c992990b9251563b5",
+      "decision-record.md": "92000912e82e14e15ab6b9ae9ba89c4e0d1ce04e55034d31dba7f4f1109d3b57",
+      "implementation-summary.md": "404ce3ef988c7904753c589bebc16d423c8c043f1d9c79046dd218a37abbe6c8"
     },
     "last_active_child_id": null,
     "last_active_at": null
