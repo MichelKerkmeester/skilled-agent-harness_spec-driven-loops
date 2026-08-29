@@ -104,6 +104,7 @@ is_target_command() {
   case "$cmd" in
     *"system-spec-memory-launcher.cjs"*|\
     *"system-skill-advisor-launcher.cjs"*|\
+    *"mcp-code-mode-launcher.cjs"*|\
     *"system-spec-kit/mcp-server/dist/context-server.js"*|\
     *"system-skill-advisor/mcp-server/dist/"*"advisor-server.js"*|\
     *"mcp-code-mode/mcp-server/dist/index.js"*|\

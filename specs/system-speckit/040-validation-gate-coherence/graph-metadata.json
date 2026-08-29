@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/040-validation-gate-coherence",
+  "spec_folder": "system-speckit/040-validation-gate-coherence",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "validation gate coherence",
+      "validator engine selection",
+      "strict validation failure rate",
+      "validation gate coherence plan",
+      "validation gate coherence tasks",
+      "validation gate coherence status"
+    ],
+    "key_topics": [
+      "validation",
+      "gate",
+      "coherence",
+      "validator",
+      "engine",
+      "selection",
+      "strict",
+      "failure",
+      "rate",
+      "plan",
+      "tasks",
+      "status"
+    ],
+    "importance_tier": "high",
+    "status": "in_progress",
+    "key_files": [
+      "plan.md",
+      "tasks.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Validation Verdict",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Honestly Earned",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "both",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Nothing",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet cannot satisfy from inside itself.",
+    "created_at": "2026-08-29T07:44:49.812Z",
+    "last_save_at": "2026-08-29T07:45:32.667Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1b64e37dfe8fd6a7214450d467a034113b57782f3152d9833f0649a6b8778aa7",
+    "source_doc_hashes": {
+      "spec.md": "265078d5d27a65b1abbf55f1cb1d3023894a2ee189835e7649582e29f00ca41e",
+      "plan.md": "751b50254f31f1c3e39ea4d9a3813eedaeedfe859945b22613051963a55d2036",
+      "tasks.md": "d26e7f75f9fafdb6d90927b906f4cc27215e44d7e8c9a56cfd1169ee2b8c5214",
+      "implementation-summary.md": "b8ef9aab8fdfec0fc0741e48a723f2d67aeb79fccef7a50f4e21bd28b751bbc2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

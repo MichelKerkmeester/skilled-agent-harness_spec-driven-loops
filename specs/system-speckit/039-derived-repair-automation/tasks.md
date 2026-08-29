@@ -59,7 +59,7 @@ _memory:
 - [x] T-101 [P0] Validate arguments and refuse any target outside the specs tree.
 - [x] T-102 [P0] Return distinct exit codes for clean, repairable-while-reporting, and repair-failed.
 - [x] T-103 [P1] Read both validator report shapes so no packet appears trivially clean.
-- [x] T-104 [P0] Build fixture packets, one broken per derived class and one carrying only authored failures.
+- [ ] T-104 [P0] Build fixture packets, one broken per derived class and one carrying only authored failures. Only the recorded-location class is covered today.
 - [x] T-105 [P0] Assert the authored fixture is byte-identical after a run.
 - [x] T-106 [P1] Assert a second run over a repaired fixture changes nothing.
 - [x] T-107 [P1] Audit the generators that emit derived fields for the omission already found in one of them.
@@ -147,7 +147,7 @@ assertion that a rule stopped firing.
 <!-- ANCHOR:testing -->
 ## TESTING CHECKLIST
 
-- [x] CHK-020 [P0] A fixture broken in each derived way is repaired.
+- [ ] CHK-020 [P0] A fixture broken in each derived way is repaired. The level and re-derive classes have no fixture yet.
 - [x] CHK-021 [P0] A fixture carrying only authored failures is byte-identical afterwards.
 - [x] CHK-022 [P1] A second run over a repaired fixture changes nothing.
 

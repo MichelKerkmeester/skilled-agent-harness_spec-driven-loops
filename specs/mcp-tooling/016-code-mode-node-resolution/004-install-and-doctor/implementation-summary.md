@@ -9,10 +9,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor"
-    last_updated_at: "2026-08-28T18:07:52Z"
+    last_updated_at: "2026-08-29T10:02:02Z"
     last_updated_by: "session"
-    recent_action: "Closed the install, diagnosis and documentation surfaces"
-    next_safe_action: "Close the parent packet"
+    recent_action: "Reconciled the installer-execution records with their evidence"
+    next_safe_action: "None; the packet is complete"
     blockers: []
     key_files:
       - ".opencode/skills/mcp-code-mode/scripts/install.sh"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Phase** | 4 of 4 |
+| **Phase** | 4 of 5 |
 | **Status** | Complete |
 | **Completed** | 2026-08-28 |
 | **Branch** | `skilled/v4.0.0.0` |
@@ -101,6 +101,7 @@ The phase's own file list was corrected during execution: it named four document
 | Forced-unsatisfiable diagnosis | `[FAIL] No Node.js interpreter satisfies >=99.0.0 <100.0.0 (unsatisfied)`, Fail count 1 |
 | Manifest after the forced failure | Restored byte-identical, confirmed by checksum and a clean git status |
 | Installer output | Registers `node` plus the launcher; no absolute interpreter path |
+| Installer executed end to end | Completed against a scratch project root and a scratch home in the resolution-hardening phase, where the registration is observed as output rather than as an inspected literal |
 | Guide | Zero remaining "Node.js 18" claims; validates as `install_guide` |
 | Checklist | Validates as `asset`; no absolute interpreter path |
 | Workspace node gate | 75 files, 762 pass, 0 fail |
@@ -114,7 +115,7 @@ The diagnosis is worth reading twice: the host interpreter is v25.6.1, which wou
 ## Known Limitations
 
 - The diagnosis reports whether an interpreter satisfying the declared range exists. It does not verify that the compiled addon on disk matches that interpreter, so a manifest that drifts from its own addon would still pass.
-- The installer was changed and syntax-checked but not run end to end against a scratch host configuration, so its output is verified by inspection of the emitted literal rather than by a completed install.
+- The installer's own prerequisite gate accepts any Node above a fixed floor, which is not the range this server needs; the resolver-backed gate that replaces it belongs to the resolution-hardening phase.
 - The guide documents the launcher's refusal behavior in prose; no test asserts that the documented message matches what the launcher actually prints.
 <!-- /ANCHOR:limitations -->
 

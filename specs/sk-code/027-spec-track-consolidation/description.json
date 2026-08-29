@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/027-spec-track-consolidation",
+  "description": "Relocate the Obsidian-surface and Mobile-CLI-mode sk-code spec packets from their origin repos into Public/specs/sk-code, rewriting identity metadata and path",
+  "keywords": [
+    "relocate",
+    "obsidian-surface",
+    "mobile-cli-mode",
+    "sk-code",
+    "spec",
+    "packets",
+    "origin",
+    "repos",
+    "public",
+    "rewriting",
+    "identity",
+    "metadata"
+  ],
+  "lastUpdated": "2026-08-29T09:27:16.000Z",
+  "specId": "027",
+  "folderSlug": "spec-track-consolidation",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

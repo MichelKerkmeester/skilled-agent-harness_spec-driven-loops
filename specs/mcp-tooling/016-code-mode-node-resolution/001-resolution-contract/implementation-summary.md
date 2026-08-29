@@ -9,10 +9,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/016-code-mode-node-resolution/001-resolution-contract"
-    last_updated_at: "2026-08-28T17:30:00Z"
+    last_updated_at: "2026-08-29T10:02:02Z"
     last_updated_by: "session"
-    recent_action: "Shipped the resolver and its tests, verified against the real host and three fixture hosts"
-    next_safe_action: "Execute 002-launcher-shim, which consumes this resolver"
+    recent_action: "Recorded the answers to this phase's open questions"
+    next_safe_action: "None; the packet is complete"
     blockers: []
     key_files:
       - ".opencode/bin/lib/node-engine-resolver.cjs"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Phase** | 1 of 4 |
+| **Phase** | 1 of 5 |
 | **Status** | Complete |
 | **Completed** | 2026-08-28 |
 | **Branch** | `skilled/v4.0.0.0` |

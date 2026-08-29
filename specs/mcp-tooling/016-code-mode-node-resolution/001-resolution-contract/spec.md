@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Created** | 2026-08-28 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 4 |
+| **Phase** | 1 of 5 |
 | **Predecessor** | None |
 | **Successor** | 002-launcher-shim |
 | **Handoff Criteria** | The resolver returns the interpreter the host configs hardcode today, and returns nothing rather than a wrong one when the range cannot be satisfied |
@@ -138,8 +138,10 @@ Make the declared range answerable at runtime: given a manifest and a host, prod
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- Whether an operator override by environment variable belongs in the resolver or only in the launcher that consumes it.
-- Whether selecting the highest satisfying candidate is right, or whether the lowest is safer for a range whose upper bound exists because newer versions crash.
+Both questions this phase opened are settled by what shipped.
+
+- **Where an operator override belongs**: neither place. Nothing reads an override, so the declared range is the sole input to selection. Keeping one input keeps the resolver's answer reproducible from the manifest alone.
+- **Highest or lowest satisfying candidate**: highest. The upper bound is exclusive and enforced before selection, so every surviving candidate is inside the supported major and none of them is the version the bound exists to exclude. Among safe candidates the highest carries the security and correctness fixes released within that major.
 <!-- /ANCHOR:questions -->
 
 ---

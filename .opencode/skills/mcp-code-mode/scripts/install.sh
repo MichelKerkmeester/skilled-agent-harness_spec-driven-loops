@@ -17,6 +17,11 @@ set -euo pipefail
 readonly MCP_NAME="code_mode"
 readonly MCP_DISPLAY_NAME="Code Mode"
 readonly MCP_PACKAGE="@utcp/code-mode-mcp"
+
+# The floor this installer needs to run its own node helpers. It is NOT the
+# server's requirement: that one is declared in the server manifest and read
+# through the resolver, because this server bundles a native addon whose
+# supported interpreters are narrower than any floor and move with the package.
 readonly MIN_NODE_VERSION="18"
 
 # ───────────────────────────────────────────────────────────────
@@ -46,7 +51,7 @@ OPTIONS:
     --skip-verify   Skip verification step (faster install)
 
 WHAT THIS SCRIPT DOES:
-    1. Verifies Node.js 18+ and npx are available
+    1. Verifies npx plus a Node that satisfies the server's declared engine range
     2. Creates .utcp_config.json template (if not exists)
     3. Creates .env.example with placeholder API keys (if not exists)
     4. Adds code_mode to opencode.json MCP configuration
@@ -105,6 +110,50 @@ done
 # 5. MAIN FUNCTIONS
 # ───────────────────────────────────────────────────────────────
 
+# The registration this installer writes launches through a resolver, so the
+# host has to own an interpreter the server's declared range accepts. Without
+# this check the install reports success and the failure surfaces later, as a
+# server that refuses to start.
+check_server_engine_range() {
+    local project_root
+    project_root=$(find_project_root) || return 1
+
+    local resolver="${project_root}/.opencode/bin/lib/node-engine-resolver.cjs"
+    local manifest="${project_root}/.opencode/skills/mcp-code-mode/mcp-server/package.json"
+
+    if [[ ! -f "${resolver}" || ! -f "${manifest}" ]]; then
+        log_warn "Cannot check the Node engine range: resolver or server manifest missing"
+        return 0
+    fi
+
+    local resolution
+    if ! resolution="$(node -e '
+const [resolverPath, manifestPath] = process.argv.slice(1);
+const result = require(resolverPath).resolveNodeInterpreter({ manifestPath });
+process.stdout.write(
+  result.path
+    ? `resolved\t${result.path}\t${result.range ?? "unknown"}`
+    : `unresolved\t${result.range ?? "unknown"}\t${result.reason ?? "unknown"}`,
+);
+' "${resolver}" "${manifest}" 2>&1)"; then
+        log_error "Node engine resolver failed: ${resolution:-unknown error}"
+        return 1
+    fi
+
+    local status value detail
+    IFS=$'\t' read -r status value detail <<< "${resolution}"
+
+    if [[ "${status}" != "resolved" ]]; then
+        log_error "No Node.js interpreter satisfies ${value} (${detail})"
+        log_info "This server bundles a native addon with no build outside that range."
+        log_info "Install a matching Node.js; it does not have to become your default."
+        return 1
+    fi
+
+    log_info "Server interpreter: ${value} (range: ${detail})"
+    return 0
+}
+
 check_prerequisites() {
     log_step "1" "Checking prerequisites..."
 
@@ -113,6 +162,10 @@ check_prerequisites() {
     fi
 
     if ! check_npx; then
+        return 1
+    fi
+
+    if ! check_server_engine_range; then
         return 1
     fi
 
@@ -304,11 +357,22 @@ verify_installation() {
     project_root=$(find_project_root) || return 1
     local mcp_server_dir="${project_root}/.opencode/skills/mcp-code-mode/mcp-server"
     local entry_point="${mcp_server_dir}/dist/index.js"
+    local launcher="${project_root}/.opencode/bin/mcp-code-mode-launcher.cjs"
 
     if [[ "${DRY_RUN}" == "true" ]]; then
-        log_info "[DRY-RUN] Would verify: ${entry_point} exists"
+        log_info "[DRY-RUN] Would verify: ${launcher} and ${entry_point} exist"
         return 0
     fi
+
+    # The launcher is what the registration names, and it lives outside this
+    # skill tree, so a skill copied into a project without it would register a
+    # command that does not exist.
+    if [[ ! -f "${launcher}" ]]; then
+        log_error "Launcher not found: ${launcher}"
+        log_info "The registration written by this installer points at that file"
+        return 1
+    fi
+    log_success "Launcher verified at: ${launcher}"
 
     # Check if the embedded MCP server exists
     if [[ ! -d "${mcp_server_dir}" ]]; then

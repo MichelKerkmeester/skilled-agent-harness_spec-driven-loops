@@ -42,6 +42,38 @@
     },
     {
       "leaves": [
+        "assets/comment-banner-checklist.md",
+        "assets/db-class-rename-checklist.md",
+        "assets/fixture-authoring-checklist.md",
+        "assets/folder-docs-checklist.md",
+        "assets/modal-coverage-checklist.md",
+        "assets/screenshot-coverage-checklist.md",
+        "assets/verification-checklist.md",
+        "references/accessibility.md",
+        "references/comment-grammar.md",
+        "references/data-layer.md",
+        "references/db-class-naming.md",
+        "references/folder-docs.md",
+        "references/mobile-and-touch.md",
+        "references/obsidian-plugin-api.md",
+        "references/operations/operations.md",
+        "references/quality/doc-quality-gate.md",
+        "references/release/release-verification.md",
+        "references/screenshot-harness.md",
+        "references/setup/setup.md",
+        "references/skill-reference-integrity.md",
+        "references/standards/code-standards.md",
+        "references/standards/platform-support.md",
+        "references/stylesheet-ownership.md",
+        "references/theme-variables.md",
+        "references/verification.md",
+        "references/view-renderer-architecture.md"
+      ],
+      "packet": "sk-code-obsidian",
+      "workflowMode": "sk-code-obsidian"
+    },
+    {
+      "leaves": [
         "assets/checklists/agent-authoring.md",
         "assets/checklists/command-authoring.md",
         "assets/checklists/config-checklist.md",

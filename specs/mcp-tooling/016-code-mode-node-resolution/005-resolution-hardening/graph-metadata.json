@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/016-code-mode-node-resolution/005-resolution-hardening",
+  "spec_folder": "mcp-tooling/016-code-mode-node-resolution/005-resolution-hardening",
+  "parent_id": "mcp-tooling/016-code-mode-node-resolution",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "resolver search path dead branch",
+      "node interpreter probe fallback",
+      "code mode launcher existence check",
+      "resolution hardening",
+      "resolution hardening plan",
+      "interpreter probe design",
+      "resolution hardening tasks",
+      "resolution hardening summary",
+      "resolver version ladder shipped"
+    ],
+    "key_topics": [
+      "resolver",
+      "search",
+      "path",
+      "dead",
+      "branch",
+      "node",
+      "interpreter",
+      "probe",
+      "fallback",
+      "code",
+      "mode",
+      "launcher"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "tasks.md",
+      "spec.md",
+      "plan.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repair Enumeration",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "No Node",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet shipped a resolver whose search-path branch cannot return a candidate on a real host",
+    "created_at": "2026-08-29T09:58:50.535Z",
+    "last_save_at": "2026-08-29T10:18:54.706Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:69a5047d6a206bb21b3d1418d230fc9f9346513d3a037cff4a651a0f38e95a1f",
+    "source_doc_hashes": {
+      "spec.md": "0a5d56c18ec84ba5b30ddd3bc56343c65a66c6d00912b29c2a79ad05f7e0b599",
+      "plan.md": "3def9c56494c907c111421e3fb16ac83c12adbffdc7108dba937419d11f303c4",
+      "tasks.md": "2fd8efaf1a914076f9a3efcc09cbe9dcb1abf7d0a518dd4cbeb7d042fc78109c",
+      "implementation-summary.md": "fe1ee2860b0275e99a8875c763a5d45ab08defed150e3093c09bdc03ff958352"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

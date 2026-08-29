@@ -206,6 +206,7 @@ classify_command() {
   case "$cmd" in
     *"system-spec-memory-launcher.cjs"*) printf '%s\n' "system-spec-memory-launcher"; return 0 ;;
     *"system-skill-advisor-launcher.cjs"*) printf '%s\n' "system-skill-advisor-launcher"; return 0 ;;
+    *"mcp-code-mode-launcher.cjs"*) printf '%s\n' "mcp-code-mode-launcher"; return 0 ;;
     *"system-spec-kit/mcp-server/dist/context-server.js"*) printf '%s\n' "spec-memory-context-server"; return 0 ;;
     *"hf-model-server.cjs"*) printf '%s\n' "hf-model-server"; return 0 ;;
     *"system-skill-advisor/mcp-server/dist/"*"advisor-server.js"*) printf '%s\n' "skill-advisor-server"; return 0 ;;

@@ -4,7 +4,7 @@
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-opencode", "sk-code-mobile-cli"],
+    "tieBreak": ["sk-code-quality", "sk-code-review", "sk-code-webflow", "sk-code-opencode", "sk-code-mobile-cli", "sk-code-obsidian"],
     "outcomes": {
       "single": "one dominant code intent routes to one workflow mode",
       "orderedBundle": "clearly separate code intents route to an ordered workflow-mode list",
@@ -38,6 +38,11 @@
       "weight": 4,
       "classes": ["code-mobile-cli-aliases", "code-mobile-cli-runtime", "hub-identity"],
       "resources": ["sk-code-mobile-cli/SKILL.md"]
+    },
+    "sk-code-obsidian": {
+      "weight": 4,
+      "classes": ["code-obsidian-aliases", "code-obsidian-runtime", "hub-identity"],
+      "resources": ["sk-code-obsidian/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -82,6 +87,12 @@
     },
     "code-mobile-cli-runtime": {
       "keywords": ["svelte", "sveltekit", "runes", "scoped style", "app.css", "--pi-clay", "@ds", "design tokens", "wcag aa", "light dark theme", "css custom properties"]
+    },
+    "code-obsidian-aliases": {
+      "keywords": ["obsidian plugin implementation", "obsidian plugin code", "note database plugin", "obsidian plugin surface", "db-* class grammar", "obsidian", "obsidian plugin", "note-database"]
+    },
+    "code-obsidian-runtime": {
+      "keywords": ["obsidian api", "itemview", "workspaceleaf", "manifest.json", "esbuild.config.mjs", "styles.css", ".db-", "vault", "metadatacache", "tfile", "screenshots:verify", "note database"]
     }
   }
 }
