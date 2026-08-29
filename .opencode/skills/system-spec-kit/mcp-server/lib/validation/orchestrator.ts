@@ -660,72 +660,57 @@ function validateTemplateSource(folder: string, level: SpecKitLevel): Validation
     : entry('TEMPLATE_SOURCE', 'error', 'Template source header missing', missing);
 }
 
-function validateTemplateShape(folder: string, level: SpecKitLevel, scope: 'headers' | 'anchors'): ValidationEntry {
+// Anchors are load-bearing: merging generated content into a document, chunking
+// it for retrieval, and search metadata all read them. What those consumers need
+// is that anchors exist and are well formed — not that a document's anchor set
+// matches whatever the template says this week. Diffing against a template that
+// is edited weekly regraded the whole corpus on every template commit, which is
+// a moving target masquerading as a contract.
+function validateAnchorIntegrity(folder: string, level: SpecKitLevel): ValidationEntry {
+  // A phase parent carries a lean document set by design and has always been
+  // exempt here. Widening the check to cover it is a separate decision from
+  // reducing what the check asserts, so it keeps the exemption it had.
   if (level === 'phase' && isPhaseParent(folder)) {
-    return entry(scope === 'headers' ? 'TEMPLATE_HEADERS' : 'ANCHORS_VALID', 'pass', 'Phase parent lean template shape accepted');
+    return entry('ANCHORS_VALID', 'pass', 'Phase parent lean document set accepted');
   }
 
   const findings: string[] = [];
   let checked = 0;
-  const legacyChecklist = fs.existsSync(path.join(folder, 'checklist.md'));
+
   for (const docName of validationDocsForLevel(folder, level)) {
     const actual = readIfExists(path.join(folder, docName));
-    const expected = renderedTemplate(level, docName);
-    if (!actual || !expected) continue;
+    if (!actual) continue;
+    // A document is expected to carry anchors only where its own template
+    // defines them. Some templated documents are deliberately free-form, and
+    // demanding an anchored surface they never had is inventing a requirement.
+    const template = renderedTemplate(level, docName);
+    if (template === null || anchors(template).length === 0) continue;
     checked += 1;
+    const body = stripFences(actual);
 
-    if (scope === 'headers') {
-      const actualHeaders = h2Headers(actual);
-      const expectedHeaders = h2Headers(expected).filter((header) =>
-        !OPTIONAL_TEMPLATE_HEADER_RE.test(header)
-        && !(legacyChecklist && docName === 'tasks.md' && MERGED_VERIFICATION_HEADERS.has(header)),
-      );
-      let cursor = 0;
-      for (const expectedHeader of expectedHeaders) {
-        const foundAt = expectedHeader === 'ADR-001:'
-          ? actualHeaders.findIndex((header, index) => index >= cursor && /^ADR-001:/u.test(header))
-          : actualHeaders.indexOf(expectedHeader, cursor);
-        if (foundAt === -1) findings.push(`${docName}: missing or out-of-order header '${expectedHeader}'`);
-        else cursor = foundAt + 1;
-      }
-    } else {
-      const actualAnchors = new Set(anchors(actual));
-      const expectedAnchors = anchors(expected).filter((anchor) =>
-        !OPTIONAL_TEMPLATE_ANCHORS.has(anchor)
-        && !(legacyChecklist && docName === 'tasks.md' && MERGED_VERIFICATION_ANCHORS.has(anchor)),
-      );
-      for (const expectedAnchor of expectedAnchors) {
-        if (!actualAnchors.has(expectedAnchor)) findings.push(`${docName}: missing required anchor '${expectedAnchor}'`);
-      }
-      const openCount = (stripFences(actual).match(/<!--\s*ANCHOR:/gu) ?? []).length;
-      const closeCount = (stripFences(actual).match(/<!--\s*\/ANCHOR:/gu) ?? []).length;
-      if (openCount !== closeCount) findings.push(`${docName}: anchor open/close count mismatch (${openCount}/${closeCount})`);
+    const opens = [...body.matchAll(/<!--\s*ANCHOR:([a-z0-9-]+)\s*-->/gu)].map((m) => m[1]);
+    const closes = [...body.matchAll(/<!--\s*\/ANCHOR:([a-z0-9-]+)\s*-->/gu)].map((m) => m[1]);
+
+    // Retrieval chunks by anchor and generated content is merged into one, so a
+    // document carrying none cannot participate in either.
+    if (opens.length === 0) findings.push(`${docName}: no anchors found`);
+
+    const seen = new Set<string>();
+    for (const id of opens) {
+      if (seen.has(id)) findings.push(`${docName}: duplicate anchor '${id}'`);
+      seen.add(id);
     }
-  }
-  // The template comparison only reaches H2s, so the checklist title is checked
-  // on its own or a mistitled document passes as template-shaped. Frontmatter is
-  // skipped first: a `#` line inside it is a YAML comment, and reading one as
-  // the title lets a genuinely broken heading pass on the strength of a comment.
-  if (scope === 'headers') {
-    const checklist = readIfExists(path.join(folder, 'checklist.md'));
-    if (checklist !== null) {
-      const lines = checklist.split(/\r?\n/u);
-      let start = 0;
-      if (lines[0]?.trim() === '---') {
-        const close = lines.findIndex((line, index) => index > 0 && line.trim() === '---');
-        if (close > 0) start = close + 1;
-      }
-      const h1 = lines.slice(start).find((line) => line.startsWith('# '));
-      if (h1 !== undefined && !h1.startsWith(CHECKLIST_H1_PREFIX)) {
-        findings.push(`checklist.md: H1 should start with '${CHECKLIST_H1_PREFIX}' (found: '${h1.slice(0, 60)}')`);
-      }
+    for (const id of opens) {
+      if (!closes.includes(id)) findings.push(`${docName}: anchor '${id}' is never closed`);
+    }
+    for (const id of closes) {
+      if (!opens.includes(id)) findings.push(`${docName}: anchor '${id}' is closed but never opened`);
     }
   }
 
-  const rule = scope === 'headers' ? 'TEMPLATE_HEADERS' : 'ANCHORS_VALID';
   return findings.length === 0
-    ? entry(rule, 'pass', `Template ${scope} match in ${checked} file(s)`)
-    : entry(rule, 'error', `${findings.length} template ${scope} issue(s) found`, findings);
+    ? entry('ANCHORS_VALID', 'pass', `Anchors well formed in ${checked} file(s)`)
+    : entry('ANCHORS_VALID', 'error', `${findings.length} anchor integrity issue(s) found`, findings);
 }
 
 function validatePriorityTags(folder: string): ValidationEntry {
@@ -971,8 +956,7 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
   entries.push(validateFileExists(folder, level));
   entries.push(validatePlaceholders(folder, level));
   entries.push(validateTemplateSource(folder, level));
-  entries.push(validateTemplateShape(folder, level, 'headers'));
-  entries.push(validateTemplateShape(folder, level, 'anchors'));
+  entries.push(validateAnchorIntegrity(folder, level));
   entries.push(validatePriorityTags(folder));
   entries.push(validateFrontmatterBasics(folder, level));
   entries.push(validateSpecDocRule(folder, level, 'FRONTMATTER_MEMORY_BLOCK'));

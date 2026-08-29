@@ -319,15 +319,6 @@
       "version": "1.0.0"
     },
     {
-      "name": "check-anchors",
-      "path": "scripts/rules/check-anchors.sh",
-      "type": "bash",
-      "description": "ANCHORS_VALID rule - checks anchor pairs in memory files are properly matched",
-      "severity": "warning",
-      "essential": false,
-      "version": "1.0.0"
-    },
-    {
       "name": "check-level",
       "path": "scripts/rules/check-level.sh",
       "type": "bash",
@@ -341,15 +332,6 @@
       "path": "scripts/rules/check-complexity.sh",
       "type": "bash",
       "description": "COMPLEXITY_MATCH rule - validates declared complexity matches actual content metrics",
-      "severity": "warning",
-      "essential": false,
-      "version": "1.0.0"
-    },
-    {
-      "name": "check-section-counts",
-      "path": "scripts/rules/check-section-counts.sh",
-      "type": "bash",
-      "description": "SECTION_COUNTS rule - validates section counts are within expected ranges for level",
       "severity": "warning",
       "essential": false,
       "version": "1.0.0"

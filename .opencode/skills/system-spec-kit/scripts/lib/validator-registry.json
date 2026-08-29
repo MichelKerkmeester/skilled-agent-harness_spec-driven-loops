@@ -123,7 +123,7 @@
       "ANCHORS",
       "ANCHOR_MATCHED"
     ],
-    "script_path": "rules/check-anchors.sh",
+    "script_path": "native:orchestrator",
     "severity": "error",
     "category": "authored_template",
     "description": "Validates anchor syntax, pairing, order, and uniqueness."
@@ -337,14 +337,6 @@
     "description": "Validates cross-skill wikilinks when explicitly enabled."
   },
   {
-    "rule_id": "SECTION_COUNTS",
-    "aliases": [],
-    "script_path": "rules/check-section-counts.sh",
-    "severity": "error",
-    "category": "authored_template",
-    "description": "Checks section-count expectations for authored spec documents."
-  },
-  {
     "rule_id": "SPEC_DOC_INTEGRITY",
     "aliases": [
       "DOC_INTEGRITY"
@@ -361,14 +353,6 @@
     "severity": "error",
     "category": "authored_template",
     "description": "Checks SPECKIT_TEMPLATE_SOURCE provenance markers."
-  },
-  {
-    "rule_id": "TEMPLATE_HEADERS",
-    "aliases": [],
-    "script_path": "rules/check-template-headers.sh",
-    "severity": "error",
-    "category": "authored_template",
-    "description": "Checks required template header order and naming."
   },
   {
     "rule_id": "CANONICAL_SAVE_ROOT_SPEC_REQUIRED",

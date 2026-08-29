@@ -806,14 +806,14 @@ ${test_entry}"; else TEST_LIST="$test_entry"; fi
             failed_cases+="${label}: expected=$expect status=$status_actual metadata=$metadata_actual; "
         fi
     done <<'EOF'
-true|true|true|warn
-1|1|true|warn
-TRUE|TRUE|true|warn
-yes|yes|true|warn
-on|on|true|warn
+true|true|true|fail
+1|1|true|fail
+TRUE|TRUE|true|fail
+yes|yes|true|fail
+on|on|true|fail
 false|false|true|pass
 0|0|true|pass
-unset||false|pass
+unset||false|fail
 EOF
 
     rm -rf "$tmp_root"
@@ -985,23 +985,6 @@ if begin_category "Metadata Parse Errors"; then
     run_malformed_metadata_test "Malformed generated metadata emits a warning"
 fi
 
-if begin_category "Individual Rule: ANCHORS_VALID (check-anchors.sh)"; then
-    run_isolated_rule_test "Optional template anchors warn in shell fallback" "check-anchors.sh" "053-template-compliant-level2" "warn" 2
-    run_isolated_rule_test "Unclosed anchors" "check-anchors.sh" "008-invalid-anchors" "fail" 1
-    run_isolated_rule_test "Multiple files, one malformed anchor" "check-anchors.sh" "013-anchors-multiple-files" "fail" 1
-    run_isolated_rule_test "Missing required anchor fails" "check-anchors.sh" "057-template-missing-anchor" "fail" 2
-    run_isolated_rule_test "Reordered required anchor fails" "check-anchors.sh" "058-template-reordered-anchor" "fail" 2
-fi
-
-if begin_category "Individual Rule: TEMPLATE_HEADERS (check-template-headers.sh)"; then
-    run_isolated_rule_test "Compliant fixture passes" "check-template-headers.sh" "053-template-compliant-level2" "pass" 2
-    run_isolated_rule_test "Extra custom header after required structure passes" "check-template-headers.sh" "054-template-extra-header" "pass" 2
-    run_isolated_rule_test "Missing required header fails" "check-template-headers.sh" "055-template-missing-header" "fail" 2
-    run_isolated_rule_test "Reordered required header fails" "check-template-headers.sh" "056-template-reordered-header" "fail" 2
-    run_isolated_rule_test "Checklist H1 mismatch fails" "check-template-headers.sh" "059-checklist-h1-invalid" "fail" 2
-    run_isolated_rule_test "Checklist CHK format mismatch fails" "check-template-headers.sh" "060-checklist-chk-format-invalid" "fail" 2
-fi
-
 if begin_category "Individual Rule: EVIDENCE_CITED (check-evidence.sh)"; then
     run_isolated_rule_test "All evidence present" "check-evidence.sh" "010-valid-evidence" "pass" 2
     run_isolated_rule_test "All 5 patterns recognized" "check-evidence.sh" "016-evidence-all-patterns" "pass" 2
@@ -1050,14 +1033,6 @@ if begin_category "Individual Rule: LEVEL_MATCH (check-level-match.sh)"; then
     run_isolated_rule_test "L1 (level declared)" "check-level-match.sh" "002-valid-level1" "pass" 1
     run_isolated_rule_test "L2 (level consistency)" "check-level-match.sh" "003-valid-level2" "pass" 2
     run_isolated_rule_test "L3 (level consistency)" "check-level-match.sh" "004-valid-level3" "pass" 3
-fi
-
-if begin_category "Individual Rule: SECTION_COUNTS (check-section-counts.sh)"; then
-    # Note: Minimal fixtures still warn for requirement/H2 floors; `**Given**` markers are not a required floor.
-    run_isolated_rule_test "L1 section counts (thin requirements warn)" "check-section-counts.sh" "002-valid-level1" "warn" 1
-    run_isolated_rule_test "L2 section counts (thin requirements warn)" "check-section-counts.sh" "003-valid-level2" "warn" 2
-    run_isolated_rule_test "L3 section counts (thin requirements warn)" "check-section-counts.sh" "004-valid-level3" "warn" 3
-    run_isolated_rule_test "L2 template-compliant section counts pass" "check-section-counts.sh" "053-template-compliant-level2" "pass" 2
 fi
 
 if begin_category "Individual Rule: COMPLEXITY_MATCH (check-complexity.sh)"; then
@@ -1128,12 +1103,12 @@ fi
 # ─────────────────────────────────────────────────────────────────
 
 if begin_category "CLI Options"; then
-    run_test_with_flags "--strict: warnings become errors" "054-template-extra-header" "fail" "--strict"
+    run_test_with_flags "--strict: warnings stay advisory" "054-template-extra-header" "warn" "--strict"
     run_test_with_flags "--verbose: detailed compact output" "053-template-compliant-level2" "pass" "--verbose"
     run_test_quiet "--quiet: minimal output (compact pass)" "053-template-compliant-level2" "pass"
     run_test_quiet "--quiet: minimal output (warn)" "054-template-extra-header" "warn"
     run_test_quiet "--quiet: minimal output (error)" "055-template-missing-header" "fail"
-    run_test_with_flags "SPECKIT_STRICT=true env var" "054-template-extra-header" "fail" "" "SPECKIT_STRICT=true"
+    run_test_with_flags "SPECKIT_STRICT=true env var" "054-template-extra-header" "warn" "" "SPECKIT_STRICT=true"
 fi
 
 # ─────────────────────────────────────────────────────────────────

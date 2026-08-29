@@ -133,12 +133,12 @@ the corpus being told it is broken by rules nothing consumes.
 |-------|--------|-------|--------|
 | 1 | `001-warnings-stop-blocking` | Strict mode stops promoting warnings to errors | Complete |
 | 2 | `002-tracks-are-not-packets` | Track directories stop being graded as packets | Complete |
-| 3 | `003-delete-taste-rules` | Remove rules that encode taste with no consumer | Planned |
-| 4 | `004-delete-template-conformance` | Remove prose-shape grading and its unreachable twins | Planned |
-| 5 | `005-scaffold-parity` | A fresh scaffold passes the gate it ships with | Planned |
-| 6 | `006-derive-not-grade` | Stop copying derived facts into authored prose | Planned |
-| 7 | `007-the-small-gate` | Collapse to the checks with a machine consumer | Planned |
-| 8 | `008-retire-the-sweep` | Replace the weekly cron with a changed-packet check | Planned |
+| 3 | `003-scaffold-parity` | A fresh scaffold passes the gate it ships with | Complete |
+| 4 | `004-stop-grading-prose-shape` | Remove prose-shape grading; narrow anchors to their consumers | Complete |
+| 5 | `005-delete-taste-rules` | Remove rules that encode taste with no consumer | Deferred |
+| 6 | `006-derive-not-grade` | Stop copying derived facts into authored prose | Deferred |
+| 7 | `007-the-small-gate` | Collapse to the checks with a machine consumer | Deferred |
+| 8 | `008-retire-the-sweep` | Replace the weekly cron with a changed-packet check | Deferred |
 
 ### Phase Transition Rules
 
@@ -153,7 +153,7 @@ the corpus being told it is broken by rules nothing consumes.
 |------|-----|----------|--------------|
 | 001 | 002 | Warnings no longer fail a strict run | Pass rate measured on a fixed sample before and after |
 | 002 | 003 | Track directories report nothing and no packet is exempted | All fourteen tracks pass; a packet in a track's position still fails |
-| 003 | 004 | Deleted rules are gone from registry, disk, tests and docs | No reference survives outside history |
+| 003 | 004 | A scaffold reports zero errors at every level | A test scaffolds and validates, and fails when a fixed defect returns |
 | 004 | 005 | Prose-shape grading is removed and nothing references it | Rule inventory shrinks; no packet changes verdict for a reason other than the removal |
 | 005 | 006 | A scaffold created with no human input passes | The scaffold-parity check runs in CI |
 | 006 | 007 | Derived facts are computed, not authored | Moving a folder produces no findings |

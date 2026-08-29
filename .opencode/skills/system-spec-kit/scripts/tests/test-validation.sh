@@ -857,11 +857,11 @@ fi
 if begin_category "CLI Options Tests"; then
     run_test_json_valid "--json produces valid JSON with required fields" "053-template-compliant-level2" "pass"
 
-    run_test_with_flags "--strict mode: warnings become errors" "054-template-extra-header" "fail" "--strict"
+    run_test_with_flags "--strict mode: warnings stay advisory" "054-template-extra-header" "warn" "--strict"
 
     run_test_quiet "--quiet mode: minimal output" "053-template-compliant-level2" "pass"
 
-    run_test_with_flags "Env var: SPECKIT_STRICT=true" "054-template-extra-header" "fail" "" "SPECKIT_STRICT=true"
+    run_test_with_flags "Env var: SPECKIT_STRICT=true" "054-template-extra-header" "warn" "" "SPECKIT_STRICT=true"
     run_test "Compliant fixture remains stable across default rule order" "053-template-compliant-level2" "pass"
 fi
 
