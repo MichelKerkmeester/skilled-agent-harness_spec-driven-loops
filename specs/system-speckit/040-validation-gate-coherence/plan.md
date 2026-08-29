@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-speckit/040-validation-gate-coherence"
     last_updated_at: "2026-08-29T10:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the plan for making the validation verdict environment-independent"
-    next_safe_action: "Fix the freshness rule gating so both engines agree"
+    recent_action: "Recorded how the sequence actually ran"
+    next_safe_action: "None outstanding; the packet is complete"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-authoring"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -124,6 +124,24 @@ must fail, which is the negative control that proves it measures the defect.
 For the merge, the test is that affected packets lose one finding and keep the
 same pass or fail outcome. For the deletions, that the set of rules evaluated is
 identical before and after.
+
+**What the differential actually showed.** It failed loudly, as required: 48 of
+150 packets disagreed, in four signatures rather than the single one expected.
+Two signatures were checks the older engine made and the survivor did not, which
+turned the deletion into a port-then-delete rather than a delete. That is the
+value of running the negative control before writing the fix: the plan assumed
+the survivor was already the stricter of the two, and it was not.
+
+Deleting an engine makes the differential unrunnable afterwards, so the
+equivalent evidence is a front-end comparison: the same packets validated
+through the old and the new front-end, requiring identical exit statuses. That
+ran across 120 packets with no differences.
+
+The regression measurement is a delta, not an absolute: the same test suites are
+run at the previous commit and after the change, and only tests that fail in the
+second run and not the first count. The suites have substantial pre-existing
+failures, so an absolute pass requirement would have been unmeetable and would
+have hidden exactly the regressions worth catching.
 <!-- /ANCHOR:testing -->
 
 ---

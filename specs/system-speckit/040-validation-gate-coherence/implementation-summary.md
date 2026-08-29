@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: One Validation Verdict, Honestly Earned"
-description: "The verdict flip is reproduced and its cause identified; the four fixes are planned and none is implemented yet."
+description: "The two validators became one, after the surviving engine was taught the two checks only the other one made."
 trigger_phrases:
   - "validation gate coherence status"
 importance_tier: "high"
@@ -8,21 +8,24 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/040-validation-gate-coherence"
-    last_updated_at: "2026-08-29T10:00:00Z"
+    last_updated_at: "2026-08-29T13:30:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Reproduced the verdict flip and identified the rule responsible"
-    next_safe_action: "Capture baseline verdicts across engine selections before changing the gating"
+    recent_action: "Deleted the second validator and repaired surfaced packets"
+    next_safe_action: "None outstanding; the packet is complete"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
       - ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts"
+      - ".opencode/skills/system-spec-kit/scripts/validation/continuity-freshness.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-authoring"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
-    answered_questions: []
+    answered_questions:
+      - "Delete the second engine or keep it behind a flag? Deleted, once the survivor made every check it made."
+      - "Merge the two template-shape rules? No — measurement refuted the premise that they always fire together."
 ---
 # Implementation Summary: One Validation Verdict, Honestly Earned
 
@@ -37,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 040-validation-gate-coherence |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Level** | 2 |
 
 <!-- /ANCHOR:metadata -->
@@ -47,14 +50,35 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing yet. This records a reproduced defect and the plan to fix it, so the
-finding is not carried in someone's head.
+One validator where there were two.
 
-The completion gate returns different answers for the same packet depending on
-the caller's environment. Reproduced on a real packet in
-`.opencode/skills/system-spec-kit/scripts/spec/validate.sh`: the default engine
-returns `FAILED` with exit 2, and the same command with the legacy engine
-selected returns `PASSED` with exit 0.
+The completion gate used to be answered by either a shell rule engine or a
+compiled orchestrator, chosen by environment, with nothing in the output saying
+which. The shell engine is gone; the front-end that used to contain it now only
+resolves arguments and the set of folders to validate, and hands every rule
+decision to the orchestrator. It went from 1430 lines to roughly 340, and the
+output names the engine that produced the verdict.
+
+Deleting it was only safe because the survivor was taught what it was missing
+first. Two real checks existed solely in the deleted engine:
+
+- A required frontmatter field that is present but **empty**. The survivor tested
+  that the key existed and never looked at its value, so a packet with
+  `trigger_phrases:` and nothing after it passed.
+- The checklist title. The survivor compared only second-level headings, so a
+  document titled `# Checklist: X` instead of `# Verification Checklist: X`
+  passed.
+
+Both now run on the surviving engine and report the same findings, line for
+line, as the engine that was removed.
+
+Four smaller things came with it. The freshness rule's applicability is decided
+once, at the rule's own entry point, so it cannot depend on who asked. The
+command-tree comparison — a repository-wide fact that no packet could satisfy
+from inside itself — moved out of the per-packet gate into its own repository
+check. A rule that duplicated the template-header comparison at a lower severity
+was removed. And a stale hardcoded list of child folders, which had been quietly
+limiting one packet's recursive run to 9 of its 25 children, was deleted.
 
 <!-- /ANCHOR:what-built -->
 
@@ -63,10 +87,31 @@ selected returns `PASSED` with exit 0.
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-The defect surfaced during an independent audit of the validation surface and
-was reproduced directly rather than accepted from the report. The responsible
-rule was then isolated by comparing which findings each engine emitted for the
-same folder.
+Measurement came before every removal.
+
+The two engines were run against the same 150 packets. They disagreed on 48, in
+four signatures. Each signature was traced to a named cause and a decision
+before any code changed:
+
+| Disagreement | Cause | Resolution |
+|---|---|---|
+| Empty required frontmatter field | Only the deleted engine checked values | Ported to the survivor |
+| Checklist title shape | Only the deleted engine checked the title | Ported to the survivor |
+| Extra custom anchor, mid-document extra header | A rule labelling its own findings non-blocking, then blocking on them | Left to the survivor's behaviour, which ignores them |
+| Freshness rule fired without opt-in | Gated on a flag in one engine, unconditional in the other | Decided once, at the rule |
+
+Only after the ports did the deletion happen, and the replacement front-end was
+proved verdict-neutral: 120 packets returned identical exit statuses under the
+old and new front-ends.
+
+Restoring the title check would have failed 243 packets that previously passed.
+Rather than leave that debt, all 384 non-conforming titles were rewritten and
+the generated metadata each edit invalidated was re-derived in the same pass.
+
+An independent review of the finished change found a defect worth more than the
+rest combined: a mistyped rule name in the subset variable produced an empty
+rule set, which reported a clean pass for a packet no rule had examined. It now
+refuses an unrecognised name outright.
 
 <!-- /ANCHOR:how-delivered -->
 
@@ -77,10 +122,12 @@ same folder.
 
 | Decision | Rationale |
 |----------|-----------|
-| Fix the verdict before anything else | Every other measurement of the gate is meaningless while the answer depends on the environment |
-| Land each change separately | The blast radius is every completion claim; a single cutover would make a regression hard to attribute |
-| Move the repository-wide check rather than delete it | It reports a real fault; only its placement inside a per-packet gate is wrong |
-| Merge the duplicated finding rather than drop one | Both detail lists carry information; only the double count is the defect |
+| Port before deleting | Deleting first would have silently dropped two real checks and called it a simplification |
+| Delete rather than keep behind a flag | A fallback that answers differently is the defect, not a safety net |
+| Fail closed on an unknown rule name | A gate that passes because nothing ran is worse than one that errors |
+| Repair the surfaced packets rather than surface and leave | A restored check that adds 243 failures teaches readers to ignore the gate |
+| Drop the rule merge | Measurement refuted the premise that the two rules always fire together |
+| Print every finding's details | A finding that will not say what it found cannot be acted on |
 
 <!-- /ANCHOR:decisions -->
 
@@ -91,10 +138,15 @@ same folder.
 
 | Check | Status | Evidence |
 |-------|--------|----------|
-| Verdict flip reproduced | PASS | Same packet, same flags: default engine `FAILED` exit 2, legacy engine `PASSED` exit 0 |
-| Responsible rule identified | PASS | The freshness rule is gated on a feature flag in one engine and runs unconditionally under strict in the other; the flag was unset while the rule still fired |
-| Baseline across engine selections | PENDING | Not yet captured |
-| Any fix implemented | PENDING | None |
+| Engines disagreed before the work | PASS | 48 of 150 packets, in four signatures; 17 of 30 across four environment selections |
+| Ported checks match the removed engine | PASS | Same packet, same three findings, identical detail lines |
+| Front-end swap changes no verdict | PASS | 120 packets, identical exit statuses old vs new |
+| No check lost to the deletion | PASS | Every remaining disagreement is a finding the removed rule itself called non-blocking |
+| Restored title check leaves no debt | PASS | 384 titles rewritten, metadata re-derived; 0 packets fail on it |
+| Affected packets improved overall | PASS | Of the 384, 243 passed before and 286 pass now |
+| Recursive coverage restored | PASS | One packet went from 10 folders validated to 26 |
+| Mistyped rule subset cannot pass | PASS | Exits 1 naming the unknown rule instead of reporting PASSED |
+| Test suites | PASS | No regression against the same suites at the previous commit; 10 new tests cover the added behaviour |
 
 <!-- /ANCHOR:verification -->
 
@@ -103,12 +155,18 @@ same folder.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Nothing is fixed yet.** This packet currently records a defect and a plan.
-2. **The engine question is unowned.** Whether the older engine is deleted or
-   kept behind an explicit flag changes what happens in a checkout with no
-   build, and that decision needs someone who owns fresh-clone behaviour.
-3. **The failure-rate claim is sampled, not exhaustive.** Under a third of
-   packets pass strict cleanly in a sample of 137; the whole-corpus figure has
-   not been measured.
+1. **A checkout with no build now stops instead of guessing.** With neither a
+   compiled build nor the TypeScript loader, validation exits with a system
+   error telling the reader to build. Previously it fell back to the engine that
+   has been deleted. This is the intended trade and is recorded in `spec.md`.
+2. **The removed duplicate rule was not a perfect duplicate.** It selected the
+   contract for a phase parent differently, so on a phase parent that also
+   carries a plan, it compared the same document against a different template
+   than the surviving rule does. That case is no longer checked anywhere. It was
+   already inert on the default engine before this work, so nothing regressed,
+   but the original justification of "strict duplicate" was too strong.
+3. **The failure-rate figures are sampled.** The engine comparison used 150
+   packets and the co-occurrence measurement 220; the whole-corpus rate was not
+   measured.
 
 <!-- /ANCHOR:limitations -->

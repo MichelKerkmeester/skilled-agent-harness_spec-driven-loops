@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-speckit/040-validation-gate-coherence"
     last_updated_at: "2026-08-29T10:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the specification for making the validation verdict environment-independent"
-    next_safe_action: "Fix the freshness rule gating so both engines agree"
+    recent_action: "Recorded the amendments the measurements forced"
+    next_safe_action: "None outstanding; the packet is complete"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-authoring"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-08-29 |
 | **Branch** | `skilled/v4.0.0.0` |
 <!-- /ANCHOR:metadata -->
@@ -101,6 +101,7 @@ workarounds.
 - Moving the repository-wide command-tree check out of the per-packet gate and
   running it where it belongs.
 - Collapsing the duplicated template-shape reporting into a single finding.
+  (Withdrawn during the work; see the amendment in section 10.)
 - Removing validation code that cannot execute.
 
 **Out of scope**
@@ -136,8 +137,17 @@ workarounds.
 - The freshness rule fires under exactly one documented condition, and the
   documentation matches the behaviour.
 - No packet fails on a condition it cannot influence from inside itself.
-- The strict failure rate falls, and every packet that stops failing is shown to
-  have had a duplicate or unsatisfiable finding rather than a repaired one.
+- Every packet that stops failing is shown to have had a duplicate or
+  unsatisfiable finding rather than a repaired one, and every packet that starts
+  failing is shown to have a real fault a check was previously not making.
+
+**Amendment.** This section originally required the strict failure rate to fall.
+That was written before the two engines were compared, and it turned out to
+prejudge the answer: the older engine was enforcing two real checks the default
+engine had quietly stopped making, so honouring it meant the rate would rise.
+The criterion now constrains the direction of each change rather than the total,
+which is what the packet actually cares about. The rate did fall in the end, but
+because the newly surfaced faults were repaired, not because the bar moved.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -198,10 +208,27 @@ separately with its own before-and-after comparison rather than as one cutover.
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-Whether the older engine is deleted or kept behind an explicit flag. Deleting it
-removes the disagreement permanently; keeping it preserves a fallback for
-checkouts without a build. The decision needs an owner because it changes what
-happens in a fresh clone.
+**Settled: the older engine is deleted.** The condition for deleting it was that
+the surviving engine must first make every check the older one made. Comparing
+the two across 150 packets found 48 disagreements in four classes. Two were real
+checks only the older engine made, and both were added to the survivor before
+anything was removed. One was a rule that labelled its own findings
+non-blocking and then blocked on them, which the survivor was already right to
+ignore. The last was a rule applicability question, now decided in one place.
+
+The fresh-clone consequence is real and accepted: with neither a build nor the
+TypeScript loader present, validation now stops with a system error telling the
+reader to build, where before it silently fell back to the older engine and
+answered with the rule set that turned out to disagree. A gate that says it
+cannot run is better than one that quietly answers differently.
+
+**Amendment — REQ-005 withdrawn.** REQ-005 required a document that does not
+follow its template to produce one finding rather than two, on the premise that
+the two rules always fired together. Measured across 220 packets, they do not: 4
+packets fail the anchor rule alone. They report separable faults, so merging
+them would hide one. The reader-facing half of the complaint — a finding whose
+detail lines were invisible — was fixed instead: every finding now prints what
+it actually found.
 <!-- /ANCHOR:questions -->
 
 ---
