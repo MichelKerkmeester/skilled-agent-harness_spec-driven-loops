@@ -56,13 +56,19 @@ node .../repair-derived.cjs --roots specs/<track> --apply
 ```
 
 Reporting is the default. Application requires `--apply`, so the tool cannot
-rewrite the fleet as a side effect of being run.
+rewrite the fleet as a side effect of being run. A bare path is refused rather
+than ignored: a dropped flag name would otherwise turn a one-packet command into
+a rewrite of every packet in the tree.
+
+Every step `--apply` performs is named by the report first, the re-derive
+included, so the dry run is a preview of the writes rather than a summary of
+some of them.
 
 | Exit | Meaning |
 |------|---------|
 | 0 | Nothing left that this tool can repair |
 | 1 | Repairable work found while reporting |
-| 2 | A repair was attempted and failed, or the arguments were rejected |
+| 2 | Something failed: a rejected argument, a packet whose report could not be read, or a repair that did not land |
 
 ---
 
@@ -78,7 +84,14 @@ rewrite the fleet as a side effect of being run.
 Re-derivation happens inside the repair, not after it. Editing a document
 invalidates the fingerprint taken over that document, so a repair that stopped
 short would trade one error for another — which the first prototype did before
-the ordering was fixed.
+the ordering was fixed. It runs when this pass edited something or when a
+graph-metadata rule is failing, and it is listed in the plan like any other
+step; a re-derive that only happened under `--apply` was a write no report ever
+mentioned and no exit code ever counted.
+
+The pointer is read and written only inside a document's leading YAML block. A
+`packet_pointer:` in the body is an illustration of the format, not the packet's
+own record, and rewriting it corrupts the passage that explains it.
 
 ---
 
@@ -96,8 +109,14 @@ of the remaining debt is authored rather than mechanical.
 
 ## 5. LIMITS
 
-- It shells out to the validator once per packet, so a fleet run takes roughly
-  an hour. Scope with `--folder` or `--roots` when possible.
+- It shells out to the validator once per packet, and that call is the whole
+  cost: about 1.9 seconds, of which the shell wrapper is 0.15 and module
+  loading 0.06 — the rest is the validator's own rule subprocesses. Nothing
+  here can make a packet cheaper, only run more of them at once, so a walk of
+  the ~2,500-packet tree stays in the minutes. Scope with `--folder` or
+  `--roots` when possible.
+- Every packet is validated even when nothing about it can be repaired, because
+  the census of what was refused is the other half of the report.
 - Archived and scratch trees are skipped. They are frozen copies that will never
   be brought to current standards, and measuring them reports permanent debt
   nobody can act on.
