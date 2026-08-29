@@ -21,20 +21,10 @@ const REQUIRED_SECTIONS = [
   /^5\.\s+SOURCE METADATA$/i,
 ];
 
-// Existing fleet packages start in warning mode so the first enforcement run
-// reports the backlog without making the unverified baseline a release gate.
-const WARN_PACKAGE_IDS = Object.freeze([
-  'cli-external-orchestration',
-  'mcp-code-mode',
-  'mcp-tooling',
-  'sk-code',
-  'sk-doc',
-  'sk-git',
-  'sk-prompt',
-  'system-deep-loop',
-  'system-skill-advisor',
-  'system-spec-kit',
-]);
+// Retained only so an existing import keeps resolving. It is NOT a fallback: an absent
+// warnPackages key means nothing is grandfathered, because defaulting to a populated list
+// would let deleting one manifest line silently return the whole fleet to non-blocking.
+const WARN_PACKAGE_IDS = Object.freeze([]);
 
 function usage() {
   return [
@@ -250,7 +240,7 @@ function requiredContentChecks(text, relPath, frontmatter, featureId) {
   const checks = [
     ['REQUIRED_FEATURE_ID', Boolean(featureId), 'feature ID is missing'],
     ['REQUIRED_PROMPT', hasMarker(text, labelMarker('realistic user prompt|operator prompt|orchestrator prompt|exact prompt|prompt')) || tableFieldPresent(table, 'exact prompt'), 'operator or orchestrator prompt is missing'],
-    ['REQUIRED_COMMAND_SEQUENCE', hasMarker(text, /(?:^|\n)\s*#{2,4}\s+(?:exact )?command(?:s| sequence)\b/im) || hasMarker(text, labelMarker('(?:exact )?commands?(?: sequence)?')) || tableFieldPresent(table, 'exact command sequence'), 'exact command sequence is missing'],
+    ['REQUIRED_COMMAND_SEQUENCE', hasMarker(text, /(?:^|\n)\s*#{2,4}\s+(?:exact )?command(?:s| sequence)\b/im) || tableFieldPresent(table, 'exact command sequence'), 'exact command sequence is missing'],
     ['REQUIRED_EXPECTED_SIGNALS', hasMarker(text, labelMarker('expected signals|expected')) || hasMarker(text, /^#{2,4}\s+Expected(?: Signals)?\b/im) || tableFieldPresent(table, 'expected signals'), 'expected signals are missing'],
     ['REQUIRED_EVIDENCE', hasMarker(text, labelMarker('evidence(?: requirements)?')) || hasMarker(text, /^#{2,4}\s+Evidence\b/im) || tableFieldPresent(table, 'evidence'), 'evidence requirements are missing'],
     ['REQUIRED_PASS_FAIL', hasMarker(text, /(?:pass\s*\/\s*fail|pass\/fail|pass\s+if|\*\*pass\*\*|\*\*fail\*\*)/i) || tableFieldPresent(table, 'pass/fail criteria'), 'pass/fail criteria are missing'],
@@ -330,7 +320,7 @@ function hasCaseMismatch(candidate, root) {
  * every subsequent offset and reported line number exact.
  */
 function maskFencedCode(text) {
-  return text.replace(/^([ \t]*)(```+|~~~+)[^\n]*\n[\s\S]*?^\1\2[^\n]*$/gm, (block) =>
+  return text.replace(/^ {0,3}(```+|~~~+)[^\n]*\n[\s\S]*?^ {0,3}\1[^\n]*$/gm, (block) =>
     block.replace(/[^\n]/g, ' '),
   );
 }
@@ -443,7 +433,7 @@ function loadManifest(manifestPath, repoRoot) {
     version: manifest.version,
     defaultContract: manifest.defaultContract || CONTRACT,
     routingGoldRoots: [...new Set(roots)],
-    warnPackages: Array.isArray(manifest.warnPackages) ? manifest.warnPackages : WARN_PACKAGE_IDS,
+    warnPackages: Array.isArray(manifest.warnPackages) ? manifest.warnPackages : [],
     sourcePath: manifestPath,
   };
 }

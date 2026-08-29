@@ -1,10 +1,14 @@
 name: Playbook Operator Contract
 on:
+  # Deliberately NOT path-filtered. The contract validates cross-tree citations, so a
+  # rename far outside any playbook directory can break hundreds of scenarios. A filtered
+  # trigger would let that land green because no watched path changed.
   pull_request:
+  push:
     branches: [main]
-    paths:
-      - '.opencode/skills/**/manual-testing-playbook/**'
-      - '.opencode/skills/sk-doc/sk-create-manual-testing-playbook/**'
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
 
 jobs:
   operator-contract:
@@ -16,49 +20,72 @@ jobs:
         with:
           node-version: '20'
 
+      # Every bail-out below is a hard failure, never a skip. This gate exists because a
+      # backlog once grew while builds stayed green: the corpus scan silently covered a
+      # third of the roots, and absence of a result was indistinguishable from a passing
+      # one. A gate that goes green when it cannot find its own validator, or when its
+      # allowlist is empty, recreates precisely that condition — so missing inputs and an
+      # empty work set are treated as breakage, not as nothing to do.
+      - name: Verify the gate can actually run
+        run: |
+          set -euo pipefail
+          VALIDATOR=".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+          ALLOWLIST=".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt"
+          for required in "$VALIDATOR" "$ALLOWLIST"; do
+            if [ ! -f "$required" ]; then
+              echo "::error::gate input missing: $required"
+              echo "The contract cannot be enforced. If this path moved, update this workflow"
+              echo "in the same change — do not let the gate pass without grading anything."
+              exit 1
+            fi
+          done
+          roots="$(grep -cve '^[[:space:]]*$' -e '^[[:space:]]*#' "$ALLOWLIST" || true)"
+          if [ "${roots:-0}" -lt 1 ]; then
+            echo "::error::the fail-closed allowlist lists no roots"
+            echo "An empty allowlist would let the discovery assertion loop zero times and"
+            echo "report success. Restore the roots, or delete this workflow deliberately."
+            exit 1
+          fi
+          echo "Gate inputs present; $roots roots are held to the contract."
+
       - name: Enforce the operator-scenario contract across the playbook fleet
         run: |
-          set -uo pipefail
-          VALIDATOR=".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
-          if [ ! -f "$VALIDATOR" ]; then
-            echo "::warning::playbook validator not found at $VALIDATOR — skipping"
-            exit 0
-          fi
+          set -euo pipefail
           # Fails on any violation in a fail-closed package. Only packages still listed
           # under playbook-corpus-manifest.json warnPackages report without blocking.
-          node "$VALIDATOR" --strict
+          node .opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --strict
 
       - name: Assert every fail-closed root is still discovered
         run: |
-          set -uo pipefail
+          set -euo pipefail
           VALIDATOR=".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
           ALLOWLIST=".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt"
-          [ -f "$VALIDATOR" ] && [ -f "$ALLOWLIST" ] || exit 0
 
-          # A root the fleet run cannot see cannot fail, so absence is indistinguishable
-          # from success. This corpus once had two thirds of its roots unreachable by the
-          # fleet scan, which is how a large backlog accumulated while builds stayed green.
-          # Listing each root here turns "silently no longer scanned" into a hard failure.
-          node "$VALIDATOR" --no-strict --format json > /tmp/fleet.json 2>&1
-          missing=0
-          while IFS= read -r root; do
-            case "$root" in ''|'#'*) continue ;; esac
-            if ! python3 - "$root" <<'PY'
-import json, sys, os
-root = sys.argv[1]
+          # A root the scan cannot see cannot fail, so listing them is what turns "silently
+          # no longer scanned" into a hard failure rather than a quiet pass.
+          node "$VALIDATOR" --no-strict --format json > /tmp/fleet.json
+          python3 - "$ALLOWLIST" <<'PY'
+import json, os, sys
+
+allowlist = sys.argv[1]
 data = json.load(open('/tmp/fleet.json'))
 seen = {os.path.relpath(p.get('playbookRoot', ''), os.getcwd()) for p in data.get('packages', [])}
-sys.exit(0 if root in seen else 1)
-PY
-            then
-              echo "::error::fail-closed root is no longer discovered by the fleet scan: $root"
-              missing=1
-            fi
-          done < "$ALLOWLIST"
 
-          if [ "$missing" -ne 0 ]; then
-            echo "A listed root was renamed, deleted, or moved out of scan range."
-            echo "Restore it, or remove its line in the same PR with a reason."
-            exit 1
-          fi
-          echo "All fail-closed roots are still discovered and enforced."
+wanted = [
+    line.strip()
+    for line in open(allowlist, encoding='utf-8')
+    if line.strip() and not line.lstrip().startswith('#')
+]
+if not wanted:
+    print('::error::allowlist parsed to zero roots')
+    raise SystemExit(1)
+
+missing = [root for root in wanted if root not in seen]
+for root in missing:
+    print(f'::error::fail-closed root is no longer discovered by the fleet scan: {root}')
+if missing:
+    print('A listed root was renamed, deleted, or moved out of scan range.')
+    print('Restore it, or remove its line in the same PR with a reason.')
+    raise SystemExit(1)
+print(f'All {len(wanted)} fail-closed roots are still discovered and enforced.')
+PY

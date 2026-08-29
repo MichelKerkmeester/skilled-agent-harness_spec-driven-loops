@@ -69,6 +69,82 @@ function expectClean(label, mutate) {
   return outcome;
 }
 
+/**
+ * Guard the three behaviours added when the corpus was brought to zero.
+ *
+ * Each is a relaxation or a widening of what the grader accepts, and a grader that accepts
+ * too much reports a clean corpus it never actually checked. The suite passed before these
+ * behaviours existed and would keep passing if they silently regressed, so the assertions
+ * below pin both halves: the false positive stays fixed, and the real defect stays caught.
+ */
+function runContractRegressions() {
+  // Emphasis tolerance: a bold marker is still a marker...
+  expectClean('bold markers accepted', (packageRoot) => {
+    writeScenario(packageRoot, readScenario(packageRoot)
+      .replace(/^Prompt:/im, '**Prompt**:')
+      .replace(/^Evidence:/im, '**Evidence**:'));
+  });
+
+  // ...but emphasis must not become a way to satisfy a marker that is absent.
+  // The fixture states its prompt twice — a label line and a table column — and either
+  // satisfies the contract, so a negative case has to remove both.
+  expectViolation('missing prompt still caught with emphasis support', (packageRoot) => {
+    writeScenario(packageRoot, readScenario(packageRoot)
+      .replace(/^-\s*Operator prompt:.*$/im, '- Operator note: none')
+      .replace(/Exact Prompt/g, 'Sample Input'));
+  }, 'REQUIRED_PROMPT');
+
+  // A label line inside a config sample is not a command sequence.
+  expectViolation('config-sample command line is not a command sequence', (packageRoot) => {
+    const text = readScenario(packageRoot)
+      .replace(/^#{2,4}\s+(?:exact )?commands?(?: sequence)?.*$/gim, '### Steps')
+      .replace(/Exact Command Sequence/g, 'Observed Steps');
+    writeScenario(packageRoot, `${text}\n\n\`\`\`yaml\ncommand: ./run.sh\n\`\`\`\n`);
+  }, 'REQUIRED_COMMAND_SEQUENCE');
+
+  // Fenced code is not scanned for links...
+  expectClean('bracket-call syntax in a fence is not a link', (packageRoot) => {
+    writeScenario(packageRoot, `${readScenario(packageRoot)}\n\n\`\`\`js\nhooks['tool.execute.before']({ a: 1 });\n\`\`\`\n`);
+  });
+
+  // ...and an indent-mismatched closer must not swallow the prose after it.
+  expectViolation('broken link after an indent-mismatched fence closer is caught', (packageRoot) => {
+    writeScenario(packageRoot,
+      `${readScenario(packageRoot)}\n\n\`\`\`bash\necho one\n  \`\`\`\n` +
+      `See [missing](./does-not-exist-zzz.md).\n\n\`\`\`bash\necho two\n\`\`\`\n`);
+  }, 'PATH_MISSING');
+
+  // Discovery must reach a packet-owned root, which lives beside its hub's, not inside it.
+  // A one-level scan once found 14 roots where 41 existed, and a root that is not scanned
+  // cannot fail — so this asserts coverage, not correctness of any single package.
+  const nested = fs.mkdtempSync(path.join(os.tmpdir(), 'playbook-nested-'));
+  const skillsRoot = path.join(nested, 'skills');
+  fs.cpSync(fixtureSource, path.join(skillsRoot, 'hub', 'packet', 'manual-testing-playbook'), { recursive: true });
+  fs.cpSync(fixtureSource, path.join(skillsRoot, 'gold', 'manual-testing-playbook'), { recursive: true });
+  const nestedManifest = path.join(nested, 'manifest.json');
+  fs.writeFileSync(nestedManifest, JSON.stringify({
+    version: 1,
+    defaultContract: 'operator-scenario',
+    routingGoldRoots: ['skills/gold/manual-testing-playbook'],
+    warnPackages: [],
+  }));
+  const discovered = spawnSync(process.execPath, [
+    validatorPath, '--skills-root', skillsRoot, '--repo-root', nested,
+    '--manifest', nestedManifest, '--no-strict', '--format', 'json',
+  ], { encoding: 'utf8' });
+  assert(discovered.stdout, `nested discovery probe produced no output: ${discovered.stderr}`);
+  const found = JSON.parse(discovered.stdout).packages.map((entry) => entry.package);
+  assert(found.includes('hub/packet'), `packet-owned root must be discovered; found ${found.join(', ') || 'none'}`);
+
+  // An absent warnPackages key means nothing is grandfathered.
+  assert.strictEqual(
+    require('../validate-playbook-package.cjs').WARN_PACKAGE_IDS.length, 0,
+    'WARN_PACKAGE_IDS must stay empty so deleting the manifest key cannot restore a backlog',
+  );
+
+  console.log('contract regressions: PASS (8 assertions)');
+}
+
 function run() {
   const positive = expectClean('positive');
   const sectionOrder = expectViolation('section-order', (root) => writeScenario(root, readScenario(root).replace('## 2. SCENARIO CONTRACT', '## 9. WRONG ORDER').replace('## 3. TEST EXECUTION', '## 2. SCENARIO CONTRACT').replace('## 9. WRONG ORDER', '## 3. TEST EXECUTION')), 'SECTION_ORDER_MISMATCH');
@@ -155,3 +231,4 @@ expected_leaf_resources:
 }
 
 run();
+runContractRegressions();
