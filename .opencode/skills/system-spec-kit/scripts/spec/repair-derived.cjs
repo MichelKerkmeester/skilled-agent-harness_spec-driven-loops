@@ -151,12 +151,16 @@ function discover(root) {
   const out = [];
   const stack = [root];
   const skip = new Set(['node_modules', '.git', 'z_archive', 'scratch']);
+  // Snapshots taken before a rename are frozen by definition: their recorded
+  // location is deliberately the old one, so "repairing" it to match where the
+  // snapshot now sits destroys the very thing the copy was kept to preserve.
+  const frozen = (name) => skip.has(name) || name.startsWith('.backup-');
   while (stack.length) {
     const dir = stack.pop();
     let entries;
     try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch { continue; }
     if (fs.existsSync(path.join(dir, 'spec.md')) || fs.existsSync(path.join(dir, 'implementation-summary.md'))) out.push(dir);
-    for (const e of entries) if (e.isDirectory() && !skip.has(e.name)) stack.push(path.join(dir, e.name));
+    for (const e of entries) if (e.isDirectory() && !frozen(e.name)) stack.push(path.join(dir, e.name));
   }
   return out.sort();
 }
