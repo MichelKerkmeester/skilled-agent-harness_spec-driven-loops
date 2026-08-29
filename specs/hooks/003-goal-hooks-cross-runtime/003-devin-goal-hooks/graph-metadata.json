@@ -42,7 +42,9 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".devin/hooks.v1.json",
+      ".opencode/hooks/goal/lib/goal-core.cjs"
     ],
     "entities": [
       {
@@ -73,6 +75,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
         "source": "derived"
       },
       {
@@ -176,23 +190,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Devin sessions on this repo have no way to carry an operator-set goal across turns",
     "created_at": "2026-07-28T17:25:01.861Z",
-    "last_save_at": "2026-08-11T06:50:03.981Z",
+    "last_save_at": "2026-08-29T14:54:15.314Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

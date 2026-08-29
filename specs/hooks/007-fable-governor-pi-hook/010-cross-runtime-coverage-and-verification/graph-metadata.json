@@ -45,7 +45,16 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+      ".opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
+      ".opencode/skills/cli-external-orchestration/feature-catalog/cli-dispatch-authorization/cli-dispatch-authorization.md",
+      ".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
     ],
     "entities": [
       {
@@ -76,6 +85,60 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.test.ts",
+        "kind": "test",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-preflight-authorization.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/manual-testing-playbook/plugins-and-hooks/cli-dispatch-preflight-authorization.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-dispatch-authorization.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/feature-catalog/cli-dispatch-authorization/cli-dispatch-authorization.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "post-dispatch-validate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
         "source": "derived"
       },
       {
@@ -137,65 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Files",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Pi",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A parked deep review of packet 007 (`review/deep-review-findings-registry.json`, session `review-1785915676506`) surfaced finding R1-P1-001: \"Quoted executor forms bypass Pi dispatch inspection.\" The root cause was a blanket guard in `directExecutor()` (`.opencode/hooks/dispatch/lib/dispatch-audit.mjs:186-197`, prior to fix) that returned `null` for any quoted command-position executor",
     "created_at": "2026-08-05T12:47:41.790Z",
-    "last_save_at": "2026-08-11T06:50:06.343Z",
+    "last_save_at": "2026-08-29T14:54:14.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

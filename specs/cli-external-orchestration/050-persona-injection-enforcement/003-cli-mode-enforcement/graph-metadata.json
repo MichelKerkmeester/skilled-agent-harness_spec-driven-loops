@@ -37,13 +37,26 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/cli-external-orchestration/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/SKILL.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -63,15 +76,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
         "source": "derived"
       },
       {
@@ -181,17 +194,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "P2 produced the shared `persona-injection-contract.md`, but the six external-CLI mode SKILL.md files and the hub SKILL.md still document dispatch WITHOUT an enforcement rule requiring the resolved agent persona in the payload",
     "created_at": "2026-08-19T11:14:30.997Z",
-    "last_save_at": "2026-08-19T11:18:34.731Z",
+    "last_save_at": "2026-08-29T14:54:25.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

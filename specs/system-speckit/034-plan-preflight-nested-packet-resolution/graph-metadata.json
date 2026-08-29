@@ -42,7 +42,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh",
+      ".opencode/skills/system-spec-kit/scripts/common.sh"
     ],
     "entities": [
       {
@@ -67,6 +69,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-prerequisites.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh",
+        "source": "derived"
+      },
+      {
+        "name": "common.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/common.sh",
         "source": "derived"
       },
       {
@@ -176,23 +190,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `/speckit:plan` Step-5 prerequisite helper (`check-prerequisites.sh`) derives the feature directory from the current git branch via `common.sh`, then hard-rejects any branch that does not match `^[0-9]{3}-`",
     "created_at": "2026-08-15T13:24:44.384Z",
-    "last_save_at": "2026-08-15T13:28:53.604Z",
+    "last_save_at": "2026-08-29T14:54:20.187Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +205,10 @@
     ],
     "source_fingerprint": "sha256:d97ef6e87d927de648244740e95a4904a834041dcc2f26156ff77e88de46cd13",
     "source_doc_hashes": {
-      "spec.md": "98e30d866479d9c7c02dc3255a207e81b510a5043d65809fa7664f9f9008a911",
-      "plan.md": "198276bedaebc861bd136a1bf587221c941d9c5b9a53b63f10b7618a3aad6412",
-      "tasks.md": "9e741208908d547ceaa4a8693b9d5df0ec04bf97c1352e6facb119d2a967a45d",
-      "implementation-summary.md": "c06c5b7a2ed58e6bae8a6241d68e18c1b7dce54267ab8859215b47ac06b0a8ed"
+      "spec.md": "7546eaf6845aef5644f50e90299d399822f9293e272d9fa2c32ed2e5dedf0125",
+      "plan.md": "e29f786f53f536735e85e84ceaa4cf0ba1b7e9c2df7b494aabc7ea54e3ef321f",
+      "tasks.md": "59eebcf805b13b48c0e1b5d6a3f82468726130f93eaa826f2ac4e3af734e29b1",
+      "implementation-summary.md": "3e1b06978232178e5b33a5949da2045b65e5336dc68ecc2add94ff7a3cf33f8c"
     },
     "last_active_child_id": null,
     "last_active_at": null

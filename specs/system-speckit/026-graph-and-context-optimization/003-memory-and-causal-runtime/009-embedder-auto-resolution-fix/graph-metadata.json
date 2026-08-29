@@ -3,6 +3,7 @@
   "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix",
   "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix",
   "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,34 +42,22 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      ".claude/mcp.json",
       "spec.md",
       "plan.md",
-      "decision-record.md",
-      "shared/embeddings/factory.ts",
-      "mcp_server/tests/factory-auto-resolution.vitest.ts",
-      "checklist.md",
-      "mcp_server/package.json",
-      "shared/types.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/factory-auto-resolution.vitest.ts",
-      "implementation-summary.md",
       "tasks.md",
-      "handover.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".claude/mcp.json",
+      "opencode.json",
+      "shared/embeddings/factory.ts",
+      "shared/package.json",
+      "shared/dist/embeddings/factory.js",
+      "shared/types.ts"
     ],
     "entities": [
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -82,15 +71,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "factory-auto-resolution.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/factory-auto-resolution.vitest.ts",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -100,15 +83,9 @@
         "source": "derived"
       },
       {
-        "name": "package.json",
-        "kind": "config",
-        "path": "mcp_server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "shared/types.ts",
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -118,15 +95,45 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.json",
+        "kind": "config",
+        "path": "opencode.json",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "shared/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "factory.js",
+        "kind": "code",
+        "path": "shared/dist/embeddings/factory.js",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
         "source": "derived"
       },
       {
@@ -194,17 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 008 proved why `EMBEDDINGSPROVIDER=auto` silently degrades to the unhealthy `hf-local` fallback even though ollama is up and owns the active vector shard: `factory.ts` reads the active-embedder metadata by shelling out to a bare `sqlite3` binary (`querySqliteScalar` → `execFileSync('sqlite3', …)`), and that helper returns `null` on any error, including `ENOENT`",
     "created_at": "2026-05-27T13:26:56.638Z",
-    "last_save_at": "2026-07-17T17:19:29.947Z",
+    "last_save_at": "2026-08-29T14:56:24.964Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

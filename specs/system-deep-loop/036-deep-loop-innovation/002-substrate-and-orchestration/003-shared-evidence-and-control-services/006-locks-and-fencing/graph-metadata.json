@@ -41,19 +41,15 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -76,6 +72,24 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/locks-and-fencing/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "locks-and-fencing.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/locks-and-fencing.vitest.ts",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the shared concurrency-safety service for ledger append, projections, and per-lineage state: scoped leases allocate durable monotonic fencing tokens, every protected mutation rejects stale holders, and bounded timeout/deadlock policy prevents split-brain across legacy, dark, fan-out, and resumed writers.",
     "created_at": "2026-07-16T03:43:47.704Z",
-    "last_save_at": "2026-08-18T11:07:40.440Z",
+    "last_save_at": "2026-08-29T14:54:10.996Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

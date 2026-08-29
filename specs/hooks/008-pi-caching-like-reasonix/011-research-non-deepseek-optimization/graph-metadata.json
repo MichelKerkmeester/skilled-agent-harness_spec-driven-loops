@@ -38,11 +38,14 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "research/lineages/deepseek-flash/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      "research/lineages/deepseek-flash/research.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".pi/settings.json",
       "research/lineages/deepseek-flash/invocation-metadata.json"
     ],
     "entities": [
@@ -68,6 +71,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
         "source": "derived"
       },
       {
@@ -171,29 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 008's fork work guards `pi-cache-optimizer`'s two mutation hooks against DeepSeek-matched models, leaving deep-pi as the exclusive DeepSeek-direct extension",
     "created_at": "2026-08-09T05:53:50.261Z",
-    "last_save_at": "2026-08-11T06:50:08.133Z",
+    "last_save_at": "2026-08-29T14:54:14.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

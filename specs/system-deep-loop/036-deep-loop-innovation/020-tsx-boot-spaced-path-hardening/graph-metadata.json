@@ -38,9 +38,11 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
-      "implementation-summary.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/runtime-bootstrap.cjs",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     ],
     "entities": [
       {
@@ -56,21 +58,33 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime-bootstrap.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/runtime-bootstrap.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
@@ -174,23 +188,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-loop runtime is 19 `.ts` files with zero `.js` files; each `.cjs` entrypoint re-execs itself under the tsx loader (`--import <tsx>`), which remaps `.js` import specifiers to their `.ts` source",
     "created_at": "2026-08-26T14:47:30.655Z",
-    "last_save_at": "2026-08-26T16:11:04.901Z",
+    "last_save_at": "2026-08-29T14:54:11.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

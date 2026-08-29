@@ -39,7 +39,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/bin/git-primary-reconcile.sh",
+      ".opencode/bin/git-sync.sh",
+      ".opencode/bin/tests/git-rebase-abort-head-preservation.test.sh"
     ],
     "entities": [
       {
@@ -64,6 +67,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-primary-reconcile.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-primary-reconcile.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-sync.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-sync.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-rebase-abort-head-preservation.test.sh",
+        "kind": "script",
+        "path": ".opencode/bin/tests/git-rebase-abort-head-preservation.test.sh",
         "source": "derived"
       },
       {
@@ -167,29 +188,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The live-sync reconcilers publish a session's commits onto the shared live branch",
     "created_at": "2026-08-20T08:29:54.549Z",
-    "last_save_at": "2026-08-20T08:39:59.047Z",
+    "last_save_at": "2026-08-29T14:54:26.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

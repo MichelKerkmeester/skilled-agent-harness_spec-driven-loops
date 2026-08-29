@@ -35,7 +35,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts"
     ],
     "entities": [
       {
@@ -60,6 +62,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts",
         "source": "derived"
       },
       {
@@ -169,23 +183,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The phase-006 spawn boundary killed only the direct child on timeout",
     "created_at": "2026-08-20T05:12:58.967Z",
-    "last_save_at": "2026-08-20T21:06:45.061Z",
+    "last_save_at": "2026-08-29T14:54:10.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

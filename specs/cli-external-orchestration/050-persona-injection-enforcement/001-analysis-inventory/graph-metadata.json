@@ -37,25 +37,21 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "scratch/dispatch-point-inventory.md",
-      "scratch/p1-verification-cline-deepseek.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      ".opencode/agents/orchestrate.md",
+      "scratch/dispatch-point-inventory.md",
+      "scratch/p1-verification-cline-deepseek.md"
     ],
     "entities": [
       {
-        "name": "dispatch-point-inventory.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "scratch/dispatch-point-inventory.md",
-        "source": "derived"
-      },
-      {
-        "name": "p1-verification-cline-deepseek.md",
-        "kind": "doc",
-        "path": "scratch/p1-verification-cline-deepseek.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -83,9 +79,27 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-point-inventory.md",
+        "kind": "doc",
+        "path": "scratch/dispatch-point-inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "p1-verification-cline-deepseek.md",
+        "kind": "doc",
+        "path": "scratch/p1-verification-cline-deepseek.md",
         "source": "derived"
       },
       {
@@ -177,23 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Before any enforcement rule can be written, the packet needs a precise, evidence-backed map of WHERE personas are (or are not) attached today",
     "created_at": "2026-08-19T06:31:07.889Z",
-    "last_save_at": "2026-08-19T10:49:39.427Z",
+    "last_save_at": "2026-08-29T14:54:25.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

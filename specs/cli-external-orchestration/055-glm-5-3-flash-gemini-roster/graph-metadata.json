@@ -63,13 +63,29 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".pi/models.json",
+      ".pi/settings.json",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".opencode/skills/cli-external-orchestration/changelog/v1.4.4.0.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -95,9 +111,57 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.4.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/changelog/v1.4.4.0.md",
         "source": "derived"
       },
       {
@@ -159,65 +223,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli-opencode",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Ox Alpha stealth model (`stealth/ox-alpha` on OpenRouter, `x-ai/ox-alpha` on Cline) was the operator's small-model workhorse across cli-opencode and cli-pi",
     "created_at": "2026-08-27T06:45:48.119Z",
-    "last_save_at": "2026-08-28T16:28:15.295Z",
+    "last_save_at": "2026-08-29T14:54:25.466Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

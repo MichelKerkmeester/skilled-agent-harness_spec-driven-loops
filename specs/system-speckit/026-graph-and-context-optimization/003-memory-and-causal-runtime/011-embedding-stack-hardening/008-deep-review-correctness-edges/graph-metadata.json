@@ -38,7 +38,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+      "shared/embeddings/auto-select.ts"
     ],
     "entities": [
       {
@@ -63,6 +65,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
         "source": "derived"
       },
       {
@@ -178,17 +186,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 20-iteration deep review flagged seven correctness findings as \"isolated.\" The handover mandates re-validating each against HEAD before fixing",
     "created_at": "2026-05-29T21:04:05.407Z",
-    "last_save_at": "2026-08-28T15:59:52.014Z",
+    "last_save_at": "2026-08-29T14:54:18.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

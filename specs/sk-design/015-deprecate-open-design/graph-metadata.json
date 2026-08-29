@@ -34,43 +34,31 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "checklist.md",
-      "review/review-report.md",
-      "implementation-summary.md",
-      "decision-record.md",
       "plan.md",
       "tasks.md",
-      "review/deep-review-config.json"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".utcp_config.json",
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/agents/design.md",
+      ".claude/.utcp_config.json",
+      ".opencode/commands/doctor/mcp.md",
+      ".opencode/install-guides/README.md",
+      ".claude/agents/design.md",
+      ".codex/agents/design.toml",
+      ".pi/agents/design.md",
+      ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+      "review/review-report.md",
+      "review/deep-review-config.json",
+      ".pi/settings.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -86,9 +74,87 @@
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": ".utcp_config.json",
+        "kind": "config",
+        "path": ".utcp_config.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".opencode/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install-guides/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "design.toml",
+        "kind": "file",
+        "path": ".codex/agents/design.toml",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-server-authoring.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-review-config.json",
         "kind": "config",
         "path": "review/deep-review-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
         "source": "derived"
       },
       {
@@ -132,65 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Remove",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Sweep",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Deep Review",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Remnant Audit Remediation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Open Design transport (`sk-design-mcp-open-design` skill + `opendesign` MCP server registration in `.utcpconfig.json` + `od` CLI wiring) is being retired by operator decision",
     "created_at": "2026-08-10T08:15:00Z",
-    "last_save_at": "2026-08-10T14:10:19.771Z",
+    "last_save_at": "2026-08-29T14:56:24.266Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

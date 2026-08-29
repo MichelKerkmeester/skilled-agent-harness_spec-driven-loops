@@ -44,7 +44,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/scoring/importance-tiers.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/search/pipeline/stage1-candidate-gen.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/search/learned-feedback.ts"
     ],
     "entities": [
       {
@@ -69,6 +73,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "importance-tiers.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/scoring/importance-tiers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stage1-candidate-gen.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/search/pipeline/stage1-candidate-gen.ts",
+        "source": "derived"
+      },
+      {
+        "name": "learned-feedback.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/search/learned-feedback.ts",
         "source": "derived"
       },
       {
@@ -166,35 +194,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The constitutional DB tier is decorative but not inert: `includeConstitutional` defaults true, so ADR-shaped `memorysearch` calls still pull constitutional files, and the indexer keeps scanning `constitutional/`",
     "created_at": "2026-08-26T05:34:12Z",
-    "last_save_at": "2026-08-29T00:57:27.089Z",
+    "last_save_at": "2026-08-29T14:54:19.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

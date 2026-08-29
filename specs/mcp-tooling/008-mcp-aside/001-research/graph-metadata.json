@@ -41,21 +41,55 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research/research.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/spec.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/plan.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/tasks.md",
+      ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/context/website-link.md",
       "research/resource-map.md",
       "research/deep-research-findings-registry.json",
       "research/fanout-attribution.md",
-      "tasks.md",
-      "spec.md",
-      "plan.md",
-      "context/website-link.md",
-      "implementation-summary.md"
+      "context/website-link.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "website-link.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/008-mcp-aside/001-research/context/website-link.md",
         "source": "derived"
       },
       {
@@ -68,36 +102,6 @@
         "name": "fanout-attribution.md",
         "kind": "doc",
         "path": "research/fanout-attribution.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "website-link.md",
-        "kind": "doc",
-        "path": "context/website-link.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,7 +203,7 @@
     ],
     "causal_summary": "The Aside browser's developer surface is unverified: the program assumes an Aside CLI (primary) plus an Aside MCP server (fallback through Code Mode), but no one has confirmed the CLI exists as a real standalone binary, what tools the MCP server exposes, or how auth works",
     "created_at": "2026-07-16T09:39:14Z",
-    "last_save_at": "2026-08-28T14:22:27.246Z",
+    "last_save_at": "2026-08-29T14:54:10.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -39,16 +39,21 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md"
+      "implementation-summary.md",
+      ".pi/models.json",
+      ".pi/settings.json",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+      ".pi/custom-providers.md"
     ],
     "entities": [
       {
-        "name": "implementation-summary.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -64,9 +69,33 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "custom-providers.md",
+        "kind": "doc",
+        "path": ".pi/custom-providers.md",
         "source": "derived"
       },
       {
@@ -164,35 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The cline-pass provider carried only DeepSeek V4 Flash, but Cline also fronts DeepSeek V4 Pro (`cline-pass/cline-pass/deepseek-v4-pro`, list-verified)",
     "created_at": "2026-08-18T14:19:31.420Z",
-    "last_save_at": "2026-08-18T17:52:06.619Z",
+    "last_save_at": "2026-08-29T14:54:26.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

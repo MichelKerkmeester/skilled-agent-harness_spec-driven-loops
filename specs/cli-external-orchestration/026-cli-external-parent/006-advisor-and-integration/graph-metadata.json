@@ -41,47 +41,16 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-      ".opencode/skills/sk-prompt/graph-metadata.json",
-      ".github/workflows/prompt-card-sync.yml",
-      ".opencode/skills/system-spec-kit/constitutional/cli-dispatch-skill-preload.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "CLAUDE.md",
+      ".opencode/skills/sk-prompt/graph-metadata.json",
+      ".github/workflows/prompt-card-sync.yml",
+      ".opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-card-sync.yml",
-        "kind": "config",
-        "path": ".github/workflows/prompt-card-sync.yml",
-        "source": "derived"
-      },
-      {
-        "name": "cli-dispatch-skill-preload.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/cli-dispatch-skill-preload.md",
-        "source": "derived"
-      },
-      {
-        "name": "outsourced-agent-handback-docs.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -104,6 +73,30 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": "CLAUDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-card-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/prompt-card-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "outsourced-agent-handback-docs.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/outsourced-agent-handback-docs.vitest.ts",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After phases 004 and 005 move the skill content, rewrite the scorer, and dissolve the two identities, a set of documentation, advisor, and constitutional referrers can still name the old flat `cli-opencode/` and `cli-claude-code/` paths",
     "created_at": "2026-07-09T18:58:28Z",
-    "last_save_at": "2026-07-14T19:26:22.940Z",
+    "last_save_at": "2026-08-29T14:56:27.704Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

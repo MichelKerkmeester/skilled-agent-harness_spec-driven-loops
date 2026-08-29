@@ -40,13 +40,25 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/references/providers-and-models.md",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -72,9 +84,33 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -160,41 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "OpenRouter",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "executor-config",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Ox Alpha model needed to be dispatchable from cli-pi and cli-opencode",
     "created_at": "2026-08-22T10:23:23.561Z",
-    "last_save_at": "2026-08-22T11:20:44.784Z",
+    "last_save_at": "2026-08-29T14:54:25.466Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

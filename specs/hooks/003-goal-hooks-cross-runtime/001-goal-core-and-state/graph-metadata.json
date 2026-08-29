@@ -42,7 +42,11 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/hooks/goal/bin/goal.cjs",
+      ".opencode/hooks/goal/lib/goal-core.test.cjs",
+      ".opencode/hooks/goal/README.md"
     ],
     "entities": [
       {
@@ -73,6 +77,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/bin/goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.test.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/README.md",
         "source": "derived"
       },
       {
@@ -164,35 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "attribution",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "honest",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode sessions carry a passive session-goal system: `mk-goal.js` injects an `[activegoal:<goalId>]…[/activegoal]` block every turn via `experimental.chat.system.transform`, and `/goal:goal-opencode` is the manage surface",
     "created_at": "2026-07-28T17:24:37.208Z",
-    "last_save_at": "2026-08-11T06:50:03.647Z",
+    "last_save_at": "2026-08-29T14:54:15.795Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

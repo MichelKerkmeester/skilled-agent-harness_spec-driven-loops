@@ -41,16 +41,19 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md"
+      "implementation-summary.md",
+      ".pi/models.json",
+      ".pi/settings.json",
+      ".pi/custom-providers.md"
     ],
     "entities": [
       {
-        "name": "implementation-summary.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -66,9 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "models.json",
+        "kind": "config",
+        "path": ".pi/models.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "custom-providers.md",
+        "kind": "doc",
+        "path": ".pi/custom-providers.md",
         "source": "derived"
       },
       {
@@ -172,29 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 2 proved cli pi can reach Cline config-only, but pi still had no `cline-pass` provider — `/login` and the model picker omitted it, so DeepSeek V4 Flash via Cline was unusable from pi even though opencode dispatches it",
     "created_at": "2026-08-18T13:02:37Z",
-    "last_save_at": "2026-08-18T14:02:53.291Z",
+    "last_save_at": "2026-08-29T14:54:26.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

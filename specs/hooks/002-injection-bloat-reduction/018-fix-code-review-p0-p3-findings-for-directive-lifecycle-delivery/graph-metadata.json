@@ -49,38 +49,32 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "evidence/review/source-review-registry.json",
-      "evidence/negative-controls/final.json",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "evidence/whole-gate/manifest.json",
-      "spec.md",
       "implementation-summary.md",
-      "evidence/inventory/dirty-checkout.txt",
-      "evidence/inventory/discovery-symlinks.txt",
-      "evidence/inventory/lifecycle-producers-consumers.txt",
-      "evidence/inventory/evidence-producers-consumers.txt",
-      "evidence/outcomes/directive-unit-verified.json",
-      "evidence/runtime/2026-08-11-registered-paths-final-2/summary.json",
-      "evidence/outcomes/opencode-test-seam.json",
-      "evidence/performance/result-final-5.json",
-      "evidence/runtime/2026-08-11-registered-paths-final/source-hashes.json",
-      "evidence/outcomes/cursor-native-host-final.json",
-      "evidence/outcomes/pi-repeat-suppression-verified.json"
+      "handover.md",
+      ".opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts",
+      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
+      "evidence/review/source-review-registry.json",
+      "evidence/negative-controls/final.json",
+      ".opencode/plugins/lib/opencode-message-identity.js",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts",
+      ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/tests/directive-lifecycle-adapter-parity.vitest.ts",
+      ".claude/hooks/user-prompt-submit.js",
+      ".codex/hooks/user-prompt-submit.js",
+      ".cursor/hooks/user-prompt-submit.js"
     ],
     "entities": [
       {
-        "name": "source-review-registry.json",
-        "kind": "config",
-        "path": "evidence/review/source-review-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "final.json",
-        "kind": "config",
-        "path": "evidence/negative-controls/final.json",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -108,87 +102,81 @@
         "source": "derived"
       },
       {
-        "name": "manifest.json",
-        "kind": "config",
-        "path": "evidence/whole-gate/manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "dirty-checkout.txt",
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "directive-lifecycle.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "directive-lifecycle-dedup.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/manual-testing-playbook/ux-hooks/directive-lifecycle-dedup.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-manual-playbook-scenario.cjs",
         "kind": "file",
-        "path": "evidence/inventory/dirty-checkout.txt",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
         "source": "derived"
       },
       {
-        "name": "discovery-symlinks.txt",
-        "kind": "file",
-        "path": "evidence/inventory/discovery-symlinks.txt",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-producers-consumers.txt",
-        "kind": "file",
-        "path": "evidence/inventory/lifecycle-producers-consumers.txt",
-        "source": "derived"
-      },
-      {
-        "name": "evidence-producers-consumers.txt",
-        "kind": "file",
-        "path": "evidence/inventory/evidence-producers-consumers.txt",
-        "source": "derived"
-      },
-      {
-        "name": "directive-unit-verified.json",
+        "name": "source-review-registry.json",
         "kind": "config",
-        "path": "evidence/outcomes/directive-unit-verified.json",
+        "path": "evidence/review/source-review-registry.json",
         "source": "derived"
       },
       {
-        "name": "summary.json",
+        "name": "final.json",
         "kind": "config",
-        "path": "evidence/runtime/2026-08-11-registered-paths-final-2/summary.json",
+        "path": "evidence/negative-controls/final.json",
         "source": "derived"
       },
       {
-        "name": "opencode-test-seam.json",
-        "kind": "config",
-        "path": "evidence/outcomes/opencode-test-seam.json",
+        "name": "opencode-message-identity.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/opencode-message-identity.js",
         "source": "derived"
       },
       {
-        "name": "result-final-5.json",
-        "kind": "config",
-        "path": "evidence/performance/result-final-5.json",
+        "name": "directive-lifecycle.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/directive-lifecycle.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "source-hashes.json",
-        "kind": "config",
-        "path": "evidence/runtime/2026-08-11-registered-paths-final/source-hashes.json",
+        "name": "claude-user-prompt-submit-hook.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/tests/hooks/claude-user-prompt-submit-hook.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "cursor-native-host-final.json",
-        "kind": "config",
-        "path": "evidence/outcomes/cursor-native-host-final.json",
+        "name": "directive-lifecycle-adapter-parity.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/tests/directive-lifecycle-adapter-parity.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "pi-repeat-suppression-verified.json",
-        "kind": "config",
-        "path": "evidence/outcomes/pi-repeat-suppression-verified.json",
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": ".claude/hooks/user-prompt-submit.js",
         "source": "derived"
       },
       {
@@ -214,11 +202,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Before this phase, the canonical decision recorded transcript size only when it delivered the full directive block",
     "created_at": "2026-08-11T12:34:41Z",
-    "last_save_at": "2026-08-28T19:09:00.383Z",
+    "last_save_at": "2026-08-29T14:54:14.041Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

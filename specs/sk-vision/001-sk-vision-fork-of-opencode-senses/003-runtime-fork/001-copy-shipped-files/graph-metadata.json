@@ -35,7 +35,20 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-vision/vision-runtime/src/plugin.ts",
+      ".opencode/skills/sk-vision/vision-runtime/src/runtime/client.ts",
+      ".opencode/skills/sk-vision/vision-runtime/src/providers/types.ts",
+      ".opencode/skills/sk-vision/vision-runtime/src/providers/photon.ts",
+      ".opencode/skills/sk-vision/vision-runtime/src/providers/photon.test.ts",
+      ".opencode/skills/sk-vision/vision-runtime/src/opencode/tools.ts",
+      ".opencode/skills/sk-vision/vision-runtime/src/opencode/attachments.ts",
+      ".opencode/skills/sk-vision/vision-runtime/src/core/context-builder.ts",
+      ".opencode/skills/sk-vision/vision-runtime/python/runtime.py",
+      ".opencode/skills/sk-vision/vision-runtime/python/runtime.test.ts",
+      ".opencode/skills/sk-vision/vision-runtime/scripts/build.ts",
+      ".opencode/skills/sk-vision/vision-runtime/tsconfig.json",
+      ".pi/extensions/sk-vision.ts"
     ],
     "entities": [
       {
@@ -60,6 +73,84 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/src/plugin.ts",
+        "source": "derived"
+      },
+      {
+        "name": "client.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/src/runtime/client.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/src/providers/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "photon.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/src/providers/photon.ts",
+        "source": "derived"
+      },
+      {
+        "name": "photon.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/sk-vision/vision-runtime/src/providers/photon.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tools.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/src/opencode/tools.ts",
+        "source": "derived"
+      },
+      {
+        "name": "attachments.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/src/opencode/attachments.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-builder.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/src/core/context-builder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runtime.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-vision/vision-runtime/python/runtime.py",
+        "source": "derived"
+      },
+      {
+        "name": "runtime.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/sk-vision/vision-runtime/python/runtime.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "build.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/scripts/build.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/vision-runtime/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.ts",
+        "kind": "code",
+        "path": ".pi/extensions/sk-vision.ts",
         "source": "derived"
       },
       {
@@ -103,89 +194,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Status Complete",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Read",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skill root is empty of runtime source",
     "created_at": "2026-08-16T07:22:42Z",
-    "last_save_at": "2026-08-16T07:57:12.215Z",
+    "last_save_at": "2026-08-29T14:54:24.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -41,20 +41,15 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "research/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "research/research.md",
+      "AGENTS.md",
       "research/deep-research-config.json"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -77,6 +72,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The root `AGENTS.md` (555 lines, 47,110 bytes) carries internal redundancy (the same rule stated in 2–3 places), distilled duplication of authoritative files whose pointers are broken or verbose, over-long prose blocks, and low-value boilerplate (emoji decoration, inline mechanics)",
     "created_at": "2026-08-07T14:53:51.256Z",
-    "last_save_at": "2026-08-09T07:34:06.010Z",
+    "last_save_at": "2026-08-29T14:56:22.924Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

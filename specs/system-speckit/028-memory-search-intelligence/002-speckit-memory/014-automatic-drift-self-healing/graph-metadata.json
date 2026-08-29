@@ -38,23 +38,21 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
-      "checklist.md",
-      "plan.md",
       "spec.md",
-      "tasks.md"
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
+      ".opencode/scripts/install-git-hooks.sh",
+      "scripts/spec-folder/generate-description.ts",
+      "handlers/memory-index.ts"
     ],
     "entities": [
       {
-        "name": "implementation-summary.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -64,15 +62,45 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-drift-marker.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description.ts",
+        "kind": "code",
+        "path": "scripts/spec-folder/generate-description.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
         "source": "derived"
       },
       {
@@ -164,35 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nobody wired any of this machinery to run without a human typing a command, so drift silently",
     "created_at": "2026-07-09T06:52:38.317Z",
-    "last_save_at": "2026-08-29T00:20:48.357Z",
+    "last_save_at": "2026-08-29T14:54:15.825Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -39,13 +39,27 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
@@ -87,7 +101,7 @@
     ],
     "causal_summary": "The external-CLI orchestration modes enforce curated model rosters: cli-cursor and cli-devin hard-reject any `--model` id outside `CURSORSUPPORTEDMODELS` / `DEVINSUPPORTEDMODELS` (mirrored byte-identical in `fanout-run.cjs`), and cli-opencode's catalog documents the opencode-go gateway's curated scope",
     "created_at": "2026-08-14T08:26:34.014Z",
-    "last_save_at": "2026-08-15T10:20:04.026Z",
+    "last_save_at": "2026-08-29T14:54:25.865Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -38,25 +38,21 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "research/gpt-5.5-review.md",
-      "research/gpt-5.5-phase4-review.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
       "resource-map.md",
-      "spec.md",
-      "implementation-summary.md"
+      ".opencode/agents/deep-research.md",
+      ".opencode/agents/deep-review.md",
+      "research/gpt-5.5-review.md",
+      "research/gpt-5.5-phase4-review.md"
     ],
     "entities": [
       {
-        "name": "gpt-5.5-review.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "research/gpt-5.5-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "gpt-5.5-phase4-review.md",
-        "kind": "doc",
-        "path": "research/gpt-5.5-phase4-review.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -72,21 +68,39 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "deep-research.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/agents/deep-research.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "deep-review.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "gpt-5.5-review.md",
+        "kind": "doc",
+        "path": "research/gpt-5.5-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "gpt-5.5-phase4-review.md",
+        "kind": "doc",
+        "path": "research/gpt-5.5-phase4-review.md",
         "source": "derived"
       },
       {
@@ -178,23 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "light",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Make cli-devin a first-class deep-loop executor across the codebase",
     "created_at": "2026-05-15T19:00:00Z",
-    "last_save_at": "2026-08-28T18:17:45.339Z",
+    "last_save_at": "2026-08-29T14:54:19.368Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

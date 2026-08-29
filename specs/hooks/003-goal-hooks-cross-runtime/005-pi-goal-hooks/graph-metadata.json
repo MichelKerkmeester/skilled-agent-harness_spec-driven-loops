@@ -42,7 +42,15 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/hooks/goal/pi/goal-context.ts",
+      ".pi/extensions/goal-context.ts",
+      ".opencode/hooks/goal/pi/goal-pi.test.mjs",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".pi/extensions/README.md",
+      ".opencode/hooks/mcp-route-guard/pi/mcp-route-guard.ts",
+      ".opencode/specs/hooks/003-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md",
+      ".opencode/specs/hooks/003-goal-hooks-cross-runtime/spec.md"
     ],
     "entities": [
       {
@@ -73,6 +81,42 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/pi/goal-pi.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/mcp-route-guard/pi/mcp-route-guard.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capability-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/specs/hooks/003-goal-hooks-cross-runtime/002-capability-probes/capability-matrix.md",
         "source": "derived"
       },
       {
@@ -152,47 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Focused Pi",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "an",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The runtime-neutral goal core (phase 001) and the capability-probe matrix (phase 002) give cli-pi sessions everything needed to carry an operator-set goal across turns, but nothing in `.pi/extensions/` currently reads or renders it",
     "created_at": "2026-07-28T17:25:58.782Z",
-    "last_save_at": "2026-08-11T06:50:04.286Z",
+    "last_save_at": "2026-08-29T14:54:15.320Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

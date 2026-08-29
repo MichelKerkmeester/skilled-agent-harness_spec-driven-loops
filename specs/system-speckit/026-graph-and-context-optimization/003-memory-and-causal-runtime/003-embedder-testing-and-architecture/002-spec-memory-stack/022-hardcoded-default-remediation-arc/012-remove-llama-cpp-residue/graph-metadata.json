@@ -41,7 +41,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/doctor/update.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/types.ts",
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/embeddings/types.ts"
     ],
     "entities": [
       {
@@ -66,6 +70,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
         "source": "derived"
       },
       {
@@ -169,29 +191,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "5. COMPLETION CRITERIA",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Commit Handoff",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Operator directive: remove all live references to llama-cpp. Runtime code was already purged in arc 016 phases 003/006/007; this packet sweeps the remaining narrative + doc/config residue (11 live files, ~26 line-level edits) so the codebase no longer mentions llama-cpp as a supported provider.",
     "created_at": "2026-05-23T20:00:00.000000Z",
-    "last_save_at": "2026-08-28T15:53:26.016Z",
+    "last_save_at": "2026-08-29T14:54:18.981Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

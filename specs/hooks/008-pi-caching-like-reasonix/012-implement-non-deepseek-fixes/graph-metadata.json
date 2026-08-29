@@ -40,19 +40,21 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "tasks.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      ".pi/extensions/pi-cache-optimizer/tests/hook-guards.test.ts",
+      ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+      ".pi/extensions/pi-cache-optimizer/tests/ownership-composition.test.ts",
+      ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md",
+      ".pi/extensions/pi-cache-optimizer/tests/README.md",
+      ".pi/settings.json",
+      "tests/README.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -66,6 +68,12 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
@@ -75,6 +83,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-guards.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-cache-optimizer/tests/hook-guards.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-findings.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ownership-composition.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-cache-optimizer/tests/ownership-composition.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "CHANGES-FROM-UPSTREAM.md",
+        "kind": "doc",
+        "path": ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/pi-cache-optimizer/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
         "source": "derived"
       },
       {
@@ -148,53 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Medium Priority",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Low Priority",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Path Hardening",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "011's research produced 15 findings (K1-K15) about `pi-cache-optimizer`'s non-DeepSeek code path",
     "created_at": "2026-08-09T08:37:22.485Z",
-    "last_save_at": "2026-08-11T06:50:08.327Z",
+    "last_save_at": "2026-08-29T14:54:14.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

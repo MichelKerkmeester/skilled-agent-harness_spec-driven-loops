@@ -40,9 +40,16 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
-      "implementation-summary.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/scripts/orphan-mcp-sweeper.sh",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/scripts/git-hooks/post-commit",
+      ".opencode/scripts/claude-session-cleanup.sh",
+      ".opencode/plugins/session-cleanup.js",
+      ".opencode/scripts/README.md",
+      ".claude/settings.json"
     ],
     "entities": [
       {
@@ -58,21 +65,63 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-mcp-sweeper.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "post-commit",
+        "kind": "file",
+        "path": ".opencode/scripts/git-hooks/post-commit",
+        "source": "derived"
+      },
+      {
+        "name": "claude-session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/claude-session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-cleanup.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
         "source": "derived"
       },
       {
@@ -146,53 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Document Codex",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The session-lifecycle shell scripts under `.opencode/scripts/` were written for Claude Code only",
     "created_at": "2026-05-30T10:12:02.933Z",
-    "last_save_at": "2026-08-28T23:06:24.711Z",
+    "last_save_at": "2026-08-29T14:56:24.609Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

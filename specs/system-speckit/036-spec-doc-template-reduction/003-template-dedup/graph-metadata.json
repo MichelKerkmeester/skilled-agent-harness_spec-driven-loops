@@ -44,7 +44,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/addons/research.md.tmpl",
+      ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
       {
@@ -69,6 +73,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/addons/decision-record.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "research.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/addons/research.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -166,35 +194,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record Template Deduplication",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`decision-record.md.tmpl` already shares its ADR skeleton across the L3 and L3+ blocks",
     "created_at": "2026-08-26T05:33:57Z",
-    "last_save_at": "2026-08-29T00:57:08.723Z",
+    "last_save_at": "2026-08-29T14:54:19.389Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

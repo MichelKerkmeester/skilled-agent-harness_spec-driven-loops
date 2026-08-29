@@ -33,12 +33,20 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -52,15 +60,21 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -170,23 +184,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered Root",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The installed devin CLI (3000.4.25) breaks non-interactive fan-out lineages in two independent ways",
     "created_at": "2026-08-17T11:20:42.518Z",
-    "last_save_at": "2026-08-17T12:46:40.454Z",
+    "last_save_at": "2026-08-29T14:54:25.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

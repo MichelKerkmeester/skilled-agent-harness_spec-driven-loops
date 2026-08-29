@@ -37,9 +37,12 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
-      "implementation-summary.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/commands/deep/review.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+      ".opencode/plugins/system-deep-loop-guard.js"
     ],
     "entities": [
       {
@@ -55,21 +58,39 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-deep-loop-guard.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-deep-loop-guard.js",
         "source": "derived"
       },
       {
@@ -167,29 +188,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every deep/ command (`review`, `research`, `ai-council`, `alignment`, `agent-improvement`, `model-benchmark`, `skill-benchmark`, `command-benchmark`) and `prompt/improve` opened with a Phase-0 dispatch-context gate",
     "created_at": "2026-08-27T05:27:55.303Z",
-    "last_save_at": "2026-08-27T06:03:33.171Z",
+    "last_save_at": "2026-08-29T14:54:11.441Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

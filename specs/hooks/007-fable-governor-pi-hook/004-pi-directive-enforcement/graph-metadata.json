@@ -38,7 +38,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts"
     ],
     "entities": [
       {
@@ -63,6 +65,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/dispatch/pi/dispatch-preflight-lint.ts",
         "source": "derived"
       },
       {
@@ -172,23 +186,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built Implemented",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered Implemented",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The capsule line (phase 003) is reminder-only: pi can still silently spawn `cursor-agent -p`, `devin -p`, `opencode run`, etc",
     "created_at": "2026-08-04T12:04:54Z",
-    "last_save_at": "2026-08-11T06:50:05.420Z",
+    "last_save_at": "2026-08-29T14:54:14.520Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

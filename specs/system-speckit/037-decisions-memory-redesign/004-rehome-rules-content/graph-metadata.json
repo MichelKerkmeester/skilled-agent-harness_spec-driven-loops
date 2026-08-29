@@ -45,7 +45,11 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "research/research.md"
+      "research/research.md",
+      "CLAUDE.md",
+      "AGENTS.md",
+      ".opencode/bin/spec-memory.cjs",
+      "mcp-server/dist/spec-memory-cli.js"
     ],
     "entities": [
       {
@@ -76,6 +80,30 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "CLAUDE.md",
+        "kind": "doc",
+        "path": "CLAUDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/spec-memory.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory-cli.js",
+        "kind": "code",
+        "path": "mcp-server/dist/spec-memory-cli.js",
         "source": "derived"
       },
       {
@@ -167,35 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Deleting the constitutional folder naively breaks dangling `See …md` links in CLAUDE.md/AGENTS.md/BARTER.md and any skill doc that cites a rule as its authority",
     "created_at": "2026-08-26T05:34:13Z",
-    "last_save_at": "2026-08-29T00:57:28.882Z",
+    "last_save_at": "2026-08-29T14:56:25.296Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

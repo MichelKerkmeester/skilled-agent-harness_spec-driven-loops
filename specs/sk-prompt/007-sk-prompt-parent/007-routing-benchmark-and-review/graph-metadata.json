@@ -44,7 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs"
     ],
     "entities": [
       {
@@ -69,6 +71,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "load-playbook-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "loop-host.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/loop-host.cjs",
         "source": "derived"
       },
       {
@@ -178,23 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The merged `sk-prompt` hub will serve two modes that were previously independent skills, so routing, discovery, and efficiency cannot be treated as safe by inspection alone",
     "created_at": "2026-07-09T13:34:36Z",
-    "last_save_at": "2026-08-28T15:53:23.863Z",
+    "last_save_at": "2026-08-29T14:54:09.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

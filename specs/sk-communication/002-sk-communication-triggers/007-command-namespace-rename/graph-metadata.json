@@ -35,7 +35,12 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/rewrite/response.md",
+      ".opencode/commands/rewrite/response-by-external-agent.md",
+      ".opencode/skills/sk-communication/SKILL.md",
+      ".opencode/skills/sk-communication/feature-catalog/provider-and-privacy/external-cli-provider.md",
+      ".opencode/commands/deep/research.md"
     ],
     "entities": [
       {
@@ -60,6 +65,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "response.md",
+        "kind": "doc",
+        "path": ".opencode/commands/rewrite/response.md",
+        "source": "derived"
+      },
+      {
+        "name": "response-by-external-agent.md",
+        "kind": "doc",
+        "path": ".opencode/commands/rewrite/response-by-external-agent.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "external-cli-provider.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/feature-catalog/provider-and-privacy/external-cli-provider.md",
         "source": "derived"
       },
       {
@@ -157,35 +186,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The two trigger commands sat at the flat paths `.opencode/commands/rewrite-response.md` and `.opencode/commands/rewrite-response-by-external-agent.md`, so they invoked as `/rewrite-response` and `/rewrite-response-by-external-agent`",
     "created_at": "2026-08-19T20:23:37.258Z",
-    "last_save_at": "2026-08-20T21:06:44.720Z",
+    "last_save_at": "2026-08-29T14:54:10.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

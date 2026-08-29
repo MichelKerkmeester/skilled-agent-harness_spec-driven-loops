@@ -41,41 +41,68 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      "AGENTS.md",
+      ".codex/AGENTS.md",
+      "specs/agents/003-communication-quality/spec.md",
+      "specs/agents/003-communication-quality/plan.md",
+      "specs/agents/003-communication-quality/tasks.md",
+      "specs/agents/003-communication-quality/checklist.md",
+      "specs/agents/003-communication-quality/implementation-summary.md",
+      "specs/agents/003-communication-quality/description.json",
+      "specs/agents/003-communication-quality/graph-metadata.json"
     ],
     "entities": [
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/agents/003-communication-quality/spec.md",
+        "source": "derived"
+      },
+      {
         "name": "plan.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "specs/agents/003-communication-quality/plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "specs/agents/003-communication-quality/tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "specs/agents/003-communication-quality/checklist.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "specs/agents/003-communication-quality/implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "AGENTS.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "specs/agents/003-communication-quality/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/agents/003-communication-quality/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -173,29 +200,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Communication guidance in the root `AGENTS.md` is scattered and compressed across §1 (Two registers, Communication, Documentation & Honesty), §4, and §7, with no single home",
     "created_at": "2026-08-07T07:39:47.413Z",
-    "last_save_at": "2026-08-07T08:44:03.839Z",
+    "last_save_at": "2026-08-29T14:56:22.925Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

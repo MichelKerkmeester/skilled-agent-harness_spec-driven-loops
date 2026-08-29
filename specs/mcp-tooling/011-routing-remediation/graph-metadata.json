@@ -41,24 +41,86 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md",
+      ".opencode/skills/mcp-tooling/hub-router.json",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
       "regression/post-ws1-replay-hub.json",
       "scratch/replay-driver.cjs",
       "regression/post-ws2-replay-hub.json",
       "regression/post-ws2-replay-packets.json",
       "regression/pre-fix-gates.md",
-      "plan.md",
-      "tasks.md",
-      "spec.md",
-      "checklist.md",
-      "research/research.md",
-      "implementation-summary.md"
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
+      ".opencode/skills/mcp-tooling/graph-metadata.json",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
       {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
         "source": "derived"
       },
       {
@@ -92,39 +154,33 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/graph-metadata.json",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "run-skill-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "load-playbook-scenarios.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
         "source": "derived"
       },
       {
@@ -150,59 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completed Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execute Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Fix",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The phase-007 deep review (`.opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md`) issued a FAIL, release-blocking verdict on the mcp-tooling hub routing surface",
     "created_at": "2026-07-16T16:50:35Z",
-    "last_save_at": "2026-08-28T22:05:49.431Z",
+    "last_save_at": "2026-08-29T14:54:09.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

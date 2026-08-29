@@ -35,22 +35,22 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "tasks.md",
       "spec.md",
       "plan.md",
-      "implementation-summary.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/022-opencode-plugin-runtime-resolution/spec.md",
+      ".opencode/skills/sk-vision/vision-runtime/src/runtime/client.ts",
+      "hooks/README.md",
+      ".opencode/skills/sk-vision/SKILL.md",
+      ".opencode/skills/sk-vision/README.md",
+      ".opencode/skills/sk-vision/feature-catalog/host-adapters/opencode-plugin.md"
     ],
     "entities": [
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/022-opencode-plugin-runtime-resolution/spec.md",
         "source": "derived"
       },
       {
@@ -60,9 +60,39 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "client.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/src/runtime/client.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-vision/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-vision/feature-catalog/host-adapters/opencode-plugin.md",
         "source": "derived"
       },
       {
@@ -160,35 +190,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "OpenCode returns `RUNTIMEUNAVAILABLE` for every `skvision` call because the plugin never spawns its Python runtime",
     "created_at": "2026-08-18T13:56:37.156Z",
-    "last_save_at": "2026-08-18T13:57:54.383Z",
+    "last_save_at": "2026-08-29T14:54:24.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -44,11 +44,17 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
       ".opencode/commands/README.txt",
-      ".opencode/commands/scripts/validate-command-references.cjs",
-      "spec.md"
+      ".opencode/commands/scripts/validate-command-references.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "README.txt",
         "kind": "file",
@@ -59,12 +65,6 @@
         "name": "validate-command-references.cjs",
         "kind": "file",
         "path": ".opencode/commands/scripts/validate-command-references.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -106,7 +106,7 @@
     ],
     "causal_summary": "The `.opencode/commands/` surface combines seven namespaced command families, two loose root command files, shared command tooling, and asset trees",
     "created_at": "2026-07-14T15:17:04Z",
-    "last_save_at": "2026-07-17T20:26:18.901Z",
+    "last_save_at": "2026-08-29T14:54:21.467Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -116,7 +116,7 @@
     "source_doc_hashes": {
       "spec.md": "5ed38769a44240041aa3757abb056e2aaf71db9c18552d742bd460333a83ae1f"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids",
     "last_active_at": null
   }
 }

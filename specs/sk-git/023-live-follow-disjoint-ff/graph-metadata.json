@@ -39,12 +39,20 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/bin/git-primary-reconcile.sh",
+      ".opencode/bin/git-live-follow.sh"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -64,9 +72,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "git-primary-reconcile.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-primary-reconcile.sh",
+        "source": "derived"
+      },
+      {
+        "name": "git-live-follow.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-live-follow.sh",
         "source": "derived"
       },
       {
@@ -176,17 +190,11 @@
         "kind": "heading",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Why this is safe",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Relax the primary-checkout reconcile and follower so a behind-only checkout fast-forwards through git's own --ff-only even while carrying unrelated work-in-progress, instead of hard-skipping on any tracked change; only the rebase/publish path keeps the clean-tree boundary.",
     "created_at": "2026-08-28T22:36:51.848Z",
-    "last_save_at": "2026-08-28T22:36:51.848Z",
+    "last_save_at": "2026-08-29T14:54:26.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

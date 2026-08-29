@@ -42,7 +42,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+      ".github/workflows/playbook-operator-contract.yml",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
     ],
     "entities": [
       {
@@ -67,6 +71,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-corpus-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-failclosed-allowlist.txt",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-operator-contract.yml",
+        "kind": "config",
+        "path": ".github/workflows/playbook-operator-contract.yml",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
         "source": "derived"
       },
       {
@@ -164,35 +192,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Empty the grandfather list that made ten parent packages non-blocking, name all 41 cleaned roots in a fail-closed allowlist, and assert in CI that each named root is still actually scanned.",
     "created_at": "2026-08-29T11:53:22.792Z",
-    "last_save_at": "2026-08-29T11:53:22.792Z",
+    "last_save_at": "2026-08-29T14:54:12.202Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

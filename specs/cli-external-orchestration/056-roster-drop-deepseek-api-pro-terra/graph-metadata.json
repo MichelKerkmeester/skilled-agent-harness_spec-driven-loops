@@ -41,9 +41,17 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "tasks.md"
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".pi/settings.json",
+      ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.4.1.0.md",
+      ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/cline-provider-id-format-dispatch.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.3.0.md"
     ],
     "entities": [
       {
@@ -59,6 +67,12 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
@@ -71,9 +85,51 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.1.0.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/changelog/v1.4.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "cline-provider-id-format-dispatch.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook/model-dispatch/cline-provider-id-format-dispatch.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.3.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.3.0.md",
         "source": "derived"
       },
       {
@@ -141,59 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Fan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Expected Signals",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Phases",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "fresh",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator retired three dispatch targets:",
     "created_at": "2026-08-29T10:34:45.843Z",
-    "last_save_at": "2026-08-29T10:43:01.650Z",
+    "last_save_at": "2026-08-29T14:54:25.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

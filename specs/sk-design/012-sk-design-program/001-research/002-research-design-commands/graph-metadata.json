@@ -32,69 +32,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "research/research.md",
-      "implementation-summary.md",
-      ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/skills/sk-design/mode-registry.json",
-      ".opencode/skills/sk-design/shared/context-loading-contract.md",
-      ".opencode/skills/sk-design/shared/sk-code-handoff.md",
-      ".opencode/skills/sk-design/design-interface/references/design-process/brief-to-dials.md",
-      ".opencode/skills/sk-design/design-interface/references/design-process/real-ui-loop.md",
-      ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "context-loading-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/shared/context-loading-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "sk-code-handoff.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/shared/sk-code-handoff.md",
-        "source": "derived"
-      },
-      {
-        "name": "brief-to-dials.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/references/design-process/brief-to-dials.md",
-        "source": "derived"
-      },
-      {
-        "name": "real-ui-loop.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/references/design-process/real-ui-loop.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -117,6 +63,24 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
         "source": "derived"
       },
       {
@@ -190,11 +154,41 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five design commands (`.opencode/commands/design/{interface,audit,foundations,motion,md-generator}.md`) are thin routers: each resolves an execution mode and defers to the `sk-design` hub, carrying routing contracts and sibling discriminators but no generative scaffolding",
     "created_at": "2026-07-19T06:46:18.402Z",
-    "last_save_at": "2026-07-22T16:57:33.305Z",
+    "last_save_at": "2026-08-29T14:54:13.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

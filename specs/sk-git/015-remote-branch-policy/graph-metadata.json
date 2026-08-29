@@ -41,25 +41,31 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "decision-record.md",
-      "research.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "spec.md"
+      "research.md",
+      ".opencode/scripts/git-hooks/pre-push",
+      ".opencode/skills/sk-git/scripts/worktree-naming.sh",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/scripts/remote-branch-allowlist.txt",
+      ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+      ".opencode/scripts/install-git-hooks.sh",
+      ".opencode/skills/sk-git/references/remote-branch-policy.md",
+      ".opencode/skills/sk-git/references/finish-workflows.md",
+      ".opencode/skills/sk-git/references/continuous-integration.md",
+      ".opencode/skills/sk-git/feature-catalog/feature-catalog.md",
+      "feature-catalog/feature-catalog.md",
+      ".opencode/bin/git-sync.sh"
     ],
     "entities": [
       {
-        "name": "decision-record.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -81,15 +87,87 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "research.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push",
+        "kind": "file",
+        "path": ".opencode/scripts/git-hooks/pre-push",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-naming.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-git/scripts/worktree-naming.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "remote-branch-allowlist.txt",
+        "kind": "file",
+        "path": ".opencode/skills/sk-git/scripts/remote-branch-allowlist.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push.test.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/tests/pre-push.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "remote-branch-policy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/remote-branch-policy.md",
+        "source": "derived"
+      },
+      {
+        "name": "finish-workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/finish-workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "continuous-integration.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/continuous-integration.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-sync.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-sync.sh",
         "source": "derived"
       },
       {
@@ -127,77 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execute Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Extend",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Allowlist Mechanism",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Push Hook Permission Gate",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Suite Update",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Local branch/worktree creation in this repo is cheap and unrestricted by design (numbered worktrees, owner-first naming) — but every one of those branches can currently reach `origin` with an ordinary `git push`, with nothing asking whether it should",
     "created_at": "2026-07-17T15:57:59.140Z",
-    "last_save_at": "2026-08-28T18:15:32.884Z",
+    "last_save_at": "2026-08-29T14:56:27.938Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

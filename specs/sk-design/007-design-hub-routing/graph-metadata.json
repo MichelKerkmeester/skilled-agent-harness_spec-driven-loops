@@ -41,12 +41,19 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md"
+      ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -66,9 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-design/SKILL.md",
         "source": "derived"
       },
       {
@@ -188,7 +195,7 @@
     ],
     "causal_summary": "The shipped sk-design hub is the public advisor-routable home for the design family, but its hub-level routing contract was absent from git and memory as a spec packet",
     "created_at": "2026-07-16T09:11:02.038Z",
-    "last_save_at": "2026-08-28T22:11:50.330Z",
+    "last_save_at": "2026-08-29T14:54:13.507Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

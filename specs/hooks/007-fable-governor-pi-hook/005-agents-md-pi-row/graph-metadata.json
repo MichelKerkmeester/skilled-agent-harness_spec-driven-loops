@@ -37,7 +37,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "AGENTS.md"
     ],
     "entities": [
       {
@@ -62,6 +63,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
         "source": "derived"
       },
       {
@@ -177,17 +184,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "AGENTS.md §8 Runtime Agent Directory Resolution lists Opencode, Claude Code, and Codex CLI — pi is absent, so pi agents resolving their directory have no documented row (research B2 confirmed the omission)",
     "created_at": "2026-08-04T12:04:55Z",
-    "last_save_at": "2026-08-11T06:50:05.571Z",
+    "last_save_at": "2026-08-29T14:56:24.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

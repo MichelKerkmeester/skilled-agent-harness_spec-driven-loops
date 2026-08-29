@@ -3,6 +3,7 @@
   "packet_id": "sk-design/014-template-conformance/007-hub-root/004-manual-testing-playbook",
   "spec_folder": "sk-design/014-template-conformance/007-hub-root/004-manual-testing-playbook",
   "parent_id": "sk-design/014-template-conformance/007-hub-root",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -35,18 +36,17 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
       {
-        "name": "manual-testing-playbook-template.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -65,12 +65,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -186,11 +180,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/sk-design/manual-testing-playbook/` has not been audited against `.opencode/skills/sk-doc/create-manual-testing-playbook/assets/manual-testing-playbook-template.md`",
     "created_at": "2026-07-27T14:59:54.655Z",
-    "last_save_at": "2026-07-27T16:20:16.928Z",
+    "last_save_at": "2026-08-29T14:54:12.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,7 +206,7 @@
       "plan.md": "fa751a50ee7e91632d74032629f8180700cc4a53b549ed270b4ffada5278cea5",
       "tasks.md": "682ce3e48b64248b77638e62708852ce334e33c738d93d476d67ab6cc30b5b49",
       "checklist.md": "c2bd3105f0b76db6d7ec97dae160cbd33608c28435a7c6ba9ab37df5525471a0",
-      "implementation-summary.md": "98d20258ee643dd69761197a3dc2ec14cc2dc0a19d48877ee72d628791b85c81"
+      "implementation-summary.md": "d3589746da1cbe4e00007a93565578d0c580130c0e8eee35c8e2a93ca9b6fa3b"
     },
     "last_active_child_id": null,
     "last_active_at": null

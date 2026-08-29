@@ -44,7 +44,15 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+      "opencode.json",
+      ".mcp.json",
+      ".opencode/commands/doctor/mcp.md",
+      "shared/embeddings/auto-select.ts",
+      ".claude/mcp.json",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
       {
@@ -69,6 +77,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.json",
+        "kind": "config",
+        "path": "opencode.json",
+        "source": "derived"
+      },
+      {
+        "name": ".mcp.json",
+        "kind": "config",
+        "path": ".mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -148,47 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Known Limitations",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "The Python",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Reorder auto-select provider cascade to Ollama → hf-local → OpenAI → Voyage (local-first). Change HF_LOCAL_MODEL fallback from BAAI/bge-base-en-v1.5 to nomic-ai/nomic-embed-text-v1.5 so new users with sentence-transformers get the same embedder as Ollama users. Update test, INSTALL_GUIDE, opencode.json/mcp.json env notes, all related READMEs, doctor commands, and write ADR-014.",
     "created_at": "2026-05-19T19:25:52.541Z",
-    "last_save_at": "2026-08-28T15:59:42.046Z",
+    "last_save_at": "2026-08-29T14:56:24.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

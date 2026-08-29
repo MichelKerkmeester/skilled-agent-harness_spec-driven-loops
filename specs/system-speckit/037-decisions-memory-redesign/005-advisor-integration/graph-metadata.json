@@ -44,7 +44,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+      ".opencode/hooks/injection-contract.md"
     ],
     "entities": [
       {
@@ -69,6 +71,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/injection-contract.md",
         "source": "derived"
       },
       {
@@ -178,23 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor injects three hardcoded directives every turn",
     "created_at": "2026-08-26T05:34:14Z",
-    "last_save_at": "2026-08-29T00:57:30.663Z",
+    "last_save_at": "2026-08-29T14:54:19.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
