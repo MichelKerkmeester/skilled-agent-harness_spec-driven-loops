@@ -52,16 +52,41 @@ Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla J
 
 ## 3. TEST EXECUTION
 
-Run this scenario through the cross-CLI universal prompt using `SCENARIO_ID=CS-005`. The grading checks the response content, not only the YAML path list.
+### Prompt
 
-Evidence files:
-- `/tmp/skc-CS-005-<cli>.txt`
-- `<spec-folder><cli>.yaml`
+- Prompt: `Can I reuse the sk-code Motion in-view reveal snippet in a non-Webflow vanilla JS page? Tell me which snippet and references you would load, and call out any naming-convention caveat.`
+
+### Commands
+
+1. Dispatch the exact prompt through the cross-CLI universal-prompt harness with `SCENARIO_ID=CS-005` on each configured CLI runtime.
+2. Capture the raw transcript per runtime to `/tmp/skc-CS-005-<cli>.txt`.
+3. Capture the structured routing result (surface, references, assets, agent dispatch) per runtime to `results/CS-005-<cli>.yaml`.
+4. Diff each `results/CS-005-<cli>.yaml` against the reference/asset set declared in §2 SCENARIO CONTRACT.
+
+### Expected
+
+Expected signals: the structured result in `results/CS-005-<cli>.yaml` reports surface `UNKNOWN` and the reference/asset set declared in §2 SCENARIO CONTRACT, with no agent dispatched.
+
+### Evidence
+
+Evidence: `/tmp/skc-CS-005-<cli>.txt` (raw per-runtime transcript) and `results/CS-005-<cli>.yaml` (structured routing result) for each configured CLI runtime.
+
+### Pass / Fail
+
+- **Pass**: the AI surfaces `sk-code-webflow/assets/animation/snippets/in-view-reveal.js`, states the snippet is cross-stack reusable with runtime adaptation, and explicitly flags the snake_case Webflow convention caveat.
+- **Fail**: the snippet is not named, Webflow is treated as required for reuse, or the naming caveat is missing.
+
+### Failure Triage
+
+1. If the snippet is missing, inspect `sk-code-webflow/assets/animation/snippets/`.
+2. If the response says Webflow is required, re-read `references/smart-routing.md` Section 3.
+3. If no caveat appears, inspect `sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md` for local naming guidance.
 
 ---
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` - Root directory page and scenario summary.
 - `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/in-view-reveal.js` - Required reusable snippet.
 - `.opencode/skills/sk-code/sk-code-webflow/references/animation/integration-patterns.md` - Cross-stack integration guidance.
 - `.opencode/skills/sk-code/sk-code-webflow/references/javascript/style-guide/overview-naming-and-structure.md` - Snake_case caveat source.
@@ -70,9 +95,11 @@ Evidence files:
 
 ## 5. SOURCE METADATA
 
-- **Created**: 2026-05-05
-- **Critical path**: No
-- **Destructive**: No
-- **Sandbox**: read-only routing analysis
-- **Concurrent-safe**: Yes
-- **Last validated**: pending Phase D matrix
+- Group: Cross-Stack Routing
+- Playbook ID: CS-005
+- Created: 2026-05-05
+- Critical path: No
+- Destructive: No
+- Sandbox: read-only routing analysis
+- Concurrent-safe: Yes
+- Last validated: pending Phase D matrix

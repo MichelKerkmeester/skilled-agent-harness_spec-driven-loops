@@ -71,7 +71,7 @@ Explain the CSS custom-property naming convention for adding a new per-surface c
 
 ### Commands
 
-1. `sed -n '1,12p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/language-standards-routing.md`
+1. `sed -n '1,12p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/language-standards-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"LANGUAGE_STANDARDS":/,/\],/p'`
 3. `for p in references/token-library.md references/component-tokens.md references/theme-remap.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
@@ -115,8 +115,8 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../SKILL.md) §3b | The naming/routing grammar this answer must cite |
+| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §3b | The naming/routing grammar this answer must cite |
 
 ---
 
@@ -124,5 +124,5 @@ excerpt.
 
 - Group: code-mobile-cli routing
 - Playbook ID: PR-006
-- Canonical root source: [manual-testing-playbook.md](manual-testing-playbook.md)
-- Feature file path: `language-standards-routing.md`
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `intent-detection/language-standards-routing.md`

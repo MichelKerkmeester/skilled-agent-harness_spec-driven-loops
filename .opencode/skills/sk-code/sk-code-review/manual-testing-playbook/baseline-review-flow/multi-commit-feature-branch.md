@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-003` and confirm the
 - Objective: Confirm branch review preserves commit lineage and distinguishes PR scope from unrelated churn.
 - Real user request: `Review target is merge-base to HEAD.`
 - Prompt: `Review the branch from merge-base to HEAD, preserving commit lineage and flagging unrelated-change risk.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when a multi-commit feature branch with a resolvable merge-base is missing from the environment.
 - Expected signals: Step 1: merge base resolves; Step 2: commits listed; Step 3: files map to branch scope; Step 4: report flags scope drift when present
 - Desired user-visible outcome: a findings-first branch review that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if the report ties findings to branch scope and PR guidance from references/review-ux-single-pass.md; FAIL if it ignores commit lineage or reviews unrelated files as in-scope

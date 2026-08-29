@@ -77,7 +77,7 @@ Retint the model-effort-sheet accent so it reads a warmer accent role without to
 
 ### Commands
 
-1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/token-edit-routing.md`
+1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/token-edit-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"IMPLEMENTATION":/,/\],/p'`
 3. `for p in references/token-library.md references/comment-grammar.md references/component-tokens.md references/retint-recipes.md references/theme-remap.md references/scoped-style-ownership.md assets/token-retint-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
@@ -121,8 +121,8 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../SKILL.md) §1 | The `PI_REMOTE` surface-detection trigger this scenario assumes |
+| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §1 | The `PI_REMOTE` surface-detection trigger this scenario assumes |
 
 ---
 
@@ -130,5 +130,5 @@ excerpt.
 
 - Group: code-mobile-cli routing
 - Playbook ID: PR-001
-- Canonical root source: [manual-testing-playbook.md](manual-testing-playbook.md)
-- Feature file path: `token-edit-routing.md`
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `intent-detection/token-edit-routing.md`

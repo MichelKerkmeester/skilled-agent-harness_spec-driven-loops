@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-008` and confirm the
 - Objective: Confirm findings classify same-class inventory instead of patching only the cited instance by default.
 - Real user request: `Review target fixes or introduces a repeated validation/error pattern.`
 - Prompt: `Review this repeated bug pattern and inventory same-class producers before accepting an instance-only fix.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when a fixture with a repeated same-class bug pattern is missing from the environment.
 - Expected signals: Step 1: sibling pattern inventory exists; Step 2: report assigns findingClass; Step 3: instance-only opt-out has proof if used
 - Desired user-visible outcome: a finding-class disposition table that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if finding class follows assets/fix-completeness-checklist.md classification and SKILL.md instance-only opt-out; FAIL if no scopeProof is provided

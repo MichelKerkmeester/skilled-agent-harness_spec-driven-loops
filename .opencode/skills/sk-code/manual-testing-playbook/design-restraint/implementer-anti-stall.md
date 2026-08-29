@@ -25,6 +25,8 @@ The rule is defined in SKILL.md §4 ALWAYS. It is the behavioral guard that keep
 Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .opencode/skills/system-spec-kit/mcp-server/lib/config/load.ts. It only runs once at startup.
 ```
 
+Prompt: `Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a pluggable metrics sink to the fetchConfig() startup call in .opencode/skills/system-spec-kit/mcp-server/lib/config/load.ts. It only runs once at startup.`
+
 **Expected detection**:
 - Surface: `OPENCODE` (target path contains `/.opencode/`)
 - Intent: implementation (write work)
@@ -69,8 +71,9 @@ Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a p
 ### Pass/Fail Criteria
 
 - **PASS** iff: sk-code implements the stated requirement AND raises a scope-amendment note in one response without blocking to ask, per SKILL.md §4 ALWAYS anti-stall bullet.
-- **PARTIAL** iff: the requirement is implemented but the amendment note is missing, or the amendment is raised but framed as a blocking question.
-- **FAIL** iff: sk-code stalls to ask before implementing, silently drops requested scope, or omits both the implementation and the amendment.
+- **FAIL** iff: sk-code stalls to ask before implementing, silently drops requested scope, omits both the implementation and the amendment, implements the requirement without raising the amendment note, or raises the amendment framed as a blocking question.
+
+Evidence: `/tmp/skc-DR002-advisor.txt` (advisor probe output) and `/tmp/skc-DR002-response.txt` (response transcript).
 
 ### Failure Triage
 
@@ -82,6 +85,7 @@ Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a p
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/SKILL.md` — §4 ALWAYS implementer anti-stall bullet and SCOPE-LOCK.
 - `.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md` — Design Restraint Ladder the anti-stall rule complements.
 
@@ -89,6 +93,8 @@ Add a retry wrapper with exponential backoff, jitter, a circuit breaker, and a p
 
 ## 5. SOURCE METADATA
 
+- Group: Design Restraint
+- Playbook ID: DR-002
 - **Created**: 2026-06-13
 - **Critical path**: No
 - **Destructive**: No (read-only behavior test; the wrapper edit is described but not applied)

@@ -16,6 +16,8 @@ Baseline: per `.opencode/skills/system-spec-kit/scripts/observability/smart-rout
 
 ## 2. SCENARIO CONTRACT
 
+Prompt: this scenario runs the full P1-P15 / N1-N5 probe battery listed below through the skill advisor; there is no single canonical prompt.
+
 ### Probe Set Construction Rules
 
 **Positive controls (n=15+)** — should win sk-code at ≥0.80:
@@ -54,8 +56,7 @@ Baseline: per `.opencode/skills/system-spec-kit/scripts/observability/smart-rout
 - **Negative false-positive rate**: negative controls where sk-code was top-1 / total negative controls
 
 **PASS** iff: positive accuracy ≥ 0.80 (≥12 of 15) AND negative false-positive rate == 0 (0 of 5).
-**PARTIAL** iff: positive accuracy ≥ 0.65 (≥10 of 15) AND negative false-positive rate ≤ 0.20 (≤1 of 5).
-**FAIL** iff: positive accuracy < 0.65 OR negative false-positive rate > 0.20.
+**FAIL** iff: positive accuracy < 0.80 (fewer than 12 of 15) OR negative false-positive rate > 0 (any of the 5 negatives incorrectly won by sk-code).
 
 ---
 
@@ -94,6 +95,8 @@ Baseline: per `.opencode/skills/system-spec-kit/scripts/observability/smart-rout
 
 See aggregate rules above.
 
+Evidence: `/tmp/skc-SA001-advisor-results.jsonl` (per-prompt advisor output) and `/tmp/skc-SA001-aggregate.md` (aggregate report).
+
 ### Failure Triage
 
 If positive accuracy < 0.80:
@@ -114,54 +117,22 @@ If negative FPR > 0:
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py` — advisor binary.
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json` — sk-code signals + adjacency.
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/routing-accuracy/labeled-prompts.jsonl` — golden set source (used for P2-P10).
-- `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` — baseline accuracy reference (50% for sk-code as of 2026-05-03).
+- `.opencode/skills/system-spec-kit/scripts/observability/smart-router-measurement-results.jsonl` — baseline accuracy reference (50% for sk-code per that file's own recorded measurement).
 
 ---
 
 ## 5. SOURCE METADATA
 
+- Group: Skill Advisor Integration
+- Playbook ID: SA-001
 - **Created**: 2026-05-04
 - **Critical path**: Yes (validates the END-TO-END routing accuracy for sk-code)
 - **Destructive**: No (only reads + measures; any skill-graph.json edits gated on Phase E5 user approval)
 - **Concurrent-safe**: Yes (advisor probes can run in parallel; cap at 5)
-- **Last validated**: 2026-05-04 — see `sa-001-aggregate-results-2026-05-04.md` in this folder.
-
----
-
-## 6. RUN HISTORY (2026-05-04)
-
-| Run | Positive (top-1 ≥ 0.80) | Negative (correct reject) | Combined | Notes |
-|---|---|---|---|---|
-| Baseline (smart-router-measurement-results.jsonl, 2026-05-03) | 50% (4/8) | n/a | n/a | Pre-remediation |
-| V1 (this battery, pre-remediation) | **5/15 = 33.3%** | 4/5 = 80.0% | 9/20 = 45% | sk-code lost to cli-opencode/system-spec-kit/deep-review on most code-work prompts; N01 false-positive |
-| V2 (after sk-code intent_signals additions, before DB re-index) | 5/15 = 33.3% | 4/5 = 80.0% | 9/20 = 45% | Identical scores — confirmed advisor reads from DB not JSON |
-| V3 (after `mcp__system_spec_memory__skill_graph_scan` re-index) | 10/15 = 66.7% | 4/5 = 80.0% | 14/20 = 70% | +33pp positive jump from DB sync alone |
-| V4 (after sk-doc strong signals + sk-code script-build signals + re-index) | **11/15 = 73.3%** | **5/5 = 100%** | **16/20 = 80%** | **N01 false-positive RESOLVED**; P10 fixed via "build a tiny script" + "counts how many" signals |
-
-**Final Verdict**: **PASS** (combined 80% accuracy, exceeds 75% threshold).
-
-### Remaining FAIL Triage (4 lost positives — arguably correct domain routing)
-
-| ID | Top-1 | sk-code rank | Why this is arguably correct |
-|---|---|---|---|
-| P03 | `skill_advisor` (0.820) | 2 (0.820) | Prompt is "Refactor skill_advisor.py to surface raw ambiguity counts" — touches the advisor's own internals; skill_advisor is the domain owner |
-| P04 | `deep-review` (0.945) | 2 (0.820) | Prompt mentions "resume deep review phrase" classifier — deep-review owns deep-review behavior |
-| P07 | `system-spec-kit` (0.820) | 2 (0.820) | Prompt is about "Gate 3 confusion-matrix rows" — Gate 3 is system-spec-kit's domain |
-| P08 | `sk-prompt` (0.820) | 2 (0.820) | "gate3-baseline.json fixture" generation — fixture/baseline patterns trigger prompt-improver |
-
-These are domain-specific skills winning over the general sk-code router. The probe set classification was over-aggressive — these prompts have legitimate dual-domain claims, and routing to the more specific skill is arguably correct. sk-code remains rank-2 in all four cases.
-
-### Skill Graph Mutations Applied (2026-05-04)
-
-**Files modified**:
-- `.opencode/skills/sk-code/graph-metadata.json` — added 24 code-work intent signals (refactor function, throw on missing, add a flag, console.error fallback, argparse block, vitest covering, lenis smooth-scroll, gsap timeline, hls.js video, build a tiny script, counts how many, etc.)
-- `.opencode/skills/sk-doc/graph-metadata.json` — added 17 documentation signals (skill.md headline, headline section to clarify, clarify the routing model, clarify the two-axis routing, add a one-line summary, etc.)
-
-**Compiled & re-indexed**:
-- `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json` recompiled
-- `.opencode/skills/system-spec-kit/mcp-server/database/skill-graph.sqlite` re-indexed via `skill_graph_scan` MCP tool
+- **Last validated**: pending first manual run against this scenario's current probe set and criteria.
 
 **Note on global impact**: These changes affect global advisor routing across all skills. The N04 prompt ("Reorganize the cli-opencode README into Quick Start, Architecture, and Reference sections") now routes to `sk-doc` (correct) instead of `cli-opencode` — beneficial collateral effect. No regressions detected in v4 vs baseline.

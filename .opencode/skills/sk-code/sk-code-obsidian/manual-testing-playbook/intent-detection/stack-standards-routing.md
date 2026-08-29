@@ -77,7 +77,7 @@ What does manifest.json's isDesktopOnly setting actually constrain, and which Wo
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/stack-standards-routing.md`
+1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/stack-standards-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"STACK_STANDARDS":/,/\],/p'`
 3. `for p in references/obsidian-plugin-api.md references/stylesheet-ownership.md references/db-class-naming.md references/screenshot-harness.md references/standards/platform-support.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
@@ -117,20 +117,20 @@ Command transcript from steps 1-3; the resolved frontmatter block; the
 
 | File | Role |
 |---|---|
-| `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `../manual-testing-playbook.md` | Root directory page and scenario summary |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| [SKILL.md](../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../SKILL.md) §1 | The `OBSIDIAN` surface-detection markers (`manifest.json`, `esbuild.config.mjs`, `from "obsidian"`) this scenario assumes |
+| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §1 | The `OBSIDIAN` surface-detection markers (`manifest.json`, `esbuild.config.mjs`, `from "obsidian"`) this scenario assumes |
 
 ---
 
 ## 5. SOURCE METADATA
 
-- Group: code-obsidian routing
+- Group: Intent Detection
 - Playbook ID: OB-007
-- Canonical root source: [manual-testing-playbook.md](manual-testing-playbook.md)
-- Feature file path: `stack-standards-routing.md`
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `intent-detection/stack-standards-routing.md`

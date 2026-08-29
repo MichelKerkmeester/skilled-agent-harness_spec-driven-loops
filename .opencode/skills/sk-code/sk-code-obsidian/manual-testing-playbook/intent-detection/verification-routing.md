@@ -77,7 +77,7 @@ Prove this change is safe to merge — run tsc, build, vitest, and screenshots:v
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/verification-routing.md`
+1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/verification-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"VERIFICATION":/,/\],/p'`
 3. `for p in references/verification.md assets/verification-checklist.md references/screenshot-harness.md references/workflow-verify.md references/release/release-verification.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
@@ -117,20 +117,20 @@ excerpt.
 
 | File | Role |
 |---|---|
-| `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `../manual-testing-playbook.md` | Root directory page and scenario summary |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| [SKILL.md](../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../SKILL.md) §3 | The measured gate baseline (`vitest` 386/49, `screenshots:verify` 180, `lint` 115) this scenario's prompt cites |
+| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §3 | The measured gate baseline (`vitest` 386/49, `screenshots:verify` 180, `lint` 115) this scenario's prompt cites |
 
 ---
 
 ## 5. SOURCE METADATA
 
-- Group: code-obsidian routing
+- Group: Intent Detection
 - Playbook ID: OB-006
-- Canonical root source: [manual-testing-playbook.md](manual-testing-playbook.md)
-- Feature file path: `verification-routing.md`
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `intent-detection/verification-routing.md`

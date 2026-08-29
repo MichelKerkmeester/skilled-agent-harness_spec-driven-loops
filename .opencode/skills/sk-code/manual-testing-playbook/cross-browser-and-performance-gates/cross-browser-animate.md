@@ -56,12 +56,11 @@ Test the Motion dropdown and slider in Chrome, Safari, and Firefox; return per-b
 
 - One transcript per browser.
 - One video per browser.
-- Aggregate matrix with PASS/PARTIAL/FAIL for each browser and one aggregate verdict.
+- Aggregate matrix with PASS/FAIL for each browser and one aggregate verdict.
 
 ### Pass / Fail
 
-- **Pass**: all three browsers pass the dropdown, slider, and console checks.
-- **Partial**: a non-blocking visual quirk is documented but final state and interaction remain correct.
+- **Pass**: all three browsers pass the dropdown, slider, and console checks; a non-blocking visual quirk may be documented as long as final state and interaction remain correct.
 - **Fail**: any browser has broken final state, blocked interaction, or uncaught Motion runtime error.
 
 ### Failure Triage

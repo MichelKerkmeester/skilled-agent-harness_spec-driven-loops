@@ -25,6 +25,8 @@ The disambiguation question MUST ask for:
 Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header.
 ```
 
+Prompt: `Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return it in the X-Request-ID response header.`
+
 **Expected detection**:
 - Surface: `UNKNOWN` (no WEBFLOW or OPENCODE markers; `cmd/api/main.go` is not a recognized marker path; `.go` extension is not in OPENCODE sub-language tables).
 
@@ -74,9 +76,10 @@ Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return i
 
 ### Pass/Fail Criteria
 
-- **PASS** iff: surface == UNKNOWN AND AI explicitly asks for runtime AND verification commands AND no surface-specific refs loaded AND no `@code` dispatch.
-- **PARTIAL** iff: surface == UNKNOWN AND AI asks for clarification but only partially (e.g. asks for runtime but not verification commands).
-- **FAIL** iff: surface != UNKNOWN, OR AI silently proceeds with the edit, OR `@code` is dispatched, OR any surface-specific ref is loaded.
+- **PASS** iff: surface == UNKNOWN AND AI explicitly asks for BOTH runtime AND verification commands AND no surface-specific refs loaded AND no `@code` dispatch.
+- **FAIL** iff: surface != UNKNOWN, OR AI silently proceeds with the edit, OR `@code` is dispatched, OR any surface-specific ref is loaded, OR the AI asks for only one of runtime/verification instead of both.
+
+Evidence: `/tmp/skc-SD003-response.txt` (surface decision, AI disambiguation response, loaded-refs list).
 
 ### Failure Triage
 
@@ -88,6 +91,7 @@ Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return i
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/SKILL.md` — Multi-Repository Architecture table with "Unsupported / Unknown" row.
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` — Marker definitions (none should match Go).
 - `AGENTS.md` (project root) — Multi-Repository Architecture table cross-reference.
@@ -96,6 +100,8 @@ Add a request-ID middleware to my Go HTTP server in cmd/api/main.go and return i
 
 ## 5. SOURCE METADATA
 
+- Group: Surface Detection
+- Playbook ID: SD-003
 - **Created**: 2026-05-04
 - **Critical path**: Yes
 - **Destructive**: No (the AI MUST NOT edit anything — this scenario tests refusal-to-proceed)

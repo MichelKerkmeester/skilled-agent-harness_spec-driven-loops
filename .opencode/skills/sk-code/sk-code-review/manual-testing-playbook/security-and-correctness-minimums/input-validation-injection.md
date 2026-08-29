@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-005` and confirm the
 - Objective: Confirm injection sinks trigger context-aware input/output safety review.
 - Real user request: `Review target touches validation, parsing, path, URL, or query code.`
 - Prompt: `Review this validation diff for injection risks, tracing untrusted input to SQL, command, path, SSRF, or HTML sinks.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when a fixture touching validation, parsing, path, URL, or query code is missing from the environment.
 - Expected signals: Step 1: changed files listed; Step 2: risky sinks inventoried; Step 3: report ties untrusted input to sink or clears it with evidence
 - Desired user-visible outcome: a P0/P1 risk report with triage that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if source-to-sink reasoning follows assets/security-checklist.md section 2 and every P0/P1 has file:line; FAIL if it only says validate inputs generically

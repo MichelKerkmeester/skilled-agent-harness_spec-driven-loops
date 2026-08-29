@@ -23,6 +23,8 @@ The risk this scenario guards against: sk-code's broad signal coverage ("opencod
 Update the sk-code SKILL.md headline section to clarify the two-axis routing model and add a one-line summary at the top.
 ```
 
+Prompt: `Update the sk-code SKILL.md headline section to clarify the two-axis routing model and add a one-line summary at the top.`
+
 **Why this is sk-doc, not sk-code**:
 - The action is `Update the SKILL.md headline section` — pure documentation editing.
 - The target is a `.md` file (markdown), not code.
@@ -57,11 +59,16 @@ Update the sk-code SKILL.md headline section to clarify the two-axis routing mod
 2. **Parse**: extract top-1 skill, top-1 score, top-2 skill, top-2 score, gap.
 3. **Verify**: top-1 == `sk-doc` AND sk-code is NOT in top-1.
 
+### Expected Signals
+
+Expected signals: advisor top-1 is `sk-doc` at score ≥ 0.70, with `sk-code` scoring lower.
+
 ### Pass/Fail Criteria
 
 - **PASS** iff: top-1 == sk-doc AND sk-doc score ≥ 0.70 AND sk-code score < 0.70 (or sk-code not in top-3).
-- **PARTIAL** iff: top-1 == sk-doc but sk-doc score < 0.70 (low confidence — advisor uncertain).
-- **FAIL** iff: top-1 == sk-code (false positive — sk-code captured a doc-edit prompt).
+- **FAIL** iff: top-1 == sk-code (false positive — sk-code captured a doc-edit prompt), OR top-1 == sk-doc but sk-doc score < 0.70 (low-confidence win that does not meet the threshold).
+
+Evidence: `/tmp/skc-RD002-advisor.txt` (advisor probe output: top-1 skill, top-1 score, top-2 skill, top-2 score, gap).
 
 ### Failure Triage
 
@@ -73,6 +80,7 @@ Update the sk-code SKILL.md headline section to clarify the two-axis routing mod
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/system-skill-advisor/mcp-server/scripts/skill-graph.json` — Skill signals for both sk-code and sk-doc.
 - `.opencode/skills/sk-code/SKILL.md` — sk-code routing scope.
 - `.opencode/skills/sk-doc/SKILL.md` — sk-doc routing scope (markdown specialist).
@@ -81,6 +89,8 @@ Update the sk-code SKILL.md headline section to clarify the two-axis routing mod
 
 ## 5. SOURCE METADATA
 
+- Group: Routing Disambiguation
+- Playbook ID: RD-002
 - **Created**: 2026-05-04
 - **Critical path**: Yes (validates skill advisor correctness for the most common false-positive risk)
 - **Destructive**: No

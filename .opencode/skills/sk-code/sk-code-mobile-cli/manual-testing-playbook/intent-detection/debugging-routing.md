@@ -68,7 +68,7 @@ Debug why the model-sheet accent retint leaked into the slash panel after a comp
 
 ### Commands
 
-1. `sed -n '1,12p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/debugging-routing.md`
+1. `sed -n '1,12p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/debugging-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"DEBUGGING":/,/\],/p'`
 3. `for p in references/verification.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
@@ -111,8 +111,8 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../SKILL.md) §1 | The `PI_REMOTE` surface-detection trigger this scenario assumes |
+| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §1 | The `PI_REMOTE` surface-detection trigger this scenario assumes |
 
 ---
 
@@ -120,5 +120,5 @@ excerpt.
 
 - Group: code-mobile-cli routing
 - Playbook ID: PR-004
-- Canonical root source: [manual-testing-playbook.md](manual-testing-playbook.md)
-- Feature file path: `debugging-routing.md`
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `intent-detection/debugging-routing.md`

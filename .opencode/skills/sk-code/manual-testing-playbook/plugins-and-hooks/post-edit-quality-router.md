@@ -41,6 +41,10 @@ fully silences every hook, and an edit outside the project root resolves to zero
 
 ## 2. SCENARIO CONTRACT
 
+Prompt: this scenario has no single natural-language operator prompt. The real trigger is a live `Write`
+or `Edit` tool call in Claude Code (`PostToolUse`) or a `write`/`edit`/`patch`/`multiedit`/`apply_patch`
+call in OpenCode; the exact adapter invocations exercised are the live commands in §3 TEST EXECUTION.
+
 - Preconditions:
   - `.opencode/plugins/sk-code-post-edit-quality.js` exists (OpenCode plugin adapter).
   - `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs` exists (Claude adapter).
@@ -160,7 +164,7 @@ const hooks = await MkPostEditQualityPlugin({ directory: projectDir });
 await hooks['tool.execute.before']({ tool: 'write', callID: 'live-call-1' }, { args: { filePath: editedFile } });
 await hooks['tool.execute.after']({ tool: 'write', callID: 'live-call-1' }, { title: 'write', output: '', metadata: {} });
 const output = { system: [] };
-await hooks['experimental.chat.system.transform']({}, output);
+await hooks['experimental.chat.system.transform'] ({}, output);
 console.log(JSON.stringify({ system: output.system }, null, 2));
 EOF
 node "$TMPDIR_LIVE/live-invoke.mjs"
@@ -202,9 +206,49 @@ three OpenCode plugin hooks) into a full no-op, verified live in Command 3 above
 suite (`OpenCode plugin: kill-switch env makes every hook a full no-op`,
 `Claude hook is a full no-op under its kill-switch env`).
 
+Evidence: see §6 EVIDENCE below for the full captured transcripts (unit-test tail, live Claude adapter
+stdout, kill-switch stdout, OpenCode plugin JSON output, outside-root stdout, checker-path existence
+check, and `.claude/settings.json` wiring).
+
+### Failure Triage
+
+1. If the unit-test suite is not fully green, re-run `node --test .opencode/plugins/tests/sk-code-post-edit-quality.test.cjs` and inspect the first failing assertion before touching any live invocation.
+2. If the live Claude adapter invocation (Command 2) produces no `COMMENT HYGIENE WARNING` banner, confirm the fixture file's comment still carries an `ADR-<n>`-style pointer and that `check-comment-hygiene.sh` is executable.
+3. If the kill-switch invocation (Command 3) is not empty, verify `SK_CODE_POST_EDIT_QUALITY_DISABLED=1` is exported into the same process that invokes `claude-posttooluse.cjs`, and that the adapter reads it before dispatch.
+4. If the OpenCode plugin invocation (Command 4) does not surface the buffered finding, confirm the fixture `check-comment-hygiene.sh` under the throwaway `.opencode/skills/sk-code/sk-code-quality/scripts/` path is executable and that `tool.execute.before` ran before `tool.execute.after`.
+5. If the outside-root invocation (Command 5) unexpectedly produces a finding, inspect `relativeSegments()` in `post-edit-router.cjs` for a containment regression.
+6. SKIP applies only to the real end-to-end OpenCode TUI session path (a live OpenCode runtime session is unavailable in this sandboxed evidence pass) — see §6 EVIDENCE for the named blocker and its unit-test/direct-import fallback evidence; every other path in this scenario is exercised live, not skipped.
+
 ---
 
-## 4. EVIDENCE
+## 4. SOURCE FILES
+
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- OpenCode plugin adapter: `.opencode/plugins/sk-code-post-edit-quality.js`
+- Claude PostToolUse adapter: `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs`
+- Shared runtime-neutral core: `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs`
+- Unit-test suite (38 tests): `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs`
+- Hook wiring: `.claude/settings.json` (`PostToolUse` -> matcher `Write|Edit`)
+- Checkers dispatched by the router:
+  - `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`
+  - `.opencode/skills/sk-doc/sk-create-diagram/scripts/validate-flowchart.sh`
+  - `.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh`
+  - `.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh`
+  - `.opencode/skills/system-spec-kit/scripts/rules/check-links.sh`
+  - `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Plugins And Hooks
+- Playbook ID: post-edit-quality-router
+- Canonical root source: manual-testing-playbook.md
+- Feature file path: plugins-and-hooks/post-edit-quality-router.md
+
+---
+
+## 6. EVIDENCE
 
 Unit-test suite command and real tail output:
 
@@ -235,8 +279,8 @@ export const liveSample = 1;
 
 COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.
 These references are unstable and will rot. Replace each with the durable WHY.
-Violations in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:
-  /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:1: // See ADR-042 for details
+Violations in .opencode/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:
+  .opencode/plugins/tests/.tmp-manual-scenario-live-SQocEV/edited.ts:1: // See ADR-042 for details
 See: .opencode/skills/sk-code/shared/references/universal/code-style-guide.md §4
 Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line.
 
@@ -258,7 +302,7 @@ Live OpenCode plugin module invocation (real dynamic import, real hooks, fixture
 --- live OpenCode plugin invocation (real import, real hooks, fixture checker) ---
 {
   "system": [
-    "[post-edit-quality] Advisory findings from recent edits:\n- [comment-hygiene] /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/tests/.tmp-manual-scenario-oc-0VYiTx/edited.ts: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/plugins/tests/.tmp-manual-scenario-oc-0VYiTx/edited.ts:1: fake ADR-style violation (live scenario fixture checker)"
+    "[post-edit-quality] Advisory findings from recent edits:\n- [comment-hygiene] .opencode/plugins/tests/.tmp-manual-scenario-oc-0VYiTx/edited.ts: .opencode/plugins/tests/.tmp-manual-scenario-oc-0VYiTx/edited.ts:1: fake ADR-style violation (live scenario fixture checker)"
   ]
 }
 EXIT_CODE=0
@@ -314,7 +358,7 @@ OK  .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh
 }
 ```
 
-Not exercised live (documented as SKIP, not fabricated): a real end-to-end OpenCode session
+SKIP (unavailable runtime blocker, not fabricated): a real end-to-end OpenCode session
 (`tool.execute.after` firing from an actual `write`/`edit` tool call inside a running OpenCode TUI, and
 the buffered finding actually appearing in the next model turn's system prompt) requires a live
 OpenCode runtime session, which this sandboxed evidence pass does not have. The direct-import
@@ -327,33 +371,6 @@ Working-tree note: `.opencode/plugins/sk-code-post-edit-quality.js` shows as mod
 9 insertions/9 deletions) in this repo's working tree independent of this scenario -- this scenario
 only ever used `Read` on that file and ran throwaway fixtures under `mktemp`-created, removed-after-use
 directories; it made no edits to any source file.
-
----
-
-## 5. SOURCE FILES
-
-- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
-- OpenCode plugin adapter: `.opencode/plugins/sk-code-post-edit-quality.js`
-- Claude PostToolUse adapter: `.opencode/hooks/post-edit-quality/claude/claude-posttooluse.cjs`
-- Shared runtime-neutral core: `.opencode/hooks/post-edit-quality/lib/post-edit-router.cjs`
-- Unit-test suite (38 tests): `.opencode/plugins/tests/sk-code-post-edit-quality.test.cjs`
-- Hook wiring: `.claude/settings.json` (`PostToolUse` -> matcher `Write|Edit`)
-- Checkers dispatched by the router:
-  - `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh`
-  - `.opencode/skills/sk-doc/sk-create-diagram/scripts/validate-flowchart.sh`
-  - `.opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh`
-  - `.opencode/skills/system-spec-kit/scripts/spec/check-placeholders.sh`
-  - `.opencode/skills/system-spec-kit/scripts/rules/check-links.sh`
-  - `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh`
-
----
-
-## 6. SOURCE METADATA
-
-- Group: Plugins And Hooks
-- Playbook ID: post-edit-quality-router
-- Canonical root source: manual-testing-playbook.md
-- Feature file path: plugins-and-hooks/post-edit-quality-router.md
 
 ---
 

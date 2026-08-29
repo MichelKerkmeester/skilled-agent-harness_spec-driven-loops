@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-019` and confirm the
 - Objective: Confirm local-diff review attempts structural-impact preflight and still completes with a caveat when graph readiness is stale.
 - Real user request: `Review this small local diff and tell me if anything blocks merging.`
 - Prompt: `Review this small local diff and use detect_changes for structural-impact preflight; if the graph is stale, include the caveat and continue the git-diff review.`
-- Expected execution process: Produce a small reversible local diff, run the review workflow, capture the structural-impact preflight result, force or observe a stale/blocked graph readiness path, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Produce a small reversible local diff, run the review workflow, capture the structural-impact preflight result, force or observe a stale/blocked graph readiness path, and record a PASS, FAIL, or SKIP verdict with rationale.
 - Expected signals: Step 1: unified diff captured; Step 2: `detect_changes` invoked with the unified diff; Step 3: stale or unavailable readiness becomes a "structural-impact analysis unavailable" caveat; Step 4: review still returns findings-first output from the plain git diff.
 - Desired user-visible outcome: a findings-first review report that names structural-impact readiness when available or the exact caveat when unavailable, without blocking the review.
 - Pass/fail: PASS if the structural-impact step runs and the review completes with the caveat when graph readiness is stale; FAIL if stale graph readiness aborts the review or is hidden from the report.
@@ -69,8 +69,8 @@ If the primary run passes, repeat with a fresh graph and confirm affected symbol
 |---|---|
 | `../../SKILL.md` | Routing, output contract, scope and escalation rules |
 | `../../references/review-core.md` | Severity, evidence, precedence, and finding schema |
-| `../../../../agents/review.md` | Native review workflow and structural-impact caveat behavior |
-| `../../../../agents/deep-review.md` | Iterative review workflow and structural-impact caveat behavior |
+| `../../../../../agents/review.md` | Native review workflow and structural-impact caveat behavior |
+| `../../../../../agents/deep-review.md` | Iterative review workflow and structural-impact caveat behavior |
 
 ---
 

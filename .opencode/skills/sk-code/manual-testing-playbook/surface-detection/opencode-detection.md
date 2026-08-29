@@ -25,6 +25,8 @@ Detection markers are defined verbatim in `references/stack-detection.md:39-40` 
 Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.
 ```
 
+Prompt: `Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/lanes/explicit.ts with a TypeScript console.error fallback.`
+
 **Expected detection**:
 - Surface: `OPENCODE` (target path contains `/.opencode/`)
 - Sub-language: `TYPESCRIPT` (target file extension `.ts`)
@@ -83,8 +85,9 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/l
 ### Pass/Fail Criteria
 
 - **PASS** iff: advisor wins sk-code AND surface == OPENCODE AND sub-language == TYPESCRIPT AND all 3 typescript/* refs + 2 shared/* refs loaded AND no other-surface or other-language refs loaded.
-- **PARTIAL** iff: surface + sub-language correct but quick-reference.md or one shared/* ref is missed (acceptable drift if all critical refs present).
-- **FAIL** iff: surface != OPENCODE OR sub-language != TYPESCRIPT OR any webflow/* OR python/* OR shell/* ref is loaded.
+- **FAIL** iff: surface != OPENCODE OR sub-language != TYPESCRIPT OR any webflow/* OR python/* OR shell/* ref is loaded OR any of the 3 typescript/* refs (including quick-reference.md) or 2 shared/* refs is missing.
+
+Evidence: `/tmp/skc-SD002-loaded-refs.txt` (surface, sub-language, and loaded-refs transcript).
 
 ### Failure Triage
 
@@ -97,6 +100,7 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/l
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/SKILL.md` — Smart router + sub-detection table (lines 53-90).
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` — OPENCODE marker definition (lines 39-40).
 - `.opencode/skills/sk-code/sk-code-opencode/references/typescript/` — Expected-loaded TypeScript references.
@@ -108,6 +112,8 @@ Handle empty prompts in .opencode/skills/system-spec-kit/mcp-server/lib/scorer/l
 
 ## 5. SOURCE METADATA
 
+- Group: Surface Detection
+- Playbook ID: SD-002
 - **Created**: 2026-05-04
 - **Critical path**: Yes
 - **Destructive**: No (read-only routing test; the target file edit is described but not actually applied in routing tests)

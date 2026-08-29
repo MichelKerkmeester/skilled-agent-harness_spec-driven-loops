@@ -23,6 +23,8 @@ It is a durable WHY, not a brand or tool prefix (a brand prefix reads as a peris
 Add a small in-memory rate limiter to the sk-doc local preview server at .opencode/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.
 ```
 
+Prompt: `Add a small in-memory rate limiter to the sk-doc local preview server at .opencode/skills/sk-doc/scripts/preview-server.ts. A fixed in-memory window is fine for local use, so mark the deliberate ceiling.`
+
 **Expected detection**:
 - Surface: `OPENCODE` (target path contains `/.opencode/`)
 - Intent: implementation (write work)
@@ -67,9 +69,10 @@ Add a small in-memory rate limiter to the sk-doc local preview server at .openco
 
 ### Pass/Fail Criteria
 
-- **PASS** iff: the ceiling comment follows `references/universal/code-style-guide.md` §4 (neutral WHY, not allow-listed) AND comment-hygiene exits 0 on the file.
-- **PARTIAL** iff: a ceiling comment is present and hygiene passes, but the comment omits the ceiling or the upgrade trigger.
-- **FAIL** iff: the comment brands the prefix, embeds a forbidden id, gets added to the allowed-pattern list, or fails the hygiene checker.
+- **PASS** iff: the ceiling comment follows `references/universal/code-style-guide.md` §4 (neutral WHY, not allow-listed), names the shortcut, ceiling, and upgrade trigger, AND comment-hygiene exits 0 on the file.
+- **FAIL** iff: the comment brands the prefix, embeds a forbidden id, gets added to the allowed-pattern list, fails the hygiene checker, or omits the ceiling or the upgrade trigger.
+
+Evidence: `/tmp/skc-DR003-hygiene.txt` (comment-hygiene checker output).
 
 ### Failure Triage
 
@@ -81,6 +84,7 @@ Add a small in-memory rate limiter to the sk-doc local preview server at .openco
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/shared/references/universal/code-style-guide.md` — §4 neutral `ceiling:` intentional-simplification convention.
 - `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` — Comment-hygiene checker the convention must pass without an allow-list entry.
 
@@ -88,6 +92,8 @@ Add a small in-memory rate limiter to the sk-doc local preview server at .openco
 
 ## 5. SOURCE METADATA
 
+- Group: Design Restraint
+- Playbook ID: DR-003
 - **Created**: 2026-06-13
 - **Critical path**: No
 - **Destructive**: No (writes only under `/tmp/skc-DR003-sandbox/`; production files untouched)

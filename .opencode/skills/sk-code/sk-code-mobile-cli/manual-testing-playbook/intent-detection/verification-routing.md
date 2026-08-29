@@ -70,7 +70,7 @@ Verify the token retint preserved every frozen value in both themes before the c
 
 ### Commands
 
-1. `sed -n '1,13p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/verification-routing.md`
+1. `sed -n '1,13p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/verification-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"VERIFICATION":/,/\],/p'`
 3. `for p in references/verification.md assets/ds-verification-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
@@ -114,8 +114,8 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../SKILL.md) §1 | The `PI_REMOTE` surface-detection trigger this scenario assumes |
+| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §1 | The `PI_REMOTE` surface-detection trigger this scenario assumes |
 
 ---
 
@@ -123,5 +123,5 @@ excerpt.
 
 - Group: code-mobile-cli routing
 - Playbook ID: PR-005
-- Canonical root source: [manual-testing-playbook.md](manual-testing-playbook.md)
-- Feature file path: `verification-routing.md`
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `intent-detection/verification-routing.md`

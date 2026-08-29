@@ -25,6 +25,8 @@ Detection markers are defined verbatim in `references/stack-detection.md:30-37`.
 Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObserver when the hero becomes visible.
 ```
 
+Prompt: `Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObserver when the hero becomes visible.`
+
 **Expected detection**:
 - Surface: `WEBFLOW`
 - Triggering markers: `src/2_javascript/` (path marker) AND `Lenis` (library marker) → either alone is sufficient per `code_surface_detection.md:30-37`.
@@ -88,10 +90,11 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
   - sk-code reports surface == WEBFLOW.
   - Loaded references include at least 3 paths under `sk-code-webflow/references/implementation/`.
   - Loaded references DO NOT include any `sk-code-opencode/references/`.
-- **PARTIAL** iff:
-  - Surface correct, but the AI loads extra `universal/` resources beyond the listed expectations (acceptable drift).
+  - Extra `universal/` resource loads beyond the listed expectations are acceptable drift and do not affect the verdict.
 - **FAIL** iff:
   - Advisor loses sk-code, OR surface != WEBFLOW, OR any `sk-code-opencode/references/*` is loaded.
+
+Evidence: `/tmp/skc-SD001-loaded-refs.txt` (AI response, surface-detection log line, loaded-refs list).
 
 ### Failure Triage
 
@@ -103,6 +106,7 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/SKILL.md` — Smart router pseudocode (lines 53-68).
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` — WEBFLOW marker definitions (lines 30-37).
 - `.opencode/skills/sk-code/shared/references/smart-routing.md` — Intent → resource-loading mapping.
@@ -113,6 +117,8 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 
 ## 5. SOURCE METADATA
 
+- Group: Surface Detection
+- Playbook ID: SD-001
 - **Created**: 2026-05-04
 - **Critical path**: Yes
 - **Destructive**: No (read-only routing test)

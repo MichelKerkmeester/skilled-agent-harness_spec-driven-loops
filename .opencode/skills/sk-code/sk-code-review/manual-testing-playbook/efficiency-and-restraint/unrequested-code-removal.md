@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-021` and confirm the
 - Objective: Confirm the reviewer recommends removal with a Replacement entry for code tracing to no requirement, defaulting P2 and escalating P1 only on added risk.
 - Real user request: `Review target adds a feature, parameter, or branch that nothing in the stated scope asked for.`
 - Prompt: `Review this diff for code that traces to no stated requirement, and recommend removal with a Replacement entry when nothing in scope asked for it.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when a fixture with an unrequested feature, parameter, or branch addition is missing from the environment.
 - Expected signals: Step 1: diff and stated scope captured; Step 2: unrequested code flagged with a removal recommendation and a Replacement entry; Step 3: finding defaults P2, escalates P1 only on added attack surface, contract, or regression risk.
 - Desired user-visible outcome: a removal recommendation a maintainer can act on, naming what replaces the deleted code and why nothing in scope needs it.
 - Pass/fail: PASS if unrequested code earns a removal recommendation per assets/code-quality-checklist.md section 7 with a Replacement per assets/removal-plan.md section 2; FAIL if it gets only a simplification note or is ignored.

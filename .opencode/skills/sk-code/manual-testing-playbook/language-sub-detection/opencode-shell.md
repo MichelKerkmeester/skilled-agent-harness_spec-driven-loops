@@ -21,6 +21,8 @@ Verify language sub-detection for `.sh` / `.bash` files within OPENCODE. Shell r
 Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spec/validate.sh to clean up the temp dir on exit.
 ```
 
+Prompt: `Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spec/validate.sh to clean up the temp dir on exit.`
+
 **Expected detection**:
 - Surface: `OPENCODE`
 - Sub-language: `SHELL` (target `.sh`, signals: `set -euo pipefail`, `trap`)
@@ -51,10 +53,16 @@ Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spe
 2. Capture loaded refs to `/tmp/skc-LS003-loaded-refs.txt`.
 3. Verify: 3 shell/* + 2 shared/* refs loaded; 0 typescript/python/config refs.
 
+### Expected Signals
+
+Expected signals: exactly 3 `shell/*` refs plus 2 `shared/*` refs load, and 0 typescript/python/config refs load.
+
 ### Pass/Fail Criteria
 
 - **PASS** iff: 3 shell/* refs + 2 shared/* refs loaded AND 0 other-sub-language refs.
 - **FAIL** iff: any typescript/python/config ref leaks.
+
+Evidence: `/tmp/skc-LS003-loaded-refs.txt` (loaded-refs transcript).
 
 ### Failure Triage
 
@@ -65,6 +73,7 @@ Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spe
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
 - `.opencode/skills/sk-code/sk-code-opencode/references/shell/{style_guide,quality_standards,quick_reference}.md`.
 
@@ -72,6 +81,8 @@ Add set -euo pipefail and a trap to .opencode/skills/system-spec-kit/scripts/spe
 
 ## 5. SOURCE METADATA
 
+- Group: Language Sub-Detection
+- Playbook ID: LS-003
 - **Created**: 2026-05-04
 - **Critical path**: No
 - **Destructive**: No

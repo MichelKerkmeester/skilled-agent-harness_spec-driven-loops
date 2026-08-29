@@ -77,7 +77,7 @@ Does tools/screenshots/scenarios/ owe a README.md and CODE.md pair under the fol
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/folder-docs-routing.md`
+1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/folder-docs-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"CODE_QUALITY":/,/\],/p'`
 3. `for p in references/folder-docs.md assets/folder-docs-checklist.md references/comment-grammar.md assets/comment-banner-checklist.md references/standards/code-standards.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
@@ -115,20 +115,20 @@ excerpt.
 
 | File | Role |
 |---|---|
-| `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `../manual-testing-playbook.md` | Root directory page and scenario summary |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| [SKILL.md](../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../SKILL.md) §3b | The measured folder-doc obligation list this scenario's prompt checks against |
+| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §3b | The measured folder-doc obligation list this scenario's prompt checks against |
 
 ---
 
 ## 5. SOURCE METADATA
 
-- Group: code-obsidian routing
+- Group: Intent Detection
 - Playbook ID: OB-004
-- Canonical root source: [manual-testing-playbook.md](manual-testing-playbook.md)
-- Feature file path: `folder-docs-routing.md`
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `intent-detection/folder-docs-routing.md`

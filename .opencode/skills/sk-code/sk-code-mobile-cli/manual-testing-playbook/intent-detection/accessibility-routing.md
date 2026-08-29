@@ -70,7 +70,7 @@ Confirm the retint keeps WCAG AA contrast in both themes and doesn't rely on cla
 
 ### Commands
 
-1. `sed -n '1,12p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/accessibility-routing.md`
+1. `sed -n '1,12p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/accessibility-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"ACCESSIBILITY":/,/\],/p'`
 3. `for p in references/editability-guardrails.md references/verification.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
@@ -114,8 +114,8 @@ excerpt.
 
 | File | Role |
 |---|---|
-| [SKILL.md](../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../SKILL.md) §3 | The WCAG AA / clay-not-sole-signal standard this answer must hold |
+| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §3 | The WCAG AA / clay-not-sole-signal standard this answer must hold |
 
 ---
 
@@ -123,5 +123,5 @@ excerpt.
 
 - Group: code-mobile-cli routing
 - Playbook ID: PR-007
-- Canonical root source: [manual-testing-playbook.md](manual-testing-playbook.md)
-- Feature file path: `accessibility-routing.md`
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `intent-detection/accessibility-routing.md`

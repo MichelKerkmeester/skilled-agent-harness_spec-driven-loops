@@ -74,7 +74,7 @@ Add a screenshot scenario for FormulaModal.ts — it's one of the seventeen moda
 
 ### Commands
 
-1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/modal-screenshot-routing.md`
+1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/modal-screenshot-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"IMPLEMENTATION":/,/\],/p'`
 3. `for p in references/view-renderer-architecture.md references/screenshot-harness.md assets/fixture-authoring-checklist.md assets/screenshot-coverage-checklist.md assets/modal-coverage-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
@@ -112,20 +112,20 @@ excerpt.
 
 | File | Role |
 |---|---|
-| `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `../manual-testing-playbook.md` | Root directory page and scenario summary |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| [SKILL.md](../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../SKILL.md) §5 (ESCALATE IF) | The rule this scenario's prompt satisfies: a `src/views/modals/` change ships with a new scenario in the same change |
+| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §5 (ESCALATE IF) | The rule this scenario's prompt satisfies: a `src/views/modals/` change ships with a new scenario in the same change |
 
 ---
 
 ## 5. SOURCE METADATA
 
-- Group: code-obsidian routing
+- Group: Intent Detection
 - Playbook ID: OB-002
-- Canonical root source: [manual-testing-playbook.md](manual-testing-playbook.md)
-- Feature file path: `modal-screenshot-routing.md`
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `intent-detection/modal-screenshot-routing.md`

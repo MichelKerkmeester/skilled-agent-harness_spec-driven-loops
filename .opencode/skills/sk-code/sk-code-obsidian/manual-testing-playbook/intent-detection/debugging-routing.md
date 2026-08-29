@@ -75,7 +75,7 @@ Debug why the calendar renderer draws outside its frame on mobile — it looks f
 
 ### Commands
 
-1. `sed -n '1,16p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/debugging-routing.md`
+1. `sed -n '1,16p' .opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook/intent-detection/debugging-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-obsidian/SKILL.md | sed -n '/"DEBUGGING":/,/\],/p'`
 3. `for p in references/mobile-and-touch.md references/view-renderer-architecture.md references/verification.md references/workflow-debug.md; do test -e ".opencode/skills/sk-code/sk-code-obsidian/$p" && echo "OK $p" || echo "MISS $p"; done`
 
@@ -114,20 +114,20 @@ excerpt.
 
 | File | Role |
 |---|---|
-| `manual-testing-playbook.md` | Root directory page and scenario summary |
+| `../manual-testing-playbook.md` | Root directory page and scenario summary |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| [SKILL.md](../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
-| [SKILL.md](../SKILL.md) §1 | The `OBSIDIAN` surface-detection trigger this scenario assumes |
+| [SKILL.md](../../SKILL.md) §2b | `INTENT_SIGNALS` and `RESOURCE_MAP` this scenario exercises |
+| [SKILL.md](../../SKILL.md) §1 | The `OBSIDIAN` surface-detection trigger this scenario assumes |
 
 ---
 
 ## 5. SOURCE METADATA
 
-- Group: code-obsidian routing
+- Group: Intent Detection
 - Playbook ID: OB-005
-- Canonical root source: [manual-testing-playbook.md](manual-testing-playbook.md)
-- Feature file path: `debugging-routing.md`
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `intent-detection/debugging-routing.md`

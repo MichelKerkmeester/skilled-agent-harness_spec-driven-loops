@@ -52,16 +52,41 @@ For a hover state on cards, should I use motion.dev or plain CSS? I need the rou
 
 ## 3. TEST EXECUTION
 
-Run this scenario through the cross-CLI universal prompt using `SCENARIO_ID=CS-004`. The expected answer may recommend CSS for simple hover and Motion.dev for timeline, gesture, or runtime-controlled cases, but the matrix must be loaded.
+### Prompt
 
-Evidence files:
-- `/tmp/skc-CS-004-<cli>.txt`
-- `<spec-folder><cli>.yaml`
+- Prompt: `For a hover state on cards, should I use motion.dev or plain CSS? I need the routing decision and the references you would load, not an implementation.`
+
+### Commands
+
+1. Dispatch the exact prompt through the cross-CLI universal-prompt harness with `SCENARIO_ID=CS-004` on each configured CLI runtime.
+2. Capture the raw transcript per runtime to `/tmp/skc-CS-004-<cli>.txt`.
+3. Capture the structured routing result (surface, references, assets, agent dispatch) per runtime to `results/CS-004-<cli>.yaml`.
+4. Diff each `results/CS-004-<cli>.yaml` against the reference/asset set declared in §2 SCENARIO CONTRACT.
+
+### Expected
+
+Expected signals: the structured result in `results/CS-004-<cli>.yaml` reports surface `UNKNOWN` and the reference/asset set declared in §2 SCENARIO CONTRACT, with no agent dispatched.
+
+### Evidence
+
+Evidence: `/tmp/skc-CS-004-<cli>.txt` (raw per-runtime transcript) and `results/CS-004-<cli>.yaml` (structured routing result) for each configured CLI runtime.
+
+### Pass / Fail
+
+- **Pass**: the AI lists `sk-code-webflow/references/animation/decision-matrix.md`, keeps surface as `UNKNOWN` or `N/A`, and its user response compares CSS and Motion.dev with conditions.
+- **Fail**: `decision-matrix.md` is omitted, the AI invents a surface, or it gives an implementation-only answer.
+
+### Failure Triage
+
+1. If no decision matrix loads, inspect `CODE_QUALITY / DECISION` in `references/smart-routing.md`.
+2. If `WEBFLOW` is selected, verify the prompt contains no Webflow path, vendor global, or `wrangler.toml`.
+3. If the response is one-sided, compare it against `sk-code-webflow/references/animation/decision-matrix.md`.
 
 ---
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` - Root directory page and scenario summary.
 - `.opencode/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md` - Required decision reference.
 - `.opencode/skills/sk-code/sk-code-webflow/references/animation/performance-and-pitfalls.md` - Performance and reduced-motion caveats.
 - `.opencode/skills/sk-code/sk-code-webflow/assets/animation/snippets/hover-gesture.js` - Hover example when Motion.dev is justified.
@@ -70,9 +95,11 @@ Evidence files:
 
 ## 5. SOURCE METADATA
 
-- **Created**: 2026-05-05
-- **Critical path**: No
-- **Destructive**: No
-- **Sandbox**: read-only routing analysis
-- **Concurrent-safe**: Yes
-- **Last validated**: pending Phase D matrix
+- Group: Cross-Stack Routing
+- Playbook ID: CS-004
+- Created: 2026-05-05
+- Critical path: No
+- Destructive: No
+- Sandbox: read-only routing analysis
+- Concurrent-safe: Yes
+- Last validated: pending Phase D matrix
