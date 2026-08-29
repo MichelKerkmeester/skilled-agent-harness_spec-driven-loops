@@ -67,6 +67,7 @@ contextType: "implementation"
 - [x] T020 Re-run the workspace gate and compare against the baseline — evidence: `node .opencode/scripts/run-node-tests.mjs` reported 75 files, 753 pass, 15 fail; the pass count rises by exactly the 6 tests this phase adds and the 15 failures are the same suite `.opencode/bin/tests/compiled-route-manifest.test.cjs` recorded in T002
 - [x] T021 Confirm the launcher still starts the server — evidence: an initialize request through `node .opencode/bin/mcp-code-mode-launcher.cjs` returned `serverInfo {"name":"CodeMode-MCP","version":"1.0.0"}`
 - [x] T022 Remove every scratch artifact created for these runs — evidence: the scratch project, scratch home and planted interpreter trees are deleted, and `git status` for the packet paths lists only intended files
+- [x] T023 Keep the packet's suites from failing a checkout that has not installed the server (`.opencode/bin/lib/node-engine-resolver.test.cjs`, `.opencode/bin/mcp-code-mode-launcher.test.cjs`) — evidence: `.opencode/.gitignore:2` ignores `package.json`, so the server manifest is untracked; on a clean worktree the resolver suite threw `ENOENT` on the manifest and 3 of 4 launcher tests failed, and both suites now skip those cases with a stated reason while still running 18 pass 0 skipped where the server is installed
 <!-- /ANCHOR:phase-3 -->
 
 ---

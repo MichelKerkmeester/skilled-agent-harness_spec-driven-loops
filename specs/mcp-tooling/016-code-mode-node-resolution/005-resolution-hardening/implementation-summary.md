@@ -9,7 +9,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/016-code-mode-node-resolution/005-resolution-hardening"
-    last_updated_at: "2026-08-29T10:00:00Z"
+    last_updated_at: "2026-08-29T10:18:53Z"
     last_updated_by: "session"
     recent_action: "Closed the review findings and reconciled the packet records"
     next_safe_action: "None; the packet is complete"
@@ -111,6 +111,7 @@ The gate was measured before any edit for the same reason. Fifteen failures were
 | Launcher existence, diagnosis | `[PASS] launcher present`, `[FAIL] launcher missing` |
 | Sweeper classification | `mcp-code-mode-launcher` for the launcher, `mcp-code-mode` still returned for the server |
 | Live launcher handshake | `serverInfo {"name":"CodeMode-MCP","version":"1.0.0"}` |
+| Suites on a checkout without the installed server | The manifest-dependent cases skip with a stated reason; where the server is installed all 18 still run, 0 skipped |
 | Operator's live servers | Four long-running code_mode processes unchanged throughout |
 | Comment hygiene | No spec paths or artifact ids in any changed file |
 
@@ -127,6 +128,7 @@ Worth reading twice: the installer's refusal was produced by accident. A scratch
 - The probe reports what an interpreter says about itself. A binary named `node` that answers `-v` with a version string is believed, so the ladder's last rung trusts the same thing the launch would.
 - The version read from a candidate's own path is trusted over the interpreter's own answer, because it is cheaper and correct for every version manager. A directory deliberately named for a version it does not contain would be believed.
 - The installer reports completion even when its verification step fails, printing a warning and exiting zero. That behavior predates this phase and is unchanged here, so a missing launcher is reported but does not fail the install.
+- The declared range lives in a file git does not track: `.opencode/.gitignore` ignores `package.json`, so the server manifest exists only where the server has been installed. Every surface fails closed without it - the resolver reports a missing manifest, the launcher refuses, and the diagnosis and installer both report the gap - and the manifest arrives with the server install the installer already verifies. The packet's suites now skip rather than fail on such a checkout, but the source of truth remaining untracked is a property of the vendoring, not something this phase changed.
 - The probe cap bounds one enumeration, not one process. A caller that resolves repeatedly pays the cap each time, since the budget is created per enumeration rather than cached across calls.
 <!-- /ANCHOR:limitations -->
 

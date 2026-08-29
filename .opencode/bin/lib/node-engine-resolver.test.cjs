@@ -88,6 +88,13 @@ function formatVersion(version) {
   return `${version.major}.${version.minor}.${version.patch}`;
 }
 
+// The server manifest is untracked, so a checkout that has not installed the
+// server does not carry it. Skipping with the reason keeps that state legible
+// instead of failing the workspace gate on a clean clone.
+const SERVER_MANIFEST_SKIP = fs.existsSync(SERVER_MANIFEST_PATH)
+  ? false
+  : 'the vendored server manifest is absent from this checkout';
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. RANGE CONTRACT TESTS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -301,7 +308,9 @@ describe('node engine resolution', () => {
 
   // Asserted as a property of the answer rather than as one machine's path, so
   // the suite travels to a host with a different interpreter layout.
-  test('resolves the real host to an interpreter satisfying the declared range', () => {
+  test('resolves the real host to an interpreter satisfying the declared range', {
+    skip: SERVER_MANIFEST_SKIP,
+  }, () => {
     const declaredRange = JSON.parse(
       fs.readFileSync(SERVER_MANIFEST_PATH, 'utf8'),
     ).engines.node;
