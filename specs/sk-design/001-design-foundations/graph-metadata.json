@@ -41,19 +41,12 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/sk-design/design-foundations/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-foundations/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "The shipped foundations mode defines the static visual system for the sk-design family, but its packet was absent from git and memory",
     "created_at": "2026-07-16T08:42:11.070Z",
-    "last_save_at": "2026-07-16T08:42:11.070Z",
+    "last_save_at": "2026-08-28T22:11:39.623Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

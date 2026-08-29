@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/037-llama-cpp-embedding-worker-deep-dive` |
+| **Spec Folder** | 037-llama-cpp-embedding-worker-deep-dive |
 | **Started** | 2026-05-14 |
 | **Completed** | _pending Phase 5_ |
 | **Level** | 2 |

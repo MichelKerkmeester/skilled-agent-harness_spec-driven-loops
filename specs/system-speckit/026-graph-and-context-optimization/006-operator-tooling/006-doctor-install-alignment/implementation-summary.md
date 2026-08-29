@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `skilled-agent-orchestration/131-doctor-install-alignment` |
+| **Spec Folder** | 006-doctor-install-alignment |
 | **Completed** | 2026-06-02 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

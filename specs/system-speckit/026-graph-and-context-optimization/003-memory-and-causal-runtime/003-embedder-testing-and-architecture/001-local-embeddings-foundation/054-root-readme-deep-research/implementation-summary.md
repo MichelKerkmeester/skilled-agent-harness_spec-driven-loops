@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/054-root-readme-deep-research |
+| **Spec Folder** | 054-root-readme-deep-research |
 | **Phase** | Deep-research follow-on to Phase D (055) |
 | **Completed** | 2026-05-15 |
 | **Level** | 1 |

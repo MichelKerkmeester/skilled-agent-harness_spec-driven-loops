@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The constitutional DB tier is decorative: its rules are already inlined in the root instruction files, it surfaces only when the model chooses to call `memorysearch`, and its cold-start injection is dead code",
     "created_at": "2026-08-26T05:34:11Z",
-    "last_save_at": "2026-08-26T15:20:06.101Z",
+    "last_save_at": "2026-08-29T00:57:25.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3330834bc4a2001678979f9caa53382b8803fd998a949632896ec609e4072669",
+    "source_fingerprint": "sha256:20c587143bf00494f96ecfd9981aa07512fb9fff213b297726a46c16b6264c2b",
     "source_doc_hashes": {
-      "spec.md": "15c7e1c6577e4813fdf398fd64a9a62dd3c86924b637a15d93aca37d3711d423",
-      "plan.md": "143deeb373a820a32ac07f915eebd925ebba4a75532cd9d21fee347c14d58de8",
-      "tasks.md": "eee49b638e0666d73a6582e36ac8dc464fac27073d313dfecfcd517fb68b8093",
-      "implementation-summary.md": "b84f66446240ef46ee2a2d137450776cb4907bec2f0f9c61e7b0afe60a654e15"
+      "spec.md": "1292f36c0a6ee66a13f34cda2ffa703a0d6cf4de7beab73ac901aff867fd28aa",
+      "plan.md": "6f8e6c4e6d0f66fe2476256e1e617805c62b67be1c7771f0b36a90242d7115c8",
+      "tasks.md": "3ead945c09bf7cbd9ac689f68201699f3a62b917be1f1c7b0a0bf9a098ffd85e",
+      "implementation-summary.md": "730a1e011e13a6e316dab02ef1e382f1ac84e77adf672f9d17939a46c5fbb93f"
     },
     "last_active_child_id": null,
     "last_active_at": null

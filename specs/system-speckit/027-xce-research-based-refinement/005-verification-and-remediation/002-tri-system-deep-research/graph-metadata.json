@@ -48,10 +48,7 @@
       "plan.md",
       "tasks.md",
       "research/deep-research-state.jsonl",
-      "implementation-summary.md",
-      "mcp_server/lib/storage/lineage-state.ts",
-      "mcp_server/lib/search/auto-promotion.ts",
-      "scripts/core/workflow.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -100,24 +97,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "lineage-state.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/lineage-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "auto-promotion.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/auto-promotion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "scripts/core/workflow.ts",
         "source": "derived"
       },
       {
@@ -197,11 +176,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "parseable",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 027 epic shipped twenty-four phases, a finding-remediation program, and a database recovery — but every review so far was scoped to shipped diffs",
     "created_at": "2026-06-12T04:40:47.948Z",
-    "last_save_at": "2026-07-17T17:19:45.222Z",
+    "last_save_at": "2026-08-28T23:45:59.912Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +208,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:76232ea4d7e8250ac17b212b9c6effff0ce8c57141db80eb6b7e07eb6f00aa2a",
+    "source_fingerprint": "sha256:d75f3183995bc548049061e07dea1ad0a8f46721e1181656306f3cf2a2fe1f38",
     "source_doc_hashes": {
       "spec.md": "61397f792c730502888871f6dcf5d8f464b8b01cf2e9dd995f6ca7aa5d6bbd3c",
       "plan.md": "095a12ae676197bfe51c37b5f358bdc68eff465ca28e249a13de8d1181656280",
       "tasks.md": "f66eeae4e7312818ed702a945be6b6024969b854a812db4196d6006856f8666b",
-      "implementation-summary.md": "b3eef62cacff711f9e5e1ddbadcc96e36e02e735ed072a7bc662c7a404352fd1",
+      "implementation-summary.md": "9cdcc93b942e68158303db757376a115c95ba88268c4069ec3e534a170e70507",
       "research/research.md": "45f623fb08744c3cdf4246c8fb40cc85675f695c4fc7567f127bc7823909aebc"
     },
     "last_active_child_id": null,

@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation` |
+| **Spec Folder** | 005-stability-instrumentation |
 | **Completed** | 2026-05-14 |
 | **Level** | 2 |
 | **Runtime Verification** | Deferred until Memory MCP daemon respawn |

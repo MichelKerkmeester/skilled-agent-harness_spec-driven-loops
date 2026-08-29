@@ -41,7 +41,7 @@ template_source_marker: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 002-resource-map-deep-loop-fix-creation |
+| **Spec Folder** | 002-resource-map-template-creation |
 | **Completed** | 2026-04-24 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

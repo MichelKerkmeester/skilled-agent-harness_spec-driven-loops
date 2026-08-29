@@ -41,19 +41,12 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/sk-design/design-interface/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -195,7 +188,7 @@
     ],
     "causal_summary": "The shipped interface mode defines the overall direction for distinctive UI, including visual voice, information architecture, component direction, interface-level composition, motion posture, critique, and writing",
     "created_at": "2026-07-16T09:10:47.132Z",
-    "last_save_at": "2026-07-16T09:10:47.132Z",
+    "last_save_at": "2026-08-28T22:11:41.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

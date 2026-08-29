@@ -23,5 +23,6 @@
     "026-graph-and-context-optimization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "phase"
 }

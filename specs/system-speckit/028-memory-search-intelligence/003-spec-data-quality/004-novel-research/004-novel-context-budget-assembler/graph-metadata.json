@@ -34,9 +34,6 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -44,24 +41,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-truncation.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mpab-aggregation.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/scoring/mpab-aggregation.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -187,11 +166,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The prod search path returns the post-floor result set with no density discipline",
     "created_at": "2026-06-27T17:15:38.473Z",
-    "last_save_at": "2026-07-17T17:19:51.896Z",
+    "last_save_at": "2026-08-29T00:37:30.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ac79abf631705f9f1f8e98a15a583802c9e80283676ceb4005e5259d852f64c5",
+    "source_fingerprint": "sha256:85272d3d26f6f27d5f467cce45be6b5ddccdb3dd32c6aea94377a74a10ab1440",
     "source_doc_hashes": {
       "spec.md": "48959a263d34161e906fce06bba07fe2c47e268a85a72a5b9f89198c3936ef57",
       "plan.md": "f6228c68ec8084c4b4907c524dab05ed610b32246ba95ead079099972c92d041",
       "tasks.md": "34550aff5c95cf05ca2d7c09b3acf017d5623c81eaf7b521a923b05cbbff2002",
       "checklist.md": "9c4c5285f0ef98e56509c516fb3e1c277818eab7777d1b0425559b9b48431a55",
-      "implementation-summary.md": "aeca379066787d010addf7ab2f28df28efcbada579cd91db2670e255a84b117e"
+      "implementation-summary.md": "2d96d7034bb841f268cc190b733bad0eb973b70d6488093e2f60629491e7426d"
     },
     "last_active_child_id": null,
     "last_active_at": null

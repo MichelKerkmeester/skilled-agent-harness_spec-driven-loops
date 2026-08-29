@@ -41,8 +41,6 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      ".opencode/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md",
-      ".opencode/skills/system-deep-loop/feature-catalog/feature-catalog.md",
       "checklist.md",
       "plan.md",
       "tasks.md"
@@ -52,18 +50,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-flag-governance.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature-catalog/governance/feature-flag-governance.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/feature-catalog/feature-catalog.md",
         "source": "derived"
       },
       {
@@ -191,11 +177,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Fix Completeness Ten",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "These are the catalogs an agent reads to learn what a hub does, and their leaves are indexed in the `leaf-manifest.json`",
     "created_at": "2026-07-30T19:29:14.798Z",
-    "last_save_at": "2026-07-30T19:29:14.798Z",
+    "last_save_at": "2026-08-28T22:32:34.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -46,11 +46,7 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md",
-      "lib/graph/temporal-edges.ts",
-      "lib/graph/contradiction-detection.ts",
-      "tests/flag-ceiling.vitest.ts",
-      "lib/storage/lineage-state.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -87,30 +83,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "temporal-edges.ts",
-        "kind": "code",
-        "path": "lib/graph/temporal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "contradiction-detection.ts",
-        "kind": "code",
-        "path": "lib/graph/contradiction-detection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "flag-ceiling.vitest.ts",
-        "kind": "test",
-        "path": "tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "lineage-state.ts",
-        "kind": "code",
-        "path": "lib/storage/lineage-state.ts",
         "source": "derived"
       },
       {
@@ -196,11 +168,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP already ships the machinery for bi-temporal, edge-presence currentness, but it is build-side only and unwired on the read path",
     "created_at": "2026-06-19T05:40:37.444Z",
-    "last_save_at": "2026-07-12T13:24:49.811Z",
+    "last_save_at": "2026-08-29T00:20:36.928Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d3719e99b72827629e3097aff766f7a28fd2d74d8e8b53d09b3578ea7ac1cc7",
+    "source_fingerprint": "sha256:cce8ba5064f18e6c5c3116631b87c7cfdf03ae7a05e318a5ced5ff33cf57fbf2",
     "source_doc_hashes": {
       "spec.md": "2c049a70425d6ad0af7402e228e0450a69f1d957f147f71ee9dc55ec12d8e992",
       "plan.md": "c01a91232ee00e4c623c08c666abbed5cbe0c6c9b9f59bfeb247b3693192a3e5",
       "tasks.md": "2664c7509b876a4dd942340e59905ff52e7456d84f5054c6a8cd83baf45a913b",
       "checklist.md": "c614c5210f01e418cc69c414ff1c64146b10e0564cbd50a642d993d6ec7b846c",
       "decision-record.md": "cf28145956a3ddf13e765a2ac9ebaea5e0e29492023982cccc934ea76946c86b",
-      "implementation-summary.md": "c7e8a6029c43d711dd76442a52d5e5d042544c808b4d4ebb536fda49c78b3728"
+      "implementation-summary.md": "315e5f6abd6beb03091e81f6b2b5514333fcea77f7b39fe4fdec7f81f6516346"
     },
     "last_active_child_id": null,
     "last_active_at": null

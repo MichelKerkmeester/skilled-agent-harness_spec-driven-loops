@@ -27,5 +27,6 @@
     "002-memory-store-and-search"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "phase"
 }

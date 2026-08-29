@@ -39,47 +39,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-code/code-opencode/references/rust/style_guide.md",
-      ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards.md",
-      ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference.md",
-      ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist.md",
-      ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language-standards/009-rust-standards.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "style_guide.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "quality_standards.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "rust_checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "009-rust-standards.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/manual_testing_playbook/language-standards/009-rust-standards.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -193,11 +158,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The research produced a complete Rust standard (section skeletons, consolidated rules, the four repo non-negotiables) but nothing is authored yet",
     "created_at": "2026-07-11T08:49:16.490Z",
-    "last_save_at": "2026-07-11T09:37:46.494Z",
+    "last_save_at": "2026-08-28T22:09:14.441Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

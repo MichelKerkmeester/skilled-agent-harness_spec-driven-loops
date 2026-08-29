@@ -42,5 +42,6 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "27-04-26_13-33__retroactive-phase-parent-migration-worker-2.md"
-  ]
+  ],
+  "level": "phase"
 }

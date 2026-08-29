@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 019-novel-contradiction-detection |
+| **Spec Folder** | 001-novel-contradiction-detection |
 | **Status** | PLANNED, scaffold not yet implemented |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

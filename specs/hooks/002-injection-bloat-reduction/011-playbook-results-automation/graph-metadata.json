@@ -41,16 +41,6 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
-      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
-      ".opencode/skills/sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md",
-      ".opencode/specs/sk-doc/021-benchmark-naming-and-playbook-results/implementation-summary.md",
-      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
-      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
-      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/manual-playbook-persist.test.cjs",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -58,60 +48,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "run-manual-playbook-scenario.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-manual-playbook-scenario.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "run-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "build-report.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark-storage-guide.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-benchmark/references/skill-benchmark/skill-benchmark-storage-guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook-snippet-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-snippet-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate-playbook-package.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "manual-playbook-persist.test.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/manual-playbook-persist.test.cjs",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -201,11 +137,65 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "validated",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 021 established the dated run-label grammar, automatic `benchmark/reports/` destination, seven-file output, and drift-proof index for Lane C `/deep:skill-benchmark` runs",
     "created_at": "2026-08-08T10:42:21.646Z",
-    "last_save_at": "2026-08-08T16:27:56.853Z",
+    "last_save_at": "2026-08-28T22:01:50.286Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 015-prodmode-recall-gate |
+| **Spec Folder** | 002-prodmode-recall-gate |
 | **Completed** | Not yet, status PLANNED |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

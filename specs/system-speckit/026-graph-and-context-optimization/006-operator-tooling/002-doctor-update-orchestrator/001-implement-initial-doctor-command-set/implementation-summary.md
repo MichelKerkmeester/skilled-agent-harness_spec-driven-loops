@@ -47,7 +47,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/010-doctor-update-orchestrator` |
+| **Spec Folder** | 001-implement-initial-doctor-command-set |
 | **Status** | Superseded — partial historical implementation; canonical doctor routing moved to successor packets |
 | **Level** | 2 |
 | **Phases Complete** | Phases A-E delivered; active command surface uses one interactive YAML per command per ADR-010 |

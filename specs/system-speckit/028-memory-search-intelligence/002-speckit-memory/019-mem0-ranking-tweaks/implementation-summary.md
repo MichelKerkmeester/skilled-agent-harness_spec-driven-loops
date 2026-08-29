@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 014-mem0-ranking-tweaks |
+| **Spec Folder** | 019-mem0-ranking-tweaks |
 | **Completed** | Partial implementation 2026-06-19 |
 | **Level** | 2 |
 | **Actual Effort** | 2 shipped, 1 NO-TRANSFER and 5 pending |

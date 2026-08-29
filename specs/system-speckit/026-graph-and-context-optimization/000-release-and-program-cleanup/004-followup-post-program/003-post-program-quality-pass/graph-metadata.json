@@ -50,34 +50,12 @@
       "trio"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/SKILL.md",
       "spec.md",
       "resource-map.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "ARCHITECTURE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -165,7 +143,7 @@
     ],
     "causal_summary": "Packets 031-036 shipped a wave of remediation work (5 packets implementing 013's research findings + 035's CONDITIONAL verdict + 036's CLI matrix adapters)",
     "created_at": "2026-04-29T16:30:00.000Z",
-    "last_save_at": "2026-07-17T17:19:10.730Z",
+    "last_save_at": "2026-08-28T22:52:33.754Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,7 +155,7 @@
       "spec.md": "43e8ccbbfd20c2497c11b072894742b4c53b688b8645f87cdace1945fc4c8376",
       "resource-map.md": "f69e9ed9d9655bd1de38f167ab72c5f5720ca2058ce2c10ce94266aec645627a"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh",
     "last_active_at": null
   }
 }

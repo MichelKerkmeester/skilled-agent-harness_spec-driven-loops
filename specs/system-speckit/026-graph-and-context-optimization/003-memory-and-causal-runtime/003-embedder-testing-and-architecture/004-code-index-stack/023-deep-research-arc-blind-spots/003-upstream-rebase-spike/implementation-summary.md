@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/003-upstream-rebase-spike` |
+| **Spec Folder** | 003-upstream-rebase-spike |
 | **Completed** | Implementation and validation complete on 2026-05-19; commit blocked by sandbox git metadata permissions. |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

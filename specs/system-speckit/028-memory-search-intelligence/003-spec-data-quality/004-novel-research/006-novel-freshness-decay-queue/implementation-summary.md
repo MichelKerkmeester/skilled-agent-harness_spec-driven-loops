@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 024-novel-freshness-decay-queue |
+| **Spec Folder** | 006-novel-freshness-decay-queue |
 | **Status** | PLANNED, scaffold only, not yet implemented |
 | **Completed** | Not yet, PLANNED |
 | **Level** | 2 |

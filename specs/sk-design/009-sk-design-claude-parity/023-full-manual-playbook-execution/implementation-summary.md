@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 023-full-manual-playbook-execution (Phase Parent) |
+| **Spec Folder** | 023-full-manual-playbook-execution |
 | **Completed** | 2026-07-07 |
 | **Children** | 001-010 |
 

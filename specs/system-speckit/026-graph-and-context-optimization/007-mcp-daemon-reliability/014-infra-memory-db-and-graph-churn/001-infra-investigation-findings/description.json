@@ -19,5 +19,6 @@
     "014-infra-memory-db-and-graph-churn"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

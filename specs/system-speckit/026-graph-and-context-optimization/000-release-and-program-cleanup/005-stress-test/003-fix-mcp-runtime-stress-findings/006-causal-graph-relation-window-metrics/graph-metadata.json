@@ -40,18 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts",
-      "handlers/memory-context.ts",
-      "mcp_server/handlers/causal-graph.ts",
-      "mcp_server/lib/storage/causal-edges.ts",
-      "mcp_server/handlers/save/create-record.ts",
-      "mcp_server/tests/handler-causal-graph.vitest.ts",
-      "handlers/causal-graph.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -76,48 +65,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "causal-graph.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "integration-causal-graph.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "create-record.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": "handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handler-causal-graph.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/handler-causal-graph.vitest.ts",
         "source": "derived"
       },
       {
@@ -197,11 +144,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "env",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "meetsTarget",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "005/REQ-010 captured 344 new edges in 15 minutes — 100% `supersedes`, 0% `caused`/`supports`",
     "created_at": "2026-04-27T07:56:25.231Z",
-    "last_save_at": "2026-07-17T17:19:11.661Z",
+    "last_save_at": "2026-08-28T22:53:10.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

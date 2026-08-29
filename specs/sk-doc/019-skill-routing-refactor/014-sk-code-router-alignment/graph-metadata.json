@@ -45,8 +45,6 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json",
-      ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -72,18 +70,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark-report.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark-report.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.md",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-code's routing cannot be measured on the typed-pair surface, and its committed benchmark baseline actively misleads:",
     "created_at": "2026-07-16T19:43:16.256Z",
-    "last_save_at": "2026-07-24T12:00:50.602Z",
+    "last_save_at": "2026-08-28T22:22:57.018Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:39340d765e9759cda5800e8e7395959187757db8b437781dc3f915cfed97c07a",
+    "source_fingerprint": "sha256:4468f9a3e2503ba2e063528f3f0256b7aa43b7489f411e2c7a84df2135715fbb",
     "source_doc_hashes": {
-      "spec.md": "c78cf921fe96ebf5ba98189e739671af5cec4517e3499854392a56ea87ba3f41",
+      "spec.md": "b7b4d54d14ec189ffc305b33fbe579e1056842fb25459ed66f12176cdb4cbf02",
       "plan.md": "11876e1e66eb25210a216d02e520f1f3720151510f71ee999d48ab9b78435799",
       "tasks.md": "bfcdb8c37b0c37402c2122052a726d1dc28ff3b19556e93f9412b6f01a24e6a0",
-      "checklist.md": "e78b449f742343e089fa0a5714bd990d4f2faa7906c4e8d5b286ae282b9bc8a8",
-      "implementation-summary.md": "3127490b6c28b9bdc5937285aef326612b60a31304ca2a5e6de1977731ac9d44"
+      "checklist.md": "101c174ca4f0cbaf8ee75aaee58e26f1e94a488573e8d051971cc656f78d32a0",
+      "implementation-summary.md": "5c8ec99bd98891d46e5740105370f4d708d6a1c113da52534b333693b41d4a92"
     },
     "last_active_child_id": null,
     "last_active_at": null

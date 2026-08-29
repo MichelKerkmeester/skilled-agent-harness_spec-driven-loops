@@ -44,14 +44,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/_support/token-budget-assertions.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts",
-      "mcp_server/handlers/memory-context.ts",
-      "mcp_server/tests/token-budget-enforcement.vitest.ts",
-      "mcp_server/tests/memory-context.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -76,30 +69,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "token-budget-assertions.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/_support/token-budget-assertions.ts",
-        "source": "derived"
-      },
-      {
-        "name": "token-budget-enforcement.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/token-budget-enforcement.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-context.vitest.ts",
         "source": "derived"
       },
       {
@@ -197,11 +166,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 005 post-remediation verification (2026-04-26 18:49) showed that the Cluster 1 truncation fix is NOT live in the daemon: `memorycontext({input:\"Semantic Search\"})` still returns `meta.tokenBudgetEnforcement.{enforced:true, truncated:true, returnedResultCount:3, originalResultCount:5}` while `actualTokens=65 / budgetTokens=3500` (1.9% utilization) and `data.content[0].text` still contains `{\"count\":0,\"results\":[]}`",
     "created_at": "2026-04-27T07:29:35.265Z",
-    "last_save_at": "2026-07-17T17:19:11.650Z",
+    "last_save_at": "2026-08-28T22:53:07.133Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

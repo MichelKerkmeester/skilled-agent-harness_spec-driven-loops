@@ -50,8 +50,7 @@
       "spec.md",
       "001-phase-parent-validator-docs/spec.md",
       "002-phase-parent-generator-pointer-polish/spec.md",
-      "resource-map.md",
-      "templates/README.md"
+      "resource-map.md"
     ],
     "entities": [
       {
@@ -64,12 +63,6 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "templates/README.md",
         "source": "derived"
       },
       {
@@ -147,7 +140,7 @@
     ],
     "causal_summary": "A spec folder with phase children carries duplicate state at the parent level: `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md` describe program-level intent at the time of decomposition, but the children own the real work and pivot as they execute",
     "created_at": "2026-04-27T08:55:00Z",
-    "last_save_at": "2026-07-17T17:19:09.158Z",
+    "last_save_at": "2026-08-28T22:51:32.667Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -159,7 +152,7 @@
       "spec.md": "cb3d56ed061c63c42075d4740c46348cd920e8c945ac4093227240be2dfeea00",
       "resource-map.md": "754f5e7a75c53073ba995890df6896b30f699678d8fbe75b66813c7c1a1b873b"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync",
     "last_active_at": null
   }
 }

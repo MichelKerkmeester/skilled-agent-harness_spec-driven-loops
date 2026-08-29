@@ -33,15 +33,6 @@
     "status": "in_progress",
     "key_files": [
       "research/research.md",
-      "config/config.jsonc",
-      "spec/create.sh",
-      ".opencode/plugins/mk-skill-advisor.js",
-      ".github/hooks/superset-notify.json",
-      "hooks/claude/README.md",
-      ".claude/settings.local.json",
-      ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      ".opencode/skills/sk-doc/create-command/assets/command_template.md",
-      ".claude/settings.json",
       "spec.md"
     ],
     "entities": [
@@ -49,60 +40,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.jsonc",
-        "kind": "file",
-        "path": "config/config.jsonc",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": "spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-skill-advisor.js",
-        "source": "derived"
-      },
-      {
-        "name": "superset-notify.json",
-        "kind": "config",
-        "path": ".github/hooks/superset-notify.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "hooks/claude/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "command_template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-command/assets/command_template.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".claude/settings.json",
         "source": "derived"
       },
       {
@@ -186,17 +123,17 @@
     ],
     "causal_summary": "`code-opencode` is not a generic docs packet — it is the playbook for writing and modifying code in this repository's own `.opencode/` tree: skills, agents, commands, plugins, MCP servers, hooks, and descriptor/config",
     "created_at": "2026-07-08T14:11:39.742Z",
-    "last_save_at": "2026-07-08T14:13:55.229Z",
+    "last_save_at": "2026-08-28T22:09:05.698Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5bcce1ce25e7fd2ea866ffafd2058b9915a58c329574b028d650b49ebf459e0d",
+    "source_fingerprint": "sha256:9eecd67abfdbe248c12efdb490e1e2a83b7a239990446fa7d377c97f48974fd1",
     "source_doc_hashes": {
       "spec.md": "257196f237c3e43b43fe6451bcdd3bb0deb7bdfddda6bb431f7bec94b0b438bb",
-      "research/research.md": "7bb671a39760c9680474aaba8d244d112a22a8d1024d314ec0f0685bbcc09e73"
+      "research/research.md": "affbab67f7c24e68a5a3b142cf1d872e91c6d09d0116bfc2b3508e617e1acde6"
     },
     "last_active_child_id": null,
     "last_active_at": null

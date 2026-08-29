@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 017-metadata-fusion |
+| **Spec Folder** | 004-metadata-fusion |
 | **Completed** | Not yet, status PLANNED |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

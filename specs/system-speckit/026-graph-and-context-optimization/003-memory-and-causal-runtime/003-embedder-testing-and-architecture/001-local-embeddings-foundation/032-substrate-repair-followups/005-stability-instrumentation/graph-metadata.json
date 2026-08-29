@@ -43,9 +43,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       "resource-map.md",
       "plan.md",
       "tasks.md",
@@ -54,24 +51,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "memory-crud-health.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retry-manager.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
       {
         "name": "resource-map.md",
         "kind": "doc",
@@ -197,11 +176,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Substrate flap incidents are difficult to diagnose when the only visible signal is a degraded `memoryhealth` response",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-07-17T17:19:19.794Z",
+    "last_save_at": "2026-08-28T22:58:19.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:25:36Z",
     "source_docs": [
@@ -212,13 +209,13 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:06ae29b3d9ae040a539802388f69ae4a906ae1e046a0ea19cea28f3c1c644b61",
+    "source_fingerprint": "sha256:a67f34ec7b817cddb252d8e0e3100178e88f19cdbf16729a968e956143b178e1",
     "source_doc_hashes": {
       "spec.md": "efb26fda9519836234a6fc889785635403e1c3ba6470ab736b555cafbe05405d",
       "plan.md": "145708d0eadaea43ec3247a54fe2c20c02dcf9dc87fc4d400ea473702cdada32",
       "tasks.md": "70ef4ed20898d023d9e236c24cbe8e6f9a6633859df31577342bfc83f2223e48",
       "checklist.md": "8698da02b166970560a5ad55b4b1c22617eb3aae9e7bbefd8aa4ea8d31960789",
-      "implementation-summary.md": "e57585adfbf6ca15c45f895fe9d752cb855166b4aa74931e7a6725ee3bd659ee",
+      "implementation-summary.md": "bae7d19d769df43a0c585cbd310cbc6cd0b9efada8bc17f881e38f80ee894f80",
       "resource-map.md": "8dab71fca0866696f828f2162b6e031a8d936b91813904246ae570f226ff4cde"
     },
     "last_active_child_id": null,

@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-mcp-server-integration"
+    packet_pointer: "mcp-tooling/013-mcp-obsidian/004-mcp-server-integration"
     last_updated_at: "2026-08-02T05:50:28Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

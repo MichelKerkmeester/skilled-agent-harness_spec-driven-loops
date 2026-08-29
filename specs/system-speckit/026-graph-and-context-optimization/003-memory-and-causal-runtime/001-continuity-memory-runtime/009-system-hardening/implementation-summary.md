@@ -31,7 +31,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 019-system-hardening |
+| **Spec Folder** | 009-system-hardening |
 | **Completed** | TBD (filled after children ship) |
 | **Level** | 3 |
 | **Scope** | Umbrella packet coordinating 6 Tier 1 research/review iterations and their subsequent implementation children |

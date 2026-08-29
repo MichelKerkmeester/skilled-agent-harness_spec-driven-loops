@@ -14,7 +14,8 @@
     "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup",
     "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/009-titlecase-config-and-closeout",
     "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/010-deferred-code-and-checker-fixes",
-    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation"
+    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation",
+    "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/012-fix-post-019-alignment-p1-findings-for-feature-catalog-accuracy"
   ],
   "manual": {
     "depends_on": [],
@@ -42,7 +43,7 @@
       "restore"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -92,17 +93,17 @@
     ],
     "causal_summary": "The sk-doc documentation-quality program: restore the skill tree to sk-doc's own standards across four fronts (legacy/misplaced metadata JSONs, reference/asset template alignment, per-folder code READMEs repo-wide, and bare skill/mode READMEs) plus the doc-tooling bugs the audits surfaced. Phases sequenced hardest and highest-leverage first, each a reviewable commit, with agent-swarm authoring against the current templates.",
     "created_at": "2026-07-22T08:55:19.119Z",
-    "last_save_at": "2026-07-24T19:26:23.288Z",
+    "last_save_at": "2026-08-28T22:25:13.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:0a2bdf7a4db0e6a9cba34df8c24db207ec0ae0ae658916e715215d0e7ed094aa",
+    "source_fingerprint": "sha256:f66c72a1513b24892701fc9ca6c42aa94161efe34b457bf2e9b9303d36c8657d",
     "source_doc_hashes": {
-      "spec.md": "914c7ef6c4bd6a1339c0c46d972f3cd2e47a13fe5a78e9004406c4b9e831aeeb"
+      "spec.md": "8d2f687dc7eb32e427a7dee8e869ce1edcebe04564d8077001e9a2796100b6ec"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/006-code-readmes-design-prompt-speckit",
     "last_active_at": null
   }
 }

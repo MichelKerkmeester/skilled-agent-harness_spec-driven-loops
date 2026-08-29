@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The inline-gate renderer strips only IF gates, not plain HTML comments, so SELF-CHECK blocks, per-field voice guides, and footer size notes survive into every scaffolded doc's bytes — measured at 15.5% of packet bytes (implementation-summary 43.6%)",
     "created_at": "2026-08-26T05:33:58Z",
-    "last_save_at": "2026-08-27T20:20:46.608Z",
+    "last_save_at": "2026-08-29T00:57:12.198Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,9 +203,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f42bacad905fc99843fc3ce5ee1167b4a0f872ef6537336a37b30ffe0433d11e",
+    "source_fingerprint": "sha256:1c9f656cb97228a1b10801b045506612eb41ba1daa832a3bf97914cf806e22ed",
     "source_doc_hashes": {
-      "spec.md": "f51cdc11e3d55301d04634c74251e1a3e87c5a3ce1314cc9cae85366605d1a46",
+      "spec.md": "7bede4a143d439bda05f2d11f30c66302c5c832d096383eee14367c957c16ec0",
       "plan.md": "b0de61a87b6bdc17b2e66de5557938fdd1b409179f2dfaa709b268f0642e6b75",
       "tasks.md": "6b45ac9cf3753ab17bfb102aecb754852ea936a27b52d2e65b19b7e192e42435",
       "implementation-summary.md": "dfe34101ec47a807953cc15007b886f5d4c377914b446c5cf996678c06317dd8"

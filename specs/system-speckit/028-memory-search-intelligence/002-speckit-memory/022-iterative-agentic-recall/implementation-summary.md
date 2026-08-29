@@ -50,7 +50,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 016-iterative-agentic-recall |
+| **Spec Folder** | 022-iterative-agentic-recall |
 | **Completed** | complete (no-go). Phase 1 (governor + flag) DONE. Phase 2 (wiring) + Phase 3 (benchmark) not pursued, candidate concluded a no-go and removed |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

@@ -27,7 +27,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/027-xce-research-based-refinement/004-shared-infrastructure/005-autonomous-dependency-patching |
+| **Spec Folder** | 005-autonomous-dependency-patching |
 | **Completed** | 2026-06-11 |
 | **Level** | 1 |
 

@@ -46,18 +46,6 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "lib/feedback/feedback-ledger.ts",
-      "lib/cognitive/adaptive-ranking.ts",
-      "mcp_server/lib/feedback/feedback-ledger.ts",
-      "mcp_server/lib/cognitive/adaptive-ranking.ts",
-      "handlers/checkpoints.ts",
-      "tests/feedback-ledger.vitest.ts",
-      "tests/adaptive-ranking.vitest.ts",
-      "tests/search-flags.vitest.ts",
-      "tests/flag-ceiling.vitest.ts",
-      "handlers/memory-save.ts",
-      "lib/storage/causal-edges.ts",
-      "lib/search/vector-index-schema.ts",
       "implementation-summary.md"
     ],
     "entities": [
@@ -89,66 +77,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "feedback-ledger.ts",
-        "kind": "code",
-        "path": "lib/feedback/feedback-ledger.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking.ts",
-        "kind": "code",
-        "path": "lib/cognitive/adaptive-ranking.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": "handlers/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "feedback-ledger.vitest.ts",
-        "kind": "test",
-        "path": "tests/feedback-ledger.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "adaptive-ranking.vitest.ts",
-        "kind": "test",
-        "path": "tests/adaptive-ranking.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.vitest.ts",
-        "kind": "test",
-        "path": "tests/search-flags.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "flag-ceiling.vitest.ts",
-        "kind": "test",
-        "path": "tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "lib/search/vector-index-schema.ts",
         "source": "derived"
       },
       {
@@ -204,11 +132,71 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Internal Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "commit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Spec-Kit Memory MCP treats `procedural` as a decay-only classification label, there is no track-record machinery on a stored procedure [CONFIRMED: `memory-types.ts:93-98` (decay-only label, no success/failure counters), `research/iterations/iteration-015.md:9`]",
     "created_at": "2026-06-19T05:40:37.447Z",
-    "last_save_at": "2026-07-12T13:24:50.326Z",
+    "last_save_at": "2026-08-29T00:20:50.706Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c14deae061a4cb418ee1b94088e26582c414d1876790e3e49672aa8fb2cb0800",
+    "source_fingerprint": "sha256:0b42fb1f4a306020039ab0c973a65c9b2c9c98dcda7ba0b87df2c2ed7854309b",
     "source_doc_hashes": {
       "spec.md": "60e468c76dc3bb7df010abab7e69902d8f092d87ea0576545f39d24aa9ce7e8c",
       "plan.md": "a3284aa1c13abf028bdb5534a183b29ec1c5a6fa5671794d6575c3cb13bd75b8",
       "tasks.md": "10c78e5884bde42b930ea35c3fd7a85c58c88a6993bc906104ba291cab727701",
       "checklist.md": "8c37709b28fda99c305c2e1ae2be4ce673d6ffbb32363a8a9600031b51489218",
       "decision-record.md": "4c278c4150a17133d165441ffc3c612105dc826e52c27e3f71e33796563cd2c9",
-      "implementation-summary.md": "ac117cb3aa05d0c33bb24b96b4fe5fe36c40798d1a0649ff1f10deb5cdc75b26"
+      "implementation-summary.md": "fda36632a2b38a175d460ad50d7d56345c3ab609e17cb58c14d59573f5be984e"
     },
     "last_active_child_id": null,
     "last_active_at": null

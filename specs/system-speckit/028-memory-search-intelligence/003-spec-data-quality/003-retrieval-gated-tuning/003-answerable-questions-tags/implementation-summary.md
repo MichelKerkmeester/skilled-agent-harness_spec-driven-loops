@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 016-answerable-questions-tags |
+| **Spec Folder** | 003-answerable-questions-tags |
 | **Completed** | TBD |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

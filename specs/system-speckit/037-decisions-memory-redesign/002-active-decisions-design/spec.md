@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "037-decisions-memory-redesign/002-active-decisions-design"
+    packet_pointer: "system-speckit/037-decisions-memory-redesign/002-active-decisions-design"
     last_updated_at: "2026-08-26T08:10:00Z"
     last_updated_by: "design-author"
     recent_action: "Reversed: DECISIONS.md surface dropped; keep the rules as plain docs"

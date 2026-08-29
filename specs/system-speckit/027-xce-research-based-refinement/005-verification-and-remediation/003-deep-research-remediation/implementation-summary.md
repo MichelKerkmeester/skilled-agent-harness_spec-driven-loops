@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 029-deep-research-remediation |
+| **Spec Folder** | 003-deep-research-remediation |
 | **Completed** | In progress (L1 + L8 lanes complete 2026-06-12; 15-seat deep-review round-2 remediation complete 2026-06-13) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

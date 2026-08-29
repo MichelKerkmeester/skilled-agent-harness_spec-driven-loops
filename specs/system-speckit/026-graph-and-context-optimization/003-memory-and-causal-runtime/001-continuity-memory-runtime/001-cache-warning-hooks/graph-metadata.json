@@ -46,16 +46,10 @@
       "spec.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
       "plan.md",
       "tasks.md",
       "research.md",
-      "checklist.md",
-      "tests/fixtures/hooks/session-stop-replay.jsonl",
-      "tests/hook-session-stop-replay.vitest.ts",
-      "tests/sqlite-fts.vitest.ts"
+      "checklist.md"
     ],
     "entities": [
       {
@@ -74,24 +68,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook-state.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/hook-state.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-stop.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-stop.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-prime.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
         "source": "derived"
       },
       {
@@ -116,24 +92,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-stop-replay.jsonl",
-        "kind": "file",
-        "path": "tests/fixtures/hooks/session-stop-replay.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "hook-session-stop-replay.vitest.ts",
-        "kind": "test",
-        "path": "tests/hook-session-stop-replay.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sqlite-fts.vitest.ts",
-        "kind": "test",
-        "path": "tests/sqlite-fts.vitest.ts",
         "source": "derived"
       },
       {
@@ -201,11 +159,47 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Packet Alignment",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Replay Isolation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Effect Fencing",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet `002` was originally framed as a six-phase cache-warning rollout with `SessionStart` estimator and `UserPromptSubmit` behavior",
     "created_at": "2026-04-12T09:02:53.453Z",
-    "last_save_at": "2026-07-17T17:19:16.918Z",
+    "last_save_at": "2026-08-28T22:56:36.453Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,14 +211,14 @@
       "implementation-summary.md",
       "research.md"
     ],
-    "source_fingerprint": "sha256:c03072211c631827c861531c4dfe4434a4dddc41652339c89eb3e264b12ba80c",
+    "source_fingerprint": "sha256:66e7f371f6e250425ceb2ae26172e9552a673384fddb017d2abc1209f70dbea9",
     "source_doc_hashes": {
       "spec.md": "2d58b9386d1ac115e862dcc55e90ddf8de97fde742b9c604fffabbffd94c5842",
       "plan.md": "3530168aa0f5bdff8581490d96470d02dde0790df54887464143b0defa67d045",
       "tasks.md": "91a21006788ea89e3cc6d1d39e6afc4e1689b4824ffe79adc6367f72b1e63ba2",
       "checklist.md": "ecb2d5f458e48c93666af34b2b1407450892dabcd69f0b126df4db0dc6e9c686",
       "decision-record.md": "1fe7c122d651fac85fec8e5df5c05b16f3e9391e7974c46bbf46f8f53ae5bcd2",
-      "implementation-summary.md": "f3a68c363b51ef8b7c7c1bf2d95bef175b8c47336696cc7e03e32b2771ed6e50",
+      "implementation-summary.md": "213cbc2c8f4c9bd0e1fdadddb9fc314b0fecadc250299b29571db87f48ce0be5",
       "research.md": "ae49d0d5411642410574bdbbb441cc4f16c9d3b4aca762e9f91d6fc839bab4d6"
     },
     "last_active_child_id": null,

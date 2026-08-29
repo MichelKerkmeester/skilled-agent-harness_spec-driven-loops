@@ -50,7 +50,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 011-automatic-drift-self-healing |
+| **Spec Folder** | 014-automatic-drift-self-healing |
 | **Status** | In Progress |
 | **Completed** | No, remaining gates are listed below |
 | **Level** | 2 |

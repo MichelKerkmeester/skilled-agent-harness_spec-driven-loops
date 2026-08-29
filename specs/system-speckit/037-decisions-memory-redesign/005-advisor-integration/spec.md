@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "037-decisions-memory-redesign/005-advisor-integration"
+    packet_pointer: "system-speckit/037-decisions-memory-redesign/005-advisor-integration"
     last_updated_at: "2026-08-26T08:12:00Z"
     last_updated_by: "design-author"
     recent_action: "Re-scoped: DECISIONS.md pointer dropped; advisor cleanup only"

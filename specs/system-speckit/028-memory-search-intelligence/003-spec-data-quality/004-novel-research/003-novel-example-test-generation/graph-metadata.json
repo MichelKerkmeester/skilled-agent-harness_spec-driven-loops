@@ -41,12 +41,7 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
-      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-      ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
-      ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
       "spec.md",
-      "mcp_server/tests/flag-ceiling.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -54,39 +49,9 @@
     ],
     "entities": [
       {
-        "name": "check-ac-coverage.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
-        "source": "derived"
-      },
-      {
-        "name": "validator-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md.tmpl",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/templates/manifest/tasks.md.tmpl",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "flag-ceiling.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/flag-ceiling.vitest.ts",
         "source": "derived"
       },
       {
@@ -196,11 +161,41 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Authored spec requirements are prose-only, so adherence to a requirement is unprovable per requirement: there is no worked example showing the intended behavior and no test stub that pins it",
     "created_at": "2026-06-27T17:15:38.197Z",
-    "last_save_at": "2026-07-17T17:19:51.582Z",
+    "last_save_at": "2026-08-29T00:37:29.186Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0dc41100ee846c9d183cd27a8071832bd9b439dbacbb3158606a5f54ec4eca39",
+    "source_fingerprint": "sha256:9e4e3b8f200dca8ff825c82eef540e0a338b78f4108b033fb82d0f1a3621b6a0",
     "source_doc_hashes": {
       "spec.md": "a7710b8d2a335a9e75b660bf8fcb3fd88de8e1f7556009fd0a5b40e7e0f48352",
       "plan.md": "d4c513f62c7c84c6f3ef04c0c77951c3e563f9114865130048771341bf54a5a7",
       "tasks.md": "da9233f3199e0303dfe51804df03540d7a0d9cf0560623e30cf01f99e7dff9a8",
       "checklist.md": "a0fd0ac48966f3ea0ea81632e92cee5776a72a1b9d04abea0f5ea6415900bcaa",
-      "implementation-summary.md": "328559c1e57fe778845a446b4267444edb29cea0b6852eb25015fb9f3d5f1ac1"
+      "implementation-summary.md": "577553f87a40ee125714e5af4c03ce1d39129bd3188b4be7dd9a47850c227309"
     },
     "last_active_child_id": null,
     "last_active_at": null

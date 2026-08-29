@@ -49,7 +49,7 @@
       "search"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "changelog/before-vs-after.md",
@@ -150,7 +150,7 @@
     ],
     "causal_summary": "Spec Kit needed a coordinated refinement program spanning memory correctness, retrieval, causal-graph hygiene, trigger matching, learning feedback, skill-advisor and code-graph hardening, shared CLI/infrastructure layers, and verify-first remediation",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:37.250Z",
+    "last_save_at": "2026-08-28T23:08:04.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [
@@ -162,7 +162,7 @@
       "spec.md": "d058ac78baa490e078bdd52d6241bcab7dbc35b3e87ea985554106417f7d84ef",
       "research/research.md": "6f9625aba20de941da54e21e48ef99bd1d07dbf74cfeb52746d2e1ca3d91002f"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation",
     "last_active_at": null
   }
 }

@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 020-eval-calibration-ab |
+| **Spec Folder** | 027-eval-calibration-ab |
 | **Completed** | Partial safe core |
 | **Level** | 2 |
 | **Priority** | P2 |

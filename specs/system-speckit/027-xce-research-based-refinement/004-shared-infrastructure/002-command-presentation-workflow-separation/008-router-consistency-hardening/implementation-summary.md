@@ -27,7 +27,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `008-router-consistency-hardening` |
+| **Spec Folder** | 008-router-consistency-hardening |
 | **Completed** | 2026-06-12 |
 | **Level** | 1 |
 

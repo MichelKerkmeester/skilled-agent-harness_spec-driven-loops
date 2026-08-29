@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "037-decisions-memory-redesign/006-verify-rollout"
+    packet_pointer: "system-speckit/037-decisions-memory-redesign/006-verify-rollout"
     last_updated_at: "2026-08-26T07:35:00Z"
     last_updated_by: "design-author"
     recent_action: "Authored verify-rollout design"

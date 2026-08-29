@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 013-retrieval-feedback-edge |
+| **Spec Folder** | 003-retrieval-feedback-edge |
 | **Status** | PLANNED |
 | **Completed** | not yet implemented |
 | **Level** | 2 |

@@ -48,7 +48,6 @@
       "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "scripts/lib/trigger-phrase-sanitizer.ts",
       "research/research.md",
       "research/deep-research-config.json",
       "research/deep-research-strategy.md",
@@ -93,12 +92,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "trigger-phrase-sanitizer.ts",
-        "kind": "code",
-        "path": "scripts/lib/trigger-phrase-sanitizer.ts",
         "source": "derived"
       },
       {
@@ -208,11 +201,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation State",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original research packet identified eight distinct JSON-mode memory defects across content shaping, metadata consistency, lineage capture, git provenance, and template structure",
     "created_at": "2026-04-12T09:02:53.454Z",
-    "last_save_at": "2026-07-17T17:19:16.918Z",
+    "last_save_at": "2026-08-28T22:56:38.651Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

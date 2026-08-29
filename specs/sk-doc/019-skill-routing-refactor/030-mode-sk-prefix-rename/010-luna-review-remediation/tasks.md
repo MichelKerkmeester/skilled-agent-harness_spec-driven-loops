@@ -10,7 +10,7 @@ importance_tier: "critical"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "scaffold/010-luna-review-remediation"
+    packet_pointer: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename/010-luna-review-remediation"
     last_updated_at: "2026-07-29T12:41:33Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

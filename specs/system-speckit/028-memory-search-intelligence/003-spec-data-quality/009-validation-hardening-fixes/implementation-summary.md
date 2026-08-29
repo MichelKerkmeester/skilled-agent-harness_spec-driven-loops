@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 015-validation-hardening-fixes |
+| **Spec Folder** | 009-validation-hardening-fixes |
 | **Completed** | Implemented and verified 2026-07-09; not committed (operator instructed no commit/push this turn) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

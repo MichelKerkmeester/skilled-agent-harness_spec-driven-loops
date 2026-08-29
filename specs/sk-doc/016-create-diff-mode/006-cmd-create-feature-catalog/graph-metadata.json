@@ -42,11 +42,6 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/commands/create/feature-catalog.md",
-      ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
-      ".opencode/commands/create/assets/create_feature_catalog_confirm.yaml",
-      ".opencode/commands/create/README.txt",
-      ".opencode/commands/README.txt",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -58,30 +53,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": ".opencode/commands/create/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "create_feature_catalog_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "create_feature_catalog_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/create_feature_catalog_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/commands/create/README.txt",
         "source": "derived"
       },
       {
@@ -197,11 +168,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "real",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repo has a shipped feature-catalog contract and `sk-doc` now teaches that contract through dedicated templates and creation references, but there is no dedicated create command that can scaffold it consistently",
     "created_at": "2026-04-12T09:02:50.173Z",
-    "last_save_at": "2026-07-17T14:37:10.682Z",
+    "last_save_at": "2026-08-28T22:20:00.636Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:71c9c7d824790671550f29d7672b5b3b986b04099044a04c4c3dbcaff6dd5924",
+    "source_fingerprint": "sha256:883802ef4ed750555affc0ebfb5602b401863ca2547b953e4df4d368589cf404",
     "source_doc_hashes": {
-      "spec.md": "f160506b6cd75d46aff6a63b26d838604115d4ced31dff331706074f9801174d",
-      "plan.md": "d4681f1c3e07efe0460159df164df82380e8bb82bc2172d4166e0f76bfe24a1f",
-      "tasks.md": "95e2884feb5b0cbabee603ad843a2c1f5c65504329cdd982a84b3d2bca074e1d",
-      "checklist.md": "58a85c9f0a7529b92f661eb01a274d1b9877c8acb9928c5f12bcf3f1ce62b77e",
+      "spec.md": "5bbde163be099e89f1c980daf1bc506a09d054e4a7b4e1115456fa5cf05911a7",
+      "plan.md": "751abb0fb5460d716bd1afaa5ff7af5fd53350c13395e058a4af0a4c8bbe57a3",
+      "tasks.md": "f15c8c3eae557350e6d4f38ea061fc0493d9a38ffca9f085baef941917177681",
+      "checklist.md": "80a3f7118d9e52a3883eb2e81adb45942a8fb79579851cac65f1942df85c02ba",
       "decision-record.md": "021fcda148ff278038053101a10513e46e0a21e7834f5371d813907d0ea6a09a",
-      "implementation-summary.md": "d5153587297ee6bdc05c4f1602f9e66aaaac3ea8d66da25c7f5d5f20ac91421b"
+      "implementation-summary.md": "b898a486e9d4611df14c395eb406dace0a4a95379e00eb11f99e0b9c4d27ba03"
     },
     "last_active_child_id": null,
     "last_active_at": null

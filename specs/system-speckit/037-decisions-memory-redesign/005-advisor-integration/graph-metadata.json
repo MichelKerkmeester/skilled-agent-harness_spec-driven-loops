@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The advisor injects three hardcoded directives every turn",
     "created_at": "2026-08-26T05:34:14Z",
-    "last_save_at": "2026-08-26T15:20:08.209Z",
+    "last_save_at": "2026-08-29T00:57:30.663Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10bc1b2dc8f6269b6518971b6184e9234a9640e8249e15a1e6ead38451675a48",
+    "source_fingerprint": "sha256:2fab0b93e613593c0d7d9b238dda8c310b9a240c63673911931df0377161346d",
     "source_doc_hashes": {
-      "spec.md": "09c926c2d93607a786407b87f3d86f18237cb6729a99687eb88e66e505f91597",
-      "plan.md": "2d2106ef26b14a404f248cb10cf37da057832335ac465b4040e25b41df2ac086",
-      "tasks.md": "03c8e8001c717ef8f221c24211e3330dc27036e910cb60f879436371b0b13d3b",
-      "implementation-summary.md": "90c4fd65c7c757ec7c3eb0182c6b40ea3735c12683d8a710334dc81c3772b1b3"
+      "spec.md": "1230ab078ff26d7c55fada1dff0aa6721c6c2fa042c67d06b11448655561b801",
+      "plan.md": "8e1fb8cc4f9602fa72ba35620628267de273c40d92ff8e742599f97b8bd0c7c9",
+      "tasks.md": "fae32aeb3e662b6616feccd46ed4c70c933c69403f43086b93fdd270c47739cd",
+      "implementation-summary.md": "8bda6070faf8afbc51c76f7ef0a195dbcca1dd7751858a1376a9ff88ae6e00b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

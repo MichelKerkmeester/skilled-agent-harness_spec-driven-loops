@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/004-rehome-rules-content"
+    packet_pointer: "system-speckit/037-decisions-memory-redesign/004-rehome-rules-content"
     last_updated_at: "2026-08-26T05:34:14Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 016-search-and-output-intelligence-research |
+| **Spec Folder** | research |
 | **Completed** | 2026-06-17 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

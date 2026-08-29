@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-research/006-sk-prompt-routing-research |
+| **Spec Folder** | 006-sk-prompt-routing-research |
 | **Completed** | Research Complete (100%) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

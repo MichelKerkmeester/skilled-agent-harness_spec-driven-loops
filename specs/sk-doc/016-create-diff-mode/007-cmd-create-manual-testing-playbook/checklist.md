@@ -9,7 +9,7 @@ contextType: "implementation"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/007-cmd-create-manual-testing-playbook"
+    packet_pointer: "sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook"
     last_updated_at: "2026-04-24T15:25:01Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"

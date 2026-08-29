@@ -32,7 +32,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/` |
+| **Spec Folder** | 001-phase-parent-validator-docs |
 | **Completed** | 2026-04-27 |
 | **Level** | 2 |
 | **Parent Packet** | `026-graph-and-context-optimization` |

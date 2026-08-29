@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 015-summary-fusion-grounding |
+| **Spec Folder** | 021-summary-fusion-grounding |
 | **Completed** | Partial implementation 2026-06-19 |
 | **Level** | 2 |
 | **Priority** | P1 |

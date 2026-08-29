@@ -11,7 +11,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/008-skill-command-readme-rewrite"
+    packet_pointer: "sk-doc/016-create-diff-mode/008-skill-command-readme-rewrite"
     last_updated_at: "2026-07-17T14:36:44Z"
     last_updated_by: "backfill-memory-block"
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 033-skill-command-readme-rewrite |
+| **Spec Folder** | 008-skill-command-readme-rewrite |
 | **Completed** | 2026-03-31 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

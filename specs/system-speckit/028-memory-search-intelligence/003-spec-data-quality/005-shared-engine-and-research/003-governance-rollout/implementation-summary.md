@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 028-governance-rollout |
+| **Spec Folder** | 003-governance-rollout |
 | **Completed** | PENDING |
 | **Level** | 2 |
 | **Status** | PLANNED |

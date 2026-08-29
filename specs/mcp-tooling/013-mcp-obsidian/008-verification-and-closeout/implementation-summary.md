@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "scaffold/008-verification-and-closeout"
+    packet_pointer: "mcp-tooling/013-mcp-obsidian/008-verification-and-closeout"
     last_updated_at: "2026-08-02T05:50:31Z"
     last_updated_by: "template-author"
     recent_action: "Initialize continuity block"

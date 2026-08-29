@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `004-embedding-backlog-drain-investigation` |
+| **Spec Folder** | 004-embedding-backlog-drain-investigation |
 | **Updated** | 2026-05-27 |
 | **Level** | 1 |
 

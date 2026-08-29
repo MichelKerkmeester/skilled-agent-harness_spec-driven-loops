@@ -20,9 +20,9 @@
       "obsidian verification tasks",
       "mcp-obsidian closeout tasks",
       "mcp-obsidian phase 8 tasks",
-      "implementation",
-      "summary",
-      "template"
+      "005-routing-skill-benchmark results",
+      "playbook validation results",
+      "mcp-obsidian scenario results"
     ],
     "key_topics": [
       "routing",
@@ -180,13 +180,13 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built",
+        "name": "What Was Built Ran",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Files Changed",
+        "name": "How It Was Delivered Scenarios",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Run the mcp-tooling skill/routing benchmark (Mode A router-replay) validating seven-mode routing, and record the official-CLI scenarios as blocked-pending-Register-CLI.",
     "created_at": "2026-08-03T04:10:02.728Z",
-    "last_save_at": "2026-08-03T04:10:02.728Z",
+    "last_save_at": "2026-08-28T22:06:20.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:416bc03bef906911024388eb5f88daba5bb11f2374d2c6ec6d2fb83319333ce2",
+    "source_fingerprint": "sha256:7390d00edb239d40a8148a57b2a9b52e6edba78b1ff325456e1661c983a2a7c5",
     "source_doc_hashes": {
       "spec.md": "653d04454dd67f2635d4f39ef91e8a32e1643a4c9a4f3caaf58798de483ddef5",
-      "plan.md": "c73b8ed2a1cf6e8dd722cb47497eb04ddd5beff6fa4b79491d2eff75ec16d2f8",
-      "tasks.md": "613d9bb747f82b14c545b399f3777c2f0b0105bb525b7255f8be9bcd76ec6c0c",
-      "implementation-summary.md": "6e6fe3670dfc3e0ca1adcfc3093e408b400668044a96459465d48169a47621ad"
+      "plan.md": "020a99b1fa1db853ee789ef97062623173df99ee9ead900042993a2931735aae",
+      "tasks.md": "10e85f35b1c85ab0aef75b7b48fa16f03d051b3a2b59a80311406a9d79f57fea",
+      "implementation-summary.md": "ae6491dced487be6d372b1c428518b726d7cc6a5517042f019ef64a08f4210a8"
     },
     "last_active_child_id": null,
     "last_active_at": null

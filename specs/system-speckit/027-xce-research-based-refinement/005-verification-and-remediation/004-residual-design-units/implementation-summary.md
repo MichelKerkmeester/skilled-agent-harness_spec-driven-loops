@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 030-residual-design-units |
+| **Spec Folder** | 004-residual-design-units |
 | **Completed** | Built units committed; dispositions recorded; optional follow-ons flagged |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

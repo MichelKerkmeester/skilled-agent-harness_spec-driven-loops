@@ -59,7 +59,7 @@
       "already"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "research/research.md",
@@ -159,17 +159,17 @@
     ],
     "causal_summary": "The research packet found that `sk-design` already has the right OpenCode-native backbone: one advisor-routable hub, five public modes, registry-driven routing, a shared reference base, and a measured `design-md-generator` extraction backend",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-07-09T09:52:55.773Z",
+    "last_save_at": "2026-08-28T22:11:54.519Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f3e6b436c1b67a9c5206ae704623a964bbf82b71b4d6d12d09c4f8a7ceed793e",
+    "source_fingerprint": "sha256:e2e7abb2cdfd63fc447e165d0703a018109cba0556a8ff4cdfda927c6853d3e9",
     "source_doc_hashes": {
       "spec.md": "de9fea7c8cb48c99257bdd1c64cb0cd7eead17590b6e74a7daa58d9c80e2cef3",
-      "research/research.md": "017e0c11f56cbf972117abfa72b185fbe302804a5ce6e7bf640b711d9a4563fb"
+      "research/research.md": "0b50019e09c5bde22c201c14169d226333f1daddab37d740957bb92753975a3b"
     },
     "last_active_child_id": "sk-design/009-sk-design-claude-parity/027-comprehensive-deep-review",
     "last_active_at": "2026-07-09T09:52:55.773Z"

@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 035-worktree-per-session-automation |
+| **Spec Folder** | 005-worktree-per-session-automation |
 | **Completed** | BUILT + TESTED (SC-001 passed); only operator-machine wiring remains |
 | **Level** | 1 |
 

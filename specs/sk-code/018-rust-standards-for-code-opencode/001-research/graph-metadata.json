@@ -48,19 +48,7 @@
       "research/research.md",
       "research/deep-research-state.jsonl",
       "tasks.md",
-      "implementation-summary.md",
-      "scripts/spec/validate.sh",
-      ".opencode/skills/sk-code/code-opencode/references/rust/style_guide.md",
-      ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards.md",
-      ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference.md",
-      ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist.md",
-      ".opencode/skills/sk-code/code-opencode/SKILL.md",
-      ".opencode/skills/sk-code/SKILL.md",
-      ".opencode/skills/sk-code/shared/references/stack_detection.md",
-      ".opencode/skills/sk-code/hub-router.json",
-      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py",
-      ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -112,72 +100,6 @@
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "style_guide.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/rust/style_guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "quality_standards.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/rust/quality_standards.md",
-        "source": "derived"
-      },
-      {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/references/rust/quick_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "rust_checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/assets/checklists/rust_checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "stack_detection.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/shared/references/stack_detection.md",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "verify_stack_folders.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_stack_folders.py",
-        "source": "derived"
-      },
-      {
-        "name": "verify_alignment_drift.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-code/code-opencode/assets/scripts/verify_alignment_drift.py",
-        "source": "derived"
-      },
-      {
-        "name": "router-replay.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +128,77 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Rust",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "citations",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Adding a language to `code-opencode` is not free-form authoring: the surface has a fixed trio+checklist+playbook shape, a machine-readable SMART ROUTING block, and a parent-hub `RESOURCEMAP` union enforced by a drift guard and a skill-benchmark router-replay",
     "created_at": "2026-07-11T07:13:20.590Z",
-    "last_save_at": "2026-07-11T12:04:03.722Z",
+    "last_save_at": "2026-08-28T22:09:12.248Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +208,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:16bc358d3fb4fa3354ba50ea8d41672268c40ea0f4a871a468d761a5195125a8",
+    "source_fingerprint": "sha256:8101deee929980ec62c11cc942fa590b883dc55b5004cd4aa8726517002fc238",
     "source_doc_hashes": {
       "spec.md": "447d217e3c9a9c95db55971349c868c872e4324f58446a00e27554077c770ce4",
       "plan.md": "90474be36150826b1906654c5cb71183f21f08d1189a2a23333bb1eb83709149",
       "tasks.md": "88142b6416c068303a70ece7dd99f59cf7c73ae1012fc007c54e239fd5130135",
-      "implementation-summary.md": "b1964f4edda20cd23374ad056764f68381d5037476a0845659ce6bd4ad3e5468",
-      "research/research.md": "2fe7068d3c7731bb9f6ead1a7c482763a020bf167f5ef04c3783ce00d976cba0"
+      "implementation-summary.md": "60a2364db7e87ce3e8fea9a7919de4582566eea3a53ff0daebbc043779a94e41",
+      "research/research.md": "179103c1772e65106cf67402842b7dc12fcc5b1674709937a0c55213905f18d8"
     },
     "last_active_child_id": null,
     "last_active_at": null

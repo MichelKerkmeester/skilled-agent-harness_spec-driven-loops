@@ -20,9 +20,9 @@
       "obsidian verification tasks",
       "mcp-obsidian closeout tasks",
       "mcp-obsidian phase 8 tasks",
-      "implementation",
-      "summary",
-      "template"
+      "001-provisioning results",
+      "playbook validation results",
+      "mcp-obsidian scenario results"
     ],
     "key_topics": [
       "playbook",
@@ -180,13 +180,13 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built",
+        "name": "What Was Built Provisioned",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Files Changed",
+        "name": "How It Was Delivered Scenarios",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Provision the live test env for the playbook run: install notesmd-cli, register the Obsidian test vault, install + activate the Local REST API plugin (MCP), and configure .env; verify every surface is reachable.",
     "created_at": "2026-08-03T04:10:01.256Z",
-    "last_save_at": "2026-08-03T04:10:01.256Z",
+    "last_save_at": "2026-08-28T22:06:13.337Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e0496d850a6a151358e40b9be6faab917575e5fee20d285f756888962d93d2e",
+    "source_fingerprint": "sha256:ccdb6c28ee28c0d7b3de1fdc8378305f05f07a3af8c6219b81b581311da1e2ab",
     "source_doc_hashes": {
       "spec.md": "3936a688b8169e2f77ba784489b809f8dafbc31bed3055e36e182dc9e0845815",
-      "plan.md": "daf8d4910ad18435716c94ae60d90dc258b83b2c2a4cc580267b8ee1be889967",
-      "tasks.md": "0e1bdfd03f0360446e4fe4c11c247237cb1da31c68a3fec1594092973e6903ad",
-      "implementation-summary.md": "e4ec126e844af16174d913b9355dab4ff83240fb88e4a494f8ce821595f02243"
+      "plan.md": "623bf155c2473bb23d4a2e74bf04115f054c66c5ce92af833d4f902076173860",
+      "tasks.md": "fcffd45de98be9e2481bdf4a286c05709e0d9afa0483afe75adac1814f4931aa",
+      "implementation-summary.md": "a2414f61949da1773f78fb22a881079e7b514511876680cb5ce3b8391a6b0fe4"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -39,19 +39,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-code/shared/references/smart_routing.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "smart_routing.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/shared/references/smart_routing.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -187,7 +180,7 @@
     ],
     "causal_summary": "The parent hub keeps a union projection of every child's routing map, enforced by a drift-guard vitest",
     "created_at": "2026-07-11T08:51:44.490Z",
-    "last_save_at": "2026-07-11T10:00:33.340Z",
+    "last_save_at": "2026-08-28T22:09:18.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

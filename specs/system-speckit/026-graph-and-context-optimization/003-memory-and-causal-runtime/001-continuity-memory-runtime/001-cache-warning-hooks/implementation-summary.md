@@ -31,7 +31,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 --
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 002-cache-warning-hooks |
+| **Spec Folder** | 001-cache-warning-hooks |
 | **Completed** | 2026-04-08 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

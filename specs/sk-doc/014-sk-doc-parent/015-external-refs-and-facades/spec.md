@@ -10,7 +10,7 @@ contextType: "implementation"
 parent: "skilled-agent-orchestration/125-sk-doc-parent"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/125-sk-doc-parent/015-external-refs-and-facades"
+    packet_pointer: "sk-doc/014-sk-doc-parent/015-external-refs-and-facades"
     last_updated_at: "2026-07-06T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Placeholder scaffolded"

@@ -3,78 +3,217 @@
   "packet_id": "cli-external-orchestration/036-grok-4.6-support",
   "spec_folder": "cli-external-orchestration/036-grok-4.6-support",
   "parent_id": null,
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": [
-      "cli-external-orchestration/033-deepseek-v4-flash-pi-roster",
-      "cli-external-orchestration/034-opencode-go-flash-qwen-roster",
-      "cli-external-orchestration/032-per-mode-provider-model-reference"
+      {
+        "packet_id": "cli-external-orchestration/033-deepseek-v4-flash-pi-roster",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "cli-external-orchestration/034-opencode-go-flash-qwen-roster",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "cli-external-orchestration/032-per-mode-provider-model-reference",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
     ]
   },
   "derived": {
     "trigger_phrases": [
       "grok 4.6 support",
-      "grok 4.5 to 4.6",
+      "grok 4.5 and 4.6",
       "cursor grok roster",
       "devin grok roster",
       "implementation",
       "plan",
+      "grok 4.6",
+      "cli-cursor cli-devin roster",
       "tasks",
       "verification",
-      "decision record"
+      "checklist",
+      "decision"
     ],
     "key_topics": [
       "grok",
+      "support",
+      "cursor",
+      "roster",
+      "devin",
+      "implementation",
+      "plan",
       "cli-cursor",
       "cli-devin",
-      "executor-config",
-      "fanout-run",
-      "allowlist",
-      "xhigh",
-      "model roster",
-      "live verification"
+      "tasks",
+      "verification",
+      "checklist"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      { "name": "spec.md", "kind": "doc", "path": "spec.md", "source": "derived" },
-      { "name": "plan.md", "kind": "doc", "path": "plan.md", "source": "derived" },
-      { "name": "tasks.md", "kind": "doc", "path": "tasks.md", "source": "derived" },
-      { "name": "checklist.md", "kind": "doc", "path": "checklist.md", "source": "derived" },
-      { "name": "decision-record.md", "kind": "doc", "path": "decision-record.md", "source": "derived" },
-      { "name": "implementation-summary.md", "kind": "doc", "path": "implementation-summary.md", "source": "derived" },
-      { "name": "Feature Specification", "kind": "proper_noun", "path": "spec.md", "source": "derived" },
-      { "name": "Executive Summary", "kind": "heading", "path": "spec.md", "source": "derived" },
-      { "name": "Problem Statement", "kind": "proper_noun", "path": "spec.md", "source": "derived" },
-      { "name": "Risk Matrix", "kind": "heading", "path": "spec.md", "source": "derived" },
-      { "name": "User Stories", "kind": "heading", "path": "spec.md", "source": "derived" },
-      { "name": "Implementation Plan", "kind": "proper_noun", "path": "plan.md", "source": "derived" },
-      { "name": "Architecture Decision Record", "kind": "heading", "path": "plan.md", "source": "derived" },
-      { "name": "ADR-001", "kind": "key_phrase", "path": "decision-record.md", "source": "derived" },
-      { "name": "ADR-002", "kind": "key_phrase", "path": "decision-record.md", "source": "derived" },
-      { "name": "CURSOR_SUPPORTED_MODELS", "kind": "key_phrase", "path": "spec.md", "source": "derived" },
-      { "name": "DEVIN_SUPPORTED_MODELS", "kind": "key_phrase", "path": "spec.md", "source": "derived" },
-      { "name": "executor-config.ts", "kind": "key_phrase", "path": "plan.md", "source": "derived" },
-      { "name": "fanout-run.cjs", "kind": "key_phrase", "path": "plan.md", "source": "derived" },
-      { "name": "cursor-grok-4.6-xhigh", "kind": "key_phrase", "path": "spec.md", "source": "derived" },
-      { "name": "grok-4-6-xhigh", "kind": "key_phrase", "path": "spec.md", "source": "derived" },
-      { "name": "Verification Checklist", "kind": "proper_noun", "path": "checklist.md", "source": "derived" },
-      { "name": "Phase 1: Live Verification", "kind": "heading", "path": "tasks.md", "source": "derived" },
-      { "name": "Phase 2: Runtime Swap", "kind": "heading", "path": "tasks.md", "source": "derived" }
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Grok",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Should Grok",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Confirm Grok",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Live Verification",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Runtime Swap",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documentation Sweep",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reference Sweep",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
     ],
-    "causal_summary": "Live checks against cursor-agent and devin surfaced that Grok 4.6 adds an xhigh tier Grok 4.5 never had; the first implementation pass mistakenly retired 4.5, an operator follow-up corrected it to an addition (both versions kept, every roster sorted alphabetically), and every skill doc naming Grok was updated to match.",
+    "causal_summary": "cli-cursor's enforced `CURSORSUPPORTEDMODELS` allowlist and cli-devin's enforced `DEVINSUPPORTEDMODELS` allowlist both curated only Grok 4.5 (6 ids on Cursor, 3 uids on Devin)",
     "created_at": "2026-08-12T16:53:55.000Z",
-    "last_save_at": "2026-08-12T17:19:23.000Z",
+    "last_save_at": "2026-08-28T21:59:48.229Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -85,14 +224,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:manual-authorship-generate-description-unavailable",
+    "source_fingerprint": "sha256:60a326df0619e653ffcbec0d5cc39ec08e4541526bcedf9784f78526d4713512",
     "source_doc_hashes": {
       "spec.md": "de9656a603d6b8dceb3eb8db67fdb6f324361b910fabec0acbf473e2c1d94073",
       "plan.md": "055e4ea987d48c81f9b3ebb007cca190b7a20614bb9a31fecc8492347a381a67",
       "tasks.md": "ccfb588e304bea6bbe8664113949235d46ef0c2fadd6ae5a6fd9bb2e83dd3be0",
       "checklist.md": "9296e4eeb8a1185a8e034e60f2711847ebcfc6c09bbc1f6cdaa446e5cc1f5623",
       "decision-record.md": "12bf17c2614f142d9242ffa6c2d85e1cce791b6f6bcfa1e81cae7f90fb48a35f",
-      "implementation-summary.md": "3a96473ced5dae652013f759db20289bccef47716a9e92a31a3a6faf50208f91"
+      "implementation-summary.md": "a910b78640b127728d96452bfdc8602155cfddea226654f607bec0b3b73a3395"
     },
     "last_active_child_id": null,
     "last_active_at": null

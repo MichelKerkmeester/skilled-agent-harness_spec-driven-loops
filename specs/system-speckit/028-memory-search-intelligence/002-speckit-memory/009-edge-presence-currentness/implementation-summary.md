@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 008-edge-presence-currentness |
+| **Spec Folder** | 009-edge-presence-currentness |
 | **Status** | in-progress |
 | **Level** | 3 |
 | **Scope** | Five temporal candidates, C3-A shipped and four pending |

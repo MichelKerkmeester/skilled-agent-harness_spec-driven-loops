@@ -92,6 +92,17 @@ jobs:
           fi
           exit "$sweep_status"
 
+      # Reports only; the repair flag is deliberately absent. A gate that
+      # silently rewrote packets would erase the drift it exists to surface, and
+      # nobody would learn that a rename left records pointing at the old place.
+      # Its exit status is ignored on purpose: a repairable packet is a finding
+      # for a person to act on, not a reason to fail the sweep.
+      - name: Derived-repair drift report — recomputable packet facts
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          node .opencode/skills/system-spec-kit/scripts/spec/repair-derived.cjs --roots specs || true
+
       - name: Publish strict-pass freshness report
         if: always()
         uses: actions/upload-artifact@v4

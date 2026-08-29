@@ -37,62 +37,13 @@
     "importance_tier": "high",
     "status": "planned",
     "key_files": [
-      "spec.md",
-      ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
-      ".opencode/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
-      ".opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-      ".opencode/skills/sk-doc/shared/assets/template-rules.json",
-      ".claude/SYNC.md"
+      "spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "readme-code-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "audit_readmes.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
-        "source": "derived"
-      },
-      {
-        "name": "validate_document.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "hvr-rules.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "template-rules.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/shared/assets/template-rules.json",
-        "source": "derived"
-      },
-      {
-        "name": "SYNC.md",
-        "kind": "doc",
-        "path": ".claude/SYNC.md",
         "source": "derived"
       },
       {
@@ -134,7 +85,7 @@
     ],
     "causal_summary": "Three separate defects share one root cause: nothing mechanically enforces the code-README standard, and the standard itself is ambiguous about what it requires",
     "created_at": "2026-07-30T18:58:50.938Z",
-    "last_save_at": "2026-07-30T18:58:50.938Z",
+    "last_save_at": "2026-08-28T22:32:23.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

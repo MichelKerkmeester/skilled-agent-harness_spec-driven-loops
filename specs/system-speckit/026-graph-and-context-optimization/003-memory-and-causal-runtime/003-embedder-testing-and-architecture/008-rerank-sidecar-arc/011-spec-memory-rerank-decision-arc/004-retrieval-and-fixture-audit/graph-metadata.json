@@ -38,9 +38,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json",
-      "mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json",
-      "lib/search/pipeline/stage3-rerank.ts",
       "evidence/probe-classification-2026-05-21.json",
       "evidence/candidate-coverage-2026-05-21.json",
       "evidence/handler-parity-2026-05-21.md",
@@ -51,18 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "rerank-ab-fixture.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/2026-05-20--rerank-ab--unspecified/rerank-ab-fixture.json",
-        "source": "derived"
-      },
-      {
-        "name": "stage3-rerank.ts",
-        "kind": "code",
-        "path": "lib/search/pipeline/stage3-rerank.ts",
-        "source": "derived"
-      },
       {
         "name": "probe-classification-2026-05-21.json",
         "kind": "config",
@@ -194,11 +179,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 1 (OFF baseline) and Phase 2 (bge-reranker-v2-m3) produced identical retrieval metrics to three sig figs:",
     "created_at": "2026-05-23T11:55:15.634Z",
-    "last_save_at": "2026-07-17T17:19:27.080Z",
+    "last_save_at": "2026-08-28T23:02:39.566Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +204,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:31c18bc46741e05c01172fd86ef5e1250e5d0b27e70dc96586a35da352f06ad2",
+    "source_fingerprint": "sha256:c0aca939feafdb69ebc5f8586cc89dafdfe030467e01ea8c91a333b32a22d24d",
     "source_doc_hashes": {
-      "spec.md": "1bff995e122bd55a0b216fc43493d7d6848333493aa82b30c18f1e1033d26728",
+      "spec.md": "dd649fcc0706658d192a1710accdbd92aab89ee9b5e58afbc04e199228ad609d",
       "plan.md": "73c0e2abfebe5d69b013cd83e7bb63786920a9bd12ac83160e1d8cbaf1cf38db",
       "tasks.md": "832dd8aa799106641af82fa3076283f2f6dd9e1b44609705e8b47f3aedfe6d10",
-      "implementation-summary.md": "1c02863917efe44c69e3f4f846394f630ad9be4fe426aa1a7d5513f4f6483875"
+      "implementation-summary.md": "a2b38fae28b6febeb2c04994bff654a6c20d07236a90c6f3f2e42ad6a575e712"
     },
     "last_active_child_id": null,
     "last_active_at": null

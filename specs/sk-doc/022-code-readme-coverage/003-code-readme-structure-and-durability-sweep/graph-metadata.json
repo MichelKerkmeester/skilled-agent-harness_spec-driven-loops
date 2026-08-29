@@ -40,9 +40,6 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      ".opencode/bin/README.md",
-      ".opencode/scripts/git-hooks/lib/README.md",
-      ".pi/extensions/README.md",
       "tasks.md",
       "plan.md",
       "checklist.md",
@@ -53,12 +50,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/bin/README.md",
         "source": "derived"
       },
       {
@@ -192,11 +183,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Four shapes repeat, and their counts overlap because most files carry more than one:",
     "created_at": "2026-07-30T18:58:50.819Z",
-    "last_save_at": "2026-07-30T19:19:36.507Z",
+    "last_save_at": "2026-08-28T22:32:28.608Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +203,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c18750d744a54dd8b1502318f9a1666d4681c5502dc2be5d017b0b239f97357d",
+    "source_fingerprint": "sha256:53917551e80c7fdefa5bb38029c963e885e006e5af2de339d32745b3098b2d13",
     "source_doc_hashes": {
       "spec.md": "a4b0ed63068406a8dc9395f1616a0ba7dd8254cf33c34e28018e5fcaf3cb7126",
-      "plan.md": "b872a6750e67d0892fb5c5f33c26e0982ee5a9ccf0449a690e32e9f3674a69a1",
-      "tasks.md": "7dcaaea40568a8f030ac969ae4ff03c43b456cc719947501e0f96245775bad49",
-      "checklist.md": "60f242806f4ad8f7bcec7c65348f38b43f25b6c196452374776842bcc39658f7",
+      "plan.md": "db40516e9a68b06695fbcdfb66361b352d26837bb8ce4c27ea94f2ee497cd3d8",
+      "tasks.md": "b03604f542cd7b3b45c2b05fda215579e785c774818a63ab17b75db9f8a5ac44",
+      "checklist.md": "d4c37e69e45efe79df5a111584c9fe28dc6f9d4fe4c5f17f5eb67298cd5097fd",
       "decision-record.md": "5f85acdcef3bd59fd2b994a3b566d28e3030a0dc0bb1d62a2fe74ca5924094f0"
     },
     "last_active_child_id": null,
