@@ -37,18 +37,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "tasks.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -59,6 +53,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Every manual this repository has ever registered is `calltemplatetype: \"mcp\"`",
     "created_at": "2026-08-29T11:28:53.691Z",
-    "last_save_at": "2026-08-29T11:48:57.067Z",
+    "last_save_at": "2026-08-29T17:24:30.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,9 +199,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2412b5ed18831e7518a08ccb0f9463e1ed37401f2d1f41de45bcb3d54998d2b8",
+    "source_fingerprint": "sha256:a781aae3977d4b0c7115e4a3ba8845b3b57689b7e2e5989267f9d12e1e8cbfb8",
     "source_doc_hashes": {
-      "spec.md": "bb99caef2fdd391bfd6e6f96511d04c618c395cbbdf9b1fe088f41c6e412251d",
+      "spec.md": "a538b87eac30b2b3a1dc08aa96e12c94c9f5fa4a65ac0f8282739be496578255",
       "plan.md": "1fb1c54c57ba831b5c032e949154f3eb123357b82ab0551496516c9a15ba7119",
       "tasks.md": "af5c18da18528f9ac1e4169211add21c52868ab8627877025ef92018ae841d89",
       "implementation-summary.md": "c9ef9ec50bb506c5c56951dbc3b79812349647d6162e50fae30dd343d8a62674"

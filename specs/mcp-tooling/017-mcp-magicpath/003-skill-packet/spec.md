@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Created** | 2026-08-29 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 5 |
+| **Phase** | 3 of 6 |
 | **Predecessor** | 002-manual-and-auth |
 | **Successor** | 004-hub-integration |
 | **Handoff Criteria** | The packet exists in the hub-member shape, describes only the surface phase 002 registered, and passes the create-skill packaging gate |

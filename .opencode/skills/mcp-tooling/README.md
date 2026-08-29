@@ -9,7 +9,7 @@ trigger_phrases:
   - "figma cli"
   - "notion mcp"
   - "mcp tool bridge"
-version: 1.6.0.0
+version: 1.6.1.0
 ---
 
 # mcp-tooling
@@ -25,7 +25,7 @@ version: 1.6.0.0
 | **Use it for** | Browser debugging and automation, ClickUp task operations, Obsidian vault and markdown-note management, Aside agentic browser tasks, Notion workspace operations, Figma Desktop transport, Refero web UI reference search and Mobbin mobile-app design research |
 | **Invoke with** | Keyword routing through Gate 2 with no bound slash command for any of the eight modes, plus `/doctor:mcp` for install and debug |
 | **Routes to** | All eight packet directories via `mode-registry.json` and `hub-router.json`: five mutating workflow bridges and three read-only design transports |
-| **Produces** | Browser evidence, ClickUp task state changes, Obsidian note and vault operations, Aside browser evidence, Notion page and data-source operations, Figma reads and exports plus Refero and Mobbin research, paired with `sk-design-md-generator` for a measured Style Reference |
+| **Produces** | Browser evidence, ClickUp task state changes, Obsidian note and vault operations, Aside browser evidence, Notion page and data-source operations, Figma reads and exports plus Refero and Mobbin research, paired with `sk-design-md-generator` for a measured Style Reference; MagicPath component and design-system reads, paired with `sk-design` |
 
 ---
 
@@ -55,7 +55,7 @@ The hub holds no packet-local logic. It routes every request to exactly one of e
 
 ### The Transport Axis
 
-Five modes are workflow bridges that mutate this workspace directly. The remaining four are read-only design transports that bridge to an external tool's surface and never perform design judgment or mutate this workspace. `mcp-figma` drives Figma Desktop over its local daemon with `mutatesWorkspace:false`: export commands write artifacts only to explicit output paths while document changes land in Figma Desktop. `mcp-refero` and `mcp-mobbin` run as remote MCP servers reached through Code Mode with no local writes at all. `mcp-magicpath` is the one transport whose provider ships no MCP server at all: a UTCP `cli` manual runs the vendor CLI through Code Mode, and only the provider's read-only commands are registered, so the commands that would write files into the calling project are unreachable from a tool call rather than merely discouraged. Every design-affecting operation pairs in `sk-design-md-generator` to extract a measured Style Reference (design tokens) from a live source, because the transport never decides taste or produces a Style Reference on its own.
+Five modes are workflow bridges that mutate this workspace directly. The remaining four are read-only design transports that bridge to an external tool's surface and never perform design judgment or mutate this workspace. `mcp-figma` drives Figma Desktop over its local daemon with `mutatesWorkspace:false`: export commands write artifacts only to explicit output paths while document changes land in Figma Desktop. `mcp-refero` and `mcp-mobbin` run as remote MCP servers reached through Code Mode with no local writes at all. `mcp-magicpath` is the one transport whose provider ships no MCP server at all: a UTCP `cli` manual runs the vendor CLI through Code Mode, and only the provider's read-only commands are registered, so the commands that would write files into the calling project are unreachable from a tool call rather than merely discouraged. Every design-affecting operation pairs the transport with a standalone skill that supplies the judgment, because a transport never decides taste on its own. For `mcp-figma`, `mcp-refero` and `mcp-mobbin` that partner is `sk-design-md-generator`, which extracts a measured Style Reference (design tokens) from a live source. For `mcp-magicpath` it is `sk-design`: its themes already return named CSS variables and fonts, so there is nothing to measure and what is missing is the decision.
 
 ---
 
@@ -121,14 +121,15 @@ The hub owns one `graph-metadata.json` advisor identity for all eight modes, whi
 
 ### When To Use This Skill
 
-Reach for the hub whenever a request names one of its eight surfaces: browser debugging, ClickUp task operations, Obsidian vault work, agentic browser tasks, Notion workspace operations, Figma Desktop, real-app UI references or mobile app design research. Design work always pairs a transport with `sk-design-md-generator` for a measured Style Reference. When a bridge needs install or debug help, `/doctor:mcp` is the route.
+Reach for the hub whenever a request names one of its eight surfaces: browser debugging, ClickUp task operations, Obsidian vault work, agentic browser tasks, Notion workspace operations, Figma Desktop, real-app UI references or mobile app design research. Design work always pairs a transport with the skill that owns the judgment: `sk-design-md-generator` for a measured Style Reference, or `sk-design` for `mcp-magicpath`, whose themes arrive already tokenised. When a bridge needs install or debug help, `/doctor:mcp` is the route.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
 | `mcp-code-mode` | Shared MCP execution substrate for the CLI-plus-MCP workflows and the remote transports through the unchanged `code_mode` registration key. External infrastructure, not a hub member |
-| `sk-design-md-generator` | Mandatory cross-hub measured-reference partner for the four design transports: extracts a measured Style Reference (design tokens) from a live source. The transports never decide taste on their own |
+| `sk-design-md-generator` | Mandatory cross-hub measured-reference partner for `mcp-figma`, `mcp-refero` and `mcp-mobbin`: extracts a measured Style Reference (design tokens) from a live source. Also applies to `mcp-magicpath` when the reference is an external live site rather than a MagicPath theme |
+| `sk-design` | Mandatory unconditional partner for `mcp-magicpath`, loaded on every invocation under the design agent persona. It owns values, interaction, motion and the WCAG review pass; the transport supplies only the evidence |
 | `sk-code` | Consumes browser-debugging output, ClickUp task context, Obsidian note context, Aside evidence, Notion workspace context, Figma exports and `DESIGN.md` plus Refero and Mobbin research as implementation input |
 | `sk-doc` | Documentation and component authoring. The sibling parent hub whose structure this hub mirrors |
 

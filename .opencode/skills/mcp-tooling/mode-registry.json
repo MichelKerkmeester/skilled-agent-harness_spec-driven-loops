@@ -1,388 +1,388 @@
 {
- "skill": "mcp-tooling",
- "version": "1.1.0.0",
- "resourceContractVersion": 1,
- "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/packetKind/backendKind) PLUS the advisorRouting projection for mcp-tooling. The hub reads this file to resolve a mode; the advisor routes any MCP tool-bridge query to the single identity mcp-tooling and the hub picks the mode. All modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection \u2014 the advisor does not read this file at runtime.",
- "discriminator": {
-  "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
-  "packetKind": "The axis discriminator: 'workflow' for the local-mutating tool bridges (mcp-chrome-devtools, mcp-click-up, mcp-aside-devtools) that write to this repo's workspace; 'transport' for mcp-figma, which bridges to Figma Desktop rather than performing design judgment or mutating this workspace.",
-  "backendKind": "Which backend runs the mode: cli-plus-mcp for the workflow bridges (CLI-primary, Code Mode MCP fallback); figma-desktop-transport for the figma transport (drives the external Figma Desktop app over its local daemon); code-mode-remote-mcp for the refero and mobbin transports (remote MCP servers reached through Code Mode via their registered manuals)."
- },
- "advisorRoutingContract": {
-  "routingClass": "How the advisor finds the mode. For mcp-tooling every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity mcp-tooling and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
-  "packetSkillName": "The packet's SKILL.md name. For mcp-tooling the packet folder IS its packetSkillName for every mode \u2014 so no mode has a folder/name mismatch and grandfatheredFolderMismatch is false throughout.",
-  "grandfatheredFolderMismatch": "true only when a packet folder differs from its packetSkillName (a preserved legacy mismatch). All mcp-tooling modes use folder == packetSkillName, so none has a mismatch \u2014 grandfatheredFolderMismatch is false for all.",
-  "command": "The bound slash command for the mode. No mcp-tooling mode has a dedicated command today (command:null on all, per ADR-006); the /doctor:mcp router is a separate command that covers install/debug for every mcp-* skill, including mcp-tooling's members."
- },
- "extensions": {
-  "transport-axis": {
-   "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (routingClass:'metadata'). mutatesWorkspace:false declares the DOMINANT mutation posture: document/content mutation lands in the external tool, and no transport edits existing repo files (Write/Edit/Task forbidden). Local write nuance is declared per mode via an optional toolSurface.workspaceWrites clarifier: mcp-figma is export-only (its export commands save requested artifacts to explicit local output paths); mcp-refero and mcp-mobbin perform no local writes at all. Transports never produce a measured design reference themselves and hand off to sk-design-md-generator (a DIFFERENT, standalone skill) for measured design-reference extraction, since none of mcp-tooling's own workflow modes (browser inspection, task management, agentic browser automation) can supply a measured Style Reference. backendKinds: figma-desktop-transport (mcp-figma, local Figma Desktop daemon); code-mode-remote-mcp (mcp-refero via the registered refero manual; mcp-mobbin via the registered mobbin manual \u2014 both remote MCP through Code Mode); code-mode-cli (mcp-magicpath, whose provider ships no MCP server: a UTCP cli manual runs the vendor CLI through Code Mode, and only the provider's read-only commands are registered, so mutatesWorkspace:false holds for the same reason it holds for the remote-MCP transports).",
-   "transports": [
-    "mcp-figma",
-    "mcp-refero",
-    "mcp-mobbin",
-    "mcp-magicpath"
-   ],
-   "crossHubPairing": {}
-  }
- },
- "modes": [
-  {
-   "workflowMode": "mcp-chrome-devtools",
-   "packetKind": "workflow",
-   "backendKind": "cli-plus-mcp",
-   "toolSurface": {
-    "allowed": [
-     "Read",
-     "Write",
-     "Edit",
-     "Bash",
-     "Glob",
-     "Grep",
-     "mcp__code_mode__call_tool_chain"
-    ],
-    "forbidden": [],
-    "mutatesWorkspace": true,
-    "bashAllowlist": []
-   },
-   "packet": "mcp-chrome-devtools",
-   "packetSkillName": "mcp-chrome-devtools",
-   "grandfatheredFolderMismatch": false,
-   "command": null,
-   "aliases": [
-    "chrome devtools",
-    "browser debug",
-    "dom inspect",
-    "lighthouse",
-    "bdg",
-    "cdp"
-   ],
-   "advisorRouting": {
-    "routingClass": "metadata"
-   }
+  "skill": "mcp-tooling",
+  "version": "1.2.0.0",
+  "resourceContractVersion": 1,
+  "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/packetKind/backendKind) PLUS the advisorRouting projection for mcp-tooling. The hub reads this file to resolve a mode; the advisor routes any MCP tool-bridge query to the single identity mcp-tooling and the hub picks the mode. All modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection — the advisor does not read this file at runtime.",
+  "discriminator": {
+    "workflowMode": "Public hub/mode key. Stable identity used by the hub router and this registry. Carried by every mode.",
+    "packetKind": "The axis discriminator: 'workflow' for the local-mutating tool bridges (mcp-chrome-devtools, mcp-click-up, mcp-aside-devtools) that write to this repo's workspace; 'transport' for mcp-figma, which bridges to Figma Desktop rather than performing design judgment or mutating this workspace.",
+    "backendKind": "Which backend runs the mode: cli-plus-mcp for the workflow bridges (CLI-primary, Code Mode MCP fallback); figma-desktop-transport for the figma transport (drives the external Figma Desktop app over its local daemon); code-mode-remote-mcp for the refero and mobbin transports (remote MCP servers reached through Code Mode via their registered manuals)."
   },
-  {
-   "workflowMode": "mcp-click-up",
-   "packetKind": "workflow",
-   "backendKind": "cli-plus-mcp",
-   "toolSurface": {
-    "allowed": [
-     "Read",
-     "Write",
-     "Edit",
-     "Bash",
-     "Glob",
-     "Grep",
-     "mcp__code_mode__call_tool_chain"
-    ],
-    "forbidden": [],
-    "mutatesWorkspace": true,
-    "bashAllowlist": []
-   },
-   "packet": "mcp-click-up",
-   "packetSkillName": "mcp-click-up",
-   "grandfatheredFolderMismatch": false,
-   "command": null,
-   "aliases": [
-    "clickup",
-    "cupt",
-    "task management",
-    "work queue",
-    "mark done",
-    "time tracking"
-   ],
-   "advisorRouting": {
-    "routingClass": "metadata"
-   }
+  "advisorRoutingContract": {
+    "routingClass": "How the advisor finds the mode. For mcp-tooling every mode is 'metadata' = resolved by hub membership; the advisor routes the single identity mcp-tooling and the hub picks the mode, so no mode carries an advisor map entry or a merged-identity projection.",
+    "packetSkillName": "The packet's SKILL.md name. For mcp-tooling the packet folder IS its packetSkillName for every mode — so no mode has a folder/name mismatch and grandfatheredFolderMismatch is false throughout.",
+    "grandfatheredFolderMismatch": "true only when a packet folder differs from its packetSkillName (a preserved legacy mismatch). All mcp-tooling modes use folder == packetSkillName, so none has a mismatch — grandfatheredFolderMismatch is false for all.",
+    "command": "The bound slash command for the mode. No mcp-tooling mode has a dedicated command today (command:null on all, per ADR-006); the /doctor:mcp router is a separate command that covers install/debug for every mcp-* skill, including mcp-tooling's members."
   },
-  {
-   "workflowMode": "mcp-aside-devtools",
-   "packetKind": "workflow",
-   "backendKind": "cli-plus-mcp",
-   "toolSurface": {
-    "allowed": [
-     "Read",
-     "Write",
-     "Edit",
-     "Bash",
-     "Glob",
-     "Grep",
-     "mcp__code_mode__call_tool_chain"
-    ],
-    "forbidden": [],
-    "mutatesWorkspace": true,
-    "bashAllowlist": []
-   },
-   "packet": "mcp-aside-devtools",
-   "packetSkillName": "mcp-aside-devtools",
-   "grandfatheredFolderMismatch": false,
-   "command": null,
-   "aliases": [
-    "aside",
-    "aside browser",
-    "aside cli",
-    "aside mcp",
-    "aside repl",
-    "ai browser automation",
-    "agentic browser"
-   ],
-   "advisorRouting": {
-    "routingClass": "metadata"
-   }
+  "extensions": {
+    "transport-axis": {
+      "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (routingClass:'metadata'). mutatesWorkspace:false declares the DOMINANT mutation posture: document/content mutation lands in the external tool, and no transport edits existing repo files (Write/Edit/Task forbidden). Local write nuance is declared per mode via an optional toolSurface.workspaceWrites clarifier: mcp-figma is export-only (its export commands save requested artifacts to explicit local output paths); mcp-refero and mcp-mobbin perform no local writes at all. Transports never decide design themselves and always hand the judgment to a DIFFERENT, standalone skill, since none of mcp-tooling's own workflow modes (browser inspection, task management, agentic browser automation) can supply it. Which skill depends on what the transport returns: mcp-figma, mcp-refero and mcp-mobbin retrieve visual material carrying no token vocabulary of its own, so they hand off to sk-design-md-generator for measured design-reference extraction; mcp-magicpath's get_theme already returns named CSS variables and fonts, so there is nothing to re-measure and it pairs unconditionally with sk-design, the decide skill, under the design agent persona (see crossHubPairing). sk-design-md-generator still applies to mcp-magicpath when the reference is an external live site rather than a MagicPath theme. backendKinds: figma-desktop-transport (mcp-figma, local Figma Desktop daemon); code-mode-remote-mcp (mcp-refero via the registered refero manual; mcp-mobbin via the registered mobbin manual — both remote MCP through Code Mode); code-mode-cli (mcp-magicpath, whose provider ships no MCP server: a UTCP cli manual runs the vendor CLI through Code Mode, and only the provider's read-only commands are registered, so mutatesWorkspace:false holds for the same reason it holds for the remote-MCP transports).",
+      "transports": [
+        "mcp-figma",
+        "mcp-refero",
+        "mcp-mobbin",
+        "mcp-magicpath"
+      ],
+      "crossHubPairing": {}
+    }
   },
-  {
-   "workflowMode": "mcp-figma",
-   "packetKind": "transport",
-   "backendKind": "figma-desktop-transport",
-   "toolSurface": {
-    "allowed": [
-     "Read",
-     "Bash",
-     "Grep",
-     "Glob",
-     "mcp__code_mode__call_tool_chain"
-    ],
-    "forbidden": [
-     "Write",
-     "Edit",
-     "Task"
-    ],
-    "mutatesWorkspace": false,
-    "workspaceWrites": "export-only: the read-path export commands (extract DESIGN.md, export PNG/SVG/JSX/CSS/Tailwind/Storybook, screenshots) save their OUTPUT ARTIFACTS to the local filesystem at an explicit, operator-supplied output path (never a silent overwrite, per the packet's local-export rule). No command edits existing repo sources; document mutation lands in Figma Desktop, so mutatesWorkspace stays false per the transport axis' dominant-posture semantics.",
-    "bashAllowlist": []
-   },
-   "packet": "mcp-figma",
-   "packetSkillName": "mcp-figma",
-   "grandfatheredFolderMismatch": false,
-   "command": null,
-   "aliases": [
-    "figma cli",
-    "figma-ds-cli",
-    "figma desktop",
-    "render in figma",
-    "figma tokens",
-    "extract design.md",
-    "figma mcp"
-   ],
-   "advisorRouting": {
-    "routingClass": "metadata"
-   }
-  },
-  {
-   "workflowMode": "mcp-refero",
-   "packetKind": "transport",
-   "backendKind": "code-mode-remote-mcp",
-   "toolSurface": {
-    "allowed": [
-     "Read",
-     "Bash",
-     "Grep",
-     "Glob",
-     "mcp__code_mode__call_tool_chain"
-    ],
-    "forbidden": [
-     "Write",
-     "Edit",
-     "Task"
-    ],
-    "mutatesWorkspace": false,
-    "bashAllowlist": []
-   },
-   "packet": "mcp-refero",
-   "packetSkillName": "mcp-refero",
-   "grandfatheredFolderMismatch": false,
-   "command": null,
-   "aliases": [
-    "refero",
-    "refero mcp",
-    "design reference search",
-    "ui reference",
-    "real app screens",
-    "refero.design"
-   ],
-   "advisorRouting": {
-    "routingClass": "metadata"
-   }
-  },
-  {
-   "workflowMode": "mcp-mobbin",
-   "packetKind": "transport",
-   "backendKind": "code-mode-remote-mcp",
-   "toolSurface": {
-    "allowed": [
-     "Read",
-     "Bash",
-     "Grep",
-     "Glob",
-     "mcp__code_mode__call_tool_chain"
-    ],
-    "forbidden": [
-     "Write",
-     "Edit",
-     "Task"
-    ],
-    "mutatesWorkspace": false,
-    "bashAllowlist": []
-   },
-   "packet": "mcp-mobbin",
-   "packetSkillName": "mcp-mobbin",
-   "grandfatheredFolderMismatch": false,
-   "command": null,
-   "aliases": [
-    "mobbin",
-    "mobbin mcp",
-    "app design research",
-    "screen examples",
-    "ux flow references",
-    "mobile design patterns"
-   ],
-   "advisorRouting": {
-    "routingClass": "metadata"
-   }
-  },
-  {
-   "workflowMode": "mcp-obsidian",
-   "packetKind": "workflow",
-   "backendKind": "cli-plus-mcp",
-   "toolSurface": {
-    "allowed": [
-     "Read",
-     "Write",
-     "Edit",
-     "Bash",
-     "Glob",
-     "Grep",
-     "mcp__code_mode__call_tool_chain"
-    ],
-    "forbidden": [],
-    "mutatesWorkspace": true,
-    "bashAllowlist": []
-   },
-   "packet": "mcp-obsidian",
-   "packetSkillName": "mcp-obsidian",
-   "grandfatheredFolderMismatch": false,
-   "command": null,
-   "aliases": [
-    "obsidian",
-    "obsidian vault",
-    "notesmd-cli",
-    "obsidian mcp",
-    "note management",
-    "markdown notes",
-    "health",
-    "health md",
-    "health-md",
-    "apple health",
-    "health chart",
-    "iconic",
-    "iconic rulebook",
-    "icon rules",
-    "icon automation",
-    "file icons",
-    "folder icons",
-    "icon color",
-    "iconic data json",
-    "iconic ruleset",
-    "charts",
-    "chart block",
-    "render block",
-    "dataview",
-    "dql",
-    "dataviewjs",
-    "inline field",
-    "excalidraw",
-    "excalidraw.md",
-    "drawing note",
-    "obsidian-git",
-    "vault git",
-    "auto backup",
-    "outliner",
-    "list editing",
-    "minimal theme",
-    "css theme",
-    "theme snippet"
-   ],
-   "advisorRouting": {
-    "routingClass": "metadata"
-   }
-  },
-  {
-   "workflowMode": "mcp-notion",
-   "packetKind": "workflow",
-   "backendKind": "code-mode-remote-mcp",
-   "toolSurface": {
-    "allowed": [
-     "Read",
-     "Write",
-     "Edit",
-     "Bash",
-     "Glob",
-     "Grep",
-     "mcp__code_mode__call_tool_chain"
-    ],
-    "forbidden": [],
-    "mutatesWorkspace": true,
-    "bashAllowlist": []
-   },
-   "packet": "mcp-notion",
-   "packetSkillName": "mcp-notion",
-   "grandfatheredFolderMismatch": false,
-   "command": null,
-   "aliases": [
-    "notion",
-    "notion mcp",
-    "notion api",
-    "notion database",
-    "notion data source",
-    "notion page",
-    "notion token",
-    "ntn_",
-    "notion property",
-    "notion relation",
-    "notion rollup",
-    "notion formula",
-    "notion search",
-    "notion markdown"
-   ],
-   "advisorRouting": {
-    "routingClass": "metadata"
-   }
-  },
-  {
-   "workflowMode": "mcp-magicpath",
-   "packetKind": "transport",
-   "backendKind": "code-mode-cli",
-   "toolSurface": {
-    "allowed": [
-     "Read",
-     "Bash",
-     "Grep",
-     "Glob",
-     "mcp__code_mode__call_tool_chain"
-    ],
-    "forbidden": [
-     "Write",
-     "Edit",
-     "Task"
-    ],
-    "mutatesWorkspace": false,
-    "bashAllowlist": []
-   },
-   "packet": "mcp-magicpath",
-   "packetSkillName": "mcp-magicpath",
-   "grandfatheredFolderMismatch": false,
-   "command": null,
-   "aliases": [
-    "magicpath",
-    "magicpath ai",
-    "magicpath component",
-    "magicpath canvas",
-    "magicpath design system",
-    "magicpath.ai"
-   ],
-   "advisorRouting": {
-    "routingClass": "metadata"
-   }
-  }
- ]
+  "modes": [
+    {
+      "workflowMode": "mcp-chrome-devtools",
+      "packetKind": "workflow",
+      "backendKind": "cli-plus-mcp",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Glob",
+          "Grep",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-chrome-devtools",
+      "packetSkillName": "mcp-chrome-devtools",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "chrome devtools",
+        "browser debug",
+        "dom inspect",
+        "lighthouse",
+        "bdg",
+        "cdp"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "mcp-click-up",
+      "packetKind": "workflow",
+      "backendKind": "cli-plus-mcp",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Glob",
+          "Grep",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-click-up",
+      "packetSkillName": "mcp-click-up",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "clickup",
+        "cupt",
+        "task management",
+        "work queue",
+        "mark done",
+        "time tracking"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "mcp-aside-devtools",
+      "packetKind": "workflow",
+      "backendKind": "cli-plus-mcp",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Glob",
+          "Grep",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-aside-devtools",
+      "packetSkillName": "mcp-aside-devtools",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "aside",
+        "aside browser",
+        "aside cli",
+        "aside mcp",
+        "aside repl",
+        "ai browser automation",
+        "agentic browser"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "mcp-figma",
+      "packetKind": "transport",
+      "backendKind": "figma-desktop-transport",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Bash",
+          "Grep",
+          "Glob",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [
+          "Write",
+          "Edit",
+          "Task"
+        ],
+        "mutatesWorkspace": false,
+        "workspaceWrites": "export-only: the read-path export commands (extract DESIGN.md, export PNG/SVG/JSX/CSS/Tailwind/Storybook, screenshots) save their OUTPUT ARTIFACTS to the local filesystem at an explicit, operator-supplied output path (never a silent overwrite, per the packet's local-export rule). No command edits existing repo sources; document mutation lands in Figma Desktop, so mutatesWorkspace stays false per the transport axis' dominant-posture semantics.",
+        "bashAllowlist": []
+      },
+      "packet": "mcp-figma",
+      "packetSkillName": "mcp-figma",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "figma cli",
+        "figma-ds-cli",
+        "figma desktop",
+        "render in figma",
+        "figma tokens",
+        "extract design.md",
+        "figma mcp"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "mcp-refero",
+      "packetKind": "transport",
+      "backendKind": "code-mode-remote-mcp",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Bash",
+          "Grep",
+          "Glob",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [
+          "Write",
+          "Edit",
+          "Task"
+        ],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-refero",
+      "packetSkillName": "mcp-refero",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "refero",
+        "refero mcp",
+        "design reference search",
+        "ui reference",
+        "real app screens",
+        "refero.design"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "mcp-mobbin",
+      "packetKind": "transport",
+      "backendKind": "code-mode-remote-mcp",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Bash",
+          "Grep",
+          "Glob",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [
+          "Write",
+          "Edit",
+          "Task"
+        ],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-mobbin",
+      "packetSkillName": "mcp-mobbin",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "mobbin",
+        "mobbin mcp",
+        "app design research",
+        "screen examples",
+        "ux flow references",
+        "mobile design patterns"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "mcp-obsidian",
+      "packetKind": "workflow",
+      "backendKind": "cli-plus-mcp",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Glob",
+          "Grep",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-obsidian",
+      "packetSkillName": "mcp-obsidian",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "obsidian",
+        "obsidian vault",
+        "notesmd-cli",
+        "obsidian mcp",
+        "note management",
+        "markdown notes",
+        "health",
+        "health md",
+        "health-md",
+        "apple health",
+        "health chart",
+        "iconic",
+        "iconic rulebook",
+        "icon rules",
+        "icon automation",
+        "file icons",
+        "folder icons",
+        "icon color",
+        "iconic data json",
+        "iconic ruleset",
+        "charts",
+        "chart block",
+        "render block",
+        "dataview",
+        "dql",
+        "dataviewjs",
+        "inline field",
+        "excalidraw",
+        "excalidraw.md",
+        "drawing note",
+        "obsidian-git",
+        "vault git",
+        "auto backup",
+        "outliner",
+        "list editing",
+        "minimal theme",
+        "css theme",
+        "theme snippet"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "mcp-notion",
+      "packetKind": "workflow",
+      "backendKind": "code-mode-remote-mcp",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Write",
+          "Edit",
+          "Bash",
+          "Glob",
+          "Grep",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [],
+        "mutatesWorkspace": true,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-notion",
+      "packetSkillName": "mcp-notion",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "notion",
+        "notion mcp",
+        "notion api",
+        "notion database",
+        "notion data source",
+        "notion page",
+        "notion token",
+        "ntn_",
+        "notion property",
+        "notion relation",
+        "notion rollup",
+        "notion formula",
+        "notion search",
+        "notion markdown"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    },
+    {
+      "workflowMode": "mcp-magicpath",
+      "packetKind": "transport",
+      "backendKind": "code-mode-cli",
+      "toolSurface": {
+        "allowed": [
+          "Read",
+          "Bash",
+          "Grep",
+          "Glob",
+          "mcp__code_mode__call_tool_chain"
+        ],
+        "forbidden": [
+          "Write",
+          "Edit",
+          "Task"
+        ],
+        "mutatesWorkspace": false,
+        "bashAllowlist": []
+      },
+      "packet": "mcp-magicpath",
+      "packetSkillName": "mcp-magicpath",
+      "grandfatheredFolderMismatch": false,
+      "command": null,
+      "aliases": [
+        "magicpath",
+        "magicpath ai",
+        "magicpath component",
+        "magicpath canvas",
+        "magicpath design system",
+        "magicpath.ai"
+      ],
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    }
+  ]
 }

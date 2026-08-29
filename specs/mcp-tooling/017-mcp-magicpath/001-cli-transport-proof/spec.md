@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Created** | 2026-08-29 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 1 of 5 |
+| **Phase** | 1 of 6 |
 | **Predecessor** | None |
 | **Successor** | 002-manual-and-auth |
 | **Handoff Criteria** | A `cli` manual is callable through Code Mode and returns the CLI's own parsed output rather than a registration or transport error |

@@ -35,17 +35,11 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      "tasks.md",
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -56,6 +50,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -169,7 +169,7 @@
     ],
     "causal_summary": "Four phases will each have proven their own piece",
     "created_at": "2026-08-29T11:35:17.398Z",
-    "last_save_at": "2026-08-29T11:35:17.398Z",
+    "last_save_at": "2026-08-29T17:24:31.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -177,9 +177,9 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:62e476bb3e9720ee528fc92ed331e644be1632fec43943db3c60cc6ff00877df",
+    "source_fingerprint": "sha256:07106aa29c22083ae9414ccd654898dea25d1ddeba9fc51e257141305536dc2e",
     "source_doc_hashes": {
-      "spec.md": "8236b1bbe6e3294359e802de4df15cb3ea6a1fc52ac11126d6dc53244902299a",
+      "spec.md": "2d8a3be236f65fad2b369adce0e4fc6fc239231e7c03d0083c0992bdaca7f933",
       "plan.md": "6d0aed33be3d0b9338effe19dcb0e0805c6116a4c22e7d0d89cd79d143e03426",
       "tasks.md": "27333a476c30658c1299cab70eed811f1b757d454e82da73cd15dea3c3ee0b00"
     },

@@ -2,7 +2,7 @@
 name: mcp-tooling
 description: "Parent hub for MCP tool bridges: routes to five workflow modes (mcp-chrome-devtools, mcp-click-up, mcp-obsidian for Obsidian vault note-management and markdown-note management via notesmd-cli, the official obsidian CLI, and the cyanheads MCP, mcp-aside-devtools, and mcp-notion for Notion workspace operations via the official @notionhq/notion-mcp-server over Code Mode) plus four design transports (mcp-figma, mcp-refero, mcp-mobbin, and mcp-magicpath for MagicPath component and design-system lookup over a UTCP cli manual, its provider shipping no MCP server) through mode-registry.json. Holds no per-mode logic; dispatches by workflowMode."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.6.0.0
+version: 1.6.1.0
 metadata:
   author: OpenCode
   family: mcp
@@ -34,7 +34,7 @@ Use this skill (through the hub) for any MCP tool-bridge workflow. Invoke it as 
 ### When NOT to Use
 
 - A single quick read/edit with no MCP tool-bridge need — use the relevant skill directly.
-- A measured Style Reference (extracted design tokens) — `mcp-figma`, `mcp-refero`, and `mcp-mobbin` are transports that surface or drive reference material, never a source of measured tokens; use `sk-design-md-generator` to extract a Style Reference from a live source (mandatory cross-hub pairing).
+- A measured Style Reference (extracted design tokens) — `mcp-figma`, `mcp-refero`, and `mcp-mobbin` are transports that surface or drive reference material, never a source of measured tokens; use `sk-design-md-generator` to extract a Style Reference from a live source (mandatory cross-hub pairing). `mcp-magicpath` is the exception: its themes already return named CSS variables and fonts, so it pairs unconditionally with `sk-design` (the decide skill) instead, and reaches for `sk-design-md-generator` only when the reference is an external live site.
 - Shared MCP orchestration infrastructure beyond these bridges — use `mcp-code-mode` directly; it is excluded from this hub and stays flat (ADR-005).
 
 ---
@@ -52,7 +52,7 @@ Routing is two-stage. Stage 1 (hub → mode): the compiled router / `hub-router.
 ### Two-Axis Model
 
 - `packetKind: "workflow"` — `mcp-chrome-devtools`, `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, and `mcp-notion` mutate this repo's workspace (`mutatesWorkspace:true`).
-- `packetKind: "transport"` — `mcp-figma` (Figma Desktop), `mcp-refero` (Refero remote MCP via Code Mode), `mcp-mobbin` (Mobbin remote MCP via Code Mode) bridge to external tools and never mutate this workspace (`mutatesWorkspace:false`); declared on the `transport-axis` extension with a cross-hub pairing to `sk-design-md-generator` for measured design-reference extraction (mandatory for the design transports).
+- `packetKind: "transport"` — `mcp-figma` (Figma Desktop), `mcp-refero` (Refero remote MCP via Code Mode), `mcp-mobbin` (Mobbin remote MCP via Code Mode), and `mcp-magicpath` (MagicPath vendor CLI via a Code Mode UTCP `cli` manual) bridge to external tools and never mutate this workspace (`mutatesWorkspace:false`); declared on the `transport-axis` extension, each with a mandatory cross-hub pairing that supplies the design judgment the transport never issues itself — `sk-design-md-generator` for the first three (measured design-reference extraction), `sk-design` for `mcp-magicpath` (decide, since its themes are already tokenised).
 
 ### Routing Rule
 

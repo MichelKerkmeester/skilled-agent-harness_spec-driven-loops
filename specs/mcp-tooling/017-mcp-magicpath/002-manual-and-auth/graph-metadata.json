@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The probe proved a transport, not a surface",
     "created_at": "2026-08-29T11:35:15.721Z",
-    "last_save_at": "2026-08-29T15:21:55.830Z",
+    "last_save_at": "2026-08-29T17:24:31.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,9 +201,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:619ae284bb9533ec00c831addbcd9f34582587015778e5eede1513cec892c7ae",
+    "source_fingerprint": "sha256:5f43e9e449f7cee32306ab01b7f1ef141d9504517b71dd8d080143a2209248de",
     "source_doc_hashes": {
-      "spec.md": "ddcd02b7a3c3b69200381b63b7281163e8e7b5994ce510ba9bcc2ae018043f3a",
+      "spec.md": "66cd8be1899e27751013b73e2b1498e52dbc567d0b786b2a339252ee14e9afc5",
       "plan.md": "e570b75e8e52dc0420b624dc91310bfe2744dc96e7a9fe382aa834534f2bf471",
       "tasks.md": "2b78abb19c34226fa05584b1d788db69f06dc68aaaf456e5453f866d0dfd65ed",
       "implementation-summary.md": "1987db1fa3317405e2d4268d3ec0fac72c280892651848c46fc527dab1d2c14b"

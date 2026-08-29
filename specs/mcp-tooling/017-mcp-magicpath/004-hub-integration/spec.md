@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Created** | 2026-08-29 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 5 |
+| **Phase** | 4 of 6 |
 | **Predecessor** | 003-skill-packet |
 | **Successor** | 005-playbook-and-verification |
 | **Handoff Criteria** | The hub resolves a MagicPath request to the mode, and the fleet metadata audit passes with the leaf manifest regenerated rather than hand-edited |

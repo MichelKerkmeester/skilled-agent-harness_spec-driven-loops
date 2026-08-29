@@ -25,7 +25,7 @@ contextType: "implementation"
 | **Created** | 2026-08-29 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 5 |
+| **Phase** | 2 of 6 |
 | **Predecessor** | 001-cli-transport-proof |
 | **Successor** | 003-skill-packet |
 | **Handoff Criteria** | Read-only tools return MagicPath data for an authenticated operator, and an unauthenticated call names the missing credential rather than failing obscurely |

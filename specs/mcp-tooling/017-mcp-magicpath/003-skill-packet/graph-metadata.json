@@ -192,7 +192,7 @@
     ],
     "causal_summary": "A registered manual is reachable but not discoverable",
     "created_at": "2026-08-29T11:35:16.212Z",
-    "last_save_at": "2026-08-29T15:21:55.866Z",
+    "last_save_at": "2026-08-29T17:24:31.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,9 +201,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:496165bd350ff4051064df4a5db70c686db693d43f050ae941e110a93e96167f",
+    "source_fingerprint": "sha256:181ab117520734bf511ed3e0b2a1882eaa908cca1c5d5edd1fa7c56765bd85e0",
     "source_doc_hashes": {
-      "spec.md": "25da1f2de54d7e674e8ac894d1f84b361512ae937e9e8a132692d98ac63ce325",
+      "spec.md": "3b4b75693ba675823ca64eca9f1f06070c94b8775253a0c412e0529683038fd8",
       "plan.md": "143fc30098b2b9405f12cb91583f82659e17b01e7bf0476aefc7feb0ddcab516",
       "tasks.md": "4d0fa06efc27111c2cb973c2fa8aa5b3c5b349f768ba7ef512adc9d575eaf352",
       "implementation-summary.md": "7ea29e4f82e93e91c157a82fbabe639174dee66ce7208c99781544a31903b152"

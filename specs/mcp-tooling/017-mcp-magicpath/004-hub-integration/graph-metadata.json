@@ -199,7 +199,7 @@
     ],
     "causal_summary": "A packet nothing routes to is a document, not a capability",
     "created_at": "2026-08-29T11:35:16.848Z",
-    "last_save_at": "2026-08-29T15:21:56.160Z",
+    "last_save_at": "2026-08-29T17:24:31.578Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,9 +208,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ba0a82cbc7e5328e3c576ec7a588507ac39b811281b008cdb79e205074c81ba0",
+    "source_fingerprint": "sha256:0b75d1f823443faff92d30f16cc814a03476b7bf2c99ff21d43a744c921cdea9",
     "source_doc_hashes": {
-      "spec.md": "74df4895d2a5864188167c72635243a8c20ea14f519a86ed2861d8b7b12b340d",
+      "spec.md": "290d25928f086429410cb83f1a9d83b3dd0be0c678bd42a16f3a7ed0e7cf7af1",
       "plan.md": "a0414a04186438dbb9ecff36eb4040dd65663138f431d6d354633e3bf07daebe",
       "tasks.md": "4893325c4a3560b2c80d3f204fb3ff5b43a9a2a5e4b5898efe4a75f0ac96e3c6",
       "implementation-summary.md": "06e2dc23a0460db2a3cd0f6b5b3845a821b179c8c529595e5bf3474907bceb66"

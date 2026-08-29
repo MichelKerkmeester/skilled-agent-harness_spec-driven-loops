@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "mcp-tooling/017-mcp-magicpath/006-design-authority",
+  "spec_folder": "mcp-tooling/017-mcp-magicpath/006-design-authority",
+  "parent_id": "mcp-tooling/017-mcp-magicpath",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "magicpath design authority",
+      "magicpath sk-design pairing",
+      "magicpath design persona",
+      "changelog aggregation symlink",
+      "design authority plan",
+      "unconditional skill pairing design",
+      "design authority tasks",
+      "crosshubpairing must stay empty",
+      "magicpath design authority adr",
+      "judgment registry missing",
+      "mcp-magicpath design authority shipped",
+      "unconditional sk-design pairing"
+    ],
+    "key_topics": [
+      "magicpath",
+      "design",
+      "authority",
+      "sk-design",
+      "pairing",
+      "persona",
+      "changelog",
+      "aggregation",
+      "symlink",
+      "plan",
+      "unconditional",
+      "skill"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-magicpath/SKILL.md",
+      ".opencode/skills/mcp-tooling/mcp-magicpath/references/design-authority.md",
+      ".opencode/skills/mcp-tooling/mcp-magicpath/README.md",
+      ".opencode/skills/mcp-tooling/mcp-magicpath/changelog/v1.1.0.0.md",
+      ".opencode/skills/mcp-tooling/mode-registry.json",
+      ".opencode/skills/mcp-tooling/README.md",
+      ".opencode/skills/mcp-tooling/SKILL.md",
+      ".opencode/skills/mcp-tooling/description.json",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json",
+      ".opencode/skills/mcp-tooling/changelog/v1.6.1.0.md",
+      ".opencode/agents/design.md",
+      ".claude/agents/design.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-magicpath/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "design-authority.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-magicpath/references/design-authority.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-magicpath/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-magicpath/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "v1.6.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/changelog/v1.6.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".opencode/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Settle",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet declined to issue design judgment and said so plainly: \"this packet is a read-only transport and issues no such verdict.\" That sentence is correct about ownership and wrong about what happens next",
+    "created_at": "2026-08-29T17:22:35.306Z",
+    "last_save_at": "2026-08-29T17:36:54.559Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d616c29ed1c5705c4ec7bc94813a9fe61600a0698bbee97535c53cc6da7454c7",
+    "source_doc_hashes": {
+      "spec.md": "a443752ca21322827a67ab54992a3b06109a44107705a9fc3f57b973f4f4e99b",
+      "plan.md": "9b6cf8849cbe5eed67231b38f8554ab1cf44f2b5b152c2eb6a8c4f50247c41bf",
+      "tasks.md": "d63a880d244081e2f5ca8c78e329344c7e2328d3d3f1e76bf28a344e83b9af91",
+      "decision-record.md": "414de85dba1f2e814e78fbb93da5aefcd9fbaae4b7607210ba3c5ccefc4f4011",
+      "implementation-summary.md": "171895b67147f15451ac1a9ea31387b615ac7f248fc45ffb2a7661b33091a8c7"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

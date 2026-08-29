@@ -8,12 +8,12 @@ trigger_phrases:
   - "magicpath search components"
   - "magicpath themes"
   - "magicpath design system"
-version: 1.0.0.0
+version: 1.1.0.0
 ---
 
 # mcp-magicpath
 
-> MagicPath is a generated-UI component library behind the `magicpath-ai` Node CLI. This skill makes that library reachable from an agent as read-only facts: components, projects, teams, design systems, and the live web canvas. The registered surface is read-only on purpose.
+> MagicPath is a generated-UI component library behind the `magicpath-ai` Node CLI. This skill makes that library reachable from an agent as read-only facts: components, projects, teams, design systems, and the live web canvas. The registered surface is read-only on purpose, and every invocation runs paired with `sk-design` under the design agent persona: this skill retrieves, `sk-design` decides.
 
 ---
 
@@ -151,12 +151,15 @@ The registered surface is read-only on purpose. The CLI can also write `.tsx` fi
 
 Reach for this packet when you want MagicPath facts: a component by name and its source, a project's contents, a team's members, a design system's tokens, the canvas selection, the installed components, or a shareable URL. Also reach for it when the `magicpath` wiring or its credential needs verification.
 
-Skip it when the work is to generate, install, add, code, image, create a project, or clone a revision; those are unregistered mutating commands and this packet cannot reach them. Skip it for design judgment itself; this packet supplies read-only facts and issues no taste verdict. Skip it for third-party UI reference search (`mcp-refero`), Figma (`mcp-figma`), Notion (`mcp-notion`), Obsidian (`mcp-obsidian`), browser automation (`mcp-chrome-devtools`), and generic app coding (`sk-code`). Never use it to change files. The allowed tool surface is Read, Bash, Grep, Glob, and Code Mode calls only.
+Skip it when the work is to generate, install, add, code, image, create a project, or clone a revision; those are unregistered mutating commands and this packet cannot reach them. Skip it only when the design work has no MagicPath surface in it at all; when it does, this skill loads `sk-design` for you rather than handing back unowned facts. Skip it for third-party UI reference search (`mcp-refero`), Figma (`mcp-figma`), Notion (`mcp-notion`), Obsidian (`mcp-obsidian`), browser automation (`mcp-chrome-devtools`), and generic app coding (`sk-code`). Never use it to change files. The allowed tool surface is Read, Bash, Grep, Glob, and Code Mode calls only.
 
 ### Related Skills
 
 | Skill | Relationship |
 |---|---|
+| `sk-design` | The unconditional design authority, loaded on every invocation before the first tool call. It owns values, interaction, motion, and the WCAG review pass; this skill supplies the evidence it reasons over. |
+| The design agent | The operating persona, resolved from the ACTIVE runtime's agent directory. Its judgment contract and LEAF discipline are adopted; its write capability is not, because this transport forbids Write/Edit/Task. |
+| `sk-design-md-generator` | Applies only when the reference is an external live site rather than a MagicPath theme. MagicPath themes already return named CSS variables, so there is nothing to re-measure. |
 | `mcp-code-mode` | The substrate. Manuals, `{manual}.{tool}` naming, prefixed env vars, discovery, and the synchronous-call discipline all come from Code Mode. |
 | `mcp-refero` | The sibling design-reference transport in this hub. It searches real shipped UI from third-party apps; MagicPath is its own component library, not a reference corpus. No surface overlap. |
 | `mcp-figma` | The sibling Figma transport in this hub. |
@@ -217,7 +220,7 @@ A: By design. A failing command returns the error text or a JSON error object as
 | Check | How to run it |
 |---|---|
 | Skill package | `python3 .opencode/skills/sk-doc/sk-create-skill/scripts/package_skill.py .opencode/skills/mcp-tooling/mcp-magicpath --check` reports zero errors |
-| SKILL.md frontmatter | `head -8 .opencode/skills/mcp-tooling/mcp-magicpath/SKILL.md` shows `name`, `description`, `version`, and `user-invocable`, with `version: 1.0.0.0` |
+| SKILL.md frontmatter | `head -8 .opencode/skills/mcp-tooling/mcp-magicpath/SKILL.md` shows `name`, `description`, `version`, and `user-invocable`, with `version: 1.1.0.0` |
 | Wiring presence | Read-only grep of `.utcp_config.json` reports the `magicpath` manual registered |
 | CLI reachability | Inside Code Mode: `magicpath.info({})` returns a result without a credential |
 | Callable confirmation | Inside Code Mode: `tool_info({ tool_name: "magicpath.search_components" })` returns a schema |
@@ -232,7 +235,9 @@ A: By design. A failing command returns the error text or a JSON error object as
 | [`references/tool-surface.md`](./references/tool-surface.md) | The 14-tool contract, argument bounds, the read funnel, and the stale-`cli.commands` warning |
 | [`references/credential-setup.md`](./references/credential-setup.md) | The credential, the `.env` wiring, and the unauthenticated failure shape |
 | [`references/mutation-boundary.md`](./references/mutation-boundary.md) | The registered read-only surface versus the deliberately unregistered write surface |
+| [`references/design-authority.md`](./references/design-authority.md) | The unconditional `sk-design` pairing, the persona, and the reconciled write boundary |
 | [`assets/utcp-magicpath-manual.md`](./assets/utcp-magicpath-manual.md) | The verified manual snapshot and the env-var wiring, verbatim |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Capability inventory by theme, with one per-tool leaf per documented tool |
 | [`changelog/v1.0.0.0.md`](./changelog/v1.0.0.0.md) | First release entry |
+| [`changelog/v1.1.0.0.md`](./changelog/v1.1.0.0.md) | The unconditional design-authority binding |
 | [Skills Library](../../README.txt) | The skill catalog and routing front door |

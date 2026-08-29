@@ -74,7 +74,7 @@ Reach MagicPath the way this repository reaches everything else - one registered
 
 Recorded so the parent's declared level is not mistaken for a claim that the work is small.
 
-The work qualifies for phased decomposition on both counts: it spans five surfaces (a transport, a registration, a packet, hub metadata, a playbook), introduces an external dependency with its own credential and release cadence, and produces well beyond five hundred lines across the packet and its documents. The complexity sits in the mid-twenties on the fifty-point scale, driven by the number of independent surfaces rather than by any one being hard.
+The work qualifies for phased decomposition on both counts: it spans six surfaces (a transport, a registration, a packet, hub metadata, a playbook, a design-authority binding), introduces an external dependency with its own credential and release cadence, and produces well beyond five hundred lines across the packet and its documents. The complexity sits in the mid-twenties on the fifty-point scale, driven by the number of independent surfaces rather than by any one being hard.
 
 The parent document itself declares Level 2, matching every phase parent in this repository. That is a property of the document, not of the work: a phase parent carries the lean trio and no plan or tasks file, and the AI-protocol rule that Level 3 triggers reads only those two files, so a Level 3 marker here is unsatisfiable by construction rather than by omission. The depth lives in the five children.
 
@@ -137,6 +137,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 3 | 003-skill-packet/ | Author the `mcp-magicpath` mode packet against the create-skill contract | In Progress |
 | 4 | 004-hub-integration/ | Make the mode routable: registry, router, regenerated manifest, hub prose | Complete |
 | 5 | 005-playbook-and-verification/ | Operator scenarios and the end-to-end proof that the bridge answers | Planned |
+| 6 | 006-design-authority/ | Bind the mode to `sk-design` unconditionally under the design agent persona, and land the changelog aggregation symlink | Complete |
 
 ### Phase Transition Rules
 

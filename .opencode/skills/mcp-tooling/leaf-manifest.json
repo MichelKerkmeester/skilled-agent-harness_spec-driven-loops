@@ -48,6 +48,7 @@
       "leaves": [
         "assets/utcp-magicpath-manual.md",
         "references/credential-setup.md",
+        "references/design-authority.md",
         "references/mutation-boundary.md",
         "references/tool-surface.md"
       ],

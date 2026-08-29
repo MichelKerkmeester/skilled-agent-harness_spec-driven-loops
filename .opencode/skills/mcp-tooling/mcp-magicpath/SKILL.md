@@ -1,9 +1,9 @@
 ---
 name: mcp-magicpath
-description: "MagicPath CLI transport: read-only component, project, team, design-system and canvas lookup through the magicpath-ai Node CLI via Code Mode's UTCP cli transport; no MCP server, no registered write surface."
+description: "MagicPath CLI transport: read-only component, project, team, design-system and canvas lookup through the magicpath-ai Node CLI via Code Mode's UTCP cli transport; no MCP server, no registered write surface. Always paired with sk-design under the design agent persona."
 compatibility: Requires the magicpath-ai Node CLI (installed version 2.6.1) on PATH and a credential (magicpath-ai login or MAGICPATH_TOKEN); this project's Code Mode currently runs on Node 24.
 allowed-tools: [Read, Bash, Grep, Glob, mcp__code_mode__call_tool_chain]
-version: 1.0.0.0
+version: 1.1.0.0
 user-invocable: true
 ---
 
@@ -11,7 +11,9 @@ user-invocable: true
 
 # MagicPath (mcp-magicpath)
 
-Look up **MagicPath** components, projects, teams, design systems, and the live web canvas through the **`magicpath-ai` Node CLI** from an agent, via Code Mode's UTCP `cli` transport. MagicPath ships **no MCP server**; the bridge is the CLI, registered as the manual named `magicpath` in this repo's `.utcp_config.json`. The registered surface is **read-only on purpose**: fourteen tools that only read. The CLI can also write `.tsx` files into the calling project, install npm packages, and create remote projects and component revisions (`add`, `code`, `image`, `create-project`, `clone`), but those are deliberately **not registered**, so an agent cannot reach them through a tool call. Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md), [`references/credential-setup.md`](references/credential-setup.md), and [`references/mutation-boundary.md`](references/mutation-boundary.md).
+Look up **MagicPath** components, projects, teams, design systems, and the live web canvas through the **`magicpath-ai` Node CLI** from an agent, via Code Mode's UTCP `cli` transport. MagicPath ships **no MCP server**; the bridge is the CLI, registered as the manual named `magicpath` in this repo's `.utcp_config.json`. The registered surface is **read-only on purpose**: fourteen tools that only read. The CLI can also write `.tsx` files into the calling project, install npm packages, and create remote projects and component revisions (`add`, `code`, `image`, `create-project`, `clone`), but those are deliberately **not registered**, so an agent cannot reach them through a tool call. Deep operational detail lives in [`references/tool-surface.md`](references/tool-surface.md), [`references/credential-setup.md`](references/credential-setup.md), [`references/mutation-boundary.md`](references/mutation-boundary.md), and [`references/design-authority.md`](references/design-authority.md).
+
+> **Design authority (read before any work).** Every MagicPath surface is a design surface: components, themes, CSS variables, fonts, canvas state. This packet therefore loads **`sk-design` unconditionally** and operates under the **design agent persona** resolved from the active runtime's agent directory. The transport retrieves; `sk-design` decides. Neither the persona nor the pairing widens this packet's authority — the transport's own tool surface stays narrower than the persona's and wins on every conflict. Full contract: [`references/design-authority.md`](references/design-authority.md).
 
 > **Transport shape (read first).** This is a `cli` transport manual, not an `mcp` one. The manual command (`node .opencode/bin/magicpath-utcp-manual.cjs`) emits the UTCP manual that lists the fourteen tools; each tool then runs through `node .opencode/bin/magicpath-utcp-exec.cjs`, which shells out to the `magicpath-ai` binary. Code Mode's naming convention is `{manual}.{tool}`, so the callable form is `magicpath.<tool>(...)` (for example `magicpath.search_components`), and discovery names appear dotted as `magicpath.<tool>`. The tool names have no `magicpath_` prefix of their own, so the prefix is applied once, not doubled. Confirm the exact callable with `tool_info` per session and fail closed on drift.
 
@@ -52,7 +54,7 @@ Look up **MagicPath** components, projects, teams, design systems, and the live 
 
 **Skip this skill when:**
 - The work is to *generate*, *install*, *add*, *code*, *image*, *create-project*, or *clone* through MagicPath. Those CLI commands are deliberately unregistered; this packet exposes no tool that performs them. Hand the request to the operator or to a workflow that runs the CLI directly outside a tool call.
-- The task is design judgment itself (palette, type, layout, taste, accessibility, or readiness verdicts). This packet is a read-only transport and issues no such verdict.
+- The task is design judgment with no MagicPath surface in it at all (a palette for an unrelated app, a component this library does not hold). Go straight to `sk-design`; there is nothing here to retrieve. When the work *does* touch MagicPath, do not skip this packet to avoid the transport — the two run together, and this packet loads `sk-design` for you.
 - The task is design-reference search over real shipped UI from other apps. That is `mcp-refero`, a sibling transport in this hub; MagicPath is its own component library, not a reference corpus of third-party apps.
 - The task is Figma work (`mcp-figma`), Notion (`mcp-notion`), Obsidian (`mcp-obsidian`), or browser automation and preview (`mcp-chrome-devtools`).
 - The work is generic app coding with no MagicPath input: use `sk-code`.
@@ -78,8 +80,9 @@ echo "$REQUEST" | grep -qiE 'magicpath-ai|magicpath (component|project|team|them
 ```text
 TASK CONTEXT
     |
-    +- STEP 0: Verify wiring (magicpath manual registered; Code Mode reachable; credential operator-confirmed)
-    +- STEP 1: Score intent -> SESSION | COMPONENTS | PROJECTS | TEAMS | THEMES | LOCAL_CANVAS | SHARING | WIRING_AUTH | TROUBLESHOOT
+    +- STEP 0: Adopt the design agent persona and load sk-design                            [MANDATORY, UNCONDITIONAL]
+    +- STEP 1: Verify wiring (magicpath manual registered; Code Mode reachable; credential operator-confirmed)
+    +- STEP 2: Score intent -> SESSION | COMPONENTS | PROJECTS | TEAMS | THEMES | LOCAL_CANVAS | SHARING | WIRING_AUTH | TROUBLESHOOT
     +- Phase 2: Discovery (list_tools / tool_info confirms the magicpath.<tool> callables)   [MANDATORY]
     +- Phase 3: Read funnel (search/list -> inspect/get detail -> share last); inspect returned values, never try/catch
     +- Phase 4: Verify (evidence cited by source; unknown fields preserved; no invented capability)
@@ -93,6 +96,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 references/tool-surface.md       # the 14-tool surface, args/bounds, the read funnel
 references/credential-setup.md   # the credential, the .env wiring, the unauthenticated failure shape
 references/mutation-boundary.md  # what is registered (read-only) vs what the CLI can do but is unregistered
+references/design-authority.md   # the unconditional sk-design pairing and the persona's reconciled write boundary
 assets/utcp-magicpath-manual.md  # verified manual snapshot (already registered) + the env-var wiring
 ```
 
@@ -100,6 +104,7 @@ assets/utcp-magicpath-manual.md  # verified manual snapshot (already registered)
 
 | Level | When to Load | Resources |
 | ----- | ------------ | --------- |
+| ALWAYS | Every invocation, before intent is scored and before the first tool call | `sk-design` (the decide skill) + the design agent persona; `references/design-authority.md` |
 | CONDITIONAL | Component, project, team, theme, canvas, or sharing intent | `references/tool-surface.md` (tool contract + read funnel) |
 | CONDITIONAL | Credential / auth intent | `references/credential-setup.md`, `assets/utcp-magicpath-manual.md` |
 | CONDITIONAL | Mutation-boundary intent (what the agent may and may not reach) | `references/mutation-boundary.md` |
@@ -301,12 +306,13 @@ Inspect every returned value. A failing command does not throw; it returns the e
 
 ### ALWAYS
 
-1. **ALWAYS confirm callables with `tool_info` after registration and before first use.** The `magicpath.<tool>` form is the documented convention; fail closed on any drift from the fourteen documented tools.
-2. **ALWAYS call synchronously inside the `call_tool_chain` body** (no `await`, no top-level `await`, no returned Promise) and use plain JavaScript only; TypeScript type annotations fail to parse.
-3. **ALWAYS inspect the returned value instead of relying on `try`/`catch`.** A failing command returns the error text or a JSON error object as an ordinary value; it does not throw.
-4. **ALWAYS start from the registered manual as the source of truth.** `magicpath-ai info -o json`'s `cli.commands` list is stale and under-reports; `magicpath-ai --help` is authoritative, and the registered manual is what an agent can actually call.
-5. **ALWAYS follow the read funnel**: reachability (`info`) -> search/list -> inspect/get detail -> share last; preserve unknown response fields.
-6. **ALWAYS treat this packet as read-only against this repo** (`mutatesWorkspace: false`). Reads happen against the external MagicPath service; Write, Edit, and Task are forbidden tools for this transport.
+1. **ALWAYS load `sk-design` and adopt the design agent persona before anything else**, on every invocation, without waiting for the request to look design-shaped. Resolve the persona from the ACTIVE runtime's agent directory (`.opencode/agents/design.md`, `.claude/agents/design.md`, and the sibling runtime paths) rather than hardcoding one runtime. Loading is not citing: a route named but not read does not satisfy this. A packet already in context is not re-read.
+2. **ALWAYS confirm callables with `tool_info` after registration and before first use.** The `magicpath.<tool>` form is the documented convention; fail closed on any drift from the fourteen documented tools.
+3. **ALWAYS call synchronously inside the `call_tool_chain` body** (no `await`, no top-level `await`, no returned Promise) and use plain JavaScript only; TypeScript type annotations fail to parse.
+4. **ALWAYS inspect the returned value instead of relying on `try`/`catch`.** A failing command returns the error text or a JSON error object as an ordinary value; it does not throw.
+5. **ALWAYS start from the registered manual as the source of truth.** `magicpath-ai info -o json`'s `cli.commands` list is stale and under-reports; `magicpath-ai --help` is authoritative, and the registered manual is what an agent can actually call.
+6. **ALWAYS follow the read funnel**: reachability (`info`) -> search/list -> inspect/get detail -> share last; preserve unknown response fields.
+7. **ALWAYS treat this packet as read-only against this repo** (`mutatesWorkspace: false`). Reads happen against the external MagicPath service; Write, Edit, and Task are forbidden tools for this transport. The design persona is write-capable and this transport is not: on that conflict the transport's narrower surface wins, every time. Adopting the persona imports its judgment contract and its LEAF discipline, never its write authority.
 
 ### NEVER
 
@@ -315,8 +321,9 @@ Inspect every returned value. A failing command does not throw; it returns the e
 3. **NEVER call, document, or expose the unregistered write surface** (`add`, `code`, `image`, `create-project`, `clone`, or any tool that writes `.tsx` files, installs npm packages, or creates remote projects or component revisions). Those are deliberately out of reach from a tool call; routing to them is a scope violation.
 4. **NEVER accept, print, or cache credentials.** Surface the credential step to the operator and wait; never inspect, clear, or repair auth state.
 5. **NEVER invent rate limits, page sizes, retry contracts, or backoff numbers.** No such contract is published for the CLI; on a failure, relay the CLI's own message.
-6. **NEVER treat search rank, similarity, or a theme's styling prompt as a taste verdict.** This transport supplies read-only facts; it issues no design judgment.
-7. **NEVER infer the tool set from `magicpath-ai info -o json`'s `cli.commands`.** That list is stale and under-reports; the registered manual and `magicpath-ai --help` are authoritative.
+6. **NEVER treat search rank, similarity, or a theme's styling prompt as a taste verdict.** This transport supplies read-only facts. The judgment is `sk-design`'s, and it is loaded, so the verdict has an owner rather than being withheld.
+7. **NEVER answer a MagicPath request without the design pairing loaded**, and never treat a retrieved fact, a theme's variables, or a component's source as a finished design answer on its own.
+8. **NEVER infer the tool set from `magicpath-ai info -o json`'s `cli.commands`.** That list is stale and under-reports; the registered manual and `magicpath-ai --help` are authoritative.
 
 ### ESCALATE IF
 
@@ -324,7 +331,8 @@ Inspect every returned value. A failing command does not throw; it returns the e
 2. **ESCALATE IF discovery shows catalog drift**: a documented tool missing or renamed, unexpected new tools, or schemas that contradict [`references/tool-surface.md`](references/tool-surface.md). A provider-surface change requires a reviewed packet update.
 3. **ESCALATE IF the request needs the write surface** (generating, installing, adding, coding, imaging, creating projects, or cloning). This packet cannot perform those; hand the request to the operator or a workflow that runs the CLI outside a tool call.
 4. **ESCALATE IF `call_tool_chain` drops the connection** (`-32000 Connection closed`), which locally indicates a Node 25 runtime; the Node 24 pin is an operator-side fix.
-5. **ESCALATE IF a tool returns `CLI_UNAVAILABLE`** (`Could not run magicpath-ai`); the `magicpath-ai` CLI is not on PATH and must be installed by the operator.
+5. **ESCALATE IF retrieved MagicPath evidence conflicts with an `sk-design` decision** (a theme variable that fails a contrast floor, a component whose interaction contradicts the interaction guidelines), asking which source prevails before either is written into an answer.
+6. **ESCALATE IF a tool returns `CLI_UNAVAILABLE`** (`Could not run magicpath-ai`); the `magicpath-ai` CLI is not on PATH and must be installed by the operator.
 
 ---
 
@@ -355,8 +363,11 @@ Inspect every returned value. A failing command does not throw; it returns the e
 **Retrieval complete when:**
 - The read funnel was followed (reachability -> search/list -> inspect/get -> share last), required arguments were supplied, cursor pagination used `after` (not page numbers) where applicable, returned values were inspected for `error`/`code`, and unknown fields were preserved.
 
+**Design-affecting use complete when:**
+- `sk-design` was loaded and the design agent persona adopted before the first tool call, the retrieved MagicPath facts were supplied as evidence rather than as a verdict, and any value, interaction, motion, or accessibility judgment in the answer came from `sk-design` and is attributable to it.
+
 **Always:**
-- No workspace file changed, no credential was printed or cached, no auth state was touched, no unregistered write capability was invoked or documented as reachable, no unpublished limit was invented, and every capability claim stayed within the registered manual.
+- No workspace file changed, no credential was printed or cached, no auth state was touched, no unregistered write capability was invoked or documented as reachable, no unpublished limit was invented, and every capability claim stayed within the registered manual. The persona's write capability was not exercised through this packet.
 
 ---
 
@@ -372,6 +383,8 @@ Inspect every returned value. A failing command does not throw; it returns the e
 
 - **`mcp-code-mode`** is the substrate: manuals, `{manual}.{tool}` naming, prefixed env vars (`magicpath_<NAME>`), discovery, and the synchronous-call discipline all come from it.
 - **`mcp-refero`** is the sibling design-reference transport in this hub; it searches real shipped UI from third-party apps. MagicPath is its own component library, not a reference corpus, and the two surfaces do not overlap.
+- **`sk-design`** is the unconditional pairing and the design authority: it owns values, interaction, motion, and the WCAG review pass. This packet retrieves MagicPath facts and hands them over; it never issues the verdict itself. Note the deliberate difference from the sibling transports — `mcp-figma`, `mcp-refero`, and `mcp-mobbin` pair with `sk-design-md-generator` to MEASURE a live surface into a Style Reference. MagicPath's own themes already carry named CSS variables and fonts, so there is nothing to re-measure; what this surface needs is the DECIDE skill. `sk-design-md-generator` still applies when the reference is an external live site rather than a MagicPath theme.
+- **The design agent** (resolved from the active runtime's agent directory) supplies the operating persona: LEAF-only, no sub-agent dispatch, read before edit, verify before claiming completion, mutate only what the request names. Its write capability is deliberately NOT inherited; this transport's forbidden Write/Edit/Task surface is the narrower contract and it wins.
 - **`sk-code`** owns adapting any resulting decision into application code and verifying it.
 
 ### External Tools
@@ -381,7 +394,7 @@ Inspect every returned value. A failing command does not throw; it returns the e
 
 ### Knowledge Base Dependencies
 
-**Required**: `references/tool-surface.md` (tool contract baseline). **Conditional**: `credential-setup.md` + `assets/utcp-magicpath-manual.md` (wiring/auth), `mutation-boundary.md` (read/write boundary).
+**Required**: `references/design-authority.md` (the unconditional pairing) and `references/tool-surface.md` (tool contract baseline). **Conditional**: `credential-setup.md` + `assets/utcp-magicpath-manual.md` (wiring/auth), `mutation-boundary.md` (read/write boundary).
 
 ---
 
@@ -402,17 +415,20 @@ Inspect every returned value. A failing command does not throw; it returns the e
 | Calling convention | Synchronous; no `await`, no top-level `await`, no returned Promise; plain JS only; inspect returned values, no try/catch reliance |
 | Local runtime | Code Mode on Node 24 (Node 25 SIGSEGVs) |
 | Mutation boundary | Read-only registered; `add`/`code`/`image`/`create-project`/`clone` deliberately unregistered |
+| Design authority | `sk-design`, loaded unconditionally on every invocation (not on a design-shaped trigger) |
+| Persona | The design agent, resolved from the ACTIVE runtime's agent directory; judgment contract only, write authority not inherited |
+| Authority conflict | Transport wins. The persona is write-capable, this packet is not; Write/Edit/Task stay forbidden |
 
 ---
 
 ## 9. REFERENCES AND RELATED RESOURCES
 
-The router (Section 2) discovers reference and asset docs dynamically. Start from `references/tool-surface.md` for the tool contract and read funnel, `references/credential-setup.md` for the credential and `.env` wiring, and `references/mutation-boundary.md` for the read/write boundary.
+The router (Section 2) discovers reference and asset docs dynamically. Start from `references/design-authority.md` for the unconditional pairing and the persona's reconciled boundary, `references/tool-surface.md` for the tool contract and read funnel, `references/credential-setup.md` for the credential and `.env` wiring, and `references/mutation-boundary.md` for the read/write boundary.
 
 Assets: `assets/utcp-magicpath-manual.md` (the verified, already-registered manual snapshot plus the env-var wiring), loaded for wiring/auth intent.
 
 Feature catalog: `feature-catalog/feature-catalog.md` is the root inventory, with one domain overview per theme and one per-tool leaf per documented tool.
 
-Related skills: `mcp-code-mode` (the substrate), `mcp-refero` (the sibling design-reference transport; no surface overlap), `mcp-figma`, `mcp-notion`, `mcp-obsidian`, `mcp-chrome-devtools` (other hub transports), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
+Related skills: `sk-design` (the unconditional design authority — always loaded, never optional), `mcp-code-mode` (the substrate), `mcp-refero` (the sibling design-reference transport; no surface overlap), `mcp-figma`, `mcp-notion`, `mcp-obsidian`, `mcp-chrome-devtools` (other hub transports), `sk-design-md-generator` (only when the reference is an external live site rather than a MagicPath theme), `sk-code` (adapting evidence into an app), and `system-spec-kit` when packet documentation or memory continuity applies.
 
 Upstream: MagicPath is the service behind the `magicpath-ai` CLI. This packet documents only the registered read-only surface; the vendor's own instruction files are out of scope and are not vendored or duplicated here.

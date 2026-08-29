@@ -25,9 +25,9 @@ contextType: "implementation"
 | **Created** | 2026-08-29 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 5 |
+| **Phase** | 5 of 6 |
 | **Predecessor** | 004-hub-integration |
-| **Successor** | None |
+| **Successor** | 006-design-authority |
 | **Handoff Criteria** | A request naming MagicPath returns the account's own data through the hub and the registered manual, and the playbook's scenarios have been executed rather than only written |
 <!-- /ANCHOR:metadata -->
 
