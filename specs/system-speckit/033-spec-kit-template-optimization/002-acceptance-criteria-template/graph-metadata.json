@@ -60,7 +60,7 @@
       "templates/README.md",
       "templates/CONTRACT.md",
       ".opencode/skills/system-spec-kit/README.md",
-      "scripts/spec/upgrade-level.sh"
+      "mcp-server/lib/config/spec-doc-paths.ts"
     ],
     "entities": [
       {
@@ -160,9 +160,9 @@
         "source": "derived"
       },
       {
-        "name": "upgrade-level.sh",
-        "kind": "script",
-        "path": "scripts/spec/upgrade-level.sh",
+        "name": "spec-doc-paths.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/config/spec-doc-paths.ts",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Acceptance criteria are split across two documents and owned by neither",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-08-29T15:29:06.950Z",
+    "last_save_at": "2026-08-29T16:24:18.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa72d3c6e25c25306a5b00d1eee4b2d5aa5aab7d50fe1189672138dfa903a887",
+    "source_fingerprint": "sha256:85e9620fe4ff9018e3600d4bb80ca420da7a47a3e414d2fc97f956199a3d2aff",
     "source_doc_hashes": {
       "spec.md": "651636f6f7065ebad102f61e8a26b41be434a20f0caf49a220182b7c3bbbd5b4",
       "plan.md": "d626919caf0a4b0d7ef0fad0a4bc4a07d7a0ab0f66559c3fe7cc2088026f7ca9",
       "tasks.md": "d232952f27c37a1c5375f5aa3d0134e4273b44057b3df1fbdec675aeaf28cc6e",
       "checklist.md": "8eeb64bbcde58f67578649e27a9594e48326a43e39100968dc7a4bc99f8f3f1d",
       "decision-record.md": "47c753e2e8eae72d61a0ef3d01f8d5067391ed40623dde70821ddfc4c4033fda",
-      "implementation-summary.md": "0593c197c47aa4477cda5fea0fdd4ef12897f2fb55490360ee86b2be97f6bd42"
+      "implementation-summary.md": "f3c7215339d7dab4a6530f93495a63c3f30cfe5631bbc9095abc7455f9ef1f2a"
     },
     "last_active_child_id": null,
     "last_active_at": null

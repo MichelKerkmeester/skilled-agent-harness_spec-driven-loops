@@ -129,6 +129,7 @@ const SPEC_DOC_PRIORITY = [
   'spec.md',
   'plan.md',
   'tasks.md',
+  'acceptance-criteria.md',
   'checklist.md',
   'decision-record.md',
   'research.md',

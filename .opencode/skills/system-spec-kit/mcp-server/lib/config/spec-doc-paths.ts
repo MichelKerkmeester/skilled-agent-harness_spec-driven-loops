@@ -11,6 +11,7 @@ export const SPEC_DOCUMENT_FILENAMES = new Set([
   'plan.md',
   'tasks.md',
   'checklist.md',
+  'acceptance-criteria.md',
   'decision-record.md',
   'implementation-summary.md',
   'research.md',

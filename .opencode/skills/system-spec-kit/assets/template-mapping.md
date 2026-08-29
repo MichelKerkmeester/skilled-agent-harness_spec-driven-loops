@@ -50,7 +50,7 @@ Spec folders are scaffolded through the Level contract resolver. The resolver se
 ```text
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
-Level 2 (Verification): Level 1 + checklist.md
+Level 2 (Verification): Level 1 + acceptance-criteria.md (checklist.md optional)
                               ↓
 Level 3 (Full):         Level 2 + decision-record.md + optional research/research.md
                               ↓
@@ -60,7 +60,7 @@ Level 3+ (Extended):    Level 3 + approval workflow + compliance + stakeholder t
 | Level               | Required Files                     | Adds To Previous        | Scaffold Commands          |
 | ------------------- | ---------------------------------- | ----------------------- | -------------------------- |
 | **1: Baseline**     | `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md` | (foundation)            | See Level 1 commands below |
-| **2: Verification** | Level 1 + `checklist.md`           | QA checklist            | See Level 2 commands below |
+| **2: Verification** | Level 1 + `acceptance-criteria.md` | Closure criteria        | See Level 2 commands below |
 | **3: Full**         | Level 2 + `decision-record.md`     | ADR + optional research | See Level 3 commands below |
 | **3+: Extended**    | Level 3 + approval workflow + compliance + stakeholders | Review tracking + coordination | See Level 3+ commands below |
 | **Phase Parent**    | `spec.md` + `description.json` + `graph-metadata.json` (lean trio) | None (control file only) | `create.sh --phase --phases N --phase-names a,b,c <description>` |
@@ -152,7 +152,8 @@ specs/044-modal-component/
 ├── plan.md                      (REQUIRED - from Level 1)
 ├── tasks.md                     (REQUIRED - from Level 1)
 ├── implementation-summary.md    (REQUIRED - from Level 1)
-└── checklist.md                 (REQUIRED - adds QA validation)
+├── acceptance-criteria.md       (REQUIRED - gates packet closure)
+└── checklist.md                 (OPTIONAL - adds QA validation)
 ```
 
 **Additional expectations:**

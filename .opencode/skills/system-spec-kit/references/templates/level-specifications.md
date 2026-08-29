@@ -29,6 +29,7 @@ templates/
 ├── spec.md.tmpl             # Requirements and scope
 ├── plan.md.tmpl             # Technical approach
 ├── tasks.md.tmpl            # Task breakdown
+├── acceptance-criteria.md.tmpl  # Closure criteria (Level 2+)
 ├── checklist.md.tmpl        # Verification gates
 ├── decision-record.md.tmpl  # Architecture decisions
 ├── implementation-summary.md.tmpl
@@ -187,7 +188,8 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 - `plan.md` (from Level 1) - Technical implementation plan
 - `tasks.md` (from Level 1) - Task breakdown by user story
 - `implementation-summary.md` (from Level 1) - Post-implementation documentation
-- `checklist.md` (NEW at Level 2) - Validation/QA checklists
+- `acceptance-criteria.md` (NEW at Level 2) - The criteria that gate packet closure
+- `checklist.md` (optional at Level 2) - Validation/QA checklists
 
 ### Optional Files
 
@@ -232,6 +234,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 - `templates/core/plan.md.tmpl`
 - `templates/core/tasks.md.tmpl`
 - `templates/core/implementation-summary.md.tmpl`
+- `templates/addons/acceptance-criteria.md.tmpl`
 - `templates/addons/checklist.md.tmpl`
 
 **Addendum source (+Verify):**

@@ -50,10 +50,12 @@ const FOLDER_NAMING_RE = /^\d{3}-[a-z0-9]([a-z0-9-]*[a-z0-9])?$/;
 const MAX_FILE_SIZE = 250 * 1024; // 250KB
 const MIN_CONTENT_LENGTH = 5;
 
+// Mirrors the Level contract: checklist.md is optional at every level, while the
+// acceptance criteria gate closure from Level 2 upward.
 const REQUIRED_FILES: Record<number, string[]> = {
   1: ['spec.md', 'plan.md', 'tasks.md'],
-  2: ['spec.md', 'plan.md', 'tasks.md', 'checklist.md'],
-  3: ['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'decision-record.md'],
+  2: ['spec.md', 'plan.md', 'tasks.md', 'acceptance-criteria.md'],
+  3: ['spec.md', 'plan.md', 'tasks.md', 'acceptance-criteria.md', 'decision-record.md'],
 };
 
 // Phase parents hold only the control trio; heavy docs live in the phase
@@ -176,7 +178,7 @@ function checkFrontmatter(folderPath: string): SpecDocHealthIssue[] {
 
 function checkTemplateSource(folderPath: string): SpecDocHealthIssue[] {
   const issues: SpecDocHealthIssue[] = [];
-  const mdFiles = ['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'decision-record.md'];
+  const mdFiles = ['spec.md', 'plan.md', 'tasks.md', 'acceptance-criteria.md', 'checklist.md', 'decision-record.md'];
 
   for (const file of mdFiles) {
     const filePath = path.join(folderPath, file);

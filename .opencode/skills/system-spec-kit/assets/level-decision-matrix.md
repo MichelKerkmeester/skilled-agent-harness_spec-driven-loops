@@ -42,7 +42,7 @@ This matrix helps determine the appropriate documentation level for any task. Us
 | Level               | LOC Guidance     | Required Files                                                      | Adds To Previous                   | Use When                             |
 | ------------------- | ---------------- | ------------------------------------------------------------------- | ---------------------------------- | ------------------------------------ |
 | **1: Baseline**     | <100             | `spec.md` + `plan.md` + `tasks.md` + `implementation-summary.md`    | (foundation)                       | All features - minimum documentation |
-| **2: Verification** | 100-499          | Level 1 + `checklist.md`                                            | QA checklist                       | Needs systematic validation          |
+| **2: Verification** | 100-499          | Level 1 + `acceptance-criteria.md`; `checklist.md` optional         | Closure criteria + QA checklist    | Needs systematic validation          |
 | **3: Full**         | ≥500             | Level 2 + `decision-record.md`                                      | ADR + optional research            | Complex/architectural changes        |
 | **3+: Extended**    | Complexity 80+   | Level 3 + approval workflow + compliance + stakeholders             | Review tracking + coordination     | High-complexity, multi-workstream    |
 
@@ -50,7 +50,7 @@ This matrix helps determine the appropriate documentation level for any task. Us
 ```text
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                               ↓
-Level 2 (Verification): Level 1 + checklist.md
+Level 2 (Verification): Level 1 + acceptance-criteria.md (checklist.md optional)
                               ↓
 Level 3 (Full):         Level 2 + decision-record.md + optional research/research.md + optional resource-map.md (any level)
                               ↓
@@ -217,7 +217,7 @@ The spec validation system (`validate.sh`) checks documentation quality using th
 - Purpose: Ensures all required files for the documentation level are present
 - Applies to: All levels (checks level-specific required files)
 - Severity: error (blocks completion)
-- Details: Level 1 requires `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`; Level 2 adds `checklist.md`; Level 3 adds `decision-record.md`
+- Details: Level 1 requires `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`; Level 2 adds `acceptance-criteria.md`; Level 3 adds `decision-record.md`
 
 **PLACEHOLDER_FILLED**
 - Purpose: Detects unfilled template placeholders that indicate incomplete documentation

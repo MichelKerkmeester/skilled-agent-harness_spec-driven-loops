@@ -74,6 +74,13 @@ The gate does not disturb work in progress: an unmet row blocks only a packet th
 | `.opencode/skills/system-spec-kit/README.md` | Modified | Skill README Level contract |
 | `README.md` | Modified | Public root README Level contract |
 | `AGENTS.md` (`CLAUDE.md`) | Modified | Section 3 documentation-level table |
+| `mcp-server/lib/config/spec-doc-paths.ts` | Modified | Adds it to the spec-document set so it is indexed |
+| `mcp-server/lib/validation/spec-doc-structure.ts` | Modified | Its anchors are structure-validated like any authored doc |
+| `mcp-server/lib/resume/resume-ladder.ts` | Modified | Surfaced on resume |
+| `shared/parsing/spec-doc-health.ts` | Modified | Per-level health map realigned with the Level contract |
+| `scripts/utils/template-structure.js` | Modified | Doc-to-template mapping, without which its template drift was undetectable |
+| `.opencode/commands/speckit/assets/*.yaml` | Modified | Six workflow assets require it at Levels 2, 3 and 3+ |
+| Level-contract reference documents | Modified | Seven surfaces describing the per-level document set |
 <!-- /ANCHOR:what-built -->
 
 ---

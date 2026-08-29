@@ -30,7 +30,12 @@ Use this guide when extending the manifest taxonomy, template version map, or le
 3. Add the template filename to `spec-kit-docs.json.versions`.
 4. Add the document name to the appropriate level row:
    - `requiredCoreDocs` for files every packet at that level must have before implementation starts.
-   - `requiredAddonDocs` for level add-ons such as `checklist.md`.
+   - `requiredAddonDocs` for level add-ons that must always be present.
+   - `optionalAddonDocs` for documents a level recognises without the
+     file-presence rule hard-erroring on them, such as `checklist.md` and
+     `acceptance-criteria.md`. Presence for these is owned by whichever rule
+     understands the rollout, because the file-presence rule has no notion of
+     when a packet was created.
    - `lazyAddonDocs` for command-owned or explicit-option files.
    - `lifecycleRequiredDocs.<transition>` for files required after a documented lifecycle transition.
 5. Add per-document anchors under `levels.<level>.sectionGates.<doc-name>`.

@@ -29,6 +29,7 @@ templates/
 │   ├── spec.md.tmpl
 │   ├── plan.md.tmpl
 │   ├── tasks.md.tmpl
+│   ├── acceptance-criteria.md.tmpl
 │   ├── checklist.md.tmpl
 │   ├── decision-record.md.tmpl
 │   ├── implementation-summary.md.tmpl
@@ -109,6 +110,7 @@ specs/NNN-name/
 ├── spec.md
 ├── plan.md
 ├── tasks.md
+├── acceptance-criteria.md
 ├── checklist.md               # QA validation items
 └── implementation-summary.md  # Created AFTER implementation completes
 ```
@@ -125,6 +127,7 @@ specs/NNN-name/
 ├── spec.md
 ├── plan.md
 ├── tasks.md
+├── acceptance-criteria.md
 ├── checklist.md
 ├── decision-record.md         # Architecture decisions
 └── implementation-summary.md  # Created AFTER implementation completes
@@ -267,6 +270,7 @@ specs/016-user-preferences/
 ├── spec.md
 ├── plan.md
 ├── tasks.md
+├── acceptance-criteria.md
 ├── checklist.md
 ├── implementation-summary.md  # Created after implementation
 ├── scratch/
@@ -282,6 +286,7 @@ specs/017-authentication-system/
 ├── spec.md
 ├── plan.md
 ├── tasks.md
+├── acceptance-criteria.md
 ├── checklist.md
 ├── decision-record.md
 ├── implementation-summary.md

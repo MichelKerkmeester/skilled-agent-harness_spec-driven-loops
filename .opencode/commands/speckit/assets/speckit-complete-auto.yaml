@@ -204,12 +204,12 @@ documentation_levels:
     use_case: "Simple changes, bug fixes"
   level_2_verification:
     name: "Level 2 (Verification)"
-    required_files: [spec.md, plan.md, tasks.md, checklist.md]
+    required_files: [spec.md, plan.md, tasks.md, checklist.md, acceptance-criteria.md]
     loc_guidance: "100-499 LOC"
     use_case: "Medium features, refactoring"
   level_3_full:
     name: "Level 3 (Full)"
-    required_files: [spec.md, plan.md, tasks.md, checklist.md, decision-record.md]
+    required_files: [spec.md, plan.md, tasks.md, checklist.md, acceptance-criteria.md, decision-record.md]
     loc_guidance: ">=500 LOC"
     use_case: "Complex features, architecture changes"
   level_selection:

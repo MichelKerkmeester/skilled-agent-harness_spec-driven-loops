@@ -24,7 +24,7 @@ Guide to template selection, copying, adaptation, and quality standards.
 ```text
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
                                ↓
-Level 2 (Verification): Level 1 + checklist.md
+Level 2 (Verification): Level 1 + acceptance-criteria.md (checklist.md optional)
                                ↓
 Level 3 (Full):         Level 2 + decision-record.md + optional research/research.md
                                ↓

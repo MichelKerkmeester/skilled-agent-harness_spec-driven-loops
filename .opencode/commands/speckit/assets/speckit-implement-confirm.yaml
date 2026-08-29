@@ -101,12 +101,12 @@ documentation_levels:
     use_case: "Simple changes, bug fixes"
   level_2_verification:
     name: "Level 2 (Verification)"
-    required_files: [spec.md, plan.md, tasks.md, checklist.md]
+    required_files: [spec.md, plan.md, tasks.md, checklist.md, acceptance-criteria.md]
     loc_guidance: "100-499"
     use_case: "Medium features, refactoring"
   level_3_full:
     name: "Level 3 (Full)"
-    required_files: [spec.md, plan.md, tasks.md, checklist.md, decision-record.md]
+    required_files: [spec.md, plan.md, tasks.md, checklist.md, acceptance-criteria.md, decision-record.md]
     loc_guidance: ">=500"
     use_case: "Complex features, architecture changes"
   level_selection:
@@ -118,7 +118,7 @@ documentation_levels:
 # ─────────────────────────────────────────────────────────────────
 prerequisites:
   level_1_required: ["[SPEC_FOLDER]/spec.md", "[SPEC_FOLDER]/plan.md", "[SPEC_FOLDER]/tasks.md"]
-  level_2_required: ["[SPEC_FOLDER]/checklist.md"]
+  level_2_required: ["[SPEC_FOLDER]/checklist.md", "[SPEC_FOLDER]/acceptance-criteria.md"]
   level_3_required: ["[SPEC_FOLDER]/decision-record.md"]
   optional_artifacts: ["[SPEC_FOLDER]/research/research.md"]
   verification: MUST EXIST BEFORE PROCEEDING
