@@ -41,6 +41,7 @@ export interface ContinuityFreshnessResult {
     | 'missing_fingerprint'
     | 'zero_fingerprint'
     | 'implementation_summary_missing'
+    | 'not_opted_in'
     | 'missing_frontmatter'
     | 'missing_graph_metadata'
     | 'missing_graph_timestamp'
@@ -87,6 +88,10 @@ function isTruthyEnv(value: string | undefined): boolean {
 
 function isEnforceMode(): boolean {
   return isTruthyEnv(process.env.SPECKIT_COMPLETION_FRESHNESS_ENFORCE);
+}
+
+function isOptedIn(): boolean {
+  return isTruthyEnv(process.env.SPECKIT_COMPLETION_FRESHNESS);
 }
 
 function extractFrontmatter(markdown: string): string | null {
@@ -537,7 +542,13 @@ function printBridgeOutput(result: ContinuityFreshnessResult): void {
 
 function runCli(): void {
   const options = parseArgs(process.argv.slice(2));
-  const result = validateContinuityFreshness(options.folder);
+  // Every validator reaches this rule through this entry point, so deciding
+  // applicability here is what keeps one packet from getting two verdicts
+  // depending on which validator asked. The rule's own logic stays unguarded
+  // so it can be exercised directly.
+  const result = isOptedIn()
+    ? validateContinuityFreshness(options.folder)
+    : buildPass('not_opted_in', 'Continuity freshness skipped: SPECKIT_COMPLETION_FRESHNESS is not enabled');
 
   if (options.json) {
     process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
