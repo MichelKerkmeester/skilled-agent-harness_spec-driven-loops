@@ -12,16 +12,5 @@
     ".opencode/skills/system-deep-loop/manual-testing-playbook/compiled-routing",
     ".opencode/skills/system-skill-advisor/manual-testing-playbook"
   ],
-  "warnPackages": [
-    "cli-external-orchestration",
-    "mcp-code-mode",
-    "mcp-tooling",
-    "sk-code",
-    "sk-doc",
-    "sk-git",
-    "sk-prompt",
-    "system-deep-loop",
-    "system-skill-advisor",
-    "system-spec-kit"
-  ]
+  "warnPackages": []
 }

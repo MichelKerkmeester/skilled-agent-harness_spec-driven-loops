@@ -194,4 +194,37 @@ if [[ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" ]]; then
   fi
 fi
 
+# --- Manual-testing-playbook operator contract (blocking) ---
+# Only checks roots that are BOTH on the fail-closed allowlist AND have staged
+# changes, so an ordinary commit pays nothing and a playbook edit is judged before
+# it reaches CI. Each root is validated on its own --package path: a fleet-wide run
+# resolves a nested package to its parent id, inherits the parent's warn entry, and
+# reports success while the package is actually broken.
+# Bypass: SPECKIT_SKIP_PLAYBOOK_CONTRACT=1 git commit ...
+if [[ "${SPECKIT_SKIP_PLAYBOOK_CONTRACT:-0}" != "1" ]]; then
+  PB_VALIDATOR="${REPO_ROOT}/.opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+  PB_ALLOWLIST="${REPO_ROOT}/.opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt"
+  if [[ -f "$PB_VALIDATOR" && -f "$PB_ALLOWLIST" ]]; then
+    PB_TOUCHED=()
+    while IFS= read -r pb_root; do
+      [[ -z "$pb_root" || "$pb_root" == \#* ]] && continue
+      if git diff --cached --name-only --diff-filter=ACMD | grep -q "^${pb_root}/"; then
+        PB_TOUCHED+=("$pb_root")
+      fi
+    done < "$PB_ALLOWLIST"
+
+    for pb_root in "${PB_TOUCHED[@]:-}"; do
+      [[ -z "$pb_root" ]] && continue
+      if ! node "$PB_VALIDATOR" --package "$pb_root" --strict >/tmp/pb-precommit.txt 2>&1; then
+        echo "" >&2
+        echo "BLOCKED [gate:playbook-contract]: $pb_root violates the operator-scenario contract." >&2
+        sed -n '1,40p' /tmp/pb-precommit.txt >&2
+        echo "Fix the package. Do not remove its allowlist line to go green." >&2
+        echo "Bypass: SPECKIT_SKIP_PLAYBOOK_CONTRACT=1 git commit ..." >&2
+        exit 1
+      fi
+    done
+  fi
+fi
+
 exit 0

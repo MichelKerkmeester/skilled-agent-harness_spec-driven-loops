@@ -176,6 +176,23 @@ function sectionChecks(text, relPath) {
   return errors;
 }
 
+/**
+ * Build a "Label:" line matcher that tolerates markdown emphasis around the label.
+ *
+ * Authors legitimately write `**Prompt**:` or `*Evidence*:` for visual weight. The
+ * original pattern allowed a leading `-`/`*` list bullet, which consumed the FIRST
+ * asterisk of `**` and then failed to match the second, so a document carrying every
+ * required element was reported as missing it. Those false positives are expensive:
+ * they read as real defects and invite edits to documents that were already correct.
+ */
+function labelMarker(labels) {
+  const emphasis = '(?:\\*\\*|__|\\*|_)?';
+  return new RegExp(
+    `(?:^|\\n)\\s*(?:[-*+]\\s+)?${emphasis}\\s*(?:${labels})\\s*${emphasis}\\s*:`,
+    'im',
+  );
+}
+
 function hasMarker(text, pattern) {
   return pattern.test(text);
 }
@@ -232,12 +249,12 @@ function requiredContentChecks(text, relPath, frontmatter, featureId) {
   const table = scenarioTableState(text);
   const checks = [
     ['REQUIRED_FEATURE_ID', Boolean(featureId), 'feature ID is missing'],
-    ['REQUIRED_PROMPT', hasMarker(text, /(?:^|\n)\s*(?:[-*]\s*)?(?:realistic user prompt|operator prompt|orchestrator prompt|exact prompt|prompt)\s*:/im) || tableFieldPresent(table, 'exact prompt'), 'operator or orchestrator prompt is missing'],
-    ['REQUIRED_COMMAND_SEQUENCE', hasMarker(text, /(?:^|\n)\s*#{2,4}\s+(?:exact )?command(?:s| sequence)\b/im) || tableFieldPresent(table, 'exact command sequence'), 'exact command sequence is missing'],
-    ['REQUIRED_EXPECTED_SIGNALS', hasMarker(text, /(?:^|\n)\s*(?:[-*]\s*)?(?:expected signals|expected)\s*:/im) || hasMarker(text, /^#{2,4}\s+Expected(?: Signals)?\b/im) || tableFieldPresent(table, 'expected signals'), 'expected signals are missing'],
-    ['REQUIRED_EVIDENCE', hasMarker(text, /(?:^|\n)\s*(?:[-*]\s*)?evidence(?: requirements)?\s*:/im) || hasMarker(text, /^#{2,4}\s+Evidence\b/im) || tableFieldPresent(table, 'evidence'), 'evidence requirements are missing'],
+    ['REQUIRED_PROMPT', hasMarker(text, labelMarker('realistic user prompt|operator prompt|orchestrator prompt|exact prompt|prompt')) || tableFieldPresent(table, 'exact prompt'), 'operator or orchestrator prompt is missing'],
+    ['REQUIRED_COMMAND_SEQUENCE', hasMarker(text, /(?:^|\n)\s*#{2,4}\s+(?:exact )?command(?:s| sequence)\b/im) || hasMarker(text, labelMarker('(?:exact )?commands?(?: sequence)?')) || tableFieldPresent(table, 'exact command sequence'), 'exact command sequence is missing'],
+    ['REQUIRED_EXPECTED_SIGNALS', hasMarker(text, labelMarker('expected signals|expected')) || hasMarker(text, /^#{2,4}\s+Expected(?: Signals)?\b/im) || tableFieldPresent(table, 'expected signals'), 'expected signals are missing'],
+    ['REQUIRED_EVIDENCE', hasMarker(text, labelMarker('evidence(?: requirements)?')) || hasMarker(text, /^#{2,4}\s+Evidence\b/im) || tableFieldPresent(table, 'evidence'), 'evidence requirements are missing'],
     ['REQUIRED_PASS_FAIL', hasMarker(text, /(?:pass\s*\/\s*fail|pass\/fail|pass\s+if|\*\*pass\*\*|\*\*fail\*\*)/i) || tableFieldPresent(table, 'pass/fail criteria'), 'pass/fail criteria are missing'],
-    ['REQUIRED_FAILURE_TRIAGE', hasMarker(text, /(?:^|\n)\s*#{2,4}\s+Failure Triage\b/im) || hasMarker(text, /Failure Triage\s*:/i) || tableFieldPresent(table, 'failure triage'), 'failure triage is missing'],
+    ['REQUIRED_FAILURE_TRIAGE', hasMarker(text, /(?:^|\n)\s*#{2,4}\s+Failure Triage\b/im) || hasMarker(text, labelMarker('failure triage')) || tableFieldPresent(table, 'failure triage'), 'failure triage is missing'],
     ['REQUIRED_ROOT_LINK', hasMarker(text, /(?:^|[(/` ])manual-testing-playbook\.md(?:[)#` ]|$)/i), 'root playbook link is missing'],
   ];
   for (const [code, present, message] of checks) if (!present) errors.push(issue(code, relPath, message));
@@ -303,12 +320,28 @@ function hasCaseMismatch(candidate, root) {
   return false;
 }
 
+/**
+ * Blank out fenced code blocks while preserving byte offsets and line numbers.
+ *
+ * Link scanning must not read code samples as markdown links. Bracket-index call
+ * syntax such as hooks['tool.execute.before']({ ... }) is indistinguishable from
+ * a [label](target) link to the link regex, which reported the call arguments as
+ * an unresolvable path. Replacing fenced spans with spaces of equal length keeps
+ * every subsequent offset and reported line number exact.
+ */
+function maskFencedCode(text) {
+  return text.replace(/^([ \t]*)(```+|~~~+)[^\n]*\n[\s\S]*?^\1\2[^\n]*$/gm, (block) =>
+    block.replace(/[^\n]/g, ' '),
+  );
+}
+
 function pathChecks(text, absPath, repoRoot, relPath) {
   const errors = [];
   const realRepoRoot = fs.realpathSync(repoRoot);
   const linkRe = /!?\[[^\]]*\]\(([^)]+)\)/g;
+  const scanText = maskFencedCode(text);
   let match;
-  while ((match = linkRe.exec(text)) !== null) {
+  while ((match = linkRe.exec(scanText)) !== null) {
     const target = trimLinkTarget(match[1]);
     if (!target || target.startsWith('#') || /^[a-z][a-z0-9+.-]*:/i.test(target) || target.startsWith('//') || target.startsWith('/tmp/')) continue;
     const candidate = path.resolve(path.dirname(absPath), target);
@@ -378,8 +411,9 @@ function extractRootIndexLinks(rootText, rootPath, playbookRoot, repoRoot) {
   const links = new Set();
   const problems = [];
   const linkRe = /\[[^\]]*\]\(([^)]+)\)/g;
+  const scanText = maskFencedCode(rootText);
   let match;
-  while ((match = linkRe.exec(rootText)) !== null) {
+  while ((match = linkRe.exec(scanText)) !== null) {
     const target = trimLinkTarget(match[1]);
     if (!target || target.startsWith('#') || /^[a-z][a-z0-9+.-]*:/i.test(target) || target.startsWith('//')) continue;
     const candidate = path.resolve(path.dirname(rootPath), target);
@@ -436,10 +470,38 @@ function resolvePackageFilter(filter, skillsRoot) {
   throw new Error(`package does not resolve to a manual-testing-playbook root: ${filter}`);
 }
 
+/**
+ * Find every playbook root, including those owned by a sub-skill packet.
+ *
+ * A hub keeps its own `<skill>/manual-testing-playbook` while each packet keeps
+ * `<skill>/<packet>/manual-testing-playbook` beside it — a sibling directory, not a
+ * child. Enumerating only the first level therefore skipped every packet-owned root,
+ * so a fleet run reported success while most of the corpus was never opened. Descend
+ * one level further so a fleet run means what it claims.
+ */
 function discoverPackages(skillsRoot) {
-  return fs.readdirSync(skillsRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory() && fs.existsSync(path.join(skillsRoot, entry.name, 'manual-testing-playbook', ROOT_FILENAME)))
-    .map((entry) => ({ id: entry.name, playbookRoot: path.join(skillsRoot, entry.name, 'manual-testing-playbook') }))
+  const roots = [];
+  const hasPlaybook = (dir) => fs.existsSync(path.join(dir, 'manual-testing-playbook', ROOT_FILENAME));
+  for (const skill of fs.readdirSync(skillsRoot, { withFileTypes: true })) {
+    if (!skill.isDirectory()) continue;
+    const skillDir = path.join(skillsRoot, skill.name);
+    if (hasPlaybook(skillDir)) {
+      roots.push({ id: skill.name, playbookRoot: path.join(skillDir, 'manual-testing-playbook') });
+    }
+    let packets = [];
+    try { packets = fs.readdirSync(skillDir, { withFileTypes: true }); } catch { packets = []; }
+    for (const packet of packets) {
+      if (!packet.isDirectory() || packet.name === 'manual-testing-playbook') continue;
+      const packetDir = path.join(skillDir, packet.name);
+      if (hasPlaybook(packetDir)) {
+        roots.push({
+          id: `${skill.name}/${packet.name}`,
+          playbookRoot: path.join(packetDir, 'manual-testing-playbook'),
+        });
+      }
+    }
+  }
+  return roots
     .sort((a, b) => a.id.localeCompare(b.id));
 }
 

@@ -1,0 +1,55 @@
+# Playbook roots held to the operator-scenario contract as a blocking gate.
+#
+# A root listed here must validate with zero violations. The CI workflow
+# .github/workflows/playbook-operator-contract.yml runs each one with its own
+# --package path, which is what gives it its own package id and its own tier.
+#
+# Why per-root, and why this file exists: a single fleet run resolves a nested
+# package to its PARENT id, so a sub-package silently inherits the parent's
+# playbook-corpus-manifest.json warnPackages entry and stops blocking. That
+# roll-up is how large backlogs accumulated unseen under warn-listed parents.
+#
+# Adding a line is how a cleaned package becomes permanent: once listed, a later
+# edit that reintroduces a violation fails the gate instead of joining a backlog.
+# Never remove a line to make a red build green — fix the package instead.
+.opencode/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook
+.opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook
+.opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook
+.opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook
+.opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook
+.opencode/skills/cli-external-orchestration/cli-pi/manual-testing-playbook
+.opencode/skills/cli-external-orchestration/manual-testing-playbook
+.opencode/skills/mcp-code-mode/manual-testing-playbook
+.opencode/skills/mcp-tooling/manual-testing-playbook
+.opencode/skills/mcp-tooling/mcp-aside-devtools/manual-testing-playbook
+.opencode/skills/mcp-tooling/mcp-chrome-devtools/manual-testing-playbook
+.opencode/skills/mcp-tooling/mcp-click-up/manual-testing-playbook
+.opencode/skills/mcp-tooling/mcp-figma/manual-testing-playbook
+.opencode/skills/mcp-tooling/mcp-mobbin/manual-testing-playbook
+.opencode/skills/mcp-tooling/mcp-notion/manual-testing-playbook
+.opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook
+.opencode/skills/mcp-tooling/mcp-refero/manual-testing-playbook
+.opencode/skills/sk-code/manual-testing-playbook
+.opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook
+.opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook
+.opencode/skills/sk-code/sk-code-opencode/manual-testing-playbook
+.opencode/skills/sk-code/sk-code-quality/manual-testing-playbook
+.opencode/skills/sk-code/sk-code-review/manual-testing-playbook
+.opencode/skills/sk-code/sk-code-webflow/manual-testing-playbook
+.opencode/skills/sk-communication/manual-testing-playbook
+.opencode/skills/sk-design-md-generator/manual-testing-playbook
+.opencode/skills/sk-design/manual-testing-playbook
+.opencode/skills/sk-doc/manual-testing-playbook
+.opencode/skills/sk-doc/sk-create-diagram/manual-testing-playbook
+.opencode/skills/sk-doc/sk-create-diff/manual-testing-playbook
+.opencode/skills/sk-git/manual-testing-playbook
+.opencode/skills/sk-prompt/manual-testing-playbook
+.opencode/skills/sk-vision/manual-testing-playbook
+.opencode/skills/system-deep-loop/deep-ai-council/manual-testing-playbook
+.opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook
+.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook
+.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook
+.opencode/skills/system-deep-loop/manual-testing-playbook
+.opencode/skills/system-deep-loop/runtime/manual-testing-playbook
+.opencode/skills/system-skill-advisor/manual-testing-playbook
+.opencode/skills/system-spec-kit/manual-testing-playbook

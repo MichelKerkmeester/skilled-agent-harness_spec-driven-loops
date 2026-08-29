@@ -679,7 +679,21 @@ If ANY required check fails, do not claim completion. Return a blocked or partia
 
 ---
 
-## 8. SUMMARY
+## 8. RELATED RESOURCES
+
+Required. List the real supporting paths this agent actually uses — the skills it loads, the
+companion agents it works alongside, the commands that dispatch it, and its governing references.
+Verify every path exists before shipping; a resource list full of dead paths is worse than none.
+
+| Resource | Role |
+| --- | --- |
+| `.opencode/skills/[skill-name]/SKILL.md` | [What this agent loads from it] |
+| `.opencode/agents/[companion].md` | [How the two agents relate] |
+| `.opencode/commands/[namespace]/[action].md` | [The command that dispatches this agent] |
+
+---
+
+## 9. SUMMARY
 
 \`\`\`text
 ┌─────────────────────────────────────────────────────────────────────────┐

@@ -1,0 +1,64 @@
+name: Playbook Operator Contract
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.opencode/skills/**/manual-testing-playbook/**'
+      - '.opencode/skills/sk-doc/sk-create-manual-testing-playbook/**'
+
+jobs:
+  operator-contract:
+    name: Manual-testing-playbook operator-scenario contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Enforce the operator-scenario contract across the playbook fleet
+        run: |
+          set -uo pipefail
+          VALIDATOR=".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+          if [ ! -f "$VALIDATOR" ]; then
+            echo "::warning::playbook validator not found at $VALIDATOR — skipping"
+            exit 0
+          fi
+          # Fails on any violation in a fail-closed package. Only packages still listed
+          # under playbook-corpus-manifest.json warnPackages report without blocking.
+          node "$VALIDATOR" --strict
+
+      - name: Assert every fail-closed root is still discovered
+        run: |
+          set -uo pipefail
+          VALIDATOR=".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+          ALLOWLIST=".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt"
+          [ -f "$VALIDATOR" ] && [ -f "$ALLOWLIST" ] || exit 0
+
+          # A root the fleet run cannot see cannot fail, so absence is indistinguishable
+          # from success. This corpus once had two thirds of its roots unreachable by the
+          # fleet scan, which is how a large backlog accumulated while builds stayed green.
+          # Listing each root here turns "silently no longer scanned" into a hard failure.
+          node "$VALIDATOR" --no-strict --format json > /tmp/fleet.json 2>&1
+          missing=0
+          while IFS= read -r root; do
+            case "$root" in ''|'#'*) continue ;; esac
+            if ! python3 - "$root" <<'PY'
+import json, sys, os
+root = sys.argv[1]
+data = json.load(open('/tmp/fleet.json'))
+seen = {os.path.relpath(p.get('playbookRoot', ''), os.getcwd()) for p in data.get('packages', [])}
+sys.exit(0 if root in seen else 1)
+PY
+            then
+              echo "::error::fail-closed root is no longer discovered by the fleet scan: $root"
+              missing=1
+            fi
+          done < "$ALLOWLIST"
+
+          if [ "$missing" -ne 0 ]; then
+            echo "A listed root was renamed, deleted, or moved out of scan range."
+            echo "Restore it, or remove its line in the same PR with a reason."
+            exit 1
+          fi
+          echo "All fail-closed roots are still discovered and enforced."

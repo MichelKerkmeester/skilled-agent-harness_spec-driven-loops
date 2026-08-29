@@ -460,6 +460,22 @@ node .opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-
   --package .opencode/skills/<skill-id>/manual-testing-playbook
 ```
 
+**A fleet run scans every root, including packet-owned ones.** `discoverPackages` descends into
+`<skill>/<packet>/manual-testing-playbook` as well as `<skill>/manual-testing-playbook`, because a
+packet keeps its playbook as a SIBLING of the hub's, not inside it. Enumerating only the first
+level once left most of this corpus unscanned: a fleet run reported success while roots it had
+never opened carried hundreds of violations. If you change discovery, re-check the scanned count
+against `find .opencode/skills -type d -name manual-testing-playbook | wc -l` — a root that is not
+scanned cannot fail, so absence looks exactly like success.
+
+**Make a clean package permanent.** When a package reaches zero violations, remove it from
+`warnPackages` in `playbook-corpus-manifest.json` in the same change, and add each of its roots to
+`playbook-failclosed-allowlist.txt`. Graduating is what converts a one-time cleanup into a standing
+guarantee: a warn-listed package reports its violations and ships anyway. The CI workflow
+`.github/workflows/playbook-operator-contract.yml` runs the fleet validator and separately asserts
+every allowlisted root is still discovered, so a root cannot quietly leave enforcement by being
+renamed or moved. Fix a failing package rather than removing its line.
+
 The command validates the operator-scenario contract, not the routing-gold contract. It walks every non-excluded
 scenario tree and checks, per feature: five-section ordering; `title`, `description`, and four-part `version`
 frontmatter; Feature ID; operator/orchestrator prompt; exact command sequence; expected signals; evidence;
