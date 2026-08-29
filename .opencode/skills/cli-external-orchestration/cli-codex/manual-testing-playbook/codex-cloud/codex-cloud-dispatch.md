@@ -61,7 +61,7 @@ If auth tokens are configured, dispatch a small benign cloud task and verify the
 
 | File | Role |
 |---|---|
-| `MANUAL_TESTING_PLAYBOOK.md` | Root directory page and scenario summary |
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../references/cli-reference.md` | Subcommand reference |
 | `../../references/codex-tools.md` | Unique Codex capability table |
 
@@ -78,5 +78,5 @@ If auth tokens are configured, dispatch a small benign cloud task and verify the
 
 - Group: Codex Cloud
 - Playbook ID: CX-028
-- Canonical root source: `MANUAL_TESTING_PLAYBOOK.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `codex-cloud/codex-cloud-dispatch.md`

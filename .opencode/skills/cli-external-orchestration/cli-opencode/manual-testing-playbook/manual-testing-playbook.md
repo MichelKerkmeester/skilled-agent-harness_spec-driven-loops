@@ -10,6 +10,11 @@ version: 1.3.0.34
 
 > **SELF-INVOCATION GUARD**: The cli-opencode skill is the only cli-* skill that targets the same binary that runs OpenCode itself. Use cases 1 and 3 must be invoked from a non-OpenCode runtime (Claude Code, Copilot, raw shell). Use case 2 (parallel detached session) is the documented exception that lets an in-OpenCode operator spawn a SEPARATE session via `--share --port <N>` with explicit parallel-session keywords. The skill refuses any other in-OpenCode self-dispatch with the documented refusal message (see ADR-001, SKILL.md §2 and integration-patterns.md §5).
 
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> `cli-opencode/benchmark/reports/<dated-run-label>/`.
+
 This document combines the full manual-validation contract for the `cli-opencode` skill into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide. It explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded and where each per-feature validation file lives. The per-feature files provide the deeper execution contract for each scenario, including the user request, orchestrator prompt, execution process, source anchors and validation criteria.
 
 ---
@@ -27,14 +32,17 @@ Canonical package artifacts:
 - `prompt-templates/`
 - `parallel-detached/`
 - `cross-repo-cross-server/`
+- `intra-routing-recall/`
+- `git-preflight-advisory/`
+- `stress/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 35 deterministic scenarios across 10 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID; 33 of the 35 link to a dedicated feature file with the full execution contract, while CO-007 and CO-021 remain root-embedded scenario summaries pending a dedicated feature file (see sections 8, 12 and 18).
+This playbook provides 55 deterministic scenarios across 13 categories validating the `cli-opencode` skill surface. Each feature keeps its global `CO-NNN` ID (or `CO-RNN`/`CO-HNN`/`CO-NNN` routing-recall IDs, or `cli-opencode-EC-NNN` for the hermetic stress-matrix category); 33 of the original 35 link to a dedicated feature file with the full execution contract, while CO-007 and CO-021 remain root-embedded scenario summaries pending a dedicated feature file (see sections 8, 12 and 18). `CO-038` adds the shared sk-git preflight advisory, the `intra-routing-recall/` category adds 10 intent-routing recall scenarios, and the `stress/` category adds 14 hermetic fan-out/lineage cells.
 
-Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-go/deepseek-v4-flash` + `--variant high` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (deepseek direct API default with full variant range, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
+Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-go/deepseek-v4-flash` + `--variant max` + `--agent general` + `--format json`), the three documented use cases (external dispatch, parallel detached, cross-AI handback per ADR-002), the multi-provider matrix (opencode-go Go gateway default with the flash max pin, kimi-for-coding direct plan), the 8-agent routing surface (general / context / orchestrate / write / review / debug / deep-research / deep-review / ai-council), session continuity surfaces (`-c`, `-s <id>`, `--fork`, `--share` gate), the 16-template inventory plus CLEAR quality card, the parallel-detached exception path with `</dev/null` worker farms, cross-repo dispatch via `--dir` and cross-server dispatch via `--attach`. Self-invocation refusal (ADR-001) is enforced upstream by the skill's layered detection guard and is exercised in CO-008 (refusal path) and CO-031 (cross-repo nested guard) respectively. Destructive scenarios are limited to operator-confirmed `--share` flows (CHK-033). The playbook never publishes share URLs without explicit operator approval.
 
 ### Realistic Test Model
 
@@ -58,7 +66,7 @@ Coverage note (2026-04-26): Covers the canonical default invocation (`opencode-g
 1. Working directory is project root and contains `.git/`.
 2. OpenCode CLI is installed and on PATH: `command -v opencode` returns a non-empty path. If absent, install via `brew install opencode` (macOS) or `curl -fsSL https://opencode.ai/install | bash`.
 3. OpenCode CLI version is at or near the v1.3.17 baseline pinned in `references/cli-reference.md`. Drift handled per `references/cli-reference.md` §9.
-4. Direct DeepSeek API credentials are active: `DEEPSEEK_API_KEY` is set and `opencode providers login deepseek` has been run (the canonical default `opencode-go/deepseek-v4-flash` resolves through it). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
+4. The OpenCode Go gateway (`opencode-go`) is configured so the canonical default `opencode-go/deepseek-v4-flash` resolves (confirm via `opencode models opencode-go`). Multi-provider scenarios additionally need: direct Kimi For Coding credentials when exercising `kimi-for-coding/k2p7`.
 5. The active runtime for use case 1 and 3 scenarios is NOT OpenCode itself. Confirm by checking no `OPENCODE_*` env vars are set: `env | grep -q '^OPENCODE_' && echo IN-OPENCODE || echo OK`. Use case 2 scenarios (CO-026, CO-027, CO-028) explicitly include the parallel-session keywords required to permit the dispatch from inside OpenCode.
 6. The skill's reference and asset files exist at `.opencode/skills/cli-external-orchestration/cli-opencode/{references,assets}/` so prompt-quality, template and routing scenarios resolve.
 7. The project's MCP servers (Spec Kit Memory, Code Graph Code) are registered in `opencode.json` so use case 1 (CO-006) and use case 3 (CO-021, CO-022) scenarios can call `memory_health`, Code Graph search and `memory_search`.
@@ -165,7 +173,7 @@ This section records wave planning and capacity guidance for the manual testing 
 ### Recommended Wave Plan
 
 - **Wave 1** (parallel-safe, read-only, fast): CO-001..CO-005 (CLI invocation), CO-009 (deepseek default), CO-013..CO-017 (agent routing), CO-018..CO-020 (session continuity), CO-023..CO-025 (prompt templates), CO-029, CO-030, CO-031 (cross-repo plus nested guard).
-- **Wave 2** (multi-provider, requires extra provider auth): CO-007 (OpenCode calling), CO-010 (OpenAI), CO-011 (Google), CO-012 (variant comparison).
+- **Wave 2** (multi-provider, requires extra provider auth): CO-007 (OpenCode calling), CO-010 (OpenAI), CO-012 (variant comparison).
 - **Wave 3** (use-case-specific): CO-006 (Claude Code calling MCP), CO-008 (self-invocation refusal), CO-021 (cross-AI handback), CO-022 (memory epilogue).
 - **Wave 4** (parallel detached, port-isolated): CO-026 (parallel detached session), CO-027 (worker farm with `</dev/null`), CO-028 (ablation suite).
 
@@ -187,7 +195,7 @@ This category covers 5 scenario summaries while the linked feature files remain 
 
 #### Description
 
-Verify the canonical `opencode run --model opencode-go/deepseek-v4-flash --agent general --variant high --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime.
+Verify the canonical `opencode run --model opencode-go/deepseek-v4-flash --agent general --variant max --format json --dir <repo-root> "<prompt>"` returns a parseable JSON event stream and exits 0 from a non-OpenCode runtime.
 
 #### Scenario Contract
 
@@ -321,23 +329,13 @@ Expected signals: Layer 1 (env var) detection trips. Refusal message in referenc
 
 ## 9. MULTI-PROVIDER (`CO-011..CO-012`)
 
-This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented provider matrix (deepseek direct API as default, kimi-for-coding direct plan) plus the variant-level reasoning effort range.
+This category covers 2 scenario summaries while the linked feature files remain the canonical execution contract. The category exercises the documented provider matrix (opencode-go Go gateway as default, kimi-for-coding direct plan) plus the variant-level reasoning effort range.
 
-### CO-011 | deepseek direct API (deepseek-v4-flash)
+### CO-011 | RETIRED — deepseek direct API
 
 #### Description
 
-Verify `--model opencode-go/deepseek-v4-flash --variant high` validates the deepseek direct API surface (the default provider), resolves correctly, and produces a coherent response.
-
-#### Scenario Contract
-
-Prompt summary: As an external-AI conductor exercising the direct deepseek provider, dispatch --model opencode-go/deepseek-v4-flash --variant high with a small implementation-planning prompt. Verify the dispatch exits 0 and the JSON event stream identifies the model as deepseek-v4-flash.
-
-Expected signals: Exit 0. Model id `deepseek-v4-flash` in session.completed. Response is a coherent paragraph (non-empty, not an error).
-
-#### Test Execution
-
-> **Feature File:** [CO-011](../manual-testing-playbook/multi-provider/deepseek-direct-api.md)
+The direct DeepSeek API provider was retired from the cli-opencode roster; the former CO-011 dispatch contract (direct `deepseek/deepseek-v4-*` ids) is no longer a supported scenario and its feature file was removed. DeepSeek V4 Flash coverage continues via the opencode-go gateway and OpenRouter routes — see CO-012 for the variant-level contract.
 
 ### CO-012 | Variant levels (minimal/low/medium/high/max)
 
@@ -780,6 +778,12 @@ The cli-opencode skill is a thin orchestration wrapper around the external `open
 | `cli-opencode` | Manual playbook only | Cross-AI delegation pattern parallels (sandbox modes, reasoning effort, agent profiles, web search) |
 | `system-spec-kit` | Validator script + manual playbook | Spec folder workflows (use case 3 handback target) |
 
+The `intra-routing-recall/` category and the `stress/` category are exceptions to the manual-only
+pattern above: `intra-routing-recall/` re-derives its expected `INTENT_SIGNALS`/`RESOURCE_MAP` truth
+directly from SKILL.md on every run, and `stress/` runs the shared hermetic Vitest suite at
+`.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-opencode.vitest.ts`, covering
+`cli-opencode-EC-001` .. `cli-opencode-EC-014`.
+
 Validator support: the shared `validate_document.py` validates this root playbook structurally but does not recurse into category folders. Per-feature file completeness is checked manually via the link integrity and feature ID count gates documented in section 5.
 
 ---
@@ -802,7 +806,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### MULTI-PROVIDER
 
-- CO-011: [deepseek direct API (deepseek-v4-flash)](../manual-testing-playbook/multi-provider/deepseek-direct-api.md)
+- CO-011: RETIRED (deepseek direct API removed from the roster — feature file deleted; flash coverage lives in CO-012)
 - CO-012: [Variant levels (minimal/low/medium/high/max)](../manual-testing-playbook/multi-provider/variant-levels-comparison.md)
 
 ### AGENT ROUTING
@@ -848,3 +852,60 @@ Validator support: the shared `validate_document.py` validates this root playboo
 ### GOAL HOOK
 
 - CO-039: [Goal hook native opencode-goal validation](../manual-testing-playbook/goal-hook/goal-hook.md)
+
+---
+
+## 19. INTRA ROUTING RECALL (`CO-R01..CO-R07`, `CO-H01..CO-H02`, `CO-N01`)
+
+This category re-derives its expected truth directly from SKILL.md's `INTENT_SIGNALS`/`RESOURCE_MAP`
+on every run: each routing scenario confirms a keyword-bearing prompt resolves its documented intent
+and resource bundle, each holdout scenario confirms a keyword-free paraphrase still generalizes to
+the right intent, and the negative scenario confirms an out-of-domain prompt routes to
+`UNKNOWN_FALLBACK` instead of a guessed intent.
+
+- `CO-R01`: [External dispatch routing](intra-routing-recall/external-dispatch.md)
+- `CO-R02`: [Parallel detached routing](intra-routing-recall/parallel-detached.md)
+- `CO-R03`: [Cross-AI handback routing](intra-routing-recall/cross-ai-handback.md)
+- `CO-R04`: [Agent dispatch routing](intra-routing-recall/agent-dispatch.md)
+- `CO-R05`: [Cross-repo routing](intra-routing-recall/cross-repo.md)
+- `CO-R06`: [Templates routing](intra-routing-recall/templates.md)
+- `CO-R07`: [Patterns routing](intra-routing-recall/patterns.md)
+- `CO-H01`: [Blind holdout: full autonomous handoff](intra-routing-recall/holdout-full-runtime.md)
+- `CO-H02`: [Blind holdout: background fan-out sessions](intra-routing-recall/holdout-background-fanout.md)
+- `CO-N01`: [Negative: out-of-domain prompt](intra-routing-recall/negative-out-of-domain.md)
+
+---
+
+## 20. GIT PREFLIGHT ADVISORY (`CO-038`)
+
+This category validates that the shared sk-git preflight advisory reaches the agent as next-turn
+`output.system` context through the OpenCode `tool.execute.before` plugin on a directory-scoped commit
+that would silently drop an untracked file, with no stdout/stderr, no block, and suppressibility via
+`SKGIT_ADVISORY=0`.
+
+- `CO-038`: [Git preflight advisory delivery](git-preflight-advisory/git-preflight-advisory.md)
+
+---
+
+## 21. STRESS MATRIX (`cli-opencode-EC-001..cli-opencode-EC-014`)
+
+This category runs the shared hermetic stress-matrix cells for the `cli-opencode` adapter: authentication,
+model/balance, rate-limit, timeout, stdin closure, child-spec-gate, sandbox/permission, missing
+transport, budget rejection, partial lineage death, orphan cleanup, worktree collision, node_modules
+integrity, and self-invocation. Every cell runs as a fully automated Vitest check with no live
+external OpenCode process; there is no operator-facing prompt beyond the run-this-test instruction.
+
+- `cli-opencode-EC-001`: [Authentication failure](stress/auth-failure.md)
+- `cli-opencode-EC-002`: [Model or balance failure](stress/model-or-balance.md)
+- `cli-opencode-EC-003`: [Rate limit](stress/rate-limit.md)
+- `cli-opencode-EC-004`: [Timeout](stress/timeout.md)
+- `cli-opencode-EC-005`: [Stdin closure](stress/stdin-hang.md)
+- `cli-opencode-EC-006`: [Child spec gate](stress/child-spec-gate.md)
+- `cli-opencode-EC-007`: [Sandbox or permission](stress/sandbox-permission.md)
+- `cli-opencode-EC-008`: [Missing transport](stress/transport-missing.md)
+- `cli-opencode-EC-009`: [Budget rejection](stress/budget-rejection.md)
+- `cli-opencode-EC-010`: [Partial lineage death](stress/partial-lineage-death.md)
+- `cli-opencode-EC-011`: [Orphan cleanup](stress/orphan-cleanup.md)
+- `cli-opencode-EC-012`: [Worktree collision](stress/worktree-collision.md)
+- `cli-opencode-EC-013`: [Node modules integrity](stress/node-modules-integrity.md)
+- `cli-opencode-EC-014`: [Self invocation](stress/self-invocation.md)

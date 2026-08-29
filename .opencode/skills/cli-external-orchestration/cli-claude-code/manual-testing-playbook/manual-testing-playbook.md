@@ -8,6 +8,11 @@ version: 1.1.0.19
 
 > **EXECUTION POLICY**: Every scenario MUST be executed for real - not mocked, not stubbed, not classified as "unautomatable". AI agents executing these scenarios must run the actual `claude` commands, inspect real outputs and verify real behavior. The only acceptable classifications are PASS, FAIL or SKIP (with a specific sandbox blocker documented). "UNAUTOMATABLE" is not a valid status.
 
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> `cli-claude-code/benchmark/reports/<dated-run-label>/`.
+
 This document combines the full manual-validation contract for the `cli-claude-code` skill into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide while the per-feature files carry the scenario-specific execution truth for cross-AI delegation to Anthropic's Claude Code CLI.
 
 ---
@@ -25,12 +30,15 @@ Canonical package artifacts:
 - `prompt-templates/`
 - `cost-and-background/`
 - `goal-hook/`
+- `intra-routing-recall/`
+- `git-preflight-advisory/`
+- `stress/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 28 deterministic scenarios across 9 categories validating the `cli-claude-code` cross-AI delegation skill. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals and feature-file reference.
+This playbook provides 52 deterministic scenarios across 12 categories validating the `cli-claude-code` cross-AI delegation skill. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals and feature-file reference. `CC-028` adds the shared sk-git preflight advisory, the `intra-routing-recall/` category adds 10 intent-routing recall scenarios, and the `stress/` category adds 14 hermetic fan-out/lineage cells.
 
 Coverage note (2026-08-10): `CC-029` verifies the deliberate repository discovery boundary between Claude Code and the OpenCode-only goal command. The core has Pi support, Cursor injection-only support, and no Claude Code or Codex adapter. The scenario checks the filtered command mirror, source, config, and documentation; it does not claim a live Claude product version exposes native goal state.
 
@@ -664,6 +672,11 @@ The cli-claude-code skill is a thin orchestration wrapper around the external An
 | `cli-opencode` | Manual playbook only | Cross-AI delegation pattern parallels (generate-review-fix, structured output) |
 | `cli-opencode` | Manual playbook only | Cross-AI delegation pattern parallels (cross-runtime handback) |
 | Goal README + runtime routing rule + runtime mirror generator | Documents and enforces the Claude repository boundary and current Pi/Cursor support matrix | `CC-029` |
+| `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Shared `PreToolUse` `Bash` advisory hook | `CC-028` |
+| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-claude-code.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-claude-code` adapter | `cli-claude-code-EC-001` .. `cli-claude-code-EC-014` |
+
+The `intra-routing-recall/` category is also an exception to the manual-only pattern above: it
+re-derives its expected `INTENT_SIGNALS`/`RESOURCE_MAP` truth directly from SKILL.md on every run.
 
 Validator support: the shared `validate_document.py` validates this root playbook structurally but does not recurse into category folders. Per-feature file completeness is checked manually via the link integrity and feature ID count gates documented in section 5.
 
@@ -724,3 +737,60 @@ Validator support: the shared `validate_document.py` validates this root playboo
 ### GOAL HOOK
 
 - CC-029: [Claude Code repository goal discovery boundary](../manual-testing-playbook/goal-hook/goal-hook.md)
+
+---
+
+## 18. INTRA ROUTING RECALL (`CC-R01..CC-R07`, `CC-H01..CC-H02`, `CC-N01`)
+
+This category re-derives its expected truth directly from SKILL.md's `INTENT_SIGNALS`/`RESOURCE_MAP`
+on every run: each routing scenario confirms a keyword-bearing prompt resolves its documented intent
+and resource bundle, each holdout scenario confirms a keyword-free paraphrase still generalizes to
+the right intent, and the negative scenario confirms an out-of-domain prompt routes to
+`UNKNOWN_FALLBACK` instead of a guessed intent.
+
+- `CC-R01`: [Deep reasoning routing](intra-routing-recall/deep-reasoning.md)
+- `CC-R02`: [Code editing routing](intra-routing-recall/code-editing.md)
+- `CC-R03`: [Structured output routing](intra-routing-recall/structured-output.md)
+- `CC-R04`: [Review routing](intra-routing-recall/review.md)
+- `CC-R05`: [Agent delegation routing](intra-routing-recall/agent-delegation.md)
+- `CC-R06`: [Templates routing](intra-routing-recall/templates.md)
+- `CC-R07`: [Patterns routing](intra-routing-recall/patterns.md)
+- `CC-H01`: [Blind holdout — reasoning domain](intra-routing-recall/holdout-reasoning.md)
+- `CC-H02`: [Blind holdout — editing domain](intra-routing-recall/holdout-editing.md)
+- `CC-N01`: [Negative — out of domain](intra-routing-recall/negative.md)
+
+---
+
+## 19. GIT PREFLIGHT ADVISORY (`CC-028`)
+
+This category validates that the shared sk-git preflight advisory reaches Claude Code's `PreToolUse`
+`Bash` context on a directory-scoped commit that would silently drop an untracked file, stays silent
+on an ordinary commit, and is suppressible via `SKGIT_ADVISORY=0`.
+
+- `CC-028`: [Git preflight advisory delivery](git-preflight-advisory/git-preflight-advisory.md)
+
+---
+
+## 20. STRESS MATRIX (`cli-claude-code-EC-001..cli-claude-code-EC-014`)
+
+This category runs the shared hermetic stress-matrix cells for the `cli-claude-code` adapter:
+authentication, model/balance, rate-limit, timeout, stdin closure, child-spec-gate,
+sandbox/permission, missing transport, budget rejection, partial lineage death, orphan cleanup,
+worktree collision, node_modules integrity, and self-invocation. Every cell runs as a fully
+automated Vitest check with no live external Claude Code process; there is no operator-facing
+prompt beyond the run-this-test instruction.
+
+- `cli-claude-code-EC-001`: [Authentication failure](stress/auth-failure.md)
+- `cli-claude-code-EC-002`: [Model or balance failure](stress/model-or-balance.md)
+- `cli-claude-code-EC-003`: [Rate limit](stress/rate-limit.md)
+- `cli-claude-code-EC-004`: [Timeout](stress/timeout.md)
+- `cli-claude-code-EC-005`: [Stdin closure](stress/stdin-hang.md)
+- `cli-claude-code-EC-006`: [Child spec gate](stress/child-spec-gate.md)
+- `cli-claude-code-EC-007`: [Sandbox or permission](stress/sandbox-permission.md)
+- `cli-claude-code-EC-008`: [Missing transport](stress/transport-missing.md)
+- `cli-claude-code-EC-009`: [Budget rejection](stress/budget-rejection.md)
+- `cli-claude-code-EC-010`: [Partial lineage death](stress/partial-lineage-death.md)
+- `cli-claude-code-EC-011`: [Orphan cleanup](stress/orphan-cleanup.md)
+- `cli-claude-code-EC-012`: [Worktree collision](stress/worktree-collision.md)
+- `cli-claude-code-EC-013`: [Node modules integrity](stress/node-modules-integrity.md)
+- `cli-claude-code-EC-014`: [Self invocation](stress/self-invocation.md)

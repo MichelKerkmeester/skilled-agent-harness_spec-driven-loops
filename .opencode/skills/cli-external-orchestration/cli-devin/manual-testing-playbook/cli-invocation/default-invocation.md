@@ -32,15 +32,37 @@ Every higher-level route depends on the binary being available, authenticated, n
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Identify the top-level directory that contains the repository's CLI orchestration skills. Do not edit files; answer with the path and one sentence of reasoning.`
+
+### Commands
+
 1. `command -v devin`
 2. `git status --porcelain`
 3. `devin -p "Identify the top-level directory that contains the repository's CLI orchestration skills. Do not edit files; answer with the path and one sentence of reasoning." --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv001.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv001.txt`
 4. `sed -n '1,120p' /tmp/cli-devin-dv001.txt`
 5. `git status --porcelain`
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| DV-001 | `devin -p ... --model adaptive --permission-mode normal </dev/null` | Exit 0, correct path, unchanged status | PASS/FAIL/SKIP |
+### Expected
+
+Exit 0, correct path, unchanged status
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Exit 0, correct path, unchanged status`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when all signals are present.
+- **Fail**: on a non-zero exit, missing path, or unexpected mutation
+- **Skip**: only when the global auth or availability precondition is blocked. (a missing or unavailable prerequisite is the named blocker).
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

@@ -10,7 +10,12 @@ version: 1.0.0.1
 
 > **SELF-INVOCATION GUARD**: This playbook validates the `cli-pi` skill from a non-Pi runtime. Before composing a dispatch, read `.opencode/skills/cli-external-orchestration/cli-pi/SKILL.md` §2, **Self-Invocation Guard**. The guard checks whether the parent process command contains `/pi` or ends with ` pi`, and whether the current project contains `.pi`; the project-directory result is a non-conclusive heuristic. The guard does not treat a missing environment variable as proof of safety. If it detects a signal, refuse the dispatch and record that signal.
 
-This document is the operator directory and package-level validation contract for the `cli-pi` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 22 canonical scenario files.
+This document is the operator directory and package-level validation contract for the `cli-pi` skill. It defines realistic requests, deterministic command notation, evidence expectations, review rules, wave planning, category summaries, automated-test anchors, and links to the 36 canonical scenario files.
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> `cli-pi/benchmark/reports/<dated-run-label>/`.
 
 ---
 
@@ -28,12 +33,13 @@ Canonical package artifacts:
 - `model-dispatch/`
 - `prompt-quality/`
 - `goal-hook/`
+- `stress/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 23 deterministic scenarios across 10 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier and links to one dedicated file with the complete execution contract.
+This playbook provides 37 deterministic scenarios across 11 categories validating the `cli-pi` skill surface. Each scenario keeps its `PI-NNN` identifier (or `cli-pi-EC-NNN` for the hermetic stress-matrix category) and links to one dedicated file with the complete execution contract.
 
 Coverage note (2026-08-10): the package covers Pi version/help, settings, extension lifecycle, dispatch controls, providers, prompt quality, and goal isolation. `PI-021` validates the native registered `/goal-pi` command, two-session scoped state, lifecycle identity binding, resume/new-session behavior, explicit legacy migration, and disabled fallback. Native commands short-circuit before a model turn, so the core isolation proof does not require provider credentials.
 
@@ -292,6 +298,7 @@ The `cli-pi` skill is an orchestrator wrapper around the Pi binary and community
 | `.opencode/hooks/goal/pi/goal-pi.test.mjs` | Native command, A/B lifecycle, resume/new-id, turn-end isolation, and missing-identity contracts | `PI-021` |
 | `.opencode/hooks/goal/lib/goal-core.test.cjs` | Session-scoped state, legacy quarantine, rendering, and hardening | `PI-021` |
 | `.opencode/skills/sk-doc/shared/scripts/validate_document.py` | Root markdown structure validation | This root playbook |
+| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-pi.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-pi` adapter | `cli-pi-EC-001` .. `cli-pi-EC-014` |
 
 There is no substitute automated test for a provider-backed Pi model turn, recursive skill enumeration, trust persistence, or a real global/project collision test. Goal binding separately requires an explicit-load native command canary and the automated lifecycle matrix.
 
@@ -350,3 +357,28 @@ There is no substitute automated test for a provider-backed Pi model turn, recur
 ### GOAL HOOK
 
 - PI-021: [Session-isolated goal hook and native command](goal-hook/goal-hook.md)
+
+---
+
+## 20. STRESS MATRIX (`cli-pi-EC-001..cli-pi-EC-014`)
+
+This category runs the shared hermetic stress-matrix cells for the `cli-pi` adapter: authentication,
+model/balance, rate-limit, timeout, stdin closure, child-spec-gate, sandbox/permission, missing
+transport, budget rejection, partial lineage death, orphan cleanup, worktree collision, node_modules
+integrity, and self-invocation. Every cell runs as a fully automated Vitest check with no live
+external Pi process; there is no operator-facing prompt beyond the run-this-test instruction.
+
+- `cli-pi-EC-001`: [Authentication failure](stress/auth-failure.md)
+- `cli-pi-EC-002`: [Model or balance failure](stress/model-or-balance.md)
+- `cli-pi-EC-003`: [Rate limit](stress/rate-limit.md)
+- `cli-pi-EC-004`: [Timeout](stress/timeout.md)
+- `cli-pi-EC-005`: [Stdin closure](stress/stdin-hang.md)
+- `cli-pi-EC-006`: [Child spec gate](stress/child-spec-gate.md)
+- `cli-pi-EC-007`: [Sandbox or permission](stress/sandbox-permission.md)
+- `cli-pi-EC-008`: [Missing transport](stress/transport-missing.md)
+- `cli-pi-EC-009`: [Budget rejection](stress/budget-rejection.md)
+- `cli-pi-EC-010`: [Partial lineage death](stress/partial-lineage-death.md)
+- `cli-pi-EC-011`: [Orphan cleanup](stress/orphan-cleanup.md)
+- `cli-pi-EC-012`: [Worktree collision](stress/worktree-collision.md)
+- `cli-pi-EC-013`: [Node modules integrity](stress/node-modules-integrity.md)
+- `cli-pi-EC-014`: [Self invocation](stress/self-invocation.md)

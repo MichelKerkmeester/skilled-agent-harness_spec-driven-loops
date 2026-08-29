@@ -30,7 +30,7 @@ Operators run the exact prompt and command sequence for `CX-023` and confirm the
 - Expected execution process: Operator checks `test -t 0` before launching Codex -> records `SKIP — /review requires a TTY` when stdin is not a terminal -> otherwise pre-creates a throwaway git repo, launches the Codex TUI, types `/review`, captures the categorized findings, exits, and confirms no files modified.
 - Expected signals: With a TTY, Codex TUI launches and `/review` executes against staged changes; output contains a category heading and a staged-line reference with no file modifications. Without a TTY, the expected result is `SKIP — /review requires a TTY`; do not substitute `codex exec review`.
 - Desired user-visible outcome: A pre-commit review summary the operator can quote in a PR description.
-- Pass/fail: PASS only when a TTY exists and the TUI output contains the expected review evidence with no file modifications. SKIP when stdin is not a terminal. FAIL only when a TTY-capable run launches but `/review` errors or produces no review evidence.
+- Pass/fail: PASS only when a TTY exists and the TUI output contains the expected review evidence with no file modifications. SKIP when stdin is not a terminal, i.e. the interactive TTY is unavailable in this session. FAIL only when a TTY-capable run launches but `/review` errors or produces no review evidence.
 
 ---
 

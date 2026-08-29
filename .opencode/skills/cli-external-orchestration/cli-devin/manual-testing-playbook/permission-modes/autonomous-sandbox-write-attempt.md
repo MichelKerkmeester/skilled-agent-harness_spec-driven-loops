@@ -32,14 +32,36 @@ The `autonomous` mode is only valid with `--sandbox`. Confusing it with `accept-
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Create sandbox-marker.txt containing sandbox-test in the current disposable workspace. State that this request is running with the OS sandbox and report the file path.`
+
+### Commands
+
 1. `DV006_DIR=$(mktemp -d /tmp/cli-devin-dv006.XXXXXX)`
 2. `cd "$DV006_DIR" && devin --sandbox -p "Create sandbox-marker.txt containing sandbox-test in the current disposable workspace. State that this request is running with the OS sandbox and report the file path." --model adaptive </dev/null > result.txt 2>&1; echo "exit=$?" >> result.txt`
 3. `find "$DV006_DIR" -maxdepth 2 -type f -print`
 4. From the repository root, `git status --porcelain`.
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| DV-006 | `devin --sandbox -p ... --model adaptive` | Autonomous sandbox, isolated marker, clean repo | PASS/FAIL/SKIP |
+### Expected
+
+Autonomous sandbox, isolated marker, clean repo
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Autonomous sandbox, isolated marker, clean repo`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when the sandboxed write and confinement evidence are present.
+- **Fail**: when autonomous is claimed without `--sandbox` or repository state changes
+- **Skip**: when sandbox prerequisites or auth block execution..
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

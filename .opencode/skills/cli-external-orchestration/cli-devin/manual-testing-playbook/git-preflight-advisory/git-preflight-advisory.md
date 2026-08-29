@@ -27,12 +27,18 @@ Devin runs shell commands through the `exec` tool. A directory-scoped `git commi
 - Prompt: `As a git safety reviewer, run the sk-git preflight advisory under a Devin PreToolUse exec payload against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, arrives as additionalContext with no denial, is silenced by SKGIT_ADVISORY=0, and that a hook resolution failure fails open. Return the advisory text and a PASS/FAIL verdict.`
 - Expected execution process: Confirm the `.devin/hooks.v1.json` registration under `PreToolUse` `^exec$` -> create a scratch repo with a modified tracked file and an untracked file under a subdir -> pipe an `exec` payload for `git commit --only <dir> -m x` through the shared hook -> observe the advisory naming `commit-scope-drops-untracked` -> repeat with `SKGIT_ADVISORY=0` and confirm silence -> run an ordinary clean commit and confirm silence.
 - Expected signals: `additionalContext` contains `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`; no denial field; the commit still runs; the suppressed re-run prints nothing; the ordinary commit prints nothing; the registered fallback approves when the hook cannot resolve.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the advisory text and silence evidence.
-- Pass/fail: PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND suppression silences it. FAIL if the command is blocked or no advisory appears on the trap shape.
+- Desired user-visible outcome: A concise PASS, FAIL, or SKIP verdict with the advisory text and silence evidence.
+- Pass/fail: PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND suppression silences it. FAIL if the command is blocked or no advisory appears on the trap shape. SKIP applies only when the shared hook file `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` is missing from this checkout, blocking every step.
 
 ---
 
 ## 3. TEST EXECUTION
+
+### Prompt
+
+Prompt: `As a git safety reviewer, run the sk-git preflight advisory under a Devin PreToolUse exec payload against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, arrives as additionalContext with no denial, is silenced by SKGIT_ADVISORY=0, and that a hook resolution failure fails open. Return the advisory text and a PASS/FAIL verdict.`
+
+### Commands
 
 1. `grep -n "git-preflight-advisory.mjs" .devin/hooks.v1.json` (confirm registration under `PreToolUse` matcher `^exec$`).
 2. Build a scratch repo: `repo=$(mktemp -d /tmp/dv-021.XXXXXX) && git -C "$repo" init -q && git -C "$repo" config core.hooksPath "$repo/.no-hooks" && git -C "$repo" config user.email t@example.invalid && git -C "$repo" config user.name T && git -C "$repo" config commit.gpgsign false && mkdir -p "$repo/.opencode/skills/sk-git" && cp .opencode/skills/sk-git/SKILL.md "$repo/.opencode/skills/sk-git/SKILL.md" && mkdir -p "$repo/src" && printf 'seed\n' > "$repo/src/tracked.txt" && git -C "$repo" add src/tracked.txt && git -C "$repo" commit -q -m seed && printf 'mod\n' > "$repo/src/tracked.txt" && printf 'untracked\n' > "$repo/src/untracked.txt"`.
@@ -40,6 +46,38 @@ Devin runs shell commands through the `exec` tool. A directory-scoped `git commi
 4. Suppressed re-run: same payload piped through `SKGIT_ADVISORY=0 node ...` — expect zero stdout.
 5. Ordinary clean commit in a clean scratch repo — expect zero stdout.
 6. Fail-open check: run the registered envelope with `DEVIN_PROJECT_DIR` unset and a non-repo `cwd` — expect the fallback approval JSON, never a denied command.
+
+### Expected
+
+Step 3's `additionalContext` contains `⚠ sk-git advisory` and `[commit-scope-drops-untracked]` with no
+denial field. Steps 4-5 print zero stdout. Step 6 returns the fallback approval JSON rather than a
+denial.
+
+### Evidence
+
+`.devin/hooks.v1.json` registration excerpt, captured advisory JSON from step 3, the silence
+confirmations from steps 4-5, and the fail-open approval JSON from step 6.
+
+### Pass / Fail
+
+- **Pass**: the advisory names `commit-scope-drops-untracked` AND no denial field is present AND
+  suppression (step 4) and the ordinary commit (step 5) both stay silent AND the fail-open check
+  (step 6) approves.
+- **Fail**: the command is blocked, or no advisory appears on the trap shape, or step 6 denies
+  instead of falling open.
+- **Skip**: only when the shared hook file
+  `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` is missing from this checkout,
+  blocking every step; record that exact missing-file blocker.
+
+### Failure Triage
+
+1. Inspect the step 3 JSON for the rule id; if absent, confirm the payload uses `tool_name: exec`
+   with a `cwd` pointing at the scratch repo.
+2. Confirm the hook is registered under `PreToolUse` matcher `^exec$` in `.devin/hooks.v1.json`.
+3. If step 6 denies instead of approving, the fail-open guarantee has regressed; capture the exact
+   JSON and escalate before trusting any other step's advisory output.
+4. If the environment lacks the shared hook file, record the SKIP with that exact missing-file
+   blocker rather than guessing a result.
 
 || Feature ID | Exact commands | Expected signal | Verdict |
 ||---|---|---|---|

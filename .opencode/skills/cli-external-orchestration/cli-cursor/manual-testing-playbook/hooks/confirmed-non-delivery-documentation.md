@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates that `beforeSubmitPrompt` and `stop` do NOT fire under `cursor-agent -p` for `CU-014`, reproducing phase 004's inverted finding: the phase's original plan assumed these would be the safe starting set (mirroring `cli-codex`'s `SessionStart`/`UserPromptSubmit`/`Stop` trio), but live probing showed the opposite. This scenario also confirms the dormant `spec-gate-classify.mjs` adapter and the non-delivery gap are documented, not silently assumed working.
+This scenario validates that `beforeSubmitPrompt` and `stop` do NOT fire under `cursor-agent -p` for `CU-014`, contradicting the naive assumption that these would be a safe starting set (mirroring `cli-codex`'s `SessionStart`/`UserPromptSubmit`/`Stop` trio); live probing shows the opposite. This scenario also confirms the dormant `spec-gate-classify.mjs` adapter and the non-delivery gap are documented, not silently assumed working.
 
 ### Why This Matters
 
@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `CU-014` and confirm the
 - Prompt: `In the same isolated temp workspace, wire beforeSubmitPrompt and stop to the logging probe alongside a full dispatch round trip, and confirm neither event fires.`
 - Expected execution process: Operator extends `CU-013`'s isolated workspace harness to also wire `beforeSubmitPrompt` and `stop` to the logging probe -> dispatches a full session round trip (including issuing a prompt, the exact trigger `beforeSubmitPrompt` should fire on if it worked) -> inspects the probe log for zero entries from either event -> confirms `mcp-server/hooks/cursor/spec-gate-classify.mjs` exists and its README documents it as dormant, never wired to a firing event.
 - Expected signals: The probe log shows zero entries for `beforeSubmitPrompt` and zero for `stop` across the full session. `mcp-server/hooks/cursor/spec-gate-classify.mjs` exists on disk. `runtime/hooks/cursor/README.md` and `mcp-server/hooks/cursor/README.md` both explicitly document the non-delivery finding for these two events.
-- Desired user-visible outcome: A reproduced confirmation of the documented gap, so no future adapter silently assumes advisory Gate-3 classification is reachable via `beforeSubmitPrompt` when it is not - and an honest SKIP-editor-only note (per the packet's own Edge Cases) rather than a silent omission of this category.
+- Desired user-visible outcome: A reproduced confirmation of the documented gap, so no future adapter silently assumes advisory Gate-3 classification is reachable via `beforeSubmitPrompt` when it is not. Any SKIP for this scenario names the exact missing prerequisite (for example, the `spec-gate-classify.mjs` file or either README being unavailable in this checkout) rather than a silent omission of this category.
 - Pass/fail: PASS if the probe log shows zero entries for both events across a full round trip AND both README files document the gap AND `spec-gate-classify.mjs` exists as dormant, un-wired code. FAIL if either event unexpectedly fires (a genuine CLI behavior change that must be escalated, not silently absorbed), or if the dormant-adapter documentation is missing/contradicted.
 
 ---
@@ -50,7 +50,7 @@ Operators run the exact prompt and command sequence for `CU-014` and confirm the
 
 ### Optional Supplemental Checks
 
-- Repeat the round trip with `--continue` for a second turn (mirroring phase 004's own methodology, which specifically tested whether `beforeSubmitPrompt` needed a second turn to trigger) and confirm the event still never fires.
+- Repeat the round trip with `--continue` for a second turn (testing whether `beforeSubmitPrompt` needs a second turn to trigger) and confirm the event still never fires.
 
 ---
 
@@ -62,7 +62,6 @@ Operators run the exact prompt and command sequence for `CU-014` and confirm the
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../references/hook-contract.md` (§7 Open Question - Partial Event Delivery) | Documents the editor-vs-CLI parity gap this scenario resolves empirically for two specific events |
-| `../../../../../specs/cli-external-orchestration/030-cli-cursor-creation/004-cursor-hook-adapter-layer/implementation-summary.md` | Phase 004's live-verified confirmed-non-delivery finding and dormant-adapter decision |
 
 ### Implementation And Test Anchors
 

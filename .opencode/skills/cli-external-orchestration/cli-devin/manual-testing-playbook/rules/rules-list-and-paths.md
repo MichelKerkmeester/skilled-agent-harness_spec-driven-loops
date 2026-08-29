@@ -32,14 +32,36 @@ Rules are context inputs, not slash commands. The path report proves where Devin
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Do not edit files. Report the rule roots and loaded rule sources visible to this Devin session.`
+
+### Commands
+
 1. `devin rules paths > /tmp/cli-devin-dv017-paths.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv017-paths.txt`
 2. `devin rules list > /tmp/cli-devin-dv017-list.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv017-list.txt`
 3. `devin -p "Do not edit files. Report the rule roots and loaded rule sources visible to this Devin session." --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv017-prompt.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv017-prompt.txt`
 4. Compare all three outputs with the repository files.
 
-| Feature ID | Exact commands | Expected signal | Verdict |
-|---|---|---|---|
-| DV-017 | `devin rules paths` and `devin rules list` | Cursor + Claude + Standard + Windsurf inheritance | PASS/FAIL/SKIP |
+### Expected
+
+Cursor + Claude + Standard + Windsurf inheritance
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Cursor + Claude + Standard + Windsurf inheritance`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when paths and entries match.
+- **Fail**: when a source is missing or a nonexistent `.devin/rules/` path is reported as authoritative
+- **Skip**: on auth/availability blockers..
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

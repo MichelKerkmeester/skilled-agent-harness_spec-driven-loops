@@ -1,6 +1,6 @@
 ---
 title: "PI-015 -- Lifecycle event registration"
-description: "This scenario checks the real Pi extension event set and records accepted registration for the bridged `tool_call`, `tool_result`, and `input` handlers, with event firing left SKIP for `PI-015`."
+description: "This scenario checks the real Pi extension event set and records accepted registration for the bridged `tool_call`, `tool_result`, and `input` handlers; live handler-firing is SKIP only when no authenticated provider credential is available to trigger a real tool call, for `PI-015`."
 version: 1.0.0.0
 ---
 
@@ -43,7 +43,7 @@ Registering a callback without a runtime error proves the loader accepted the ev
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| PI-015 | Lifecycle event registration | Confirm event registration and separate it from event firing | `Start Pi with the local extensions. The check is for extension registration; do not claim a handler fired unless a real event is observed.` | `rg -n 'pi\.on\("' .pi/extensions/*.ts` -> read the installed Pi `types.d.ts` event union -> `pi --offline --approve -p "list your available tools" </dev/null` | Registrations for `tool_call` (3), `tool_result` (2), `input` (2), `session_start` (2), `session_shutdown` (1), and `session_compact` (1); no registration error | Captured registrations (2026-07-28) show exactly that six-event, eleven-handler set. The installed declaration read records 33 named `on(...)` overloads (one more than the earlier 32-event capture; the installed package moved). Live startup exits 0 with no registration error. | PASS for registration accepted. Real handler firing is live-traced in `PI-020`. FAIL if registration itself errors. | Inspect the exact event spelling against `types.d.ts`, then use `PI-020`'s probe method to verify handler body execution rather than retrying blind. |
+| PI-015 | Lifecycle event registration | Confirm event registration and separate it from event firing | `Start Pi with the local extensions. The check is for extension registration; do not claim a handler fired unless a real event is observed.` | `rg -n 'pi\.on\("' .pi/extensions/*.ts` -> read the installed Pi `types.d.ts` event union -> `pi --offline --approve -p "list your available tools" </dev/null` | Registrations for `tool_call` (3), `tool_result` (2), `input` (2), `session_start` (2), `session_shutdown` (1), and `session_compact` (1); no registration error | Captured registrations show exactly that six-event, eleven-handler set. The installed declaration read records 33 named `on(...)` overloads (one more than the earlier 32-event capture; the installed package moved). Live startup exits 0 with no registration error. | PASS for registration accepted. Real handler firing is live-traced in `PI-020`. FAIL if registration itself errors. | Inspect the exact event spelling against `types.d.ts`, then use `PI-020`'s probe method to verify handler body execution rather than retrying blind. |
 
 ### Optional Supplemental Checks
 

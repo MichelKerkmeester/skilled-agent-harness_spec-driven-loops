@@ -32,13 +32,34 @@ Cursor agent discovery is convention-based, not a flag shown in `--help`. A comp
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Enumerate every repository agent profile available to this Cursor session. Report the exact names and count. Do not edit files.`
+
+### Commands
+
 1. `find .cursor/agents -maxdepth 1 -type l -name '*.md' -print | sed 's#^.cursor/agents/##; s#\.md$##' | sort`
 2. `cursor-agent -p "Enumerate every repository agent profile available to this Cursor session. Report the exact names and count. Do not edit files." --model composer-2.5 --auto-review --sandbox enabled --output-format text </dev/null > /tmp/cli-cursor-cu022.txt 2>&1; echo "exit=$?" >> /tmp/cli-cursor-cu022.txt`
-3. Compare the output text with the 13-name filesystem roster and record Cursor auth evidence from `cursor-agent about`.
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| CU-022 | `cursor-agent -p ... --model composer-2.5 --auto-review --sandbox enabled` | All 13 names, no duplicates | PASS/FAIL/SKIP |
+### Expected
+
+Step 1 lists exactly the 13 names in the description. Step 2's dispatch enumerates the same 13 names with no duplicate and no omission.
+
+### Evidence
+
+Compare step 2's output text with the 13-name filesystem roster from step 1, and record Cursor auth evidence from `cursor-agent about`.
+
+### Pass / Fail
+
+- **Pass**: filesystem and live dispatch report the same 13 names with no duplicate or omission.
+- **Fail**: any name is missing or duplicated in either source, or the two sources disagree.
+- **Skip**: only with a named Cursor availability or authentication blocker on the step 2 dispatch; the filesystem enumeration in step 1 is hermetic and does not SKIP.
+
+### Failure Triage
+
+1. **Filesystem roster gap**: step 1 is missing a name or shows a duplicate; inspect `.cursor/agents/` directly for a broken or forked mirror entry.
+2. **Auth/availability blocker**: step 2 fails to authenticate or dispatch; capture the `cursor-agent about` output and record the SKIP with that exact blocker.
+3. **Roster mismatch**: step 2's live enumeration disagrees with step 1's filesystem list; treat the filesystem roster as ground truth and re-run step 2.
 
 ---
 

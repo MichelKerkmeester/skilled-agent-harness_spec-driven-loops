@@ -34,14 +34,36 @@ Handoff is a real Devin capability with meaningful external effects: the cloud s
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Explain the /handoff command, what state it transfers, and how to start it from the interactive Devin session. Do not invoke handoff and do not edit files.`
+
+### Commands
+
 1. `devin --help > /tmp/cli-devin-dv020-help.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv020-help.txt`
 2. `devin -p "Explain the /handoff command, what state it transfers, and how to start it from the interactive Devin session. Do not invoke handoff and do not edit files." --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv020.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv020.txt`
 3. Record the local surface result as PASS/FAIL.
 4. Record the live `/handoff` transfer as **SKIP**: external cloud session and repository-state transfer require explicit operator approval.
 
-| Feature ID | Exact commands | Expected signal | Verdict |
-|---|---|---|---|
-| DV-020 | `devin --help` and read-only `devin -p` explanation | Handoff documented; live transfer SKIP by named blocker | PASS + SKIP |
+### Expected
+
+Handoff documented; live transfer SKIP by named blocker
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Handoff documented; live transfer SKIP by named blocker`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: for the local documentation inspection.
+- **Fail**: any expected signal above is absent or contradicted.
+- **Skip**: for live handoff by design; FAIL only if the local surface contradicts the reference or if an unapproved cloud session is created. (a missing or unavailable prerequisite is the named blocker).
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

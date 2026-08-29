@@ -31,12 +31,16 @@ Operators run the exact prompt and command sequence for `CO-038` and confirm the
 - Prompt: `As a git safety reviewer, run the sk-git preflight advisory under the OpenCode sk-git-preflight-advisory plugin against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, appears in output.system on the next experimental.chat.system.transform with no stdout/stderr and no block, and is silenced by SKGIT_ADVISORY=0. Return the advisory text and a PASS/FAIL verdict.`
 - Expected execution process: Confirm the plugin exists under `.opencode/plugins/` -> in-process, import the plugin, fire `tool.execute.before` with a `bash` git trap command against a scratch repo -> fire `experimental.chat.system.transform` and read `output.system` -> observe the `⚠ sk-git advisory` line naming `commit-scope-drops-untracked` -> repeat with `SKGIT_ADVISORY=0` and confirm `output.system` stays empty -> confirm no stdout/stderr was written at any point.
 - Expected signals: `output.system` contains `⚠ sk-git advisory` and `[commit-scope-drops-untracked]` after the transform; no `block`/denial; the command call returns; no plugin stdout or stderr; the suppressed run leaves `output.system` empty.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the advisory text and silence evidence.
-- Pass/fail: PASS when the advisory names `commit-scope-drops-untracked` AND appears in `output.system` (not stdout/stderr) AND no block AND suppression empties `output.system`. FAIL if the plugin prints, blocks, or no advisory appears on the trap shape.
+- Desired user-visible outcome: A concise PASS, FAIL, or SKIP verdict with the advisory text and silence evidence.
+- Pass/fail: PASS when the advisory names `commit-scope-drops-untracked` AND appears in `output.system` (not stdout/stderr) AND no block AND suppression empties `output.system`. FAIL if the plugin prints, blocks, or no advisory appears on the trap shape. SKIP applies only when the plugin file `.opencode/plugins/sk-git-preflight-advisory.js` is missing from this checkout, blocking every step.
 
 ---
 
 ## 3. TEST EXECUTION
+
+### Prompt
+
+Prompt: `As a git safety reviewer, run the sk-git preflight advisory under the OpenCode sk-git-preflight-advisory plugin against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, appears in output.system on the next experimental.chat.system.transform with no stdout/stderr and no block, and is silenced by SKGIT_ADVISORY=0. Return the advisory text and a PASS/FAIL verdict.`
 
 ### Recommended Orchestration Process
 
@@ -48,9 +52,42 @@ Operators run the exact prompt and command sequence for `CO-038` and confirm the
 6. Confirm no stdout/stderr was written during either step.
 7. Return a concise user-facing verdict.
 
+### Commands
+
+The exact reproducible command sequence is the 9-column table's "Exact Command Sequence" cell below:
+the plugin-registration check, scratch-repo setup, and the two in-process `node` invocations (with
+and without `SKGIT_ADVISORY=0`).
+
+### Expected
+
+Step 1 (registration check): the plugin file exists and hooks `tool.execute.before`. The first `node`
+invocation: `output.system` contains `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`, with no
+stdout/stderr and no block. The second (`SKGIT_ADVISORY=0`) invocation: `output.system` is empty.
+
+### Evidence
+
+Plugin source excerpt, captured `output.system` JSON from the unsuppressed run, the empty
+`output.system` from the suppressed run, and the terminal transcript for every command.
+
+### Pass / Fail
+
+- **Pass**: the advisory names `commit-scope-drops-untracked` AND appears in `output.system` (not
+  stdout/stderr) AND no block AND the suppressed run empties `output.system`.
+- **Fail**: the plugin prints, blocks, or no advisory appears on the trap shape.
+- **Skip**: only when the plugin file `.opencode/plugins/sk-git-preflight-advisory.js` is missing from
+  this checkout, blocking every step; record that exact missing-file blocker.
+
+### Failure Triage
+
+1. Inspect the unsuppressed run's `output.system` for the rule id; if absent, confirm the plugin
+   `directory` resolves to the scratch repo and `findRepoRoot` returns it.
+2. If the plugin printed to stdout or stderr, that is a hard FAIL — plugins must never print.
+3. If the environment lacks the plugin file, record the SKIP with that exact missing-file blocker
+   rather than guessing a result.
+
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 ||---|---|---|---|---|---|---|---|---|
-|| CO-038 | Git preflight advisory delivery | Verify the sk-git advisory fires on a directory-scoped commit under the OpenCode plugin, is delivered as next-turn output.system with no stdout/stderr, stays silent on an ordinary commit, is suppressible, and never blocks | `As a git safety reviewer, run the sk-git preflight advisory under the OpenCode sk-git-preflight-advisory plugin against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, appears in output.system on the next experimental.chat.system.transform with no stdout/stderr and no block, and is silenced by SKGIT_ADVISORY=0. Return the advisory text and a PASS/FAIL verdict.` | 1. `bash: ls .opencode/plugins/sk-git-preflight-advisory.js && grep -n "tool.execute.before" .opencode/plugins/sk-git-preflight-advisory.js` -> 2. `bash: repo=$(mktemp -d "/tmp/co-038.XXXXXX") && git -C "$repo" init -q && git -C "$repo" config core.hooksPath "$repo/.no-hooks" && git -C "$repo" config user.email t@example.invalid && git -C "$repo" config user.name T && git -C "$repo" config commit.gpgsign false && mkdir -p "$repo/.opencode/skills/sk-git" && cp .opencode/skills/sk-git/SKILL.md "$repo/.opencode/skills/sk-git/SKILL.md" && mkdir -p "$repo/src" && printf 'seed\n' > "$repo/src/tracked.txt" && git -C "$repo" add src/tracked.txt && git -C "$repo" commit -q -m seed && printf 'mod\n' > "$repo/src/tracked.txt" && printf 'untracked\n' > "$repo/src/untracked.txt"` -> 3. `bash: node --input-type=module -e "import plugin from './.opencode/plugins/sk-git-preflight-advisory.js'; const hooks = await plugin({ directory: '$repo' }); await hooks['tool.execute.before']({ tool: 'bash' }, { args: { command: 'git commit --only src -m x' } }); const output = { system: [] }; await hooks['experimental.chat.system.transform']({}, output); process.stdout.write(JSON.stringify(output));"` -> 4. `bash: node --input-type=module -e "import plugin from './.opencode/plugins/sk-git-preflight-advisory.js'; const hooks = await plugin({ directory: '$repo' }); await hooks['tool.execute.before']({ tool: 'bash' }, { args: { command: 'git commit --only src -m x' } }); const output = { system: [] }; await hooks['experimental.chat.system.transform']({}, output); process.stdout.write(JSON.stringify(output));"` with `SKGIT_ADVISORY=0` | Step 1: plugin file and `tool.execute.before` hook present; Step 3: `output.system` contains `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`, no stdout/stderr, no block; Step 4: `output.system` is empty | Plugin source excerpt, captured `output.system` JSON from Step 3, empty `output.system` from Step 4, terminal transcript | PASS when the advisory names `commit-scope-drops-untracked` AND appears in `output.system` (not stdout/stderr) AND no block AND Step 4 empties `output.system`; FAIL if the plugin prints, blocks, or no advisory appears on the trap shape | Inspect the Step 3 `output.system` for the rule id; if absent, confirm the plugin `directory` resolves to the scratch repo and `findRepoRoot` returns it; if the plugin printed, that is a hard FAIL (plugins must never print) |
+|| CO-038 | Git preflight advisory delivery | Verify the sk-git advisory fires on a directory-scoped commit under the OpenCode plugin, is delivered as next-turn output.system with no stdout/stderr, stays silent on an ordinary commit, is suppressible, and never blocks | `As a git safety reviewer, run the sk-git preflight advisory under the OpenCode sk-git-preflight-advisory plugin against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, appears in output.system on the next experimental.chat.system.transform with no stdout/stderr and no block, and is silenced by SKGIT_ADVISORY=0. Return the advisory text and a PASS/FAIL verdict.` | 1. `bash: ls .opencode/plugins/sk-git-preflight-advisory.js && grep -n "tool.execute.before" .opencode/plugins/sk-git-preflight-advisory.js` -> 2. `bash: repo=$(mktemp -d "/tmp/co-038.XXXXXX") && git -C "$repo" init -q && git -C "$repo" config core.hooksPath "$repo/.no-hooks" && git -C "$repo" config user.email t@example.invalid && git -C "$repo" config user.name T && git -C "$repo" config commit.gpgsign false && mkdir -p "$repo/.opencode/skills/sk-git" && cp .opencode/skills/sk-git/SKILL.md "$repo/.opencode/skills/sk-git/SKILL.md" && mkdir -p "$repo/src" && printf 'seed\n' > "$repo/src/tracked.txt" && git -C "$repo" add src/tracked.txt && git -C "$repo" commit -q -m seed && printf 'mod\n' > "$repo/src/tracked.txt" && printf 'untracked\n' > "$repo/src/untracked.txt"` -> 3. `bash: node --input-type=module -e "import plugin from './.opencode/plugins/sk-git-preflight-advisory.js'; const hooks = await plugin({ directory: '$repo' }); await hooks['tool.execute.before'] ({ tool: 'bash' }, { args: { command: 'git commit --only src -m x' } }); const output = { system: [] }; await hooks['experimental.chat.system.transform'] ({}, output); process.stdout.write(JSON.stringify(output));"` -> 4. `bash: node --input-type=module -e "import plugin from './.opencode/plugins/sk-git-preflight-advisory.js'; const hooks = await plugin({ directory: '$repo' }); await hooks['tool.execute.before'] ({ tool: 'bash' }, { args: { command: 'git commit --only src -m x' } }); const output = { system: [] }; await hooks['experimental.chat.system.transform'] ({}, output); process.stdout.write(JSON.stringify(output));"` with `SKGIT_ADVISORY=0` | Step 1: plugin file and `tool.execute.before` hook present; Step 3: `output.system` contains `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`, no stdout/stderr, no block; Step 4: `output.system` is empty | Plugin source excerpt, captured `output.system` JSON from Step 3, empty `output.system` from Step 4, terminal transcript | PASS when the advisory names `commit-scope-drops-untracked` AND appears in `output.system` (not stdout/stderr) AND no block AND Step 4 empties `output.system`; FAIL if the plugin prints, blocks, or no advisory appears on the trap shape | Inspect the Step 3 `output.system` for the rule id; if absent, confirm the plugin `directory` resolves to the scratch repo and `findRepoRoot` returns it; if the plugin printed, that is a hard FAIL (plugins must never print) |
 
 ### Optional Supplemental Checks
 

@@ -32,13 +32,35 @@ Roster presence can hide a broken loader. A real subagent result demonstrates th
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Use the prompt-improver subagent to improve this request: "Fix auth." Return the improved request and the constraints you added. Do not edit files.`
+
+### Commands
+
 1. `cursor-agent -p "Use the prompt-improver subagent to improve this request: \"Fix auth.\" Return the improved request and the constraints you added. Do not edit files." --model composer-2.5 --auto-review --sandbox enabled --output-format text </dev/null > /tmp/cli-cursor-cu023.txt 2>&1; echo "exit=$?" >> /tmp/cli-cursor-cu023.txt`
 2. Inspect output for subagent delegation and prompt-improver-derived structure.
-3. `git status --porcelain` and record `cursor-agent about` output-text auth evidence.
+3. `git status --porcelain`
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| CU-023 | `cursor-agent -p ... prompt-improver ...` | Real mirrored-agent result, clean tree | PASS/FAIL/SKIP |
+### Expected
+
+The dispatch delegates to the mirrored `prompt-improver` agent, the answer reflects its instructions (an improved prompt plus the constraints added), and `git status --porcelain` prints nothing.
+
+### Evidence
+
+Captured output in `/tmp/cli-cursor-cu023.txt`, the step 3 clean-tree result, and `cursor-agent about` output-text auth evidence.
+
+### Pass / Fail
+
+- **Pass**: delegation and derived output are evidenced, and the tree stays clean.
+- **Fail**: silent fallback to inline-only completion without delegation, or a repository mutation is observed.
+- **Skip**: only on a named Cursor authentication or availability blocker for the dispatch itself.
+
+### Failure Triage
+
+1. **No delegation observed**: output looks generic rather than prompt-improver-shaped; re-run with `--output-format text` retained and inspect for an explicit subagent trace before concluding fallback.
+2. **Auth/availability blocker**: the dispatch fails to authenticate or start; capture the `cursor-agent about` output and record the SKIP with that exact blocker.
+3. **Unexpected mutation**: `git status --porcelain` is non-empty; identify the changed path and treat the scenario as FAIL regardless of dispatch output.
 
 ---
 
