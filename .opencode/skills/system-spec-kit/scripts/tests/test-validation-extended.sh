@@ -1029,14 +1029,6 @@ if begin_category "Individual Rule: PRIORITY_TAGS (check-priority-tags.sh)"; the
     run_isolated_rule_test "Items with context" "check-priority-tags.sh" "021-invalid-priority-tags" "pass" 2
 fi
 
-if begin_category "Individual Rule: SECTIONS_PRESENT (check-sections.sh)"; then
-    run_isolated_rule_test "All sections present (compliant fixture)" "check-sections.sh" "053-template-compliant-level2" "pass" 2
-    run_isolated_rule_test "Missing spec sections" "check-sections.sh" "034-missing-spec-sections" "warn" 1
-    run_isolated_rule_test "Missing plan sections" "check-sections.sh" "033-missing-plan-sections" "warn" 1
-    run_isolated_rule_test "Missing checklist sections" "check-sections.sh" "029-missing-checklist-sections" "warn" 2
-    run_isolated_rule_test "Missing decision sections" "check-sections.sh" "030-missing-decision-sections" "warn" 3
-fi
-
 if begin_category "Individual Rule: LEVEL_DECLARED (check-level.sh)"; then
     # Note: LEVEL_METHOD is set by orchestrator, in isolation it's always "inferred"
     LEVEL_METHOD="inferred"

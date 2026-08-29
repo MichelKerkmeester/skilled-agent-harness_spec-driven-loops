@@ -78,7 +78,6 @@ ENVIRONMENT OVERRIDES (runtime control)
 | -------------------- | -------- | --------------------------------------------------- |
 | `FILE_EXISTS`        | ERROR    | Required files present for documentation level      |
 | `PLACEHOLDER_FILLED` | ERROR    | No unfilled `[YOUR_VALUE_HERE:]` placeholders       |
-| `SECTIONS_PRESENT`   | WARNING  | Required markdown sections exist                    |
 | `LEVEL_DECLARED`     | INFO     | Level explicitly stated in spec.md metadata         |
 | `PRIORITY_TAGS`      | WARNING  | Validate P0/P1/P2 format in checklists              |
 | `EVIDENCE_CITED`     | WARNING  | Verify `[EVIDENCE:]` on completed P0/P1 items       |
@@ -128,7 +127,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 | `SPECKIT_VERBOSE`         | false   | Set to `true` for verbose output                     |
 | `SPECKIT_SKIP_VALIDATION` | unset   | Set to any value to skip validation entirely         |
 | `SPECKIT_QUIET`           | false   | Set to `true` for quiet output                       |
-| `SPECKIT_RULES`           | unset   | Comma-separated rule subset (e.g. `FILE_EXISTS,LEVEL_DECLARED`) |
+| `SPECKIT_RULES`           | unset   | Comma-separated rule subset (e.g. `FILE_EXISTS,LEVEL_DECLARED`). Narrows which rules run; it never changes how a rule decides. An unrecognised name is a hard error, so a typo cannot silently reduce the run to nothing. |
 
 ### Exit Codes
 

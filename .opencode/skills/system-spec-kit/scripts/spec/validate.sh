@@ -2,7 +2,12 @@
 # ───────────────────────────────────────────────────────────────
 # COMPONENT: Validate Spec
 # ───────────────────────────────────────────────────────────────
-# Spec Folder Validation Orchestrator - Bash 3.2+ compatible
+# Front-end for the spec folder validation orchestrator.
+#
+# This script resolves arguments and the set of folders to validate, then hands
+# every rule decision to the orchestrator. It deliberately implements no rules
+# of its own: a second implementation of the same rules is a second answer to
+# the same question, and a packet's verdict must not depend on the caller.
 
 # Strict mode with guarded dynamic expansions.
 set -euo pipefail
@@ -11,95 +16,55 @@ set -euo pipefail
 # 1. CONFIGURATION
 # ───────────────────────────────────────────────────────────────
 
-# Feature flag: Skip validation if SPECKIT_SKIP_VALIDATION is set
 if [[ -n "${SPECKIT_SKIP_VALIDATION:-}" ]]; then
     echo "Validation skipped (SPECKIT_SKIP_VALIDATION=${SPECKIT_SKIP_VALIDATION})" >&2
     exit 0
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-readonly RULES_DIR="$SCRIPT_DIR/../rules"
 readonly VALIDATOR_REGISTRY_JSON="$SCRIPT_DIR/../lib/validator-registry.json"
-readonly SPEC_DOC_STRUCTURE_TS="$SCRIPT_DIR/../../mcp-server/lib/validation/spec-doc-structure.ts"
-readonly SPEC_DOC_STRUCTURE_JS="$SCRIPT_DIR/../../mcp-server/dist/lib/validation/spec-doc-structure.js"
-readonly CONTINUITY_FRESHNESS_TS="$SCRIPT_DIR/../validation/continuity-freshness.ts"
-readonly CONTINUITY_FRESHNESS_JS="$SCRIPT_DIR/../dist/validation/continuity-freshness.js"
-readonly EVIDENCE_MARKER_LINT_TS="$SCRIPT_DIR/../validation/evidence-marker-lint.ts"
-readonly EVIDENCE_MARKER_LINT_JS="$SCRIPT_DIR/../dist/validation/evidence-marker-lint.js"
-readonly GENERATED_METADATA_INTEGRITY_TS="$SCRIPT_DIR/../validation/generated-metadata-integrity.ts"
-readonly GENERATED_METADATA_INTEGRITY_JS="$SCRIPT_DIR/../dist/validation/generated-metadata-integrity.js"
-readonly GENERATED_METADATA_DRIFT_TS="$SCRIPT_DIR/../validation/generated-metadata-drift.ts"
-readonly GENERATED_METADATA_DRIFT_JS="$SCRIPT_DIR/../dist/validation/generated-metadata-drift.js"
-readonly COMMAND_TREE_PARITY_SH="$SCRIPT_DIR/../validate-command-tree-parity.sh"
-readonly VERSION="2.0.0"
-
-# Source shared libraries
-source "${SCRIPT_DIR}/../lib/shell-common.sh"
+readonly ORCHESTRATOR_JS="$SCRIPT_DIR/../../mcp-server/dist/lib/validation/orchestrator.js"
+readonly ORCHESTRATOR_TS="$SCRIPT_DIR/../../mcp-server/lib/validation/orchestrator.ts"
+readonly TSX_LOADER="$SCRIPT_DIR/../node_modules/tsx/dist/loader.mjs"
+readonly DIST_FRESHNESS_CJS="$SCRIPT_DIR/../lib/dist-freshness.cjs"
+readonly VERSION="3.0.0"
 
 # ───────────────────────────────────────────────────────────────
 # 2. STATE & GLOBALS
 # ───────────────────────────────────────────────────────────────
 
-# State
-FOLDER_PATH="" DETECTED_LEVEL=1 LEVEL_METHOD="inferred" CONFIG_FILE_PATH=""
-JSON_MODE=false STRICT_MODE=false VERBOSE=false QUIET_MODE=false RECURSIVE=false RECURSIVE_OPT_OUT=false
-LEGACY_GRANDFATHERED=false
-ERRORS=0 WARNINGS=0 INFOS=0 RESULTS=""
-PHASE_RESULTS="" PHASE_COUNT=0
+FOLDER_PATH=""
+JSON_MODE=false STRICT_MODE=false VERBOSE=false QUIET_MODE=false
+RECURSIVE=false RECURSIVE_OPT_OUT=false
 CHILD_MANIFEST_ACTIVE=false CHILD_MANIFEST_HASH="" CHILD_MANIFEST_ENTRIES=() PHASE_DIRS=()
 
-# Rule execution order (empty = alphabetical)
-RULE_ORDER=()
-
 # ───────────────────────────────────────────────────────────────
-# 3. UTILITY FUNCTIONS
+# 3. HELP & ARGUMENT PARSING
 # ───────────────────────────────────────────────────────────────
 
-# Timing helper - get current time in milliseconds
-get_time_ms() {
-    # Try nanoseconds first (Linux), then Python, then seconds only (macOS fallback)
-    # macOS date +%s%N outputs literal "N" (e.g. "1234567890N") instead of erroring.
-    # Must verify the output contains only digits AND is long enough to be nanoseconds.
-    local ns
-    ns=$(date +%s%N 2>/dev/null)
-    if [[ "$ns" =~ ^[0-9]+$ ]] && [[ ${#ns} -gt 10 ]]; then
-        echo $(( ns / 1000000 ))
-    elif command -v python3 >/dev/null 2>&1; then
-        python3 -c "import time; print(int(time.time() * 1000))" 2>/dev/null || echo $(( $(date +%s) * 1000 ))
-    else
-        echo $(( $(date +%s) * 1000 ))
-    fi
+list_registry_rules() {
+    [[ -f "$VALIDATOR_REGISTRY_JSON" ]] || { echo "RULES: registry unavailable at $VALIDATOR_REGISTRY_JSON"; return 0; }
+    node -e '
+const fs = require("fs");
+const parsed = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+const rules = Array.isArray(parsed) ? parsed : (parsed.rules || []);
+const lines = ["RULES BY CATEGORY:"];
+for (const category of ["authored_template", "operational_runtime"]) {
+  lines.push(`  ${category}:`);
+  for (const rule of rules.filter((item) => item.category === category)) {
+    const suffix = rule.strict_only ? " strict-only" : "";
+    lines.push(`    ${rule.rule_id} [${rule.severity}${suffix}] - ${rule.description}`);
+  }
+}
+process.stdout.write(`${lines.join("\n")}\n`);
+' "$VALIDATOR_REGISTRY_JSON" 2>/dev/null || echo "RULES: registry unreadable"
 }
 
-# Colors (disabled for non-TTY)
-if [[ -t 1 ]]; then
-    RED='\033[0;31m' GREEN='\033[0;32m' YELLOW='\033[1;33m' BLUE='\033[0;34m' BOLD='\033[1m' NC='\033[0m'
-else
-    RED='' GREEN='' YELLOW='' BLUE='' BOLD='' NC=''
-fi
-
-# Rule severity defaults (bash 3.2 compatible)
-RULE_SEVERITY_FILE_EXISTS="error" RULE_SEVERITY_FILES="error"
-RULE_SEVERITY_PLACEHOLDER_FILLED="error" RULE_SEVERITY_PLACEHOLDERS="error"
-RULE_SEVERITY_SECTIONS_PRESENT="warn" RULE_SEVERITY_SECTIONS="warn"
-RULE_SEVERITY_LEVEL_DECLARED="info" RULE_SEVERITY_LEVEL="info"
-RULE_SEVERITY_PRIORITY_TAGS="warn" RULE_SEVERITY_EVIDENCE_CITED="warn"
-RULE_SEVERITY_ANCHORS_VALID="error" RULE_SEVERITY_ANCHORS="error"
-RULE_SEVERITY_EVIDENCE="warn" RULE_SEVERITY_PRIORITY="warn"
-RULE_SEVERITY_GRAPH_METADATA_PRESENT="warn" RULE_SEVERITY_GRAPH_METADATA="warn"
-
-# ───────────────────────────────────────────────────────────────
-# 4. HELP & ARGUMENT PARSING
-# ───────────────────────────────────────────────────────────────
-
 show_help() {
-    local registry_rules=""
-    registry_rules=$(validator_registry_query help 2>/dev/null || true)
-    [[ -z "$registry_rules" ]] && registry_rules="RULES: registry unavailable at $VALIDATOR_REGISTRY_JSON"
     cat << EOF
-validate-spec.sh - Spec Folder Validation Orchestrator (v2.0)
+validate.sh - Spec Folder Validation (v$VERSION)
 
-USAGE: ./validate-spec.sh <folder-path> [OPTIONS]
+USAGE: ./validate.sh <folder-path> [OPTIONS]
 
 OPTIONS:
     --help, -h     Show help     --version, -v  Show version
@@ -108,9 +73,14 @@ OPTIONS:
     --recursive    Validate parent + all [0-9][0-9][0-9]-*/ child phase folders
     --no-recursive Disable auto-recursive validation when phase children exist
 
+ENVIRONMENT:
+    SPECKIT_RULES              Comma-separated subset of rules to evaluate
+    SPECKIT_SKIP_VALIDATION    Skip validation entirely
+    SPECKIT_STRICT/_VERBOSE/_JSON/_QUIET   Equivalent to the flags above
+
 EXIT CODES: 0=pass, 1=user error, 2=validation error, 3=system error
 
-$registry_rules
+$(list_registry_rules)
 
 LEVELS: 1=spec+plan+tasks+impl-summary*, 2=+checklist, 3=+architecture guidance
         decision-record.md and other add-ons are on-demand when explicitly added
@@ -123,7 +93,7 @@ parse_args() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --help|-h) show_help ;;
-            --version|-v) echo "validate-spec.sh version $VERSION"; exit 0 ;;
+            --version|-v) echo "validate.sh version $VERSION"; exit 0 ;;
             --json) JSON_MODE=true; shift ;;
             --strict) STRICT_MODE=true; shift ;;
             --verbose) VERBOSE=true; shift ;;
@@ -140,8 +110,17 @@ parse_args() {
     return 0
 }
 
+apply_env_overrides() {
+    [[ "${SPECKIT_VALIDATION:-}" == "false" ]] && { echo "Validation disabled"; exit 0; }
+    [[ "${SPECKIT_STRICT:-}" == "true" ]] && STRICT_MODE=true
+    [[ "${SPECKIT_VERBOSE:-}" == "true" ]] && VERBOSE=true
+    [[ "${SPECKIT_JSON:-}" == "true" ]] && JSON_MODE=true
+    [[ "${SPECKIT_QUIET:-}" == "true" ]] && QUIET_MODE=true
+    return 0
+}
+
 # ───────────────────────────────────────────────────────────────
-# 5. CONFIGURATION LOADING
+# 4. PHASE CHILD DISCOVERY
 # ───────────────────────────────────────────────────────────────
 
 has_phase_children() {
@@ -180,9 +159,10 @@ child_manifest_contains() {
     return 1
 }
 
+# A caller may declare exactly which children a recursive run must cover, so a
+# child cannot be added or dropped without the declaration changing with it.
 load_child_manifest() {
     local parent_folder="$1"
-    local canonical_parent=""
     local manifest_text=""
     local expected_hash=""
     local line=""
@@ -192,37 +172,24 @@ load_child_manifest() {
     local phase_name=""
     local manifest_error=""
     local manifest_file="${SPECKIT_CHILD_MANIFEST_FILE:-}"
-    local require_exact_disk_set=false
     local -a on_disk_phase_dirs=()
 
     CHILD_MANIFEST_ACTIVE=false
     CHILD_MANIFEST_HASH=""
     CHILD_MANIFEST_ENTRIES=()
 
-    if [[ -n "$manifest_file" ]]; then
-        require_exact_disk_set=true
-        [[ -f "$manifest_file" ]] || { echo "ERROR: declared child manifest not found: $manifest_file" >&2; return 2; }
-        while IFS= read -r line || [[ -n "$line" ]]; do
-            case "$line" in
-                "# sha256:"*) expected_hash="${line#\# sha256:}"; expected_hash="${expected_hash# }"; continue ;;
-                "#"*|"") continue ;;
-            esac
-            manifest_text+="$line"$'\n'
-        done < "$manifest_file"
-        expected_hash="${SPECKIT_CHILD_MANIFEST_SHA256:-$expected_hash}"
-        [[ -n "$expected_hash" ]] || { echo "ERROR: declared child manifest has no expected sha256" >&2; return 2; }
-    else
-        canonical_parent=$(cd "$parent_folder" && pwd -P) || { echo "ERROR: cannot resolve parent folder: $parent_folder" >&2; return 2; }
-        case "$canonical_parent" in
-            */specs/system-deep-loop/036-deep-loop-innovation)
-                manifest_text=$'001-research-inputs-and-architecture\n002-substrate-and-orchestration\n003-mode-contracts-migration-and-cutover\n004-gate-closeout-and-drift\n005-blocker-closeout\n006-runtime-docs-and-integrity-hardening\n007-executor-and-cli-hardening\n008-review-and-rollback-followup\n009-innovation-gap-remediation\n'
-                expected_hash="1940b29222495ae77e6cc043b224ced712624ae9421068c290287d337d54f2f9"
-                ;;
-            *)
-                return 0
-                ;;
+    [[ -n "$manifest_file" ]] || return 0
+    [[ -f "$manifest_file" ]] || { echo "ERROR: declared child manifest not found: $manifest_file" >&2; return 2; }
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        case "$line" in
+            "# sha256:"*) expected_hash="${line#\# sha256:}"; expected_hash="${expected_hash# }"; continue ;;
+            "#"*|"") continue ;;
         esac
-    fi
+        manifest_text+="$line"$'\n'
+    done < "$manifest_file"
+    expected_hash="${SPECKIT_CHILD_MANIFEST_SHA256:-$expected_hash}"
+    [[ -n "$expected_hash" ]] || { echo "ERROR: declared child manifest has no expected sha256" >&2; return 2; }
 
     while IFS= read -r line || [[ -n "$line" ]]; do
         [[ -z "$line" ]] && continue
@@ -251,16 +218,14 @@ load_child_manifest() {
         on_disk_phase_dirs+=("${phase_dir%/}")
     done
 
-    if $require_exact_disk_set; then
-        for phase_dir in "${on_disk_phase_dirs[@]-}"; do
-            [[ -z "$phase_dir" ]] && continue
-            phase_name=$(basename "$phase_dir")
-            if ! child_manifest_contains "$phase_name"; then
-                echo "ERROR: on-disk child is absent from the declared manifest: $phase_name" >&2
-                manifest_error=1
-            fi
-        done
-    fi
+    for phase_dir in "${on_disk_phase_dirs[@]-}"; do
+        [[ -z "$phase_dir" ]] && continue
+        phase_name=$(basename "$phase_dir")
+        if ! child_manifest_contains "$phase_name"; then
+            echo "ERROR: on-disk child is absent from the declared manifest: $phase_name" >&2
+            manifest_error=1
+        fi
+    done
 
     for phase_name in "${CHILD_MANIFEST_ENTRIES[@]}"; do
         if [[ ! -d "$parent_folder/$phase_name" ]]; then
@@ -297,856 +262,17 @@ collect_phase_dirs() {
     return 0
 }
 
-apply_env_overrides() {
-    [[ "${SPECKIT_VALIDATION:-}" == "false" ]] && { echo "Validation disabled"; exit 0; }
-    [[ "${SPECKIT_STRICT:-}" == "true" ]] && STRICT_MODE=true
-    [[ "${SPECKIT_VERBOSE:-}" == "true" ]] && VERBOSE=true
-    [[ "${SPECKIT_JSON:-}" == "true" ]] && JSON_MODE=true
-    [[ "${SPECKIT_QUIET:-}" == "true" ]] && QUIET_MODE=true
-    # SPECKIT_RULES: comma-separated rule subset (e.g., "FILE_EXISTS,LEVEL_DECLARED")
-    # Used by pre-commit hook for fast 6-rule validation
-    if [[ -n "${SPECKIT_RULES:-}" ]]; then
-        RULE_ORDER=()
-        IFS=',' read -ra _rules <<< "$SPECKIT_RULES"
-        for _r in "${_rules[@]}"; do
-            local _canonical
-            _canonical=$(canonicalize_rule_name "$_r")
-            if [[ -n "$_canonical" ]]; then
-                RULE_ORDER+=("$_canonical")
-            else
-                echo "Warning: Unrecognized SPECKIT_RULES entry: '$_r'" >&2
-            fi
-        done
-        unset _rules _r _canonical
-    fi
-    return 0
-}
-
-detect_legacy_grandfathered() {
-    local folder="$1"
-    local graph_file="$folder/graph-metadata.json"
-    LEGACY_GRANDFATHERED=false
-    [[ -f "$graph_file" ]] || return 0
-    if node -e "const fs=require('fs'); const p=process.argv[1]; const data=JSON.parse(fs.readFileSync(p,'utf8')); process.exit(data.legacy_grandfathered === true ? 0 : 1)" "$graph_file" 2>/dev/null; then
-        LEGACY_GRANDFATHERED=true
-    fi
-}
-
-load_config() {
-    local folder="${1:-.}"
-    [[ -f "$folder/.speckit.yaml" ]] && { CONFIG_FILE_PATH="$folder/.speckit.yaml"; }
-    if [[ -z "$CONFIG_FILE_PATH" ]]; then
-        local root; root=$(git rev-parse --show-toplevel 2>/dev/null) || root="$(pwd)"
-        [[ -f "$root/.speckit.yaml" ]] && CONFIG_FILE_PATH="$root/.speckit.yaml"
-    fi
-    # Parse rule order if config exists
-    if [[ -n "$CONFIG_FILE_PATH" && -f "$CONFIG_FILE_PATH" ]]; then
-        local rule_order_str=""
-        if command -v yq >/dev/null 2>&1; then
-            rule_order_str=$(yq -r '.validation.rule_order[]? // empty' "$CONFIG_FILE_PATH" 2>/dev/null || true)
-            [[ -z "$rule_order_str" ]] && rule_order_str=$(yq -r '.rule_order[]? // empty' "$CONFIG_FILE_PATH" 2>/dev/null || true)
-        else
-            # Fallback: simple grep for rule_order entries
-            local in_order=false
-            while IFS= read -r line; do
-                if [[ "$line" =~ ^[[:space:]]*rule_order: ]]; then
-                    in_order=true; continue
-                elif $in_order && [[ "$line" =~ ^[[:space:]]*[A-Za-z0-9_]+: ]]; then
-                    break
-                fi
-                if $in_order && [[ "$line" =~ ^[[:space:]]+-[[:space:]]+([A-Za-z0-9_-]+) ]]; then
-                    rule_order_str+="${BASH_REMATCH[1]}"$'\n'
-                fi
-            done < "$CONFIG_FILE_PATH"
-        fi
-        if [[ -n "$rule_order_str" ]]; then
-            RULE_ORDER=()
-            while IFS= read -r rule; do
-                local canonical_rule
-                canonical_rule=$(canonicalize_rule_name "$rule")
-                [[ -n "$canonical_rule" ]] && RULE_ORDER+=("$canonical_rule")
-            done <<< "$rule_order_str"
-        fi
-    fi
-    return 0
-}
-
-# Template hash validation - checks if spec files match original templates
-# This is informational only; modifications are expected and not failures
-validate_template_hashes() {
-    local folder="$1"
-    local hash_file="$SCRIPT_DIR/../../templates/.hashes"
-    
-    # No hash file means skip validation
-    [[ ! -f "$hash_file" ]] && return 0
-    
-    while IFS='=' read -r template expected_hash; do
-        # Skip empty lines and comments
-        [[ -z "$template" || "$template" =~ ^# ]] && continue
-        
-        local actual_file="$folder/$template"
-        if [[ -f "$actual_file" ]]; then
-            # Calculate hash (macOS uses md5, Linux uses md5sum)
-            local actual_hash
-            if command -v md5 >/dev/null 2>&1; then
-                actual_hash=$(md5 -q "$actual_file" 2>/dev/null)
-            else
-                actual_hash=$(md5sum "$actual_file" 2>/dev/null | cut -d' ' -f1)
-            fi
-            # Note: We don't fail on mismatch - templates are meant to be customized
-            # This function is for informational/audit purposes only
-        fi
-    done < "$hash_file"
-    
-    return 0
-}
-
 # ───────────────────────────────────────────────────────────────
-# 6. LEVEL DETECTION
+# 5. VALIDATION
 # ───────────────────────────────────────────────────────────────
 
-detect_level() {
-    local folder="$1"
-    local spec_file="$folder/spec.md"
-    local level=""
-    
-    if [[ -f "$spec_file" ]]; then
-        # Pattern 0: SPECKIT_LEVEL marker (most authoritative)
-        # <!-- SPECKIT_LEVEL: 2 --> or <!-- SPECKIT_LEVEL: 3+ -->
-        level=$(grep -oE '<!-- SPECKIT_LEVEL: *[123]\+? *-->' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
-
-        # Pattern 0b: SPECKIT_LEVEL review marker. The explicit marker is the
-        # only entry into the review-record path, so no inferred folder reaches it.
-        if [[ -z "$level" ]]; then
-            if grep -qE '<!-- SPECKIT_LEVEL: *review *-->' "$spec_file" 2>/dev/null; then
-                DETECTED_LEVEL="review"; LEVEL_METHOD="explicit"; return
-            fi
-        fi
-
-        # Pattern 1: Table format with bold (common)
-        # | **Level** | 2 | or | **Level** | 3+ |
-        if [[ -z "$level" ]]; then
-            level=$(grep -E '\|\s*\*\*Level\*\*\s*\|\s*[123]\+?\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
-        fi
-        
-        # Pattern 2: Table format without bold
-        # | Level | 2 | or | Level | 3+ |
-        if [[ -z "$level" ]]; then
-            level=$(grep -E '\|\s*Level\s*\|\s*[123]\+?\s*\|' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
-        fi
-        
-        # Pattern 2b: Bullet metadata format (SE-05)
-        # - **Level**: 2 or - **Level**: 3+
-        if [[ -z "$level" ]]; then
-            level=$(grep -E '^[[:space:]]*-[[:space:]]+\*\*Level\*\*:?\s*[123]\+?' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
-        fi
-
-        # Pattern 3: YAML frontmatter
-        # Level: 2 or level: 3+
-        if [[ -z "$level" ]]; then
-            level=$(grep -E '^level:\s*[123]\+?' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
-        fi
-        
-        # Pattern 4: Anchored inline "Level: N" or "Level N"
-        # (line-start only to avoid prose false-positives)
-        if [[ -z "$level" ]]; then
-            level=$(grep -E '^[Ll]evel[: ]+[123]\+?' "$spec_file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
-        fi
-        
-        [[ -n "$level" ]] && { DETECTED_LEVEL="$level"; LEVEL_METHOD="explicit"; return; }
-    fi
-    
-    # Fallback: infer from existing files
-    [[ -f "$folder/decision-record.md" ]] && { DETECTED_LEVEL=3; LEVEL_METHOD="inferred"; return; }
-    [[ -f "$folder/checklist.md" ]] && { DETECTED_LEVEL=2; LEVEL_METHOD="inferred"; return; }
-    if [[ -f "$folder/tasks.md" ]] && grep -q '<!-- ANCHOR:protocol -->' "$folder/tasks.md" 2>/dev/null; then
-        DETECTED_LEVEL=2; LEVEL_METHOD="inferred"; return
-    fi
-    DETECTED_LEVEL=1; LEVEL_METHOD="inferred"
-}
-
-# ───────────────────────────────────────────────────────────────
-# 7. LOGGING
-# ───────────────────────────────────────────────────────────────
-
-log_pass() {
-    ! $JSON_MODE && ! $QUIET_MODE && printf "${GREEN}✓${NC} ${BOLD}%s${NC}: %s\n" "$1" "$2"
-    [[ -n "$RESULTS" ]] && RESULTS+=","
-    RESULTS+="{\"rule\":\"$(_json_escape "$1")\",\"status\":\"pass\",\"message\":\"$(_json_escape "$2")\"$(_json_rule_payload)}"
-}
-log_warn() {
-    ((WARNINGS++)) || true
-    ! $JSON_MODE && ! $QUIET_MODE && printf "${YELLOW}⚠${NC} ${BOLD}%s${NC}: %s\n" "$1" "$2"
-    [[ -n "$RESULTS" ]] && RESULTS+=","; RESULTS+="{\"rule\":\"$(_json_escape "$1")\",\"status\":\"warn\",\"message\":\"$(_json_escape "$2")\"$(_json_rule_payload)}"
-}
-log_error() {
-    ((ERRORS++)) || true
-    ! $JSON_MODE && ! $QUIET_MODE && printf "${RED}✗${NC} ${BOLD}%s${NC}: %s\n" "$1" "$2"
-    [[ -n "$RESULTS" ]] && RESULTS+=","; RESULTS+="{\"rule\":\"$(_json_escape "$1")\",\"status\":\"error\",\"message\":\"$(_json_escape "$2")\"$(_json_rule_payload)}"
-}
-log_info() {
-    ((INFOS++)) || true
-    ! $JSON_MODE && ! $QUIET_MODE && $VERBOSE && printf "${BLUE}ℹ${NC} ${BOLD}%s${NC}: %s\n" "$1" "$2"
-    [[ -n "$RESULTS" ]] && RESULTS+=","; RESULTS+="{\"rule\":\"$(_json_escape "$1")\",\"status\":\"info\",\"message\":\"$(_json_escape "$2")\"$(_json_rule_payload)}"
-}
-log_detail() { ! $JSON_MODE && ! $QUIET_MODE && printf "    - %s\n" "$1"; true; }
-
-_json_rule_payload() {
-    local payload=""
-    if [[ -n "${RULE_DETAILS[*]-}" ]]; then
-        local details_json="" detail
-        for detail in "${RULE_DETAILS[@]}"; do
-            [[ -n "$details_json" ]] && details_json+=","
-            details_json+="\"$(_json_escape "$detail")\""
-        done
-        payload+=",\"details\":[${details_json}]"
-    else
-        payload+=",\"details\":[]"
-    fi
-    if [[ -n "${RULE_REMEDIATION:-}" ]]; then
-        payload+=",\"remediation\":\"$(_json_escape "$RULE_REMEDIATION")\""
-    else
-        payload+=",\"remediation\":null"
-    fi
-    printf '%s' "$payload"
-}
-
-# ───────────────────────────────────────────────────────────────
-# 8. RULE RESOLUTION
-# ───────────────────────────────────────────────────────────────
-
-validator_registry_query() {
-    local mode="$1"
-    local value="${2:-}"
-
-    if [[ ! -f "$VALIDATOR_REGISTRY_JSON" ]]; then
-        case "$mode" in
-            canonical) echo "$value" | tr '[:lower:]-' '[:upper:]_' ;;
-            severity) echo "error" ;;
-            *) return 1 ;;
-        esac
-        return 0
-    fi
-
-    node -e '
-const fs = require("fs");
-const [registryPath, mode, value = ""] = process.argv.slice(1);
-const rules = JSON.parse(fs.readFileSync(registryPath, "utf8"));
-const normalize = (input) => String(input).trim().replace(/-/g, "_").toUpperCase();
-const findRule = (input) => {
-  const normalized = normalize(input);
-  return rules.find((rule) => {
-    if (rule.rule_id === normalized) return true;
-    return (rule.aliases || []).map(normalize).includes(normalized);
-  });
-};
-const rule = findRule(value);
-
-if (mode === "canonical") {
-  process.stdout.write(rule ? rule.rule_id : normalize(value));
-} else if (mode === "severity") {
-  process.stdout.write(rule ? rule.severity : "error");
-} else if (mode === "script") {
-  process.stdout.write(rule ? rule.script_path : "");
-} else if (mode === "default_rules") {
-  process.stdout.write(
-    rules
-      .filter((entry) => entry.strict_only !== true && entry.severity !== "skip")
-      .map((entry) => entry.rule_id)
-      .join("\n")
-  );
-} else if (mode === "help") {
-  const labels = {
-    authored_template: "authored_template",
-    operational_runtime: "operational_runtime",
-  };
-  const lines = ["RULES BY CATEGORY:"];
-  for (const category of ["authored_template", "operational_runtime"]) {
-    lines.push(`  ${labels[category]}:`);
-    for (const entry of rules.filter((item) => item.category === category)) {
-      const suffix = entry.strict_only ? " strict-only" : "";
-      lines.push(`    ${entry.rule_id} [${entry.severity}${suffix}] - ${entry.description}`);
-    }
-  }
-  process.stdout.write(lines.join("\n"));
-} else {
-  process.exitCode = 1;
-}
-' "$VALIDATOR_REGISTRY_JSON" "$mode" "$value"
-}
-
-get_rule_severity() {
-    validator_registry_query severity "$1"
-}
-should_run_rule() {
-    local canonical_rule
-    canonical_rule=$(canonicalize_rule_name "$1")
-    if [[ ${#RULE_ORDER[@]} -gt 0 ]]; then
-        local selected=""
-        for selected in "${RULE_ORDER[@]}"; do
-            [[ "$selected" == "$canonical_rule" ]] && return 0
-        done
-        return 1
-    fi
-    [[ "$(get_rule_severity "$canonical_rule")" != "skip" ]]
-}
-
-# Map rule name to script filename
-canonicalize_rule_name() {
-    validator_registry_query canonical "$1"
-}
-
-rule_name_to_script() {
-    local rule="$1"
-    validator_registry_query script "$rule"
-}
-
-emit_rule_script() {
-    local rule_name="$1"
-    local canonical_rule
-    canonical_rule=$(canonicalize_rule_name "$rule_name")
-
-    local registry_path
-    registry_path=$(rule_name_to_script "$canonical_rule")
-    [[ -z "$registry_path" ]] && return 0
-
-    if [[ "$registry_path" == ts:* ]]; then
-        echo "TS_RULE:$canonical_rule"
-        return 0
-    fi
-
-    # Strict-only validation scripts are executed by run_strict_validators().
-    if [[ "$registry_path" == validation/* ]]; then
-        return 0
-    fi
-
-    local script="$SCRIPT_DIR/../$registry_path"
-    if [[ -f "$script" ]]; then
-        if [[ "$(basename "$script")" == "check-canonical-save.sh" ]]; then
-            echo "SCRIPT_RULE:$canonical_rule:$script"
-        else
-            echo "$script"
-        fi
-    else
-        echo "Warning: Rule script not found: $registry_path (from rule '$canonical_rule')" >&2
-    fi
-}
-
-get_rule_scripts() {
-    local folder="$1"
-    # If RULE_ORDER is set, use that order; otherwise alphabetical
-    if [[ ${#RULE_ORDER[@]} -gt 0 ]]; then
-        for rule_name in "${RULE_ORDER[@]}"; do
-            emit_rule_script "$rule_name"
-        done
-    else
-        validator_registry_query default_rules | while IFS= read -r rule_name; do
-            [[ -z "$rule_name" ]] && continue
-            emit_rule_script "$rule_name"
-        done
-    fi
-}
-
-run_spec_doc_ts_rule() {
-    local folder="$1"
-    local level="$2"
-    local rule_name="$3"
-
-    RULE_NAME="$rule_name"
-    RULE_STATUS="pass"
-    RULE_MESSAGE=""
-    RULE_DETAILS=()
-    RULE_REMEDIATION=""
-
-    local bridge_path="$SPEC_DOC_STRUCTURE_TS"
-    local bridge_is_js=false
-    if [[ -f "$SPEC_DOC_STRUCTURE_JS" ]]; then
-        bridge_path="$SPEC_DOC_STRUCTURE_JS"
-        bridge_is_js=true
-    fi
-
-    if [[ ! -f "$bridge_path" ]]; then
-        RULE_STATUS="fail"
-        RULE_MESSAGE="TS rule bridge missing: $bridge_path"
-        RULE_DETAILS=("Expected spec-doc validation bridge was not found on disk")
-        return
-    fi
-
-    local cmd=()
-    if [[ "$bridge_is_js" == "true" ]]; then
-        cmd=(
-            node
-            "$bridge_path"
-            --folder "$folder"
-            --level "$level"
-            --rule "$rule_name"
-        )
-    elif node --experimental-strip-types --eval "process.exit(0)" >/dev/null 2>&1; then
-        cmd=(
-            node
-            --experimental-strip-types
-            "$bridge_path"
-            --folder "$folder"
-            --level "$level"
-            --rule "$rule_name"
-        )
-    else
-        local tsx_loader="$SCRIPT_DIR/../node_modules/tsx/dist/loader.mjs"
-        if [[ ! -f "$tsx_loader" ]]; then
-            RULE_STATUS="fail"
-            RULE_MESSAGE="TS rule bridge runtime missing for $rule_name"
-            RULE_DETAILS=("Node does not support --experimental-strip-types and tsx runtime is missing: $tsx_loader")
-            RULE_REMEDIATION="Install script dependencies or run with Node 25+ before rerunning validation."
-            return
-        fi
-        cmd=(
-            node
-            --import
-            "$tsx_loader"
-            "$bridge_path"
-            --folder "$folder"
-            --level "$level"
-            --rule "$rule_name"
-        )
-    fi
-
-    [[ -n "${SPECKIT_MERGE_PLAN_JSON:-}" ]] && cmd+=(--merge-plan-json "$SPECKIT_MERGE_PLAN_JSON")
-    [[ -n "${SPECKIT_CONTAMINATION_JSON:-}" ]] && cmd+=(--contamination-json "$SPECKIT_CONTAMINATION_JSON")
-    [[ -n "${SPECKIT_POST_SAVE_JSON:-}" ]] && cmd+=(--post-save-json "$SPECKIT_POST_SAVE_JSON")
-
-    local output=""
-    local exit_code=0
-    output=$("${cmd[@]}" 2>&1) || exit_code=$?
-
-    if [[ $exit_code -ne 0 ]]; then
-        RULE_STATUS="fail"
-        RULE_MESSAGE="TS rule bridge failed for $rule_name"
-        RULE_DETAILS=("$output")
-        RULE_REMEDIATION="Fix the TypeScript validation bridge or its runtime inputs before rerunning validation."
-        return
-    fi
-
-    while IFS=$'\t' read -r kind value; do
-        [[ -z "$kind" ]] && continue
-        case "$kind" in
-            rule) RULE_NAME="$value" ;;
-            status) RULE_STATUS="$value" ;;
-            message) RULE_MESSAGE="$value" ;;
-            detail) RULE_DETAILS+=("$value") ;;
-        esac
-    done <<< "$output"
-
-    if [[ -z "$RULE_MESSAGE" ]]; then
-        RULE_STATUS="fail"
-        RULE_MESSAGE="TS rule bridge returned no parseable output"
-        RULE_DETAILS=("Raw output: $output")
-    fi
-}
-
-# ───────────────────────────────────────────────────────────────
-# 9. RULE EXECUTION
-# ───────────────────────────────────────────────────────────────
-
-run_all_rules() {
-    local folder="$1" level="$2"
-    # Level "3+" is a valid value — pass it through to rule scripts unchanged.
-    # Rule scripts that need numeric comparisons (check-files, check-sections)
-    # do their own local stripping; template-aware rules (check-template-headers,
-    # check-anchors) forward the value to template-structure.js which handles "3+".
-    local rule_scripts; rule_scripts=$(get_rule_scripts "$folder")
-    
-    while IFS= read -r rule_script; do
-        [[ -z "$rule_script" ]] && continue
-        if [[ "$rule_script" == TS_RULE:* ]]; then
-            local ts_rule_name="${rule_script#TS_RULE:}"
-            should_run_rule "$ts_rule_name" || continue
-            local start_ms; start_ms=$(get_time_ms)
-            run_spec_doc_ts_rule "$folder" "$level" "$ts_rule_name"
-            local end_ms; end_ms=$(get_time_ms)
-            local elapsed_ms=$(( end_ms - start_ms ))
-            local timing_str=""
-            if $VERBOSE && ! $JSON_MODE && ! $QUIET_MODE; then
-                if [[ $elapsed_ms -lt 1000 ]]; then
-                    timing_str=" [${elapsed_ms}ms]"
-                else
-                    timing_str=" [$((elapsed_ms / 1000)).$((elapsed_ms % 1000 / 100))s]"
-                fi
-            fi
-            local sev; sev="$(get_rule_severity "$ts_rule_name")"
-            case "${RULE_STATUS:-pass}" in
-                pass) log_pass "${RULE_NAME:-$ts_rule_name}" "${RULE_MESSAGE:-OK}${timing_str}" ;;
-                fail) case "$sev" in error) log_error "${RULE_NAME:-$ts_rule_name}" "${RULE_MESSAGE:-Failed}${timing_str}" ;; warn) log_warn "${RULE_NAME:-$ts_rule_name}" "${RULE_MESSAGE:-Warning}${timing_str}" ;; info) $VERBOSE && log_info "${RULE_NAME:-$ts_rule_name}" "${RULE_MESSAGE:-Info}${timing_str}" ;; esac ;;
-                warn) log_warn "${RULE_NAME:-$ts_rule_name}" "${RULE_MESSAGE:-Warning}${timing_str}" ;;
-                info) $VERBOSE && log_info "${RULE_NAME:-$ts_rule_name}" "${RULE_MESSAGE:-Info}${timing_str}" ;;
-            esac
-            if [[ -n "${RULE_DETAILS[*]-}" ]]; then
-                for d in "${RULE_DETAILS[@]}"; do log_detail "$d"; done
-            fi
-            continue
-        fi
-        if [[ "$rule_script" == SCRIPT_RULE:* ]]; then
-            local script_payload="${rule_script#SCRIPT_RULE:}"
-            local active_rule_name="${script_payload%%:*}"
-            local active_rule_script="${script_payload#*:}"
-            should_run_rule "$active_rule_name" || continue
-            [[ ! -f "$active_rule_script" ]] && continue
-            local start_ms; start_ms=$(get_time_ms)
-            RULE_NAME="" RULE_STATUS="pass" RULE_MESSAGE="" RULE_DETAILS=() RULE_REMEDIATION=""
-            SPECKIT_CANONICAL_SAVE_RULE="$active_rule_name"
-            source "$active_rule_script"
-            type run_check >/dev/null 2>&1 || continue
-            run_check "$folder" "$level" "$active_rule_name"
-            unset SPECKIT_CANONICAL_SAVE_RULE
-            local end_ms; end_ms=$(get_time_ms)
-            local elapsed_ms=$(( end_ms - start_ms ))
-            local timing_str=""
-            if $VERBOSE && ! $JSON_MODE && ! $QUIET_MODE; then
-                if [[ $elapsed_ms -lt 1000 ]]; then
-                    timing_str=" [${elapsed_ms}ms]"
-                else
-                    timing_str=" [$((elapsed_ms / 1000)).$((elapsed_ms % 1000 / 100))s]"
-                fi
-            fi
-            local sev; sev="$(get_rule_severity "$active_rule_name")"
-            case "${RULE_STATUS:-pass}" in
-                pass) log_pass "${RULE_NAME:-$active_rule_name}" "${RULE_MESSAGE:-OK}${timing_str}" ;;
-                fail) case "$sev" in error) log_error "${RULE_NAME:-$active_rule_name}" "${RULE_MESSAGE:-Failed}${timing_str}" ;; warn) log_warn "${RULE_NAME:-$active_rule_name}" "${RULE_MESSAGE:-Warning}${timing_str}" ;; info) $VERBOSE && log_info "${RULE_NAME:-$active_rule_name}" "${RULE_MESSAGE:-Info}${timing_str}" ;; esac ;;
-                warn) log_warn "${RULE_NAME:-$active_rule_name}" "${RULE_MESSAGE:-Warning}${timing_str}" ;;
-                info) $VERBOSE && log_info "${RULE_NAME:-$active_rule_name}" "${RULE_MESSAGE:-Info}${timing_str}" ;;
-            esac
-            if [[ -n "${RULE_DETAILS[*]-}" ]]; then
-                for d in "${RULE_DETAILS[@]}"; do log_detail "$d"; done
-            fi
-            unset -f run_check 2>/dev/null || true
-            continue
-        fi
-        [[ ! -f "$rule_script" ]] && continue
-        # P1-14 FIX: Validate rule script before sourcing
-        # Ensure it's a regular file with .sh extension within RULES_DIR
-        local real_rule; real_rule=$(realpath "$rule_script" 2>/dev/null || echo "$rule_script")
-        local real_rules_dir; real_rules_dir=$(realpath "$RULES_DIR" 2>/dev/null || echo "$RULES_DIR")
-        if [[ ! "$real_rule" == "$real_rules_dir"/* ]] || [[ "${rule_script##*.}" != "sh" ]]; then
-            echo "Warning: Skipping suspicious rule script: $rule_script" >&2
-            continue
-        fi
-        local bn; bn=$(basename "$rule_script" .sh)
-        local rule_name; rule_name=$(echo "${bn#check-}" | tr '[:lower:]' '[:upper:]' | tr '-' '_')
-        # Gate A policy: changelog templates are not merge/save targets,
-        # so anchor-contract validation is intentionally skipped for those folders.
-        if [[ "$rule_name" == "ANCHORS_VALID" ]] && [[ "$folder" == *"/templates/changelog"* ]]; then
-            continue
-        fi
-        should_run_rule "$rule_name" || continue
-        
-        # Capture start time for verbose timing
-        local start_ms; start_ms=$(get_time_ms)
-        
-        RULE_NAME="" RULE_STATUS="pass" RULE_MESSAGE="" RULE_DETAILS=() RULE_REMEDIATION=""
-        source "$rule_script"
-        type run_check >/dev/null 2>&1 || continue
-        run_check "$folder" "$level"
-        
-        # Calculate elapsed time
-        local end_ms; end_ms=$(get_time_ms)
-        local elapsed_ms=$(( end_ms - start_ms ))
-        local timing_str=""
-        if $VERBOSE && ! $JSON_MODE && ! $QUIET_MODE; then
-            if [[ $elapsed_ms -lt 1000 ]]; then
-                timing_str=" [${elapsed_ms}ms]"
-            else
-                timing_str=" [$((elapsed_ms / 1000)).$((elapsed_ms % 1000 / 100))s]"
-            fi
-        fi
-        
-        local sev; sev="$(get_rule_severity "$rule_name")"
-        case "${RULE_STATUS:-pass}" in
-            pass) log_pass "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-OK}${timing_str}" ;;
-            fail) case "$sev" in error) log_error "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-Failed}${timing_str}" ;; warn) log_warn "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-Warning}${timing_str}" ;; info) $VERBOSE && log_info "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-Info}${timing_str}" ;; esac ;;
-            warn) log_warn "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-Warning}${timing_str}" ;;
-            info) $VERBOSE && log_info "${RULE_NAME:-$rule_name}" "${RULE_MESSAGE:-Info}${timing_str}" ;;
-        esac
-        if [[ -n "${RULE_DETAILS[*]-}" ]]; then
-            for d in "${RULE_DETAILS[@]}"; do log_detail "$d"; done
-        fi
-        unset -f run_check 2>/dev/null || true
-    done <<< "$rule_scripts"
-
-    return 0
-}
-
-run_continuity_freshness_check() {
-    local folder="$1"
-    local output=""
-    local exit_code=0
-    local rule_name="CONTINUITY_FRESHNESS"
-    local status=""
-    local message=""
-    local details=()
-    local tsx_bin="$SCRIPT_DIR/../node_modules/.bin/tsx"
-
-    if [[ -f "$CONTINUITY_FRESHNESS_TS" ]]; then
-        if [[ ! -x "$tsx_bin" ]]; then
-            log_error "$rule_name" "tsx runtime missing: $tsx_bin"
-            return 0
-        fi
-        output=$("$tsx_bin" "$CONTINUITY_FRESHNESS_TS" --folder "$folder" --strict 2>&1) || exit_code=$?
-    else
-        if [[ ! -f "$CONTINUITY_FRESHNESS_JS" ]]; then
-            log_warn "$rule_name" "Strict-mode validator missing: $CONTINUITY_FRESHNESS_TS"
-            return 0
-        fi
-        output=$(node "$CONTINUITY_FRESHNESS_JS" --folder "$folder" --strict 2>&1) || exit_code=$?
-    fi
-    if [[ $exit_code -gt 2 ]]; then
-        log_error "$rule_name" "Continuity freshness validator failed to execute"
-        log_detail "$output"
-        return 0
-    fi
-
-    while IFS=$'\t' read -r kind value; do
-        [[ -z "$kind" ]] && continue
-        case "$kind" in
-            rule) rule_name="$value" ;;
-            status) status="$value" ;;
-            message) message="$value" ;;
-            detail) details+=("$value") ;;
-        esac
-    done <<< "$output"
-    if [[ -z "$status" || -z "$message" ]]; then
-        log_error "$rule_name" "Continuity freshness validator returned no parseable output"
-        log_detail "$output"
-        return 0
-    fi
-
-    case "$status" in
-        pass) log_pass "$rule_name" "$message" ;;
-        warn) log_warn "$rule_name" "$message" ;;
-        fail) log_error "$rule_name" "$message" ;;
-        info) $VERBOSE && log_info "$rule_name" "$message" ;;
-        *) log_error "$rule_name" "Continuity freshness validator returned unknown status" ; log_detail "$output" ;;
-    esac
-    if [[ -n "${details[*]-}" ]]; then
-        for detail in "${details[@]}"; do log_detail "$detail"; done
-    fi
-}
-
-run_evidence_marker_lint_check() {
-    local folder="$1"
-    local output=""
-    local exit_code=0
-    local rule_name="EVIDENCE_MARKER_LINT"
-    local status=""
-    local message=""
-    local details=()
-    local tsx_bin="$SCRIPT_DIR/../node_modules/.bin/tsx"
-
-    if [[ -f "$EVIDENCE_MARKER_LINT_JS" ]]; then
-        output=$(node "$EVIDENCE_MARKER_LINT_JS" --folder "$folder" --strict 2>&1) || exit_code=$?
-    else
-        if [[ ! -f "$EVIDENCE_MARKER_LINT_TS" ]]; then
-            log_warn "$rule_name" "Strict-mode validator missing: $EVIDENCE_MARKER_LINT_TS"
-            return 0
-        fi
-        if [[ ! -x "$tsx_bin" ]]; then
-            log_error "$rule_name" "tsx runtime missing: $tsx_bin"
-            return 0
-        fi
-        output=$("$tsx_bin" "$EVIDENCE_MARKER_LINT_TS" --folder "$folder" --strict 2>&1) || exit_code=$?
-    fi
-    if [[ $exit_code -gt 1 ]]; then
-        log_error "$rule_name" "Evidence marker lint validator failed to execute"
-        log_detail "$output"
-        return 0
-    fi
-
-    while IFS=$'\t' read -r kind value; do
-        [[ -z "$kind" ]] && continue
-        case "$kind" in
-            rule) rule_name="$value" ;;
-            status) status="$value" ;;
-            message) message="$value" ;;
-            detail) details+=("$value") ;;
-        esac
-    done <<< "$output"
-    if [[ -z "$status" || -z "$message" ]]; then
-        log_error "$rule_name" "Evidence marker lint validator returned no parseable output"
-        log_detail "$output"
-        return 0
-    fi
-
-    case "$status" in
-        pass) log_pass "$rule_name" "$message" ;;
-        warn) log_warn "$rule_name" "$message" ;;
-        fail) log_error "$rule_name" "$message" ;;
-        info) $VERBOSE && log_info "$rule_name" "$message" ;;
-        *) log_error "$rule_name" "Evidence marker lint validator returned unknown status" ; log_detail "$output" ;;
-    esac
-    if [[ -n "${details[*]-}" ]]; then
-        for detail in "${details[@]}"; do log_detail "$detail"; done
-    fi
-}
-
-run_generated_metadata_integrity_check() {
-    local folder="$1"
-    local output=""
-    local exit_code=0
-    local rule_name="GENERATED_METADATA_INTEGRITY"
-    local status=""
-    local message=""
-    local details=()
-    local tsx_bin="$SCRIPT_DIR/../node_modules/.bin/tsx"
-
-    # Prefer the TS source through tsx: the bridge imports the shared check across the
-    # scripts/mcp-server tree boundary, which only resolves from the source location.
-    if [[ -f "$GENERATED_METADATA_INTEGRITY_TS" ]]; then
-        if [[ ! -x "$tsx_bin" ]]; then
-            log_error "$rule_name" "tsx runtime missing: $tsx_bin"
-            return 0
-        fi
-        output=$("$tsx_bin" "$GENERATED_METADATA_INTEGRITY_TS" --folder "$folder" --strict 2>&1) || exit_code=$?
-    else
-        if [[ ! -f "$GENERATED_METADATA_INTEGRITY_JS" ]]; then
-            log_warn "$rule_name" "Strict-mode validator missing: $GENERATED_METADATA_INTEGRITY_TS"
-            return 0
-        fi
-        output=$(node "$GENERATED_METADATA_INTEGRITY_JS" --folder "$folder" --strict 2>&1) || exit_code=$?
-    fi
-    if [[ $exit_code -gt 1 ]]; then
-        log_error "$rule_name" "Generated metadata integrity validator failed to execute"
-        log_detail "$output"
-        return 0
-    fi
-
-    while IFS=$'\t' read -r kind value; do
-        [[ -z "$kind" ]] && continue
-        case "$kind" in
-            rule) rule_name="$value" ;;
-            status) status="$value" ;;
-            message) message="$value" ;;
-            detail) details+=("$value") ;;
-        esac
-    done <<< "$output"
-    if [[ -z "$status" || -z "$message" ]]; then
-        log_error "$rule_name" "Generated metadata integrity validator returned no parseable output"
-        log_detail "$output"
-        return 0
-    fi
-
-    case "$status" in
-        pass) log_pass "$rule_name" "$message" ;;
-        warn) log_warn "$rule_name" "$message" ;;
-        fail) log_error "$rule_name" "$message" ;;
-        info) $VERBOSE && log_info "$rule_name" "$message" ;;
-        *) log_error "$rule_name" "Generated metadata integrity validator returned unknown status" ; log_detail "$output" ;;
-    esac
-    if [[ -n "${details[*]-}" ]]; then
-        for detail in "${details[@]}"; do log_detail "$detail"; done
-    fi
-}
-
-run_generated_metadata_drift_check() {
-    local folder="$1"
-    local output=""
-    local exit_code=0
-    local rule_name="GENERATED_METADATA_DRIFT"
-    local status=""
-    local message=""
-    local details=()
-    local tsx_bin="$SCRIPT_DIR/../node_modules/.bin/tsx"
-
-    # Prefer the TS source through tsx: the bridge imports the shared check across the
-    # scripts/mcp-server tree boundary, which only resolves from the source location.
-    if [[ -f "$GENERATED_METADATA_DRIFT_TS" ]]; then
-        if [[ ! -x "$tsx_bin" ]]; then
-            log_error "$rule_name" "tsx runtime missing: $tsx_bin"
-            return 0
-        fi
-        output=$("$tsx_bin" "$GENERATED_METADATA_DRIFT_TS" --folder "$folder" --strict 2>&1) || exit_code=$?
-    else
-        if [[ ! -f "$GENERATED_METADATA_DRIFT_JS" ]]; then
-            log_warn "$rule_name" "Strict-mode validator missing: $GENERATED_METADATA_DRIFT_TS"
-            return 0
-        fi
-        output=$(node "$GENERATED_METADATA_DRIFT_JS" --folder "$folder" --strict 2>&1) || exit_code=$?
-    fi
-    if [[ $exit_code -gt 1 ]]; then
-        log_error "$rule_name" "Generated metadata drift validator failed to execute"
-        log_detail "$output"
-        return 0
-    fi
-
-    while IFS=$'\t' read -r kind value; do
-        [[ -z "$kind" ]] && continue
-        case "$kind" in
-            rule) rule_name="$value" ;;
-            status) status="$value" ;;
-            message) message="$value" ;;
-            detail) details+=("$value") ;;
-        esac
-    done <<< "$output"
-    if [[ -z "$status" || -z "$message" ]]; then
-        log_error "$rule_name" "Generated metadata drift validator returned no parseable output"
-        log_detail "$output"
-        return 0
-    fi
-
-    case "$status" in
-        pass) log_pass "$rule_name" "$message" ;;
-        warn) log_warn "$rule_name" "$message" ;;
-        fail) log_error "$rule_name" "$message" ;;
-        info) $VERBOSE && log_info "$rule_name" "$message" ;;
-        *) log_error "$rule_name" "Generated metadata drift validator returned unknown status" ; log_detail "$output" ;;
-    esac
-    if [[ -n "${details[*]-}" ]]; then
-        for detail in "${details[@]}"; do log_detail "$detail"; done
-    fi
-}
-
-run_command_tree_parity_check() {
-    local rule_name="COMMAND_TREE_PARITY"
-    [[ -x "$COMMAND_TREE_PARITY_SH" ]] || { log_warn "$rule_name" "Command tree parity script is missing or not executable"; return 0; }
-    local output=""
-    local rc=0
-    output=$("$COMMAND_TREE_PARITY_SH" --quiet 2>&1) || rc=$?
-    if [[ "$rc" -eq 0 ]]; then
-        log_pass "$rule_name" "OpenCode and Claude command trees are byte-identical"
-    else
-        log_error "$rule_name" "OpenCode and Claude command trees differ"
-        [[ -n "$output" ]] && log_detail "$output"
-    fi
-}
-
-run_strict_validators() {
-    local folder="$1"
-    $STRICT_MODE || return 0
-    if [[ "${SPECKIT_COMPLETION_FRESHNESS:-}" =~ ^(1|true|TRUE|yes|YES|on|ON)$ ]]; then
-        should_run_rule "CONTINUITY_FRESHNESS" && run_continuity_freshness_check "$folder"
-    fi
-    should_run_rule "EVIDENCE_MARKER_LINT" && run_evidence_marker_lint_check "$folder"
-    should_run_rule "GENERATED_METADATA_INTEGRITY" && run_generated_metadata_integrity_check "$folder"
-    should_run_rule "GENERATED_METADATA_DRIFT" && run_generated_metadata_drift_check "$folder"
-    should_run_rule "COMMAND_TREE_PARITY" && run_command_tree_parity_check
-    return 0
-}
-
-run_node_orchestrator() {
-    [[ "${SPECKIT_VALIDATE_LEGACY:-}" == "1" ]] && return 1
-    # Rule-subset runs must use the registry-backed shell framework so newly
-    # registered standalone rules are available before the Node orchestrator mirrors them.
-    [[ -n "${SPECKIT_RULES:-}" ]] && return 1
-
-    local orchestrator_js="$SCRIPT_DIR/../../mcp-server/dist/lib/validation/orchestrator.js"
-    local orchestrator_ts="$SCRIPT_DIR/../../mcp-server/lib/validation/orchestrator.ts"
-    local freshness_checker="$SCRIPT_DIR/../lib/dist-freshness.cjs"
-    # Resolve the orchestrator invocation base once (compiled JS preferred, tsx
-    # fallback for source-only checkouts). Return 1 when neither is available so
-    # main() falls through to the shell validators (which recurse on their own).
-    local base=()
-    if [[ -f "$orchestrator_js" ]]; then
-        if [[ -f "$freshness_checker" ]]; then
+# Compiled build preferred; the loader keeps source-only checkouts working.
+resolve_orchestrator() {
+    if [[ -f "$ORCHESTRATOR_JS" ]]; then
+        if [[ -f "$DIST_FRESHNESS_CJS" ]]; then
             local freshness_output=""
             local freshness_rc=0
-            freshness_output=$(node "$freshness_checker" check --package system-spec-kit/mcp-server --entry validation-orchestrator 2>&1) || freshness_rc=$?
+            freshness_output=$(node "$DIST_FRESHNESS_CJS" check --package system-spec-kit/mcp-server --entry validation-orchestrator 2>&1) || freshness_rc=$?
             if [[ "$freshness_rc" -eq 69 ]]; then
                 echo "ERROR: validate.sh compiled validation orchestrator is stale." >&2
                 [[ -n "$freshness_output" ]] && echo "$freshness_output" >&2
@@ -1156,16 +282,22 @@ run_node_orchestrator() {
                 echo "WARNING: dist freshness check could not run (exit $freshness_rc): $freshness_output" >&2
             fi
         fi
-        base=(node "$orchestrator_js")
-    elif [[ -f "$orchestrator_ts" ]]; then
-        local tsx_loader="$SCRIPT_DIR/../node_modules/tsx/dist/loader.mjs"
-        [[ -f "$tsx_loader" ]] || return 1
-        base=(node --import "$tsx_loader" "$orchestrator_ts")
-    else
-        return 1
+        ORCHESTRATOR_CMD=(node "$ORCHESTRATOR_JS")
+        return 0
     fi
 
-    # Build the shared flag set once; applied to parent and every phase child.
+    if [[ -f "$ORCHESTRATOR_TS" && -f "$TSX_LOADER" ]]; then
+        ORCHESTRATOR_CMD=(node --import "$TSX_LOADER" "$ORCHESTRATOR_TS")
+        return 0
+    fi
+
+    echo "ERROR: no validation orchestrator is available." >&2
+    echo "Expected a build at $ORCHESTRATOR_JS" >&2
+    echo "Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build" >&2
+    exit 3
+}
+
+run_validation() {
     local flags=()
     $STRICT_MODE && flags+=(--strict)
     $JSON_MODE && flags+=(--json)
@@ -1181,18 +313,9 @@ run_node_orchestrator() {
         fi
     fi
 
-    # Validate the parent folder. Non-recursive runs keep byte-identical
-    # behavior: validate parent, exit its code.
     local rc=0
-    if $CHILD_MANIFEST_ACTIVE; then
-        "${base[@]}" --folder "$FOLDER_PATH" ${flags[@]+"${flags[@]}"} || rc=$?
-    else
-        "${base[@]}" --folder "$FOLDER_PATH" ${flags[@]+"${flags[@]}"}
-        rc=$?
-    fi
+    "${ORCHESTRATOR_CMD[@]}" --folder "$FOLDER_PATH" ${flags[@]+"${flags[@]}"} || rc=$?
 
-    # Recursive runs validate the declared set when a parent opts in; other
-    # parents retain the existing live discovery behavior.
     if $RECURSIVE; then
         local phase_dir
         for phase_dir in "${PHASE_DIRS[@]-}"; do
@@ -1201,193 +324,16 @@ run_node_orchestrator() {
                 [[ -f "$phase_dir/spec.md" || -f "$phase_dir/description.json" ]] || continue
             fi
             local child_rc=0
-            if $CHILD_MANIFEST_ACTIVE; then
-                "${base[@]}" --folder "$phase_dir" ${flags[@]+"${flags[@]}"} || child_rc=$?
-            else
-                "${base[@]}" --folder "$phase_dir" ${flags[@]+"${flags[@]}"}
-                child_rc=$?
-            fi
-            if $CHILD_MANIFEST_ACTIVE; then
-                if (( child_rc > rc )); then rc=$child_rc; fi
-            else
-                (( child_rc > rc )) && rc=$child_rc
-            fi
+            "${ORCHESTRATOR_CMD[@]}" --folder "$phase_dir" ${flags[@]+"${flags[@]}"} || child_rc=$?
+            (( child_rc > rc )) && rc=$child_rc
         done
     fi
 
-    if $STRICT_MODE && should_run_rule "COMMAND_TREE_PARITY"; then
-        local parity_rc=0
-        "$COMMAND_TREE_PARITY_SH" --quiet >/dev/null 2>&1 || parity_rc=$?
-        if $CHILD_MANIFEST_ACTIVE; then
-            if (( parity_rc > rc )); then rc=2; fi
-        else
-            (( parity_rc > rc )) && rc=2
-        fi
-    fi
-
-    exit $rc
+    return "$rc"
 }
 
 # ───────────────────────────────────────────────────────────────
-# 10. OUTPUT
-# ───────────────────────────────────────────────────────────────
-
-print_header() {
-    $JSON_MODE && return 0; $QUIET_MODE && return 0
-    echo -e "\n${BLUE}───────────────────────────────────────────────────────────────
-${NC}"
-    echo -e "${BLUE}  Spec Folder Validation v$VERSION${NC}"
-    echo -e "${BLUE}───────────────────────────────────────────────────────────────
-${NC}\n"
-    echo -e "  ${BOLD}Folder:${NC} $FOLDER_PATH"
-    echo -e "  ${BOLD}Level:${NC}  $DETECTED_LEVEL ($LEVEL_METHOD)"
-    [[ -n "$CONFIG_FILE_PATH" ]] && echo -e "  ${BOLD}Config:${NC} $CONFIG_FILE_PATH" || true
-    echo -e "\n${BLUE}───────────────────────────────────────────────────────────────
-${NC}\n"
-}
-
-print_summary() {
-    $JSON_MODE && return 0
-    if $QUIET_MODE; then
-        local status="PASSED"
-        if [[ $ERRORS -gt 0 ]]; then
-            status="FAILED"
-        elif [[ $WARNINGS -gt 0 ]] && $STRICT_MODE && ! $LEGACY_GRANDFATHERED; then
-            status="FAILED_STRICT"
-        elif [[ $WARNINGS -gt 0 ]]; then
-            status="PASSED_WITH_WARNINGS"
-        fi
-        echo "RESULT: $status (errors=$ERRORS warnings=$WARNINGS)"
-        return 0
-    fi
-    echo -e "\n${BLUE}───────────────────────────────────────────────────────────────
-${NC}\n"
-    echo -e "  ${BOLD}Summary:${NC} ${RED}Errors:${NC} $ERRORS  ${YELLOW}Warnings:${NC} $WARNINGS"
-    $VERBOSE && echo -e "  ${BLUE}Info:${NC} $INFOS" || true
-    echo ""
-    if [[ $ERRORS -gt 0 ]]; then echo -e "  ${RED}${BOLD}RESULT: FAILED${NC}"
-    elif [[ $WARNINGS -gt 0 ]]; then
-        if $STRICT_MODE && ! $LEGACY_GRANDFATHERED; then echo -e "  ${RED}${BOLD}RESULT: FAILED${NC} (strict)"; else echo -e "  ${YELLOW}${BOLD}RESULT: PASSED WITH WARNINGS${NC}"; fi
-    else echo -e "  ${GREEN}${BOLD}RESULT: PASSED${NC}"; fi
-    echo ""
-}
-
-generate_json() {
-    local passed="true"
-    [[ $ERRORS -gt 0 ]] && passed="false"
-    [[ $WARNINGS -gt 0 ]] && $STRICT_MODE && ! $LEGACY_GRANDFATHERED && passed="false"
-    local cfg="null"; [[ -n "$CONFIG_FILE_PATH" ]] && cfg="\"$(_json_escape "$CONFIG_FILE_PATH")\""
-    local folder_escaped="$(_json_escape "$FOLDER_PATH")"
-    # JSON-safe level: quote if non-numeric (e.g. "3+")
-    local json_level="$DETECTED_LEVEL"
-    if [[ "$json_level" =~ [^0-9] ]]; then
-        json_level="\"$(_json_escape "$json_level")\""
-    fi
-    local phases_json=""
-    if $RECURSIVE && [[ -n "$PHASE_RESULTS" ]]; then
-        phases_json=",\"phases\":[$PHASE_RESULTS],\"phaseCount\":$PHASE_COUNT"
-    fi
-    echo "{\"version\":\"$VERSION\",\"folder\":\"$folder_escaped\",\"level\":$json_level,\"levelMethod\":\"$LEVEL_METHOD\",\"config\":$cfg,\"results\":[$RESULTS]${phases_json},\"summary\":{\"errors\":$ERRORS,\"warnings\":$WARNINGS,\"info\":$INFOS},\"passed\":$passed,\"strict\":$STRICT_MODE}"
-}
-
-# ───────────────────────────────────────────────────────────────
-# 11. PHASE VALIDATION
-# ───────────────────────────────────────────────────────────────
-
-# Recursive phase validation - validates parent + all [0-9][0-9][0-9]-*/ child folders
-run_recursive_validation() {
-    local parent_folder="$1"
-    local child_errors=0
-    local child_warnings=0
-    local phase_results=""
-
-    local manifest_rc=0
-    collect_phase_dirs "$parent_folder" || manifest_rc=$?
-    if [[ "$manifest_rc" -ne 0 ]]; then
-        ERRORS=$((ERRORS + 1))
-        return 0
-    fi
-
-    local phase_dir
-    local phase_dirs=()
-    if [[ ${#PHASE_DIRS[@]} -gt 0 ]]; then
-        phase_dirs=("${PHASE_DIRS[@]}")
-    fi
-
-    if [[ ${#phase_dirs[@]} -eq 0 ]]; then
-        # No phase children found - just validate parent normally
-        ! $JSON_MODE && ! $QUIET_MODE && echo -e "\n  ${BLUE}No phase folders found. Validating parent only.${NC}" || true
-        return 0
-    fi
-
-    ! $JSON_MODE && ! $QUIET_MODE && echo -e "\n${BLUE}───────────────────────────────────────────────────────────────
-${NC}" || true
-    ! $JSON_MODE && ! $QUIET_MODE && echo -e "${BLUE}  Recursive Phase Validation (${#phase_dirs[@]} phases found)${NC}" || true
-    ! $JSON_MODE && ! $QUIET_MODE && echo -e "${BLUE}───────────────────────────────────────────────────────────────
-${NC}" || true
-    if $CHILD_MANIFEST_ACTIVE; then
-        ! $JSON_MODE && ! $QUIET_MODE && echo "  Child manifest accepted: ${#CHILD_MANIFEST_ENTRIES[@]} entries (sha256: $CHILD_MANIFEST_HASH)" || true
-    fi
-
-    for phase_dir in "${phase_dirs[@]}"; do
-        local phase_name
-        phase_name=$(basename "$phase_dir")
-
-        # Save parent state
-        local parent_errors=$ERRORS
-        local parent_warnings=$WARNINGS
-        local parent_infos=$INFOS
-        local parent_results="$RESULTS"
-        local parent_level="$DETECTED_LEVEL"
-
-        # Reset counters for child
-        ERRORS=0 WARNINGS=0 INFOS=0 RESULTS=""
-
-        ! $JSON_MODE && ! $QUIET_MODE && echo -e "\n  ${BOLD}Phase: $phase_name${NC}" || true
-
-        # Detect child level and validate
-        detect_level "$phase_dir"
-        if $CHILD_MANIFEST_ACTIVE; then
-            run_all_rules "$phase_dir" "$DETECTED_LEVEL" || true
-            run_strict_validators "$phase_dir" || true
-        else
-            run_all_rules "$phase_dir" "$DETECTED_LEVEL"
-            run_strict_validators "$phase_dir"
-        fi
-
-        # Accumulate child results
-        child_errors=$((child_errors + ERRORS))
-        child_warnings=$((child_warnings + WARNINGS))
-
-        # Build phase JSON entry
-        local child_passed="true"
-        [[ $ERRORS -gt 0 ]] && child_passed="false" || true
-        [[ $WARNINGS -gt 0 ]] && $STRICT_MODE && child_passed="false" || true
-        # JSON-safe level: quote if non-numeric (e.g. "3+")
-        local json_level="$DETECTED_LEVEL"
-        if [[ "$json_level" =~ [^0-9] ]]; then
-            json_level="\"$(_json_escape "$json_level")\""
-        fi
-        [[ -n "$phase_results" ]] && phase_results+=","
-        phase_results+="{\"name\":\"$(_json_escape "$phase_name")\",\"level\":$json_level,\"errors\":$ERRORS,\"warnings\":$WARNINGS,\"passed\":$child_passed,\"results\":[$RESULTS]}"
-
-        # Restore parent state — child results stored in phases[] JSON only (not top-level results[])
-        DETECTED_LEVEL="$parent_level"
-        ERRORS=$((parent_errors + ERRORS))
-        WARNINGS=$((parent_warnings + WARNINGS))
-        INFOS=$((parent_infos + INFOS))
-        RESULTS="$parent_results"
-    done
-
-    # Store phase results for JSON output
-    PHASE_RESULTS="$phase_results"
-    PHASE_COUNT=${#phase_dirs[@]}
-
-    ! $JSON_MODE && ! $QUIET_MODE && echo -e "\n  ${BOLD}Phase Summary:${NC} ${#phase_dirs[@]} phases, $child_errors errors, $child_warnings warnings" || true
-}
-
-# ───────────────────────────────────────────────────────────────
-# 12. MAIN
+# 6. MAIN
 # ───────────────────────────────────────────────────────────────
 
 main() {
@@ -1396,29 +342,12 @@ main() {
         RECURSIVE=true
         ! $JSON_MODE && ! $QUIET_MODE && echo "Auto-enabled recursive validation: phase child folders detected."
     fi
-    load_config "$FOLDER_PATH"
     apply_env_overrides
-    detect_legacy_grandfathered "$FOLDER_PATH"
-    detect_level "$FOLDER_PATH"
-    if [[ ! "${SPECKIT_COMPLETION_FRESHNESS:-}" =~ ^(1|true|TRUE|yes|YES|on|ON)$ ]]; then
-        run_node_orchestrator || true
-    fi
-    validate_template_hashes "$FOLDER_PATH"
-    print_header
-    run_all_rules "$FOLDER_PATH" "$DETECTED_LEVEL"
-    run_strict_validators "$FOLDER_PATH"
+    resolve_orchestrator
 
-    # Recursive phase validation
-    PHASE_RESULTS="" PHASE_COUNT=0
-    if $RECURSIVE; then
-        run_recursive_validation "$FOLDER_PATH"
-    fi
-
-    if $JSON_MODE; then generate_json; else print_summary; fi
-    if [[ $ERRORS -gt 0 ]]; then exit 2; fi
-    if [[ $WARNINGS -gt 0 ]] && $STRICT_MODE && ! $LEGACY_GRANDFATHERED; then exit 2; fi
-    if [[ $WARNINGS -gt 0 ]]; then exit 0; fi
-    exit 0
+    local rc=0
+    run_validation || rc=$?
+    exit "$rc"
 }
 
 main "$@"
