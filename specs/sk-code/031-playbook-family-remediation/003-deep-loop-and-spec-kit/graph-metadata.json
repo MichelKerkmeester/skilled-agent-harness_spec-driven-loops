@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/031-playbook-family-remediation/003-deep-loop-and-spec-kit",
+  "spec_folder": "sk-code/031-playbook-family-remediation/003-deep-loop-and-spec-kit",
+  "parent_id": "sk-code/031-playbook-family-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-loop and spec-kit playbook remediation",
+      "runtime section vocabulary drift",
+      "sk-git shared boilerplate verdict",
+      "system-spec-kit playbook largest root",
+      "deep-loop and spec-kit playbook remediation plan",
+      "single-cause violation class plan",
+      "deep-loop and spec-kit playbook remediation tasks",
+      "runtime vocabulary transform tasks",
+      "deep-loop and spec-kit playbook remediation implementation",
+      "runtime vocabulary transform summary",
+      "remediation agent relaunch record"
+    ],
+    "key_topics": [
+      "deep-loop",
+      "spec-kit",
+      "playbook",
+      "remediation",
+      "runtime",
+      "section",
+      "vocabulary",
+      "drift",
+      "sk-git",
+      "shared",
+      "boilerplate",
+      "verdict"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Before",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Classify",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Eight",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Limitations",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Eight roots including the fleet's largest, where two of the biggest counts turned out to be single-cause defects and four remediation agents died mid-run on an organisation-side API block.",
+    "created_at": "2026-08-29T11:53:22.575Z",
+    "last_save_at": "2026-08-29T11:53:22.575Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0600e10fc2627bf115462a808a9027050602f9feb84d0107d523347dfa185d48",
+    "source_doc_hashes": {
+      "spec.md": "91871af19b81496e99ab48d2bff868fc96dd03c0f48eaef42bee8e3cf6fdad84",
+      "plan.md": "a9e70dde9cd90187e0602559163df11aae85ca8584da76cf4e76cf4bf2987f9b",
+      "tasks.md": "dfc7a583e8247f16d485cbbb0a3308a0f60d21c48538df536de56af32ec95fbb",
+      "implementation-summary.md": "97d39c1aaf56309ac7c420c95433b7f532727bfc9911319697a64b2149303710"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-code/031-playbook-family-remediation/001-sk-code-family",
+  "description": "Five dirty roots in the sk-code family carried 586 operator-scenario violations, the largest single class being a grading vocabulary the validator",
+  "keywords": [
+    "five",
+    "dirty",
+    "roots",
+    "sk-code",
+    "family",
+    "carried",
+    "operator-scenario",
+    "violations",
+    "largest",
+    "single",
+    "class",
+    "grading",
+    "vocabulary",
+    "validator"
+  ],
+  "lastUpdated": "2026-08-29T11:52:57.663Z",
+  "specId": "001",
+  "folderSlug": "sk-code-family",
+  "parentChain": [
+    "sk-code",
+    "031-playbook-family-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
