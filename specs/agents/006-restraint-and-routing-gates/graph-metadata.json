@@ -38,14 +38,15 @@
       "agents",
       "plan"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "decision-record.md"
     ],
     "entities": [
       {
@@ -76,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -181,21 +188,15 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Every restraint rule this framework needs already exists somewhere, but not where it fires",
     "created_at": "2026-08-29T11:13:34.480Z",
-    "last_save_at": "2026-08-29T11:36:55.719Z",
+    "last_save_at": "2026-08-29T12:39:09.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +204,16 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33ee6d73e9722341921053650ffc79f959c7b67ef17b29eba299b059e2fada31",
+    "source_fingerprint": "sha256:fe3cb80b875d21ce31c4516d14cafd43da6e12791908ae4a20ed4e5a24d7cd56",
     "source_doc_hashes": {
       "spec.md": "62d1b0cfffcecac19ee8e898b0a646e8ca21b743fd678507d59d6465652bd381",
       "plan.md": "b4ec2ac4544f1e9e5eb470e0346d29ae7c430c8c465dae34eeb4ba7bec764c63",
       "tasks.md": "4a6bd4846e9173195be1b506f15adde0c8cb786798cf4d773e76d714f84cef0c",
       "checklist.md": "5027687ecc9aebfd24a18edc7b443cf27b500766c4e904d880151be80567dda6",
+      "decision-record.md": "dc33441219a90e2e8e882e7ff49b50da46a15ca6b472e22d51c24fc9dd68e052",
       "implementation-summary.md": "02c4c6426385ad33e72b41b46fb470322ecd99587c4fd6895c6466a9489bc80e"
     },
     "last_active_child_id": null,
