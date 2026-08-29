@@ -5295,3 +5295,19 @@ The resume ladder formats restored and omitted counts from existing `handover.md
 #### Source Files
 
 See [`context-preservation/openltm-continuity-resilience.md`](../feature-catalog/context-preservation/openltm-continuity-resilience.md) for full implementation and test file listings.
+
+---
+
+### Derived packet repair
+
+#### Description
+
+Packet validation failures divide into facts the repository can recompute and records only a person can write. A repair tool settles the first kind — recorded location, declared level, generated-metadata fingerprint — and refuses the second, reporting those by rule so the remaining debt is counted rather than estimated.
+
+#### How It Works
+
+For each packet the tool takes the validator's verdict, intersects the reported rules with an explicit allow-list, and acts only on that intersection, so an unlisted rule is refused by construction. Graph metadata is re-derived inside the repair, because editing a document invalidates the fingerprint taken over it. Reporting is the default and `--apply` writes; archived, scratch and pre-rename snapshot trees are skipped as frozen copies. CI runs it without `--apply`, since a gate that rewrote packets would erase the drift it exists to surface.
+
+#### Source Files
+
+See [`tooling-and-scripts/derived-packet-repair.md`](../feature-catalog/tooling-and-scripts/derived-packet-repair.md) for full implementation and test file listings.

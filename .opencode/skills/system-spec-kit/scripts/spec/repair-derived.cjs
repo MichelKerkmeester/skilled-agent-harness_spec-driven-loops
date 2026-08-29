@@ -1,9 +1,9 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ repair-derived — repair the packet facts that are derivable from disk    ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
-// ─────────────────────────────────────────────────────────────────
-// repair-derived.cjs — repair the packet facts that are derivable
-// ─────────────────────────────────────────────────────────────────
 // Validation failures split into two kinds. Some are facts the repository
 // already knows and the document merely records wrongly: where a packet sits on
 // disk, what level it declares, whether its generated metadata still matches
@@ -18,10 +18,16 @@
 // Exit: 0 = nothing left that this tool can repair; 1 = repairable work found
 // (dry run); 2 = a repair was attempted and failed.
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 const REPO = process.cwd();
 const VALIDATE = '.opencode/skills/system-spec-kit/scripts/spec/validate.sh';
 const BACKFILL = '.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts';
@@ -41,6 +47,9 @@ const POINTER_LINE = /^(\s*packet_pointer:\s*)(["']?)([^"'\n]*)(["']?)\s*$/m;
 const SPEC_FOLDER_ROW = /(\|\s*\*\*Spec Folder\*\*\s*\|\s*)([^|\n]+?)(\s*\|)/;
 const DOCS = ['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'implementation-summary.md', 'handover.md'];
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. DIAGNOSIS
+// ─────────────────────────────────────────────────────────────────────────────
 function validate(folder) {
   try {
     const out = execFileSync('bash', [VALIDATE, folder, '--strict', '--json', '--no-recursive'], {
@@ -66,6 +75,9 @@ function readLevel(report) {
   return level === undefined || level === null || level === '' ? null : String(level);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. DERIVED REPAIRS
+// ─────────────────────────────────────────────────────────────────────────────
 function fixDescriptionLevel(folder, report) {
   const file = path.join(folder, 'description.json');
   if (!fs.existsSync(file)) return null;
@@ -147,6 +159,9 @@ function repairFolder(folder, apply) {
   return { folder, planned, authored, rederived };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. DISCOVERY
+// ─────────────────────────────────────────────────────────────────────────────
 function discover(root) {
   const out = [];
   const stack = [root];
@@ -165,6 +180,9 @@ function discover(root) {
   return out.sort();
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. ENTRY POINT
+// ─────────────────────────────────────────────────────────────────────────────
 const USAGE = 'Usage: repair-derived.cjs [--folder <packet>] [--roots <dir>] [--apply]';
 
 function flagValue(argv, name) {
