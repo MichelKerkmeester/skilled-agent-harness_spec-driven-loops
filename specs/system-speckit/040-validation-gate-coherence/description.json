@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/040-validation-gate-coherence",
+  "description": "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet",
+  "keywords": [
+    "completion",
+    "gate",
+    "return",
+    "same",
+    "verdict",
+    "whatever",
+    "environment",
+    "stop",
+    "counting",
+    "one",
+    "fault",
+    "several",
+    "times",
+    "remove",
+    "checks",
+    "packet"
+  ],
+  "lastUpdated": "2026-08-29T07:45:23.557Z",
+  "specId": "040",
+  "folderSlug": "validation-gate-coherence",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

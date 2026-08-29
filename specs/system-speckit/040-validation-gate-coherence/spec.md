@@ -1,0 +1,217 @@
+---
+title: "Feature Specification: One Validation Verdict, Honestly Earned"
+description: "Make the completion gate return the same verdict whatever the environment, stop counting one fault several times, and remove the checks a packet cannot satisfy from inside itself."
+trigger_phrases:
+  - "validation gate coherence"
+  - "validator engine selection"
+  - "strict validation failure rate"
+importance_tier: "high"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/040-validation-gate-coherence"
+    last_updated_at: "2026-08-29T10:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Authored the specification for making the validation verdict environment-independent"
+    next_safe_action: "Fix the freshness rule gating so both engines agree"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      - ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "manual-authoring"
+      parent_session_id: null
+    completion_pct: 5
+    open_questions: []
+    answered_questions: []
+---
+# Feature Specification: One Validation Verdict, Honestly Earned
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 2 |
+| **Priority** | P0 |
+| **Status** | In Progress |
+| **Created** | 2026-08-29 |
+| **Branch** | `skilled/v4.0.0.0` |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:problem -->
+## 2. PROBLEM & PURPOSE
+
+Strict validation is the repository's completion gate. It does not currently
+return a stable answer.
+
+The same packet, the same command, the same flags:
+
+```
+validate.sh <packet> --strict --quiet            → RESULT: FAILED   exit 2
+SPECKIT_VALIDATE_LEGACY=1 validate.sh <same>     → RESULT: PASSED   exit 0
+```
+
+Two validators exist. Which one runs is chosen by environment — a legacy switch,
+a rule-subset variable, or simply whether a build is present — with no flag and
+no line of output saying which answered. They disagree because one rule is
+gated on a feature flag in one engine and runs unconditionally in the other, so
+a documented opt-in is enforced whether or not anyone opted in. Whether work
+counts as finished depends on how the caller's shell happened to be configured.
+
+Two further faults make the gate report more failures than there are faults.
+
+A repository-wide check runs inside the per-packet gate. It compares command
+trees, which has nothing to do with the folder being validated, so no packet can
+satisfy it from inside itself. Thirty-three documents across roughly eighteen
+packets record the same workaround: read the folder's own result line and
+disregard the gate's exit status. A check nobody can satisfy has taught readers
+to ignore the authority of the gate that carries it.
+
+And one fault is counted twice. Two rules failed on exactly the same fifteen
+folders out of one hundred and thirty-seven, with no exceptions — they are two
+branches of one function, reporting once each that a document does not follow
+its template. A third rule performs the same comparison at a lower severity and
+is already stubbed out on the default engine.
+
+Under thirty-one percent of packets pass strict cleanly. At that rate the gate
+stops discriminating between packets worth attention and packets that merely
+exist, which is exactly the pressure that produced those thirty-three
+workarounds.
+<!-- /ANCHOR:problem -->
+
+---
+
+<!-- ANCHOR:scope -->
+## 3. SCOPE
+
+**In scope**
+
+- One verdict per packet, independent of environment, with the engine that
+  produced it named in the output.
+- One source of truth for whether the freshness rule applies.
+- Moving the repository-wide command-tree check out of the per-packet gate and
+  running it where it belongs.
+- Collapsing the duplicated template-shape reporting into a single finding.
+- Removing validation code that cannot execute.
+
+**Out of scope**
+
+- Weakening or deleting any check that reports a real fault.
+- Changing what the authored rules require of a document's content.
+- Repairing the packets these changes will newly surface or stop surfacing.
+<!-- /ANCHOR:scope -->
+
+---
+
+<!-- ANCHOR:requirements -->
+## 4. REQUIREMENTS
+
+| ID | Requirement | Priority |
+|----|-------------|----------|
+| REQ-001 | A packet's verdict is identical under every supported engine selection | P0 |
+| REQ-002 | The freshness rule's applicability is decided in one place both engines read | P0 |
+| REQ-003 | Validation output names which engine produced it | P1 |
+| REQ-004 | The command-tree comparison runs as a repository check, not a per-packet rule | P0 |
+| REQ-005 | A document that does not follow its template produces one finding, not two | P1 |
+| REQ-006 | Code paths that cannot execute are removed rather than left in place | P2 |
+| REQ-007 | No check that reports a real fault is weakened by any of the above | P0 |
+<!-- /ANCHOR:requirements -->
+
+---
+
+<!-- ANCHOR:success-criteria -->
+## 5. SUCCESS CRITERIA
+
+- A representative packet returns the same result and the same exit status under
+  the default engine and under every environment switch that selects another.
+- The freshness rule fires under exactly one documented condition, and the
+  documentation matches the behaviour.
+- No packet fails on a condition it cannot influence from inside itself.
+- The strict failure rate falls, and every packet that stops failing is shown to
+  have had a duplicate or unsatisfiable finding rather than a repaired one.
+<!-- /ANCHOR:success-criteria -->
+
+---
+
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| Removing an engine changes verdicts somewhere unmeasured | Packets silently pass or fail differently | Compare both engines across a broad sample before and after; the change must move a verdict only where the two already disagreed |
+| Collapsing two rules loses a distinction someone relies on | A real fault stops being reported | Both detail lists are kept in the single finding; only the count of findings changes |
+| The command-tree check is lost in the move | Runtime mirrors drift unnoticed | It runs as its own repository check before the per-packet wiring is removed |
+| Deleting unreachable code removes something reachable after all | A rule stops running | Each deletion is justified by showing the path cannot execute, not by its appearance |
+<!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+- **Determinism.** The verdict depends on the packet and the flags, nothing else.
+- **Legibility.** A reader can tell which engine answered and why a rule fired.
+- **Proportion.** A fault is reported once.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+- A packet validated through the rule-subset path, which today forces the older
+  engine and so a different verdict.
+- A phase parent, where the two engines' notions of what counts as a child are
+  defined by different patterns.
+- A checkout with no compiled build, where engine selection falls back silently.
+- A packet whose only failures are the duplicated pair, which should go from two
+  findings to one rather than from two to none.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## 9. COMPLEXITY ASSESSMENT
+
+| Dimension | Assessment |
+|-----------|------------|
+| Surface | Two validators, one registry, a handful of rule scripts |
+| Blast radius | Every completion claim in the repository depends on this verdict |
+| Reversibility | Each change is separable and revertible on its own |
+| Judgement required | High: deciding which of two disagreeing answers is correct |
+
+Level 2 by size, but the blast radius is the whole gate, so each change lands
+separately with its own before-and-after comparison rather than as one cutover.
+<!-- /ANCHOR:complexity -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 10. OPEN QUESTIONS
+
+Whether the older engine is deleted or kept behind an explicit flag. Deleting it
+removes the disagreement permanently; keeping it preserves a fallback for
+checkouts without a build. The decision needs an owner because it changes what
+happens in a fresh clone.
+<!-- /ANCHOR:questions -->
+
+---
+
+<!-- ANCHOR:related-docs -->
+## 11. RELATED DOCS
+
+- `plan.md` — sequence and rollback
+- `tasks.md` — execution breakdown
+- `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` — the shell engine
+- `.opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts` — the default engine
+- `.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json` — the rule inventory
+<!-- /ANCHOR:related-docs -->

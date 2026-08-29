@@ -111,7 +111,7 @@ rewrite the fleet as a side effect of being run.
 ## Known Limitations
 
 1. **A fleet run is slow.** The tool asks the validator about each packet in
-   turn, so a whole-tree pass takes about an hour. Scope it with `--folder` or
+   turn, and that call is the whole cost, so a whole-tree pass stays in the minutes rather than the hours it took before the work ran in parallel. Scope it with `--folder` or
    `--roots` where possible, and expect the workflow step to add materially to
    that job's runtime.
 2. **The repairable set is deliberately small.** Four rules are settled from
