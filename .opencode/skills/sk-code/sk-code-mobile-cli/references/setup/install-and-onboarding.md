@@ -2,9 +2,9 @@
 title: Pi Remote Installation and Onboarding
 description: Provides the prerequisite, build, Tailscale Serve, phone enrollment, PWA installation, verification, and troubleshooting steps for Pi Remote.
 trigger_phrases:
-  - 'Pi Remote phone enrollment'
-  - 'Tailscale Serve PWA install'
-  - 'Pi Remote deployment verification'
+  - 'pi remote phone enrollment'
+  - 'tailscale serve pwa install'
+  - 'pi remote deployment verification'
 importance_tier: normal
 contextType: implementation
 version: 1.2.0.4
@@ -16,37 +16,6 @@ Complete installation and configuration guide for Pi Remote, a private installab
 
 ---
 
-## AI-FIRST INSTALL GUIDE
-
-**Copy and paste this prompt to your AI assistant to get installation help:**
-
-```
-I want to install Pi Remote in the Pi Mobile app directory
-
-Please help me:
-1. Verify I have Node.js 22, npm 10, the pi binary and a Tailscale tailnet
-2. Install dependencies with npm ci
-3. Build all four workspaces with npm run build
-4. Configure deploy/serve.env with the exact Tailscale Serve origin
-5. Start the deployment with sh deploy/setup-tailscale-serve.sh and verify the Serve routes
-6. Guide me through phone enrollment and the PWA install
-
-Guide me through each step with the exact commands I need to run.
-```
-
-**What the AI will do:**
-
-- Verify Node.js, npm, the pi binary and Tailscale
-- Install dependencies with `npm ci`
-- Build the protocol, relay, web and extension workspaces with `npm run build`
-- Configure `deploy/serve.env`
-- Start the deployment and check `tailscale serve status` plus `tailscale funnel status`
-- Walk through enrollment and the PWA install on the phone
-
-**Expected setup time:** 20-30 minutes
-
----
-
 ## 1. OVERVIEW
 
 Pi Remote is a loopback relay plus an installable PWA. The relay runs next to Pi on one host, owns one Pi RPC child, and keeps a bounded redacted event ledger. Tailscale Serve exposes the PWA and the relay API to the phone over private HTTPS and WSS. The phone enrolls once, then watches the transcript, steers prompts, and decides protected tool calls.
@@ -55,7 +24,7 @@ Pi Remote is a loopback relay plus an installable PWA. The relay runs next to Pi
 
 > **Install once, verify at each step.** Each phase has a validation checkpoint. Do not proceed until the checkpoint passes.
 
-### Key Features
+### Key Sources
 
 | Feature                     | Description                                                                            |
 | --------------------------- | -------------------------------------------------------------------------------------- |
@@ -88,7 +57,38 @@ Pi Remote is a loopback relay plus an installable PWA. The relay runs next to Pi
 
 ---
 
-## 2. PREREQUISITES
+## 2. AI-FIRST INSTALL GUIDE
+
+**Copy and paste this prompt to your AI assistant to get installation help:**
+
+```
+I want to install Pi Remote in the Pi Mobile app directory
+
+Please help me:
+1. Verify I have Node.js 22, npm 10, the pi binary and a Tailscale tailnet
+2. Install dependencies with npm ci
+3. Build all four workspaces with npm run build
+4. Configure deploy/serve.env with the exact Tailscale Serve origin
+5. Start the deployment with sh deploy/setup-tailscale-serve.sh and verify the Serve routes
+6. Guide me through phone enrollment and the PWA install
+
+Guide me through each step with the exact commands I need to run.
+```
+
+**What the AI will do:**
+
+- Verify Node.js, npm, the pi binary and Tailscale
+- Install dependencies with `npm ci`
+- Build the protocol, relay, web and extension workspaces with `npm run build`
+- Configure `deploy/serve.env`
+- Start the deployment and check `tailscale serve status` plus `tailscale funnel status`
+- Walk through enrollment and the PWA install on the phone
+
+**Expected setup time:** 20-30 minutes
+
+---
+
+## 3. PREREQUISITES
 
 **Phase 1** verifies the tools and services the deployment needs.
 
@@ -148,7 +148,7 @@ tailscale status    # → your host and phone appear on the tailnet
 
 ---
 
-## 3. INSTALLATION
+## 4. INSTALLATION
 
 This section covers **Phase 2 (Install)** and **Phase 3 (Build)**.
 
@@ -216,7 +216,7 @@ npm test             # → all suites pass
 
 ---
 
-## 4. CONFIGURATION
+## 5. CONFIGURATION
 
 This section covers **Phase 4 (Configure and deploy)**.
 
@@ -276,7 +276,7 @@ curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:4310/api/sessions
 
 ---
 
-## 5. VERIFICATION
+## 6. VERIFICATION
 
 This section covers **Phase 5 (End to end)**.
 
@@ -313,7 +313,7 @@ Send a prompt from the PWA, then request an action in the protected family from 
 
 ---
 
-## 6. USAGE
+## 7. USAGE
 
 ### Daily Workflow
 
@@ -344,7 +344,7 @@ When push is configured, open **Attention hints** in the PWA and choose **Enable
 
 ---
 
-## 7. FEATURES
+## 8. FEATURES
 
 | Feature                 | Description                                                                          |
 | ----------------------- | ------------------------------------------------------------------------------------ |
@@ -357,7 +357,7 @@ When push is configured, open **Attention hints** in the PWA and choose **Enable
 
 ---
 
-## 8. EXAMPLES
+## 9. EXAMPLES
 
 **Scenario 1: watch a session from the phone**
 
@@ -373,7 +373,7 @@ Submit a prompt from the PWA. The relay writes one steering prompt to the owned 
 
 ---
 
-## 9. TROUBLESHOOTING
+## 10. TROUBLESHOOTING
 
 ### Common Errors
 
@@ -434,7 +434,7 @@ The repository cannot run these itself. Verify them on the target environment be
 
 ---
 
-## 10. RESOURCES
+## 11. RESOURCES
 
 ### File Locations
 
@@ -479,7 +479,7 @@ npm test -w @pi-remote/approval-extension
 
 ---
 
-## Quick Start Summary
+## 12. QUICK START SUMMARY
 
 ```bash
 # 1. Prerequisites

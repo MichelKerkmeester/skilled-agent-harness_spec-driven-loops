@@ -117,6 +117,6 @@ reach the app bundle: a **token playground** that retunes the design system acro
 
 - [`screenshot-archive.md`](screenshot-archive.md) — the tracked archive, and how an agent and a designer each use the catalog.
 - [`storybook.md`](storybook.md) — the entry point for this folder: both audiences, and the gates in the order they bite.
-- [`../browser-free-verification-recipe.md`](../verification/verification.md) — how `catalog-smoke-cdp.mjs` fits the app's CDP mount gates.
-- [`../a11y-parity.md`](../svelte/svelte.md) — the accessibility contract the catalog's a11y panel checks per surface.
+- [`../verification/verification.md`](../verification/verification.md) — how `catalog-smoke-cdp.mjs` fits the app's CDP mount gates.
+- [`../svelte/svelte.md`](../svelte/svelte.md) — the accessibility contract the catalog's a11y panel checks per surface.
 - [`../skill-reference-integrity.md`](../verification/skill-reference-integrity.md) — the guard that keeps this reference's paths from rotting.

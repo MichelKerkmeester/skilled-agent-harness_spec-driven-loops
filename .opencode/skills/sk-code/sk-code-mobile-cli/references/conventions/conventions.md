@@ -14,9 +14,7 @@ version: 1.0.0.0
 
 # Source Conventions — How Pi Remote Code Reads
 
-These three contracts decide what a reader sees before they read any logic: the banner and comment
-grammar inside a file, the notes that fence something they must not change, and whether a folder
-explains itself. They are conventions, not preferences — a gate enforces each one.
+Three contracts decide what a reader sees before they reach any logic. Each is enforced by a gate.
 
 ---
 

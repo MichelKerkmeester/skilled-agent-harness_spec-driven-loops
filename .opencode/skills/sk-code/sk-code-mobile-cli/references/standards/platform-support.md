@@ -28,7 +28,7 @@ Document the supported platforms, installed PWA behavior, push delivery limits, 
 
 The Attention Inbox is the authoritative fallback on every platform. Opening any hint requires fresh device authentication and a live relay fetch.
 
-### Key Facts
+### Key Sources
 
 - The PWA requires the private HTTPS origin configured through Tailscale Serve.
 - The production service worker caches the application shell.

@@ -14,11 +14,7 @@ version: 1.0.0.0
 
 # Svelte Runtime Correctness — Effects and Accessibility
 
-Both contracts here cover the same failure shape: **the component renders, the suite passes, and the
-behaviour is still wrong.** Neither defect is visible to typecheck, to a screenshot, or to a token
-gate, which is why each has its own written contract and its own audit checklist.
-
----
+Two runtime defects share one shape: the component renders, the suite passes, and the behaviour is still wrong.
 
 ---
 
@@ -55,8 +51,6 @@ assistive-technology tree.
 
 ---
 
----
-
 ## 2. WHAT AN EFFECT TRACKS
 
 A `$effect` tracks every reactive read that executes during its run, including reads inside any
@@ -64,8 +58,6 @@ function it calls. A `dispatch(...)` is not inert: a synchronous reducer runs du
 every `$state` that reducer reads becomes a dependency of the effect. The dependency is invisible at
 the call site — the effect body may show only `dispatch({ type: '…' })`, yet it now depends on
 whatever that reducer touched.
-
----
 
 ---
 
@@ -85,8 +77,6 @@ Left uncontrolled, this froze device authentication and oscillated the session r
 
 ---
 
----
-
 ## 4. THE FIX: UNTRACK
 
 Wrap the dispatch in `untrack(...)` so the reducer's reads are not registered as dependencies of the
@@ -99,8 +89,6 @@ effect. The effect then depends only on the inputs you intend. The fix sites car
   effect "depends only on session id, not catalog state it clears".
 
 `untrack` the dispatch, not the reads you actually want to react to.
-
----
 
 ---
 
@@ -117,8 +105,6 @@ effect. The effect then depends only on the inputs you intend. The fix sites car
 
 ---
 
----
-
 ## 6. HARNESS PARITY
 
 `@testing-library/svelte` `rerender` re-fires a component with unchanged props, unlike React's
@@ -127,8 +113,6 @@ semantics will fire extra times under test. Absorb the difference in the test ha
 equality-checked intermediate `$state` that only updates on a real change — never with a value guard
 added to the source. The source stays faithful to Svelte's semantics; the harness compensates for the
 library's.
-
----
 
 ---
 
@@ -145,8 +129,6 @@ The primitive swap regresses four things that every objective gate is blind to:
 
 Treat any such port as a parity task, not a cosmetic one. The `a11y/README.md` table lists, row by
 row, what the helpers guarantee versus what the caller must still supply.
-
----
 
 ---
 
@@ -173,8 +155,6 @@ ring (`outline` on `--focus`, never color-only).
 
 ---
 
----
-
 ## 9. OVERLAY ISOLATION
 
 An open overlay must hide the rest of the page from assistive technology. That is the one reusable
@@ -187,8 +167,6 @@ release function runs. It is nested-session aware, so multiple overlays stack sa
 `hideOutside` does one job. It does **not** move, trap, or restore focus, and it does **not** dismiss.
 The owning menu or sheet still supplies focus entry / looping / restoration and its Escape and
 outside-click behavior. Keep the release function alive until the overlay closes.
-
----
 
 ---
 
@@ -205,8 +183,6 @@ Two visual guarantees survive the swap only if the surface owns them:
   emit no dimensions, so the surface owns them.
 
 `contrast.test.ts` runs inside `npm run test:web` — that is the gate for both guarantees.
-
----
 
 ---
 

@@ -2,7 +2,7 @@
 name: sk-code-mobile-cli
 description: "Read-only Svelte design-system and source-convention evidence for the Pi Remote Mobile-CLI app."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.1.10.0
+version: 0.1.11.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -57,12 +57,16 @@ primary and mutates nothing. It supplies evidence while the acting workflow appl
 | `references/setup/` | [`setup.md`](references/setup/setup.md) | First run: `install-and-onboarding`, and putting the whole app on a phone-shaped screen — Chrome emulation, the iOS Simulator, an Android emulator, or a real phone (`device-preview`). |
 | `references/standards/` | — | The rules a change must hold: `code-standards`, `security`, `platform-support`. |
 | `references/release/` | — | Shipping a build: `ai-deploy-playbook`, `release-verification`. |
-| `references/quality/` | — | The doc-quality gate and the full-access-runtime baseline. |
+| `references/quality/` | — | [`doc-quality-gate.md`](references/quality/doc-quality-gate.md) — the DQI scorer, the bar, and the check a reviewer applies. [`pi-remote-full-access-runtime-baseline.md`](references/quality/pi-remote-full-access-runtime-baseline.md) — the operator-run evidence that the relay launched full-access Pi RPC. |
 | `references/workflow-*.md` | — | The shared implement → debug → verify doctrine (symlinked from `../../shared/references/`). |
 
 Every folder above whose "Read first" cell names a document follows the same `<folder>/<folder>.md`
-pattern: that document routes by what you are doing and links the rest, so one read reaches the right
-contract instead of scanning every filename.
+pattern, but that document plays one of two roles and it is worth knowing which. In `conventions/`,
+`design-system/`, `storybook/`, `operations/` and `setup/` it is a **router**: it opens with a table
+that picks a sibling by what you are doing, so one read reaches the right contract instead of
+scanning filenames. In `verification/` and `svelte/` it is the **document itself** — those subjects
+were small enough that a router above two files cost more than it saved, so the content was merged
+and the entry is simply where it lives.
 
 Checklists (`assets/`) and the source-gates runner (`scripts/`) — token retint, guardrail audit, DS
 verification, BEM rename, runes-effect audit, story coverage, a11y parity, and `run-source-gates.sh`.

@@ -153,3 +153,12 @@ npm run build -w @pi-remote/web
 ```
 
 Then perform the environment-specific checks listed in [Setup](../setup/setup.md) and [Platform Support](../standards/platform-support.md).
+
+---
+
+## 10. RELATED REFERENCES
+
+- [`incident-playbooks.md`](incident-playbooks.md) — recovery procedures for the failures this page's routine checks surface.
+- [`rollback.md`](rollback.md) — undoing a deploy when a check fails rather than working forward.
+- [`../release/release-verification.md`](../release/release-verification.md) — the machine gates and staged readiness a deploy must clear.
+- [`../setup/setup.md`](../setup/setup.md) — Tailscale Serve deployment and phone enrollment.

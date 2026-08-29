@@ -132,3 +132,10 @@ The production relay wires approval request and lease consumption through a per-
 `npm run rollback:drill` builds the relay and executes the drill against an app-local disposable SQLite database. The drill enables then disables the real `MutationPolicy`, verifies outstanding approval drain and in-flight abort, takes a database backup, damages the working copy, restores it, executes the latest down-migration, and confirms that the relay session row plus the consumed row marked `external-outcome-indeterminate` survive.
 
 A separate native-session sentinel is hashed before and after database rollback to prove the drill does not cross that boundary. This is machine proof of path isolation, not a claim about a real Pi installation. The target-host local Pi smoke test remains operator-verified and pending.
+
+---
+
+## RELATED REFERENCES
+
+- [`ai-deploy-playbook.md`](ai-deploy-playbook.md) — the deploy sequence these gates verify.
+- [`../operations/rollback.md`](../operations/rollback.md) — what to do when a gate fails after a deploy.
