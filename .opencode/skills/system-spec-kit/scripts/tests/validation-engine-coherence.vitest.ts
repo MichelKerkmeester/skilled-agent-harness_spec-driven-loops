@@ -34,6 +34,8 @@ afterEach(() => {
 });
 
 describe('validation engine coherence', () => {
+  // Every test here spawns at least one full validation, which is seconds of
+  // real work, so the default per-test budget is too tight to be reliable.
   it('names the engine that produced the verdict', () => {
     const result = runValidate(copyFixture());
     expect(result.stdout).toContain('Engine: orchestrator');
@@ -45,7 +47,7 @@ describe('validation engine coherence', () => {
     expect(report.engine).toBe('orchestrator');
   });
 
-  it('narrows the run to a named subset without changing how a rule decides', () => {
+  it('narrows the run to a named subset without changing how a rule decides', { timeout: 30_000 }, () => {
     const folder = copyFixture();
     const full = JSON.parse(runValidate(folder, {}, ['--json']).stdout) as { entries: Array<{ rule: string }> };
     const narrowed = JSON.parse(
@@ -91,6 +93,34 @@ describe('validation engine coherence', () => {
     expect(result.stdout).toContain('H1 should start with');
   });
 
+  // The auto-recursion notice is suppressed in JSON mode, so reading the mode
+  // after printing it puts prose in front of the JSON and breaks every parser.
+  it('emits parseable JSON for a phase parent when the mode comes from the environment', { timeout: 30_000 }, () => {
+    const parent = fs.mkdtempSync(path.join(os.tmpdir(), 'engine-coherence-parent-'));
+    createdRoots.add(parent);
+    fs.cpSync(fixtureRoot, path.join(parent, '001-first-child'), { recursive: true });
+    fs.copyFileSync(path.join(fixtureRoot, 'spec.md'), path.join(parent, 'spec.md'));
+
+    const result = spawnSync('bash', [validateScript, parent], {
+      encoding: 'utf8',
+      env: { ...process.env, SPECKIT_JSON: 'true' },
+    });
+    const first = (result.stdout ?? '').split('\n').find((line) => line.trim() !== '') ?? '';
+    expect(() => JSON.parse(first)).not.toThrow();
+  });
+
+  it('reports an opened but unterminated frontmatter block as its own fault', () => {
+    const folder = copyFixture();
+    const spec = path.join(folder, 'spec.md');
+    // A body separator would satisfy a naive "is there another ---" test, so the
+    // fixture has to carry none for this to exercise the real condition.
+    fs.writeFileSync(spec, '---\ntitle: "Unclosed"\ndescription: "no closing delimiter"\n\n# Spec\n\nBody.\n', 'utf8');
+
+    const result = runValidate(folder, { SPECKIT_RULES: 'FRONTMATTER_VALID' });
+    expect(result.stdout).toContain('Unclosed YAML frontmatter (missing closing ---)');
+    expect(result.stdout).not.toContain('Empty required frontmatter field');
+  });
+
   it('reports a declared-but-empty required frontmatter field', () => {
     const folder = copyFixture();
     const spec = path.join(folder, 'spec.md');
@@ -112,7 +142,29 @@ describe('validation engine coherence', () => {
     expect(result.stdout).not.toContain('Empty required frontmatter field');
   });
 
-  it('skips the freshness rule unless it has been opted into', () => {
+  // validateFolder is exported, so a long-lived process can call it more than
+  // once. The subset is read per validation rather than memoized for the life
+  // of the process, or the first call would pin every later one.
+  it('re-reads the rule subset on every in-process validation', async () => {
+    const { validateFolder } = await import(
+      '../../mcp-server/dist/lib/validation/orchestrator.js'
+    ) as { validateFolder: (f: string, o?: Record<string, unknown>) => { entries: Array<{ rule: string }> } };
+    const folder = copyFixture();
+    const previous = process.env.SPECKIT_RULES;
+    try {
+      process.env.SPECKIT_RULES = 'LEVEL_DECLARED';
+      const first = validateFolder(folder).entries.map((e) => e.rule);
+      process.env.SPECKIT_RULES = 'ANCHORS_VALID';
+      const second = validateFolder(folder).entries.map((e) => e.rule);
+      expect(first).toEqual(['LEVEL_DECLARED']);
+      expect(second).toEqual(['ANCHORS_VALID']);
+    } finally {
+      if (previous === undefined) delete process.env.SPECKIT_RULES;
+      else process.env.SPECKIT_RULES = previous;
+    }
+  }, 30_000);
+
+  it('skips the freshness rule unless it has been opted into', { timeout: 30_000 }, () => {
     const folder = copyFixture();
     const off = runValidate(folder, { SPECKIT_RULES: 'CONTINUITY_FRESHNESS' }, ['--strict']);
     expect(off.stdout).toContain('SPECKIT_COMPLETION_FRESHNESS is not enabled');
