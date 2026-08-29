@@ -47,6 +47,7 @@ Confirmed 2026-08-29; do not re-ask.
 |-------|--------|------|
 | 001 | `001-spec-template-context-optimization` | Existing complete packet, moved verbatim. Content frozen; only its path self-references change. |
 | 002 | `002-acceptance-criteria-template` | New. All build work below. |
+| 003 | `003-restore-level-upgrade-and-vocabulary-invariance` | Added after review: restores the level-upgrade path the template restructure broke, and clears the public-surface vocabulary invariance. |
 
 ---
 
@@ -186,3 +187,18 @@ work and left untouched under the scope lock.
 `workflow-invariance` fails a private-taxonomy scan over five feature-catalog
 and playbook documents this packet never edited. Both reviews independently
 confirmed it predates this work.
+
+---
+
+## 11. FOLLOW-ON FIXES (phase 003)
+
+The two defects reported as out of scope at the end of the remediation were
+subsequently fixed on operator instruction.
+
+| Defect | Fix | Proof |
+|---|---|---|
+| `upgrade-level.sh` resolved per-level fragments under a directory the template restructure deleted, so every Level 1 to Level 2 upgrade failed and rolled back | Each level's addendum is derived by rendering one gated template at two levels and taking what the higher level adds; sections the document already carries are filtered out so a heading renumbering cannot duplicate them | A throwaway Level 1 packet upgrades through Level 2, 3 and 3+ with every step exiting 0 and no duplicated headings |
+| An upgrade to Level 2 did not create the document the closure gate requires | The upgrade now renders it alongside `checklist.md` | `Created: checklist.md, acceptance-criteria.md` |
+| The vocabulary invariance failed on nine lines across five documents | Real identifiers are exempted by token; four lines that used a reserved word as ordinary English were reworded instead | The suite passes 2/2 and its sentinel test still reports a planted leak |
+
+Full suite moved from 28 files / 50 tests failing to 27 / 49; no new failures.

@@ -105,6 +105,12 @@ function isAllowedHit(hit: SurfaceHit, filePath: string, isExtra: boolean): bool
   // Roadmap capability-flags config module/type + doc, the `opencode-goal-capabilities` test, and the
   // `capabilities` JSON-RPC / config field — MCP protocol + config surface, not workflow taxonomy.
   if (/capability-flags|MemoryRoadmapCapabilityFlags|roadmap capability flags|opencode-goal-capabilities|"capabilities"\s*:|capabilities\s*:\s*\{/iu.test(hit.text)) return true;
+  // Compiled-routing serving authority: a hub's compiled activation manifest is a real
+  // artifact and `missing-manifest` is a literal causeCode the status tool emits, so this
+  // vocabulary is the system's own, not the private template taxonomy.
+  if (/compiled activation manifest|missing-manifest|manifest or cohort state|manifest serving-authority|flag or manifest intentionally withholds/iu.test(hit.text)) return true;
+  // Real env var naming a real on-disk artifact for recursive child coverage.
+  if (/SPECKIT_CHILD_MANIFEST_FILE/u.test(hit.text)) return true;
   // /doctor router consolidation feature docs legitimately use "manifest" vocabulary (route
   // manifest + manifest-driven dispatch) — a real command surface, not private taxonomy.
   if (rel.endsWith('.opencode/skills/system-spec-kit/feature-catalog/maintenance/doctor-router-and-manifest-dispatch.md')) return true;

@@ -57,7 +57,7 @@ The implementation branch therefore contains the resolver, guards, migration pri
 - `.opencode/skills/system-spec-kit/scripts/core/spec-root-write-guard.ts:14-38` applies the writer freeze and rejects `divergent-duplicate` writes with observed-root evidence.
 - `.opencode/skills/system-spec-kit/scripts/core/spec-writer-freeze.ts:130-194` provides durable freeze, unfreeze, inspection, and fail-closed write assertions.
 
-### 3) Lossless migration, manifest, and compatibility telemetry
+### 3) Lossless migration, inventory, and compatibility telemetry
 
 - `.opencode/skills/system-spec-kit/scripts/core/spec-root-migration.ts:213-265` quarantines verified legacy-only packets before moving them and defers divergent duplicates.
 - `.opencode/skills/system-spec-kit/scripts/core/spec-root-migration-manifest.ts:162-173` hashes framed packet file sets with SHA-256.

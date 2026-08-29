@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization",
-    "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template"
+    "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
+    "system-speckit/033-spec-kit-template-optimization/003-restore-level-upgrade-and-vocabulary-invariance"
   ],
   "manual": {
     "depends_on": [],
@@ -101,15 +102,15 @@
     ],
     "causal_summary": "The spec-kit document templates carry two unresolved costs",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-08-29T15:22:24.660Z",
+    "last_save_at": "2026-08-29T15:28:28.607Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:71fbfbd30a23a70b6fb3386c3669ff8f74931213bff0a43133232870188f6461",
+    "source_fingerprint": "sha256:0804f7192d49be07bd3072052b850d095e31dd670deacbf847a6d0407b27cb17",
     "source_doc_hashes": {
-      "spec.md": "a87136aaa3b1d73171d489dafa6688f9e3b44db1e804737bf16b7d8ef0e2c9a8"
+      "spec.md": "f516f2469642d1fab8fad631c6e5fa713ccd2d039fb6251007fc1717890920d7"
     },
     "last_active_child_id": "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
     "last_active_at": null

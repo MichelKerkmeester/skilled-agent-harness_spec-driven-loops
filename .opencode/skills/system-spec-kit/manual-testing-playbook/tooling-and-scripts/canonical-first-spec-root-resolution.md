@@ -177,7 +177,7 @@ Inspect `scripts/core/spec-root-canonical-resolver.ts` first for precedence or e
 | File | Role |
 |---|---|
 | `manual-testing-playbook.md` | Root directory page and scenario registration |
-| `../../feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md` | Matching current-state capability reference and deployment-gated rollout status |
+| `../../feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md` | Matching current-state feature reference and deployment-gated rollout status |
 
 ### Implementation And Test Anchors
 
@@ -198,4 +198,4 @@ Inspect `scripts/core/spec-root-canonical-resolver.ts` first for precedence or e
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `tooling-and-scripts/canonical-first-spec-root-resolution.md`
 - Destructive: No — all fixture writes stay under a newly created operating-system temp directory.
-- Deployment status: Implementation-branch capability present; real-data migration and alias retirement not claimed as run in production.
+- Deployment status: Implementation-branch feature present; real-data migration and alias retirement not claimed as run in production.

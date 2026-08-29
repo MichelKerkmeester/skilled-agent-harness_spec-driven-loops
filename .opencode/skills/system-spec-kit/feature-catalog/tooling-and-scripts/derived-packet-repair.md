@@ -28,7 +28,7 @@ completed item, a verification result, a decision and its consequences. Nothing
 in the repository can supply them, because the information never existed outside
 the head of whoever did the work.
 
-The tool repairs the first kind and refuses the second. The refusal is the
+The tool repairs the first and refuses the second. The refusal is the
 feature: filling in authored records would turn a red gate green by making
 packets assert things nobody established.
 

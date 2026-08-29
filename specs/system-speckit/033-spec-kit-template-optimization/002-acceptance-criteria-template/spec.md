@@ -60,7 +60,7 @@ Acceptance criteria currently have no single home and no authority. They are aut
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-speckit/033-spec-kit-template-optimization |
 | **Predecessor** | 001-spec-template-context-optimization |
-| **Successor** | None |
+| **Successor** | 003-restore-level-upgrade-and-vocabulary-invariance |
 <!-- /ANCHOR:metadata -->
 
 ---

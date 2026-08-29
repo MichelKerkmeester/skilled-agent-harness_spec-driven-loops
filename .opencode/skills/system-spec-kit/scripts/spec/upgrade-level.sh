@@ -47,6 +47,104 @@ ADDENDUM_L2="${TEMPLATES_DIR}/addendum/level2-verify"
 ADDENDUM_L3="${TEMPLATES_DIR}/addendum/level3-arch"
 ADDENDUM_L3PLUS="${TEMPLATES_DIR}/addendum/level3-plus-govern"
 
+# The per-level addendum fragments these paths once pointed at no longer exist:
+# the gated templates absorbed them, so a level's additions are now expressed as
+# inline gates inside one whole-document template. Rendering the same template at
+# two levels and taking what the higher level adds reproduces the fragment
+# exactly, and cannot drift from the templates the scaffolder uses.
+INLINE_RENDERER="${SCRIPT_DIR}/../templates/inline-gate-renderer.sh"
+
+template_for_doc() {
+    case "$1" in
+        spec.md) printf '%s' "${TEMPLATES_DIR}/core/spec.md.tmpl" ;;
+        plan.md) printf '%s' "${TEMPLATES_DIR}/core/plan.md.tmpl" ;;
+        tasks.md) printf '%s' "${TEMPLATES_DIR}/core/tasks.md.tmpl" ;;
+        checklist.md) printf '%s' "${TEMPLATES_DIR}/addons/checklist.md.tmpl" ;;
+        decision-record.md) printf '%s' "${TEMPLATES_DIR}/addons/decision-record.md.tmpl" ;;
+        acceptance-criteria.md) printf '%s' "${TEMPLATES_DIR}/addons/acceptance-criteria.md.tmpl" ;;
+        *) return 1 ;;
+    esac
+}
+
+render_doc_at_level() {
+    local doc="$1" level="$2" tmpl
+    tmpl="$(template_for_doc "$doc")" || return 1
+    [[ -f "$tmpl" ]] || return 1
+    bash "$INLINE_RENDERER" --level "$level" "$tmpl" 2>/dev/null
+}
+
+# A level bump renumbers headings, so a raw render diff also reports sections the
+# document already has under a different number. Injecting those would duplicate
+# them. Sections are matched on their text with the leading number stripped.
+filter_sections_absent_from() {
+    local fragment="$1" target="$2"
+    awk -v target="$target" '
+        function key(h) { sub(/^#+[[:space:]]*[0-9]+\.?[[:space:]]*/, "", h); return tolower(h) }
+        BEGIN {
+            while ((getline line < target) > 0)
+                if (line ~ /^#{2,}[[:space:]]/) seen[key(line)] = 1
+        }
+        /^#{2,}[[:space:]]/ { skip = (key($0) in seen) }
+        !skip { print }
+    ' "$fragment"
+}
+
+# Prints the path to a temp file holding the lines the target level adds.
+derive_addendum_fragment() {
+    local doc="$1" from_level="$2" to_level="$3" target="${4:-}"
+    local old_render new_render out
+    old_render="$(mktemp)"; new_render="$(mktemp)"; out="$(mktemp)"
+    if ! render_doc_at_level "$doc" "$from_level" > "$old_render" 2>/dev/null; then
+        rm -f "$old_render" "$new_render" "$out"; return 1
+    fi
+    if ! render_doc_at_level "$doc" "$to_level" > "$new_render" 2>/dev/null; then
+        rm -f "$old_render" "$new_render" "$out"; return 1
+    fi
+    diff "$old_render" "$new_render" | sed -n 's/^> //p' > "$out"
+    rm -f "$old_render" "$new_render"
+    if [[ -n "$target" && -f "$target" ]]; then
+        local trimmed
+        trimmed="$(mktemp)"
+        filter_sections_absent_from "$out" "$target" > "$trimmed"
+        rm -f "$out"
+        out="$trimmed"
+    fi
+    [[ -s "$out" ]] || { rm -f "$out"; return 1; }
+    printf '%s' "$out"
+}
+
+# Emits only the named section from a fragment; the complement emits the rest.
+fragment_section() {
+    awk -v want="$2" '
+        function key(h) { sub(/^#+[[:space:]]*[0-9]+\.?[[:space:]]*/, "", h); return tolower(h) }
+        /^#{2,}[[:space:]]/ { inb = (key($0) == tolower(want)) }
+        inb { print }
+    ' "$1"
+}
+fragment_without_section() {
+    awk -v skipname="$2" '
+        function key(h) { sub(/^#+[[:space:]]*[0-9]+\.?[[:space:]]*/, "", h); return tolower(h) }
+        /^#{2,}[[:space:]]/ { inb = (key($0) == tolower(skipname)) }
+        !inb { print }
+    ' "$1"
+}
+
+# Builds the prefix/suffix pair a spec upgrade injects at two different anchors.
+derive_spec_addendum_pair() {
+    local from_level="$1" to_level="$2" spec_file="$3" lead_section="$4"
+    local raw filtered
+    raw="$(derive_addendum_fragment spec.md "$from_level" "$to_level")" || return 1
+    filtered="$(mktemp)"
+    filter_sections_absent_from "$raw" "$spec_file" > "$filtered"
+    rm -f "$raw"
+    local pre suf
+    pre="$(mktemp)"; suf="$(mktemp)"
+    fragment_section "$filtered" "$lead_section" > "$pre"
+    fragment_without_section "$filtered" "$lead_section" > "$suf"
+    rm -f "$filtered"
+    printf '%s\t%s' "$pre" "$suf"
+}
+
 # Output control
 VERBOSE=false
 DRY_RUN=false
@@ -534,15 +632,15 @@ upgrade_plan() {
     local idempotency_pattern=""
     case "${from_level}-${to_level}" in
         1-2)
-            fragment_path="${ADDENDUM_L2}/plan-level2.md"
+            fragment_path="$(derive_addendum_fragment plan.md 1 2 "$plan_file")" || fragment_path=""
             idempotency_pattern="## L2: PHASE DEPENDENCIES"
             ;;
         2-3)
-            fragment_path="${ADDENDUM_L3}/plan-level3.md"
+            fragment_path="$(derive_addendum_fragment plan.md 2 3 "$plan_file")" || fragment_path=""
             idempotency_pattern="## L3: DEPENDENCY GRAPH"
             ;;
         "3-3+")
-            fragment_path="${ADDENDUM_L3PLUS}/plan-level3plus.md"
+            fragment_path="$(derive_addendum_fragment plan.md 3 3+ "$plan_file")" || fragment_path=""
             idempotency_pattern="## L3+: AI EXECUTION FRAMEWORK"
             ;;
         *)
@@ -628,7 +726,8 @@ upgrade_checklist() {
     fi
 
     local checklist_file="$SPEC_FOLDER/checklist.md"
-    local fragment_path="${ADDENDUM_L3PLUS}/checklist-extended.md"
+    local fragment_path=""
+    fragment_path="$(derive_addendum_fragment checklist.md 3 3+ "$SPEC_FOLDER/checklist.md")" || fragment_path=""
 
     if [[ ! -f "$checklist_file" ]]; then
         warn "checklist.md not found in $SPEC_FOLDER — skipping checklist upgrade"
@@ -699,7 +798,9 @@ create_new_files() {
     case "${from_level}-${to_level}" in
         1-2)
             # L1→L2: Create checklist.md from full template
-            local checklist_src="${ADDENDUM_L2}/checklist.md"
+            local checklist_src=""
+            checklist_src="$(mktemp)"
+            render_doc_at_level checklist.md 2 > "$checklist_src" 2>/dev/null || : 
             local checklist_dest="$SPEC_FOLDER/checklist.md"
 
             if [[ -f "$checklist_dest" ]]; then
@@ -707,8 +808,8 @@ create_new_files() {
                 return 0
             fi
 
-            if [[ ! -f "$checklist_src" ]]; then
-                warn "Checklist template not found: $checklist_src"
+            if [[ ! -s "$checklist_src" ]]; then
+                warn "Could not render checklist.md from the Level contract templates"
                 return 2
             fi
 
@@ -720,11 +821,29 @@ create_new_files() {
             verbose "Creating checklist.md from template"
             cp "$checklist_src" "$checklist_dest"
             CREATED_FILES+=("checklist.md")
+
+            # The closure gate requires this document from Level 2 upward, so an
+            # upgrade that omitted it would leave the packet failing validation.
+            local ac_dest="$SPEC_FOLDER/acceptance-criteria.md"
+            if [[ ! -f "$ac_dest" ]]; then
+                local ac_src
+                ac_src="$(mktemp)"
+                if render_doc_at_level acceptance-criteria.md 2 > "$ac_src" 2>/dev/null && [[ -s "$ac_src" ]]; then
+                    cp "$ac_src" "$ac_dest"
+                    CREATED_FILES+=("acceptance-criteria.md")
+                    verbose "Created acceptance-criteria.md from template"
+                else
+                    warn "Could not render acceptance-criteria.md; create it before claiming completion"
+                fi
+                rm -f "$ac_src"
+            fi
             ;;
 
         2-3)
             # L2→L3: Create decision-record.md from template
-            local dr_src="${ADDENDUM_L3}/decision-record.md"
+            local dr_src=""
+            dr_src="$(mktemp)"
+            render_doc_at_level decision-record.md 3 > "$dr_src" 2>/dev/null || : 
             local dr_dest="$SPEC_FOLDER/decision-record.md"
 
             if [[ -f "$dr_dest" ]]; then
@@ -732,8 +851,8 @@ create_new_files() {
                 return 0
             fi
 
-            if [[ ! -f "$dr_src" ]]; then
-                warn "Decision record template not found: $dr_src"
+            if [[ ! -s "$dr_src" ]]; then
+                warn "Could not render decision-record.md from the Level contract templates"
                 return 2
             fi
 
@@ -779,7 +898,8 @@ _sed_inplace() {
 
 upgrade_spec_l1_to_l2() {
     local spec_file="$SPEC_FOLDER/spec.md"
-    local fragment_path="${ADDENDUM_L2}/spec-level2.md"
+    local fragment_path=""
+    fragment_path="$(derive_addendum_fragment spec.md 1 2 "$SPEC_FOLDER/spec.md")" || fragment_path=""
 
     if [[ ! -f "$spec_file" ]]; then
         warn "spec.md not found in $SPEC_FOLDER — skipping spec upgrade"
@@ -887,8 +1007,12 @@ upgrade_spec_l1_to_l2() {
 
 upgrade_spec_l2_to_l3() {
     local spec_file="$SPEC_FOLDER/spec.md"
-    local prefix_path="${ADDENDUM_L3}/spec-level3-prefix.md"
-    local suffix_path="${ADDENDUM_L3}/spec-level3-suffix.md"
+    local prefix_path="" suffix_path="" _pair=""
+    _pair="$(derive_spec_addendum_pair 2 3 "$SPEC_FOLDER/spec.md" "EXECUTIVE SUMMARY")" || _pair=""
+    if [[ -n "$_pair" ]]; then
+        prefix_path="${_pair%%$'\t'*}"
+        suffix_path="${_pair##*$'\t'}"
+    fi
 
     if [[ ! -f "$spec_file" ]]; then
         warn "spec.md not found in $SPEC_FOLDER — skipping spec upgrade"
@@ -1071,7 +1195,15 @@ upgrade_spec_l2_to_l3() {
 
 upgrade_spec_l3_to_l3plus() {
     local spec_file="$SPEC_FOLDER/spec.md"
-    local suffix_path="${ADDENDUM_L3PLUS}/spec-level3plus-suffix.md"
+    local suffix_path=""
+    suffix_path="$(derive_addendum_fragment spec.md 3 3+)" || suffix_path=""
+    if [[ -n "$suffix_path" ]]; then
+        local _filtered
+        _filtered="$(mktemp)"
+        filter_sections_absent_from "$suffix_path" "$SPEC_FOLDER/spec.md" > "$_filtered"
+        rm -f "$suffix_path"
+        suffix_path="$_filtered"
+    fi
 
     if [[ ! -f "$spec_file" ]]; then
         warn "spec.md not found in $SPEC_FOLDER — skipping spec upgrade"

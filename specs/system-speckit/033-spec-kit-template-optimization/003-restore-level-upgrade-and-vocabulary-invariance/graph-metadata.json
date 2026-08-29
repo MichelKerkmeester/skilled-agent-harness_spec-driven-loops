@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/033-spec-kit-template-optimization/003-restore-level-upgrade-and-vocabulary-invariance",
+  "spec_folder": "system-speckit/033-spec-kit-template-optimization/003-restore-level-upgrade-and-vocabulary-invariance",
+  "parent_id": "system-speckit/033-spec-kit-template-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "restore level upgrade",
+      "upgrade-level fragments",
+      "vocabulary invariance",
+      "template addendum derivation"
+    ],
+    "key_topics": [
+      "restore",
+      "level",
+      "upgrade",
+      "upgrade-level",
+      "fragments",
+      "vocabulary",
+      "invariance",
+      "template",
+      "addendum",
+      "derivation",
+      "two",
+      "defects"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh",
+      "scripts/spec/upgrade-level.sh",
+      "scripts/tests/workflow-invariance.vitest.ts",
+      "feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md",
+      "feature-catalog/tooling-and-scripts/derived-packet-repair.md",
+      "manual-testing-playbook/tooling-and-scripts/canonical-first-spec-root-resolution.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "upgrade-level.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-invariance.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/workflow-invariance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-first-spec-root-resolution.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/canonical-first-spec-root-resolution.md",
+        "source": "derived"
+      },
+      {
+        "name": "derived-packet-repair.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/derived-packet-repair.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Upgrade Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Vocabulary Invariance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two defects surfaced during this packet's review, both pre-dating it",
+    "created_at": "2026-08-29T15:25:29Z",
+    "last_save_at": "2026-08-29T15:29:47.896Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:90e0e6de4ae991501293ab6e8ae4b1472d5297b5a5d1dd9a70698783ffa33bc4",
+    "source_doc_hashes": {
+      "spec.md": "b0b9a5deecfe5c15a952cab3816b23713b7419c9d9f52153f167d0b6cec8dceb",
+      "plan.md": "d59a811311d4607c38f2a6baed43d8500c3ccc636793441fc788864f64226101",
+      "tasks.md": "ad2615a30db67985ec851fd3239781df6cb125dc83294997a56f536d41fb3385",
+      "checklist.md": "e46051e5097196cda7b8113d46f6a81659852802a2be519417254e93a94e3adc",
+      "implementation-summary.md": "5d8ac61f3c00493ae11fa4b0f67ddcf26426910f8faec5242046a9760fd0d7dd"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

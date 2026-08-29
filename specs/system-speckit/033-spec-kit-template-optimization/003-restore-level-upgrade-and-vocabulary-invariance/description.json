@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/033-spec-kit-template-optimization/003-restore-level-upgrade-and-vocabulary-invariance",
+  "description": "Two defects surfaced during this packet's review, both pre-dating it",
+  "keywords": [
+    "two",
+    "defects",
+    "surfaced",
+    "packet",
+    "review",
+    "pre-dating"
+  ],
+  "lastUpdated": "2026-08-29T15:29:40.711Z",
+  "specId": "003",
+  "folderSlug": "restore-level-upgrade-and-vocabulary-invariance",
+  "parentChain": [
+    "system-speckit",
+    "033-spec-kit-template-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
