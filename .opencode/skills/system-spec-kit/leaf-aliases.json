@@ -186,6 +186,11 @@
   },
   {
     "workflowMode": "system-spec-kit",
+    "leafResourceId": "references/workflows/goal-set-string-playbook.md",
+    "diskPath": "references/workflows/goal-set-string-playbook.md"
+  },
+  {
+    "workflowMode": "system-spec-kit",
     "leafResourceId": "references/workflows/intake-contract.md",
     "diskPath": "references/workflows/intake-contract.md"
   },

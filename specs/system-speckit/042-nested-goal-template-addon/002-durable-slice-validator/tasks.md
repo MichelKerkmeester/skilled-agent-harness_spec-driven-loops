@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the shape phase 1 established and the sibling rules' result contract
-- [ ] T002 Confirm how the registry binds a rule id, severity and flags
-- [ ] T003 Capture a deliberately malformed goal document as a negative control
+- [x] T001 Read the shape phase 1 established and the sibling rules' result contract - lazy is spread, optional is skipped (`mcp-server/lib/validation/spec-doc-structure.ts:206`)
+- [x] T002 Confirm how the registry binds a rule id, severity and flags - `scripts/lib/validator-registry.json:120`
+- [x] T003 Capture a deliberately malformed goal document as a negative control - malformed fixtures in `scripts/tests/check-goal-shape.sh`
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,10 +63,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Author the rule: headings, binding block, child paths, durable budget
-- [ ] T005 Register the rule with its severity and its flags
-- [ ] T006 Make absence silent and prove it on a packet with no goal document
-- [ ] T007 Document the rule and each of its failure modes
+- [x] T004 Author the rule: headings, binding block, child paths, durable budget - `scripts/rules/check-goal-shape.sh`
+- [x] T005 Register the rule with its severity and its flags - `scripts/lib/validator-registry.json` GOAL_SHAPE at warn
+- [x] T006 Make absence silent and prove it on a packet with no goal document - `scripts/rules/check-goal-shape.sh:94` returns before any check when the file is absent
+- [x] T007 Document the rule and each of its failure modes - `references/validation/validation-rules.md` with measured budgets
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,9 +74,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Run the negative control and confirm each violation is reported by name
-- [ ] T009 Confirm a well-formed document produces no finding
-- [ ] T010 Confirm an unrelated packet's validation result is unchanged
+- [x] T008 Run the negative control and confirm each violation is reported by name - `scripts/tests/check-goal-shape.sh` 11/11, each violation named
+- [x] T009 Confirm a well-formed document produces no finding - `scripts/tests/check-goal-shape.sh:35` well-formed cases expect no finding
+- [x] T010 Confirm an unrelated packet's validation result is unchanged - `scripts/rules/check-goal-shape.sh:27` gates on level and returns 0 outside it
 <!-- /ANCHOR:phase-3 -->
 
 ---

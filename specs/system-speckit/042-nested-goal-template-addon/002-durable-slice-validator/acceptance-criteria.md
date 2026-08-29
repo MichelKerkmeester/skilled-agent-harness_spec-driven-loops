@@ -57,11 +57,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a packet with no goal document, When the rule runs, Then it reports nothing | Recorded at implementation | Unmet | - |
-| AC-002 | REQ-002 | Given a durable slice over budget, When the rule runs, Then it reports the overage and the measurement excludes the log | Recorded at implementation | Unmet | - |
-| AC-003 | REQ-003 | Given a phase-parent document without a binding block, When the rule runs, Then it reports the missing block | Recorded at implementation | Unmet | - |
-| AC-004 | REQ-004 | Given a listed child path that does not resolve, When the rule runs, Then it names that path | Recorded at implementation | Unmet | - |
-| AC-005 | REQ-005 | Given a well-formed document, When the rule runs, Then it reports nothing | Recorded at implementation | Unmet | - |
+| AC-001 | REQ-001 | Given a packet with no goal document, When the rule runs, Then it reports nothing | `scripts/tests/check-goal-shape.sh` case: no goal document is a no-op | Met | - |
+| AC-002 | REQ-002 | Given a durable slice over budget, When the rule runs, Then it reports the overage and the measurement excludes the log | Case: over-budget slice reported with its measurement; same slice passes at parent budget | Met | - |
+| AC-003 | REQ-003 | Given a phase-parent document without a binding block, When the rule runs, Then it reports the missing block | Case: phase parent without binding reported | Met | - |
+| AC-004 | REQ-004 | Given a listed child path that does not resolve, When the rule runs, Then it names that path | Case: parent binding a missing child names that path | Met | - |
+| AC-005 | REQ-005 | Given a well-formed document, When the rule runs, Then it reports nothing | Live run: five folders in this packet, all PASS with their measurements | Met | - |
 
 ### Status values
 
@@ -86,7 +86,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Open until this phase is implemented and each criterion carries observed evidence.
+All five criteria met. The rule caught a real inconsistency in this packet's own goal document during dogfooding: the parent bound four children whose goal documents did not yet exist.
 <!-- /ANCHOR:closure -->

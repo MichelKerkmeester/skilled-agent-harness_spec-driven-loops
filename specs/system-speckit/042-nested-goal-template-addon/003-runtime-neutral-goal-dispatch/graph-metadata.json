@@ -14,7 +14,9 @@
       "runtime neutral goal",
       "goal offer dispatch",
       "stale filename assertion",
-      "goal_prompt_choice"
+      "goal_prompt_choice",
+      "goal dispatch",
+      "set string shape"
     ],
     "key_topics": [
       "runtime",
@@ -25,19 +27,21 @@
       "stale",
       "filename",
       "assertion",
-      "speckit",
-      "commands",
-      "already",
-      "set"
+      "set",
+      "string",
+      "shape",
+      "speckit"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs"
+      "implementation-summary.md",
+      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+      ".opencode/commands/speckit/assets/speckit-complete-auto.yaml"
     ],
     "entities": [
       {
@@ -65,9 +69,21 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "speckit-goal-offer-contract.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/speckit/assets/speckit-complete-auto.yaml",
         "source": "derived"
       },
       {
@@ -171,37 +187,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The speckit commands already offer to set a session goal, and the offer calls one runtime's tool by name",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-08-29T19:50:42.270Z",
+    "last_save_at": "2026-08-29T20:18:35.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:71d986fba52110a4a3883594297d7c5e077e87106d55734400fb9ddd4b0c898a",
+    "source_fingerprint": "sha256:f63ba48ba1185c5ac4aa3d8f2bab30da3455af3f61208d7f3ea3333fa94450fc",
     "source_doc_hashes": {
-      "spec.md": "0082ecaccf338fdbaf787357beeb179cede63915089a423bc6057c3fec95ffcf",
+      "spec.md": "f9c9ff88c169cd83fa2c5606a0c1b221ad4aca883ea7392363d617b65515ee2a",
       "plan.md": "fc89732bcf40e00f193fa0b970f36a23f8df64adb77540f47dfd2932f90e0987",
-      "tasks.md": "187e38da9c97775df2cc1104bc5877497067dd0dbeb5d8ad2ac1202735a3b14a",
-      "checklist.md": "9a2b091e5a5a40f010d4a1767c78ac2b768c2a7c66b31bc17f47ec338ca08386"
+      "tasks.md": "e2f1281e49827abdd6c2320a9b13d301917a26b1981880ee9ad854094092bca1",
+      "checklist.md": "9a2b091e5a5a40f010d4a1767c78ac2b768c2a7c66b31bc17f47ec338ca08386",
+      "implementation-summary.md": "43d76ef661f29c251338102b255ffa06b6b3b6b824670cbb5e48554d50fa4008"
     },
     "last_active_child_id": null,
     "last_active_at": null

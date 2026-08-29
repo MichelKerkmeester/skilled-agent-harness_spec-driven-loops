@@ -105,9 +105,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | 001 contract entry, template and mapping | Done | Resolver: path at five levels, null at review; renders 53/68/0 |
-| 002 durable-slice validator | Pending | - |
-| 003 runtime-neutral dispatch | Pending | - |
-| 004 set-string playbook | Pending | - |
+| 002 durable-slice validator | Done | 11-case unit suite; live run passes five folders |
+| 003 runtime-neutral dispatch | Done | Six assets dispatch by runtime; guard proven both directions |
+| 004 set-string playbook | Done | Worked example measured at 529 characters |
 
 ### Deviations and findings
 

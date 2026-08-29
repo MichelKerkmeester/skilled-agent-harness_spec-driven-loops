@@ -13,6 +13,9 @@ version: 3.6.0.52
 
 # Quick Reference - Commands, Checklists & Troubleshooting
 
+> Setting a packet's session goal? The shape of what you type — a pointer plus the
+> completion criteria copied out — is in [goal-set-string-playbook.md](./goal-set-string-playbook.md).
+
 Fast lookup for spec folder commands, checklists, and troubleshooting.
 
 ---

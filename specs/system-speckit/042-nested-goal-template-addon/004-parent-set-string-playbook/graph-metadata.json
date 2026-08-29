@@ -14,7 +14,9 @@
       "set string playbook",
       "goal pointer",
       "completion criteria copied",
-      "stop evaluator"
+      "stop evaluator",
+      "goal dispatch",
+      "set string shape"
     ],
     "key_topics": [
       "set",
@@ -27,17 +29,20 @@
       "copied",
       "stop",
       "evaluator",
-      "nothing",
-      "dereferences"
+      "dispatch",
+      "shape"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "references/workflows/quick-reference.md"
+      "implementation-summary.md",
+      "references/workflows/goal-set-string-playbook.md",
+      "references/workflows/quick-reference.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs"
     ],
     "entities": [
       {
@@ -65,9 +70,27 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-set-string-playbook.md",
+        "kind": "doc",
+        "path": "references/workflows/goal-set-string-playbook.md",
+        "source": "derived"
+      },
+      {
         "name": "quick-reference.md",
         "kind": "doc",
         "path": "references/workflows/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
         "source": "derived"
       },
       {
@@ -165,31 +188,27 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nothing dereferences a path inside a goal string",
     "created_at": "2026-08-29T18:09:19Z",
-    "last_save_at": "2026-08-29T19:50:42.612Z",
+    "last_save_at": "2026-08-29T20:18:37.926Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d48863324a2c2239a47450ce10f3203114977cb6d4323922e2c6bef1bfe12b9f",
+    "source_fingerprint": "sha256:fcb50b47ff91e8d5e2e5465af6f79cf3ff024fbff97903ca89aba33167d53d46",
     "source_doc_hashes": {
-      "spec.md": "17b92bb6ff40d22c0da40036e37579a810e93872e8848435dc2c016550f6f13c",
+      "spec.md": "16531bf8ad00187bf57f107ceb02fff28a12fa9e432e65e61940f14233ac1248",
       "plan.md": "d77c79dcc85a506a8557d4ea4a3e0a45f19c8a858a87bb2f3519a341028d1a6a",
-      "tasks.md": "1d95d9b37671b9b9434fe6396ad3e66badfe252c4ce2ca53d424fcc14d272b60",
-      "checklist.md": "7d848421de7a57c80dabb787b691de261162164cd7da653022e67a990b77861b"
+      "tasks.md": "b422909d354632963a5b22d1845d93495f63359b7f731a487bfae6a68df1a60d",
+      "checklist.md": "7d848421de7a57c80dabb787b691de261162164cd7da653022e67a990b77861b",
+      "implementation-summary.md": "5553c5186c735eb7526029efe387beced247705cc7bea639b4f0fe603d89c8ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

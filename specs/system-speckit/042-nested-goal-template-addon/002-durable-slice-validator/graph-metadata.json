@@ -14,7 +14,10 @@
       "goal validator",
       "durable slice cap",
       "binding block check",
-      "child path existence"
+      "child path existence",
+      "goal shape rule",
+      "durable slice budget",
+      "binding child paths"
     ],
     "key_topics": [
       "goal",
@@ -28,17 +31,21 @@
       "child",
       "path",
       "existence",
-      "nothing"
+      "shape"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "implementation-summary.md",
+      "scripts/rules/check-goal-shape.sh",
       "scripts/lib/validator-registry.json",
-      "references/validation/validation-rules.md"
+      "scripts/tests/check-goal-shape.sh",
+      "references/validation/validation-rules.md",
+      "mcp-server/ENV-REFERENCE.md"
     ],
     "entities": [
       {
@@ -66,6 +73,18 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-goal-shape.sh",
+        "kind": "script",
+        "path": "scripts/rules/check-goal-shape.sh",
+        "source": "derived"
+      },
+      {
         "name": "validator-registry.json",
         "kind": "config",
         "path": "scripts/lib/validator-registry.json",
@@ -75,6 +94,12 @@
         "name": "validation-rules.md",
         "kind": "doc",
         "path": "references/validation/validation-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": "mcp-server/ENV-REFERENCE.md",
         "source": "derived"
       },
       {
@@ -166,43 +191,27 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Nothing checks a goal document",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-08-29T19:58:13.811Z",
+    "last_save_at": "2026-08-29T20:18:33.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2d5ab9cc0ea1fcf292aa20ae26ee1860e378c0ef8143a04ad6f7b71dcbde3c75",
+    "source_fingerprint": "sha256:f7fde0715f2ee9edbb8b563fa868e5bdfa6bf68ebe3563e41c920a230845c4dc",
     "source_doc_hashes": {
-      "spec.md": "ba59989b06c61275a84be0de08e4d13a9fa8419b85fbd069cda2ae09f6127aea",
+      "spec.md": "ac9ef0060803535aa62a49656918137db698eb6cfed59eb06369c89fe267f9df",
       "plan.md": "700946914b95a6d8f639e80c3baa02cc807213ad63796ee1fea6ab906397e691",
-      "tasks.md": "6de8e6d7d5905bdd33203058acdf0a08e4b9edaa58e03ae38d36b42de937ac24",
-      "checklist.md": "dadebf477ea422266053c236f39366ddc10e6f4b43724341acf4c9996ed18af4"
+      "tasks.md": "61e196672b6845081939e2b822f7d077f668f40305904f701e9354007efac6c6",
+      "checklist.md": "dadebf477ea422266053c236f39366ddc10e6f4b43724341acf4c9996ed18af4",
+      "implementation-summary.md": "b2af759b858d7b965dfe137320361cff9ff275672079afc210bdcebc70fe41e3"
     },
     "last_active_child_id": null,
     "last_active_at": null

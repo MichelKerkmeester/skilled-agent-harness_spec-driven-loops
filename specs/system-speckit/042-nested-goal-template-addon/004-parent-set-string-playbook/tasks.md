@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Collect the documented character caps across the runtime goal surfaces
-- [ ] T002 Read how a stop evaluator judges a set string
-- [ ] T003 Pick a real packet to build the worked example from
+- [x] T001 Collect the documented character caps across the runtime goal surfaces - `.opencode/hooks/goal/lib/goal-core.cjs:60-62` (4000/4000/4800)
+- [x] T002 Read how a stop evaluator judges a set string - `.opencode/hooks/goal/lib/goal-core.cjs` evaluates the stored string only
+- [x] T003 Pick a real packet to build the worked example from - a real four-phase packet chosen
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,10 +63,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Author the set-string shape: pointer plus copied completion criteria
-- [ ] T005 Author the binding and precedence wording
-- [ ] T006 Explain why criteria are copied rather than referenced
-- [ ] T007 Author the worked example from the chosen packet
+- [x] T004 Author the set-string shape: pointer plus copied completion criteria - `references/workflows/goal-set-string-playbook.md:23` THE SHAPE
+- [x] T005 Author the binding and precedence wording - `references/workflows/goal-set-string-playbook.md:23` BINDING and PRECEDENCE lines
+- [x] T006 Explain why criteria are copied rather than referenced - `references/workflows/goal-set-string-playbook.md:46` WHY THE CRITERIA ARE COPIED
+- [x] T007 Author the worked example from the chosen packet - `references/workflows/goal-set-string-playbook.md:67` WORKED EXAMPLE
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,9 +74,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Measure the worked example against the smallest documented cap
-- [ ] T009 State what an operator does when the durable slice will not fit
-- [ ] T010 Point at the playbook from the first-touch reference surface
+- [x] T008 Measure the worked example against the smallest documented cap - 529 characters against the 4000 cap at `.opencode/hooks/goal/lib/goal-core.cjs:60`
+- [x] T009 State what an operator does when the durable slice will not fit - `references/workflows/goal-set-string-playbook.md:54` WHEN IT WILL NOT FIT
+- [x] T010 Point at the playbook from the first-touch reference surface - `references/workflows/quick-reference.md:17`
 <!-- /ANCHOR:phase-3 -->
 
 ---

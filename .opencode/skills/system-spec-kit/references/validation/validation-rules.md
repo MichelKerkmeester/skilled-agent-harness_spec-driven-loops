@@ -56,6 +56,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `EVIDENCE_CITED`     | WARNING  | checklist.md  | Non-P2 items cite supporting evidence          |
 | `AC_COVERAGE`        | INFO     | checklist.md  | Advisory acceptance-criteria traceability scan (on by default) |
 | `AC_CLOSURE`         | ERROR    | acceptance-criteria.md | Closure gate for Levels 2/3/3+: unmet criteria block a completion claim, waivers must cite a real ADR |
+| `GOAL_SHAPE`         | WARN     | goal.md | Present-file shape check: durable and log separable, a phase parent binds children that exist, durable slice within a pasteable budget |
 | `CONTINUITY_FRESHNESS` | WARNING | completion claims | Opt-in strict-only completion freshness check |
 | `ANCHORS_VALID`      | ERROR    | spec docs + memory/*.md | ANCHOR pairs properly opened and closed  |
 | `FOLDER_NAMING`      | ERROR    | Folder path   | Folder follows ###-short-name convention       |
@@ -70,6 +71,26 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `SCOPE_ADHERENCE`    | WARNING  | change-set (opt-in) | Advises when a supplied change-set exceeds spec.md "Files to Change" |
 
 > **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (46 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, SCOPE_ADHERENCE, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
+
+### GOAL_SHAPE
+
+`GOAL_SHAPE` checks a packet's goal document when it has one. It is registered at WARN severity and runs by default; set `SPECKIT_GOAL_SHAPE=false` to opt out.
+
+**Scope:** present-file. A packet with no goal document produces no finding at all, so the rule never reaches a packet that did not opt in.
+
+**Why a durable budget exists:** the durable slice is what an operator pastes into a session objective, and every runtime goal surface caps what it will hold. A slice that will not fit is silently truncated, and the tail is where the completion criteria live.
+
+**Budgets, measured rather than guessed:** the template's own instructional prose occupies 738 characters at a leaf level and 1,276 at a phase parent, because a parent additionally carries its binding block. The default budgets are `SPECKIT_GOAL_DURABLE_MAX` at 2000 for a leaf and `SPECKIT_GOAL_DURABLE_MAX_PHASE` at 3000 for a parent, both inside the smallest documented runtime cap with room for the wrapper an operator adds. The whole slice is measured; deciding which prose counts as boilerplate would drift every time the template does.
+
+**Findings:**
+
+| Condition | Reported |
+|---|---|
+| No goal document | nothing; the rule is a no-op |
+| Missing durable, log, or completion heading | the directive cannot be told from the log, or nothing states when the packet is done |
+| Phase parent with no binding block | its children's goals are unreachable |
+| Binding lists a child path that does not exist | that path, by name |
+| Durable slice over budget | the measured size against the budget |
 
 ### AC_CLOSURE
 

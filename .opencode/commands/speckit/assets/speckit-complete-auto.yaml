@@ -172,8 +172,8 @@ field_handling:
 goal_prompting:
   default_choice: offer
   choices:
-    offer: "Render the optional session-goal offer only; do not call opencode_goal."
-    skip: "Suppress the optional session-goal offer; do not call opencode_goal."
+    offer: "Render the optional session-goal offer only; call no goal tool in any runtime."
+    skip: "Suppress the optional session-goal offer; call no goal tool in any runtime."
     set: "Set a session goal only when goal_objective is provided."
   set_mutation:
     when:
@@ -181,9 +181,30 @@ goal_prompting:
       op: "=="
       value: set
     require: goal_objective
-    tool: opencode_goal
-    invocation: 'opencode_goal({ action: "set", objective: goal_objective })'
-  status_tool: opencode_goal_status
+    # Resolved by runtime rather than naming one runtime's tool: three of the
+    # supported runtimes document no adapter for it, including the one whose
+    # native goal surface is the reason this offer exists. A runtime without a
+    # surface hands off to the operator; none is ever faked.
+    dispatch_by_runtime:
+      opencode:
+        tool: opencode_goal
+        invocation: 'opencode_goal({ action: "set", objective: goal_objective })'
+        status_tool: opencode_goal_status
+      pi:
+        command: 'bin/goal.cjs set <objective>'
+        note: "Scope flags carry the native session identity."
+      cursor:
+        surface: "injection-only; no management surface"
+        handoff: "Report the objective for the operator to set; do not fabricate a call."
+      default:
+        surface: "native session-goal command, when the runtime provides one"
+        handoff: "Report the objective for the operator to set; do not fabricate a call."
+  objective_shape:
+    rule: "Pointer plus copied completion criteria; never a file body."
+    why: "Nothing dereferences a path in an objective, and every surface caps what it holds."
+  status_tool_by_runtime:
+    opencode: opencode_goal_status
+    default: "none; report state from the packet documents instead"
 
 packet_graph_metadata:
   completion_contract:

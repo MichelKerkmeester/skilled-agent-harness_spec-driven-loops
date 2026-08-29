@@ -57,11 +57,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the playbook, When an operator follows it, Then they produce a set string without opening the packet | Recorded at implementation | Unmet | - |
-| AC-002 | REQ-002 | Given the worked example, When measured, Then it fits inside the smallest documented runtime cap | Recorded at implementation | Unmet | - |
-| AC-003 | REQ-003 | Given the playbook, When read, Then it states the precedence rule between parent decisions and child detail | Recorded at implementation | Unmet | - |
-| AC-004 | REQ-004 | Given the playbook, When read, Then it explains why completion criteria are copied rather than referenced | Recorded at implementation | Unmet | - |
-| AC-005 | REQ-005 | Given a durable slice that will not fit, When an operator consults the playbook, Then it tells them what to cut | Recorded at implementation | Unmet | - |
+| AC-001 | REQ-001 | Given the playbook, When an operator follows it, Then they produce a set string without opening the packet | The playbook states the pointer, binding and copied-criteria shape | Met | - |
+| AC-002 | REQ-002 | Given the worked example, When measured, Then it fits inside the smallest documented runtime cap | Its worked example measures 529 characters, inside every documented cap | Met | - |
+| AC-003 | REQ-003 | Given the playbook, When read, Then it states the precedence rule between parent decisions and child detail | The precedence rule is stated explicitly | Met | - |
+| AC-004 | REQ-004 | Given the playbook, When read, Then it explains why completion criteria are copied rather than referenced | The reason criteria are copied rather than referenced is stated | Met | - |
+| AC-005 | REQ-005 | Given a durable slice that will not fit, When an operator consults the playbook, Then it tells them what to cut | A cut order is given for a slice that will not fit | Met | - |
 
 ### Status values
 
@@ -86,7 +86,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Open until this phase is implemented and each criterion carries observed evidence.
+All five criteria met. The worked example's stated size was measured rather than asserted, and both numbers in it were corrected after measurement.
 <!-- /ANCHOR:closure -->

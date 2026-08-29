@@ -100,7 +100,15 @@ test('router allowed-tools expose the expected goal tools only', () => {
 });
 
 test('touched command files do not contain the stale goal command filename', () => {
+  // The goal command was renamed, and this guards against a reference to the old
+  // file. It matches the command PATH rather than the bare basename: a spec-folder
+  // document is also named goal.md, and a bare match would forbid naming it.
+  const staleCommandRef = /(?:^|[\s(`'"\/])commands\/goal\.md|(?:^|[\s(`'"])\.?\/goal\.md/u;
   for (const relativePath of TOUCHED_FILES) {
-    assert.equal(read(relativePath).includes('goal.md'), false, `${relativePath} contains stale goal.md`);
+    assert.equal(
+      staleCommandRef.test(read(relativePath)),
+      false,
+      `${relativePath} references the stale goal command file`,
+    );
   }
 });

@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Read the current goal contract across the command assets and its test
-- [ ] T002 Establish which runtimes have a goal surface and which document its absence
-- [ ] T003 Capture the current contract test result as a baseline
+- [x] T001 Read the current goal contract across the command assets and its test - `.opencode/commands/speckit/assets/speckit-{plan,implement,complete}-{auto,confirm}.yaml` and `.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs`
+- [x] T002 Establish which runtimes have a goal surface and which document its absence - the core is runtime-neutral (`.opencode/hooks/goal/lib/goal-core.cjs:50`), so the surfaces are enumerated in `dispatch_by_runtime`
+- [x] T003 Capture the current contract test result as a baseline - contract test baseline captured at 4 passing
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,10 +63,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Author the runtime dispatch table for the set action
-- [ ] T005 Keep the offer path tool-free and confirm it stays that way
-- [ ] T006 Narrow the stale-filename assertion to the command path it guards
-- [ ] T007 Keep the carried objective pointer-sized in the contract wording
+- [x] T004 Author the runtime dispatch table for the set action - `dispatch_by_runtime` in six workflow assets
+- [x] T005 Keep the offer path tool-free and confirm it stays that way - offer and skip name no tool in `speckit-plan-auto.yaml` `set_mutation`
+- [x] T006 Narrow the stale-filename assertion to the command path it guards - `staleCommandRef` regex in `.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs`
+- [x] T007 Keep the carried objective pointer-sized in the contract wording - `objective_shape` in `.opencode/commands/speckit/assets/speckit-complete-auto.yaml`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -74,9 +74,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Run the contract test with a command file that names the goal document
-- [ ] T009 Confirm a real stale command reference still fails the narrowed assertion
-- [ ] T010 Confirm no runtime gained a fabricated adapter
+- [x] T008 Run the contract test with a command file that names the goal document - `.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs` 4/4, control A exits 0
+- [x] T009 Confirm a real stale command reference still fails the narrowed assertion - control B against `staleCommandRef` exits 1 (`.opencode/plugins/tests/speckit-goal-offer-contract.test.cjs`)
+- [x] T010 Confirm no runtime gained a fabricated adapter - `status_tool_by_runtime` in the six `.opencode/commands/speckit/assets/*.yaml` names only existing surfaces
 <!-- /ANCHOR:phase-3 -->
 
 ---

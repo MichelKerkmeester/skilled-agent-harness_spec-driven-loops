@@ -117,6 +117,22 @@
     "description": "Gates packet closure on acceptance-criteria.md at Levels 2, 3 and 3+; unmet criteria block a completion claim and a waiver must cite an ADR that exists. Packets created before the cutoff stay advisory."
   },
   {
+    "rule_id": "GOAL_SHAPE",
+    "aliases": [
+      "GOAL_DOCUMENT",
+      "GOAL_DURABLE_SLICE"
+    ],
+    "script_path": "rules/check-goal-shape.sh",
+    "severity": "warn",
+    "category": "authored_template",
+    "flags": [
+      "SPECKIT_GOAL_SHAPE",
+      "SPECKIT_GOAL_DURABLE_MAX",
+      "SPECKIT_GOAL_DURABLE_MAX_PHASE"
+    ],
+    "description": "Present-file shape check for a packet goal document: durable and log headings separable, a phase parent binds children that exist, and the durable slice fits a budget an operator can paste. Absent, it reports nothing."
+  },
+  {
     "rule_id": "ANCHORS_VALID",
     "aliases": [
       "ANCHOR",

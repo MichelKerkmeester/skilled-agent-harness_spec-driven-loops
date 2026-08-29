@@ -57,11 +57,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the set action, When it dispatches, Then it resolves by runtime rather than naming one runtime's tool unconditionally | Recorded at implementation | Unmet | - |
-| AC-002 | REQ-002 | Given the offer action, When it runs, Then it calls no tool | Recorded at implementation | Unmet | - |
-| AC-003 | REQ-003 | Given a command file naming the goal document, When the contract test runs, Then it passes | Recorded at implementation | Unmet | - |
-| AC-004 | REQ-004 | Given a genuinely stale command reference, When the contract test runs, Then it still fails | Recorded at implementation | Unmet | - |
-| AC-005 | REQ-005 | Given a runtime that documents no adapter, When the set action resolves, Then it hands off rather than fabricating one | Recorded at implementation | Unmet | - |
+| AC-001 | REQ-001 | Given the set action, When it dispatches, Then it resolves by runtime rather than naming one runtime's tool unconditionally | Six workflow assets carry `dispatch_by_runtime` instead of one named tool | Met | - |
+| AC-002 | REQ-002 | Given the offer action, When it runs, Then it calls no tool | Offer and skip wording now says no goal tool is called in any runtime | Met | - |
+| AC-003 | REQ-003 | Given a command file naming the goal document, When the contract test runs, Then it passes | Control: a command file naming the goal document exits 0 | Met | - |
+| AC-004 | REQ-004 | Given a genuinely stale command reference, When the contract test runs, Then it still fails | Control: a stale `commands/goal.md` reference exits 1 | Met | - |
+| AC-005 | REQ-005 | Given a runtime that documents no adapter, When the set action resolves, Then it hands off rather than fabricating one | The dispatch table hands off for runtimes documenting no adapter | Met | - |
 
 ### Status values
 
@@ -86,7 +86,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Open until this phase is implemented and each criterion carries observed evidence.
+All five criteria met. Both directions of the assertion change were proven: a spec-document reference passes and a stale command reference still fails.
 <!-- /ANCHOR:closure -->
