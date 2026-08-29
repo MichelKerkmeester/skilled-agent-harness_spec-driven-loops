@@ -187,6 +187,6 @@ Three surfaces in the catalog, under **Design** and in the stories themselves.
 
 - [`component-story-upkeep.md`](component-story-upkeep.md) — one story per renderable component, and the gates behind it.
 - [`storybook.md`](storybook.md) — the entry point for this folder: both audiences, and the gates in the order they bite.
-- [`../verification.md`](../verification.md) — the verification command set for this surface.
-- [`../browser-free-verification-recipe.md`](../browser-free-verification-recipe.md) — token resolution without a browser.
-- [`../scoped-style-ownership.md`](../scoped-style-ownership.md) — why a class can render unstyled in the wrong component.
+- [`../verification.md`](../verification/verification.md) — the verification command set for this surface.
+- [`../browser-free-verification-recipe.md`](../verification/browser-free-verification-recipe.md) — token resolution without a browser.
+- [`../scoped-style-ownership.md`](../design-system/scoped-style-ownership.md) — why a class can render unstyled in the wrong component.

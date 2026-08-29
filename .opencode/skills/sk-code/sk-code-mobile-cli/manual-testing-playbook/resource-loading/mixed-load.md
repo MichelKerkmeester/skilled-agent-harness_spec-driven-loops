@@ -6,10 +6,10 @@ description: "This scenario validates mixed resource loading for `PR-009`. It fo
 expected_surface: PI_REMOTE
 expected_intent: CODE_QUALITY
 expected_resources:
-  - references/editability-guardrails.md
-  - references/css-class-naming-bem.md
-  - references/comment-grammar.md
-  - references/folder-docs.md
+  - references/conventions/editability-guardrails.md
+  - references/design-system/css-class-naming-bem.md
+  - references/conventions/comment-grammar.md
+  - references/conventions/folder-docs.md
   - references/component-story-upkeep.md
   - assets/guardrail-audit-checklist.md
   - assets/bem-rename-checklist.md
@@ -80,7 +80,7 @@ Audit this folder's naming, comment grammar, and folder-docs pairing after a ren
 
 1. `sed -n '1,18p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/resource-loading/mixed-load.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"CODE_QUALITY":/,/\],/p'`
-3. `for p in references/editability-guardrails.md references/css-class-naming-bem.md references/comment-grammar.md references/folder-docs.md references/component-story-upkeep.md assets/guardrail-audit-checklist.md assets/bem-rename-checklist.md assets/story-coverage-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/conventions/editability-guardrails.md references/design-system/css-class-naming-bem.md references/conventions/comment-grammar.md references/conventions/folder-docs.md references/component-story-upkeep.md assets/guardrail-audit-checklist.md assets/bem-rename-checklist.md assets/story-coverage-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

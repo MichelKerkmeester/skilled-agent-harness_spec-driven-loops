@@ -6,7 +6,7 @@ description: "This scenario validates CODE_QUALITY routing for `PR-003`. It focu
 expected_surface: PI_REMOTE
 expected_intent: CODE_QUALITY
 expected_resources:
-  - references/editability-guardrails.md
+  - references/conventions/editability-guardrails.md
   - assets/guardrail-audit-checklist.md
 version: 1.0.0.0
 ---
@@ -69,7 +69,7 @@ Run a quality gate confirming no Do not edit — guardrail fence was touched by 
 
 1. `sed -n '1,12p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/guardrail-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"CODE_QUALITY":/,/\],/p'`
-3. `for p in references/editability-guardrails.md assets/guardrail-audit-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/conventions/editability-guardrails.md assets/guardrail-audit-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

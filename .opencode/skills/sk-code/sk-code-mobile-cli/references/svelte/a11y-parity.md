@@ -120,7 +120,7 @@ Two visual guarantees survive the swap only if the surface owns them:
 
 ## 6. RELATED REFERENCES
 
-- `browser-free-verification-recipe.md` — why screenshots cannot prove color values, and the token
+- [`../verification/browser-free-verification-recipe.md`](../verification/browser-free-verification-recipe.md) — why screenshots cannot prove color values, and the token
   and CDP gates that verify what a11y styling still cannot.
-- `comment-grammar.md` — the nearby `Do not edit — <why>` notes that mark these frozen accessibility lines.
-- [`storybook/component-story-upkeep.md`](storybook/component-story-upkeep.md) — the Storybook catalog whose a11y panel checks each surface in isolation.
+- [`../conventions/comment-grammar.md`](../conventions/comment-grammar.md) — the nearby `Do not edit — <why>` notes that mark these frozen accessibility lines.
+- [`storybook/component-story-upkeep.md`](../storybook/component-story-upkeep.md) — the Storybook catalog whose a11y panel checks each surface in isolation.

@@ -119,9 +119,9 @@ entire defect class once existed only in dark.
 
 ## 6. RELATED REFERENCES
 
-- [`../browser-free-verification-recipe.md`](../browser-free-verification-recipe.md) — token resolution without a browser, and how the CDP gates fit.
-- [`../verification.md`](../verification.md) — the verification command set for this surface.
-- [`../a11y-parity.md`](../a11y-parity.md) — the accessibility contract the catalog's a11y panel checks.
-- [`../scoped-style-ownership.md`](../scoped-style-ownership.md) — why a class can render unstyled in the wrong component.
-- [`../skill-reference-integrity.md`](../skill-reference-integrity.md) — the guard that keeps these paths from rotting.
+- [`../browser-free-verification-recipe.md`](../verification/browser-free-verification-recipe.md) — token resolution without a browser, and how the CDP gates fit.
+- [`../verification.md`](../verification/verification.md) — the verification command set for this surface.
+- [`../a11y-parity.md`](../svelte/a11y-parity.md) — the accessibility contract the catalog's a11y panel checks.
+- [`../scoped-style-ownership.md`](../design-system/scoped-style-ownership.md) — why a class can render unstyled in the wrong component.
+- [`../skill-reference-integrity.md`](../verification/skill-reference-integrity.md) — the guard that keeps these paths from rotting.
 - [`../../assets/story-coverage-checklist.md`](../../assets/story-coverage-checklist.md) — the per-change checklist.

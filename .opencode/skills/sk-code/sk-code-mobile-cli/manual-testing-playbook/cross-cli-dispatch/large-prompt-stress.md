@@ -6,9 +6,9 @@ description: "This scenario validates cross-CLI routing stability under prompt-s
 expected_surface: PI_REMOTE
 expected_intent: VERIFICATION
 expected_resources:
-  - references/verification.md
-  - references/browser-free-verification-recipe.md
-  - references/skill-reference-integrity.md
+  - references/verification/verification.md
+  - references/verification/browser-free-verification-recipe.md
+  - references/verification/skill-reference-integrity.md
   - assets/ds-verification-checklist.md
 version: 1.0.0.0
 ---
@@ -85,7 +85,7 @@ We've been going back and forth on the model-sheet accent retint for a while now
    list.
 3. Dispatch the exact prompt through `cli-opencode`, applying that runtime's stdin-redirection mitigation
    for long inputs if required; capture the resolved surface, intent, and resource list.
-4. `for p in references/verification.md references/browser-free-verification-recipe.md references/skill-reference-integrity.md assets/ds-verification-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `for p in references/verification/verification.md references/verification/browser-free-verification-recipe.md references/verification/skill-reference-integrity.md assets/ds-verification-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

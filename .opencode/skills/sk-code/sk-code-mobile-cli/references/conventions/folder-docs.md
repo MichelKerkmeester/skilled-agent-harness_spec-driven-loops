@@ -95,5 +95,5 @@ and skipped. Keep every backticked path in a folder doc pointing at a file that 
 
 - Check: `node scripts/naming/scan-folder-docs.mjs` reports missing feature docs, missing code maps,
   unwarranted code maps, and broken references; `--json` lists the offending folders.
-- `comment-grammar.md` — the in-file banners that do at file scope what these docs do at folder scope.
-- `scoped-style-ownership.md` — the per-surface ownership a folder's `CODE.md` records.
+- [`comment-grammar.md`](comment-grammar.md) — the in-file banners that do at file scope what these docs do at folder scope.
+- [`../design-system/scoped-style-ownership.md`](../design-system/scoped-style-ownership.md) — the per-surface ownership a folder's `CODE.md` records.

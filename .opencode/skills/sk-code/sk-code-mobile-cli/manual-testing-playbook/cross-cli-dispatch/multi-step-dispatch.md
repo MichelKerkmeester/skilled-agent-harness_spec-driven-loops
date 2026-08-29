@@ -6,12 +6,12 @@ description: "This scenario validates multi-step dispatch stability for `PR-015`
 expected_surface: PI_REMOTE
 expected_intent: IMPLEMENTATION
 expected_resources:
-  - references/token-library.md
-  - references/comment-grammar.md
-  - references/component-tokens.md
-  - references/retint-recipes.md
-  - references/theme-remap.md
-  - references/scoped-style-ownership.md
+  - references/design-system/token-library.md
+  - references/conventions/comment-grammar.md
+  - references/design-system/component-tokens.md
+  - references/design-system/retint-recipes.md
+  - references/design-system/theme-remap.md
+  - references/design-system/scoped-style-ownership.md
   - assets/token-retint-checklist.md
 version: 1.0.0.0
 ---
@@ -91,7 +91,7 @@ Retint the model-effort-sheet accent so it reads a warmer accent role without to
    intent, and resource list.
 4. Dispatch turn three in the same session, immediately after turn two; capture the resolved surface,
    intent, and resource list.
-5. `for p in references/token-library.md references/comment-grammar.md references/component-tokens.md references/retint-recipes.md references/theme-remap.md references/scoped-style-ownership.md assets/token-retint-checklist.md references/editability-guardrails.md assets/guardrail-audit-checklist.md references/verification.md assets/ds-verification-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+5. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md references/design-system/component-tokens.md references/design-system/retint-recipes.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md assets/token-retint-checklist.md references/conventions/editability-guardrails.md assets/guardrail-audit-checklist.md references/verification/verification.md assets/ds-verification-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

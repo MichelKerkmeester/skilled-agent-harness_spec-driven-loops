@@ -37,7 +37,7 @@ Resolve `app-mobile/src/app.css` together with the changed component's scoped `<
 
 - `app-mobile/src/app.html` — ships the strict CSP that blocks headless-Chrome style injection
 - `app-mobile/src/app.css` — the CSS foundation the resolver method resolves per theme, together with the changed component's scoped `<style>` block
-- `retint-recipes.md` — applies this resolver method to two worked, step-by-step recipes
+- [`../design-system/retint-recipes.md`](../design-system/retint-recipes.md) — applies this resolver method to two worked, step-by-step recipes
 - `assets/ds-verification-checklist.md` — this gate expressed as a checklist
 
 ---
@@ -107,5 +107,5 @@ security boundary, or `Do not edit — <why>` guardrail fence changed.
 
 ## 7. RELATED REFERENCES
 
-- `retint-recipes.md` — applies this resolver method to two worked, step-by-step recipes.
+- [`../design-system/retint-recipes.md`](../design-system/retint-recipes.md) — applies this resolver method to two worked, step-by-step recipes.
 - `assets/ds-verification-checklist.md` — this gate as a checklist.

@@ -6,9 +6,9 @@ description: "This scenario validates LANGUAGE_STANDARDS routing for `PR-006`. I
 expected_surface: PI_REMOTE
 expected_intent: LANGUAGE_STANDARDS
 expected_resources:
-  - references/token-library.md
-  - references/component-tokens.md
-  - references/theme-remap.md
+  - references/design-system/token-library.md
+  - references/design-system/component-tokens.md
+  - references/design-system/theme-remap.md
 version: 1.0.0.0
 ---
 
@@ -73,7 +73,7 @@ Explain the CSS custom-property naming convention for adding a new per-surface c
 
 1. `sed -n '1,12p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/language-standards-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"LANGUAGE_STANDARDS":/,/\],/p'`
-3. `for p in references/token-library.md references/component-tokens.md references/theme-remap.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/design-system/token-library.md references/design-system/component-tokens.md references/design-system/theme-remap.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

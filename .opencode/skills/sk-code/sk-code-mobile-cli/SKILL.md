@@ -2,7 +2,7 @@
 name: sk-code-mobile-cli
 description: "Read-only Svelte design-system and source-convention evidence for the Pi Remote Mobile-CLI app."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 0.1.8.0
+version: 0.1.9.0
 metadata:
   author: OpenCode
   family: sk-code
@@ -46,39 +46,27 @@ primary and mutates nothing. It supplies evidence while the acting workflow appl
 
 ## 2. REFERENCE MAP
 
-| Reference | What it carries |
-| --- | --- |
-| [`references/token-library.md`](references/token-library.md) | The three-layer model — primitive (`--pi-*`, 8 frozen values) → semantic role → component token — with the frozen ink-on-parchment values and how a retint propagates. |
-| [`references/component-tokens.md`](references/component-tokens.md) | The Layer-3 per-surface component token families (`--model-sheet-*`, `--slash-*`, `--diff-*`): what each alias resolves to, per theme, and the blast radius of retinting one. |
-| [`references/retint-recipes.md`](references/retint-recipes.md) | Two worked, step-by-step retint recipes — a semantic-role retint (system-wide) and a component-token retint (one surface) — each with the browser-free resolver proof steps. |
-| [`references/theme-remap.md`](references/theme-remap.md) | The light / dark / system-dark semantic remap: which role reads which primitive per theme, and which roles stay literal. |
-| [`references/comment-grammar.md`](references/comment-grammar.md) | The natural comment convention: kept banners, module headers, markup labels, one-line purpose comments, four edit classes, seam reading, and the retired marker migration. |
-| [`references/editability-guardrails.md`](references/editability-guardrails.md) | The `Do not edit — <why>` frozen-seam notes, scanner counter, and architectural reason a CSS/token edit cannot reach logic or the security boundary. |
-| [`references/verification.md`](references/verification.md) | The verification command set and the browser-free resolver method. The app's CSP renders it unstyled headless, so selector → value resolution, not screenshots, is the authoritative value-preservation gate. |
-| [`references/scoped-style-ownership.md`](references/scoped-style-ownership.md) | Where a CSS rule belongs: single-component → scoped `<style>`; shared → `app.css`; class-prop and cross-boundary state reached with `:global()`. |
-| [`references/css-class-naming-bem.md`](references/css-class-naming-bem.md) | The `block--element` class grammar, the `is-*` single-dash state prefix, the three dynamic-construction forms, and the ids/tokens/enums that stay data. |
-| [`references/svelte-runes-effects.md`](references/svelte-runes-effects.md) | The `$effect` self-invalidation trap and the `untrack` doctrine — trace called API methods, audit every effect in the file. |
-| [`references/comment-grammar.md`](references/comment-grammar.md) | The `MODULE:` banner, numbered box-drawing sections, module headers, markup labels, one-line purpose comments, four edit classes, and natural frozen-seam notes. |
-| [`references/folder-docs.md`](references/folder-docs.md) | The `README.md` / `CODE.md` pairing threshold (3+ direct source files or child source folders) and its both-direction scan. |
-| [`references/a11y-parity.md`](references/a11y-parity.md) | The react-aria → bits-ui accessibility parity contract and the `use:hover`/`use:press`/`use:focusVisible` action pattern. |
-| [`references/browser-free-verification-recipe.md`](references/browser-free-verification-recipe.md) | The `token-identity` snapshot/diff/verify commands and the `*-cdp.mjs` render gates, and why the CSP forbids screenshot value checks. |
-| [`references/storybook/storybook.md`](references/storybook/storybook.md) | The catalog and its screenshot archive: both audiences, the gates in the order they bite, and pointers to the story-upkeep contract and the archive contract. |
-| [`references/skill-reference-integrity.md`](references/skill-reference-integrity.md) | The cross-repo `scan-skill-references.mjs` drift guard that resolves every app path this surface names (expects `broken : 0`). |
-| [`references/workflow-implement.md`](references/workflow-implement.md) · [`workflow-debug.md`](references/workflow-debug.md) · [`workflow-verify.md`](references/workflow-verify.md) | The shared implement → debug → verify doctrine (symlinked from `../../shared/references/`). |
+| Folder | Read first | What the folder carries |
+| --- | --- | --- |
+| `references/design-system/` | [`design-system.md`](references/design-system/design-system.md) | How the app looks. The three-layer token model (`token-library`), per-surface Layer-3 families (`component-tokens`), the light/dark role remap (`theme-remap`), two worked retints (`retint-recipes`), which file a rule belongs in (`scoped-style-ownership`), and the `block--element` class grammar (`css-class-naming-bem`). |
+| `references/verification/` | [`verification.md`](references/verification/verification.md) | Proving a change. The browser-free resolver method and command set, why the CSP forbids screenshot value checks (`browser-free-verification-recipe`), and the cross-repo path drift guard (`skill-reference-integrity`). |
+| `references/conventions/` | [`conventions.md`](references/conventions/conventions.md) | How source reads. Banner and comment grammar (`comment-grammar`), the `Do not edit — <why>` fences (`editability-guardrails`), and when a folder owes a `CODE.md` (`folder-docs`). |
+| `references/svelte/` | [`svelte.md`](references/svelte/svelte.md) | Runtime correctness a green suite cannot see. The `$effect` self-invalidation trap and `untrack` doctrine (`svelte-runes-effects`), and the react-aria → bits-ui accessibility contract (`a11y-parity`). |
+| `references/storybook/` | [`storybook.md`](references/storybook/storybook.md) | The component catalog and its screenshot archive: both audiences, the gates in the order they bite (`component-story-upkeep`, `screenshot-archive`). |
+| `references/operations/` | [`operations.md`](references/operations/operations.md) | Running the live relay: `incident-playbooks`, `rollback`. |
+| `references/setup/` | [`setup.md`](references/setup/setup.md) | First run: `install-and-onboarding`. |
+| `references/standards/` | — | The rules a change must hold: `code-standards`, `security`, `platform-support`. |
+| `references/release/` | — | Shipping a build: `ai-deploy-playbook`, `release-verification`. |
+| `references/quality/` | — | The doc-quality gate and the full-access-runtime baseline. |
+| `references/workflow-*.md` | — | The shared implement → debug → verify doctrine (symlinked from `../../shared/references/`). |
+
+Every folder above whose "Read first" cell names a document follows the same `<folder>/<folder>.md`
+pattern: that document routes by what you are doing and links the rest, so one read reaches the right
+contract instead of scanning every filename.
 
 Checklists (`assets/`) and the source-gates runner (`scripts/`) — token retint, guardrail audit, DS
 verification, BEM rename, runes-effect audit, story coverage, a11y parity, and `run-source-gates.sh`.
 See §4 for the full list.
-
-App documentation lives under `references/` in six purpose-named folders, each grouping one concern so
-the set reads by intent:
-
-- `references/operations/` — running the live relay: `operations.md`, `incident-playbooks.md`, `rollback.md`.
-- `references/release/` — shipping a build: `ai-deploy-playbook.md`, `release-verification.md`.
-- `references/setup/` — first run: `setup.md`, `install-and-onboarding.md`.
-- `references/standards/` — the rules a change must hold: `code-standards.md`, `security.md`, `platform-support.md`.
-- `references/quality/` — the doc-quality gate and the full-access-runtime baseline.
-- `references/storybook/` — the component catalog and its screenshot archive: `storybook.md`, `component-story-upkeep.md`, `screenshot-archive.md`.
 
 The **feature catalog** and the **manual testing playbook** are the single source of truth at the app
 repository root (`feature-catalog/` and `manual-testing-playbook/`). This surface does not mirror them,
@@ -102,8 +90,8 @@ consumed by the skill-benchmark router-replay. Keep it in sync with the parent h
 # (re-prefixed with sk-code-mobile-cli/) and the sibling surface maps plus the
 # parent-owned universal/shared tier. A drift guard enforces that equality.
 DEFAULT_RESOURCE = [
-    "references/token-library.md",
-    "references/comment-grammar.md",
+    "references/design-system/design-system.md",
+    "references/conventions/conventions.md",
 ]
 
 INTENT_SIGNALS = {
@@ -117,19 +105,21 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "IMPLEMENTATION": [
-        "references/token-library.md",
-        "references/comment-grammar.md",
-        "references/component-tokens.md",
-        "references/retint-recipes.md",
-        "references/theme-remap.md",
-        "references/scoped-style-ownership.md",
+        "references/design-system/design-system.md",
+        "references/design-system/token-library.md",
+        "references/conventions/comment-grammar.md",
+        "references/design-system/component-tokens.md",
+        "references/design-system/retint-recipes.md",
+        "references/design-system/theme-remap.md",
+        "references/design-system/scoped-style-ownership.md",
         "assets/token-retint-checklist.md",
     ],
     "CODE_QUALITY": [
-        "references/editability-guardrails.md",
-        "references/css-class-naming-bem.md",
-        "references/comment-grammar.md",
-        "references/folder-docs.md",
+        "references/conventions/conventions.md",
+        "references/conventions/editability-guardrails.md",
+        "references/design-system/css-class-naming-bem.md",
+        "references/conventions/comment-grammar.md",
+        "references/conventions/folder-docs.md",
         "references/storybook/storybook.md",
         "references/storybook/component-story-upkeep.md",
         "references/storybook/screenshot-archive.md",
@@ -138,31 +128,32 @@ RESOURCE_MAP = {
         "assets/story-coverage-checklist.md",
     ],
     "DEBUGGING": [
-        "references/verification.md",
-        "references/component-tokens.md",
-        "references/svelte-runes-effects.md",
+        "references/svelte/svelte.md",
+        "references/verification/verification.md",
+        "references/design-system/component-tokens.md",
+        "references/svelte/svelte-runes-effects.md",
         "assets/runes-effect-audit-checklist.md",
     ],
     "VERIFICATION": [
-        "references/verification.md",
-        "references/browser-free-verification-recipe.md",
-        "references/skill-reference-integrity.md",
+        "references/verification/verification.md",
+        "references/verification/browser-free-verification-recipe.md",
+        "references/verification/skill-reference-integrity.md",
         "assets/ds-verification-checklist.md",
     ],
     "LANGUAGE_STANDARDS": [
-        "references/token-library.md",
-        "references/component-tokens.md",
-        "references/theme-remap.md",
-        "references/scoped-style-ownership.md",
-        "references/css-class-naming-bem.md",
-        "references/svelte-runes-effects.md",
-        "references/comment-grammar.md",
-        "references/folder-docs.md",
+        "references/design-system/token-library.md",
+        "references/design-system/component-tokens.md",
+        "references/design-system/theme-remap.md",
+        "references/design-system/scoped-style-ownership.md",
+        "references/design-system/css-class-naming-bem.md",
+        "references/svelte/svelte-runes-effects.md",
+        "references/conventions/comment-grammar.md",
+        "references/conventions/folder-docs.md",
     ],
     "ACCESSIBILITY": [
-        "references/editability-guardrails.md",
-        "references/verification.md",
-        "references/a11y-parity.md",
+        "references/conventions/editability-guardrails.md",
+        "references/verification/verification.md",
+        "references/svelte/a11y-parity.md",
         "assets/a11y-parity-checklist.md",
     ],
 }
@@ -198,7 +189,7 @@ surface MUST honor them:
   value-preservation is proven by resolving `app-mobile/src/app.css` together with the changed
   component's scoped `<style>` block to final values per theme, not by screenshots. Structural mount
   checks run against the built output. `npm run typecheck`, `build`, and `test:web` (including
-  `app-mobile/tests/contrast.test.ts`) gate every change. See `references/verification.md`.
+  `app-mobile/tests/contrast.test.ts`) gate every change. See `references/verification/verification.md`.
 
 ---
 
@@ -206,8 +197,8 @@ surface MUST honor them:
 
 This is the current source authority for the Mobile CLI tree. Apply it together with the frozen design
 and security standards above. Each convention below has a detailed, executable-backed reference pulled on
-demand — `references/scoped-style-ownership.md`, `references/css-class-naming-bem.md`,
-`references/svelte-runes-effects.md`, `references/comment-grammar.md`, and `references/folder-docs.md`.
+demand — `references/design-system/scoped-style-ownership.md`, `references/design-system/css-class-naming-bem.md`,
+`references/svelte/svelte-runes-effects.md`, `references/conventions/comment-grammar.md`, and `references/conventions/folder-docs.md`.
 
 ### Naming and routing
 
@@ -258,7 +249,7 @@ scopes those rules to the component, so a class name is local unless deliberatel
 `:global()`. `app.css` holds only the global foundation: tokens, theme remaps, resets, the genuinely
 shared classes (2+ renderers), and the cross-component a11y guardrail blocks (44px targets,
 reduced-motion, contrast, forced-colors) that several tests assert there. The ownership routing decides
-where a rule belongs — see `references/scoped-style-ownership.md`:
+where a rule belongs — see `references/design-system/scoped-style-ownership.md`:
 
 - A class used in one component's markup lives in that component's `<style>`. A class a parent sets on a
   child through a `class` prop, or a cross-boundary state a parent writes on a descendant

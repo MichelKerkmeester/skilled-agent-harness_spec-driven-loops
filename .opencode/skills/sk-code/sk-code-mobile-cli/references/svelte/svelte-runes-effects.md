@@ -115,5 +115,5 @@ library's.
 ## 7. CHECK AND RELATED REFERENCES
 
 - Check: run `test:web` after touching any effect; it exercises the ported effects under the harness.
-- `scoped-style-ownership.md` — the rendering side of the same components.
-- `comment-grammar.md` — where the inline WHY that justifies each `untrack` is required to live.
+- [`../design-system/scoped-style-ownership.md`](../design-system/scoped-style-ownership.md) — the rendering side of the same components.
+- [`../conventions/comment-grammar.md`](../conventions/comment-grammar.md) — where the inline WHY that justifies each `untrack` is required to live.

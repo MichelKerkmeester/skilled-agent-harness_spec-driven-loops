@@ -38,9 +38,9 @@ literal per theme block, and the two roles that behave asymmetrically between li
 
 ### Key Sources
 
-- `token-library.md` — frozen `--pi-*` primitive definitions
-- `component-tokens.md` §2-4 — component tokens consuming these semantic roles
-- `verification.md` — resolver method for proving a theme-remap edit per theme
+- [`token-library.md`](token-library.md) — frozen `--pi-*` primitive definitions
+- [`component-tokens.md`](component-tokens.md) §2-4 — component tokens consuming these semantic roles
+- [`../verification/verification.md`](../verification/verification.md) — resolver method for proving a theme-remap edit per theme
 - `app-mobile/src/app.css` — the three theme-remap blocks (`:root`, `:root[data-theme='dark']`,
   system-dark media query)
 

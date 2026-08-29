@@ -23,7 +23,7 @@ Use this checklist after any change to `app-mobile/` presentation code, before c
 
 This checklist confirms every `Do not edit — <why>` fence in the Pi Remote app is untouched
 after a design-system change. Each fence marks something that is not a styling concern — see
-`references/editability-guardrails.md` §2 for the full reason each one is frozen.
+`references/conventions/editability-guardrails.md` §2 for the full reason each one is frozen.
 
 ### Usage
 
@@ -65,7 +65,7 @@ removed, or worked around by the change:
 □ Bounded-reading overflow / `unicode-bidi` / scroll-anchoring rules
 □ Any theme-invariant literal explicitly fenced as such (e.g. `.artifact-diff-line.is-find-match`,
   fenced `Do not edit — theme-invariant light literal; stays fixed` —
-  `references/component-tokens.md` §4)
+  `references/design-system/component-tokens.md` §4)
 
 ---
 
@@ -85,7 +85,7 @@ removed, or worked around by the change:
 
 □ Confirmed the change is presentation-only: colour, spacing, typography, or layout — nothing that
   reaches state computation, the mutation/ticket path, redaction, or plan-mode enforcement
-  (`references/editability-guardrails.md` §3)
+  (`references/conventions/editability-guardrails.md` §3)
 □ Confirmed no CSS/token edit was used to work around a guardrail (e.g. hiding the redaction chip with
   `display: none`, or overriding a focus-ring colour to make it less visible)
 
@@ -105,6 +105,6 @@ comment to make the diff pass.
 
 ## 7. RELATED RESOURCES
 
-- [editability-guardrails.md](../references/editability-guardrails.md) — the fence list and why each matters
-- [comment-grammar.md](../references/comment-grammar.md) — how to read a natural seam at the edit site
+- [editability-guardrails.md](../references/conventions/editability-guardrails.md) — the fence list and why each matters
+- [comment-grammar.md](../references/conventions/comment-grammar.md) — how to read a natural seam at the edit site
 - [ds-verification-checklist.md](ds-verification-checklist.md) — the full command-gate checklist

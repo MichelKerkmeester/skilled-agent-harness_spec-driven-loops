@@ -39,10 +39,10 @@ that declares it, not the whole role.
 
 ### Key Sources
 
-- `token-library.md` — the Layer 3 definition within the full token model
-- `theme-remap.md` — semantic role dark-mode divergence (e.g., `--accent-strong`)
-- `retint-recipes.md` — step-by-step retint verification recipes
-- `verification.md` — browser-free resolver steps for proving blast radius
+- [`token-library.md`](token-library.md) — the Layer 3 definition within the full token model
+- [`theme-remap.md`](theme-remap.md) — semantic role dark-mode divergence (e.g., `--accent-strong`)
+- [`retint-recipes.md`](retint-recipes.md) — step-by-step retint verification recipes
+- [`../verification/verification.md`](../verification/verification.md) — browser-free resolver steps for proving blast radius
 
 ---
 

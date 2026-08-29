@@ -34,10 +34,10 @@ Retint at the semantic-role or component-token layer — never the frozen primit
 
 ### Key Sources
 
-- `token-library.md` — token model and the 45-declaration primitive propagation measurement
-- `component-tokens.md` — component token inventory and per-surface scoping
-- `theme-remap.md` — semantic role declarations and their theme blocks
-- `verification.md` (`references/verification.md`) — browser-free resolver method and surface standards
+- [`token-library.md`](token-library.md) — token model and the 45-declaration primitive propagation measurement
+- [`component-tokens.md`](component-tokens.md) — component token inventory and per-surface scoping
+- [`theme-remap.md`](theme-remap.md) — semantic role declarations and their theme blocks
+- [`../verification/verification.md`](../verification/verification.md) (`references/verification/verification.md`) — browser-free resolver method and surface standards
 
 ---
 
@@ -48,7 +48,7 @@ it cascades to **45 rendered declarations** across light, dark, and system — e
 text, and even `color-mix()`-derived accent border moves in lockstep (`token-library.md` §3). That number
 is the ceiling for "how big can a retint get", and it is a fact about the **primitive** layer, not
 something a workflow may reproduce by editing `--pi-clay` — the 8 `--pi-*` values are the frozen palette
-contract (`references/verification.md`, surface standards). Both recipes below perform the same *shape*
+contract (`references/verification/verification.md`, surface standards). Both recipes below perform the same *shape*
 of edit one layer up, where it is actually editable — the semantic role for a system-wide move, the
 component token for a surface-scoped move.
 

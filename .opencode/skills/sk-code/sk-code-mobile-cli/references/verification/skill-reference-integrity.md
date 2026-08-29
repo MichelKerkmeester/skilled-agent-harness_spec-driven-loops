@@ -98,6 +98,6 @@ of them together through the surface-gates entry point rather than one at a time
 
 ## 6. RELATED REFERENCES
 
-- [`storybook/component-story-upkeep.md`](storybook/component-story-upkeep.md) — a doc whose story and script paths this guard keeps honest.
-- `browser-free-verification-recipe.md` — the script paths this guard verifies still resolve.
-- `comment-grammar.md` — the design-system reference whose `app.css` and component paths must also resolve.
+- [`storybook/component-story-upkeep.md`](../storybook/component-story-upkeep.md) — a doc whose story and script paths this guard keeps honest.
+- [`browser-free-verification-recipe.md`](browser-free-verification-recipe.md) — the script paths this guard verifies still resolve.
+- [`../conventions/comment-grammar.md`](../conventions/comment-grammar.md) — the design-system reference whose `app.css` and component paths must also resolve.

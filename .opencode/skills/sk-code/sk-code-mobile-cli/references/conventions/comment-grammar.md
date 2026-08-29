@@ -169,8 +169,8 @@ the read-only preview index is `app-mobile/catalog.html`.
 
 ## 6. RELATED REFERENCES
 
-- `editability-guardrails.md` — the protected fence list, the `Do not edit —` counter, and the
+- [`editability-guardrails.md`](editability-guardrails.md) — the protected fence list, the `Do not edit —` counter, and the
   presentation-only boundary.
-- `css-class-naming-bem.md` — the class grammar whose purpose and state comments follow this convention.
-- `scoped-style-ownership.md` — where an owned CSS rule lives and how its purpose is recorded.
-- `verification.md` — the resolver proof for an intended presentation or token change.
+- [`../design-system/css-class-naming-bem.md`](../design-system/css-class-naming-bem.md) — the class grammar whose purpose and state comments follow this convention.
+- [`../design-system/scoped-style-ownership.md`](../design-system/scoped-style-ownership.md) — where an owned CSS rule lives and how its purpose is recorded.
+- [`../verification/verification.md`](../verification/verification.md) — the resolver proof for an intended presentation or token change.

@@ -37,7 +37,7 @@ Which layer you edit decides the blast radius: primitive is frozen, semantic ret
 ### Key Sources
 
 - `feature-catalog/design-system/token-library.md` — full catalogue with resolved values per theme
-- `verification.md` — the browser-free resolvers used to prove propagation
+- [`../verification/verification.md`](../verification/verification.md) — the browser-free resolvers used to prove propagation
 
 ---
 
@@ -111,8 +111,8 @@ These two ends of the seam are the model: pick the layer whose blast radius matc
 
 ## 5. RELATED REFERENCES
 
-- `component-tokens.md` — the Layer-3 `--model-sheet-*` / `--slash-*` / `--diff-*` families in full,
+- [`component-tokens.md`](component-tokens.md) — the Layer-3 `--model-sheet-*` / `--slash-*` / `--diff-*` families in full,
   with the exact blast radius of retinting each.
-- `retint-recipes.md` — worked, step-by-step recipes for a semantic-layer retint and a component-layer
+- [`retint-recipes.md`](retint-recipes.md) — worked, step-by-step recipes for a semantic-layer retint and a component-layer
   retint, each with the resolver proof steps.
-- `theme-remap.md` — which semantic role reads which primitive per theme, and which roles stay literal.
+- [`theme-remap.md`](theme-remap.md) — which semantic role reads which primitive per theme, and which roles stay literal.

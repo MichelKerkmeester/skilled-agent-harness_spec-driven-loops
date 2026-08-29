@@ -6,8 +6,8 @@ description: "This scenario validates the DEFAULT_RESOURCE fallback for `PR-010`
 expected_surface: PI_REMOTE
 expected_intent: DEFAULT_RESOURCE
 expected_resources:
-  - references/token-library.md
-  - references/comment-grammar.md
+  - references/design-system/token-library.md
+  - references/conventions/comment-grammar.md
 version: 1.0.0.0
 ---
 
@@ -54,8 +54,8 @@ Take a look at the composer in app-mobile and tell me what you notice about it.
 - Expected execution process: the hub detects `PI_REMOTE` from the `app-mobile` reference, no keyword from
   any of the six `INTENT_SIGNALS` entries matches the prompt, and the packet falls back to
   `DEFAULT_RESOURCE`.
-- Expected signals: the loaded set is exactly `references/token-library.md` and
-  `references/comment-grammar.md` — no other reference, and no `assets/` path.
+- Expected signals: the loaded set is exactly `references/design-system/token-library.md` and
+  `references/conventions/comment-grammar.md` — no other reference, and no `assets/` path.
 - Desired user-visible outcome: the bundled workflow orients on the token model and the natural comment
   grammar before asking a clarifying question about which specific change the operator wants, rather than
   guessing an intent from a prompt that does not support one.
@@ -75,7 +75,7 @@ Take a look at the composer in app-mobile and tell me what you notice about it.
 1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/unknown-fallback/zero-keyword-prompt.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^INTENT_SIGNALS = {/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | grep 'DEFAULT_RESOURCE'`
 3. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md`
-4. `for p in references/token-library.md references/comment-grammar.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

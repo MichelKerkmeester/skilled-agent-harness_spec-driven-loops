@@ -6,14 +6,14 @@ description: "This scenario validates references-only resource loading for `PR-0
 expected_surface: PI_REMOTE
 expected_intent: LANGUAGE_STANDARDS
 expected_resources:
-  - references/token-library.md
-  - references/component-tokens.md
-  - references/theme-remap.md
-  - references/scoped-style-ownership.md
-  - references/css-class-naming-bem.md
-  - references/svelte-runes-effects.md
-  - references/comment-grammar.md
-  - references/folder-docs.md
+  - references/design-system/token-library.md
+  - references/design-system/component-tokens.md
+  - references/design-system/theme-remap.md
+  - references/design-system/scoped-style-ownership.md
+  - references/design-system/css-class-naming-bem.md
+  - references/svelte/svelte-runes-effects.md
+  - references/conventions/comment-grammar.md
+  - references/conventions/folder-docs.md
 version: 1.0.0.0
 ---
 
@@ -81,7 +81,7 @@ Explain how the kebab-case file naming grammar and the BEM block--element CSS cl
 
 1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/resource-loading/references-only-load.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"LANGUAGE_STANDARDS":/,/\],/p'`
-3. `for p in references/token-library.md references/component-tokens.md references/theme-remap.md references/scoped-style-ownership.md references/css-class-naming-bem.md references/svelte-runes-effects.md references/comment-grammar.md references/folder-docs.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/design-system/token-library.md references/design-system/component-tokens.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md references/design-system/css-class-naming-bem.md references/svelte/svelte-runes-effects.md references/conventions/comment-grammar.md references/conventions/folder-docs.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 4. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"LANGUAGE_STANDARDS":/,/\],/p' | grep -c 'assets/'`
 
 ### Expected

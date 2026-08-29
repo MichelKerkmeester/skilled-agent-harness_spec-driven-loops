@@ -41,7 +41,7 @@ boundary — the moment an edit stops being paint, it is fenced with a `Do not e
 
 - `assets/guardrail-audit-checklist.md` — a checklist to confirm no fence in §2 moved after a
   design-system change.
-- `comment-grammar.md` — the full natural comment convention and the four edit classes.
+- [`comment-grammar.md`](comment-grammar.md) — the full natural comment convention and the four edit classes.
 
 ---
 
@@ -106,6 +106,6 @@ this — but a workflow bundling this surface must never let a presentation chan
 
 ## 5. RELATED REFERENCES
 
-- `comment-grammar.md` — the natural comment convention, edit classes, seam reading, and purpose lines.
+- [`comment-grammar.md`](comment-grammar.md) — the natural comment convention, edit classes, seam reading, and purpose lines.
 - `assets/guardrail-audit-checklist.md` — a checklist to confirm no fence in §2 moved after a
   design-system change.

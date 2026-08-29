@@ -107,5 +107,5 @@ Some strings share a class's spelling but are not classes and must not be rename
 
 - Check: `node scripts/naming/scan-naming.mjs` lists any source basename off the naming grammar; dead
   dynamic classes surface through the `css-corpus.ts` and Storybook story assertions under `test:web`.
-- `scoped-style-ownership.md` — which file the matching rule for a class belongs in.
-- `comment-grammar.md` — the natural purpose comments that annotate a class's surface and state.
+- [`scoped-style-ownership.md`](scoped-style-ownership.md) — which file the matching rule for a class belongs in.
+- [`../conventions/comment-grammar.md`](../conventions/comment-grammar.md) — the natural purpose comments that annotate a class's surface and state.

@@ -6,8 +6,8 @@ description: "This scenario validates PI_REMOTE surface detection itself for `PR
 expected_surface: PI_REMOTE
 expected_intent: SURFACE_DETECTION
 expected_resources:
-  - references/token-library.md
-  - references/comment-grammar.md
+  - references/design-system/token-library.md
+  - references/conventions/comment-grammar.md
 version: 1.0.0.0
 ---
 

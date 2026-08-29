@@ -14,7 +14,7 @@ version: 1.0.0.0
 # Token Retint Checklist
 
 Use this checklist before, during, and before claiming completion of any `--pi-*`-derived color or
-component-token change in `app-mobile/`. Pair with `references/retint-recipes.md` for the full
+component-token change in `app-mobile/`. Pair with `references/design-system/retint-recipes.md` for the full
 worked steps.
 
 ---
@@ -29,7 +29,7 @@ Guards against unintended blast radius, primitive drift, and guardrail-fence vio
 ### Usage
 
 Work through PRE-FLIGHT before touching any file, DURING THE EDIT while making the change, and PROOF
-before claiming completion. Pair with `references/retint-recipes.md` for the full worked steps.
+before claiming completion. Pair with `references/design-system/retint-recipes.md` for the full worked steps.
 
 ---
 
@@ -110,7 +110,7 @@ Screenshots do not prove color here — the app's CSP renders it unstyled under 
 
 ## 7. RELATED RESOURCES
 
-- [retint-recipes.md](../references/retint-recipes.md) — the full worked recipes
-- [component-tokens.md](../references/component-tokens.md) — the component-token inventory and blast radius
-- [theme-remap.md](../references/theme-remap.md) — which role reads which primitive per theme
-- [verification.md](../references/verification.md) — the resolver method and command gate in full
+- [retint-recipes.md](../references/design-system/retint-recipes.md) — the full worked recipes
+- [component-tokens.md](../references/design-system/component-tokens.md) — the component-token inventory and blast radius
+- [theme-remap.md](../references/design-system/theme-remap.md) — which role reads which primitive per theme
+- [verification.md](../references/verification/verification.md) — the resolver method and command gate in full

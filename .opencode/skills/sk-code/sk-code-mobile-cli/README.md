@@ -3,7 +3,7 @@
 The read-only evidence base a code workflow loads when it works on the **Pi Remote Mobile-CLI** app.
 It carries the app's formalized design system so implementation, quality, review, debug, and verify
 work honor the same token library, natural comment convention, guardrails, and verification gate the app
-actually ships under — instead of treating `apps/pi-remote-web/` as a generic, unowned frontend.
+actually ships under — instead of treating `app-mobile/` as a generic, unowned frontend.
 
 ---
 
@@ -15,7 +15,7 @@ actually ships under — instead of treating `apps/pi-remote-web/` as a generic,
 | **Backend** | `evidence-base` |
 | **Tools** | read-only — `Read, Bash, Grep, Glob`; mutates nothing |
 | **Advisor** | invisible (`routingClass: metadata`); reached only by hub bundling |
-| **Detected surface** | `PI_REMOTE` — `apps/pi-remote-web/`, `apps/pi-remote-relay/`, `packages/pi-*`, `@pi-remote/*` |
+| **Detected surface** | `PI_REMOTE` — `app-mobile/`, `app-relay/`, `@pi-remote/*` |
 | **Bundled with** | a workflow mode, e.g. `[sk-code-quality, sk-code-mobile-cli]` |
 | **Frozen contracts** | ink-on-parchment tokens (Inter + Source Serif 4; WCAG AA; ≥44px) · read-only security posture |
 
@@ -25,7 +25,7 @@ actually ships under — instead of treating `apps/pi-remote-web/` as a generic,
 
 ### Why This Surface Exists
 
-Before this packet, code work on `apps/pi-remote-web/` detected as **UNKNOWN**: a Vite/React app with no
+Before this packet, code work on `app-mobile/` detected as **UNKNOWN**: a SvelteKit app with no
 Webflow markers and outside `.opencode/` fell through surface detection, so the hub could not
 auto-load the app's token library, comment convention, or editability guardrails. A designer or an agent
 editing the system had no surface telling them where the seams are and where the frozen lines sit. This
@@ -45,19 +45,19 @@ surface closes that gap: PI_REMOTE now detects, and the design-system evidence l
 ### The Design-System Evidence Layer
 
 The **live** artifacts live in the app repo and this surface points at them rather than copying them:
-`apps/pi-remote-web/src/design-system/tokens.md`, `.../designer-guide.md`, and the live catalog
-`apps/pi-remote-web/catalog.html`. The surface's own `references/` distill the standards a workflow must
+`feature-catalog/design-system/token-library.md`, `.../designer-editability.md`, and the live
+Storybook catalog served by `npm run storybook`. The surface's own `references/` distill the standards a workflow must
 apply; the app artifacts are the source of truth for the exact values and the browsable catalog.
 
 ### The Mobile CLI App Repository
 
 The Pi Remote app is a **separate repository from this skills hub** — the **Mobile CLI app repo**. Its
-source (`apps/pi-remote-web/`, `apps/pi-remote-relay/`, `packages/pi-*`), its `specs/`, and the live
+source (`app-mobile/`, `app-relay/`), its `specs/`, and the live
 design-system artifacts named above all live there; it is the source of truth. This surface is that
 repo's read-only design-system mirror inside `sk-code`. When a code workflow runs on the app, the Mobile
-CLI repo is the working tree, so every `apps/…` and `packages/…` path this packet cites resolves there —
+CLI repo is the working tree, so every `app-mobile` and `app-relay` path this packet cites resolves there —
 not against this hub. The design-system contract distilled here is specified in
-`specs/003-pi-remote-design-system/` in that repo.
+`specs/003-design-system-library/` in that repo.
 
 ---
 
@@ -65,11 +65,11 @@ not against this hub. The design-system contract distilled here is specified in
 
 A workflow bundling this surface should, in order:
 
-1. Read `references/token-library.md` to place any color/spacing/radius change in the right layer
+1. Read `references/design-system/token-library.md` to place any color/spacing/radius change in the right layer
    (semantic role for a system-wide retint; component token for one surface; never a `--pi-*` primitive).
-2. Read `references/comment-grammar.md` to find the nearby purpose comment for the edit class (token /
+2. Read `references/conventions/comment-grammar.md` to find the nearby purpose comment for the edit class (token /
    slot / state / layout) and confirm it is not inside a `Do not edit — <why>` fence.
-3. Make the change, then run `references/verification.md` — the browser-free resolvers plus
+3. Make the change, then run `references/verification/verification.md` — the browser-free resolvers plus
    `npm run typecheck` / `build` / `test:web` — to prove no frozen value moved and both themes still
    pass WCAG AA.
 
@@ -115,13 +115,13 @@ mode and appends `sk-code-mobile-cli` as read-only evidence — e.g. a quality g
 **Does this surface edit the app?** No — it is read-only evidence. The bundled workflow mode makes edits;
 this surface tells it the rules.
 
-**Can I retint the app from here?** You change values in the app's `src/style.css` (through the workflow
+**Can I retint the app from here?** You change values in the app's `app-mobile/src/app.css` (through the workflow
 mode); this surface tells you which layer to change and how the retint propagates. Never touch a
 `--pi-*` primitive value.
 
 **Why browser-free verification?** The app's strict CSP renders it unstyled under headless CDP, so
-screenshots do not prove color. Resolving `style.css` to final values per theme does. See
-`references/verification.md`.
+screenshots do not prove color. Resolving `app-mobile/src/app.css` to final values per theme does. See
+`references/verification/verification.md`.
 
 **Is it advisor-routable?** No. It is `routingClass: metadata` and advisor-invisible; the advisor routes
 the single `sk-code` identity and the hub bundles this surface.
@@ -133,7 +133,7 @@ the single `sk-code` identity and the hub bundles this surface.
 - Packet conforms to the surface contract: `packetKind: surface`, `backendKind: evidence-base`, read-only
   `toolSurface`, `routingClass: metadata`, `folder == packetSkillName`, no packet-level advisor metadata.
 - Fleet gate: `node .opencode/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs` exits 0.
-- Routing: `compiled-route.cjs --hub sk-code --prompt "code work on apps/pi-remote-web"` bundles this
+- Routing: `compiled-route.cjs --hub sk-code --prompt "code work on app-mobile"` bundles this
   surface instead of returning `defer`.
 
 ---
@@ -146,5 +146,5 @@ the single `sk-code` identity and the hub bundles this surface.
 - `changelog/` — release notes for this packet.
 - `../../ROUTER.md`, `../../mode-registry.json`, `../../hub-router.json` — the parent hub's routing.
 - The **Mobile CLI app repo** — the app source, its `specs/` (including the design-system spec
-  `specs/003-pi-remote-design-system/`), and the live `tokens.md` / `designer-guide.md` / `catalog.html`.
+  `specs/003-design-system-library/`), and the live `token-library.md` / `designer-editability.md` and the Storybook catalog.
   This surface is its read-only evidence mirror; see §2 "The Mobile CLI App Repository".

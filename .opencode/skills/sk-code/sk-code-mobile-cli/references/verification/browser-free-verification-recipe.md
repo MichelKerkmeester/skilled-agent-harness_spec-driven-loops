@@ -119,6 +119,6 @@ process's exit code.
 
 ## 6. RELATED REFERENCES
 
-- `a11y-parity.md` — the accessibility contract these gates cannot see, and how it is preserved.
-- `comment-grammar.md` — the natural purpose comments that identify the token seam a change targets.
-- [`storybook/component-story-upkeep.md`](storybook/component-story-upkeep.md) — how `catalog-smoke-cdp.mjs` fits the Storybook coverage contract.
+- [`../svelte/a11y-parity.md`](../svelte/a11y-parity.md) — the accessibility contract these gates cannot see, and how it is preserved.
+- [`../conventions/comment-grammar.md`](../conventions/comment-grammar.md) — the natural purpose comments that identify the token seam a change targets.
+- [`storybook/component-story-upkeep.md`](../storybook/component-story-upkeep.md) — how `catalog-smoke-cdp.mjs` fits the Storybook coverage contract.

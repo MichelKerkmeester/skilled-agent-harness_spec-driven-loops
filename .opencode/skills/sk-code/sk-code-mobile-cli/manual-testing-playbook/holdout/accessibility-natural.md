@@ -6,9 +6,9 @@ description: "This scenario validates generalization for `PR-H03`. It focuses on
 expected_surface: PI_REMOTE
 expected_intent: ACCESSIBILITY
 expected_resources:
-  - references/editability-guardrails.md
-  - references/verification.md
-  - references/a11y-parity.md
+  - references/conventions/editability-guardrails.md
+  - references/verification/verification.md
+  - references/svelte/a11y-parity.md
   - assets/a11y-parity-checklist.md
 version: 1.0.0.0
 ---
@@ -76,7 +76,7 @@ Before we ship this color change, can you double-check it still reads clearly fo
 
 1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/accessibility-natural.md`
 2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"ACCESSIBILITY":/p'` — confirm none of its listed keyword substrings appear in the exact prompt.
-3. `for p in references/editability-guardrails.md references/verification.md references/a11y-parity.md assets/a11y-parity-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/conventions/editability-guardrails.md references/verification/verification.md references/svelte/a11y-parity.md assets/a11y-parity-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 
