@@ -1358,8 +1358,6 @@ describe('fanout-run.cjs — cli-devin adapter', () => {
       'gemini-3-7-flash-high',
       'glm-5-2', 'glm-5-2-1m', 'glm-5-2-max', 'glm-5-2-max-1m', 'glm-5-2-none', 'glm-5-2-none-1m',
       'gpt-5-6-luna-max', 'gpt-5-6-luna-max-priority',
-      'grok-4-5-high', 'grok-4-5-low', 'grok-4-5-medium',
-      'grok-4-6-high', 'grok-4-6-low', 'grok-4-6-medium', 'grok-4-6-xhigh',
       'swe', 'swe-1-7', 'swe-1-7-lightning', 'swe-1-7-medium',
     ];
     for (const model of allowed) {

@@ -152,7 +152,7 @@ devin -p -- "prompt words here"    # Same, using -- separator
 devin
 
 # Non-interactive with model selection
-devin -p --model grok-4-6-high -- "Refactor utils.ts to use async/await"
+devin -p --model deepseek-v4-pro-max -- "Refactor utils.ts to use async/await"
 
 # With permission mode for file edits
 devin -p --permission-mode accept-edits -- "Add error handling to auth.ts"
@@ -184,18 +184,18 @@ devin -- add a login page
 
 Devin dispatches **`swe`** (alias → `swe-1-7-lightning`) at the **`accept-edits`** permission mode by default. The model is switched per-dispatch with `--model <alias>` (short names resolve to the latest version in that family). There is no headless reasoning-effort flag — depth is expressed through the permission mode (autonomy) and the chosen model, not a reasoning flag; interactive REPL sessions cycle thinking depth with `Alt+T` (macOS: `Opt+T`).
 
-**Full curated roster (DeepSeek / GLM-5.2 / GPT-5.6 Luna Max / Grok (4.5 and 4.6) / SWE-1.7 families) → [providers-and-models.md](./providers-and-models.md).** Devin's native Adaptive router and full 37-family roster are out of this skill's curated scope.
+**Full curated roster (DeepSeek / Gemini / GLM-5.2 / GPT-5.6 Luna Max / SWE-1.7 families) → [providers-and-models.md](./providers-and-models.md).** Devin's native Adaptive router and full 37-family roster are out of this skill's curated scope.
 
 ### Setting the Model
 
 ```bash
 # Command flag
-devin --model grok-4-6-high -- refactor this module
+devin --model deepseek-v4-pro-max -- refactor this module
 devin --model glm-5-2 -- explain this code
 devin -p --model swe -- "list all TODO comments"
 
 # Slash command (inside REPL)
-/model grok-4-6-high
+/model deepseek-v4-pro-max
 /model glm-5-2
 /model deepseek-v4-pro
 
@@ -211,9 +211,9 @@ devin -p --model swe -- "list all TODO comments"
 
 | Task Type | Model | Rationale |
 |-----------|-------|-----------|
-| Architecture decisions | `grok-4-6-high` | Multi-faceted analysis benefits from deep reasoning |
-| Security audits | `grok-4-6-high` | Catches subtle vulnerability patterns |
-| Complex planning | `grok-4-6-high` / `glm-5-2-max` | Multi-strategy evaluation benefits from depth |
+| Architecture decisions | `deepseek-v4-pro-max` / `gpt-5-6-luna-max` | Multi-faceted analysis benefits from deep reasoning |
+| Security audits | `deepseek-v4-pro-max` | Catches subtle vulnerability patterns |
+| Complex planning | `deepseek-v4-pro-max` / `glm-5-2-max` | Multi-strategy evaluation benefits from depth |
 | Code generation | `glm-5-2` / `glm-5-2-max` | Balanced for most generation tasks |
 | Standard code review | `glm-5-2` / `swe-1-7` | Efficient for pattern-based review |
 | Implementation | `glm-5-2` / `swe-1-7` | Balanced for translating specs to code |
@@ -475,7 +475,7 @@ devin -p --permission-mode auto --model swe -- "Map the authentication flow"
 devin -p --permission-mode accept-edits --model swe -- "Add error handling to all API routes"
 
 # ELEVATED RISK: Dangerous mode — use only with explicit approval
-devin -p --permission-mode dangerous --model grok-4-6-high -- "Migrate database schema"
+devin -p --permission-mode dangerous --model deepseek-v4-pro-max -- "Migrate database schema"
 
 # AUTONOMOUS: OS-enforced sandbox
 devin --sandbox -p --model swe -- "Run the test suite and fix failures"
@@ -584,7 +584,7 @@ devin list --format json
 
 | Variable | Purpose | Example |
 |----------|---------|---------|
-| `DEVIN_MODEL` | Default model override | `swe`, `glm-5-2`, `grok-4-6-high` |
+| `DEVIN_MODEL` | Default model override | `swe`, `glm-5-2`, `deepseek-v4-pro-max` |
 | `DEVIN_PERMISSION_MODE` | Default permission mode | `auto`, `accept-edits`, `smart`, `dangerous` |
 | `DEVIN_SANDBOX` | Enable sandbox | `1` |
 | `DEVIN_PROJECT_DIR` | Project root directory (set automatically by Devin on session start) | `/path/to/project` |

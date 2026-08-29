@@ -22,7 +22,7 @@ The single catalog of the models, aliases, defaults, permission-mode lever, and 
 ## 1. OVERVIEW
 
 ### Core Principle
-One place to answer "which model, which uid, which permission mode, how to dispatch" for cli-devin. This mode is backed by **Cognition's Devin CLI** — a single binary that fronts 37 model families through family slugs, aliases, and model uids. This catalog curates the six families kept in scope for cli-devin: DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna Max only), Grok (4.5 and 4.6), and SWE-1.7.
+One place to answer "which model, which uid, which permission mode, how to dispatch" for cli-devin. This mode is backed by **Cognition's Devin CLI** — a single binary that fronts 37 model families through family slugs, aliases, and model uids. This catalog curates the five families kept in scope for cli-devin: DeepSeek, Gemini, GLM-5.2, GPT-5.6 (Luna Max only), and SWE-1.7.
 
 ### When to Use
 - Choosing a `--model <alias>` for a `devin -p` dispatch
@@ -61,23 +61,15 @@ Alphabetical by family, then by model uid within each family.
 | GLM-5.2 | `glm-5-2-none-1m` | 1M | Reasoning disabled, 1M context |
 | GPT-5.6 Luna | `gpt-5-6-luna-max` | 1M | Luna Max thinking; cheapest GPT-5.6 persona (added 2026-08-14) |
 | GPT-5.6 Luna | `gpt-5-6-luna-max-priority` | 1M | Luna Max, Fast — `-priority` is Devin's Fast suffix (added 2026-08-14) |
-| Grok 4.5 | `grok-4-5-high` | 500K | High effort |
-| Grok 4.5 | `grok-4-5-low` | 500K | Low effort |
-| Grok 4.5 | `grok-4-5-medium` | 500K | Medium effort |
-| Grok 4.6 | `grok-4-6-high` | 500K | High effort |
-| Grok 4.6 | `grok-4-6-low` | 500K | Low effort |
-| Grok 4.6 | `grok-4-6-medium` | 500K | Medium effort |
-| Grok 4.6 | `grok-4-6-xhigh` | 500K | Extra-high effort — new in 4.6; 4.5 has no xhigh tier |
 | SWE-1.7 | `swe-1-7` | 262K | Max effort — free (beta) |
 | SWE-1.7 | `swe-1-7-lightning` | 203K | Lightning speed tier (beta); the `swe` alias resolves here |
 | SWE-1.7 | `swe-1-7-medium` | 262K | Medium effort — free (beta) |
 
 ### Notes on the roster
-- Pass a family slug, alias, or full model uid to `--model` (e.g. `--model swe`, `--model grok-4-6-high`). The `swe` alias currently resolves to `swe-1-7-lightning`; pin the exact uid in scripts for predictability.
-- **Grok 4.6 joins Grok 4.5 (2026-08-12).** Devin's live roster carries both a `grok-4.5` family and a `grok-4.6` family side by side (confirmed via `devin models list`). This skill's curated allowlist adds all 4 4.6 uids alongside the existing 3 4.5 uids — an addition, not a swap. 4.6 ships a fourth tier, `xhigh`, that 4.5 never had. All 4 new uids were dispatch-tested end to end (`devin -p --model grok-4-6-high -- "..."` and `...-xhigh` both returned a live model response) before being added.
-- **DeepSeek Max tiers + GPT-5.6 Luna Max join (2026-08-14).** `deepseek-v4-flash-max` and `deepseek-v4-pro-max` (the Max thinking tier of each DeepSeek V4 family) and `gpt-5-6-luna-max` + `gpt-5-6-luna-max-priority` (the first GPT-5.6 persona in this catalog) were confirmed present verbatim in the live `devin models list` output on 2026-08-14. Devin encodes the "Fast" speed tier as the `-priority` suffix, not `-fast`, so `gpt-5-6-luna-max-priority` is the Fast variant of Luna Max. Unlike the Grok uids above, these four were **list-verified only, not dispatch-tested** (operator decision).
+- Pass a family slug, alias, or full model uid to `--model` (e.g. `--model swe`, `--model glm-5-2-max`). The `swe` alias currently resolves to `swe-1-7-lightning`; pin the exact uid in scripts for predictability.
+- **DeepSeek Max tiers + GPT-5.6 Luna Max join (2026-08-14).** `deepseek-v4-flash-max` and `deepseek-v4-pro-max` (the Max thinking tier of each DeepSeek V4 family) and `gpt-5-6-luna-max` + `gpt-5-6-luna-max-priority` (the first GPT-5.6 persona in this catalog) were confirmed present verbatim in the live `devin models list` output on 2026-08-14. Devin encodes the "Fast" speed tier as the `-priority` suffix, not `-fast`, so `gpt-5-6-luna-max-priority` is the Fast variant of Luna Max. These four were **list-verified only, not dispatch-tested** (operator decision).
 - **DeepSeek Flash is Max-thinking-only (policy).** Dispatch DeepSeek V4 Flash only via `deepseek-v4-flash-max` — on devin the max thinking tier is baked into the uid, and this roster carries no bare `deepseek-v4-flash`. The sibling cli-pi and cli-opencode surfaces reach the same tier through a flag: their fan-out builders pin `deepseek-v4-flash` to max thinking (`--thinking max` / `--variant max`).
-**Gemini 3.7 Flash High joins (2026-08-15).** `gemini-3-7-flash-high` is the first Gemini uid in this catalog (five families → six). Devin labels it "Gemini 3.7 Flash High" with a 1M context window; the minimal/low/medium sibling tiers stay out of scope. The uid was confirmed present verbatim in the live `devin models list` output and **dispatch-tested end-to-end** on 2026-08-15 (probe dispatch returned a live model response, exit 0).
+**Gemini 3.7 Flash High joins (2026-08-15).** `gemini-3-7-flash-high` is the first Gemini uid in this catalog (four families → five). Devin labels it "Gemini 3.7 Flash High" with a 1M context window; the minimal/low/medium sibling tiers stay out of scope. The uid was confirmed present verbatim in the live `devin models list` output and **dispatch-tested end-to-end** on 2026-08-15 (probe dispatch returned a live model response, exit 0).
 - GLM tier suffixes stack: `-max` = Max reasoning, `-1m` = 1M context, `-none` = reasoning disabled; `glm-5-2` (no suffix) is GLM-5.2 High (free tier).
 - This is a curated subset. Devin's full 37-family roster (Claude, GPT, other Gemini, Kimi, older SWE, and the `adaptive` router) is available via `devin models list` but is out of this catalog's scope.
 - Subagents dispatched via `run_subagent` take a profile, not a model: `subagent_explore` runs on the cheap default, `subagent_general` inherits the parent model. To pin a model on a write-capable subagent, use a custom `.devin/agents/<name>/AGENT.md` with a `model:` field.
@@ -123,7 +115,7 @@ cli-devin has **no headless reasoning-effort flag** — there is no `--variant` 
 
 `--sandbox` is orthogonal containment, not a fifth permission mode. It enables Devin's OS sandboxing and does not select an additional `--permission-mode` value; combine it with one of the four modes above when containment is required. This separation matches the live `devin --help` surface.
 
-**2. Model thinking level — interactive only.** Some models support configurable reasoning depth, but it is **not exposed as a headless flag**. In an interactive REPL session, cycle the thinking level with `Alt+T` (macOS: `Opt+T`). For non-interactive `-p` dispatch, choose the depth by picking the model instead (`grok-4-6-high`/`-xhigh`, `deepseek-v4-pro-max`/`deepseek-v4-flash-max`, or `gpt-5-6-luna-max` for deep/max reasoning; `swe-1-7-lightning` for minimal), or switch the interactive model with `/model <name>` / `Alt+T`. The Max thinking tier is baked into the uid (`…-max`); the Fast speed tier is the `-priority` suffix (e.g. `gpt-5-6-luna-max-priority`), not a separate flag.
+**2. Model thinking level — interactive only.** Some models support configurable reasoning depth, but it is **not exposed as a headless flag**. In an interactive REPL session, cycle the thinking level with `Alt+T` (macOS: `Opt+T`). For non-interactive `-p` dispatch, choose the depth by picking the model instead (`deepseek-v4-pro-max`/`deepseek-v4-flash-max` or `gpt-5-6-luna-max` for deep/max reasoning; `glm-5-2-max` for strong generation; `swe-1-7-lightning` for minimal), or switch the interactive model with `/model <name>` / `Alt+T`. The Max thinking tier is baked into the uid (`…-max`); the Fast speed tier is the `-priority` suffix (e.g. `gpt-5-6-luna-max-priority`), not a separate flag.
 
 ---
 

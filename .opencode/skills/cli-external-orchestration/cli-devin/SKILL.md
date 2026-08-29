@@ -233,7 +233,6 @@ devin -p \
 | "Use glm" / "Use glm high" | `--model glm-5-2 --permission-mode dangerous` |
 | "Use glm no-thinking" | `--model glm-5-2-none --permission-mode dangerous` |
 | "Use glm max" | `--model glm-5-2-max --permission-mode dangerous` |
-| "Use grok high" | `--model grok-4-6-high --permission-mode dangerous` |
 | "Use deepseek" | `--model deepseek-v4-pro --permission-mode dangerous` |
 | "Use swe max" | `--model swe-1-7 --permission-mode dangerous` |
 | "Use glm accept-edits" | `--model glm-5-2 --permission-mode accept-edits` |
@@ -243,9 +242,9 @@ Honor whichever dimensions the user names. Model stays on `swe` and permission m
 
 ### Model Selection
 
-Default `swe` (alias → `swe-1-7-lightning`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families, alphabetical: DeepSeek (`deepseek-v4-pro`, `deepseek-v4-flash-max`, `deepseek-v4-pro-max`), Gemini (`gemini-3-7-flash-high`), GLM-5.2 (`glm-5-2` = **GLM-5.2 High**, free tier; `glm-5-2-1m` = High 1M; `glm-5-2-max` = Max; `glm-5-2-max-1m` = Max 1M; `glm-5-2-none` = No Thinking; `glm-5-2-none-1m` = No Thinking 1M), GPT-5.6 Luna Max (`gpt-5-6-luna-max`, `gpt-5-6-luna-max-priority`), Grok 4.5 (`grok-4-5-high`, `grok-4-5-low`, `grok-4-5-medium`), Grok 4.6 (`grok-4-6-high`, `grok-4-6-low`, `grok-4-6-medium`, `grok-4-6-xhigh`), SWE-1.7 (`swe-1-7`, `swe-1-7-lightning`, `swe-1-7-medium`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
+Default `swe` (alias → `swe-1-7-lightning`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families, alphabetical: DeepSeek (`deepseek-v4-pro`, `deepseek-v4-flash-max`, `deepseek-v4-pro-max`), Gemini (`gemini-3-7-flash-high`), GLM-5.2 (`glm-5-2` = **GLM-5.2 High**, free tier; `glm-5-2-1m` = High 1M; `glm-5-2-max` = Max; `glm-5-2-max-1m` = Max 1M; `glm-5-2-none` = No Thinking; `glm-5-2-none-1m` = No Thinking 1M), GPT-5.6 Luna Max (`gpt-5-6-luna-max`, `gpt-5-6-luna-max-priority`), SWE-1.7 (`swe-1-7`, `swe-1-7-lightning`, `swe-1-7-medium`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
 
-**Selection Strategy**: default `swe` for quick edits and cost-sensitive work; switch to `grok-4-6-high` (or `-xhigh` for the deepest passes) for reasoning-heavy work (architecture, security, deep planning); use `glm-5-2` / `glm-5-2-max` for general generation; use `swe-1-7` for max-effort SWE work. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
+**Selection Strategy**: default `swe` for quick edits and cost-sensitive work; switch to `deepseek-v4-pro-max` or `gpt-5-6-luna-max` for reasoning-heavy work (architecture, security, deep planning); use `glm-5-2` / `glm-5-2-max` for general generation; use `swe-1-7` for max-effort SWE work. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 
 ### Devin Subagent Delegation
 
@@ -352,7 +351,7 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
 4. Validate Devin-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.
 6. **Redirect devin stdin from `/dev/null`** when dispatching in a `while read` loop. Pattern: `devin -p -- "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Without `</dev/null`, the backgrounded devin process inherits the loop's stdin and silently consumes the remaining lines. See `references/integration-patterns.md#background-execution` → "Silent Stdin Consumption".
-7. **Specify model + permission mode explicitly** — never rely on caller environment. Default: `--model swe --permission-mode dangerous`. Honor user overrides verbatim. Use `grok-4-6-high` for reasoning-heavy tasks (architecture, security, deep planning).
+7. **Specify model + permission mode explicitly** — never rely on caller environment. Default: `--model swe --permission-mode dangerous`. Honor user overrides verbatim. Use `deepseek-v4-pro-max` or `gpt-5-6-luna-max` for reasoning-heavy tasks (architecture, security, deep planning).
 8. Route to the appropriate subagent profile when the task matches a specialization (see Section 3 routing table); use `subagent_explore` for read-only research, `subagent_general` for code changes.
 9. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 in non-interactive `-p` mode.
 10. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 2-tier rule canonical in `../../sk-prompt/assets/cli-prompt-quality-card.md`:
