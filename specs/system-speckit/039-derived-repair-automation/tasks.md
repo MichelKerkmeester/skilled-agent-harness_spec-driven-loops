@@ -9,7 +9,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/039-derived-repair-automation"
-    last_updated_at: "2026-08-28T16:00:00Z"
+    last_updated_at: "2026-08-29T05:52:27Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored the task breakdown for the derived-repair tool"
     next_safe_action: "Harden the repair tool and add its fixture tests"
@@ -74,10 +74,10 @@ _memory:
 ## PHASE 3: VERIFICATION
 
 - [x] T-201 [P0] Run the tool's tests and read the result.
-- [ ] T-202 [P0] Dry run across the specs tree; confirm no repairable derived failures remain.
-- [ ] T-203 [P0] Confirm every remaining failure belongs to an authored rule, with counts by rule.
+- [x] T-202 [P0] Dry run across the specs tree; confirm no repairable derived failures remain.
+- [x] T-203 [P0] Confirm every remaining failure belongs to an authored rule, with counts by rule.
 - [ ] T-204 [P1] Confirm the workflow step passes in reporting mode.
-- [ ] T-205 [P1] Confirm the scoped diff contains no archived or scratch packet and no generated database or log file.
+- [x] T-205 [P1] Confirm the scoped diff contains no archived or scratch packet and no generated database or log file.
 - [ ] T-206 [P2] Write the implementation summary and reconcile packet metadata.
 
 <!-- /ANCHOR:phase-3 -->
@@ -158,8 +158,8 @@ assertion that a rule stopped firing.
 <!-- ANCHOR:fix-completeness -->
 ## FIX COMPLETENESS
 
-- [ ] CHK-030 [P0] Fleet dry run reports no repairable derived failures.
-- [ ] CHK-031 [P1] Remaining failures reported by rule and all belong to authored classes.
+- [x] CHK-030 [P0] Fleet dry run reports no repairable derived failures.
+- [x] CHK-031 [P1] Remaining failures reported by rule and all belong to authored classes.
 
 <!-- /ANCHOR:fix-completeness -->
 

@@ -9,10 +9,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/039-derived-repair-automation"
-    last_updated_at: "2026-08-28T16:00:00Z"
+    last_updated_at: "2026-08-29T05:52:27Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Prototyped the repair tool and proved it restores a broken packet"
-    next_safe_action: "Harden argument handling and add the fixture tests"
+    recent_action: "Shipped the repair tool with tests, workflow reporting and the fleet application"
+    next_safe_action: "Confirm the workflow reporting step runs green on a dispatched sweep"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/spec/repair-derived.cjs"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-authoring"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -93,12 +93,15 @@ rewrite the fleet as a side effect of being run.
 
 | Check | Status | Evidence |
 |-------|--------|----------|
-| Repairs restore a broken packet | PASS | A packet was broken in three derived ways, repaired, and two of its three files matched the committed content exactly; the third differed only in the level's type, which was then corrected |
-| Idempotent | PASS | A dry run over an already-repaired subtree reported nothing repairable and exited clean |
-| Refuses non-derived failures | PASS | The same run reported the rules it declined, grouped and counted, without writing |
-| Fixture tests | PENDING | Not yet written |
-| Workflow wiring | PENDING | Not yet added |
-| Fleet dry run clean | PENDING | Not yet run |
+| Repairs restore a broken packet | PASS | A packet was broken in three derived ways, repaired, and its files compared against their committed content |
+| Idempotent | PASS | A second run over a repaired packet changes nothing; asserted in the fixture tests |
+| Refuses non-derived failures | PASS | An authored-only fixture is byte-identical afterwards, asserted on file contents |
+| Refuses targets outside the packet tree | PASS | Paths outside the tree, traversal, unknown flags and valueless flags all rejected |
+| Fixture tests | PASS | Six tests covering repair, refusal, containment, reporting and idempotence |
+| Fleet dry run clean | PASS | 2,509 packets inspected, nothing repairable, nothing unreadable, working tree unchanged |
+| Remaining failures authored-only | PASS | Reported by rule, led by continuity freshness and evidence citation |
+| Standards conformance | PASS | Boxed header and numbered sections per the surface checklist; the surface drift guards report nothing against these files |
+| Workflow reporting step | PENDING | Added and dispatched; not yet observed green on a run |
 
 <!-- /ANCHOR:verification -->
 
@@ -107,12 +110,18 @@ rewrite the fleet as a side effect of being run.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Only three repairs exist.** Other derivable fields may remain; the audit of
-   the generators that emit them has not been done.
-2. **No tests yet.** Correctness rests on a single manual break-and-restore
-   exercise, which is evidence but not coverage.
-3. **Not wired into any workflow**, so drift is still found by hand.
-4. **The authored failures stay failing by design.** Roughly 139 packets and
-   1,100 rule-hits record work nobody wrote down, and no tool can supply that.
+1. **A fleet run is slow.** The tool asks the validator about each packet in
+   turn, so a whole-tree pass takes about an hour. Scope it with `--folder` or
+   `--roots` where possible, and expect the workflow step to add materially to
+   that job's runtime.
+2. **The repairable set is deliberately small.** Four rules are settled from
+   repository state; every other failing rule is reported and left, because the
+   answer lives with whoever did the work rather than in the repository.
+3. **Repairs raise the freshness warning.** Re-deriving metadata updates the
+   save time while the continuity block keeps its own, so an error becomes a
+   warning and the raw failure count moves less than the error count does.
+4. **Most of what it found was invisible.** The weekly sweep only inspects
+   packets claiming completion, so the drift this corrected was not causing any
+   reported failure.
 
 <!-- /ANCHOR:limitations -->
