@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Model Benchmark - Resume Adapter
+# Verification Checklist: Model Benchmark - Resume Adapter
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

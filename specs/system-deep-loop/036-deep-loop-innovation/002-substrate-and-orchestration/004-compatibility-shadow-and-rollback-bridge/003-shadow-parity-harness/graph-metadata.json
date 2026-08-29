@@ -174,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -184,17 +190,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the fail-closed harness that runs legacy and dark deep-loop paths on identical sealed inputs, compares verified replay-fingerprint components and projected legacy bytes, triages every divergence, and emits the parity certificate required before phase-014 authority cutover.",
     "created_at": "2026-07-16T03:43:49.017Z",
-    "last_save_at": "2026-08-18T11:07:39.581Z",
+    "last_save_at": "2026-08-29T09:57:38.576Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9774fdf68885e731e873ac50ecb0870aa937dbdc082936da638cfdfe7714475e",
+    "source_fingerprint": "sha256:7e2e11cb6c79ca88f5e0cd218720bf352d27360386eb595040dd758100bea42c",
     "source_doc_hashes": {
       "spec.md": "d3192346c688a48388f737f52cedbd4575205df330eb2063e2db41ae5bc6a018",
       "plan.md": "6d4d6a513afba929db48bdc1ccf761223a87ab8e121693fc326e32d616a2dee5",
       "tasks.md": "969ac7c3700bf6abde056f8b3e8fcaaf6852f6351f2e0e0222c4f183db81e851",
-      "checklist.md": "dd53ac57c7c0e5c748612b669458798fbfa0e9a4fb044a7c2d6ae5fc6e68d64b",
+      "checklist.md": "2e20e1935ebbbe5ca7166fe39c35e2e8d6818305161a3c5f278f33580c4e9c7d",
       "implementation-summary.md": "9725ddb7c7f1f553870207ebc89902de7d4cc69661e32e9bd8e78d1e2c919c68"
     },
     "last_active_child_id": null,

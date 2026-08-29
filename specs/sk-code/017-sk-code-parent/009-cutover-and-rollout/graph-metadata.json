@@ -181,21 +181,21 @@
         "source": "derived"
       },
       {
-        "name": "Bearing Verification",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "router-replay",
-        "kind": "key_phrase",
+        "name": "Bearing Verification",
+        "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The cutover removes `sk-code-review` as a routing identity and cuts the release",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-08-28T16:28:18.023Z",
+    "last_save_at": "2026-08-29T09:58:25.518Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:49a389fa25853b3247f867397176deda855f0cdfc344ecb4e7c849b118d1243a",
+    "source_fingerprint": "sha256:575eed99ec6ddc4be453912d46ead58a3e1a9bb8adb6925831fe6f771a6a0616",
     "source_doc_hashes": {
       "spec.md": "97dacc2342b3cfc0833aa86acee517d6d825c527627be13433f7c1bda795d29d",
       "plan.md": "aabaa08d0b974178cdd7d474cb4fd113059f46f79c2bedcb1b545493d869f43f",
       "tasks.md": "555a4a498697de2835bbea56f3aa9903b2ed79b8c292cdd1abf58d2e7c1b94e7",
-      "checklist.md": "e6644b1e9c7fb0e074e32cc3462b863db28d3d70eb945df1ab0cbf7e1d960b2d",
+      "checklist.md": "f61ddcdd5714e5626c900075fa6957e717b9b0347677c16819be46e3e9fdf8e1",
       "implementation-summary.md": "ed00b570472476b2c4c569fb762ebef096b918914ef81b489a87a8891963afb2"
     },
     "last_active_child_id": null,

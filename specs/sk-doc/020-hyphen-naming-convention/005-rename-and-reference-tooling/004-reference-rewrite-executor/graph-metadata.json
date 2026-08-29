@@ -41,10 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_core.py",
-      ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_executor.py",
-      ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/implementation-summary.md",
       "checklist.md",
       "spec.md",
       "plan.md",
@@ -52,30 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "reference_rewrite_core.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_core.py",
-        "source": "derived"
-      },
-      {
-        "name": "reference_rewrite_executor.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_executor.py",
-        "source": "derived"
-      },
-      {
-        "name": "test_reference_rewrite_executor.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "checklist.md",
         "kind": "doc",
@@ -98,6 +70,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -185,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -195,11 +179,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The checker only records reference sites read-only and the engine only moves files, so nothing deterministically rewrites in-file references to renamed paths. This phase defines a compare-and-swap-protected static reference-rewrite executor that consumes the disposition ledger and semantic map, verifies each site's preimage blob before writing, and regenerates rather than force-applies a rewrite plan whose base moved.",
     "created_at": "2026-07-15T09:35:26.640Z",
-    "last_save_at": "2026-07-18T08:10:33.055Z",
+    "last_save_at": "2026-08-29T10:01:08.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:334e93a08dc2438640a4a22ea1f2149dee7a7179677f68f1f741b5a6d88138e1",
+    "source_fingerprint": "sha256:8f9f53e0599d30eaff935ee1beb5a9e34223c20e62899167d691860947508880",
     "source_doc_hashes": {
       "spec.md": "a5e243b8b02821ea53d192ee25903a3b83518e03d7ea3602086600ba7f9ec024",
       "plan.md": "fe8ddecf72de11b123c87138744ca2b3a3c819758e421bf044e5625a09ae1858",
       "tasks.md": "344966ef6186dc43e981e2542599e8470db3721ea641ca33ce50ba396567f8c7",
-      "checklist.md": "51397d2a47a3b65c7a1909a1bd2a1dea32912caa295cad660b5110d96bd40819",
+      "checklist.md": "201a5f9ca41f190aac9aef0d4084a1d8e3be646b32f4adc4935ce34ab1481952",
       "implementation-summary.md": "0bdc316e668e2cf2c49b53cf8177ec76ac7b4048465028931d5bdc44ffa4de03"
     },
     "last_active_child_id": null,

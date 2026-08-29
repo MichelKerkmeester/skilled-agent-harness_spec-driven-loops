@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The system-spec-kit MCP sidecar surface has grown quickly across TypeScript client/worker code, a Node ensure helper, and supporting embedder lifecycle logic",
     "created_at": "2026-05-22T21:00:18Z",
-    "last_save_at": "2026-07-17T17:19:28.027Z",
+    "last_save_at": "2026-08-29T10:00:15.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,12 +223,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a3ceb9a17afdaeba43fd3acd01425bec79a429523529b790f5ff2d9f2bb715d3",
+    "source_fingerprint": "sha256:7a1248fefa9183c839f3739abb602673332144f53e37f3bfba7a664a91ce324e",
     "source_doc_hashes": {
       "spec.md": "3c708ee283a5e040161a8b2204002e15e171399ad7763d6beed18725569c2b65",
       "plan.md": "ebe28a023f8f4db60295b5ab5192514ba3c4e1284fa1de2213a9b2a4aeee172d",
       "tasks.md": "ef8c888d81af9f7f7d92d17012facd85827fd34594af0ad81899adc89c3a4ffd",
-      "checklist.md": "fbc236a09ea01d975538288c96eb47dbcdc23201908e816df1d7078fccefbb26",
+      "checklist.md": "2cb1a9c6d27d5b97f4491277609753e816a31e9c91b8146257368d55dd9b9f33",
       "implementation-summary.md": "b297b044642360f3511f3dbb3222ee01d1cfa9839a659a6c63a5d8a3519c78d8",
       "research/research.md": "8ac40c52f3cb423da8a46f15d161b969a0967fba93ca482fa894d2ac0fa69158"
     },

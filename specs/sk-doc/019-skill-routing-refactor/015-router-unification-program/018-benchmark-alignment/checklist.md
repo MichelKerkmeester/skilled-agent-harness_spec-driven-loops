@@ -14,7 +14,7 @@ _memory:
     recent_action: "Restored default-off benchmark parity isolation"
     next_safe_action: "Keep activation operator-gated"
 ---
-# Checklist: Lane C Compiled-Routing Benchmark Alignment
+# Verification Checklist: Lane C Compiled-Routing Benchmark Alignment
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->

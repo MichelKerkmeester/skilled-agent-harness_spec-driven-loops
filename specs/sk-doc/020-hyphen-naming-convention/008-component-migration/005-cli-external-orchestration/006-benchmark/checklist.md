@@ -25,7 +25,7 @@ _memory:
     answered_questions:
       - "The current benchmark result is .gitkeep only."
 ---
-# Checklist: cli-external-orchestration benchmark naming
+# Verification Checklist: cli-external-orchestration benchmark naming
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

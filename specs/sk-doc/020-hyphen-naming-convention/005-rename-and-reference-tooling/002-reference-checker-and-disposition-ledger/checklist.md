@@ -21,7 +21,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Reference Checker and Disposition Ledger
+# Verification Checklist: Reference Checker and Disposition Ledger
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

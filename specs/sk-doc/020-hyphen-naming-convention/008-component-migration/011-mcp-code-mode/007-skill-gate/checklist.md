@@ -20,7 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: mcp-code-mode subtree skill gate
+# Verification Checklist: mcp-code-mode subtree skill gate
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

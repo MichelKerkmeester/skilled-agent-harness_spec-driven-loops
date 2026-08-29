@@ -32,21 +32,13 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/design-md-generator/procedures/design-system-extraction.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-procedure-template.md",
       "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "design-system-extraction.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/procedures/design-system-extraction.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -63,12 +55,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-procedure-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-procedure-template.md",
         "source": "derived"
       },
       {
@@ -184,11 +170,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`procedures/` holds exactly one file, `design-system-extraction.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T15:10:02.062Z",
-    "last_save_at": "2026-07-27T15:10:02.062Z",
+    "last_save_at": "2026-08-29T09:58:28.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +196,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da1cdfeca3a6b0b34eaf8909b6cfbe83b341c0f0a720a41a50cc788f4098cd46",
+    "source_fingerprint": "sha256:29acc2a881656d33f4fbe7b76794da5b3f0b64a2283991ae4421317e3101a4a5",
     "source_doc_hashes": {
       "spec.md": "bbe0584e35ba945333ad2fdbf81571ed8b271c5076149059a49c4e1b3a6ee64a",
       "plan.md": "4963ed4afc989c2e826dbc993ba8bb49a0f25e3c70c3681db6a8d47307de0573",
       "tasks.md": "f49fc8dd538017b64ce5a6e6b0e27fa9ed2bf57f3eef7eb0faed8df39c049681",
-      "checklist.md": "884e671b5f41a46f9c87ba1bc9d6b48b93ddfc087b5a0f9d229d011bd9c65376",
+      "checklist.md": "b7929f17748e34b0acb8df807abd84357ffff86597f77606af0e1aaead7c5a4c",
       "implementation-summary.md": "c21d1cb4e32d171fea133a5692d07d8d4dd8d450be1cf5a3dac34bc96e15d2c6"
     },
     "last_active_child_id": null,

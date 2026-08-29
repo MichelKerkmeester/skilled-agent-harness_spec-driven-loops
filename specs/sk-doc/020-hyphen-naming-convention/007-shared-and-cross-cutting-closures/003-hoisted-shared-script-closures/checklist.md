@@ -24,7 +24,7 @@ _memory:
     answered_questions:
       - "The verifier must distinguish non-exempt shared scripts from Python and one-skill exemptions"
 ---
-# Checklist: Hoisted Shared Script Closures
+# Verification Checklist: Hoisted Shared Script Closures
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

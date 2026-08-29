@@ -21,7 +21,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Deep Alignment Shadow Parity
+# Verification Checklist: Deep Alignment Shadow Parity
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

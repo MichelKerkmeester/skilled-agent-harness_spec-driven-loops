@@ -187,7 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The advisor runtime is rooted at mcpserver/, and the current surface also contains the non-Python directories",
     "created_at": "2026-07-14T15:18:07Z",
-    "last_save_at": "2026-07-20T11:09:36.722Z",
+    "last_save_at": "2026-08-29T10:00:26.677Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:42b93b382756a18ee89a9470cd7045e911ce06bdc526efd90596db2cbbe534a3",
+    "source_fingerprint": "sha256:9b01d799068a13ed03991d804e79fe429d6b71d9565a397b2461b95354815f2a",
     "source_doc_hashes": {
       "spec.md": "04f6fef38fa49b53520a98df69612b2c12e8de2f894c44630647f35aa0e95371",
       "plan.md": "8ed037c5cd42da1eea660136cd3036dac386d8b8ad56808fcc0ff73dac1ddfb8",
       "tasks.md": "3e742ee4b48986d8764cbbe81d9947d37aae0300a1da4dae9ced970841668a2b",
-      "checklist.md": "62c8117da178e458ac9cb45ce7abbfe3dbaa281c553f7fc77e2d5402b001556c",
+      "checklist.md": "a8feac1db6bf8afe89622e7f5b9736934b65ebfba02d70005e3004aa0fba4183",
       "decision-record.md": "1ebc483d4300b923a25bae3cbf8561e33c1e4392e0172dd60dda60371c31a553"
     },
     "last_active_child_id": null,

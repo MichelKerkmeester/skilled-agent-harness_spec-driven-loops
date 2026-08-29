@@ -187,7 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The deep-improvement packet has 22 underscore-bearing directory families and 250 underscore-bearing files across three improvement lanes, benchmark assets, playbooks, references, and scripts. This phase renames the in-scope authored names to kebab-case, repairs the shared loop-host and benchmark path closure, and protects Python files, package directories, generated output, and data contracts.",
     "created_at": "2026-07-14T15:17:52Z",
-    "last_save_at": "2026-07-17T20:26:12.482Z",
+    "last_save_at": "2026-08-29T10:00:34.357Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:ff81baa9074a13c443333f9c43e2ebca5369316ed917b1d3fbd9f452e0de9f44",
+    "source_fingerprint": "sha256:19a056c21468a6f0f0a5cc904bdad0e41f1ee7b3113022eaaff200cba11724f7",
     "source_doc_hashes": {
       "spec.md": "15a095a3dea7d2d22b359dba68c79e2d1ae4f3f3a6eb27bf7f7d64679377eacc",
       "plan.md": "bb73d470cfb71ceec177ae8232c376921e37360a1cde3f3785b05900511702c4",
       "tasks.md": "58dacf0a61e9193b66d9aa381d51a620505384b3754ad6c62f35b4829f3e310e",
-      "checklist.md": "dc68c497d64f0a306074c7a4bb9b07dbe26be2081770806381a3a8d0cf5ccd61",
+      "checklist.md": "5992ce2bdc131f546990603f33e85ffd33a44fefd5257e37b25b78b0d8108344",
       "decision-record.md": "d1a0f86db29b93f0713b291979b3e7b6be15566ca23880d94c7e4fe31355c55f"
     },
     "last_active_child_id": null,

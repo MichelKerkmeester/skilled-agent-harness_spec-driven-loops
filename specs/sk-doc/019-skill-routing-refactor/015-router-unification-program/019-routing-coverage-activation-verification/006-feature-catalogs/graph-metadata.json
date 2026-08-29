@@ -175,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Compiled routing has no discoverable documentation surface across six of seven eligible hubs",
     "created_at": "2026-07-20T21:51:34.999Z",
-    "last_save_at": "2026-08-28T15:53:17.675Z",
+    "last_save_at": "2026-08-29T10:01:23.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ba1e389fe3670219ecee87c33e8cddb8982346968ab8b41ef7a8a0078272da0",
+    "source_fingerprint": "sha256:b99d35c545a66bb1cd5f44520adb06ce565cdda637c60c4fc6c88137956bd990",
     "source_doc_hashes": {
       "spec.md": "5bc77d0988352c0b75f0e110c9739f5f35ae0db595ca01cb8dde71725693cf1e",
       "plan.md": "9290a50302cf01365ea1af27392388a1161803c66570b734eed67cc0205651f1",
       "tasks.md": "d2a8f7e5e77a18b6e071cf3894b88d18cde20d858ea6d16cf3ed508f62bdb59f",
-      "checklist.md": "7511a831eb2bce81888408ce1ff7a76acd9c751ffef8ccf027b3a00cb88a5ec3",
+      "checklist.md": "81e8b24907fa8dd62c109b21aa194c6c80eaa18a30022ce2f2b9f94a9694c38b",
       "implementation-summary.md": "49b9f029bf84094a668148eeb9edd8c6385a1bfea495de070aa8f4676cc2f8c7"
     },
     "last_active_child_id": null,

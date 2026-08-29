@@ -20,7 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: sk-doc hub root and shared backbone
+# Verification Checklist: sk-doc hub root and shared backbone
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

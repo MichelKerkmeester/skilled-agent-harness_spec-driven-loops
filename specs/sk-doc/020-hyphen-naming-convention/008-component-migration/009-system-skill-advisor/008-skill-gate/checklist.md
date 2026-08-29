@@ -25,7 +25,7 @@ _memory:
       - "This authoring pass does not run the naming gate or perform migration work."
 ---
 
-# Checklist: system-skill-advisor subtree skill gate
+# Verification Checklist: system-skill-advisor subtree skill gate
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

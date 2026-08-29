@@ -163,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -181,12 +187,6 @@
         "source": "derived"
       },
       {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Skill Benchmark certificates and receipts over the deep-improvement-common backbone: attest paired skill scenarios, scoring evidence, replay inputs, validity domains, and transition outcomes while leaving shared services single-sourced and independently verifiable offline.",
     "created_at": "2026-07-16T03:43:41.856Z",
-    "last_save_at": "2026-08-18T11:07:13.585Z",
+    "last_save_at": "2026-08-29T09:58:04.042Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:361f516dd0d3a446b4667d2be0c3c0aa841d197f8e4e71b17557b8cd5f081a59",
+    "source_fingerprint": "sha256:96fed5bf25943dc55463a6b859fb50fe2c9df3909791797926ce9f3b41ccffbf",
     "source_doc_hashes": {
       "spec.md": "225c7221e43953bae56d7ef45d9092f90dca81e07ee23858606749face777da6",
       "plan.md": "1cb07e3734abcc3888122cf3b4a319cb2ddf713383b82973751989c64527c7cc",
       "tasks.md": "407d935e8722d8ac15d3571d95a3ada8885124c5e42238c2f3efcd8ce0db59fc",
-      "checklist.md": "832dde973f392bab3851b42b18ebbc58a4dc00e987e6bbd819b4efc106892ba4",
+      "checklist.md": "12f914ab5c6ee0acb283d9f7eee0cf6e27c2227fd1640cc9d4afd9b42bb0e003",
       "implementation-summary.md": "d92fe3cd7b58c50dab55660ea4c3204bb65e359c49e9c93dc45e1af226d6f084"
     },
     "last_active_child_id": null,

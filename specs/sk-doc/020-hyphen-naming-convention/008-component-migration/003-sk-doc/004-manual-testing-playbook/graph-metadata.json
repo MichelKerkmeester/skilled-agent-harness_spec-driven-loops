@@ -177,13 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The root sk-doc manual_testing_playbook tree uses snake_case for its category directories, scenario filenames, and root index. This phase converts those non-exempt filesystem names to kebab-case and updates the playbook index and path references without changing scenario content or identifiers.",
     "created_at": "2026-07-14T15:17:26Z",
-    "last_save_at": "2026-07-20T11:09:49.351Z",
+    "last_save_at": "2026-08-29T10:00:49.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:2f91559b447db4fabb57541e3b9fc6cf4855ec13d318eff443b0b434cb65e14c",
+    "source_fingerprint": "sha256:51a0fa636da167bce8eae9813b3c53e4e698c0c0a72af2ed3693a3dc363d6fb3",
     "source_doc_hashes": {
       "spec.md": "d0819315a16ca57ac457d3deb7537fbe847c3c98e72bc88fe80cc6183f11c23d",
       "plan.md": "a8e151d21ab1cc04cc449ea558948955ada8c170602b20e688fdd1d392f03da9",
       "tasks.md": "529fc4bac2299a052f6871039388e668b158c4a303ad309d3732c2d387ef422c",
-      "checklist.md": "f2bfb57142ed3151b4173026f93c3f232bcfe379f091928ec04ff93d6aebf31c"
+      "checklist.md": "adb872116f46e64f70ac7e9a7dc691fe68eb61eac1feb18ab088339e2fc1885d"
     },
     "last_active_child_id": null,
     "last_active_at": null

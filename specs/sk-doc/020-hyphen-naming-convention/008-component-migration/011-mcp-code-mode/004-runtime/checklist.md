@@ -20,7 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: mcp-code-mode runtime
+# Verification Checklist: mcp-code-mode runtime
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -41,10 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
-      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
-      "feature-catalog/feature-catalog.md",
-      "manual-testing-playbook/manual-testing-playbook.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -52,24 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": "feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,7 +169,25 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -199,7 +195,7 @@
     ],
     "causal_summary": "The feature-catalog and manual-testing-playbook generators still describe and emit underscore roots, categories, and artifact files. They must emit kebab-case output only after phase 002's bounded consumer tolerance can resolve the new names without a silent readme downgrade.",
     "created_at": "2026-07-14T15:16:45Z",
-    "last_save_at": "2026-07-20T11:09:53.358Z",
+    "last_save_at": "2026-08-29T10:01:11.919Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8843b8fc196c87cb866eb94c9bacb765cdc18fa4a166c4b30af5f095ee307891",
+    "source_fingerprint": "sha256:09e6cdaa2d51d693b9a37d544814d716c3bf2f835a8978fcde2c7db61e37a16a",
     "source_doc_hashes": {
       "spec.md": "19fc8975af5dcad89517126d592c3bbfa9c15f307d25ed45502c820ad1adcc54",
       "plan.md": "e3705f8e08a122c75483447429fb5840f9c9ff539fb0d5c4904011cfaa9719f2",
       "tasks.md": "16a420bc4d934a1c2a0d7a94938b84add4487eef3c7b20a44316355ea26f2ff5",
-      "checklist.md": "c867799fd08d6b06f5893f5b854b796d010e3c429614765fe2916b7049613b67",
+      "checklist.md": "97459f02a166588f6683cc670933d4b3dc2dd6181762d62701cb9f1d218fc510",
       "implementation-summary.md": "04718183ee0a0f6c98af59c4173002308924c99a145e396f482397359d3dc780"
     },
     "last_active_child_id": null,

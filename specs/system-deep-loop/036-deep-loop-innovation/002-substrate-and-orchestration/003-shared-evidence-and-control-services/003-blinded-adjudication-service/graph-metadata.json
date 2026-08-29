@@ -168,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -184,17 +190,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan a shared blinded and counterfactual adjudication service that controls identity and position bias while preserving replayable raw scoring evidence.",
     "created_at": "2026-07-16T03:43:46.917Z",
-    "last_save_at": "2026-08-18T11:07:41.312Z",
+    "last_save_at": "2026-08-29T09:57:42.236Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:efcea77d453189d0db1b7a0461599db82c57faf9053340fc200c2c656a3647b0",
+    "source_fingerprint": "sha256:e99b6cdcdb7d15b9c66bbf702e09b9c1763759bf8cd428c8ac8ac79d0250cfad",
     "source_doc_hashes": {
       "spec.md": "7d78b8a23b867b74585fa6997d0967d1bf3efb6dfd6b9a03f8c90384204fe189",
       "plan.md": "0cca190150b00df1cdb114db07ae2e987780c0dbaea272947ab8072a3f04f657",
       "tasks.md": "836ea7dbb1a5a50c82ac83dc7085787716e47f636760ca3614bf6344982970e0",
-      "checklist.md": "cb97540192dabffa1b162a631ace9b68dc7bfe7d34676acb9cbfeb0e122a7eab",
+      "checklist.md": "82d436a783073c0b46a03421fce006ee076ff5d07bbb6c6cfe9d373df73f0a6c",
       "implementation-summary.md": "590be3062bd4d3bcb345c0e698bf8119887acf1b1f2bff37dde43d26bd87e295"
     },
     "last_active_child_id": null,

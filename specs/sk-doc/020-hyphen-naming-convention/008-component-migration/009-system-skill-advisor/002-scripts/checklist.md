@@ -24,7 +24,7 @@ _memory:
       - "This authoring pass does not rename the dataset or run script tests."
 ---
 
-# Checklist: system-skill-advisor scripts
+# Verification Checklist: system-skill-advisor scripts
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

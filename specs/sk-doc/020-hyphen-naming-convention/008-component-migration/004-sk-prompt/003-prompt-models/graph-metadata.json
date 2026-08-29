@@ -38,54 +38,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-prompt/prompt-models/SKILL.md",
-      ".opencode/skills/sk-prompt/prompt-models/README.md",
-      ".opencode/skills/sk-prompt/prompt-models/assets/cli_prompt_quality_card.md",
-      ".opencode/skills/sk-prompt/prompt-models/assets/confidence_scoring_rubric.md",
-      ".opencode/skills/sk-prompt/prompt-models/assets/model_profiles.json",
-      ".opencode/skills/sk-prompt/prompt-models/assets/per_model_budgets.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/prompt-models/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/prompt-models/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli_prompt_quality_card.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/prompt-models/assets/cli_prompt_quality_card.md",
-        "source": "derived"
-      },
-      {
-        "name": "confidence_scoring_rubric.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/prompt-models/assets/confidence_scoring_rubric.md",
-        "source": "derived"
-      },
-      {
-        "name": "model_profiles.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/prompt-models/assets/model_profiles.json",
-        "source": "derived"
-      },
-      {
-        "name": "per_model_budgets.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/prompt-models/assets/per_model_budgets.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -193,11 +151,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "exact",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The prompt-models packet has underscore-separated asset and reference filenames, including the model registry and budget data files that are named by active Markdown and skill references. This phase renames those packet-owned paths to kebab-case, updates path-valued consumers, and preserves model IDs, JSON keys, Python/package exemptions, and generated benchmark output.",
     "created_at": "2026-07-14T15:17:31Z",
-    "last_save_at": "2026-07-17T20:26:07.609Z",
+    "last_save_at": "2026-08-29T10:01:04.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:7e4d34fb1f0facca93075debfb32778c426f554db62b73c175ba0a28101b91f3",
+    "source_fingerprint": "sha256:b7346750b00d2dddf01e6612a90dc0f4d4c6a3599d53db8b8fa27079fba87ea6",
     "source_doc_hashes": {
       "spec.md": "8ebd8c559c7a06d0fd5bb234ceec400d86e3c0a567dc2a600473114cced79e92",
       "plan.md": "60bfd60e08a3a108e113eec2084c593c0a57be9b06cecef2c18376403e72b198",
       "tasks.md": "1244523ab1723412b9fbbec300e474a395e70a5496f1ae8edf298724d567db57",
-      "checklist.md": "3c9a4b2514528fd4c746086327506863674bcc126b916950617df1e58d75c651"
+      "checklist.md": "350acf1ced9ed448a8a5fd2f8dcc534834f47ea488fa079d2b0f84bb2a6667ee"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -25,7 +25,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- REVERTED: CHK-004/CHK-007/CHK-008 (opencode-persistent / SKILL.md rule 5 elevation / wrapper bash syntax) refer to deleted artifacts after 2026-05-23 same-day reversion per operator directive. See implementation-summary.md §6 "Post-ship Reversion". -->
 
-# Checklist: 022/011
+# Verification Checklist: 022/011
 
 <!-- ANCHOR:protocol -->
 ## 1. VERIFICATION PROTOCOL

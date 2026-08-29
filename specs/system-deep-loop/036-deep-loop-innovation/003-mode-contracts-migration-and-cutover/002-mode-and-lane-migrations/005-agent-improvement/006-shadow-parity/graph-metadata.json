@@ -151,6 +151,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -164,12 +170,6 @@
       },
       {
         "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Agent Improvement mode's shadow-parity harness over the typed event-ledger substrate. The harness runs the ledger path beside the legacy agent-loop emitter for proposal generation, candidate evaluation, scoring, frontier selection, resume, and promotion preparation; compares the agent-specific projections event-for-event; and blocks authority cutover on any unexplained semantic difference. It consumes the phase-014 shadow framework and the Deep Improvement Common Services harness rather than reimplementing them.",
     "created_at": "2026-07-16T03:43:38.788Z",
-    "last_save_at": "2026-08-18T11:07:16.627Z",
+    "last_save_at": "2026-08-29T09:58:15.809Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6130dbc6e671397300d664e0f2e5236a58889ea84eb9c87ad5adaf64e5c55652",
+    "source_fingerprint": "sha256:e1b41ab9ec401a9020aaff2d8bfe1d6c7e518034e25bcc94405513ee7c903fcb",
     "source_doc_hashes": {
       "spec.md": "37419fa02d77e27691023cdc4296aa080c4dc1ec91ee63b5aef2910d57f320dd",
       "plan.md": "e849527e045df3b9101aeea80dca03cd37e00cd467ea1d718a91042e537b6e48",
       "tasks.md": "373946debad2f3f62b09a93f1465dfb72b029dcc822aae0b74ba6769d30e441b",
-      "checklist.md": "c7fab920eb35abd54e8268f71df2476beac41e8d0b86d79a21212b3814bf83e4",
+      "checklist.md": "a13281e2a2e54ec6455d527941d7696a23bb87701d234b584db34f3d2fc23229",
       "implementation-summary.md": "489864acad849ced4807420c263a4a60d698d9f0ee6dce7e649099d6f6cfd009"
     },
     "last_active_child_id": null,

@@ -24,8 +24,8 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "summary"
+      "verification",
+      "checklist"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -134,6 +134,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "P0 — Correctness",
         "kind": "heading",
         "path": "checklist.md",
@@ -174,17 +180,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "After Branch",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Feature Specification: Fix Doctor Bootstrap Symlink Restart Loop",
     "created_at": "2026-07-10T06:24:11.204Z",
-    "last_save_at": "2026-08-28T23:06:14.816Z",
+    "last_save_at": "2026-08-29T09:58:38.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,12 +194,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e85aabedabf9d9b88324db354fa2e62f8b6aee9cf3e6f4d12338827cd2a2cd23",
+    "source_fingerprint": "sha256:651515ce4d0a5d141bd7b7efcfc74eebf870115e7d47a6e6684359ed02be3941",
     "source_doc_hashes": {
       "spec.md": "d808354aee8cf5502c32d3abd287a6f87e786fa983af82850f538a8ed310e93f",
       "plan.md": "97d8f41d86ee21d1848acc8a96601f811267d785007176c160c9626bacb7f278",
       "tasks.md": "2ffde3d36e412359a942849322fbdf123b735d1e5ad7a18b15b4448f2dea5d9c",
-      "checklist.md": "0f687c54db7036925f29e8f0438507cd13f72c700b9a082e2e2d1c1e9998241f",
+      "checklist.md": "0d459626c3d618a7001cb38e115f63d17ab1488cb4422c37e5f00ecfa1618129",
       "implementation-summary.md": "047186513d797081285b9492c93a8b7361c72b26e7c159c6fc29167c7ec68540"
     },
     "last_active_child_id": null,

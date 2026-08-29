@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Baseline, taxonomy, and state census
+# Verification Checklist: Baseline, taxonomy, and state census
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

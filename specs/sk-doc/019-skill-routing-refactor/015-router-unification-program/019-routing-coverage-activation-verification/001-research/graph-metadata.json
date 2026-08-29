@@ -184,13 +184,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The compiled skill-router is shipped but inert",
     "created_at": "2026-07-20T21:22:58.681Z",
-    "last_save_at": "2026-08-28T15:53:16.176Z",
+    "last_save_at": "2026-08-29T10:01:23.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18df32bbf7212f28b2ee72ad6c1d9105ef9c9dd98fc79f55e9506f005e42bafb",
+    "source_fingerprint": "sha256:f11efdae5b5d2f75ea76e001084614974aeb1d1e6939a7e45fb4c5238d9dd6ff",
     "source_doc_hashes": {
       "spec.md": "0cb0d68a303e507955cba22d962466bd3c21f683499104a6b5fded742ea38992",
       "plan.md": "e0f1750442852ff921cae2ef825a6a55afb914d0b469fe89f2cd25f195e9309d",
       "tasks.md": "f938813a714e607f185fd478ef2bedbbf8885dceb86106df0525da9c829eb937",
-      "checklist.md": "6a5df4a543801d7fa269d625a60d9bb94fc306ab3c8570022ac698c7c5dc9e11",
+      "checklist.md": "ae6d196e10c357470f09e7a405bccab3ba3e1a62c1bce47a4d05c360b1606558",
       "implementation-summary.md": "fd53bce21d76c5dfe256c6333294180fae8f983a8302adabf052f0594b267297"
     },
     "last_active_child_id": null,

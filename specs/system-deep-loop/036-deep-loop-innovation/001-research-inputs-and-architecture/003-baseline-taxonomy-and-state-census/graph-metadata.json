@@ -183,13 +183,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 036 phase must preserve.",
     "created_at": "2026-07-16T03:43:57.879Z",
-    "last_save_at": "2026-08-18T11:07:56.895Z",
+    "last_save_at": "2026-08-29T09:57:48.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3550bd3de7c281e00ecda7b7aed7fa172be7340c0fc7d1da8da5b8f0bc81dd8",
+    "source_fingerprint": "sha256:b3ec166c80247afffaa4f8b27c2fb16a93f63f9a0c12243d32e67870f804aea2",
     "source_doc_hashes": {
       "spec.md": "61b9775d41c219383b533746c5a0b3bff545948280fbf2e4280837964595c2ff",
       "plan.md": "d515adc02cfef311e3317d7469c95d395adecd7f6fb4716ac8a77b89ad79678b",
       "tasks.md": "9aa41434a18980c3e23888d8c64b97d77a001b8b402e1872f07e6b1c72fe4288",
-      "checklist.md": "dff3a88cc4e493c16b944cebbc44e8c569803f9216303631b287259d3854d3e9",
+      "checklist.md": "2ffef8a3c503d71bf8bbf72a31bff575a14915742d0ebc26e0701fbe91fdcd25",
       "implementation-summary.md": "3345733aa26afa3b70549af90137fab2493b83950451ef4b2e43bdfde6bffc1b"
     },
     "last_active_child_id": null,

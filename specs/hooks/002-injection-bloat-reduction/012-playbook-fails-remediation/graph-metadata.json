@@ -176,6 +176,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -186,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 011 wrapper run produced 30 manual-testing-playbook FAIL records across Codex, OpenCode, Pi, Cursor, and Devin",
     "created_at": "2026-08-08T16:09:42Z",
-    "last_save_at": "2026-08-28T18:15:30.127Z",
+    "last_save_at": "2026-08-29T09:58:37.127Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +206,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1d49a90a5a2167cb25cc887f15050476b531724a6a8b77143aca2fe0123ff823",
+    "source_fingerprint": "sha256:c919bf825405d9e73f4f1bfd781ad2494abeec4d5160ccecc091cbfd667ca547",
     "source_doc_hashes": {
       "spec.md": "67c65e527fdd1ff435bc817e6db90371f45487ff27e9d35fa7a2b9f9149d230e",
       "plan.md": "f545f4c441b96e70f27a350b42e03d3cfc62cd76e9b567308cd505f5a12e7066",
       "tasks.md": "a70b059a9034b6fd2f34730f1e63f9ae1858f29345452a7ba4a9b54177ec9006",
-      "checklist.md": "2f30e269148e915ecfe048c910f4fdf1b0c8d6122737c64205310685982f4131",
+      "checklist.md": "903825ef8f8a348f23fee1e1b0aea677f125244d92ce4895443c1af3f18e0ea1",
       "implementation-summary.md": "59bd44b9fa980afb6a0eddb776a9cc2121b8a85ceb7f13f127df0309d4a719e7"
     },
     "last_active_child_id": null,

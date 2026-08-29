@@ -23,7 +23,7 @@ _memory:
       - "This phase defines vocabulary and compatibility hooks only"
       - "Severity-bearing state binds a typed adjudication event and digest"
 ---
-# Checklist: Deep Review - Typed Ledger Schema
+# Verification Checklist: Deep Review - Typed Ledger Schema
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -23,7 +23,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 
-# QA Checklist: Code README Coverage for the system-deep-loop Runtime
+# Verification Checklist: Code README Coverage for the system-deep-loop Runtime
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

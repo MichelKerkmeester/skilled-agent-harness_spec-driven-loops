@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Scheduler/Runner cli-opencode Dispatch Wiring
+# Verification Checklist: Scheduler/Runner cli-opencode Dispatch Wiring
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

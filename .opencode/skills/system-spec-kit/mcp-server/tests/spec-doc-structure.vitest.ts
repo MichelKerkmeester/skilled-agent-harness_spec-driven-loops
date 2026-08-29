@@ -509,8 +509,8 @@ describe('spec-doc-structure contract', () => {
     const folder = copyFixture('053-template-compliant-level2');
     const specPath = path.join(folder, 'spec.md');
     const broken = fs.readFileSync(specPath, 'utf8')
-      .replace('title: "Feature Specification: Template Fixture [template:level-2/spec.md]"', 'title: ""')
-      .replace('trigger_phrases:\n  - "fixture"', 'trigger_phrases: []');
+      .replace(/^title:.*$/mu, 'title: ""')
+      .replace(/^trigger_phrases:\n(?:[ \t]+-.*\n)*/mu, 'trigger_phrases: []\n');
     fs.writeFileSync(specPath, broken, 'utf8');
 
     const result = spawnSync(VALIDATE_SCRIPT, [folder], {

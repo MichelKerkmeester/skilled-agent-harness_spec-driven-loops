@@ -163,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -181,12 +187,6 @@
         "source": "derived"
       },
       {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Skill Benchmark resume adapter over the sealed typed event ledger. The adapter rebuilds scenario-cell, skill-exposure, trajectory, and scoring state through reducers, maps the continuity ladder, and defines idempotent re-entry without double-apply, lost events, or unsafe replay. It consumes deep-improvement-common services and adds only Skill Benchmark scenario and scoring logic.",
     "created_at": "2026-07-16T03:43:42.100Z",
-    "last_save_at": "2026-08-18T11:07:13.347Z",
+    "last_save_at": "2026-08-29T09:58:05.065Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:87b542662df4236cd85431a048eca794a94066b87abee843b0298a14617059a3",
+    "source_fingerprint": "sha256:4dc252975c2cd89277f66125224b63e56cc8dbaa1f7fb622a319f7a2cfb665a8",
     "source_doc_hashes": {
       "spec.md": "c1c9d4681a307186bb360a05db62078b79108733ac23a758f6ac8f9d856824d8",
       "plan.md": "fa9fc730d7fff08df96b959e68fb54656b433d33952f8c88b06e07d7770a6b82",
       "tasks.md": "ae5e55f80c6b15742193653fff3d51d1918d485664c7fc5f285eca5bf64f71ab",
-      "checklist.md": "1cebb09f8225603215b7adad6102dac8a65c708f1c4dd90f6114928a90cd05fa",
+      "checklist.md": "480ab2af9d0a356558f8bce98cbe59f3ac45b9dbec2ebb1a9e07e6b40173d870",
       "implementation-summary.md": "7e66b1e5bc505a8bebd61054d32476a26e9ca2ab937cff0e674d3183a3ec5f07"
     },
     "last_active_child_id": null,

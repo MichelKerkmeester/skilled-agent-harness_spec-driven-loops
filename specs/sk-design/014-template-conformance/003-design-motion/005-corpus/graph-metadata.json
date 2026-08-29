@@ -32,8 +32,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/create-skill/references/shared/overview.md",
-      ".opencode/skills/sk-design/design-motion/corpus/README.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -41,18 +39,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "overview.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/shared/overview.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-motion/corpus/README.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -184,11 +170,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`corpus/` has no authored sk-doc template — it holds `README.md`, `motion-evidence.mjs`, and `tests/` (`README.md`, `fixtures.mjs`, `motion-evidence.schema.test.mjs`, `motion-evidence.test.mjs`)",
     "created_at": "2026-07-27T14:53:13.735Z",
-    "last_save_at": "2026-07-27T14:58:43.432Z",
+    "last_save_at": "2026-08-29T09:58:24.628Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +196,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:abf757987dbc490d58d76b99d1c7e60658a1c28300d03e4e5ab7b5da9a49f942",
+    "source_fingerprint": "sha256:6c8e2b45fb742002bac9beec20ca86d2ee734ab6e4eeffae4b4a240940f03bc7",
     "source_doc_hashes": {
       "spec.md": "69c3263ddb88a7bb1a513508c6b1a4065976f52462c9ca466e29be5e17821043",
       "plan.md": "fc89f25778c003a948ce5da289ba7938e7e5069c739671330672f92f9530c73a",
       "tasks.md": "2063a30b5f324d58696914d8f2c4d71035b36ece59600f0b0b7ae3839e78b0d0",
-      "checklist.md": "265f0326f4a18f09da973a811d83406bd708e4df0ed1abc1ee3c97b46e555eab",
+      "checklist.md": "f9ea8aec2b275e3902a3f17c985b4d50f97bf34004f4f5cf097067314dd07f65",
       "implementation-summary.md": "8cefa6f17cca2c5bc849443519320bd7a8cbb29c460bd6418c97423529370f3f"
     },
     "last_active_child_id": null,

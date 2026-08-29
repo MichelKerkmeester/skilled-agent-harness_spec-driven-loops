@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Conditional Budget-Aware Fan-in
+# Verification Checklist: Conditional Budget-Aware Fan-in
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

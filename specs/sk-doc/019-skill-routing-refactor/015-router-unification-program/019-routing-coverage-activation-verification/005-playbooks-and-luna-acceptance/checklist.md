@@ -18,7 +18,7 @@ _memory:
       - "checklist.md"
       - "implementation-summary.md"
 ---
-# Checklist: Compiled-Routing Playbooks — Scenario Matrix & LUNA-High Acceptance
+# Verification Checklist: Compiled-Routing Playbooks — Scenario Matrix & LUNA-High Acceptance
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->

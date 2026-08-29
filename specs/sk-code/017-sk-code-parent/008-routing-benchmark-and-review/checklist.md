@@ -23,7 +23,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
-# QA Checklist: Phase 8 — routing benchmark and review
+# Verification Checklist: Phase 8 — routing benchmark and review
 
 <!-- SPECKIT_LEVEL: 2 -->
 

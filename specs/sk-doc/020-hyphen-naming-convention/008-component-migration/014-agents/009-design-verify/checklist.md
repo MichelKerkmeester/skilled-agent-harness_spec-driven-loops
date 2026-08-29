@@ -21,7 +21,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: Design Agent Naming Verification
+# Verification Checklist: Design Agent Naming Verification
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

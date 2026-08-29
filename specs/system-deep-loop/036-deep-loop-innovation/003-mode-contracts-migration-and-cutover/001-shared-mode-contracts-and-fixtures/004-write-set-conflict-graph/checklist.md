@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Write-Set Conflict Graph
+# Verification Checklist: Write-Set Conflict Graph
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

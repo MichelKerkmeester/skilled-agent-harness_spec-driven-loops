@@ -174,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -184,17 +190,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan typed per-leaf result envelopes and ledger-fold resume/salvage that preserves completed work, recovers partial evidence, and never re-runs a durably completed leaf.",
     "created_at": "2026-07-16T03:43:50.033Z",
-    "last_save_at": "2026-08-18T11:07:38.725Z",
+    "last_save_at": "2026-08-29T09:57:36.737Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2a5cb28c0a7052bc607925b29254574c0047ca0a5bec9d49679bf3239164ffe",
+    "source_fingerprint": "sha256:eca21f2f2cded7415d88cea46aa25a75275eb997d541bcff3ff84ff51f7e76a8",
     "source_doc_hashes": {
       "spec.md": "c87589dd3a0d46c3f9b4a5477fc07abd0ed6cf8b927016f6c9910de4ed45ed3e",
       "plan.md": "ed7fc480050eda90a09deda8437bee8f2cf491ccffaa6b412ffba5da3f049c56",
       "tasks.md": "370b1b7a84e9a4e01626b2e6e06849b1d38257cd22167cc73fe38314c81c3604",
-      "checklist.md": "8c233895ac7fdec699e7c83c8af61090d47ac65a03682e3164f3eb55afa84e06",
+      "checklist.md": "9b0aa37dcc4ee1df3e343321f2c0bf3f5b9e1311404e5351c273d6f843f39c00",
       "implementation-summary.md": "ab5bbd8c55bf16e051d9b8cc6a6518d2ee86c259f0d06628fb5cb60970c7ff9f"
     },
     "last_active_child_id": null,

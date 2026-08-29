@@ -15,7 +15,7 @@ _memory:
     key_files: []
 ---
 
-# Checklist: Deep-Review Remediation
+# Verification Checklist: Deep-Review Remediation
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->

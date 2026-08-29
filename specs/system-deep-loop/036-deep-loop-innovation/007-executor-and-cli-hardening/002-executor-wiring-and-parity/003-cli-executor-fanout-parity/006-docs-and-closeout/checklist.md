@@ -1,7 +1,7 @@
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 
-# QA Checklist: Docs and Closeout
+# Verification Checklist: Docs and Closeout
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

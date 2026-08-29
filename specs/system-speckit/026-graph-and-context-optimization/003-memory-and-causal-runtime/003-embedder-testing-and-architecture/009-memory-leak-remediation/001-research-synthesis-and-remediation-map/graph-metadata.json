@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The two source packets identify overlapping process, sidecar, daemon, lock, and host-memory hazards",
     "created_at": "2026-05-22T10:20:00Z",
-    "last_save_at": "2026-08-28T15:59:47.788Z",
+    "last_save_at": "2026-08-29T10:00:17.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +214,12 @@
       "implementation-summary.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:e86ebf3ab585143bf107da25083de34850dd807e4d9200ed61ab23e78235ef47",
+    "source_fingerprint": "sha256:bd2a8b2a9677602eb3ab9c8810e2ea49e140cecb8a3f58ea006e1306a0b341e2",
     "source_doc_hashes": {
       "spec.md": "a6d6ff91e6b70784f75d6d43ba15a30d7a22ab275678095345911e9aba1fecf5",
       "plan.md": "e722b892359a487537382ff6f70a18adedbba67e1bb1bb00090f84a390b06343",
       "tasks.md": "05f1fa4124cce57e1431db80f9af4568a3f4e32fec0c5e2c0eef225345463087",
-      "checklist.md": "43d10ef1398001c9f545729637ed6bb2a754ef545512de7a4e56a443e65254ca",
+      "checklist.md": "be778e81072838afe44360c8207dd6a5a223c026fccf460eb744dff085a4952e",
       "decision-record.md": "20e8328a6f89d8c7428f2a5d52207092c3dead5601a984b0d6ff6e1c6f577b0b",
       "implementation-summary.md": "e7068ea9f413f34ef7d7432d185fea090ba9b46155b6cc84c1282e5eab3dbf1a",
       "resource-map.md": "ec5d843c9efefe7797a66204f59c5b68a9725b6a5b4313bfe7428d19eb694bc1"

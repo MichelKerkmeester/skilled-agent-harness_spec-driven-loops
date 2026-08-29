@@ -41,19 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-design/design-md-generator/SKILL.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -187,6 +180,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "The md-generator mode contains underscore-bearing authoring, extraction, and validation resource names, including its installation guide and private extraction procedure.",
     "created_at": "2026-07-14T15:17:18Z",
-    "last_save_at": "2026-07-20T11:43:43.916Z",
+    "last_save_at": "2026-08-29T10:00:29.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:a8432303e058d22e8cc4a5afe8cd77c0c6774227ac07fc61c759f3ee8157d02b",
+    "source_fingerprint": "sha256:64b69c129885ed3e429de9cfe70295b97baee2562c24f3bbf1533911d9f981b8",
     "source_doc_hashes": {
       "spec.md": "88f1148b038fed6f9ec95cf0c27c980a2d387cbf46e91f937374f6a38ecd2361",
       "plan.md": "32649586b82ac75c1a4e577d10fdccd2497a652ba68f253c7ea3020165aedceb",
       "tasks.md": "4052b1e9a413c0597d2211e9935499171eecd164d9e2fcbb4da1a27dae3af02f",
-      "checklist.md": "c8bd03a40aeccf190ca8b7b1fa756ad497f5c0e6f430b1a1804cfec3a4a7840f"
+      "checklist.md": "92afe7160d42b349ab91107a52702fbd5d35098c1dab2d001334ec2056656bfd"
     },
     "last_active_child_id": null,
     "last_active_at": null

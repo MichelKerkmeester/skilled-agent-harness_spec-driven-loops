@@ -169,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase Hand",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -179,17 +185,11 @@
         "kind": "key_phrase",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "post-remediation",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 010 sub-phases 001-006 shipped under sandbox-blocked verification",
     "created_at": "2026-04-25T13:51:18.730Z",
-    "last_save_at": "2026-08-28T23:05:50.442Z",
+    "last_save_at": "2026-08-29T09:58:40.440Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:926d97e60f1759daf3961aff7f1cbc08d10871f5cd20e790e0651b3fbe528d30",
+    "source_fingerprint": "sha256:a632ca7a20d2f127063a9ffc577ad8adfa7c7ef3f4be796bc90df645e3b0633c",
     "source_doc_hashes": {
       "spec.md": "91294c87c6afe8324c901dcd21bd4af60367ea1fe22d5217ea8190bbbc1137dd",
       "plan.md": "040b3a53699556ecebbca0a759f96773849d781bb47dfeda80428885dae7ff49",
       "tasks.md": "0366e528a9f744ff1768a1c56bbc42a87e91996ca444fec0774f06bae0b25c7b",
-      "checklist.md": "1fd7454ee797d968d9b0fec77343f74a7a9f4de1131e289f438c815bc3b4a846",
+      "checklist.md": "c88e52785af21aaeddc94ebf1caf29431d7751adef0f4f2685687f99652c3328",
       "implementation-summary.md": "77c4577e81e15e25485537aad5916ce7895a8ba25ccd5df3c74d28fa76ac5304"
     },
     "last_active_child_id": null,

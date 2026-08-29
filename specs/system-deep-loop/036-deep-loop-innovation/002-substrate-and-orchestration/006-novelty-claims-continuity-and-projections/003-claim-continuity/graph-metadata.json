@@ -162,6 +162,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -184,17 +190,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Implements one durable claim identity across iterations so support, contradiction, supersession, lifecycle, and recomputed status accumulate through replay and resume.",
     "created_at": "2026-07-16T03:43:51.906Z",
-    "last_save_at": "2026-08-18T11:07:36.787Z",
+    "last_save_at": "2026-08-29T09:57:46.019Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e73db8a727f7ce445703df7f07733e8ce1625e122c6c6ac69a9b7ad79fd2b01f",
+    "source_fingerprint": "sha256:1ec3852a21251b8ebbb135f2ef7381f06789f88ff0f460d2cf4c9a447a432dab",
     "source_doc_hashes": {
       "spec.md": "329dccf7afda2ca5e6a3e138a5397471f200bb616f2f9a0efedef7da9fc17491",
       "plan.md": "66849dbe2e23e362bf9cccc402e6b03112b4375b339ae7d669a821add2e49a65",
       "tasks.md": "3b9cb8a2eb7c9214369a45aeb928384ebe39e0701f10a0738fc506ed98c9d5e2",
-      "checklist.md": "7020f554f53082d4c5d8a01b031a10ff3f7350254e355872647c4103e5aa43c3",
+      "checklist.md": "185c149ade76cc5f67ee023b2f3ff4ba1adfc4ddfd58a3590f7a0e3b48baa9be",
       "implementation-summary.md": "7f20ab6b6890e4abf1d4d2971ef4176e36ccfb3f5577d2601731141d2beab0bd"
     },
     "last_active_child_id": null,

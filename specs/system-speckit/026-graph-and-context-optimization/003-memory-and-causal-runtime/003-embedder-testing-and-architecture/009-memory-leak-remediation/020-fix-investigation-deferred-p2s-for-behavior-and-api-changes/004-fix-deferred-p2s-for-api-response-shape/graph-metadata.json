@@ -184,13 +184,13 @@
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Completion Impact",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Five deferred P2 findings remain in the `sidecar-client.ts` API and response-shape surface",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-07-17T17:19:29.285Z",
+    "last_save_at": "2026-08-29T10:00:12.995Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c03867c71d552e7b90bd8a6e5745742b2ca91088401330a6a54fe04e695af4fc",
+    "source_fingerprint": "sha256:d6bf8fd1eb6c9b675cc979c3196804b3ea1b05f7257b0ed45e056fd7315a5aed",
     "source_doc_hashes": {
       "spec.md": "0afc4e7e8e1530fa381a1cbc29750be8b38103f52877719678f82c152c4d92d9",
       "plan.md": "a9722d3f59fbbe9b34cfd5702f50948037d62284b097ef158b6f1c34b402ac3e",
       "tasks.md": "21372407601713748bcb0156e6297dd7099408b20b69b8278ab7528016d33fce",
-      "checklist.md": "e1ce8ce930ba14818ab427021cdc38586b64bd081769fc8ec54d7b46d1a75d49",
+      "checklist.md": "c84d3c462553f25bf395756bd97487c1fcaa17062ddad0e435cd344ebbbdf9ec",
       "decision-record.md": "a25c7ef0203dd284adde65385fbc911048c48f72826badf45a6b107a6033ce12",
       "implementation-summary.md": "e12e58c4e11b1504fef6352f73e48ff708544c8c2ca08fb8b6255120303fb646"
     },

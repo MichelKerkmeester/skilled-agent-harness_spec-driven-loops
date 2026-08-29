@@ -166,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -176,17 +182,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit manual_testing_playbook tree contains 440 underscore-bearing basenames: the root, 18 category directories, and 421 scenario or support files. This phase renames permitted playbook paths to kebab-case and closes every playbook link, index, runner, and path pointer while preserving scenario identity and the program exemption boundary.",
     "created_at": "2026-07-14T15:18:03Z",
-    "last_save_at": "2026-07-17T20:26:15.023Z",
+    "last_save_at": "2026-08-29T10:01:02.653Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -195,12 +195,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b0c0e52743005188a8f29f8caa90806179e4d0f207efc5cdaac997e5c4ab83ae",
+    "source_fingerprint": "sha256:3a28c451240b33faac2c48e4c38db2bb46c3d0d17a48515d332911af3e87c90e",
     "source_doc_hashes": {
       "spec.md": "9cf715d47dc8eb5c228b1f25bc7e0e6f249277226b8cc237244199880f292b2b",
       "plan.md": "c275cde77ed91f70b35b4aa5fbdf8808bcab6d4877f3ac146f30577f45a0f24e",
       "tasks.md": "5253241691f39b0501ca3edd96e362fcdeb8d59d096d6b3e693b768120ed7b31",
-      "checklist.md": "f3c8ca18adad362319acd421ba5d79e1192396ab1adf362c2d239fa1b211753e"
+      "checklist.md": "5e832179832a77f4dc322950851c0c39143390ef44684936ed80dedf09272bd3"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -40,14 +40,6 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
-      ".opencode/skills/sk-doc/create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md",
-      ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md",
-      ".opencode/skills/sk-doc/create-skill/SKILL.md",
-      ".opencode/skills/sk-doc/create-skill/README.md",
-      ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
-      ".opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py",
-      ".opencode/skills/sk-doc/scripts/tests/test_create_skill_contract.py",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -55,54 +47,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "init_skill.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/init_skill.py",
-        "source": "derived"
-      },
-      {
-        "name": "hub-skill-scaffold.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/parent-skill/scaffold/hub-skill-scaffold.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-hub-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/parent-skill/parent-skill-hub-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skills-nested-packets.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
-        "source": "derived"
-      },
-      {
-        "name": "validate_skill_package.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py",
-        "source": "derived"
-      },
-      {
-        "name": "test_create_skill_contract.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/scripts/tests/test_create_skill_contract.py",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -198,11 +142,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original gap was that new parent hubs could not express a deliberate compiled state",
     "created_at": "2026-07-20T17:46:53.250Z",
-    "last_save_at": "2026-07-24T12:11:56.345Z",
+    "last_save_at": "2026-08-29T10:01:19.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +204,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed3f745f309e0b2c703323967308e89237aaf11ac56690fdc45d036cd2bb683b",
+    "source_fingerprint": "sha256:34a0ad7c17d61a73600081442a5c395df889641e38a5adbb768c693f6d7df189",
     "source_doc_hashes": {
-      "spec.md": "48209c9dacd891cc56f304084d6ae78df5c5bd350ec5a641791b504764756171",
-      "plan.md": "a092bd1bf175f7413e06c8e494f108e50af60bb1bc7e3978f658dd20a3d7ea6a",
-      "tasks.md": "e1e3c1d99ee7e9e150f73588a25b390fb10e355a284a3a78902441975ff4cc70",
-      "checklist.md": "3ca8526c82152f917fea2d2d348eddce5d75ab9d312e75037defa8966d44d58c",
-      "implementation-summary.md": "11d4adbda1b078f96fcc4ae13796b9ae04e7bbcd4028c63512d21dbbfdbb6d44"
+      "spec.md": "732808c810e575b2fff8db50691381e9a563dbf3f3ed3e0de4774607532d3192",
+      "plan.md": "d3ea1f3fd251093d3ac342a1b48ea99f9d88e2af36d67d23fb3ee25fe1a2b1b9",
+      "tasks.md": "cb1cbb7dedbf011ebda3dc3b1a809091db9028aadf52884e0187149884c57dac",
+      "checklist.md": "0bad29b9a71c9d44703625f47200d7e176034c205a85e899183dc189285907fd",
+      "implementation-summary.md": "ddc8762c3267f4ad230dfb37b325ec5d35f28c0051e79240ad255553fce20f18"
     },
     "last_active_child_id": null,
     "last_active_at": null

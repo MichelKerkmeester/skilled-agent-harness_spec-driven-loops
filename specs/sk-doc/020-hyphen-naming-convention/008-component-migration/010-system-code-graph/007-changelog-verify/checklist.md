@@ -23,7 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: system-code-graph Changelog Verification
+# Verification Checklist: system-code-graph Changelog Verification
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

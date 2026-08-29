@@ -174,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -184,17 +190,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define independently versioned replay fingerprints over closed typed-ledger ranges, canonical replay dependencies, and byte-stable outputs, with immutable attestation storage and fail-closed mismatch detection for shadow parity and whole-system verification.",
     "created_at": "2026-07-16T03:43:45.873Z",
-    "last_save_at": "2026-08-18T11:07:42.407Z",
+    "last_save_at": "2026-08-29T09:57:33.595Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cbe0501e6f03f505911e3975dca6e06094664fdb8641e69b94edfae7cfac3b37",
+    "source_fingerprint": "sha256:635b045cb4f10ac127826b558d8311696b2d0ea3273cda261b2946d83552dcfa",
     "source_doc_hashes": {
       "spec.md": "911886d9569bc3811b19aff7f81d019a19b44109ed3fc6b1f7b07bf25d29d649",
       "plan.md": "1372d1cf25f37c2f5aebcf42ea718fb44f439ba470a46bd187bca5afebadb4b5",
       "tasks.md": "030ea2b7a0d2031c0e89ef206eb002aec2c3ca89467458dbcd8fbea9e0e7d47b",
-      "checklist.md": "9bdb535eef175175898a3c115ae0085f56123b8bd3109d7b6ec4cd4dffc19427",
+      "checklist.md": "40986bcf3d75bea0d2525a3683fd72ba3ca0b44afea658d931fd5a8914a9a395",
       "implementation-summary.md": "6a0a4a4379a9dd08eabfb7ecf863c8cb4d1a488d0213674cf8382ed722385bf0"
     },
     "last_active_child_id": null,

@@ -30,7 +30,7 @@ _memory:
       - "Phase 001 is the canonical archive for original 020 and 024 research artifacts."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist + level3-arch | v2.2 -->
-# Checklist: Research Synthesis and Remediation Map
+# Verification Checklist: Research Synthesis and Remediation Map
 
 <!-- SPECKIT_LEVEL: 3 -->
 

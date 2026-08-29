@@ -16,7 +16,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Execute the De-numbering Migration
+# Verification Checklist: Execute the De-numbering Migration
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

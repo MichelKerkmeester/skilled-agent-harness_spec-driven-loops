@@ -41,38 +41,16 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
       "review/review-report.md",
       "review/resource-map.md",
       "review/deep-review-state.jsonl",
-      ".codex/config.toml",
-      ".claude/mcp.json",
-      "references/memory/embedding_resilience.md",
-      "lib/eval/memory-state-baseline.ts",
-      "scripts/memory/cleanup-index-scope-violations.ts",
-      "shared/embeddings/profile.ts",
-      "scripts/setup/install.sh",
       "implementation-summary.md",
-      ".opencode/install_guides/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-        "source": "derived"
-      },
       {
         "name": "review-report.md",
         "kind": "doc",
@@ -86,57 +64,9 @@
         "source": "derived"
       },
       {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "embedding_resilience.md",
-        "kind": "doc",
-        "path": "references/memory/embedding_resilience.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-state-baseline.ts",
-        "kind": "code",
-        "path": "lib/eval/memory-state-baseline.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cleanup-index-scope-violations.ts",
-        "kind": "code",
-        "path": "scripts/memory/cleanup-index-scope-violations.ts",
-        "source": "derived"
-      },
-      {
-        "name": "profile.ts",
-        "kind": "code",
-        "path": "shared/embeddings/profile.ts",
-        "source": "derived"
-      },
-      {
-        "name": "install.sh",
-        "kind": "script",
-        "path": "scripts/setup/install.sh",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/README.md",
         "source": "derived"
       },
       {
@@ -204,11 +134,71 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "yaml",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-codex",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "possibly",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdict",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-packet",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "packet",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK BREAKDOWN",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 014 shipped a default-LLM and embedding-stack migration (Voyage → EmbeddingGemma-300m hf-local q8 for Memory MCP; google/embeddinggemma-300m sentence-transformers for CocoIndex; llama-cpp demoted to opt-in with auto-migrate; ONNX rejected)",
     "created_at": "2026-05-13T13:07:10Z",
-    "last_save_at": "2026-07-17T17:19:19.141Z",
+    "last_save_at": "2026-08-29T09:58:48.455Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +208,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f33d3d30a7b637397b0586cedfdab97de6d5b478fea9513d70fc60a8e91dd87b",
+    "source_fingerprint": "sha256:dd4ae6b1646b94a25995043ed6526db0cf8c4574ca3740bb36b05618661f102e",
     "source_doc_hashes": {
       "spec.md": "d6f649f33756a77e8019b394bb718ae21f519efabcc271097d7d58c9bf4ee8e2",
       "plan.md": "eb5f61c18a03530ba5f8ae602536b0c21d8749b1b746ddd842d1c5cecb4e8b73",
       "tasks.md": "f1bd7f44e2d5367d3cd234c8c749cc414b43f67087fadc63b45495fa27361e62",
-      "checklist.md": "c490f80ff25ef38c7476136d03cb938f82e1e22d16cf053289710404dea97f12",
+      "checklist.md": "ee4d312d9ecb9fdb987251fd600cec5b30cd5a0fa737d72eae60fb045f62930a",
       "implementation-summary.md": "4a73f8f1ea18ac18a83293dfc2c28193e33e8d4f07da1e4af6f4d58e22f87bd4"
     },
     "last_active_child_id": null,

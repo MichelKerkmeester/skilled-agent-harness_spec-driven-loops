@@ -41,26 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-doc/shared/scripts/skill_contract.cjs",
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "skill_contract.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/skill_contract.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validate_document.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -182,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -192,11 +184,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Shared scripts used by more than one skill must move with their complete import, require, source, registry, fixture, and symlink closure rather than being hidden inside one component subtree.",
     "created_at": "2026-07-14T15:16:52Z",
-    "last_save_at": "2026-07-17T20:26:01.603Z",
+    "last_save_at": "2026-08-29T10:01:10.156Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:5138fe299031f644219a6a6f2332dcfc95d102cddfdec0a15db3d3edda796320",
+    "source_fingerprint": "sha256:dd2f151d55fea81a1e450c44e522d1c762f89d85bb07ec99ae48391855aa38e0",
     "source_doc_hashes": {
       "spec.md": "f3d37565346337bc99b4a82d2c05ea8b94180f3d96c452eebb942df64fc96cfd",
       "plan.md": "a6b6cb3f8616e6389cce3b73dd94c1635eec56b1d6ffa0e91a1f0d2135c5845c",
       "tasks.md": "57075b05bb40d5857bf8be5ac6d76242849c25e0b4595d52b75e066b8fa352f4",
-      "checklist.md": "3c4e6a5d664b9a3ddb7d084bd1832e1fe28aeabab99796e7f6a016d4e920dbf5"
+      "checklist.md": "823034253d51d0a2b946e718abd8322b4fb6b5ff115b7b313b01b2ecffb5782a"
     },
     "last_active_child_id": null,
     "last_active_at": null

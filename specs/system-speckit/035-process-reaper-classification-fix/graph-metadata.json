@@ -170,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol Every",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -180,17 +186,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The daemon-reaper (`process-memory-harness.ts`) classifies each running process before deciding whether it is a termination candidate",
     "created_at": "2026-08-22T19:27:51.675Z",
-    "last_save_at": "2026-08-22T19:35:10.331Z",
+    "last_save_at": "2026-08-29T10:00:18.745Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c2e810713d7e356e5eec393c0d9d2da370879d7d59b7927cd00c91ce907bfbc5",
+    "source_fingerprint": "sha256:efc48e93c5113e5fe58192f10064ba25efe14e58cc79aa9d9cd14fa3528c0df2",
     "source_doc_hashes": {
       "spec.md": "491ebf18164b01bff228e5ba5119eacdadc7201578515074be867c10807bc0d8",
       "plan.md": "c9b06b02795e55e354dccc7c6e20f384dbd3b233922a06c0b6f72e8fb8e1d13b",
       "tasks.md": "b0dfcb6fb620a1b68504860cc55cbb4059f7ba73a12054cfd53139f5efb5002d",
-      "checklist.md": "2d8a347612e0fab245e5c114a73eb72b898542ac75366df28b1c64aedfa7d5c3",
+      "checklist.md": "4990cbb9428a2e4d00e82c62bdb4081db93ee6cf679f07dc34ce5b33968bd3ed",
       "implementation-summary.md": "cbc19f504c67c08315884ee050d5dfe688aa702ce37bd12724b4fb896a670f02"
     },
     "last_active_child_id": null,

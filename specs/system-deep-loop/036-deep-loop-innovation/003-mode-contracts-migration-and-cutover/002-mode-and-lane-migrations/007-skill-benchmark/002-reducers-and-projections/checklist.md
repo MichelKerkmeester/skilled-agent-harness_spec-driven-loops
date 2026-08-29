@@ -20,7 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Skill Benchmark reducers and projections
+# Verification Checklist: Skill Benchmark reducers and projections
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

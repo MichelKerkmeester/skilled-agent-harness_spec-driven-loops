@@ -32,8 +32,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/design-md-generator/changelog/v1.0.0.0.md",
-      ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -41,18 +39,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "v1.0.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/changelog/v1.0.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -184,11 +170,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`changelog/` holds exactly one file, `v1.0.0.0.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T15:10:03.095Z",
-    "last_save_at": "2026-07-27T15:10:03.095Z",
+    "last_save_at": "2026-08-29T09:58:31.014Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +196,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e84d1b7e4ee92117a941c299af0fe96541af23633cc24670a189cd9043430352",
+    "source_fingerprint": "sha256:c8666ba43ae3964cb334b52f4fac714d0f16f2e728d5b7e276ed0d3422ebcb59",
     "source_doc_hashes": {
       "spec.md": "1a8c5600478f0b7653a42afda51ba0a40a81c2e1bc51687363f6020cdd8454af",
       "plan.md": "1ee9dd5124d489e453155c088f06939f325c6ab6ea85abc69d4079939185be63",
       "tasks.md": "d2fe6eeebf7fa66dae0000793137182d6f6f042b78d599cc4c2f26a204ae45d2",
-      "checklist.md": "dff043028eab971406f0508bad21cc747f181a1adac4fa8d45de4e7ae9879deb",
+      "checklist.md": "c4f8c7bf4fdb6782ce8ee6c27631af5a0de9710e37034c0f998e720d28d17673",
       "implementation-summary.md": "7379c96cc0ec26cf2fe51c4b7d0d1283d4fd2fb34d843e929f992822039a7f18"
     },
     "last_active_child_id": null,

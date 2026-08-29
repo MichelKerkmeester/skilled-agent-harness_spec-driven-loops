@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Testing-Doc and Feature-Catalog Alignment Sweep
+# Verification Checklist: Testing-Doc and Feature-Catalog Alignment Sweep
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->

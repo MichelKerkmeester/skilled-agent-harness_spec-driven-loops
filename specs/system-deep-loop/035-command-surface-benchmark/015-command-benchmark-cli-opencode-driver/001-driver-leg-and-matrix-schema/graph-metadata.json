@@ -41,9 +41,6 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark/command-benchmark-matrix.json",
-      ".opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs",
-      ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -51,24 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "command-benchmark-matrix.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/assets/command-benchmark/command-benchmark-matrix.json",
-        "source": "derived"
-      },
-      {
-        "name": "run-command-behavior-matrix.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/scripts/command-benchmark/run-command-behavior-matrix.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -184,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -194,11 +179,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The command-surface behavior matrix",
     "created_at": "2026-07-22T06:16:26.969Z",
-    "last_save_at": "2026-07-22T06:35:11.708Z",
+    "last_save_at": "2026-08-29T09:58:21.990Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2b363b22bcb1d4e2ce99d76b3ae1a97d25659be713a190b27c484025ae43112c",
+    "source_fingerprint": "sha256:64b3fa0a5000bf1168511aaaf4ef9b403df5236c73133df2fd549f2aa14a9ce1",
     "source_doc_hashes": {
       "spec.md": "4452e95ce9015dd22b9a9e5e918d926e3d19ab5930b2dea49aad90947befeb4c",
       "plan.md": "a02cdda1d04faad56406ec39bcb79101799b0c41bafb2c3baa61515d7e5bf68a",
       "tasks.md": "3b614aae202e120512ac68d803b610c59a5a1b302118cd3a00f61b8ef9297123",
-      "checklist.md": "689db9a51ad390f8f2f192517a12fd0731b564d579eda0723792149d5f9d2613",
+      "checklist.md": "0fe4b970bb4858c54e7147d8c8d845e9d15daf676dfdf4bc2da976725cc5beb1",
       "implementation-summary.md": "0f63db7637ce01d833ba6c46df1ee3a956decb8f4a38b5c0f6910757cfe70125"
     },
     "last_active_child_id": null,

@@ -41,26 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
-      ".opencode/skills/cli-external-orchestration/cli-claude-code/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -182,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -192,11 +184,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-claude-code component has underscore-separated reference and prompt-asset filenames with active links from its skill and README. This phase renames those local authored names, updates path-valued references, and preserves Claude dispatch contracts and the delegated playbook tree.",
     "created_at": "2026-07-14T15:17:37Z",
-    "last_save_at": "2026-07-17T20:26:08.917Z",
+    "last_save_at": "2026-08-29T10:00:24.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:3002594d8799261f82e8184d5f04a53edd24aff8f25b4be7b47ccf75bd7ad1b5",
+    "source_fingerprint": "sha256:f35a6f5331cda51a253f3229d0e9dbc178b7e01460dc228ecbab9ac4f2571c44",
     "source_doc_hashes": {
       "spec.md": "acdc3eb3eb23b80e5a00a98d5d0805f7e02e0507f1e448dee1fd5cbd744e5579",
       "plan.md": "20b1e37537451ae8d80918b8c3ec6807c487b94029dfd8cdfbbd5ee9476a33b9",
       "tasks.md": "54bb1e8cad7aefd883c838401aadea24cee09e099da9339c50513e1910df2a7a",
-      "checklist.md": "6e3ae824f29a4e6036691365b7517ed91eb19f63deb625824d0c1739bd76c91b"
+      "checklist.md": "8cb33baf8bcba3fdcd663c0ff2eff6a59005047949e435f865e2617199359931"
     },
     "last_active_child_id": null,
     "last_active_at": null

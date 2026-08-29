@@ -26,7 +26,7 @@ _memory:
     answered_questions:
       - "Lane C is opt-in and implemented without modifying the frozen scorer trio"
 ---
-# Checklist: Benchmark — Compiled Lane C Parity
+# Verification Checklist: Benchmark — Compiled Lane C Parity
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->

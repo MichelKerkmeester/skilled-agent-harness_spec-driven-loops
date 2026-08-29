@@ -170,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol Every",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -180,17 +186,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Conform the ~104 hyphenated + ~160 total mechanically-sliced reference/asset .md files under sk-code/{code-opencode,code-webflow,code-quality} to the canonical create-skill asset/reference templates: 5-field frontmatter + 4-part version, snake_case filenames, H1 + intro + `## 1. OVERVIEW` before content, optional RELATED RESOURCES last. Every rename updates all in-hub references. Extends 027's underscore convention to the reference/asset split files 027 did not cover.",
     "created_at": "2026-07-12T14:23:01.630Z",
-    "last_save_at": "2026-08-19T08:29:06.523Z",
+    "last_save_at": "2026-08-29T09:58:25.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +200,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ea4556a36e8c71cebefe509c960819f59ccbb205c2eae5c4ab59897de7d44870",
+    "source_fingerprint": "sha256:43e58046caf1b25948edcd89d906f601fbc9b8563c4740fefb8650fab4604de0",
     "source_doc_hashes": {
       "spec.md": "9c3958eca044af7fea8a87875b35d728dd896eda59d4a79ca66ce885a65282da",
       "plan.md": "605fe1fe50e08e1958edf5fea397d259f9c551f28f28517bbc383a073b0bf168",
       "tasks.md": "ee07dea2a57205172443f3609063085e7dafef2da5cef69767e66c14fd954d63",
-      "checklist.md": "998a1f2c0ce00b02665dc0b42f2ed2b1bc6480b357d2570aa81fe44dd36b1af0",
-      "implementation-summary.md": "311096ac18eb0562d85ac80613b22d83840458689361bd29fb4c34148bc57545"
+      "checklist.md": "ef9c8747b7be24692e459a27680648f9c88773422c829a9d2060ac0198a89cca",
+      "implementation-summary.md": "4ae49880aa6b211c2bd79b82254c6543deff2c4fb1849abfa3e24dfbdfef2e8d"
     },
     "last_active_child_id": null,
     "last_active_at": null

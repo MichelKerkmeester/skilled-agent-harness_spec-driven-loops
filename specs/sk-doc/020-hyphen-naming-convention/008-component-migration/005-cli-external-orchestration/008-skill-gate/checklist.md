@@ -27,7 +27,7 @@ _memory:
     answered_questions:
       - "The gate routes new work back to the owning sibling and never repairs the skill surface."
 ---
-# Checklist: cli-external-orchestration subtree rollup gate
+# Verification Checklist: cli-external-orchestration subtree rollup gate
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

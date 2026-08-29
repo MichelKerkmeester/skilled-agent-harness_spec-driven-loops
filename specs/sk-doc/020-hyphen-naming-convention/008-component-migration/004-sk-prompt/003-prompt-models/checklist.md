@@ -25,7 +25,7 @@ _memory:
     answered_questions:
       - "Benchmark output and changelog history are verified outside this phase."
 ---
-# Checklist: prompt-models asset and reference names
+# Verification Checklist: prompt-models asset and reference names
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

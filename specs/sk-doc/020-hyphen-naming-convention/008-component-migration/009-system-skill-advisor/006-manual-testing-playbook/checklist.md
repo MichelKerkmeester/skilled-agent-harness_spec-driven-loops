@@ -24,7 +24,7 @@ _memory:
       - "This authoring pass does not rename scenarios or run manual-playbook tests."
 ---
 
-# Checklist: system-skill-advisor manual testing playbook
+# Verification Checklist: system-skill-advisor manual testing playbook
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

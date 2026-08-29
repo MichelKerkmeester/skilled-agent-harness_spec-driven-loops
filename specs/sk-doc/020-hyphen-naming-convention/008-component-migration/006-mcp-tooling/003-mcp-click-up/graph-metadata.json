@@ -38,19 +38,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -172,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -192,7 +191,7 @@
     ],
     "causal_summary": "The mcp-click-up component contains snake_case catalog roots, catalog category directories, manual-testing categories, index files, reference files, and hundreds of links between them. This phase renames the component-local filesystem paths to kebab-case and updates path-derived references while preserving ClickUp CLI identifiers, package manifests, and data keys.",
     "created_at": "2026-07-14T15:17:43Z",
-    "last_save_at": "2026-07-17T20:26:10.523Z",
+    "last_save_at": "2026-08-29T10:00:42.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:5ccc54ea19481c0be703a3c564b8724580cf2db031285cebdb705af66152ea47",
+    "source_fingerprint": "sha256:b1f7fe62b92ecf49d604432c8d0e7df25395feb9ff41b7f41cad339052e0a52b",
     "source_doc_hashes": {
       "spec.md": "c111cdd5b83919e828f7cc8a310c097844f4157ffe394db27c4b25d759f6d03e",
       "plan.md": "026c99bafb224234262f0b6100356e3e88b9061fefb1d254e60d20e947423662",
       "tasks.md": "65d7f80ff06c5d424c90b31bbf87722e658c13357f5a2d40bc0008bbccd8d292",
-      "checklist.md": "9092079a169a8636ca223b4810faf48ca56ab64a07848e6292dff657a6c6e9f9"
+      "checklist.md": "b0555dadd98801811dd65d98349279fd9ed2c5d27c093d3c28413742eb8ecf87"
     },
     "last_active_child_id": null,
     "last_active_at": null

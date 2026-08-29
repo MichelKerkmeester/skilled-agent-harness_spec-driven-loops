@@ -169,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan deterministic transactional projections that apply each verified ledger event atomically across dashboards, registries, claim tables, and stream-fold gauges, with idempotent resume and isolated replay rebuilds.",
     "created_at": "2026-07-16T03:43:52.461Z",
-    "last_save_at": "2026-08-18T11:07:36.183Z",
+    "last_save_at": "2026-08-29T09:57:44.976Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:12a45a3784afbfa3121edfbe6a44751bb2300899692712a922a921f58e74a9b7",
+    "source_fingerprint": "sha256:7be2770ce2771cb3fb49d6df0d33708d3b7f47d911926a8ab23c8ae95173d183",
     "source_doc_hashes": {
       "spec.md": "72253dd88dad422e7c3dd14f127d9719f0ad4ba402b0700943ba8d65bf27705e",
       "plan.md": "db549b597a42e456b2a5ce3ddcbbfdba99aa6ab9a9a17b62ae295aa7c6ed44b4",
       "tasks.md": "c9f7378eb4b6e9dd705f0d60eeea99eb696796e2caafe102376cca762947836e",
-      "checklist.md": "4a10e07615fd304b21744f1e1a285e4fc85fcfc51afdf45246997d705368d790",
+      "checklist.md": "caaa7fd34bfc68c6bcb58fbfaf8b6f39f577f7bfcd15f0a1f30d14fc008a5f1c",
       "implementation-summary.md": "29aff8439535d6409da229dc44d2196b9f52c4b91312d18ec95cb1952b8ca216"
     },
     "last_active_child_id": null,

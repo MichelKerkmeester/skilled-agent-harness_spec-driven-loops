@@ -181,13 +181,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real file, the Lane C loader + generator, parent-skill-check.cjs, post-edit-router.cjs, package_skill.py, and an INVERSE guard that currently rejects the hyphenated state. All",
     "created_at": "2026-07-13T14:34:05.520Z",
-    "last_save_at": "2026-07-18T07:19:13.181Z",
+    "last_save_at": "2026-08-29T10:01:06.077Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a37c62e725ebc6a54ab23ebdd0388b12e659957c63833fa1ff6cf4bceeb7622c",
+    "source_fingerprint": "sha256:9e74f32ad96a7ce752982c5020a8f74969eac0cd081b6b4122b9e6a51e65cc5f",
     "source_doc_hashes": {
       "spec.md": "5865b14373e6e2fbdaa56bc3af9c72bbb921f09b70efe903eca08b9911f14623",
       "plan.md": "cc5e5416e9000c295fa6f95e522e3a90269e63fad7eea0bc167cbbe5d8fc80eb",
       "tasks.md": "859b7f590642026959f1cffcdc8475f15127f14e639a6659fbc6e80846442929",
-      "checklist.md": "0164f018084b7197b72942c47f946990f3fe4c7b8d729515927128b06b3c3e6c",
+      "checklist.md": "42e8f7b20459862ad03b4fec8a87abef9a6e163817f3177d6418f22cea5f7156",
       "implementation-summary.md": "258791715289073fa2aaee79d71c230485d1506c20c804c21c3411501fafd092"
     },
     "last_active_child_id": null,

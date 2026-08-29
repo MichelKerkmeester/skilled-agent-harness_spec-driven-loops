@@ -20,7 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Skill Benchmark - Sealed Reference Artifacts
+# Verification Checklist: Skill Benchmark - Sealed Reference Artifacts
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

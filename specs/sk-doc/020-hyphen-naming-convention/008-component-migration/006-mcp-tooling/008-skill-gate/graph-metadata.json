@@ -38,9 +38,6 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/spec.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared/checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify/checklist.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -162,6 +159,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -184,17 +187,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-tooling subtree needs one blocking rollup contract after its independent hub, component, playbook, benchmark, and changelog phases. This gate performs no new migration work; it aggregates sibling evidence and proves that the complete in-scope surface is kebab-clean with the 020 exemption set intact.",
     "created_at": "2026-07-14T15:17:47Z",
-    "last_save_at": "2026-07-17T20:26:11.330Z",
+    "last_save_at": "2026-08-29T10:00:39.872Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:693e319feaa38bbc2dd7ff6597ec62c486ab536aeab5b8ad644a1eebfff32432",
+    "source_fingerprint": "sha256:f711db4f8fbe449eab3e2761ad760ae1f0cc443e6dd40e539b56f7bdbf549525",
     "source_doc_hashes": {
       "spec.md": "8a4d362e73648136adc3a2005ea911bd81f55bba9852718314ffa97a8afaf926",
       "plan.md": "29bb6357a11f0cc208ee62cd5aa7c501c6a43d91133acac5693e10ab8878342c",
       "tasks.md": "d3439c0d846fab3c96717daa6ad3a7d29b50dd82567203056693cfdbf7ec9d10",
-      "checklist.md": "900b7ea4a8bd34927e659de2e7e411b5d94bbfaef2eae7e88d0e55c1332cf6b8"
+      "checklist.md": "25ad4ff883fcdc0abbe27c57e6787242fc3bd2e86b493df7d28bf04749817371"
     },
     "last_active_child_id": null,
     "last_active_at": null

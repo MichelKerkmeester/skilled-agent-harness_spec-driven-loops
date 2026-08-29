@@ -41,19 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-deep-loop/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -169,6 +162,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "The system-deep-loop subtree needs release evidence that names the complete rename set, exemption boundary, reference repair, and version bump. This verification-only phase checks the root changelog and declared version surfaces against phases 001-009 and performs no filesystem rename or unrelated history rewrite.",
     "created_at": "2026-07-14T15:17:56Z",
-    "last_save_at": "2026-07-17T20:26:13.143Z",
+    "last_save_at": "2026-08-29T10:00:34.325Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:2623e48df90f25d3523adec571219f4448f3d12679f68f377f9ad0f66f91e2f6",
+    "source_fingerprint": "sha256:14ad3e6f5ae49ef1a82141a1f7c2e672ac674b2ad72e637a562deba88e1b5769",
     "source_doc_hashes": {
       "spec.md": "e4c45078500bca067de1954fbbd3abb6aa370f486318c38d6153b951fa87e782",
       "plan.md": "7280d90230fa71883da87383324f18068f66e97567e25b43acafadcb78ab4486",
       "tasks.md": "e06f4dd0e31a42c5d6bbea6e55be672c4cddc6443760c89b8a07ab9e9d819ec2",
-      "checklist.md": "7662a38444d79b9f7a334b3eaef0fa35da2895946fb72afcf51bf96171f8f4ee"
+      "checklist.md": "87084fd43a00a5a9cfe77e00469ccdafb847f544db0bcb4c837e17d89c1a4c8a"
     },
     "last_active_child_id": null,
     "last_active_at": null

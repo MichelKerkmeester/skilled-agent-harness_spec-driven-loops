@@ -167,6 +167,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -177,17 +183,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit surface has a small set of non-Python script filenames that still contain underscores, while Python scripts and test fixture names follow separate contracts. This phase renames only permitted script filenames and updates sourcing, imports, and registry references without touching Python filenames or test-runner magic.",
     "created_at": "2026-07-14T15:18:00Z",
-    "last_save_at": "2026-08-28T22:30:09.121Z",
+    "last_save_at": "2026-08-29T10:00:59.984Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +196,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:f053fefebbf348b538425caba955422dbf6bd1ead864e6db94b3f4f00bf4e088",
+    "source_fingerprint": "sha256:a5ee613144000272d48030bfe57b99c8b8cf839f6cf86ecc66afa4593cb4a1ce",
     "source_doc_hashes": {
       "spec.md": "3a87e0d1a9ccdb46d92b4c04716661e9be7f037382a8039387863a1e44b3a5c5",
       "plan.md": "f25de410b5d02dd9175c406a0b4853765f93ce9732481255d508bf9872c3f86e",
       "tasks.md": "a0fffe417ec386ac3f0bfbe36a17459973724063b39adc9dc9529be92e13668f",
-      "checklist.md": "7b5821f1bdfea3aeddf927d2f8bd5d01fd26985812ea8efbf5383820cae15b3b"
+      "checklist.md": "170b8c22b2eb7efd86c169f4cb73800932282e28ac63655560ed6ae20fc40b65"
     },
     "last_active_child_id": null,
     "last_active_at": null

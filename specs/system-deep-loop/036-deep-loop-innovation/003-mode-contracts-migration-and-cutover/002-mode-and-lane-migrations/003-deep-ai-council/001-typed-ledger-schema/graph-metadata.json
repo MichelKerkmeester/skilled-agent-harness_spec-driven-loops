@@ -169,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep AI Council event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed multi-seat deliberation, critique, blinded adjudication, convergence, ai-council artifact, and council test-gate events. This phase defines events, field contracts, and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:33.922Z",
-    "last_save_at": "2026-08-18T11:07:22.270Z",
+    "last_save_at": "2026-08-29T09:58:11.034Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:521f1d9e6dda4e32f449e207daecdb9b278949568275ec49200880bb253e790a",
+    "source_fingerprint": "sha256:4cac8487b7583bdad1503dd52101476e3b1d2d608421e6d271bf88ebd00d8161",
     "source_doc_hashes": {
       "spec.md": "dce1eab27a25a1c3315ad8268d51127678b2c1c99af5d91d80f1df77ddaa6aa8",
       "plan.md": "616eb44919005555349e04ceb86ff54ec4d86ac7e31796e72875cf0409ad6066",
       "tasks.md": "3617bb2d0f093c1e6fd041de8ae01b40396806ddcbdd9c09545315730db2ce22",
-      "checklist.md": "fb361b5243290b3ed8265308d27a84ae5ff400772a5aa0bf2d2917dba1459bef",
+      "checklist.md": "f4807c740ff3c60c5de551b0b22a4577ff5c4bfcc12522b203e9ecba38b86344",
       "implementation-summary.md": "783f47d3948157f423eadaac357a4cf82ebb78ed020530b7f46390cb56caecde"
     },
     "last_active_child_id": null,

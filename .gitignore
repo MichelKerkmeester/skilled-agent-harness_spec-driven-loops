@@ -105,6 +105,10 @@ dist/
 # excluded. Matching one level in keeps each subsystem directory tracked.
 .opencode/skills/.state/*/*
 !.opencode/skills/.state/*/README.md
+# Pre-consolidation state directories still written by some tooling. They are
+# runtime output, so they stay untracked wherever they reappear.
+.opencode/skills/.authority-state/
+.opencode/skills/.spec-gate-state/
 
 # ───────────────────────────────────────────
 # Database: system-deep-loop/runtime

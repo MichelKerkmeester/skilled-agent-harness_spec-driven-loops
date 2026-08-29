@@ -32,35 +32,13 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/design-md-generator/assets/cardinal-rules-card.md",
-      ".opencode/skills/sk-design/design-md-generator/assets/design-md-prompt-template.md",
-      ".opencode/skills/sk-design/design-md-generator/assets/source-of-truth-router-card.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md",
       "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "cardinal-rules-card.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/assets/cardinal-rules-card.md",
-        "source": "derived"
-      },
-      {
-        "name": "design-md-prompt-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/assets/design-md-prompt-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "source-of-truth-router-card.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/assets/source-of-truth-router-card.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -77,12 +55,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-asset-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-asset-template.md",
         "source": "derived"
       },
       {
@@ -186,11 +158,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`assets/` holds 3 files — `cardinal-rules-card.md`, `design-md-prompt-template.md`, `source-of-truth-router-card.md` — none of which was part of the 014 program's seed sample",
     "created_at": "2026-07-27T15:10:01.812Z",
-    "last_save_at": "2026-07-27T15:10:01.812Z",
+    "last_save_at": "2026-08-29T09:58:31.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +196,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98f9a3824c690ac88480d3a9bcc06e15977d9f0a2d2a1d1f753923478e8c1302",
+    "source_fingerprint": "sha256:c47dcf92b92ffcc9847de5f6c590c2e7b6d9d38c309024280b06d91ed0b5da2a",
     "source_doc_hashes": {
       "spec.md": "46806a449628cb5971fc676a34877efdd434c6e82e9171c944d390c45a43afc0",
       "plan.md": "eeafa13e9b3b2f634667f9f54f99f2ecd6a54b2e8109d632c3f93da4809953c8",
       "tasks.md": "212df33fedb2669337f67fd6ea7e431944399c8d903741e91839b689d5668259",
-      "checklist.md": "75947d28d1b8152b36919bfbdaec7caa395a784f8aca6963be53415a33d398f8",
+      "checklist.md": "abad738f28661b0ab5be70c5aec9d089a93fb27f014043aa6e20915ee4dec67d",
       "implementation-summary.md": "196dc015937a77d11149cd044387e65932c988a919bfa0102ae548baa98eb3c7"
     },
     "last_active_child_id": null,

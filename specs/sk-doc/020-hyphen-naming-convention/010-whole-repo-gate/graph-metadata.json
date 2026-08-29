@@ -41,8 +41,6 @@
     "importance_tier": "critical",
     "status": "planned",
     "key_files": [
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases/checklist.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "spec.md",
       "plan.md",
       "decision-record.md",
@@ -50,12 +48,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -189,6 +181,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -197,7 +195,7 @@
     ],
     "causal_summary": "The migration needs one evidence-based end-state gate that proves the scope-aware filesystem naming rule, reference closure, Git rename history, and the complete validation and test baseline all hold on the same candidate commit. This phase defines that gate and records exact pass measurements; it does not repair failures or perform the migration.",
     "created_at": "2026-07-14T15:22:42Z",
-    "last_save_at": "2026-07-17T20:26:23.743Z",
+    "last_save_at": "2026-08-29T10:01:07.465Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:0303d99e6546c5c445902dee05fb0c540b51615101e512eb7e246b3916c513c8",
+    "source_fingerprint": "sha256:a41cbbfdec12ebf644bea8e71225efcab8897038fc5b5542699a3a684f6ed519",
     "source_doc_hashes": {
       "spec.md": "097c2f973498b3127cc3b952d6d375a291515df179a84c6f5f71725c824b430c",
       "plan.md": "e09c058f2f9be87eb3650be991e1d00516bf372056f12c5b2a9af1db7f488b82",
       "tasks.md": "a5d2c62cf1b38dc17837a9bed4981f7b7b41e69d93e2b5eebf901eb6e94ce2a6",
-      "checklist.md": "8000e69b0489b593f48605acf31a182876efe2ace644b13b3c1ee5dbc459e88b",
+      "checklist.md": "f27f5f500c26a82efa2b023961d6e9a5bcfb52e28da182999d7661b66862e6f7",
       "decision-record.md": "0a8bbb7ce84c72035ea12dc28d59e8ff56b98d1206a8d75194e2abe57f578551"
     },
     "last_active_child_id": null,

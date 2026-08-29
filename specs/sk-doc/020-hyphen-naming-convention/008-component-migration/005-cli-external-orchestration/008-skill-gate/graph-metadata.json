@@ -178,13 +178,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "This read-only rollup gate aggregates phases 001–007 and proves that the complete cli-external-orchestration naming surface is kebab-clean within the 020 exemption boundary. It performs no new rename, reference rewrite, changelog repair, or metadata mutation.",
     "created_at": "2026-07-14T15:17:40Z",
-    "last_save_at": "2026-07-17T20:26:09.869Z",
+    "last_save_at": "2026-08-29T10:00:22.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:7e3b64019779f63957f7b32bfbce374ed7679c69dd47a5d9134a9b73c6cc909a",
+    "source_fingerprint": "sha256:21023f63686519c81bdf5991bb77574a384e0790beee498a3ccb656cb4be7da1",
     "source_doc_hashes": {
       "spec.md": "e848664ad4bf1f0d261ab163057f01d8fb9b507b7aaefc7a81ea53f7e7cee0d9",
       "plan.md": "bb8c8bd38342e11005a4d83d9db2267bee1688cda8ec6bdf72d47d39879805db",
       "tasks.md": "935efd0952686f572627f78b9f14884aeb1c5ae740ac44de4e8ba7c5587883b3",
-      "checklist.md": "b8e809868085b1ed3711d18939893a59051fe3a9a507e0f6a449a89bb6deb1c6"
+      "checklist.md": "3d1816a534ce99954477bdad8d81a9368722074ceb0deffe9773c42c45621675"
     },
     "last_active_child_id": null,
     "last_active_at": null

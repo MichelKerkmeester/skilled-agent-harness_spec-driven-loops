@@ -163,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol The",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Packet Surface",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Routing the live fan-out executor spawn through the shipped effect gateway (phase `007`) records a fail-closed intent",
     "created_at": "2026-08-22T04:10:32.128Z",
-    "last_save_at": "2026-08-24T06:19:12.547Z",
+    "last_save_at": "2026-08-29T09:58:19.460Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f1c73d095e3a6b9642b5cd0f1b72af4516f148aca723070138528bcbac2db2be",
+    "source_fingerprint": "sha256:f56e06b2d6f424180690ab870bcc6f5c0f22176e12d91fe38d3a47091e247fe9",
     "source_doc_hashes": {
       "spec.md": "40ec0e920e577903239fedbeae7944307aae849e0853a310033c2a705a219194",
       "plan.md": "36057a12f39848210c22ac00d6da9ba15ffb02dbd2bc6b1de3c5bd18fe6292d1",
       "tasks.md": "c0e71b1c0c231a9d608125c22bac25c750f4e2a1bd116303a6125b698c89659d",
-      "checklist.md": "cefab3f16e08bad67ae49988e31bfb7bd58ded35c0ba5e02c110af626fc9560c",
+      "checklist.md": "41cb2619581b520b7bf6e57d6d283d6161e4cab6701bde3d74e3bc429e7518d8",
       "implementation-summary.md": "def562e1e125804e5c41dcb031e749ab8c7df65af65fdf118e8b0fe8ae630aa3"
     },
     "last_active_child_id": null,

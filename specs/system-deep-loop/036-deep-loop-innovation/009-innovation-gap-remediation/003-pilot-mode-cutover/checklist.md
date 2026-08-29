@@ -25,7 +25,7 @@ _memory:
       - "What rollback-window duration and open-window policy will the operator approve?"
     answered_questions: []
 ---
-# Checklist: Pilot Mode Authority Cutover
+# Verification Checklist: Pilot Mode Authority Cutover
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

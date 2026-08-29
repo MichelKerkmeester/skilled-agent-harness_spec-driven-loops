@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: mcp-tooling Subtree Rollup Gate
+# Verification Checklist: mcp-tooling Subtree Rollup Gate
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

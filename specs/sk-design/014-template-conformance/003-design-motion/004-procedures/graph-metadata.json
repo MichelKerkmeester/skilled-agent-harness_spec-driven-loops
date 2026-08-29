@@ -32,21 +32,13 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/design-motion/procedures/interaction-states-pass.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-procedure-template.md",
       "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "interaction-states-pass.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-motion/procedures/interaction-states-pass.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -63,12 +55,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-procedure-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-procedure-template.md",
         "source": "derived"
       },
       {
@@ -184,11 +170,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`procedures/` holds exactly one file, `interaction-states-pass.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:13.530Z",
-    "last_save_at": "2026-07-27T14:58:42.837Z",
+    "last_save_at": "2026-08-29T09:58:26.732Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +196,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e72f53c7342e421b0cd1c91543fcce6a2b12b62562962e78c8f947518ee2333a",
+    "source_fingerprint": "sha256:04d8c76bdd1483d4001de3c43f15646371b38f987b30032768b1a3e05a9b6af4",
     "source_doc_hashes": {
       "spec.md": "a085e0922a48324f0d171773bd2a4084367fd83958bd207b413cc94a09428153",
       "plan.md": "7fd7fcacac4c04eadb2fac88828275f8dca90ce6a9659fb1cb6225277dc65453",
       "tasks.md": "7dc75889f483846dba6b36bda64aab17be39ac7a39e2874f232837c1d7f0266f",
-      "checklist.md": "995ccd991e0e938abb852e92507d7bd6fe1404b0f8353680f6fa79dee4d7d9d9",
+      "checklist.md": "3937b96e671661f88562fea4351976dafb8b9e53be0804141854639552c532ab",
       "implementation-summary.md": "e4bcb415e4885aff51cd3832b2e8979cd684291157da1283a218b65e1427c65f"
     },
     "last_active_child_id": null,

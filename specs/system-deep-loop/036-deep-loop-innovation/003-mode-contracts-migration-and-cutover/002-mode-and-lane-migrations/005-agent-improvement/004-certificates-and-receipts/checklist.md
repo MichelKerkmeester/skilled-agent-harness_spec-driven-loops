@@ -21,7 +21,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Agent Improvement Certificates & Receipts
+# Verification Checklist: Agent Improvement Certificates & Receipts
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

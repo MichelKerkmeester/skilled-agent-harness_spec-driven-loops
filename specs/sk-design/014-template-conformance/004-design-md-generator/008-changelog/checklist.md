@@ -18,7 +18,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: design-md-generator changelog/ conformance
+# Verification Checklist: design-md-generator changelog/ conformance
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

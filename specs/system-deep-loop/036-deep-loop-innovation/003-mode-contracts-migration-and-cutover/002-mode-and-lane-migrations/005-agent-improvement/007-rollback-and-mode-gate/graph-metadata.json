@@ -157,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -170,12 +176,6 @@
       },
       {
         "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the fail-closed Agent Improvement rollback switch and independent migration gate for the agent-loop proposal-generation and scoring variant. Reuse the deep-improvement-common evaluator, canary, and promotion services; certify this mode only after shadow parity, sealed evidence, replay/resume integrity, and rollback readiness pass.",
     "created_at": "2026-07-16T03:43:39.029Z",
-    "last_save_at": "2026-08-18T11:07:16.354Z",
+    "last_save_at": "2026-08-29T09:58:13.176Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ec4e06bb162d75ea0f0e4ae9df5dd504696c0b7681be066f667da1b8b2be8ac1",
+    "source_fingerprint": "sha256:9e77f91f3224fabaaf6c287787a1e5a18e6859868866f25fc2c7f4a8987a3ed7",
     "source_doc_hashes": {
       "spec.md": "82f7d503767eabe44a2837ff0ead1d978d223193a2ffb8a15351f240620e258f",
       "plan.md": "a3bb7c9d87930befeffef91621045ddc331ad2640b6731c71623a865b019ebcc",
       "tasks.md": "b6e3fe6128fd605f2d37f41dd021d4b58a8a96cfd24005e641222e3ba1d7749a",
-      "checklist.md": "fb9928c05897a7f4e3dffca44078f64c591ea1a0d4e887a450daa9c67ce12faa",
+      "checklist.md": "7ddfaaf1ee01214ce69c9ba3f61e8b589f84aaa8bec226ef69912430866c9ee0",
       "implementation-summary.md": "91634cc2d7f74a1e26aacad0fa9ef1fcdaad5f6488286638bad2987677129a9b"
     },
     "last_active_child_id": null,

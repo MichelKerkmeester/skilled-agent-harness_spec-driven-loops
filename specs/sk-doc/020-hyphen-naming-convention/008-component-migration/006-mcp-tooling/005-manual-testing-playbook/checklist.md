@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: mcp-tooling Hub Manual-Testing-Playbook Naming Closure
+# Verification Checklist: mcp-tooling Hub Manual-Testing-Playbook Naming Closure
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

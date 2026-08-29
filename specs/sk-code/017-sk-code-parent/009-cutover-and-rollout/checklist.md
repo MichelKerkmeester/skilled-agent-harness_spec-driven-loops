@@ -23,7 +23,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
-# QA Checklist: Phase 9 — cutover and rollout
+# Verification Checklist: Phase 9 — cutover and rollout
 
 <!-- SPECKIT_LEVEL: 2 -->
 

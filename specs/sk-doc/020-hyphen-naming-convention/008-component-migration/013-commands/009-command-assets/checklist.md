@@ -22,7 +22,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: Command asset and reference closure
+# Verification Checklist: Command asset and reference closure
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

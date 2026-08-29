@@ -26,7 +26,7 @@ _memory:
     answered_questions:
       - "Strict validation is a future execution gate; this authoring pass does not run it"
 ---
-# Checklist: Active Specs and Documents
+# Verification Checklist: Active Specs and Documents
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

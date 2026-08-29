@@ -32,8 +32,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/design-motion/changelog/v1.0.0.0.md",
-      ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -41,18 +39,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "v1.0.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-motion/changelog/v1.0.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/assets/changelog-template.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -184,11 +170,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`changelog/` holds exactly one file, `v1.0.0.0.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:14.301Z",
-    "last_save_at": "2026-07-27T14:58:45.032Z",
+    "last_save_at": "2026-08-29T09:58:27.880Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +196,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa9d7c7ca745287fdd73f548897491eb2b4bd33b234df1a6701791b90da0245c",
+    "source_fingerprint": "sha256:c7b1c29aca1b9d8e241eeb23d70e25694763c2a8724dfff20b902e9d3b60e805",
     "source_doc_hashes": {
       "spec.md": "089840b052f24fd73975f89d23e3b1184bd6593b886e54f9a9ec2318570839ca",
       "plan.md": "1aac09fcc56a90b2c45780ddaf132c8200823872eeb5491a745570e199230e99",
       "tasks.md": "fea28c0d5c81a4b0fc4878ba3cfdfbbf64cdedc03747c957ab1145c03f3e8667",
-      "checklist.md": "1869b307ed5fc24cc3a1e50a9b4ddcad88911b0a2d8c83fbccaf8a90cc97404d",
+      "checklist.md": "3926e45109dbbdde0239dcb304ae8eaf0e60f413441705913f5308102c02f87f",
       "implementation-summary.md": "702c441fbe2978590f26ac84d9a31f6db01104a2759ed5e348ae366b9c651fa7"
     },
     "last_active_child_id": null,

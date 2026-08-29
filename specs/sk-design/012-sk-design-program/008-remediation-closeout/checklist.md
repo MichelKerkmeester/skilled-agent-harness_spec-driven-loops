@@ -27,7 +27,7 @@ _memory:
       - "Restore the eleven AI-tell fixture pairs, ai-fingerprint-registry.json, and the two parity scripts (not the rubric)? Recommendation on record: yes. Awaiting operator go/no-go."
     answered_questions: []
 ---
-# Checklist: sk-design remediation closeout
+# Verification Checklist: sk-design remediation closeout
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

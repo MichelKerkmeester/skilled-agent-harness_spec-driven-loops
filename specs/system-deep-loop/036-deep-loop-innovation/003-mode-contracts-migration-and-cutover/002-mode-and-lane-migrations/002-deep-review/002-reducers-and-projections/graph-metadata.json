@@ -170,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -186,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the pure deterministic reducers and live projections for the Deep Review migration: replay the typed event ledger into iteration/convergence state, an artifact index, and per-mode status while preserving factored finding evidence and the shared review-loop contract used by Deep Alignment.",
     "created_at": "2026-07-16T03:43:32.465Z",
-    "last_save_at": "2026-08-18T11:07:24.120Z",
+    "last_save_at": "2026-08-29T09:57:54.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d499178ebe9cc8435f8c15a2d76018c93ea82c8c406fc2dbf3d8290a9d3e199e",
+    "source_fingerprint": "sha256:f7252c03d1fb7df9da1cfaacdbc34cd6e01a1bc02a7e21fddcd461580c8e9f8a",
     "source_doc_hashes": {
       "spec.md": "b9bad1529991affa05a46ec99e251983a6fd8d16bd4962c6fd98d1adf90c61bf",
       "plan.md": "9aefb53c24322c916b7b810a3dd46c404408496634e90965d53c0df3b808fade",
       "tasks.md": "b8a853e8beeb4beec61e60a6e796a252f8da85c2c1656de782926f2e5be6aba5",
-      "checklist.md": "f0c69156d4b16f9d8b07465b2233c6c5d6cf4700e1509bde9d55d2e0ceb49d7f",
+      "checklist.md": "d26ccfedd52f243b80bae170babe3f75de0e7c2cd7c9c52d5363aa665ca58969",
       "decision-record.md": "e2e2873cefd1ddd95e8b3ed4a2234751f0ac50921dc48a3198a9ad015ecc35db",
       "implementation-summary.md": "ed21d2f5b5c05297e4a46ec4f8f9a122ed20698214849270a16e276b7a8d3a89"
     },

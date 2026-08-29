@@ -41,28 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-code-graph/SKILL.md",
-      ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook/checklist.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -184,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -194,11 +184,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-code-graph release history currently ends at v1.3.0.0 and does not yet prove that the 020 filesystem migration was recorded. This read-only phase verifies the next append-only changelog entry, the matching version bump, the complete phase-001–006 rename scope, and the preserved exemption boundary without performing a rename.",
     "created_at": "2026-07-14T15:18:18Z",
-    "last_save_at": "2026-07-17T20:26:16.155Z",
+    "last_save_at": "2026-08-29T10:00:54.689Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:f39b7db646c45f56b7b5eba2123c42b784cce2aee5c50fd5a7dd08bf2bdf910a",
+    "source_fingerprint": "sha256:f999bacb1879942619ed477288a5a8f5756d9f0c6ea3cff9a4b47e9a98e3a4a8",
     "source_doc_hashes": {
       "spec.md": "08b918712c824dea2beed01d15f31214de3b97aaf63c599a1919a3e5a51f68e4",
       "plan.md": "364e3c5689be4004eb0c45bc098a115a116a4f7e1fe60dea5c46e07963b99a42",
       "tasks.md": "6dcb352d3f6c1c48c651ef74c2273f4f799d610395eb4e5e2caed6e450af9890",
-      "checklist.md": "1b98b07e379dd29bbf9ab1ca526d00c4daeb64429329c5799492d20a728b23cc"
+      "checklist.md": "621d272317bec2fa59c070fd22f7dd7e045269dbbe7b12d9218e32e099eb72fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

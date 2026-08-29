@@ -7,7 +7,7 @@ trigger_phrases:
 importance_tier: "critical"
 contextType: "implementation"
 ---
-# Checklist: sk-doc Template Alignment
+# Verification Checklist: sk-doc Template Alignment
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->

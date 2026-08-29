@@ -3,6 +3,7 @@
   "packet_id": "sk-doc/019-skill-routing-refactor/010-create-packet-routing-conformance",
   "spec_folder": "sk-doc/019-skill-routing-refactor/010-create-packet-routing-conformance",
   "parent_id": "sk-doc/019-skill-routing-refactor",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -36,8 +37,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-skill/SKILL.md",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
       "spec.md",
       "tasks.md",
       "checklist.md",
@@ -45,18 +44,6 @@
       "plan.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +175,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Normalize the 8 non-conformant sk-doc packet SKILL.md files so each passes the canonical create-skill section contract (package_skill.py --check): split the merged 'WHEN TO USE + SMART_ROUTING' header into separate WHEN TO USE and SMART ROUTING H2s, ensure a REFERENCES H2, add missing keyword-trigger and SUCCESS CRITERIA content, renumber, version-bump, and changelog. Fix the files, not the validator.",
     "created_at": "2026-07-12T10:23:20.067Z",
-    "last_save_at": "2026-07-24T11:03:16.767Z",
+    "last_save_at": "2026-08-29T10:01:26.821Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +201,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4da2fa0abfe3f220c0cdcc265455b65cd66dca9cff8eb406ed4952e8e47e2eed",
+    "source_fingerprint": "sha256:dbca5a64b016a14b598fdc5e13323b78119db7f2c07d504aadc00db98b5c9264",
     "source_doc_hashes": {
       "spec.md": "18428b7375d388978ed2adc9d9a2976113361d34daea7af9b7501b194a1b159b",
       "plan.md": "4d8f0e07220aae5d2258716621b438d38ce536a0a7c1d01b4b1cf59eaa3bf603",
       "tasks.md": "893912e8dbe45b08e9d25da4d797316efdbbe8aa2ae3f0dc4ea0e8c8b3ee7f40",
-      "checklist.md": "d26c9def6772a98435a9ea2bdd599e864e14acdf8361051526b2a556c0addd60",
+      "checklist.md": "67465b05eb4f27b60d3ddb4d0b71b9fc2322f1b29a56c34c396fae3087180e22",
       "implementation-summary.md": "e682d00eef35f0d7082822b4867d3c39cfc7c6b9a295c8c2e5bb197691d7a635"
     },
     "last_active_child_id": null,

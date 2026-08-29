@@ -23,7 +23,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
-# QA Checklist: Phase 7 — advisor and integration
+# Verification Checklist: Phase 7 — advisor and integration
 
 <!-- SPECKIT_LEVEL: 2 -->
 

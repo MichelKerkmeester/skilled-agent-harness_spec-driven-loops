@@ -16,7 +16,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: End-to-End Validation & Benchmark Regression Proof
+# Verification Checklist: End-to-End Validation & Benchmark Regression Proof
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

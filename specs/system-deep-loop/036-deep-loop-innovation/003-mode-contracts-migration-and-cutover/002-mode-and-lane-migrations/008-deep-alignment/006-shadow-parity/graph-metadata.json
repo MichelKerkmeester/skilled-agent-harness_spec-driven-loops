@@ -157,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -170,12 +176,6 @@
       },
       {
         "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Every Deep Alignment",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Deep Alignment shadow-parity harness for migration to the typed event-ledger substrate. The harness runs the new ledger path beside the legacy emitter, compares canonical events and public projections event-for-event, and blocks any authority cutover until parity, replay determinism, and fail-closed mismatch handling are green. It consumes the phase-014 shadow framework and reuses the shared review-loop contract frozen in phase 012.",
     "created_at": "2026-07-16T03:43:44.129Z",
-    "last_save_at": "2026-08-18T11:07:11.096Z",
+    "last_save_at": "2026-08-29T09:58:02.057Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4166bf3e08e786d8a6edae5386806a5fbdc3a262eebeec2de3485900a77aafe",
+    "source_fingerprint": "sha256:eaf9f7ed2645fe7359a205048f39a486afaee8ad9d5b3f25c09e0382afb37a5c",
     "source_doc_hashes": {
       "spec.md": "e1d1474a784d724bb616b139ac28bafa782bbba0f93f3218c1f236df1e0ae75e",
       "plan.md": "889753d8ff4124fe1007239c590c17cdf761cf50ad8cd5f856b9760c38f130b6",
       "tasks.md": "76e0e47d52731e22f0bb38e132bc62717bd45f2040b80d4a0d169a79563bbede",
-      "checklist.md": "1931217759f1f12281613ab7809f11e723c10f94ee5082f69ad70e15b8f16eb6",
+      "checklist.md": "1cfb0d6813f788754350e4eb76ffc44457131d8a535aab1ccae5790d8e6d2c5c",
       "implementation-summary.md": "9a27a8d3ad3b2c72da6af6c55f932d2f9a8504d6d7d6353196e332a839035ac7"
     },
     "last_active_child_id": null,

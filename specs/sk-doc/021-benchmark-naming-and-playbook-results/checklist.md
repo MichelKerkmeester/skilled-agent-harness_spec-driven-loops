@@ -21,7 +21,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
 
-# Checklist: One Dated Benchmark Convention And A Home For Playbook Results
+# Verification Checklist: One Dated Benchmark Convention And A Home For Playbook Results
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

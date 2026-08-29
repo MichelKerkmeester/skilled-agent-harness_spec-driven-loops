@@ -1,0 +1,33 @@
+name: Command Tree Parity
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main, 'skilled/**']
+  push:
+    branches: [main, 'skilled/**']
+
+permissions:
+  contents: read
+
+jobs:
+  command-tree-parity:
+    name: OpenCode and Claude command trees stay identical
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare command trees
+        run: |
+          set -euo pipefail
+          CHECKER=".opencode/skills/system-spec-kit/scripts/validate-command-tree-parity.sh"
+          # Fail closed in CI: a required guard must exist. A PR that deletes or
+          # moves the checker must not silently disable its own gate.
+          if [ ! -f "$CHECKER" ]; then
+            echo "::error::Command tree parity checker not found at $CHECKER — failing closed."
+            exit 1
+          fi
+          if ! bash "$CHECKER"; then
+            echo "::error::OpenCode and Claude command trees differ — see the diff above."
+            exit 1
+          fi
+          echo "Command trees are byte-identical."

@@ -24,7 +24,7 @@ _memory:
     completion_pct: 98
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist + level3-arch | v2.2 -->
-# Checklist: Deep-Review P1 Findings Remediation for Lifecycle and Sidecar Hardening
+# Verification Checklist: Deep-Review P1 Findings Remediation for Lifecycle and Sidecar Hardening
 
 <!-- SPECKIT_LEVEL: 3 -->
 

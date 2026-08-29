@@ -4,7 +4,7 @@ description: "P0 verification items for license-audit gate."
 importance_tier: "important"
 contextType: "implementation"
 ---
-# Checklist: Clean-Room License Audit (012/001)
+# Verification Checklist: Clean-Room License Audit (012/001)
 
 <!-- SPECKIT_LEVEL: 2 -->
 

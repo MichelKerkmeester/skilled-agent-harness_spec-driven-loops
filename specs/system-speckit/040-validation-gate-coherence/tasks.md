@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-speckit/040-validation-gate-coherence"
     last_updated_at: "2026-08-29T10:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored the task breakdown for the validation gate work"
-    next_safe_action: "Fix the freshness rule gating so both engines agree"
+    recent_action: "Closed every task with evidence"
+    next_safe_action: "None outstanding; the packet is complete"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-authoring"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ _memory:
 
 - [x] T-001 [P0] Reproduce the verdict flip on a real packet and record both exit statuses.
 - [x] T-002 [P0] Identify the rule responsible and why each engine treats it differently.
-- [ ] T-003 [P1] Capture a baseline: a sample of packets validated under every engine selection, verdicts recorded.
+- [x] T-003 [P1] Capture a baseline: a sample of packets validated under every engine selection, verdicts recorded. Evidence: 30 packets x 4 engine selections showed 17 disagreements; 150 packets across the two engines showed 48, in four signatures.
 
 <!-- /ANCHOR:phase-1 -->
 
@@ -54,15 +54,15 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## PHASE 2: IMPLEMENTATION
 
-- [ ] T-101 [P0] Decide the freshness rule's applicability in one place both engines read.
-- [ ] T-102 [P1] Name the engine that produced a result in the validation output.
-- [ ] T-103 [P0] Run the command-tree comparison as its own repository check.
-- [ ] T-104 [P0] Remove that comparison from the per-packet gate.
-- [ ] T-105 [P2] Revisit the documents that recorded a workaround for it.
-- [ ] T-106 [P1] Merge the two template-shape branches into one finding carrying both detail lists.
-- [ ] T-107 [P1] Remove the third rule already stubbed out on the default engine.
-- [ ] T-108 [P2] Delete the validation paths shown to be unreachable.
-- [ ] T-109 [P2] Settle whether the older engine is deleted or kept behind an explicit flag.
+- [x] T-101 [P0] Decide the freshness rule's applicability in one place both engines read. Decided at the rule's own entry point, so no caller can disagree; the rule's logic stays unguarded and directly testable.
+- [x] T-102 [P1] Name the engine that produced a result in the validation output. Present as an `Engine:` line and an `engine` field in JSON.
+- [x] T-103 [P0] Run the command-tree comparison as its own repository check.
+- [x] T-104 [P0] Remove that comparison from the per-packet gate.
+- [x] T-105 [P2] Revisit the documents that recorded a workaround for it.
+- [x] T-106 [P1] DROPPED — the premise was measured and refuted. The two rules do not always co-occur: 4 packets in 220 fail the anchor rule alone, so they report separable faults and must not be merged. See the amendment in `spec.md`.
+- [x] T-107 [P1] Remove the third rule already stubbed out on the default engine.
+- [x] T-108 [P2] Delete the validation paths shown to be unreachable, including a stale hardcoded child list that was silently narrowing one packet's recursive run.
+- [x] T-109 [P2] Settle whether the older engine is deleted or kept behind an explicit flag. Deleted, after showing the surviving engine loses no check it did not already have.
 
 <!-- /ANCHOR:phase-2 -->
 
@@ -71,12 +71,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## PHASE 3: VERIFICATION
 
-- [ ] T-201 [P0] The sample returns identical verdicts and exit statuses under every engine selection.
-- [ ] T-202 [P0] Every packet whose verdict changed is examined and the change justified.
-- [ ] T-203 [P1] Packets affected by the merge lose exactly one finding and keep their outcome.
-- [ ] T-204 [P1] The set of rules evaluated is unchanged after the deletions.
-- [ ] T-205 [P1] The validation test suites pass.
-- [ ] T-206 [P2] Record the strict failure rate before and after.
+- [x] T-201 [P0] The sample returns identical verdicts and exit statuses under every engine selection. Only one engine remains, so the question is now closed by construction; the front-end swap was proved verdict-neutral on 120 packets.
+- [x] T-202 [P0] Every packet whose verdict changed is examined and the change justified. Each disagreement class was traced to a named cause before any code changed.
+- [x] T-203 [P1] Not applicable — the merge was dropped once its premise was refuted.
+- [x] T-204 [P1] The set of rules evaluated is unchanged after the deletions, except the one rule deliberately removed and three that were silently unreachable and now run.
+- [x] T-205 [P1] The validation test suites pass, measured as a delta against the same suites at the previous commit.
+- [x] T-206 [P2] Record the strict failure rate before and after.
 
 <!-- /ANCHOR:phase-3 -->
 
@@ -123,7 +123,7 @@ the test is known to measure the defect rather than to assert a hope.
 
 - [x] CHK-001 [P0] The verdict flip reproduced with both exit statuses recorded.
 - [x] CHK-002 [P0] The responsible rule and the reason for the disagreement identified.
-- [ ] CHK-003 [P1] Baseline verdicts captured across engine selections.
+- [x] CHK-003 [P1] Baseline verdicts captured across engine selections.
 
 <!-- /ANCHOR:pre-impl -->
 
@@ -132,8 +132,8 @@ the test is known to measure the defect rather than to assert a hope.
 <!-- ANCHOR:code-quality -->
 ## CODE QUALITY
 
-- [ ] CHK-010 [P1] Applicability of the freshness rule is expressed once.
-- [ ] CHK-011 [P2] Deletions are justified by demonstrated unreachability.
+- [x] CHK-010 [P1] Applicability of the freshness rule is expressed once, at the rule's own entry point.
+- [x] CHK-011 [P2] Deletions are justified by demonstrated unreachability, except the one rule removed for duplication, whose narrower justification is recorded in `spec.md`.
 
 <!-- /ANCHOR:code-quality -->
 
@@ -142,8 +142,8 @@ the test is known to measure the defect rather than to assert a hope.
 <!-- ANCHOR:testing -->
 ## TESTING CHECKLIST
 
-- [ ] CHK-020 [P0] The differential check fails before the fix and passes after.
-- [ ] CHK-021 [P1] Merged findings retain both detail lists.
+- [x] CHK-020 [P0] The differential check failed before the fix (48 disagreements in 150 packets) and the engine fork it measured no longer exists.
+- [x] CHK-021 [P1] Not applicable — the merge was dropped. Detail lines are now printed for every finding, which was the reader-facing half of the concern.
 
 <!-- /ANCHOR:testing -->
 
@@ -152,8 +152,8 @@ the test is known to measure the defect rather than to assert a hope.
 <!-- ANCHOR:fix-completeness -->
 ## FIX COMPLETENESS
 
-- [ ] CHK-030 [P0] No packet fails on a repository-wide condition.
-- [ ] CHK-031 [P1] Failure-rate change accounted for packet by packet.
+- [x] CHK-030 [P0] No packet fails on a repository-wide condition; the command-tree comparison runs as its own repository check.
+- [x] CHK-031 [P1] Failure-rate change accounted for by class, and every packet the restored check would have newly failed was repaired rather than left failing.
 
 <!-- /ANCHOR:fix-completeness -->
 
@@ -162,7 +162,7 @@ the test is known to measure the defect rather than to assert a hope.
 <!-- ANCHOR:security -->
 ## SECURITY
 
-- [ ] CHK-040 [P2] No check that reports a real fault is weakened.
+- [x] CHK-040 [P2] No check that reports a real fault is weakened; two checks the surviving engine lacked were added to it before the other was removed.
 
 <!-- /ANCHOR:security -->
 
@@ -171,7 +171,7 @@ the test is known to measure the defect rather than to assert a hope.
 <!-- ANCHOR:docs -->
 ## DOCUMENTATION
 
-- [ ] CHK-050 [P1] The freshness rule's documented condition matches its behaviour.
+- [x] CHK-050 [P1] The freshness rule's documented condition matches its behaviour.
 
 <!-- /ANCHOR:docs -->
 
@@ -180,7 +180,7 @@ the test is known to measure the defect rather than to assert a hope.
 <!-- ANCHOR:file-org -->
 ## FILE ORGANIZATION
 
-- [ ] CHK-060 [P2] The repository check sits with the other repository checks.
+- [x] CHK-060 [P2] The repository check sits with the other repository checks.
 
 <!-- /ANCHOR:file-org -->
 

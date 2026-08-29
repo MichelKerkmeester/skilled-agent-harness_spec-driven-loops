@@ -175,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan independent budget, novelty-decay, coverage, wall-time, and cycle clocks whose deterministic earliest firing terminates the loop and records a replayable, typed termination cause.",
     "created_at": "2026-07-16T03:43:53.268Z",
-    "last_save_at": "2026-08-17T11:46:24.511Z",
+    "last_save_at": "2026-08-29T09:57:48.446Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d60ce9323ddd01b5e95fa1c47c27ac84984dd64dd7de73e86771fd073d3a5f5d",
+    "source_fingerprint": "sha256:cc56f39e215272788b17473530589b4b2d65773f9613bfe4f812f1f78de455a4",
     "source_doc_hashes": {
       "spec.md": "68ebc8a577fc9ac216d54748d2f6275ff5f4b529a82af1a435dc32624262bfca",
       "plan.md": "cced373d9db940c716b19c5f7bcef5fa3c3af7f37558e358c8a540bc56b67b89",
       "tasks.md": "f635c24133041cc7183b15b61c2d46b9561e2823ce17421fc4e218a820e8d1c2",
-      "checklist.md": "502c11de41038e46ac063d6d2bbefb51b021a3b80f983275a66634e297a63bfc",
+      "checklist.md": "e3abf3c3a9104cf42372415053188e7744221be297fd243770db91ebc8a817ab",
       "implementation-summary.md": "5add535080702bf2eaacb83430c9f968b5b3f3dcbab46f1a98dd9702c9fb9fa9"
     },
     "last_active_child_id": null,

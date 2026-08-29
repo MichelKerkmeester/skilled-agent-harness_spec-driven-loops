@@ -162,6 +162,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -180,12 +186,6 @@
         "source": "derived"
       },
       {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan the sealed reference artifacts for the agent-improvement variant: immutable AgentIR and change inputs, frozen improver and evaluator references, content-addressed proposal and trial outputs, and a tamper-evident read path layered on the deep-improvement-common sealing and evaluator services.",
     "created_at": "2026-07-16T03:43:38.008Z",
-    "last_save_at": "2026-08-18T11:07:17.468Z",
+    "last_save_at": "2026-08-29T09:58:15.019Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9fd01afd4e1deb9fee7d9a12d896d13897a5e0f1f5ca8d6c396b7341aa580b0",
+    "source_fingerprint": "sha256:b1d181b408ea839f78298603aaf69c4eecec93df6d62212cf3bd62dba07a0210",
     "source_doc_hashes": {
       "spec.md": "7bf824f005cc18a3930391d06c1a9a3c8c75140c32cb2b0cd883f4992347c6c2",
       "plan.md": "f4b2abc73d7e8dffddcc2e654915c50880620b0fa2719bcf3dc21a971321e68d",
       "tasks.md": "f3f81ec298de436c2777a3b20cbb9d66a8cece1c656d2dbd33f8d1183901820f",
-      "checklist.md": "b2af613f40c413765c3bbc3824a16143e3a5f92e60e3311528b21fbe4ffc55fb",
+      "checklist.md": "c0692c0970f2c1c4fc0a6fdee1b02206f0bcfbeafba6ca1987147cca659db6d8",
       "implementation-summary.md": "a6f7b72c2e9a957087d66b1aec89c4ffc61f307cf99680184b00f3db3b16e7a1"
     },
     "last_active_child_id": null,

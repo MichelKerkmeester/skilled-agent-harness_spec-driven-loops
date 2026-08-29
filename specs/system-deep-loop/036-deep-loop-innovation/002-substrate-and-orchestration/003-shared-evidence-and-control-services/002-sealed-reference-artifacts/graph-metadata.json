@@ -175,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan immutable, content-addressed reference artifacts whose bytes are sealed, verified on every read, retained by explicit lifecycle policy, and pinned into replay evidence.",
     "created_at": "2026-07-16T03:43:46.678Z",
-    "last_save_at": "2026-08-18T11:07:41.603Z",
+    "last_save_at": "2026-08-29T09:57:44.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79ac2eb32acb77f8529351f09aa435972dc09ec48cc769d4d2d0c021e18f274a",
+    "source_fingerprint": "sha256:dcd8f30b58918e25682fe6d804134346904b395b9ba9dfaab529afeb37e5963d",
     "source_doc_hashes": {
       "spec.md": "0033d2168d5f218ac403a1a30884ab6a52a11013bf700d50538ba4a9a5552d6a",
       "plan.md": "a96731dc754fee2397feb849d605b40a1768664eb72905fff1f248b9fcaad6e6",
       "tasks.md": "b3fb884883513f6afcea5471e2885c445d352b49b0ccc8363bfa9bc226831444",
-      "checklist.md": "79f590d36782612b66be9f6c0d7d08de9c429e0afe289c8ec004281047fb857f",
+      "checklist.md": "5a24c44720e04c5d3f47241f724c6630bc81f9549fa8c945ef734cb8eadc66c6",
       "implementation-summary.md": "2645724a3adeb9029bb740cb08d4e4a06b9a56687f7709bffe0d1cbb7e59a7d3"
     },
     "last_active_child_id": null,

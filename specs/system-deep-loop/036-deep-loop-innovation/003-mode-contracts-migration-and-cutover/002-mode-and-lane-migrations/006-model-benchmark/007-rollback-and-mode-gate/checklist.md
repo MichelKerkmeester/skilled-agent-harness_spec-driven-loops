@@ -21,7 +21,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Model Benchmark - Rollback & Mode Gate
+# Verification Checklist: Model Benchmark - Rollback & Mode Gate
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

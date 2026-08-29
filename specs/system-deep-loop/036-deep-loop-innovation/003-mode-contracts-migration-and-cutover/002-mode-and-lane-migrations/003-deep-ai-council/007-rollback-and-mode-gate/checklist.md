@@ -23,7 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Deep AI Council - Rollback & Mode Gate
+# Verification Checklist: Deep AI Council - Rollback & Mode Gate
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

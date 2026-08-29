@@ -41,26 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
-      ".opencode/skills/cli-external-orchestration/cli-codex/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-codex/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-codex/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +178,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-codex component has underscore-separated reference and prompt-asset filenames with active links from its skill and README. This phase renames those local authored names, updates path-valued references, and preserves Codex availability, sandbox, model, and review contracts.",
     "created_at": "2026-07-14T15:17:37Z",
-    "last_save_at": "2026-07-17T20:26:09.088Z",
+    "last_save_at": "2026-08-29T10:00:22.215Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:0beaa44d10efe6b810cefbb9524f63e17812b64eb5e5eaff4018925b89601849",
+    "source_fingerprint": "sha256:41130874ab70daf59958aa372377b57c9c62750f53f117c636376761c3689326",
     "source_doc_hashes": {
       "spec.md": "c3e6cee6fbab7b360c4045f104da647f857e4a650a8da91adbe9cdc0b605fd94",
       "plan.md": "a37c0d3ea726dcbc1c13ba60843add2478dab2fcabca63bb64e4ea86a9c7841f",
       "tasks.md": "f6ee9c820d33f3540c377bc2800c96f3a592febbd13ec5f7f00127dbc773d8b2",
-      "checklist.md": "056c0eeacbda5ef6532a8e1e2e2800e9a9de3531974f1049fc17046faa084017"
+      "checklist.md": "60a02f743fb11fe2d738833741780a7d8c69b2448555169a48b2f626e92c9908"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -41,33 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-code-graph/SKILL.md",
-      ".opencode/skills/system-code-graph/README.md",
-      ".opencode/skills/system-code-graph/ARCHITECTURE.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "ARCHITECTURE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/ARCHITECTURE.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -193,11 +172,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-code-graph references tree has seven snakecase Markdown filenames: databasepathpolicy.md,",
     "created_at": "2026-07-14T15:18:15Z",
-    "last_save_at": "2026-07-20T11:09:45.464Z",
+    "last_save_at": "2026-08-29T10:00:54.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:e27880c4377a437e3393c1b61d2672881b54e6f7b7fcf400aaf0fc2ff640d659",
+    "source_fingerprint": "sha256:95ebf82be0d44aa8767c7a293250049d6b336963c3a6639c6d5c40cac631f0b7",
     "source_doc_hashes": {
       "spec.md": "0dee4113c641f3d60a2e891df7d348ec49234459da0612ec8d6078208bee622a",
       "plan.md": "8067209c53a7427243a8b0e2ae479c11dc6ff6c1fb046c9c0a26828c8c4e0bbb",
       "tasks.md": "3eb1492410418956d459f08b17cda9bce5d8ba9a058659e38dab22d4b9f72786",
-      "checklist.md": "e1f102597e679fa55cc906ddfc81a48d3468beb8af052b38cf6d46f974cdf23c"
+      "checklist.md": "8e51372ea8658a87f1b1f448cadefb6a249ae2f3a67741642063e79a39143099"
     },
     "last_active_child_id": null,
     "last_active_at": null

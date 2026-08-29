@@ -38,26 +38,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
-      ".opencode/skills/mcp-tooling/mcp-figma/scripts/_common.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "_common.sh",
-        "kind": "script",
-        "path": ".opencode/skills/mcp-tooling/mcp-figma/scripts/_common.sh",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -167,6 +153,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -183,17 +175,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-figma component contains snake_case catalog and manual-testing directories, asset and reference filenames, an uppercase underscored install guide, and a leading-underscore shared shell helper. This phase renames those filesystem paths to safe kebab-compatible targets and updates references without changing Figma transport behavior or shell identifiers.",
     "created_at": "2026-07-14T15:17:43Z",
-    "last_save_at": "2026-07-17T20:26:10.688Z",
+    "last_save_at": "2026-08-29T10:00:41.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +188,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:f4fdbc077e7150f0d21cb91042b4d6b39e42a0cb67935a506527da81d1c3cb76",
+    "source_fingerprint": "sha256:3fc96da025bc36225918fa6f471c2475c6691552a176ed12d572d44401aae4f7",
     "source_doc_hashes": {
       "spec.md": "3a21b1dfaf49ad44a59707556b836c02614671c1369684e5bf1b5bbf7453d50e",
       "plan.md": "3a83b55ace4bd6c1a1b698427f9769aa263ff5af4539010bd7f3a3cd6f221ea6",
       "tasks.md": "db09e474d6b5c35d3ccefd28b848e407bfc0bc6c9875feadb1c3bdc674ac471b",
-      "checklist.md": "61b9415bd839409fdf58cb3c4cb6c9ffd773d0c859a6a04d2968aa914504bc3a"
+      "checklist.md": "166509cce9721d24d1b2ef448b45079650cf3b467590bc32ac5508c8d7557137"
     },
     "last_active_child_id": null,
     "last_active_at": null

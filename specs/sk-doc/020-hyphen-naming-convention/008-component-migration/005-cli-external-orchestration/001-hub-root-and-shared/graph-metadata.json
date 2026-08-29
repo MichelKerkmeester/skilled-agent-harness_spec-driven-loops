@@ -41,42 +41,13 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/cli-external-orchestration/SKILL.md",
-      ".opencode/skills/cli-external-orchestration/README.md",
-      ".opencode/skills/cli-external-orchestration/hub-router.json",
-      ".opencode/skills/cli-external-orchestration/mode-registry.json",
       "spec.md",
       "plan.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-external-orchestration/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-external-orchestration/mode-registry.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -196,11 +167,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The live hub root has exact routing files, delegated component trees, a root manual-testing-playbook tree, and an empty shared boundary. This phase records ownership and renames only hub/shared-owned authored names without crossing delegated playbook or benchmark scope.",
     "created_at": "2026-07-14T15:17:35Z",
-    "last_save_at": "2026-07-17T20:26:08.589Z",
+    "last_save_at": "2026-08-29T10:00:24.204Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c008345bc4adc4e7ea45cc7d0da4cb92db00aab571591cd2a592afa985163db2",
+    "source_fingerprint": "sha256:08abd7883025b8d73160e0117a9c4c50a85ca902341ffa7b2b73a418c5efcdf7",
     "source_doc_hashes": {
       "spec.md": "3eb8eb03c378d823e1aa0107cb1f8b954af0dfd3a1d8f1b81851eac078acfb88",
       "plan.md": "69a95cc3f57a0880872e3b27ae999c4bfafdd54b1689903ff4dd8236e697375e",
       "tasks.md": "ec18ea1a3266d551faf112f6446b35459398a945962d186ce0dfb1369b084a8e",
-      "checklist.md": "6ea1bf97ca83aeb69bc52a1caab6b12118147d789ba6ddcf4f126302a3bdb8c3",
+      "checklist.md": "19bf37a0c73f9cf86daec18deb1defaf61d31ed44f6cf3f92122f140df36c7d9",
       "decision-record.md": "d3c121487b50603dfb15510bbe68b9a1d4bf42ab14bc0ee6002c50392e09aa72"
     },
     "last_active_child_id": null,

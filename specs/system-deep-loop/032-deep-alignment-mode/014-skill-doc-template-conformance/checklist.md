@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: deep-alignment skill-doc template conformance
+# Verification Checklist: deep-alignment skill-doc template conformance
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->

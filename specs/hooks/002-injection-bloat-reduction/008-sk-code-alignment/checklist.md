@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: sk-code Alignment and README Freshness Audit
+# Verification Checklist: sk-code Alignment and README Freshness Audit
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->

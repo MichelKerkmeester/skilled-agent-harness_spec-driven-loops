@@ -41,19 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-code/code-review/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-review/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -181,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "The code-review packet contains snakecase checklist files, review-flow and security scenario directories, a manualtestingplaybook root, benchmark labels, and review reference documents",
     "created_at": "2026-07-14T15:17:09Z",
-    "last_save_at": "2026-07-17T20:26:02.711Z",
+    "last_save_at": "2026-08-29T10:00:39.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:8fa5dd18d7bc93ff4e279f8dfddb5650e26a866c731baaba5aa03072af5218d5",
+    "source_fingerprint": "sha256:c41b2f0016b325c85296ed391217400569077cbc187237d46c68388bda4a9497",
     "source_doc_hashes": {
       "spec.md": "07dffa9939d094873eeadc25859fa496c49ef6009fa072b4a74e847e15092df5",
       "plan.md": "374e33b01fa3f2cd4dc214a9e53a9a88399c1e3105598e4b25955d95ce71eaca",
       "tasks.md": "dbc859620da15bb3f036e1b083dfd8cbcd1b251fd70660be8193caaa3e34c35e",
-      "checklist.md": "174a225daae952bc6353f8cf132c30831071bcaccaf2d86a401c4b9648b7d9d0"
+      "checklist.md": "19b76031009c665d9ad8d654f072f21fa2cb51c73027de278026e8ea52c74788"
     },
     "last_active_child_id": null,
     "last_active_at": null

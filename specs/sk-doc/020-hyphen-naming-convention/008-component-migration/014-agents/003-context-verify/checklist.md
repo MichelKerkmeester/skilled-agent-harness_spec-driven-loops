@@ -21,7 +21,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: Context Agent Naming Verification
+# Verification Checklist: Context Agent Naming Verification
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

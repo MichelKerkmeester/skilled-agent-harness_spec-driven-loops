@@ -45,8 +45,6 @@
       "plan.md",
       "decision-record.md",
       "checklist.md",
-      ".opencode/commands/deep/assets/compiled/README.md",
-      ".opencode/commands/scripts/README.md",
       "tasks.md"
     ],
     "entities": [
@@ -72,12 +70,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/assets/compiled/README.md",
         "source": "derived"
       },
       {
@@ -189,6 +181,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -197,7 +195,7 @@
     ],
     "causal_summary": "The commands surface stores workflow, presentation, legacy, compiled, fixture, and reference-like files under several namespace asset directories",
     "created_at": "2026-07-14T15:18:37Z",
-    "last_save_at": "2026-07-17T20:26:20.477Z",
+    "last_save_at": "2026-08-29T10:00:34.732Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:098e460a6498b9d97c885371bf9227faa55036bd7bb20500de42706ec35e1f6f",
+    "source_fingerprint": "sha256:29c9d98eb51cc1d80468434788a7f678bf0057bf06192c888ec2aa469769b983",
     "source_doc_hashes": {
       "spec.md": "8dfe5d5eac851988154507e49dc33ce74af87561868cf3dcb003c6e853778da1",
       "plan.md": "e737b50f5d4962a6825178195fefefc9db1c551bf42ffd8790e64df089f878b4",
       "tasks.md": "4b6f5e93f476a68eb6ce97f745765489b3e7fb7c7e8d2b8ba83dcef8a4fdb423",
-      "checklist.md": "6bcd058bf0acc19c2bf56e13d34f8ba011bc184d94a66d4dc20b6f41504ac34a",
+      "checklist.md": "08d636d48317d28191ee40d3af149d88bb393f9ee4c9c219a02076b151f01c7a",
       "decision-record.md": "9fe642ee2e8008ea361ea1bc04496bead1788ce61e6e2bcb31c0a628cfc4c1d6"
     },
     "last_active_child_id": null,

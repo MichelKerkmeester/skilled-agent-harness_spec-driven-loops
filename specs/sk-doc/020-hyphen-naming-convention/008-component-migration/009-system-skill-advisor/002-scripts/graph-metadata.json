@@ -180,13 +180,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The scripts tree is mostly already compliant, but its regression dataset is named",
     "created_at": "2026-07-14T15:18:07Z",
-    "last_save_at": "2026-07-20T11:09:36.171Z",
+    "last_save_at": "2026-08-29T10:00:24.623Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:20aeb4ad52f7742603898163016b1704aba47153df530b1632c0315e78e2ea91",
+    "source_fingerprint": "sha256:1842d33f2f8fa1198836c464a0cb2568a38f63e705a3c9c2e8559e0237ec84a7",
     "source_doc_hashes": {
       "spec.md": "022a83c0d45ae45723a2ed0f9d627cc9700ba5d111b5b3cdfb0b30c07b9bc820",
       "plan.md": "e78b3e928fc7bbbb836347baab484d421e196c6cef5326ede2eae719ac5b1984",
       "tasks.md": "2e793f0eeeecebe93bc9425d75fb6ead9217a38fcf6a48fb54aea5a5426ca7aa",
-      "checklist.md": "7baa908e29417df4156cc329d15dade1b74ce894cc8ad95609f8e09a61473f78"
+      "checklist.md": "240e82d046d2b6e925eb54c8c9b92e69343010b6ec0f7515e2502704df97caa9"
     },
     "last_active_child_id": null,
     "last_active_at": null

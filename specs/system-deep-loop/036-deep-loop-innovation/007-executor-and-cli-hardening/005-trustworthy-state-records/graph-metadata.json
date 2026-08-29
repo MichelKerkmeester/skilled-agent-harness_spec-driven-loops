@@ -153,6 +153,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol Every",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -166,12 +172,6 @@
       },
       {
         "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Two defects, both surfaced by fan-out runs during unrelated work, both costing completed analysis",
     "created_at": "2026-07-27T16:10:09.163Z",
-    "last_save_at": "2026-08-18T11:07:47.328Z",
+    "last_save_at": "2026-08-29T09:57:12.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:780d488a69cdd36c9e4c36913fa54d336f252027b79800b24959e3ad44d99e36",
+    "source_fingerprint": "sha256:372149fad717d37515eedcf64ee5f2ffd574c7748f124769840420e33948896c",
     "source_doc_hashes": {
       "spec.md": "c18b03e5679283cfafa2239b0245fac1cb7c74b2223680333fb42de34444f8c7",
       "plan.md": "1c9151bf7b02bbbaba09b042b06b58ab8c78a01eb760d96764044b6d0ce51094",
       "tasks.md": "bb836b7f7185becb9a6c599773357f1aa91d1561af21cdbc993395024df00e4e",
-      "checklist.md": "50f7a522480efda2f5f2de0da5d15be2d75e71bc26c77e8d7ec424f1701b4940",
+      "checklist.md": "db3812a34be3cded3298a1bd0cb5468846487353c8b2166e6f65975efe8fe32e",
       "implementation-summary.md": "c06da17f53da2b856302dc5d9662cf2a307a8fa974565f295356e5b11e3d8d7c"
     },
     "last_active_child_id": null,

@@ -177,13 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The create-skill packet uses snake_case directories and template/reference filenames throughout its parent-skill and ordinary skill resource trees. This phase converts those non-exempt filesystem names to kebab-case and updates generator and documentation references while preserving SKILL.md, manifests, and Python scripts.",
     "created_at": "2026-07-14T15:22:33Z",
-    "last_save_at": "2026-07-20T11:09:47.596Z",
+    "last_save_at": "2026-08-29T10:00:44.841Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:ddb040d0b5d4e10f0741597ab38b7957e70d927c06e328743722cffabe53cc10",
+    "source_fingerprint": "sha256:fc5c79a1b175b4c6cb77d4c67570b33a78db11574127dba5ee2b4322f49a755a",
     "source_doc_hashes": {
       "spec.md": "6bafaecdec1aa843cd32ed29e72daac5c521ec728a5d9350d950e74b09230604",
       "plan.md": "c5855008615fc4f55fb5ef44efa206e293fd146747595dd2789bd0d35e635d5c",
       "tasks.md": "d41013bfabb43fd0e1945ab566d83660a1d6da0e1e57acd309038a719b5e5af4",
-      "checklist.md": "4ad7f1aa2b971c6da598f36516bb57e64bffadabc8364e2c417ba612e8131a44"
+      "checklist.md": "198405c1156d0643f9447436aa5537cc2782058a081263586c774ef5986e678f"
     },
     "last_active_child_id": null,
     "last_active_at": null

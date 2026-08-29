@@ -26,7 +26,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# QA Checklist: sk-design Dissolution — Compiled-Routing 6-Hub Re-Activation
+# Verification Checklist: sk-design Dissolution — Compiled-Routing 6-Hub Re-Activation
 
 ---
 

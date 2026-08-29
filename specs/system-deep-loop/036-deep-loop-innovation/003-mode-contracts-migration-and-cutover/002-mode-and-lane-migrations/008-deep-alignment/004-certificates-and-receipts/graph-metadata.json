@@ -163,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -181,12 +187,6 @@
         "source": "derived"
       },
       {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Deep Alignment per-run certificate and per-transition receipt contract over the typed event-ledger substrate. The phase defines authority and applicability attestations, verify-first finding coverage, replay-fingerprint inputs, and independent offline verification for per-lane conformance against a named authority.",
     "created_at": "2026-07-16T03:43:43.622Z",
-    "last_save_at": "2026-08-18T11:07:11.749Z",
+    "last_save_at": "2026-08-29T09:58:01.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:745d6924576626cc712b98907653a2389a57d2174787acf872fe6862ad372112",
+    "source_fingerprint": "sha256:4abe3df69c780a5e1577fcde0b04cf741f05f1e7a37a429ace9c4fa4bb6f8b8f",
     "source_doc_hashes": {
       "spec.md": "9d3e1782d64d83ec9563ecb52fb79998c7fdc28383e86825ca3cbe26b5ca9009",
       "plan.md": "aa2b8f982cb82cc996d7270981a50a77dd070a74afc949a22084f9363a513cc8",
       "tasks.md": "13bc8a7ea35dbd551cfa2ebab18a52bc595c49d349b26421c0849376b01e0c4c",
-      "checklist.md": "bec220e391f0b16e8b933e145355b1797aa7405dc3780f672e5923a12433eac1",
+      "checklist.md": "117dd779a62ad2d188a411fbd93633381f1a7bd3bbfd006eafcf1e87a1c369e0",
       "implementation-summary.md": "9c176b3b95e995ffc6d3e478f051bd5a1eefb8ff27de58055156e4bd687fe229"
     },
     "last_active_child_id": null,

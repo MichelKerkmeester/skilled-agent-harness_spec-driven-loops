@@ -24,7 +24,7 @@ _memory:
       - "This authoring pass does not rename runtime paths or run runtime checks."
 ---
 
-# Checklist: system-code-graph runtime
+# Verification Checklist: system-code-graph runtime
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

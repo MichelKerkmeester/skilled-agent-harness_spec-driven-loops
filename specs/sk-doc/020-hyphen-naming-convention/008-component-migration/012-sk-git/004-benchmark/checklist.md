@@ -24,7 +24,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: sk-git benchmark
+# Verification Checklist: sk-git benchmark
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

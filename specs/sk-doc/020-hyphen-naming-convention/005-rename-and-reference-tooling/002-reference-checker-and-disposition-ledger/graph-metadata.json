@@ -164,6 +164,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -182,12 +188,6 @@
         "source": "derived"
       },
       {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The migration needs a whole-repository checker that follows every mapped path through code, docs, configs, registries, and symlinks, while recording a disposition for every rename and dynamic require, source, or glob site.",
     "created_at": "2026-07-14T15:16:48Z",
-    "last_save_at": "2026-07-18T07:46:19.156Z",
+    "last_save_at": "2026-08-29T10:01:08.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9f5d2cf2c0adcd31bf84d5699cbbc0d1ea4d4f9210c8ffc0ca8d197829b114a4",
+    "source_fingerprint": "sha256:04559e99270316b4dc7302f923413c53cdb972cab773fb36383c27af46a0bc1c",
     "source_doc_hashes": {
       "spec.md": "d823fbe0443026e8bb71b7d8b4b32d0f8e231d767ed270d94a7465986eea8564",
       "plan.md": "0a0ef9d9930e6da14f306cb7a1f9b276660c8698397a19d61cb91ac2c3304726",
       "tasks.md": "4c91709c81535991e8c1661c47d0ac3efc8f03ea32dd5063d31b79c5a361d041",
-      "checklist.md": "68838dc40909ae911ea954c798320835a9b5bd4c31aa3956576d2f01c8e387b6",
+      "checklist.md": "1100558acea122982f643bd376cd98d2f996cfa665117996b5d1cf5aa04c8217",
       "decision-record.md": "599d53a96d5ca48d9a55c2ed7131dae8a9ba93fa978c98ef457de55ba0525987",
       "implementation-summary.md": "9b1e5f939192001807e0162d28f468b96c5fafcd64218fd5d260ad72f51e119c"
     },

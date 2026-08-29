@@ -175,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Four of sk-doc's authoring templates and validators are out of sync with the code that actually enforces or consumes them",
     "created_at": "2026-07-20T21:51:42.834Z",
-    "last_save_at": "2026-08-28T15:53:18.698Z",
+    "last_save_at": "2026-08-29T10:01:22.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a3b1ad90a38a92b6031e1e554ecda6dba577bc1870994ae657425d864f379703",
+    "source_fingerprint": "sha256:261bdb5cf6f8beade4d3de3815747ef4ba181c31606159e6c6a9b4f1ef3def96",
     "source_doc_hashes": {
       "spec.md": "d96950aff87114f506c928cd07e2b3eb98920937bf72004b497efaebddb68562",
       "plan.md": "dbd83504936faef6e43d46fcc2c4c291f54c39ef18e5b503a6600acc220251f0",
       "tasks.md": "017cce8e5439d44d69e3e82192809894c194b19963004dba1a3a0311bb192626",
-      "checklist.md": "2e023e89251c3d59852672553740df90e547094558fd1266e96de45d3a6b8e0a",
+      "checklist.md": "8ae82fba32eb9cdabbbe91b69cc0430942aaa9fddc28e31685e9c8d990277455",
       "implementation-summary.md": "5e54515104d05a859f7e114951ec5d2407c12545478e6da760b86dc7b82d0afc"
     },
     "last_active_child_id": null,

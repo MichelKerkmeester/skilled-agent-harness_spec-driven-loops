@@ -183,7 +183,7 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The MCP server contains non-Python directories whose names still use underscores, including runtime, bridge, stress, and test-support paths. They need semantic targets and intra-tree reference updates; leading and doubled underscores must never be converted mechanically.",
     "created_at": "2026-07-14T15:17:58Z",
-    "last_save_at": "2026-07-17T20:26:13.817Z",
+    "last_save_at": "2026-08-29T10:01:00.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:149afd7f834144c198cb467d0049c097f5e8bf35a883b12e5e4949b6b1dc88b9",
+    "source_fingerprint": "sha256:b3e1131ce3a1206c6063741d98b55db787883c3aaac31feda5317002df8fa3b1",
     "source_doc_hashes": {
       "spec.md": "8017ee263c71aa898e368d6cd9c960e6226ce80c8303a998ee36192b172c6ff9",
       "plan.md": "94471e7245bab4f4902f4b8b5bd06a99af36d566e50c53eee43ba1c267cb4e51",
       "tasks.md": "cd20ff8809c91287e8573fb9c98ee5f63a7419e89c71cd4301c8e54a3fe31272",
-      "checklist.md": "cdeb89a026ce51f9f426323e8ea58a3470e885775b2732dcd67cfb27f7f25240",
+      "checklist.md": "93ec68b805032810d11564366d4078f79263053ce06b3fb6e0674333ebd9ffe5",
       "decision-record.md": "ea6604c9148f81e1d7ce47cb251f7acf61a7c4b1cbb4caf1a9263e572957e437"
     },
     "last_active_child_id": null,

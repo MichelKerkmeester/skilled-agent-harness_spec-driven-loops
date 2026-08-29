@@ -163,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -181,12 +187,6 @@
         "source": "derived"
       },
       {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Model Benchmark resume adapter for the typed event-ledger substrate",
     "created_at": "2026-07-16T03:43:40.285Z",
-    "last_save_at": "2026-08-18T11:07:15.127Z",
+    "last_save_at": "2026-08-29T09:58:08.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9958ed0c78351e3374630c652b70c86675f6c6706c9ba56173172d7722733d5",
+    "source_fingerprint": "sha256:a7ce0b6d4980b72ba2e14c6b77de7c14b14796749dbb3ca886ae93fe499f2db1",
     "source_doc_hashes": {
       "spec.md": "c799146468e8582ab00acfde033c6e2023a3e1d6c1aede0b353b60f42e9036f9",
       "plan.md": "b4cb6bd8c9be235aa1f83f1f36ce89bd90f96f4943e569fc43a856198370328c",
       "tasks.md": "7eb503339f5e973df86629ad97fc90673c6d69aa3b91f2d5c1a40d83d885a4e1",
-      "checklist.md": "6f6411039a93fc9efe3f64652cfe12ded945b6dd9f279e7996c67e85863ac276",
+      "checklist.md": "42fd7741a7cd9e521c2e896577f26d18da2f19d350a94f1f3f78ccedcb218f4c",
       "implementation-summary.md": "dae84bea3872a658d71a356e3ff3d62144344befc191db608bc0a3a47347bafd"
     },
     "last_active_child_id": null,

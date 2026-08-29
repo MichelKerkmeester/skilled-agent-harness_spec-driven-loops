@@ -181,13 +181,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The sk-prompt benchmark surface contains underscore-separated authored result directories such as live_final, router_final, and router_mode_a, plus generated raw-run filenames with double underscores. This phase renames authored benchmark paths, updates path references, and records generated/frozen output dispositions without changing benchmark payload keys, fixtures, profiles, or scores.",
     "created_at": "2026-07-14T15:17:33Z",
-    "last_save_at": "2026-08-28T22:29:06.600Z",
+    "last_save_at": "2026-08-29T10:01:05.037Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b6fa42b95160429eb47528a2f233f5a0261727c6145a2350c63b8564d1d0b9b2",
+    "source_fingerprint": "sha256:e9643047a2b6e50ae4d47b3bd1570c1f1b08b4a3bc918e8fa7e1f5f0635373f1",
     "source_doc_hashes": {
       "spec.md": "46c1382330ea0b9b226656cc8f54070dfedd7834b2195a4f1d5b4f65385ae5a2",
       "plan.md": "e5544bb3e5c6c802a70d8b113da887fc2eced300d94a60caa65473a684b01ff3",
       "tasks.md": "60c4f8aa8e9fb2d23d927a1b98dfac5c29f63bb08c058aa05f0fa58495f5f8d1",
-      "checklist.md": "d7d5fdd43fdecbeee401545f8b7d1caca12e983b516b9be145a2a7e2fdfe427c",
+      "checklist.md": "52fc4f6109795bc00c4c79a2795b6b9aa68270d5c1ef349fefb161ee3b035787",
       "decision-record.md": "6b665cc08100ab0db916daa37ad0f699b834ea6eaca62ebd649ecc6fbb77b2fa"
     },
     "last_active_child_id": null,

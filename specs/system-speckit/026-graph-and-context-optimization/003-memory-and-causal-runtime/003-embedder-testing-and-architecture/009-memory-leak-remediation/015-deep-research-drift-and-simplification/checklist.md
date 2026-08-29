@@ -22,7 +22,7 @@ _memory:
       parent_session_id: null
     completion_pct: 0
 ---
-# Checklist: Deep-Research Investigation of System-Spec-Kit MCP Sidecar
+# Verification Checklist: Deep-Research Investigation of System-Spec-Kit MCP Sidecar
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->

@@ -41,21 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-prompt/SKILL.md",
-      ".opencode/skills/sk-prompt/prompt-improve/SKILL.md",
-      ".opencode/skills/sk-prompt/prompt-models/SKILL.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -177,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -197,7 +194,7 @@
     ],
     "causal_summary": "This verification-only phase confirms that the sk-prompt hub, prompt-improve, and prompt-models release records document the completed kebab-case rename set and that their version metadata agrees with the new changelog entries. It does not rename files or rewrite frozen historical changelogs.",
     "created_at": "2026-07-14T15:17:33Z",
-    "last_save_at": "2026-07-17T20:26:08.102Z",
+    "last_save_at": "2026-08-29T10:01:02.748Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:5af84f8a815936d88cad13fec0e80e2e5022949240595001b4a67e11137b8616",
+    "source_fingerprint": "sha256:1f0f5c3f8ff843acda0a5ed2534432644dc301d33217929536ebc97832f9ae3f",
     "source_doc_hashes": {
       "spec.md": "49415c9bd9a2f7e0734540ec15911c8909dd6c9c1994981c331a7d082775d52f",
       "plan.md": "883ca3b8824c06fce384731ffaebe7910da40efe00755f4d4ab3156c2ea9931f",
       "tasks.md": "ae9f9f730cfdcba3d53846761067b439b8df8d689e51d96e600a2270f3944b60",
-      "checklist.md": "97b08526c498b6e9b3bb8c11e49bf57bf9f9afc21d2c90338ac3bf12d7309bba"
+      "checklist.md": "a720b8963f17fd0e05f03dafde6c2a03c588a450e3252e88a428c19a3df3b1db"
     },
     "last_active_child_id": null,
     "last_active_at": null

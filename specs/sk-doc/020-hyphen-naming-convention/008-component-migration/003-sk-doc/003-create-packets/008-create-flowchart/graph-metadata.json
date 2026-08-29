@@ -177,13 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The create-flowchart packet contains snake_case asset, reference, and validator filenames used by flowchart authoring and validation. This phase renames those non-exempt resources to kebab-case and updates packet-local links while preserving validator behavior and flowchart notation.",
     "created_at": "2026-07-14T15:22:38Z",
-    "last_save_at": "2026-07-20T11:43:47.279Z",
+    "last_save_at": "2026-08-29T10:00:46.942Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:5081eec5a9f988483f8aff8da1472ecd40b8090fc1fcd7131847692aa21a100e",
+    "source_fingerprint": "sha256:e8928a9d17f7ee0446e40b448dfa41bdefd692e829d495ec7d7b0e846ea31cbf",
     "source_doc_hashes": {
       "spec.md": "97294e2f528d5303747ffd3755a00d17f4d9b0ec4a22c3364361d1a3940d7a97",
       "plan.md": "d053a921a4484645390ce5e27df2ba21e5fc6ac4c8a149e1b2679b70169740c3",
       "tasks.md": "52ad2c3053b14c1fa5475d9bb0a00e8a14f1a585789d57055ee3b300079ca878",
-      "checklist.md": "15ca23f8eb0e5aee3cd8467609ca43d8f174ab49b070a59d8c159a4777c06bc9"
+      "checklist.md": "fe3bfcb1b63eba57df73ba0e4bde2059e258200561bf6a1631abf1a4c532a236"
     },
     "last_active_child_id": null,
     "last_active_at": null

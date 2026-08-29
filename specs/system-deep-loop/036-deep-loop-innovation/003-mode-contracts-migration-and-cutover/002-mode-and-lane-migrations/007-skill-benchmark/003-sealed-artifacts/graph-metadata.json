@@ -170,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -177,12 +183,6 @@
       },
       {
         "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Define immutable, content-addressed, seal-on-write inputs and outputs for Skill Benchmark scenario runs and scoring",
     "created_at": "2026-07-16T03:43:41.603Z",
-    "last_save_at": "2026-08-18T11:07:13.817Z",
+    "last_save_at": "2026-08-29T09:58:06.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c44af15a42aa48224053edfa36a42dd48f592be7af2fd0d1db915d2c30f88baa",
+    "source_fingerprint": "sha256:0ae1cb1defe7196e8756133e15ad69497ace2e47c6deb6eb7cfc1b8add64817f",
     "source_doc_hashes": {
       "spec.md": "31f97ea7ef399060a4916b7cb416bbf37e8dcbe387378c49b846a0964db989e2",
       "plan.md": "edf7932f06e6ea7c9e853e44ca4f9af88688c558b092d973bab87da85a5428a9",
       "tasks.md": "1a9832cf7a0e159d0ede114b02a0fba3287ab02fe45426eab8b1cb99b8298947",
-      "checklist.md": "63e21672055e46050f1134c421b5245c2b6f39ef9d9db633d36367d4b022e7b9",
+      "checklist.md": "238175b57908c3fc63d3c5764a08c27a922342d1ea6c8575907c6bfaa76da85d",
       "decision-record.md": "458eae8abed990a6ae89b89916f753f5b85dd04cf3ca828a00d203feb9bbddff",
       "implementation-summary.md": "76c6a92e8e6b7f8e22bad6b2bfd4359abfb709a81c34cf71c8db8b7b1edfe81a"
     },

@@ -40,6 +40,7 @@ export interface ValidationEntry {
 export interface ValidationReport {
   folder: string;
   level: SpecKitLevel;
+  engine: string;
   entries: ValidationEntry[];
   summary: {
     errors: number;
@@ -85,6 +86,10 @@ const OPTIONAL_CONTINUITY_DOCS = new Set([
   'roadmap.md',
 ]);
 const REQUIRED_FRONTMATTER_KEYS = ['packet_pointer', 'last_updated_at', 'last_updated_by', 'recent_action', 'next_safe_action'];
+const REQUIRED_SCALAR_FRONTMATTER_FIELDS = ['title', 'description', 'importance_tier', 'contextType'];
+// Named in the report so a verdict can be attributed to what produced it.
+const ENGINE_NAME = 'orchestrator';
+const CHECKLIST_H1_PREFIX = '# Verification Checklist:';
 const OPTIONAL_TEMPLATE_HEADER_RE = /^(?:L(?:2|3\+?)|FIX ADDENDUM)\s*:/iu;
 const OPTIONAL_TEMPLATE_ANCHORS = new Set(['affected-surfaces', 'nfr', 'edge-cases', 'complexity', 'phase-deps', 'effort', 'enhanced-rollback']);
 const MERGED_VERIFICATION_ANCHORS = new Set([
@@ -132,6 +137,7 @@ export interface ValidatorRegistryEntry {
   script_path: string;
   severity: RegistrySeverity;
   strict_only?: boolean;
+  aliases?: string[];
 }
 
 interface ShellRuleOutput {
@@ -391,7 +397,54 @@ function runRegistryShellRules(
 function shouldRunRegistryShellRule(rule: ValidatorRegistryEntry, nativeRuleIds: Set<string>, strict: boolean): boolean {
   if (rule.severity === 'skip') return false;
   if (rule.strict_only === true && !strict) return false;
+  if (!isRuleSelected(rule.rule_id)) return false;
   return !nativeRuleIds.has(rule.rule_id);
+}
+
+// A caller can narrow the run to a named subset. This selects which rules run;
+// it never selects a different validator, so a packet's verdict on any given
+// rule stays the same however the run was narrowed.
+//
+// An unrecognised name is fatal rather than ignored: a narrowed run that
+// silently matches nothing reports a clean pass for a packet nobody checked,
+// which is the one failure a gate must never have.
+function ruleSubset(): Set<string> | null {
+  const raw = (process.env.SPECKIT_RULES ?? '').trim();
+  if (raw === '') return null;
+
+  const canonical = new Map<string, string>();
+  for (const rule of readValidatorRegistry()) {
+    canonical.set(rule.rule_id, rule.rule_id);
+    for (const alias of rule.aliases ?? []) canonical.set(alias, rule.rule_id);
+  }
+
+  const selected = new Set<string>();
+  const unknown: string[] = [];
+  for (const token of raw.split(',')) {
+    const name = token.trim().toUpperCase().replace(/-/gu, '_');
+    if (name === '') continue;
+    const resolved = canonical.get(name);
+    if (resolved === undefined) unknown.push(token.trim());
+    else selected.add(resolved);
+  }
+
+  if (unknown.length > 0) {
+    throw new Error(`SPECKIT_RULES names ${unknown.length} rule(s) that do not exist: ${unknown.join(', ')}`);
+  }
+  return selected.size === 0 ? null : selected;
+}
+
+let RULE_SUBSET: Set<string> | null | undefined;
+
+function isRuleSelected(ruleId: string): boolean {
+  if (RULE_SUBSET === undefined) RULE_SUBSET = ruleSubset();
+  return RULE_SUBSET === null || RULE_SUBSET.has(ruleId);
+}
+
+// Reset between validations so a long-lived process is not pinned to whatever
+// the environment said the first time it validated anything.
+function resetRuleSubset(): void {
+  RULE_SUBSET = undefined;
 }
 
 function docsForLevel(level: SpecKitLevel): string[] {
@@ -635,6 +688,16 @@ function validateTemplateShape(folder: string, level: SpecKitLevel, scope: 'head
       if (openCount !== closeCount) findings.push(`${docName}: anchor open/close count mismatch (${openCount}/${closeCount})`);
     }
   }
+  // The template comparison only reaches H2s, so the checklist title is checked
+  // on its own or a mistitled document passes as template-shaped.
+  if (scope === 'headers') {
+    const checklist = readIfExists(path.join(folder, 'checklist.md'));
+    const h1 = checklist?.split(/\r?\n/u).find((line) => line.startsWith('# '));
+    if (h1 !== undefined && !h1.startsWith(CHECKLIST_H1_PREFIX)) {
+      findings.push(`checklist.md: H1 should start with '${CHECKLIST_H1_PREFIX}' (found: '${h1.slice(0, 60)}')`);
+    }
+  }
+
   const rule = scope === 'headers' ? 'TEMPLATE_HEADERS' : 'ANCHORS_VALID';
   return findings.length === 0
     ? entry(rule, 'pass', `Template ${scope} match in ${checked} file(s)`)
@@ -769,19 +832,77 @@ function validateGeneratedMetadataDrift(folder: string): ValidationEntry {
   return entry(resolved.rule, resolved.status, resolved.message, resolved.details);
 }
 
+function unquote(raw: string): string {
+  const value = raw.trim();
+  const quoted = (value.startsWith('"') && value.endsWith('"'))
+    || (value.startsWith("'") && value.endsWith("'"));
+  return quoted ? value.slice(1, -1).trim() : value;
+}
+
+function isBlankScalar(value: string | null): boolean {
+  return value === null || value === '' || value === '[]' || value.toLowerCase() === 'null';
+}
+
+// A declared-but-empty field passes a key-presence test while still leaving the
+// packet undiscoverable, so the value has to be inspected rather than the key.
+function emptyRequiredFrontmatterFields(frontmatter: string): string[] {
+  const lines = frontmatter.split(/\r?\n/u);
+  const scalar = (field: string): string | null => {
+    const line = lines.find((entry) => entry.startsWith(`${field}:`));
+    return line === undefined ? null : unquote(line.slice(field.length + 1));
+  };
+
+  const empty = REQUIRED_SCALAR_FRONTMATTER_FIELDS.filter((field) => isBlankScalar(scalar(field)));
+
+  const listIndex = lines.findIndex((entry) => entry.startsWith('trigger_phrases:'));
+  let hasTriggerPhrase = false;
+  if (listIndex >= 0) {
+    hasTriggerPhrase = !isBlankScalar(unquote(lines[listIndex].slice('trigger_phrases:'.length)));
+    for (let i = listIndex + 1; !hasTriggerPhrase && i < lines.length; i += 1) {
+      if (/^[A-Za-z_][A-Za-z0-9_]*:/u.test(lines[i])) break;
+      const item = lines[i].match(/^\s*-\s*(.*)$/u);
+      if (item && !isBlankScalar(unquote(item[1]))) hasTriggerPhrase = true;
+    }
+  }
+  if (!hasTriggerPhrase) empty.push('trigger_phrases');
+
+  return empty;
+}
+
 function validateFrontmatterBasics(folder: string, level: SpecKitLevel): ValidationEntry {
   const missing: string[] = [];
+  const empty: string[] = [];
+  const frontmatterOf = (docName: string): string | null => {
+    const content = readIfExists(path.join(folder, docName));
+    return content === null ? null : content.match(/^---\n([\s\S]*?)\n---/u)?.[1] ?? null;
+  };
+
+  // The continuity block is only required on the doc that carries it. A doc
+  // with no frontmatter is missing every key, which is what it reports.
   for (const docName of authoredDocsForLevel(level, folder).filter((name) =>
     name === CANONICAL_CONTINUITY_DOC || !OPTIONAL_CONTINUITY_DOCS.has(name),
   )) {
-    const content = readIfExists(path.join(folder, docName));
-    if (!content) continue;
-    const frontmatter = content.match(/^---\n([\s\S]*?)\n---/u)?.[1] ?? '';
+    if (readIfExists(path.join(folder, docName)) === null) continue;
+    const frontmatter = frontmatterOf(docName) ?? '';
     for (const key of REQUIRED_FRONTMATTER_KEYS) {
       if (!new RegExp(`^\\s{4}${key}:`, 'mu').test(frontmatter)) {
         missing.push(`${docName}: missing _memory.continuity.${key}`);
       }
     }
+  }
+
+  // The scalar fields feed retrieval, so every authored doc must carry them.
+  // A document with no frontmatter block at all is a different fault, owned by
+  // the rules that check document shape; it is not five empty fields.
+  for (const docName of authoredDocsForLevel(level, folder)) {
+    const frontmatter = frontmatterOf(docName);
+    if (frontmatter === null) continue;
+    for (const field of emptyRequiredFrontmatterFields(frontmatter)) {
+      empty.push(`${docName}: Empty required frontmatter field: ${field}`);
+    }
+  }
+  if (empty.length > 0) {
+    return entry('FRONTMATTER_VALID', 'error', `${empty.length} empty required frontmatter field(s)`, [...empty, ...missing]);
   }
   return missing.length === 0
     ? entry('FRONTMATTER_VALID', 'pass', 'Frontmatter continuity basics present')
@@ -793,6 +914,7 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
   if (!fs.existsSync(folder) || !fs.statSync(folder).isDirectory()) {
     throw new Error(`Folder not found: ${folderPath}`);
   }
+  resetRuleSubset();
   const level = normalizeLevel(opts.strict && isPhaseParent(folder) ? 'phase' : detectLevel(folder));
   const entries: ValidationEntry[] = [];
 
@@ -805,12 +927,20 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
   entries.push(validateFrontmatterBasics(folder, level));
   entries.push(validateSpecDocRule(folder, level, 'FRONTMATTER_MEMORY_BLOCK'));
   entries.push(validateSpecDocRule(folder, level, 'SPEC_DOC_SUFFICIENCY'));
-  entries.push(entry('SECTIONS_PRESENT', 'pass', 'Section presence covered by per-document manifest anchors'));
+  // These three are registered against the same module. The registry dispatcher
+  // cannot spawn that form, so without running them here they vanish from the
+  // report entirely rather than reporting that they had no payload to check.
+  entries.push(validateSpecDocRule(folder, level, 'MERGE_LEGALITY'));
+  entries.push(validateSpecDocRule(folder, level, 'CROSS_ANCHOR_CONTAMINATION'));
+  entries.push(validateSpecDocRule(folder, level, 'POST_SAVE_FINGERPRINT'));
   entries.push(entry('LEVEL_DECLARED', 'info', `Detected Level ${level}`));
   entries.push(entry('GRAPH_METADATA_PRESENT', fs.existsSync(path.join(folder, 'graph-metadata.json')) ? 'pass' : 'warn', 'Graph metadata checked'));
   entries.push(validateGeneratedMetadataIntegrity(folder));
   entries.push(validateGeneratedMetadataDrift(folder));
-  entries.push(...runRegistryShellRules(folder, level, new Set(entries.map((item) => item.rule)), opts));
+  const nativeRuleIds = new Set(entries.map((item) => item.rule));
+  const selected = entries.filter((item) => isRuleSelected(item.rule));
+  entries.length = 0;
+  entries.push(...selected, ...runRegistryShellRules(folder, level, nativeRuleIds, opts));
 
   const summary = {
     errors: entries.filter((item) => item.status === 'error').length,
@@ -820,6 +950,7 @@ export function validateFolder(folderPath: string, opts: ValidateOpts = {}): Val
   return {
     folder,
     level,
+    engine: ENGINE_NAME,
     entries,
     summary,
     passed: summary.errors === 0 && !(opts.strict && summary.warnings > 0),
@@ -881,14 +1012,15 @@ function printReport(report: ValidationReport, opts: ValidateOpts): void {
   }
   process.stdout.write(`\nSpec Folder Validation v3.0.0\n\n`);
   process.stdout.write(`  Folder: ${report.folder}\n`);
-  process.stdout.write(`  Level:  ${report.level}\n\n`);
+  process.stdout.write(`  Level:  ${report.level}\n`);
+  process.stdout.write(`  Engine: ${ENGINE_NAME}\n\n`);
   for (const item of report.entries) {
     if (item.status === 'info' && !opts.verbose) continue;
     const marker = item.status === 'error' ? 'x' : item.status === 'warn' ? '!' : item.status === 'info' ? 'i' : '+';
     process.stdout.write(`${marker} ${item.rule}: ${item.message}\n`);
-    if (opts.verbose) {
-      for (const detail of item.details) process.stdout.write(`    - ${detail}\n`);
-    }
+    // A rule names what it actually found only in its details — including an
+    // advisory that passes — so they print whenever a rule produced any.
+    for (const detail of item.details) process.stdout.write(`    - ${detail}\n`);
   }
   process.stdout.write(`\nSummary: Errors: ${report.summary.errors}  Warnings: ${report.summary.warnings}\n\n`);
   process.stdout.write(`RESULT: ${report.passed ? 'PASSED' : 'FAILED'}\n`);

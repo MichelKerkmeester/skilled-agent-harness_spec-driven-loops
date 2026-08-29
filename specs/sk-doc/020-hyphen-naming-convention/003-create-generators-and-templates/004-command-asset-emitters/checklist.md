@@ -21,7 +21,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Command Asset Emitters
+# Verification Checklist: Command Asset Emitters
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

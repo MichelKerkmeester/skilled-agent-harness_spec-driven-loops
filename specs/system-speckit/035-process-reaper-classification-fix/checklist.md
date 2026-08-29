@@ -25,7 +25,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Checklist: Process-Reaper MCP Classification Fix
+# Verification Checklist: Process-Reaper MCP Classification Fix
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

@@ -28,7 +28,7 @@ _memory:
       - "Freshness is exact effective-policy hash equality."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify + level3-architecture | v2.2 -->
-# Checklist: P3 Canonical Manifest Minter Foundation
+# Verification Checklist: P3 Canonical Manifest Minter Foundation
 
 <!-- SPECKIT_LEVEL: 3 -->
 

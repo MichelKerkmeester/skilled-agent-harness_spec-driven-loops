@@ -171,6 +171,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -187,17 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 036 authored 445 planning documents across 17 phases against a tree state frozen on 2026-07-16, and has",
     "created_at": "2026-07-19T12:13:37.963Z",
-    "last_save_at": "2026-08-19T04:44:07.029Z",
+    "last_save_at": "2026-08-29T09:57:29.648Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:bfb471ad426b028babcf20cfe7c6bc22e019e1fe8fb7f727c7149bcb10399cec",
+    "source_fingerprint": "sha256:c82bf2900062e5ee2347a831e0077d2e8a15194e052de5a2436da2c5dfb7992c",
     "source_doc_hashes": {
       "spec.md": "5a9be1a25d5ec0f4b7c14fdaf4adec586dba4400760b45ff94c523b157b16d13",
       "plan.md": "594e88673ab215a297101370e2d209e2908a7d68afe329c85a13ac78ba5dcaf7",
       "tasks.md": "d75a96a79eb8e7f0fe7c921aef947053224182dbba93546cb6365051399b7c05",
-      "checklist.md": "66da314b26d4ddd872644861f915b12e54aa6d0ca4519c8a2acfe0dbdd5d4c0a",
+      "checklist.md": "a0286d37e0deb29591e08980cf5324f63a94409037e650c0604999a1e196147e",
       "implementation-summary.md": "dd8bc7d195272cbb71a43c7eafeab48a8e807a8052a63ff850123a6ee419b8ed",
       "research/research.md": "8073db4c48fe39ab285c07c591112032f6f95342b8e12641f8e5ac940cff0b1f",
       "handover.md": "0322215d0309ec1e62c4715f91dc86f2a409ca3886db9a64c0633c9700ea7e31"

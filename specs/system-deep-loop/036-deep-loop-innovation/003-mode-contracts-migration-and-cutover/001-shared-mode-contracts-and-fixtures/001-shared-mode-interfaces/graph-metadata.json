@@ -175,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Freeze the typed contract that every phase-013 mode implements against the shared ledger, evidence services, fan-out/fan-in substrate, convergence services, and resume path before any per-mode migration begins.",
     "created_at": "2026-07-16T03:43:53.994Z",
-    "last_save_at": "2026-08-18T11:07:34.417Z",
+    "last_save_at": "2026-08-29T09:57:50.768Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e124024e19b83c6095ab8018712d800ccd0923474232b2e107b3750de9775b86",
+    "source_fingerprint": "sha256:30ddf8d91e228ce76dc91372fea308aeaae179b2fcaac9a52a195e8e640cfead",
     "source_doc_hashes": {
       "spec.md": "667cd6fae1d7d3dea1064a5346a83b11939ed13fc3de9421b90f12b0e0f5c516",
       "plan.md": "5313cf2bfe3350d86592a8bfb9ff1d206584136e03bdff208518b685b6668c69",
       "tasks.md": "113af94378bfade4a0238ad4c7c0fbb5f8593685b4f47a8cd4b7252607c164bf",
-      "checklist.md": "cfaa32c8d9f8f058d18d58b1ee926c1444c3f2db807a0a5202d3471fbd64990f",
+      "checklist.md": "49ec36ab7990ec6f1d79eb455db2fd1c9c382d4c4d614b8c0f1a2beb6ee9710e",
       "implementation-summary.md": "48f3e41d1063f13c8d5ad2ce442caf1a3ff293d0a7bda7ec5d00661b9da7132e"
     },
     "last_active_child_id": null,

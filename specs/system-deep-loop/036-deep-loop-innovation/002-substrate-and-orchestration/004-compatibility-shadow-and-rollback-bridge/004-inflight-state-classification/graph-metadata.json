@@ -175,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Implement a total, fail-closed classification of every frozen phase-003 in-flight state row into upcast, pin, fork, migrate, or block before any phase-014 authority cutover.",
     "created_at": "2026-07-16T03:43:49.300Z",
-    "last_save_at": "2026-08-18T11:07:39.362Z",
+    "last_save_at": "2026-08-29T09:57:40.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98fa0a2a7fd3248cc4b9adbdf7dd46e2b453aa0def04fe0e66fff1a15359f6b8",
+    "source_fingerprint": "sha256:e58470a501786acfc3d9a328422fadef97cb2ceff5ddd3a0407bddb5554c40f5",
     "source_doc_hashes": {
       "spec.md": "35e8b3f3aaf63f76b1b8ce8af0ab2881733d62a1bffbb6823dc5d0d56d5a84dc",
       "plan.md": "a3eb36eba65f74c16a3a36f373bbf0f3be52ea7183ee8376a518c6d4d38271e0",
       "tasks.md": "95dc5accc8caecf2e97daef0418fe6aec383fa0b5293f73490fe03721582bbf4",
-      "checklist.md": "15bad49ee90fd688311308ec9f25a930ceb9596f1288d91988c7b910b6144958",
+      "checklist.md": "d7a09477abd7e6739a22e0025a52278850f6c6c8aeb2b6c1512e07d4f4afdeb8",
       "implementation-summary.md": "ae5666af4fc97b555a662c6b528cffae195bf1f86ba5d099c55f436910d8fa07"
     },
     "last_active_child_id": null,

@@ -24,7 +24,7 @@ _memory:
       - "This authoring pass does not rename catalog paths or run catalog validation."
 ---
 
-# Checklist: system-skill-advisor feature catalog
+# Verification Checklist: system-skill-advisor feature catalog
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

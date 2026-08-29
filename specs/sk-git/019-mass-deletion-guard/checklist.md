@@ -1,4 +1,4 @@
-# Checklist — Mass-Deletion Guard
+# Verification Checklist: Mass-Deletion Guard
 
 ## Functional (proven by `tests/mass-deletion-guard.test.sh`, 12/12 pass)
 

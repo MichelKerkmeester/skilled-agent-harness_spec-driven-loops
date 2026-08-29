@@ -169,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define the canonical wire envelope, type/version registry, per-type required-field contracts, and deterministic read-time upcaster entry points that every future deep-loop ledger event uses while the new substrate remains additive, dark, and non-authoritative.",
     "created_at": "2026-07-16T03:43:45.370Z",
-    "last_save_at": "2026-08-18T11:07:42.982Z",
+    "last_save_at": "2026-08-29T09:57:34.334Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d4be1c463f10146d5d135d0c300b89a054019e3144f9985390ce1c278fe087e2",
+    "source_fingerprint": "sha256:df20813d527a51ad41d65430d76eaad6dc763e50c5da9046c2ddebc516a33004",
     "source_doc_hashes": {
       "spec.md": "48c3f5e89f9732c87200906ba758534f5c71de5f8da2588ec9a979c6f03185de",
       "plan.md": "de92809effe29346181750d7a47604f3c651bbba54642f2728eca0f3a007ea4d",
       "tasks.md": "0c57f06b228df840cb09aa79c3dc8e270c2cce8962b044c2e06193f59f7518a4",
-      "checklist.md": "a72e86f01643f630995b7ee99b0ea1f5d342473218635f2437c583aeef981505",
+      "checklist.md": "d75a88a5609a58969e11a0733f569063f0881cb60b8809ad8d0ddb763996ed92",
       "implementation-summary.md": "d4a8db9b55413c585d30033801d07de350608c2ccd57835d68dcf5a3098b4a33"
     },
     "last_active_child_id": null,

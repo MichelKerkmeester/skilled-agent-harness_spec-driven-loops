@@ -25,7 +25,7 @@ _memory:
       - "This authoring pass does not rename the package or run verification commands."
 ---
 
-# Checklist: system-code-graph MCP server directory and manifest closure
+# Verification Checklist: system-code-graph MCP server directory and manifest closure
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -169,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`buildPiLineageCommand` in `fanout-run.cjs` was a hard stub that threw (\"command construction is unavailable until its headless",
     "created_at": "2026-07-29T09:17:18.172Z",
-    "last_save_at": "2026-08-18T04:19:07.931Z",
+    "last_save_at": "2026-08-29T09:57:28.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc74ae86a2357d5e8aeae521abe7f430593188fcadee6768741789b9fc92ca64",
+    "source_fingerprint": "sha256:5675d4db9129b837c56e2d24126eef0803786339492fe31f8d9c95858456fb1e",
     "source_doc_hashes": {
       "spec.md": "50766a039d02bdbc6f784af3cff48c7bd9814b7f6173fb32128b2c8b049d7424",
       "plan.md": "38f71d63c50cfebeb714eb4edaeccf7784010f68919e8b27b3dc034f66b00d29",
       "tasks.md": "3b5f575282d00db44a259037c1f4837c1d66dfa9e14434edaa4a6162816c555f",
-      "checklist.md": "10cb36475e9b11b2a407dab5dbc7212b97e3e133ddad5869944738b6f7ca9973",
+      "checklist.md": "9d819e4a855ea9b1bbf721f4bcbe21d9bba38e73979979e7def085d59b3c3080",
       "implementation-summary.md": "7c0c45050e54ca1c18d7efa2726b451af6beca321723a7f85a34d62bb47b468e"
     },
     "last_active_child_id": null,

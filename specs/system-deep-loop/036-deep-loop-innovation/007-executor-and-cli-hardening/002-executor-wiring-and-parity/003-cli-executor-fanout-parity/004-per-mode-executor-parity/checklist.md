@@ -27,7 +27,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 
-# QA Checklist: Per-Mode Executor Parity
+# Verification Checklist: Per-Mode Executor Parity
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

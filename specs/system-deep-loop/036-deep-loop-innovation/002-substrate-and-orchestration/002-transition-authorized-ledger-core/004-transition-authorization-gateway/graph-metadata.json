@@ -168,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -184,17 +190,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define the fail-closed gateway that authorizes every typed state transition before ledger append, records allow and deny verdicts as auditable non-domain ledger events, and remains dark until phase 014.",
     "created_at": "2026-07-16T03:43:46.139Z",
-    "last_save_at": "2026-08-18T11:07:42.155Z",
+    "last_save_at": "2026-08-29T09:57:34.685Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b93aeb595aee23402ad5cfb00e325000bbf5783a0b11ba99b9fa376b30170f9b",
+    "source_fingerprint": "sha256:2f0b6259b3d8c2f3dbb3af9a62bf0202ecfbf30c824b2575d05baf2bb7f100d9",
     "source_doc_hashes": {
       "spec.md": "23385f5a5097eb660a8e9420e3e5cc84ad99f3625dda959446e4bd86b276b322",
       "plan.md": "e2a5fe29f4304dd8d24ba778ca540fca184e6c5a093d431a0dbb7088d175d6e6",
       "tasks.md": "4dd1e19a9bbd9ef262cc2da3996df99b5b8b8db3dd922eb443ca9355b8856681",
-      "checklist.md": "f679b1d76bf3fa2787c2728dc1d70ba127c6e8691f14a2230d9d993d4d61e1ad",
+      "checklist.md": "17417556c477bc93c084b53744aa3c55a5d3d43ed729dff288b81b82897c0b80",
       "implementation-summary.md": "0cdd594702d4514fb031afe9c532c4c0b5d18b22264d0e8e57eca00df8be44cf"
     },
     "last_active_child_id": null,

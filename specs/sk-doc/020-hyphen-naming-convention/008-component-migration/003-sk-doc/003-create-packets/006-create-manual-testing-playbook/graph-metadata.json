@@ -177,13 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The create-manual-testing-playbook packet contains snake_case template and prompt-voice resource filenames. This phase converts those non-exempt names to kebab-case and updates packet-local links while preserving playbook schema fields and scenario identifiers.",
     "created_at": "2026-07-14T15:22:37Z",
-    "last_save_at": "2026-07-20T11:43:46.969Z",
+    "last_save_at": "2026-08-29T10:00:44.721Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:81e9e8962071e0c42ad7fe68bd26a9e1a26a113c09ce6ebc58a66f02589bd2e2",
+    "source_fingerprint": "sha256:e73069c512625f2544adb3631f34e23189e38023b920bc96dd0d4b62de7e6f21",
     "source_doc_hashes": {
       "spec.md": "f6de202f1c0c9b00597f08628b02629c4ee8fbf2ada6e66c4da184754a0d0d36",
       "plan.md": "5108549b325a4142672c947bbcb0e64781ef4334d9308723cea3019d31386627",
       "tasks.md": "a02d68d5d9d164dbba65ec9a0bc2a94c7d5caee1655c4f18b91077e30cc0dfdb",
-      "checklist.md": "f4e2c85e19438fbc3531e4687b9778675a52b8590e6cf3f3ef4106ab992b7aea"
+      "checklist.md": "69b76b39af42815e5c602d2336a21e748a3943afb7a41533bf1bc37ee7d03223"
     },
     "last_active_child_id": null,
     "last_active_at": null

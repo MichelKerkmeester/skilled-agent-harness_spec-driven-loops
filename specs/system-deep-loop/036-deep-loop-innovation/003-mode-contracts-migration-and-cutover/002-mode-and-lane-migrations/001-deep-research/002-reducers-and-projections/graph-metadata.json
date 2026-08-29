@@ -176,6 +176,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -186,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the pure reducers and live projections for the deep-research migration: replay the typed event ledger into deterministic iteration/convergence state, an artifact index, and per-mode status without side effects or authority cutover.",
     "created_at": "2026-07-16T03:43:30.675Z",
-    "last_save_at": "2026-08-17T04:33:41.880Z",
+    "last_save_at": "2026-08-29T09:57:57.965Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e31244f72b64da3384ea2e8bbede14f672c581f4c514e491863c1f6ebd13135",
+    "source_fingerprint": "sha256:b90670d26efbe3bd133b7b7d400ef78f9c8c38f3293ba2bb7b911552f16b29a6",
     "source_doc_hashes": {
       "spec.md": "19d99869666475bfde544cdd0aa6bfe67a59ab44a7c0ab86861ffa65dc5557bd",
       "plan.md": "c99699886a703b57b3a9bc0f69876be5408a0dd8138e4cf327e7463dd4a13ed0",
       "tasks.md": "fa3c97c164a637cb10ae02997d1dc08d03dd58f25d202303eb33ae43172e5384",
-      "checklist.md": "59005b0d01bcd3ce5397b02f15453e1f25ef8538208b2251f828bfcb55d5a09c",
+      "checklist.md": "bc29aa7ae34ca71b59fbb0d06edd86669274f6fd86769aef0e028f984ae2ad2a",
       "decision-record.md": "e8462a63444e108fa094850cd190caca3df21c682e0b822a4754e2bc9f3fc5b6",
       "implementation-summary.md": "33424c1b2be2cbd2bd9dd2df1712ab9b5f088259b967630cd34f27b7f04f5f7e"
     },

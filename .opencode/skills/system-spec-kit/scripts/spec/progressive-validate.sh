@@ -507,7 +507,7 @@ run_level3_suggest() {
 import sys, json
 try:
     data = json.load(sys.stdin)
-    results = data.get('results', [])
+    results = data.get('entries', [])
     for r in results:
         if r.get('status') in ('fail', 'warn', 'error'):
             rule = r.get('rule', 'UNKNOWN')
@@ -553,9 +553,6 @@ get_suggestion_for_rule() {
             ;;
         PLACEHOLDER_FILLED|PLACEHOLDERS)
             echo "Search the file for [PLACEHOLDER] patterns and replace them with real content."
-            ;;
-        SECTIONS_PRESENT|SECTIONS)
-            echo "Add the missing section heading. Refer to the template for the expected structure."
             ;;
         LEVEL_DECLARED|LEVEL)
             echo "Add a Level row to the spec.md metadata table: | **Level** | 1 | (or 2, 3, 3+)"

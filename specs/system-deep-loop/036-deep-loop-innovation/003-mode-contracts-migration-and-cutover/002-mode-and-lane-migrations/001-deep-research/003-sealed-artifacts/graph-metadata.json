@@ -163,6 +163,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -181,12 +187,6 @@
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Deep Research mode binding for immutable, content-addressed reference artifacts across init, gather, analyze, convergence, synthesis, resume, and memory-save handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:30.948Z",
-    "last_save_at": "2026-08-18T11:07:26.163Z",
+    "last_save_at": "2026-08-29T09:57:58.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7d1746d5d1ef4b045be2f7a0fb3d39bfd6a75a31dc0f3d894ef30f0d99dbdf92",
+    "source_fingerprint": "sha256:83d035613cdcfef84db4a5babb25442f20abff54c9e888baf5781f5e2444fc80",
     "source_doc_hashes": {
       "spec.md": "5a3f2e45de8c2cca91af80d4e62a63faff47fcf9b022da80ac88f35368beef99",
       "plan.md": "bb5e5175d90f92db2620c83d9a9b2e9821045393e57939db3d3f2cc2ab50fdbb",
       "tasks.md": "941b1fd8ae7761cc7e72225230648767fc22f97c45984690be4d2d0092f1784d",
-      "checklist.md": "88ffd28c8ae49373d1a909d73b33347063b613fd427aa98c0e85dba5ad93df21",
+      "checklist.md": "5de3bbeb0e332b243ab25055e11a474e65334a74a95cb9879f4e09105492056f",
       "implementation-summary.md": "2713cabcc332f24d0f065673f912c5944c366db201be97655661933e7ccb145f"
     },
     "last_active_child_id": null,

@@ -26,7 +26,7 @@ _memory:
     answered_questions:
       - "The current four-tree baseline is 34 directories and 116 files."
 ---
-# Checklist: cli-external-orchestration manual-testing-playbook naming
+# Verification Checklist: cli-external-orchestration manual-testing-playbook naming
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

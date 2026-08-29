@@ -40,14 +40,6 @@
     "description": "Advisory-by-default check that spec.md and implementation-summary.md status fields classify to the same delivery state."
   },
   {
-    "rule_id": "SECTIONS_PRESENT",
-    "aliases": ["SECTIONS"],
-    "script_path": "rules/check-sections.sh",
-    "severity": "warn",
-    "category": "authored_template",
-    "description": "Checks that required high-level markdown sections are present."
-  },
-  {
     "rule_id": "LEVEL_DECLARED",
     "aliases": ["LEVEL"],
     "script_path": "rules/check-level.sh",

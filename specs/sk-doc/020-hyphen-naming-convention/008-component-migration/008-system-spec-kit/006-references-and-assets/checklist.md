@@ -24,7 +24,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: References and assets
+# Verification Checklist: References and assets
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

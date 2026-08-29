@@ -51,7 +51,6 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | -------------------- | -------- | ------------- | ---------------------------------------------- |
 | `FILE_EXISTS`        | ERROR    | All levels    | Required files present for documentation level |
 | `PLACEHOLDER_FILLED` | ERROR    | Core files    | No unfilled template placeholders              |
-| `SECTIONS_PRESENT`   | WARNING  | All templates | Required markdown sections exist               |
 | `LEVEL_DECLARED`     | INFO     | spec.md       | Level explicitly stated in metadata            |
 | `PRIORITY_TAGS`      | WARNING  | checklist.md  | P0/P1/P2 priority tags properly formatted      |
 | `EVIDENCE_CITED`     | WARNING  | checklist.md  | Non-P2 items cite supporting evidence          |
@@ -115,7 +114,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 **Clean-tree scope:** packet-scoped paths only, not the whole repository.  
 **Clock drift:** a continuity timestamp newer than graph metadata remains a benign pass path.
 
-> **Completion-blocking note (verified 2026-06-16):** because the rule runs only under `--strict` and `--strict` promotes **any** warning to exit 2 for non-grandfathered packets (`validate.sh:1062`), a stale-freshness `warn` already FAILS the documented completion gate even with `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` unset. The ENFORCE flag is therefore not a warn-vs-block switch under `--strict`: it only reclassifies the inner result label `warn`→`error` (`continuity-freshness.ts:340-342`). The `warn`/`error` distinction is observable in non-strict callers and in the JSON result, not in the `--strict` exit code. Only `LEGACY_GRANDFATHERED` packets (`validate.sh:175-182`) escape the exit-2 promotion.
+> **Completion-blocking note:** the rule runs only when `SPECKIT_COMPLETION_FRESHNESS` is enabled, and the decision to run it is made once, at the rule's own entry point, so every caller gets the same answer. When it does run under `--strict`, any warning becomes exit 2, so a stale-freshness `warn` already FAILS the completion gate even with `SPECKIT_COMPLETION_FRESHNESS_ENFORCE` unset. The ENFORCE flag is therefore not a warn-vs-block switch under `--strict`: it only reclassifies the inner result label `warn`→`error`. The `warn`/`error` distinction is observable in non-strict callers and in the JSON result, not in the `--strict` exit code.
 
 | Flag | Default | Effect |
 | --- | --- | --- |
@@ -337,65 +336,7 @@ Replace placeholder text with actual content:
 2. Replace `[YOUR_VALUE_HERE: description]` with the actual value
 3. Remove the entire `[...]` block, not just the inner text
 
----
-
-## 7. SECTIONS_PRESENT
-
-**Severity:** WARNING  
-**Description:** Validates that required markdown sections exist in each file type.
-
-### Required Sections
-
-| File                | Required Sections                               |
-| ------------------- | ----------------------------------------------- |
-| `spec.md`           | Problem Statement, Requirements, Scope          |
-| `plan.md`           | Technical Context, Architecture, Implementation |
-| `checklist.md`      | P0, P1 (section headers)                        |
-| `decision-record.md`| Context, Decision, Consequences                 |
-
-### Matching Rules
-
-- Case-insensitive matching
-- Partial match (e.g., "Implementation Phases" matches "Implementation")
-- Matches `##` or `###` headers
-
-### Examples
-
-⚠️ **Warning:**
-```markdown
-# My Spec
-
-## Overview           ← Does not match "Problem Statement"
-## What We Need       ← Does not match "Requirements"
-## Scope Match
-```
-
-✅ **Pass:**
-```markdown
-# My Spec
-
-\## 1. Problem Statement 
-\## 2. Requirements 
-\## 3. Scope 
-```
-
-### How to Fix
-
-Add the missing section headers. You can use numbered prefixes:
-
-```markdown
-\## 1. Problem Statement
-
-[Content here]
-
-\## 2. Requirements
-
-[Content here]
-```
-
----
-
-## 8. LEVEL_DECLARED
+## 7. LEVEL_DECLARED
 
 **Severity:** INFO  
 **Description:** Checks if the documentation level is explicitly declared in spec.md metadata.
@@ -439,7 +380,7 @@ Add the Level field to your spec.md metadata table:
 
 ---
 
-## 9. PRIORITY_TAGS
+## 8. PRIORITY_TAGS
 
 **Severity:** WARNING  
 **Description:** Validates that checklist items use proper P0/P1/P2 priority tagging format.
@@ -521,7 +462,7 @@ Add priority headers or inline tags to all checklist items:
 
 ---
 
-## 10. EVIDENCE_CITED
+## 9. EVIDENCE_CITED
 
 **Severity:** WARNING  
 **Description:** Validates that non-P2 checklist items include evidence citations to support claims.
@@ -598,7 +539,7 @@ Add evidence to non-P2 items:
 
 ---
 
-## 11. ANCHORS_VALID
+## 10. ANCHORS_VALID
 
 **Severity:** ERROR  
 **Description:** Validates that generated continuity artifacts and other indexed support docs use proper ANCHOR format with matching open/close pairs.
@@ -683,7 +624,7 @@ Content here...
 
 ---
 
-## 12. FOLDER_NAMING
+## 11. FOLDER_NAMING
 
 **Severity:** ERROR
 **Description:** Validates that the spec folder follows the `###-short-name` naming convention.
@@ -727,7 +668,7 @@ mv specs/Feature specs/001-feature
 
 ---
 
-## 13. FRONTMATTER_VALID
+## 12. FRONTMATTER_VALID
 
 **Severity:** ERROR
 **Description:** Validates YAML frontmatter structure and required semantic values across the major spec documents.
@@ -783,7 +724,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path sp
 
 ---
 
-## 14. COMPLEXITY_MATCH
+## 13. COMPLEXITY_MATCH
 
 **Severity:** WARNING
 **Description:** Validates that declared complexity level matches actual content metrics (user stories, phases, tasks).
@@ -830,7 +771,7 @@ Either adjust the declared level or modify content to match:
 
 ---
 
-## 15. AI_PROTOCOLS
+## 14. AI_PROTOCOLS
 
 **Severity:** ERROR
 **Description:** Validates that Level 3 and 3+ specs include AI execution protocol sections for agent guidance. For Level 3+, missing protocol components are reported as errors.
@@ -894,7 +835,7 @@ cat .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
 
 ---
 
-## 16. LEVEL_MATCH
+## 15. LEVEL_MATCH
 
 **Severity:** ERROR
 **Description:** Validates that the declared level is consistent across all spec folder files and required files exist.
@@ -949,7 +890,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path sp
 
 ---
 
-## 17. SECTION_COUNTS
+## 16. SECTION_COUNTS
 
 **Severity:** WARNING
 **Description:** Validates that section counts are within expected ranges for the declared documentation level.
@@ -992,7 +933,7 @@ Either expand content or reduce declared level:
 
 ---
 
-## 18. PHASE_LINKS
+## 17. PHASE_LINKS
 
 **Severity:** WARNING
 **Description:** Validates the integrity of parent-child phase relationships in phase-decomposed spec folders.
@@ -1075,7 +1016,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/042-payment
 
 ---
 
-## 19. CONFIGURATION
+## 18. CONFIGURATION
 
 ### Environment Variables
 
@@ -1108,7 +1049,7 @@ SPECKIT_JSON=true bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh
 
 ---
 
-## 20. RELATED RESOURCES
+## 19. RELATED RESOURCES
 
 ### Reference Files
 

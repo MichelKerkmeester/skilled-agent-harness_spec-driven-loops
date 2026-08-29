@@ -32,9 +32,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/design-md-generator/SKILL.md",
-      ".opencode/skills/sk-design/design-md-generator/README.md",
-      ".opencode/skills/sk-design/design-md-generator/INSTALL-GUIDE.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -42,24 +39,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL-GUIDE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/INSTALL-GUIDE.md",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -185,11 +164,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`design-md-generator`'s packet root is unusual among sk-design modes: it carries three root markdown files, not two",
     "created_at": "2026-07-27T15:10:01.252Z",
-    "last_save_at": "2026-07-27T15:10:01.252Z",
+    "last_save_at": "2026-08-29T09:58:31.257Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +196,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40e91200d84556de75a4689eb694b8a4c78e18d2f65b077b339f2654f36e0663",
+    "source_fingerprint": "sha256:c76fe707201955726efe3d7910a2dc9a7a740047e6b8a2453f2f7621eb481269",
     "source_doc_hashes": {
       "spec.md": "b51dcb946eccc4bf365cdef6636e846c4b38a95940c7c8d396d14ca2a035345a",
       "plan.md": "b3ba808507402b0c01f1361f88be0013cb0b1c6a30b250c8185860dcbe8b67e3",
       "tasks.md": "187a1f48b5c0b2d19e21345852054c209e2ba2497cd42bfc1d2f971ddc9c1cac",
-      "checklist.md": "4b914160e22b85cf0ae0bcb739cb618160c35edc3119fbce4dd4677ffc9c55c4",
+      "checklist.md": "e52fd974a0948191557f59254fc9d9322a8d797344b0e81869e6465e77642850",
       "implementation-summary.md": "7afbb89083867325abbb1c68bea0782de68cdd30a6e5bce30f508d4188c37a14"
     },
     "last_active_child_id": null,

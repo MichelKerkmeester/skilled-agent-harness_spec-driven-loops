@@ -49,20 +49,7 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "scratch/batch-plan.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-retention.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/lib/memory/bounded-cache.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/index.ts",
-      ".opencode/skills/system-code-graph/mcp_server/index.ts",
-      ".opencode/bin/mk-code-index-launcher.cjs",
-      ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
-      "core/config.ts",
-      "mcp_server/tests/launcher-lease.vitest.ts",
-      "scripts/tests/process-memory-harness.vitest.ts",
-      "scripts/tests/process-sweep.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts"
+      "scratch/batch-plan.md"
     ],
     "entities": [
       {
@@ -108,78 +95,6 @@
         "source": "derived"
       },
       {
-        "name": "memory-runtime-retention.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-retention.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "bounded-cache.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
-        "source": "derived"
-      },
-      {
-        "name": "bounded-cache.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/lib/memory/bounded-cache.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "process-sweep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/lib/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-code-index-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-code-index-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "owner-lease.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
-        "source": "derived"
-      },
-      {
-        "name": "config.ts",
-        "kind": "code",
-        "path": "core/config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-lease.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/launcher-lease.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "process-memory-harness.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/process-memory-harness.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "process-sweep.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/process-sweep.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "process-memory-harness.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
-        "source": "derived"
-      },
-      {
         "name": "Findings Remediation",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,11 +123,83 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Percent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit Memory",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Targeted Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ledger Race Correctness",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Arc 009 closed its implementation phases, but the deep review still found 40 P1 issues and 20 P2 advisories",
     "created_at": "2026-05-22T19:00:00Z",
-    "last_save_at": "2026-07-17T17:19:28.030Z",
+    "last_save_at": "2026-08-29T10:00:13.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,12 +210,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a6128a0164e4c8848381c15176c53712a45116386b76c21cee8e7bb1bbd33b9",
+    "source_fingerprint": "sha256:3b757005af8ddc0dd23c022c7c6e7e670efcfc5019f3725413b98fc893cd4f17",
     "source_doc_hashes": {
       "spec.md": "bdd8d518fb5d89e7d387082313ea03585909720c70410783e7f1537ac564a713",
       "plan.md": "0a1b7f6e54f93af805af137d4e6f9816bf59b38daee945f68a37536fc351dd0b",
       "tasks.md": "30802e8719aee8a276f0c0488cb93f59f780317af2cbc6a283cf60b179e6437b",
-      "checklist.md": "23a31da18a614fb0df65c4ad968cb791ef1ac4db5ec99daa9325fe0219ed4704",
+      "checklist.md": "c3ec5e90f86045c8b68f7b34e10495b89e0c9eed734977b8cccec5678de39ccf",
       "decision-record.md": "76e0bdd21736d38ff3d114df953fd85972ad4a4f84d413ba41e2890956bf2ccb",
       "implementation-summary.md": "526f7db982e644a710a849eb3791598f40828e7d3ed0ec1c0b6813a31c8e6f15"
     },

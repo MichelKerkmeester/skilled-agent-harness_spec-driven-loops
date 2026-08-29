@@ -157,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -164,12 +170,6 @@
       },
       {
         "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Agent Improvement resume adapter over the sealed typed event ledger: rebuild agent-loop proposal and scoring state through deterministic reducers, map it onto the continuity ladder, and re-enter idempotently without double-applying events, losing branch evidence, or replaying uncertain effects. Reuse the deep-improvement-common resume, evaluator, canary, certificate, and promotion services.",
     "created_at": "2026-07-16T03:43:38.542Z",
-    "last_save_at": "2026-08-18T11:07:16.886Z",
+    "last_save_at": "2026-08-29T09:58:14.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ec8d457dad87d8dc66e4e8637b09e6680117a1996f8752a7e08de9d683f942a",
+    "source_fingerprint": "sha256:6dafd6efef8f6db23966752b26092bc3f93b93d9f8d346fce2fe2096186710fd",
     "source_doc_hashes": {
       "spec.md": "74561b504576848234e9b5cc3a362f7a3235de3302ee526cfa536e65cee141dc",
       "plan.md": "290b7c7d5fc996fd342e529f9eb6e0b495c14208fd1806b398f176e26d4c13ec",
       "tasks.md": "892e641b52fa5f03606f88f99eef8645cd3699294e418431e83984f77a11b039",
-      "checklist.md": "9e26fdf287cf5a6ea6c4696866e1a3cb513ffa67826a492347f6fa622bb95ab2",
+      "checklist.md": "207c011c8226229529c503c6685dea33c7dea1bd6f684d15896754ed2d20e38f",
       "implementation-summary.md": "8c4b939d65c44b8daa77f219f757914ed31dc215b2d50448b01528bf25201162"
     },
     "last_active_child_id": null,

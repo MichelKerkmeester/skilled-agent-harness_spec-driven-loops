@@ -16,7 +16,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist + level3-arch | v2.2 -->
 
-# Checklist: create-skill contract unification
+# Verification Checklist: create-skill contract unification
 
 ---
 

@@ -165,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -181,17 +187,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-tooling changelog history predates the 020 kebab-case rename set and currently has no verified append-only entry for the hub/component filesystem migration. This verification phase checks the root and component changelog version bumps, scope descriptions, exemption notes, and history preservation without performing any rename.",
     "created_at": "2026-07-14T15:17:46Z",
-    "last_save_at": "2026-07-17T20:26:11.171Z",
+    "last_save_at": "2026-08-29T10:00:41.706Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:8670bceb91bf86a800d3435e5eaa80334007d5d8dc52e2719aaf60090b776eda",
+    "source_fingerprint": "sha256:8c71fd6ef069248733e06b1ecac947734feb29879026432e5257232bd4e1ae7d",
     "source_doc_hashes": {
       "spec.md": "3a0f8bf7ae38fc2bc5e8094df11c5884222283cf3c3e9ba4a6f80991f6737f95",
       "plan.md": "b6444cb891ddd52225c2a227a50bb47f254ecb9f3a2732c34c2fe5c3bebc0c8f",
       "tasks.md": "f5217a5224578834f3bb155e78588a7d0afae5289da5289b5b71ce5687116f46",
-      "checklist.md": "df10d7f5086219d79fa264222adb737cf878d168feea1ca8fb0a8288ecb94488"
+      "checklist.md": "a28e258e49ef2b528c8345ea5048c795551db1703f6fb36d735e42d1e505807c"
     },
     "last_active_child_id": null,
     "last_active_at": null

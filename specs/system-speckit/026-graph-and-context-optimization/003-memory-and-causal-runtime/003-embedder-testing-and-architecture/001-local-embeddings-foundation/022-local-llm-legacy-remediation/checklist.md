@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "remediation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
-# Checklist: Local-LLM legacy remediation (post-021 review)
+# Verification Checklist: Local-LLM legacy remediation (post-021 review)
 
 <!-- SPECKIT_LEVEL: 2 -->
 

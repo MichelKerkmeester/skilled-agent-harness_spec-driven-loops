@@ -175,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Lane C never exercises the compiled routing path, and it fits in two non-frozen files (CF-BM-1)",
     "created_at": "2026-07-20T21:51:29.784Z",
-    "last_save_at": "2026-08-28T15:53:16.919Z",
+    "last_save_at": "2026-08-29T10:01:23.912Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9086740fc29106c6840e93cdb2e00010dc2223e4c049b3f3f86a8865eff7c4a3",
+    "source_fingerprint": "sha256:b900b0ef2071db185a669b17ca051f57c09afb92c5965fbb1c97636c591a01b6",
     "source_doc_hashes": {
       "spec.md": "a9feed3b91a1299fa766c0d7b424b0e07e01af5e25d7512af8d110d450bd8c83",
       "plan.md": "8c8cc6954112fd5395043c01c1f90cd5fce8b56e4a7432c74ebbc09cc2145552",
       "tasks.md": "16aebb92542238611cb8e3bb9235e5176e849ca9a7da0b3ca2b110b0039efb38",
-      "checklist.md": "a5e1c3b2c469c79c88ce26eea9a268635697a5d4aa057a2a66230ef2b65c0c63",
+      "checklist.md": "ee8f812052914d6ab13517321fca08b62331bf4ff41e6ac03059b5d8185d9c88",
       "implementation-summary.md": "8859fd9ccf039780360f911bddc3d542992732c7aa84840b3cb50149cabc625c"
     },
     "last_active_child_id": null,

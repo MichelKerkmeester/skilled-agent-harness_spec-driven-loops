@@ -1,4 +1,4 @@
-# Checklist: Fix Doctor Bootstrap Symlink Restart Loop
+# Verification Checklist: Fix Doctor Bootstrap Symlink Restart Loop
 
 > **Spec:** `./spec.md` | **Date:** 2026-06-08
 

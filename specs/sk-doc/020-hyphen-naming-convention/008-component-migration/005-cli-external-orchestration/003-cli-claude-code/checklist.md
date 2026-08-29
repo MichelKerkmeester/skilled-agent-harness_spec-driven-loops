@@ -25,7 +25,7 @@ _memory:
     answered_questions:
       - "The candidate set is six local authored files outside manual_testing_playbook/."
 ---
-# Checklist: cli-claude-code component naming
+# Verification Checklist: cli-claude-code component naming
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

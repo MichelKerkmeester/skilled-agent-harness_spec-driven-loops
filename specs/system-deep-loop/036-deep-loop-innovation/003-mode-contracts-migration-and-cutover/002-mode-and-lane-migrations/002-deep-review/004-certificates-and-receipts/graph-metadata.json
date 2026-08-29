@@ -175,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep Review per-run certificate and per-transition receipt contract over the typed event-ledger substrate. The phase defines attestation boundaries, replay-fingerprint inputs, receipt coverage, and independent offline verification for scope, per-dimension review passes, P0/P1/P2 finding adjudication, convergence, synthesis, and review-report publication.",
     "created_at": "2026-07-16T03:43:32.955Z",
-    "last_save_at": "2026-08-18T11:07:23.513Z",
+    "last_save_at": "2026-08-29T09:57:54.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:20ecb340fa300d0855648c5db9f1bf78c952b99eced4f72fe8e0dc22187f67e0",
+    "source_fingerprint": "sha256:bf155fffd26d43b47aaefe97f6898309aef4a45850d692868543db9d90bc5440",
     "source_doc_hashes": {
       "spec.md": "b7bd9619e3b5c0d559a01bbebc8e2d0008b8176277c9a8788d347891c8f66fcc",
       "plan.md": "f50dcf63f2d2bb9ea3e6b19028752a0fe2f9282897fa2ef5b7d6fa731ef0966e",
       "tasks.md": "edc8b7ca70681bd8170b1f392bd90a4ebe00b4a332084ae9c25fef16b0ccb9c8",
-      "checklist.md": "daef1e5e1d4eb1658bb98608a3491c598121a63390a6dd2da6bac1cf09d7519c",
+      "checklist.md": "4c251ac426c8633653a450dfdbf5799fa9402115f5ba29e5506a609082c746e3",
       "implementation-summary.md": "06fb139250512b2ca28fedb055e29c4fb2d5a36fb65d470ca6b1610679e5e3f2"
     },
     "last_active_child_id": null,

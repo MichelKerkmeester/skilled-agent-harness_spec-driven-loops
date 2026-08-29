@@ -41,8 +41,6 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/deep/assets/compiled/README.md",
-      ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -50,18 +48,6 @@
       "decision-record.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/assets/compiled/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "compile-command-contracts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -189,7 +175,19 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -197,7 +195,7 @@
     ],
     "causal_summary": "The maintained deep asset tree contains names such as `deepai-councilauto.yaml`, `deepresearchpresentation.txt`, and `deepai-council.body.md`",
     "created_at": "2026-07-14T15:18:32Z",
-    "last_save_at": "2026-07-17T20:26:19.226Z",
+    "last_save_at": "2026-08-29T10:00:34.936Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:0b6bdeb8be334bc7d2156537b93f7ee1faec1352c23b16b3b07d31f8d9148fc3",
+    "source_fingerprint": "sha256:9d1ea32c59b9afb7a1efc8b4bcd5bb974e8f66890b1180bcdef06415ceab15ca",
     "source_doc_hashes": {
       "spec.md": "608659484fd0b1ff6ae670d465a3d392ba052e4f7fa342259994343bf3a17802",
       "plan.md": "1f7054118b34d9c6db93a79dc520c152420ed7a1c06fbf9932fd368be32ac323",
       "tasks.md": "2f6e8c58c0a7415179a3e301a31837414994464a145a53f64a2b723b4e2179fa",
-      "checklist.md": "a8fc8c182d31ce197d9823b87108fe13c84a8b1a688eb7aaeaaadd3a3ccf930c",
+      "checklist.md": "a710420009579ef28c8a867a7d9d144ed3e0b4d4d29a4ae4b53e3de0426522c2",
       "decision-record.md": "be5405cc5dab31e9cd27ca4fd3346935dd7929494c807b289680a169db15f876"
     },
     "last_active_child_id": null,

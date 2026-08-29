@@ -22,7 +22,7 @@ _memory:
     completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
-# Checklist: API Response Shape Closure for F9 F32 F39 F97 F99
+# Verification Checklist: API Response Shape Closure for F9 F32 F39 F97 F99
 
 <!-- SPECKIT_LEVEL: 2 -->
 

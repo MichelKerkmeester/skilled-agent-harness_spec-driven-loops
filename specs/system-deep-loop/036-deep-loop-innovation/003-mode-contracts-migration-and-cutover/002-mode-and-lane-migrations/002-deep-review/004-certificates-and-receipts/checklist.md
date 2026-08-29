@@ -24,7 +24,7 @@ _memory:
     answered_questions:
       - "Implemented scope excludes authority cutover and resume policy"
 ---
-# Checklist: Deep Review - Certificates & Receipts
+# Verification Checklist: Deep Review - Certificates & Receipts
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -27,7 +27,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Checklist: 022/002 CocoIndex Embedder Doc-Drift Resync
+# Verification Checklist: 022/002 CocoIndex Embedder Doc-Drift Resync
 
 <!-- ANCHOR:protocol -->
 ## 1. VERIFICATION PROTOCOL

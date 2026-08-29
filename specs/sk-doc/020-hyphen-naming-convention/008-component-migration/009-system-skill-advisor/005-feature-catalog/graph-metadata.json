@@ -41,26 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-skill-advisor/SKILL.md",
-      ".opencode/skills/system-skill-advisor/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-skill-advisor/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +178,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The advisor's feature catalog currently uses the snakecase root featurecatalog, seven snakecase category",
     "created_at": "2026-07-14T15:18:10Z",
-    "last_save_at": "2026-07-20T11:09:37.009Z",
+    "last_save_at": "2026-08-29T10:00:24.922Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:2ea199f05d2acb35682c4b4be5402a6c1deb54b7d51805341b58ef2b7d92e5c8",
+    "source_fingerprint": "sha256:d4f506100cb936aca88c51b65cf67676770b09fe018e593e923c937acac78631",
     "source_doc_hashes": {
       "spec.md": "8ae5e8e2da4a97acd3f138787e825c7e5ae8ef79e3cfd1de6a6923cdd7bd7d69",
       "plan.md": "56f83e2d2341d00fad10ad3cce292a0338869ed069732901a33836209a73eb1f",
       "tasks.md": "8ac7b2db06978538db499a04bb971d62324f19ce2544077b8bc66bde334016cd",
-      "checklist.md": "e3e34d99177c02a880b9ff9b58479a1d87c904ae1f44471c618410043fa6216f"
+      "checklist.md": "6b94ff07b6ffd3b8b4ccec62c7f5f09afa1745d373bcf9805505c535a65cc02c"
     },
     "last_active_child_id": null,
     "last_active_at": null

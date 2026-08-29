@@ -328,15 +328,6 @@
       "version": "1.0.0"
     },
     {
-      "name": "check-sections",
-      "path": "scripts/rules/check-sections.sh",
-      "type": "bash",
-      "description": "SECTIONS_PRESENT rule - checks for required markdown sections in spec files",
-      "severity": "warning",
-      "essential": false,
-      "version": "1.0.0"
-    },
-    {
       "name": "check-level",
       "path": "scripts/rules/check-level.sh",
       "type": "bash",

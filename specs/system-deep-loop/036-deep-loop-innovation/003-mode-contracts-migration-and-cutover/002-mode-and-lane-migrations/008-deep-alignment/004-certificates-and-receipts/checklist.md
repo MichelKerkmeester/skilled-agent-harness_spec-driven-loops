@@ -22,7 +22,7 @@ _memory:
     answered_questions:
       - "Completed scope excludes authority cutover and resume policy"
 ---
-# Checklist: Deep Alignment - Certificates & Receipts
+# Verification Checklist: Deep Alignment - Certificates & Receipts
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

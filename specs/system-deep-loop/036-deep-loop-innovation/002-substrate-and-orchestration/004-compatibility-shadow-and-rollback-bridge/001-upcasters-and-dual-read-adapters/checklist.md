@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Upcasters & Dual-Read/Single-Write Adapters
+# Verification Checklist: Upcasters & Dual-Read/Single-Write Adapters
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

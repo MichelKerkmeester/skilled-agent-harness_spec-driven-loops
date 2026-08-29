@@ -16,7 +16,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
-# Checklist: hub intent keyword coverage for create-agent and create-changelog
+# Verification Checklist: hub intent keyword coverage for create-agent and create-changelog
 
 ---
 

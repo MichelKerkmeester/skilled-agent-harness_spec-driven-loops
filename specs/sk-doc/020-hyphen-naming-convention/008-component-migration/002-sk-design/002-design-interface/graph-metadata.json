@@ -41,26 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-design/design-interface/SKILL.md",
-      ".opencode/skills/sk-design/design-interface/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +178,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The design-interface mode has underscore-bearing procedure, asset, and reference names while its SKILL.md and README.md cite those paths directly.",
     "created_at": "2026-07-14T15:17:14Z",
-    "last_save_at": "2026-07-20T11:43:42.731Z",
+    "last_save_at": "2026-08-29T10:00:27.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:c173ffc9e5cac10c76ebd1654ba5a2d48e4893619c5515c78a94911c307bbdb5",
+    "source_fingerprint": "sha256:e421f382dcb659f9cc68fc5c9c1204a457dae0158954496409c8391dce7de3c3",
     "source_doc_hashes": {
       "spec.md": "ca416436b649bb924241c53c33bfeab2e7497409c98fd74e90a858cacce10886",
       "plan.md": "831ffaacbf0a6ff18d56fe16645446b66fe00c3fae94b02727ac32ac0216618f",
       "tasks.md": "743b8fd38e87f4c24ca2e808465561dd98e9e17059d4885a1362d30c568d58b5",
-      "checklist.md": "e7d05e7920d8c35f4accf9b5e36cba2e42c31088bc8510e627ad78635389532c"
+      "checklist.md": "2d5943c455b910c787ccab6e9e9544cc8f8ec8532bbe9642a1c437d4965852be"
     },
     "last_active_child_id": null,
     "last_active_at": null

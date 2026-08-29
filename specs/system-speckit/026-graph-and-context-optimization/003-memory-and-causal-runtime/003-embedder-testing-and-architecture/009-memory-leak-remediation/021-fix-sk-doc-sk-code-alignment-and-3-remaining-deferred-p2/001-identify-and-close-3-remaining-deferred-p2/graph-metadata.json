@@ -47,7 +47,6 @@
       "scratch/reconciliation-error.md",
       "decision-record.md",
       "checklist.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -76,12 +75,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 015 investigation found 68 P2 findings",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-07-17T17:19:29.286Z",
+    "last_save_at": "2026-08-29T10:00:14.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +211,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1ccd9d2ead0f52ff7e61860017dd1ba0a4e7a1e23b115beaed9c4c4491243145",
+    "source_fingerprint": "sha256:a03a1830657cd5a5f4789651951cfa1c981f691d4797c3e248baa23a2255191d",
     "source_doc_hashes": {
       "spec.md": "e582a1c9c535c1e6082b1219d66655ab778cd9bd267711f9756713e03f9e3edb",
       "plan.md": "8edf6c5f22c7fd96c6e8ce856be44983134b776171ac576e334278d4845b15e3",
       "tasks.md": "16aad843b23288971e35581a3b5d592040ca000e7bb4f262a94b0ab7ca175b61",
-      "checklist.md": "faf02fbc3e24e154b890b8b05573e585d33c32f9a4006b1b55dee97e8bda20e5",
+      "checklist.md": "3341b7c719438f08f1d07345eaefe0f981f36ba0d1d2bd1688cae8633ecf637c",
       "decision-record.md": "70b8e4591f4b2e27d9bee3a906ecf795c44414a70fb36e809a6bd8b7d32275b3",
       "implementation-summary.md": "964b439510585b264b5403ee01c546b046953090c2537f55062ba3219e278ad4"
     },

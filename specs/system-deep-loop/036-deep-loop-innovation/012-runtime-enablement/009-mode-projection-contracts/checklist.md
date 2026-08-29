@@ -20,7 +20,7 @@ _memory:
     answered_questions:
       - "Three surfaces are reducer output or operator input, not ledger folds"
 ---
-# Checklist: Mode Projection Contracts
+# Verification Checklist: Mode Projection Contracts
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

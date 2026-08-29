@@ -38,10 +38,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
-      ".opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts",
-      ".opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts",
-      ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -49,30 +45,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "registry.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "voyage.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/voyage.ts",
-        "source": "derived"
-      },
-      {
-        "name": "openai.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/openai.ts",
-        "source": "derived"
-      },
-      {
-        "name": "auto-select.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +164,35 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. VERIFICATION PROTOCOL",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "cli-opencode + deepseek-v4-pro --variant high dispatched: extended registry.ts with RerankerProvider type + RERANKER_CANONICAL frozen object + getRerankerFallback helper; consolidated providers/voyage.ts + providers/openai.ts + auto-select.ts + cross-encoder.ts to import from registry. Closes 7 P1 cleanup findings.",
     "created_at": "2026-05-23T18:10:00.000000Z",
-    "last_save_at": "2026-07-17T17:19:22.336Z",
+    "last_save_at": "2026-08-29T09:58:43.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +202,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ffe2cdd7c84284a605499504b068b31452900919447e781ba65db62175980933",
+    "source_fingerprint": "sha256:1a34d978fb96e1b36e4173ad03b5820cd7717f5474be290bf6c03341035aef74",
     "source_doc_hashes": {
       "spec.md": "58c9ba39dfb105eac024879b94c27b4acf94dc869fc2d87db526061a18482664",
       "plan.md": "92872a263c3e82237b34a00bf4ec7190d4c22b1bc9a21bc50081f2d927540e83",
       "tasks.md": "cfb0a555e4ac03fb9abe4a63d134bf49be6af9e108e020ff1bf513ad8f039c1a",
-      "checklist.md": "81bebf95272852e6ee648d49cb807a68712c67eee19ba3ee16cfd08e41e4252e",
+      "checklist.md": "b622aa65132898004f6681e97b45a475ecf87d9dce3e2c74c1316fe5c45098cc",
       "implementation-summary.md": "67c21e7fefde81daf2100e40cb3d25a3fbcf884fd40494f2bfe94823875d48ec"
     },
     "last_active_child_id": null,

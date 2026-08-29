@@ -183,13 +183,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol The",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol The",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Deep-research state is produced by agents following prose",
     "created_at": "2026-08-19T06:57:07.880Z",
-    "last_save_at": "2026-08-22T19:15:15.720Z",
+    "last_save_at": "2026-08-29T09:58:18.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:955a64fff3fe2db544bd0603b900c05b565d51c99d3e9e8b35c7b687b52194ad",
+    "source_fingerprint": "sha256:cef1c8974e18c69cb1c43742df32795884bba571089e323e27c2f996f1e4f2ef",
     "source_doc_hashes": {
       "spec.md": "ac8f796d28f76c2887c91b79abf4d14954c43af4f65ce75162f9313bf3cb40c0",
       "plan.md": "25baa795a753e6d149f8a6d4b7b08e2953d40bdcb1bc985ec8ecfd668099e9ea",
       "tasks.md": "1dfe2d95861d540a4bedf1ab00f6493712d8f34eec2c57984cdabdd34eea1c54",
-      "checklist.md": "73ca71e2dea355133734ecb6d6410202042de4efb7c86dba9dc04382863f0dea",
+      "checklist.md": "e5bd4ece54b88f0ddf2ccbc11a639cba60ce93e293a8d4c001826a55cbfb5907",
       "implementation-summary.md": "2e25cecfefb06eb7d8c3c74482b55029941d0063459877f11c6b41311a13246d"
     },
     "last_active_child_id": null,
