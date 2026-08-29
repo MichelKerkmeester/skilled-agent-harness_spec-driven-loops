@@ -1,18 +1,22 @@
 ---
 title: "Decision Record: Spec-Kit Template & Context Optimizations"
 description: "Architecture decisions for the 034 implementation: phasing structure, the refutation list as durable non-scope, AC-coverage rollout, and the byte-identical render safety gate."
+trigger_phrases:
+  - "spec kit template decisions"
+  - "033 adr record"
+  - "template context optimization decisions"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/033-spec-template-context-optimization"
+    packet_pointer: "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization"
     last_updated_at: "2026-08-13T04:18:38Z"
     last_updated_by: "claude-code"
     recent_action: "Added ADRs from two deep-reviews (advisory, mirror, fingerprint)"
     next_safe_action: "Await commit go-ahead"
     blockers: []
     key_files:
-      - "specs/system-speckit/033-spec-template-context-optimization/research/research.md"
+      - "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/research/research.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-12-system-speckit-034-optimizations"
@@ -27,17 +31,50 @@ _memory:
 
 # Decision Record: Spec-Kit Template & Context Optimizations
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Track the six recs as phases within one packet, not phase folders
 
 **Status:** Accepted
 
-**Context:** The six 033 recommendations span four surfaces (template renderer, template source, validation, MCP memory). The operator asked for "several phases." The phase-qualification guard requires BOTH complexity ≥25/50 AND documentation level ≥3 before splitting into phase-child folders.
+<!-- ANCHOR:adr-001-context -->
+### Context
 
-**Decision:** Use a single standard packet whose `plan.md` organizes the work into four implementation phases. Do not create phase-child folders.
+The six 033 recommendations span four surfaces (template renderer, template source, validation, MCP memory). The operator asked for "several phases." The phase-qualification guard requires BOTH complexity ≥25/50 AND documentation level ≥3 before splitting into phase-child folders.
+<!-- /ANCHOR:adr-001-context -->
 
-**Consequences:** Lower ceremony; the recs stay in one reviewable plan. If any single rec grows into a large independently-tracked workstream, it can be promoted to its own packet later. "Several phases" lives in the plan, not the filesystem.
+<!-- ANCHOR:adr-001-decision -->
+### Decision
 
-**Alternatives considered:** Phase-child folders (rejected — the recs are loosely coupled and small-to-medium, below the folder-split threshold); one rec per packet (rejected — fragments a coherent plan).
+Use a single standard packet whose `plan.md` organizes the work into four implementation phases. Do not create phase-child folders.
+<!-- /ANCHOR:adr-001-decision -->
+
+<!-- ANCHOR:adr-001-alternatives -->
+### Alternatives Considered
+
+Phase-child folders (rejected — the recs are loosely coupled and small-to-medium, below the folder-split threshold); one rec per packet (rejected — fragments a coherent plan).
+<!-- /ANCHOR:adr-001-alternatives -->
+
+<!-- ANCHOR:adr-001-consequences -->
+### Consequences
+
+Lower ceremony; the recs stay in one reviewable plan. If any single rec grows into a large independently-tracked workstream, it can be promoted to its own packet later. "Several phases" lives in the plan, not the filesystem.
+<!-- /ANCHOR:adr-001-consequences -->
+
+<!-- ANCHOR:adr-001-five-checks -->
+### Five Checks Evaluation
+
+Not recorded. This decision predates the Five Checks section becoming part of the
+decision-record template, and the original evaluation was never written down. It is
+left unrecorded rather than reconstructed after the fact.
+<!-- /ANCHOR:adr-001-five-checks -->
+
+<!-- ANCHOR:adr-001-impl -->
+### Implementation
+
+Not recorded separately. The implementation this decision governs is described in
+this packet's `plan.md` and `implementation-summary.md`.
+<!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->
 
 ---
 

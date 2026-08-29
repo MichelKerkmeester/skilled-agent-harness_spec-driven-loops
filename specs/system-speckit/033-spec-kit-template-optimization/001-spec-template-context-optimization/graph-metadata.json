@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/033-spec-template-context-optimization",
-  "spec_folder": "system-speckit/033-spec-template-context-optimization",
-  "parent_id": null,
+  "packet_id": "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization",
+  "spec_folder": "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization",
+  "parent_id": "system-speckit/033-spec-kit-template-optimization",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -18,7 +18,11 @@
       "scope adherence validator",
       "memory search token budget",
       "spec template optimizations plan",
-      "034 implementation phases"
+      "034 implementation phases",
+      "spec kit template task list",
+      "033 implementation tasks",
+      "template context optimization tasks",
+      "spec kit template qa checklist"
     ],
     "key_topics": [
       "spec",
@@ -107,6 +111,12 @@
         "source": "derived"
       },
       {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Packet",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -114,12 +124,6 @@
       },
       {
         "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -193,7 +197,7 @@
     ],
     "causal_summary": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and found that most patterns already ship — but six genuine gaps survived adversarial, multi-model prior-art filtering",
     "created_at": "2026-08-12T12:51:40.227Z",
-    "last_save_at": "2026-08-29T10:00:19.276Z",
+    "last_save_at": "2026-08-29T12:35:44.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +209,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2391ad70fc26bddd24bd9544478bb9a8d8004fc649e46c9073e4ed1afef8add2",
+    "source_fingerprint": "sha256:891427c5c70b52b8f26201029bdff342d49efc14e60fb5a2b23cf2c294b4fc56",
     "source_doc_hashes": {
-      "spec.md": "623659629cc52306084b2531f0153a6cc22c9f92300103ab0c43372363032285",
-      "plan.md": "04b95b53ead27d7a05d52a68bf3d678775e3151edd0c1103ed9950a960139474",
-      "tasks.md": "831af9cb7aa514fd1fe8a7a88e4ff58768ae1058fa4faefa2ff704cb0e7cb915",
-      "checklist.md": "8ab6635790fa6af0d17f38f3c32aa45fe8111795d0d123b8cfad34251b666c29",
-      "decision-record.md": "49c6a958f55ae777dd545a2cc424609b9c1f234ff93f8f8cc568c263a586e519",
-      "implementation-summary.md": "a57408ecea057f47607ad86ec415f4f7557b935beba586d3c92ab9e2b802e9d2",
+      "spec.md": "3c0a8afae7d909707ca0206ded6c7d534954357d6902df46f3bcc82ac607d5f3",
+      "plan.md": "a993607a0ed02f4c59f6f939fa96298040cff39b060b3fc9ae7f011da249f559",
+      "tasks.md": "e9316587cc22f81fdfdf1fe4c19f7d890c345e9121febdf79be5cf9d53e50cd4",
+      "checklist.md": "1fa5823720cbee99f489ad7c9a657e3c4140f31b3ac8b3a607cbec1b28d88189",
+      "decision-record.md": "df6ba8beef3e6dcc1a1a76ab8f683c4ee76e706db3ff0c4d347543c6099cb8a9",
+      "implementation-summary.md": "e305c737abcd47fc23275c887ee72d10d7b227bb7bf449f3b25f69e89c498712",
       "research/research.md": "dd31944295aa48933d1a022dab903852758477b27182ceb14bac27afc0a9b583"
     },
     "last_active_child_id": null,

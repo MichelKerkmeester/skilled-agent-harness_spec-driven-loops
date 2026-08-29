@@ -6,10 +6,10 @@ description: "This scenario validates a disambiguation-required tie for `PR-012`
 expected_surface: PI_REMOTE
 expected_intent: CODE_QUALITY
 expected_resources:
-  - references/editability-guardrails.md
-  - references/css-class-naming-bem.md
-  - references/comment-grammar.md
-  - references/folder-docs.md
+  - references/conventions/editability-guardrails.md
+  - references/design-system/css-class-naming-bem.md
+  - references/conventions/comment-grammar.md
+  - references/conventions/folder-docs.md
   - references/component-story-upkeep.md
   - assets/guardrail-audit-checklist.md
   - assets/bem-rename-checklist.md
@@ -35,7 +35,7 @@ playbook resolves the tie toward and why.
 
 Unlike `PR-011`'s cross-intent overlap (no shared keyword, just a co-occurring pair), this is a literal
 keyword collision: `"folder docs"` appears verbatim in `RESOURCE_MAP["CODE_QUALITY"]`'s keyword list and
-`RESOURCE_MAP["LANGUAGE_STANDARDS"]`'s keyword list, and `references/folder-docs.md` itself is a member of
+`RESOURCE_MAP["LANGUAGE_STANDARDS"]`'s keyword list, and `references/conventions/folder-docs.md` itself is a member of
 **both** intents' full resource sets. A prompt hitting only `folder docs` cannot distinguish the two
 intents by that keyword alone; the tie needs a second, distinguishing signal from the prompt's other
 words. This scenario documents the resolution rule so an operator does not have to re-derive it from
@@ -62,17 +62,17 @@ Explain when a source folder needs a paired CODE.md under the folder-docs thresh
 
 - Expected execution process: the hub detects `PI_REMOTE`; the prompt matches the shared `folder docs`
   keyword and the `CODE_QUALITY`-only `naming` keyword; because the second word breaks the tie toward
-  `CODE_QUALITY`, and because `references/folder-docs.md` is present in both intents' resource sets
+  `CODE_QUALITY`, and because `references/conventions/folder-docs.md` is present in both intents' resource sets
   regardless of which one wins, the workflow resolves `CODE_QUALITY` and loads its full `RESOURCE_MAP`
   entry.
 - Expected signals: every path in `expected_resources` exists under `sk-code-mobile-cli/`;
-  `references/folder-docs.md` is present in the resolved set either way, since it belongs to both
+  `references/conventions/folder-docs.md` is present in the resolved set either way, since it belongs to both
   intents' maps.
 - Desired user-visible outcome: the answer states the folder-docs pairing threshold (3+ direct source
   files or child source folders), cites the kebab-case naming grammar, and — because `CODE_QUALITY` won —
   frames the answer as an auditable convention check rather than a pure language reference.
 - Pass/fail: PASS if every listed path exists, the resolved intent is `CODE_QUALITY`, and
-  `references/folder-docs.md` is present regardless of resolution; FAIL if any listed path is missing or
+  `references/conventions/folder-docs.md` is present regardless of resolution; FAIL if any listed path is missing or
   the resolved intent has no documented tie-break rationale.
 
 ---
@@ -88,12 +88,12 @@ Explain when a source folder needs a paired CODE.md under the folder-docs thresh
 1. `sed -n '1,19p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/unknown-fallback/disambiguation-required.md`
 2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"CODE_QUALITY":/p;/"LANGUAGE_STANDARDS":/p'`
 3. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"CODE_QUALITY":/,/\],/p'`
-4. `for p in references/editability-guardrails.md references/css-class-naming-bem.md references/comment-grammar.md references/folder-docs.md references/component-story-upkeep.md assets/guardrail-audit-checklist.md assets/bem-rename-checklist.md assets/story-coverage-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `for p in references/conventions/editability-guardrails.md references/design-system/css-class-naming-bem.md references/conventions/comment-grammar.md references/conventions/folder-docs.md references/component-story-upkeep.md assets/guardrail-audit-checklist.md assets/bem-rename-checklist.md assets/story-coverage-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 
 Step 2 shows `"folder docs"` present verbatim in both the `CODE_QUALITY` and `LANGUAGE_STANDARDS` keyword
-lists. Step 3 shows `RESOURCE_MAP["CODE_QUALITY"]`, confirming `references/folder-docs.md` is a member.
+lists. Step 3 shows `RESOURCE_MAP["CODE_QUALITY"]`, confirming `references/conventions/folder-docs.md` is a member.
 Step 4 prints `OK` for all eight paths.
 
 ### Evidence

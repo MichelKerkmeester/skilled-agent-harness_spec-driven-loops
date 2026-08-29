@@ -6,7 +6,7 @@ description: "This scenario validates VERIFICATION routing for `PR-005`. It focu
 expected_surface: PI_REMOTE
 expected_intent: VERIFICATION
 expected_resources:
-  - references/verification.md
+  - references/verification/verification.md
   - assets/ds-verification-checklist.md
 version: 1.0.0.0
 ---
@@ -72,7 +72,7 @@ Verify the token retint preserved every frozen value in both themes before the c
 
 1. `sed -n '1,13p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/verification-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"VERIFICATION":/,/\],/p'`
-3. `for p in references/verification.md assets/ds-verification-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/verification/verification.md assets/ds-verification-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

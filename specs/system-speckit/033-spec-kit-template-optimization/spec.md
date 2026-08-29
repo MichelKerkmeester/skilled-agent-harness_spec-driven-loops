@@ -104,7 +104,7 @@ Summary for audit trail only; per-phase detail lives in each child's `plan.md`.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-spec-template-context-optimization/ | Level-gated research templates, template source consolidation, rendered-view read guard, acceptance-coverage advisory, scope-adherence validator, and a `memory_search` token budget | Complete |
+| 1 | 001-spec-template-context-optimization/ | Level-gated research templates, single-sourced templates, rendered-view read guard, acceptance-coverage advisory, scope-adherence validator, and a `memory_search` token budget | Complete |
 | 2 | 002-acceptance-criteria-template/ | A canonical `acceptance-criteria.md` for Levels 2, 3 and 3+ that gates packet closure, with ADR-backed waiver and supersede paths | In Progress |
 
 ### Phase Transition Rules

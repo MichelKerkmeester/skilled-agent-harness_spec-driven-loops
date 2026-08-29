@@ -21,7 +21,7 @@ This is mcp-tooling's second-layer (surface) router, first-class at the hub root
 as `ROUTER.md`. The hub selects a workflow
 mode in [`hub-router.json`](hub-router.json) (`mcp-chrome-devtools`,
 `mcp-click-up`, `mcp-obsidian`, `mcp-aside-devtools`, `mcp-notion`,
-`mcp-figma`, `mcp-refero`, or `mcp-mobbin`); this doc maps a request's tool-bridge intent to the exact
+`mcp-figma`, `mcp-refero`, `mcp-mobbin`, or `mcp-magicpath`); this doc maps a request's tool-bridge intent to the exact
 packet-local leaf resources that mode should load. Every path is
 packet-qualified (`<packet>/references|assets/…`, where `<packet>` is the mode's
 `mode-registry.json` `packet` field) and converts to the canonical
@@ -148,4 +148,4 @@ RESOURCE_MAP = {
   first slice.
 - No keyword match is the hub's `defer` fallback: confirm the target tool
   (`mcp-chrome-devtools`, `mcp-click-up`, `mcp-aside-devtools`, `mcp-notion`,
-  `mcp-figma`, `mcp-refero`, or `mcp-mobbin`) before loading anything.
+  `mcp-figma`, `mcp-refero`, `mcp-mobbin`, or `mcp-magicpath`) before loading anything.

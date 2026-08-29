@@ -1,15 +1,32 @@
 ---
-title: "Tasks: [NAME] [template:level-3/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Acceptance Criteria Template as Packet Closure Gate"
+description: "Task breakdown for the acceptance-criteria template, contract wiring, closure rule and reference sweep."
 trigger_phrases:
-  - "tasks"
-  - "name"
-  - "template"
-  - "tasks core"
-importance_tier: "normal"
-contextType: "general"
+  - "acceptance criteria tasks"
+  - "ac closure task list"
+  - "closure gate tasks"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template"
+    last_updated_at: "2026-08-29T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Built the acceptance-criteria template, contract entry and closure gate"
+    next_safe_action: "Execute the reference sweep and close the remaining criteria"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-ac-closure.sh"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-29-033-002-acceptance-criteria-template"
+      parent_session_id: null
+    completion_pct: 80
+    open_questions: []
+    answered_questions: []
 ---
-# Tasks: [NAME]
+
+# Tasks: Acceptance Criteria Template as Packet Closure Gate
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
@@ -34,9 +51,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Create project structure
-- [ ] T002 Install dependencies
-- [ ] T003 [P] Configure development tools
+- [x] T001 Read the Level contract and confirm how required documents resolve (`.opencode/skills/system-spec-kit/scripts/utils/template-structure.js:227`)
+- [x] T002 Confirm the existing grandfathering pattern to reuse (`.opencode/skills/system-spec-kit/scripts/rules/check-canonical-save-helper.cjs:12`)
+- [x] T003 [P] Confirm the gate syntax the renderer accepts (`.opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.ts:33`)
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,10 +61,11 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [Implement core feature 1]
-- [ ] T005 [Implement core feature 2]
-- [ ] T006 [Implement core feature 3]
-- [ ] T007 [Add error handling]
+- [x] T004 Author the gated template (`.opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:1`)
+- [x] T005 Wire the document into the Level contract for 2/3/3+ (`.opencode/skills/system-spec-kit/templates/spec-kit-docs.json`)
+- [x] T006 Build the closure gate with cutoff and waiver verification (`.opencode/skills/system-spec-kit/scripts/rules/check-ac-closure.sh:108`)
+- [x] T007 Register the rule and repoint the coverage advisory (`.opencode/skills/system-spec-kit/scripts/lib/validator-registry.json`, `scripts/rules/check-ac-coverage.sh:96`)
+- [x] T008 Gate the acceptance-criteria column out of spec.md above Level 1 (`.opencode/skills/system-spec-kit/templates/core/spec.md.tmpl:134`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -55,9 +73,11 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Test happy path manually
-- [ ] T009 Test edge cases
-- [ ] T010 Update documentation
+- [x] T009 Render the template at every level and confirm Level 1 emits nothing - L1 = 0 lines, L2/L3/L3+ = 53 lines (`templates/addons/acceptance-criteria.md.tmpl:1`)
+- [x] T010 Run the eight-case closure fixture, including both negative controls - all eight behave as specified (`scripts/rules/check-ac-closure.sh:108`)
+- [x] T011 Confirm the rule reaches the report end to end (`validate.sh --json` shows `AC_CLOSURE` with 5/8 settled)
+- [x] T012 Update the reference surfaces, both READMEs included (`README.md:169`, `.opencode/skills/system-spec-kit/README.md:222`)
+- [ ] T013 Re-run the recursive strict validation over the 033 tree and record the result
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,9 +86,36 @@ contextType: "general"
 ## Completion Criteria
 
 - [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] No `[B]` blocked tasks remaining (no task entered the blocked state)
+- [x] Manual verification passed (eight-case fixture plus per-level renders)
 <!-- /ANCHOR:completion -->
+
+---
+
+## AI EXECUTION PROTOCOL
+
+### Pre-Task Checklist
+
+- [ ] Read the target file before editing it; never edit unread files.
+- [ ] Confirm the task is in scope for this phase; `spec.md` section 3 is frozen.
+- [ ] Name the verification that will prove the task before changing anything.
+
+### Execution Rules
+
+| Rule | Requirement |
+|------|-------------|
+| TASK-SEQ | Work the tasks in listed order; T004 through T008 depend on T001 through T003 having established the contract shape. |
+| TASK-SCOPE | Touch only the files listed in `spec.md` section 3. Packet 036 and adjacent packets are out of bounds. |
+| TASK-PROOF | A task is complete only when its evidence cites a command, file:line or artifact that was actually observed. |
+| TASK-GATE | No completion claim without `validate.sh <folder> --strict` reaching exit 0. |
+
+### Status Reporting
+
+Report each task as `T### <state> - <evidence>` where state is one of `done`, `open` or `blocked`. A `done` state without evidence is not a valid report.
+
+### Blocked Task Protocol
+
+Mark a task `[B]` and stop when the target file is missing, an edit does not match, a check fails twice with no new evidence, or the task would require editing outside the frozen scope. State the blocker and the decision needed rather than working around it.
 
 ---
 
@@ -77,6 +124,9 @@ contextType: "general"
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
+- **Acceptance criteria**: See `acceptance-criteria.md`
+- **Decisions**: See `decision-record.md`
+- **Operator goal**: See `../goal.md`
 <!-- /ANCHOR:cross-refs -->
 
 ---
@@ -175,11 +225,11 @@ contextType: "general"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| P0 Items | 11 | 5/11 |
+| P1 Items | 12 | 6/12 |
+| P2 Items | 6 | 0/6 |
 
-**Verification Date**: [YYYY-MM-DD]
+**Verification Date**: 2026-08-29
 <!-- /ANCHOR:summary -->
 
 ---
@@ -245,9 +295,9 @@ contextType: "general"
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| [Name] | Technical Lead | [ ] Approved | |
-| [Name] | Product Owner | [ ] Approved | |
-| [Name] | QA Lead | [ ] Approved | |
+| Operator | Technical Lead | [ ] Approved | |
+| Operator | Product Owner | [ ] Approved | |
+| Operator | QA Lead | [ ] Approved | |
 <!-- /ANCHOR:sign-off -->
 
 

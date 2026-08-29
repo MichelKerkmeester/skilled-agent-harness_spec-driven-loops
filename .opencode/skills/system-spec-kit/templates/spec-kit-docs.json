@@ -17,7 +17,8 @@
     "research.md.tmpl": "v2.2",
     "before-after.md.tmpl": "v2.2",
     "timeline.md.tmpl": "v2.2",
-    "roadmap.md.tmpl": "v2.2"
+    "roadmap.md.tmpl": "v2.2",
+    "acceptance-criteria.md.tmpl": "v2.2"
   },
   "privateTaxonomy": {
     "kinds": [
@@ -153,6 +154,12 @@
       "owner": "workflow",
       "creationTrigger": "deep-review",
       "absenceBehavior": "hard-error"
+    },
+    "acceptance-criteria.md": {
+      "template": "acceptance-criteria.md.tmpl",
+      "owner": "author",
+      "creationTrigger": "scaffold",
+      "absenceBehavior": "warn"
     }
   },
   "levels": {
@@ -183,65 +190,290 @@
       ],
       "sectionGates": {
         "spec.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "problem": ["1", "2", "3", "3+"],
-          "scope": ["1", "2", "3", "3+"],
-          "requirements": ["1", "2", "3", "3+"],
-          "success-criteria": ["1", "2", "3", "3+"],
-          "risks": ["1", "2", "3", "3+"],
-          "questions": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "problem": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "scope": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "requirements": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "success-criteria": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "risks": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "questions": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "plan.md": {
-          "summary": ["1", "2", "3", "3+"],
-          "quality-gates": ["1", "2", "3", "3+"],
-          "architecture": ["1", "2", "3", "3+"],
-          "phases": ["1", "2", "3", "3+"],
-          "testing": ["1", "2", "3", "3+"],
-          "dependencies": ["1", "2", "3", "3+"],
-          "rollback": ["1", "2", "3", "3+"]
+          "summary": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "quality-gates": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "architecture": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phases": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "testing": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "dependencies": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "rollback": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "tasks.md": {
-          "notation": ["1", "2", "3", "3+"],
-          "phase-1": ["1", "2", "3", "3+"],
-          "phase-2": ["1", "2", "3", "3+"],
-          "phase-3": ["1", "2", "3", "3+"],
-          "completion": ["1", "2", "3", "3+"],
-          "cross-refs": ["1", "2", "3", "3+"]
+          "notation": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-1": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-2": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-3": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "completion": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "cross-refs": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "implementation-summary.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "what-built": ["1", "2", "3", "3+"],
-          "how-delivered": ["1", "2", "3", "3+"],
-          "decisions": ["1", "2", "3", "3+"],
-          "verification": ["1", "2", "3", "3+"],
-          "limitations": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "what-built": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "how-delivered": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "decisions": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "verification": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "limitations": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "before-after.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "summary": ["1", "2", "3", "3+"],
-          "comparison": ["1", "2", "3", "3+"],
-          "net-effect": ["1", "2", "3", "3+"],
-          "notes-caveats": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "summary": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "comparison": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "net-effect": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "notes-caveats": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "timeline.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "timeline": ["1", "2", "3", "3+"],
-          "milestones": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "timeline": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "milestones": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "roadmap.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "now-next-later": ["1", "2", "3", "3+"],
-          "milestones-targets": ["1", "2", "3", "3+"],
-          "dependencies": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "now-next-later": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "milestones-targets": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "dependencies": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "decision-record.md": {
-          "adr-001": ["1", "2", "3", "3+"],
-          "adr-001-context": ["1", "2", "3", "3+"],
-          "adr-001-decision": ["1", "2", "3", "3+"],
-          "adr-001-alternatives": ["1", "2", "3", "3+"],
-          "adr-001-consequences": ["1", "2", "3", "3+"],
-          "adr-001-five-checks": ["1", "2", "3", "3+"],
-          "adr-001-impl": ["1", "2", "3", "3+"]
+          "adr-001": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-context": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-decision": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-alternatives": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-consequences": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-five-checks": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-impl": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "metadata": [
           "1",
@@ -303,7 +535,8 @@
       },
       "requiredAddonDocs": [],
       "optionalAddonDocs": [
-        "checklist.md"
+        "checklist.md",
+        "acceptance-criteria.md"
       ],
       "lazyAddonDocs": [
         "handover.md",
@@ -316,91 +549,412 @@
       ],
       "sectionGates": {
         "spec.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "problem": ["1", "2", "3", "3+"],
-          "scope": ["1", "2", "3", "3+"],
-          "requirements": ["1", "2", "3", "3+"],
-          "success-criteria": ["1", "2", "3", "3+"],
-          "risks": ["1", "2", "3", "3+"],
-          "questions": ["1", "2", "3", "3+"],
-          "nfr": ["2", "3", "3+"],
-          "edge-cases": ["2", "3", "3+"],
-          "complexity": ["2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "problem": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "scope": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "requirements": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "success-criteria": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "risks": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "questions": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "nfr": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "edge-cases": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "complexity": [
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "plan.md": {
-          "summary": ["1", "2", "3", "3+"],
-          "quality-gates": ["1", "2", "3", "3+"],
-          "architecture": ["1", "2", "3", "3+"],
-          "phases": ["1", "2", "3", "3+"],
-          "testing": ["1", "2", "3", "3+"],
-          "dependencies": ["1", "2", "3", "3+"],
-          "rollback": ["1", "2", "3", "3+"],
-          "affected-surfaces": ["2", "3", "3+"],
-          "phase-deps": ["2", "3", "3+"],
-          "effort": ["2", "3", "3+"],
-          "enhanced-rollback": ["2", "3", "3+"]
+          "summary": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "quality-gates": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "architecture": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phases": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "testing": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "dependencies": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "rollback": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "affected-surfaces": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-deps": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "effort": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "enhanced-rollback": [
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "tasks.md": {
-          "notation": ["1", "2", "3", "3+"],
-          "phase-1": ["1", "2", "3", "3+"],
-          "phase-2": ["1", "2", "3", "3+"],
-          "phase-3": ["1", "2", "3", "3+"],
-          "completion": ["1", "2", "3", "3+"],
-          "cross-refs": ["1", "2", "3", "3+"],
-          "protocol": ["2", "3", "3+"],
-          "pre-impl": ["2", "3", "3+"],
-          "code-quality": ["2", "3", "3+"],
-          "testing": ["2", "3", "3+"],
-          "fix-completeness": ["2", "3", "3+"],
-          "security": ["2", "3", "3+"],
-          "docs": ["2", "3", "3+"],
-          "file-org": ["2", "3", "3+"],
-          "summary": ["2", "3", "3+"]
+          "notation": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-1": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-2": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-3": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "completion": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "cross-refs": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "protocol": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "pre-impl": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "code-quality": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "testing": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "fix-completeness": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "security": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "docs": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "file-org": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "summary": [
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "implementation-summary.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "what-built": ["1", "2", "3", "3+"],
-          "how-delivered": ["1", "2", "3", "3+"],
-          "decisions": ["1", "2", "3", "3+"],
-          "verification": ["1", "2", "3", "3+"],
-          "limitations": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "what-built": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "how-delivered": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "decisions": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "verification": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "limitations": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "checklist.md": {
-          "protocol": ["2", "3", "3+"],
-          "pre-impl": ["2", "3", "3+"],
-          "code-quality": ["2", "3", "3+"],
-          "testing": ["2", "3", "3+"],
-          "security": ["2", "3", "3+"],
-          "docs": ["2", "3", "3+"],
-          "file-org": ["2", "3", "3+"],
-          "summary": ["2", "3", "3+"]
+          "protocol": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "pre-impl": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "code-quality": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "testing": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "security": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "docs": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "file-org": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "summary": [
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "before-after.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "summary": ["1", "2", "3", "3+"],
-          "comparison": ["1", "2", "3", "3+"],
-          "net-effect": ["1", "2", "3", "3+"],
-          "notes-caveats": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "summary": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "comparison": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "net-effect": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "notes-caveats": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "timeline.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "timeline": ["1", "2", "3", "3+"],
-          "milestones": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "timeline": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "milestones": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "roadmap.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "now-next-later": ["1", "2", "3", "3+"],
-          "milestones-targets": ["1", "2", "3", "3+"],
-          "dependencies": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "now-next-later": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "milestones-targets": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "dependencies": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "decision-record.md": {
-          "adr-001": ["1", "2", "3", "3+"],
-          "adr-001-context": ["1", "2", "3", "3+"],
-          "adr-001-decision": ["1", "2", "3", "3+"],
-          "adr-001-alternatives": ["1", "2", "3", "3+"],
-          "adr-001-consequences": ["1", "2", "3", "3+"],
-          "adr-001-five-checks": ["1", "2", "3", "3+"],
-          "adr-001-impl": ["1", "2", "3", "3+"]
+          "adr-001": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-context": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-decision": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-alternatives": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-consequences": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-five-checks": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-impl": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "metadata": [
           "1",
@@ -458,7 +1012,24 @@
           "2",
           "3",
           "3+"
-        ]
+        ],
+        "acceptance-criteria.md": {
+          "metadata": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "criteria": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "closure": [
+            "2",
+            "3",
+            "3+"
+          ]
+        }
       }
     },
     "3": {
@@ -477,7 +1048,8 @@
       },
       "requiredAddonDocs": [],
       "optionalAddonDocs": [
-        "checklist.md"
+        "checklist.md",
+        "acceptance-criteria.md"
       ],
       "lazyAddonDocs": [
         "handover.md",
@@ -490,110 +1062,488 @@
       ],
       "sectionGates": {
         "spec.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "problem": ["1", "2", "3", "3+"],
-          "scope": ["1", "2", "3", "3+"],
-          "requirements": ["1", "2", "3", "3+"],
-          "success-criteria": ["1", "2", "3", "3+"],
-          "risks": ["1", "2", "3", "3+"],
-          "questions": ["1", "2", "3", "3+"],
-          "nfr": ["2", "3", "3+"],
-          "edge-cases": ["2", "3", "3+"],
-          "complexity": ["2", "3", "3+"],
-          "risk-matrix": ["3", "3+"],
-          "user-stories": ["3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "problem": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "scope": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "requirements": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "success-criteria": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "risks": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "questions": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "nfr": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "edge-cases": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "complexity": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "risk-matrix": [
+            "3",
+            "3+"
+          ],
+          "user-stories": [
+            "3",
+            "3+"
+          ]
         },
         "plan.md": {
-          "summary": ["1", "2", "3", "3+"],
-          "quality-gates": ["1", "2", "3", "3+"],
-          "architecture": ["1", "2", "3", "3+"],
-          "phases": ["1", "2", "3", "3+"],
-          "testing": ["1", "2", "3", "3+"],
-          "dependencies": ["1", "2", "3", "3+"],
-          "rollback": ["1", "2", "3", "3+"],
-          "affected-surfaces": ["2", "3", "3+"],
-          "phase-deps": ["2", "3", "3+"],
-          "effort": ["2", "3", "3+"],
-          "enhanced-rollback": ["2", "3", "3+"],
-          "ai-execution": ["3", "3+"],
-          "architecture-overview": ["3", "3+"],
-          "risk-mitigation": ["3", "3+"]
+          "summary": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "quality-gates": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "architecture": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phases": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "testing": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "dependencies": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "rollback": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "affected-surfaces": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-deps": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "effort": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "enhanced-rollback": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "ai-execution": [
+            "3",
+            "3+"
+          ],
+          "architecture-overview": [
+            "3",
+            "3+"
+          ],
+          "risk-mitigation": [
+            "3",
+            "3+"
+          ]
         },
         "tasks.md": {
-          "notation": ["1", "2", "3", "3+"],
-          "phase-1": ["1", "2", "3", "3+"],
-          "phase-2": ["1", "2", "3", "3+"],
-          "phase-3": ["1", "2", "3", "3+"],
-          "completion": ["1", "2", "3", "3+"],
-          "cross-refs": ["1", "2", "3", "3+"],
-          "architecture-tasks": ["3", "3+"],
-          "protocol": ["2", "3", "3+"],
-          "pre-impl": ["2", "3", "3+"],
-          "code-quality": ["2", "3", "3+"],
-          "testing": ["2", "3", "3+"],
-          "fix-completeness": ["2", "3", "3+"],
-          "security": ["2", "3", "3+"],
-          "docs": ["2", "3", "3+"],
-          "file-org": ["2", "3", "3+"],
-          "summary": ["2", "3", "3+"],
-          "arch-verify": ["3", "3+"],
-          "perf-verify": ["3", "3+"],
-          "deploy-ready": ["3", "3+"],
-          "compliance-verify": ["3", "3+"],
-          "docs-verify": ["3", "3+"],
-          "sign-off": ["3", "3+"]
+          "notation": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-1": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-2": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-3": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "completion": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "cross-refs": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "architecture-tasks": [
+            "3",
+            "3+"
+          ],
+          "protocol": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "pre-impl": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "code-quality": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "testing": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "fix-completeness": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "security": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "docs": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "file-org": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "summary": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "arch-verify": [
+            "3",
+            "3+"
+          ],
+          "perf-verify": [
+            "3",
+            "3+"
+          ],
+          "deploy-ready": [
+            "3",
+            "3+"
+          ],
+          "compliance-verify": [
+            "3",
+            "3+"
+          ],
+          "docs-verify": [
+            "3",
+            "3+"
+          ],
+          "sign-off": [
+            "3",
+            "3+"
+          ]
         },
         "implementation-summary.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "what-built": ["1", "2", "3", "3+"],
-          "how-delivered": ["1", "2", "3", "3+"],
-          "decisions": ["1", "2", "3", "3+"],
-          "verification": ["1", "2", "3", "3+"],
-          "limitations": ["1", "2", "3", "3+"],
-          "architecture-summary": ["3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "what-built": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "how-delivered": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "decisions": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "verification": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "limitations": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "architecture-summary": [
+            "3",
+            "3+"
+          ]
         },
         "checklist.md": {
-          "protocol": ["2", "3", "3+"],
-          "pre-impl": ["2", "3", "3+"],
-          "code-quality": ["2", "3", "3+"],
-          "testing": ["2", "3", "3+"],
-          "security": ["2", "3", "3+"],
-          "docs": ["2", "3", "3+"],
-          "file-org": ["2", "3", "3+"],
-          "summary": ["2", "3", "3+"],
-          "arch-verify": ["3", "3+"],
-          "perf-verify": ["3", "3+"],
-          "deploy-ready": ["3", "3+"],
-          "compliance-verify": ["3", "3+"],
-          "docs-verify": ["3", "3+"],
-          "sign-off": ["3", "3+"]
+          "protocol": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "pre-impl": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "code-quality": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "testing": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "security": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "docs": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "file-org": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "summary": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "arch-verify": [
+            "3",
+            "3+"
+          ],
+          "perf-verify": [
+            "3",
+            "3+"
+          ],
+          "deploy-ready": [
+            "3",
+            "3+"
+          ],
+          "compliance-verify": [
+            "3",
+            "3+"
+          ],
+          "docs-verify": [
+            "3",
+            "3+"
+          ],
+          "sign-off": [
+            "3",
+            "3+"
+          ]
         },
         "decision-record.md": {
-          "adr-001": ["1", "2", "3", "3+"],
-          "adr-001-context": ["1", "2", "3", "3+"],
-          "adr-001-decision": ["1", "2", "3", "3+"],
-          "adr-001-alternatives": ["1", "2", "3", "3+"],
-          "adr-001-consequences": ["1", "2", "3", "3+"],
-          "adr-001-five-checks": ["1", "2", "3", "3+"],
-          "adr-001-impl": ["1", "2", "3", "3+"]
+          "adr-001": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-context": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-decision": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-alternatives": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-consequences": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-five-checks": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-impl": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "before-after.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "summary": ["1", "2", "3", "3+"],
-          "comparison": ["1", "2", "3", "3+"],
-          "net-effect": ["1", "2", "3", "3+"],
-          "notes-caveats": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "summary": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "comparison": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "net-effect": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "notes-caveats": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "timeline.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "timeline": ["1", "2", "3", "3+"],
-          "milestones": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "timeline": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "milestones": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "roadmap.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "now-next-later": ["1", "2", "3", "3+"],
-          "milestones-targets": ["1", "2", "3", "3+"],
-          "dependencies": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "now-next-later": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "milestones-targets": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "dependencies": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "metadata": [
           "1",
@@ -659,7 +1609,24 @@
         "user-stories": [
           "3",
           "3+"
-        ]
+        ],
+        "acceptance-criteria.md": {
+          "metadata": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "criteria": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "closure": [
+            "2",
+            "3",
+            "3+"
+          ]
+        }
       }
     },
     "3+": {
@@ -678,7 +1645,8 @@
       },
       "requiredAddonDocs": [],
       "optionalAddonDocs": [
-        "checklist.md"
+        "checklist.md",
+        "acceptance-criteria.md"
       ],
       "lazyAddonDocs": [
         "handover.md",
@@ -691,114 +1659,500 @@
       ],
       "sectionGates": {
         "spec.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "problem": ["1", "2", "3", "3+"],
-          "scope": ["1", "2", "3", "3+"],
-          "requirements": ["1", "2", "3", "3+"],
-          "success-criteria": ["1", "2", "3", "3+"],
-          "risks": ["1", "2", "3", "3+"],
-          "questions": ["1", "2", "3", "3+"],
-          "nfr": ["2", "3", "3+"],
-          "edge-cases": ["2", "3", "3+"],
-          "complexity": ["2", "3", "3+"],
-          "risk-matrix": ["3", "3+"],
-          "user-stories": ["3", "3+"],
-          "governance": ["3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "problem": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "scope": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "requirements": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "success-criteria": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "risks": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "questions": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "nfr": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "edge-cases": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "complexity": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "risk-matrix": [
+            "3",
+            "3+"
+          ],
+          "user-stories": [
+            "3",
+            "3+"
+          ],
+          "governance": [
+            "3+"
+          ]
         },
         "plan.md": {
-          "summary": ["1", "2", "3", "3+"],
-          "quality-gates": ["1", "2", "3", "3+"],
-          "architecture": ["1", "2", "3", "3+"],
-          "phases": ["1", "2", "3", "3+"],
-          "testing": ["1", "2", "3", "3+"],
-          "dependencies": ["1", "2", "3", "3+"],
-          "rollback": ["1", "2", "3", "3+"],
-          "affected-surfaces": ["2", "3", "3+"],
-          "phase-deps": ["2", "3", "3+"],
-          "effort": ["2", "3", "3+"],
-          "enhanced-rollback": ["2", "3", "3+"],
-          "ai-execution": ["3", "3+"],
-          "architecture-overview": ["3", "3+"],
-          "risk-mitigation": ["3", "3+"],
-          "governance-plan": ["3+"]
+          "summary": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "quality-gates": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "architecture": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phases": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "testing": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "dependencies": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "rollback": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "affected-surfaces": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-deps": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "effort": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "enhanced-rollback": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "ai-execution": [
+            "3",
+            "3+"
+          ],
+          "architecture-overview": [
+            "3",
+            "3+"
+          ],
+          "risk-mitigation": [
+            "3",
+            "3+"
+          ],
+          "governance-plan": [
+            "3+"
+          ]
         },
         "tasks.md": {
-          "notation": ["1", "2", "3", "3+"],
-          "phase-1": ["1", "2", "3", "3+"],
-          "phase-2": ["1", "2", "3", "3+"],
-          "phase-3": ["1", "2", "3", "3+"],
-          "completion": ["1", "2", "3", "3+"],
-          "cross-refs": ["1", "2", "3", "3+"],
-          "architecture-tasks": ["3", "3+"],
-          "governance-tasks": ["3+"],
-          "protocol": ["2", "3", "3+"],
-          "pre-impl": ["2", "3", "3+"],
-          "code-quality": ["2", "3", "3+"],
-          "testing": ["2", "3", "3+"],
-          "fix-completeness": ["2", "3", "3+"],
-          "security": ["2", "3", "3+"],
-          "docs": ["2", "3", "3+"],
-          "file-org": ["2", "3", "3+"],
-          "summary": ["2", "3", "3+"],
-          "arch-verify": ["3", "3+"],
-          "perf-verify": ["3", "3+"],
-          "deploy-ready": ["3", "3+"],
-          "compliance-verify": ["3", "3+"],
-          "docs-verify": ["3", "3+"],
-          "sign-off": ["3", "3+"]
+          "notation": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-1": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-2": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "phase-3": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "completion": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "cross-refs": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "architecture-tasks": [
+            "3",
+            "3+"
+          ],
+          "governance-tasks": [
+            "3+"
+          ],
+          "protocol": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "pre-impl": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "code-quality": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "testing": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "fix-completeness": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "security": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "docs": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "file-org": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "summary": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "arch-verify": [
+            "3",
+            "3+"
+          ],
+          "perf-verify": [
+            "3",
+            "3+"
+          ],
+          "deploy-ready": [
+            "3",
+            "3+"
+          ],
+          "compliance-verify": [
+            "3",
+            "3+"
+          ],
+          "docs-verify": [
+            "3",
+            "3+"
+          ],
+          "sign-off": [
+            "3",
+            "3+"
+          ]
         },
         "implementation-summary.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "what-built": ["1", "2", "3", "3+"],
-          "how-delivered": ["1", "2", "3", "3+"],
-          "decisions": ["1", "2", "3", "3+"],
-          "verification": ["1", "2", "3", "3+"],
-          "limitations": ["1", "2", "3", "3+"],
-          "architecture-summary": ["3", "3+"],
-          "governance-summary": ["3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "what-built": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "how-delivered": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "decisions": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "verification": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "limitations": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "architecture-summary": [
+            "3",
+            "3+"
+          ],
+          "governance-summary": [
+            "3+"
+          ]
         },
         "checklist.md": {
-          "protocol": ["2", "3", "3+"],
-          "pre-impl": ["2", "3", "3+"],
-          "code-quality": ["2", "3", "3+"],
-          "testing": ["2", "3", "3+"],
-          "security": ["2", "3", "3+"],
-          "docs": ["2", "3", "3+"],
-          "file-org": ["2", "3", "3+"],
-          "summary": ["2", "3", "3+"],
-          "arch-verify": ["3", "3+"],
-          "perf-verify": ["3", "3+"],
-          "deploy-ready": ["3", "3+"],
-          "compliance-verify": ["3", "3+"],
-          "docs-verify": ["3", "3+"],
-          "sign-off": ["3", "3+"]
+          "protocol": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "pre-impl": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "code-quality": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "testing": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "security": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "docs": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "file-org": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "summary": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "arch-verify": [
+            "3",
+            "3+"
+          ],
+          "perf-verify": [
+            "3",
+            "3+"
+          ],
+          "deploy-ready": [
+            "3",
+            "3+"
+          ],
+          "compliance-verify": [
+            "3",
+            "3+"
+          ],
+          "docs-verify": [
+            "3",
+            "3+"
+          ],
+          "sign-off": [
+            "3",
+            "3+"
+          ]
         },
         "decision-record.md": {
-          "adr-001": ["1", "2", "3", "3+"],
-          "adr-001-context": ["1", "2", "3", "3+"],
-          "adr-001-decision": ["1", "2", "3", "3+"],
-          "adr-001-alternatives": ["1", "2", "3", "3+"],
-          "adr-001-consequences": ["1", "2", "3", "3+"],
-          "adr-001-five-checks": ["1", "2", "3", "3+"],
-          "adr-001-impl": ["1", "2", "3", "3+"]
+          "adr-001": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-context": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-decision": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-alternatives": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-consequences": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-five-checks": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "adr-001-impl": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "before-after.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "summary": ["1", "2", "3", "3+"],
-          "comparison": ["1", "2", "3", "3+"],
-          "net-effect": ["1", "2", "3", "3+"],
-          "notes-caveats": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "summary": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "comparison": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "net-effect": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "notes-caveats": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "timeline.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "timeline": ["1", "2", "3", "3+"],
-          "milestones": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "timeline": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "milestones": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "roadmap.md": {
-          "metadata": ["1", "2", "3", "3+"],
-          "now-next-later": ["1", "2", "3", "3+"],
-          "milestones-targets": ["1", "2", "3", "3+"],
-          "dependencies": ["1", "2", "3", "3+"]
+          "metadata": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "now-next-later": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "milestones-targets": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ],
+          "dependencies": [
+            "1",
+            "2",
+            "3",
+            "3+"
+          ]
         },
         "metadata": [
           "1",
@@ -867,7 +2221,24 @@
         ],
         "governance": [
           "3+"
-        ]
+        ],
+        "acceptance-criteria.md": {
+          "metadata": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "criteria": [
+            "2",
+            "3",
+            "3+"
+          ],
+          "closure": [
+            "2",
+            "3",
+            "3+"
+          ]
+        }
       }
     },
     "phase": {
@@ -888,38 +2259,86 @@
       ],
       "sectionGates": {
         "spec.md": {
-          "metadata": ["phase"],
-          "problem": ["phase"],
-          "scope": ["phase"],
-          "phase-map": ["phase"],
-          "questions": ["phase"]
+          "metadata": [
+            "phase"
+          ],
+          "problem": [
+            "phase"
+          ],
+          "scope": [
+            "phase"
+          ],
+          "phase-map": [
+            "phase"
+          ],
+          "questions": [
+            "phase"
+          ]
         },
         "before-after.md": {
-          "metadata": ["phase"],
-          "summary": ["phase"],
-          "comparison": ["phase"],
-          "net-effect": ["phase"],
-          "notes-caveats": ["phase"]
+          "metadata": [
+            "phase"
+          ],
+          "summary": [
+            "phase"
+          ],
+          "comparison": [
+            "phase"
+          ],
+          "net-effect": [
+            "phase"
+          ],
+          "notes-caveats": [
+            "phase"
+          ]
         },
         "timeline.md": {
-          "metadata": ["phase"],
-          "timeline": ["phase"],
-          "milestones": ["phase"]
+          "metadata": [
+            "phase"
+          ],
+          "timeline": [
+            "phase"
+          ],
+          "milestones": [
+            "phase"
+          ]
         },
         "roadmap.md": {
-          "metadata": ["phase"],
-          "now-next-later": ["phase"],
-          "milestones-targets": ["phase"],
-          "dependencies": ["phase"]
+          "metadata": [
+            "phase"
+          ],
+          "now-next-later": [
+            "phase"
+          ],
+          "milestones-targets": [
+            "phase"
+          ],
+          "dependencies": [
+            "phase"
+          ]
         },
         "decision-record.md": {
-          "adr-001": ["phase"],
-          "adr-001-context": ["phase"],
-          "adr-001-decision": ["phase"],
-          "adr-001-alternatives": ["phase"],
-          "adr-001-consequences": ["phase"],
-          "adr-001-five-checks": ["phase"],
-          "adr-001-impl": ["phase"]
+          "adr-001": [
+            "phase"
+          ],
+          "adr-001-context": [
+            "phase"
+          ],
+          "adr-001-decision": [
+            "phase"
+          ],
+          "adr-001-alternatives": [
+            "phase"
+          ],
+          "adr-001-consequences": [
+            "phase"
+          ],
+          "adr-001-five-checks": [
+            "phase"
+          ],
+          "adr-001-impl": [
+            "phase"
+          ]
         },
         "metadata": [
           "phase"
@@ -954,38 +2373,86 @@
       ],
       "sectionGates": {
         "spec.md": {
-          "metadata": ["review"],
-          "problem": ["review"],
-          "scope": ["review"],
-          "review-summary": ["review"],
-          "questions": ["review"]
+          "metadata": [
+            "review"
+          ],
+          "problem": [
+            "review"
+          ],
+          "scope": [
+            "review"
+          ],
+          "review-summary": [
+            "review"
+          ],
+          "questions": [
+            "review"
+          ]
         },
         "before-after.md": {
-          "metadata": ["review"],
-          "summary": ["review"],
-          "comparison": ["review"],
-          "net-effect": ["review"],
-          "notes-caveats": ["review"]
+          "metadata": [
+            "review"
+          ],
+          "summary": [
+            "review"
+          ],
+          "comparison": [
+            "review"
+          ],
+          "net-effect": [
+            "review"
+          ],
+          "notes-caveats": [
+            "review"
+          ]
         },
         "timeline.md": {
-          "metadata": ["review"],
-          "timeline": ["review"],
-          "milestones": ["review"]
+          "metadata": [
+            "review"
+          ],
+          "timeline": [
+            "review"
+          ],
+          "milestones": [
+            "review"
+          ]
         },
         "roadmap.md": {
-          "metadata": ["review"],
-          "now-next-later": ["review"],
-          "milestones-targets": ["review"],
-          "dependencies": ["review"]
+          "metadata": [
+            "review"
+          ],
+          "now-next-later": [
+            "review"
+          ],
+          "milestones-targets": [
+            "review"
+          ],
+          "dependencies": [
+            "review"
+          ]
         },
         "decision-record.md": {
-          "adr-001": ["review"],
-          "adr-001-context": ["review"],
-          "adr-001-decision": ["review"],
-          "adr-001-alternatives": ["review"],
-          "adr-001-consequences": ["review"],
-          "adr-001-five-checks": ["review"],
-          "adr-001-impl": ["review"]
+          "adr-001": [
+            "review"
+          ],
+          "adr-001-context": [
+            "review"
+          ],
+          "adr-001-decision": [
+            "review"
+          ],
+          "adr-001-alternatives": [
+            "review"
+          ],
+          "adr-001-consequences": [
+            "review"
+          ],
+          "adr-001-five-checks": [
+            "review"
+          ],
+          "adr-001-impl": [
+            "review"
+          ]
         },
         "metadata": [
           "review"

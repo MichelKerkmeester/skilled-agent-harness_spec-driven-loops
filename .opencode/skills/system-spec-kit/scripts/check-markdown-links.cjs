@@ -38,6 +38,9 @@ const EXCLUDE_SEGMENTS = [
 // the template, plus one illustrative example path. Keyed by "<sourceFile>::<rawRef>".
 // Adding a genuinely-new broken link still fails — these specific pairs are the only waivers.
 const ALLOWLIST = new Set([
+  // completion-sentinel advisory log — written at runtime when advisories occur, so the
+  // path is correct and simply has no file until the sentinel has something to say
+  '.opencode/skills/.state/completion-sentinel/README.md::../../../logs/completion-sentinel-advisories.log',
   // benchmark report template — sibling artifacts the report author creates
   '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./source.md',
   '.opencode/skills/sk-doc/sk-create-benchmark/assets/shared/benchmark-report-template.md::./results.csv',

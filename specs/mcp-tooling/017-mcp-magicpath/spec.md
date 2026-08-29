@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/017-mcp-magicpath"
-    last_updated_at: "2026-08-29T11:00:00Z"
+    last_updated_at: "2026-08-29T12:31:29Z"
     last_updated_by: "session"
-    recent_action: "Proved the cli transport; phase 002 reshaped around discovery emission"
-    next_safe_action: "Execute 002-manual-and-auth"
+    recent_action: "Routed the mode through the hub; only verification remains"
+    next_safe_action: "Execute 005-playbook-and-verification"
     blockers:
       - "The installed CLI reports authenticated:false; live calls beyond `info` need `magicpath-ai login` or MAGICPATH_TOKEN"
     key_files: []
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 20
+    completion_pct: 75
     open_questions:
       - "Whether the mutating command family is exposed as tools or left to the operator"
     answered_questions: []
@@ -133,9 +133,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-cli-transport-proof/ | Prove a `cli` manual registers and answers through Code Mode, using one read-only command, before anything depends on it | Complete |
-| 2 | 002-manual-and-auth/ | Build the discovery emitter the transport requires, register the real command surface through it, and wire the token through the loader this repository already uses | Planned |
-| 3 | 003-skill-packet/ | Author the `mcp-magicpath` mode packet against the create-skill contract | Planned |
-| 4 | 004-hub-integration/ | Make the mode routable: registry, router, regenerated manifest, hub prose | Planned |
+| 2 | 002-manual-and-auth/ | Build the discovery emitter the transport requires, register the real command surface through it, and wire the token through the loader this repository already uses | In Progress |
+| 3 | 003-skill-packet/ | Author the `mcp-magicpath` mode packet against the create-skill contract | In Progress |
+| 4 | 004-hub-integration/ | Make the mode routable: registry, router, regenerated manifest, hub prose | Complete |
 | 5 | 005-playbook-and-verification/ | Operator scenarios and the end-to-end proof that the bridge answers | Planned |
 
 ### Phase Transition Rules

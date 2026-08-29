@@ -38,6 +38,7 @@ templates/
 |---|---|
 | `spec-kit-docs.json` | Maps public levels to internal contract definitions. |
 | `*.md.tmpl` | Provides gated markdown source for rendered packet docs. |
+| `addons/acceptance-criteria.md.tmpl` | Provides the closure-gating acceptance criteria document for Levels 2, 3 and 3+. |
 | `phase-parent.spec.md.tmpl` | Provides the lean parent spec for phase workflows. |
 | `review.spec.md.tmpl` | Provides the review-record spec for the review packet type. |
 

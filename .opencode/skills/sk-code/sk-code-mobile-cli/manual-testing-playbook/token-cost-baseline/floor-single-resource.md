@@ -6,8 +6,8 @@ description: "This scenario validates the token-cost floor for `PR-016`. It focu
 expected_surface: PI_REMOTE
 expected_intent: DEFAULT_RESOURCE
 expected_resources:
-  - references/token-library.md
-  - references/comment-grammar.md
+  - references/design-system/token-library.md
+  - references/conventions/comment-grammar.md
 version: 1.0.0.0
 ---
 
@@ -72,7 +72,7 @@ Take a look at the composer in app-mobile and tell me what you notice about it.
 
 1. `sed -n '1,15p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/token-cost-baseline/floor-single-resource.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^INTENT_SIGNALS = {/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | grep 'DEFAULT_RESOURCE'`
-3. `for p in references/token-library.md references/comment-grammar.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 4. Capture the resolved-set count from the dispatch transcript and confirm it equals 2.
 
 ### Expected

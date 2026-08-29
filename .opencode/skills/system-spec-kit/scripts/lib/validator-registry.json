@@ -1,7 +1,11 @@
 [
   {
     "rule_id": "FILE_EXISTS",
-    "aliases": ["FILES", "FILES_PRESENT", "FILES_EXISTS"],
+    "aliases": [
+      "FILES",
+      "FILES_PRESENT",
+      "FILES_EXISTS"
+    ],
     "script_path": "rules/check-files.sh",
     "severity": "error",
     "category": "authored_template",
@@ -9,7 +13,11 @@
   },
   {
     "rule_id": "PLACEHOLDER_FILLED",
-    "aliases": ["PLACEHOLDER", "PLACEHOLDERS", "PLACEHOLDERS_FILLED"],
+    "aliases": [
+      "PLACEHOLDER",
+      "PLACEHOLDERS",
+      "PLACEHOLDERS_FILLED"
+    ],
     "script_path": "rules/check-placeholders.sh",
     "severity": "error",
     "category": "authored_template",
@@ -17,7 +25,9 @@
   },
   {
     "rule_id": "COMMENT_HYGIENE_MARKER",
-    "aliases": ["COMMENT_HYGIENE"],
+    "aliases": [
+      "COMMENT_HYGIENE"
+    ],
     "script_path": "rules/check-comment-hygiene.sh",
     "severity": "error",
     "category": "authored_template",
@@ -25,7 +35,10 @@
   },
   {
     "rule_id": "SCAFFOLD_NEVER_TOUCHED",
-    "aliases": ["SCAFFOLD_MARKERS", "TEMPLATE_SCAFFOLD"],
+    "aliases": [
+      "SCAFFOLD_MARKERS",
+      "TEMPLATE_SCAFFOLD"
+    ],
     "script_path": "rules/check-scaffold-never-touched.sh",
     "severity": "error",
     "category": "authored_template",
@@ -33,7 +46,10 @@
   },
   {
     "rule_id": "STATUS_CROSS_DOC_CONSISTENCY",
-    "aliases": ["STATUS_CONSISTENCY", "CROSS_DOC_STATUS"],
+    "aliases": [
+      "STATUS_CONSISTENCY",
+      "CROSS_DOC_STATUS"
+    ],
     "script_path": "rules/check-status-cross-doc-consistency.sh",
     "severity": "warn",
     "category": "authored_template",
@@ -41,7 +57,9 @@
   },
   {
     "rule_id": "LEVEL_DECLARED",
-    "aliases": ["LEVEL"],
+    "aliases": [
+      "LEVEL"
+    ],
     "script_path": "rules/check-level.sh",
     "severity": "info",
     "category": "authored_template",
@@ -49,7 +67,9 @@
   },
   {
     "rule_id": "PRIORITY_TAGS",
-    "aliases": ["PRIORITY"],
+    "aliases": [
+      "PRIORITY"
+    ],
     "script_path": "rules/check-priority-tags.sh",
     "severity": "warn",
     "category": "authored_template",
@@ -57,7 +77,9 @@
   },
   {
     "rule_id": "EVIDENCE_CITED",
-    "aliases": ["EVIDENCE"],
+    "aliases": [
+      "EVIDENCE"
+    ],
     "script_path": "rules/check-evidence.sh",
     "severity": "warn",
     "category": "authored_template",
@@ -65,7 +87,10 @@
   },
   {
     "rule_id": "AC_COVERAGE",
-    "aliases": ["ACCEPTANCE_COVERAGE", "AC_TRACEABILITY"],
+    "aliases": [
+      "ACCEPTANCE_COVERAGE",
+      "AC_TRACEABILITY"
+    ],
     "script_path": "rules/check-ac-coverage.sh",
     "severity": "info",
     "category": "authored_template",
@@ -77,8 +102,27 @@
     "description": "Default-on advisory (non-blocking) scan for acceptance-criteria traceability coverage; set SPECKIT_AC_COVERAGE=false to opt out."
   },
   {
+    "rule_id": "AC_CLOSURE",
+    "aliases": [
+      "ACCEPTANCE_CLOSURE",
+      "AC_GATE"
+    ],
+    "script_path": "rules/check-ac-closure.sh",
+    "severity": "error",
+    "category": "authored_template",
+    "flags": [
+      "SPECKIT_AC_CLOSURE",
+      "SPECKIT_AC_CLOSURE_CUTOFF"
+    ],
+    "description": "Gates packet closure on acceptance-criteria.md at Levels 2, 3 and 3+; unmet criteria block a completion claim and a waiver must cite an ADR that exists. Packets created before the cutoff stay advisory."
+  },
+  {
     "rule_id": "ANCHORS_VALID",
-    "aliases": ["ANCHOR", "ANCHORS", "ANCHOR_MATCHED"],
+    "aliases": [
+      "ANCHOR",
+      "ANCHORS",
+      "ANCHOR_MATCHED"
+    ],
     "script_path": "rules/check-anchors.sh",
     "severity": "error",
     "category": "authored_template",
@@ -86,7 +130,10 @@
   },
   {
     "rule_id": "FRONTMATTER_MEMORY_BLOCK",
-    "aliases": ["MEMORY_BLOCK", "FRONTMATTER_MEMORY"],
+    "aliases": [
+      "MEMORY_BLOCK",
+      "FRONTMATTER_MEMORY"
+    ],
     "script_path": "ts:spec-doc-structure",
     "severity": "error",
     "category": "authored_template",
@@ -94,7 +141,9 @@
   },
   {
     "rule_id": "MERGE_LEGALITY",
-    "aliases": ["MERGE"],
+    "aliases": [
+      "MERGE"
+    ],
     "script_path": "ts:spec-doc-structure",
     "severity": "error",
     "category": "operational_runtime",
@@ -102,7 +151,10 @@
   },
   {
     "rule_id": "SPEC_DOC_SUFFICIENCY",
-    "aliases": ["SUFFICIENCY", "DOC_SUFFICIENCY"],
+    "aliases": [
+      "SUFFICIENCY",
+      "DOC_SUFFICIENCY"
+    ],
     "script_path": "ts:spec-doc-structure",
     "severity": "error",
     "category": "authored_template",
@@ -110,7 +162,10 @@
   },
   {
     "rule_id": "CROSS_ANCHOR_CONTAMINATION",
-    "aliases": ["CONTAMINATION", "CROSS_ANCHOR"],
+    "aliases": [
+      "CONTAMINATION",
+      "CROSS_ANCHOR"
+    ],
     "script_path": "ts:spec-doc-structure",
     "severity": "error",
     "category": "operational_runtime",
@@ -118,7 +173,10 @@
   },
   {
     "rule_id": "POST_SAVE_FINGERPRINT",
-    "aliases": ["FINGERPRINT", "POST_SAVE"],
+    "aliases": [
+      "FINGERPRINT",
+      "POST_SAVE"
+    ],
     "script_path": "ts:spec-doc-structure",
     "severity": "error",
     "category": "operational_runtime",
@@ -126,7 +184,9 @@
   },
   {
     "rule_id": "TOC_POLICY",
-    "aliases": ["TOC"],
+    "aliases": [
+      "TOC"
+    ],
     "script_path": "rules/check-toc-policy.sh",
     "severity": "error",
     "category": "authored_template",
@@ -158,7 +218,9 @@
   },
   {
     "rule_id": "AI_PROTOCOLS",
-    "aliases": ["AI_PROTOCOL"],
+    "aliases": [
+      "AI_PROTOCOL"
+    ],
     "script_path": "rules/check-ai-protocols.sh",
     "severity": "error",
     "category": "authored_template",
@@ -166,7 +228,9 @@
   },
   {
     "rule_id": "COMPLEXITY_MATCH",
-    "aliases": ["COMPLEXITY"],
+    "aliases": [
+      "COMPLEXITY"
+    ],
     "script_path": "rules/check-complexity.sh",
     "severity": "error",
     "category": "authored_template",
@@ -182,7 +246,9 @@
   },
   {
     "rule_id": "FRONTMATTER_VALID",
-    "aliases": ["FRONTMATTER"],
+    "aliases": [
+      "FRONTMATTER"
+    ],
     "script_path": "rules/check-frontmatter.sh",
     "severity": "error",
     "category": "authored_template",
@@ -198,7 +264,9 @@
   },
   {
     "rule_id": "GRAPH_METADATA_PRESENT",
-    "aliases": ["GRAPH_METADATA"],
+    "aliases": [
+      "GRAPH_METADATA"
+    ],
     "script_path": "rules/check-graph-metadata.sh",
     "severity": "warn",
     "category": "operational_runtime",
@@ -206,7 +274,10 @@
   },
   {
     "rule_id": "GRAPH_METADATA_CHILD_DRIFT",
-    "aliases": ["CHILD_DRIFT", "GRAPH_CHILD_DRIFT"],
+    "aliases": [
+      "CHILD_DRIFT",
+      "GRAPH_CHILD_DRIFT"
+    ],
     "script_path": "rules/check-graph-metadata-child-drift.sh",
     "severity": "warn",
     "category": "operational_runtime",
@@ -214,7 +285,10 @@
   },
   {
     "rule_id": "GRAPH_METADATA_SHAPE",
-    "aliases": ["GRAPH_SHAPE", "GRAPH_METADATA_VALID"],
+    "aliases": [
+      "GRAPH_SHAPE",
+      "GRAPH_METADATA_VALID"
+    ],
     "script_path": "rules/check-graph-metadata-shape.sh",
     "severity": "warn",
     "category": "structural",
@@ -222,7 +296,10 @@
   },
   {
     "rule_id": "METADATA_DISK_PATH_CONSISTENCY",
-    "aliases": ["METADATA_DISK_CONSISTENCY", "DISK_PATH_CONSISTENCY"],
+    "aliases": [
+      "METADATA_DISK_CONSISTENCY",
+      "DISK_PATH_CONSISTENCY"
+    ],
     "script_path": "rules/check-metadata-disk-consistency.sh",
     "severity": "warn",
     "category": "structural",
@@ -230,7 +307,10 @@
   },
   {
     "rule_id": "DESCRIPTION_SHAPE",
-    "aliases": ["DESC_SHAPE", "DESCRIPTION_VALID"],
+    "aliases": [
+      "DESC_SHAPE",
+      "DESCRIPTION_VALID"
+    ],
     "script_path": "rules/check-description-shape.sh",
     "severity": "warn",
     "category": "structural",
@@ -238,7 +318,9 @@
   },
   {
     "rule_id": "NORMALIZER_LINT",
-    "aliases": ["NORMALIZER"],
+    "aliases": [
+      "NORMALIZER"
+    ],
     "script_path": "rules/check-normalizer-lint.sh",
     "severity": "error",
     "category": "operational_runtime",
@@ -246,7 +328,9 @@
   },
   {
     "rule_id": "LINKS_VALID",
-    "aliases": ["LINKS"],
+    "aliases": [
+      "LINKS"
+    ],
     "script_path": "rules/check-links.sh",
     "severity": "warn",
     "category": "operational_runtime",
@@ -262,7 +346,9 @@
   },
   {
     "rule_id": "SPEC_DOC_INTEGRITY",
-    "aliases": ["DOC_INTEGRITY"],
+    "aliases": [
+      "DOC_INTEGRITY"
+    ],
     "script_path": "rules/check-spec-doc-integrity.sh",
     "severity": "error",
     "category": "authored_template",
@@ -344,7 +430,10 @@
   },
   {
     "rule_id": "GENERATED_METADATA_INTEGRITY",
-    "aliases": ["GENERATED_METADATA", "METADATA_INTEGRITY"],
+    "aliases": [
+      "GENERATED_METADATA",
+      "METADATA_INTEGRITY"
+    ],
     "script_path": "validation/generated-metadata-integrity.ts",
     "severity": "error",
     "category": "structural",
@@ -353,7 +442,10 @@
   },
   {
     "rule_id": "GENERATED_METADATA_DRIFT",
-    "aliases": ["METADATA_DRIFT", "SYNOPSIS_DRIFT"],
+    "aliases": [
+      "METADATA_DRIFT",
+      "SYNOPSIS_DRIFT"
+    ],
     "script_path": "validation/generated-metadata-drift.ts",
     "severity": "error",
     "category": "structural",

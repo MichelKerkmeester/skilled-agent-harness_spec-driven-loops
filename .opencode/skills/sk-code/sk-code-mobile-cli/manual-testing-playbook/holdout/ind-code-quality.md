@@ -6,10 +6,10 @@ description: "This scenario validates an independent, keyword-blind CODE_QUALITY
 expected_surface: PI_REMOTE
 expected_intent: CODE_QUALITY
 expected_resources:
-  - references/editability-guardrails.md
-  - references/css-class-naming-bem.md
-  - references/comment-grammar.md
-  - references/folder-docs.md
+  - references/conventions/editability-guardrails.md
+  - references/design-system/css-class-naming-bem.md
+  - references/conventions/comment-grammar.md
+  - references/conventions/folder-docs.md
   - references/component-story-upkeep.md
   - assets/guardrail-audit-checklist.md
   - assets/bem-rename-checklist.md
@@ -75,7 +75,7 @@ Can you make sure nothing in the security-sensitive parts of this component got 
 ### Commands
 
 1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/ind-code-quality.md`
-2. `for p in references/editability-guardrails.md references/css-class-naming-bem.md references/comment-grammar.md references/folder-docs.md references/component-story-upkeep.md assets/guardrail-audit-checklist.md assets/bem-rename-checklist.md assets/story-coverage-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+2. `for p in references/conventions/editability-guardrails.md references/design-system/css-class-naming-bem.md references/conventions/comment-grammar.md references/conventions/folder-docs.md references/component-story-upkeep.md assets/guardrail-audit-checklist.md assets/bem-rename-checklist.md assets/story-coverage-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

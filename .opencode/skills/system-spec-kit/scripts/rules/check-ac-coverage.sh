@@ -115,11 +115,33 @@ _ac_count_requirement_table() {
     ' "$spec_file"
 }
 
+_ac_count_canonical_rows() {
+    local ac_file="$1"
+    awk -F'|' '
+        function trim(v) { gsub(/^[[:space:]]+|[[:space:]]+$/, "", v); return v }
+        /^[[:space:]]*(```|~~~)/ { in_fence = !in_fence; next }
+        in_fence { next }
+        /^\|/ {
+            id = trim($2)
+            if (id ~ /^AC-[0-9]+[0-9A-Za-z]*$/) count++   # digits required: skips the AC-ID header
+        }
+        END { print count + 0 }
+    ' "$ac_file"
+}
+
 _ac_count_total() {
     local folder="$1"
     local level_num="$2"
     local spec_file="$folder/spec.md"
+    local ac_file="$folder/acceptance-criteria.md"
     local story_count=0
+
+    # acceptance-criteria.md is the canonical home. spec.md is only consulted for
+    # packets predating the acceptance-criteria rollout.
+    if [[ -f "$ac_file" ]]; then
+        _ac_count_canonical_rows "$ac_file"
+        return 0
+    fi
 
     [[ -f "$spec_file" ]] || { echo 0; return 0; }
 

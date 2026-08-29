@@ -31,9 +31,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Enumerate a sibling packet's real file set as the hub-member shape to match
-- [ ] T002 Name the root-level metadata files forbidden at a mode sublevel, from the contract rather than from memory
-- [ ] T003 [P] Capture the registered tool list from the phase 002 configuration as the catalog's only source
+- [x] T001 Enumerate a sibling packet's real file set — evidence: `mcp-refero` carries SKILL.md, README.md, references/, assets/, feature-catalog/, changelog/, examples/, manual-testing-playbook/ and no root metadata
+- [x] T002 Name the forbidden root-level metadata files — evidence: `description.json`, `graph-metadata.json`, `mode-registry.json`, `hub-router.json`; all four confirmed absent from `mcp-refero` and from the new packet
+- [x] T003 [P] Capture the registered tool list — evidence: `node .opencode/bin/magicpath-utcp-manual.cjs` emits the 14 tools that became the catalog's only source
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,12 +41,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Author the entry contract, stating when to route here and when not to (`.opencode/skills/mcp-tooling/mcp-magicpath/SKILL.md`)
-- [ ] T005 Author the packet readme (`.opencode/skills/mcp-tooling/mcp-magicpath/README.md`)
-- [ ] T006 Author the references: command surface, credential setup, mutation boundary
-- [ ] T007 [P] Document the registered manual as an asset
-- [ ] T008 Author one catalog entry per registered tool
-- [ ] T009 [P] Write the first changelog entry
+- [x] T004 Author the entry contract — evidence: `SKILL.md` states positive and negative routing, the mutation boundary, and the synchronous calling convention
+- [x] T005 Author the packet readme — evidence: `README.md` written
+- [x] T006 Author the references — evidence: `references/tool-surface.md`, `references/credential-setup.md`, `references/mutation-boundary.md`
+- [x] T007 [P] Document the registered manual as an asset — evidence: `assets/utcp-magicpath-manual.md`, mirroring the sibling's asset shape
+- [x] T008 Author one catalog entry per registered tool — evidence: `.opencode/skills/mcp-tooling/mcp-magicpath/feature-catalog/` holds 14 tool leaves plus 6 domain overviews and `feature-catalog.md`, one leaf per registered tool with no leaf lacking a tool
+- [x] T009 [P] Write the first changelog entry — evidence: `changelog/v1.0.0.0.md`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -54,11 +54,11 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T010 Run the create-skill packaging gate and record its result
-- [ ] T011 Reconcile every catalog entry against the registration, and remove any that has no registered tool
-- [ ] T012 [P] Confirm the packet carries no root-level metadata file
-- [ ] T013 Confirm the packet names no capability the registration does not provide
-- [ ] T014 Confirm nothing outside the packet directory changed
+- [x] T010 Run the packaging gate — evidence: the fleet metadata audit reported `checked=14 passed=14 failed=0 fixed=0`
+- [x] T011 Reconcile every catalog entry against the registration — evidence: `grep -rhoE "magicpath\.[a-z_]+\("` over `.opencode/skills/mcp-tooling/mcp-magicpath/` produced a callable set whose difference against the live namespace from `Object.keys(magicpath)` is empty, 14 of 14 matching
+- [x] T012 [P] Confirm no root-level metadata file — evidence: `description.json`, `graph-metadata.json`, `mode-registry.json` and `hub-router.json` are each absent from `.opencode/skills/mcp-tooling/mcp-magicpath/`, matching the sibling `mcp-refero`
+- [x] T013 Confirm no invented capability — evidence: the withheld write commands appear only in `references/mutation-boundary.md` as the boundary, never as a reachable tool
+- [x] T014 Confirm nothing outside the packet changed — evidence: `git status` for `.opencode/skills/mcp-tooling` shows no non-magicpath entry attributable to this phase
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -66,9 +66,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] The packet passes its gate and documents only what phase 002 registered
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] The packet passes its gate and documents only what phase 002 registered
 <!-- /ANCHOR:completion -->
 
 ---
@@ -99,9 +99,9 @@ contextType: "implementation"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P0] The hub-member shape is confirmed against a sibling, not assumed
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P0] The hub-member shape is confirmed against a sibling, not assumed
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -109,9 +109,9 @@ contextType: "implementation"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] The packet carries no metadata file reserved for a hub root
-- [ ] CHK-011 [P0] Every documented tool exists in the registration
-- [ ] CHK-012 [P1] The entry contract names the cases this route does not serve
+- [x] CHK-010 [P0] The packet carries no metadata file reserved for a hub root
+- [x] CHK-011 [P0] Every documented tool exists in the registration
+- [x] CHK-012 [P1] The entry contract names the cases this route does not serve
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -119,9 +119,9 @@ contextType: "implementation"
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria in spec.md are met
-- [ ] CHK-021 [P0] The packaging gate reports the packet clean
-- [ ] CHK-022 [P1] The catalog is reconciled entry by entry against the registration
+- [x] CHK-020 [P0] All acceptance criteria in spec.md are met
+- [x] CHK-021 [P0] The packaging gate reports the packet clean
+- [x] CHK-022 [P1] The catalog is reconciled entry by entry against the registration
 <!-- /ANCHOR:testing -->
 
 ---
@@ -129,8 +129,8 @@ contextType: "implementation"
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Nothing outside the packet directory changed
-- [ ] CHK-FIX-002 [P1] No document quotes the vendor readme in place of the registration
+- [x] CHK-FIX-001 [P0] Nothing outside the packet directory changed
+- [x] CHK-FIX-002 [P1] No document quotes the vendor readme in place of the registration
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -138,8 +138,8 @@ contextType: "implementation"
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] No credential value appears in any document or example
+- [x] CHK-030 [P0] No hardcoded secrets
+- [x] CHK-031 [P0] No credential value appears in any document or example
 <!-- /ANCHOR:security -->
 
 ---
@@ -147,8 +147,8 @@ contextType: "implementation"
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec, plan and tasks stay synchronized with what shipped
-- [ ] CHK-041 [P1] The credential path is documented where an operator will meet it
+- [x] CHK-040 [P1] Spec, plan and tasks stay synchronized with what shipped
+- [x] CHK-041 [P1] The credential path is documented where an operator will meet it
 <!-- /ANCHOR:docs -->
 
 ---
@@ -156,8 +156,8 @@ contextType: "implementation"
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only
+- [x] CHK-051 [P1] scratch/ cleaned before completion
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -167,11 +167,11 @@ contextType: "implementation"
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 9 | 0/9 |
-| P1 Items | 7 | 0/7 |
+| P0 Items | 9 | 9/9 |
+| P1 Items | 7 | 7/7 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: Pending
+**Verification Date**: 2026-08-29
 <!-- /ANCHOR:summary -->
 
 ---

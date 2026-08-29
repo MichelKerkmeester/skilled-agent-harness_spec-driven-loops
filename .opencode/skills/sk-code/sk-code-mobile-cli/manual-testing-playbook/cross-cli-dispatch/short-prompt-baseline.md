@@ -6,12 +6,12 @@ description: "This scenario validates cross-CLI routing stability for `PR-013`. 
 expected_surface: PI_REMOTE
 expected_intent: IMPLEMENTATION
 expected_resources:
-  - references/token-library.md
-  - references/comment-grammar.md
-  - references/component-tokens.md
-  - references/retint-recipes.md
-  - references/theme-remap.md
-  - references/scoped-style-ownership.md
+  - references/design-system/token-library.md
+  - references/conventions/comment-grammar.md
+  - references/design-system/component-tokens.md
+  - references/design-system/retint-recipes.md
+  - references/design-system/theme-remap.md
+  - references/design-system/scoped-style-ownership.md
   - assets/token-retint-checklist.md
 version: 1.0.0.0
 ---
@@ -79,7 +79,7 @@ Retint the slash-panel option accent to a warmer role.
    list.
 3. Dispatch the exact prompt through `cli-opencode`; capture the resolved surface, intent, and resource
    list.
-4. `for p in references/token-library.md references/comment-grammar.md references/component-tokens.md references/retint-recipes.md references/theme-remap.md references/scoped-style-ownership.md assets/token-retint-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md references/design-system/component-tokens.md references/design-system/retint-recipes.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md assets/token-retint-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

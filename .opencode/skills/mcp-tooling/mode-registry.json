@@ -1,6 +1,6 @@
 {
  "skill": "mcp-tooling",
- "version": "1.0.2.0",
+ "version": "1.1.0.0",
  "resourceContractVersion": 1,
  "description": "Declarative mode registry: the single source of truth for the discriminator (workflowMode/packetKind/backendKind) PLUS the advisorRouting projection for mcp-tooling. The hub reads this file to resolve a mode; the advisor routes any MCP tool-bridge query to the single identity mcp-tooling and the hub picks the mode. All modes route by hub membership (routingClass 'metadata'), so there is no advisor map entry per mode and no merged-identity projection \u2014 the advisor does not read this file at runtime.",
  "discriminator": {
@@ -16,11 +16,12 @@
  },
  "extensions": {
   "transport-axis": {
-   "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (routingClass:'metadata'). mutatesWorkspace:false declares the DOMINANT mutation posture: document/content mutation lands in the external tool, and no transport edits existing repo files (Write/Edit/Task forbidden). Local write nuance is declared per mode via an optional toolSurface.workspaceWrites clarifier: mcp-figma is export-only (its export commands save requested artifacts to explicit local output paths); mcp-refero and mcp-mobbin perform no local writes at all. Transports never produce a measured design reference themselves and hand off to sk-design-md-generator (a DIFFERENT, standalone skill) for measured design-reference extraction, since none of mcp-tooling's own workflow modes (browser inspection, task management, agentic browser automation) can supply a measured Style Reference. backendKinds: figma-desktop-transport (mcp-figma, local Figma Desktop daemon); code-mode-remote-mcp (mcp-refero via the registered refero manual; mcp-mobbin via the registered mobbin manual \u2014 both remote MCP through Code Mode).",
+   "description": "Declares the TRANSPORT axis. packetKind:'transport' entries bridge to an external tool's CLI/MCP surface (routingClass:'metadata'). mutatesWorkspace:false declares the DOMINANT mutation posture: document/content mutation lands in the external tool, and no transport edits existing repo files (Write/Edit/Task forbidden). Local write nuance is declared per mode via an optional toolSurface.workspaceWrites clarifier: mcp-figma is export-only (its export commands save requested artifacts to explicit local output paths); mcp-refero and mcp-mobbin perform no local writes at all. Transports never produce a measured design reference themselves and hand off to sk-design-md-generator (a DIFFERENT, standalone skill) for measured design-reference extraction, since none of mcp-tooling's own workflow modes (browser inspection, task management, agentic browser automation) can supply a measured Style Reference. backendKinds: figma-desktop-transport (mcp-figma, local Figma Desktop daemon); code-mode-remote-mcp (mcp-refero via the registered refero manual; mcp-mobbin via the registered mobbin manual \u2014 both remote MCP through Code Mode); code-mode-cli (mcp-magicpath, whose provider ships no MCP server: a UTCP cli manual runs the vendor CLI through Code Mode, and only the provider's read-only commands are registered, so mutatesWorkspace:false holds for the same reason it holds for the remote-MCP transports).",
    "transports": [
     "mcp-figma",
     "mcp-refero",
-    "mcp-mobbin"
+    "mcp-mobbin",
+    "mcp-magicpath"
    ],
    "crossHubPairing": {}
   }
@@ -342,6 +343,42 @@
     "notion formula",
     "notion search",
     "notion markdown"
+   ],
+   "advisorRouting": {
+    "routingClass": "metadata"
+   }
+  },
+  {
+   "workflowMode": "mcp-magicpath",
+   "packetKind": "transport",
+   "backendKind": "code-mode-cli",
+   "toolSurface": {
+    "allowed": [
+     "Read",
+     "Bash",
+     "Grep",
+     "Glob",
+     "mcp__code_mode__call_tool_chain"
+    ],
+    "forbidden": [
+     "Write",
+     "Edit",
+     "Task"
+    ],
+    "mutatesWorkspace": false,
+    "bashAllowlist": []
+   },
+   "packet": "mcp-magicpath",
+   "packetSkillName": "mcp-magicpath",
+   "grandfatheredFolderMismatch": false,
+   "command": null,
+   "aliases": [
+    "magicpath",
+    "magicpath ai",
+    "magicpath component",
+    "magicpath canvas",
+    "magicpath design system",
+    "magicpath.ai"
    ],
    "advisorRouting": {
     "routingClass": "metadata"

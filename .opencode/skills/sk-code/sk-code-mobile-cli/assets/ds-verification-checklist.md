@@ -14,7 +14,7 @@ version: 1.0.0.0
 # Design-System Verification Checklist
 
 Use this checklist BEFORE claiming any design-system change to `app-mobile/` is complete, fixed,
-or working. See `references/verification.md` for why this gate is browser-free and the full method.
+or working. See `references/verification/verification.md` for why this gate is browser-free and the full method.
 
 ---
 
@@ -62,13 +62,13 @@ problem.
   `CHANGED` / `VANISHED` / `ADDED` are all **0**
 □ For a retint: every intended declaration is in `CHANGED`, and `VANISHED` / `ADDED` are both **0**
   (an intended change must never make a declaration disappear or a new one appear — only its value moves)
-□ Confirmed the `CHANGED` set matches the predicted blast radius from `references/retint-recipes.md` /
-  `references/component-tokens.md` — no surface outside that set appears
+□ Confirmed the `CHANGED` set matches the predicted blast radius from `references/design-system/retint-recipes.md` /
+  `references/design-system/component-tokens.md` — no surface outside that set appears
 
 **Known limitation:** the resolver proves selector→value identity, not element→computed-style identity.
 A className re-point or rule hoist changes which selector applies to an element and is not verifiable
 this way — defer such physical refactors until a real-browser visual-diff harness exists
-(`references/verification.md` §3).
+(`references/verification/verification.md` §3).
 
 ---
 
@@ -135,6 +135,6 @@ Looks correct in the code, should render fine.
 
 ## 9. RELATED RESOURCES
 
-- [verification.md](../references/verification.md) — the full resolver method and command set
-- [retint-recipes.md](../references/retint-recipes.md) — the worked recipes this checklist gates
+- [verification.md](../references/verification/verification.md) — the full resolver method and command set
+- [retint-recipes.md](../references/design-system/retint-recipes.md) — the worked recipes this checklist gates
 - [guardrail-audit-checklist.md](guardrail-audit-checklist.md) — the fence-by-fence audit

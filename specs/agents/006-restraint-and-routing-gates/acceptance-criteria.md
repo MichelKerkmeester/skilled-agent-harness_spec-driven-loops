@@ -11,7 +11,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "agents/006-restraint-and-routing-gates"
-    last_updated_at: "2026-08-29T12:39:02Z"
+    last_updated_at: "2026-08-29T13:43:03Z"
     last_updated_by: "claude-opus-5"
     recent_action: "Authored the acceptance criteria for this packet"
     next_safe_action: "Packet complete; no further action pending"
@@ -63,8 +63,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-006 | REQ-006 | Given a user who signals they did not understand, When the agent responds, Then it changes modality via a skill the advisor can never recommend | `AGENTS.md` carries the routing rule naming both commands, and states the closing caveat does not waive it | Met | - |
 | AC-007 | REQ-007 | Given the applied change set, When the diff is measured, Then it is at most twelve changed lines | Superseded by an operator-directed scope amendment; see the record | Superseded | ADR-001 |
 | AC-008 | REQ-008 | Given the finished packet, When strict validation runs, Then it reports no errors and no warnings | `validate.sh <folder> --strict` exit 0 | Met | - |
-| AC-009 | REQ-007 | Given the amended scope, When the change set is measured, Then the always-loaded file does not grow and section structure is unchanged | `grep -c '' AGENTS.md` returns 548 both before and after the three amendment fixes; `grep -cE '^## [0-9]+\.'` returns 10 | Met | - |
+| AC-009 | REQ-007 | Given the amended scope, When the change set is measured, Then the always-loaded file does not grow | Superseded by a second review-driven revision that adds one line; see the record | Superseded | ADR-002 |
 | AC-010 | REQ-004 | Given that this document is symlinked into other repositories, When a rule names a skill, Then it must not name that skill's internal surfaces, modes, or packets | A regex sweep for this repo's mode names, surface and phase keys, and a mode placeholder matches no line added by this packet | Met | - |
+| AC-011 | REQ-007 | Given the review-driven revision, When the file is measured, Then growth is at most one line and every other change is an in-place rewrite | 548 to 549 lines; the added line is the Self-Check item covering the new routing trigger, and six of the seven changes rewrite a line rather than add one | Met | - |
 
 ### Status values
 

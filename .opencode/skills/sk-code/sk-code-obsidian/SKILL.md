@@ -9,7 +9,7 @@ metadata:
   packetKind: surface
 ---
 
-<!-- Keywords: note-database, obsidian-note-database, obsidian-plugin, itemview, fileview, workspaceleaf, manifest.json, versions.json, esbuild.config.mjs, vitest, eslint-plugin-obsidianmd, chart.js, styles.css, db-class-grammar, single-stylesheet, screenshot-fixture-harness, playwright-core, module-banner, box-drawing-sections, folder-docs, kebab-case, database-view, view-renderer -->
+<!-- Keywords: note-database, obsidian-note-database, obsidian-plugin, itemview, fileview, workspaceleaf, manifest.json, versions.json, esbuild.config.mjs, vitest, eslint-plugin-obsidianmd, chart.js, styles.css, db-class-grammar, single-stylesheet, screenshot-harness, playwright-core, module-banner, box-drawing-sections, folder-docs, kebab-case, database-view, view-renderer -->
 <!-- Owns: Obsidian Note Database plugin / obsidian-note-database / note-database plugin id / src/views / src/data / tools/screenshots / styles.css .db-* grammar / plugin source-tree conventions / source-folder README and CODE guidance. Does NOT own: routing (parent sk-code hub), code implementation lifecycle (workflow modes), plugin behavior changes (frozen — evidence only). -->
 
 # sk-code-obsidian Surface — Note Database Plugin Evidence
@@ -50,15 +50,14 @@ primary and mutates nothing. It supplies evidence while the acting workflow appl
 
 | Reference | What it carries |
 | --- | --- |
-| [`references/obsidian-api-boundary.md`](references/obsidian-api-boundary.md) | The Obsidian API surface `main.ts` consumes (`Plugin`, `FileView`, `WorkspaceLeaf`, `TFile`, `MarkdownRenderer`, and peers), `manifest.json`'s `minAppVersion`/`isDesktopOnly` contract, and the `onload`/`onunload` boundary. |
-| [`references/single-stylesheet-ownership.md`](references/single-stylesheet-ownership.md) | `styles.css` is the one stylesheet — 18,931 lines, measured — with no component-scoped styles anywhere in the tree. Where a rule belongs, and that splitting the file is an operator decision this packet documents but does not make. |
+| [`references/obsidian-plugin-api.md`](references/obsidian-plugin-api.md) | The Obsidian API surface `main.ts` consumes (`Plugin`, `FileView`, `WorkspaceLeaf`, `TFile`, `MarkdownRenderer`, and peers), `manifest.json`'s `minAppVersion`/`isDesktopOnly` contract, and the `onload`/`onunload` boundary. |
+| [`references/stylesheet-ownership.md`](references/stylesheet-ownership.md) | `styles.css` is the one stylesheet — 18,931 lines, measured — with no component-scoped styles anywhere in the tree. Where a rule belongs, and that splitting the file is an operator decision this packet documents but does not make. |
 | [`references/db-class-naming.md`](references/db-class-naming.md) | The `.db-*` grammar: 1,196 distinct classes measured, 769 orphaned (referenced by no fixture), 427 referenced by fixtures. What an edit or rename must not silently orphan. |
-| [`references/screenshot-fixture-harness.md`](references/screenshot-fixture-harness.md) | `scenarios.mjs`'s registration contract, `verify.mjs`'s source-hash freshness gate (180 entries measured), the hand-fixture-vs-real-renderer distinction, and `theme.css`/`runtime-vars.css` standing in for what Obsidian supplies at runtime. |
+| [`references/screenshot-harness.md`](references/screenshot-harness.md) | `scenarios.mjs`'s registration contract, `verify.mjs`'s source-hash freshness gate (180 entries measured), the hand-fixture-vs-real-renderer distinction, and `theme.css`/`runtime-vars.css` standing in for what Obsidian supplies at runtime. |
 | [`references/verification.md`](references/verification.md) | The gate command set and measured baseline: `tsc --noEmit` (clean), `build` (clean, no tracked diff), `vitest run` (386 passing across 49 files), `screenshots:verify` (180 entries), and `lint` (115 known problems — recorded baseline, not a target). |
 | [`references/comment-grammar.md`](references/comment-grammar.md) | The target `MODULE:` banner and numbered box-drawing convention — 0 of 249 files carry one today — distinguished from the pre-existing Chinese-language CSS property cheat sheet in `styles.css`, plus the repository rule against spec/requirement/task/checklist ids in comments. |
 | [`references/folder-docs.md`](references/folder-docs.md) | The `README.md`/`CODE.md` pairing threshold (three or more direct source files, or any child folder that itself contains source), mirrored from `sk-code-mobile-cli`, and the folders that owe docs today. |
 | [`references/view-renderer-architecture.md`](references/view-renderer-architecture.md) | The `src/views/*Renderer.ts` family (Table, Board, Gallery, List, Calendar, Timeline, Chart), the `src/data/` pipeline (`DataSource`, `RowPipeline`), and `main.ts` as the single `Plugin` entry registering both `DatabaseView` and `DatabaseFileDashboardView`. |
-| [`references/source-naming.md`](references/source-naming.md) | The kebab-case target: 232 PascalCase filenames against 16 kebab-case, measured, the `camelCase`/`_shared` exceptions, and the manifest-driven rename this reference documents but a later phase executes. |
 | [`references/skill-reference-integrity.md`](references/skill-reference-integrity.md) | The cross-repo drift guard that resolves every plugin path this surface names (expects `broken : 0`), and why a clean run is only meaningful because the guard also rejects a counter-example. |
 | [`references/workflow-implement.md`](references/workflow-implement.md) · [`workflow-debug.md`](references/workflow-debug.md) · [`workflow-verify.md`](references/workflow-verify.md) | The shared implement → debug → verify doctrine (symlinked from `../../shared/references/`). |
 
@@ -78,7 +77,7 @@ routing, consumed by the skill-benchmark router-replay. Keep it in sync with the
 # (re-prefixed with sk-code-obsidian/) and the sibling surface maps plus the
 # parent-owned universal/shared tier. A drift guard enforces that equality.
 DEFAULT_RESOURCE = [
-    "references/obsidian-api-boundary.md",
+    "references/obsidian-plugin-api.md",
     "references/comment-grammar.md",
 ]
 
@@ -94,13 +93,12 @@ RESOURCE_MAP = {
     "IMPLEMENTATION": [
         "references/view-renderer-architecture.md",
         "references/db-class-naming.md",
-        "references/single-stylesheet-ownership.md",
+        "references/stylesheet-ownership.md",
         "assets/renderer-implementation-checklist.md",
     ],
     "CODE_QUALITY": [
         "references/comment-grammar.md",
         "references/folder-docs.md",
-        "references/source-naming.md",
         "assets/comment-grammar-checklist.md",
         "assets/folder-docs-checklist.md",
     ],
@@ -111,14 +109,14 @@ RESOURCE_MAP = {
     ],
     "VERIFICATION": [
         "references/verification.md",
-        "references/screenshot-fixture-harness.md",
+        "references/screenshot-harness.md",
         "assets/verification-checklist.md",
     ],
     "STACK_STANDARDS": [
-        "references/obsidian-api-boundary.md",
-        "references/single-stylesheet-ownership.md",
+        "references/obsidian-plugin-api.md",
+        "references/stylesheet-ownership.md",
         "references/db-class-naming.md",
-        "references/screenshot-fixture-harness.md",
+        "references/screenshot-harness.md",
     ],
 }
 ```

@@ -6,8 +6,8 @@ description: "This scenario validates ACCESSIBILITY routing for `PR-007`. It foc
 expected_surface: PI_REMOTE
 expected_intent: ACCESSIBILITY
 expected_resources:
-  - references/editability-guardrails.md
-  - references/verification.md
+  - references/conventions/editability-guardrails.md
+  - references/verification/verification.md
 version: 1.0.0.0
 ---
 
@@ -72,7 +72,7 @@ Confirm the retint keeps WCAG AA contrast in both themes and doesn't rely on cla
 
 1. `sed -n '1,12p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/accessibility-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"ACCESSIBILITY":/,/\],/p'`
-3. `for p in references/editability-guardrails.md references/verification.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/conventions/editability-guardrails.md references/verification/verification.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 
@@ -97,7 +97,7 @@ excerpt.
    `references/`.
 2. Diff this scenario's `expected_resources` against the step-2 `RESOURCE_MAP["ACCESSIBILITY"]` excerpt to
    see whether the drift is a stale scenario file or a stale `SKILL.md` map — note that `RESOURCE_MAP`
-   also carries `references/a11y-parity.md` and `assets/a11y-parity-checklist.md`, which this scenario's
+   also carries `references/svelte/svelte.md` and `assets/a11y-parity-checklist.md`, which this scenario's
    curated core subset omits by design.
 
 ---

@@ -1,30 +1,31 @@
 ---
-title: "Implementation Summary [template:level-3/implementation-summary.md]"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: Acceptance Criteria Template as Packet Closure Gate"
+description: "What shipped: the gated acceptance-criteria document, the AC_CLOSURE gate with ADR-backed waivers, and the forward-only rollout."
 trigger_phrases:
-  - "implementation"
-  - "summary"
-  - "template"
-  - "impl summary core"
-importance_tier: "normal"
-contextType: "general"
+  - "acceptance criteria summary"
+  - "ac closure shipped"
+  - "closure gate implementation summary"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/templates/level-3"
-    last_updated_at: "2026-04-11T00:00:00Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 3 template"
-    next_safe_action: "Replace continuity placeholders"
+    packet_pointer: "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template"
+    last_updated_at: "2026-08-29T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Built the acceptance-criteria template, contract entry and closure gate"
+    next_safe_action: "Execute the reference sweep and close the remaining criteria"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-ac-closure.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "template-session"
+      session_id: "2026-08-29-033-002-acceptance-criteria-template"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 80
     open_questions: []
     answered_questions: []
 ---
+
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->
@@ -38,9 +39,9 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | [###-feature-name] |
-| **Completed** | [YYYY-MM-DD] |
-| **Level** | [1/2/3/3+] |
+| **Spec Folder** | 002-acceptance-criteria-template |
+| **Completed** | In Progress |
+| **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -48,18 +49,31 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Acceptance criteria now live in one document per packet, and that document decides whether the packet may be closed. Before this phase they were authored twice inside `spec.md` and traced separately in `checklist.md`, with coverage reported as a non-blocking advisory, so a packet could be marked complete with criteria nobody had met or consciously dropped.
 
-### [Feature Name]
+### Acceptance criteria as a closure gate
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+Every Level 2, 3 and 3+ packet carries `acceptance-criteria.md`. Each row states a criterion in Given/When/Then form, names the evidence that proves it, and carries a status. A packet is closeable when every row is `Met`, `Waived` or `Superseded`. A row may only be waived or superseded by naming an ADR that actually exists in `decision-record.md` — a waiver pointing at nothing fails, because the recorded reasoning is the entire justification for dropping a criterion.
+
+The gate does not disturb work in progress: an unmet row blocks only a packet that claims completion. Packets created before the rollout cutoff stay advisory, so the existing tree is untouched.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+| `templates/addons/acceptance-criteria.md.tmpl` | Created | The gated document, rendering only at Levels 2, 3 and 3+ |
+| `templates/spec-kit-docs.json` | Modified | Document entry, version, section gates, listed for Levels 2/3/3+ |
+| `templates/core/spec.md.tmpl` | Modified | Acceptance-criteria column gated to Level 1; user-story criteria redirected |
+| `scripts/rules/check-ac-closure.sh` | Created | The closure gate, including waiver verification and the cutoff |
+| `scripts/rules/check-ac-coverage.sh` | Modified | Counts criteria from the canonical document, falling back to `spec.md` |
+| `scripts/lib/validator-registry.json` | Modified | Registers `AC_CLOSURE` at ERROR severity with its flags |
+| `references/validation/validation-rules.md` | Modified | Documents the rule and every failure mode |
+| `mcp-server/ENV-REFERENCE.md` | Modified | Registers `SPECKIT_AC_CLOSURE` and `SPECKIT_AC_CLOSURE_CUTOFF` |
+| `templates/README.md`, `templates/CONTRACT.md` | Modified | Publish the template in the manifest surfaces |
+| `templates/examples/level-2\|3\|3+` | Modified | Worked examples carry the document; their specs drop the column |
+| `.opencode/skills/system-spec-kit/README.md` | Modified | Skill README Level contract |
+| `README.md` | Modified | Public root README Level contract |
+| `AGENTS.md` (`CLAUDE.md`) | Modified | Section 3 documentation-level table |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +81,7 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-[How was this tested, verified and shipped? What was the rollout approach?]
+The template was verified by rendering it at every level and confirming Level 1 emits nothing while Levels 2, 3 and 3+ emit the document. The rule was verified against a purpose-built fixture covering eight cases, including the two the gate exists to catch: a completion claim carrying an unmet criterion, and a waiver citing an ADR that does not exist. Two real defects surfaced in that run — the table header `| AC-ID |` was being counted as a criterion, which both miscounted totals and produced false failures — and were fixed before integration. End-to-end integration was confirmed through `validate.sh --json`, which shows `AC_CLOSURE` reporting against this packet's own criteria.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -77,7 +91,11 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [What was decided] | [Active-voice rationale with specific reasoning] |
+| `acceptance-criteria.md` is canonical; `spec.md` drops the column above Level 1 | One home per criterion; two homes drift (ADR-001) |
+| A waiver must cite an ADR that exists | An unverified waiver turns the gate into theatre (ADR-001) |
+| Listed under `optionalAddonDocs`, with `AC_CLOSURE` owning presence | `FILE_EXISTS` has no cutoff awareness and would have failed 2,588 packets (ADR-002) |
+| Level 1 keeps its inline criteria | It has no acceptance-criteria document, so removing the column would delete criteria rather than relocate them |
+| Unmet rows block only a completion claim | The gate governs closing, not working |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,7 +105,16 @@ Explain what the user gains, not what files you touched.]
 
 | Check | Result |
 |-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+| Template level gating | PASS - Level 1 renders 0 lines; Levels 2, 3, 3+ render 53 |
+| Closure-rule fixture, 8 cases | PASS - all eight behave as specified after the header-row fix |
+| Post-cutoff packet missing the document | PASS - fails with the required-document message |
+| Completion claim with an unmet criterion | PASS - fails |
+| Waiver citing a missing ADR | PASS - fails |
+| Waiver citing a real ADR | PASS - closeable |
+| Pre-cutoff packet | PASS - reported advisory, never blocked |
+| `spec.md` column gating | PASS - Level 1 keeps the column, Level 3 drops it |
+| End-to-end through `validate.sh --json` | PASS - `AC_CLOSURE` reports against this packet |
+| Existing packet regression | PASS - `docs 2` still resolves to the three core documents only |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,9 +122,9 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+1. **Packet age is read from the `Created` row of `spec.md`.** A packet with no readable date is treated as pre-cutoff and stays advisory. This fails open by design: an unreadable date should not manufacture a blocking error.
+2. **The Level contract alone does not show the document is mandatory.** It is listed as optional so that `FILE_EXISTS` stays cutoff-blind; the requirement is stated in the Level tables and in `validation-rules.md` instead (ADR-002).
+3. **`scripts/spec/upgrade-level.sh` is broken independently of this work.** It resolves `templates/addendum/level2-verify/checklist.md`, a path that no longer exists, so every L1 to L2 upgrade fails and rolls back. Reported, not fixed: it sits outside this packet's scope lock.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

@@ -6,9 +6,9 @@ description: "This scenario validates ambiguous multi-intent resolution for `PR-
 expected_surface: PI_REMOTE
 expected_intent: DEBUGGING
 expected_resources:
-  - references/verification.md
-  - references/component-tokens.md
-  - references/svelte-runes-effects.md
+  - references/verification/verification.md
+  - references/design-system/component-tokens.md
+  - references/svelte/svelte.md
   - assets/runes-effect-audit-checklist.md
 version: 1.0.0.0
 ---
@@ -61,7 +61,7 @@ Debug the reported contrast regression and verify it before we make the completi
   workflow resolves `DEBUGGING` as the dominant intent because the symptom must be traced before a
   completion claim is meaningful; every path this scenario lists under `expected_resources` resolves.
 - Expected signals: every path in `expected_resources` exists under `sk-code-mobile-cli/`;
-  `references/verification.md` is present in the resolved set even though `DEBUGGING` was chosen over
+  `references/verification/verification.md` is present in the resolved set even though `DEBUGGING` was chosen over
   `VERIFICATION`, because it already sits in `RESOURCE_MAP["DEBUGGING"]`.
 - Desired user-visible outcome: the bundled workflow reproduces and traces the contrast regression first,
   using `verification.md`'s resolver method as the evidence for both the trace and the eventual completion
@@ -83,13 +83,13 @@ Debug the reported contrast regression and verify it before we make the completi
 1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/unknown-fallback/ambiguous-multi-intent.md`
 2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"DEBUGGING":/p;/"VERIFICATION":/p'`
 3. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"DEBUGGING":/,/\],/p'`
-4. `for p in references/verification.md references/component-tokens.md references/svelte-runes-effects.md assets/runes-effect-audit-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+4. `for p in references/verification/verification.md references/design-system/component-tokens.md references/svelte/svelte.md assets/runes-effect-audit-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 
 Step 2 shows both keyword lists; a manual scan confirms the prompt hits `debug`/`regression` (DEBUGGING)
 and `verify`/`completion claim` (VERIFICATION). Step 3 shows `RESOURCE_MAP["DEBUGGING"]` already contains
-`references/verification.md`. Step 4 prints `OK` for all four paths.
+`references/verification/verification.md`. Step 4 prints `OK` for all four paths.
 
 ### Evidence
 

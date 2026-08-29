@@ -87,22 +87,25 @@ Implement a basic email/password authentication system that allows users to regi
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Users can register with email/password | Form submits, user created in DB, success message shown |
-| REQ-002 | Users can log in with valid credentials | Token generated, stored in localStorage, redirected to dashboard |
-| REQ-003 | Passwords are hashed before storage | bcrypt hash with 10 rounds, raw password never stored |
-| REQ-004 | Input validation prevents malformed data | Email format validated, password minimum 8 chars |
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | Users can register with email/password |
+| REQ-002 | Users can log in with valid credentials |
+| REQ-003 | Passwords are hashed before storage |
+| REQ-004 | Input validation prevents malformed data |
 
 ### P1 - Required (complete OR user-approved deferral)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-005 | Invalid login shows appropriate error | "Invalid email or password" message, no credential enumeration |
-| REQ-006 | Session persists across page refresh | Token in localStorage, auto-login on page load |
-| REQ-007 | Duplicate email registration prevented | Clear error message, no duplicate users in DB |
+| ID | Requirement |
+|----|-------------|
+| REQ-005 | Invalid login shows appropriate error |
+| REQ-006 | Session persists across page refresh |
+| REQ-007 | Duplicate email registration prevented |
 
 
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
 <!-- /ANCHOR:requirements -->
 ---
 

@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The probe proved a transport, not a surface",
     "created_at": "2026-08-29T11:35:15.721Z",
-    "last_save_at": "2026-08-29T12:02:47.629Z",
+    "last_save_at": "2026-08-29T14:01:22.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41aeca40483633c2191564b2a3347a2732f99f724af892eaae2c9c9455c547ac",
+    "source_fingerprint": "sha256:619ae284bb9533ec00c831addbcd9f34582587015778e5eede1513cec892c7ae",
     "source_doc_hashes": {
       "spec.md": "ddcd02b7a3c3b69200381b63b7281163e8e7b5994ce510ba9bcc2ae018043f3a",
       "plan.md": "e570b75e8e52dc0420b624dc91310bfe2744dc96e7a9fe382aa834534f2bf471",
-      "tasks.md": "f7db93bffb2c50e87aa8c423c504601b2d18a407ba58fe0f5f44350af0a2adc2",
-      "implementation-summary.md": "1c7af5de8c8a0e20dffc4b788b5b4c0a02c8d657d2a164ab2896aabbf4b32212"
+      "tasks.md": "2b78abb19c34226fa05584b1d788db69f06dc68aaaf456e5453f866d0dfd65ed",
+      "implementation-summary.md": "1987db1fa3317405e2d4268d3ec0fac72c280892651848c46fc527dab1d2c14b"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -9,7 +9,7 @@ trigger_phrases:
   - "figma cli"
   - "notion mcp"
   - "mcp tool bridge"
-version: 1.5.2.0
+version: 1.6.0.0
 ---
 
 # mcp-tooling
@@ -51,10 +51,11 @@ The hub holds no packet-local logic. It routes every request to exactly one of e
 | [`mcp-figma`](./mcp-figma/README.md) | Figma Desktop transport: drives Figma Desktop from the terminal through `figma-ds-cli`, read-only in this workspace with writes landing only in Figma Desktop |
 | [`mcp-refero`](./mcp-refero/README.md) | Real-app web UI reference search through the Refero MCP, read-only through Code Mode |
 | [`mcp-mobbin`](./mcp-mobbin/README.md) | Mobile app screen, flow and UX pattern research through the Mobbin MCP, read-only through Code Mode |
+| [`mcp-magicpath`](./mcp-magicpath/README.md) | MagicPath component and design-system lookup through the vendor CLI, reached over a UTCP `cli` manual in Code Mode, read-only |
 
 ### The Transport Axis
 
-Five modes are workflow bridges that mutate this workspace directly. The remaining three are read-only design transports that bridge to an external tool's surface and never perform design judgment or mutate this workspace. `mcp-figma` drives Figma Desktop over its local daemon with `mutatesWorkspace:false`: export commands write artifacts only to explicit output paths while document changes land in Figma Desktop. `mcp-refero` and `mcp-mobbin` run as remote MCP servers reached through Code Mode with no local writes at all. Every design-affecting operation pairs in `sk-design-md-generator` to extract a measured Style Reference (design tokens) from a live source, because the transport never decides taste or produces a Style Reference on its own.
+Five modes are workflow bridges that mutate this workspace directly. The remaining four are read-only design transports that bridge to an external tool's surface and never perform design judgment or mutate this workspace. `mcp-figma` drives Figma Desktop over its local daemon with `mutatesWorkspace:false`: export commands write artifacts only to explicit output paths while document changes land in Figma Desktop. `mcp-refero` and `mcp-mobbin` run as remote MCP servers reached through Code Mode with no local writes at all. `mcp-magicpath` is the one transport whose provider ships no MCP server at all: a UTCP `cli` manual runs the vendor CLI through Code Mode, and only the provider's read-only commands are registered, so the commands that would write files into the calling project are unreachable from a tool call rather than merely discouraged. Every design-affecting operation pairs in `sk-design-md-generator` to extract a measured Style Reference (design tokens) from a live source, because the transport never decides taste or produces a Style Reference on its own.
 
 ---
 
@@ -127,7 +128,7 @@ Reach for the hub whenever a request names one of its eight surfaces: browser de
 | Skill | Relationship |
 |---|---|
 | `mcp-code-mode` | Shared MCP execution substrate for the CLI-plus-MCP workflows and the remote transports through the unchanged `code_mode` registration key. External infrastructure, not a hub member |
-| `sk-design-md-generator` | Mandatory cross-hub measured-reference partner for the three design transports: extracts a measured Style Reference (design tokens) from a live source. The transports never decide taste on their own |
+| `sk-design-md-generator` | Mandatory cross-hub measured-reference partner for the four design transports: extracts a measured Style Reference (design tokens) from a live source. The transports never decide taste on their own |
 | `sk-code` | Consumes browser-debugging output, ClickUp task context, Obsidian note context, Aside evidence, Notion workspace context, Figma exports and `DESIGN.md` plus Refero and Mobbin research as implementation input |
 | `sk-doc` | Documentation and component authoring. The sibling parent hub whose structure this hub mirrors |
 

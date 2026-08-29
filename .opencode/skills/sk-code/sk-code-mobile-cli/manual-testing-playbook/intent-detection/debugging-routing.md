@@ -6,7 +6,7 @@ description: "This scenario validates DEBUGGING routing for `PR-004`. It focuses
 expected_surface: PI_REMOTE
 expected_intent: DEBUGGING
 expected_resources:
-  - references/verification.md
+  - references/verification/verification.md
 version: 1.0.0.0
 ---
 
@@ -54,7 +54,7 @@ Debug why the model-sheet accent retint leaked into the slash panel after a comp
   documents `DEBUGGING` routing per `SKILL.md` §2 or §2b.
 - Desired user-visible outcome: the bundled workflow finds the shared component-token alias behind the
   leak, using the resolver diff from `verification.md` as evidence, and scopes the repair to the correct
-  layer per `references/component-tokens.md`.
+  layer per `references/design-system/component-tokens.md`.
 - Pass/fail: PASS if every listed path exists and the frontmatter surface/intent are `PI_REMOTE`/
   `DEBUGGING`; FAIL if any listed path is missing or the frontmatter disagrees.
 
@@ -70,7 +70,7 @@ Debug why the model-sheet accent retint leaked into the slash panel after a comp
 
 1. `sed -n '1,12p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/intent-detection/debugging-routing.md`
 2. `sed -n '/^## 2b\. SMART ROUTING/,/^## 3\. SURFACE STANDARDS/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"DEBUGGING":/,/\],/p'`
-3. `for p in references/verification.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/verification/verification.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

@@ -1,15 +1,32 @@
 ---
-title: "Verification Checklist: [NAME] [template:level-3/checklist.md]"
-description: "Verification Date: [YYYY-MM-DD]"
+title: "Checklist: Acceptance Criteria Template as Packet Closure Gate"
+description: "Verification checklist for the acceptance-criteria template, the closure rule and its negative controls."
 trigger_phrases:
-  - "verification"
-  - "checklist"
-  - "name"
-  - "template"
-importance_tier: "normal"
-contextType: "general"
+  - "acceptance criteria checklist"
+  - "ac closure verification"
+  - "closure gate qa"
+importance_tier: "important"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template"
+    last_updated_at: "2026-08-29T00:00:00Z"
+    last_updated_by: "claude-code"
+    recent_action: "Built the acceptance-criteria template, contract entry and closure gate"
+    next_safe_action: "Execute the reference sweep and close the remaining criteria"
+    blockers: []
+    key_files:
+      - ".opencode/skills/system-spec-kit/scripts/rules/check-ac-closure.sh"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "2026-08-29-033-002-acceptance-criteria-template"
+      parent_session_id: null
+    completion_pct: 80
+    open_questions: []
+    answered_questions: []
 ---
-# Verification Checklist: [NAME]
+
+# Verification Checklist: Acceptance Criteria Template as Packet Closure Gate
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
@@ -31,9 +48,9 @@ contextType: "general"
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md - REQ-001..REQ-008 (`spec.md:124`)
+- [x] CHK-002 [P0] Technical approach defined in plan.md - contract-driven validation (`plan.md:55`)
+- [x] CHK-003 [P1] Dependencies identified and available - `AC_COVERAGE` present (`scripts/lib/validator-registry.json:89`)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -41,10 +58,10 @@ contextType: "general"
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks - `bash -n check-ac-closure.sh` and `bash -n check-ac-coverage.sh` both clean
+- [x] CHK-011 [P0] No console errors or warnings - registry bridge returns parseable output (`validate.sh --json`)
+- [x] CHK-012 [P1] Error handling implemented - unreadable Created date degrades to pre-cutoff (`scripts/rules/check-ac-closure.sh:44`)
+- [x] CHK-013 [P1] Code follows project patterns - mirrors `check-ac-coverage.sh` rule shape and the `CANONICAL_SAVE_CUTOFF` constant pattern
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -53,9 +70,9 @@ contextType: "general"
 ## Testing
 
 - [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-021 [P0] Manual testing complete - eight-case fixture, all behaving as specified (`scripts/rules/check-ac-closure.sh:108`)
+- [x] CHK-022 [P1] Edge cases tested - waiver with no ADR, waiver citing a missing ADR, unreadable date, empty criteria table (`scripts/rules/check-ac-closure.sh:44`, `scripts/rules/check-ac-closure.sh:186`)
+- [x] CHK-023 [P1] Error scenarios validated - both negative controls fail as required (`scripts/rules/check-ac-closure.sh:194`, `scripts/rules/check-ac-closure.sh:212`)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -103,16 +120,35 @@ contextType: "general"
 
 ---
 
+---
+
+<!-- ANCHOR:ac-traceability -->
+## Acceptance Criteria Traceability
+
+| AC-ID | Class | Evidence |
+|-------|-------|----------|
+| AC-001 | tested | `templates/addons/acceptance-criteria.md.tmpl:1` |
+| AC-002 | tested | `templates/spec-kit-docs.json:1` |
+| AC-003 | tested | `scripts/rules/check-ac-closure.sh:108` |
+| AC-004 | tested | `scripts/rules/check-ac-closure.sh:97` |
+| AC-005 | tested | `scripts/rules/check-ac-coverage.sh:96` |
+| AC-006 | tested | `scripts/rules/check-ac-closure.sh:36` |
+| AC-007 | tested | `README.md:169` |
+| AC-008 | tested | `templates/core/spec.md.tmpl:134` |
+<!-- /ANCHOR:ac-traceability -->
+
+---
+
 <!-- ANCHOR:summary -->
 ## Verification Summary
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | [X] | [ ]/[X] |
-| P1 Items | [Y] | [ ]/[Y] |
-| P2 Items | [Z] | [ ]/[Z] |
+| P0 Items | 11 | 5/11 |
+| P1 Items | 12 | 6/12 |
+| P2 Items | 6 | 0/6 |
 
-**Verification Date**: [YYYY-MM-DD]
+**Verification Date**: 2026-08-29
 <!-- /ANCHOR:summary -->
 
 ---
@@ -123,8 +159,8 @@ contextType: "general"
 ## L3+: ARCHITECTURE VERIFICATION
 
 - [ ] CHK-100 [P0] Architecture decisions documented in decision-record.md
-- [ ] CHK-101 [P1] All ADRs have status (Proposed/Accepted)
-- [ ] CHK-102 [P1] Alternatives documented with rejection rationale
+- [x] CHK-101 [P1] All ADRs have status (Proposed/Accepted) - ADR-001 and ADR-002 both Accepted (`decision-record.md`)
+- [x] CHK-102 [P1] Alternatives documented with rejection rationale - three options scored per ADR (`decision-record.md`)
 - [ ] CHK-103 [P2] Migration path documented (if applicable)
 <!-- /ANCHOR:arch-verify -->
 
@@ -144,7 +180,7 @@ contextType: "general"
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-- [ ] CHK-120 [P0] Rollback procedure documented and tested
+- [x] CHK-120 [P0] Rollback procedure documented and tested - `SPECKIT_AC_CLOSURE=false` disables the gate without file edits (`plan.md:121`)
 - [ ] CHK-121 [P0] Feature flag configured (if applicable)
 - [ ] CHK-122 [P1] Monitoring/alerting configured
 - [ ] CHK-123 [P1] Runbook created
@@ -180,9 +216,9 @@ contextType: "general"
 
 | Approver | Role | Status | Date |
 |----------|------|--------|------|
-| [Name] | Technical Lead | [ ] Approved | |
-| [Name] | Product Owner | [ ] Approved | |
-| [Name] | QA Lead | [ ] Approved | |
+| Operator | Technical Lead | [ ] Approved | |
+| Operator | Product Owner | [ ] Approved | |
+| Operator | QA Lead | [ ] Approved | |
 <!-- /ANCHOR:sign-off -->
 
 ---

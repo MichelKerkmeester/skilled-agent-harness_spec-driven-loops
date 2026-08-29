@@ -88,15 +88,15 @@
     ],
     "causal_summary": "MagicPath has no MCP server",
     "created_at": "2026-08-29T11:35:18.007Z",
-    "last_save_at": "2026-08-29T12:01:17.391Z",
+    "last_save_at": "2026-08-29T12:53:53.484Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:26f6e7f5126d9c1b1f78400c283a591db1df53f90e4a0a5835e0511eb8437d31",
+    "source_fingerprint": "sha256:f6828cdbc1a82ff07498cc051dc250aae551697d0b5ce1d210f82117e74bd19f",
     "source_doc_hashes": {
-      "spec.md": "6a60fc77a56892b0b8207c5d0e2b29759d1a2e1ffc35aacd7e62bdff8ed32738"
+      "spec.md": "f1c45c0d4211cdc713de6dbfa5dabf410dce35326b4fb44f5fd1ea9c75047119"
     },
     "last_active_child_id": "mcp-tooling/017-mcp-magicpath/001-cli-transport-proof",
     "last_active_at": null

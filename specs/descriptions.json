@@ -59031,7 +59031,21 @@
       "lastUpdated": "2026-08-15T14:41:14.683Z"
     },
     {
-      "specFolder": "system-speckit/033-spec-template-context-optimization",
+      "specFolder": "system-speckit/033-spec-kit-template-optimization",
+      "description": "The spec-kit document templates carry two unresolved costs",
+      "keywords": [
+        "spec-kit",
+        "document",
+        "templates",
+        "carry",
+        "two",
+        "unresolved",
+        "costs"
+      ],
+      "lastUpdated": "2026-08-29T12:14:36.490Z"
+    },
+    {
+      "specFolder": "system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization",
       "description": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and",
       "keywords": [
         "deep-research",
@@ -59049,6 +59063,20 @@
         "system-speckit"
       ],
       "lastUpdated": "2026-08-15T14:41:14.733Z"
+    },
+    {
+      "specFolder": "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
+      "description": "Acceptance criteria are split across two documents and owned by neither",
+      "keywords": [
+        "acceptance",
+        "criteria",
+        "split",
+        "across",
+        "two",
+        "documents",
+        "owned"
+      ],
+      "lastUpdated": "2026-08-29T12:13:37.251Z"
     },
     {
       "specFolder": "system-speckit/034-plan-preflight-nested-packet-resolution",

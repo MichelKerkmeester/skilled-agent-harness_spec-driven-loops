@@ -6,12 +6,12 @@ description: "This scenario validates generalization for `PR-H01`. It focuses on
 expected_surface: PI_REMOTE
 expected_intent: IMPLEMENTATION
 expected_resources:
-  - references/token-library.md
-  - references/comment-grammar.md
-  - references/component-tokens.md
-  - references/retint-recipes.md
-  - references/theme-remap.md
-  - references/scoped-style-ownership.md
+  - references/design-system/token-library.md
+  - references/conventions/comment-grammar.md
+  - references/design-system/component-tokens.md
+  - references/design-system/retint-recipes.md
+  - references/design-system/theme-remap.md
+  - references/design-system/scoped-style-ownership.md
   - assets/token-retint-checklist.md
 version: 1.0.0.0
 ---
@@ -78,7 +78,7 @@ The model-effort sheet's accent still reads a bit cool — can you shift it to s
 
 1. `sed -n '1,17p' .opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook/holdout/implementation-natural.md`
 2. `sed -n '/^INTENT_SIGNALS = {/,/^}/p' .opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md | sed -n '/"IMPLEMENTATION":/p'` — confirm none of its listed keyword substrings appear in the exact prompt.
-3. `for p in references/token-library.md references/comment-grammar.md references/component-tokens.md references/retint-recipes.md references/theme-remap.md references/scoped-style-ownership.md assets/token-retint-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
+3. `for p in references/design-system/token-library.md references/conventions/comment-grammar.md references/design-system/component-tokens.md references/design-system/retint-recipes.md references/design-system/theme-remap.md references/design-system/scoped-style-ownership.md assets/token-retint-checklist.md; do test -e ".opencode/skills/sk-code/sk-code-mobile-cli/$p" && echo "OK $p" || echo "MISS $p"; done`
 
 ### Expected
 

@@ -132,15 +132,32 @@ contextType: "general"
 
 ### P0 - Blockers (MUST complete)
 
+<!-- IF level:1 -->
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-001 | [Requirement description] | [How to verify it's done] |
+<!-- /IF -->
+<!-- IF level:2,3,3+ -->
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | [Requirement description] |
+<!-- /IF -->
 
 ### P1 - Required (complete OR user-approved deferral)
 
+<!-- IF level:1 -->
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-002 | [Requirement description] | [How to verify it's done] |
+<!-- /IF -->
+<!-- IF level:2,3,3+ -->
+| ID | Requirement |
+|----|-------------|
+| REQ-002 | [Requirement description] |
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
+<!-- /IF -->
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -305,8 +322,7 @@ contextType: "general"
 
 **As a** [user type], **I want** [needed behavior], **so that** [benefit].
 
-**Acceptance Criteria**:
-1. Given [context], When [action], Then [outcome]
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 
 ---
 
@@ -330,8 +346,7 @@ contextType: "general"
 <!-- IF level:3 -->
 **As a** [user type], **I want** [needed behavior], **so that** [benefit].
 
-**Acceptance Criteria**:
-1. Given [context], When [action], Then [outcome]
+**Acceptance criteria:** see `acceptance-criteria.md` (rows referencing this story).
 <!-- /IF -->
 
 ---

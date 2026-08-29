@@ -23,7 +23,7 @@ _memory:
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-08-29-033-002-acceptance-criteria-template"
-      parent_session_id: "2026-08-29-033-spec-kit-template-optimization"
+      parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions:
@@ -59,6 +59,8 @@ Acceptance criteria currently have no single home and no authority. They are aut
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | system-speckit/033-spec-kit-template-optimization |
+| **Predecessor** | 001-spec-template-context-optimization |
+| **Successor** | None |
 <!-- /ANCHOR:metadata -->
 
 ---

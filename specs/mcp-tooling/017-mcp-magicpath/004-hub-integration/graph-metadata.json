@@ -16,7 +16,9 @@
       "leaf manifest regeneration",
       "hub integration plan",
       "mode registry entry design",
-      "hub integration tasks"
+      "hub integration tasks",
+      "mcp-magicpath hub routing shipped",
+      "code-mode-cli backend"
     ],
     "key_topics": [
       "mcp-magicpath",
@@ -33,11 +35,12 @@
       "design"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "tasks.md",
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -56,6 +59,12 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -143,12 +152,6 @@
         "source": "derived"
       },
       {
-        "name": "Code Mode",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Completion Criteria",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -165,23 +168,43 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built One",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A packet nothing routes to is a document, not a capability",
     "created_at": "2026-08-29T11:35:16.848Z",
-    "last_save_at": "2026-08-29T11:35:16.848Z",
+    "last_save_at": "2026-08-29T13:24:01.913Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b8f942e7215b0a9243ff791d54afd9c612cedf66edb4c4ba7372136070491d30",
+    "source_fingerprint": "sha256:ba0a82cbc7e5328e3c576ec7a588507ac39b811281b008cdb79e205074c81ba0",
     "source_doc_hashes": {
-      "spec.md": "889db83b445ff0a1145112058e9fb162315a8580ce3ab6c302c8781fdee3b2e9",
+      "spec.md": "74df4895d2a5864188167c72635243a8c20ea14f519a86ed2861d8b7b12b340d",
       "plan.md": "a0414a04186438dbb9ecff36eb4040dd65663138f431d6d354633e3bf07daebe",
-      "tasks.md": "fa2dc33d378fe47aa32aa0f99ca11e83e1e69abd8e2641b854c68cd053db8c8e"
+      "tasks.md": "4893325c4a3560b2c80d3f204fb3ff5b43a9a2a5e4b5898efe4a75f0ac96e3c6",
+      "implementation-summary.md": "06e2dc23a0460db2a3cd0f6b5b3845a821b179c8c529595e5bf3474907bceb66"
     },
     "last_active_child_id": null,
     "last_active_at": null
