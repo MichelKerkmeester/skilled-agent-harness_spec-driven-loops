@@ -48,12 +48,12 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
+      "research/research.md",
       "research/deep-research-config.json",
       "research/deep-research-state.jsonl",
       "research/deep-research-strategy.md",
       "research/deep-research-dashboard.md",
       "research/findings-registry.json",
-      "research/research.md",
       "research/iterations/iteration-001.md",
       "research/iterations/iteration-002.md",
       "research/iterations/iteration-003.md",
@@ -96,6 +96,12 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-research-config.json",
         "kind": "config",
         "path": "research/deep-research-config.json",
@@ -123,12 +129,6 @@
         "name": "findings-registry.json",
         "kind": "config",
         "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The system-spec-kit MCP sidecar surface has grown quickly across TypeScript client/worker code, a Node ensure helper, and supporting embedder lifecycle logic",
     "created_at": "2026-05-22T21:00:18Z",
-    "last_save_at": "2026-08-29T10:00:15.951Z",
+    "last_save_at": "2026-08-29T13:10:02.203Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

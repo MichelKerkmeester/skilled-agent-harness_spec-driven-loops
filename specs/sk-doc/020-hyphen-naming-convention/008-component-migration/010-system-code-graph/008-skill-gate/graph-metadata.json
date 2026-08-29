@@ -44,7 +44,14 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/checklist.md",
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts/checklist.md",
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references/checklist.md",
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime/checklist.md",
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog/checklist.md",
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook/checklist.md",
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify/checklist.md"
     ],
     "entities": [
       {
@@ -188,7 +195,7 @@
     ],
     "causal_summary": "The system-code-graph child phases each prove a bounded path closure, but only a final rollup can prove that phases 001–007 are complete and that no in-scope snake_case filesystem name remains across the whole skill surface. This mutation-free gate aggregates sibling evidence and applies the 020 exemption boundary without performing new migration work.",
     "created_at": "2026-07-14T15:18:18Z",
-    "last_save_at": "2026-08-29T10:00:52.215Z",
+    "last_save_at": "2026-08-29T13:10:11.748Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

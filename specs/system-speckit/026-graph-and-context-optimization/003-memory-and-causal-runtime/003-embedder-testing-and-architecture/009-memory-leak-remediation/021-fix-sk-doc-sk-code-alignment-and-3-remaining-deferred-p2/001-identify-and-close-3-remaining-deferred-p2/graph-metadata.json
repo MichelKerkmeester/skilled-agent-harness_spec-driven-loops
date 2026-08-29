@@ -43,40 +43,16 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "scratch/p2-closure-tally.csv",
-      "scratch/reconciliation-error.md",
-      "decision-record.md",
-      "checklist.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "tasks.md"
+      "scratch/p2-closure-tally.csv",
+      "scratch/reconciliation-error.md"
     ],
     "entities": [
-      {
-        "name": "p2-closure-tally.csv",
-        "kind": "file",
-        "path": "scratch/p2-closure-tally.csv",
-        "source": "derived"
-      },
-      {
-        "name": "reconciliation-error.md",
-        "kind": "doc",
-        "path": "scratch/reconciliation-error.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -90,15 +66,39 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "p2-closure-tally.csv",
+        "kind": "file",
+        "path": "scratch/p2-closure-tally.csv",
+        "source": "derived"
+      },
+      {
+        "name": "reconciliation-error.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "scratch/reconciliation-error.md",
         "source": "derived"
       },
       {
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The 015 investigation found 68 P2 findings",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-08-29T10:00:14.050Z",
+    "last_save_at": "2026-08-29T13:10:02.208Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

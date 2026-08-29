@@ -41,19 +41,16 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -67,15 +64,39 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "append-only-ledger.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/append-only-ledger.ts",
+        "source": "derived"
+      },
+      {
+        "name": "authorized-ledger-types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/authorized-ledger/authorized-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-effect-dispatch.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/fanout-effect-dispatch.ts",
         "source": "derived"
       },
       {
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authorized Cross",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Routing the live fan-out executor spawn through the shipped effect gateway (phase `007`) records a fail-closed intent",
     "created_at": "2026-08-22T04:10:32.128Z",
-    "last_save_at": "2026-08-29T09:58:19.460Z",
+    "last_save_at": "2026-08-29T13:09:56.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

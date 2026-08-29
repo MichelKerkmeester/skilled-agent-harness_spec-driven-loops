@@ -43,9 +43,11 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "decision-record.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "decision-record.md",
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases/checklist.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
       {
@@ -61,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -73,9 +75,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
         "source": "derived"
       },
       {
@@ -185,17 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The migration needs one evidence-based end-state gate that proves the scope-aware filesystem naming rule, reference closure, Git rename history, and the complete validation and test baseline all hold on the same candidate commit. This phase defines that gate and records exact pass measurements; it does not repair failures or perform the migration.",
     "created_at": "2026-07-14T15:22:42Z",
-    "last_save_at": "2026-08-29T10:01:07.465Z",
+    "last_save_at": "2026-08-29T13:10:16.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

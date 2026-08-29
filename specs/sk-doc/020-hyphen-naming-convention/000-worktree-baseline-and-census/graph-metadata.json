@@ -41,19 +41,67 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "shared/package.json",
+      "scripts/package.json",
+      ".opencode/skills/system-spec-kit/package.json",
+      ".opencode/skills/system-spec-kit/shared/package.json",
+      ".opencode/skills/system-spec-kit/scripts/package.json",
+      ".opencode/skills/system-spec-kit/package-lock.json",
       "baseline/gates/baseline.json",
       "baseline/gates/install-summary.md",
       "baseline/gates/realpath-proof.txt",
       "baseline/gates/reproducible-install.md",
       "baseline/gates/lane-c-baseline.json",
-      "spec.md",
-      "plan.md",
-      "baseline/census/census.json",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "baseline/census/census.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "shared/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "package-lock.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/package-lock.json",
+        "source": "derived"
+      },
       {
         "name": "baseline.json",
         "kind": "config",
@@ -85,39 +133,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "census.json",
         "kind": "config",
         "path": "baseline/census/census.json",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -185,23 +203,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "evidence",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The migration must be reproducible and isolated from the actively-raced main checkout. Before any change, the program pins an immutable BASE SHA, establishes a dedicated worktree with a fresh deterministic dependency install (never a symlink to the raced tree), and captures a complete baseline the later phases prove th",
     "created_at": "2026-07-13T14:34:05.514Z",
-    "last_save_at": "2026-08-29T10:00:21.663Z",
+    "last_save_at": "2026-08-29T13:10:03.392Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

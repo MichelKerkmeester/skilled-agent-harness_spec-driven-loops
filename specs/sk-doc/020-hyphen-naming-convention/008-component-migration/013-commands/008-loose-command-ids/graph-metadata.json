@@ -43,9 +43,11 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "decision-record.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "decision-record.md",
+      ".opencode/commands/README.txt",
+      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
     ],
     "entities": [
       {
@@ -61,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -73,9 +75,21 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sync-prompts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Cross-References",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The loose command surface contains `agentrouter.md` and `goalopencode.md`, while the program's canonical filesystem form is kebab-case",
     "created_at": "2026-07-14T15:18:37Z",
-    "last_save_at": "2026-08-29T10:00:37.154Z",
+    "last_save_at": "2026-08-29T13:10:07.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

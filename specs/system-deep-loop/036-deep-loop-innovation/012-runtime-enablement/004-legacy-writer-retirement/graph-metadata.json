@@ -41,37 +41,21 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "scratch/inventory.md",
-      "scratch/authority-unchanged.md",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/scripts/check-direct-append.cjs",
+      "scratch/inventory.md",
+      "scratch/authority-unchanged.md",
       "scratch/append-site-conformance.md",
       "scratch/append-site-census.md",
       "scratch/full-suite-delta.md",
       "scratch/guard-probe.mjs",
-      "tasks.md"
+      "scripts/README.md"
     ],
     "entities": [
-      {
-        "name": "inventory.md",
-        "kind": "doc",
-        "path": "scratch/inventory.md",
-        "source": "derived"
-      },
-      {
-        "name": "authority-unchanged.md",
-        "kind": "doc",
-        "path": "scratch/authority-unchanged.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -85,9 +69,39 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-direct-append.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/check-direct-append.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "inventory.md",
+        "kind": "doc",
+        "path": "scratch/inventory.md",
+        "source": "derived"
+      },
+      {
+        "name": "authority-unchanged.md",
+        "kind": "doc",
+        "path": "scratch/authority-unchanged.md",
         "source": "derived"
       },
       {
@@ -115,9 +129,9 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
@@ -185,23 +199,11 @@
         "kind": "heading",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After the fleet is enabled, every mode's canonical writes go through the gateway, but the direct-append paths still",
     "created_at": "2026-08-19T06:57:08.198Z",
-    "last_save_at": "2026-08-29T09:58:18.025Z",
+    "last_save_at": "2026-08-29T13:09:56.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

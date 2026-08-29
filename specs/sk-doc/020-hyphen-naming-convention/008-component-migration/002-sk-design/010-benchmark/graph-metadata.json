@@ -43,9 +43,10 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "tasks.md"
+      ".opencode/skills/sk-design/benchmark/README.md"
     ],
     "entities": [
       {
@@ -61,6 +62,12 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
@@ -73,9 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/sk-design/benchmark/README.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Benchmark run snapshots use underscore-bearing after-label directories, while the benchmark README and changelog describe those paths as comparison artifacts.",
     "created_at": "2026-07-14T15:17:21Z",
-    "last_save_at": "2026-08-29T10:00:29.863Z",
+    "last_save_at": "2026-08-29T13:10:05.372Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

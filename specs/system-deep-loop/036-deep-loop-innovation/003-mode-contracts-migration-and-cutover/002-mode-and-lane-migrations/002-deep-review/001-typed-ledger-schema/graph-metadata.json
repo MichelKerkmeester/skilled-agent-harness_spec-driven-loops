@@ -41,20 +41,14 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -83,6 +77,12 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the Deep Review mode event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed review lifecycle, scope and dimension passes, candidate findings, adjudication, convergence, and review-report handoff. This phase defines events and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:32.178Z",
-    "last_save_at": "2026-08-29T09:57:53.573Z",
+    "last_save_at": "2026-08-29T13:09:52.665Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
