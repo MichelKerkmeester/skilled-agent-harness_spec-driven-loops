@@ -21,6 +21,7 @@ import {
   PI_DEFAULT_MODEL,
   isPiModelAllowed,
   isFlashMaxPinnedModel,
+  isGlmFlashXhighPinnedModel,
   pinReasoningEffortForModel,
 } from '../../lib/deep-loop/executor-config';
 
@@ -872,11 +873,23 @@ describe('isFlashMaxPinnedModel / pinReasoningEffortForModel', () => {
     expect(isFlashMaxPinnedModel('openai/gpt-5.6-luna')).toBe(false);
   });
 
-  it('pins Flash effort to max and leaves other models unchanged', () => {
+  it('pins each Flash family to its own top tier and leaves other models unchanged', () => {
     expect(pinReasoningEffortForModel('deepseek-v4-flash', 'high')).toBe('max');
     expect(pinReasoningEffortForModel('deepseek-v4-flash', null)).toBe('max');
     expect(pinReasoningEffortForModel('deepseek-v4-flash', undefined)).toBe('max');
+    expect(pinReasoningEffortForModel('deepseek/deepseek-v4-flash-latest', 'low')).toBe('max');
     expect(pinReasoningEffortForModel('minimax-m3', 'high')).toBe('high');
     expect(pinReasoningEffortForModel('minimax-m3', null)).toBe(null);
+  });
+
+  // GLM-5.3-Flash has no `max` variant on any route; dispatching it at `max` sends a tier the
+  // model does not accept, so its pin is `xhigh` on both the bare and vendor-prefixed literals.
+  it('pins GLM-5.3-Flash to xhigh rather than max', () => {
+    expect(pinReasoningEffortForModel('glm-5.3-flash', 'high')).toBe('xhigh');
+    expect(pinReasoningEffortForModel('z-ai/glm-5.3-flash', 'high')).toBe('xhigh');
+    expect(pinReasoningEffortForModel('z-ai/glm-5.3-flash', null)).toBe('xhigh');
+    expect(pinReasoningEffortForModel('opencode-go/glm-5.3-flash', undefined)).toBe('xhigh');
+    expect(isGlmFlashXhighPinnedModel('deepseek-v4-flash')).toBe(false);
+    expect(isGlmFlashXhighPinnedModel('glm-5.1')).toBe(false);
   });
 });

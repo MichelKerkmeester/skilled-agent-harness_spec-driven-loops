@@ -74,7 +74,7 @@ opencode-go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and 
 |----------|----------|-------|
 | `opencode-go/deepseek-v4-flash` | — | Latency-optimized DeepSeek V4 Flash via the Go gateway (2x usage); reasoning model pinned to `--variant max` by policy; a live `opencode run --model opencode-go/deepseek-v4-flash` turn completed 2026-08-07 |
 | `opencode-go/glm-5.3` | — | Z.AI GLM 5.3 via the Go gateway; list-verified in `opencode models opencode-go` on 2026-08-14 (not dispatch-tested). opencode-go also fronts `glm-5.1`/`glm-5.2`, out of this catalog's curated scope |
-| `opencode-go/glm-5.3-flash` | — | Z.AI GLM-5.3-Flash via the Go gateway; reasoning model (variants `low`/`high`/`max`) pinned to `--variant max` by policy; list-verified in `opencode models opencode-go` on 2026-08-27 (not dispatch-tested) |
+| `opencode-go/glm-5.3-flash` | — | Z.AI GLM-5.3-Flash via the Go gateway; reasoning model whose top tier is `xhigh` — it has **no `max` variant on any route** — pinned to `--variant xhigh` by policy; list-verified in `opencode models opencode-go` on 2026-08-27 |
 | `opencode-go/qwen3.8-max` | — | Qwen 3.8 Max via the Go gateway; a live `opencode run --model opencode-go/qwen3.8-max` turn completed 2026-08-07 |
 
 ### openrouter
@@ -86,7 +86,7 @@ OpenRouter gateway (base `https://openrouter.ai/api/v1`); pass the full three-se
 | Model id | Default? | Notes |
 |----------|----------|-------|
 | `openrouter/deepseek/deepseek-v4-flash-latest` | — | DeepSeek V4 Flash (latest) via OpenRouter; reasoning model pinned to `--variant max` by policy. |
-| `openrouter/z-ai/glm-5.3-flash` | — | GLM-5.3-Flash via OpenRouter; reasoning model (variants `low`/`high`/`max`) pinned to `--variant max` (its top tier) by policy; list-verified in `opencode models openrouter` on 2026-08-27 (not dispatch-tested). Replaces the retired Ox Alpha stealth route |
+| `openrouter/z-ai/glm-5.3-flash` | — | GLM-5.3-Flash via OpenRouter; reasoning model whose top tier is `xhigh` — there is **no `max` variant**, and dispatching at `max` sends a tier the model does not accept — pinned to `--variant xhigh`; list-verified in `opencode models openrouter` on 2026-08-27. Replaces the retired Ox Alpha stealth route |
 | `openrouter/google/gemini-3.7-flash` | — | Gemini 3.7 Flash via OpenRouter; reasoning model (variants `low`/`medium`/`high`) dispatched at its top tier `--variant high`; list-verified in `opencode models openrouter` on 2026-08-27 (not dispatch-tested) |
 
 ### cline-pass

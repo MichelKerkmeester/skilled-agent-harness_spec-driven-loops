@@ -216,8 +216,10 @@ export function isPiModelAllowed(model: string): model is PiSupportedModel {
 }
 
 /**
- * DeepSeek V4 Flash and GLM-5.3-Flash are reasoning models whose top thinking tier is
- * `max`, and operator policy pins them there: they are never dispatched at a lower effort.
+ * DeepSeek V4 Flash and GLM-5.3-Flash are reasoning models pinned to their TOP tier: they are
+ * never dispatched at a lower effort. Their top tiers differ, so the pin is per-family.
+ * DeepSeek V4 Flash tops out at `max`. GLM-5.3-Flash tops out at `xhigh` — it has no `max`
+ * variant, and dispatching it at `max` sends a tier the model does not accept.
  * DeepSeek's id is bare on cli-pi (`deepseek-v4-flash`, fronted by opencode-go) and
  * provider-prefixed on cli-opencode
  * (`deepseek/deepseek-v4-flash`, `opencode-go/deepseek-v4-flash`); the OpenRouter `-latest`
@@ -231,11 +233,17 @@ export function isFlashMaxPinnedModel(model: string): boolean {
   return /(^|\/)(deepseek-v4-flash(-latest)?|glm-5\.3-flash)$/.test(model);
 }
 
-/** Effective reasoning effort after the Flash max-tier pin: 'max' for Flash, else unchanged. */
+/** GLM-5.3-Flash's top tier is `xhigh`; it has no `max` variant on any route. */
+export function isGlmFlashXhighPinnedModel(model: string): boolean {
+  return /(^|\/)glm-5\.3-flash$/.test(model);
+}
+
+/** Effective reasoning effort after the Flash top-tier pin, which differs per family. */
 export function pinReasoningEffortForModel(
   model: string,
   reasoningEffort: string | null | undefined,
 ): string | null | undefined {
+  if (isGlmFlashXhighPinnedModel(model)) return 'xhigh';
   return isFlashMaxPinnedModel(model) ? 'max' : reasoningEffort;
 }
 
