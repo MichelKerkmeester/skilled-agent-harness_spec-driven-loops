@@ -1650,6 +1650,17 @@ if [[ -f "$_DESC_SCRIPT" ]]; then
   fi
 fi
 
+# Derive the graph metadata from the documents that were just written, rather
+# than leaving the stub the scaffolder guessed. A scaffold that disagrees with
+# its own deriver fails validation the moment it exists, which teaches an author
+# that the gate is broken before they have written a line.
+_BACKFILL_TS="${SCRIPT_DIR}/../graph/backfill-graph-metadata.ts"
+_TSX_LOADER="${SCRIPT_DIR}/../node_modules/tsx/dist/loader.mjs"
+if [[ -f "$_BACKFILL_TS" && -f "$_TSX_LOADER" ]]; then
+  node --import "$_TSX_LOADER" "$_BACKFILL_TS" "$FEATURE_DIR" >/dev/null 2>&1 \
+    || echo "  Warning: graph metadata derivation skipped" >&2
+fi
+
 if [[ "$DOC_LEVEL" == "phase" ]]; then
     scaffold_phase_parent_validation_child "$FEATURE_DIR" "$FEATURE_DESCRIPTION"
 fi

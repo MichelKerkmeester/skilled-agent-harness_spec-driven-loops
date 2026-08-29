@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-speckit/041-validation-reduction/003-scaffold-parity",
+  "description": "A packet created with no human input stops failing validation the moment it exists.",
+  "keywords": [
+    "packet",
+    "human",
+    "input",
+    "stops",
+    "failing",
+    "validation",
+    "moment",
+    "exists"
+  ],
+  "lastUpdated": "2026-08-29T17:48:10.634Z",
+  "specId": "003",
+  "folderSlug": "scaffold-parity",
+  "parentChain": [
+    "system-speckit",
+    "041-validation-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

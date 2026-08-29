@@ -5,7 +5,8 @@
   "parent_id": null,
   "children_ids": [
     "system-speckit/041-validation-reduction/001-warnings-stop-blocking",
-    "system-speckit/041-validation-reduction/002-tracks-are-not-packets"
+    "system-speckit/041-validation-reduction/002-tracks-are-not-packets",
+    "system-speckit/041-validation-reduction/003-scaffold-parity"
   ],
   "manual": {
     "depends_on": [],
@@ -107,15 +108,15 @@
     ],
     "causal_summary": "The completion gate fails roughly two thirds of the live corpus, and the",
     "created_at": "2026-08-29T17:24:49.641Z",
-    "last_save_at": "2026-08-29T17:34:42.625Z",
+    "last_save_at": "2026-08-29T17:48:24.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:98f5a0c14b5f7a6b8ab48d1c4b69ec43630f2af56798effe6425f3f15e4c8256",
+    "source_fingerprint": "sha256:e6779e350b5168619dfc01293485f6c4ed28d5363c7acb08dc455ce002d25448",
     "source_doc_hashes": {
-      "spec.md": "53bd8e1ab23fff8b8ca62a4b7a58e3d422aea874406a2e9aca87a12fbfcf0b56"
+      "spec.md": "f7d7fe7b288a3d78defedf15f2cccffbad4871a5f8427cd1d7abee51f7699423"
     },
     "last_active_child_id": "system-speckit/041-validation-reduction/002-tracks-are-not-packets",
     "last_active_at": null

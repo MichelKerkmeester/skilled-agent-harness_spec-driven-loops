@@ -76,6 +76,16 @@ run_check() {
         [[ -n "$details" ]] && RULE_DETAILS+=("$details")
     done < <(printf '%s' "$report" | node -e 'const fs=require("fs"); const data=JSON.parse(fs.readFileSync(0,"utf8")); for (const item of data.mismatches || []) console.log(item);' 2>/dev/null || true)
 
+    # A freshly scaffolded packet carries a deliberate "not yet filed" marker in
+    # its pointer. That is a legitimate state, and the never-touched rule already
+    # catches it if it survives into a packet claiming completion.
+    if printf '%s\n' "${RULE_DETAILS[@]-}" | grep -q 'scaffold/'; then
+        RULE_STATUS="pass"
+        RULE_MESSAGE="metadata paths carry the scaffold marker; the packet is not filed yet"
+        RULE_DETAILS=()
+        return 0
+    fi
+
     if speckit_flag_enabled "${SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE:-true}"; then
         RULE_STATUS="fail"
         RULE_MESSAGE="Generated metadata path drift detected against on-disk folder: $actual_path"
