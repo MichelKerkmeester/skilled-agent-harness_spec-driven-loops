@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-code/032-authoring-hardening",
+  "description": "Manual testing playbooks across the skill fleet had drifted to roughly 2,600 contract violations, and no build ever failed",
+  "keywords": [
+    "manual",
+    "testing",
+    "playbooks",
+    "across",
+    "skill",
+    "fleet",
+    "drifted",
+    "roughly",
+    "contract",
+    "violations",
+    "ever",
+    "failed"
+  ],
+  "lastUpdated": "2026-08-29T11:34:28.834Z",
+  "specId": "032",
+  "folderSlug": "authoring-hardening",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}
