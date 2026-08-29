@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/027-spec-track-consolidation",
+  "spec_folder": "sk-code/027-spec-track-consolidation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "spec track consolidation",
+      "cross-repo spec packet relocation",
+      "sk-code obsidian surface migration",
+      "sk-code mobile cli mode migration",
+      "spec track consolidation plan",
+      "cross-repo spec relocation plan",
+      "spec track consolidation tasks",
+      "cross-repo spec relocation tasks",
+      "spec track consolidation implementation",
+      "cross-repo spec relocation summary"
+    ],
+    "key_topics": [
+      "spec-track",
+      "consolidation",
+      "cross-repo",
+      "relocation",
+      "sk-code",
+      "obsidian-surface",
+      "mobile-cli-mode",
+      "identity",
+      "metadata",
+      "fingerprint",
+      "changelog",
+      "residue"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "specs/sk-code/025-sk-code-obsidian-surface",
+      "specs/sk-code/026-sk-code-mobile-cli-mode",
+      ".opencode/skills/sk-code/sk-code-obsidian/README.md",
+      ".opencode/changelog/sk-code/code-obsidian",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "specs/sk-code/025-sk-code-obsidian-surface",
+        "kind": "file",
+        "path": "specs/sk-code/025-sk-code-obsidian-surface",
+        "source": "derived"
+      },
+      {
+        "name": "specs/sk-code/026-sk-code-mobile-cli-mode",
+        "kind": "file",
+        "path": "specs/sk-code/026-sk-code-mobile-cli-mode",
+        "source": "derived"
+      },
+      {
+        "name": ".opencode/skills/sk-code/sk-code-obsidian/README.md",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/sk-code-obsidian/README.md",
+        "source": "derived"
+      },
+      {
+        "name": ".opencode/changelog/sk-code/code-obsidian",
+        "kind": "file",
+        "path": ".opencode/changelog/sk-code/code-obsidian",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Sk-Code Spec-Track Consolidation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Relocate the Obsidian-surface and Mobile-CLI-mode sk-code spec packets from their origin repos into Public/specs/sk-code, rewriting identity metadata and path references so both are first-class sk-code packets.",
+    "created_at": "2026-08-29T09:27:16.000Z",
+    "last_save_at": "2026-08-29T09:27:16.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9d76e8fe5bd5c963ae5dce9c25c1cb45d27e106abbd4a53ab2af463c9683bd3f",
+    "source_doc_hashes": {
+      "spec.md": "5348e4d5decc8874830d5173186b1d425bd7c14f4f290d56884da88ee99c02d7",
+      "plan.md": "92e18500e4bdc60c3780e6c20f24f24a65d00912aeaf30f7fc813a42e9b6deb2",
+      "tasks.md": "bc3d28ed9c8430676678fd21c79c92e4ed12096812d84327302d741c65ca8560",
+      "implementation-summary.md": "b62162e2e424a95488eaece7e721743a55c5554273a501896eb867b2b95d3057"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
