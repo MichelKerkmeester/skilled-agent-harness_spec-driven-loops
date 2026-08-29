@@ -58,22 +58,38 @@ const CHILD = { cwd: REPO, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, timeou
 
 // Rules this tool can settle from repository state alone. Anything absent from
 // this list is reported and left alone, however mechanical it may look.
+//
+// The validator registry already classifies every rule, and this list is not
+// simply its structural category. Two deliberate differences, recorded here so
+// the next reader does not have to guess whether they were intended:
+//
+//   GRAPH_METADATA_SHAPE is structural and included, because the re-derive
+//   rewrites the very file it makes assertions about.
+//
+//   SPEC_DOC_INTEGRITY is classified as an authored-template rule and included
+//   anyway, because one of its two failure modes is a recorded location that
+//   has gone stale — recomputable — while the other is a reference to a file
+//   that no longer exists, which is not. Only the first is repaired; a packet
+//   failing solely on the second is reported as beyond this tool rather than
+//   passing silently.
 const DERIVABLE = new Set([
   'DESCRIPTION_SHAPE',
   'GENERATED_METADATA_INTEGRITY',
   'GENERATED_METADATA_DRIFT',
+  'GRAPH_METADATA_SHAPE',
   'METADATA_DISK_PATH_CONSISTENCY',
   'SPEC_DOC_INTEGRITY',
 ]);
 
 // The subset a re-derive can actually settle, because they are assertions about
-// graph-metadata.json itself. The other two describe description.json contents
-// and in-document reference paths, which a re-derive does not write; planning
-// one for them would be a write that changes nothing and a report line that
-// never clears.
+// graph-metadata.json itself. The others describe description.json contents and
+// in-document reference paths, which a re-derive does not write; planning one
+// for them would be a write that changes nothing and a report line that never
+// clears.
 const REDERIVABLE = new Set([
   'GENERATED_METADATA_INTEGRITY',
   'GENERATED_METADATA_DRIFT',
+  'GRAPH_METADATA_SHAPE',
   'METADATA_DISK_PATH_CONSISTENCY',
 ]);
 
@@ -148,9 +164,21 @@ function findings(report) {
   return rows.filter((r) => ['error', 'warn', 'warning'].includes(String(r.status || r.severity || '').toLowerCase()));
 }
 
-function readLevel(report) {
-  const level = report.level;
-  return level === undefined || level === null || level === '' ? null : String(level);
+const LEVEL_MARKER = /<!--\s*SPECKIT_LEVEL:\s*(\d\+?)\s*-->/;
+const LEVEL_MARKER_DOCS = ['spec.md', 'tasks.md', 'plan.md', 'checklist.md'];
+
+// The level the packet states about itself, or null when it states none.
+// Mirrors the generator that owns this field so the two writers agree; the
+// validator's reported level cannot be used here because it falls back to a
+// default when nothing is declared, and writing that would record a level the
+// packet never claimed.
+function declaredLevel(folder) {
+  for (const doc of LEVEL_MARKER_DOCS) {
+    const text = readIfPresent(path.join(folder, doc));
+    const found = text === null ? null : LEVEL_MARKER.exec(text);
+    if (found) return found[1];
+  }
+  return null;
 }
 
 /** The frontmatter block's end offset, or 0 when the document has no block. */
@@ -212,7 +240,12 @@ function fixDescriptionLevel(folder, report) {
     return null;
   }
   if (!data || typeof data !== 'object' || Array.isArray(data) || 'level' in data) return null;
-  const level = readLevel(report);
+  // Only a level the packet declares itself. The validator reports a level for
+  // every packet, but where none is declared that number comes from a fallback
+  // ladder ending in a default — a value nobody wrote down. Recording it would
+  // be inventing the fact this tool exists to avoid inventing, so a packet that
+  // declares nothing keeps an absent field and stays visibly incomplete.
+  const level = declaredLevel(folder);
   if (!level) return null;
   return {
     file,
@@ -302,7 +335,14 @@ async function repairFolder(folder, apply) {
   // is the second reason to plan one.
   const staleMetadata = [...rules].some((rule) => REDERIVABLE.has(rule));
   const planned = edits.length > 0 || staleMetadata ? [...edits, REDERIVE_STEP] : [];
-  if (!apply || planned.length === 0) return { folder, planned, authored };
+
+  // A rule can be on the allow-list and still have nothing this tool can do
+  // about this particular packet — a reference to a file that is simply gone,
+  // for instance. Such a packet used to leave here reported as neither repaired
+  // nor refused, so it appeared in no total and a clean run was partly a
+  // definition rather than a finding. Name it as beyond reach instead.
+  const beyond = planned.length === 0 ? [...rules].filter((rule) => DERIVABLE.has(rule)) : [];
+  if (!apply || planned.length === 0) return { folder, planned, authored, beyond };
 
   let wrote = 0;
   let failure = null;
@@ -430,6 +470,7 @@ async function main() {
   let failed = 0;
   let done = 0;
   const blocked = new Map();
+  const unreachable = new Map();
   const lines = [];
   const progress = process.stderr.isTTY && targets.length > 1;
 
@@ -457,6 +498,7 @@ async function main() {
         continue;
       }
       for (const rule of result.authored) blocked.set(rule, (blocked.get(rule) || 0) + 1);
+      for (const rule of result.beyond || []) unreachable.set(rule, (unreachable.get(rule) || 0) + 1);
       if (result.failure) {
         failed += 1;
         lines.push(`FAILED ${folder} — ${result.failure}`);
@@ -484,6 +526,13 @@ async function main() {
     // Ties break by name so two runs over the same tree produce the same bytes;
     // insertion order here is whatever the pool happened to schedule.
     for (const [rule, count] of [...blocked].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))) {
+      process.stdout.write(`  ${String(count).padStart(5)}  ${rule}\n`);
+    }
+  }
+
+  if (unreachable.size) {
+    process.stdout.write('\nOn the repairable list, but nothing here could settle this packet:\n');
+    for (const [rule, count] of [...unreachable].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))) {
       process.stdout.write(`  ${String(count).padStart(5)}  ${rule}\n`);
     }
   }
