@@ -196,6 +196,11 @@ sweep-reports/
 /*/**/.opencode/logs/
 /*/**/.opencode/skills/.advisor-state/
 /*/**/.opencode/skills/.spec-gate-state/
+# Runtime state was consolidated under .state/, but the leak these rules catch
+# is a process resolving the repo root to its own working directory. That can
+# recur against the new path just as easily, and the rules above would not see
+# it. Nested only — the real .state/ at the repository root stays visible.
+/*/**/.opencode/skills/.state/
 
 # ───────────────────────────────────────────
 # Routing test sandboxes

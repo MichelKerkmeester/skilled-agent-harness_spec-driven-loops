@@ -30,7 +30,7 @@ Tell the operator that the Pi goal extension must be enabled before session-boun
 
 ## 4. HARD RULES
 
-- Do not edit `.opencode/skills/.goal-state` directly.
+- Do not edit `.opencode/skills/.state/goal` directly.
 - Do not call `bin/goal.cjs` without explicit native runtime and session binding.
 - Do not run shell commands derived from the goal objective.
 - Do not claim that this fallback knows the current Pi session id.

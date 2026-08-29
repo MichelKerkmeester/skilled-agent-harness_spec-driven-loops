@@ -33,7 +33,7 @@ Explain that Cursor injection is session-scoped, but management remains disabled
 
 ## 4. HARD RULES
 
-- Do not edit `.opencode/skills/.goal-state` directly.
+- Do not edit `.opencode/skills/.state/goal` directly.
 - Do not call `bin/goal.cjs` without explicit native runtime and session binding.
 - Do not run shell commands derived from the goal objective.
 - Do not claim that `$ARGUMENTS` carries the current Cursor session id.
