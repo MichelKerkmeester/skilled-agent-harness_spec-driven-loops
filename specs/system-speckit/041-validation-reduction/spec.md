@@ -134,11 +134,11 @@ the corpus being told it is broken by rules nothing consumes.
 | 1 | `001-warnings-stop-blocking` | Strict mode stops promoting warnings to errors | Complete |
 | 2 | `002-tracks-are-not-packets` | Track directories stop being graded as packets | Complete |
 | 3 | `003-scaffold-parity` | A fresh scaffold passes the gate it ships with | Complete |
-| 4 | `004-delete-template-conformance` | Remove prose-shape grading and its unreachable twins | Planned |
-| 5 | `005-delete-taste-rules` | Remove rules that encode taste with no consumer | Planned |
-| 6 | `006-derive-not-grade` | Stop copying derived facts into authored prose | Planned |
-| 7 | `007-the-small-gate` | Collapse to the checks with a machine consumer | Planned |
-| 8 | `008-retire-the-sweep` | Replace the weekly cron with a changed-packet check | Planned |
+| 4 | `004-stop-grading-prose-shape` | Remove prose-shape grading; narrow anchors to their consumers | Complete |
+| 5 | `005-delete-taste-rules` | Remove rules that encode taste with no consumer | Deferred |
+| 6 | `006-derive-not-grade` | Stop copying derived facts into authored prose | Deferred |
+| 7 | `007-the-small-gate` | Collapse to the checks with a machine consumer | Deferred |
+| 8 | `008-retire-the-sweep` | Replace the weekly cron with a changed-packet check | Deferred |
 
 ### Phase Transition Rules
 

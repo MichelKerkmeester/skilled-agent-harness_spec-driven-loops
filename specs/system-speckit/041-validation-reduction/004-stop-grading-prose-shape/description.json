@@ -1,0 +1,28 @@
+{
+  "specFolder": "system-speckit/041-validation-reduction/004-stop-grading-prose-shape",
+  "description": "Documents stop being diffed against templates that change weekly; anchors are checked for what actually reads them.",
+  "keywords": [
+    "documents",
+    "stop",
+    "diffed",
+    "against",
+    "templates",
+    "change",
+    "weekly",
+    "anchors",
+    "checked",
+    "actually",
+    "reads",
+    "them"
+  ],
+  "lastUpdated": "2026-08-29T18:27:05.348Z",
+  "specId": "004",
+  "folderSlug": "stop-grading-prose-shape",
+  "parentChain": [
+    "system-speckit",
+    "041-validation-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

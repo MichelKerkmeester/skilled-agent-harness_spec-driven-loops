@@ -115,16 +115,14 @@ describe('validation engine coherence', () => {
 
   it('prints the detail lines that say what a finding actually found', () => {
     const folder = copyFixture();
-    const checklist = path.join(folder, 'checklist.md');
-    const text = fs.readFileSync(checklist, 'utf8').replace(/^# .*$/mu, '# Checklist: wrong title shape');
-    fs.writeFileSync(checklist, text, 'utf8');
+    const spec = path.join(folder, 'spec.md');
+    const text = fs.readFileSync(spec, 'utf8').replace('<!-- ANCHOR:metadata -->', '<!-- ANCHOR:metadata -->\n<!-- ANCHOR:metadata -->');
+    fs.writeFileSync(spec, text, 'utf8');
 
-    const result = runValidate(folder, { SPECKIT_RULES: 'TEMPLATE_HEADERS' });
-    expect(result.stdout).toContain('H1 should start with');
+    const result = runValidate(folder, { SPECKIT_RULES: 'ANCHORS_VALID' });
+    expect(result.stdout).toContain("duplicate anchor 'metadata'");
   });
 
-  // The auto-recursion notice is suppressed in JSON mode, so reading the mode
-  // after printing it puts prose in front of the JSON and breaks every parser.
   it('emits parseable JSON for a phase parent when the mode comes from the environment', { timeout: 30_000 }, () => {
     const parent = fs.mkdtempSync(path.join(os.tmpdir(), 'engine-coherence-parent-'));
     createdRoots.add(parent);
@@ -137,31 +135,6 @@ describe('validation engine coherence', () => {
     });
     const first = (result.stdout ?? '').split('\n').find((line) => line.trim() !== '') ?? '';
     expect(() => JSON.parse(first)).not.toThrow();
-  });
-
-  // A '#' line inside frontmatter is a YAML comment. Reading one as the title
-  // lets a genuinely wrong heading pass on the strength of a comment above it.
-  it('does not accept a frontmatter comment as the checklist title', () => {
-    const folder = copyFixture();
-    const checklist = path.join(folder, 'checklist.md');
-    fs.writeFileSync(
-      checklist,
-      [
-        '---',
-        'title: "Fixture"',
-        '# Verification Checklist: looks right but is a comment',
-        'contextType: "general"',
-        '---',
-        '',
-        '# Checklist: the real title, which is wrong',
-        '',
-      ].join('\n'),
-      'utf8',
-    );
-
-    const result = runValidate(folder, { SPECKIT_RULES: 'TEMPLATE_HEADERS' });
-    expect(result.stdout).toContain('H1 should start with');
-    expect(result.stdout).toContain('the real title, which is wrong');
   });
 
   it('reports an opened but unterminated frontmatter block as its own fault', () => {
