@@ -1,0 +1,4 @@
+{"type":"iteration","iteration":2,"run":2,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","status":"complete","focus":"Runtime goal systems and speckit goal_prompting runtime-neutrality","findingsCount":4,"newInfoRatio":0.85,"noveltyJustification":"Runtime matrix, 94 speckit mentions, 4000-cap vs 15028-byte 033 file, and the offer-vs-set distinction were new relative to iteration 1.","timestamp":"2026-08-29T17:56:00.000Z","sessionId":"fanout-grok46-xhigh-1788025387577-mq8fbn","generation":1}
+{"type":"finding","id":"f-three-systems","iteration":2,"text":"OpenCode plugin, sibling core, and a Claude hole — not two systems."}
+{"type":"ruled_out","iteration":2,"approach":"Add hooks/goal/claude adapter","reason":"CC-029 by-design empty"}
+{"type":"observation","iteration":2,"text":"speckit goal mentions counted 94; goal_prompt_choice confined to eight YAMLs."}

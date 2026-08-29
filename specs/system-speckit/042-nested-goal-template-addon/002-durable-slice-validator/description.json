@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/042-nested-goal-template-addon/002-durable-slice-validator",
+  "description": "Nothing checks a goal document",
+  "keywords": [
+    "nothing",
+    "checks",
+    "goal",
+    "document"
+  ],
+  "lastUpdated": "2026-08-29T19:50:40.997Z",
+  "specId": "002",
+  "folderSlug": "durable-slice-validator",
+  "parentChain": [
+    "system-speckit",
+    "042-nested-goal-template-addon"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

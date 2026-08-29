@@ -1,0 +1,142 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "q-level-contract",
+      "text": "How should goal.md enter the Level contract (optionalAddonDocs vs lazyAddonDocs), which levels, and what should the template contain for phase-parent vs child?",
+      "origin": "operator",
+      "status": "resolved",
+      "resolvedInRun": 1
+    },
+    {
+      "id": "q-runtime-goal-systems",
+      "text": "How do Claude Code native goal and the local opencode-goal plugin differ, and what does the missing Claude adapter imply?",
+      "origin": "operator",
+      "status": "resolved",
+      "resolvedInRun": 2
+    },
+    {
+      "id": "q-speckit-goal-prompting",
+      "text": "Should the speckit goal_prompting / goal_prompt_choice contract become runtime-neutral, and how, given opencode_goal has no Claude adapter?",
+      "origin": "operator",
+      "status": "resolved",
+      "resolvedInRun": 2
+    },
+    {
+      "id": "q-binding",
+      "text": "What wording, parent/child precedence, and validation make a parent-to-child goal.md reference reliable without a dereference mechanism?",
+      "origin": "operator",
+      "status": "resolved",
+      "resolvedInRun": 3
+    },
+    {
+      "id": "q-stop-gate",
+      "text": "Can the acceptance-criteria closure gate serve as the packet-level self-contained stop check given stop-evaluator asymmetry?",
+      "origin": "operator",
+      "status": "resolved",
+      "resolvedInRun": 3
+    },
+    {
+      "id": "q-drift-staleness",
+      "text": "How should goal.md split durable directive vs volatile log, and should a validator enforce a parent size cap, given packet 033 drift?",
+      "origin": "operator",
+      "status": "resolved",
+      "resolvedInRun": 3
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "f-lazy-bucket",
+      "text": "goal.md belongs on lazyAddonDocs at levels 1, 2, 3, 3+ and phase-parent; omit review.",
+      "run": 1
+    },
+    {
+      "id": "f-three-systems",
+      "text": "In-repo goal surfaces are OpenCode plugin, sibling core (Pi/Cursor), and a Claude hole. 4000-char caps are real. Claude Stop-hook internals are not proven here.",
+      "run": 2
+    },
+    {
+      "id": "f-dispatch-table",
+      "text": "goal_prompting should become runtime-neutral via a dispatch table. Offer already does not call opencode_goal; set is the Claude/Cursor gap.",
+      "run": 2
+    },
+    {
+      "id": "f-convention",
+      "text": "Parent-to-child references are a prompt convention plus a present-file packet validator. The set string is a short pointer plus copied completion criteria.",
+      "run": 3
+    },
+    {
+      "id": "f-ac-complement",
+      "text": "AC_CLOSURE is the L2+ packet-close complement, not the session stop evaluator, and it does not run on phase-parent.",
+      "run": 3
+    },
+    {
+      "id": "f-durable-cap",
+      "text": "Cap the durable slice of parent goal.md at 2000 characters. Do not cap the whole file. 033 goal.md is 15028 bytes with three phases.",
+      "run": 3
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "requiredAddonDocs or requiredCoreDocs for goal.md",
+      "reason": "file-presence hard-error on every existing packet",
+      "iteration": 1
+    },
+    {
+      "approach": "optionalAddonDocs as the primary bucket",
+      "reason": "QA/closure semantic; collectDocuments would miss a new basename",
+      "iteration": 1
+    },
+    {
+      "approach": "hooks/goal/claude adapter",
+      "reason": "CC-029 / README matrix by-design empty",
+      "iteration": 2
+    },
+    {
+      "approach": "Runtime path-follower in goal-core",
+      "reason": "string-in/string-out; no dereference exists",
+      "iteration": 3
+    },
+    {
+      "approach": "AC_CLOSURE as session stop evaluator",
+      "reason": "wrong process, wrong file, inactive on phase-parent",
+      "iteration": 3
+    },
+    {
+      "approach": "Whole-file size cap on parent goal.md",
+      "reason": "punishes the progress log",
+      "iteration": 3
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 6,
+    "keyFindings": 6,
+    "convergenceScore": 1.0,
+    "coverageBySources": {
+      "spec-kit-docs.json": 1,
+      "goal-core.cjs": 1,
+      "opencode-goal.js": 1,
+      "check-ac-closure.sh": 1,
+      "033-goal.md": 1
+    }
+  },
+  "sessionId": "fanout-grok46-xhigh-1788025387577-mq8fbn",
+  "generation": 1,
+  "divergence": {
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "auditedOverrides": 0,
+    "saturatedDirections": [
+      "required lists",
+      "optionalAddonDocs-as-primary",
+      "Claude adapter",
+      "runtime dereference",
+      "whole-file cap"
+    ],
+    "remainingFrontier": [
+      "live Claude Stop-hook re-read behavior"
+    ]
+  }
+}

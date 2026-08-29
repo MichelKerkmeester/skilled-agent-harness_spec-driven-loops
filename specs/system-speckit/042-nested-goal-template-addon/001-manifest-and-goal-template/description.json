@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/042-nested-goal-template-addon/001-manifest-and-goal-template",
+  "description": "There is no goal document anywhere in the documentation-level contract",
+  "keywords": [
+    "goal",
+    "document",
+    "anywhere",
+    "documentation-level",
+    "contract"
+  ],
+  "lastUpdated": "2026-08-29T19:50:40.996Z",
+  "specId": "001",
+  "folderSlug": "manifest-and-goal-template",
+  "parentChain": [
+    "system-speckit",
+    "042-nested-goal-template-addon"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

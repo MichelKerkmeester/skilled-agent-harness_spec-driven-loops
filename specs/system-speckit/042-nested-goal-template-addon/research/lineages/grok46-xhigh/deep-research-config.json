@@ -1,0 +1,92 @@
+{
+  "topic": "Design a nested-goal addon for system-spec-kit. A parent goal.md is the single objective an operator sets via the runtime goal command; it references per-phase child goal.md files so the effective directive can exceed whatever character cap the goal command enforces, while the set string stays small and stable. Investigate and decide: (1) how this should enter the Level contract in templates/spec-kit-docs.json — optionalAddonDocs vs lazyAddonDocs, which levels, phase-parent vs child semantics, and what a goal.md.tmpl should contain at each level; (2) the two runtime goal systems and how they differ — Claude Code's native goal is a session-scoped Stop hook holding a frozen condition string evaluated at stop time, while .opencode/plugins/opencode-goal.js is a local mimic that re-injects into the system prompt every turn via experimental.chat.system.transform and caps objective and prompt at 4000 chars in goal-core.cjs; the repo's own cli-claude-code playbook states the runtime-neutral goal core registers no Claude Code adapter; (3) the speckit command surface, which already carries ~96 goal mentions including a goal_prompting contract with goal_prompt_choice offer/skip/set that invokes the opencode_goal tool — a tool with no Claude adapter, so the existing offer does not fire in the runtime where native goal lives; decide whether that contract should become runtime-neutral and how; (4) the binding problem — nothing dereferences a path inside a goal string, so a parent-to-child reference is a prompt convention rather than a mechanism; determine what wording, precedence rule between parent decisions and child detail, and validation would make it reliable; (5) the stop-gate asymmetry — referenced child content reaches the working agent but not necessarily the stop evaluator, so completion criteria in the parent must stay self-contained and checkable, and evaluate whether the existing acceptance-criteria closure gate can serve as that packet-level check; (6) drift and staleness — a frozen condition set once diverges from a goal.md that keeps changing, as observed in packet 033 where the live condition still described two phases while goal.md had grown to 15028 characters across three; propose how goal.md should be split between durable directive and volatile log, and whether a validator should enforce a parent size cap.",
+  "maxIterations": 3,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "max-iterations",
+    "divergent": {}
+  },
+  "stuckThreshold": 3,
+  "minIdeaObservations": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/042-nested-goal-template-addon",
+  "createdAt": "2026-08-29T17:50:00.000Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "stopPolicy": "max-iterations",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "executor": {
+    "kind": "cli-cursor",
+    "model": "cursor-grok-4.6-xhigh",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "permissionMode": "acceptEdits",
+    "timeoutSeconds": 900
+  },
+  "lineage": {
+    "sessionId": "fanout-grok46-xhigh-1788025387577-mq8fbn",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/system-deep-loop/deep-research/assets/runtime-capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/system-deep-loop/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": ".deep-research-pause",
+  "archiveRoot": "_archive",
+  "migrationWindowDays": 28,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "nextRunAt": null,
+  "remainingDelayMs": null,
+  "_fanout": {
+    "label": "grok46-xhigh",
+    "artifactDir": "specs/system-speckit/042-nested-goal-template-addon/research/lineages/grok46-xhigh",
+    "note": "Detached lineage. Reducer script is not invoked because it resolves artifact_dir from spec_folder and would write the parent research/ tree. Spec.md mutation and validate.sh are skipped (out of lineage write surface). Memory save skipped."
+  }
+}
