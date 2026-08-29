@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-doc/037-playbook-family-remediation",
+  "description": "Manual testing playbooks are the only executable statement of what each skill package promises an operator",
+  "keywords": [
+    "manual",
+    "testing",
+    "playbooks",
+    "only",
+    "executable",
+    "statement",
+    "skill",
+    "package",
+    "promises",
+    "operator"
+  ],
+  "lastUpdated": "2026-08-29T11:52:57.578Z",
+  "specId": "037",
+  "folderSlug": "playbook-family-remediation",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}

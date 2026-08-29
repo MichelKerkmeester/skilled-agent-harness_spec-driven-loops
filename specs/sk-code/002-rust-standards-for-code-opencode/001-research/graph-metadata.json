@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/002-rust-standards-for-code-opencode/001-research",
+  "spec_folder": "sk-code/002-rust-standards-for-code-opencode/001-research",
+  "parent_id": "sk-code/002-rust-standards-for-code-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "rust standards research",
+      "018 rust research code-opencode",
+      "rust best practices deep research",
+      "napi-rs wasm interop standards research",
+      "rust language standard for sk-code",
+      "018 rust research plan",
+      "rust standards research plan",
+      "10 round rust research allocation",
+      "018 rust research tasks",
+      "rust standards research checklist",
+      "018 rust research summary",
+      "rust standards research outcome"
+    ],
+    "key_topics": [
+      "rust",
+      "standards",
+      "research",
+      "code-opencode",
+      "best",
+      "practices",
+      "deep",
+      "napi-rs",
+      "wasm",
+      "interop",
+      "language",
+      "standard"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "research/deep-research-strategy.md",
+      "research/deep-research-fanout-config.json",
+      "research/research.md",
+      "research/deep-research-state.jsonl",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-fanout-config.json",
+        "kind": "config",
+        "path": "research/deep-research-fanout-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rust Standards Deep Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Does Rust",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Rust",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "citations",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Adding a language to `code-opencode` is not free-form authoring: the surface has a fixed trio+checklist+playbook shape, a machine-readable SMART ROUTING block, and a parent-hub `RESOURCEMAP` union enforced by a drift guard and a skill-benchmark router-replay",
+    "created_at": "2026-07-11T07:13:20.590Z",
+    "last_save_at": "2026-08-28T22:09:12.248Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:333a3ca4a9e3ad38e60613f3f782df454f2e70075c72406de6d439fb5266cc25",
+    "source_doc_hashes": {
+      "spec.md": "964406917262c7ffbb0b5583f46e5020242e06bb1b73cb2e3beb741211b78b2f",
+      "plan.md": "a628d9f5d673304c13bf01594ba56141d40fb5eb2fd446a8e47e2706fcd2ce7e",
+      "tasks.md": "ce89e53f2a0be24a973a6df0bce126d0eb03f4eccff3cd3d8927a47fa977dcc7",
+      "implementation-summary.md": "d2e5dd04e4eeb3cf7ee0279974eedda7b909fdd4579c574771402c585bdbd807",
+      "research/research.md": "63815fd4fcb022fcc23b2a960c299ec14131a48427f116b053df511891bdc7df"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

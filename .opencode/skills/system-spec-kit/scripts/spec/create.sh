@@ -406,6 +406,12 @@ scaffold_contract_docs() {
     fi
     printf '%s\n' "$required_docs"
     scaffold_lifecycle_required_docs "$contract_json"
+    # The closure gate needs this document at every level whose contract lists
+    # it. Without it the scaffolder would emit packets that fail validation the
+    # moment they are created.
+    if printf '%s' "$contract_json" | grep -q '"acceptance-criteria\.md"'; then
+        printf '%s\n' "acceptance-criteria.md"
+    fi
     if $WITH_LAZY_ADDONS; then
         requested_lazy_addon_docs "$contract_json"
     fi

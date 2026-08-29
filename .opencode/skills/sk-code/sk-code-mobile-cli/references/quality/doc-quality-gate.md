@@ -15,11 +15,13 @@ version: 1.1.0.0
 
 # Pi Remote Doc Quality Gate
 
-Every markdown file that ships with Pi Remote passes a deterministic quality gate before a docs change lands. The gate runs the sk-doc structure extractor, reads the Document Quality Index (DQI) from its JSON output, and blocks any file that scores below the bar. This page defines the scorer invocation, the quality bar, the per-document-type targets, and the exact gate check that a reviewer applies.
+Every markdown file shipping with Pi Remote passes a deterministic quality gate before a docs change lands.
 
 ---
 
-## 1. PURPOSE
+## 1. OVERVIEW
+
+### Core Principle
 
 The gate keeps app documentation machine-checkable and consistent. It uses the sk-doc structure extractor from the workspace skill tree, which scores structure, content, and style on a 100 point scale. The score is fully deterministic. Two runs on the same file produce the same number. The gate makes that number the entry requirement for every docs change.
 

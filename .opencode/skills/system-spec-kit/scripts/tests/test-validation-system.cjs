@@ -1465,20 +1465,19 @@ async function testRuleScriptsExist() {
   startSuite('Rule Scripts Existence');
 
   try {
-    const expectedRules = [
-      'check-files.sh',
-      'check-placeholders.sh',
-      'check-anchors.sh',
-      'check-level.sh',
-      'check-priority-tags.sh',
-      'check-evidence.sh',
-      'check-folder-naming.sh',
-      'check-frontmatter.sh',
-      'check-ai-protocols.sh',
-      'check-level-match.sh',
-      'check-section-counts.sh',
-      'check-complexity.sh',
-    ];
+    // Derived from the registry rather than hardcoded: a hardcoded list lets a
+    // newly registered rule ship with no coverage at all, and drifts silently
+    // when a rule is renamed.
+    const registryPath = path.join(SCRIPTS_DIR, 'lib', 'validator-registry.json');
+    const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+    const expectedRules = Array.from(
+      new Set(
+        registry
+          .map((entry) => entry.script_path)
+          .filter((sp) => typeof sp === 'string' && sp.startsWith('rules/') && sp.endsWith('.sh'))
+          .map((sp) => sp.slice('rules/'.length)),
+      ),
+    );
 
     let foundCount = 0;
     const missingRules = [];

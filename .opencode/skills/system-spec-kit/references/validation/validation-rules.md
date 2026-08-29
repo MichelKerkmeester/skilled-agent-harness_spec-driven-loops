@@ -71,8 +71,6 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 
 > **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (46 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, SCOPE_ADHERENCE, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
 
-### Non-Breaking Acceptance Coverage Rollout
-
 ### AC_CLOSURE
 
 `AC_CLOSURE` decides whether a packet may be closed. It is registered at ERROR severity and runs by default; set `SPECKIT_AC_CLOSURE=false` to opt out.
@@ -81,7 +79,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 
 **Scope:** Levels 2, 3 and 3+. Level 1 keeps acceptance criteria inline in `spec.md` and is never gated.
 
-**Rollout:** forward-only behind `SPECKIT_AC_CLOSURE_CUTOFF` (default `2026-08-29T00:00:00Z`), compared against the `Created` date in the packet's `spec.md` metadata table. A packet created before the cutoff, or whose date cannot be read, is reported as advisory and never blocked. This mirrors the `CANONICAL_SAVE_CUTOFF` pattern rather than introducing a third grandfathering mechanism.
+**Rollout:** forward-only behind `SPECKIT_AC_CLOSURE_CUTOFF` (default `2026-08-30`), compared against the `Created` date in the packet's `spec.md` metadata table. A packet created on or before the cutoff, or whose date cannot be read, is advisory on **every** branch — presence, waiver integrity and completion alike — and is never blocked. A malformed override falls back to the default rather than being compared as a string, which would otherwise grandfather the whole repository. This mirrors the `CANONICAL_SAVE_CUTOFF` pattern rather than introducing a third grandfathering mechanism.
 
 **Failure modes:**
 
@@ -89,12 +87,16 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 |---|---|
 | Post-cutoff packet with no `acceptance-criteria.md` | `fail` — the document is required at these levels |
 | A row marked `Waived` or `Superseded` naming no ADR | `fail` — an unbacked waiver is not a pass |
+| A criterion row that cannot be parsed, or an unbalanced code fence | `fail` — a dropped row would empty the table and close the packet |
+| Duplicate criterion ids | `fail` — the tally is ambiguous |
 | A row citing an ADR that `decision-record.md` does not contain | `fail` — the record is the whole justification |
 | A packet claiming completion with an `Unmet` row | `fail` — this is the closure gate |
 | An `Unmet` row while the packet is still in progress | `info` — work in progress is expected to carry open criteria |
 | Pre-cutoff packet | `info` — grandfathered |
 
-**Waiver contract:** a criterion may only be dropped or replaced through a decision record. The Waiver cell must name `ADR-NNN` and that ADR must exist as a heading in `decision-record.md`.
+**Waiver contract:** a criterion may only be dropped or replaced through a decision record. The Waiver cell must name `ADR-NNN`, and every ADR it names must be declared in `decision-record.md` as a heading, a bold list item or a table row, outside any code fence. `ADR-1` and `ADR-001` are the same record.
+
+**Column binding:** the criteria table is parsed by header name, not by column position, so an escaped pipe or an added column cannot shift the Status cell.
 
 `AC_COVERAGE` is registered at INFO severity and runs by default; set `SPECKIT_AC_COVERAGE=false` to opt out. The rule is advisory: it reports the coverage denominator, covered count, configured floor, manual-infeasible escape hatch status, and malformed evidence citations without adding strict warnings or errors. The `SPECKIT_AC_COVERAGE_ENFORCE` flag is documented as a future promotion switch; changing validation outcome requires a later severity change backed by adoption evidence.
 

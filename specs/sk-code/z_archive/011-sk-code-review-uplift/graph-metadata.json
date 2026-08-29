@@ -213,9 +213,9 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:42a2b8eccc72d5699181d61718d5a9b1ca8b45b45d1833aef5a53457782bda91",
+    "source_fingerprint": "sha256:6ee37366518c08c26264844b03237a59143ed2b7f04bdec33a6cb36c65e02289",
     "source_doc_hashes": {
-      "spec.md": "b5bfcfd19edde9886f5ee8b90d011115407361d904971a0ad746494fab8d00a2",
+      "spec.md": "17a3b4e9dc4a51756c4010069ff531251e9ac4f7ce97a32ea24cd962efa3d6f5",
       "plan.md": "5d6bca90932efc5dea1c9ca27b32cfa517344b6f65c82cb5fc6d98ae9f484c0d",
       "tasks.md": "19eb2b82fceda4e623532c96406af79dac4ca1172267e5c36ad9465886f74257",
       "implementation-summary.md": "bc447211b6f287264bef4bcfbe9f6533642d31d169c5204057128c85104d394a"

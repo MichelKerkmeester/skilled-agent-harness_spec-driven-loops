@@ -387,7 +387,7 @@ Refined the shared standalone skill README template to v1.9.0.0 (purpose-first p
 #### sk-doc/027-playbook-snippet-template-migration — Playbook snippet template migration
 Migrated all 32 manual-testing-playbook routing-gold snippet files to the per-feature scaffold: numbered OVERVIEW/SCENARIO CONTRACT/TEST EXECUTION/SOURCE FILES/SOURCE METADATA sections, prose test execution replacing the 9-column table, and frontmatter trimmed via a blacklist so only proven-dead keys (`category`, `created`, `expected_token_range_*`) were dropped. The snippet template also gained the routing-gold fields it had omitted, and the migration passed the topology gate, package validator and strict validation. Purely internal tooling; the 13 minimal files keep prompt-only execution by design.
 
-#### sk-doc/028-sk-communication-skill — sk-communication skill authored
+#### sk-doc/039-sk-communication-skill — sk-communication skill authored
 Added a standalone `sk-communication` skill that routes requests into the communication-projection package while enforcing its invariants: canonical bytes unchanged, privacy-before-ranking, full-projection or safe-native runtime tiers, exact-original failure returns, and content-free telemetry. It passes skill-root metadata, package validation and advisor-routing smoke tests; its one caveat is that the skill and its package ship together on the `skilled/0143` branch.
 
 #### sk-doc/028-sk-create-diagram — sk-create-diagram editorial diagram mode
@@ -491,25 +491,25 @@ Deprecated the Open Design MCP transport end-to-end: the 45-file mode tree, `.ut
 
 ## Code (sk-code)
 
-#### sk-code/017-sk-code-parent — Parent hub: modes + surface packets
+#### sk-code/001-sk-code-parent — Parent hub: modes + surface packets
 The flat sk-code skill became a two-axis parent hub at version 4.0.0.0: workflow modes (implement, quality, debug, verify, review) plus read-only surface packets (webflow, opencode, animation), with the standalone review skill folded in as a mode. 128 files were relocated into mode packets, every broken reference was repointed (including restoring the silently-skipped pre-commit hygiene gate), and a deterministic router benchmark rose from 44 to 71. It also shipped the plugin TUI-overlay fix, the parent-hub canon, and the spec-kit workflow relocation. **Breaking:** routing contract and all skill paths changed; skills and references now live under mode/surface packets instead of flat paths.
 
-#### sk-code/018-rust-standards-for-code-opencode — Rust standards + reference-file hygiene
+#### sk-code/002-rust-standards-for-code-opencode — Rust standards + reference-file hygiene
 Rust became a first-class language on the code-opencode surface: standard docs (style_guide, quality_standards, quick_reference, checklist, playbook), `.rs`/Cargo detection, child and parent-union routing, and six registration touchpoints, all verified green with a fail-closed router-replay. In the second workstream, 33 oversized reference/asset docs were split into 104 topic-cohesive parts across code-opencode, code-webflow, and code-quality with the router contract rewired in lockstep — 21/21 guards pass with zero regressions. Largely internal tooling; the user-visible gain is Rust-aware routing and shorter, topic-cohesive reference files.
 
-#### sk-code/019-split-doc-template-alignment — Split-doc template alignment
+#### sk-doc/032-split-doc-template-alignment — Split-doc template alignment
 All 163 mechanically-split reference/asset files across code-opencode, code-webflow, and code-quality were conformed to the create-skill templates: snake_case renames, 5-field frontmatter with 4-part version stamps, OVERVIEW wrappers, and renumbered sections with content preserved verbatim. Every in-hub reference to renamed files was updated. A post-ship 10-iteration deep review drove two P1 remediations — de-duplicating 21 code-webflow Purpose paragraphs from their H1 intros and narrowing a broken-link completion claim — plus four structural fixes from xHigh re-verification. Internal documentation hygiene; no user-facing behavior change.
 
-#### sk-code/020-content-quality-remediation — Content-quality remediation
+#### sk-code/003-content-quality-remediation — Content-quality remediation
 Fixed 20 code-webflow reference files flagged as out-of-scope follow-ups by 019's review: reconciled a self-contradicting session-cookie SameSite example, hardened a CDN loader with an HTTPS origin allowlist and SRI note before `script.src`, and replaced 19 generic "when implementing or troubleshooting" When-to-Use sections with concrete section-derived scenarios. All 20 files validate clean with zero regressions. Internal documentation; the security examples are now sound teaching material.
 
-#### sk-code/021-code-conformance-alignment — Conformance gate repair + drift sweep
+#### sk-code/004-code-conformance-alignment — Conformance gate repair + drift sweep
 In-progress phase parent: the enforcement mechanism for the sk-code code-opencode standard was itself broken — a dead post-edit hook, a completion gate scoped to one skill tree, and manual-only header shaping — and that blindness let roughly 1,400 authored files drift from the file-opening, comment-hygiene, portability, and containment contracts. The program repairs the gate first, then sweeps the drift in blast-radius order; child 001 sits at 80% with open operator decisions Q1–Q5. Purely internal tooling and not yet shipped to completion.
 
-#### sk-code/022-dist-staleness-rebuild-on-drift — Dist-staleness self-heal rebuild
+#### sk-code/005-dist-staleness-rebuild-on-drift — Dist-staleness self-heal rebuild
 The dist-staleness guard now self-heals a stale checked-out build at session start via a bounded, fail-open `try_rebuild` (kill-switch defaulted on), ending the recurring cross-session hook error. The orphaned `DIST_PACKAGES` entry that crashed the whole `--all` sweep was removed rather than repaired, and the fix was verified with a stale-then-fresh control. Purely internal tooling.
 
-#### sk-code/023-dist-guard-skip-unprovisioned — Dist guard skips unprovisioned packages
+#### sk-code/006-dist-guard-skip-unprovisioned — Dist guard skips unprovisioned packages
 The dist-freshness checker now classifies a package it cannot build (missing `package.json` or `node_modules`) as `unprovisioned` with `stale: false`, so `check-dist-staleness.sh` stays silent instead of warning every session. Fresh and genuinely stale packages are unaffected. Purely internal tooling; operators still own provisioning.
 
 #### sk-code/z_archive/001-sk-code-review-creation — sk-code-review promoted to first-class baseline

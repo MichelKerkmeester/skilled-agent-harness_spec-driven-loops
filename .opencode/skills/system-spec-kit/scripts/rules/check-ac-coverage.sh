@@ -118,12 +118,19 @@ _ac_count_requirement_table() {
 _ac_count_canonical_rows() {
     local ac_file="$1"
     awk -F'|' '
-        function trim(v) { gsub(/^[[:space:]]+|[[:space:]]+$/, "", v); return v }
+        function norm(v) {
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", v)
+            gsub(/\*\*|`/, "", v)
+            gsub(/^[[:space:]]+|[[:space:]]+$/, "", v)
+            return toupper(v)
+        }
         /^[[:space:]]*(```|~~~)/ { in_fence = !in_fence; next }
         in_fence { next }
         /^\|/ {
-            id = trim($2)
-            if (id ~ /^AC-[0-9]+[0-9A-Za-z]*$/) count++   # digits required: skips the AC-ID header
+            # Bold and backticked ids are the same criterion; the AC-ID header is
+            # excluded because it carries no digits.
+            id = norm($2)
+            if (id ~ /^AC-[0-9]+[0-9A-Za-z]*$/) count++
         }
         END { print count + 0 }
     ' "$ac_file"

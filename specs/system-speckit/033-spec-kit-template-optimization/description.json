@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/033-spec-kit-template-optimization",
   "description": "The spec-kit document templates carry two unresolved costs",
   "keywords": [
@@ -10,13 +11,12 @@
     "unresolved",
     "costs"
   ],
-  "lastUpdated": "2026-08-29T12:14:36.490Z",
+  "lastUpdated": "2026-08-29T14:08:52.394Z",
   "specId": "033",
   "folderSlug": "spec-kit-template-optimization",
   "parentChain": [
     "system-speckit"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

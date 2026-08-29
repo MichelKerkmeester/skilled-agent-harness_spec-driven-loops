@@ -10,7 +10,6 @@ trigger_phrases:
   - "do not edit note"
   - "read an editability seam"
   - "comment grammar scan"
-  - "comment only diff verifier"
 importance_tier: normal
 contextType: implementation
 version: 0.1.7.0

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair",
+  "spec_folder": "sk-code/004-code-conformance-alignment/001-conformance-rulings-and-gate-repair",
+  "parent_id": "sk-code/004-code-conformance-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "repair comment hygiene gate",
+      "three guard drift verifier scope",
+      "amend test filename vocabulary",
+      "conformance scope rulings",
+      "post-edit hook dead",
+      "gate repair plan",
+      "comment checker vocabulary holes",
+      "drift verifier baseline capture",
+      "test discovery contract",
+      "gate repair tasks",
+      "conformance rulings tasks",
+      "comment checker fixtures"
+    ],
+    "key_topics": [
+      "repair",
+      "comment",
+      "hygiene",
+      "gate",
+      "three",
+      "guard",
+      "drift",
+      "verifier",
+      "scope",
+      "amend",
+      "test",
+      "filename"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Conformance Rulings",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three enforcement mechanisms for the `code-opencode` standard failed independently and simultaneously, and nothing noticed",
+    "created_at": "2026-07-30T19:25:14.337Z",
+    "last_save_at": "2026-08-28T22:09:44.946Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5f578c535828bdaeab6b5b33d38279aca394736694065dacb1dcf55ed9b4c104",
+    "source_doc_hashes": {
+      "spec.md": "984553ba55bf33e67ff2018603e3d28fef3244e3a9ab41009e7d58f33a08fe67",
+      "plan.md": "82ca85dc8a8099c21ba12ff4b78d25641f89205f277c2c081432a43dc5af8d7f",
+      "tasks.md": "35238c9ab94191f3f1ede77d740735e97949959aea5675309af338941695ddbd",
+      "checklist.md": "8dfe9166d7d8a1f4c79b82b1d288488c5dc63201d225b6aec08f3dd14225945e",
+      "decision-record.md": "e1ccf43692c92858d7023cd8328152495996fba20db4bb10396b1d67a1b11c12",
+      "implementation-summary.md": "4ff88e96677058b7fbcd0da6d87a684bcc3f8d184fa3e6678e7b5fcf5595d6b8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

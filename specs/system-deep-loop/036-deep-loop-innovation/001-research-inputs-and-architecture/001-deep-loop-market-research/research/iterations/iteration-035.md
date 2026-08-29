@@ -955,9 +955,9 @@ exec
 ../Public/.opencode/specs/system-code-graph/001-code-graph-core/research/from-006-sibling-revisit/deep-research-strategy.md
 ../Public/.opencode/specs/system-code-graph/001-code-graph-core/research/from-006-sibling-revisit/iterations/iteration-034.md
 ../Public/.opencode/specs/system-code-graph/001-code-graph-core/research/from-006-sibling-revisit/research.md
-../Public/.opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/deep-research-strategy.md
-../Public/.opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/research.md
-../Public/.opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/deep-research-state.jsonl
+../Public/.opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-strategy.md
+../Public/.opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/research.md
+../Public/.opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-state.jsonl
 ../Public/.opencode/specs/system-code-graph/001-code-graph-core/research/from-006-sibling-revisit/deep-research-config.json
 ../Public/.opencode/specs/system-code-graph/001-code-graph-core/research/from-006-sibling-revisit/deep-research-state.jsonl
 ../Public/.opencode/specs/system-code-graph/001-code-graph-core/research/deep-research-config.json
@@ -973,7 +973,7 @@ exec
 ../Public/.opencode/specs/skilled-agent-orchestration/022-mcp-coco-integration/research/deep-research-config.json
 ../Public/.opencode/specs/skilled-agent-orchestration/022-mcp-coco-integration/research/deep-research-state.jsonl
 ../Public/.opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/006-generated-metadata-quality-research/research/research.md
-../Public/.opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-strategy.md
+../Public/.opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-strategy.md
      238 .opencode/skills/system-deep-loop/deep-research/references/guides/quick_reference.md
      646 .opencode/skills/system-deep-loop/deep-research/references/protocol/loop_protocol.md
      157 .opencode/skills/system-deep-loop/deep-research/references/state/state_outputs.md

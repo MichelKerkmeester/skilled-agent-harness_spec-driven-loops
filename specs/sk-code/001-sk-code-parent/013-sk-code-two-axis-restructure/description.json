@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure",
+  "description": "The 124 cutover merged the sk-code parent hub with a workflow-only decomposition: implement, quality, debug, verify, and review",
+  "keywords": [
+    "cutover",
+    "merged",
+    "sk-code",
+    "parent",
+    "hub",
+    "workflow-only",
+    "decomposition",
+    "implement",
+    "quality",
+    "debug",
+    "verify",
+    "review"
+  ],
+  "lastUpdated": "2026-08-15T14:40:56.616Z",
+  "specId": "013",
+  "folderSlug": "sk-code-two-axis-restructure",
+  "parentChain": [
+    "sk-code",
+    "001-sk-code-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

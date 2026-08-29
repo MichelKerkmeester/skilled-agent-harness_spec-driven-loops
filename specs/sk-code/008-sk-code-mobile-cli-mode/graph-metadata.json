@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/008-sk-code-mobile-cli-mode",
+  "spec_folder": "sk-code/008-sk-code-mobile-cli-mode",
+  "parent_id": null,
+  "children_ids": [
+    "sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan",
+    "sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership",
+    "sk-code/008-sk-code-mobile-cli-mode/003-skill-doc-alignment"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase 4 — dedicated sk-code mode for mobile-cli app work"
+    ],
+    "key_topics": [
+      "phase",
+      "dedicated",
+      "sk-code",
+      "mode",
+      "mobile-cli",
+      "app",
+      "work",
+      "code",
+      "apps",
+      "pi-remote-web",
+      "detects",
+      "generic"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "App Work",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Code work on `apps/pi-remote-web/` detects a generic frontend surface and does not auto-load this",
+    "created_at": "2026-08-17T05:11:33.008Z",
+    "last_save_at": "2026-08-27T10:13:51.244Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "source_fingerprint": "sha256:ff30ceaa6fe2f3cac4d9a9e57f9c8b65ef381f7897b9fc98cc704cc40e27a398",
+    "source_doc_hashes": {
+      "spec.md": "b23275d6ccba3b21dfb03dbf32a283452c623e1d5c792c84e9d64c394b743a7c"
+    },
+    "last_active_child_id": "sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan",
+    "last_active_at": null
+  }
+}

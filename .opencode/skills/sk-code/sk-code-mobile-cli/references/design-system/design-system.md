@@ -1,6 +1,6 @@
 ---
 title: The Design System — Values, Ownership and Naming
-description: Entry point for changing how Pi Remote looks — the three-layer token model, which file a CSS rule belongs in, what a class is called, and the worked recipes for a retint. Routes to the five detailed contracts in this folder.
+description: Entry point for changing how Pi Remote looks — the three-layer token model, which file a CSS rule belongs in, what a class is called, and the worked recipes for a retint. Routes to the six detailed contracts in this folder.
 trigger_phrases:
   - "design system mobile cli"
   - "change a colour or spacing"
@@ -14,10 +14,7 @@ version: 1.0.0.0
 
 # The Design System — Values, Ownership and Naming
 
-Everything about how Pi Remote looks is decided in three places: **what a value is** (the token
-layers), **where its rule lives** (scoped `<style>` versus `app.css`), and **what the class is
-called** (the BEM grammar). Get any one of them wrong and the change either does nothing or leaks
-into a surface you did not mean to touch.
+Six contracts govern how Pi Remote looks. This page routes you to the one your change needs.
 
 ---
 

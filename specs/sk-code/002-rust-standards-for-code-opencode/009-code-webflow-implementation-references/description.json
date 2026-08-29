@@ -1,0 +1,24 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references",
+  "description": "Eleven `code-webflow/references/implementation/` docs exceed 500 lines (largest 1109)",
+  "keywords": [
+    "eleven",
+    "code-webflow",
+    "references",
+    "implementation",
+    "docs",
+    "exceed",
+    "lines",
+    "largest"
+  ],
+  "lastUpdated": "2026-08-15T14:40:56.723Z",
+  "specId": "009",
+  "folderSlug": "code-webflow-implementation-references",
+  "parentChain": [
+    "sk-code",
+    "002-rust-standards-for-code-opencode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

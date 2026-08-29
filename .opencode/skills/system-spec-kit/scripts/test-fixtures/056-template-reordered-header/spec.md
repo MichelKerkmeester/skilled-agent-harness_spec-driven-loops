@@ -39,9 +39,9 @@ This fixture intentionally reorders required H2 sections.
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Reordered header fails | `validate.sh` returns exit code 2 |
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | Reordered header fails |
 
 ---
 

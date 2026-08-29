@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/007-sk-code-obsidian-surface/005-references-stack",
+  "spec_folder": "sk-code/007-sk-code-obsidian-surface/005-references-stack",
+  "parent_id": "sk-code/007-sk-code-obsidian-surface",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [],
+    "causal_summary": "Phase 5: references-stack",
+    "created_at": "2026-08-28T18:17:38Z",
+    "last_save_at": "2026-08-28T18:17:38Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ]
+  }
+}

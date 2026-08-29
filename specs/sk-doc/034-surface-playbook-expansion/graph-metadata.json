@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/034-surface-playbook-expansion",
+  "spec_folder": "sk-doc/034-surface-playbook-expansion",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "surface playbook expansion",
+      "sk-code surface playbook coverage",
+      "operator-scenario playbook categories",
+      "playbook category taxonomy alignment",
+      "surface playbook expansion plan",
+      "playbook category taxonomy plan",
+      "surface playbook expansion tasks",
+      "playbook category taxonomy tasks",
+      "surface playbook expansion implementation",
+      "playbook category taxonomy summary"
+    ],
+    "key_topics": [
+      "surface",
+      "playbook",
+      "expansion",
+      "sk-code",
+      "sk-doc",
+      "operator-scenario",
+      "coverage",
+      "category",
+      "taxonomy",
+      "agent-dispatch",
+      "waiver",
+      "routing-gold"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook",
+      ".opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": ".opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/sk-code-mobile-cli/manual-testing-playbook",
+        "source": "derived"
+      },
+      {
+        "name": ".opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook",
+        "kind": "file",
+        "path": ".opencode/skills/sk-code/sk-code-obsidian/manual-testing-playbook",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surface Playbook Expansion",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Give the two sk-code SURFACE playbooks the coverage breadth of the sk-doc corpus without leaving the operator-scenario contract they already passed.",
+    "created_at": "2026-08-29T10:24:54.000Z",
+    "last_save_at": "2026-08-29T10:24:54.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bd107e38577d9431c29dbc89e5a56666248c3ac5729e6949393d73220983ddc9",
+    "source_doc_hashes": {
+      "spec.md": "c1e5a7b1e507516ee1b52512dda42b77b879e493affb31ffe7fad13032151e29",
+      "plan.md": "13ae574ac2153dc4bb772c62747c41686c53b45a945a7e5de0d61d3ce7df6a84",
+      "tasks.md": "56df6271c0076af174e95fe52b7a22ffe321c5ebe0a9acd2fd76f9f94093bc6d",
+      "implementation-summary.md": "304efc5e56eeb4fb49f0f8a6a021e752af8ea127e8cc18427578cbe0fbc487a6"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -186,5 +186,7 @@ process's exit code.
 
 ## 11. RELATED REFERENCES
 
+- [`skill-reference-integrity.md`](skill-reference-integrity.md) — the drift guard that keeps every app path this surface names resolvable.
+
 - [`../design-system/retint-recipes.md`](../design-system/retint-recipes.md) — applies this resolver method to two worked, step-by-step recipes.
 - `assets/ds-verification-checklist.md` — this gate as a checklist.

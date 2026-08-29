@@ -120,9 +120,9 @@ entire defect class once existed only in dark.
 
 ## 6. RELATED REFERENCES
 
-- [`../browser-free-verification-recipe.md`](../verification/verification.md) — token resolution without a browser, and how the CDP gates fit.
+- [`../verification/verification.md`](../verification/verification.md) — token resolution without a browser, and how the CDP gates fit.
 - [`../verification.md`](../verification/verification.md) — the verification command set for this surface.
-- [`../a11y-parity.md`](../svelte/svelte.md) — the accessibility contract the catalog's a11y panel checks.
+- [`../svelte/svelte.md`](../svelte/svelte.md) — the accessibility contract the catalog's a11y panel checks.
 - [`../scoped-style-ownership.md`](../design-system/scoped-style-ownership.md) — why a class can render unstyled in the wrong component.
 - [`../skill-reference-integrity.md`](../verification/skill-reference-integrity.md) — the guard that keeps these paths from rotting.
 - [`../../assets/story-coverage-checklist.md`](../../assets/story-coverage-checklist.md) — the per-change checklist.

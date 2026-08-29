@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/036-agent-template-conformance",
+  "description": "Audit all 12 agents across every runtime against sk-doc/sk-create-agent's Canonical Frontmatter and Required Body Shape, fix the confirmed defects, an",
+  "keywords": [
+    "audit",
+    "12",
+    "agents",
+    "runtime",
+    "sk-create-agent",
+    "canonical",
+    "frontmatter",
+    "required",
+    "body",
+    "shape",
+    "fix",
+    "defects"
+  ],
+  "lastUpdated": "2026-08-29T10:24:54.000Z",
+  "specId": "036",
+  "folderSlug": "agent-template-conformance",
+  "parentChain": [
+    "sk-doc"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

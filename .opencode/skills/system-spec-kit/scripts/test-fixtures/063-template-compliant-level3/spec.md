@@ -92,20 +92,23 @@ Provide a strict-mode-clean Level 3 fixture that exercises the validator's full 
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | All Level 3 files are present | Six markdown files exist in fixture 063 |
-| REQ-002 | Headers and anchors match current templates | Strict validation exits 0 |
-| REQ-003 | Decision record uses ADR structure | `decision-record.md` includes `ADR-001` with context, decision, alternatives, and consequences |
-| REQ-004 | Summary sufficiency evidence is concrete | `implementation-summary.md` cites fixture files and strict validation command |
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | All Level 3 files are present |
+| REQ-002 | Headers and anchors match current templates |
+| REQ-003 | Decision record uses ADR structure |
+| REQ-004 | Summary sufficiency evidence is concrete |
 
 ### P1 - Required (complete OR user-approved deferral)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-005 | L3 planning addenda are present | Plan includes dependency graph, critical path, milestones, and ADR summary |
-| REQ-006 | L3 checklist addenda are present | Checklist includes architecture, performance, and deployment readiness sections |
+| ID | Requirement |
+|----|-------------|
+| REQ-005 | L3 planning addenda are present |
+| REQ-006 | L3 checklist addenda are present |
 
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
 <!-- /ANCHOR:requirements -->
 ---
 

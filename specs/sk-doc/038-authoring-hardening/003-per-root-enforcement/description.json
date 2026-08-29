@@ -1,0 +1,31 @@
+{
+  "specFolder": "sk-doc/038-authoring-hardening/003-per-root-enforcement",
+  "description": "A fleet validator run could report success over playbook roots it never opened, so a sub-package could carry hundreds of violations behind a green",
+  "keywords": [
+    "fleet",
+    "validator",
+    "run",
+    "report",
+    "success",
+    "playbook",
+    "roots",
+    "never",
+    "opened",
+    "sub-package",
+    "carry",
+    "hundreds",
+    "violations",
+    "behind",
+    "green"
+  ],
+  "lastUpdated": "2026-08-29T11:34:28.852Z",
+  "specId": "003",
+  "folderSlug": "per-root-enforcement",
+  "parentChain": [
+    "sk-doc",
+    "038-authoring-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

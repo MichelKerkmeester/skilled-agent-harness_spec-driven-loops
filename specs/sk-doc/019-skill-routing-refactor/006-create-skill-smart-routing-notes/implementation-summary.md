@@ -86,4 +86,4 @@ A GPT-5.6-sol-fast batch added the notes to the 6 flat-resource packets, modeled
 ---
 
 ## Post-Completion Follow-Up
-- Sibling `sk-code/019-split-doc-template-alignment` completes Request 1.
+- Sibling `sk-doc/032-split-doc-template-alignment` completes Request 1.

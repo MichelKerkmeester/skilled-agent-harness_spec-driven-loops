@@ -65,19 +65,22 @@ Provide a Level 2 packet with current required anchors and a custom section that
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Required headers stay in template order | Default validation has no template-header errors |
-| REQ-002 | Required anchors stay in template order | `ANCHORS_VALID` passes |
-| REQ-003 | Fixture remains non-baseline warning coverage | Default validation reports warnings without errors |
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | Required headers stay in template order |
+| REQ-002 | Required anchors stay in template order |
+| REQ-003 | Fixture remains non-baseline warning coverage |
 
 ### P1 - Required (complete OR user-approved deferral)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-004 | Extra custom sections are accepted | `TEMPLATE_HEADERS` passes |
-| REQ-005 | Strict mode escalates remaining warnings | `validate.sh --strict` returns a validation error |
+| ID | Requirement |
+|----|-------------|
+| REQ-004 | Extra custom sections are accepted |
+| REQ-005 | Strict mode escalates remaining warnings |
 
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
 <!-- /ANCHOR:requirements -->
 ---
 

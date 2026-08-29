@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/001-sk-code-parent/003-scaffold-hub",
+  "spec_folder": "sk-code/001-sk-code-parent/003-scaffold-hub",
+  "parent_id": "sk-code/001-sk-code-parent",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code scaffold hub",
+      "sk-code parent hub scaffold",
+      "sk-code five mode scaffold",
+      "sk-code scaffold hub plan",
+      "sk-code parent scaffold plan",
+      "five mode scaffold plan",
+      "sk-code scaffold hub tasks",
+      "sk-code parent scaffold tasks",
+      "sk-code scaffold hub summary",
+      "sk-code parent scaffold outcome"
+    ],
+    "key_topics": [
+      "sk-code",
+      "scaffold",
+      "hub",
+      "parent",
+      "five",
+      "mode",
+      "plan",
+      "tasks",
+      "summary",
+      "outcome",
+      "accepted",
+      "architecture"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "fixtures/routing-parity-fixtures.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "routing-parity-fixtures.md",
+        "kind": "doc",
+        "path": "fixtures/routing-parity-fixtures.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Build",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Nested",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow User",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "five",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "existing",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The accepted architecture needed a safe intermediate state before content relocation",
+    "created_at": "2026-07-03T00:00:00Z",
+    "last_save_at": "2026-08-28T16:28:17.077Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f97e8d193f27d1a26121c28356f6b457b5cdbc8abdbf08089e04cdb863891dec",
+    "source_doc_hashes": {
+      "spec.md": "5698d983f304a8b11d60f6cf81904f413627e96a189e788c736067ff133ab64d",
+      "plan.md": "878ef7fdfdcd0308881f159fbecc43f925a93b9d7884d0b8ab3eb043f51aca4a",
+      "tasks.md": "ef0a134cb4a6cfedb8108b2992d774d1d7d5f5a031761286f3e41a3c29bee990",
+      "implementation-summary.md": "de452889f24a1f2806b9fdc61687cd4ea89c3b25b9cb6caabecf33a2ee749dc3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

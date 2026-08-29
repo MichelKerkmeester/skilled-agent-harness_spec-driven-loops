@@ -102053,7 +102053,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/001-research-and-context/context/context-map.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/001-research-and-context/context/context-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102063,7 +102063,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/001-research-and-context/context/deep-context-config.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/001-research-and-context/context/deep-context-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102073,7 +102073,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/001-research-and-context/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/001-research-and-context/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102083,7 +102083,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/001-research-and-context/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/001-research-and-context/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102093,7 +102093,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/001-research-and-context/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/001-research-and-context/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102103,7 +102103,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/001-research-and-context/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/001-research-and-context/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102113,7 +102113,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/001-research-and-context/research/deep-research-config.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/001-research-and-context/research/deep-research-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102123,7 +102123,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/001-research-and-context/research/gpt55-taxonomy-pass.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/001-research-and-context/research/gpt55-taxonomy-pass.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102133,7 +102133,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/001-research-and-context/research/gpt55-taxonomy-recommendation.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/001-research-and-context/research/gpt55-taxonomy-recommendation.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102143,7 +102143,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/001-research-and-context/research/research.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/001-research-and-context/research/research.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102153,7 +102153,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/001-research-and-context/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/001-research-and-context/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102163,7 +102163,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/001-research-and-context/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/001-research-and-context/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102173,7 +102173,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/002-architecture-decision/decision-record.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/002-architecture-decision/decision-record.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102183,7 +102183,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/002-architecture-decision/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/002-architecture-decision/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102193,7 +102193,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/002-architecture-decision/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/002-architecture-decision/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102203,7 +102203,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/002-architecture-decision/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/002-architecture-decision/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102213,7 +102213,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/003-scaffold-hub/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/003-scaffold-hub/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102223,7 +102223,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/003-scaffold-hub/fixtures/routing-parity-fixtures.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/003-scaffold-hub/fixtures/routing-parity-fixtures.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102233,7 +102233,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/003-scaffold-hub/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/003-scaffold-hub/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102243,7 +102243,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/003-scaffold-hub/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/003-scaffold-hub/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102253,7 +102253,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/003-scaffold-hub/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/003-scaffold-hub/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102263,7 +102263,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/003-scaffold-hub/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/003-scaffold-hub/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102273,7 +102273,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/003-scaffold-hub/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/003-scaffold-hub/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102283,7 +102283,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/004-onboard-implement/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/004-onboard-implement/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102293,7 +102293,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/004-onboard-implement/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/004-onboard-implement/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102303,7 +102303,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/004-onboard-implement/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/004-onboard-implement/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102313,7 +102313,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/004-onboard-implement/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/004-onboard-implement/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102323,7 +102323,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/004-onboard-implement/relocation-map.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/004-onboard-implement/relocation-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102333,7 +102333,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/004-onboard-implement/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/004-onboard-implement/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102343,7 +102343,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/004-onboard-implement/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/004-onboard-implement/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102353,7 +102353,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/005-foldin-review/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/005-foldin-review/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102363,7 +102363,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/005-foldin-review/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/005-foldin-review/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102373,7 +102373,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/005-foldin-review/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/005-foldin-review/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102383,7 +102383,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/005-foldin-review/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/005-foldin-review/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102393,7 +102393,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/005-foldin-review/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/005-foldin-review/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102403,7 +102403,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/005-foldin-review/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/005-foldin-review/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102413,7 +102413,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/006-build-remaining-modes/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/006-build-remaining-modes/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102423,7 +102423,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/006-build-remaining-modes/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/006-build-remaining-modes/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102433,7 +102433,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/006-build-remaining-modes/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/006-build-remaining-modes/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102443,7 +102443,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/006-build-remaining-modes/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/006-build-remaining-modes/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102453,7 +102453,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/006-build-remaining-modes/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/006-build-remaining-modes/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102463,7 +102463,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/006-build-remaining-modes/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/006-build-remaining-modes/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102473,7 +102473,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/007-advisor-and-integration/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/007-advisor-and-integration/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102483,7 +102483,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/007-advisor-and-integration/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/007-advisor-and-integration/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102493,7 +102493,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/007-advisor-and-integration/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/007-advisor-and-integration/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102503,7 +102503,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/007-advisor-and-integration/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/007-advisor-and-integration/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102513,7 +102513,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/007-advisor-and-integration/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/007-advisor-and-integration/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102523,7 +102523,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/007-advisor-and-integration/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/007-advisor-and-integration/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102533,7 +102533,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/007-advisor-and-integration/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/007-advisor-and-integration/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102543,7 +102543,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/008-routing-benchmark-and-review/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/008-routing-benchmark-and-review/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102553,7 +102553,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/008-routing-benchmark-and-review/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/008-routing-benchmark-and-review/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102563,7 +102563,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/008-routing-benchmark-and-review/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/008-routing-benchmark-and-review/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102573,7 +102573,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/008-routing-benchmark-and-review/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/008-routing-benchmark-and-review/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102583,7 +102583,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/008-routing-benchmark-and-review/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/008-routing-benchmark-and-review/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102593,7 +102593,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/008-routing-benchmark-and-review/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/008-routing-benchmark-and-review/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102603,7 +102603,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/008-routing-benchmark-and-review/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/008-routing-benchmark-and-review/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102613,7 +102613,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/009-cutover-and-rollout/.canonical-save.lock/owner",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/009-cutover-and-rollout/.canonical-save.lock/owner",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102623,7 +102623,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/009-cutover-and-rollout/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/009-cutover-and-rollout/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102633,7 +102633,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/009-cutover-and-rollout/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/009-cutover-and-rollout/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102643,7 +102643,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/009-cutover-and-rollout/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/009-cutover-and-rollout/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102653,7 +102653,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/009-cutover-and-rollout/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/009-cutover-and-rollout/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102663,7 +102663,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/009-cutover-and-rollout/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/009-cutover-and-rollout/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102673,7 +102673,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/009-cutover-and-rollout/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/009-cutover-and-rollout/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102683,7 +102683,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/009-cutover-and-rollout/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/009-cutover-and-rollout/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102693,7 +102693,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/010-plugin-tui-fix/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/010-plugin-tui-fix/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102703,7 +102703,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/010-plugin-tui-fix/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/010-plugin-tui-fix/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102713,7 +102713,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/010-plugin-tui-fix/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/010-plugin-tui-fix/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102723,7 +102723,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/010-plugin-tui-fix/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/010-plugin-tui-fix/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102733,7 +102733,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/010-plugin-tui-fix/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/010-plugin-tui-fix/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102743,7 +102743,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/010-plugin-tui-fix/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/010-plugin-tui-fix/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102753,7 +102753,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/010-plugin-tui-fix/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/010-plugin-tui-fix/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102763,7 +102763,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/011-hub-canon/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/011-hub-canon/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102773,7 +102773,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/011-hub-canon/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/011-hub-canon/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102783,7 +102783,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/011-hub-canon/design-contract.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/011-hub-canon/design-contract.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102793,7 +102793,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/011-hub-canon/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/011-hub-canon/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102803,7 +102803,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/011-hub-canon/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/011-hub-canon/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102813,7 +102813,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/011-hub-canon/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/011-hub-canon/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102823,7 +102823,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/011-hub-canon/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/011-hub-canon/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102833,7 +102833,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/011-hub-canon/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/011-hub-canon/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102843,7 +102843,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/012-spec-kit-relocation/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/012-spec-kit-relocation/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102853,7 +102853,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/012-spec-kit-relocation/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/012-spec-kit-relocation/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102863,7 +102863,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/012-spec-kit-relocation/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/012-spec-kit-relocation/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102873,7 +102873,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/012-spec-kit-relocation/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/012-spec-kit-relocation/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102883,7 +102883,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/012-spec-kit-relocation/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/012-spec-kit-relocation/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102893,7 +102893,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/012-spec-kit-relocation/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/012-spec-kit-relocation/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102903,7 +102903,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/012-spec-kit-relocation/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/012-spec-kit-relocation/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102913,7 +102913,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/013-sk-code-two-axis-restructure/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102923,7 +102923,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/013-sk-code-two-axis-restructure/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102933,7 +102933,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/013-sk-code-two-axis-restructure/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102943,7 +102943,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/013-sk-code-two-axis-restructure/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102953,7 +102953,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/013-sk-code-two-axis-restructure/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102963,7 +102963,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/013-sk-code-two-axis-restructure/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102973,7 +102973,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/013-sk-code-two-axis-restructure/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/013-sk-code-two-axis-restructure/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102983,7 +102983,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/014-close-out-and-tail/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/014-close-out-and-tail/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -102993,7 +102993,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/014-close-out-and-tail/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/014-close-out-and-tail/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103003,7 +103003,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/014-close-out-and-tail/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/014-close-out-and-tail/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103013,7 +103013,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/014-close-out-and-tail/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/014-close-out-and-tail/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103023,7 +103023,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/014-close-out-and-tail/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/014-close-out-and-tail/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103033,7 +103033,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/014-close-out-and-tail/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/014-close-out-and-tail/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103043,7 +103043,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/014-close-out-and-tail/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/014-close-out-and-tail/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103053,7 +103053,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/015-sk-design-canon-alignment/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/015-sk-design-canon-alignment/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103063,7 +103063,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/015-sk-design-canon-alignment/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/015-sk-design-canon-alignment/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103073,7 +103073,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/015-sk-design-canon-alignment/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/015-sk-design-canon-alignment/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103083,7 +103083,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/015-sk-design-canon-alignment/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/015-sk-design-canon-alignment/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103093,7 +103093,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/015-sk-design-canon-alignment/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/015-sk-design-canon-alignment/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103103,7 +103103,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/015-sk-design-canon-alignment/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/015-sk-design-canon-alignment/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103113,7 +103113,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/015-sk-design-canon-alignment/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/015-sk-design-canon-alignment/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103123,7 +103123,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/016-sk-code-content-coherence/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/016-sk-code-content-coherence/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103133,7 +103133,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/016-sk-code-content-coherence/decision-record.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/016-sk-code-content-coherence/decision-record.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103143,7 +103143,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/016-sk-code-content-coherence/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/016-sk-code-content-coherence/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103153,7 +103153,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/016-sk-code-content-coherence/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/016-sk-code-content-coherence/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103163,7 +103163,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/016-sk-code-content-coherence/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/016-sk-code-content-coherence/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103173,7 +103173,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/016-sk-code-content-coherence/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/016-sk-code-content-coherence/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103183,7 +103183,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/016-sk-code-content-coherence/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/016-sk-code-content-coherence/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103193,7 +103193,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/016-sk-code-content-coherence/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/016-sk-code-content-coherence/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103203,7 +103203,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/017-canon-hardening/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/017-canon-hardening/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103213,7 +103213,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/017-canon-hardening/decision-record.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/017-canon-hardening/decision-record.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103223,7 +103223,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/017-canon-hardening/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/017-canon-hardening/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103233,7 +103233,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/017-canon-hardening/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/017-canon-hardening/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103243,7 +103243,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/017-canon-hardening/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/017-canon-hardening/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103253,7 +103253,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/017-canon-hardening/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/017-canon-hardening/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103263,7 +103263,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/017-canon-hardening/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/017-canon-hardening/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103273,7 +103273,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/017-canon-hardening/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/017-canon-hardening/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103283,7 +103283,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/018-deep-loop-canon-alignment/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/018-deep-loop-canon-alignment/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103293,7 +103293,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/018-deep-loop-canon-alignment/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/018-deep-loop-canon-alignment/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103303,7 +103303,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/018-deep-loop-canon-alignment/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/018-deep-loop-canon-alignment/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103313,7 +103313,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/018-deep-loop-canon-alignment/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/018-deep-loop-canon-alignment/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103323,7 +103323,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/018-deep-loop-canon-alignment/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/018-deep-loop-canon-alignment/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103333,7 +103333,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/018-deep-loop-canon-alignment/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/018-deep-loop-canon-alignment/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103343,7 +103343,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/018-deep-loop-canon-alignment/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/018-deep-loop-canon-alignment/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103353,7 +103353,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/019-benchmarks-and-promotion/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/019-benchmarks-and-promotion/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103363,7 +103363,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/019-benchmarks-and-promotion/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/019-benchmarks-and-promotion/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103373,7 +103373,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/019-benchmarks-and-promotion/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/019-benchmarks-and-promotion/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103383,7 +103383,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/019-benchmarks-and-promotion/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/019-benchmarks-and-promotion/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103393,7 +103393,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/019-benchmarks-and-promotion/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/019-benchmarks-and-promotion/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103403,7 +103403,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/019-benchmarks-and-promotion/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/019-benchmarks-and-promotion/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103413,7 +103413,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/019-benchmarks-and-promotion/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/019-benchmarks-and-promotion/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103423,7 +103423,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/020-surface-packet-rename/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/020-surface-packet-rename/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103433,7 +103433,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/020-surface-packet-rename/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/020-surface-packet-rename/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103443,7 +103443,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/020-surface-packet-rename/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/020-surface-packet-rename/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103453,7 +103453,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/020-surface-packet-rename/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/020-surface-packet-rename/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103463,7 +103463,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/020-surface-packet-rename/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/020-surface-packet-rename/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103473,7 +103473,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/020-surface-packet-rename/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/020-surface-packet-rename/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103483,7 +103483,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/020-surface-packet-rename/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/020-surface-packet-rename/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103493,7 +103493,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103503,7 +103503,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103513,7 +103513,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103523,7 +103523,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103533,7 +103533,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103543,7 +103543,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103553,7 +103553,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/021-playbook-gold-and-lane-c-rebaseline/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103563,7 +103563,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/022-collapse-to-four-subskills/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/022-collapse-to-four-subskills/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103573,7 +103573,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/022-collapse-to-four-subskills/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/022-collapse-to-four-subskills/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103583,7 +103583,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/022-collapse-to-four-subskills/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/022-collapse-to-four-subskills/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103593,7 +103593,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/022-collapse-to-four-subskills/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/022-collapse-to-four-subskills/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103603,7 +103603,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/022-collapse-to-four-subskills/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/022-collapse-to-four-subskills/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103613,7 +103613,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/022-collapse-to-four-subskills/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/022-collapse-to-four-subskills/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103623,7 +103623,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/022-collapse-to-four-subskills/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/022-collapse-to-four-subskills/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103633,7 +103633,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103643,7 +103643,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103653,7 +103653,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103663,7 +103663,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103673,7 +103673,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103683,7 +103683,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-config.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103693,7 +103693,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-findings-registry.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-findings-registry.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103703,7 +103703,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-state.jsonl",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103713,7 +103713,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-strategy.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/deep-research-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103723,7 +103723,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103733,7 +103733,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103743,7 +103743,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103753,7 +103753,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103763,7 +103763,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-005.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103773,7 +103773,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-006.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103783,7 +103783,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-007.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103793,7 +103793,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-008.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/iterations/iteration-008.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103803,7 +103803,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/research/research.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/research/research.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103813,7 +103813,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103823,7 +103823,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/023-sk-code-workflow-subskill-research/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/023-sk-code-workflow-subskill-research/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103833,7 +103833,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/024-sk-code-advisor-routing-and-discovery/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103843,7 +103843,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/024-sk-code-advisor-routing-and-discovery/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103853,7 +103853,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/024-sk-code-advisor-routing-and-discovery/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103863,7 +103863,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/024-sk-code-advisor-routing-and-discovery/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103873,7 +103873,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/024-sk-code-advisor-routing-and-discovery/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103883,7 +103883,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/024-sk-code-advisor-routing-and-discovery/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103893,7 +103893,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/024-sk-code-advisor-routing-and-discovery/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103903,7 +103903,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103913,7 +103913,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103923,7 +103923,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103933,7 +103933,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103943,7 +103943,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103953,7 +103953,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-config.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103963,7 +103963,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-findings-registry.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-findings-registry.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103973,7 +103973,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-state.jsonl",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103983,7 +103983,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-strategy.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/deep-research-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -103993,7 +103993,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104003,7 +104003,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104013,7 +104013,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104023,7 +104023,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104033,7 +104033,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-005.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104043,7 +104043,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-006.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104053,7 +104053,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-007.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104063,7 +104063,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-008.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-008.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104073,7 +104073,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-009.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-009.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104083,7 +104083,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-010.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/iterations/iteration-010.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104093,7 +104093,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/research/research.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/research/research.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104103,7 +104103,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104113,7 +104113,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/025-code-quality-and-shared-research/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/025-code-quality-and-shared-research/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104123,7 +104123,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/026-code-quality-and-shared-implementation/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104133,7 +104133,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/026-code-quality-and-shared-implementation/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104143,7 +104143,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/026-code-quality-and-shared-implementation/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104153,7 +104153,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/026-code-quality-and-shared-implementation/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104163,7 +104163,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/026-code-quality-and-shared-implementation/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104173,7 +104173,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/026-code-quality-and-shared-implementation/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104183,7 +104183,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/026-code-quality-and-shared-implementation/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104193,7 +104193,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104203,7 +104203,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104213,7 +104213,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/research/final-synthesis.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/final-synthesis.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104223,7 +104223,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104233,7 +104233,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104243,7 +104243,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104253,7 +104253,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104263,7 +104263,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-005.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104273,7 +104273,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-006.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104283,7 +104283,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-007.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104293,7 +104293,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-008.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-008.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104303,7 +104303,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-009.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/iterations/iteration-009.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104313,7 +104313,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/research/research.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research/research.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104323,7 +104323,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/027-code-opencode-refinement-research/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/027-code-opencode-refinement-research/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104333,7 +104333,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/028-code-opencode-refinement-implementation/checklist.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104343,7 +104343,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/028-code-opencode-refinement-implementation/code-bug-handoffs.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/code-bug-handoffs.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104353,7 +104353,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/028-code-opencode-refinement-implementation/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104363,7 +104363,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/028-code-opencode-refinement-implementation/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104373,7 +104373,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/028-code-opencode-refinement-implementation/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104383,7 +104383,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/028-code-opencode-refinement-implementation/plan.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104393,7 +104393,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/028-code-opencode-refinement-implementation/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104403,7 +104403,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/028-code-opencode-refinement-implementation/tasks.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/028-code-opencode-refinement-implementation/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104413,7 +104413,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/description.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104423,7 +104423,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104433,7 +104433,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/017-sk-code-parent/spec.md",
+      "path": ".opencode/specs/sk-code/001-sk-code-parent/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104443,7 +104443,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104453,7 +104453,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104463,7 +104463,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104473,7 +104473,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104483,7 +104483,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/deep-research-fanout-config.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-fanout-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104493,7 +104493,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/deep-research-state.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104503,7 +104503,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/deep-research-strategy.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/deep-research-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104513,7 +104513,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104523,7 +104523,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104533,7 +104533,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104543,7 +104543,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104553,7 +104553,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/iterations/iteration-005.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104563,7 +104563,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/iterations/iteration-006.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104573,7 +104573,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/iterations/iteration-007.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104583,7 +104583,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/iterations/iteration-008.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-008.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104593,7 +104593,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/iterations/iteration-009.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/iterations/iteration-009.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104603,7 +104603,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/research/research.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/research/research.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104613,7 +104613,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104623,7 +104623,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/001-research/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/001-research/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104633,7 +104633,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/002-standard-docs/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104643,7 +104643,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/002-standard-docs/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104653,7 +104653,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/002-standard-docs/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104663,7 +104663,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/002-standard-docs/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104673,7 +104673,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/002-standard-docs/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104683,7 +104683,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/002-standard-docs/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/002-standard-docs/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104693,7 +104693,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/003-surface-routing/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104703,7 +104703,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/003-surface-routing/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104713,7 +104713,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/003-surface-routing/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104723,7 +104723,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/003-surface-routing/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104733,7 +104733,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/003-surface-routing/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104743,7 +104743,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/003-surface-routing/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/003-surface-routing/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104753,7 +104753,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/004-parent-union-drift-guard/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104763,7 +104763,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/004-parent-union-drift-guard/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104773,7 +104773,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/004-parent-union-drift-guard/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104783,7 +104783,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/004-parent-union-drift-guard/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104793,7 +104793,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/004-parent-union-drift-guard/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104803,7 +104803,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/004-parent-union-drift-guard/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104813,7 +104813,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104823,7 +104823,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104833,7 +104833,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104843,7 +104843,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104853,7 +104853,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104863,7 +104863,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/005-touchpoints-and-multilang/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104873,7 +104873,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104883,7 +104883,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104893,7 +104893,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104903,7 +104903,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104913,7 +104913,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104923,7 +104923,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/006-gate-verification-rollup/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/006-gate-verification-rollup/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104933,7 +104933,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/007-code-opencode-rust-references/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104943,7 +104943,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/007-code-opencode-rust-references/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104953,7 +104953,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/007-code-opencode-rust-references/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104963,7 +104963,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/007-code-opencode-rust-references/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104973,7 +104973,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/007-code-opencode-rust-references/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104983,7 +104983,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/007-code-opencode-rust-references/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -104993,7 +104993,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/008-code-opencode-other-references/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105003,7 +105003,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/008-code-opencode-other-references/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105013,7 +105013,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/008-code-opencode-other-references/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105023,7 +105023,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/008-code-opencode-other-references/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105033,7 +105033,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/008-code-opencode-other-references/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105043,7 +105043,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/008-code-opencode-other-references/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/008-code-opencode-other-references/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105053,7 +105053,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/009-code-webflow-implementation-references/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105063,7 +105063,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/009-code-webflow-implementation-references/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105073,7 +105073,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/009-code-webflow-implementation-references/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105083,7 +105083,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/009-code-webflow-implementation-references/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105093,7 +105093,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/009-code-webflow-implementation-references/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105103,7 +105103,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/009-code-webflow-implementation-references/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/009-code-webflow-implementation-references/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105113,7 +105113,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/010-code-webflow-other-references/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105123,7 +105123,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/010-code-webflow-other-references/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105133,7 +105133,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/010-code-webflow-other-references/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105143,7 +105143,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/010-code-webflow-other-references/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105153,7 +105153,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/010-code-webflow-other-references/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105163,7 +105163,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/010-code-webflow-other-references/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/010-code-webflow-other-references/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105173,7 +105173,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/011-code-quality-and-flagged/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105183,7 +105183,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/011-code-quality-and-flagged/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105193,7 +105193,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/011-code-quality-and-flagged/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105203,7 +105203,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/011-code-quality-and-flagged/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105213,7 +105213,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/011-code-quality-and-flagged/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105223,7 +105223,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/011-code-quality-and-flagged/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/011-code-quality-and-flagged/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105233,7 +105233,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/012-gate-verification-rollup/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105243,7 +105243,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/012-gate-verification-rollup/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105253,7 +105253,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/012-gate-verification-rollup/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105263,7 +105263,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/012-gate-verification-rollup/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105273,7 +105273,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/012-gate-verification-rollup/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105283,7 +105283,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/012-gate-verification-rollup/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/012-gate-verification-rollup/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105293,7 +105293,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/013-behavior-benchmark-templates/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105303,7 +105303,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/013-behavior-benchmark-templates/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105313,7 +105313,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/013-behavior-benchmark-templates/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105323,7 +105323,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/013-behavior-benchmark-templates/plan.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105333,7 +105333,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/013-behavior-benchmark-templates/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105343,7 +105343,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/013-behavior-benchmark-templates/tasks.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/013-behavior-benchmark-templates/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105353,7 +105353,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/description.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105363,7 +105363,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105373,7 +105373,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-config.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105383,7 +105383,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-dashboard.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-dashboard.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105393,7 +105393,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-findings-registry.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-findings-registry.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105403,7 +105403,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-state.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105413,7 +105413,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-strategy.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deep-review-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105423,7 +105423,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-001.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-001.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105433,7 +105433,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-002.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-002.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105443,7 +105443,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-003.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-003.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105453,7 +105453,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-004.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-004.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105463,7 +105463,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-005.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-005.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105473,7 +105473,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-006.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-006.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105483,7 +105483,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-007.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/deltas/iter-007.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105493,7 +105493,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105503,7 +105503,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105513,7 +105513,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105523,7 +105523,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105533,7 +105533,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-005.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105543,7 +105543,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-006.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105553,7 +105553,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-007.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/iterations/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105563,7 +105563,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/logs/bindings.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/logs/bindings.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105573,7 +105573,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-001.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105583,7 +105583,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-002.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105593,7 +105593,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-003.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105603,7 +105603,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-004.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105613,7 +105613,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-005.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105623,7 +105623,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-006.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105633,7 +105633,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-007.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/prompts/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105643,7 +105643,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/resource-map.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/resource-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105653,7 +105653,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/review-report.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/lineages/gpt56-sol-fast-high/review-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105663,7 +105663,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/observability-events.jsonl",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/observability-events.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105673,7 +105673,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/review/orchestration-summary.json",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/review/orchestration-summary.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105683,7 +105683,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/018-rust-standards-for-code-opencode/spec.md",
+      "path": ".opencode/specs/sk-code/002-rust-standards-for-code-opencode/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105693,7 +105693,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/checklist.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105703,7 +105703,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/description.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105713,7 +105713,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/graph-metadata.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105723,7 +105723,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/implementation-summary.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105733,7 +105733,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/plan.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105743,7 +105743,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deep-review-config.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deep-review-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105753,7 +105753,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deep-review-dashboard.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deep-review-dashboard.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105763,7 +105763,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deep-review-findings-registry.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deep-review-findings-registry.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105773,7 +105773,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deep-review-state.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deep-review-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105783,7 +105783,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deep-review-strategy.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deep-review-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105793,7 +105793,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-001.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-001.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105803,7 +105803,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-002.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-002.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105813,7 +105813,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-003.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-003.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105823,7 +105823,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-004.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-004.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105833,7 +105833,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-005.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-005.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105843,7 +105843,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-006.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-006.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105853,7 +105853,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-007.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-007.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105863,7 +105863,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-008.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-008.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105873,7 +105873,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-009.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-009.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105883,7 +105883,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-010.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/deltas/iter-010.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105893,7 +105893,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105903,7 +105903,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105913,7 +105913,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105923,7 +105923,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105933,7 +105933,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-005.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-005.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105943,7 +105943,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-006.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-006.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105953,7 +105953,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-007.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-007.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105963,7 +105963,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-008.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-008.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105973,7 +105973,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-009.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-009.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105983,7 +105983,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-010.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/iterations/iteration-010.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -105993,7 +105993,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/logs/fanout-lineage.out",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/logs/fanout-lineage.out",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106003,7 +106003,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/lineages/gpt56-sol-high/review-report.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/lineages/gpt56-sol-high/review-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106013,7 +106013,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/observability-events.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/observability-events.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106023,7 +106023,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/orchestration-summary.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/orchestration-summary.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106033,7 +106033,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deep-review-config.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deep-review-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106043,7 +106043,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deep-review-dashboard.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deep-review-dashboard.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106053,7 +106053,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deep-review-findings-registry.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deep-review-findings-registry.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106063,7 +106063,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deep-review-state.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deep-review-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106073,7 +106073,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deep-review-strategy.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deep-review-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106083,7 +106083,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deltas/iter-001.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deltas/iter-001.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106093,7 +106093,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deltas/iter-002.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deltas/iter-002.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106103,7 +106103,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deltas/iter-003.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deltas/iter-003.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106113,7 +106113,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deltas/iter-004.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/deltas/iter-004.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106123,7 +106123,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106133,7 +106133,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106143,7 +106143,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106153,7 +106153,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106163,7 +106163,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/logs/fanout-lineage.out",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/logs/fanout-lineage.out",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106173,7 +106173,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/prompts/iteration-001.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/prompts/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106183,7 +106183,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/prompts/iteration-002.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/prompts/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106193,7 +106193,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/prompts/iteration-003.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/prompts/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106203,7 +106203,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/prompts/iteration-004.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/prompts/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106213,7 +106213,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/resource-map.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/resource-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106223,7 +106223,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/review-report.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-a/review-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106233,7 +106233,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deep-review-config.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deep-review-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106243,7 +106243,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deep-review-dashboard.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deep-review-dashboard.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106253,7 +106253,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deep-review-findings-registry.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deep-review-findings-registry.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106263,7 +106263,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deep-review-state.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deep-review-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106273,7 +106273,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deep-review-strategy.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deep-review-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106283,7 +106283,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deltas/iter-001.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deltas/iter-001.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106293,7 +106293,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deltas/iter-002.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deltas/iter-002.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106303,7 +106303,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deltas/iter-003.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deltas/iter-003.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106313,7 +106313,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deltas/iter-004.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/deltas/iter-004.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106323,7 +106323,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106333,7 +106333,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106343,7 +106343,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106353,7 +106353,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106363,7 +106363,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/logs/fanout-lineage.out",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/logs/fanout-lineage.out",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106373,7 +106373,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/prompts/iteration-1.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/prompts/iteration-1.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106383,7 +106383,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/prompts/iteration-2.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/prompts/iteration-2.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106393,7 +106393,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/prompts/iteration-3.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/prompts/iteration-3.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106403,7 +106403,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/prompts/iteration-4.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/prompts/iteration-4.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106413,7 +106413,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/resource-map.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/resource-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106423,7 +106423,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/review-report.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-b/review-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106433,7 +106433,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deep-review-config.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deep-review-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106443,7 +106443,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deep-review-dashboard.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deep-review-dashboard.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106453,7 +106453,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deep-review-findings-registry.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deep-review-findings-registry.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106463,7 +106463,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deep-review-state.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deep-review-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106473,7 +106473,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deep-review-strategy.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deep-review-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106483,7 +106483,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deltas/iter-001.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deltas/iter-001.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106493,7 +106493,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deltas/iter-002.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deltas/iter-002.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106503,7 +106503,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deltas/iter-003.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deltas/iter-003.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106513,7 +106513,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deltas/iter-004.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/deltas/iter-004.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106523,7 +106523,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106533,7 +106533,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106543,7 +106543,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106553,7 +106553,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106563,7 +106563,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/logs/fanout-lineage.out",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/logs/fanout-lineage.out",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106573,7 +106573,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/logs/reduce-lineage.cjs",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/logs/reduce-lineage.cjs",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106583,7 +106583,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/prompts/iteration-001.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/prompts/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106593,7 +106593,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/prompts/iteration-002.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/prompts/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106603,7 +106603,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/prompts/iteration-003.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/prompts/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106613,7 +106613,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/prompts/iteration-004.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/prompts/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106623,7 +106623,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/resource-map.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/resource-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106633,7 +106633,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/review-report.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/lineages/confirm-c/review-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106643,7 +106643,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/observability-events.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/observability-events.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106653,7 +106653,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-confirm/orchestration-summary.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-confirm/orchestration-summary.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106663,7 +106663,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deep-review-config.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deep-review-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106673,7 +106673,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deep-review-dashboard.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deep-review-dashboard.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106683,7 +106683,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deep-review-findings-registry.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deep-review-findings-registry.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106693,7 +106693,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deep-review-state.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deep-review-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106703,7 +106703,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deep-review-strategy.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deep-review-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106713,7 +106713,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deltas/iter-001.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deltas/iter-001.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106723,7 +106723,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deltas/iter-002.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deltas/iter-002.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106733,7 +106733,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deltas/iter-003.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deltas/iter-003.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106743,7 +106743,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deltas/iter-004.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/deltas/iter-004.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106753,7 +106753,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106763,7 +106763,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106773,7 +106773,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106783,7 +106783,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106793,7 +106793,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/logs/fanout-lineage.out",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/logs/fanout-lineage.out",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106803,7 +106803,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/prompts/iteration-1.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/prompts/iteration-1.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106813,7 +106813,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/prompts/iteration-2.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/prompts/iteration-2.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106823,7 +106823,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/prompts/iteration-3.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/prompts/iteration-3.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106833,7 +106833,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/prompts/iteration-4.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/prompts/iteration-4.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106843,7 +106843,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/resource-map.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/resource-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106853,7 +106853,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/review-report.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-a/review-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106863,7 +106863,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deep-review-config.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deep-review-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106873,7 +106873,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deep-review-dashboard.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deep-review-dashboard.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106883,7 +106883,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deep-review-findings-registry.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deep-review-findings-registry.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106893,7 +106893,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deep-review-state.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deep-review-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106903,7 +106903,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deep-review-strategy.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deep-review-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106913,7 +106913,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deltas/iter-001.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deltas/iter-001.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106923,7 +106923,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deltas/iter-002.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deltas/iter-002.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106933,7 +106933,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deltas/iter-003.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deltas/iter-003.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106943,7 +106943,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deltas/iter-004.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/deltas/iter-004.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106953,7 +106953,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106963,7 +106963,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106973,7 +106973,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106983,7 +106983,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -106993,7 +106993,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/logs/corpus-audit.cjs",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/logs/corpus-audit.cjs",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107003,7 +107003,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/logs/link-audit.cjs",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/logs/link-audit.cjs",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107013,7 +107013,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/logs/reduce-lineage.cjs",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/logs/reduce-lineage.cjs",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107023,7 +107023,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/logs/validate-lineage.cjs",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/logs/validate-lineage.cjs",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107033,7 +107033,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/prompts/iteration-001.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/prompts/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107043,7 +107043,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/prompts/iteration-002.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/prompts/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107053,7 +107053,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/prompts/iteration-003.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/prompts/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107063,7 +107063,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/prompts/iteration-004.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/prompts/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107073,7 +107073,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/resource-map.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/resource-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107083,7 +107083,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/review-report.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-b/review-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107093,7 +107093,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deep-review-config.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deep-review-config.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107103,7 +107103,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deep-review-dashboard.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deep-review-dashboard.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107113,7 +107113,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deep-review-findings-registry.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deep-review-findings-registry.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107123,7 +107123,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deep-review-state.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deep-review-state.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107133,7 +107133,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deep-review-strategy.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deep-review-strategy.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107143,7 +107143,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deltas/iter-001.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deltas/iter-001.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107153,7 +107153,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deltas/iter-002.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deltas/iter-002.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107163,7 +107163,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deltas/iter-003.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deltas/iter-003.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107173,7 +107173,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deltas/iter-004.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/deltas/iter-004.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107183,7 +107183,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/iterations/iteration-001.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/iterations/iteration-001.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107193,7 +107193,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/iterations/iteration-002.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/iterations/iteration-002.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107203,7 +107203,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/iterations/iteration-003.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/iterations/iteration-003.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107213,7 +107213,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/iterations/iteration-004.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/iterations/iteration-004.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107223,7 +107223,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/logs/fanout-lineage.out",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/logs/fanout-lineage.out",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107233,7 +107233,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/prompts/iteration-1.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/prompts/iteration-1.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107243,7 +107243,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/prompts/iteration-2.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/prompts/iteration-2.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107253,7 +107253,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/prompts/iteration-3.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/prompts/iteration-3.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107263,7 +107263,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/prompts/iteration-4.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/prompts/iteration-4.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107273,7 +107273,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/resource-map.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/resource-map.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107283,7 +107283,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/review-report.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/lineages/xhigh-c/review-report.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107293,7 +107293,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/observability-events.jsonl",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/observability-events.jsonl",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107303,7 +107303,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/review/xhigh-verify/orchestration-summary.json",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/review/xhigh-verify/orchestration-summary.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107313,7 +107313,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/spec.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107323,7 +107323,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/019-split-doc-template-alignment/tasks.md",
+      "path": ".opencode/specs/sk-doc/032-split-doc-template-alignment/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107333,7 +107333,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/020-content-quality-remediation/checklist.md",
+      "path": ".opencode/specs/sk-code/003-content-quality-remediation/checklist.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107343,7 +107343,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/020-content-quality-remediation/description.json",
+      "path": ".opencode/specs/sk-code/003-content-quality-remediation/description.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107353,7 +107353,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/020-content-quality-remediation/graph-metadata.json",
+      "path": ".opencode/specs/sk-code/003-content-quality-remediation/graph-metadata.json",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107363,7 +107363,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/020-content-quality-remediation/implementation-summary.md",
+      "path": ".opencode/specs/sk-code/003-content-quality-remediation/implementation-summary.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107373,7 +107373,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/020-content-quality-remediation/plan.md",
+      "path": ".opencode/specs/sk-code/003-content-quality-remediation/plan.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107383,7 +107383,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/020-content-quality-remediation/spec.md",
+      "path": ".opencode/specs/sk-code/003-content-quality-remediation/spec.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {
@@ -107393,7 +107393,7 @@
       }
     },
     {
-      "path": ".opencode/specs/sk-code/020-content-quality-remediation/tasks.md",
+      "path": ".opencode/specs/sk-code/003-content-quality-remediation/tasks.md",
       "kind": "file",
       "mode": "100644",
       "exec_bits": {

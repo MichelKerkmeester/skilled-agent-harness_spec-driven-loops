@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-doc/037-playbook-family-remediation/002-cli-and-mcp-transports",
+  "description": "Fourteen transport playbook roots carried 2,158 operator-scenario violations, and one of the defects found there was in the grader rather than in any",
+  "keywords": [
+    "fourteen",
+    "transport",
+    "playbook",
+    "roots",
+    "carried",
+    "operator-scenario",
+    "violations",
+    "one",
+    "defects",
+    "found",
+    "grader",
+    "rather"
+  ],
+  "lastUpdated": "2026-08-29T11:52:57.669Z",
+  "specId": "002",
+  "folderSlug": "cli-and-mcp-transports",
+  "parentChain": [
+    "sk-doc",
+    "037-playbook-family-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

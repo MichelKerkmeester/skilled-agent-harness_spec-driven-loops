@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/007-sk-code-obsidian-surface/001-surface-design-plan",
+  "description": "Design, against the live sk-code hub contract, of the sk-code-obsidian read-only SURFACE evidence packet — registry entry, router wiring, OBSIDIAN detection branch, reference map, and build-packet handoff. Plan only; authors no skill file.",
+  "keywords": [
+    "design",
+    "against",
+    "live",
+    "sk-code",
+    "hub",
+    "contract",
+    "sk-code-obsidian",
+    "read-only",
+    "surface"
+  ],
+  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "specId": "001",
+  "folderSlug": "surface-design-plan",
+  "parentChain": [
+    "sk-code",
+    "007-sk-code-obsidian-surface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

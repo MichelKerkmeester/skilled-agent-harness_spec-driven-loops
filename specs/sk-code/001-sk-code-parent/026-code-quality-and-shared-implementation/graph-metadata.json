@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation",
+  "spec_folder": "sk-code/001-sk-code-parent/026-code-quality-and-shared-implementation",
+  "parent_id": "sk-code/001-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code code-quality shared implementation",
+      "code-quality shared assets implementation",
+      "sk-code code-quality upgrade implementation",
+      "code-quality shared implementation plan",
+      "sk-code code-quality implementation plan",
+      "code-quality shared assets implementation plan",
+      "code-quality shared implementation tasks",
+      "sk-code code-quality implementation tasks",
+      "code-quality shared assets implementation tasks",
+      "code-quality shared implementation checklist",
+      "sk-code code-quality implementation checklist",
+      "code-quality shared assets implementation verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "code-quality",
+      "shared",
+      "implementation",
+      "assets",
+      "upgrade",
+      "plan",
+      "tasks",
+      "checklist",
+      "verification",
+      "sibling",
+      "research"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Execute",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Docs",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow An",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Severity Promotion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optional Catalogs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The sibling research packet `025-code-quality-and-shared-research` ran ten capped-converged deep-research iterations and produced a ranked, owner-bounded backlog of five upgrade proposals for the `sk-code/code-quality` sub-skill and `sk-code/shared` assets",
+    "created_at": "2026-07-07T00:00:00.000Z",
+    "last_save_at": "2026-08-28T15:53:00.192Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bef6ada238ae4797dbfc437ac68a4168987c2a5481a1cbaa30ff9d42a3c2bd40",
+    "source_doc_hashes": {
+      "spec.md": "0ca4b7569f90828dcadd7e43581fcb2c33c0920a511a1a82adeb087d2fb569f2",
+      "plan.md": "c43a675d11ab6452c6ce70f769e98cdaf6b2a15a2f1718d1b382612d5f1cf08d",
+      "tasks.md": "0b47b4da0efe6ab1e042ab7149fd7d1c8a62a2fa62d1e8d0fe5f1afd20e34bc1",
+      "checklist.md": "6f2ee46e5bd619b07b4e312f445cbd8ac245875bd686e599f72a890129d36193",
+      "implementation-summary.md": "6e740939cbc1501b065dcb4597891603dbf230da6c654e3a4592cded8493c118"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard",
+  "spec_folder": "sk-code/002-rust-standards-for-code-opencode/004-parent-union-drift-guard",
+  "parent_id": "sk-code/002-rust-standards-for-code-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 phase 004 parent union drift guard",
+      "smart_routing.md rust union",
+      "sk-code-router-sync drift guard rust",
+      "018 phase 004 plan",
+      "parent union drift guard plan",
+      "018 phase 004 tasks",
+      "parent union drift guard tasks",
+      "018 rust parent union summary",
+      "smart_routing.md rust union outcome",
+      "sk-code-router-sync drift guard green"
+    ],
+    "key_topics": [
+      "phase",
+      "parent",
+      "union",
+      "drift",
+      "guard",
+      "rust",
+      "sk-code-router-sync",
+      "plan",
+      "tasks",
+      "summary",
+      "outcome",
+      "green"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hub Union",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Drift Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Parent",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent hub keeps a union projection of every child's routing map, enforced by a drift-guard vitest",
+    "created_at": "2026-07-11T08:51:44.490Z",
+    "last_save_at": "2026-08-28T22:09:18.675Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c37220f4d2f19b6bea840a34fda3567e972e24cf2fb1fcb0f27da23e3d855300",
+    "source_doc_hashes": {
+      "spec.md": "975c7ff78c8848dd4a7eca9b33d9eb270dbb686d2cdbcede086b8874415baca3",
+      "plan.md": "12282493a006520964c6ca8334340fc9ab20d720699078629e91212bc8501d03",
+      "tasks.md": "a7f340de7bad69111f612208ed4e70ee1fb5329b117a59b7a32c9472a0331bef",
+      "implementation-summary.md": "734c6a18353c7d91b6989942045f820f67821308c6e6fad237f39c71d47a46b2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

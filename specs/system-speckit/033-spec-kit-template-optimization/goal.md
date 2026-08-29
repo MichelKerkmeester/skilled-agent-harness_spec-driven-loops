@@ -133,3 +133,56 @@ Updated as phases land. Last updated 2026-08-29.
 | Child 001 pre-existing errors | The packet failed validation with 4 errors before this work (`TEMPLATE_HEADERS`, `ANCHORS_VALID`, `FRONTMATTER_VALID`, `GENERATED_METADATA_INTEGRITY`), measured at commit `4a6901096a`. Repaired structurally: real trigger phrases, path self-references, and ADR-001 anchors wrapped around prose that already existed. The two subsections the original never recorded (five-checks, implementation) are marked unrecorded rather than reconstructed. 001 now passes with 0 errors and 0 warnings. |
 | Two defects found by the negative controls | The criteria-table header `\| AC-ID \|` matched the AC-ID pattern and was counted as an unmet criterion, inflating totals and producing false failures in both the closure rule and the coverage advisory. Fixed by requiring a digit in the id before the fixture was accepted. |
 | Auto-commit during the session | The repository's sk-git live-sync committed this work as it was written (for example `e5a96897bf`), rather than leaving it staged for review. Flagged, not altered. |
+
+---
+
+## 10. POST-REVIEW REMEDIATION
+
+Two fresh reviews (correctness, integration) ran against this work with no
+inherited context. They found 18 and 9 findings respectively. Everything
+confirmed is fixed and re-proven below.
+
+### Defects the reviews found and this packet fixed
+
+| Finding | Defect | Fix |
+|---|---|---|
+| F1 | Cutoff compared with strict `<` against a default of the current day, so packets created on the boundary were treated as post-cutoff | Boundary day is now grandfathered and the default moved to the day after landing; 2 real packets were failing and now pass |
+| F2 | Grandfathering was consulted only on the presence branch; waiver and completion branches blocked pre-cutoff packets | A single verdict variable now governs every branch, matching the documented contract |
+| F3 | Rows whose id was bold, backticked or lowercase silently vanished, emptying the table and closing the packet | Ids are normalized; a row that looks like a criterion but will not parse is reported, never skipped |
+| F4 | An unbalanced code fence hid the remainder of the table | Fence balance is tracked and reported |
+| F5 | Completion detection substring-matched the whole status line, so `Not Complete` and `Blocked - nothing done yet` read as completion claims | The status cell is extracted and matched exactly |
+| F6 | `IGNORECASE` is a no-op on this platform's awk | Case handling is explicit |
+| F7 | Status was read by column position, so an escaped pipe or an extra column shifted it | Columns are bound by header name |
+| F8 | The waiver check was not fence-aware, so a fenced example ADR satisfied a waiver | The declaration scan skips fenced blocks |
+| F9 | Only heading-style ADRs counted, failing 76 of 621 real decision records | Heading, bold list and table declarations all count; `ADR-1` and `ADR-001` are the same record |
+| F10 | `create.sh` never scaffolded the document, so new packets failed the gate on creation | The scaffolder emits it for every level whose contract lists it |
+| F11 | A malformed flag disabled the gate; a malformed cutoff grandfathered the whole repository | Both fail closed, with the fallback reported |
+| F12 | Only the first ADR in a waiver cell was verified | Every cited record must exist |
+| F13 | Duplicate ids were counted twice and never flagged | Duplicates are reported |
+| F14 | This packet's own evidence citations pointed at a stale line count, a bare `return`, and a blank line | Citations re-derived against the current files |
+| F15 | The rule had no tests | 29-case unit suite covering every finding above |
+| Integration | The fixture corpus predated the cutoff, so the gate was dormant in every suite | The unit suite drives the rule directly and is unaffected by fixture dates |
+| Integration | 12 Level 2/3/3+ fixtures still carried the retired 3-column table | Converted, fingerprints refreshed |
+| Integration | Registry additions were unguarded by a hardcoded 13-rule list, itself already failing | The assertion now derives from the registry; 33 rules verified |
+
+### Verification after remediation
+
+| Check | Result |
+|---|---|
+| Rule unit suite | 29/29 pass; proven to catch a reintroduced defect |
+| Deep regression sweep | 3,808 spec folders, 0 failing |
+| `test-validation-system.cjs` | 117 passed, 0 failed (previously red on a stale rule list) |
+| `test-validation.sh` | PASSED |
+| Contract + snapshot suites | 17/18 pass; the 1 failure is a pre-existing vocabulary scan over unrelated feature-catalog docs |
+| Recursive `validate.sh --strict` on this tree | exit 0, three folders, 0 errors, 0 warnings |
+| Scaffolder | Level 1 excludes the document; Levels 2 and 3+ emit it |
+
+### Known, out of scope
+
+`scripts/spec/upgrade-level.sh` resolves a template path that no longer exists,
+so every Level 1 to Level 2 upgrade fails and rolls back. Unrelated to this
+work and left untouched under the scope lock.
+
+`workflow-invariance` fails a private-taxonomy scan over five feature-catalog
+and playbook documents this packet never edited. Both reviews independently
+confirmed it predates this work.

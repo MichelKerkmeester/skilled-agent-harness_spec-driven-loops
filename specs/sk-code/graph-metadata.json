@@ -4,8 +4,8 @@
   "spec_folder": "sk-code",
   "parent_id": null,
   "children_ids": [
-    "sk-code/017-sk-code-parent",
-    "sk-code/024-mobile-cli-template-alignment"
+    "sk-code/001-sk-code-parent",
+    "sk-doc/033-mobile-cli-template-alignment"
   ],
   "manual": {
     "depends_on": [],
@@ -34,7 +34,7 @@
     "source_docs": [],
     "source_fingerprint": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
     "source_doc_hashes": {},
-    "last_active_child_id": "sk-code/024-mobile-cli-template-alignment",
+    "last_active_child_id": "sk-doc/033-mobile-cli-template-alignment",
     "last_active_at": "2026-08-28T05:57:57.712Z"
   }
 }

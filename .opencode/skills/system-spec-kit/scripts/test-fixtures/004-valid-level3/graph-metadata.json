@@ -45,6 +45,7 @@
     "save_lineage": "fixture",
     "last_accessed_at": null,
     "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_at": null,
+    "source_fingerprint": "sha256:80dbf9da6d68adb0ae41843b2f5be32f1bbd2f8d111131a2c3611aec1ed6fb7d"
   }
 }

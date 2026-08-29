@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/007-sk-code-obsidian-surface/013-surface-reality-conformance",
+  "spec_folder": "sk-code/007-sk-code-obsidian-surface/013-surface-reality-conformance",
+  "parent_id": "sk-code/007-sk-code-obsidian-surface",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "obsidian surface reality conformance",
+      "sk-code-obsidian phase 013 drift guard",
+      "scan-skill-references obsidian",
+      "obsidian surface reality conformance plan",
+      "sk-code-obsidian phase 013 plan",
+      "obsidian surface reality conformance tasks",
+      "sk-code-obsidian phase 013 tasks",
+      "implementation summary surface reality conformance",
+      "sk-code-obsidian phase 013 findings"
+    ],
+    "key_topics": [
+      "obsidian",
+      "surface",
+      "reality",
+      "conformance",
+      "sk-code-obsidian",
+      "phase",
+      "drift",
+      "guard",
+      "scan-skill-references",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reality Conformance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Resolve",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Guard Script",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What It Caught Immediately",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 010 renamed 235 files across the plugin tree to enforce kebab-case, and every plugin-side gate",
+    "created_at": "2026-08-28T18:17:41Z",
+    "last_save_at": "2026-08-29T14:54:11.805Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ba9bf7ef3ceb2e1d17176a65f9d074883c29e3e99871f451828eeaee8ec0fdba",
+    "source_doc_hashes": {
+      "spec.md": "471ac8a40e2206347fbee13902e4234c8cd31e6ed34cd6c2d0debd07597b98d1",
+      "plan.md": "ea923874a33afc18a0416b66390613f8b651372206ad7a097cdae77943053606",
+      "tasks.md": "22800f86cf6d9089f67a56c19bd15ff961c5e96d8a024f54fd9638bbec9ecd63",
+      "implementation-summary.md": "4288a6fbcf4a976d0552c3f0c96b7fd71cadee0d982cb229789666e79a2737b8"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

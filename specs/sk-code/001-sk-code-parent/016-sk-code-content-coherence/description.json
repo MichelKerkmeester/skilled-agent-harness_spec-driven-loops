@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "sk-code/001-sk-code-parent/016-sk-code-content-coherence",
+  "description": "The master plan identifies sk-code as structurally canonical but content-incoherent after phase 013",
+  "keywords": [
+    "master",
+    "plan",
+    "identifies",
+    "sk-code",
+    "structurally",
+    "canonical",
+    "content-incoherent",
+    "phase"
+  ],
+  "lastUpdated": "2026-08-15T14:40:56.621Z",
+  "specId": "016",
+  "folderSlug": "sk-code-content-coherence",
+  "parentChain": [
+    "sk-code",
+    "001-sk-code-parent"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

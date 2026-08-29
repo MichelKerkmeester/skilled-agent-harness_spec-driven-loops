@@ -161,5 +161,5 @@ the single `sk-code` identity and the hub bundles this surface.
 - `../../ROUTER.md`, `../../mode-registry.json`, `../../hub-router.json` — the parent hub's routing.
 - The **Obsidian Plugin repo** — the plugin source, `manifest.json`, and `styles.css`. This surface is
   its read-only evidence mirror; see §2 "The Obsidian Plugin Repository".
-- `specs/sk-code/025-sk-code-obsidian-surface/` — this surface's own spec packet, which lives beside the
+- `specs/sk-code/007-sk-code-obsidian-surface/` — this surface's own spec packet, which lives beside the
   skill in this repository rather than in the plugin repo it mirrors.
