@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-git/027-remote-push-approval",
+  "spec_folder": "sk-git/027-remote-push-approval",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "remote push approval",
+      "branch creation gate"
+    ],
+    "key_topics": [
+      "remote",
+      "push",
+      "approval",
+      "branch",
+      "creation",
+      "gate",
+      "only",
+      "approved",
+      "branches",
+      "reach",
+      "origin",
+      "session"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/scripts/git-hooks/pre-push",
+      ".opencode/skills/sk-git/scripts/remote-branch-allowlist.txt",
+      ".opencode/skills/sk-git/references/remote-branch-policy.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pre-push",
+        "kind": "file",
+        "path": ".opencode/scripts/git-hooks/pre-push",
+        "source": "derived"
+      },
+      {
+        "name": "remote-branch-allowlist.txt",
+        "kind": "file",
+        "path": ".opencode/skills/sk-git/scripts/remote-branch-allowlist.txt",
+        "source": "derived"
+      },
+      {
+        "name": "remote-branch-policy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/remote-branch-policy.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Branch Is",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Origin",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Deletion",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Only approved branches reach origin, and no session can create a remote branch on its own.",
+    "created_at": "2026-08-29T20:37:47.914Z",
+    "last_save_at": "2026-08-29T20:37:47.914Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:238d8f4d76e57bf4ba080f1d5b0bbebee667d267de21727ede4ed2a98fe1423a",
+    "source_doc_hashes": {
+      "spec.md": "18642c6b5c098e2894b47c52de823a3cc0ec42e1a6590ceba037ca206b8871b5",
+      "plan.md": "7991b4e7427036b1e80f3274340eadd6da4e68dbc997d95109e6ddd3223d8e7b",
+      "tasks.md": "e1f4f50082d0522b4d9ba588e159062f2f01c2f62ee1d90a224ad2b7285cd95f",
+      "implementation-summary.md": "7cc63110a356bbeff2fb28f7062052c4b919153934563448d31a52dfec767b30"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -149,8 +149,12 @@ _wn_remote_allowlist_file() {
 # confirmation for THIS push (see .opencode/scripts/git-hooks/pre-push).
 is_remote_push_allowlisted() {
   local branch="$1" file line trimmed
+  # Only `main` is built in. The release line used to match a wildcard, which
+  # quietly approved every branch that looked like a release — including one
+  # created by a typo. Approved release branches are listed in the allowlist
+  # file instead, so approval is a reviewable line rather than a pattern.
   case "$branch" in
-    main|skilled/v*) return 0 ;;
+    main) return 0 ;;
   esac
   file="$(_wn_remote_allowlist_file)" || return 1
   [ -f "$file" ] || return 1

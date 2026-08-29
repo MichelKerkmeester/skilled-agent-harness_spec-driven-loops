@@ -192,7 +192,30 @@ while read -r _ local_sha remote_ref remote_sha; do
   if [[ "$NAMING_AVAILABLE" -eq 0 ]]; then
     continue
   fi
-  if [[ "${SPECKIT_ALLOW_REMOTE_PUSH:-0}" = "1" ]]; then
+  # Creating a remote branch is the act that outlives the session: an update can
+  # be reset, but a branch nobody meant to publish stays until someone notices.
+  # The environment bypass authorises updates only — a new remote branch needs
+  # the allowlist, which is a file a person edits.
+  if [[ "$remote_sha" =~ ^0+$ ]] \
+     && ! is_remote_push_allowlisted "$branch_name" \
+     && [[ "${SPECKIT_ALLOW_REMOTE_PUSH:-0}" != "$branch_name" ]]; then
+    {
+      echo ""
+      echo "BLOCKED [gate:remote-create]: '$branch_name' does not exist on origin, and creating it is not something a session may decide."
+      echo "Branches stay local unless a person approves publishing them."
+      echo "To approve permanently, add the branch to:"
+      echo "  .opencode/skills/sk-git/scripts/remote-branch-allowlist.txt"
+      echo "For a one-off, name the branch rather than using the blanket switch:"
+      echo "  SPECKIT_ALLOW_REMOTE_PUSH=$branch_name git push ..."
+      echo "A bare SPECKIT_ALLOW_REMOTE_PUSH=1 authorises updates, never creation."
+      echo ""
+    } >&2
+    REJECTED=1
+    continue
+  fi
+  # `1` approves this push; naming the branch approves it and permits creating
+  # it. Both are per-push acts by whoever runs the command.
+  if [[ "${SPECKIT_ALLOW_REMOTE_PUSH:-0}" = "1" || "${SPECKIT_ALLOW_REMOTE_PUSH:-0}" = "$branch_name" ]]; then
     continue
   fi
   if is_remote_push_allowlisted "$branch_name"; then

@@ -90,9 +90,12 @@ expect_hook "new backup/* branch rejected" \
 # ── remote-push-permission gate: default-blocked, every push, new or update ─
 expect_hook "valid new task branch STILL blocked by default (permission gate)" \
   1 "refs/heads/sk-git/0041-fix-thing $SHA_A refs/heads/sk-git/0041-fix-thing $ZERO_SHA"
-expect_hook "...but SPECKIT_ALLOW_REMOTE_PUSH=1 lets it through" \
-  0 "refs/heads/sk-git/0041-fix-thing $SHA_A refs/heads/sk-git/0041-fix-thing $ZERO_SHA" \
+expect_hook "...and a blanket SPECKIT_ALLOW_REMOTE_PUSH=1 still cannot CREATE it" \
+  1 "refs/heads/sk-git/0041-fix-thing $SHA_A refs/heads/sk-git/0041-fix-thing $ZERO_SHA" \
   SPECKIT_ALLOW_REMOTE_PUSH=1
+expect_hook "...but naming the branch approves that one creation" \
+  0 "refs/heads/worktrees/041-fix-thing $SHA_A refs/heads/worktrees/041-fix-thing $ZERO_SHA" \
+  SPECKIT_ALLOW_REMOTE_PUSH=worktrees/041-fix-thing
 
 expect_hook "update to an existing non-allowlisted branch STILL blocked by default" \
   1 "refs/heads/legacy-feature $SHA_A refs/heads/legacy-feature $SHA_B"
@@ -104,9 +107,9 @@ expect_hook "...but SPECKIT_ALLOW_REMOTE_PUSH=1 lets the update through too" \
 expect_hook "SPECKIT_SKIP_PREPUSH_NAMING=1 alone skips naming but permission STILL blocks" \
   1 "refs/heads/totally!!bad $SHA_A refs/heads/totally!!bad $ZERO_SHA" \
   SPECKIT_SKIP_PREPUSH_NAMING=1
-expect_hook "...combined with SPECKIT_ALLOW_REMOTE_PUSH=1, both gates clear" \
+expect_hook "...combined with a named creation approval, both gates clear" \
   0 "refs/heads/totally!!bad $SHA_A refs/heads/totally!!bad $ZERO_SHA" \
-  SPECKIT_SKIP_PREPUSH_NAMING=1 SPECKIT_ALLOW_REMOTE_PUSH=1
+  SPECKIT_SKIP_PREPUSH_NAMING=1 SPECKIT_ALLOW_REMOTE_PUSH='totally!!bad'
 
 # ── main / skilled/v* are exempt from the permission gate with zero env vars ─
 expect_hook "main push (new form) allowed with no env vars" \
