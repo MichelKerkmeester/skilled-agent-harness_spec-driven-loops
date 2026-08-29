@@ -40,7 +40,7 @@ _memory:
 - **Packet:** 013-styles-database-rust-opportunities
 - **Level:** 2 (research charter; deep-research loop populates `research/`)
 - **Status:** In progress (research running)
-- **Sibling precedent:** the Rust-backend-rewrite charters `system-speckit/029` + `030`, `system-code-graph/035`, `system-skill-advisor/017`, and the shipped standard `sk-code/018-rust-standards-for-code-opencode`.
+- **Sibling precedent:** the Rust-backend-rewrite charters `system-speckit/029` + `030`, `system-code-graph/035`, `system-skill-advisor/017`, and the shipped standard `sk-code/002-rust-standards-for-code-opencode`.
 
 <!-- /ANCHOR:metadata -->
 

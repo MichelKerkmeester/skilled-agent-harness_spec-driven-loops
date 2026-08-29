@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming",
+  "spec_folder": "sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming",
+  "parent_id": "sk-code/004-code-conformance-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "path containment prefix matching",
+      "node builtin specifier normalisation",
+      "snake case export rename",
+      "context server extraction",
+      "compiled routing authority",
+      "containment helper plan",
+      "node specifier normalisation plan",
+      "consumer inventory rename",
+      "context server extraction plan",
+      "containment tasks",
+      "naming rename tasks",
+      "specifier normalisation tasks"
+    ],
+    "key_topics": [
+      "path",
+      "containment",
+      "prefix",
+      "matching",
+      "node",
+      "builtin",
+      "specifier",
+      "normalisation",
+      "snake",
+      "case",
+      "export",
+      "rename"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Decision",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "their",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "child",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four defect classes here share one property: the standard states what to do, and the code does something else that a machine cannot mechanically rewrite",
+    "created_at": "2026-07-30T19:25:15.332Z",
+    "last_save_at": "2026-07-30T19:25:15.332Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:b368af4a1e840928f3d0e1a3dd72be7a61d7d6cee675fb087d4e3594fd73db39",
+    "source_doc_hashes": {
+      "spec.md": "2426ff2e18e986506f9520c7b33f8e6c482f0b54183b75be971c3978d749e2b4",
+      "plan.md": "d06f57ec87da9d4b613d9aa022200a6ebceae7ea30c1161913d316b90873344e",
+      "tasks.md": "5b5ab438b0f2ba35e5d2e40a84b7f6def76d81b07b6ae71a46eb5bca0ceb4da1",
+      "checklist.md": "39e206d23ba674a547f8bd189bbe058d09c1bc453660370d10728c7b7b14e8ec",
+      "decision-record.md": "e1ccf43692c92858d7023cd8328152495996fba20db4bb10396b1d67a1b11c12"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

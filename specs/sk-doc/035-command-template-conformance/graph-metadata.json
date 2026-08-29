@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/035-command-template-conformance",
+  "spec_folder": "sk-doc/035-command-template-conformance",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "command template conformance",
+      "sk-create-command audit",
+      "mandatory input gate missing",
+      "allowed-tools missing command",
+      "command template conformance plan",
+      "sk-create-command audit plan",
+      "command template conformance tasks",
+      "sk-create-command audit tasks",
+      "command template conformance implementation",
+      "sk-create-command audit summary"
+    ],
+    "key_topics": [
+      "command",
+      "template",
+      "conformance",
+      "sk-create-command",
+      "mandatory",
+      "input",
+      "gate",
+      "allowed-tools",
+      "design",
+      "rewrite",
+      "prompt",
+      "router"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/design/extract.md",
+      ".opencode/commands/rewrite/response.md",
+      ".opencode/commands/prompt/improve.md",
+      ".opencode/commands/rewrite/explain-visually.md",
+      ".opencode/commands/rewrite/response-by-external-agent.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": ".opencode/commands/design/extract.md",
+        "kind": "file",
+        "path": ".opencode/commands/design/extract.md",
+        "source": "derived"
+      },
+      {
+        "name": ".opencode/commands/rewrite/response.md",
+        "kind": "file",
+        "path": ".opencode/commands/rewrite/response.md",
+        "source": "derived"
+      },
+      {
+        "name": ".opencode/commands/prompt/improve.md",
+        "kind": "file",
+        "path": ".opencode/commands/prompt/improve.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Command Template Conformance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Audit .opencode/commands/{design,rewrite,prompt} against the sk-doc/sk-create-command contract and fix the confirmed defects: a missing mandatory input gate and a missing allowed-tools declaration.",
+    "created_at": "2026-08-29T09:43:41.000Z",
+    "last_save_at": "2026-08-29T09:43:41.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e973ec0a46dd2d25982701f69e8f5e5fe0b0c6f21b58003e5ae5ba1de10a4557",
+    "source_doc_hashes": {
+      "spec.md": "36918b640765d3f46a81562651dae5c7d7419607a98b268e35578524cf7b94f0",
+      "plan.md": "a818b12d99b9e7bdf3d435fc06c7daab40c95ac64efcf7a3ca72cb4cc468d58f",
+      "tasks.md": "410b06e26093ac98cdcb8f84a86a2cbab17cb5cf170b895dcae20c061a2dfd33",
+      "implementation-summary.md": "10aceb3ecf4f8cd0680c45b35a6e23df33f7bb4592ded9eec6ce6c915285025b"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -58,18 +58,18 @@ Provide a structurally compliant Level 2 folder that the validator should accept
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Required headers stay in template order | `validate.sh` returns exit code 0 |
-| REQ-002 | Required anchors stay in template order | `ANCHORS_VALID` passes |
-| REQ-003 | Optional anchors from the template stay allowed | No extra-anchor warning is emitted |
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | Required headers stay in template order |
+| REQ-002 | Required anchors stay in template order |
+| REQ-003 | Optional anchors from the template stay allowed |
 
 ### P1 - Required (complete OR user-approved deferral)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-004 | Checklist formatting matches the live template | `TEMPLATE_HEADERS` passes |
-| REQ-005 | Strict validation has no residual warnings | `validate.sh --strict` returns exit code 0 |
+| ID | Requirement |
+|----|-------------|
+| REQ-004 | Checklist formatting matches the live template |
+| REQ-005 | Strict validation has no residual warnings |
 
 ---
 

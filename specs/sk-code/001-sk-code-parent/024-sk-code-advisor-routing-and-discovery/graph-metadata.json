@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
+  "spec_folder": "sk-code/001-sk-code-parent/024-sk-code-advisor-routing-and-discovery",
+  "parent_id": "sk-code/001-sk-code-parent",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code advisor routing discovery",
+      "Lane-C D3 proxy fix",
+      "CWV accessibility smart routing",
+      "phase 24 plan",
+      "sk-code advisor routing discovery plan",
+      "Lane-C D3 proxy plan",
+      "phase 24 tasks",
+      "sk-code advisor routing discovery tasks",
+      "Lane-C D3 proxy tasks",
+      "phase 24 checklist",
+      "sk-code advisor routing discovery checklist",
+      "Lane-C D3 proxy verification"
+    ],
+    "key_topics": [
+      "sk-code",
+      "advisor",
+      "routing",
+      "discovery",
+      "lane-c",
+      "proxy",
+      "cwv",
+      "accessibility",
+      "smart",
+      "phase",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Ship",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change During Execution",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Retrospective Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Local",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Promotion Gate",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Severity Promotion",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Rollup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Optional Catalogs",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two sk-code discovery scenarios failed because the references they needed already existed in `sk-code/shared/references/smartrouting.md` RESOURCEMAP, but the prompts did not fire the intents that map to those references",
+    "created_at": "2026-07-06T09:31:15.780Z",
+    "last_save_at": "2026-08-28T15:52:59.453Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ddd8b73aefe59439f4bba12025c01a6d2afa7ea5e70bd75edc8709b799155c83",
+    "source_doc_hashes": {
+      "spec.md": "3acda1a1f00a2140510591c572fab3a974c7ad0697678528a799359729f1c3ec",
+      "plan.md": "f7c3a9c67fad44064bb619da368998b20beb64a7265ac8b4acd2f6f60c2de6cf",
+      "tasks.md": "bd7062e1ba763276587d03506b9e044b16467a374a8b02669d2d173b5a03ea4e",
+      "checklist.md": "98f477938336b9e0d6e2e40eff4f3eb414237272d727e8134bdf9759e67b5f59",
+      "implementation-summary.md": "e041988c91404b59f51310addc7d39c1f0d17a4dc8043611f5d4e53ac632e447"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

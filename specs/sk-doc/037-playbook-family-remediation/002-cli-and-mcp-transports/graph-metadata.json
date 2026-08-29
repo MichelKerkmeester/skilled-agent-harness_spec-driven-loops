@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/037-playbook-family-remediation/002-cli-and-mcp-transports",
+  "spec_folder": "sk-doc/037-playbook-family-remediation/002-cli-and-mcp-transports",
+  "parent_id": "sk-doc/037-playbook-family-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli and mcp transport playbook remediation",
+      "cli-external-orchestration playbook violations",
+      "mcp-tooling playbook violations",
+      "code mode call syntax false positive",
+      "cli and mcp transport playbook remediation plan",
+      "grader defect routing plan",
+      "cli and mcp transport playbook remediation tasks",
+      "transport playbook per-root tasks",
+      "cli and mcp transport playbook remediation implementation",
+      "code mode call syntax false positive summary"
+    ],
+    "key_topics": [
+      "cli",
+      "mcp",
+      "transport",
+      "playbook",
+      "remediation",
+      "cli-external-orchestration",
+      "violations",
+      "mcp-tooling",
+      "code",
+      "mode",
+      "call",
+      "syntax"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate-playbook-package.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Both",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Take",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Code Mode",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Per",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Fourteen",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered Each",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Fourteen transport playbook roots carried 2,158 operator-scenario violations, and one of the defects found there was in the grader rather than in any document.",
+    "created_at": "2026-08-29T11:53:22.349Z",
+    "last_save_at": "2026-08-29T14:54:12.200Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1afc5e3e58319d0ca8f1126abba35d815e151700cff5d0a779289494a7987e58",
+    "source_doc_hashes": {
+      "spec.md": "9aed65b6f431de7d77d72e97b94ffc1ea380c7b134bf499c62171db32e9902ad",
+      "plan.md": "cd68b6d8eba49defdef4911522f84dfbd5aff1303e4ebe04a3c5d6618c98a10c",
+      "tasks.md": "a5ffee298e9bc2fd21c0c8685a769941f4ad1a69006969103e5a939a881fdca9",
+      "implementation-summary.md": "69fd1080b7375acf4d7f80c3a65e48daa55c1c27d5707f447c93cc5172070488"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

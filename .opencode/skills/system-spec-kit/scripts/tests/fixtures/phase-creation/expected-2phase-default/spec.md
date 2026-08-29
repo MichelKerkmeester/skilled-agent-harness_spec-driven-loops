@@ -63,15 +63,15 @@ contextType: "general"
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | [Requirement description] | [How to verify it's done] |
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | [Requirement description] |
 
 ### P1 - Required (complete OR user-approved deferral)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | [Requirement description] | [How to verify it's done] |
+| ID | Requirement |
+|----|-------------|
+| REQ-002 | [Requirement description] |
 
 ---
 

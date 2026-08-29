@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership",
+  "spec_folder": "sk-code/008-sk-code-mobile-cli-mode/002-scripts-ownership",
+  "parent_id": "sk-code/008-sk-code-mobile-cli-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "scripts",
+      "ownership",
+      "app",
+      "skill",
+      "references",
+      "tooling",
+      "decision",
+      "surface",
+      "read-only",
+      "npm",
+      "ci"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. DECISION",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "5. SUCCESS CRITERIA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "6. CROSS-REFERENCES",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The app keeps scripts/; the sk-code-mobile-cli surface skill references it. A read-only surface leaf cannot own executable, app-coupled, CI-wired tooling. Analysis only, no move.",
+    "created_at": "2026-08-25T19:45:00.000Z",
+    "last_save_at": "2026-08-25T19:45:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5a8bc3dcb083805b71747081283cd030462c10c99e2bb8be3643950defed197c",
+    "source_doc_hashes": {
+      "spec.md": "4f33e7d5e841379e0daae42d48d3e41d568ca0f5781efb91413643783996e9a3",
+      "plan.md": "c85c6c423664da08cd77b282796ebcf97e2f09bc73e476c5f8843c84e9f1cd5e",
+      "tasks.md": "81815c59ff89bc43154d1155bf60cf2e3f93802c3755a603827fbaa283d24ac5",
+      "implementation-summary.md": "ab4cef2c6120ea079fe114ef67c283906704c923a1f6f2058da973795fe686bb"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

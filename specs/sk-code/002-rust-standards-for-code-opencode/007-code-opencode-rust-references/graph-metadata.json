@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references",
+  "spec_folder": "sk-code/002-rust-standards-for-code-opencode/007-code-opencode-rust-references",
+  "parent_id": "sk-code/002-rust-standards-for-code-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 phase 007 split rust references",
+      "code-opencode rust reference hygiene",
+      "rust style_guide quick_reference split"
+    ],
+    "key_topics": [
+      "phase",
+      "split",
+      "rust",
+      "references",
+      "code-opencode",
+      "reference",
+      "hygiene",
+      "four",
+      "docs",
+      "exceed",
+      "lines",
+      "styleguide"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rust References",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Losslessly",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Losslessly",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Ready Heading",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Four",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four `code-opencode` Rust docs exceed 500 lines — `references/rust/styleguide.md` (1987), `references/rust/quickreference.md` (1571), `references/rust/qualitystandards.md` (1475), and `assets/checklists/rustchecklist.md` (1005)",
+    "created_at": "2026-07-11T16:27:46.397Z",
+    "last_save_at": "2026-07-11T16:34:29.226Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:91f01fd1070548e05abff3ad4489797087eba2629b3b77b4af03da78215c59c7",
+    "source_doc_hashes": {
+      "spec.md": "c4ea830a9c66f892648edd5266539e0b377d46d78dbfdc4e6e74431f0e72417f",
+      "plan.md": "41f3c3f87c5076b17208b8844ddf4ced062ee82caea6642929348797bde80b2a",
+      "tasks.md": "31bc72053bb3ef2283b9b6175fe3d6ad2274832362e1fa039a7c83245f3b7adf",
+      "implementation-summary.md": "9791a3d0a434ec5d8e30fdc084022b99c76bdc6608473352a0699feed0a50b59"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

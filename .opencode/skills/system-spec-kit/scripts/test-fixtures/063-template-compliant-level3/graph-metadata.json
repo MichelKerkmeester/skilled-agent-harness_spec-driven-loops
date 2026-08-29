@@ -45,6 +45,7 @@
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/checklist.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/decision-record.md",
       ".opencode/skills/system-spec-kit/scripts/test-fixtures/063-template-compliant-level3/implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:a48451d5fa60ea1262eb23926232e935e85699500e333879ab519ba3619b4f18"
   }
 }

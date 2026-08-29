@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang",
+  "spec_folder": "sk-code/002-rust-standards-for-code-opencode/005-touchpoints-and-multilang",
+  "parent_id": "sk-code/002-rust-standards-for-code-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 phase 005 touchpoints multilang",
+      "rust known_languages router-replay fixtures",
+      "touched language set rust typescript",
+      "018 phase 005 plan",
+      "touchpoints multilang plan rust",
+      "018 phase 005 tasks",
+      "touchpoints multilang tasks rust",
+      "018 rust touchpoints complete summary",
+      "rust registration touchpoints outcome",
+      "router-replay rust touched-language set landed"
+    ],
+    "key_topics": [
+      "phase",
+      "touchpoints",
+      "multilang",
+      "rust",
+      "router-replay",
+      "fixtures",
+      "touched",
+      "language",
+      "set",
+      "typescript",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/hub-router.json",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "router-replay.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Registration Touchpoints",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Language Routing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Beyond",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Teach",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Teach",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Additive Rust",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rust",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built All",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Language Determinism Contracts",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Beyond the surface router and parent union, several tools independently classify languages (stack detection, the hub router, two Python verifiers, and the skill-benchmark router-replay)",
+    "created_at": "2026-07-11T08:51:44.754Z",
+    "last_save_at": "2026-08-29T15:21:56.633Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c3f2f26d19c008020d4fc0765791cf6f1c8c4952e920b70be4d8a8f41a000dac",
+    "source_doc_hashes": {
+      "spec.md": "f1286308bc64dcf362fff672102f85a8cd59133c4521f4e0482ac00eab37fbaa",
+      "plan.md": "5f40be5e44d86f4a32c2b6d329e91167a599a3d82d0e1c598ded914e88e9b0e4",
+      "tasks.md": "c9cda733882d0d3486c9d979e815f05d8dcce54f670304e7481cd4a66b10d3bf",
+      "implementation-summary.md": "875acca52f228be65e70f8360eb3c67948f6755a95ba5506561103b3392a8858"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

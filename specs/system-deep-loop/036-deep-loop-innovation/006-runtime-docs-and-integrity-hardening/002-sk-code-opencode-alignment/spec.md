@@ -89,7 +89,7 @@ tsc gate green; this is a consistency-and-structure pass, not a functional rewri
 
 ### Resolved Border
 
-This phase owns `.opencode/skills/system-deep-loop/runtime/**` only, including runtime modules from earlier waves and the 036 clone-column output. Non-runtime trees such as `shared/**` and `deep-improvement/scripts/**` remain in the sk-code conformance program at `sk-code/021-code-conformance-alignment`; this phase does not claim them.
+This phase owns `.opencode/skills/system-deep-loop/runtime/**` only, including runtime modules from earlier waves and the 036 clone-column output. Non-runtime trees such as `shared/**` and `deep-improvement/scripts/**` remain in the sk-code conformance program at `sk-code/004-code-conformance-alignment`; this phase does not claim them.
 
 ---
 

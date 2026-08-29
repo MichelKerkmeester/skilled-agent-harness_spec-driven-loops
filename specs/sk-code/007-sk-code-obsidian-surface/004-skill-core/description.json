@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/007-sk-code-obsidian-surface/004-skill-core",
+  "description": "Author the sk-code-obsidian surface packet's two companion files — SKILL.md and README.md — mirroring sk-code-mobile-cli's shape exactly, describing the real Obsidian plugin stack rather than the template's Svelte stack.",
+  "keywords": [
+    "author",
+    "sk-code-obsidian",
+    "surface",
+    "packet",
+    "two",
+    "companion",
+    "files",
+    "skill.md",
+    "readme.md"
+  ],
+  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "specId": "004",
+  "folderSlug": "skill-core",
+  "parentChain": [
+    "sk-code",
+    "007-sk-code-obsidian-surface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/007-sk-code-obsidian-surface/002-repo-convention-audit",
+  "description": "Measure the plugin tree's real naming, comment, folder-doc and stylesheet conventions, and the gate baselines every later phase is judged against.",
+  "keywords": [
+    "measure",
+    "plugin",
+    "tree",
+    "real",
+    "naming",
+    "comment",
+    "folder-doc",
+    "stylesheet",
+    "conventions"
+  ],
+  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "specId": "002",
+  "folderSlug": "repo-convention-audit",
+  "parentChain": [
+    "sk-code",
+    "007-sk-code-obsidian-surface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

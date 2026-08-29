@@ -116,15 +116,18 @@ Tiny Catalog Sync has a concise fixture packet that strict validation accepts.
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Fixture content remains validator-compatible | Run strict validation on this fixture |
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | Fixture content remains validator-compatible |
 
 ### P1 - Required (complete OR user-approved deferral)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-002 | Fixture content remains validator-compatible | Run strict validation on this fixture |
+| ID | Requirement |
+|----|-------------|
+| REQ-002 | Fixture content remains validator-compatible |
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
 <!-- /ANCHOR:requirements -->
 
 ---

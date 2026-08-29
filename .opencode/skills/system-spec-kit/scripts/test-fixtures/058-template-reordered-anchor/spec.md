@@ -55,9 +55,9 @@ This fixture intentionally swaps required anchor IDs while keeping header text i
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Reordered required anchor fails | `validate.sh` returns exit code 2 |
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | Reordered required anchor fails |
 
 ---
 

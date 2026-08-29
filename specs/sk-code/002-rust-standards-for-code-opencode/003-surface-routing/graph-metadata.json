@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/002-rust-standards-for-code-opencode/003-surface-routing",
+  "spec_folder": "sk-code/002-rust-standards-for-code-opencode/003-surface-routing",
+  "parent_id": "sk-code/002-rust-standards-for-code-opencode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "018 phase 003 surface routing",
+      "code-opencode skill.md rust detection",
+      "rust intent signals resource map",
+      "018 phase 003 plan",
+      "code-opencode routing plan rust",
+      "018 phase 003 tasks",
+      "code-opencode routing tasks rust",
+      "018 rust surface routing summary",
+      "code-opencode skill.md rust routing outcome",
+      "rust detection intent resource complete"
+    ],
+    "key_topics": [
+      "phase",
+      "surface",
+      "routing",
+      "code-opencode",
+      "skill",
+      "rust",
+      "detection",
+      "intent",
+      "signals",
+      "resource",
+      "map",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Surface Detection",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wire Rust",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add Rust",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Add Rust",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Mirror",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Detection Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Rust",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `code-opencode/SKILL.md` surface router does not detect Rust files or route a RUST intent, so even with the Rust docs authored (phase 002) nothing selects them",
+    "created_at": "2026-07-11T08:51:44.204Z",
+    "last_save_at": "2026-08-28T22:09:16.559Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:97d21e5eacecdc8bfdac8aaf221e4807151e044cfe5972311f32f537d8acde8c",
+    "source_doc_hashes": {
+      "spec.md": "8a4ee76832f7ce8d85dbbc22303e22658f4f59e1d7fcf3433dd529dd3813121d",
+      "plan.md": "a101ddd18b7bca06d47df38492365272fcc719630bc93b149ccf322c29de15be",
+      "tasks.md": "3e8c9dee727bdcb0108c45a2430d39e937bc3af441af784d06933472787895ae",
+      "implementation-summary.md": "895e29c510e2a494f20a9b0873f9ab6f1eb0119cfc8fdaaed56aecb9760fc2f1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

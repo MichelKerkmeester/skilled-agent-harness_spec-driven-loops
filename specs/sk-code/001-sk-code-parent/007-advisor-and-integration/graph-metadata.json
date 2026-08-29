@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/001-sk-code-parent/007-advisor-and-integration",
+  "spec_folder": "sk-code/001-sk-code-parent/007-advisor-and-integration",
+  "parent_id": "sk-code/001-sk-code-parent",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code advisor and integration",
+      "sk-code external reference repoint",
+      "sk-code-review advisor merge",
+      "sk-code advisor integration plan",
+      "sk-code reference repoint plan",
+      "sk-code advisor integration tasks",
+      "sk-code reference repoint tasks",
+      "sk-code advisor integration checklist",
+      "sk-code advisor integration summary",
+      "sk-code reference repoint outcome"
+    ],
+    "key_topics": [
+      "sk-code",
+      "advisor",
+      "integration",
+      "external",
+      "reference",
+      "repoint",
+      "sk-code-review",
+      "merge",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".claude/settings.json",
+      ".github/workflows/comment-hygiene.yml",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/agents/deep-review.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene.yml",
+        "kind": "config",
+        "path": ".github/workflows/comment-hygiene.yml",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rather",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Ground",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Extract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The relocation (004) and fold (005) moved or deleted files that external code and docs still referenced by their old paths",
+    "created_at": "2026-07-04T00:00:00Z",
+    "last_save_at": "2026-08-29T13:09:57.953Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:61b331ad43a3319778aa11c857b84ba73417a86d447b11129a29630d54af1f2d",
+    "source_doc_hashes": {
+      "spec.md": "3f53b6c6200d27dda0790593c5bf9d05e9b7428f5d2a0a1d756240e6e19b24ee",
+      "plan.md": "271e2bb4cf52561092da820bad0949c371ef944112383324b9f68f9af50289c8",
+      "tasks.md": "168d1d7acf884c34c762165b1c960a0090ebf06d5d23eff4d8eae3f7251943cd",
+      "checklist.md": "19b26397cf1b4768e2771577816ffab2873d56c12b6e00f68ea8108d9065fefe",
+      "implementation-summary.md": "a6a29831fb978faa2511d23e471b37b98e38b9b34837bfb6cef13c65918cd57a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

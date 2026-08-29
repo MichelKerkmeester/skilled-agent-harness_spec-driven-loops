@@ -78,19 +78,22 @@ Provide a clean Level 2 packet that strict validation can use to prove current t
 
 ### P0 - Blockers (MUST complete)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Required Level 2 files are present | `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, and `implementation-summary.md` exist |
-| REQ-002 | Headers and anchors match current templates | Strict validation exits 0 |
-| REQ-003 | Checklist evidence is concrete | `checklist.md` contains completed CHK items with evidence |
+| ID | Requirement |
+|----|-------------|
+| REQ-001 | Required Level 2 files are present |
+| REQ-002 | Headers and anchors match current templates |
+| REQ-003 | Checklist evidence is concrete |
 
 ### P1 - Required (complete OR user-approved deferral)
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-004 | Summary sufficiency checks pass | `implementation-summary.md` cites fixture files and a concrete validation command |
-| REQ-005 | Generated metadata remains fresh | `description.json` and `graph-metadata.json` match the current fixture docs |
+| ID | Requirement |
+|----|-------------|
+| REQ-004 | Summary sufficiency checks pass |
+| REQ-005 | Generated metadata remains fresh |
 
+
+> Acceptance criteria for these requirements live in `acceptance-criteria.md`,
+> which is the document that decides whether this packet may close.
 <!-- /ANCHOR:requirements -->
 ---
 

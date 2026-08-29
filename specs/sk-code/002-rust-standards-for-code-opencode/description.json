@@ -1,0 +1,28 @@
+{
+  "specFolder": "sk-code/002-rust-standards-for-code-opencode",
+  "description": "WS1: `sk-code`'s `code-opencode` surface encodes per-language standards as a `references/<lang>/{styleguide,qualitystandards,quickreference}.md` trio",
+  "keywords": [
+    "ws1",
+    "sk-code",
+    "code-opencode",
+    "surface",
+    "encodes",
+    "per-language",
+    "standards",
+    "references",
+    "lang",
+    "styleguide",
+    "qualitystandards",
+    "quickreference",
+    "trio"
+  ],
+  "lastUpdated": "2026-08-15T14:40:56.735Z",
+  "specId": "002",
+  "folderSlug": "rust-standards-for-code-opencode",
+  "parentChain": [
+    "sk-code"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "phase"
+}
