@@ -1,0 +1,27 @@
+{
+  "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint",
+  "description": "Commit `790c3dfc1c5` added a machine-checkable stdin-redirect rule to five `cli-` packet",
+  "keywords": [
+    "commit",
+    "790c3dfc1c5",
+    "machine-checkable",
+    "stdin-redirect",
+    "rule",
+    "five",
+    "cli",
+    "packet"
+  ],
+  "lastUpdated": "2026-08-29T20:51:45.392Z",
+  "specId": "024",
+  "folderSlug": "cli-external-hub-manifest-remint",
+  "parentChain": [
+    "sk-doc",
+    "019-skill-routing-refactor",
+    "015-router-unification-program"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "29-08-26_21-46__spec-in-sk-doc-parent-spec-category.md",
+    "29-08-26_21-51__spec-in-sk-doc-parent-spec-category.md"
+  ]
+}

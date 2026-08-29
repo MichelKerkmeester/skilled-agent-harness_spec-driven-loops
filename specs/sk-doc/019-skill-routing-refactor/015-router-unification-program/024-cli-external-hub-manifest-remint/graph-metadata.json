@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint",
+  "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/024-cli-external-hub-manifest-remint",
+  "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cli external orchestration stale manifest",
+      "compiled routing fell back to legacy",
+      "skill edit broke compiled routing",
+      "activation manifest re-mint",
+      "compiled route guard exit 1",
+      "re-mint activation manifest plan",
+      "compiled routing refresh verb",
+      "stale manifest repair",
+      "re-mint task ledger",
+      "activation manifest tasks",
+      "compiled routing repair tasks",
+      "re-mint checklist"
+    ],
+    "key_topics": [
+      "cli",
+      "external",
+      "orchestration",
+      "stale",
+      "manifest",
+      "compiled",
+      "routing",
+      "fell",
+      "back",
+      "legacy",
+      "skill",
+      "edit"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+      "specs/sk-doc/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/cli-external-orchestration/manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".opencode/bin/lib/compiled-routing/013-live-activation/activation/cli-external-orchestration/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Activation Manifest Re",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Commit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Restore",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Work",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Serving",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Ledger",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "observed",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Every",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Commit `790c3dfc1c5` added a machine-checkable stdin-redirect rule to five `cli-` packet",
+    "created_at": "2026-08-29T20:46:06.689Z",
+    "last_save_at": "2026-08-29T20:51:45.392Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8b24f3abace6cad67e00564e943b42231412170dc224eb74e264ae9a0e7e3a63",
+    "source_doc_hashes": {
+      "spec.md": "547a9f147b2cdb82c398cb782d98d6c06b08fe42f0474a56484f686a25e3f9a3",
+      "plan.md": "4272f3da7aeeed984345378591a3d28932a6381ed4460eafd740787aeb09ce68",
+      "tasks.md": "31d490b6586d105e87e4c2e66b626128a66cde96f9a02b4a4c1fc9a4ff701dee",
+      "checklist.md": "0ed64ae570a6e1a07c92d9d05b1c2d080e8f990553bdbac9fd2dd004967a76b0",
+      "implementation-summary.md": "81d737d413b9a1c47b6b4c5cef270844488eb6ae0f781cc2c3e2e5dcb3a1a41c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
