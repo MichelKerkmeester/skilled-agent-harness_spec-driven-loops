@@ -242,6 +242,26 @@ Trigger: Claiming "done", "complete", "finished", "works"
 4. When `SPECKIT_COMPLETION_FRESHNESS=true`, completion claims must also pass `CONTINUITY_FRESHNESS`: the stored `session_dedup.fingerprint` matches recomputed content and packet-scoped paths are clean. Under `--strict` a stale result blocks completion (exit 2) for non-grandfathered packets regardless of `SPECKIT_COMPLETION_FRESHNESS_ENFORCE`; that flag only reclassifies the inner result label `warn`→`error`, it does not make the warn tier non-blocking under `--strict`.
 - Skip: Level 1 tasks (checklist.md is optional at every level).
 
+##### Invoking validate.sh — four ways a run lies
+
+These are properties of the harness, not of any one repository, and each has already certified a
+broken packet as green.
+
+1. **Require an explicit `RESULT: PASSED`.** A stale compiled orchestrator makes `validate.sh` refuse
+   to run: it prints `compiled validation orchestrator is stale`, exits 3, and emits **no rule output
+   at all**. A sweep that only looks for `RESULT: FAILED` reads that silence as a clean pass. Rebuild
+   with `cd "$(realpath .opencode)/skills/system-spec-kit/mcp-server" && npm run build`.
+2. **Invoke through `realpath`, and verify by content.** Where `.opencode` is a symlink, the spec
+   scripts and generators can silently no-op — exit 0, zero output. Use
+   `NODE_PRESERVE_SYMLINKS=1 bash "$(realpath .opencode)/skills/system-spec-kit/scripts/spec/validate.sh" <folder> --strict`
+   and confirm the rule lines appeared, rather than trusting the exit code.
+3. **A phase parent recurses into its children.** The printed output continues past the folder you
+   asked about, so the tail describes the last child rather than your packet. Take the **first**
+   `RESULT:` line for a folder's own verdict, and validate children individually for a per-packet
+   answer.
+4. **Regenerate metadata after any spec-doc edit**, or `GENERATED_METADATA_INTEGRITY` fails on a
+   fingerprint that no longer matches the documents it attests.
+
 #### MEMORY SAVE RULE [HARD] BLOCK
 Trigger: "save context", "save memory", `/memory:save`
 - If spec folder established at Gate 3 → USE IT (don't re-ask). Carry-over applies ONLY to memory saves
