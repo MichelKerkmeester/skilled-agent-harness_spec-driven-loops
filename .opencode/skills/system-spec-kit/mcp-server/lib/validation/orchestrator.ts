@@ -892,6 +892,35 @@ function printReport(report: ValidationReport, opts: ValidateOpts): void {
   }
   process.stdout.write(`\nSummary: Errors: ${report.summary.errors}  Warnings: ${report.summary.warnings}\n\n`);
   process.stdout.write(`RESULT: ${report.passed ? 'PASSED' : 'FAILED'}\n`);
+  writeRepairHint(report);
+}
+
+// Some of these rules fail on facts the repository can recompute — where the
+// packet sits, what level it declares, whether its generated metadata still
+// matches its sources. A reader has no way to know which, and would otherwise
+// hand-edit what one command settles. The failure output is the only place the
+// reader is guaranteed to be looking, so the offer belongs here.
+const RECOMPUTABLE_RULES = new Set([
+  'DESCRIPTION_SHAPE',
+  'GENERATED_METADATA_INTEGRITY',
+  'GENERATED_METADATA_DRIFT',
+  'METADATA_DISK_PATH_CONSISTENCY',
+  'SPEC_DOC_INTEGRITY',
+]);
+
+function writeRepairHint(report: ValidationReport): void {
+  const hit = report.entries.some(
+    (item) => (item.status === 'error' || item.status === 'warn') && RECOMPUTABLE_RULES.has(item.rule),
+  );
+  if (!hit) return;
+  // Printed relative to where the reader is standing, so the line can be copied
+  // rather than retyped around an absolute path.
+  const target = path.relative(process.cwd(), report.folder) || report.folder;
+  process.stdout.write('\nSome of these are recomputable from the repository:\n');
+  process.stdout.write(
+    `  preview  node .opencode/skills/system-spec-kit/scripts/spec/repair-derived.cjs --folder ${target}\n`,
+  );
+  process.stdout.write('  apply    add --apply\n');
 }
 
 // Compare resolved filesystem paths, not the raw URL string: a repo path with
