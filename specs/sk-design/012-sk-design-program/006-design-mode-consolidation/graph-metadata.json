@@ -41,52 +41,22 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/mode-registry.json",
-      ".opencode/skills/sk-design/design-interface/SKILL.md",
-      "scratch/styles.sha256.before",
-      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
       "handover.md",
-      ".opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md",
+      "scratch/styles.sha256.before",
       "scratch/foundations-files.before.txt",
       "scratch/audit-files.before.txt",
-      "implementation-summary.md",
       "scratch/benchmark-before/report.json",
       "scratch/routing.sha256.before",
-      ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/skills/sk-design/hub-router.json",
-      ".opencode/skills/sk-design/shared/creation-contract.md",
-      ".opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md",
-      ".opencode/skills/sk-design/styles/README.md"
+      ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "styles.sha256.before",
-        "kind": "file",
-        "path": "scratch/styles.sha256.before",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -112,15 +82,33 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "polish-gate-orchestration.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/shared/procedures/polish-gate-orchestration.md",
+        "name": "styles.sha256.before",
+        "kind": "file",
+        "path": "scratch/styles.sha256.before",
         "source": "derived"
       },
       {
@@ -136,12 +124,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "report.json",
         "kind": "config",
         "path": "scratch/benchmark-before/report.json",
@@ -154,27 +136,9 @@
         "source": "derived"
       },
       {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "creation-contract.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/shared/creation-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "interface-preflight-card.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/assets/interface-preflight-card.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/styles/README.md",
+        "path": ".opencode/skills/sk-design/SKILL.md",
         "source": "derived"
       },
       {
@@ -206,11 +170,41 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rollback Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Foundations and audit were registered as peer hub modes despite being interface-domain workflows",
     "created_at": "2026-07-26T09:12:46.542Z",
-    "last_save_at": "2026-07-27T07:52:53.212Z",
+    "last_save_at": "2026-08-29T15:22:00.347Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -43,19 +43,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "implementation-summary.md",
+      "tests/context-server.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,15 +64,27 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": "tests/context-server.vitest.ts",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Fix the 3 `Cannot find module '@modelcontextprotocol/sdk/*'` errors blocking `mcp_server/npm run build` by repairing the post-extraction dependency boundary.",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-08-28T15:59:34.646Z",
+    "last_save_at": "2026-08-29T15:22:14.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:12:00Z",
     "source_docs": [

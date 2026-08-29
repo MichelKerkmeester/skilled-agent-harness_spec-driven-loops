@@ -42,7 +42,9 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/skills/system-deep-loop/SKILL.md"
     ],
     "entities": [
       {
@@ -79,6 +81,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/SKILL.md",
         "source": "derived"
       },
       {
@@ -176,23 +190,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Context Two",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Alternatives Considered",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three mechanisms invalidate alignment coverage",
     "created_at": "2026-07-31T01:25:20.480Z",
-    "last_save_at": "2026-08-18T11:07:50.450Z",
+    "last_save_at": "2026-08-29T15:22:07.252Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

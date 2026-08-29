@@ -45,7 +45,10 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md",
+      ".opencode/skills/sk-communication/cli-communication-projection/docs/runbook.md",
+      ".opencode/skills/sk-communication/cli-communication-projection/docs/rollback.md"
     ],
     "entities": [
       {
@@ -76,6 +79,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "enablement.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/docs/enablement.md",
+        "source": "derived"
+      },
+      {
+        "name": "runbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/docs/runbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "rollback.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/docs/rollback.md",
         "source": "derived"
       },
       {
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Projection is now wired across six runtimes, but the operator has no single, current source of truth for turning it on safely, so the enablement choices and per-runtime launch commands are scattered across Phases 016, 019, and 020 through 025",
     "created_at": "2026-08-14T05:50:52.081Z",
-    "last_save_at": "2026-08-14T09:04:55.006Z",
+    "last_save_at": "2026-08-29T15:21:58.499Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

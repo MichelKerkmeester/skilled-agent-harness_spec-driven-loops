@@ -42,7 +42,18 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts",
+      ".pi/extensions/deep-pi/extensions/deeppi.ts",
+      ".pi/extensions/deep-pi/extensions/deeppi/stats.ts",
+      ".pi/extensions/deep-pi/tests/telemetry.test.ts",
+      ".pi/extensions/deep-pi/tests/stats.test.ts",
+      ".pi/extensions/deep-pi/tests/report.test.ts",
+      ".pi/extensions/deep-pi/benchmarks/before-provider-request.mjs",
+      ".pi/deep-pi-stats.json",
+      ".pi/extensions/deep-pi/extensions/deeppi/hashlines.ts",
+      ".pi/extensions/deep-pi/extensions/deeppi/stability.ts",
+      ".pi/extensions/shared/deepseek-ownership.json"
     ],
     "entities": [
       {
@@ -73,6 +84,72 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "telemetry.ts",
+        "kind": "code",
+        "path": ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deeppi.ts",
+        "kind": "code",
+        "path": ".pi/extensions/deep-pi/extensions/deeppi.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stats.ts",
+        "kind": "code",
+        "path": ".pi/extensions/deep-pi/extensions/deeppi/stats.ts",
+        "source": "derived"
+      },
+      {
+        "name": "telemetry.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/deep-pi/tests/telemetry.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stats.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/deep-pi/tests/stats.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "report.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/deep-pi/tests/report.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "before-provider-request.mjs",
+        "kind": "file",
+        "path": ".pi/extensions/deep-pi/benchmarks/before-provider-request.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-pi-stats.json",
+        "kind": "config",
+        "path": ".pi/deep-pi-stats.json",
+        "source": "derived"
+      },
+      {
+        "name": "hashlines.ts",
+        "kind": "code",
+        "path": ".pi/extensions/deep-pi/extensions/deeppi/hashlines.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stability.ts",
+        "kind": "code",
+        "path": ".pi/extensions/deep-pi/extensions/deeppi/stability.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deepseek-ownership.json",
+        "kind": "config",
+        "path": ".pi/extensions/shared/deepseek-ownership.json",
         "source": "derived"
       },
       {
@@ -122,77 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Five",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Additive",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "schemaVersion",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "both",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "5",
     "created_at": "2026-08-08T07:01:48.090Z",
-    "last_save_at": "2026-08-11T06:50:03.326Z",
+    "last_save_at": "2026-08-29T15:21:52.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

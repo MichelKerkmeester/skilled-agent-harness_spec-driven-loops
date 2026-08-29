@@ -41,49 +41,16 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts",
-      "checklist.md",
       "spec.md",
       "plan.md",
-      "decision-record.md",
-      "scratch/.gitkeep",
       "tasks.md",
-      "implementation-summary.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "node_modules/vitest/vitest.mjs",
+      "scratch/.gitkeep"
     ],
     "entities": [
-      {
-        "name": "reindex.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
-        "source": "derived"
-      },
-      {
-        "name": "execution-router.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -97,27 +64,39 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": "scratch/.gitkeep",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.mjs",
+        "kind": "file",
+        "path": "node_modules/vitest/vitest.mjs",
+        "source": "derived"
+      },
+      {
+        "name": ".gitkeep",
+        "kind": "file",
+        "path": "scratch/.gitkeep",
         "source": "derived"
       },
       {
@@ -197,11 +176,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Arc 010/001 recorded 68 P2 cleanup findings across embedder module surfaces",
     "created_at": "2026-05-23T06:55:12Z",
-    "last_save_at": "2026-07-17T17:19:28.666Z",
+    "last_save_at": "2026-08-29T15:22:16.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

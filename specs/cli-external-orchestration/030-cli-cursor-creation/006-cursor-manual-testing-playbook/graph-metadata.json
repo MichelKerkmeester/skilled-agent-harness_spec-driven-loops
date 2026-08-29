@@ -37,27 +37,29 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
-      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
       "spec.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
-      "plan.md",
+      "implementation-summary.md",
+      ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/manual-testing-playbook/manual-testing-playbook.md",
+      ".cursor/hooks.json",
+      ".cursor/mcp.json",
       ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md",
-      "manual-testing-playbook/manual-testing-playbook.md",
-      "implementation-summary.md"
+      "manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -73,21 +75,33 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".cursor/mcp.json",
         "source": "derived"
       },
       {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`cli-codex` ships a split-document manual-testing-playbook (1 root + per-feature scenario files across categories) as its canonical, no-mocking, PASS/FAIL/SKIP validation mechanism — there is no automated test suite for these CLI-dispatch skills, so the playbook IS the gate",
     "created_at": "2026-07-24T04:52:26.644Z",
-    "last_save_at": "2026-07-24T08:36:17.647Z",
+    "last_save_at": "2026-08-29T15:21:50.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

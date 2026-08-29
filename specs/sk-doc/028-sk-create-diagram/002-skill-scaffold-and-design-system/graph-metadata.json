@@ -41,7 +41,11 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-diagram/assets/icons.html",
+      ".opencode/skills/sk-doc/sk-create-diagram/README.md",
+      ".opencode/skills/sk-doc/sk-create-diagram/changelog/v1.0.0.0.md"
     ],
     "entities": [
       {
@@ -72,6 +76,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "icons.html",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/assets/icons.html",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/changelog/v1.0.0.0.md",
         "source": "derived"
       },
       {
@@ -163,35 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "cli-opencode",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 decided what ports and how `SKILL.md` remaps, but nothing has been written yet — the packet folder does not exist",
     "created_at": "2026-08-12T06:09:18.609Z",
-    "last_save_at": "2026-08-12T06:11:14.891Z",
+    "last_save_at": "2026-08-29T15:22:04.450Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

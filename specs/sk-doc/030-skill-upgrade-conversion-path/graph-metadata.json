@@ -49,23 +49,33 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "tasks.md",
+      "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/sk-doc/sk-create-skill/references/skill/upgrading-a-skill-to-v4.md",
+      ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-skill/README.md",
+      ".opencode/skills/sk-doc/leaf-manifest.json"
     ],
     "entities": [
       {
-        "name": "tasks.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -81,9 +91,27 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "upgrading-a-skill-to-v4.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/references/skill/upgrading-a-skill-to-v4.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-manifest.json",
         "source": "derived"
       },
       {
@@ -175,35 +203,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This repo is a framework others adopt and customize",
     "created_at": "2026-08-15T00:00:00.000Z",
-    "last_save_at": "2026-08-15T11:58:57.888Z",
+    "last_save_at": "2026-08-29T15:22:05.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,11 +219,11 @@
     ],
     "source_fingerprint": "sha256:d42eb7febbd115e4cc6570d1327cbc35992fcc8a7f9f00d556ae6403ef55b789",
     "source_doc_hashes": {
-      "spec.md": "7f0c9ac9f218f50d78338d80c6a848ac7c2dec333967d4c519ee759704fa644b",
-      "plan.md": "a1c757258a2e2ff2f6564d66d6664f20482caae31b237c7772517445dffa2e87",
-      "tasks.md": "ddd9d2eda4ee12501c1c5475b561c4cc0d05219e5c5f40f4a158c080eb2ed422",
-      "checklist.md": "8c51c8cef5ccbb3515cdda4ccf49a59690381fc914956b8bb2fabadb8a6bf17f",
-      "implementation-summary.md": "d1846b3cc5a0c55c7808e21e61b57359ed49c52733f643fb5a8eb30dc233c7b9"
+      "spec.md": "9fc444447ac9cb3e5ff1dcd1b823f296bac560bee337d0d80f17baf130d53822",
+      "plan.md": "457077e1610c984345d4445102db474083ccb8301fd756dfb56e9d53fe142d9d",
+      "tasks.md": "76d579da8258e4dafb1823d1dd0e49924b2d862f6b749bf159893cef6ef3ef9c",
+      "checklist.md": "78433e865971f241a045ac97efed06ef344a656f65494a99c3d7484f16379e2e",
+      "implementation-summary.md": "60cf44f730a9875c8f3b5ee9a68d3c7747fa88b373c4e67d72f0d6aea999faca"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -44,29 +44,29 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "decision-record.md",
-      "resource-map.md",
-      "research/research.md",
       "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "resource-map.md",
       "research/orchestration-summary.json",
       "research/lineages/document-diff-1/iterations/iteration-010.md",
-      "implementation-summary.md",
       ".opencode/commands/deep/research.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
-      ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
-      ".opencode/skills/system-spec-kit/references/workflows/spec_folder_authoring_checklist.md",
-      ".opencode/skills/system-spec-kit/references/workflows/spec_folder_write_recipe.md",
-      ".opencode/skills/system-spec-kit/references/structure/phase_definitions.md",
-      ".opencode/skills/system-spec-kit/references/validation/phase_checklists.md",
       ".opencode/skills/system-deep-loop/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-research/references/guides/quick_reference.md"
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/specs/sk-doc/016-create-diff-mode/spec.md",
+      ".opencode/specs/sk-doc/016-create-diff-mode/description.json",
+      ".opencode/specs/sk-doc/016-create-diff-mode/graph-metadata.json",
+      ".opencode/specs/sk-doc/016-create-diff-mode/001-research-and-requirements/spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/sk-doc/016-create-diff-mode/001-research-and-requirements/spec.md",
         "source": "derived"
       },
       {
@@ -82,15 +82,21 @@
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "resource-map.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "resource-map.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -100,9 +106,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -118,45 +124,21 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "quick_reference.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/workflows/quick_reference.md",
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-doc/016-create-diff-mode/description.json",
         "source": "derived"
       },
       {
-        "name": "spec_folder_authoring_checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/workflows/spec_folder_authoring_checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec_folder_write_recipe.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/workflows/spec_folder_write_recipe.md",
-        "source": "derived"
-      },
-      {
-        "name": "phase_definitions.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/structure/phase_definitions.md",
-        "source": "derived"
-      },
-      {
-        "name": "phase_checklists.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/validation/phase_checklists.md",
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-doc/016-create-diff-mode/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -206,11 +188,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Research State",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Output",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "People use AI to edit documents outside Git repositories and cannot reliably inspect the exact before-and-after change",
     "created_at": "2026-07-15T09:53:39.812Z",
-    "last_save_at": "2026-07-17T14:37:10.219Z",
+    "last_save_at": "2026-08-29T15:22:00.822Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

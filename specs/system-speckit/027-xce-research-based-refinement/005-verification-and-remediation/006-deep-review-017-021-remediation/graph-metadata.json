@@ -42,13 +42,24 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "tasks.md",
-      "decision-record.md",
       "plan.md",
-      "implementation-summary.md",
+      "tasks.md",
       "checklist.md",
-      "review-r2/broaden-synthesis.md",
-      "handover.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md",
+      ".opencode/commands/memory/search.md",
+      "handlers/memory-index.ts",
+      "lib/search/confidence-scoring.ts",
+      "lib/ops/job-store.ts",
+      "lib/storage/maintenance-marker.ts",
+      "lib/providers/retry-manager.ts",
+      "lib/search/trigger-embedding-backfill.ts",
+      "tests/batch-processor.vitest.ts",
+      "tests/job-store.vitest.ts",
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      "tests/launcher-maintenance-guard.vitest.ts",
+      "review-r2/broaden-synthesis.md"
     ],
     "entities": [
       {
@@ -58,27 +69,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -88,15 +87,93 @@
         "source": "derived"
       },
       {
-        "name": "broaden-synthesis.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "review-r2/broaden-synthesis.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "handover.md",
         "kind": "doc",
         "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "confidence-scoring.ts",
+        "kind": "code",
+        "path": "lib/search/confidence-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "job-store.ts",
+        "kind": "code",
+        "path": "lib/ops/job-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "maintenance-marker.ts",
+        "kind": "code",
+        "path": "lib/storage/maintenance-marker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": "lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-embedding-backfill.ts",
+        "kind": "code",
+        "path": "lib/search/trigger-embedding-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "batch-processor.vitest.ts",
+        "kind": "test",
+        "path": "tests/batch-processor.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "job-store.vitest.ts",
+        "kind": "test",
+        "path": "tests/job-store.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-maintenance-guard.vitest.ts",
+        "kind": "test",
+        "path": "tests/launcher-maintenance-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "broaden-synthesis.md",
+        "kind": "doc",
+        "path": "review-r2/broaden-synthesis.md",
         "source": "derived"
       },
       {
@@ -128,77 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Remediation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Touched Subsystems",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Milestone Reference",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Remediation Outline",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Files",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 027/002 phases 017-021 shipped working, tested code, but the 50-pass review surfaced a set of confirmed residual issues: one bounded shell-exposure P1 in the `/memory:search` command contract, several maintainability/observability/test-debt P2s in the search and reindex/maintenance code, and pervasive spec-folder doc drift where canonical docs still describe scaffold/planned state while the implementation-summaries record completed work",
     "created_at": "2026-06-17T20:05:00.777Z",
-    "last_save_at": "2026-08-28T23:46:17.608Z",
+    "last_save_at": "2026-08-29T15:22:20.966Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

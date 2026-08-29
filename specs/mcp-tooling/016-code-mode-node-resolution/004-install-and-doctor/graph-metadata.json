@@ -38,18 +38,19 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "tasks.md",
       "spec.md",
       "plan.md",
-      "implementation-summary.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-code-mode/scripts/install.sh",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      ".opencode/skills/mcp-code-mode/INSTALL-GUIDE.md",
+      ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md",
+      ".opencode/commands/doctor/mcp.md",
+      ".opencode/install-guides/install-scripts/install-code-mode.sh",
+      ".opencode/install-guides/MCP - Code Mode.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -63,9 +64,57 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "install.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-code-mode/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL-GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/INSTALL-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-server-authoring.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "install-code-mode.sh",
+        "kind": "script",
+        "path": ".opencode/install-guides/install-scripts/install-code-mode.sh",
+        "source": "derived"
+      },
+      {
+        "name": "MCP - Code Mode.md",
+        "kind": "doc",
+        "path": ".opencode/install-guides/MCP - Code Mode.md",
         "source": "derived"
       },
       {
@@ -145,53 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Mode",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "No Node",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built Three",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two install scripts write MCP registrations, so a fresh install would reintroduce whatever shape they encode regardless of what the cutover fixed",
     "created_at": "2026-08-28T16:11:22Z",
-    "last_save_at": "2026-08-29T10:02:11.432Z",
+    "last_save_at": "2026-08-29T15:21:55.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

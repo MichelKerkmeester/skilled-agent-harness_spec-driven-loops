@@ -41,19 +41,50 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "scripts/citation-ledger-feasibility.mjs",
-      "results/metrics.json",
-      "handlers/memory-search.ts",
-      "lib/feedback/true-citation-emitter.ts",
-      "lib/feedback/feedback-ledger.ts",
-      "hooks/claude/claude-transcript.ts",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "scripts/citation-ledger-feasibility.mjs",
+      "results/metrics.json",
+      "benchmark-results.md",
+      "handlers/memory-search.ts",
+      "lib/feedback/true-citation-emitter.ts",
+      "lib/feedback/feedback-ledger.ts",
+      "hooks/claude/claude-transcript.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "citation-ledger-feasibility.mjs",
         "kind": "file",
@@ -64,6 +95,12 @@
         "name": "metrics.json",
         "kind": "config",
         "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark-results.md",
+        "kind": "doc",
+        "path": "benchmark-results.md",
         "source": "derived"
       },
       {
@@ -88,36 +125,6 @@
         "name": "claude-transcript.ts",
         "kind": "code",
         "path": "hooks/claude/claude-transcript.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 028 packet ships the true-citation emitter dark behind a default-off flag",
     "created_at": "2026-06-24T04:52:32.182Z",
-    "last_save_at": "2026-07-17T17:19:54.400Z",
+    "last_save_at": "2026-08-29T15:22:23.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

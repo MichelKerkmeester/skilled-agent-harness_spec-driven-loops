@@ -41,32 +41,20 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/cli-external-orchestration/README.md",
-      ".opencode/skills/README.md",
-      ".opencode/agents/deep-improvement.md",
-      ".claude/agents/deep-improvement.md",
       "spec.md",
-      ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
+      "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "plan.md",
+      ".opencode/skills/cli-external-orchestration/README.md",
+      "README.md",
+      ".opencode/agents/deep-improvement.md",
+      ".claude/agents/deep-improvement.md",
+      ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-improvement.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-improvement.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -74,9 +62,9 @@
         "source": "derived"
       },
       {
-        "name": "leaf-manifest.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -98,9 +86,21 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": ".opencode/skills/cli-external-orchestration/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/leaf-manifest.json",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Adding pi as a 6th CLI mode is not complete until it appears wherever its 5 siblings (`cli-opencode`, `cli-claude-code`, `cli-codex`, `cli-cursor`, `cli-devin`) already appear across agent rosters, governance docs, and hub-level catalogs",
     "created_at": "2026-07-27T06:48:18.460Z",
-    "last_save_at": "2026-07-27T16:48:39.622Z",
+    "last_save_at": "2026-08-29T15:21:51.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

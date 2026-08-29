@@ -39,16 +39,24 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
-      "plan.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/references/migration-inventory.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -64,15 +72,21 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "notion-migration.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/notion-migration.md",
+        "source": "derived"
+      },
+      {
+        "name": "migration-inventory.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/references/migration-inventory.md",
         "source": "derived"
       },
       {
@@ -176,23 +190,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Edge Cases",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The migration playbook lagged the 006 plugin research",
     "created_at": "2026-08-23T04:48:36.563Z",
-    "last_save_at": "2026-08-23T04:53:11.181Z",
+    "last_save_at": "2026-08-29T15:21:55.430Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

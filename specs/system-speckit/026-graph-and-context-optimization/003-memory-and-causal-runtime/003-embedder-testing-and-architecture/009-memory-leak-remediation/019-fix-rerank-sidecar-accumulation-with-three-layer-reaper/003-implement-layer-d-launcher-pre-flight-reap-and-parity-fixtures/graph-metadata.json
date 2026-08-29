@@ -46,7 +46,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "node_modules/vitest/vitest.mjs"
     ],
     "entities": [
       {
@@ -83,6 +84,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.mjs",
+        "kind": "file",
+        "path": "node_modules/vitest/vitest.mjs",
         "source": "derived"
       },
       {
@@ -186,17 +193,11 @@
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
-      },
-      {
-        "name": "Gated Layer",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The detached rerank sidecar launchers could reuse or spawn sidecars without first removing rows whose registered launcher owners were all dead",
     "created_at": "2026-05-23T07:46:28Z",
-    "last_save_at": "2026-07-17T17:19:28.980Z",
+    "last_save_at": "2026-08-29T15:22:16.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

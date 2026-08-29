@@ -44,7 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "write-containment.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `system-deep-loop` runtime (CLIs, fan-out executors, ledger/gateway/cutover logic) had no code-targeted deep-review since the 036 innovation packet's implementation phases landed",
     "created_at": "2026-08-13T05:43:08.924Z",
-    "last_save_at": "2026-08-18T11:07:46.429Z",
+    "last_save_at": "2026-08-29T15:22:08.003Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

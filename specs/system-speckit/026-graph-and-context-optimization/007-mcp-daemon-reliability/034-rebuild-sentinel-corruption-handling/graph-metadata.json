@@ -47,93 +47,19 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/database/checkpoints/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-needs-rebuild-sentinel.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-durability.vitest.ts",
-      "database/checkpoints/README.md",
-      "scripts/migrations/restore-checkpoint.ts",
-      "mcp_server/tests/checkpoint-needs-rebuild-sentinel.vitest.ts",
-      "mcp_server/tests/vector-index-store-durability.vitest.ts",
-      "mcp_server/database/checkpoints/README.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "mcp_server/context-server.ts",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "dist/lib/search/vector-index-types.js",
+      "dist/lib/search/vector-index-store.js",
+      "dist/lib/storage/checkpoints.js",
+      "dist/context-server.js",
+      "database/checkpoints/README.md",
+      "scripts/migrations/restore-checkpoint.ts"
     ],
     "entities": [
-      {
-        "name": "vector-index-store.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoints.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/database/checkpoints/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checkpoint-needs-rebuild-sentinel.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/checkpoint-needs-rebuild-sentinel.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-store-durability.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-store-durability.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "restore-checkpoint.ts",
-        "kind": "code",
-        "path": "scripts/migrations/restore-checkpoint.ts",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -150,6 +76,54 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-types.js",
+        "kind": "code",
+        "path": "dist/lib/search/vector-index-types.js",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.js",
+        "kind": "code",
+        "path": "dist/lib/search/vector-index-store.js",
+        "source": "derived"
+      },
+      {
+        "name": "checkpoints.js",
+        "kind": "code",
+        "path": "dist/lib/storage/checkpoints.js",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "database/checkpoints/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "restore-checkpoint.ts",
+        "kind": "code",
+        "path": "scripts/migrations/restore-checkpoint.ts",
         "source": "derived"
       },
       {
@@ -211,11 +185,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The needs-rebuild sentinel file conflates two failure classes: half-finished checkpoint restores, safely auto-repaired, and physical page corruption, which its one consumer was never built to handle and cannot even reach",
     "created_at": "2026-07-08T16:02:23Z",
-    "last_save_at": "2026-07-17T17:19:35.597Z",
+    "last_save_at": "2026-08-29T15:22:18.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -52,7 +52,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/agents/markdown.md"
     ],
     "entities": [
       {
@@ -89,6 +90,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".opencode/agents/markdown.md",
         "source": "derived"
       },
       {
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The parent generator emits no second-stage router and its template still instructs authors to create `shared/references/smart-routing.md`",
     "created_at": "2026-08-15T13:00:00Z",
-    "last_save_at": "2026-08-16T07:40:58.180Z",
+    "last_save_at": "2026-08-29T15:22:02.622Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

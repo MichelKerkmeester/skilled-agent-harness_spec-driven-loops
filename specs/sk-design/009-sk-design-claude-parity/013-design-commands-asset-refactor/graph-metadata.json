@@ -46,7 +46,11 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/speckit/plan.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/description.json",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/graph-metadata.json",
+      ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
       {
@@ -83,6 +87,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/013-design-commands-asset-refactor/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
         "source": "derived"
       },
       {
@@ -174,29 +196,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Architecture Key Components",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Question Design",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The five `/design:` commands (`interface`, `foundations`, `motion`, `audit`, `md-generator`) are currently flat, single-file commands with no `assets/` folder",
     "created_at": "2026-07-06T04:33:03.987Z",
-    "last_save_at": "2026-08-28T16:28:19.438Z",
+    "last_save_at": "2026-08-29T15:21:59.399Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

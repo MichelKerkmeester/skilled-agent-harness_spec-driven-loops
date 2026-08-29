@@ -42,22 +42,17 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "research.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research.md",
+      "lib/utils/index-scope.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research.md",
         "source": "derived"
       },
       {
@@ -76,6 +71,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research.md",
+        "source": "derived"
+      },
+      {
+        "name": "index-scope.ts",
+        "kind": "code",
+        "path": "lib/utils/index-scope.ts",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Headline Table",
-        "kind": "proper_noun",
-        "path": "research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Map each retrieval/dispatch system (CocoIndex, mk-spec-memory, code-graph, AI council, deep-research, deep-review, sk-doc, skill-advisor) to its indexer + content type (code / text / both / none). Read-only research packet producing a single research.md table + per-system evidence.",
     "created_at": "2026-05-18T16:52:17.344Z",
-    "last_save_at": "2026-08-28T15:59:46.764Z",
+    "last_save_at": "2026-08-29T15:22:15.498Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -41,13 +41,12 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md",
-      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-      ".opencode/skills/sk-doc/SKILL.md",
       "implementation-summary.md",
-      "resource-map.md"
+      "resource-map.md",
+      "audit-target-list.md",
+      "audit-findings.md",
+      ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+      ".opencode/skills/sk-doc/SKILL.md"
     ],
     "entities": [
       {
@@ -75,30 +74,6 @@
         "source": "derived"
       },
       {
-        "name": "ARCHITECTURE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook_system.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -108,6 +83,30 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-target-list.md",
+        "kind": "doc",
+        "path": "audit-target-list.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-findings.md",
+        "kind": "doc",
+        "path": "audit-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "ARCHITECTURE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/SKILL.md",
         "source": "derived"
       },
       {
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "Packets 031 through 036 changed operator documentation, runtime references, matrix-runner README files, matrix prompt templates and packet-local spec docs",
     "created_at": "2026-04-29T15:41:50.000Z",
-    "last_save_at": "2026-07-17T17:19:11.046Z",
+    "last_save_at": "2026-08-29T15:22:11.250Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

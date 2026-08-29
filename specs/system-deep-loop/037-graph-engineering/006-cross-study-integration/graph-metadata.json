@@ -41,23 +41,54 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research/research.md",
+      "orientation.md",
       "research/verification-deepseek-v4-pro.md",
       "research/findings-plain-language.md",
       "research/deep-research-state.jsonl",
       "research/resource-map.md",
       "research/findings-registry.json",
-      "research/fanout-attribution.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "research/fanout-attribution.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "orientation.md",
+        "kind": "doc",
+        "path": "orientation.md",
         "source": "derived"
       },
       {
@@ -88,30 +119,6 @@
         "name": "fanout-attribution.md",
         "kind": "doc",
         "path": "research/fanout-attribution.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Create Level",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Studies 1–5 each produced a 20-iteration synthesis, but each stands alone",
     "created_at": "2026-08-14T06:01:27.366Z",
-    "last_save_at": "2026-08-14T06:23:28.406Z",
+    "last_save_at": "2026-08-29T15:22:08.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

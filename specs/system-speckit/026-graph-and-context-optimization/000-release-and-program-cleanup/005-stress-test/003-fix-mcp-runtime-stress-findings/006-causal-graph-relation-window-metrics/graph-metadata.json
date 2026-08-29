@@ -40,7 +40,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "dist/handlers/causal-graph.js",
+      "dist/lib/storage/causal-edges.js",
+      "handlers/memory-context.ts",
+      "handlers/causal-graph.ts"
     ],
     "entities": [
       {
@@ -65,6 +69,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.js",
+        "kind": "code",
+        "path": "dist/handlers/causal-graph.js",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.js",
+        "kind": "code",
+        "path": "dist/lib/storage/causal-edges.js",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": "handlers/causal-graph.ts",
         "source": "derived"
       },
       {
@@ -162,35 +190,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "zero",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "meetsTarget",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "005/REQ-010 captured 344 new edges in 15 minutes — 100% `supersedes`, 0% `caused`/`supports`",
     "created_at": "2026-04-27T07:56:25.231Z",
-    "last_save_at": "2026-08-28T22:53:10.773Z",
+    "last_save_at": "2026-08-29T15:22:11.729Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

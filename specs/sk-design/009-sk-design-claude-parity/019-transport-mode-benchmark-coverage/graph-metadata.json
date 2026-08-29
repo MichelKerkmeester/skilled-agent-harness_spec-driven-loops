@@ -41,13 +41,21 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/sk-design/README.md",
+      ".opencode/skills/sk-design/graph-metadata.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -73,9 +81,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 018 integrated `design-mcp-open-design` as a registered `packetKind: \"transport\"` mode in sk-design's registries, but the hub's `manualtestingplaybook` (the corpus the skill-benchmark harness scores against) still only exercised the five original design-judgment modes — it had zero scenarios naming the new mode",
     "created_at": "2026-07-07T08:32:09.549Z",
-    "last_save_at": "2026-08-28T15:53:06.332Z",
+    "last_save_at": "2026-08-29T15:21:59.424Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

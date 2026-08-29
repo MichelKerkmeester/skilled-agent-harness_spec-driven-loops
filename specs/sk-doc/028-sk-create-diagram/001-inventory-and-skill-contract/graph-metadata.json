@@ -42,30 +42,19 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "decision-record.md",
-      "resource-map.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md",
+      ".opencode/skills/sk-doc/sk-create-skill/SKILL.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -87,9 +76,27 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/SKILL.md",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The source plugin ships 282 files (references, 100 example HTML assets, two Python extractors, its own CI/lint tooling, marketplace/plugin manifests for three runtimes) using its own conventions",
     "created_at": "2026-08-12T05:47:23.000Z",
-    "last_save_at": "2026-08-12T05:53:53.527Z",
+    "last_save_at": "2026-08-29T15:22:04.452Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

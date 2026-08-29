@@ -40,26 +40,30 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       "dist/hooks/cursor/session-start.js",
+      ".cursor/hooks.json",
       "mcp-server/hooks/cursor/README.md",
-      "spec.md",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/cursor/README.md",
-      ".opencode/skills/system-spec-kit/runtime/hooks/cursor/README.md",
       ".codex/hooks.json",
-      "runtime/lib/spec-gate/spec-gate-core.mjs",
+      ".devin/hooks.v1.json",
       "lib/hooks/completion-evidence-sentinel.cjs",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/codex/README.md",
-      ".opencode/skills/system-spec-kit/runtime/hooks/codex/README.md",
       "mcp-server/hooks/cursor/shared.ts",
-      "runtime/hooks/cursor/spec-gate-classify.mjs",
-      "implementation-summary.md",
       "mcp-server/hooks/cursor/session-start.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -85,9 +89,21 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "session-start.js",
         "kind": "code",
         "path": "dist/hooks/cursor/session-start.js",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
         "source": "derived"
       },
       {
@@ -97,21 +113,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.json",
+        "name": "hooks.v1.json",
         "kind": "config",
-        "path": ".codex/hooks.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-core.mjs",
-        "kind": "file",
-        "path": "runtime/lib/spec-gate/spec-gate-core.mjs",
+        "path": ".devin/hooks.v1.json",
         "source": "derived"
       },
       {
@@ -124,18 +128,6 @@
         "name": "shared.ts",
         "kind": "code",
         "path": "mcp-server/hooks/cursor/shared.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec-gate-classify.mjs",
-        "kind": "file",
-        "path": "runtime/hooks/cursor/spec-gate-classify.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -203,11 +195,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Depends On",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks",
     "created_at": "2026-07-24T04:46:37.220Z",
-    "last_save_at": "2026-07-24T07:50:17.842Z",
+    "last_save_at": "2026-08-29T15:21:50.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

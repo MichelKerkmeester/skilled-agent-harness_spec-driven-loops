@@ -34,92 +34,23 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/memory/assets/search_presentation.txt",
-      ".claude/commands/memory/assets/search_presentation.txt",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/commands/memory/search.md",
       ".claude/commands/memory/search.md",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-context-token-budget.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts",
-      "tasks.md",
       "schemas/tool-input-schemas.ts",
       "tests/mcp-tool-dispatch.vitest.ts",
       "tools/types.ts",
       "handlers/memory-context.ts",
-      "tests/memory-context-token-budget.vitest.ts",
-      "plan.md",
-      "spec.md"
+      "tests/memory-context-token-budget.vitest.ts"
     ],
     "entities": [
       {
-        "name": "search_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/memory/assets/search_presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "search.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/commands/memory/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context-token-budget.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-context-token-budget.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schema.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/tool-input-schema.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mcp-tool-dispatch.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/mcp-tool-dispatch.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -129,9 +60,51 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-tool-dispatch.vitest.ts",
+        "kind": "test",
+        "path": "tests/mcp-tool-dispatch.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "tools/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": "handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context-token-budget.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-context-token-budget.vitest.ts",
         "source": "derived"
       },
       {
@@ -199,11 +172,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "P1 — breadcrumb suppression is a deliberate rule, not a data gap",
     "created_at": "2026-07-09T06:20:00.567Z",
-    "last_save_at": "2026-07-17T17:19:55.392Z",
+    "last_save_at": "2026-08-29T15:22:24.243Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

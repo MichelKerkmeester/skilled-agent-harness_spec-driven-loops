@@ -42,7 +42,12 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-ledger-schema.vitest.ts"
     ],
     "entities": [
       {
@@ -79,6 +84,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-compatibility.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-ledger-schema.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/skill-benchmark-ledger-schema.vitest.ts",
         "source": "derived"
       },
       {
@@ -158,41 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Five per-mode upcasters plus skill-benchmark reject ordinary lifecycle records",
     "created_at": "2026-07-31T01:25:19.803Z",
-    "last_save_at": "2026-08-18T11:07:51.816Z",
+    "last_save_at": "2026-08-29T15:22:07.241Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

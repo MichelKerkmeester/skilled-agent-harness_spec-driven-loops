@@ -12,17 +12,25 @@
   "derived": {
     "trigger_phrases": [
       "flowchart full deprecation",
-      "delete sk-create-flowchart"
+      "delete sk-create-flowchart",
+      "flowchart deprecation plan",
+      "flowchart deprecation tasks",
+      "flowchart deprecation checklist",
+      "flowchart deprecation summary"
     ],
     "key_topics": [
       "flowchart",
+      "full",
       "deprecation",
-      "deletion",
-      "advisor",
-      "hub-router",
-      "mode-registry",
-      "leaf-manifest",
-      "post-edit-router"
+      "delete",
+      "sk-create-flowchart",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "phase",
+      "merged",
+      "ascii"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -31,12 +39,166 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json",
+      ".opencode/hooks/post-edit-quality/lib/post-edit-router.cjs",
+      ".opencode/skills/sk-doc/scripts/validate-flowchart.sh",
+      ".opencode/skills/sk-doc/sk-create-diagram/README.md",
+      ".claude/agents/markdown.md",
+      ".pi/agents/markdown.md",
+      ".opencode/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md",
+      ".opencode/skills/sk-doc/feature-catalog/packet-authored-registry-routing/packet-authored-registry-routing.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase 012 merged sk-create-flowchart's ASCII/markdown capability into sk-create-diagram and left the source skill as a redirect stub; this phase deletes it outright and purges every live reference, since sk-create-diagram now fully covers its capability",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill_advisor.py",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridges.generated.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/command-bridges.generated.json",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-router.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/post-edit-quality/lib/post-edit-router.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-flowchart.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-doc/scripts/validate-flowchart.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".claude/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "post-edit-quality-router.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md",
+        "source": "derived"
+      },
+      {
+        "name": "packet-authored-registry-routing.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/feature-catalog/packet-authored-registry-routing/packet-authored-registry-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Delete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Survey",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 012 merged `sk-create-flowchart`'s ASCII/markdown capability into `sk-create-diagram` and left the source skill as a redirect stub, matching the \"redirect, not delete\" decision recorded at the time",
     "created_at": "2026-08-13T05:55:33.000Z",
-    "last_save_at": "2026-08-13T17:15:00.000Z",
+    "last_save_at": "2026-08-29T15:22:04.923Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

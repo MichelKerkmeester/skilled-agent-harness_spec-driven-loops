@@ -36,13 +36,20 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      ".pi/settings.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
         "source": "derived"
       },
       {
@@ -84,7 +91,7 @@
     ],
     "causal_summary": "A full read of `deep-pi`'s installed source (1,299 lines across 7 files) surfaced real, source-confirmed gaps: two silent failure counters nothing ever reads, a hardcoded model allowlist with no drift signal when DeepSeek ships a new model id, and unguarded telemetry cost math",
     "created_at": "2026-08-07T14:44:32Z",
-    "last_save_at": "2026-08-11T06:43:18.407Z",
+    "last_save_at": "2026-08-29T15:21:52.312Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

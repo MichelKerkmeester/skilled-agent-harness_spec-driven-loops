@@ -39,7 +39,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tests/hybrid-search.vitest.ts",
+      "tests/memory-search-ux-hooks.vitest.ts",
+      "lib/storage/canonical-fingerprint.ts"
     ],
     "entities": [
       {
@@ -64,6 +67,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hybrid-search.vitest.ts",
+        "kind": "test",
+        "path": "tests/hybrid-search.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search-ux-hooks.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-search-ux-hooks.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "canonical-fingerprint.ts",
+        "kind": "code",
+        "path": "lib/storage/canonical-fingerprint.ts",
         "source": "derived"
       },
       {
@@ -167,23 +188,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Added Maintenance",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Driver coupling is scattered across roughly 127 production files: vector access, lexical search, graph traversal, maintenance (vacuum/checkpoint family), and contention/retry idioms are implicit better-sqlite3 call sites rather than named seams",
     "created_at": "2026-06-10T17:48:34Z",
-    "last_save_at": "2026-08-28T16:00:11.176Z",
+    "last_save_at": "2026-08-29T15:22:20.548Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

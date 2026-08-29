@@ -41,7 +41,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/doctor/speckit.md",
+      ".opencode/commands/doctor/mcp.md",
+      ".opencode/commands/doctor/update.md"
     ],
     "entities": [
       {
@@ -66,6 +69,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
         "source": "derived"
       },
       {
@@ -173,7 +194,7 @@
     ],
     "causal_summary": "Doctor Commands needs a scoped router rewire phase so presentation extraction can proceed without mixing implementation, routing, and display-contract decisions",
     "created_at": "2026-06-10T00:00:00Z",
-    "last_save_at": "2026-08-28T16:00:10.515Z",
+    "last_save_at": "2026-08-29T15:22:20.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

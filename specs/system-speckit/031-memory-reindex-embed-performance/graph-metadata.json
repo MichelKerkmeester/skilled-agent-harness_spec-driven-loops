@@ -41,6 +41,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "handover.md",
       ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/handover.md",
       ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/checklist.md",
       ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/research.md",
@@ -48,25 +55,30 @@
       ".opencode/skills/system-spec-kit/mcp-server/context-server.ts",
       ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-ingest.ts",
       ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
       ".opencode/bin/lib/launcher-ipc-bridge.cjs",
       ".opencode/bin/lib/launcher-session-proxy.cjs",
       ".opencode/bin/lib/model-server-supervision.cjs",
       ".opencode/skills/system-spec-kit/mcp-server/tests/handler-memory-index.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp-server/tests/context-server.vitest.ts",
-      ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/spec.md",
-      "dist/handlers/memory-save.js",
-      "dist/context-server.js",
-      "research/research.md",
-      "tools/lifecycle-tools.ts",
-      ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      ".opencode/skills/system-spec-kit/mcp-server/tools/lifecycle-tools.ts"
+      ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/spec.md"
     ],
     "entities": [
       {
-        "name": "handover.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/handover.md",
+        "path": ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -76,9 +88,21 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "research.md",
         "kind": "doc",
-        "path": ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/research/research.md",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/handover.md",
         "source": "derived"
       },
       {
@@ -103,12 +127,6 @@
         "name": "memory-index.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
         "source": "derived"
       },
       {
@@ -139,36 +157,6 @@
         "name": "context-server.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp-server/tests/context-server.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": ".opencode/specs/system-speckit/031-memory-reindex-embed-performance/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.js",
-        "kind": "code",
-        "path": "dist/handlers/memory-save.js",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.js",
-        "kind": "code",
-        "path": "dist/context-server.js",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-tools.ts",
-        "kind": "code",
-        "path": "tools/lifecycle-tools.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
         "source": "derived"
       },
       {
@@ -206,11 +194,23 @@
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Measure, then optimize the mk-spec-memory reindex/embed pipeline. Embedding runs on Ollama (nomic-embed-text, GPU/Metal) and is not the bottleneck; the slow tail is per-memory ingest + request serialization. Measurement-plane-first, gated + reversible, no Rust. Scaffolded with a handover for a fresh implementing session.",
     "created_at": "2026-07-22T14:55:36.697Z",
-    "last_save_at": "2026-07-23T17:11:16.833Z",
+    "last_save_at": "2026-08-29T15:22:24.678Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

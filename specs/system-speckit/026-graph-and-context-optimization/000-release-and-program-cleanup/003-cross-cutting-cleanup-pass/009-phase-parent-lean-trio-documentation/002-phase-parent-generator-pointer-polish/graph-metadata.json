@@ -43,23 +43,31 @@
     "status": "draft",
     "key_files": [
       "spec.md",
-      "scratch/e2e-trace.txt",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/spec/create.sh",
+      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js",
+      ".opencode/skills/system-spec-kit/scripts/tsconfig.json",
+      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts",
+      "scratch/e2e-trace.txt",
+      "scripts/spec/is-phase-parent.ts",
+      "scripts/dist/memory/generate-context.js",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+      "scripts/dist/spec/is-phase-parent.js",
+      "scripts/rules/check-phase-parent-content.sh"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "e2e-trace.txt",
-        "kind": "file",
-        "path": "scratch/e2e-trace.txt",
         "source": "derived"
       },
       {
@@ -84,6 +92,66 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "scripts/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "is-phase-parent.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
+        "source": "derived"
+      },
+      {
+        "name": "is-phase-parent.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/spec/is-phase-parent.js",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-phase-parent-content.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "phase-parent-pointer.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "e2e-trace.txt",
+        "kind": "file",
+        "path": "scratch/e2e-trace.txt",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": "scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {
@@ -139,65 +207,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Layered",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Generator Pointer",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Author Instructions",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Hook Brief",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 shipped the lean-trio enforcement and documentation but deferred several additive items",
     "created_at": "2026-04-27T12:20:00Z",
-    "last_save_at": "2026-08-28T15:59:26.518Z",
+    "last_save_at": "2026-08-29T15:22:10.250Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

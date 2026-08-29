@@ -44,24 +44,28 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "tasks.md",
-      "decision-record.md",
-      "plan.md",
-      "checklist.md",
       "spec.md",
-      "implementation-summary.md"
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/hooks/shared/hook-flags.cjs",
+      ".opencode/hooks/shared/env-aliases.cjs",
+      ".opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs",
+      "specs/hooks/008-hook-library-mk-rename/name-mapping.md",
+      ".claude/settings.json",
+      ".cursor/hooks.json",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".opencode/plugins/README.md",
+      ".cursor/mcp.json"
     ],
     "entities": [
       {
-        "name": "tasks.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -71,21 +75,81 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "env-aliases.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/shared/env-aliases.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-route-guard.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/mcp-route-guard/lib/mcp-route-guard.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "name-mapping.md",
+        "kind": "doc",
+        "path": "specs/hooks/008-hook-library-mk-rename/name-mapping.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".cursor/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
         "source": "derived"
       },
       {
@@ -141,65 +205,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Setup Inventory",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation The",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every runtime hook entry point is named `mk-<concern>` (e.g",
     "created_at": "2026-08-20T00:00:00.000Z",
-    "last_save_at": "2026-08-21T09:16:18.074Z",
+    "last_save_at": "2026-08-29T15:21:51.928Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +222,12 @@
     ],
     "source_fingerprint": "sha256:eaa5e42a937703db76f33023021bb09a3d2878a34cd21b8a8d3f93cd0ce65a7b",
     "source_doc_hashes": {
-      "spec.md": "fc0cea917ecadde5893d3423fba91b88baa524594baf2d8ef0a8c647466ef7f2",
-      "plan.md": "3e7db5ca63464edf85c0425b25ee904e691678436252a03766dde8bbfd91d80b",
-      "tasks.md": "fc2d31ff45130556e722cee8a0e0bdab7dff49cacb300a9e359cbbc3eaad175b",
-      "checklist.md": "9bcd1a1a11c7d5178e01d186c4f35642dd6f38c205bfa7748aea58765ef489f1",
-      "decision-record.md": "3c8bb482932b0b913645489c960d1d97bc842853bf6af19457b26f7dcf9db567",
-      "implementation-summary.md": "d760113aa2544937ae05fac95d05a0ec75456902c9d0621b2f45e0659f64bc88"
+      "spec.md": "5ce5b55d0736e441def3e3c739b01ed0ad65ed7917cea9b9565bf1fc3429d672",
+      "plan.md": "5433760b08e3d984943a6faf22dc51981b88b8803d3701d8afc24090ea9d32a5",
+      "tasks.md": "0f2284c1aeec29044423eca7c707ef389ae35738d8a1d75e7b92de9f69d14959",
+      "checklist.md": "4317d93c14ddb30a0ff53a749cc00593ca7bd8de1de676fc372c5a2599b31f67",
+      "decision-record.md": "4f5f19c0f722e44fd4cbce25334dcfb12e29c563bcf7df6765976853772577eb",
+      "implementation-summary.md": "54b50442d94918b17c0a9eb3b40cfbcb63e6c02aca29a648723d3e7859b38e47"
     },
     "last_active_child_id": null,
     "last_active_at": null

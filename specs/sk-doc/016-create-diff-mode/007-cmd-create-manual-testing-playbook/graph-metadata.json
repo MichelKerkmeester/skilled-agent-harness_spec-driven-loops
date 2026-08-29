@@ -46,7 +46,9 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/create/README.txt",
+      ".opencode/commands/README.txt"
     ],
     "entities": [
       {
@@ -83,6 +85,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/README.txt",
         "source": "derived"
       },
       {
@@ -186,17 +194,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repo now has a stable manual testing playbook contract, but there is no dedicated create command that can generate it reliably",
     "created_at": "2026-04-12T09:02:50.174Z",
-    "last_save_at": "2026-08-28T22:20:05.536Z",
+    "last_save_at": "2026-08-29T15:22:01.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

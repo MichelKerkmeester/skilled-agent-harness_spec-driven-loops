@@ -41,34 +41,16 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/mcp-tooling/mcp-refero/examples/README.md",
-      ".opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh",
-      ".opencode/skills/sk-design/design-interface/references/mcp_tooling/refero_tools.md",
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
-      "implementation-summary.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/examples/README.md",
+      ".opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh",
+      "manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-refero/examples/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "install.sh",
-        "kind": "script",
-        "path": ".opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh",
-        "source": "derived"
-      },
-      {
-        "name": "refero_tools.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-interface/references/mcp_tooling/refero_tools.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -82,21 +64,39 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/examples/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "install.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-tooling/mcp-refero/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The v1.0.0.0 `mcp-refero` packet shipped structurally valid but short of hub-sibling inventory parity: no `examples/` directory, no `scripts/install.sh`, a 6-scenario playbook where the research section D supports more workflow coverage, and a feature catalog whose 8 tools share only 3 grouped domain files",
     "created_at": "2026-07-16T12:58:32Z",
-    "last_save_at": "2026-07-17T06:03:03.357Z",
+    "last_save_at": "2026-08-29T15:21:53.656Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +214,7 @@
       "plan.md": "c63f130696afe36750c21843fb0f03635d57e8e315110628450be455d1ae7c5e",
       "tasks.md": "cb7abf9befe596ec0a5a0d37d50994458683c717e876ca75460d0e630c1d179c",
       "checklist.md": "05a7569648243ade62f8091ab7ac4609ef6750830e249e9c9b3e51d051829d0e",
-      "implementation-summary.md": "968d561b9344d0177a5f9770b86c91a8de88d1085b38ef70c1694c9f5722d7d9"
+      "implementation-summary.md": "037620cc7dec78873ae4fdb235adabe9ca3e94857acf9f35252b6190c354b801"
     },
     "last_active_child_id": null,
     "last_active_at": null

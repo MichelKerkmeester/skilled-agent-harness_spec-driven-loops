@@ -40,13 +40,99 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      ".codex/config.toml",
+      ".opencode/bin/lib/node-engine-resolver.cjs",
+      ".opencode/bin/lib/node-engine-resolver.test.cjs",
+      ".opencode/bin/mcp-code-mode-launcher.cjs",
+      ".opencode/bin/mcp-code-mode-launcher.test.cjs",
+      ".claude/mcp.json",
+      ".cursor/mcp.json",
+      ".pi/mcp.json",
+      ".opencode/skills/mcp-code-mode/scripts/install.sh",
+      ".opencode/skills/mcp-code-mode/INSTALL-GUIDE.md",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/scripts/orphan-mcp-sweeper.sh"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "node-engine-resolver.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/node-engine-resolver.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "node-engine-resolver.test.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/node-engine-resolver.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-code-mode-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mcp-code-mode-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-code-mode-launcher.test.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mcp-code-mode-launcher.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "install.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-code-mode/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL-GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-code-mode/INSTALL-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-server-authoring.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-mcp-sweeper.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
         "source": "derived"
       },
       {
@@ -88,7 +174,7 @@
     ],
     "causal_summary": "Six host configurations launch the `codemode` MCP server with `/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node`",
     "created_at": "2026-08-28T16:11:19Z",
-    "last_save_at": "2026-08-29T09:58:56.947Z",
+    "last_save_at": "2026-08-29T15:21:55.470Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

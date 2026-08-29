@@ -41,17 +41,32 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "handover.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md",
+      ".pi/settings.json",
+      ".opencode/hooks/goal/lib/goal-core.test.cjs",
+      ".opencode/hooks/goal/pi/goal-pi.test.mjs",
+      ".opencode/hooks/goal/lib/goal-core.cjs",
+      ".opencode/hooks/goal/bin/goal.cjs",
+      ".opencode/hooks/goal/bin/goal.test.cjs",
+      ".opencode/hooks/goal/pi/goal-context.ts",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs",
+      ".opencode/hooks/goal/cursor/goal-cursor.test.mjs",
+      ".pi/prompts/goal-pi.md",
+      ".cursor/commands/goal-cursor.md",
+      ".opencode/hooks/goal/README.md",
+      ".opencode/hooks/goal/goal-plugin.md",
+      ".opencode/hooks/injection-contract.md",
+      ".opencode/hooks/README.md"
     ],
     "entities": [
       {
-        "name": "handover.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "handover.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -67,15 +82,99 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.test.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/pi/goal-pi.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/bin/goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal.test.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/bin/goal.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-cursor.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-cursor.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.md",
+        "kind": "doc",
+        "path": ".pi/prompts/goal-pi.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-cursor.md",
+        "kind": "doc",
+        "path": ".cursor/commands/goal-cursor.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/injection-contract.md",
         "source": "derived"
       },
       {
@@ -107,95 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Runtime Goal Isolation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Two Pi",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Start",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Live Pi",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "command",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "baselines",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "distinct",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The final integrated checks now prove that native Pi management, scoped persistence, adapter injection, legacy cutover, registrations, and operator documentation use the same session-isolated contract",
     "created_at": "2026-08-10T11:33:32Z",
-    "last_save_at": "2026-08-28T19:09:00.612Z",
+    "last_save_at": "2026-08-29T15:21:53.168Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

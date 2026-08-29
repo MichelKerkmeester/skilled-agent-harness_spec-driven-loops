@@ -48,7 +48,10 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/doctor/mcp.md",
+      ".opencode/commands/doctor/update.md",
+      ".opencode/commands/doctor/_routes.yaml"
     ],
     "entities": [
       {
@@ -85,6 +88,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "update.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/update.md",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
         "source": "derived"
       },
       {
@@ -176,29 +197,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Sed Correctness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "zero",
-        "kind": "key_phrase",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 1 shipped the new `/doctor` router additively",
     "created_at": "2026-05-11T17:00:00.000Z",
-    "last_save_at": "2026-08-28T15:59:53.348Z",
+    "last_save_at": "2026-08-29T15:22:17.537Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

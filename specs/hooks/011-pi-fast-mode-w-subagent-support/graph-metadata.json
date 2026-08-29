@@ -37,7 +37,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "research/research.md",
+      ".pi/settings.json",
+      ".pi/PLUGINS.md",
       "context/README.md",
       "research/iterations/iteration-001.md",
       "research/deep-research-config.json",
@@ -52,13 +55,32 @@
       "research/iterations/iteration-008.md",
       "research/iterations/iteration-009.md",
       "research/iterations/iteration-002.md",
-      "spec.md"
+      ".pi/SYNC.md",
+      "specs/hooks/011-pi-fast-mode-w-subagent-support/context/README.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "PLUGINS.md",
+        "kind": "doc",
+        "path": ".pi/PLUGINS.md",
         "source": "derived"
       },
       {
@@ -134,9 +156,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "SYNC.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".pi/SYNC.md",
         "source": "derived"
       },
       {
@@ -180,29 +202,11 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "Executive Decision Fork",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Research Objective",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Boundaries The",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The fast-mode engine, child-process handoff, and installed-environment proof span separate ownership boundaries",
     "created_at": "2026-08-16T07:07:46Z",
-    "last_save_at": "2026-08-17T03:34:49.322Z",
+    "last_save_at": "2026-08-29T15:21:53.187Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

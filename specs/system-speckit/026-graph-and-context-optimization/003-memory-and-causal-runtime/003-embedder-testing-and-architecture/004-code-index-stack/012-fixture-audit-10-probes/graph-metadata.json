@@ -41,29 +41,39 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research.md",
       ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
+      ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
       "evidence/code-retrieval-fixture-proposed.json",
       "scripts/memory/generate-context.ts",
-      "plan.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
-      ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
-      ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -79,87 +89,21 @@
         "source": "derived"
       },
       {
+        "name": "generate-context.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js",
+        "source": "derived"
+      },
+      {
         "name": "code-retrieval-fixture-proposed.json",
         "kind": "config",
         "path": "evidence/code-retrieval-fixture-proposed.json",
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "registry.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedder-set.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
-        "source": "derived"
-      },
-      {
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "code-graph-status-readiness-snapshot.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-code-graph/mcp_server/tests/code-graph-status-readiness-snapshot.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ollama.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/ollama.ts",
-        "source": "derived"
-      },
-      {
-        "name": "stage2-fusion.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retrieval-rescue.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/rerank/retrieval-rescue.ts",
-        "source": "derived"
-      },
-      {
-        "name": "budget-allocator.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/lib/budget-allocator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "structural-indexer.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-code-graph/mcp_server/lib/structural-indexer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "readiness-marker-atomic-write.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-code-graph/mcp_server/tests/readiness-marker-atomic-write.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -203,11 +147,59 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "optional",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdict",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. PHASE 3: VERIFICATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Their May",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Audit the 18-pair code-retrieval fixture for expected-path correctness. Probe 10 (`context save command that reads structured JSON` expected as the `.js` dist artifact) is the immediate trigger — the `.ts` source variant is arguably more correct. Audit pass: read every probe's expected_source_path against the actual codebase, decide whether the expected path is the BEST answer to the query, recommend updates.",
     "created_at": "2026-05-18T19:21:19.321Z",
-    "last_save_at": "2026-07-17T17:19:23.587Z",
+    "last_save_at": "2026-08-29T15:22:15.096Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

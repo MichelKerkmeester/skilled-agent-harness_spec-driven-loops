@@ -34,19 +34,17 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "implementation-summary.md",
+      ".opencode/commands/deep/assets/compiled/deep-research.contract.md",
+      ".opencode/commands/deep/assets/compiled/deep-review.contract.md",
+      ".opencode/commands/deep/assets/compiled/deep-ai-council.contract.md",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -60,15 +58,45 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep-research.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep-review.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council.contract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/assets/compiled/deep-ai-council.contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "render-command-contract.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/render-command-contract.vitest.ts",
         "source": "derived"
       },
       {
@@ -160,35 +188,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The compiled command contracts for `deep/review`, `deep/research`, and `deep/ai-council` are stale — their source digest no longer matches the compiled artifact (`STALESOURCEDIGEST`), so `check-contract-drift` fails",
     "created_at": "2026-08-26T11:00:43.034Z",
-    "last_save_at": "2026-08-26T13:49:08.796Z",
+    "last_save_at": "2026-08-29T15:22:08.474Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

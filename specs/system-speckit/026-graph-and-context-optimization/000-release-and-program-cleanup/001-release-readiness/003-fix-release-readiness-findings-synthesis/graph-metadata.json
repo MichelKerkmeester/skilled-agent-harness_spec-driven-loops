@@ -43,7 +43,9 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "resource-map.md"
+      "resource-map.md",
+      "synthesis.md",
+      "remediation-log.md"
     ],
     "entities": [
       {
@@ -80,6 +82,18 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis.md",
+        "kind": "doc",
+        "path": "synthesis.md",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-log.md",
+        "kind": "doc",
+        "path": "remediation-log.md",
         "source": "derived"
       },
       {
@@ -177,23 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 045 produced ten release-readiness review reports across workflow, memory, advisor, code graph, hooks, schemas, deep loops, validator, docs, and operability",
     "created_at": "2026-05-18T08:15:52.985Z",
-    "last_save_at": "2026-08-28T22:50:53.115Z",
+    "last_save_at": "2026-08-29T15:22:09.752Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

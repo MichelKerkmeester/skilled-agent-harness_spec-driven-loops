@@ -42,22 +42,17 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -76,6 +71,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design `manualtestingplaybook` documents real-orchestrator scenarios but none of the fallback-and-resilience (`fallback-and-resilience/`) or hub-manager-intake (`hub-manager-intake/`) scenarios had ever been run through a real `opencode run` dispatch against the live GPT-5.5-fast executor",
     "created_at": "2026-07-07T15:21:16.287Z",
-    "last_save_at": "2026-08-28T15:53:11.968Z",
+    "last_save_at": "2026-08-29T15:21:59.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

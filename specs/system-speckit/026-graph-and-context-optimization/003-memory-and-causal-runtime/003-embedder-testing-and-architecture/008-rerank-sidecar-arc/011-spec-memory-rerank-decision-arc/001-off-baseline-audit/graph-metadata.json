@@ -37,19 +37,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "evidence/off-baseline-2026-05-21.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "dist/handlers/memory-search.js",
+      "evidence/off-baseline-2026-05-21.json",
+      "lib/search/search-flags.ts"
     ],
     "entities": [
-      {
-        "name": "off-baseline-2026-05-21.json",
-        "kind": "config",
-        "path": "evidence/off-baseline-2026-05-21.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -72,6 +68,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.js",
+        "kind": "code",
+        "path": "dist/handlers/memory-search.js",
+        "source": "derived"
+      },
+      {
+        "name": "off-baseline-2026-05-21.json",
+        "kind": "config",
+        "path": "evidence/off-baseline-2026-05-21.json",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -175,17 +189,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`mk-spec-memory` reports `requestQuality: 'weak'` on every `memorysearch` because the local reranker provider slot in `cross-encoder.ts:54` has no sidecar to talk to",
     "created_at": "2026-05-23T11:55:15.627Z",
-    "last_save_at": "2026-08-28T15:53:28.941Z",
+    "last_save_at": "2026-08-29T15:22:15.526Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -37,21 +37,16 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-vision/vision-runtime/python/runtime.test.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -64,6 +59,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "runtime.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/sk-vision/vision-runtime/python/runtime.test.ts",
         "source": "derived"
       },
       {
@@ -179,17 +186,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`vision-runtime/package.json` still points its `repository` at the upstream `opencode-senses` repo, keeps `publishConfig.access: public` and a `publish:npm` script (so a stray `npm publish` would ship this fork to npm), names the upstream author, and describes the package as \"for text-only OpenCode models\" even though Pi is a first-class host",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_save_at": "2026-08-28T16:28:21.308Z",
+    "last_save_at": "2026-08-29T15:22:06.060Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

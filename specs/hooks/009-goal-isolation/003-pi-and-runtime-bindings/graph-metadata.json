@@ -37,12 +37,24 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".pi/settings.json",
+      ".opencode/hooks/goal/pi/goal-context.ts",
+      ".pi/prompts/goal-pi.md",
+      ".opencode/hooks/goal/cursor/goal-inject.mjs",
+      ".cursor/commands/goal-cursor.md",
+      ".devin/hooks.v1.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -56,15 +68,45 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".opencode/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.md",
+        "kind": "doc",
+        "path": ".pi/prompts/goal-pi.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-inject.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/cursor/goal-inject.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-cursor.md",
+        "kind": "doc",
+        "path": ".cursor/commands/goal-cursor.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
         "source": "derived"
       },
       {
@@ -150,47 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "focused",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built Pi",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Pi and Cursor now bind every supported lifecycle operation to native session identity",
     "created_at": "2026-08-10T11:33:30Z",
-    "last_save_at": "2026-08-11T06:50:08.862Z",
+    "last_save_at": "2026-08-29T15:21:52.815Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

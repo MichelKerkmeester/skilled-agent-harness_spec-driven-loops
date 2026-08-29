@@ -39,9 +39,10 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
+      "plan.md",
       "tasks.md",
-      "plan.md"
+      "implementation-summary.md",
+      ".opencode/skills/README.txt"
     ],
     "entities": [
       {
@@ -51,9 +52,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -63,9 +64,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/skills/README.txt",
         "source": "derived"
       },
       {
@@ -181,17 +188,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Execute None",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The framework document carried a hard rule requiring consultation of the deleted packet before any small-model dispatch, and several catalogs still described sk-prompt as a parent hub with two packets",
     "created_at": "2026-08-28T08:49:40Z",
-    "last_save_at": "2026-08-28T11:37:16.803Z",
+    "last_save_at": "2026-08-29T15:22:05.676Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

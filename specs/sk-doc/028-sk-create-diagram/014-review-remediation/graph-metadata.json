@@ -12,18 +12,25 @@
   "derived": {
     "trigger_phrases": [
       "diagram review remediation",
-      "deep review findings fix"
+      "deep review findings fix",
+      "diagram review remediation plan",
+      "diagram review remediation tasks",
+      "diagram review remediation checklist",
+      "diagram review remediation summary"
     ],
     "key_topics": [
+      "diagram",
       "review",
       "remediation",
+      "deep",
       "findings",
-      "leaf-manifest",
-      "registry",
-      "grid",
-      "typography",
-      "citation",
-      "condition"
+      "plan",
+      "tasks",
+      "checklist",
+      "summary",
+      "deep-review",
+      "iterations",
+      "grok"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -32,12 +39,167 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/leaf-manifest.json",
+      ".opencode/skills/sk-doc/command-metadata.json",
+      ".opencode/skills/sk-doc/hub-router.json",
+      ".opencode/skills/sk-doc/sk-create-diagram/feature-catalog/feature-catalog.md",
+      ".opencode/skills/sk-doc/sk-create-diagram/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
+      ".opencode/commands/create/assets/create-diagram-auto.yaml",
+      ".opencode/skills/sk-doc/sk-create-diagram/references/import-export/import-drawio.md",
+      ".opencode/skills/sk-doc/sk-create-diagram/README.md",
+      ".opencode/skills/sk-doc/sk-create-diagram/references/types/type-sequence.md"
     ],
-    "entities": [],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-diagram-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create-diagram-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "import-drawio.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/references/import-export/import-drawio.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "type-sequence.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/references/types/type-sequence.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Clear",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
     "causal_summary": "The 013 deep-review (5 iterations Grok 4.6 + 5 iterations deepseek-v4-flash, merged strongest-restriction) returned CONDITIONAL: 0 P0, 4 P1, 12 P2",
     "created_at": "2026-08-12T19:55:45.000Z",
-    "last_save_at": "2026-08-13T05:55:33.000Z",
+    "last_save_at": "2026-08-29T15:22:04.877Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -50,10 +212,10 @@
     "source_fingerprint": "sha256:39439e4defa740c49c430bac71f2c496e7708d51462e72dda2273d2cdd0de978",
     "source_doc_hashes": {
       "spec.md": "739bb3828be4ac83ef76384d9a50ce76ac6465a0af7e65d83c580c62c86d31db",
-      "plan.md": "b21ef5e6dc416de144f948ad13d4a7d5cad923c1d37b6c8c4e015925949c5019",
-      "tasks.md": "d1b4113e412d5d500d2bfb77c1385c854c8c7bce8c13654d74d31cc3efce3413",
-      "checklist.md": "88266316a8988edf76855a6e4a08bef3560adb9e5c132ac28b04a2663c444984",
-      "implementation-summary.md": "3c7ef4deff48f944892c14c9ab0fd08ed0dd80310c6979775170b37e098be4ef"
+      "plan.md": "311b9046b5203016483589deb1b96f1ec231900f40012b8d2ce99ca96839ccd6",
+      "tasks.md": "0e8c65a0a15a0d19dcbb40629cbd5cf2c0f7c164f715f4d8bc6a26c12819bd5d",
+      "checklist.md": "d297ae647b27e45758b3d11b04f9d6d820cadf21ff613677b00d8d40243ba6e6",
+      "implementation-summary.md": "139c666c9e9d49813ac1a4787365bb19711a77fd7505c2310b46540f02edbd2e"
     },
     "last_active_child_id": null,
     "last_active_at": "2026-08-13T05:55:33.000Z"

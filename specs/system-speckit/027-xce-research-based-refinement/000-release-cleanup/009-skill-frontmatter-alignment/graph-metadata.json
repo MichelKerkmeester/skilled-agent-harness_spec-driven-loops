@@ -49,13 +49,27 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "description.json",
+      "graph-metadata.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "graph-metadata.json",
         "source": "derived"
       },
       {
@@ -97,7 +111,7 @@
     ],
     "causal_summary": "Skill reference and asset frontmatter has drifted into three incompatible practices: 103 of 369 docs under `.opencode/skills//references/` and `.opencode/skills//assets/` carry a detailed memory-style block (`triggerphrases`, `importancetier`, `contextType`), roughly 255 carry `title` + `description` only, and 11 carry no frontmatter at all",
     "created_at": "2026-06-11T05:47:09Z",
-    "last_save_at": "2026-07-17T17:19:37.866Z",
+    "last_save_at": "2026-08-29T15:22:18.615Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -107,7 +121,7 @@
     "source_doc_hashes": {
       "spec.md": "54d50e88f574e2216ce16228aa0b8bfd20a04ec1f9a27532f562deca3caad0de"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/027-xce-research-based-refinement/000-release-cleanup/009-skill-frontmatter-alignment/017-sk-git",
     "last_active_at": null
   }
 }

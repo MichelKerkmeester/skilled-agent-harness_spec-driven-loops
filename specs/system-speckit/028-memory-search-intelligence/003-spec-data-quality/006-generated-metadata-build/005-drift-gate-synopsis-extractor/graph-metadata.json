@@ -38,7 +38,14 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/validation/generated-metadata-drift.ts",
+      ".opencode/skills/system-spec-kit/scripts/validation/generated-metadata-drift.ts",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/generated-metadata-drift.vitest.ts",
+      "scripts/lib/validator-registry.json"
     ],
     "entities": [
       {
@@ -69,6 +76,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-drift.ts",
+        "kind": "code",
+        "path": "scripts/validation/generated-metadata-drift.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-drift.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/generated-metadata-drift.vitest.ts",
         "source": "derived"
       },
       {
@@ -154,41 +191,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit generated metadata can silently fall out of sync with the docs it summarizes, and nothing proves otherwise",
     "created_at": "2026-06-27T17:15:42.529Z",
-    "last_save_at": "2026-08-28T16:00:20.514Z",
+    "last_save_at": "2026-08-29T15:22:23.228Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

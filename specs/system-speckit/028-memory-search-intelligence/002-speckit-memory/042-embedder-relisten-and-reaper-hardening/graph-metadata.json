@@ -45,7 +45,14 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/scripts/README.md",
+      "scripts/README.md",
+      ".opencode/bin/hf-model-server.cjs",
+      "shared/embeddings/providers/hf-local.ts",
+      ".opencode/scripts/orphan-mcp-sweeper.sh",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts"
     ],
     "entities": [
       {
@@ -76,6 +83,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-mcp-sweeper.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
         "source": "derived"
       },
       {
@@ -161,35 +198,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built All",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 030 fixed the chronic orphan-daemon accumulation at its source (a test leak) and taught the orphan sweeper about the embedder sidecar, but it deliberately deferred two harder problems",
     "created_at": "2026-07-11T08:41:48.642Z",
-    "last_save_at": "2026-08-28T16:00:18.556Z",
+    "last_save_at": "2026-08-29T15:22:22.711Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

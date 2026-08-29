@@ -41,7 +41,12 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tests/secret-scrubber.vitest.ts",
+      "tests/causal-edges-unit.vitest.ts",
+      "tests/memory-retention-sweep.vitest.ts",
+      "tests/fixtures/memory-index-db.ts",
+      "tests/causal-edges-write-safety.vitest.ts"
     ],
     "entities": [
       {
@@ -72,6 +77,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "secret-scrubber.vitest.ts",
+        "kind": "test",
+        "path": "tests/secret-scrubber.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges-unit.vitest.ts",
+        "kind": "test",
+        "path": "tests/causal-edges-unit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-retention-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index-db.ts",
+        "kind": "code",
+        "path": "tests/fixtures/memory-index-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges-write-safety.vitest.ts",
+        "kind": "test",
+        "path": "tests/causal-edges-write-safety.vitest.ts",
         "source": "derived"
       },
       {
@@ -157,41 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Secret Redaction",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`../005-learning-feedback-reducers/spec.md` originally bundled learning reducers with three P0 safety fixes",
     "created_at": "2026-05-11T00:00:00Z",
-    "last_save_at": "2026-08-28T16:00:02.282Z",
+    "last_save_at": "2026-08-29T15:22:19.105Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-11T00:00:00Z",
     "source_docs": [

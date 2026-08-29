@@ -41,18 +41,55 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "resource-map.md",
       "scratch/vitest-baseline-pre-recovery.json",
       "scratch/triage-inventory.json",
       "scratch/triage-classification.json",
       "scratch/vitest-baseline-post-recovery.json",
-      "spec.md",
-      "implementation-summary.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "resource-map.md"
+      ".opencode/skills/system-spec-kit/changelog/v3.4.1.0.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
       {
         "name": "vitest-baseline-pre-recovery.json",
         "kind": "config",
@@ -78,39 +115,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "v3.4.1.0.md",
         "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
+        "path": ".opencode/skills/system-spec-kit/changelog/v3.4.1.0.md",
         "source": "derived"
       },
       {
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After Unit A (memory search Clusters 4-7 remediation) shipped, a full-repo `pnpm vitest run` reported 198 failed tests across 166 files out of 11,829 total (11,587 passing)",
     "created_at": "2026-05-08T21:35:00Z",
-    "last_save_at": "2026-08-28T22:51:21.057Z",
+    "last_save_at": "2026-08-29T15:22:09.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

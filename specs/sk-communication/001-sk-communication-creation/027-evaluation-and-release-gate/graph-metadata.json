@@ -46,7 +46,11 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/runtimes/adapter.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/release/release-gate.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/release/evidence.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/test/runtimes/smoke.test.ts"
     ],
     "entities": [
       {
@@ -83,6 +87,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "adapter.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/runtimes/adapter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "release-gate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/release/release-gate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "evidence.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/release/evidence.ts",
+        "source": "derived"
+      },
+      {
+        "name": "smoke.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/test/runtimes/smoke.test.ts",
         "source": "derived"
       },
       {
@@ -168,35 +196,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The evaluation harness can already produce a blind non-inferiority verdict and the release gate can already block on dated evidence, but the production projection path does not yet consult the verdict before offering projection for a runtime / prompt-profile combination, and rollout is not yet gated on that evidence",
     "created_at": "2026-08-14T05:53:50.234Z",
-    "last_save_at": "2026-08-14T09:22:44.398Z",
+    "last_save_at": "2026-08-29T15:21:58.510Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

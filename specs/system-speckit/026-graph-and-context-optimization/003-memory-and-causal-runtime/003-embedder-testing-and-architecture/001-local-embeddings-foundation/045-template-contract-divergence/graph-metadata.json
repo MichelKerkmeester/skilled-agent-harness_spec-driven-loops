@@ -43,19 +43,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "implementation-summary.md",
+      "shared/parsing/memory-template-contract.ts"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,15 +64,27 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-template-contract.ts",
+        "kind": "code",
+        "path": "shared/parsing/memory-template-contract.ts",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "During the 2026-05-14 substrate repair wave, several Codex-authored spec packets passed `validate.sh --strict` but `memorysave` dry-runs rejected the same canonical docs with `missingblanklineafterfrontmatter` and `missingsection` violations",
     "created_at": "2026-05-14T16:44:57Z",
-    "last_save_at": "2026-08-28T15:59:36.903Z",
+    "last_save_at": "2026-08-29T15:22:14.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

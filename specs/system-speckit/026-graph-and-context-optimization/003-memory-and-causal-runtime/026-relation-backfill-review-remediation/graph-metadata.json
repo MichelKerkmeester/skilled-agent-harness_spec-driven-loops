@@ -43,21 +43,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-conflict.vitest.ts",
-      "mcp_server/lib/causal/relation-backfill.ts",
-      "mcp_server/lib/graph/contradiction-detection.ts",
-      "mcp_server/schemas/tool-input-schemas.ts",
-      "mcp_server/handlers/causal-graph.ts",
-      "mcp_server/tests/relation-backfill-conflict.vitest.ts",
-      "decision-record.md",
-      "tests/relation-backfill-conflict.vitest.ts",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "tests/relation-backfill-conflict.vitest.ts",
       "lib/causal/relation-backfill.ts",
       "lib/graph/contradiction-detection.ts",
       "lib/storage/causal-edges.ts",
@@ -66,39 +58,9 @@
     ],
     "entities": [
       {
-        "name": "relation-backfill.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts",
-        "source": "derived"
-      },
-      {
-        "name": "contradiction-detection.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-graph.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
-        "source": "derived"
-      },
-      {
-        "name": "relation-backfill-conflict.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-conflict.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -120,9 +82,51 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relation-backfill-conflict.vitest.ts",
+        "kind": "test",
+        "path": "tests/relation-backfill-conflict.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relation-backfill.ts",
+        "kind": "code",
+        "path": "lib/causal/relation-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "contradiction-detection.ts",
+        "kind": "code",
+        "path": "lib/graph/contradiction-detection.ts",
+        "source": "derived"
+      },
+      {
         "name": "causal-edges.ts",
         "kind": "code",
         "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": "handlers/causal-graph.ts",
         "source": "derived"
       },
       {
@@ -196,23 +200,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria Relation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`collectSupersessionEdges` emits `contradicts` for predecessor->successor, and `collectLineageEdges` emits `caused` for the SAME directed pair because lineage is reciprocal (`A.supersededby=B` AND `B.predecessor=A`)",
     "created_at": "2026-06-04T14:30:00Z",
-    "last_save_at": "2026-07-17T17:19:32.147Z",
+    "last_save_at": "2026-08-29T15:22:17.081Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

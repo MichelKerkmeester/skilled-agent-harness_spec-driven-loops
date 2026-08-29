@@ -39,28 +39,51 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "resource-map.md",
       "scripts/tests/progressive-validation.vitest.ts",
-      "mcp_server/tests/progressive-validation.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/api/indexing.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/core/db-state.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/core/index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-memory-search.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-4-stage-search-pipeline.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-constitutional-memory.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-embedding-semantic-search.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts"
+      "handlers/memory-crud.ts",
+      "handlers/index.ts",
+      "core/db-state.ts",
+      "core/index.ts",
+      "api/indexing.ts",
+      "lib/feedback/shadow-evaluation-runtime.ts",
+      "handlers/memory-crud-health.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
       {
         "name": "progressive-validation.vitest.ts",
         "kind": "test",
@@ -68,105 +91,39 @@
         "source": "derived"
       },
       {
-        "name": "indexing.ts",
+        "name": "memory-crud.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/api/indexing.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "db-state.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/core/db-state.ts",
+        "path": "handlers/memory-crud.ts",
         "source": "derived"
       },
       {
         "name": "index.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/core/index.ts",
+        "path": "handlers/index.ts",
         "source": "derived"
       },
       {
-        "name": "memory-crud-health.ts",
+        "name": "db-state.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts",
+        "path": "core/db-state.ts",
         "source": "derived"
       },
       {
-        "name": "memory-crud.ts",
+        "name": "indexing.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud.ts",
+        "path": "api/indexing.ts",
         "source": "derived"
       },
       {
         "name": "shadow-evaluation-runtime.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
+        "path": "lib/feedback/shadow-evaluation-runtime.ts",
         "source": "derived"
       },
       {
-        "name": "adaptive-ranking-e2e.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/adaptive-ranking-e2e.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "gate-d-benchmark-memory-search.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/memory/gate-d-benchmark-memory-search.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "gate-d-regression-4-stage-search-pipeline.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-4-stage-search-pipeline.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "gate-d-regression-constitutional-memory.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-constitutional-memory.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "gate-d-regression-embedding-semantic-search.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-embedding-semantic-search.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-first-routing-nudge.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/graph-first-routing-nudge.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handler-memory-context.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-context.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handler-memory-crud.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-crud.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "handler-memory-search-live-envelope.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-search-live-envelope.vitest.ts",
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "handlers/memory-crud-health.ts",
         "source": "derived"
       },
       {
@@ -204,11 +161,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Full Vitest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet `005-vestigial-embedding-readiness-gate-removal` (commit `e91d2c7c2`) deleted the readiness gate at `memory-search.ts:927-932` but kept the surrounding scaffolding untouched as out-of-scope:",
     "created_at": "2026-04-29T09:30:00.000Z",
-    "last_save_at": "2026-07-17T17:19:12.545Z",
+    "last_save_at": "2026-08-29T15:22:11.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

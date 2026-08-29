@@ -37,7 +37,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts"
     ],
     "entities": [
       {
@@ -62,6 +63,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "process-memory-harness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
         "source": "derived"
       },
       {
@@ -175,7 +182,7 @@
     ],
     "causal_summary": "Arc 009 phase 008 shipped adapter close idempotence + a fallback RSS gate but kept severity at P2 (default) because growth was not yet measured",
     "created_at": "2026-05-22T18:30:00Z",
-    "last_save_at": "2026-08-28T15:59:50.466Z",
+    "last_save_at": "2026-08-29T15:22:16.098Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

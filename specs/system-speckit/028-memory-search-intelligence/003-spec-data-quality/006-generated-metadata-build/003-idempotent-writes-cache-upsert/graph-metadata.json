@@ -38,7 +38,9 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts",
+      "tests/env-reference-drift.vitest.ts"
     ],
     "entities": [
       {
@@ -69,6 +71,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-canonical-save-metadata.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/workflow-canonical-save-metadata.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "env-reference-drift.vitest.ts",
+        "kind": "test",
+        "path": "tests/env-reference-drift.vitest.ts",
         "source": "derived"
       },
       {
@@ -172,23 +186,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit description generators write `description.json` and the aggregate `descriptions.json` cache non-idempotently, so a rerun on unchanged content dirties files and buries real diffs under wall-clock churn",
     "created_at": "2026-06-27T17:15:41.988Z",
-    "last_save_at": "2026-08-28T16:00:19.885Z",
+    "last_save_at": "2026-08-29T15:22:23.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

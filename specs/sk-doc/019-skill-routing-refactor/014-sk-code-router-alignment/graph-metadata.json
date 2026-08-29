@@ -45,7 +45,9 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json",
+      ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.md"
     ],
     "entities": [
       {
@@ -76,6 +78,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-benchmark-report.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/benchmark/reports/baseline/skill-benchmark-report.md",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-code's routing cannot be measured on the typed-pair surface, and its committed benchmark baseline actively misleads:",
     "created_at": "2026-07-16T19:43:16.256Z",
-    "last_save_at": "2026-08-28T22:22:57.018Z",
+    "last_save_at": "2026-08-29T15:22:02.193Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

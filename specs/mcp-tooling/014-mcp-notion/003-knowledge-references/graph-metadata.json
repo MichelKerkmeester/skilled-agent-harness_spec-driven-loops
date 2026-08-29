@@ -40,18 +40,18 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/references/mcp-tools.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/references/api-gap-tools.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/references/property-types.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/references/database-model.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/references/troubleshooting.md",
+      ".opencode/skills/mcp-tooling/mcp-notion/mcp-servers/notion-mcp/README.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -68,6 +68,48 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/references/mcp-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "api-gap-tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/references/api-gap-tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "property-types.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/references/property-types.md",
+        "source": "derived"
+      },
+      {
+        "name": "database-model.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/references/database-model.md",
+        "source": "derived"
+      },
+      {
+        "name": "troubleshooting.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/references/troubleshooting.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-notion/mcp-servers/notion-mcp/README.md",
         "source": "derived"
       },
       {
@@ -153,47 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "the Code Mode",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "endpoints",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After Phase 2 the `mcp-notion` mode has a routing contract but no knowledge layer, so it is a thin transport",
     "created_at": "2026-08-21T15:00:46.060Z",
-    "last_save_at": "2026-08-21T15:54:11.604Z",
+    "last_save_at": "2026-08-29T15:21:54.484Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

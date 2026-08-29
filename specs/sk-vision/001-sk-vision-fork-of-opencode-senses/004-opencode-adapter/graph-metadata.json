@@ -37,13 +37,20 @@
     "key_files": [
       "spec.md",
       "001-plugin-reexport/spec.md",
-      "002-readme-and-proof/spec.md"
+      "002-readme-and-proof/spec.md",
+      ".opencode/plugins/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
         "source": "derived"
       },
       {
@@ -85,7 +92,7 @@
     ],
     "causal_summary": "OpenCode discovers plugins as real files under `.opencode/plugins/`",
     "created_at": "2026-08-15T16:31:07.271Z",
-    "last_save_at": "2026-08-16T08:37:45.026Z",
+    "last_save_at": "2026-08-29T15:22:06.036Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

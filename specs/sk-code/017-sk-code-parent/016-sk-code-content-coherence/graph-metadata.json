@@ -41,14 +41,22 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/description.json",
+      ".opencode/skills/sk-code/graph-metadata.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -74,15 +82,21 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -180,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Skill Alignment",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Canon Metadata",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The master plan identifies sk-code as structurally canonical but content-incoherent after phase 013",
     "created_at": "2026-07-05T05:46:26.162Z",
-    "last_save_at": "2026-08-28T15:52:57.760Z",
+    "last_save_at": "2026-08-29T15:21:56.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

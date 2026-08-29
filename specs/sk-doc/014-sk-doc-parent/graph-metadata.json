@@ -69,13 +69,27 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      ".opencode/skills/sk-doc/graph-metadata.json",
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
         "source": "derived"
       },
       {
@@ -117,7 +131,7 @@
     ],
     "causal_summary": "`sk-doc` is a 6-mode monolith: one overloaded `SKILL.md` carries document-quality management, skill/agent/command/readme/feature-catalog/testing-playbook/benchmark/changelog authoring, and flowchart creation, with `references/`, `scripts/`, and `assets/` flat at the skill root",
     "created_at": "2026-07-06T06:30:17.554Z",
-    "last_save_at": "2026-08-28T22:17:38.050Z",
+    "last_save_at": "2026-08-29T15:22:00.568Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

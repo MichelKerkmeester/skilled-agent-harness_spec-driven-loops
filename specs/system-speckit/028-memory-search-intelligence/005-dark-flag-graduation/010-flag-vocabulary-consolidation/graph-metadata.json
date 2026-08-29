@@ -38,7 +38,22 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "lib/search/search-flags.ts",
+      "dist/lib/config/capability-flags.js",
+      "dist/lib/search/search-flags.js",
+      "tests/search-flags.vitest.ts",
+      "tests/memory-roadmap-flags.vitest.ts",
+      "tests/generated-metadata-integrity.vitest.ts",
+      "tests/flag-vocabulary-consolidation.vitest.ts",
+      "lib/search/hyde.ts",
+      "lib/graph/bfs-traversal.ts",
+      "lib/search/causal-boost.ts",
+      "lib/governance/memory-retention-sweep.ts",
+      "lib/storage/idempotency-receipts.ts",
+      "lib/cognitive/adaptive-ranking.ts",
+      "lib/search/rerank/retrieval-rescue.ts",
+      "lib/search/folder-discovery.ts"
     ],
     "entities": [
       {
@@ -72,6 +87,96 @@
         "source": "derived"
       },
       {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "capability-flags.js",
+        "kind": "code",
+        "path": "dist/lib/config/capability-flags.js",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.js",
+        "kind": "code",
+        "path": "dist/lib/search/search-flags.js",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.vitest.ts",
+        "kind": "test",
+        "path": "tests/search-flags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-roadmap-flags.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-roadmap-flags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-integrity.vitest.ts",
+        "kind": "test",
+        "path": "tests/generated-metadata-integrity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "flag-vocabulary-consolidation.vitest.ts",
+        "kind": "test",
+        "path": "tests/flag-vocabulary-consolidation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hyde.ts",
+        "kind": "code",
+        "path": "lib/search/hyde.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bfs-traversal.ts",
+        "kind": "code",
+        "path": "lib/graph/bfs-traversal.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-boost.ts",
+        "kind": "code",
+        "path": "lib/search/causal-boost.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": "lib/governance/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "idempotency-receipts.ts",
+        "kind": "code",
+        "path": "lib/storage/idempotency-receipts.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adaptive-ranking.ts",
+        "kind": "code",
+        "path": "lib/cognitive/adaptive-ranking.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-rescue.ts",
+        "kind": "code",
+        "path": "lib/search/rerank/retrieval-rescue.ts",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": "lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -94,101 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Refinement Note",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Every",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Shared",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Known Limitations",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "real",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/system-spec-kit/mcpserver/lib/config/capability-flags.ts` and a set of consuming modules each hand-roll their own `process.env[...]?.trim().toLowerCase()` comparison instead of delegating to a shared parser, and the accepted vocabulary differs flag-to-flag with no operator-visible signal when a value falls outside it",
     "created_at": "2026-07-09T20:29:02.118Z",
-    "last_save_at": "2026-08-28T16:00:25.397Z",
+    "last_save_at": "2026-08-29T15:22:24.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

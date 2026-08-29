@@ -41,26 +41,23 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "tasks.md",
-      "decision-record.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/leaf-manifest.json",
+      ".opencode/skills/cli-external-orchestration/cli-codex/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-claude-code/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
+      ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+      ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+      ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/references/model-benchmark/lane-b-mechanics.md"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -74,15 +71,75 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-codex/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "providers-and-models.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "loop-protocol.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
+        "source": "derived"
+      },
+      {
+        "name": "capability-matrix.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-research/references/guides/capability-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "seat-diversity-patterns.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md",
+        "source": "derived"
+      },
+      {
+        "name": "lane-b-mechanics.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/references/model-benchmark/lane-b-mechanics.md",
         "source": "derived"
       },
       {
@@ -144,59 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Derivation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Mode",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Records",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every document that tells an agent which external executor exists and how to invoke it is wrong somewhere",
     "created_at": "2026-07-30T19:29:16.509Z",
-    "last_save_at": "2026-08-28T22:32:48.142Z",
+    "last_save_at": "2026-08-29T15:22:03.991Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -41,19 +41,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "plan.md",
       "spec.md",
-      "implementation-summary.md",
+      "plan.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "implementation-summary.md",
+      ".opencode/commands/create/README.txt"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -61,9 +56,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -73,9 +74,15 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/README.txt",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The current command assets for `create:folderreadme` and `create:installguide` repeat the same orchestration structure: Phase 0 write-agent verification, a consolidated setup prompt, mode split (`:auto` and `:confirm`), and a six-step YAML workflow",
     "created_at": "2026-04-12T09:02:50.220Z",
-    "last_save_at": "2026-08-28T22:19:55.869Z",
+    "last_save_at": "2026-08-29T15:22:00.820Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -45,9 +45,10 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "dist/context-server.js"
     ],
     "entities": [
       {
@@ -63,12 +64,6 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -78,6 +73,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 043 proved that one `codex exec` child per scenario is the wrong architecture for this suite",
     "created_at": "2026-05-14T17:20:00Z",
-    "last_save_at": "2026-08-28T15:59:37.262Z",
+    "last_save_at": "2026-08-29T15:22:14.702Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -36,34 +36,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-      ".opencode/commands/doctor/scripts/mcp-doctor.sh",
-      ".opencode/skills/system-spec-kit/mcp_server/package.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review-report.md",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh"
     ],
     "entities": [
-      {
-        "name": "INSTALL_GUIDE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp-doctor.sh",
-        "kind": "script",
-        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -92,6 +73,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
         "source": "derived"
       },
       {
@@ -189,11 +182,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Recent release-readiness work moved stress tests, added matrix runners, refreshed install docs, and extended database and hook surfaces",
     "created_at": "2026-05-18T08:15:52.983Z",
-    "last_save_at": "2026-07-07T12:30:12.356Z",
+    "last_save_at": "2026-08-29T15:22:09.749Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

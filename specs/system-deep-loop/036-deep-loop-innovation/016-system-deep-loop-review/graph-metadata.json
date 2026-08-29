@@ -41,30 +41,19 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      "review/review-report.md",
-      "research/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
+      "research/research.md",
+      "review/review-report.md",
       "research/lineages/glm/research.md",
       "research/lineages/glm/deep-research-state.jsonl",
-      "review/deep-review-config.json"
+      "review/deep-review-config.json",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     ],
     "entities": [
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -96,6 +85,18 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-research-state.jsonl",
         "kind": "file",
         "path": "research/lineages/glm/deep-research-state.jsonl",
@@ -105,6 +106,12 @@
         "name": "deep-review-config.json",
         "kind": "config",
         "path": "review/deep-review-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Research Expansion",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 014 review was scoped narrowly to the gateway-alignment surface and surfaced ten real findings; the 015 remediation just landed a P0 fix plus five P1s across the runtime, prompt-packs, SKILLs, YAMLs, and the guard",
     "created_at": "2026-08-26T03:00:56.608Z",
-    "last_save_at": "2026-08-26T05:17:12.918Z",
+    "last_save_at": "2026-08-29T15:22:08.478Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

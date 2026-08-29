@@ -45,7 +45,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-communication/README.md"
     ],
     "entities": [
       {
@@ -76,6 +77,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/README.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The package lived under a generic `packages/` root even though it is owned and consumed exclusively by the sk-communication skill, unlike system skills (for example, system-spec-kit) that bundle their code inside the skill directory",
     "created_at": "2026-08-13T17:02:13.812Z",
-    "last_save_at": "2026-08-13T19:03:35.704Z",
+    "last_save_at": "2026-08-29T15:21:58.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

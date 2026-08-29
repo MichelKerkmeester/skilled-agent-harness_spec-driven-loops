@@ -39,7 +39,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "review-report.md"
     ],
     "entities": [
       {
@@ -70,6 +71,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review-report.md",
         "source": "derived"
       },
       {
@@ -179,17 +186,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The release-readiness program needs a workflow-correctness audit for the canonical command surfaces before they are treated as safe operator paths",
     "created_at": "2026-04-29T20:25:00.000Z",
-    "last_save_at": "2026-07-17T17:19:07.663Z",
+    "last_save_at": "2026-08-29T15:22:09.285Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

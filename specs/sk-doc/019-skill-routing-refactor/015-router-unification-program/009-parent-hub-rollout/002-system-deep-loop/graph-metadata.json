@@ -42,22 +42,54 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "lib/registry-compiler.cjs",
       "lib/canary-router.cjs",
       "lib/execution-fence.cjs",
       "lib/policy-card.cjs",
       "lib/activation-gate.cjs",
       "fixtures/canary-cases.v1.json",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/mode-registry.json",
+      ".opencode/skills/system-deep-loop/SKILL.md",
       "compiled/projection-graph.json",
       "compiled/policy.json",
       "compiled/route-gold.typed.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "registry-compiler.cjs",
         "kind": "file",
@@ -95,33 +127,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/system-deep-loop/SKILL.md",
         "source": "derived"
       },
       {
@@ -189,23 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Compile",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Shadow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Under the pre-refactor model, a destination is addressed by `workflowMode` name or packet path",
     "created_at": "2026-07-18T13:13:19.824Z",
-    "last_save_at": "2026-08-28T22:23:34.509Z",
+    "last_save_at": "2026-08-29T15:22:02.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

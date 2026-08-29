@@ -38,7 +38,10 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tools/causal-tools.ts",
+      "lib/extraction/entity-extractor.ts",
+      "handlers/causal-graph.ts"
     ],
     "entities": [
       {
@@ -69,6 +72,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "causal-tools.ts",
+        "kind": "code",
+        "path": "tools/causal-tools.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-extractor.ts",
+        "kind": "code",
+        "path": "lib/extraction/entity-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": "handlers/causal-graph.ts",
         "source": "derived"
       },
       {
@@ -166,29 +187,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built Nothing",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed No",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The corpus has detectors for shape, frontmatter and cross-surface coherence within a single packet, but nothing checks whether two distinct docs that describe the same entity actually agree on the facts",
     "created_at": "2026-06-27T17:15:37.645Z",
-    "last_save_at": "2026-08-29T00:37:25.573Z",
+    "last_save_at": "2026-08-29T15:22:22.714Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -36,21 +36,18 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "research/research.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "research/research.md",
+      "synthesis.md",
+      ".claude/mcp.json",
+      ".claude/settings.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -63,6 +60,30 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis.md",
+        "kind": "doc",
+        "path": "synthesis.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
         "source": "derived"
       },
       {
@@ -166,29 +187,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claudian Reference Docs",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Research Synthesis",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped mcp-obsidian Claudian reference docs contained two load-bearing factual errors: they instruct operators to author/merge `.claude/mcp.json` to add an MCP server, while Claudian actively deletes that exact file at storage init and its own AGENTS.md forbids reading, writing, injecting, or migrating it — so following the shipped recipe produces a file Claudian removes",
     "created_at": "2026-08-23T03:40:39.545Z",
-    "last_save_at": "2026-08-23T04:00:45.738Z",
+    "last_save_at": "2026-08-29T15:21:54.944Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

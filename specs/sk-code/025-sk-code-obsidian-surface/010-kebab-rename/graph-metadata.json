@@ -10,25 +10,206 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
+    "trigger_phrases": [
+      "obsidian kebab case rename",
+      "manifest driven filename rename plugin",
+      "phase 010 kebab rename",
+      "obsidian kebab rename plan",
+      "manifest driven rename execution plan",
+      "phase 010 plan",
+      "obsidian kebab rename tasks",
+      "phase 010 tasks",
+      "implementation summary kebab rename",
+      "manifest driven rename oracle catch",
+      "scan-naming green obsidian plugin"
+    ],
+    "key_topics": [
+      "obsidian",
+      "kebab",
+      "case",
+      "rename",
+      "manifest",
+      "driven",
+      "filename",
+      "plugin",
+      "phase",
+      "plan",
+      "execution",
+      "tasks"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Phase 10: kebab-rename",
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Case Source Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Rename",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Explicitly Not In This Phase Fixing",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Manifest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Before",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Two Rewrite Passes",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 008 built `scan-naming.mjs`, which measured the plugin tree at 235 of 248 scanned files",
     "created_at": "2026-08-28T18:17:41Z",
-    "last_save_at": "2026-08-28T18:17:41Z",
+    "last_save_at": "2026-08-29T15:21:57.636Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md"
-    ]
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8d16844e04c74c1a73b7e14320156065e1446bf5b5b7303b95f3370ed4a5f507",
+    "source_doc_hashes": {
+      "spec.md": "3a8c74801ede2050a3d1d3980634fca74ec721f38c0e33949252c8104cc84b5c",
+      "plan.md": "01c433b64bdae202da03f7bab7273af7909234dc2af197fc326ab9f77f0f2e65",
+      "tasks.md": "1736109f521616e5fcf037df596c6f2fff82ace8dc203fa16c5a61b0a223ba4e",
+      "implementation-summary.md": "d09b7c5fe6ae30402b183b4f7841b446a169f9f35f4f69d7e34df350fa2ef7d3"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

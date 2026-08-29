@@ -40,20 +40,33 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "research/research.md",
+      "handover.md",
       "research/deep-research-state.jsonl",
       "research/findings-registry.json",
       "research/deep-research-strategy.md",
       "research/deep-research-dashboard.md",
-      "research/resource-map.md",
-      "spec.md",
-      "handover.md"
+      ".opencode/commands/deep/assets/deep-research-auto.yaml",
+      "research/resource-map.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -81,15 +94,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep-research-auto.yaml",
         "source": "derived"
       },
       {
@@ -191,7 +198,7 @@
     ],
     "causal_summary": "The system-deep-loop workflows are iteration-based loops with linear dispatch, externalized JSONL state, and convergence detection",
     "created_at": "2026-08-08T14:32:54.230Z",
-    "last_save_at": "2026-08-14T06:23:28.585Z",
+    "last_save_at": "2026-08-29T15:22:08.482Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

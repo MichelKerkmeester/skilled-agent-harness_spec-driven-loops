@@ -46,21 +46,18 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       "tests/derived-id-provenance.vitest.ts",
       "lib/feedback/session-trace-causal-reducer.ts",
-      "mcp_server/lib/search/entity-linker.ts",
-      "mcp_server/lib/search/graph-lifecycle.ts",
-      "mcp_server/handlers/causal-links-processor.ts",
-      "mcp_server/lib/graph/community-detection.ts",
-      "mcp_server/lib/graph/graph-signals.ts",
-      "mcp_server/lib/storage/consolidation.ts",
-      "mcp_server/lib/search/vector-index-schema.ts",
-      "mcp_server/lib/storage/causal-edges.ts",
-      "mcp_server/lib/content-id.ts",
-      "mcp_server/lib/feedback/session-trace-causal-reducer.ts",
       "handlers/causal-links-processor.ts",
       "lib/search/entity-linker.ts",
-      "lib/search/graph-lifecycle.ts"
+      "lib/search/graph-lifecycle.ts",
+      "lib/graph/community-detection.ts",
+      "lib/graph/graph-signals.ts",
+      "lib/storage/consolidation.ts",
+      "lib/storage/causal-edges.ts",
+      "lib/search/vector-index-schema.ts",
+      "lib/content-id.ts"
     ],
     "entities": [
       {
@@ -94,6 +91,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "derived-id-provenance.vitest.ts",
         "kind": "test",
         "path": "tests/derived-id-provenance.vitest.ts",
@@ -106,57 +109,57 @@
         "source": "derived"
       },
       {
+        "name": "causal-links-processor.ts",
+        "kind": "code",
+        "path": "handlers/causal-links-processor.ts",
+        "source": "derived"
+      },
+      {
         "name": "entity-linker.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/entity-linker.ts",
+        "path": "lib/search/entity-linker.ts",
         "source": "derived"
       },
       {
         "name": "graph-lifecycle.ts",
         "kind": "code",
-        "path": "mcp_server/lib/search/graph-lifecycle.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-links-processor.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/causal-links-processor.ts",
+        "path": "lib/search/graph-lifecycle.ts",
         "source": "derived"
       },
       {
         "name": "community-detection.ts",
         "kind": "code",
-        "path": "mcp_server/lib/graph/community-detection.ts",
+        "path": "lib/graph/community-detection.ts",
         "source": "derived"
       },
       {
         "name": "graph-signals.ts",
         "kind": "code",
-        "path": "mcp_server/lib/graph/graph-signals.ts",
+        "path": "lib/graph/graph-signals.ts",
         "source": "derived"
       },
       {
         "name": "consolidation.ts",
         "kind": "code",
-        "path": "mcp_server/lib/storage/consolidation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-schema.ts",
+        "path": "lib/storage/consolidation.ts",
         "source": "derived"
       },
       {
         "name": "causal-edges.ts",
         "kind": "code",
-        "path": "mcp_server/lib/storage/causal-edges.ts",
+        "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
         "source": "derived"
       },
       {
         "name": "content-id.ts",
         "kind": "code",
-        "path": "mcp_server/lib/content-id.ts",
+        "path": "lib/content-id.ts",
         "source": "derived"
       },
       {
@@ -200,17 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Run Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The causal graph is 94% entity-linker noise and every save ratchets edge strengths toward 1.0, so graph signals cannot rank real causality",
     "created_at": "2026-07-03T09:44:23Z",
-    "last_save_at": "2026-07-11T18:40:36.042Z",
+    "last_save_at": "2026-08-29T15:22:22.341Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

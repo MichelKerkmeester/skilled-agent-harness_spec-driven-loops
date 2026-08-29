@@ -45,8 +45,11 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "decision-record.md"
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/skills/sk-design/benchmark/README.md"
     ],
     "entities": [
       {
@@ -74,15 +77,33 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/benchmark/README.md",
         "source": "derived"
       },
       {
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Thresholds",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design parity refactor must not begin while existing or uncommitted `sk-design` changes have unclear ownership",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-08-28T16:28:18.604Z",
+    "last_save_at": "2026-08-29T15:21:58.985Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

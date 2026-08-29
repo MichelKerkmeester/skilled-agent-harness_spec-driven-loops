@@ -41,7 +41,13 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-dataview-install.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/scripts/verify-notion-migration-parity.sh",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/scripts/README.md",
+      "scripts/README.md",
+      "manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
@@ -72,6 +78,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "notion-bases-dataview-install.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/plugin-tie-ins/notion-bases-dataview-install.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify-notion-migration-parity.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/scripts/verify-notion-migration-parity.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/scripts/README.md",
         "source": "derived"
       },
       {
@@ -163,35 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Real Install Execution",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 plans the Notion Bases knowledge layer, but knowledge without the plugin installed is inert — an agent can describe a two-way relation column it cannot yet write, because neither Notion Bases nor (potentially) Dataview is confirmed present in the operator's actual vault",
     "created_at": "2026-08-21T22:01:25.732Z",
-    "last_save_at": "2026-08-22T07:15:12.827Z",
+    "last_save_at": "2026-08-29T15:21:54.943Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,11 +209,11 @@
     ],
     "source_fingerprint": "sha256:371ed4eda61c6295f9b7bf09d2b4045ffa3f1b093d1f887c3076f4e24cc1f581",
     "source_doc_hashes": {
-      "spec.md": "3a024cb89490c4b38f521c8d8b56ab363d956aa84e4ac5d55bf3b59405c8ce9d",
-      "plan.md": "525e275973b5de6efd39bf8ca31a99a5ab10fc0684646ea497d390e89d78d721",
-      "tasks.md": "21aca8d5c0164a2460e8db3133855a1ea89d4a604cc51e8aab88da33ac3cf8de",
-      "checklist.md": "dab6874d540bb383956227362157dabf957e3967c8f7a06b950ebe0bcdfdfb8a",
-      "implementation-summary.md": "b8a05c9f4ac7724f88f619dcf4f913fc173653ca0f51e50b07c54e7f9ad7f941"
+      "spec.md": "3ed4f554569f6a5ebe3acfecfa219807004c531c9a1497a6c3d2ab1b1be21dcf",
+      "plan.md": "6bc31f5698406252fd6d6070869b22b1771233ae7dae33e8c1fbaf2bcc6f224b",
+      "tasks.md": "2c4099483f7e06d01fcf0df832ea1ef1b55465ff638d318f757fd41863f29a47",
+      "checklist.md": "048f37e7ec6397813e2b5364a92532f2a75def9614c7c6508c9997d4f11d10a2",
+      "implementation-summary.md": "0244f8d99088779e043d8893ae1ceca7d9b283823b35f1f566c1aa3331acf187"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -41,42 +41,19 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      "research/research.md",
-      "shared/paths.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      "shared/paths.ts",
+      "shared/dist/embeddings/factory.js",
+      "dist/context-server.js",
       "shared/embeddings/factory.ts",
       "shared/embeddings/providers/ollama.ts"
     ],
     "entities": [
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "paths.ts",
-        "kind": "code",
-        "path": "shared/paths.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -99,6 +76,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "paths.ts",
+        "kind": "code",
+        "path": "shared/paths.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.js",
+        "kind": "code",
+        "path": "shared/dist/embeddings/factory.js",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
         "source": "derived"
       },
       {
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "With `EMBEDDINGSPROVIDER=auto` (the committed MCP-config default, documented as a local-first cascade `ollama → hf-local → openai → voyage`), the mk-spec-memory daemon silently resolves to `hf-local` — which is unhealthy on this host (no running backend) — instead of the active, working `ollama` embedder",
     "created_at": "2026-05-27T12:33:58.373Z",
-    "last_save_at": "2026-07-17T17:19:29.939Z",
+    "last_save_at": "2026-08-29T15:22:16.561Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

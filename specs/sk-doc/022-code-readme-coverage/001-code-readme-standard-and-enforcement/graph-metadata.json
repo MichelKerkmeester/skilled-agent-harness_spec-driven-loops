@@ -42,11 +42,21 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "decision-record.md",
-      "tasks.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      ".pi/extensions/README.md",
+      ".github/workflows/README.md",
+      ".opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+      ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
+      ".opencode/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
+      ".opencode/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+      ".opencode/skills/sk-doc/shared/assets/template-rules.json",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py"
     ],
     "entities": [
       {
@@ -56,9 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -68,21 +78,75 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "durable-directory-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/scripts/tests/code-folder/durable-directory-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "readme-code-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/assets/readme-code-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "quality-and-checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/references/readme/quality-and-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "hvr-rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "template-rules.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/shared/assets/template-rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "audit_readmes.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/scripts/audit_readmes.py",
         "source": "derived"
       },
       {
@@ -138,65 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Test Type",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Confirm And Decide",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authoring Surface",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fixture Corpus",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three defects in the governing surface, each independently confirmed against source:",
     "created_at": "2026-07-30T18:58:50.551Z",
-    "last_save_at": "2026-08-28T15:53:22.689Z",
+    "last_save_at": "2026-08-29T15:22:03.569Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

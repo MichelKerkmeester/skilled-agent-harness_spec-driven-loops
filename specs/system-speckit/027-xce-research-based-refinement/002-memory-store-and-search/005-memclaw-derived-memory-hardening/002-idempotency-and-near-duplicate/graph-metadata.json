@@ -42,20 +42,14 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "handlers/save/dedup.ts",
       "handlers/save/response-builder.ts",
       "lib/search/vector-index-schema.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
       "handlers/memory-save.ts",
       "handlers/memory-crud-update.ts",
       "handlers/memory-index.ts",
@@ -65,69 +59,81 @@
     ],
     "entities": [
       {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "idempotency-receipts.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/idempotency-receipts.ts",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "near-duplicate.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/near-duplicate.ts",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "memory-crud-update.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "dedup.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts",
-        "source": "derived"
-      },
-      {
-        "name": "enrichment-state.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts",
+        "path": "handlers/save/dedup.ts",
         "source": "derived"
       },
       {
         "name": "response-builder.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
+        "path": "handlers/save/response-builder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-update.ts",
+        "kind": "code",
+        "path": "handlers/memory-crud-update.ts",
         "source": "derived"
       },
       {
         "name": "memory-index.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+        "path": "handlers/memory-index.ts",
         "source": "derived"
       },
       {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "name": "enrichment-state.ts",
+        "kind": "code",
+        "path": "handlers/save/enrichment-state.ts",
         "source": "derived"
       },
       {
         "name": "reconsolidation-bridge.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+        "path": "handlers/save/reconsolidation-bridge.ts",
         "source": "derived"
       },
       {
@@ -195,23 +201,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Three",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`memorysave` and `memoryupdate` are retryable, but a retried save can create a duplicate row because there is no operation receipt to recognize and replay a prior result",
     "created_at": "2026-06-06T10:10:45Z",
-    "last_save_at": "2026-07-17T17:19:40.428Z",
+    "last_save_at": "2026-08-29T15:22:19.607Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

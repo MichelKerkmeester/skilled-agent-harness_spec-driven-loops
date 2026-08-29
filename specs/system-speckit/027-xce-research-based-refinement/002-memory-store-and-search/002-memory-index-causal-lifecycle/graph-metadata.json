@@ -46,13 +46,90 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "description.json",
+      "graph-metadata.json",
+      "lib/storage/incremental-index.ts",
+      "lib/parsing/memory-parser.ts",
+      "handlers/memory-index.ts",
+      "lib/search/vector-index-schema.ts",
+      "lib/causal/sweep.ts",
+      "lib/storage/causal-edges.ts",
+      "lib/causal/frontmatter-promoter.ts",
+      "lib/storage/statediff.ts",
+      "handlers/memory-save.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index.ts",
+        "kind": "code",
+        "path": "lib/storage/incremental-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-parser.ts",
+        "kind": "code",
+        "path": "lib/parsing/memory-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sweep.ts",
+        "kind": "code",
+        "path": "lib/causal/sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-promoter.ts",
+        "kind": "code",
+        "path": "lib/causal/frontmatter-promoter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "statediff.ts",
+        "kind": "code",
+        "path": "lib/storage/statediff.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
         "source": "derived"
       },
       {
@@ -94,7 +171,7 @@
     ],
     "causal_summary": "Phase-parent control packet grouping the memory store's incremental-index and causal-graph write lifecycle: incremental index foundation, causal-edge tombstones, deterministic metadata-edge promotion, and desired/prior write-path reconciliation.",
     "created_at": "2026-06-06T00:00:00Z",
-    "last_save_at": "2026-08-28T23:13:40.482Z",
+    "last_save_at": "2026-08-29T15:22:19.104Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -43,9 +43,16 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "implementation-summary.md",
       "tasks.md",
-      "research/research.md"
+      "implementation-summary.md",
+      "research/research.md",
+      ".cursor/rules/skill-routing.md",
+      ".opencode/commands/memory/learn.md",
+      "mcp-server/lib/scoring/importance-tiers.ts",
+      "mcp-server/lib/search/vector-index-queries.ts",
+      "mcp-server/hooks/memory-surface.ts",
+      "mcp-server/lib/resume/resume-ladder.ts",
+      "mcp-server/lib/routing/content-router.ts"
     ],
     "entities": [
       {
@@ -61,21 +68,63 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-routing.md",
+        "kind": "doc",
+        "path": ".cursor/rules/skill-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "learn.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/learn.md",
+        "source": "derived"
+      },
+      {
+        "name": "importance-tiers.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/scoring/importance-tiers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-queries.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/search/vector-index-queries.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-surface.ts",
+        "kind": "code",
+        "path": "mcp-server/hooks/memory-surface.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resume-ladder.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/resume/resume-ladder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "content-router.ts",
+        "kind": "code",
+        "path": "mcp-server/lib/routing/content-router.ts",
         "source": "derived"
       },
       {
@@ -149,53 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-08-26T05:34:11Z",
-    "last_save_at": "2026-08-29T00:57:23.565Z",
+    "last_save_at": "2026-08-29T15:22:24.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

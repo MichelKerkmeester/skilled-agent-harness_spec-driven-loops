@@ -39,16 +39,27 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "plan.md"
+      ".claude/mcp.json",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/advanced-canvas.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/claudian.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/workflows.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -70,9 +81,33 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "data-model.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/dataview/data-model.md",
+        "source": "derived"
+      },
+      {
+        "name": "advanced-canvas.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/advanced-canvas.md",
+        "source": "derived"
+      },
+      {
+        "name": "claudian.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/feature-catalog/plugins/claudian.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/plugins/notion-bases/workflows.md",
         "source": "derived"
       },
       {
@@ -158,41 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Adding Metadata",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Summary Errors",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 009 left five documentation items and one sibling-packet error unresolved",
     "created_at": "2026-08-22T20:16:22.967Z",
-    "last_save_at": "2026-08-23T05:04:53.692Z",
+    "last_save_at": "2026-08-29T15:21:55.400Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
