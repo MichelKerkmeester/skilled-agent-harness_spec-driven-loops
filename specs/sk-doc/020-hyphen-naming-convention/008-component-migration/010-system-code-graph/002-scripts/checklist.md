@@ -25,7 +25,7 @@ _memory:
       - "This authoring pass does not rename scripts or run script checks."
 ---
 
-# Checklist: system-code-graph scripts
+# Verification Checklist: system-code-graph scripts
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

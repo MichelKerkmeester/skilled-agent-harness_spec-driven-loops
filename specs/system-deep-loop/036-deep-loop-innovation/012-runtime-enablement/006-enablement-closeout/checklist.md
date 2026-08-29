@@ -19,7 +19,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Enablement Closeout
+# Verification Checklist: Enablement Closeout
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

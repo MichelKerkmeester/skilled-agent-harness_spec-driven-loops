@@ -16,7 +16,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Align the Playbook Generator + Confirm Convention Docs
+# Verification Checklist: Align the Playbook Generator + Confirm Convention Docs
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

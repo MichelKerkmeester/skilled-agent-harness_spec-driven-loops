@@ -9,7 +9,7 @@ contextType: "implementation"
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 
-# Checklist: Command-Surface Root `ROUTER.md` Awareness Remediation
+# Verification Checklist: Command-Surface Root `ROUTER.md` Awareness Remediation
 
 > Mark `[x]` only with evidence (command output, grep count, or exit code). Each item is an objective pass/fail gate.
 

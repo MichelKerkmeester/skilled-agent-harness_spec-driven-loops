@@ -180,13 +180,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "This verification-only rollup gate aggregates phases 001–006 and proves the complete sk-prompt skill surface is kebab-clean within the 020 exemption boundary. It performs no new rename or reference migration.",
     "created_at": "2026-07-14T15:17:34Z",
-    "last_save_at": "2026-07-17T20:26:08.267Z",
+    "last_save_at": "2026-08-29T10:01:04.929Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:6ef5e808023a6db3f1a8dd446668c72e5093c31dd3b3fe1278010287131e33b5",
+    "source_fingerprint": "sha256:a76daa74109c1efdbcd0f2563c45649bc641184cebf05f62562c9ed45b650ed2",
     "source_doc_hashes": {
       "spec.md": "acb9f7052b8ddd69aefbf17cacf69c9753d63ba210e5f6c6d80db21a0663e05d",
       "plan.md": "ff313cc3018e006797255fd651fbd728cb7dd72684cc56eb949bea50b7f54198",
       "tasks.md": "5435fb3fe7e5aa1468bac1396ac18aa54eb6a458083bb6fd4f6ceba5b6127770",
-      "checklist.md": "9259442b9f78bc71168332538b0853f3d2658984b07a6c7897bf313f77a70e5e"
+      "checklist.md": "3a11e1fb5dd7b0b3eac849d7f2d3dd07efa7854229662ab9324963ba6fb99f4f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -24,7 +24,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: Scripts tree
+# Verification Checklist: Scripts tree
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

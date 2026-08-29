@@ -30,6 +30,7 @@
       "pushes",
       "plan",
       "tasks",
+      "verification",
       "checklist",
       "implementation",
       "summary"
@@ -141,6 +142,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Functional (proven by `tests/mass-deletion-guard.test.sh`, 12/12 pass)",
         "kind": "heading",
         "path": "checklist.md",
@@ -181,17 +188,11 @@
         "kind": "heading",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What shipped",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Spec — Mass-Deletion Guard for Commits and Pushes",
     "created_at": "2026-08-13T00:00:00.000Z",
-    "last_save_at": "2026-08-28T22:36:41.440Z",
+    "last_save_at": "2026-08-29T10:01:28.784Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +202,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a08fcb59269641ff329c950a43958889184f7a8db27c6b6ea96d2d88f5610de7",
+    "source_fingerprint": "sha256:b9a8189392c2c11b0aba5863e7213ecff9aba8fa66c5e0cd41fb17f5240cf5c2",
     "source_doc_hashes": {
       "spec.md": "99e4ddd3a05529a0a4e3708101595f8ddd96db067b05e108e3c9fcebbb85be14",
       "plan.md": "1ef822dbeccf3b1c49809850363c866d4089c88e7ef38c7e4bed02dd49c0a4d6",
       "tasks.md": "e2c8220061fcbd66ca248fbfe36846adab3aa53611a3aa8bc2712fcdea5da874",
-      "checklist.md": "8a89881c17bcaa6f71a69653a731b160f156b85e4ba0e87eabebf8a3dbf1e492",
+      "checklist.md": "a97fe8e75d9ac8701d583a6523bff8aad73a8ad4d4bbfd744e1a96a3193daedf",
       "implementation-summary.md": "6204002d5f432bbfd5f585e9ba9a0c66a0687941838bada665723705f4c1328f"
     },
     "last_active_child_id": null,

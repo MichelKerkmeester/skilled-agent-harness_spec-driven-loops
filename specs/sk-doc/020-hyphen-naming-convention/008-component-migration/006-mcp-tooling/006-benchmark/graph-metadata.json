@@ -38,26 +38,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/mcp-tooling/benchmark/.gitkeep",
-      ".opencode/skills/mcp-tooling/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": ".opencode/skills/mcp-tooling/benchmark/.gitkeep",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -179,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -189,11 +181,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-tooling benchmark boundary is reserved for fixtures, profiles, and storage guides, but the current worktree contains only benchmark/.gitkeep and no snake_case benchmark artifact. This phase establishes the evidence-backed census rule, renames any discovered in-scope artifact paths, and repairs benchmark references without inventing files.",
     "created_at": "2026-07-14T15:17:45Z",
-    "last_save_at": "2026-07-17T20:26:11.011Z",
+    "last_save_at": "2026-08-29T10:00:41.712Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:fbf552e2afb9370ee9202e3e3cefd083bd288ab3a95a5268671bf52235cafed3",
+    "source_fingerprint": "sha256:e600a2a75eb171c7367749ebbfa74868038b4d137045c8e7d7723bc2ac179eea",
     "source_doc_hashes": {
       "spec.md": "40cd0d8bc4e8fe36da002344615c35cd4559f0cf690cf1e53f29637263b1d976",
       "plan.md": "7e6dda9eb96f12c539151e02914393f9b99d91e1d8058d5194f8ee20e2265010",
       "tasks.md": "0c47a705ad237aa5387e832ebbe04117b5572e55401f972c7ec22c7801d0fe90",
-      "checklist.md": "10d264c8a979f9422e7fa2efd38651156cb2f74eca143012dcf649e266854858"
+      "checklist.md": "30684fdcf5af6ebf774ad2fce85827207770faa31e07f2f42dce6c9e06a7a222"
     },
     "last_active_child_id": null,
     "last_active_at": null

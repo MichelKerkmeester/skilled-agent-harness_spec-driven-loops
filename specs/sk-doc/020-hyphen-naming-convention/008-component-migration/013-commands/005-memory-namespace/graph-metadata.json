@@ -41,26 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/memory/README.txt",
-      ".opencode/commands/memory/assets/learn_presentation.txt",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/commands/memory/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "learn_presentation.txt",
-        "kind": "file",
-        "path": ".opencode/commands/memory/assets/learn_presentation.txt",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,7 +174,19 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -196,7 +194,7 @@
     ],
     "causal_summary": "The `.opencode/commands/memory/assets/` tree contains `learnpresentation.txt`, `managepresentation.txt`, `savepresentation.txt`, and `searchpresentation.txt`",
     "created_at": "2026-07-14T15:18:34Z",
-    "last_save_at": "2026-07-17T20:26:19.816Z",
+    "last_save_at": "2026-08-29T10:00:37.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:10b136afd6ec1e49c9f1caa2c460f79a8b0e95bd0d19de5a71b8e43134330f73",
+    "source_fingerprint": "sha256:17170d610dda3527b1ef8fdc6ed8d5c0b4b566995198ede5c06748ac9348911a",
     "source_doc_hashes": {
       "spec.md": "b821b38638cb6688da308934ff335f4da85097a7acd1ec8067af36350c4449f1",
       "plan.md": "00c170c559157ed08d2be03503ab4a24c22b64ee5f7fbea36607b94ba5262f25",
       "tasks.md": "56d69e6593f9bc0b93a282abacb772b3233109d4cb48eba7ba00e13c252c9c98",
-      "checklist.md": "6d46976d796d2c24394ba057f2f3a9c83d1ad9c8af1d682ff77be6f6f8e98514"
+      "checklist.md": "f0d1e871445a24eee88eb9c1bb44106cfd5cf86f405d4d4279a92a0b1bab5c53"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -24,7 +24,7 @@ _memory:
       - "This authoring pass does not rename reference files or run link checks."
 ---
 
-# Checklist: system-code-graph references
+# Verification Checklist: system-code-graph references
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

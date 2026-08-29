@@ -23,7 +23,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Unified Router Refactor — Runtime Engine (P4b Literal Cutover)
+# Verification Checklist: Unified Router Refactor — Runtime Engine (P4b Literal Cutover)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->

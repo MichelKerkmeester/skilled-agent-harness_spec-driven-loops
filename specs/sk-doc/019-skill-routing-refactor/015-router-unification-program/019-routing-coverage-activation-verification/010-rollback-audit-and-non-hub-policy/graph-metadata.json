@@ -191,7 +191,7 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Three related integrity gaps sit at the P1 rollback/audit/policy layer of the activation program",
     "created_at": "2026-07-20T21:51:45.508Z",
-    "last_save_at": "2026-08-28T15:53:19.011Z",
+    "last_save_at": "2026-08-29T10:01:22.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:244e7cead902eece5f9f54cd24a5a156cff2163c84f81b2ed4bd3b65ebd3b7e0",
+    "source_fingerprint": "sha256:3b944bb269e9f80935bd9839f47cdc52afd3c30d4926ec8ec29b04e8a727f3ab",
     "source_doc_hashes": {
       "spec.md": "664d4f1d611307b5f4dfa830b3233cb14733495a02f4e3221e2935c1abed8a05",
       "plan.md": "92c6d7318e4660ef5d6e5ad3845e24bd3d424f3ea79f446341aa58db2ff5ab94",
       "tasks.md": "031e5cb3727bd1ca6c35b62a3f677d0f1d7d2d4c441e94b997c0aa2f56af9983",
-      "checklist.md": "2ba8d3ccea08f29c81c046e726b39cba4eb4cc9b5384d856c6442af4cfe4c057",
+      "checklist.md": "6cdf4a0fd1bd60a3a81820a0fe1a4b4315583a615e9eb931c2fa0913b81b5601",
       "implementation-summary.md": "1e5fe1bf3b9b5c275d656e6e6ef757f33cb23955af3ad0506c7ec19b7656534b"
     },
     "last_active_child_id": null,

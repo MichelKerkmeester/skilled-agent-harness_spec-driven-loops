@@ -4,7 +4,7 @@ description: "Memory trust display verification."
 importance_tier: "important"
 contextType: "implementation"
 ---
-# Checklist: 012/005
+# Verification Checklist: 012/005
 
 <!-- SPECKIT_LEVEL: 2 -->
 

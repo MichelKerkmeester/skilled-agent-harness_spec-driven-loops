@@ -22,7 +22,7 @@ _memory:
     completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
-# Checklist: Test-Only Barrel Export Cleanup for F44 and F109
+# Verification Checklist: Test-Only Barrel Export Cleanup for F44 and F109
 
 <!-- SPECKIT_LEVEL: 2 -->
 

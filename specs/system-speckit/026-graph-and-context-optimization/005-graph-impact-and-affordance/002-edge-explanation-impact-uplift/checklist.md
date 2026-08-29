@@ -4,7 +4,7 @@ description: "Verification items for edge explanation + impact uplift."
 importance_tier: "important"
 contextType: "implementation"
 ---
-# Checklist: 012/003
+# Verification Checklist: 012/003
 
 <!-- SPECKIT_LEVEL: 2 -->
 

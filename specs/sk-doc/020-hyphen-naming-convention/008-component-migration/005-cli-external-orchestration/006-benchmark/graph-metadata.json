@@ -41,29 +41,13 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/cli-external-orchestration/SKILL.md",
-      ".opencode/skills/cli-external-orchestration/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/skills/cli-external-orchestration/benchmark/.gitkeep",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -86,12 +70,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": ".gitkeep",
-        "kind": "file",
-        "path": ".opencode/skills/cli-external-orchestration/benchmark/.gitkeep",
         "source": "derived"
       },
       {
@@ -195,11 +173,29 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-external-orchestration benchmark boundary currently contains only a .gitkeep marker, but the phase must protect the surface if fixtures, profiles, storage guides, reports, or generated runs are present at execution time. This phase applies the 020 authored-versus-generated naming boundary and records an explicit zero-candidate baseline.",
     "created_at": "2026-07-14T15:17:39Z",
-    "last_save_at": "2026-07-17T20:26:09.480Z",
+    "last_save_at": "2026-08-29T10:00:24.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:cab466ac3c91bf5bf53d8b3771c95a4e36f1bdc4be76823c4abacfccb67f1539",
+    "source_fingerprint": "sha256:28911657d18391610a3f0c61d304a1fee8c87ef8559358520923151ec86d955f",
     "source_doc_hashes": {
       "spec.md": "3b651f250d0eaa3fa02d18850440472c15b94e6e032dd8ee7430edf7e3ceb88f",
       "plan.md": "f26ed489c564cdbdbeff6eb19538bcb60b1adfd4428b59e3ae21b6907831e0be",
       "tasks.md": "bef288d7dbb4f74c5f4f0ba9cfbfa9ee34ebb2586d9366551b09c98d8f212a23",
-      "checklist.md": "dec2f9dc0e2b4f42cfa7f77bebc3e285f4d9adb296c8a688d8b25a564f126ee7",
+      "checklist.md": "6df58feebe236d2e709d4541a307b72e6d0eb5e2d26a3d94fb2bd67bb396d3f3",
       "decision-record.md": "8dd1a7015659c74f04f4e9769da277195055008b153a3f9a97fd9427635c1a92"
     },
     "last_active_child_id": null,

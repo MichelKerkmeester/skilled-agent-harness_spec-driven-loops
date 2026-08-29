@@ -151,6 +151,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -164,12 +170,6 @@
       },
       {
         "name": "The Model Benchmark",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the fail-closed rollback switch and independent migration gate for the Model Benchmark variant: multi-model runs, scoring matrices, sealed evidence, certificates, and phase-014 readiness over the shared Deep Improvement Common Services backbone.",
     "created_at": "2026-07-16T03:43:40.820Z",
-    "last_save_at": "2026-08-18T11:07:14.537Z",
+    "last_save_at": "2026-08-29T09:58:06.967Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83287d05404378f75cc38d5627817bd08a09085afa663765c22362ef8d9cc9cb",
+    "source_fingerprint": "sha256:e15a846b9b51bd4d87ee87e41e9c7676d757c76eb1af5764d69a84e6ebf01a5c",
     "source_doc_hashes": {
       "spec.md": "f5a8bfde0674b5559cebbd26512f21ab0d3ac238c6a7013692ea86047c66dba1",
       "plan.md": "d8d9177414ac49c25d829963bb2f1b0090772bd1b0093103c19b7fcf42ed3b4e",
       "tasks.md": "c58f9c5aa8419ca95dc88c8c79d99645b4ef0048ea22223259a2945230d9afb6",
-      "checklist.md": "77ab3d4f990c49673deec8ddc68f88b618971e9e7a7531e1cdb4b970eeb360a4",
+      "checklist.md": "fad56eb11b4418d967bf4210fcaa20c988e447c5a8c1d9e5f9096a9e24b757d6",
       "implementation-summary.md": "e7339d271c3f029028ce0a58c2d960f15b87fbcb515603ebf614c5e4db9fba1e"
     },
     "last_active_child_id": null,

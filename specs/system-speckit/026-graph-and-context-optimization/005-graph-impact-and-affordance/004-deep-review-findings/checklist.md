@@ -13,7 +13,7 @@ _memory:
     blockers: []
     completion_pct: 100
 ---
-# Checklist: 006/007
+# Verification Checklist: 006/007
 
 <!-- SPECKIT_LEVEL: 2 -->
 

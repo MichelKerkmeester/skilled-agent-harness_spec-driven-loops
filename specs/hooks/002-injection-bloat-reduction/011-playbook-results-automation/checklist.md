@@ -32,7 +32,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Persisted Results for Manual Playbook Scenario Runs
+# Verification Checklist: Persisted Results for Manual Playbook Scenario Runs
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->

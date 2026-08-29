@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: sk-code changelog and version verification
+# Verification Checklist: sk-code changelog and version verification
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

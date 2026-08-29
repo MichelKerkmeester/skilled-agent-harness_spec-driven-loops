@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Both surfaces are structurally outside the validator: `system-spec-kit` because it is a single skill rather than a mode",
     "created_at": "2026-07-30T19:29:15.080Z",
-    "last_save_at": "2026-08-28T22:32:36.223Z",
+    "last_save_at": "2026-08-29T10:00:16.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c2a534653e736d9865b9195ce8adb810248ceadd76dac4f80c8d005070c5e6ad",
+    "source_fingerprint": "sha256:9a78f2e5b1622b063df1e847942f9cd97f6113d92fda816fc529f69c1a962773",
     "source_doc_hashes": {
       "spec.md": "95b9b16adc1932863e82094a08b42b68029c033b4bef378231887bd25ff7e6c2",
       "plan.md": "62d994173730af0539c85d966154a218f1bcacad3a5c5fcf605fd368e8673c78",
       "tasks.md": "361c967bd3d0e3ef8552742d8bb0ac4b8ff6f727d2d4567f46aec7281e4325db",
-      "checklist.md": "99154b8f7ddcbc36dfe58cba799bac99b4449e6f7d6020d48d4f5578ae42d473",
+      "checklist.md": "7e4a36cfdd9c45b7bff572d9d5e98e77e062dbb06d88f77998d0139ac13eb33f",
       "decision-record.md": "9b57f71d066e60f9468a07c2444aeeffa20aba4dcb2e48689c4c4ffe1947826e"
     },
     "last_active_child_id": null,

@@ -25,7 +25,7 @@ _memory:
     open_questions: []
 ---
 
-# Checklist: sk-prompt subtree rollup gate
+# Verification Checklist: sk-prompt subtree rollup gate
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

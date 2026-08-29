@@ -150,6 +150,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -157,12 +163,6 @@
       },
       {
         "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "The frozen scenario loader accepts id-only scenarios; today's `sk-doc` scenarios already load with null pass-criteria and noncritical status, and the standard authoring template omits typed manifest gold (CF-PB-1)",
     "created_at": "2026-07-20T21:51:32.363Z",
-    "last_save_at": "2026-08-28T15:53:17.310Z",
+    "last_save_at": "2026-08-29T10:01:23.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,12 +198,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:330a0fa7d7cdd1b8f046aa1bf773e2b348294d32ef749b7501801236abcdfe5c",
+    "source_fingerprint": "sha256:50a6bb25b051cdb519c0aba2072127be28cf89c34d2db7967f9923a76a01de1b",
     "source_doc_hashes": {
       "spec.md": "2517f7b1bb6d33ab87feb6af57904a3b1c2fb385bf136cfcb5d84b8831ef5fe2",
       "plan.md": "aab5b1a5205d51accfb85a36774584f542aa94476f82efce3b2e544f24b20907",
       "tasks.md": "9121f6ca59657212d86a2cb82bdd6f4adcd1a3a31d0d2b42f2367f5bfb5fc7ab",
-      "checklist.md": "7f43f3d0d7f28977870f16d45faa55bbddf13e5ee83e7a0fe87dbfa5680c9a43",
+      "checklist.md": "06b9c799ed1c76bd43d9d4240c76826faeb19b1902dbf79e43f25a34f1a100a1",
       "implementation-summary.md": "912a7fd61ad344b67cdcd4fa6d8154c6c5aa30340658f2060e0773e51a9fd200"
     },
     "last_active_child_id": null,

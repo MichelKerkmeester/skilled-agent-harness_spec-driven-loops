@@ -16,7 +16,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Validate, Re-Benchmark Lane C, Prove Zero Corpus Loss
+# Verification Checklist: Validate, Re-Benchmark Lane C, Prove Zero Corpus Loss
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -41,19 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/speckit/README.txt",
       "plan.md",
       "spec.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/commands/speckit/README.txt",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -181,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "The `.opencode/commands/speckit/assets/` tree contains `speckitcompleteauto.yaml`, `speckitimplementpresentation.txt`, `speckitplanconfirm.yaml`, and `speckitresumepresentation.txt`",
     "created_at": "2026-07-14T15:18:36Z",
-    "last_save_at": "2026-07-17T20:26:20.151Z",
+    "last_save_at": "2026-08-29T10:00:36.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:3d066ed1ea50af9a60c0a11af2adf5bd73a3ce9872e7b6ddd7edb35eb2872e10",
+    "source_fingerprint": "sha256:e7203e62f1783f5d65e367982b271c668165b5c96fb71b01751619e138891b24",
     "source_doc_hashes": {
       "spec.md": "7c5f1bfad450cd28fd1bd92f4cc79969f9d2c9a955a3d7a7bb7ff276b9d1b060",
       "plan.md": "05461489df7772485c5bf7afd6a149d4a42c0ee38a6eb1b7beb3997586b8dd4e",
       "tasks.md": "bbb420822c988155d679ab5552c10b75cbb9c1cfd5d149837c868a1108bda3a0",
-      "checklist.md": "c144d04190e0895d0f03c4dbffd09797e14a430858e0d0ae9c86d2e8bf3c7a28"
+      "checklist.md": "5165aadd023ebb5bc50b7a279f7f0fd8949c5e3d88ba69f700c12a03a1babc26"
     },
     "last_active_child_id": null,
     "last_active_at": null

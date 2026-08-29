@@ -41,33 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-code-graph/scripts/doctor.sh",
-      ".opencode/skills/system-code-graph/SKILL.md",
-      ".opencode/skills/system-code-graph/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-code-graph/scripts/doctor.sh",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -193,11 +172,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-code-graph surface has two actual script files: scripts/doctor.sh and",
     "created_at": "2026-07-14T15:18:14Z",
-    "last_save_at": "2026-07-20T11:09:47.107Z",
+    "last_save_at": "2026-08-29T10:00:52.039Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:befaf1b320d9365b75927a238f66c1c50dfc336d52497a3e81a87a6364907457",
+    "source_fingerprint": "sha256:a5c74daf443352c7c849a83c18e0f736f122a0f8f8174d516f826be8f7bf9310",
     "source_doc_hashes": {
       "spec.md": "6e5de6ded05d5851002e2dcb2a9115d43af09e6ffa0a436edfef1f6d91e12478",
       "plan.md": "165fac2d502577ae7891553203370f5b08a596354322ac4678f15889e194c423",
       "tasks.md": "a245df065a295c64c9c37790ea0effc5589730dd15c8406b8eaeec3ff7305caf",
-      "checklist.md": "d33309e7089c06b55f564e07aa42427af6ada4b602b40c3f015e23255fa1f6ac"
+      "checklist.md": "c1f7bbe5f56946e5a5bf977dfa1f843948a268548ab987abcae4cd2822b5f488"
     },
     "last_active_child_id": null,
     "last_active_at": null

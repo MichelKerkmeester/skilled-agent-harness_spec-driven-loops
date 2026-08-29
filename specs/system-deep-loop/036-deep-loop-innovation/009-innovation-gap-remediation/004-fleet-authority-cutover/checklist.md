@@ -23,7 +23,7 @@ _memory:
       - "What ratified interval and workload prove zero legacy use per mode?"
     answered_questions: []
 ---
-# Checklist: Fleet Authority Cutover
+# Verification Checklist: Fleet Authority Cutover
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

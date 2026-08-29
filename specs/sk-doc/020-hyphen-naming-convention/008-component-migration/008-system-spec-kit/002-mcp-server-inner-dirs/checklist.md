@@ -24,7 +24,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: MCP-server inner directories
+# Verification Checklist: MCP-server inner directories
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

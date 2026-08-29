@@ -4,7 +4,7 @@ description: "Verification checklist for the sk-design structure/naming cleanup.
 importance_tier: "standard"
 contextType: "general"
 ---
-# Checklist: sk-design Structure & Naming Cleanup
+# Verification Checklist: sk-design Structure & Naming Cleanup
 
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->

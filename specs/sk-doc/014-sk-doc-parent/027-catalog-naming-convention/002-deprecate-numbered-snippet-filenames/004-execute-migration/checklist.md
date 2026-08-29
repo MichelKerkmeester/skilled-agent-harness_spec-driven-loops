@@ -16,7 +16,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Execute the 111-file Rename + Fold in Adjacent Corpus Fixes
+# Verification Checklist: Execute the 111-file Rename + Fold in Adjacent Corpus Fixes
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

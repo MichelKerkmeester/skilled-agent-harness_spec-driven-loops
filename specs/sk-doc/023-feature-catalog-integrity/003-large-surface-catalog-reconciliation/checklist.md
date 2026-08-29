@@ -23,7 +23,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level3-verify | v2.2 -->
 
-# QA Checklist: Large-Surface Catalog Reconciliation
+# Verification Checklist: Large-Surface Catalog Reconciliation
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

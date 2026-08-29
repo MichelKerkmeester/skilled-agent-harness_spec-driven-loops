@@ -15,7 +15,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Lane C Skill-Benchmark Applicability Reporting
+# Verification Checklist: Lane C Skill-Benchmark Applicability Reporting
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

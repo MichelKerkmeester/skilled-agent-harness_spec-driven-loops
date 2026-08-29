@@ -21,7 +21,7 @@ _memory:
       - "Projection-refresh failure mode after a durable append"
     answered_questions: []
 ---
-# Checklist: Append Gateway and Legacy Projection
+# Verification Checklist: Append Gateway and Legacy Projection
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

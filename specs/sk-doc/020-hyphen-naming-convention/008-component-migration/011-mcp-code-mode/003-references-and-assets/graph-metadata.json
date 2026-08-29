@@ -171,6 +171,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -181,17 +187,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skill's reference and asset directories contain four permitted snake_case Markdown filenames: naming_convention.md, tool_catalog.md, config_template.md, and env_template.md. This phase renames those files to kebab-case and closes every active link and path pointer while leaving tool-name examples, keys, Python paths, and frozen changelog history intact.",
     "created_at": "2026-07-14T15:18:22Z",
-    "last_save_at": "2026-07-20T11:09:43.291Z",
+    "last_save_at": "2026-08-29T10:00:51.843Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:25d2c013fcd32c9d244d40fe8dca65292b0845d56f668d4033406269ba026f43",
+    "source_fingerprint": "sha256:07b17544ab7fb9e8a2d0724d30b30fd56c0f0908e586b2f73d9b5793198d4105",
     "source_doc_hashes": {
       "spec.md": "6ef7c32b056d19f63ba8367b35274d1bed3460718888c505a36a3067729d85da",
       "plan.md": "01fe38ed310eed31f14f55cd4b6bb119f6e5a65a2cb6abb6de6cfd9b9ca2d959",
       "tasks.md": "355b451e20587ee2d64c43d1be5048fed2fe454d3da0355370e504e275a7f9dc",
-      "checklist.md": "01afe54a3f095e28f4ebdb4e1f16f4cdf79882b3c663be5a2dfb2ef593bb4ee8"
+      "checklist.md": "9947f3708a3c8a8dd831ade0a7101dd056b849884021b0f30d51291099b4cc21"
     },
     "last_active_child_id": null,
     "last_active_at": null

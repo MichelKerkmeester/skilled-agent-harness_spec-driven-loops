@@ -177,13 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The create-readme packet contains an install_guide directory and snake_case template/reference filenames. This phase renames those non-exempt resources to kebab-case and updates documentation and audit-script path references while keeping Python scripts and template payload keys exact.",
     "created_at": "2026-07-14T15:22:34Z",
-    "last_save_at": "2026-07-20T11:09:44.895Z",
+    "last_save_at": "2026-08-29T10:00:46.729Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b03d8b5beb3a4d250e121c4b2f1f24ad98d5dc2e9935a7ec8beb059073c8bc8f",
+    "source_fingerprint": "sha256:391cea6d14034c4bc7d49522b38501f6f83a5b643449026766ae9daa009212cb",
     "source_doc_hashes": {
       "spec.md": "e75fbb655b7f152717256140ada6d42dc1ba9c21396450bb047942558d662a36",
       "plan.md": "8c589d9c060a072eee4c1036fb9207400b3030d8d622700057b2e999690c2d1b",
       "tasks.md": "822a03405996b6ce80900bec8d8cffd3f8d7696469e7d3492071e8acd46bf6e2",
-      "checklist.md": "f90fa6546a6816689d399812821ab763fa11845e102be98190a306074ba7767b"
+      "checklist.md": "3b154a1d6b65a418d6eb014a7fa8f4f821c9bf1478843136bdaa504e4ef04129"
     },
     "last_active_child_id": null,
     "last_active_at": null

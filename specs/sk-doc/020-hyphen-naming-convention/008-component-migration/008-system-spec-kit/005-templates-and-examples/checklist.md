@@ -24,7 +24,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: Templates and examples
+# Verification Checklist: Templates and examples
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

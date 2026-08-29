@@ -41,26 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-design/SKILL.md",
-      ".opencode/skills/sk-design/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +178,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design hub and shared reference base still contain snake_case Markdown asset names, so routing instructions and cross-mode references cannot be treated as kebab-clean.",
     "created_at": "2026-07-14T15:17:13Z",
-    "last_save_at": "2026-07-20T11:43:42.474Z",
+    "last_save_at": "2026-08-29T10:00:29.180Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:a5a3d5d8fd34d559dceb6365f4f67da1a78529588b421d98d66c9eff03392fa3",
+    "source_fingerprint": "sha256:e02df05f788a5dc1f564ae4d6c028439d2783a6975deafd362b6a7d76af3486c",
     "source_doc_hashes": {
       "spec.md": "d0339b7a694121066c05197984bb451661f969dd7150ee945dbe2c8a209fc161",
       "plan.md": "8423ddaff99de73c2bdefcbedc602d1b7b7ed08deed46da3403be0db58dc739e",
       "tasks.md": "5f0f981dcbad1e3be70ea37b72715b97f30fd6e5343a34d3fa0224582e541b0f",
-      "checklist.md": "9d4df8c62188da6e86ce32032f333c1528023943c39b9a76b704a8b3ec7e1eb4"
+      "checklist.md": "fb35ee9c793fe6044a1e2688637d8f36dbab915d79b799ff638c5893c070bd2e"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -24,7 +24,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 
-# QA Checklist: cli-pi Fan-out Lineage Wiring
+# Verification Checklist: cli-pi Fan-out Lineage Wiring
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

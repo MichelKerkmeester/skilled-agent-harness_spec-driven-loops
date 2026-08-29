@@ -24,7 +24,7 @@ _memory:
       - "This authoring pass does not rename playbook paths or run playbook validation."
 ---
 
-# Checklist: system-code-graph manual testing playbook
+# Verification Checklist: system-code-graph manual testing playbook
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

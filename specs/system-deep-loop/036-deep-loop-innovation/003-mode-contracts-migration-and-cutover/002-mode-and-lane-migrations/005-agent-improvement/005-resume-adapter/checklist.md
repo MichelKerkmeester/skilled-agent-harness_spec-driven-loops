@@ -25,7 +25,7 @@ _memory:
     answered_questions:
       - "Thirty-four target tests pass"
 ---
-# Checklist: Agent Improvement - Resume Adapter
+# Verification Checklist: Agent Improvement - Resume Adapter
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

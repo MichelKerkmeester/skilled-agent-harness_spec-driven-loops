@@ -22,7 +22,7 @@ _memory:
     completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
-# Checklist: Filesystem Durability Closure for F22 F28 F59 F66 F67 F72 F89 F103 F104
+# Verification Checklist: Filesystem Durability Closure for F22 F28 F59 F66 F67 F72 F89 F103 F104
 
 <!-- SPECKIT_LEVEL: 2 -->
 

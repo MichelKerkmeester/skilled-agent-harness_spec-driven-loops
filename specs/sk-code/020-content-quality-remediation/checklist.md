@@ -16,7 +16,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
-# Checklist: sk-code Content-Quality Remediation
+# Verification Checklist: sk-code Content-Quality Remediation
 
 ---
 

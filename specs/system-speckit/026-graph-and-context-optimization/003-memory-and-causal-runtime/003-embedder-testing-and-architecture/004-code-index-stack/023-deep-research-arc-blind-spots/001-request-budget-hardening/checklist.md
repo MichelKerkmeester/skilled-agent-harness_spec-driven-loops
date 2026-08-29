@@ -25,7 +25,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
-# Checklist: 023E Request Budget Hardening
+# Verification Checklist: 023E Request Budget Hardening
 
 <!-- SPECKIT_LEVEL: 2 -->
 

@@ -25,7 +25,7 @@ _memory:
     answered_questions:
       - "The candidate set is seven local authored files outside manual_testing_playbook/."
 ---
-# Checklist: cli-codex component naming
+# Verification Checklist: cli-codex component naming
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

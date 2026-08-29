@@ -23,7 +23,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: Manual testing playbook
+# Verification Checklist: Manual testing playbook
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -41,9 +41,6 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/doctor/_routes.yaml",
-      ".opencode/commands/doctor/mcp.md",
-      ".opencode/commands/doctor/scripts/audit_descriptions.py",
       "spec.md",
       "plan.md",
       "decision-record.md",
@@ -51,24 +48,6 @@
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "_routes.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/doctor/_routes.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.md",
-        "kind": "doc",
-        "path": ".opencode/commands/doctor/mcp.md",
-        "source": "derived"
-      },
-      {
-        "name": "audit_descriptions.py",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/audit_descriptions.py",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -194,11 +173,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The doctor asset tree contains route targets such as `doctormcpdebug.yaml`, `doctormcpinstall.yaml`, `doctorskillgraphfreshness.yaml`, and `doctorupdatepresentation.txt`",
     "created_at": "2026-07-14T15:18:33Z",
-    "last_save_at": "2026-07-17T20:26:19.629Z",
+    "last_save_at": "2026-08-29T10:00:35.059Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:28040a10a2d5e1cbbe2e027927eb12d307647116a41e1e92c5d2ec3f1e20017a",
+    "source_fingerprint": "sha256:11f52896d7976ec94466afb030fe8cbbefaeb1c9ac596b2630d6fe270104b816",
     "source_doc_hashes": {
       "spec.md": "41046004cbd057a5ba51d35cc1499c6cc03ac1d53d742fd103bb5dde32db19f9",
       "plan.md": "502a579dce0a49acc0442254bbd127d0dcfca05e7629161dce37a42d5ee883e7",
       "tasks.md": "7efda675a4ed0c3155a42ec52a971673694d4cb3bbfb6c63a1757ef4cc4d2c04",
-      "checklist.md": "ed471904f23b3427828710655d53292283dd0fa7eb9d42ce04785a4517112f29",
+      "checklist.md": "56f93afdc58f091b1d574f93e9f9447c05fddfb9e4c65c89609448831082ccaf",
       "decision-record.md": "201270ee8e8dddb94900d375b641a3e9bef7c9da7457a5c218ff27dce3fff79c"
     },
     "last_active_child_id": null,

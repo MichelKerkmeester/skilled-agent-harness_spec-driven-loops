@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After enablement, the epic's documentation describes a system that no longer exists",
     "created_at": "2026-08-19T06:57:08.525Z",
-    "last_save_at": "2026-08-24T08:03:14.216Z",
+    "last_save_at": "2026-08-29T09:58:19.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b43ed59d5083ea37c50db2e877d6a87a00e94f31e90cd1a3f2259bb8de523624",
+    "source_fingerprint": "sha256:2367c49bd079579f60a1e0649967c6e4bbea79f49a5604cc24f3f1404b17b3e2",
     "source_doc_hashes": {
       "spec.md": "8d549f24060c2053f1a3061dec98f4b3e1cfe0f8f0abdcbf82336df9c102a92c",
       "plan.md": "cbc2b7684b734029dc9d071ac965f61547897f48ce93efc873a407d32fdc69ff",
       "tasks.md": "7936cd160ea74f9817fe34806e29603b861cd937252a7477085ee30909096f97",
-      "checklist.md": "428f83a1aeded4edf0370bc74ef151d2ff6c9feeadae24ce59a472594f92acd5",
+      "checklist.md": "8a697a2014e380dca58a8caded2b170fb5fb737c402b8ccbc5e1e9c3b10f6cfa",
       "implementation-summary.md": "0545c9f2b6113a717557e4ce404ab55a90e427c4f8fedfecc7f56c2ff259a93c"
     },
     "last_active_child_id": null,

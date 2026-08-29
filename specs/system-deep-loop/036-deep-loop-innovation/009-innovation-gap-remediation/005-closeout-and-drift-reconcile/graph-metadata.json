@@ -161,6 +161,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -183,17 +189,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Summary The",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the final documentation and evidence reconciliation that separates library, shadow, and authority status, joins measured composition into the 178-row recommendation ledger, removes stale claims and paths, and aligns epic completion with the verified production boundary.",
     "created_at": "2026-08-14T12:47:57.211Z",
-    "last_save_at": "2026-08-17T04:33:45.303Z",
+    "last_save_at": "2026-08-29T09:58:16.484Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:1da45eac561abeb34021625ac217051eec01a42ddb2608ce60177eeefe6c9b6c",
+    "source_fingerprint": "sha256:37fd1a58ed1b4df911cff5d2c8921ca4877a06009059b062977ee9dc09b73fa6",
     "source_doc_hashes": {
       "spec.md": "0a96f2ef78d358d8eb8ee145826c1bfc9df4e1ae977df8aeb3dc9adbaaafa38c",
       "plan.md": "67beb3854985e01394b5d7dee983137ef1513a8662fa4bbe6bf8fc2a0ac6108d",
       "tasks.md": "38b6fb0d70cc50506f9bd779d8ffd2d63d5604b0307a46b4ce75bb4e69c3f460",
-      "checklist.md": "4594e8d6e4fe6b58bff4971dca8b2151f8cb44b8d8d9ba5ec8911a6486f0adf9"
+      "checklist.md": "bd47ef088ef3b17639d386d3223250c474bb209f149dd7257e7e5402394d7273"
     },
     "last_active_child_id": null,
     "last_active_at": null

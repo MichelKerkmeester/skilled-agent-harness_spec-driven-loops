@@ -27,7 +27,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Checklist: 016/002/020 Embedder Default Drift Fix
+# Verification Checklist: 016/002/020 Embedder Default Drift Fix
 
 <!-- ANCHOR:protocol -->
 ## 1. VERIFICATION PROTOCOL

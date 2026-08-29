@@ -20,7 +20,7 @@ _memory:
     answered_questions:
       - "Finalize is window-free by operator decision; the record states no window was satisfied rather than faking one"
 ---
-# Checklist: Full Enablement and Finalize
+# Verification Checklist: Full Enablement and Finalize
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

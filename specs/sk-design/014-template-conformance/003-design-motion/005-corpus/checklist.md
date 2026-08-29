@@ -18,7 +18,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: design-motion corpus/ conformance
+# Verification Checklist: design-motion corpus/ conformance
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

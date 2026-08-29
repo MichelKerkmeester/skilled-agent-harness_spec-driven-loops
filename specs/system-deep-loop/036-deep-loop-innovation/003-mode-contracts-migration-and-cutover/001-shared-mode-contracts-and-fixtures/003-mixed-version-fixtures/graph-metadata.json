@@ -170,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -186,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan a sealed fixture corpus that mixes old and new event and state versions within one deep-loop run, exercising upcasters, mode reducers, replay, and shadow parity across realistic version drift.",
     "created_at": "2026-07-16T03:43:54.525Z",
-    "last_save_at": "2026-08-18T11:07:33.936Z",
+    "last_save_at": "2026-08-29T09:57:51.044Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1ef91322823566f528433216ed759d5c1c2a943d7cfc206de947eb70e253482a",
+    "source_fingerprint": "sha256:08079d5f2f2f3c5ceffcf3c3b3f50756cc2c898fb69787eaa5db152904fa4394",
     "source_doc_hashes": {
       "spec.md": "6bdc85b3743288b73c43a8ea1879da0718f2e2c3a0299b44cd82db2e45a4f085",
       "plan.md": "e4575975dd07b825433347f1e13ad5a15067ad996554d331a9be82453465c118",
       "tasks.md": "28e3e08639035cb4084aa77f43d9f4993639428be1be6864dc86d1013965c86c",
-      "checklist.md": "1039a234f6d45257a20b73a5b9203ce99646361f95da585520cc68c741b10b35",
+      "checklist.md": "ba801269312c82fa30a847dbe93072870461607f6cbee0cc9bc6f092f2da533c",
       "decision-record.md": "4a63d3bbba642b8d12b3869406919c178da328bf23490215f34e97dbeae5a787",
       "implementation-summary.md": "e1ce99f212fce109eec451b3bc55171b7be46a87df129163f9d949fcbfd2e6dc"
     },

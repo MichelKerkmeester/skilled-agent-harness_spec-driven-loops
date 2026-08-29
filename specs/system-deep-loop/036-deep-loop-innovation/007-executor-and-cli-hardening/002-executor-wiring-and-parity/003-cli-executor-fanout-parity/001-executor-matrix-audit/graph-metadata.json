@@ -157,6 +157,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol Read",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -179,17 +185,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Summary",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The fan-out advertises seven executor kinds, but no single document states which (cli, provider, model, mode) combinations",
     "created_at": "2026-07-29T08:25:14.328Z",
-    "last_save_at": "2026-08-17T04:33:28.776Z",
+    "last_save_at": "2026-08-29T09:57:29.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ef8968b02600a028a6d5c077a59c15e53d048df9cd41d0cbc7575008e82c8f5",
+    "source_fingerprint": "sha256:78969750d283cc82244646630121d25b2ed9f86bfb236b6a88ae97f69a109253",
     "source_doc_hashes": {
       "spec.md": "3716dd3767a943cfcd8bfcf63bf86988f4e62c1d9db54c81f2103b39b018a134",
       "plan.md": "74e6099c06eaab83dee8cae68b471052322dd9a905cf80a90192c0c85f52b0a9",
       "tasks.md": "9898bb6d5292b788ae9ee2be1c0a94caed3782db3c30904f6c67dea089031ceb",
-      "checklist.md": "d8e58cf93467aac6e15fab814430c447adcb98fb55b4480ccdb865e040d32a54",
+      "checklist.md": "e96904684c2be5da5e44d5fffa2067eec0bfff346effbf2f77338d5d56cf7f7b",
       "implementation-summary.md": "e68c738cf1f2a2f4ea3f00e8c7127711b56a0f54467573121eecc0b59cde1b48"
     },
     "last_active_child_id": null,

@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Per-Runtime Cheapest-Model Standardization of the CLI Manual-Testing Playbooks
+# Verification Checklist: Per-Runtime Cheapest-Model Standardization of the CLI Manual-Testing Playbooks
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->

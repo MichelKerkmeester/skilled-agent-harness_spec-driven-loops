@@ -164,6 +164,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -171,12 +177,6 @@
       },
       {
         "name": "Current Deep Review",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the Deep Review mode event vocabulary over the shared typed append-only ledger: a versioned envelope specialization, typed review lifecycle, scope and dimension passes, candidate findings, adjudication, convergence, and review-report handoff. This phase defines events and upcaster hooks only; reducers and projections belong to the next sibling.",
     "created_at": "2026-07-16T03:43:32.178Z",
-    "last_save_at": "2026-08-18T11:07:24.455Z",
+    "last_save_at": "2026-08-29T09:57:53.573Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e4beeec9ed549a1344f466bb8e08941d3028041e9e30704ecfb27fa8f2e1715",
+    "source_fingerprint": "sha256:5470f0f7e636b7744b915409942f4be62113e0ac96664b9b0849c2630b0e0ad9",
     "source_doc_hashes": {
       "spec.md": "1420463ef4c8196e3b70e1103d9ed015595e1e2807234d7eec8ece9bf318415d",
       "plan.md": "0501b4371a7224d037c634fa70bdcfa85ad480aa59dcb8c3f6e01fbfe991a36e",
       "tasks.md": "a9217b0fde85304c43604fb6b22eddbbb05ef6456218a30697210d0f3d3f54d6",
-      "checklist.md": "f0cb23d9ab79befd1545f65462afc8a1b78547ef041f897535f22af8ef68e50d",
+      "checklist.md": "d41703300af2f1d2afca78555702a1b1fec407e3738a074c718caf3659cb7c4a",
       "decision-record.md": "4422ac4dc0bee015396461f0eb58b77b969b5cb6aa439893cd35e0588f07a84a",
       "implementation-summary.md": "65b2a657e4f78219d075cb116b50c8e164d8fa68c427cdea58d8019cc1f36dc6"
     },

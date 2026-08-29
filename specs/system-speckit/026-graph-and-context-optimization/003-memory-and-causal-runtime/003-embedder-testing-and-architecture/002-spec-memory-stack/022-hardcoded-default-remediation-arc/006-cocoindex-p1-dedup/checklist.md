@@ -24,7 +24,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Checklist: 022/006 CocoIndex Python Dedup
+# Verification Checklist: 022/006 CocoIndex Python Dedup
 
 <!-- ANCHOR:protocol -->
 ## 1. VERIFICATION PROTOCOL

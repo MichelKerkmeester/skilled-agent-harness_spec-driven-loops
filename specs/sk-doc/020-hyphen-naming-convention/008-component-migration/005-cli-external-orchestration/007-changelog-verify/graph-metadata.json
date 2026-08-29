@@ -41,19 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/cli-external-orchestration/description.json",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/cli-external-orchestration/description.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -181,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "This verification-only phase confirms that the cli-external-orchestration hub and its three CLI workflow release surfaces record the completed kebab-case rename set and coherent version bumps. It does not rename files, rewrite historical changelogs, or repair metadata contradictions.",
     "created_at": "2026-07-14T15:17:39Z",
-    "last_save_at": "2026-07-17T20:26:09.657Z",
+    "last_save_at": "2026-08-29T10:00:22.532Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:6b0a9fd2cc0219927d55a904885a74603c4b2a72795fe911eeab6b0e9f697efe",
+    "source_fingerprint": "sha256:492a257ebebe89a9d744eda32298809d5993bc7b6760a89584e064a90cbc878a",
     "source_doc_hashes": {
       "spec.md": "7bc58f72d8d462ae61708e6427509fb49c6b66a628b757b6762828eefbb03be4",
       "plan.md": "53043b80a90d4d2f76a11d52d9372419f62c049f3a849c6dc0a4e00dd44e9136",
       "tasks.md": "10153dac7ada9f5e10bfaabdd490ebc0cb196a9adef48f8f7b00db0eb7b4aaea",
-      "checklist.md": "4921941533a482c8ecfaafcd0e7765551c5606f166336a42bb96779afbdd869a"
+      "checklist.md": "4e879607158e09027220423ace9d0a1dfc7bc044c3087e50591837aa8a4a7cd2"
     },
     "last_active_child_id": null,
     "last_active_at": null

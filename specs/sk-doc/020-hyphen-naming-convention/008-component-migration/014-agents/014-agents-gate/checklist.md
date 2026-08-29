@@ -22,7 +22,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: Agents Surface Rollup Gate
+# Verification Checklist: Agents Surface Rollup Gate
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

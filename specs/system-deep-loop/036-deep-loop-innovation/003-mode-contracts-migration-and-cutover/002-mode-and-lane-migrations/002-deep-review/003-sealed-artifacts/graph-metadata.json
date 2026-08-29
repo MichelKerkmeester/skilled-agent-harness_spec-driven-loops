@@ -164,6 +164,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -182,12 +188,6 @@
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the Deep Review mode binding for immutable, content-addressed reference artifacts across scope, per-dimension passes, convergence, review-report synthesis, and resume handoff. The mode consumes the shared sealing primitives and never creates a second digest or verification scheme.",
     "created_at": "2026-07-16T03:43:32.713Z",
-    "last_save_at": "2026-08-18T11:07:23.840Z",
+    "last_save_at": "2026-08-29T09:57:54.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ffdd3431829355a2a504663f1b973f220413617fa31f3a7b2d492593291b277",
+    "source_fingerprint": "sha256:3e2b2017fd5964efca2fb1cfae3c89ed161122bd6e64ddd43b25e9c4fc96d676",
     "source_doc_hashes": {
       "spec.md": "1dfe008db68a899a2cb9d6ef76defa20f85f5f8bb72c27f8d157619d27612a3a",
       "plan.md": "75a6dae6140523b64c1c0485a103d37ed3ee2ed354dac261d5efbfbc155dba7f",
       "tasks.md": "1dffaf132db06c4aa67981351c7e62e293390bfeb785892b51ddb7f67868ea15",
-      "checklist.md": "d5777b42732c1981f2fb48438c9548a923835a0d41c25bb8470684e4ee773882",
+      "checklist.md": "435ef36f24862207f2b58c9ec0d262aefe52fe32037ca6d0ad9a82f0051abbaa",
       "decision-record.md": "a1041083eb96ad492fd8dc82a20ccb9be306605fc5aea3d1e7622856ebf265db",
       "implementation-summary.md": "4a11b9259186339063abac04b82201c6c8efcec390535106de7e9903ec026901"
     },

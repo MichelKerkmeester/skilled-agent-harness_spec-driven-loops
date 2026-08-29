@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "review"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
-# Checklist: Local-LLM legacy and outdated-docs/config-drift review (post-014)
+# Verification Checklist: Local-LLM legacy and outdated-docs/config-drift review (post-014)
 
 <!-- SPECKIT_LEVEL: 2 -->
 

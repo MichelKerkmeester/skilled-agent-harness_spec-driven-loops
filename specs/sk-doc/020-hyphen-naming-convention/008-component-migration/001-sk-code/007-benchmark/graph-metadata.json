@@ -41,19 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-code/benchmark/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/benchmark/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -181,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "The tracked benchmark tree mixes compliant run names with underscore-bearing storage labels: d4rlive/, fixtures/skcode/, livefinal/, livemodeb/, liveremediated/, routerbaseline/, and routerfinal/",
     "created_at": "2026-07-14T15:17:11Z",
-    "last_save_at": "2026-07-17T20:26:03.177Z",
+    "last_save_at": "2026-08-29T10:00:37.416Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:504e3e0186f7662b82d361b3055e9e32c32262801d6cbc56f9b2cfddbc8945ce",
+    "source_fingerprint": "sha256:130fc78bc9c68612828cf8fc036b65c106b641daa8db92d68e465f1c9ac974e9",
     "source_doc_hashes": {
       "spec.md": "86c959a1852a8df325c555b0da3d9946730768aca170335613d3503b797b3f0f",
       "plan.md": "de08f51a3f62a61701c70c01ea91f1b924073ae3d3ba292188aa22f8213fe076",
       "tasks.md": "e4ea01abb358eb51e5fbe3e8985ad8848976e8310a64fa7e6c4b199a35448303",
-      "checklist.md": "b1b46138c300e6fccf042246b0f81f3bb15a20a8135e845f4e563160a11734e2"
+      "checklist.md": "421ca51406b0f823d823be7bb171b8cc787ccadf7498079c5f1c92204d7ff09d"
     },
     "last_active_child_id": null,
     "last_active_at": null

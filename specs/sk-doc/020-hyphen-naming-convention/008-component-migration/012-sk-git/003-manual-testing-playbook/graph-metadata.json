@@ -41,33 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
-      ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/skills/sk-git/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -193,11 +172,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "SUPERSEDED by concurrent v4 work, which already renamed the sk-git manual-testing-playbook tree to kebab-case (committed on skilled/v4). This phase is now VERIFY-ONLY: confirm the seven category dirs and scenario files are kebab, the GIT-001..041 identities are intact, and every index/link resolves. Re-verify the entry count against v4's actual tree (v4 release evidence = 42 files / 8 dirs vs the 49-entry authoring map).",
     "created_at": "2026-07-14T15:18:28Z",
-    "last_save_at": "2026-07-17T20:26:18.258Z",
+    "last_save_at": "2026-08-29T10:00:44.241Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:d6f160e339059aba7787038b7030ce7984d111e7cac90975493e4196d0c9ed70",
+    "source_fingerprint": "sha256:bd7f31921dd602ed879571abd85e9a00f2c01c85146737f293dde86a542959ba",
     "source_doc_hashes": {
       "spec.md": "21320106416bb81159baea6e8296571c26e03e6abf49582f17b7d2a5f2820fdf",
       "plan.md": "a274ba9451564243f6405ef1f2fde847e726eca598e105ab9184ac84048c2160",
       "tasks.md": "495489de9106332bc2522e95f9c32880d6835df2770951adfa780460f2b6ea29",
-      "checklist.md": "34bea65b9bed18b5497377efc81096f83164616529758415dac1ec724f63bcf6"
+      "checklist.md": "9edff0d05228d073009dd9d26b69a8e0cb54ed25ebbb57c3734355e4c81fd9cb"
     },
     "last_active_child_id": null,
     "last_active_at": null

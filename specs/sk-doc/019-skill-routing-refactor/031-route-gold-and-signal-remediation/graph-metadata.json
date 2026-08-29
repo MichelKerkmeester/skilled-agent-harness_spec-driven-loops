@@ -158,6 +158,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol Check",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -176,12 +182,6 @@
         "source": "derived"
       },
       {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Take both hubs off BLOCKED with the minimal correct change: wire the folded vocabulary into",
     "created_at": "2026-07-29T04:42:54.262Z",
-    "last_save_at": "2026-07-29T09:11:14.122Z",
+    "last_save_at": "2026-08-29T10:01:26.856Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58ab0834532e08cfc553fbd1615a21eac155115faa95fe7921218d24e37d7e85",
+    "source_fingerprint": "sha256:a062a8a2d5ab3b8730e8d6511f230d0b44cd31b4fb171c90a5786a1ce9f9b250",
     "source_doc_hashes": {
       "spec.md": "56e6ecdfeabdacaa999f01b95e110248cb48173fb9dadc045867da0804927217",
       "plan.md": "b9a4c0dbb848d34ce1ee979d80f359bd676bfdb65bd72e824f6fcf966b975a05",
       "tasks.md": "f1a982dbf392aa31d9ae1df9e0d7bc53f2a7f41f8de8e980f7d9b19d57224f3f",
-      "checklist.md": "4fad0a58e582d9216bf4def3a2461f360cc8a6c2a61e677c065b23172a10411b",
+      "checklist.md": "6ced1c3f20f1862bdd558332d94c32306a921cd70dc6c9675854d49463589267",
       "implementation-summary.md": "a75a8b9187f69aab6e80e413cb46266436eb235a3bcc1d067a7671efd99d192f"
     },
     "last_active_child_id": null,

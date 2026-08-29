@@ -41,19 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-code/code-opencode/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-opencode/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -175,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "The code-opencode packet is a large evidence tree with snakecase names across assets/checklists, manual-testing-playbook categories, language-reference directories, Rust checklists, shared organization references, and benchmark labels",
     "created_at": "2026-07-14T15:17:07Z",
-    "last_save_at": "2026-07-17T20:26:02.400Z",
+    "last_save_at": "2026-08-29T10:00:39.269Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:9f8f67d407fb821ea534e9937d49c910ca4470efa9773d415b67707fbab325e6",
+    "source_fingerprint": "sha256:5244ca0560e68973c2bf1cd9b53265c97015b303471f30469a4efd748a91e826",
     "source_doc_hashes": {
       "spec.md": "25b0b1210403f1e116f727c6da13111191867762018f1827a922bb962b22c30e",
       "plan.md": "d10adb0ea7cd40beeee22be70b6e8298b4e499a4856bc026d73c39ddafbb23cb",
       "tasks.md": "df1e8e4a552ccaeae4d1c7b76fd602a5a2c6e3524febca02c58c5508f11fc4f1",
-      "checklist.md": "b694b082b35e01f52a59f672ac0a47e49f19d2f9cfab2b9120a108a987e4d1b4"
+      "checklist.md": "12f623a3f42211e0867b8fcbeef940d5b50b9d6be372e55ebc090d7ba2f2a1bf"
     },
     "last_active_child_id": null,
     "last_active_at": null

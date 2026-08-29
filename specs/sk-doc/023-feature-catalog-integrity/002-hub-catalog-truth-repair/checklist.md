@@ -23,7 +23,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 
-# QA Checklist: Hub Catalog Truth Repair
+# Verification Checklist: Hub Catalog Truth Repair
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

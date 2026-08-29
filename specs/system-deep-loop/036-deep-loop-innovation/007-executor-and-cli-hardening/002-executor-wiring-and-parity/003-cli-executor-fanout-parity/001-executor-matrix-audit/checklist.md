@@ -1,7 +1,7 @@
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 
-# QA Checklist: Deep-loop Executor / Provider / Model Matrix Audit
+# Verification Checklist: Deep-loop Executor / Provider / Model Matrix Audit
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

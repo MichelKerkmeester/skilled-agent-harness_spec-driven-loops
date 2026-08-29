@@ -22,7 +22,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: sk-code manual-testing-playbook tree
+# Verification Checklist: sk-code manual-testing-playbook tree
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -41,7 +41,6 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-deep-loop/benchmark/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -49,12 +48,6 @@
       "decision-record.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/benchmark/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -182,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -196,7 +195,7 @@
     ],
     "causal_summary": "The root system-deep-loop benchmark boundary contains three underscore-separated storage directories—after_d3_proxy, live_mode_b, and router_mode_a—while its report filenames are already kebab-case. This phase renames authored storage labels, repairs benchmark index/path references, and classifies fixture/profile and generated-output ownership without changing report payloads or benchmark scores.",
     "created_at": "2026-07-14T15:17:55Z",
-    "last_save_at": "2026-07-17T20:26:12.973Z",
+    "last_save_at": "2026-08-29T10:00:34.352Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:ab4d5bf46b1fce3e2f8c7abafe9fb06cd14d673aae872b329e09b078590afe99",
+    "source_fingerprint": "sha256:a7a3b2cbc12ec377e67c8d74e6e301f8947037212bcf108c7284f8f42439af9d",
     "source_doc_hashes": {
       "spec.md": "be2ff2a433b468f64ad2edc2b53aa357550a36a0f1564b6cceb930e5eac8851a",
       "plan.md": "d06c49ace6876cd1b1012398d93c746e9a6b5b407ad44ca0538a24e2eb6ae7f8",
       "tasks.md": "84ec5bb7311bab9c8650f4dcd0cdb1c0774ee38c43e1d1c551b0d675529d9603",
-      "checklist.md": "25682d148a8511d7e35ee43084f7bab7f2089e1f77a7e39663050e734b4431b5",
+      "checklist.md": "79f7a36d9a9ca414b2713f600beb45df9450d4b251b686bcf9034d8796b30f72",
       "decision-record.md": "595bc9b26b7b73f4a82dfea761d955015e86b7dd5ef5aa7126def1a909efb2c1"
     },
     "last_active_child_id": null,

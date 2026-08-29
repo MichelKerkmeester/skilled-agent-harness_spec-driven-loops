@@ -178,13 +178,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol Every",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Make sk-doc/create-benchmark the single home for benchmark-DOCUMENT templates and authoring standards across all repo benchmark families. Author skill-benchmark storage/README templates and model-benchmark fixture/profile templates plus the Lane A guide, add a complete family-disambiguation table (Lane A marked code-owned), and rewire deep-improvement consumer docs to point at create-benchmark for authoring while run/scoring logic stays in the deep-loop lanes. The Lane C report .md stays renderer-owned.",
     "created_at": "2026-07-20T08:56:30.457Z",
-    "last_save_at": "2026-07-20T09:23:08.706Z",
+    "last_save_at": "2026-08-29T10:00:21.664Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +203,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4989efa0709057a8b737f22ab036eb7b19967f6627378213142aa86c12a2fbf4",
+    "source_fingerprint": "sha256:957035572de68b9fc9c95a1a18f0fe5f3a4cddc51fb612a20d719a1d1e7b0007",
     "source_doc_hashes": {
-      "spec.md": "5d32094278bc5a6ebb9fd469c1123b1768cbff86440be7aff277b3b0f4fdf6b0",
+      "spec.md": "04c18627bf34e65af7813b5400cf1ad8f9954e4b022892d4e78d2d5c3d3d20e6",
       "plan.md": "353a2745e27c57d767a0747f5e91863cacb7f101e0e76f3c1ddaa22bfd8bd0b9",
       "tasks.md": "a906041072bb2099f9b2c0e8744233c2b48ccf336de758550c4f06074276be21",
-      "checklist.md": "20f9fc3263bdfe78dbe82f1ec63b5c63c8efc48be39ca3f75b7cd876bcc863e4",
+      "checklist.md": "9c91e595fda8070e0cb0d9b2cc176dc9748f213414a85c2b37eb8e62473e2921",
       "decision-record.md": "87eab7cfad2a18cf1d1316cfa6e0b5093bb1e75301fbe75ce6018e67b11b30da",
-      "implementation-summary.md": "535e20c79586d9f654730d16434dd0742b52e6b44c2449e08c8e4ba7bd567264"
+      "implementation-summary.md": "9a0bb5c835a9d49fd7a46123b1ae1700720a88b0dd439e1fac3b51322bc24c0f"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -182,13 +182,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The migration needs a deterministic git-mv engine driven by an explicit semantic source-to-target map. It must batch by dependency closure, skip every policy exemption, abort safely on collisions, remain idempotent, and support dry-run and rollback without performing the migration during authoring.",
     "created_at": "2026-07-14T15:16:48Z",
-    "last_save_at": "2026-07-20T11:09:53.062Z",
+    "last_save_at": "2026-08-29T10:01:08.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f7ca984970a0664b9f42e455cf6462c0bbbd323f8fe72053744e8aedcd6a900a",
+    "source_fingerprint": "sha256:a5701058a0bc4742ed177f3f2aa62b9a0489a088089e826d86b38c2eb658bfc0",
     "source_doc_hashes": {
       "spec.md": "13660302152e355f2cb2ddbcc99486f3f4fca632879cb89620394e3d07137517",
       "plan.md": "997f6fe31491b63b5015e966ff651dc1b3d78e867b844f50a0f5f46da521cc37",
       "tasks.md": "87b5cbe0c5468263edfebfffffe0ed761a96f37240e5cb70e45e68f0509ee142",
-      "checklist.md": "e6e1581a54368d0acb522672d1c48ab273e6ea55637e44e1b363a92a39d8c461",
+      "checklist.md": "d699a6b7ba086b12844ea8695fc18b7036e15d9ff128776846987c012b736d52",
       "decision-record.md": "181269bfa05fec7947f3a589d1fb4a8bc0a81a0c1cdf062f05a859de253ffbc1",
       "implementation-summary.md": "ffe5f71808af7063dde6c1d45f20a9e331fdfdf0d00a374a83f7dca2446976a5"
     },

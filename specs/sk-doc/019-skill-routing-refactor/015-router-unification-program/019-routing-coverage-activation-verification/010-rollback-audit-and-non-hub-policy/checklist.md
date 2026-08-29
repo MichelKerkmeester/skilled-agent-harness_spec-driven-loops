@@ -28,7 +28,7 @@ _memory:
     answered_questions:
       - "Rollback/audit fixtures pass without exercising live hub state"
 ---
-# Checklist: Rollback, Audit Integrity & Non-Hub Policy
+# Verification Checklist: Rollback, Audit Integrity & Non-Hub Policy
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->

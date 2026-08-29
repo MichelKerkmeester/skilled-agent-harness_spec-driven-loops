@@ -175,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan a deterministic fan-in reducer that deduplicates surviving leaf results, balances contribution across source/model provenance, preserves every item's lineage, and escalates contested merges without allowing one prolific source to dominate.",
     "created_at": "2026-07-16T03:43:51.149Z",
-    "last_save_at": "2026-08-18T11:07:37.880Z",
+    "last_save_at": "2026-08-29T09:57:36.303Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79b9ca6924e289d2e416e8f0507246dbdd4077413f6a092964a0d48c5140f170",
+    "source_fingerprint": "sha256:d28db5bdec402a1154ef1601bf5a63781e42cf5e181c4f8dda679c54069ac669",
     "source_doc_hashes": {
       "spec.md": "da0b546680da8c3b68411d3251b4a166985a5ca0827ae29572bc7006023a2758",
       "plan.md": "f928f2285bd5d3de263a50c287792edb21b4ba7408fb87d58e80e7a201c058e0",
       "tasks.md": "d8eb7e3478bebb3dd8fcd7bbfa6b1b201e0ecb6825c427eaf4fdc4220bbbf944",
-      "checklist.md": "419f27669e22176e89a478a797e0702f28a1c60261f9f4ee68b7cc6535bb8ef9",
+      "checklist.md": "f7f46dacc2105097bb0ff6c3876ace2c5d66c237ac92752ef65fafeb7af479a9",
       "implementation-summary.md": "fb50a607db20b350c3ad70a1fcf7c4cebeba51f7bd82b837122d64c75d886b92"
     },
     "last_active_child_id": null,

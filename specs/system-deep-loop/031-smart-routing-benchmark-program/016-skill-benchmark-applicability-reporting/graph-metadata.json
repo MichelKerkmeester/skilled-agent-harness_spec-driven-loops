@@ -148,6 +148,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol Each",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -172,12 +178,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Summary",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "The Lane C skill-benchmark silently normalizes D1-inter (advisor rank) and D4 out of the weighted aggregate for skills that cannot support them, so an advisor-invisible surface like code-opencode reports two 'unscored' dimensions that read as gaps rather than structural N/A.",
     "created_at": "2026-07-11T14:10:05.865Z",
-    "last_save_at": "2026-07-16T16:33:12.420Z",
+    "last_save_at": "2026-08-29T09:57:29.199Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +196,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51e32f3a7095d577eabde59ed5d9409dd5997337b80f913cdb6aca799a20a52c",
+    "source_fingerprint": "sha256:e926e258affac3bdb2aacecc1586a0ecef106ac18293dd95b6574a11049163ea",
     "source_doc_hashes": {
       "spec.md": "383c9deda278fbbace6c1c46988259480e37e2e188f308142aa0d18e8807cf2a",
       "plan.md": "42aca65c9cc352759d50cad2a6478b2df975c02a94091c7aec58056bfba641c0",
       "tasks.md": "ed1eeabf8eddf064ed1fc814b0e89f7689d5b3f65946d549ac7f3d3c2af9a120",
-      "checklist.md": "1c07440504879bf5682e993771c7240fcc884e1964482900af1baa1d13fac801",
+      "checklist.md": "1c16c799d25f17d4e5b69fa143879b33c03500ad7076e67c8dd3fb7c8b0bdc6c",
       "implementation-summary.md": "b024ff5a94d958098d7323e0be4f1f1aba3c4de9319cdad8796e5f856e112ddb"
     },
     "last_active_child_id": null,

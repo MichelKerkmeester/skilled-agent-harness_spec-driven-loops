@@ -22,7 +22,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: sk-code benchmark artifacts
+# Verification Checklist: sk-code benchmark artifacts
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

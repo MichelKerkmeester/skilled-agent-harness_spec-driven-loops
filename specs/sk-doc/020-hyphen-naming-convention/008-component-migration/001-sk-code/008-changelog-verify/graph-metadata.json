@@ -41,40 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-code/SKILL.md",
-      ".opencode/skills/sk-code/README.md",
-      ".opencode/skills/sk-code/description.json",
-      ".opencode/skills/sk-code/graph-metadata.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "description.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/description.json",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-code/graph-metadata.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -194,11 +166,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code subtree can complete its physical path migration while its public release record omits affected surfaces,",
     "created_at": "2026-07-14T15:17:12Z",
-    "last_save_at": "2026-07-17T20:26:03.335Z",
+    "last_save_at": "2026-08-29T10:00:39.263Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:0849645add8c4d0d45bb67c9564ec8ae8ab8de65092a9645b10db9b41bc61228",
+    "source_fingerprint": "sha256:13dbe6a741d2491025decbc6ea6a13651e130aecd60a9b4605306a27b702d1f2",
     "source_doc_hashes": {
       "spec.md": "7a6c50f58637575ca287a8d9c42dbd31a4cc2744457f17a263530708ce785cce",
       "plan.md": "4798f781b56daf85537105d9916dfb50bda63da4d16b615387881960fa1c8949",
       "tasks.md": "e082983e92f449f30ede997f2c9a0ed36317bb81f9d1e64515c37c9216300000",
-      "checklist.md": "9d9c7827d5ad57857ba78d8fb7ebdfe77279cf93aa51e3232ae422a94db51f4e"
+      "checklist.md": "6e29cbd237b7403b853ca6da66e7fefc933a687f106ab232846ce409eddafd1f"
     },
     "last_active_child_id": null,
     "last_active_at": null

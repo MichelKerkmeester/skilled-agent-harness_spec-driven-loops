@@ -176,6 +176,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -186,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Testing Strategy",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Ratify the single six-primitive cross-mode architecture spine that governs the later 006 implementation phases.",
     "created_at": "2026-07-16T03:43:44.661Z",
-    "last_save_at": "2026-08-18T11:07:43.737Z",
+    "last_save_at": "2026-08-29T09:57:49.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed939cb6a94f3048d6573ac705e5ca4d5e07f24aec1a2a99dd5757409b7643de",
+    "source_fingerprint": "sha256:ec5ba34fa40556dc004052bd0467271118a2ef81c6d41af5c0a90c95d1e16dba",
     "source_doc_hashes": {
       "spec.md": "85814656d95d0983a16c029433811785d83a849947e473a27b02c54af1269337",
       "plan.md": "9950ac12b5ee9d9223b34b8877ad9a6f5bb9197cf1dab38328533271aa323867",
       "tasks.md": "0ac61458a528a181c3720305f7ceb96d9a6b182cd3b412e57b02858f95ffdf73",
-      "checklist.md": "b66364b45999d81448a1300661a6729ba9807504c7aa9f1fdeac27af512da051",
+      "checklist.md": "ebd64892747e7ea1d2551667563b93a357ed8508936f8ca73bfb5f257e4e8802",
       "decision-record.md": "b934919d432ee8517df850fa5ed6adb4a19a8ac3596ce545f1832d08ec4abb16",
       "implementation-summary.md": "f503a36362f4acbfff51ce0b858edc648bfd3bd66f4904e7a656d3e8c6b3dc87"
     },

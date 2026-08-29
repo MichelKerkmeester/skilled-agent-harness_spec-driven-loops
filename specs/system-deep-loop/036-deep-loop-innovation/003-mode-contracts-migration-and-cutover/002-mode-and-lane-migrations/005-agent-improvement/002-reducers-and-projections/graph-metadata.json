@@ -169,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "The Agent Improvement",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define the pure Agent Improvement fold and its three live projection families: iteration/convergence state, a",
     "created_at": "2026-07-16T03:43:37.764Z",
-    "last_save_at": "2026-08-18T11:07:17.737Z",
+    "last_save_at": "2026-08-29T09:58:13.590Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2fe70901b3c8f453a545ff088abf145d7b1bdc89a7b12a8e410ab5fa82de5996",
+    "source_fingerprint": "sha256:8827db1266c8a29d83bc1ace55ed8d711870e87f968589e83b74128674496875",
     "source_doc_hashes": {
       "spec.md": "0bd041062254c54d12d3daad4926e1e8bcfeba1548ce2903fe81dafea9d4ec6d",
       "plan.md": "5c77daac2f9fd3b746a416c46fd02992aa05755005781d748ed33f69efe3a462",
       "tasks.md": "6287e0e15707bb959b8621be7002e5abe19dba90ac4f223d6a91c44ece6347c9",
-      "checklist.md": "454e0e9303941922630a297bfab9d0b18810ced824479beed6568030e150041e",
+      "checklist.md": "51be5c77a701f79ac3a6ce3ac7ab9d9fc0e1b6151b6bcd19e64b4db49c77ed1d",
       "implementation-summary.md": "1ed97f0c95268e5ee9036c5c276c1bbca0827e1c8370a092bbd2e0282f68ac72"
     },
     "last_active_child_id": null,

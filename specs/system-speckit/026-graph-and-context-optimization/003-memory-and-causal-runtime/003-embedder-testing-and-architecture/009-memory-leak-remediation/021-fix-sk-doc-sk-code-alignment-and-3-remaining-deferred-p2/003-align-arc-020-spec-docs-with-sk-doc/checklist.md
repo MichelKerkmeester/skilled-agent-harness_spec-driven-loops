@@ -22,7 +22,7 @@ _memory:
     completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
-# Checklist: Arc 020 Spec Docs sk-doc Alignment
+# Verification Checklist: Arc 020 Spec Docs sk-doc Alignment
 
 <!-- SPECKIT_LEVEL: 2 -->
 

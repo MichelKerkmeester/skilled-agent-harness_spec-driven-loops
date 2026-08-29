@@ -41,7 +41,6 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -49,12 +48,6 @@
       "decision-record.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +185,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-alignment packet contains 15 underscore-bearing directory families and 68 underscore-bearing files across adapters, catalogs, playbooks, and state references. This phase renames those in-scope paths to kebab-case and repairs path-valued resource maps while preserving authority identifiers, embedded code keys, read-only behavior, and tool-mandated names.",
     "created_at": "2026-07-14T15:17:53Z",
-    "last_save_at": "2026-07-17T20:26:12.647Z",
+    "last_save_at": "2026-08-29T10:00:32.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:263a29c3d41f410eea4aeb8d6fa300a8e664f0822ee0b307e6bcd2aed5d1a357",
+    "source_fingerprint": "sha256:bb3fae6687bd5dafbf88dc2469d010417b850f358b8808b36b43cebd799b90b8",
     "source_doc_hashes": {
       "spec.md": "213389a5a356ce917dd772c5629dc186fcfb6e781ff4aa2a48e590d73ea38a1b",
       "plan.md": "5422e9c0578d26e9eff8f76d178dcfe4a33fb36c8a8acd3cc391da3884e492db",
       "tasks.md": "0457147122c22935cc8cd2b05108eb1bed06314b9a0e7c47a9651ec1f833c559",
-      "checklist.md": "4016f101fd5a1e8d929ae57129237b81071a7ffde7e47f97fca1678172cdcbeb",
+      "checklist.md": "ab729a2805b9ba79afc934d225c69b73d8ae0942b84e4fe3c3c0d0cd640b119d",
       "decision-record.md": "f9e432f9be7af9a2dae5dae8d16bc3053d57edeb1b376c10738653eafeff89dc"
     },
     "last_active_child_id": null,

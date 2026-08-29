@@ -20,7 +20,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Checklist: State Records A Deep Loop Can Trust
+# Verification Checklist: State Records A Deep Loop Can Trust
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

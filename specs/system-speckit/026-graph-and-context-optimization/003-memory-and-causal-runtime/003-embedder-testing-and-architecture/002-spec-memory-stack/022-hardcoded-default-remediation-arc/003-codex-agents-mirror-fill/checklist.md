@@ -24,7 +24,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Checklist: 022/003 Codex Agents Mirror Investigation + Qualifier Removal
+# Verification Checklist: 022/003 Codex Agents Mirror Investigation + Qualifier Removal
 
 <!-- ANCHOR:protocol -->
 ## 1. VERIFICATION PROTOCOL

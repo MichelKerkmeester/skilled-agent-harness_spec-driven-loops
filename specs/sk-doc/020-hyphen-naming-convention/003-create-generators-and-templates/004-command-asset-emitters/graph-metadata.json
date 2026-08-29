@@ -41,11 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/create/assets/tests/test_emitted_name_contract.py",
-      ".opencode/commands/create/assets/tests/fixtures/emitted-name-contract.json",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters/implementation-summary.md",
-      "feature-catalog/feature-catalog.md",
-      "manual-testing-playbook/manual-testing-playbook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -53,36 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "test_emitted_name_contract.py",
-        "kind": "file",
-        "path": ".opencode/commands/create/assets/tests/test_emitted_name_contract.py",
-        "source": "derived"
-      },
-      {
-        "name": "emitted-name-contract.json",
-        "kind": "config",
-        "path": ".opencode/commands/create/assets/tests/fixtures/emitted-name-contract.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": "feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -105,6 +70,12 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -180,6 +151,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -196,11 +173,29 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "File Organization",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `/create:*` auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths. Update the emitter logic to request and write kebab-case names while leaving the asset source filenames and later on-disk renames untouched.",
     "created_at": "2026-07-14T15:16:46Z",
-    "last_save_at": "2026-07-20T11:09:54.237Z",
+    "last_save_at": "2026-08-29T10:01:11.918Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0849c76cd51fa811c86a627a3dbca1d1ca81fd95a98c29bea47232bcd0b6d5f",
+    "source_fingerprint": "sha256:84d7907eaba033f96db721468820f4e9dba3ea31812d7879ad1bfc7b20522160",
     "source_doc_hashes": {
       "spec.md": "276c407b82e495dd907332f858ecdc13edcf680621eaf301d041085373aea98b",
       "plan.md": "39cab5562f6d4fa486c1a1ecb215ebb7eae3f9c02603cd93666c63e82285589f",
       "tasks.md": "cd8a7cfd7c20985071739536653971b4ce176c7308be7262969ad2009f10ac8b",
-      "checklist.md": "e180215a3369f743796c0f68a01ed7a089760374ebe61a063237afcd726211f3",
+      "checklist.md": "ed31f4ef1e2412d1839135f7df65a2ed0d1955d4839ac980a8c51f2c660b4cb1",
       "implementation-summary.md": "c00668eb63e6fbb4b169a6f1d5557607f27b69061fe021017309ad853fbdde9a"
     },
     "last_active_child_id": null,

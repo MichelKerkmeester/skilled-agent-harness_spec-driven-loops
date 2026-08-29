@@ -27,7 +27,7 @@ _memory:
     answered_questions:
       - "Archive tooling landed in 2a39ecb9a0; transition ledger landed under sibling 010"
 ---
-# Checklist: Durable Archiving & Serving-Snapshot
+# Verification Checklist: Durable Archiving & Serving-Snapshot
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->

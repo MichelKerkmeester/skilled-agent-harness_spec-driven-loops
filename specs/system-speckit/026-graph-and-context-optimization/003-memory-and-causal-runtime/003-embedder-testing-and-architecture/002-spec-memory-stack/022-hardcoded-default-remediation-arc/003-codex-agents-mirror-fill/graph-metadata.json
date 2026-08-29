@@ -37,9 +37,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/agents/deep-research.md",
-      ".opencode/agents/deep-review.md",
-      ".codex/config.toml",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -47,24 +44,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "deep-research.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-review.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -180,6 +159,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "1. VERIFICATION PROTOCOL",
         "kind": "heading",
         "path": "checklist.md",
@@ -190,11 +175,23 @@
         "kind": "heading",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "3. CODE QUALITY",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Investigation revealed .codex/agents/ is NOT empty (11 .toml files mirror .opencode/agents/) AND [agents.ai-council] IS declared in .codex/config.toml at line 139. Audit P0 was stale. Phase 003 reduces to JUST 2 P1 (proposed) qualifier removals from deep-research.md:51 + deep-review.md:45 since deep-ai-council rename arc has shipped.",
     "created_at": "2026-05-23T17:05:00.000000Z",
-    "last_save_at": "2026-07-17T17:19:22.338Z",
+    "last_save_at": "2026-08-29T09:58:47.170Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +201,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0e3de8a4ee7478d173df9a86605524d5bc3e53d633db569f87b821dd704d25aa",
+    "source_fingerprint": "sha256:649726983455a58918a76910e2082aacb6afd9c148199b1aac0b06112796c909",
     "source_doc_hashes": {
       "spec.md": "b8ecd89a1aed9a3708d2125c49920006952a0230c64e0d1d05afbf2025b53312",
       "plan.md": "b85bb6503a175749e94569d65300352b542614c1ead2029cc18bb1f2880b6000",
       "tasks.md": "19c18026f912ac7703830e288c607b8b16514490ba42e1f2a7bfd635d55f9198",
-      "checklist.md": "3563618f8aee793049cdc06f67466b10e9ba9718e99c77e2a5c54f8c439b6e65",
+      "checklist.md": "a674d6ab2831a3ca4b7b62163c24b9b5cd66fc8dc6a17dae93cddf259a8581bd",
       "implementation-summary.md": "524d98834437a5061efbac2976ab8bf972cfc6822a706973981ed8be87629320"
     },
     "last_active_child_id": null,

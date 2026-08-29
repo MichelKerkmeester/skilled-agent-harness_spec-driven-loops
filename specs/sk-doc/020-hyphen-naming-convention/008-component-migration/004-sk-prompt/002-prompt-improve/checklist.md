@@ -25,7 +25,7 @@ _memory:
     answered_questions:
       - "Playbook, benchmark, and changelog paths are verified outside this phase."
 ---
-# Checklist: prompt-improve asset and reference names
+# Verification Checklist: prompt-improve asset and reference names
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -41,12 +41,6 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "shared/package.json",
-      "scripts/package.json",
-      ".opencode/skills/system-spec-kit/package.json",
-      ".opencode/skills/system-spec-kit/shared/package.json",
-      ".opencode/skills/system-spec-kit/scripts/package.json",
-      ".opencode/skills/system-spec-kit/package-lock.json",
       "baseline/gates/baseline.json",
       "baseline/gates/install-summary.md",
       "baseline/gates/realpath-proof.txt",
@@ -60,18 +54,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": "shared/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "package-lock.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/package-lock.json",
-        "source": "derived"
-      },
       {
         "name": "baseline.json",
         "kind": "config",
@@ -203,11 +185,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The migration must be reproducible and isolated from the actively-raced main checkout. Before any change, the program pins an immutable BASE SHA, establishes a dedicated worktree with a fresh deterministic dependency install (never a symlink to the raced tree), and captures a complete baseline the later phases prove th",
     "created_at": "2026-07-13T14:34:05.514Z",
-    "last_save_at": "2026-07-18T05:16:23.661Z",
+    "last_save_at": "2026-08-29T10:00:21.663Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,12 +211,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:158bff6b3227421b04f0627ff516907ad569d2775b7800749173a316b2d33a94",
+    "source_fingerprint": "sha256:8f2311cbab1e4f2671514ee9ab66364272dee7ce503be24e8a34c8f306cede57",
     "source_doc_hashes": {
       "spec.md": "3e81e1589a51b6781574913546062af3c034470c23e1ccdb03908a69dc072c9a",
       "plan.md": "22ab488c5af3ae0d9b73d965d4193fc2693795f9355e81536bd7d677b25c6bb3",
       "tasks.md": "eee08c886560b73b80eb15d70d984e873ebfe0eb43f327db8c303f0d2ca86e01",
-      "checklist.md": "ab7b8254467914352e3c89262499a5a238b82c991f4c8d8cf8c520fa42ac1b9d",
+      "checklist.md": "f7a6015c6ef765ce8c452a833d49f18f2378cd09b53da55658d2806fcfc22b90",
       "implementation-summary.md": "8d45033adc650aacf6cee7c8c6e971c6e33f6a73142ff23c1a809ce66de9b76d"
     },
     "last_active_child_id": null,

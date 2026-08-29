@@ -46,8 +46,6 @@
       "spec.md",
       "plan.md",
       "checklist.md",
-      ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
-      ".opencode/specs/sk-doc/014-sk-doc-parent/027-catalog-naming-convention/spec.md",
       "tasks.md"
     ],
     "entities": [
@@ -79,12 +77,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "filesystem-naming-convention.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
         "source": "derived"
       },
       {
@@ -166,6 +158,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -198,7 +196,7 @@
     ],
     "causal_summary": "There is no single authoritative statement that kebab-case (hyphens) is the canonical filesystem-naming form, nor a written exemption boundary, nor a record of the program decisions from the GPT design review. Packet 027 currently mandates the opposite for catalog/playbook content. This phase publishes the canonical co",
     "created_at": "2026-07-13T14:34:05.517Z",
-    "last_save_at": "2026-07-18T05:27:38.410Z",
+    "last_save_at": "2026-08-29T10:00:21.662Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3895b075fb434921e15dd298a56b70361de5ca859016a88c613502796de0ae0b",
+    "source_fingerprint": "sha256:f684574d05ca4f79a823e94e0064eb86705726ef39f4f759893c94a8e38f1f94",
     "source_doc_hashes": {
       "spec.md": "c87bb702b7d129295dcfaed8ec8606754a73d3f13070c030c3fe01c50e5181f4",
       "plan.md": "c4149d20bb2cad9d2df9b696a5e6024a2d49150ced75160087d53208e72b922c",
       "tasks.md": "c30d47e1b09b00242afd42ce1b437bf9c9bd2d0f5974bf03fcc0c06472234b90",
-      "checklist.md": "2223689e27b5935d0f1da8629b936a15fe261e5bfca62497aed1fa2438bf462b",
+      "checklist.md": "b32a44443c88b1c18d0ae00a873e5f20276f620ca7f2d25a2a23cccc54a9b09d",
       "decision-record.md": "5339878ab1fd17ee027910b9749406cb19212dbe0ec498fe47a02e3b2ea368f5",
       "implementation-summary.md": "4a404ea7a17be06fd7482a4700c31a7fc4b0379776aa7a4fd8319d3b71b3f9e1"
     },

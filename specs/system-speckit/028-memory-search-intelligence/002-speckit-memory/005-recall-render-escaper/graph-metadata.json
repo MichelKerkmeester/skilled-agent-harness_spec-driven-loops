@@ -45,22 +45,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "formatters/search-results.ts",
-      "tests/injection-marker-capture.vitest.ts",
-      "mcp_server/lib/context/shared-payload.ts",
-      "mcp_server/formatters/search-results.ts",
-      "mcp_server/lib/extraction/redaction-gate.ts",
-      "mcp_server/context-server.ts",
-      "mcp_server/handlers/memory-crud-update.ts",
-      "mcp_server/lib/storage/write-provenance.ts",
-      "mcp_server/handlers/memory-retention-sweep.ts",
-      "lib/governance/memory-retention-sweep.ts",
-      "tests/search-results-format.vitest.ts",
-      "mcp_server/handlers/memory-save.ts",
-      "tests/redaction-gate.vitest.ts",
-      "tests/memory-crud-update-constitutional-guard.vitest.ts",
-      "mcp_server/lib/governance/memory-retention-sweep.ts",
-      "tests/memory-retention-sweep.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -88,81 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "injection-marker-capture.vitest.ts",
-        "kind": "test",
-        "path": "tests/injection-marker-capture.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shared-payload.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/context/shared-payload.ts",
-        "source": "derived"
-      },
-      {
-        "name": "redaction-gate.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/extraction/redaction-gate.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-update.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-crud-update.ts",
-        "source": "derived"
-      },
-      {
-        "name": "write-provenance.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/write-provenance.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-retention-sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results-format.vitest.ts",
-        "kind": "test",
-        "path": "tests/search-results-format.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "redaction-gate.vitest.ts",
-        "kind": "test",
-        "path": "tests/redaction-gate.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-update-constitutional-guard.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-crud-update-constitutional-guard.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.vitest.ts",
-        "kind": "test",
-        "path": "tests/memory-retention-sweep.vitest.ts",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -206,11 +119,83 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "local",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol Each",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built This",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP captures arbitrary content via `memorysave` and later renders recalled bodies directly into the consuming agent's prompt loop, with no untrusted-content boundary at either end",
     "created_at": "2026-06-19T05:40:47.073Z",
-    "last_save_at": "2026-07-17T17:19:47.721Z",
+    "last_save_at": "2026-08-29T09:58:39.801Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2056a88518119c03a62622620118444fd0ff913296590a9cc652220fe4edac99",
+    "source_fingerprint": "sha256:788f5f0b730b5043791e219896422cca5a698755b0330923cc16a385f5e031dd",
     "source_doc_hashes": {
       "spec.md": "5001e6f0e5ada2dbfce1e3619beba4732e126327263e65ad87fbc730a95a1360",
       "plan.md": "3a7a9f7724b861f95ad554246795c5a2b7fad270ae5f1ebbffca47505e8b79d8",
       "tasks.md": "2be5756dc6e2bc38cfa7bd0ae3f4b70b6aabab8db257899af37f6800077a75d7",
-      "checklist.md": "f4df8bac8bb9a32b496be6febaa70eac8758e89a4e822735df2fe538286ac4f0",
+      "checklist.md": "0f245a967788a72dc59f7b5251df091e456b02b4fe70f5bf675582c0f23db91c",
       "implementation-summary.md": "be5a90583b2452f21a87da95823c36441e7aeb05381ff8f71bfee5518a402bc5"
     },
     "last_active_child_id": null,

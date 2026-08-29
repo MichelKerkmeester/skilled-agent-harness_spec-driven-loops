@@ -170,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -186,17 +192,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The compiled router contract is shadow-complete but never bound",
     "created_at": "2026-07-19T12:15:36.154Z",
-    "last_save_at": "2026-07-24T12:11:57.899Z",
+    "last_save_at": "2026-08-29T10:01:18.970Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:23c1c45680261f973966eea40c9c96bdbb86032e5a35507b7d47ff7801c03d21",
+    "source_fingerprint": "sha256:27bbfb149db6c4bbdbe1b2b26653e62d58f8520c7230c60329008f2be0d10257",
     "source_doc_hashes": {
-      "spec.md": "6451878d3525ee414f2d886374ca29b9646c8d6484086a50f520bd3092d9b49b",
-      "plan.md": "f80cc5955bcd8adec704291aff161c614eba35f2adc288f0174fddce27b1bcaf",
-      "tasks.md": "5cd79e93f471694236374fc22bd7ded8272bfb07ce1749de29c3000f30275ddd",
-      "checklist.md": "6766728a6cbdfe50455985e25e9eeadb1070195bc9b86d29d3ff095984e88fb6",
-      "implementation-summary.md": "35c7d5eb4f64655a1730a193403b47fcf3852b9b116e1c37853f7067b4919262"
+      "spec.md": "ed073ce062cc13bad2905b549baa1781da6d0aa061b78e38280f0ae4f6f44a0b",
+      "plan.md": "8652d749958462b5b2a35bd20812bd995f35acd48e057371304074a1b0ffcd40",
+      "tasks.md": "d25106babaa0dc9fd24e7b554e452d20ec42da8ae6fa62734e7f3a6df3da8898",
+      "checklist.md": "f67aa0f6e9d3ded4275c84353dc0d686d57b777bbc1e8bfbbf2a0aa69574b328",
+      "implementation-summary.md": "81fd2105f9590e74f96ef4341702e7d176029a90587652eedf79786f3253df6f"
     },
     "last_active_child_id": null,
     "last_active_at": null

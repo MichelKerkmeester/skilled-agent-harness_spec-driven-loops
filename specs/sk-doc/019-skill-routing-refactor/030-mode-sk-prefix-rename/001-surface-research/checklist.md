@@ -8,7 +8,7 @@ contextType: "research"
 parent: "sk-doc/019-skill-routing-refactor/030-mode-sk-prefix-rename"
 ---
 
-# Checklist: Find Every Surface An sk- Prefix Rename Touches
+# Verification Checklist: Find Every Surface An sk- Prefix Rename Touches
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->

@@ -21,7 +21,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 
-# QA Checklist: sk-code / code-opencode Alignment for the system-deep-loop Runtime
+# Verification Checklist: sk-code / code-opencode Alignment for the system-deep-loop Runtime
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

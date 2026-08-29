@@ -168,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -184,17 +190,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan deterministic event and state upcaster chains plus dual-read/single-authoritative-write adapters that reconcile legacy state with the dark ledger while legacy remains canonical and every compatibility action stays reversible.",
     "created_at": "2026-07-16T03:43:48.404Z",
-    "last_save_at": "2026-08-18T11:07:39.995Z",
+    "last_save_at": "2026-08-29T09:57:40.997Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f1473b97e5a3fb77d02dd0afb29edc57f3e1cb6a194358699acbb7f47a5eed8",
+    "source_fingerprint": "sha256:ffa5559c239edf988f00c678bb8d099e939a36b3d08c4662daee947530ec2e0e",
     "source_doc_hashes": {
       "spec.md": "fdff4c964b255f064585013b32f086c0de5c80a66a845415a6adc9d5ce8401bc",
       "plan.md": "0134e5f378a8ebb654020e74545acc11f75c1c5a9094e300710be1a581ffc5c9",
       "tasks.md": "67e411f8fe6823040adf1ce6a2045c40e9cbd3ec130c6a74fe1d68c2c66fefb9",
-      "checklist.md": "00648c2598dda60aa974b788be7e609b305dca13945fc2a63ffa917201d08778",
+      "checklist.md": "2ad602be9d8e5398b1449077347b19e370b12681b5930dea4a86f6ce413d0546",
       "implementation-summary.md": "fb5c0e50491030f2af26231fc933c5962d8a438c6b0bc6fc4c63e78c76b5bb60"
     },
     "last_active_child_id": null,

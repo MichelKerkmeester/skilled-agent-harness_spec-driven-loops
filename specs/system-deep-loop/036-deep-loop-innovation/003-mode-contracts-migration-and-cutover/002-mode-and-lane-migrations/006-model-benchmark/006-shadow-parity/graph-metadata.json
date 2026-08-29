@@ -151,6 +151,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -164,12 +170,6 @@
       },
       {
         "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Model Benchmark variant's shadow-parity harness over the typed event-ledger substrate: run multi-model benchmark executions and scoring-matrix reductions beside the legacy emitter, compare projections event-for-event, and block authority cutover on any unexplained semantic difference while reusing deep-improvement-common services.",
     "created_at": "2026-07-16T03:43:40.543Z",
-    "last_save_at": "2026-08-18T11:07:14.841Z",
+    "last_save_at": "2026-08-29T09:58:10.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d36b0868ccf97ba3145893e13f255478f4add3ac98475d969d76c97cdc446f12",
+    "source_fingerprint": "sha256:7621362552377b2f6fcc156df01da83411e933f0e8ee128be8e70a9ef2eda328",
     "source_doc_hashes": {
       "spec.md": "381fd486d70f42b6b0bfb683f6b9f88cbc77d2ff526844418185cbc3ba2e396b",
       "plan.md": "d8c3aeabd836026aba92f7c9f96a5175f08860ef2e7f83f4c62eb1bbff62fd86",
       "tasks.md": "653b8a9c671d561200bd61bc222eee6cb4ed835ebce65072d0f15ac993fedfb0",
-      "checklist.md": "a40f1e9fa6400993f511838eacacec321dcff82fcb55a982b774256129ca0b10",
+      "checklist.md": "2b5e4817ae0d35c68804d3633d651fa045f30189563eb3f5969799246b2368e1",
       "implementation-summary.md": "8aeb0d3cccffd2221b1ac0c3557fffe90f5b2f6f8d88bb8cbabadae1e1911bec"
     },
     "last_active_child_id": null,

@@ -41,12 +41,6 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/commands/README.txt",
-      ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
-      ".codex/prompts/agent_router.md",
-      ".codex/prompts/goal_opencode.md",
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-      ".opencode/commands/prompt-improve.md",
       "spec.md",
       "plan.md",
       "decision-record.md",
@@ -54,42 +48,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/commands/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "mk-goal-tool-path.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/mk-goal-tool-path.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "agent_router.md",
-        "kind": "doc",
-        "path": ".codex/prompts/agent_router.md",
-        "source": "derived"
-      },
-      {
-        "name": "goal_opencode.md",
-        "kind": "doc",
-        "path": ".codex/prompts/goal_opencode.md",
-        "source": "derived"
-      },
-      {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-improve.md",
-        "kind": "doc",
-        "path": ".opencode/commands/prompt-improve.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -197,11 +155,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The loose command surface contains `agentrouter.md` and `goalopencode.md`, while the program's canonical filesystem form is kebab-case",
     "created_at": "2026-07-14T15:18:37Z",
-    "last_save_at": "2026-07-17T20:26:20.311Z",
+    "last_save_at": "2026-08-29T10:00:37.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,12 +205,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:1d2baf2cadd32d4eef2e46da4b6b28fae98b3e414e23bbdc60a60a887ffdb9ca",
+    "source_fingerprint": "sha256:b03dc3bad2adb1796eae2b42d4df330ddfc1d1b84c763f88506a6db6ee167743",
     "source_doc_hashes": {
       "spec.md": "f1b35379ea2503b155a78edd0e2195b4cee07376e8567aaee38416a463add889",
       "plan.md": "0169740543676c6abf9168903ade9e04d9e1c247ec8a5b1f81f8e57ec5f10667",
       "tasks.md": "d63c0bbe5cf19ff3e3bb17818d0392c6e433e2897e989de3e194094e4a816ba3",
-      "checklist.md": "6ca94d18ff91200e6b4d1992dbd33eeb2b234d5bb5c5dd2226e9ca530f645d39",
+      "checklist.md": "dea3a6d1fe392fe8059bb33814b7915234215eccc94cc83a6b6cedb68f28d905",
       "decision-record.md": "8d4c7c2f2804b27faf06d94e014f96351aede021fa69a3300f95e0f895ed60ba"
     },
     "last_active_child_id": null,

@@ -165,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -181,17 +187,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for design across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:45Z",
-    "last_save_at": "2026-07-20T11:43:50.751Z",
+    "last_save_at": "2026-08-29T10:00:57.415Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:737750efad718df633a9bcaa034c5a7e77c266e0ef9c24393b3c38ade9880f62",
+    "source_fingerprint": "sha256:dd0099311c65bf2ff9b143273a1c0c5c1d4a8dd186a0584fe0fbbd8752c450b1",
     "source_doc_hashes": {
       "spec.md": "475f2c358cb6b7dbeb200203296b052ae50004e9486353a911633cd47e8a8f59",
       "plan.md": "ecf43281f8eca790a99c00bfd837187e5efa3ef0a9e07acef5f520a9b28014f2",
       "tasks.md": "7c20a7d2aa1a399f31260236488174afe7c39ea4b3d91d8cfbfe1f9b5ed00a69",
-      "checklist.md": "f23e90c73a624d97afe39517b53e396e41a80b01689d7e4f5ca62dcb58b6758c"
+      "checklist.md": "34aa71565b152967e6a41c82911cd668c18571d7cec0f7ee4a061ccfc8d40dd5"
     },
     "last_active_child_id": null,
     "last_active_at": null

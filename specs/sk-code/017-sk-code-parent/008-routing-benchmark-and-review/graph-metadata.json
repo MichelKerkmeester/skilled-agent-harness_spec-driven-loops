@@ -187,7 +187,7 @@
         "source": "derived"
       },
       {
-        "name": "Bearing Verification",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The restructured hub had never been benchmarked or reviewed as a family",
     "created_at": "2026-07-04T00:00:00Z",
-    "last_save_at": "2026-08-28T16:28:17.724Z",
+    "last_save_at": "2026-08-29T09:58:25.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d696b39f10c43a20bfc94f91d53d78460709fa2d088c1d9099ca61ac1974b3a3",
+    "source_fingerprint": "sha256:e396262685547bbe3a883f3a42ed662d207649c0d8ad7dec47047424ca20bfc6",
     "source_doc_hashes": {
       "spec.md": "2a8692dabf553b63d0a4244d4bf9ce5507638841317453dfab887e0027d56f17",
       "plan.md": "e74462ed6d9e4c2773ab5777c6f81f3d8fc32c679cc79e3a093d7b53a4520530",
       "tasks.md": "967b962a49d6a10eeca1ffcb2de936d090457f4544e233f77cb5e6356016eaea",
-      "checklist.md": "21162aa3eb6d429d99131febbda9b3d7494b32f35748959330467f4c8d050b1f",
+      "checklist.md": "84b2629fb7f4792867f1de42b876f1fe77b89da34cc88b2b069b9e1b03571df7",
       "implementation-summary.md": "ac73e8af8d437739faa28ffebf55bd8ae13748151985953e91abeed234262799"
     },
     "last_active_child_id": null,

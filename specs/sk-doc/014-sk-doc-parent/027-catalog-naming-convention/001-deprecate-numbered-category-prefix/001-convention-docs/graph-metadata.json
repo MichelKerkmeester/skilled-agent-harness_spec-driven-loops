@@ -31,8 +31,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
-      ".opencode/skills/sk-doc/create-manual-testing-playbook/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -40,12 +38,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -161,6 +153,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol Every",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -187,7 +185,7 @@
     ],
     "causal_summary": "Phase 001 of the numbered-prefix deprecation. Update the two authoritative sk-doc convention skills (create-feature-catalog, create-manual-testing-playbook), their asset templates, and the /create:* command generators so the documented canonical category-folder name is the bare descriptive slug, not NN--slug. Ordering is documented as owned by the root index table. Docs-only phase — no folders are renamed here; it removes the mandate that would otherwise re-introduce numbers.",
     "created_at": "2026-07-10T18:51:12.648Z",
-    "last_save_at": "2026-07-17T14:37:03.526Z",
+    "last_save_at": "2026-08-29T10:01:16.677Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,12 +195,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c4e4bd65fae52a722cd9e47c8fa4fdc02ccaaf76dabc0429cbed3f628723c5e1",
+    "source_fingerprint": "sha256:0ba7e3946c61f73f200c487dedcea04dfccba457a3839bcdfacc91a5d5a23d14",
     "source_doc_hashes": {
       "spec.md": "57de85a7d1fbf17ea4b951b207f72383b25ea419c48ffb29f02aa47df6309f6c",
       "plan.md": "65f2f118955a1e1811fb958aea1dbcfba05a68c6eff1f31f7fed56c06a972d73",
       "tasks.md": "3664b2b45678855aebc9f33259b784d752a6e79975314e91bb4f20d309dc4afd",
-      "checklist.md": "e0c3164e1360c7235477d3234c8bff8a213fe398f217f68def5b33891b499bbc",
+      "checklist.md": "6c65aa2127c194fe7e243d7036498172af4674f45bb4907d6c4b5e4a332bf829",
       "implementation-summary.md": "745f9936829d2a94b009518959c0423a7a88097768fc81067a52daf9e0a1003f"
     },
     "last_active_child_id": null,

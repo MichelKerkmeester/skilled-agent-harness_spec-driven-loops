@@ -177,13 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The create-command packet contains snake_case command templates and routing guidance filenames. This phase renames those non-exempt resources to kebab-case and updates command-authoring references without changing command manifests, argument fields, or tool-mandated names.",
     "created_at": "2026-07-14T15:22:35Z",
-    "last_save_at": "2026-07-20T11:43:46.332Z",
+    "last_save_at": "2026-08-29T10:00:46.728Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:b14b080505560159e54c3b4d7d61593d7783c78b99f9ebfba8c0308420342293",
+    "source_fingerprint": "sha256:077c47ea249ec790ab51efce7439393d3d31e00116a263afbf100772712cf033",
     "source_doc_hashes": {
       "spec.md": "99584f5c4701db31d4e374a2cf803a27a529478abb0b1aabde0b6bccf8cd022a",
       "plan.md": "61527ec9b6b7548a33b2ef9329e30aaa9ba841dafbb225d2e2d498e1911fa6e5",
       "tasks.md": "0ee6d4a46a430579b94da2362658c6991564016193db5cddf6da1e6690ce619f",
-      "checklist.md": "a1a57d319667ac675d0d737aa70faa58c24a8e8966095c8617052cbc4ee3e567"
+      "checklist.md": "e1617abdbea8fb9877ee2445afde9a780da39bf6aa742f46bcb037d8b552881d"
     },
     "last_active_child_id": null,
     "last_active_at": null

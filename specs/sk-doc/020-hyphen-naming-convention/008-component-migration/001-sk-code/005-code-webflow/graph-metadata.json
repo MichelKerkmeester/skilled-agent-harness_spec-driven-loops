@@ -41,19 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-code/code-webflow/SKILL.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/code-webflow/SKILL.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -181,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "The code-webflow packet has snakecase names throughout its animation snippets, integration/pattern/template assets, manual-testing-playbook categories, and deep reference tree",
     "created_at": "2026-07-14T15:17:09Z",
-    "last_save_at": "2026-07-17T20:26:02.866Z",
+    "last_save_at": "2026-08-29T10:00:39.523Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:97c18313879ade90e585682531d948d7a46705247657c9eecfe3ac31625c11d7",
+    "source_fingerprint": "sha256:5d3ff6d897051128154c4ab8180d02176575d0c43589657f8a85565978194fc3",
     "source_doc_hashes": {
       "spec.md": "981f079d8346cdd13bd6e2dc8456ca002ac1a7dd627f378c9db74f0eca9f9255",
       "plan.md": "3a7c5af2207eec2de88005d2a218de0a56fe3f5a35a8ec8c8597152fa1deeac8",
       "tasks.md": "b8187918278232909ad4c598a90f550e316ddf62c54c1823d6c53ac10664b2be",
-      "checklist.md": "1a93b6bf9d04783256e77314445fdd3befe383e123063784b40967137677c8bf"
+      "checklist.md": "3b824f7b59e14a521f4df07ce7c4ca89221f786fbe5b21555197970d933d87bf"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -23,7 +23,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: Config, checkpoints, vectors, and constitutional verification
+# Verification Checklist: Config, checkpoints, vectors, and constitutional verification
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

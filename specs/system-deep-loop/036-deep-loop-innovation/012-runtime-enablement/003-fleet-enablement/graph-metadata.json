@@ -3,6 +3,7 @@
   "packet_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement",
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/003-fleet-enablement",
   "parent_id": "system-deep-loop/036-deep-loop-innovation/012-runtime-enablement",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -202,7 +203,7 @@
     ],
     "causal_summary": "The mode registry names seven canonical modes",
     "created_at": "2026-08-19T06:57:08.040Z",
-    "last_save_at": "2026-08-24T08:57:40.755Z",
+    "last_save_at": "2026-08-29T09:58:21.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +213,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a222190bf091013ae44729952c0d059d43b6842cf21c86cc2d57beb2073dae8d",
+    "source_fingerprint": "sha256:358dbc80459a23733fa9d7a661d3a26ff7293fc47107a7c7800f3f7e52f0ccc1",
     "source_doc_hashes": {
       "spec.md": "87053dee8415c5884f05547e715ce1e9d9cf984582359c90d8fafe0f3eae5a77",
       "plan.md": "af87fbeaaa1a9687a249f6cfc9f3c5f52dbd6047c77c956459dbc174aed3b9e9",
       "tasks.md": "0378543e7db3f6812d3119fc9d68e8bde0fadaab175ffcdfd8c52d1ceae68e21",
-      "checklist.md": "581c9a6c6070ffcfe4d5bd8ab35afb7b89e19da403e6c5299a21c2ae13bc48e9",
-      "implementation-summary.md": "8b0f96e0984d18e3a6e206a8ff211aac54135df803770f0ef9897c4f61c6fd3d"
+      "checklist.md": "254d20db2e275807f5ab0f13aa258c97e766c92860b5385a61dadadfc540b75b",
+      "implementation-summary.md": "03e012036e669a7b8ff1745593ec14ab9d98f498c4b5a641ffea312cba2a26ff"
     },
     "last_active_child_id": null,
     "last_active_at": null

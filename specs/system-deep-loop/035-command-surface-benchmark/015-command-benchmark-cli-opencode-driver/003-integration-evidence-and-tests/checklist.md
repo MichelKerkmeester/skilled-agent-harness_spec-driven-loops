@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: cli-opencode Leg Integration, Evidence & Regression
+# Verification Checklist: cli-opencode Leg Integration, Evidence & Regression
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

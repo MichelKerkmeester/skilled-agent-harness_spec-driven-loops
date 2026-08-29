@@ -169,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "tests",
         "kind": "key_phrase",
         "path": "checklist.md",
@@ -179,17 +185,11 @@
         "kind": "heading",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope",
-        "kind": "heading",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The forced 20-iteration deep review of the 021 program returned FAIL",
     "created_at": "2026-07-22T20:53:39.733Z",
-    "last_save_at": "2026-08-28T22:25:34.699Z",
+    "last_save_at": "2026-08-29T10:01:25.934Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,12 +199,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e02d63f08dbbf59e8c50b4b4fa29f6b7ae7d9b44952a4027fd3c220bff59e79a",
+    "source_fingerprint": "sha256:885423f98d6b3dc15ded800aff3368c3545d1454f272f44c0ce69146df925078",
     "source_doc_hashes": {
       "spec.md": "0c45087dbd7e406ca94d6532c4fec3f7153a6630074610168eb36d3987ffca95",
       "plan.md": "bb8f7b24a2e50cff25a004eceb8d359a9c15d474f35048e295e32f20d5060773",
       "tasks.md": "5f7d801523cdb42f500ffd41e996d22bcbad4b7fe05f0be91ab57e9b6a20d879",
-      "checklist.md": "aa7bd3fbd02acd9f8da5430f92831ed3ac2adcab63962d29f1a74f07ee2cdefd",
+      "checklist.md": "c67ce8e3133aa3d67a32b8b41e5643fe8ddb460a2a6cd95cbba98aac9d24489c",
       "implementation-summary.md": "180866c830ee373ab55a71b6c823ad9cc38a228f79b34bceb7f5cf5e16b95233"
     },
     "last_active_child_id": null,

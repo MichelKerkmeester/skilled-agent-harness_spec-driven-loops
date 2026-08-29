@@ -41,33 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-code-graph/SKILL.md",
-      ".opencode/skills/system-code-graph/README.md",
-      ".opencode/skills/system-code-graph/ARCHITECTURE.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "ARCHITECTURE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-code-graph/ARCHITECTURE.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -193,11 +172,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The code-graph feature catalog currently uses the snakecase root featurecatalog, eight snakecase category",
     "created_at": "2026-07-14T15:18:16Z",
-    "last_save_at": "2026-07-20T11:09:51.651Z",
+    "last_save_at": "2026-08-29T10:00:52.399Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:c52a381f5e83079a5896243c5fb02efd018fc4a1b66b33c3b4f6d6671c13910a",
+    "source_fingerprint": "sha256:fea4b0a63ccc47eb70cdc34225436e96fdb7a2a3cd5b000a41b8db6a9881f6ff",
     "source_doc_hashes": {
       "spec.md": "57b0d064d2ffc33c3b8d2daedd76fbb51502dfbc1828a1cbd107a7fd8c5c8230",
       "plan.md": "1808cfaf944869d1ed9dc910273b83c3576cf5a53e78a9178b8666ab1ae1c089",
       "tasks.md": "293a3ab53be9cb8bbc27072c97b4ed8c0c9bc48412065c3adfb847f96ed81a04",
-      "checklist.md": "4f86a1b124601aa80623fa074629a3331f9249ceef59ddb5fc24d238f487c014"
+      "checklist.md": "e6f2927e3de5908e7990f5dee86829d0cf4c17cbf0b110dea93f8e8b5ae763d3"
     },
     "last_active_child_id": null,
     "last_active_at": null

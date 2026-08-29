@@ -22,7 +22,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: Scripts command namespace naming
+# Verification Checklist: Scripts command namespace naming
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

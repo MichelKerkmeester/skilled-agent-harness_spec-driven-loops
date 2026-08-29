@@ -25,7 +25,7 @@ _memory:
       - "This authoring pass does not create a changelog entry or select the release version."
 ---
 
-# Checklist: system-skill-advisor changelog verification
+# Verification Checklist: system-skill-advisor changelog verification
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

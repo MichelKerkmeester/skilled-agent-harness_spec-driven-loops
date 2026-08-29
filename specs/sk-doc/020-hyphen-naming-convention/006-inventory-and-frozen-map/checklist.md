@@ -20,7 +20,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Inventory and frozen rename map
+# Verification Checklist: Inventory and frozen rename map
 
 > **RECONCILED — v4 reconciliation (2026-07-15).** BASE re-pins to the current migration tip; rename entries are pending OR already-applied on v4 (the sk-git kebab pilot landed source-absent/target-present) — never fail an already-applied entry as a missing source; the generated `.codex/prompts/` surface is classified `generated`. See spec.md's reconciliation note and the packet's v4-reconciliation-inventory.md.
 

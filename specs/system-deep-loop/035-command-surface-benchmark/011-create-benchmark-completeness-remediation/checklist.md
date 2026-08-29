@@ -19,7 +19,7 @@ _memory:
 
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Checklist: create-benchmark completeness remediation
+# Verification Checklist: create-benchmark completeness remediation
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

@@ -24,7 +24,7 @@ _memory:
     answered_questions:
       - "The current root inventory has no shared/ directory."
 ---
-# Checklist: sk-prompt hub root and shared boundary
+# Verification Checklist: sk-prompt hub root and shared boundary
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

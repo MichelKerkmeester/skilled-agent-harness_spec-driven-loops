@@ -38,26 +38,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/mcp-tooling/SKILL.md",
-      ".opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -167,6 +153,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -183,17 +175,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-tooling hub-level manual-testing-playbook tree uses an underscored root, category directory, index file, and seven scenario filenames. This phase renames only that hub-level tree to kebab-case and updates its navigation references, leaving the three component-local playbooks to their own phases.",
     "created_at": "2026-07-14T15:17:44Z",
-    "last_save_at": "2026-07-17T20:26:10.848Z",
+    "last_save_at": "2026-08-29T10:00:41.945Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +188,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:f70f6b958184c4c7ede8f6a92a5c635187f8f5e17ccc1d856ff31677aeef0c07",
+    "source_fingerprint": "sha256:a403265165acebc23e3e8e98dbbe2c53455f31b96fd6a90865915fd314c62e7c",
     "source_doc_hashes": {
       "spec.md": "018bcc0b6f21783fa600fa36635f9e8e85bda489eef1a78130601eef23e8612e",
       "plan.md": "b65aa0ffbba916f856a1c2db45d09216751bfca57a430c7a016c3af950075b78",
       "tasks.md": "55e94597ca4063b25b1fefbd18a59a980d1f46a28e1285511f26f648ab75db00",
-      "checklist.md": "d845536f1f42da2516c914dabdf6e64010714727d9e05b330d14eabbdde36686"
+      "checklist.md": "24ff9eae9c3c5c3763f195509afe7f2263317e8c80b0a167c1a056a6cd3829b8"
     },
     "last_active_child_id": null,
     "last_active_at": null

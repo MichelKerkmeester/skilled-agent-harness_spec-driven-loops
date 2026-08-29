@@ -27,7 +27,7 @@ _memory:
     answered_questions:
       - "P0 guards and P1 check-router landed in a1cdb65d90"
 ---
-# Checklist: sk-code Alignment & Drift Guards
+# Verification Checklist: sk-code Alignment & Drift Guards
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->

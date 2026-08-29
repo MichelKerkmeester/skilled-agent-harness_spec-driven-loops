@@ -25,7 +25,7 @@ _memory:
     answered_questions:
       - "The current shared/ result is absent and must be recorded explicitly."
 ---
-# Checklist: cli-external-orchestration hub root and shared boundary
+# Verification Checklist: cli-external-orchestration hub root and shared boundary
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

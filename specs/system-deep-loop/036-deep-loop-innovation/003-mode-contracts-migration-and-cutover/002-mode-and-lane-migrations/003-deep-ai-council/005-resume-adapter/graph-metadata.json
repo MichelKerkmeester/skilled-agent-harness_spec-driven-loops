@@ -169,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the Deep AI Council resume adapter for the typed event-ledger migration. The adapter reconstructs interrupted multi-seat deliberations from the sealed ledger through deterministic reducers, maps the continuity ladder to derived runtime state, and makes re-entry idempotent without double-applying, losing, or replaying events.",
     "created_at": "2026-07-16T03:43:34.996Z",
-    "last_save_at": "2026-08-18T11:07:21.178Z",
+    "last_save_at": "2026-08-29T09:58:11.895Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c15e84d26683c316cf88da73bc33a3c0a42cb4280473e3c8cf4cc7f86d57a5bf",
+    "source_fingerprint": "sha256:40bbee9f2c6775a05f7fcf2533dd430a42fb7594bed6a3aabcbf1adcf35d8164",
     "source_doc_hashes": {
       "spec.md": "863ade5037c6dc0d652037298c2e1e9a7bbdfa057f4f0c8c69bc3c6e37a2e313",
       "plan.md": "583e28f5af2366f65f5bac94014b4e50a0c22141512b410f4bb067e1601284fc",
       "tasks.md": "5f8293c02f164ba26f4e448ab891e539b70aa1c1c6ff2a5a81c06209175714ad",
-      "checklist.md": "8540e2d02f3a6fac393b62ed7bb8fec62562dcb308bdac80529a97833f53f15e",
+      "checklist.md": "e09cff928c629cfc810de9d65e0b9e4e0f52d6d390a6acd07c0d5312dda3fa52",
       "implementation-summary.md": "8afc592cb44df4fa997f505301c5efc3294c992a05d298bc6a153766f39bbac5"
     },
     "last_active_child_id": null,

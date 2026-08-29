@@ -182,7 +182,7 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The sk-doc hub router scores each mode by counting keyword hits times the mode weight",
     "created_at": "2026-07-13T13:09:09.451Z",
-    "last_save_at": "2026-07-24T11:03:16.755Z",
+    "last_save_at": "2026-08-29T10:01:26.034Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:52d03c1597640b92f6cbf02a37401a7e6a4131945d2107e587131dfc938bb88b",
+    "source_fingerprint": "sha256:583104f931ea49a136491874e9649198fb1d0af393e43f79ace92aa09da86a7b",
     "source_doc_hashes": {
       "spec.md": "6197259629b9f6a2e194777e0f44d56f3425ada87d733ebded6441ca5199cb60",
       "plan.md": "59da700d259c0e8d96b7d38e4caf8a60036640caa92e08508e26a8666b7831c4",
       "tasks.md": "2f6ba8af43a483fbee24af86bcacdda033363b638a0bcf304ada7728a1052dc2",
-      "checklist.md": "b7e797d8c36efb0c1a33d59cc72572f2ee59828e7bcadf7a9406805cfcb54d2b",
+      "checklist.md": "43ce7ecc1f1eb0886f272543b77709c88446f7f634fc63ca259e7da0006636d4",
       "implementation-summary.md": "4a664dc4645d85efa4ba51cf579e6e335eb88ce543c7c791a90a734cf20d9e01"
     },
     "last_active_child_id": null,

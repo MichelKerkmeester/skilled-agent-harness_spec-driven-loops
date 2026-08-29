@@ -25,7 +25,7 @@ _memory:
     answered_questions:
       - "The component candidate set is 14 local authored files outside manual_testing_playbook/."
 ---
-# Checklist: cli-opencode component naming
+# Verification Checklist: cli-opencode component naming
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

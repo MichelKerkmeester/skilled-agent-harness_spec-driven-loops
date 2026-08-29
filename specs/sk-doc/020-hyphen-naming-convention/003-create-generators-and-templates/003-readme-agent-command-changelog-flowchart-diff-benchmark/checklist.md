@@ -21,7 +21,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: README, Agent, Command, Changelog, Flowchart, Diff, and Benchmark Generators
+# Verification Checklist: README, Agent, Command, Changelog, Flowchart, Diff, and Benchmark Generators
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

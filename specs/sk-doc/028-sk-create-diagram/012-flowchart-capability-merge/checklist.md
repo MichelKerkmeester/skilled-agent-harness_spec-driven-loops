@@ -27,7 +27,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
-# Checklist: sk-create-diagram flowchart capability merge
+# Verification Checklist: sk-create-diagram flowchart capability merge
 
 <!-- SPECKIT_LEVEL: 3 -->
 

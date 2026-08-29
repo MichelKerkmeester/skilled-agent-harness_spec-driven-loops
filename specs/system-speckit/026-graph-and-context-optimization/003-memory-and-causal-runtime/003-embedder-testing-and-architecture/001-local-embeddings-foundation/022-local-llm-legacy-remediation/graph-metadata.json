@@ -189,7 +189,7 @@
         "source": "derived"
       },
       {
-        "name": "Evidence Location",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31)",
     "created_at": "2026-05-13T14:30:00Z",
-    "last_save_at": "2026-08-28T16:28:23.138Z",
+    "last_save_at": "2026-08-29T09:58:48.400Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:00:00Z",
     "source_docs": [
@@ -207,12 +207,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f6e29433a72e8c77e281a5b7eb2228af1989d13bda7f86b6417ba8577a20b19",
+    "source_fingerprint": "sha256:6165c711e0b93f34c1e7c63903bf0bcf845ef02b8f5fc6ca7ce14ba0083a1679",
     "source_doc_hashes": {
       "spec.md": "f5930735428f3e639a25c04949a0218ccece7ac1a6c241f66976aebb889103ad",
       "plan.md": "7490f903b2af859122958f6e538fb9caa925a73d917e03411582cdbab2642be5",
       "tasks.md": "f926c119368040077553692fbe59c76217dffa484e80ba101a7298d19049d463",
-      "checklist.md": "f583645ea9b00e2854ded45a40d179d1d705da627747bf12dbba75f473508a3e",
+      "checklist.md": "0419af60796362836896b6249e9402cfd852d96abd47c8e3e90465fed8bc100b",
       "implementation-summary.md": "410f43217bca5c91bc4884bdd1f1c0ea2a7933587260c70506e02879aa04c444"
     },
     "last_active_child_id": null,

@@ -41,33 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/skills/sk-git/README.md",
-      ".opencode/skills/sk-git/assets/worktree-checklist.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "worktree-checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/assets/worktree-checklist.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -193,11 +172,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "SUPERSEDED by concurrent v4 work, which already executed the sk-git reference rename set (committed on skilled/v4); the live surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm zero underscore-bearing reference paths remain and every active pointer resolves, adopting v4's kebab names as the baseline.",
     "created_at": "2026-07-14T15:18:26Z",
-    "last_save_at": "2026-07-17T20:26:17.933Z",
+    "last_save_at": "2026-08-29T10:00:42.349Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:a51f133dfe5cc038032cee80090e32a9956034b723a277571619f55858755312",
+    "source_fingerprint": "sha256:d03aa322cff097986dc40122e1f1c6bbb32e14f360e0c6b3651caec7694511b6",
     "source_doc_hashes": {
       "spec.md": "820e9631153373e4931ee4f3eb5b227b4e5e92b4c34a57c6a4e48ab935f7aeb0",
       "plan.md": "bd7eea19499b59b227f14d0dd300bbe7c1240e2c82aa550fa82ab1613293e85b",
       "tasks.md": "30e1f74b7812baf7b62196aaf97ad83b75453e56f8af4667a9d79b57c44b584d",
-      "checklist.md": "77dc0c90b6c6f68774e61e51a18c2e33574cb187ef8aec115a9d4df9ea508e9c"
+      "checklist.md": "792c25c5f11ab804fca03e1a0ca6b3a7ee1ea6ce447a1c3899773726446c9846"
     },
     "last_active_child_id": null,
     "last_active_at": null

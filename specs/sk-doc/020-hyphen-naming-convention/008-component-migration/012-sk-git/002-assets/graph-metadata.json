@@ -41,26 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/skills/sk-git/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,7 +174,19 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -196,7 +194,7 @@
     ],
     "causal_summary": "SUPERSEDED by concurrent v4 work, which already executed the three sk-git asset renames (committed on skilled/v4); the live asset surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm the three kebab targets exist, no source spelling survives in any active pointer, and template content contracts are intact.",
     "created_at": "2026-07-14T15:18:27Z",
-    "last_save_at": "2026-07-17T20:26:18.096Z",
+    "last_save_at": "2026-08-29T10:00:44.240Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:8d78bf34b6aa491a634f42658b19064d20a05d4ec57ed4a684408fde2c76f680",
+    "source_fingerprint": "sha256:18f5f5a7feb60db2583d041da855895c5ae631b451bf1d36be1d4b258e28738e",
     "source_doc_hashes": {
       "spec.md": "0d22fe27dffd41392af2cdb7157e4622953aefad0d61642d1983831460bdced8",
       "plan.md": "7be46aceb13e847be9e1bac6a302b7086ce09b92d5960dcb28728bae14f80915",
       "tasks.md": "501b2322ccbf3f78fbf59326a5544ed9bc4dceef32777d55b9a6983efd08f5db",
-      "checklist.md": "a57e647603786fcc87c002fd99437f5f223300687b34f3d6661e1c61f165789b"
+      "checklist.md": "908aeae130775cbea2be1a202e4216964a70d8ed58c49b7149b0d2190f705348"
     },
     "last_active_child_id": null,
     "last_active_at": null

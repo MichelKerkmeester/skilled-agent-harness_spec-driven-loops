@@ -24,7 +24,7 @@ _memory:
       - "This authoring pass does not rename reference files or run link checks."
 ---
 
-# Checklist: system-skill-advisor references
+# Verification Checklist: system-skill-advisor references
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

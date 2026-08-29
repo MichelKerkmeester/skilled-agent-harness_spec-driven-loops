@@ -7,7 +7,7 @@ trigger_phrases:
 importance_tier: "critical"
 contextType: "implementation"
 ---
-# Checklist: Compiled-Routing Feature Catalogs
+# Verification Checklist: Compiled-Routing Feature Catalogs
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level2-verify | v2.2 -->

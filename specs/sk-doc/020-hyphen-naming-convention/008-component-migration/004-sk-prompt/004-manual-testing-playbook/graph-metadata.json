@@ -38,20 +38,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-prompt/prompt-improve/manual_testing_playbook/manual_testing_playbook.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -185,6 +177,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -193,7 +191,7 @@
     ],
     "causal_summary": "The sk-prompt hub and prompt-improve packet contain manual-testing-playbook roots, category directories, scenario files, and index references with underscore-separated names. This phase renames both playbook trees to kebab-case, updates active links, and proves scenario IDs and coverage remain unchanged while frozen changelog history stays untouched.",
     "created_at": "2026-07-14T15:17:32Z",
-    "last_save_at": "2026-07-17T20:26:07.772Z",
+    "last_save_at": "2026-08-29T10:01:04.934Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:7e78cc1509a3b0148bb4d97a6f313474eb83101c4a375ab007dd66b39de2dc04",
+    "source_fingerprint": "sha256:6934cf7111faefc19aff3d8766d0797cff57a1fb7a930636f8954c8546ef7c81",
     "source_doc_hashes": {
       "spec.md": "c70456ecca4d494c2e87d2e39042f23f98cc3199ff3b1181e255c9ac91835ec6",
       "plan.md": "8728803e3a1708700cc8b4c569f5b0e491a4782e41f8347410083e7593ef9ddd",
       "tasks.md": "fc0e30c1e453a46d8cfe179de882fd4212ae1f372202a3b1bd1cc09ee8aed816",
-      "checklist.md": "3de0ca6b1b49245e8817adfe58037867b02c0075fae57870253ee2d24497170c"
+      "checklist.md": "714749c1cbd9a20813a9291cbe1f391a42d83e865ca27ca45285847478bece48"
     },
     "last_active_child_id": null,
     "last_active_at": null

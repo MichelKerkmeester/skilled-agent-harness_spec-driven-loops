@@ -24,7 +24,7 @@ _memory:
     answered_questions:
       - "Every P0 and P1 verifier item has implementation or test evidence."
 ---
-# Checklist: Deep Improvement Common Services - Rollback & Mode Gate
+# Verification Checklist: Deep Improvement Common Services - Rollback & Mode Gate
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

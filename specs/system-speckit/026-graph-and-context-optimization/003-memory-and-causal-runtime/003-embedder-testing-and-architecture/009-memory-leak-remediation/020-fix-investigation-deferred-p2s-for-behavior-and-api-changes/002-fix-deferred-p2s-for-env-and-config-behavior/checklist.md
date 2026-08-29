@@ -22,7 +22,7 @@ _memory:
     completion_pct: 10
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
-# Checklist: Env and Config Behavior Closure for F17 F16 F40 F46
+# Verification Checklist: Env and Config Behavior Closure for F17 F16 F40 F46
 
 <!-- SPECKIT_LEVEL: 2 -->
 

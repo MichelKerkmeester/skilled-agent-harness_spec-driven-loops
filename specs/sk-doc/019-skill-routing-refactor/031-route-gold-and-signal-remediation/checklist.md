@@ -8,7 +8,7 @@ contextType: "implementation"
 parent: "sk-doc/019-skill-routing-refactor"
 ---
 
-# Checklist: Clear The Two Hubs' BLOCKED Route-Gold Verdicts
+# Verification Checklist: Clear The Two Hubs' BLOCKED Route-Gold Verdicts
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->

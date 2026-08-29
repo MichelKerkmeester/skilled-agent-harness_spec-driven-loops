@@ -174,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -184,17 +190,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research packet contains 13 underscore-bearing directory families and 103 underscore-bearing files across assets, catalogs, playbooks, behavior benchmarks, references, and state artifacts. This phase renames those in-scope paths to kebab-case and repairs their consumers while preserving research state schemas, Python exemptions, and the SKILL.md contract.",
     "created_at": "2026-07-14T15:17:49Z",
-    "last_save_at": "2026-07-17T20:26:11.992Z",
+    "last_save_at": "2026-08-29T10:00:32.129Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:a86aee927c9b6f39d5ccc72b645ffb0d7eaf52ed40cc12b7b58a012b6f3c0b94",
+    "source_fingerprint": "sha256:1174160b2e533110d078aae5cd4c0eb28c8b72cabca7d780bf725dac6626526c",
     "source_doc_hashes": {
       "spec.md": "bcdbb96b0bbd725cb20123717ed0d189851d10d0015d8e09e8ca99378673d685",
       "plan.md": "e0601b6d2df14c189eb9933fd7be12a9260300f62acf0e71898e1ae108e663d1",
       "tasks.md": "6dafa3e5bddda873688405e1b6641ecb193e9116bd1c5a33aaf2317398a5888d",
-      "checklist.md": "f55370744173d08cef92ff0ee550f39a7d665cd952b5bd1c495f30b568bc85bb"
+      "checklist.md": "41fdacc44fe0a61191c13323f47425ab125c9f45da06017e39d7ec0a0ea77236"
     },
     "last_active_child_id": null,
     "last_active_at": null

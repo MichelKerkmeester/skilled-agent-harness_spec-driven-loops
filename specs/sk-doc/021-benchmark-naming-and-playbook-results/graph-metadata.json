@@ -47,8 +47,7 @@
       "decision-record.md",
       "implementation-summary.md",
       "assets/rename-map.json",
-      "spec.md",
-      "manual-testing-playbook/manual-testing-playbook.md"
+      "spec.md"
     ],
     "entities": [
       {
@@ -91,12 +90,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual-testing-playbook.md",
-        "kind": "doc",
-        "path": "manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -184,6 +177,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol Every",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "Two defects, one cause",
     "created_at": "2026-07-27T09:25:16.484Z",
-    "last_save_at": "2026-07-27T15:43:15.944Z",
+    "last_save_at": "2026-08-29T10:00:22.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +208,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e38af65409c5c04160d67be10276d528c95005d06b480606c25ac34e5c78fa7",
+    "source_fingerprint": "sha256:af45b2e724651f5437f609e1571763419f076f2ce35b1a4805e8b22610bfd071",
     "source_doc_hashes": {
       "spec.md": "89accefe8f16a7b0973680bb6a3907c2a178bcd6c14bddf8a49788b185230958",
       "plan.md": "ed7814f8625178a4098747ec9f9ab7720c2bc771f868750bc3ccf5500cfd3cab",
       "tasks.md": "4daf3370296562cb183167a3bc103fe5d07101ebbaf9707872376d4b6a7b7b93",
-      "checklist.md": "884feb14a45cad51b7cf3a6b3a37d944e0cc7e33914578138d863266066c5f22",
+      "checklist.md": "998c2070c210b362a6e67629f9bcac9b4b8e6f0c3f8f1ff9186ffbbb72fd8016",
       "decision-record.md": "0c887c2df2c5e3be95e662e27fda32937f6b19ee84f422974afcf3f2881a3716",
       "implementation-summary.md": "5ea70692b49b85ff4c439ac62500df9edf1aa5cecbe34f6731b7fc36111c1bda"
     },

@@ -38,41 +38,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration/spec.md",
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-      ".opencode/skills/sk-code/code-quality/scripts/lib/post-edit-router.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-      ".opencode/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "validate_document.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "post-edit-router.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-code/code-quality/scripts/lib/post-edit-router.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "load-playbook-scenarios.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "check_no_hyphenated_catalog_content.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/check_no_hyphenated_catalog_content.py",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +163,35 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fix Completeness",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The migration has completed and the bounded coexistence window from phase 002 is closed, but runtime consumers still carry compatibility paths for the old underscore catalog and playbook roots and indexes. This phase removes those aliases and makes unsupported legacy names fail explicitly without falling through to a generic document classification.",
     "created_at": "2026-07-14T15:22:41Z",
-    "last_save_at": "2026-07-20T11:09:52.801Z",
+    "last_save_at": "2026-08-29T10:01:05.141Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +200,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:f0bf248bc79029569d3bf33724d58aae83d52bec85d447ede4cd6da4eeb05f8e",
+    "source_fingerprint": "sha256:987da02f6da8f9ebcebb6cd4979319b871df7dbcfa6141b9e4f73c6a878d0667",
     "source_doc_hashes": {
       "spec.md": "54b3e76b64ba15e0554a88bb78ef8eff26a935aaa044c1d455c618de4f0a2b67",
       "plan.md": "bd3d199d2f2a51dc722c6bcb2430f0bfc0cf9e867cfe4d82113c856bcad9f0a7",
       "tasks.md": "6cdb8468ff9870619560488dc510368ae049484380a42e1c6360ff2eb3f86d0a",
-      "checklist.md": "dcafeb88067bc720098a68e910371f361858755f3ca60bcb969082b72010c1c3"
+      "checklist.md": "8452bcae69f6660a385ee0519fc5232159d127c0295b9649be1051feac91fc5e"
     },
     "last_active_child_id": null,
     "last_active_at": null

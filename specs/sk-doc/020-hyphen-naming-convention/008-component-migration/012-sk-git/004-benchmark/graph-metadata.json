@@ -41,26 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-git/SKILL.md",
-      ".opencode/skills/sk-git/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +178,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-git benchmark surface contains two snake_case live-profile directories and report content with historical path pointers. This phase moves the benchmark filesystem names to kebab-case and proves that benchmark evidence, fixture discovery, and storage-guide references remain intact.",
     "created_at": "2026-07-14T15:18:28Z",
-    "last_save_at": "2026-07-17T20:26:18.419Z",
+    "last_save_at": "2026-08-29T10:00:44.428Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:144c9627f5878484f26f610b04d51f0540f9ab243855ea3db609be2fa528fffa",
+    "source_fingerprint": "sha256:772400bb584b5a647b3c44c5ae378f37bbef19f7e2cb2fd0c94eee1815ee6d29",
     "source_doc_hashes": {
       "spec.md": "f3fad5df0079e6fdab0f9e99cbb546661e31d0f52369c9b56a063518681c9a45",
       "plan.md": "5eee8675981c4d70041537a89fd3a14b07acda7290ab24ad2d7c10b9d7ed47b7",
       "tasks.md": "eb23c5821e8053c0c115ad8dadb289c986c46c8792d7d0593357e2a466d59169",
-      "checklist.md": "f447d1f5040a6be10e17d3a0f5bf56fd793919bee58d3dd615ed610abd9d7a72"
+      "checklist.md": "4c9ade5a1a2541ed093eb4eec5c96f57527e263a7226f27a6677249e5b02b3d0"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -30,7 +30,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: Recall→Render Trust Escaper + Substrate-Kind Recall Correctness (028/001 impl phase)
+# Verification Checklist: Recall→Render Trust Escaper + Substrate-Kind Recall Correctness (028/001 impl phase)
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

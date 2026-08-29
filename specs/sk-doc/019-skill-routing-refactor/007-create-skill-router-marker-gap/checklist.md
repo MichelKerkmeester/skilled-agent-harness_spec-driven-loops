@@ -16,7 +16,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
-# Checklist: create-skill router-marker conformance gap analysis
+# Verification Checklist: create-skill router-marker conformance gap analysis
 
 ---
 

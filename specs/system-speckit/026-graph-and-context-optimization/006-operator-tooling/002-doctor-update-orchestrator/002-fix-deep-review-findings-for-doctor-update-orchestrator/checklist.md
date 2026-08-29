@@ -24,7 +24,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
-# Checklist: 003 RM-8 013 Remediation
+# Verification Checklist: 003 RM-8 013 Remediation
 
 <!-- SPECKIT_LEVEL: 2 -->
 

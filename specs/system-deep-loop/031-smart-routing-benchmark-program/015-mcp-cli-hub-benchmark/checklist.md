@@ -15,7 +15,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: mcp-tooling + cli-external Hub Benchmark & Router Improvements
+# Verification Checklist: mcp-tooling + cli-external Hub Benchmark & Router Improvements
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Most folders that hold code in the system-deep-loop runtime have no README",
     "created_at": "2026-07-29T06:45:11.617Z",
-    "last_save_at": "2026-08-18T11:07:51.139Z",
+    "last_save_at": "2026-08-29T09:58:14.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5649201de2ff294348e56dc3df14d4a3c7f29fd3870318e6bbbe801e9faaad1",
+    "source_fingerprint": "sha256:825c61200c28b160aceaf0929e15a39b86ca1e934f4dbace182a30de889d6da2",
     "source_doc_hashes": {
       "spec.md": "c629a755d4baa1357fa2da0b1c77596700d3b5e2252fe7da19abb2701df5567d",
       "plan.md": "73a042dd6c2f0b1b905ba350c71accfd56fbe8ed0a9074ce212bc49a6404c233",
       "tasks.md": "5804597e774f9149e123ce5f2a0e60d4d3c632086d1c1669a19f30e878a5c471",
-      "checklist.md": "020999c6ddacbba2c52a47da0c1e4dab3851f029d95786b80aad2c35c79234d9",
+      "checklist.md": "111b7afb5b486b5bb226f24b37a4d272df70310a3c3ed49f799045601d6d81bd",
       "implementation-summary.md": "4bd86b7d3d69cfbd066e1624f0a003381d5a7c99218840085761c32e2e7dab6a"
     },
     "last_active_child_id": null,

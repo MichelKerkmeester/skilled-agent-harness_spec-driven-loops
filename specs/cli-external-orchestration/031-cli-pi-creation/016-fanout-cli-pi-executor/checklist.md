@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "cli-external-orchestration/031-cli-pi-creation"
 ---
 
-# Checklist: Implement The Fan-Out cli-pi Executor
+# Verification Checklist: Implement The Fan-Out cli-pi Executor
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->

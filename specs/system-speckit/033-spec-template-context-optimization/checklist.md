@@ -25,7 +25,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Checklist: Spec-Kit Template & Context Optimizations
+# Verification Checklist: Spec-Kit Template & Context Optimizations
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

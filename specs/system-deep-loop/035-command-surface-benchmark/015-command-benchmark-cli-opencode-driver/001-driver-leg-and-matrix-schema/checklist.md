@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: cli-opencode Driver Leg + Matrix Schema Extension
+# Verification Checklist: cli-opencode Driver Leg + Matrix Schema Extension
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

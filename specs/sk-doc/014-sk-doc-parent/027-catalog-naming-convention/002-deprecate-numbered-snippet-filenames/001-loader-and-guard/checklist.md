@@ -16,7 +16,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: Make the Lane C Playbook Loader Number-Agnostic + Add a No-New-Numbered-Snippet Guard
+# Verification Checklist: Make the Lane C Playbook Loader Number-Agnostic + Add a No-New-Numbered-Snippet Guard
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

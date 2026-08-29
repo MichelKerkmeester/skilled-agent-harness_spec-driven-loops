@@ -22,7 +22,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: code-review filesystem names
+# Verification Checklist: code-review filesystem names
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -41,8 +41,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts",
-      "tests/launcher-lease.vitest.ts",
       "spec.md",
       "checklist.md",
       "plan.md",
@@ -50,12 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "launcher-lease.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -189,6 +181,12 @@
         "source": "derived"
       },
       {
+        "name": "Launcher Lease Integration Test",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol Each",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -197,7 +195,7 @@
     ],
     "causal_summary": "The spawned-launcher lease integration suite (`tests/launcher-lease.vitest.ts`) sat behind `describe.skip` with the comment \"known launcher process lifecycle flake.\" It is the only harness that boots a real `mk-spec-memory` launcher to exercise lease write/read end-to-end, and packet 020's `lease.socketPath` persistence was therefore verified by unit tests only, never by a real spawned launcher",
     "created_at": "2026-06-04T11:36:31.373Z",
-    "last_save_at": "2026-07-17T17:19:31.831Z",
+    "last_save_at": "2026-08-29T09:58:43.042Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:890f9d1956c8fffbf5e277435c84c151e3f876e7fec7b3833e779a3ab56dd076",
+    "source_fingerprint": "sha256:5060822fb70d291c2da158119122c83bff4166011880adcbcabd9775d55f3196",
     "source_doc_hashes": {
       "spec.md": "b178d4e6f58a1e3c390bee1d9a0339c430c906185d9cb687f8620f7e9fad78f6",
       "plan.md": "47194766c0dd360008066abb8d994f458ced546c8527bb2d7c51f63f8e06ea8a",
       "tasks.md": "40c99dc0732f1e22e09815a2059945c020cbaa18a78723f13880e09f4c3f3954",
-      "checklist.md": "b5a496fa6300786dab208c96b434e51343725e60e5257981d6c831a3ec7e90ca",
+      "checklist.md": "fe1aaf882b4e0b711e339f2d2fdc709d9df865c6898eaefb44074128704d56b7",
       "implementation-summary.md": "6ae2a297442cf114062240511628a8880312c28c9cb1deb2e57eda55285b3ab0"
     },
     "last_active_child_id": null,

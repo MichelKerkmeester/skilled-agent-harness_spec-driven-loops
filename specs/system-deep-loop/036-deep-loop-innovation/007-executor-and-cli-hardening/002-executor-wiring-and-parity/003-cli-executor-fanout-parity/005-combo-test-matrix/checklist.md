@@ -20,7 +20,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 
-# QA Checklist: Combo Test Matrix + Ambient-Config Isolation
+# Verification Checklist: Combo Test Matrix + Ambient-Config Isolation
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

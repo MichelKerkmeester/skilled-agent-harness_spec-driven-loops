@@ -28,7 +28,7 @@ _memory:
       - "Generated raw-run and archive names must receive explicit dispositions rather than a mechanical rename."
 ---
 
-# Checklist: sk-prompt benchmark artifact names
+# Verification Checklist: sk-prompt benchmark artifact names
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

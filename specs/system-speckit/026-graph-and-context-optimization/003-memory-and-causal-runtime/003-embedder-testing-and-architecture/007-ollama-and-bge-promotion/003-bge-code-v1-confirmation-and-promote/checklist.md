@@ -14,7 +14,7 @@ _memory:
     next_safe_action: "Strict validate packet"
     blockers: []
 ---
-# Checklist: BGE-code-v1 confirmation supersession backfill
+# Verification Checklist: BGE-code-v1 confirmation supersession backfill
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

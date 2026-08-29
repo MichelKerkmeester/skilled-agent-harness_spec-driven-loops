@@ -40,8 +40,6 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-doc/SKILL.md",
-      ".opencode/skills/sk-doc/shared/scripts/skill-contract.cjs",
       "spec.md",
       "plan.md",
       "decision-record.md",
@@ -49,18 +47,6 @@
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-contract.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/skill-contract.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +178,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc hub's shared assets, references, and one CommonJS contract file use snake_case filesystem names. This phase applies the 020 kebab-case rule to those non-exempt names while preserving SKILL.md, registry metadata, Python files, facade symlink behavior, and path-versus-key boundaries.",
     "created_at": "2026-07-14T15:17:24Z",
-    "last_save_at": "2026-07-20T11:09:50.517Z",
+    "last_save_at": "2026-08-29T10:00:49.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +204,12 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:fb8ca0a2701f4ce2be4a7c5d057f2c2a635f4d4ef2dafe623e9c2b5805e7709e",
+    "source_fingerprint": "sha256:3937f412e15d4a5d73674825b34e3aa41c32a5fe80c1b66f66d226481fb055a1",
     "source_doc_hashes": {
       "spec.md": "d920e6c35a1fc8af06884e2f75426a526062cc760b5600821bd77a59ff588dae",
       "plan.md": "6e14a655f8776b352c29a77c8e7a81874f6ba81e2771f59a0fbbdf33d4e48b34",
       "tasks.md": "a225684eb0463b4646deea425f3c7cb5b74c096d5453a1383abdb67452512bdd",
-      "checklist.md": "28eed337901d04b8140e43519546ab18bfa117d26073a36e2c6e041e7881497f",
+      "checklist.md": "565459f534478153ef8a12e76c227cab5aaaa2844eb694810b01f99c97eaf215",
       "decision-record.md": "e0b5db710956c29070717ca4008b4c6b1116274a155cc78c3c2e45635c00d083"
     },
     "last_active_child_id": null,

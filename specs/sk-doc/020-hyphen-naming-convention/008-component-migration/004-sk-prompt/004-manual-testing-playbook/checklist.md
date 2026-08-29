@@ -25,7 +25,7 @@ _memory:
     answered_questions:
       - "The hub playbook has four SP scenarios and prompt-improve has 27 scenarios."
 ---
-# Checklist: sk-prompt manual-testing-playbook trees
+# Verification Checklist: sk-prompt manual-testing-playbook trees
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -35,22 +35,14 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/design-md-generator/references/extraction-workflow.md",
       "decision-record.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md",
       "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "extraction-workflow.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/extraction-workflow.md",
-        "source": "derived"
-      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -73,12 +65,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-reference-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/assets/skill/skill-reference-template.md",
         "source": "derived"
       },
       {
@@ -188,11 +174,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`references/` holds 10 flat files plus an `examples/` tree with 4 vendor subdirectories (`linear/`, `stripe/`, `supabase/`, `vercel/`), each carrying `DESIGN.md`, `tokens.json`, and `writing-notes.md`",
     "created_at": "2026-07-27T15:10:01.534Z",
-    "last_save_at": "2026-07-27T15:10:01.534Z",
+    "last_save_at": "2026-08-29T09:58:31.380Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +201,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fdf8cd73c3706c234a9e1bbc1effb239d3ab42ea6109d8b4059ae4a424a01ff9",
+    "source_fingerprint": "sha256:02233d4f408f88d3d933beaba551820a06a1feb6af8e2b97f0534d6520ce4bda",
     "source_doc_hashes": {
       "spec.md": "c75be66ab1724bcf29747f30f450099b6dedfa76ed2c29d7007477f60451b79f",
       "plan.md": "e50a752ead4e3f966eb0d5f1f3832d133bad03faf8a055b6d38e6fe3fd65611e",
       "tasks.md": "2a975a93e80447d7905729d63a81012b485f199d07e8fd696378ea1c1a95e0a3",
-      "checklist.md": "4c3ba0cc4b3b631a3d2804a743540e4719f887b801d0d166ae271304743bfe0d",
+      "checklist.md": "4879df2bc829cc3679260e5561551d5194e5e5ce74d2c59a402ec1830a541241",
       "decision-record.md": "70349289d54f4e5d81ebbe0c169ce101ff0c148a526a16179e0f90fa966967a3",
       "implementation-summary.md": "2815a356d9861b163524380688570b79d9e698da768587b891fb13793c74b4eb"
     },

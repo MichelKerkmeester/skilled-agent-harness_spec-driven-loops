@@ -166,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol Every",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -176,17 +182,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 of the numbered-prefix deprecation. Author one deterministic migration script that performs the whole de-numbering — git mv the 390 numbered category folders to bare slugs, rewrite the 115 frontmatter category: values, the ~1,052 root index-table path rows, the ~5,298 nav/cross-ref links across ~1,841 files, and the two SKILL.md router-prefix blocks — with a DRY-RUN mode that mutates nothing and emits a rename map, per-file diff, and safety/collision report. Honors the ADR-004 deny-list (z_archive, CHANGELOG, history, this packet's evidence). Tooling-only phase — Phase 004 runs it.",
     "created_at": "2026-07-10T18:51:12.903Z",
-    "last_save_at": "2026-07-17T14:37:04.059Z",
+    "last_save_at": "2026-08-29T10:01:14.996Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +196,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0cce5768f269b7a66fa7b5ef4c5fa9056b650c77dd0ddee43457a8f75c60ec33",
+    "source_fingerprint": "sha256:d6a7ceac5e32a2e09ab9fc8e51eca3be6980ab0d2138e99395e0189b9a6c08cc",
     "source_doc_hashes": {
       "spec.md": "a5375d3f5bdf8f14a4ba74e9d879a84c102c5981bbb902b4332b32c378e18115",
       "plan.md": "fecc80e527bd7199301216d8b237fde2cc87222ddd8e7d70ccfefcefdfbe640f",
       "tasks.md": "47b935682eced21649b6c2ccb24263eaad19a3f30c1717911f8cd4b532d55ec1",
-      "checklist.md": "2ee8cb4e1d389c1ceb8fe523f945eabb16e87254475bf4e35cc1ffe4703c68ed",
+      "checklist.md": "d4fd87503d189c69a3ae01f188e3ed5c26df52245caa102ec9ac9fee1ffb7328",
       "implementation-summary.md": "10bdfe096c3e1e43fcc95287cab0ee5e87fc737d6683a117cb4c26b3f040001c"
     },
     "last_active_child_id": null,

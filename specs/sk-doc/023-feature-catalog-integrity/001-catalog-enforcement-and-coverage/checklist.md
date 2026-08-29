@@ -23,7 +23,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core + level3-verify | v2.2 -->
 
-# QA Checklist: Catalog Enforcement and Coverage
+# Verification Checklist: Catalog Enforcement and Coverage
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

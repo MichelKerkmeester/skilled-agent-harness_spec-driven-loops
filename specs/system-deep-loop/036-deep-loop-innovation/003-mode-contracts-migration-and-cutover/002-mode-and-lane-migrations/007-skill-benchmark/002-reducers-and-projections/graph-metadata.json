@@ -169,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Plan the pure reducers and live projections for the skill-benchmark migration: replay the typed skill event ledger into deterministic iteration/convergence state, artifact indexes, and per-mode status while consuming deep-improvement-common services and preserving raw scenario and scoring evidence.",
     "created_at": "2026-07-16T03:43:41.343Z",
-    "last_save_at": "2026-08-18T11:07:14.021Z",
+    "last_save_at": "2026-08-29T09:58:03.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8fcc6012ced3e9f230cc2b56e24c2b8e56e1002bf2b4e4f88622cba23256df21",
+    "source_fingerprint": "sha256:61f215e6fce867291f0368f189ae70d119e6d6ccdd255efe024b45dad8e37256",
     "source_doc_hashes": {
       "spec.md": "7fde8c6ea50890893835e96eb0aebc10bc7e5bcfabdda25e6d1b23441ae61a9f",
       "plan.md": "106d5dfab794f8b70f020666f45e27b757c94d9f69706b9ec3969aa8903046f8",
       "tasks.md": "6cf9a822fd9d03fdc32e3315806eab2344cb64d6522b96ab4fa3eb0024fe5f44",
-      "checklist.md": "75fba6e42bd242c2372c49475d42623eb9d5afaabb9dad20d6197350dfede882",
+      "checklist.md": "61e48f31f1a9e7ce80d38b1fddb51e7f318f4323315e0f19812cc717a23ade8c",
       "implementation-summary.md": "dd4818780813760ba20807a249370c93b7d1a1f726ba3cb3279e8ef5707623a8"
     },
     "last_active_child_id": null,

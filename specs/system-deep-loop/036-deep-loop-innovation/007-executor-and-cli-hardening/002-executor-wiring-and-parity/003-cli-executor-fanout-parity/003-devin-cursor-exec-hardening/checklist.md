@@ -21,7 +21,7 @@ _memory:
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
 
-# QA Checklist: devin + cursor Fan-out Exec Hardening
+# Verification Checklist: devin + cursor Fan-out Exec Hardening
 
 <!-- ANCHOR:protocol -->
 ## Verification Protocol

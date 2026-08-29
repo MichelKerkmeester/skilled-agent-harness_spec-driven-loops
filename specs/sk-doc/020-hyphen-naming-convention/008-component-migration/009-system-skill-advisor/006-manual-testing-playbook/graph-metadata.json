@@ -180,13 +180,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The advisor manual-testing tree uses the snakecase root manualtestingplaybook, nine snakecase category",
     "created_at": "2026-07-14T15:18:10Z",
-    "last_save_at": "2026-07-20T11:09:37.534Z",
+    "last_save_at": "2026-08-29T10:00:27.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:48f153d32f30d6e3818cf21cad96c5be9af4fad1e00da8daef00c2d30810c4f1",
+    "source_fingerprint": "sha256:f8c872a589856eece21af88e7d5c971ab1c89e84bfe042df6e54c1edfbf83ccd",
     "source_doc_hashes": {
       "spec.md": "d70174d283427c8cd6b3e62ee7a2ba7c6f213f28fbde52a2d9c428d722ce52f1",
       "plan.md": "e2fd0a2186230329ed7e2b96742573a95cc87de8db1f9dbcc978de26c048d228",
       "tasks.md": "094d45ce823eb0f6c2926b07b9697dda90c08f61f2282fbe9fc950b714673ba1",
-      "checklist.md": "b7e7491359d9d32dec9b929f78f8b5e657e375375badbe265532dd9e0849e958"
+      "checklist.md": "11f4120395daaf1bc926a081106d4eb0894b88273715f2059850aec70a2c9575"
     },
     "last_active_child_id": null,
     "last_active_at": null

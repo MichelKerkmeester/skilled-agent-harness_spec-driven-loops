@@ -179,6 +179,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -189,17 +195,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After P4a, each hub's compiled generation is bound as `selectedPolicy` but nothing consumes it: there is no code that reads the manifest at route time, no gate that decides when the compiled decision is authoritative, and no operated switch to move a hub from legacy to compiled serving",
     "created_at": "2026-07-19T14:22:34.516Z",
-    "last_save_at": "2026-07-24T12:11:58.448Z",
+    "last_save_at": "2026-08-29T10:01:22.219Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,12 +209,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7b82ac83a8799a49b5c7ed5b4888e4b532d1f145b8ed94fdea48b4814d61d1ad",
+    "source_fingerprint": "sha256:c1ef3a1f80c94201b2ab3f2ec050e0ffb59c6c5c1e407a0930ee767b4188b159",
     "source_doc_hashes": {
       "spec.md": "fd15faf6acdbb663dfe6cee132ff3d8d3534fce37c0a10e0f0b7dda0b4343a38",
       "plan.md": "c4f7469a9f5bc321cbf04776275b3c3cecb3575a421ffd6a01e40332a15d770e",
       "tasks.md": "2e993c83e014c8b0521ff5d0d4edf67669c99e1424550c7ddfc4887da3485bde",
-      "checklist.md": "2d67972ca23f230e4e43dda9d01b94c6452fd29339a24e8a5a2bec247cc1264b",
+      "checklist.md": "442bbe1432679eec24c7b13a1a7785bd0316f6bb614a232b4ec05a6ea878d042",
       "implementation-summary.md": "ab552f5952d1f715f83f00a6a8cd0c9e8c18b8e6b73451ff310d90c4a58a1605"
     },
     "last_active_child_id": null,

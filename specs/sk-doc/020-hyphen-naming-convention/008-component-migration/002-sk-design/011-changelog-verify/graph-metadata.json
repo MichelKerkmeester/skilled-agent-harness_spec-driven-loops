@@ -41,26 +41,12 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-design/changelog/v1.4.3.0.md",
-      ".opencode/skills/sk-design/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "v1.4.3.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/changelog/v1.4.3.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +178,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The rename program needs an auditable sk-design release-note entry that identifies the completed subtree and records the resulting version bump, but this phase is verification-only.",
     "created_at": "2026-07-14T15:17:22Z",
-    "last_save_at": "2026-07-20T11:43:45.498Z",
+    "last_save_at": "2026-08-29T10:00:29.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +203,12 @@
       "tasks.md",
       "checklist.md"
     ],
-    "source_fingerprint": "sha256:7eaa818de536ddd6b6ac3c9f7ffe34fdbf3d84c7e75a4b93e0a02f0417ea2a61",
+    "source_fingerprint": "sha256:0dcd6b225f59841befaa2fac1b39f8b6628601b44bd2880243f6405801c0f578",
     "source_doc_hashes": {
       "spec.md": "2af2318792348a216071e9dcaac10bc672ae38d63d11443f11b2d72e3c7869c9",
       "plan.md": "fe193071a814b245e981947091065b560647b4b51748f8d12d91ca2ad1388941",
       "tasks.md": "1611ac1ad56b316492f16df3fad8140f56d4abafe668df5a33b072d8da469096",
-      "checklist.md": "d3d9d0539dea4f4d9098b57e27808e51c4a1a2d4d6e38524d6f664462dd66151"
+      "checklist.md": "1147020509e54f6f8d5241b366ccfc4ab1c3ca16375a53caef57e62f35e238a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

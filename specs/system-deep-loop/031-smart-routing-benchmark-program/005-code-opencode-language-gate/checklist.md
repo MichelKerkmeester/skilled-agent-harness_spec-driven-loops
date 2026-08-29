@@ -13,7 +13,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Checklist: code-opencode Language-Slice Intent Gate
+# Verification Checklist: code-opencode Language-Slice Intent Gate
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

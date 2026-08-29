@@ -38,7 +38,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -46,12 +45,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -167,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "1. VERIFICATION PROTOCOL",
         "kind": "heading",
         "path": "checklist.md",
@@ -185,15 +184,15 @@
         "source": "derived"
       },
       {
-        "name": "4. TESTING",
-        "kind": "heading",
-        "path": "checklist.md",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "4 doc edits closing the embedder-side P0 doc drift from packet 021: config_templates.md _NOTE_2 (3 sites) + embedder-pluggability.md historical annotation + ENV_REFERENCE.md date refresh + SKILL.md keywords. Reranker-side doc edits (BAAI/bge-reranker-v2-m3 → Qwen/Qwen3-Reranker-0.6B prose) deferred to follow-on packet because they need Qwen3 disk-footprint + daemon-log behavior verification beyond the mechanical-edit threshold.",
     "created_at": "2026-05-23T16:15:00.000000Z",
-    "last_save_at": "2026-07-17T17:19:22.339Z",
+    "last_save_at": "2026-08-29T09:58:46.140Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +202,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:162266d9644979cda70bbc6062208fcadfa5a17de01122a7c159e8cdc714b01e",
+    "source_fingerprint": "sha256:3807d1dc127e2b61eca30dc61ee9d08443e7d4e89cc917313a8daf88538ee15a",
     "source_doc_hashes": {
       "spec.md": "5ca1fa6561cfbcfc53ce67a13e3cb534baefc50728aecf26d5ffb88c77929a72",
       "plan.md": "a5ec1d87e5e322646a9b6015c31c5b1540bd1710000a6f8bb4d3f20b504f1990",
       "tasks.md": "2e9888043bcdbc513dcf13a45f0e87dcced40b8146c5dec192ac3a1ea0581fac",
-      "checklist.md": "9c6da8d5f9b2a89e0d00adf28364fe5c6ff944721d00218e82baf0c0eb672f79",
+      "checklist.md": "0f40bf96abc74c8831b94bc2e2de6101bdbcf9d626123bcdc5648d8e1bd503a1",
       "implementation-summary.md": "da676f5ca40c59414202c484a10dcfc0a710f6edd929f845b7363747ed495a35"
     },
     "last_active_child_id": null,

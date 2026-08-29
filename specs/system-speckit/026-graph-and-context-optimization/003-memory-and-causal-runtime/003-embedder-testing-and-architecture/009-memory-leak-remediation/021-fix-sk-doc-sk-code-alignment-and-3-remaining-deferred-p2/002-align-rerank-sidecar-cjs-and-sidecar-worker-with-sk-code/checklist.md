@@ -22,7 +22,7 @@ _memory:
     completion_pct: 100
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
-# Checklist: Rerank Sidecar CJS and Sidecar Worker sk-code Alignment
+# Verification Checklist: Rerank Sidecar CJS and Sidecar Worker sk-code Alignment
 
 <!-- SPECKIT_LEVEL: 2 -->
 

@@ -27,7 +27,7 @@ _memory:
     answered_questions:
       - "The root 1.1.0.0 metadata versus v1.2.0.0 history mismatch is a known baseline finding to verify or block."
 ---
-# Checklist: cli-external-orchestration changelog and version verification
+# Verification Checklist: cli-external-orchestration changelog and version verification
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

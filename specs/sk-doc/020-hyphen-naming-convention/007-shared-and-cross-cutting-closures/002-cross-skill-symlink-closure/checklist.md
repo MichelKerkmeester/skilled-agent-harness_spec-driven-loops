@@ -24,7 +24,7 @@ _memory:
     answered_questions:
       - "Checklist evidence will be supplied by the migration executor; this pass only authors the contract"
 ---
-# Checklist: Cross-Skill Symlink Closure
+# Verification Checklist: Cross-Skill Symlink Closure
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

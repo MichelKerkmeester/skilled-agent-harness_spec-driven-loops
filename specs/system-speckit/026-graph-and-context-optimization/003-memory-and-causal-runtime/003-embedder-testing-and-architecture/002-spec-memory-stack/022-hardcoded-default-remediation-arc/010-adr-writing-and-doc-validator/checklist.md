@@ -28,7 +28,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: .opencode/.templates/checklist-core.md | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 
-# Checklist: 022/010 ADR Writing and Doc Validator
+# Verification Checklist: 022/010 ADR Writing and Doc Validator
 
 <!-- ANCHOR:protocol -->
 ## 1. VERIFICATION PROTOCOL

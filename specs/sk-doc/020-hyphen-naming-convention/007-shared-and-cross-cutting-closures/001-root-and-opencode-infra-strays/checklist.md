@@ -24,7 +24,7 @@ _memory:
     answered_questions:
       - "Checklist items remain pending until the migration executor supplies candidate-SHA evidence"
 ---
-# Checklist: Root and OpenCode Infrastructure Strays
+# Verification Checklist: Root and OpenCode Infrastructure Strays
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

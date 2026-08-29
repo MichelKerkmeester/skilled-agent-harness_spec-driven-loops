@@ -23,7 +23,7 @@ _memory:
     answered_questions:
       - "This planned phase defines vocabulary and compatibility hooks only"
 ---
-# Checklist: Deep Research - Typed Ledger Schema
+# Verification Checklist: Deep Research - Typed Ledger Schema
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

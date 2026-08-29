@@ -181,13 +181,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Plan the Deep AI Council per-run certificate and per-transition receipt profiles over the typed event-ledger substrate: attestation boundaries, replay-fingerprint inputs, lifecycle coverage, recovery dispositions, and independent offline verification for seats, critique rounds, convergence, council artifacts, and the council test gate.",
     "created_at": "2026-07-16T03:43:34.752Z",
-    "last_save_at": "2026-08-18T11:07:21.449Z",
+    "last_save_at": "2026-08-29T09:58:11.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ce45e0db1d987f4c9a03a6535f302012c458078c3518366e4906bcdedca6f20e",
+    "source_fingerprint": "sha256:8232fe5d2a5077bda8ec6aea4b41b41dbe865cd2fcbc612241bf75aa366b845d",
     "source_doc_hashes": {
       "spec.md": "f7aaf618634f84f9523a41df350f1f17d7d771ee6ca9dc8170c202fbd301131f",
       "plan.md": "002c8e613a888ea7e5a1e24b7251a93f4c4d0ad591209cb21e85f8a4177f3859",
       "tasks.md": "1bb26d8de042d045b8fb4d5673f4d8f630191a2291abca32f2a892dfcbb14cc4",
-      "checklist.md": "8833e0b6ca55921592e6089ac02235957e1942ba5a3e0a72a3bb6d8608f59247",
+      "checklist.md": "1859978783f7e4fa81416d5b42413c847ffc04c6034691f867a1fdf22ebea5b9",
       "implementation-summary.md": "46f2220eee558d9b275c5c437f0c4beb42a609b928c9862c27a992918a0f2f41"
     },
     "last_active_child_id": null,

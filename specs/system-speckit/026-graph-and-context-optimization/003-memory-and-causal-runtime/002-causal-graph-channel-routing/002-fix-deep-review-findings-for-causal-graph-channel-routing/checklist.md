@@ -14,7 +14,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->
-# Checklist: 002 Deep-Review Remediation
+# Verification Checklist: 002 Deep-Review Remediation
 
 <!-- SPECKIT_LEVEL: 3 -->
 

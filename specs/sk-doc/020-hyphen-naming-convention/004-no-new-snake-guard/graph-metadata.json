@@ -41,7 +41,6 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -49,12 +48,6 @@
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "sync-prompts.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +185,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Nothing prevents snake_case from re-entering in-scope filesystem names. The program needs an exemption-aware guard with a debt-tolerant changed-only mode during migration and a whole-tree mode after, so intermediate commits stay green while the end state is enforced.",
     "created_at": "2026-07-13T14:34:05.525Z",
-    "last_save_at": "2026-07-18T07:18:11.000Z",
+    "last_save_at": "2026-08-29T10:01:07.760Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8170c6587446feff5dd14ccd55c25045a87b200e258539382741a81aadc27c1c",
+    "source_fingerprint": "sha256:e19b9a6d6ecd9bc46a8645c4eb4973b6cea2a9072a508af6a59d9bcfb9087561",
     "source_doc_hashes": {
       "spec.md": "3cfdc7e2de752dbd685048ae8e4ea96b15bce87e780e9748cfad74adfa135edc",
       "plan.md": "932a22f75beeb7f16e1ddd2dd6121f59375bfe304cd7027189cd1d9485a5b24c",
       "tasks.md": "9c0675323eb6fac6a284353368b2ae770642e558751b7ec05479d9a26fe1f3fb",
-      "checklist.md": "042f16d0e52fdae699976b1d7262fb083402657ea3eb9bdf3832c14580c80f83",
+      "checklist.md": "17d0d26d15b1a28b16e41e5729e7b3bba606cd5a7e9865fb236ea9e180226989",
       "implementation-summary.md": "2edb8bb47420c4b5fa43c5212fd5c35489906c3b6a61292990acd447fbb621c5"
     },
     "last_active_child_id": null,

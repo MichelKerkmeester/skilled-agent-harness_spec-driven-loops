@@ -23,7 +23,7 @@ _memory:
     completion_pct: 40
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
-# Checklist: Identify and Close 3 Remaining Deferred P2 Findings
+# Verification Checklist: Identify and Close 3 Remaining Deferred P2 Findings
 
 <!-- SPECKIT_LEVEL: 2 -->
 

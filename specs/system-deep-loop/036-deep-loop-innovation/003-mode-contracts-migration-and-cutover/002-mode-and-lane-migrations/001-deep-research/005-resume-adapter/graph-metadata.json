@@ -170,6 +170,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -177,12 +183,6 @@
       },
       {
         "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The Deep Research resume adapter rebuilds interrupted live state from the sealed typed ledger through the frozen reducers, maps continuity to typed lifecycle state, and re-enters idempotently without replaying semantic work.",
     "created_at": "2026-07-16T03:43:31.450Z",
-    "last_save_at": "2026-08-18T11:07:25.466Z",
+    "last_save_at": "2026-08-29T09:57:58.808Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c7fe29700084d5c8033041f551c3f63efe0544c88a66a5b8e269f312e88344be",
+    "source_fingerprint": "sha256:c6f35be4e48fcde36261fca2243fed47484b742c1a894535cc33a0189e8fe42d",
     "source_doc_hashes": {
       "spec.md": "e7b2a6fdf98258025108d8b7b7985d3d526f0a905293270ea0372b659bad1f95",
       "plan.md": "cba320f80e09626ee042db2f87878627f70094f638e99a637f5e8e0b087b2da4",
       "tasks.md": "23f66d38be32485c0667f526ad62267bd28856abf405573691ea3aeedafbf730",
-      "checklist.md": "cee0c00ca8ab0f01739296701573c8bfec7935103ea5e5186a6bbd190b7dd91f",
+      "checklist.md": "f7c30253f4e4d5fa865a546f420e24b07dee90fa467f8ab6cff29e3271e9f5e6",
       "decision-record.md": "1cf246d1890bd73e0cf3cbf1a2b82f0aaf3daaedb8f6571a00e5fe937e47a197",
       "implementation-summary.md": "7705769824e795cf03260520b40fe602f9e2cd2c9ca65f728a93cc1b3ed0c5b5"
     },

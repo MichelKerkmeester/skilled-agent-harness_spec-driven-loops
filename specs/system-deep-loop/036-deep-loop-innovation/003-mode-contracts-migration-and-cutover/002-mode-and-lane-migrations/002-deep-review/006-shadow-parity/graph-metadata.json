@@ -168,6 +168,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -175,12 +181,6 @@
       },
       {
         "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Plan the Deep Review migration from the legacy scope -> per-dimension passes -> P0/P1/P2 findings -> convergence -> review-report flow to the typed event-ledger substrate. The new path runs in shadow beside the legacy emitter, compares normalized projections event-for-event, and remains non-authoritative until every parity and fail-closed cutover criterion is green.",
     "created_at": "2026-07-16T03:43:33.437Z",
-    "last_save_at": "2026-08-18T11:07:22.913Z",
+    "last_save_at": "2026-08-29T09:57:54.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d4b61e4b786a58c48369554a50a4b219fb103ad67d68319d5d8bae553b05c73",
+    "source_fingerprint": "sha256:e82e4ddc17a34e42ba17cc6829d32f2d26ed911f785f6257aa0c140cd0af4daa",
     "source_doc_hashes": {
       "spec.md": "835dbcb3ce4b6e6a760bebe31f8f573e16be7d24548335cf6dbdf7f928bd05a6",
       "plan.md": "e8e18f851f4920b75431bf613a0935b3fcdbc67ef1889f4ff5a1f29657a4374e",
       "tasks.md": "8391a920548fea2a99bcaede38844f75b560d77928e9c2afc11a46f9e57d1f9c",
-      "checklist.md": "ec80248e2f869b448bbc84daaba32a2c58f914df6482f645cbab07a6c46b3a09",
+      "checklist.md": "0f7fc07e70edb18e5751ccb4daaa76064c93e63e4299ffd6955dd9f99ed5b504",
       "implementation-summary.md": "e926fc28c27b8ee42f5486000f2729dfefb41601c7ec64fbd2d92c21c9905e77"
     },
     "last_active_child_id": null,

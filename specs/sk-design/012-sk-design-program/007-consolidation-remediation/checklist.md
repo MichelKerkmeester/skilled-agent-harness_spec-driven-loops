@@ -26,7 +26,7 @@ _memory:
       - "Restore the eleven AI-tell fixture pairs, the only mechanism proving a detector fires?"
     answered_questions: []
 ---
-# Checklist: sk-design consolidation remediation
+# Verification Checklist: sk-design consolidation remediation
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

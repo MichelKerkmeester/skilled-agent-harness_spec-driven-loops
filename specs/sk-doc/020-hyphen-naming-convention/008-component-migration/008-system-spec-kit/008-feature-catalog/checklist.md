@@ -23,7 +23,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: Feature catalog
+# Verification Checklist: Feature catalog
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

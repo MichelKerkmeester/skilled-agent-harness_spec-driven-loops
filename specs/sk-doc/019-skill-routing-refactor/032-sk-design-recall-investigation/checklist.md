@@ -9,7 +9,7 @@ contextType: "implementation"
 parent: "sk-doc/019-skill-routing-refactor"
 ---
 
-# Checklist: Close The sk-design Routed-Intra Recall Gap
+# Verification Checklist: Close The sk-design Routed-Intra Recall Gap
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist-core | v2.2 -->

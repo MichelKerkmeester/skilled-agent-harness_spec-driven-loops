@@ -182,13 +182,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Implements the additive-dark Deep AI Council rollback switch and independent mode gate for migration to the typed event-ledger substrate.",
     "created_at": "2026-07-16T03:43:35.476Z",
-    "last_save_at": "2026-08-18T11:07:20.547Z",
+    "last_save_at": "2026-08-29T09:58:10.684Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:af9e71765bb36fde4a44ca9eabcbc2456de894132dc8987f950e5b8715abc675",
+    "source_fingerprint": "sha256:73280ae8712ef778ccb649235699b18491b25dec245b725cae76ada5effb8bcf",
     "source_doc_hashes": {
       "spec.md": "a0f5fe81fac2a7caeb324ec0e35d6250e8d8ac7dd8b4d6eb83557df4fdca869d",
       "plan.md": "48ac393cf8f620f5e23790a080adcbd64c47d6804ef91ae91175ff30bdd6060e",
       "tasks.md": "780ff40ee5a0db78a857ae8d1eae0a0773f26837763e7e15d147c38a71ec17cf",
-      "checklist.md": "7be40646a1298fd33f1ae4be79dcf35e290004eed378a2e270138b2f771abca4",
+      "checklist.md": "e24d7fa945c49272f998fa9e80384ef820991e1b8828439851077e2ff432c131",
       "decision-record.md": "2280d54ec4a3073a4e7d139bec5b4a8483e571e0cb450d6c59c3a3445f4d7fbf",
       "implementation-summary.md": "3257b68685e12da0e4ab0ed3d3e0309d87a3a1f37817e6c4622ddf5bba7f34a1"
     },

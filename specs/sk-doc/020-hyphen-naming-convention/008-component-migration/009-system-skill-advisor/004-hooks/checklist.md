@@ -25,7 +25,7 @@ _memory:
       - "The current hook tree predicts no rename; the checklist requires proof rather than assuming it."
 ---
 
-# Checklist: system-skill-advisor hooks
+# Verification Checklist: system-skill-advisor hooks
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

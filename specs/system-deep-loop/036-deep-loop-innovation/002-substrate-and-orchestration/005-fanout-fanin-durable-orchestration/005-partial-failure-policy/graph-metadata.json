@@ -169,6 +169,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol This",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define the typed failure taxonomy, deterministic tolerance thresholds, degraded-result contract, and ledger verdict that decide whether durable fan-in proceeds or aborts after leaf failures.",
     "created_at": "2026-07-16T03:43:50.882Z",
-    "last_save_at": "2026-08-18T11:07:38.085Z",
+    "last_save_at": "2026-08-29T09:57:36.690Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f60d9e7120668d303416f6b2e4f88e6b269e6657304eb029965656282f8e66f4",
+    "source_fingerprint": "sha256:2dbed8da42db045e9b64bcf173eaa15d1a90579c532cff3c2b23620b8b580e79",
     "source_doc_hashes": {
       "spec.md": "f59d406a0e7d3accea06c67df4c0e2fd527fe5040e0cc0d36235c7f5d3286d38",
       "plan.md": "e14df6c10c03c5aa95aafc45b82b6120fc28a6e584386b9321c8a82ef34b8499",
       "tasks.md": "7c174a4a1d1d353c38e4b360180ce88b9bde69e3c1e215be329c07f37cf671ab",
-      "checklist.md": "93c58412c28c072665e5f8c1953e2b86f1ecb398bb30f30dcb5f0bf21499595d",
+      "checklist.md": "98628fdd08f3d680db12e2cdfc46b6075e68244f3bb5aceb263e80f3ef3e233e",
       "implementation-summary.md": "24a297f9996b0581dfc9c4fd1034dd1d645cc20cd133b3f4e99ab67f538c2313"
     },
     "last_active_child_id": null,

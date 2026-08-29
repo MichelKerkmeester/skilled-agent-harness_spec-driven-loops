@@ -175,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
@@ -185,17 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The documented enforcement mechanism for code-opencode's RESOURCEMAP parent-child equality is inert",
     "created_at": "2026-07-20T21:51:40.268Z",
-    "last_save_at": "2026-08-28T15:53:18.403Z",
+    "last_save_at": "2026-08-29T10:01:22.941Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d22cb2924921fe6906c498fe1821af68a64f2b2aa6791541f6903cfaa24c9078",
+    "source_fingerprint": "sha256:e991a4594c92e860d5919e1401123a5c520ce9f0fb97b9343ef22397e455629b",
     "source_doc_hashes": {
       "spec.md": "1c9741b1c7e552fd4f36d64d7c3f6bb56fc2cb650b50addcc054cb6be71703d8",
       "plan.md": "dd1702c373f602aee225ce3cd0b0c86f2d892288909c8308e3d9a57111659a65",
       "tasks.md": "858d91fbcf2c53f63ea150bb1fc65631d7116631e3afff45a8928a8f6214a2b2",
-      "checklist.md": "be7aeb84f2abded0e4eb93f6e2e0bac929f26644d690e9a48e35233fcebf168e",
+      "checklist.md": "17a82b9842a4a4d4bb1263673ccd170c4c576963ada0d92f28c2f83e993f71c4",
       "implementation-summary.md": "f14c0be4101f9919cf10f40ec8308c80250ae349067c499da00ee1cdd29b6b0b"
     },
     "last_active_child_id": null,

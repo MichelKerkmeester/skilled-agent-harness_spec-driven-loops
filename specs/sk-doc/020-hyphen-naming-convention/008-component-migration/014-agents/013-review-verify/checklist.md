@@ -21,7 +21,7 @@ _memory:
     answered_questions: []
 ---
 
-# Checklist: Review Agent Naming Verification
+# Verification Checklist: Review Agent Naming Verification
 
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

@@ -182,13 +182,13 @@
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Verification Protocol",
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The seven current activation manifests were produced by fixed per-hub build harnesses",
     "created_at": "2026-07-21T04:50:51Z",
-    "last_save_at": "2026-08-28T15:53:19.659Z",
+    "last_save_at": "2026-08-29T10:01:26.492Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:24857e6f557ab21fd1775858d54eb62c9812eb2c6e1d8c1684aada16bd5af617",
+    "source_fingerprint": "sha256:dc7387837acf9318461dde1a90acbc7a1e8f3d37c2b12209e73f834baf356ca5",
     "source_doc_hashes": {
       "spec.md": "6c58c1d62a1f76ffc2ffd2d393c29bf4c5edb6ee91ceb6951065ec46b5913459",
       "plan.md": "379b9006e6067e4da27fdf4ed4e86934705592a04eb4f7fa0d7ccef030e0ccd9",
       "tasks.md": "4070b0e5645927a964b502af02b7156cf77f1b953026f2ae57dbe3399a66e210",
-      "checklist.md": "309f25598a9458eae3ddc1d31ef70f0268c801099d4ea087569f3487c4e05789",
+      "checklist.md": "f1c5bca7b867ca5685d6b97268798157bf2dc3d657f5b3ec3e109f945d947259",
       "decision-record.md": "d690052ca7be28f1bf8c5a9875f03b491fb371d58ea56028afc75e325aede7b0",
       "implementation-summary.md": "407d02aa6689223afe9b9c924ac92eb2d774ab2ace9b2e3a1f06a9d2b40387b2"
     },
