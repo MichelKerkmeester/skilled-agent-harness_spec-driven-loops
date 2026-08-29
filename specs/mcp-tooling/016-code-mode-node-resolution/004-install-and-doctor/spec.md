@@ -26,9 +26,9 @@ contextType: "implementation"
 | **Created** | 2026-08-28 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 4 |
+| **Phase** | 4 of 5 |
 | **Predecessor** | 003-host-config-cutover |
-| **Successor** | None |
+| **Successor** | 005-resolution-hardening |
 | **Handoff Criteria** | A fresh install writes no absolute interpreter path, and a host that cannot satisfy the range is diagnosed before a tool call discovers it |
 <!-- /ANCHOR:metadata -->
 

@@ -9,10 +9,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "mcp-tooling/016-code-mode-node-resolution/002-launcher-shim"
-    last_updated_at: "2026-08-28T17:37:21Z"
+    last_updated_at: "2026-08-29T10:02:02Z"
     last_updated_by: "session"
-    recent_action: "Shipped the launcher and proved protocol equivalence plus process identity"
-    next_safe_action: "Execute 003-host-config-cutover, the first phase with live effect"
+    recent_action: "Corrected the sweeper count to what the repository contains"
+    next_safe_action: "None; the packet is complete"
     blockers: []
     key_files:
       - ".opencode/bin/mcp-code-mode-launcher.cjs"
@@ -37,7 +37,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Phase** | 2 of 4 |
+| **Phase** | 2 of 5 |
 | **Status** | Complete |
 | **Completed** | 2026-08-28 |
 | **Branch** | `skilled/v4.0.0.0` |
@@ -79,7 +79,7 @@ The dispatch was told not to run the workspace gate itself. The previous phase's
 ## Key Decisions
 
 - **Hand off rather than supervise.** The two sibling MCP launchers stay resident to manage daemons and leases; this server needs neither, and an extra resident layer would have complicated signal and exit-status delivery for no gain.
-- **Spawn with the entrypoint as an argument.** Nine cleanup and sweeper scripts across five runtimes identify this server by the entrypoint substring in a process command line. Spawning that path keeps every one of them working with no edit.
+- **Spawn with the entrypoint as an argument.** Two shared cleanup and sweeper scripts identify this server by the entrypoint substring in a process command line. Both match by substring, so the absolute entrypoint the launcher passes still contains what they look for and neither needs an edit.
 - **Refuse before spawning, never after.** The failure this packet exists to prevent is uncatchable, so the check has to happen while refusing is still possible.
 <!-- /ANCHOR:decisions -->
 

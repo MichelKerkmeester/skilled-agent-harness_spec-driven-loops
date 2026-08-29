@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor",
-  "spec_folder": "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor",
+  "packet_id": "mcp-tooling/016-code-mode-node-resolution/005-resolution-hardening",
+  "spec_folder": "mcp-tooling/016-code-mode-node-resolution/005-resolution-hardening",
   "parent_id": "mcp-tooling/016-code-mode-node-resolution",
   "children_ids": [],
   "manual": {
@@ -11,29 +11,29 @@
   },
   "derived": {
     "trigger_phrases": [
-      "code mode install script",
-      "doctor mcp node check",
-      "mcp install guide node version",
-      "isolated-vm constraint documentation",
-      "code mode install plan",
-      "doctor mcp diagnosis design",
-      "code mode install tasks",
-      "code mode install doctor summary",
-      "install and doctor shipped"
+      "resolver search path dead branch",
+      "node interpreter probe fallback",
+      "code mode launcher existence check",
+      "resolution hardening",
+      "resolution hardening plan",
+      "interpreter probe design",
+      "resolution hardening tasks",
+      "resolution hardening summary",
+      "resolver version ladder shipped"
     ],
     "key_topics": [
+      "resolver",
+      "search",
+      "path",
+      "dead",
+      "branch",
+      "node",
+      "interpreter",
+      "probe",
+      "fallback",
       "code",
       "mode",
-      "install",
-      "script",
-      "doctor",
-      "mcp",
-      "node",
-      "check",
-      "guide",
-      "version",
-      "isolated-vm",
-      "constraint"
+      "launcher"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -99,7 +99,7 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement Two",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -123,19 +123,19 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Data Flow The",
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Repair Enumeration",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -148,12 +148,6 @@
       },
       {
         "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Mode",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -177,21 +171,27 @@
         "source": "derived"
       },
       {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Summary",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "What Was Built Three",
+        "name": "What Was Built",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Two install scripts write MCP registrations, so a fresh install would reintroduce whatever shape they encode regardless of what the cutover fixed",
-    "created_at": "2026-08-28T16:11:22Z",
-    "last_save_at": "2026-08-29T10:02:11.432Z",
+    "causal_summary": "The packet shipped a resolver whose search-path branch cannot return a candidate on a real host",
+    "created_at": "2026-08-29T09:58:50.535Z",
+    "last_save_at": "2026-08-29T10:00:32.502Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1a8d4560c4d7b129806b8675c2109990e0b831c89a020a1b7f15a2321ca663a1",
+    "source_fingerprint": "sha256:ad2f12c37e67cda87a8473d2ff632685fcc68432001120285cdf8c62dd405297",
     "source_doc_hashes": {
-      "spec.md": "842104cd57311d00938f1e6902b34fdd8065f6102e739a30ac9377f4ceb06944",
-      "plan.md": "b5976970158a7cced7972006848261562435e3b30575c92ecd064fc757b349f2",
-      "tasks.md": "4908ad5399cf98dc84ef5aa13d5503d67d2a80eb7d3470cece423ae078e11e9e",
-      "implementation-summary.md": "ad6737b7aa99a2883a83eeb73c9d5a9bb4604b94a034a1cf6ebfe830055f4350"
+      "spec.md": "0a5d56c18ec84ba5b30ddd3bc56343c65a66c6d00912b29c2a79ad05f7e0b599",
+      "plan.md": "3def9c56494c907c111421e3fb16ac83c12adbffdc7108dba937419d11f303c4",
+      "tasks.md": "29ec708479a9f58639b9a9b1195308d1cc2010e6b4a245616efe4d11e9c0939d",
+      "implementation-summary.md": "c627751c78b069daa48c1ae97db522d51985f71dd24ad42e31c050fdaddf12ce"
     },
     "last_active_child_id": null,
     "last_active_at": null

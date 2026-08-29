@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Host configurations currently name an interpreter directly, which is why they had to name an absolute one",
     "created_at": "2026-08-28T16:11:20Z",
-    "last_save_at": "2026-08-28T17:37:22.166Z",
+    "last_save_at": "2026-08-29T10:02:11.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:442279badbb9a5758fb1a106abe8a9a811a52356a159247871de8d713fec1a5d",
+    "source_fingerprint": "sha256:edaf0b46a6824e0287fb8c81701c2943d0dacee8116f4dc3c6105d00e62464c6",
     "source_doc_hashes": {
-      "spec.md": "15376030d8fa081f9293524a75f2e6db20d42b6c2434a86e04596bbcc312ed66",
+      "spec.md": "80242adc477845be77f7bbe90594b44145253d4de49ec6fc84af48fa3673ad15",
       "plan.md": "1a25e792619380c16dfd3f7933a88ff6b6e035725dbe584f6f2c6d85360eaab7",
       "tasks.md": "1e1b76b6d456f6c34b89b08330f1fdcdcc7ee8192f7d1296cee3e5136087b334",
-      "implementation-summary.md": "7af3ac4a0b15c10681c42cedef6d3f3543ea57383838676d674c634fcab8067b"
+      "implementation-summary.md": "ddc74d23e07727bc1b3a0f365bd76a441577c5f826aeee97e82157ac5ba80f01"
     },
     "last_active_child_id": null,
     "last_active_at": null

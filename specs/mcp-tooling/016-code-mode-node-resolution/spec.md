@@ -94,8 +94,8 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `.opencode/bin/lib/node-engine-resolver.cjs` | Create | 001 | Range parsing and candidate interpreter selection |
-| `.opencode/bin/lib/node-engine-resolver.test.cjs` | Create | 001 | Resolver unit tests |
+| `.opencode/bin/lib/node-engine-resolver.cjs` | Create | 001, 005 | Range parsing and candidate interpreter selection; the version ladder that makes the search path answer |
+| `.opencode/bin/lib/node-engine-resolver.test.cjs` | Create | 001, 005 | Resolver unit tests, driven through real filesystem entries |
 | `.opencode/bin/mcp-code-mode-launcher.cjs` | Create | 002 | Resolve, then exec the server entrypoint |
 | `.opencode/bin/mcp-code-mode-launcher.test.cjs` | Create | 002 | Launch and process-identity tests |
 | `.mcp.json` | Modify | 003 | Launch through the launcher |
@@ -104,10 +104,12 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | `.pi/mcp.json` | Modify | 003 | Launch through the launcher |
 | `opencode.json` | Modify | 003 | Launch through the launcher |
 | `.codex/config.toml` | Modify | 003 | Launcher for code_mode; the other two absolute paths retained with their reason recorded |
-| `.opencode/skills/mcp-code-mode/scripts/install.sh` | Modify | 004 | Register the launcher instead of the entrypoint (a symlink covers the install-guides copy) |
+| `.opencode/skills/mcp-code-mode/scripts/install.sh` | Modify | 004, 005 | Register the launcher instead of the entrypoint, gate on the declared range, and verify the launcher exists (a symlink covers the install-guides copy) |
 | `.opencode/skills/mcp-code-mode/INSTALL-GUIDE.md` | Modify | 004 | State the real Node requirement and the refusal behavior (a symlink covers the install-guides copy) |
-| `.opencode/commands/doctor/scripts/mcp-doctor.sh` | Modify | 004 | Diagnose a host with no satisfying interpreter |
+| `.opencode/commands/doctor/scripts/mcp-doctor.sh` | Modify | 004, 005 | Diagnose a host with no satisfying interpreter, and a missing launcher |
 | `.opencode/skills/sk-code/sk-code-opencode/assets/checklists/mcp-server-authoring.md` | Modify | 004 | Record the constraint instead of restating one path |
+| `.opencode/scripts/session-cleanup.sh` | Modify | 005 | Classify the launcher alongside its two sibling launchers |
+| `.opencode/scripts/orphan-mcp-sweeper.sh` | Modify | 005 | Classify the launcher alongside its two sibling launchers |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -123,6 +125,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 2 | 002-launcher-shim/ | Front the server with a launcher that execs a satisfying interpreter and fails loudly when none exists | Complete |
 | 3 | 003-host-config-cutover/ | Point all six host configs at the launcher; the other two absolute paths were kept after execution proved one load-bearing | Complete |
 | 4 | 004-install-and-doctor/ | Stop the installer writing a registration that would segfault, and let the diagnosis detect a host that cannot satisfy the range | Complete |
+| 5 | 005-resolution-hardening/ | Make the search path answer on a real host, put existence checks behind the launch path, and bring the packet's completion records back in line with their evidence | Complete |
 
 ### Phase Transition Rules
 
@@ -138,6 +141,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 001-resolution-contract | 002-launcher-shim | The resolver returns the same interpreter the configs hardcode today, and returns nothing rather than a wrong one when the range cannot be met | Resolver tests pass and its answer on this machine equals the currently pinned path |
 | 002-launcher-shim | 003-host-config-cutover | The launcher starts the server, and the server entrypoint path is still visible in the launched process command line | The launcher reaches MCP initialize, and the cleanup matchers still classify the process |
 | 003-host-config-cutover | 004-install-and-doctor | No host config names an interpreter by absolute path | A scan of the six configs finds no absolute interpreter path |
+| 004-install-and-doctor | 005-resolution-hardening | The resolver answers for an interpreter only the search path knows about, and no completion claim outruns its evidence | A real interpreter planted on the search path is returned by the default host access, and the installer run the records assert is executed |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -145,8 +149,10 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Whether the resolver should accept an operator override by environment variable, and whether that override is allowed to violate the declared range for debugging.
-- Whether a host with no satisfying interpreter should refuse to launch or start and let the first tool call fail, given that the wrong answer today is an uncatchable segfault.
+Both questions this specification opened are settled by what shipped.
+
+- **An operator override by environment variable**: not offered. Nothing reads an override, so the declared range is the only input that selects an interpreter. An override permitted to violate the range would reintroduce exactly the uncatchable failure the packet exists to prevent, and an override constrained to the range would change nothing the resolver does not already do.
+- **Refuse, or start and let the first tool call fail**: refuse. The launcher resolves before spawning and exits non-zero with the required range on stderr, because a wrong interpreter does not fail at startup - it segfaults on the first tool call and takes the whole connection with it, which is not a failure a caller can catch or diagnose.
 <!-- /ANCHOR:questions -->
 
 ---

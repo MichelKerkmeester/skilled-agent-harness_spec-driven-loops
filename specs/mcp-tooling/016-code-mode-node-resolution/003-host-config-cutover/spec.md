@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Created** | 2026-08-28 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 4 |
+| **Phase** | 3 of 5 |
 | **Predecessor** | 002-launcher-shim |
 | **Successor** | 004-install-and-doctor |
 | **Handoff Criteria** | No host configuration names an interpreter by absolute path, and every registered server still attaches |

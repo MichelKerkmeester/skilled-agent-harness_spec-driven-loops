@@ -7,7 +7,8 @@
     "mcp-tooling/016-code-mode-node-resolution/001-resolution-contract",
     "mcp-tooling/016-code-mode-node-resolution/002-launcher-shim",
     "mcp-tooling/016-code-mode-node-resolution/003-host-config-cutover",
-    "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor"
+    "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor",
+    "mcp-tooling/016-code-mode-node-resolution/005-resolution-hardening"
   ],
   "manual": {
     "depends_on": [],
@@ -87,17 +88,17 @@
     ],
     "causal_summary": "Six host configurations launch the `codemode` MCP server with `/Users/michelkerkmeester/.nvm/versions/node/v24.9.0/bin/node`",
     "created_at": "2026-08-28T16:11:19Z",
-    "last_save_at": "2026-08-28T18:09:14.097Z",
+    "last_save_at": "2026-08-29T09:58:56.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:28f14bcbb3fc89d1da2455f5ba87d4783fd5c12b9f52ac96239ed0ff9515dddf",
+    "source_fingerprint": "sha256:c8ccef89e3d75dd0321907fc6699ab10edbc4c7f4197ef5a7e2aad033051cfc3",
     "source_doc_hashes": {
-      "spec.md": "363e11a6b36f72d0f6baa807520ae544169572373806cc4af0b858672f37a572"
+      "spec.md": "231995c4ab9066de481481c8111e52048010d64ac5d79cd209e575a102c83533"
     },
-    "last_active_child_id": "mcp-tooling/016-code-mode-node-resolution/004-install-and-doctor",
+    "last_active_child_id": "mcp-tooling/016-code-mode-node-resolution/005-resolution-hardening",
     "last_active_at": null
   }
 }

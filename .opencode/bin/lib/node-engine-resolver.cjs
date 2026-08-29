@@ -7,6 +7,7 @@
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
+const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
@@ -16,6 +17,15 @@ const path = require('node:path');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const NODE_BINARY_NAMES = Object.freeze(['node', 'node.exe']);
+
+// Asking an interpreter for its own version is the last rung of the version
+// ladder, reached only when neither the candidate path nor its symlink target
+// carries one. It executes a binary, so it stays bounded: a fixed argument
+// list, no shell, ignored input, a short timeout, and a cap on how many
+// distinct interpreters may be asked during one enumeration.
+const INTERPRETER_PROBE_TIMEOUT_MS = 2000;
+const INTERPRETER_PROBE_MAX_BUFFER = 64 * 1024;
+const INTERPRETER_PROBE_LIMIT = 16;
 const VERSION_COMPONENT_PATTERN = '(?:0|[1-9]\\d*)';
 const VERSION_TOKEN_PATTERN = [
   `(?:${VERSION_COMPONENT_PATTERN}`,
@@ -128,7 +138,16 @@ function createDefaultHostAccess() {
     homeDirectory: os.homedir(),
     listDirectory: (directoryPath) => fs.readdirSync(directoryPath, { withFileTypes: true }),
     pathEntries: (environment.PATH ?? '').split(path.delimiter).filter(Boolean),
+    probeVersion: (interpreterPath) => execFileSync(interpreterPath, ['-v'], {
+      encoding: 'utf8',
+      maxBuffer: INTERPRETER_PROBE_MAX_BUFFER,
+      shell: false,
+      stdio: ['ignore', 'pipe', 'ignore'],
+      timeout: INTERPRETER_PROBE_TIMEOUT_MS,
+      windowsHide: true,
+    }),
     readFile: (filePath) => fs.readFileSync(filePath, 'utf8'),
+    realPath: (filePath) => fs.realpathSync(filePath),
     runningInterpreter: {
       path: process.execPath,
       version: process.versions.node,
@@ -157,7 +176,9 @@ function normalizeHostAccess(suppliedHost = {}) {
     pathEntries: Array.isArray(pathEntries)
       ? pathEntries
       : String(pathEntries).split(path.delimiter),
+    probeVersion: suppliedHost.probeVersion ?? defaults.probeVersion,
     readFile: suppliedHost.readFile ?? defaults.readFile,
+    realPath: suppliedHost.realPath ?? defaults.realPath,
     runningInterpreter,
   };
 }
@@ -182,6 +203,16 @@ function isDirectoryEntry(entry) {
   return typeof entry === 'string'
     || typeof entry?.isDirectory !== 'function'
     || entry.isDirectory();
+}
+
+// A search-path entry is a candidate when it is anything other than a
+// directory. Requiring the opposite silently discards every real interpreter,
+// because a directory listing with file types reports a binary as not a
+// directory; only a listing of bare strings would pass such a test.
+function isInterpreterEntry(entry) {
+  if (typeof entry === 'string') return true;
+  if (typeof entry?.isDirectory !== 'function') return true;
+  return !entry.isDirectory();
 }
 
 function readDirectory(listDirectory, directoryPath) {
@@ -213,16 +244,67 @@ function addCandidate(candidateMap, candidate) {
   }
 }
 
-function enumerateSearchPathCandidates(host, candidateMap) {
+function resolveRealPath(host, candidatePath) {
+  try {
+    const resolved = host.realPath(candidatePath);
+    return typeof resolved === 'string' && resolved.length > 0 ? resolved : null;
+  } catch {
+    return null;
+  }
+}
+
+function probeInterpreterVersion(host, interpreterPath, probeBudget) {
+  if (probeBudget.answers.has(interpreterPath)) {
+    return probeBudget.answers.get(interpreterPath);
+  }
+  if (probeBudget.remaining <= 0) return null;
+  probeBudget.remaining -= 1;
+
+  let version = null;
+  try {
+    version = parseNodeVersion(String(host.probeVersion(interpreterPath) ?? '').trim(), {
+      allowMajorShorthand: false,
+    });
+  } catch {
+    version = null;
+  }
+  probeBudget.answers.set(interpreterPath, version);
+  return version;
+}
+
+// Widening cost: the candidate's own path, then the path it links to, then the
+// interpreter itself. Version managers name the version in the path, so the
+// cheap rung answers for them; a package-manager or installer layout that does
+// not is why the later rungs exist.
+function searchPathCandidateVersion(host, candidatePath, probeBudget) {
+  const fromCandidatePath = parseVersionFromPath(candidatePath);
+  if (fromCandidatePath) return { source: 'PATH', version: fromCandidatePath };
+
+  const realPath = resolveRealPath(host, candidatePath);
+  if (realPath && realPath !== candidatePath) {
+    const fromRealPath = parseVersionFromPath(realPath);
+    if (fromRealPath) return { source: 'PATH-link', version: fromRealPath };
+  }
+
+  const probed = probeInterpreterVersion(host, realPath ?? candidatePath, probeBudget);
+  return probed ? { source: 'PATH-probe', version: probed } : null;
+}
+
+function enumerateSearchPathCandidates(host, candidateMap, probeBudget) {
   for (const directoryPath of host.pathEntries) {
     if (typeof directoryPath !== 'string' || directoryPath.length === 0) continue;
     for (const entry of readDirectory(host.listDirectory, directoryPath)) {
       const name = entryName(entry);
-      if (!name || !NODE_BINARY_NAMES.includes(name) || !isDirectoryEntry(entry)) continue;
-      addCandidate(
-        candidateMap,
-        candidateFromPath(path.join(directoryPath, name), undefined, 'PATH'),
-      );
+      if (!name || !NODE_BINARY_NAMES.includes(name) || !isInterpreterEntry(entry)) continue;
+
+      const candidatePath = path.join(directoryPath, name);
+      const resolved = searchPathCandidateVersion(host, candidatePath, probeBudget);
+      if (!resolved) continue;
+      addCandidate(candidateMap, {
+        path: candidatePath,
+        source: resolved.source,
+        version: resolved.version,
+      });
     }
   }
 }
@@ -256,7 +338,11 @@ function enumerateManagerCandidates(host, candidateMap) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Enumerate versioned Node interpreter paths without executing any candidate.
+ * Enumerate Node interpreter paths visible to the host.
+ *
+ * The running interpreter and the version-manager layouts declare their version
+ * in the path, so they cost a directory read. A search-path candidate that
+ * declares none is asked for its version directly, under the probe budget.
  *
  * @param {Object} [suppliedHost] - Host access and lookup configuration.
  * @returns {Array<Object>} Candidate records with path, version, and source.
@@ -265,13 +351,14 @@ function enumerateNodeCandidates(suppliedHost = {}) {
   const host = normalizeHostAccess(suppliedHost);
   const candidateMap = new Map();
   const running = host.runningInterpreter ?? {};
+  const probeBudget = { answers: new Map(), remaining: INTERPRETER_PROBE_LIMIT };
 
   addCandidate(candidateMap, candidateFromPath(
     running.path,
     running.version,
     'running-interpreter',
   ));
-  enumerateSearchPathCandidates(host, candidateMap);
+  enumerateSearchPathCandidates(host, candidateMap, probeBudget);
   enumerateManagerCandidates(host, candidateMap);
 
   return [...candidateMap.values()].sort((left, right) => (

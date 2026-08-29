@@ -288,6 +288,7 @@ diagnose_code_mode() {
   local skill_dir="$PROJECT_ROOT/.opencode/skills/mcp-code-mode"
   local dist_entry="$skill_dir/mcp-server/dist/index.js"
   local resolver="$PROJECT_ROOT/.opencode/bin/lib/node-engine-resolver.cjs"
+  local launcher="$PROJECT_ROOT/.opencode/bin/mcp-code-mode-launcher.cjs"
   local manifest="$skill_dir/mcp-server/package.json"
   local utcp_config="$PROJECT_ROOT/.utcp_config.json"
   local needs_fix=false
@@ -300,7 +301,17 @@ diagnose_code_mode() {
     return
   fi
 
-  # Check 1: resolve the interpreter before MCP startup can fail on an unsupported host
+  # Check 1: the registered command itself, which every host config now names
+  if [[ -f "$launcher" ]]; then
+    record_pass "$srv" "launcher_exists" "$launcher"
+    _log log_pass "launcher present"
+  else
+    record_fail "$srv" "launcher_exists" "File missing: $launcher"
+    _log log_fail "launcher missing — every host config registers this path"
+    needs_fix=true
+  fi
+
+  # Check 2: resolve the interpreter before MCP startup can fail on an unsupported host
   local interpreter_resolution
   if interpreter_resolution="$(node -e '
     const [resolverPath, manifestPath] = process.argv.slice(1);
@@ -325,7 +336,7 @@ diagnose_code_mode() {
     _log log_fail "Node engine resolver failed"
   fi
 
-  # Check 2: dist/index.js exists
+  # Check 3: dist/index.js exists
   if [[ -f "$dist_entry" ]]; then
     record_pass "$srv" "dist_exists" "$dist_entry"
     _log log_pass "dist/index.js exists"
@@ -335,7 +346,7 @@ diagnose_code_mode() {
     needs_fix=true
   fi
 
-  # Check 3: .utcp_config.json exists and is valid JSON
+  # Check 4: .utcp_config.json exists and is valid JSON
   if [[ -f "$utcp_config" ]]; then
     if node -e "JSON.parse(require('fs').readFileSync('$utcp_config','utf8'))" 2>/dev/null; then
       record_pass "$srv" "utcp_config" "Valid JSON"
@@ -349,7 +360,7 @@ diagnose_code_mode() {
     _log log_warn ".utcp_config.json not found — Code Mode needs this config"
   fi
 
-  # Check 4: .env file (needed for API keys if external servers configured)
+  # Check 5: .env file (needed for API keys if external servers configured)
   local env_file="$PROJECT_ROOT/.env"
   if [[ -f "$env_file" ]]; then
     record_pass "$srv" "env_file" "Exists"
@@ -359,7 +370,7 @@ diagnose_code_mode() {
     _log log_info ".env not found — only needed if external MCP servers require API keys"
   fi
 
-  # Check 5: node_modules exist
+  # Check 6: node_modules exist
   if [[ -d "$skill_dir/mcp-server/node_modules" ]]; then
     record_pass "$srv" "node_modules" "Installed"
     _log log_pass "node_modules installed"

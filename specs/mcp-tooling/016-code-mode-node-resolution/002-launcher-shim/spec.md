@@ -26,7 +26,7 @@ contextType: "implementation"
 | **Created** | 2026-08-28 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 2 of 4 |
+| **Phase** | 2 of 5 |
 | **Predecessor** | 001-resolution-contract |
 | **Successor** | 003-host-config-cutover |
 | **Handoff Criteria** | The launcher starts the server, and the launched process still carries the server entrypoint path in its command line |
@@ -62,7 +62,7 @@ This is **Phase 2** of the portable Node resolution specification.
 
 Host configurations currently name an interpreter directly, which is why they had to name an absolute one. Nothing sits between the host and the server entrypoint where a decision could be made.
 
-Introducing that layer is constrained by something already in the repository: nine cleanup and orphan-sweeper scripts across five runtimes identify this server by matching the entrypoint path in a process command line. A launcher that becomes the visible process, rather than handing off to one, would leave those matchers unable to classify the server they are meant to reap.
+Introducing that layer is constrained by something already in the repository: two shared cleanup and orphan-sweeper scripts identify this server by matching the entrypoint path in a process command line. A launcher that becomes the visible process, rather than handing off to one, would leave those matchers unable to classify the server they are meant to reap.
 
 ### Purpose
 
