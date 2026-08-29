@@ -4,6 +4,10 @@ description: "Cursor CLI executor for cursor-agent-backed coding, plan/ask read-
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.4.1.0
 hard_rules:
+  - id: stdin-redirect-required
+    check: stdin-redirect-required
+    message: "Any non-interactive `cursor-agent -p` MUST close/redirect stdin (`</dev/null`) — not only inside a read loop. Omitting it can hang with zero output, which is indistinguishable from a slow model."
+    severity: warn
   - id: cursor-availability-required
     check: command-v-cursor-agent-required
     message: "Run `command -v cursor-agent` before every dispatch; if it fails, refuse the route without constructing or launching a command."
@@ -299,7 +303,7 @@ The full flag glossary, hook contract, shared-config surface, and troubleshootin
 3. Use `--mode plan` or `--mode ask` for read-only exploration/analysis/research; use the default agent mode with `--auto-review` or `--force` for code generation/file modification.
 4. Validate Cursor-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so errors surface; check output TEXT for auth/availability failures, never the exit code (always `0`).
-6. **Redirect cursor-agent stdin from `/dev/null`** when dispatching in a `while read` loop, mirroring the family-wide convention: `cursor-agent -p "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Live-verified: a real `cursor-agent -p ... </dev/null` dispatch completes normally with no hang.
+6. **Redirect cursor-agent stdin from `/dev/null` on EVERY non-interactive dispatch** — not only inside a `while read` loop, which is the condition this rule used to name and the reason it was skipped, mirroring the family-wide convention: `cursor-agent -p "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Live-verified: a real `cursor-agent -p ... </dev/null` dispatch completes normally with no hang.
 7. **Specify model and approval mode explicitly** — never rely on caller environment. Default: `--model composer-2.5 --auto-review --sandbox enabled`. Honor user overrides verbatim, but ONLY within the enforced allowlist (§3 Model Selection) — never `auto`, never a model outside the 21 allowed ids.
 8. Route to `--mode plan`/`--mode ask`/default agent per the task type (see Section 3 routing table).
 9. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 in `--force`/non-interactive mode.

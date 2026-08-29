@@ -4,6 +4,10 @@ description: "Codex CLI executor for OpenAI-backed coding, repo analysis, PR rev
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.8.0.0
 hard_rules:
+  - id: stdin-redirect-required
+    check: stdin-redirect-required
+    message: "Any non-interactive `codex exec` MUST close/redirect stdin (`</dev/null`) — not only inside a read loop. Omitting it can hang with zero output, which is indistinguishable from a slow model."
+    severity: warn
   - id: codex-availability-required
     check: command-v-codex-required
     message: "Run `command -v codex` before every dispatch; if it fails, refuse the route without constructing or launching a command."
@@ -269,7 +273,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 3. Use `--sandbox read-only` for review/analysis/research; `--sandbox workspace-write` for code generation/file modification — `codex exec` defaults to `read-only`, so omitting it causes silent no-op on edit tasks. For unattended approval, put top-level `-a never` before `exec` or set `-c approval_policy=never`.
 4. Validate Codex-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.
-6. **Redirect codex stdin from `/dev/null`** when dispatching in a `while read` loop. Pattern: `codex exec "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Without `</dev/null`, the backgrounded codex process inherits the loop's stdin (the file after `done < input.jsonl`) and silently consumes the remaining lines — the loop exits after 3-6 iterations with no error. See `references/integration-patterns.md#background-execution` → "Silent Stdin Consumption".
+6. **Redirect codex stdin from `/dev/null` on EVERY non-interactive dispatch** — not only inside a `while read` loop, which is the condition this rule used to name and the reason it was skipped. Pattern: `codex exec "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Without `</dev/null`, the backgrounded codex process inherits the loop's stdin (the file after `done < input.jsonl`) and silently consumes the remaining lines — the loop exits after 3-6 iterations with no error. See `references/integration-patterns.md#background-execution` → "Silent Stdin Consumption".
 7. **Specify model + effort + service tier explicitly** — never rely on caller environment. Default: `--model gpt-5.5 -c model_reasoning_effort="medium" -c service_tier="fast"`. Honor user overrides verbatim. Use `high`/`xhigh` for reasoning-heavy tasks (architecture, security, deep planning).
 8. Route to the appropriate `-p <profile>` when the task matches a specialization (see Section 3 routing table); use `codex exec review` (built-in subcommand) for git diff reviews.
 9. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 in non-interactive mode.
