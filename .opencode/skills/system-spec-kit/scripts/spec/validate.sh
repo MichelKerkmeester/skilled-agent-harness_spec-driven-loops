@@ -112,6 +112,11 @@ parse_args() {
 
 apply_env_overrides() {
     [[ "${SPECKIT_VALIDATION:-}" == "false" ]] && { echo "Validation disabled"; exit 0; }
+    # This used to select a second rule engine that no longer exists. Silently
+    # ignoring it would let a caller believe it is still choosing something.
+    if [[ -n "${SPECKIT_VALIDATE_LEGACY:-}" ]]; then
+        echo "WARNING: SPECKIT_VALIDATE_LEGACY is set but no longer does anything; there is one validator." >&2
+    fi
     [[ "${SPECKIT_STRICT:-}" == "true" ]] && STRICT_MODE=true
     [[ "${SPECKIT_VERBOSE:-}" == "true" ]] && VERBOSE=true
     [[ "${SPECKIT_JSON:-}" == "true" ]] && JSON_MODE=true
