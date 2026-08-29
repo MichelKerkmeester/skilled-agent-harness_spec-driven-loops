@@ -62,8 +62,7 @@ primary and mutates nothing. It supplies evidence while the acting workflow appl
 | [`references/folder-docs.md`](references/folder-docs.md) | The `README.md` / `CODE.md` pairing threshold (3+ direct source files or child source folders) and its both-direction scan. |
 | [`references/a11y-parity.md`](references/a11y-parity.md) | The react-aria → bits-ui accessibility parity contract and the `use:hover`/`use:press`/`use:focusVisible` action pattern. |
 | [`references/browser-free-verification-recipe.md`](references/browser-free-verification-recipe.md) | The `token-identity` snapshot/diff/verify commands and the `*-cdp.mjs` render gates, and why the CSP forbids screenshot value checks. |
-| [`references/component-story-upkeep.md`](references/component-story-upkeep.md) | The `story:new` → `story:coverage` → `catalog-smoke-cdp.mjs` catalog contract for every renderable component change. |
-| [`references/screenshot-archive.md`](references/screenshot-archive.md) | The tracked screenshot archive: how a shot is taken, transparent versus page-tone grounds, what its determinism is worth, and how an agent and a designer each use the catalog. |
+| [`references/storybook/storybook.md`](references/storybook/storybook.md) | The catalog and its screenshot archive: both audiences, the gates in the order they bite, and pointers to the story-upkeep contract and the archive contract. |
 | [`references/skill-reference-integrity.md`](references/skill-reference-integrity.md) | The cross-repo `scan-skill-references.mjs` drift guard that resolves every app path this surface names (expects `broken : 0`). |
 | [`references/workflow-implement.md`](references/workflow-implement.md) · [`workflow-debug.md`](references/workflow-debug.md) · [`workflow-verify.md`](references/workflow-verify.md) | The shared implement → debug → verify doctrine (symlinked from `../../shared/references/`). |
 
@@ -71,7 +70,7 @@ Checklists (`assets/`) and the source-gates runner (`scripts/`) — token retint
 verification, BEM rename, runes-effect audit, story coverage, a11y parity, and `run-source-gates.sh`.
 See §4 for the full list.
 
-App documentation lives under `references/` in five purpose-named folders, each grouping one concern so
+App documentation lives under `references/` in six purpose-named folders, each grouping one concern so
 the set reads by intent:
 
 - `references/operations/` — running the live relay: `operations.md`, `incident-playbooks.md`, `rollback.md`.
@@ -79,6 +78,7 @@ the set reads by intent:
 - `references/setup/` — first run: `setup.md`, `install-and-onboarding.md`.
 - `references/standards/` — the rules a change must hold: `code-standards.md`, `security.md`, `platform-support.md`.
 - `references/quality/` — the doc-quality gate and the full-access-runtime baseline.
+- `references/storybook/` — the component catalog and its screenshot archive: `storybook.md`, `component-story-upkeep.md`, `screenshot-archive.md`.
 
 The **feature catalog** and the **manual testing playbook** are the single source of truth at the app
 repository root (`feature-catalog/` and `manual-testing-playbook/`). This surface does not mirror them,
@@ -130,8 +130,9 @@ RESOURCE_MAP = {
         "references/css-class-naming-bem.md",
         "references/comment-grammar.md",
         "references/folder-docs.md",
-        "references/component-story-upkeep.md",
-        "references/screenshot-archive.md",
+        "references/storybook/storybook.md",
+        "references/storybook/component-story-upkeep.md",
+        "references/storybook/screenshot-archive.md",
         "assets/guardrail-audit-checklist.md",
         "assets/bem-rename-checklist.md",
         "assets/story-coverage-checklist.md",
