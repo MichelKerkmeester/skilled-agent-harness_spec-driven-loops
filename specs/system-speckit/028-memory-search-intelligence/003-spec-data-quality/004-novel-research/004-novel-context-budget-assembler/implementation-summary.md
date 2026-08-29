@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 022-novel-context-budget-assembler |
+| **Spec Folder** | 004-novel-context-budget-assembler |
 | **Status** | PLANNED (scaffolded, not yet implemented) |
 | **Completed** | Pending |
 | **Level** | 2 |

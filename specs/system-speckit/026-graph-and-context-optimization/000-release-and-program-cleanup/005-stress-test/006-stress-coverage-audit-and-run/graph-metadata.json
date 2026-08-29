@@ -38,28 +38,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/package.json",
-      "stress_test/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "mcp_server/package.json"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/package.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "stress_test/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -191,11 +176,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `codegraph` and `skilladvisor` subsystems each maintain a feature catalog (17 + 37 = 54 features), but the stress-test directory currently holds only 3 directly-tagged code-graph tests and 2 directly-tagged skill-advisor tests",
     "created_at": "2026-04-30T18:03:19Z",
-    "last_save_at": "2026-07-17T17:19:12.853Z",
+    "last_save_at": "2026-08-28T22:54:03.188Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

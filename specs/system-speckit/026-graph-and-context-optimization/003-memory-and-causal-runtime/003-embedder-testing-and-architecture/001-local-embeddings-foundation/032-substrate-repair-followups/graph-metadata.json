@@ -60,17 +60,10 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "mcp_server/scripts/repair-failed-embeddings.mjs",
       "spec.md",
       "handover.md"
     ],
     "entities": [
-      {
-        "name": "repair-failed-embeddings.mjs",
-        "kind": "file",
-        "path": "mcp_server/scripts/repair-failed-embeddings.mjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -158,7 +151,7 @@
     ],
     "causal_summary": "Phase parent for the 5 approved follow-ups to 022-local-llm-legacy-remediation's substrate-repair work. Each child is a focused unit shipped via a fresh cli-codex gpt-5.5 high fast dispatch. Wave 1 (001/003/004) runs in parallel; Wave 2 (002/005) runs sequentially after Wave 1 lands.",
     "created_at": "2026-05-14T11:05:00Z",
-    "last_save_at": "2026-07-17T17:19:19.444Z",
+    "last_save_at": "2026-08-28T22:58:07.930Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-14T14:30:00Z",
     "source_docs": [
@@ -170,7 +163,7 @@
       "spec.md": "9fb05ae769baf996e5395eca819aeda1409cf5e57ea0a9985b1e34d6e82b8594",
       "handover.md": "5656491592c524764a6ac8f61eb38500eac72a296f2176cdd3cb8ccdff6fc6f3"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/003-mcp-server-build-fix",
     "last_active_at": null
   }
 }

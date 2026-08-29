@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `024-cli-deep-research-memory-leak-audit` |
+| **Spec Folder** | packet-docs |
 | **Prepared** | 2026-05-22 |
 | **Completed** | Research synthesized; cleanup verification gaps remain |
 | **Level** | 3 |

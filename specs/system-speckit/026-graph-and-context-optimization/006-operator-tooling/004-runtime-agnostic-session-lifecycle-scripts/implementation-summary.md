@@ -30,7 +30,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 034-runtime-agnostic-session-lifecycle-scripts |
+| **Spec Folder** | 004-runtime-agnostic-session-lifecycle-scripts |
 | **Completed** | 2026-05-30 |
 | **Level** | 2 |
 | **Commit** | `b9a4b74962` |

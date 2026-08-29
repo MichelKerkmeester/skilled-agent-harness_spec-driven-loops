@@ -41,8 +41,6 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/bin/worktree-reaper.sh",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts",
       "plan.md",
       "checklist.md",
       "implementation-summary.md",
@@ -50,18 +48,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "worktree-reaper.sh",
-        "kind": "script",
-        "path": ".opencode/bin/worktree-reaper.sh",
-        "source": "derived"
-      },
-      {
-        "name": "file-watcher.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A broad scout of the codebase surfaced a backlog of latent code and security defects that no single review had triaged",
     "created_at": "2026-06-03T05:32:00Z",
-    "last_save_at": "2026-07-17T17:19:14.094Z",
+    "last_save_at": "2026-08-28T22:54:46.008Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:08106e5564c7c1206d2d190e06593b992d1fc9b2c82d4b00c959395369918850",
+    "source_fingerprint": "sha256:2c569bb1c99033ad58e635c487cc6cdef720ff67b40f7d78e96f7e4c288f73a4",
     "source_doc_hashes": {
       "spec.md": "ddd0c3c02a55792d22f7c40f1a128c44bdeec67f4d3da88600befb4bd05406c7",
       "plan.md": "afee158e2f098458bc33c55cb3eb288a46069eeec2a8be98be5b991801fc884a",
       "tasks.md": "7217c2084ff3c7999ee08c85c0d07396c47b0ab0156567187b27379d38685b98",
       "checklist.md": "d0e4a8e18c37b1f25bfe43104ebdca7e775d7f3f2a9badadc66be5ad861461d1",
-      "implementation-summary.md": "ece86ffdac8aca54707c5bf318358a4db67e211ddccbac488316b36e1fb6a177"
+      "implementation-summary.md": "f6a0bd54c41eda35244b8ef8ef9ed3a7611379c5c9c26c6a726f1b57b0881804"
     },
     "last_active_child_id": null,
     "last_active_at": null

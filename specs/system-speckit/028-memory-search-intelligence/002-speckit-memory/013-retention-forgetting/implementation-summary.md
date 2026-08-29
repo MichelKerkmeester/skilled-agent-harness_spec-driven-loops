@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 011-retention-forgetting |
+| **Spec Folder** | 013-retention-forgetting |
 | **Status** | in_progress |
 | **Completed** | Partial implementation 2026-06-19 |
 | **Level** | 2 |

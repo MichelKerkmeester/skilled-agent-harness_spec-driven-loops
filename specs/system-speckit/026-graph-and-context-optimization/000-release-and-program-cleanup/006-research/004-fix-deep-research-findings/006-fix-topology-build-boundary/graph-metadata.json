@@ -41,18 +41,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/is-phase-parent.ts",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
-      ".opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts",
-      "mcp_server/lib/spec/is-phase-parent.ts",
-      "scripts/spec/is-phase-parent.ts",
-      "scripts/rules/check-phase-parent-content.sh",
-      "scripts/evals/check-source-dist-alignment.ts",
-      "stress_test/search-quality/harness.ts",
-      "mcp_server/tests/phase-parent-health.vitest.ts",
-      "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "checklist.md",
       "implementation-summary.md",
       "spec.md",
@@ -60,48 +48,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "is-phase-parent.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/spec/is-phase-parent.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-phase-parent-content.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-source-dist-alignment.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/evals/check-source-dist-alignment.ts",
-        "source": "derived"
-      },
-      {
-        "name": "harness.ts",
-        "kind": "code",
-        "path": "stress_test/search-quality/harness.ts",
-        "source": "derived"
-      },
-      {
-        "name": "phase-parent-health.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/phase-parent-health.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-source-dist-alignment-orphans.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/check-source-dist-alignment-orphans.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
       {
         "name": "checklist.md",
         "kind": "doc",
@@ -203,11 +149,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "dist CLI",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "finding IDs",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quality Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Six P2 findings from packet 046's deep research (D4 phase-topology, D5 build/dist boundary) leak topology drift, cache-signature drift, and stale dist artifacts the existing tooling cannot see:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-07-17T17:19:13.478Z",
+    "last_save_at": "2026-08-28T22:54:24.725Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

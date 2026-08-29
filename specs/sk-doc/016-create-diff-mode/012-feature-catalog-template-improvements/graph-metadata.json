@@ -51,7 +51,7 @@
       "across"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -101,15 +101,15 @@
     ],
     "causal_summary": "Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7 categories; system-code-graph: 15 files, 7 categories) reveals pervasive drift from the desired standard:",
     "created_at": "2026-05-31T00:00:00.000Z",
-    "last_save_at": "2026-07-17T13:38:37.956Z",
+    "last_save_at": "2026-08-28T22:20:34.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:42dab505727e31ae8de6cbe63b6e76ebd036b381e078f4d1c110c8f9fe2fefe6",
+    "source_fingerprint": "sha256:ebb7c8ffbd77fd1f7bf37f04681417674b2909d472d07cf20f2dc9632cbb8a9e",
     "source_doc_hashes": {
-      "spec.md": "8757e162b7a4ecf276e95f4a31bd87bcf4244b9dc8698a527ce27a0a95dcb975"
+      "spec.md": "4a8b2f5e7a5db4d478f9aac3d96c4414ab885c309fd5bd87eb2906f2f804b15e"
     },
     "last_active_child_id": "sk-doc/012-feature-catalog-template-improvements/001-template-improvements",
     "last_active_at": null

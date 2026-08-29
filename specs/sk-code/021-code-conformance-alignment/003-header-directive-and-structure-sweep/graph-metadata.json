@@ -45,9 +45,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      ".claude/statusline-command.sh",
-      "decision-record.md",
-      ".opencode/bin/git-sync.sh"
+      "decision-record.md"
     ],
     "entities": [
       {
@@ -75,21 +73,9 @@
         "source": "derived"
       },
       {
-        "name": "statusline-command.sh",
-        "kind": "script",
-        "path": ".claude/statusline-command.sh",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "git-sync.sh",
-        "kind": "script",
-        "path": ".opencode/bin/git-sync.sh",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The JavaScript style guide states that all JavaScript files MUST begin with a boxed header identifying the module, 78 characters wide, immediately followed by `'use strict';` for `.js` and `.cjs` files — and that `.mjs` and plugin ESM files do not take the directive",
     "created_at": "2026-07-30T19:25:14.846Z",
-    "last_save_at": "2026-07-30T19:25:14.846Z",
+    "last_save_at": "2026-08-28T22:09:48.793Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

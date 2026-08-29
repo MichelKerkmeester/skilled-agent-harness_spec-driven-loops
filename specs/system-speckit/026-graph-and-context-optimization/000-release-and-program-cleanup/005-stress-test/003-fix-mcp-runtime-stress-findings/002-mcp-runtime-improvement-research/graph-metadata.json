@@ -45,17 +45,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts",
-      "handlers/memory-context.ts",
-      "formatters/search-results.ts",
-      "lib/search/recovery-payload.ts",
-      "lib/storage/causal-edges.ts",
-      "handlers/save/create-record.ts",
-      "lib/search/intent-classifier.ts",
-      "handlers/causal-graph.ts",
       "research/research.md"
     ],
     "entities": [
@@ -81,48 +70,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "intent-classifier.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts",
-        "source": "derived"
-      },
-      {
-        "name": "recovery-payload.ts",
-        "kind": "code",
-        "path": "lib/search/recovery-payload.ts",
-        "source": "derived"
-      },
-      {
-        "name": "create-record.ts",
-        "kind": "code",
-        "path": "handlers/save/create-record.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-graph.ts",
-        "kind": "code",
-        "path": "handlers/causal-graph.ts",
         "source": "derived"
       },
       {
@@ -202,11 +149,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Deep Research Loop",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Synthesis",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "outcome",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two recent investigation packets (005 defects catalog and 006 cross-AI stress-test) surfaced a coherent set of MCP runtime defects spanning the memory layer, code graph, cocoindex mirror handling, intent classifier, and a new model-side hallucination class on weak retrieval signals",
     "created_at": "2026-04-27T06:26:49.654Z",
-    "last_save_at": "2026-07-17T17:19:11.651Z",
+    "last_save_at": "2026-08-28T22:53:05.271Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "036-spec-doc-template-reduction/002-tasks-checklist-merge"
+    packet_pointer: "system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge"
     last_updated_at: "2026-08-26T06:45:00Z"
     last_updated_by: "design-author"
     recent_action: "Merge attempt reverted: check-anchors flags 9 while compare reports clean"

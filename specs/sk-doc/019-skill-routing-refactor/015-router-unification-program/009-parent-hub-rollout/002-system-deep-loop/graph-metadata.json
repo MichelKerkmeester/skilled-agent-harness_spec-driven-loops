@@ -3,6 +3,7 @@
   "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop",
   "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop",
   "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -52,8 +53,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/system-deep-loop/mode-registry.json",
-      ".opencode/skills/system-deep-loop/SKILL.md",
       "compiled/projection-graph.json",
       "compiled/policy.json",
       "compiled/route-gold.typed.json"
@@ -126,18 +125,6 @@
         "source": "derived"
       },
       {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "projection-graph.json",
         "kind": "config",
         "path": "compiled/projection-graph.json",
@@ -202,11 +189,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Compile",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Shadow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Under the pre-refactor model, a destination is addressed by `workflowMode` name or packet path",
     "created_at": "2026-07-18T13:13:19.824Z",
-    "last_save_at": "2026-07-24T12:11:51.639Z",
+    "last_save_at": "2026-08-28T22:23:34.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

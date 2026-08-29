@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite` |
+| **Spec Folder** | 002-rerun-24-scenarios-suite |
 | **Completed** | Not complete: blocked on 2026-05-14 |
 | **Level** | 2 |
 | **Evidence Report** | `_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14b-post-032.md` |

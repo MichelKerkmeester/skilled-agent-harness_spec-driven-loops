@@ -3,13 +3,14 @@
   "packet_id": "cli-external-orchestration/042-pi-remote-experience-parity",
   "spec_folder": "cli-external-orchestration/042-pi-remote-experience-parity",
   "parent_id": "cli-external-orchestration",
+  "parent_id_review_required": true,
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "cli-external-orchestration/041-pi-remote-mobile-agent-like-cc"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -19,35 +20,197 @@
       "pi remote best experience"
     ],
     "key_topics": [
-      "pi",
       "remote",
       "experience",
       "parity",
-      "research"
+      "research",
+      "claude",
+      "app",
+      "best",
+      "packet",
+      "reproduces",
+      "engine",
+      "code",
+      "mobile"
     ],
     "importance_tier": "critical",
-    "status": "review",
+    "status": "complete",
     "key_files": [
       "spec.md",
+      "research/research.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
       "checklist.md",
-      "research/research.md"
+      "implementation-summary.md"
     ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Remote Experience Parity Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Produce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "all",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. APPROACH",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. STAGES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. DEPENDENCIES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "P0 Tasks",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "P1 Tasks",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Notes",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Completion",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Known Caveats",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "cited",
+        "kind": "key_phrase",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 041 Pi remote packet reproduces the engine of the Claude Code + Claude mobile app pairing (local-first relay, cross-device resume, network-resilient replay, steer/stop) but not the app feel",
+    "created_at": "2026-08-12T06:00:00.000Z",
+    "last_save_at": "2026-08-28T22:00:12.500Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md",
-      "checklist.md"
+      "research/research.md"
     ],
-    "entities": [],
-    "causal_summary": "Two-lineage deep research on how a Pi remote client can match and exceed the Claude Code + mobile pairing within a hard privacy posture.",
-    "created_at": "2026-08-12T06:00:00.000Z",
-    "last_save_at": "2026-08-12T06:47:00.000Z",
-    "save_lineage": "manual",
-    "last_accessed_at": null,
+    "source_fingerprint": "sha256:d208375304c5ee5d2bb1255ea6165519a6f3b91290c56be4cdb339ae251f7f66",
+    "source_doc_hashes": {
+      "spec.md": "fcd523ef4862f1d0354e8c426c3a0319aad0fead6de2fad44f373fe89baea05f",
+      "plan.md": "4e7c3c509cd467edda04f9ba66059af25bbf46189be801f7a6c29d577c5286cc",
+      "tasks.md": "fac30e2ff95112ee267dee76b519364103ecb6b244a4a30959b03ffe4f002624",
+      "checklist.md": "0a880810bfb6391a964bd613f2cb2a927136338fb92bcc2bae7863af8430fbe1",
+      "implementation-summary.md": "35ecb3e2e628c3ed8c822173a61d80fa1064e6c114783ede0b475c131131fd8a",
+      "research/research.md": "acf8fd60c94fcfe7be190972d2528159d65eb6f9a047eafefeb9608f791a4e95"
+    },
     "last_active_child_id": null,
     "last_active_at": null
   }

@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 13 spec-kit manifest templates contain measured duplication and context waste",
     "created_at": "2026-08-26T05:33:55Z",
-    "last_save_at": "2026-08-27T20:20:31.239Z",
+    "last_save_at": "2026-08-29T00:57:05.130Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,9 +205,9 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b95662fc2ef03b95e44617f52ee85f21c1ce023fb2019107990aaba1c2c71aee",
+    "source_fingerprint": "sha256:b10f2265e53a8d5aeffb0dc164de115a6f9fcedfd0a7d1ef3248eddae2dfb2ce",
     "source_doc_hashes": {
-      "spec.md": "8e04c584ba93b9d0d5ec63b8117410317d55260e0404fa3e60bcf8e96e3a7e6a",
+      "spec.md": "9ccdf6547d62511ddd16e1368fd3453dcacb2e956b30d24057744d80dbc0deed",
       "plan.md": "26c8fb8bfcf6d131149e0873cd2d6f6487870c21397c1e54389aea6ab3d2f7d2",
       "tasks.md": "0b225855d7687c5e66d6e57a8fd42b2bf15bcf57ca9ec568b24a7984f3760f0e",
       "implementation-summary.md": "871a37673d78a56c69049c6cc06b1bbaca917eaed530888cadc2df9a896ea21c",

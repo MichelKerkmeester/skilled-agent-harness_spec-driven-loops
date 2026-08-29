@@ -56,11 +56,9 @@
       "research/iterations/iteration-006.md",
       "research/iterations/iteration-007.md",
       "research/iterations/iteration-008.md",
-      ".opencode/skills/system-deep-loop/SKILL.md",
-      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-      ".opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json",
       "research/resource-map.md",
-      "research/deep-research-strategy.md"
+      "research/deep-research-strategy.md",
+      "research/deep-research-dashboard.md"
     ],
     "entities": [
       {
@@ -154,27 +152,15 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-resource-contract.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "skill-benchmark-report.json",
-        "kind": "config",
-        "path": ".opencode/skills/system-deep-loop/benchmark/reports/baseline/skill-benchmark-report.json",
-        "source": "derived"
-      },
-      {
         "name": "deep-research-strategy.md",
         "kind": "doc",
         "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
         "source": "derived"
       },
       {
@@ -206,11 +192,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Change Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "system-deep-loop's routing cannot be measured on the canonical typed-pair surface, and its coordinate model is structurally ambiguous",
     "created_at": "2026-07-17T04:07:04.548Z",
-    "last_save_at": "2026-07-24T11:03:16.601Z",
+    "last_save_at": "2026-08-28T22:22:05.101Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +218,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:e1c13cc96008c33f1520a794717a91cad007596f0d3bd979476fdd80ea97411f",
+    "source_fingerprint": "sha256:ed02741ab8a8c26e1f03af12745a21e7173a89f06c3c35aa02b953af7851a0de",
     "source_doc_hashes": {
       "spec.md": "0223f1f0da0ea769f9a054c875a21237519833fe3ba298f0e386d3097ec913a9",
       "plan.md": "ad2f5e841e3460e761b8ec266bab69576812eb8ea8633d541a1b141e6c1a4fb7",
       "tasks.md": "d0bb84d8e7c3d2f686761f0e7d92a2751898f53b22e9918884687776a5daa545",
-      "implementation-summary.md": "a92e37fe9ac03669a20324a982b665f1607bc9dacb351c349c9e998bd22d03c7",
-      "research/research.md": "28c575106d70056992d636a61ffcc5e91d4192fa6b2e98ac3c2ab3da1662019c"
+      "implementation-summary.md": "c5119f37812f4a933699d8d7ed1ef11a68e87839194ea49ba39ca576f84b6c4b",
+      "research/research.md": "cd188b8803bfad347ac0e67d43c5add9198ca5aef45a6df417d4702bf952815b"
     },
     "last_active_child_id": null,
     "last_active_at": null

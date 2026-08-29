@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 051-graph-metadata-child-drift-audit-and-harden |
+| **Spec Folder** | 017-graph-metadata-child-drift-audit-and-harden |
 | **Completed** | In Progress. Audit and drift check shipped and verified; backfill deferred |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

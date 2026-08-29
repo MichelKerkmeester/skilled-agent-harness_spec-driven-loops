@@ -42,7 +42,7 @@
       "subsystems"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -92,7 +92,7 @@
     ],
     "causal_summary": "The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off fixes",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-07-17T17:16:54.658Z",
+    "last_save_at": "2026-08-28T22:50:29.260Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

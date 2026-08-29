@@ -26,5 +26,6 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "Feature Specification: 000 Release Cleanup"
-  ]
+  ],
+  "level": "phase"
 }

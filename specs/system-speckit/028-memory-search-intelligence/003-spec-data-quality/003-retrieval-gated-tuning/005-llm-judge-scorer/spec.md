@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/018-llm-judge-scorer"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/005-llm-judge-scorer"
     last_updated_at: "2026-07-04T17:11:51.250Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored buildable phase spec from research C5 verdict"

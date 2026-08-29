@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 012-procedural-reliability-benchmark |
+| **Spec Folder** | 015-procedural-reliability-benchmark |
 | **State** | complete |
 | **Level** | 3 |
 | **Candidates** | 4 (safe-core plumbing done, 4 promotion decisions PENDING) |

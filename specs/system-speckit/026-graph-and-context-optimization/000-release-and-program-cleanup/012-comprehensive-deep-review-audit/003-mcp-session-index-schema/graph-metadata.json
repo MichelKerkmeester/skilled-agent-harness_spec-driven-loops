@@ -32,102 +32,9 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-list.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      "mcp_server/context-server.ts",
-      "mcp_server/tool-schemas.ts",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "session-bootstrap.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-resume.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-health.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-learning.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index-discovery.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index-alias.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-ingest.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedder-list.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-list.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedder-set.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedder-status.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -173,7 +80,7 @@
     ],
     "causal_summary": "The MCP session lifecycle, incremental indexing, ingest, embedder management, the context-server entrypoint/dispatch, and the tool-schema layer all changed across 026",
     "created_at": "2026-06-04T18:53:35.319Z",
-    "last_save_at": "2026-07-02T05:31:10.967Z",
+    "last_save_at": "2026-08-28T22:55:02.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

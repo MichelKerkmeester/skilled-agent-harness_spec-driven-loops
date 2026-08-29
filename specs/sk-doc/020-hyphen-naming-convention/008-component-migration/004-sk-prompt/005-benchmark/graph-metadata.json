@@ -41,21 +41,13 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md",
       "spec.md",
       "plan.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md",
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "BENCHMARK-SUMMARY.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/benchmark/BENCHMARK-SUMMARY.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -193,11 +185,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-prompt benchmark surface contains underscore-separated authored result directories such as live_final, router_final, and router_mode_a, plus generated raw-run filenames with double underscores. This phase renames authored benchmark paths, updates path references, and records generated/frozen output dispositions without changing benchmark payload keys, fixtures, profiles, or scores.",
     "created_at": "2026-07-14T15:17:33Z",
-    "last_save_at": "2026-07-17T20:26:07.935Z",
+    "last_save_at": "2026-08-28T22:29:06.600Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:692f17b899f03ef14f79b7daacdd7e7ccbf35daedfdf79eb050fc95fa891f3d5",
+    "source_fingerprint": "sha256:b6fa42b95160429eb47528a2f233f5a0261727c6145a2350c63b8564d1d0b9b2",
     "source_doc_hashes": {
       "spec.md": "46c1382330ea0b9b226656cc8f54070dfedd7834b2195a4f1d5b4f65385ae5a2",
-      "plan.md": "dd8b41f2cf9ad5d58442ca324d3a04cbb833d5006c56c6d88b53e01494e48e61",
+      "plan.md": "e5544bb3e5c6c802a70d8b113da887fc2eced300d94a60caa65473a684b01ff3",
       "tasks.md": "60c4f8aa8e9fb2d23d927a1b98dfac5c29f63bb08c058aa05f0fa58495f5f8d1",
       "checklist.md": "d7d5fdd43fdecbeee401545f8b7d1caca12e983b516b9be145a2a7e2fdfe427c",
-      "decision-record.md": "9c19648a441b8cb2c894fa0f0d6d706dd4e54a89c91b33c9e05287ae6bf77de7"
+      "decision-record.md": "6b665cc08100ab0db916daa37ad0f699b834ea6eaca62ebd649ecc6fbb77b2fa"
     },
     "last_active_child_id": null,
     "last_active_at": null

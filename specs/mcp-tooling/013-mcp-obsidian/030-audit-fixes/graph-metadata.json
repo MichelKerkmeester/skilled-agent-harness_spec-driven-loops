@@ -3,7 +3,6 @@
   "packet_id": "mcp-tooling/013-mcp-obsidian/030-audit-fixes",
   "spec_folder": "mcp-tooling/013-mcp-obsidian/030-audit-fixes",
   "parent_id": "mcp-tooling/013-mcp-obsidian",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -30,7 +29,6 @@
     "status": "planned",
     "key_files": [
       "implementation-summary.md",
-      "specs/mcp-tooling/graph-metadata.json",
       "spec.md",
       "plan.md",
       "tasks.md"
@@ -40,12 +38,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": "specs/mcp-tooling/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -153,7 +145,7 @@
     ],
     "causal_summary": "Fix the three defects from the two fresh-Opus bug audits of the `mcp-obsidian` mode skill and its `mcp-tooling` parent integration",
     "created_at": "2026-08-06T13:47:25.994Z",
-    "last_save_at": "2026-08-06T13:47:25.994Z",
+    "last_save_at": "2026-08-28T22:06:52.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

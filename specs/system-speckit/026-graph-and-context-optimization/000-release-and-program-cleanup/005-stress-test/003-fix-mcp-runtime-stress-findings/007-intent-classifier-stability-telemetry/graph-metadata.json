@@ -40,17 +40,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/intent-paraphrase-stability.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts",
-      "mcp_server/handlers/memory-context.ts",
-      "mcp_server/lib/search/intent-classifier.ts",
-      "mcp_server/tests/intent-paraphrase-stability.vitest.ts",
-      "mcp_server/tests/intent-classifier.vitest.ts",
-      "lib/search/intent-classifier.ts",
-      "tests/intent-paraphrase-stability.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -75,30 +65,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "intent-classifier.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "intent-paraphrase-stability.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/intent-paraphrase-stability.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "intent-classifier.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/intent-classifier.vitest.ts",
         "source": "derived"
       },
       {
@@ -196,11 +162,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Implemented",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "005/REQ-016 captured paraphrase instability: `\"Semantic Search\"` → `fixbug` (0.098) but `\"Find stuff related to semantic search\"` → `understand`",
     "created_at": "2026-04-27T07:56:33.777Z",
-    "last_save_at": "2026-07-17T17:19:11.653Z",
+    "last_save_at": "2026-08-28T22:53:12.646Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

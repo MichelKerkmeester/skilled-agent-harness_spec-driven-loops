@@ -41,146 +41,34 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-design/design-md-generator/SKILL.md",
-      ".opencode/specs/sk-design/005-design-md-generator/spec.md",
-      ".opencode/specs/sk-design/005-design-md-generator/plan.md",
-      ".opencode/specs/sk-design/005-design-md-generator/tasks.md",
-      ".opencode/specs/sk-design/005-design-md-generator/checklist.md",
-      ".opencode/skills/sk-design/design-md-generator/procedures/design_system_extraction.md",
-      ".opencode/skills/sk-design/design-md-generator/references/design_md_format.md",
-      ".opencode/skills/sk-design/design-md-generator/references/writing_style_guide.md",
-      ".opencode/skills/sk-design/design-md-generator/references/extraction_workflow.md",
-      ".opencode/skills/sk-design/design-md-generator/references/guided_run.md",
-      ".opencode/skills/sk-design/design-md-generator/references/troubleshooting.md",
-      ".opencode/skills/sk-design/design-md-generator/references/authoring_boundary.md",
-      ".opencode/skills/sk-design/design-md-generator/references/color_role_taxonomy.md",
-      ".opencode/skills/sk-design/design-md-generator/references/component_taxonomy.md",
-      ".opencode/skills/sk-design/design-md-generator/references/anti_patterns.md",
-      ".opencode/skills/sk-design/design-md-generator/references/quality_checklist.md",
-      ".opencode/skills/sk-design/design-md-generator/references/examples/editorial_exemplar.md",
-      ".opencode/skills/sk-design/design-md-generator/references/examples/linear/DESIGN.md",
-      ".opencode/skills/sk-design/design-md-generator/references/examples/linear/tokens.json",
-      ".opencode/skills/sk-design/design-md-generator/references/examples/linear/writing-notes.md"
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md"
     ],
     "entities": [
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/005-design-md-generator/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/005-design-md-generator/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-design/005-design-md-generator/tasks.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-design/005-design-md-generator/checklist.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "design_system_extraction.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/procedures/design_system_extraction.md",
-        "source": "derived"
-      },
-      {
-        "name": "design_md_format.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/design_md_format.md",
-        "source": "derived"
-      },
-      {
-        "name": "writing_style_guide.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/writing_style_guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "extraction_workflow.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/extraction_workflow.md",
-        "source": "derived"
-      },
-      {
-        "name": "guided_run.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/guided_run.md",
-        "source": "derived"
-      },
-      {
-        "name": "troubleshooting.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/troubleshooting.md",
-        "source": "derived"
-      },
-      {
-        "name": "authoring_boundary.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/authoring_boundary.md",
-        "source": "derived"
-      },
-      {
-        "name": "color_role_taxonomy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/color_role_taxonomy.md",
-        "source": "derived"
-      },
-      {
-        "name": "component_taxonomy.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/component_taxonomy.md",
-        "source": "derived"
-      },
-      {
-        "name": "anti_patterns.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/anti_patterns.md",
-        "source": "derived"
-      },
-      {
-        "name": "quality_checklist.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/quality_checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "editorial_exemplar.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/examples/editorial_exemplar.md",
-        "source": "derived"
-      },
-      {
-        "name": "DESIGN.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/examples/linear/DESIGN.md",
-        "source": "derived"
-      },
-      {
-        "name": "tokens.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/examples/linear/tokens.json",
-        "source": "derived"
-      },
-      {
-        "name": "writing-notes.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-md-generator/references/examples/linear/writing-notes.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -206,11 +94,107 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Source Version",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Documentation Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playwright Chromium",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Quick Start",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Tasks",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Record Node",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Level",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Design references generated from a live site need to preserve measured CSS values and clearly separate observed facts from interpretation",
     "created_at": "2026-07-16T09:27:32.433Z",
-    "last_save_at": "2026-07-16T09:27:32.433Z",
+    "last_save_at": "2026-08-28T22:11:46.775Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -50,7 +50,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 030-opencode-temp-worker-reaping |
+| **Spec Folder** | 040-opencode-temp-worker-reaping |
 | **Completed** | In Progress - shipped layers verified 2026-07-11; activation, sweeper hardening, and the embedder demand-listener fix remain |
 | **Level** | 2 |
 | **Actual Effort** | This session: investigation + two shipped fixes + operational recovery (~3-4 hours) |

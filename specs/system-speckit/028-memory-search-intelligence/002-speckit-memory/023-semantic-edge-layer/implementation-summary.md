@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 017-semantic-edge-layer |
+| **Spec Folder** | 023-semantic-edge-layer |
 | **Status** | No-Go (Partial) |
 | **Completed** | 2026-06-19 (substrate landed shadow-only, then removed as a no-go) |
 | **Level** | 3 |

@@ -41,17 +41,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts",
-      "tests/d5-recovery-payload.vitest.ts",
-      "tests/empty-result-recovery.vitest.ts",
-      "mcp_server/lib/search/recovery-payload.ts",
-      "mcp_server/formatters/search-results.ts",
-      "mcp_server/tests/d5-recovery-payload.vitest.ts",
-      "mcp_server/tests/empty-result-recovery.vitest.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -76,30 +66,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "recovery-payload.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/recovery-payload.ts",
-        "source": "derived"
-      },
-      {
-        "name": "d5-recovery-payload.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/d5-recovery-payload.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "empty-result-recovery.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts",
         "source": "derived"
       },
       {
@@ -197,11 +163,35 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "006/I2 cli-opencode received `requestQuality:\"weak\"` plus `recovery.recommendedAction:\"askuser\"` with `suggestedQueries:[]`, yet still synthesized canonical-looking spec folder paths and file references that did not exist",
     "created_at": "2026-04-27T07:48:04.973Z",
-    "last_save_at": "2026-07-17T17:19:11.959Z",
+    "last_save_at": "2026-08-28T22:53:16.197Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -67,29 +67,15 @@
       "monolith"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      "spec.md",
-      ".opencode/skills/sk-doc/graph-metadata.json",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
+      "spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-doc/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
         "source": "derived"
       },
       {
@@ -131,15 +117,15 @@
     ],
     "causal_summary": "`sk-doc` is a 6-mode monolith: one overloaded `SKILL.md` carries document-quality management, skill/agent/command/readme/feature-catalog/testing-playbook/benchmark/changelog authoring, and flowchart creation, with `references/`, `scripts/`, and `assets/` flat at the skill root",
     "created_at": "2026-07-06T06:30:17.554Z",
-    "last_save_at": "2026-07-14T17:23:02.592Z",
+    "last_save_at": "2026-08-28T22:17:38.050Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6606b6433e77335ad96ee85e54b7755b3e23f0e36a42674b06b58a819ae42234",
+    "source_fingerprint": "sha256:f271c3192b198f1c286f8ceaeb38d3fb266c020702b495d6d56dc534e1e1b1d1",
     "source_doc_hashes": {
-      "spec.md": "2934039e7d655caa5be93221536d76731447aa0d701a1dd11d0c1b9f59e3213c"
+      "spec.md": "6101940fbeeaa68a8f7c090639f6711b9861bab5c1f2fe42e67d6ec1fbfdd23d"
     },
     "last_active_child_id": "sk-doc/014-sk-doc-parent/024-canon-self-enforcement",
     "last_active_at": null

@@ -41,28 +41,13 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
-      ".opencode/skills/system-spec-kit/shared/embeddings.ts",
       "spec.md",
       "plan.md",
-      "shared/embeddings.ts",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "embedding-cache.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -194,11 +179,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The re-index path has no mixed-vector guard and never specified one",
     "created_at": "2026-06-27T17:15:37.922Z",
-    "last_save_at": "2026-07-17T17:19:51.580Z",
+    "last_save_at": "2026-08-29T00:37:27.378Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1adf4fafb608b0acb108f817b6bcb4132dbbdf00cc09b09e8b733582db42d529",
+    "source_fingerprint": "sha256:8d2b9e4b8140f150cf8a89f140ab8bbf5403950720534139249931f09478ba08",
     "source_doc_hashes": {
       "spec.md": "37b1d5675978b5de6e57318e7334687b2c96909c3e3663311489aacaba7ea8a1",
       "plan.md": "7cb419593ae5c63ce0ad91fcef57f35318378275fa8a5d0540e07f319c9d15b6",
       "tasks.md": "7d6e6f048ec1d4e0a71188b1b4dbdb99f3dc9c2ecd0e1791bd3de387fb96bb75",
       "checklist.md": "0d76ce2a278a8f163504d602b2ca94241417ad1eea59d96c6f67b7420b93a117",
-      "implementation-summary.md": "46de1411ac8f20385043fac63382e25fc0fa52032fe19355b90c7e16cc5f836e"
+      "implementation-summary.md": "5f98793f7847f238b3c4d5360459bddce5faa0bb2d5b71fdc3de76fc19088bdc"
     },
     "last_active_child_id": null,
     "last_active_at": null

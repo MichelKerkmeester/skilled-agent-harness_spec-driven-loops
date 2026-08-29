@@ -43,46 +43,11 @@
       "stack"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "shared/embeddings/registry.ts",
-      "shared/embeddings/factory.ts",
-      ".opencode/bin/hf-model-server.cjs",
-      "shared/embeddings/providers/hf-local.ts",
-      "mcp_server/lib/embedders/execution-router.ts",
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "registry.ts",
-        "kind": "code",
-        "path": "shared/embeddings/registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": "shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hf-model-server.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/hf-model-server.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "hf-local.ts",
-        "kind": "code",
-        "path": "shared/embeddings/providers/hf-local.ts",
-        "source": "derived"
-      },
-      {
-        "name": "execution-router.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/embedders/execution-router.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -128,7 +93,7 @@
     ],
     "causal_summary": "The embedding stack exposes too many local model choices across separate registries, dimension maps, provider defaults, type strings, and docs",
     "created_at": "2026-05-29T05:06:24.626Z",
-    "last_save_at": "2026-07-17T17:19:29.943Z",
+    "last_save_at": "2026-08-28T23:04:26.400Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -138,7 +103,7 @@
     "source_doc_hashes": {
       "spec.md": "3d5e09cb7ab4f59f3226c67e5f79933449206e0e9bc0323c2f780bfa9378142c"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar",
     "last_active_at": null
   }
 }

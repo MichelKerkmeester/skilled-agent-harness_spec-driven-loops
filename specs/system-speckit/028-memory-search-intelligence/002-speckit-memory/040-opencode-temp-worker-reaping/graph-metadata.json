@@ -43,16 +43,9 @@
     "key_files": [
       "spec.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts",
-      ".opencode/scripts/orphan-mcp-sweeper.sh",
       "checklist.md",
-      ".opencode/scripts/session-cleanup.sh",
-      ".opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
       "plan.md",
-      "tasks.md",
-      ".opencode/bin/hf-model-server.cjs"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -68,45 +61,9 @@
         "source": "derived"
       },
       {
-        "name": "launcher-lease.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-lease.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "orphan-mcp-sweeper.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
-        "source": "derived"
-      },
-      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-cleanup.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/session-cleanup.sh",
-        "source": "derived"
-      },
-      {
-        "name": "com.michelkerkmeester.orphan-sweep.plist",
-        "kind": "file",
-        "path": ".opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "hf-local.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts",
         "source": "derived"
       },
       {
@@ -119,12 +76,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "hf-model-server.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/hf-model-server.cjs",
         "source": "derived"
       },
       {
@@ -198,11 +149,53 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Setup",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "per-task",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Investigation found chronic accumulation of orphaned `context-server.js` (spec-memory daemon) processes - 51 live at investigation time, start times spanning Jul 8-9 - plus a wedged embedder subsystem that makes `memoryindexscan` hang while pure SQLite reads stay healthy",
     "created_at": "2026-06-30T07:44:28Z",
-    "last_save_at": "2026-07-17T17:19:49.640Z",
+    "last_save_at": "2026-08-29T00:21:46.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a6968c4749a65ddbe78828a31a23e41fdb849031f3c9dc14390f3711fe517309",
+    "source_fingerprint": "sha256:3b9904ec8c164f2ca4770a376f28e107858685eb29819d8f9e65f80ed3fb96bc",
     "source_doc_hashes": {
       "spec.md": "1b5ba9d32594aa41d1ca85ba1ec5e4c574eb4774ebe75c0886e04bf2cb6a1705",
       "plan.md": "f7d4b9ac752ecb5b8ec80e5702b9702b3fa8787d178e50d2575211cc8c59d7aa",
       "tasks.md": "1b7ede9600515fe10744f379527e335907156b3318e90b8d621546f81a67205c",
       "checklist.md": "a066376a263e92cfe44c0ed653f33e14b3893a691849f2fc6713183db4e958c5",
-      "implementation-summary.md": "13c09c74680e161668de23e58ff7fd9ad02c7ded6713ba764d57f533830c41da"
+      "implementation-summary.md": "a92115e6158d64f9596e4ec63c4ed82a0836fe9f08dde2432e1849edac0e867b"
     },
     "last_active_child_id": null,
     "last_active_at": null

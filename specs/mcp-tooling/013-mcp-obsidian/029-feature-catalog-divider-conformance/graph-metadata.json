@@ -3,7 +3,6 @@
   "packet_id": "mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance",
   "spec_folder": "mcp-tooling/013-mcp-obsidian/029-feature-catalog-divider-conformance",
   "parent_id": "mcp-tooling/013-mcp-obsidian",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -170,7 +169,7 @@
     ],
     "causal_summary": "Add the missing Style-A section dividers to the 11 plugin feature-catalog leaves so they match the sibling `cli/` and `mcp/` leaves and the repo-wide catalog convention",
     "created_at": "2026-08-06T10:56:39.750Z",
-    "last_save_at": "2026-08-06T10:56:39.750Z",
+    "last_save_at": "2026-08-28T22:06:49.932Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

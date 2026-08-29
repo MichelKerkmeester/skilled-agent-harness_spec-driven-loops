@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/011-skill-anchor-toc-removal"
+    packet_pointer: "sk-doc/016-create-diff-mode/011-skill-anchor-toc-removal"
     last_updated_at: "2026-05-26T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "All four phases complete; cleanup verified"

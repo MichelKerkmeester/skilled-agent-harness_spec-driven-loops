@@ -49,9 +49,6 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".codex/config.toml",
-      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
       "research/research.md",
       "resource-map.md"
     ],
@@ -60,24 +57,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.toml",
-        "kind": "file",
-        "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "hook_system.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-prime.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
         "source": "derived"
       },
       {
@@ -203,7 +182,7 @@
     ],
     "causal_summary": "Runtime hook coverage drifted across Claude, Codex, Copilot, and the OpenCode plugin loader",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-07-17T17:19:32.456Z",
+    "last_save_at": "2026-08-28T23:05:55.892Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,7 +196,7 @@
       "research/research.md": "e3ddf3443f627d914eb70741b3760c129fb201007302d5254f3e887d89b41798",
       "resource-map.md": "fec9f1ee242d857076052822649f443ca5b5abcf5b75771a55a1c53f25dda6b3"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity",
     "last_active_at": null
   }
 }

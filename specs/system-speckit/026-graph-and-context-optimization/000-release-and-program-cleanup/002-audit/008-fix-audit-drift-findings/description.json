@@ -30,5 +30,6 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "01-05-26_04-43__fixed-sa-011-non-idempotent-derived-sync-real-bug.md"
-  ]
+  ],
+  "level": "2"
 }

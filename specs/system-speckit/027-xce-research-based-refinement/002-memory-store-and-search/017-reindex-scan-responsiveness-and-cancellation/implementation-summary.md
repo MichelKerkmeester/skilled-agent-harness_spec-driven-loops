@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 018-reindex-scan-responsiveness-and-cancellation |
+| **Spec Folder** | 017-reindex-scan-responsiveness-and-cancellation |
 | **Completed** | 2026-06-17 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

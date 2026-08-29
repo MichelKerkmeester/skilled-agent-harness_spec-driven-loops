@@ -41,7 +41,6 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-design/benchmark/README.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -49,12 +48,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/benchmark/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +185,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol This",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Benchmark run snapshots use underscore-bearing after-label directories, while the benchmark README and changelog describe those paths as comparison artifacts.",
     "created_at": "2026-07-14T15:17:21Z",
-    "last_save_at": "2026-07-20T11:43:45.217Z",
+    "last_save_at": "2026-08-28T22:28:24.706Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +205,13 @@
       "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:1f63323d28cd5f5e84058f6b587785e977e3058d03b11bd719aca5b33adf60a0",
+    "source_fingerprint": "sha256:dfe6493b84e2e8c85ae6250b7e018d2043101e89d4d74ee6ccc96a87084fe7b9",
     "source_doc_hashes": {
-      "spec.md": "ca1a1f88673048495fa6b850f9b29adae5083b140090f406d3f231e5d31f4aa9",
-      "plan.md": "0b308e417c4ba3283cc7e7f0f91cc115a6178c9e6ed2cea7cebbd1d0fcbd9179",
-      "tasks.md": "66f978745278dce83dfe2658bfff5634b4c553f93fd0d7adbdcb4438d40472cd",
-      "checklist.md": "b12eeb94dd3cb2ab9227283f2d0d268bb4d01a322f0d3a962ff13fc65986a79e",
-      "decision-record.md": "92793067ccb8de768316dc353be93d81bf87950b06af24ccdbafc81574d1c106"
+      "spec.md": "310c3700c2b4fdadd0a4a2415462c6b687d265a5236326e1619a590104ee9dbe",
+      "plan.md": "47d4d00a151f0d11ade58bd5128c5caa2c32e6dd6881dba27690aeeea081a6da",
+      "tasks.md": "e22d50bfa0410ff719d4f3421671493d7ab54d908c3a110fef8d6c8b26e697a2",
+      "checklist.md": "03652db4ae5a7f31d45e98950560143fd48c4dbb0644fe87c9d5928c77dd2011",
+      "decision-record.md": "8df5338e69de00082a639c9aa4532e106ef1e5bc38626aeabec97cff6c0b2b8e"
     },
     "last_active_child_id": null,
     "last_active_at": null

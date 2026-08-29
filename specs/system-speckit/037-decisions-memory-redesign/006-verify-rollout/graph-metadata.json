@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The deprecation touches search plumbing, tier config, learned-triggers, a command, root docs, and the advisor — a wide blast radius",
     "created_at": "2026-08-26T05:34:14Z",
-    "last_save_at": "2026-08-27T20:23:44.097Z",
+    "last_save_at": "2026-08-29T00:57:32.437Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:41982e058e034d77a041a395a2b7291ed933983b9ed7c40571a2646d9efbdb1f",
+    "source_fingerprint": "sha256:aedec6d53e1e2617c3d92dcd624795c24cdfb605b41cdb8adeef24bef4215d81",
     "source_doc_hashes": {
-      "spec.md": "9b176f8d399acccf57f0362f9ff2c54bb65ccd2cff2fa13ff12934556fa1dd58",
+      "spec.md": "d49a7af048a4e06843a17ee70aea4b4c08c753082675c84d77b31dd27409a411",
       "plan.md": "c0645a0f1ec0fbb892c39a83162d61bc5f763f1a5fc48e66bafef785fb448d7e",
-      "tasks.md": "ec307271043e68b712a48fb79fa9396199b4f85b0cf12accb952f7bfb8703968",
-      "implementation-summary.md": "b73fb177fe2fced0f724d9c89c0572f9e8e85597bcef8d431a91cc3da818d57d"
+      "tasks.md": "e91d2336dd1aac4f9045110d9671204afca328f7410656747fb34fb9f1bf3cea",
+      "implementation-summary.md": "25e87ee1c0ae48e809f36cb3e75f166f80d0633a8f86a2a0d6cf48514a673a23"
     },
     "last_active_child_id": null,
     "last_active_at": null

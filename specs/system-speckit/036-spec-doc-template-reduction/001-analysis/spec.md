@@ -12,7 +12,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "036-spec-doc-template-reduction/001-analysis"
+    packet_pointer: "system-speckit/036-spec-doc-template-reduction/001-analysis"
     last_updated_at: "2026-08-26T05:33:56Z"
     last_updated_by: "design-author"
     recent_action: "Authored the analysis specification from research recommendations R1 through R6"

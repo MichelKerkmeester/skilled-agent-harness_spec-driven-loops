@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "028-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/013-retrieval-feedback-edge"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/003-retrieval-feedback-edge"
     last_updated_at: "2026-07-04T17:12:09.476Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored phase spec from research.md B3 row"

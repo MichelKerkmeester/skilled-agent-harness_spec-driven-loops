@@ -33,21 +33,14 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-design/mode-registry.json",
       "research/deep-research-state.jsonl",
       "research/research.md",
-      ".opencode/package.json",
+      "research/resource-map.md",
       "research/lineages/sol/.deep-research.lock",
       "spec.md",
       "handover.md"
     ],
     "entities": [
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
       {
         "name": "deep-research-state.jsonl",
         "kind": "file",
@@ -58,12 +51,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "package.json",
-        "kind": "config",
-        "path": ".opencode/package.json",
         "source": "derived"
       },
       {
@@ -163,13 +150,13 @@
         "source": "derived"
       },
       {
-        "name": "Known Issues",
-        "kind": "proper_noun",
+        "name": "evidence",
+        "kind": "key_phrase",
         "path": "handover.md",
         "source": "derived"
       },
       {
-        "name": "evidence",
+        "name": "synthesis",
         "kind": "key_phrase",
         "path": "handover.md",
         "source": "derived"
@@ -189,7 +176,7 @@
     ],
     "causal_summary": "sk-design has grown to seven modes — interface, foundations, motion, audit, md-generator, the design-mcp-open-design transport, plus a large `styles` resource tree",
     "created_at": "2026-07-25T13:39:24.267Z",
-    "last_save_at": "2026-07-25T13:39:24.267Z",
+    "last_save_at": "2026-08-28T22:14:13.260Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,11 +184,11 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:7ea040b26d1f77427a3b6e2cb865dc290c57310cc7ae742240c15dc996d420be",
+    "source_fingerprint": "sha256:68dcf17751f16e8d6f9d8d104e17b07c2b7ab9f28c57fb1a62dd7dbd9fac90d6",
     "source_doc_hashes": {
       "spec.md": "2d8e32920cc7f8acf9f973749f021cea6ce2a1b56ec58d5d07737e987bb77b75",
       "research/research.md": "8e656fc79f5fc2afe98977016ad146c37d4437f005edf427a560b931934f37a7",
-      "handover.md": "a7f2e0b5d245b13d33a9fffd68ca6fbde16d37a40d21c74adaa591f9d01a568b"
+      "handover.md": "62ddad776c96d5f4f9df030e498857551729c1460141604f8c467d4fa571a624"
     },
     "last_active_child_id": null,
     "last_active_at": null

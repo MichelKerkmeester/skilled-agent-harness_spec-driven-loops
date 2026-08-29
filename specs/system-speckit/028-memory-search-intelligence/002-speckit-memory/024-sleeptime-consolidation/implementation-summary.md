@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 018-sleeptime-consolidation |
+| **Spec Folder** | 024-sleeptime-consolidation |
 | **Status** | in_progress |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

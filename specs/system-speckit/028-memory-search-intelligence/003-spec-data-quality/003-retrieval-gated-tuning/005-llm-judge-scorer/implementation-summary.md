@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 018-llm-judge-scorer |
+| **Spec Folder** | 005-llm-judge-scorer |
 | **Completed** | Not yet, status PLANNED |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 001-research/005-system-deep-loop-routing-research |
+| **Spec Folder** | 005-system-deep-loop-routing-research |
 | **Completed** | In Progress (0%) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

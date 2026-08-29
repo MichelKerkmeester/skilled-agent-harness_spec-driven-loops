@@ -48,19 +48,12 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "mcp_server/context-server.ts",
-      "mcp_server/lib/embedders/reindex.ts",
-      "shared/embeddings.ts",
-      "shared/embeddings/factory.ts",
-      ".claude/mcp.json",
       "research/research.md",
       "spec.md",
-      "mcp_server/lib/providers/retry-manager.ts",
-      "mcp_server/cli.ts",
-      "handlers/memory-index.ts",
-      "handlers/embedder-set.ts",
-      "lib/embedders/reindex.ts",
-      "research/iterations/iteration-007.md"
+      "research/iterations/iteration-007.md",
+      "research/iterations/iteration-008.md",
+      "research/findings-registry.json",
+      "research/deep-research-dashboard.md"
     ],
     "entities": [
       {
@@ -106,36 +99,6 @@
         "source": "derived"
       },
       {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
-        "source": "derived"
-      },
-      {
-        "name": "reindex.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/embedders/reindex.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embeddings.ts",
-        "kind": "code",
-        "path": "shared/embeddings.ts",
-        "source": "derived"
-      },
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": "shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
@@ -148,33 +111,27 @@
         "source": "derived"
       },
       {
-        "name": "retry-manager.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/providers/retry-manager.ts",
-        "source": "derived"
-      },
-      {
-        "name": "cli.ts",
-        "kind": "code",
-        "path": "mcp_server/cli.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedder-set.ts",
-        "kind": "code",
-        "path": "handlers/embedder-set.ts",
-        "source": "derived"
-      },
-      {
         "name": "iteration-007.md",
         "kind": "doc",
         "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-dashboard.md",
+        "kind": "doc",
+        "path": "research/deep-research-dashboard.md",
         "source": "derived"
       },
       {
@@ -206,11 +163,47 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "<!-- DR-SEED:REQUIREMENTS -->",
     "created_at": "2026-05-26T22:10:31.718Z",
-    "last_save_at": "2026-07-17T17:19:29.603Z",
+    "last_save_at": "2026-08-28T23:04:15.512Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,12 +213,12 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c3964ae53693c1e38255708bf08b98a23f4d809858df09fa4e667ca63143d76b",
+    "source_fingerprint": "sha256:1e328af9a9ca391c2fe2add96ebc5ce14f9b7a3b33a95404086168cc70f80066",
     "source_doc_hashes": {
       "spec.md": "e6393d7a86e5caca3840519fe5c64ae5ed617a9d73ceb8e55b1af2cbbdaf5c30",
       "plan.md": "dcecf29b2ed15a3405c1118356177887e61e284b2a31756494acf45b3936a4ce",
       "tasks.md": "923915c9f2fd94a63e2a35d22d6caa0210366f18284562cb5e8130995d59d5d6",
-      "implementation-summary.md": "9707042ff93a8d9e4a35b7fa953e27854ea6341de13d7daccf66f07fd6cb910d",
+      "implementation-summary.md": "f36fce942374f969cf82d61a461c0eaf8b6c8818edca16488295eb2966e8832b",
       "research/research.md": "30c09dee7e8b3875e46da6f525a80c8966967711a35d2a250e26378c93bbe32b"
     },
     "last_active_child_id": null,

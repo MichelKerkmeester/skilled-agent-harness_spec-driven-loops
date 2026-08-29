@@ -21,7 +21,8 @@
     "hooks/002-injection-bloat-reduction/015-directive-docs-alignment",
     "hooks/002-injection-bloat-reduction/016-directive-playbook-alignment",
     "hooks/002-injection-bloat-reduction/017-adapter-live-delivery-verification",
-    "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery"
+    "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
+    "hooks/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only"
   ],
   "manual": {
     "depends_on": [],
@@ -99,15 +100,15 @@
     ],
     "causal_summary": "The `hooks/001` research measured that the three always-on directives (comment-hygiene, governor, proof-over-appearance) are ~763 bytes / ~190 estimated tokens and constitute ~94.7% of the per-turn advisor payload, delivered on nearly every valid turn across Claude Code, Codex, Devin, and OpenCode; Pi adds its own ~554-byte dispatch directive",
     "created_at": "2026-08-06T11:15:01.299Z",
-    "last_save_at": "2026-08-12T05:31:12.206Z",
+    "last_save_at": "2026-08-28T22:01:26.490Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:429523a8d4d3035b2da6c5df6ce33f13b1101bff02e75aaf4c9ea056eedef9cf",
+    "source_fingerprint": "sha256:5a4505f0c82cc1ae7a3421337f55527c7a8350ff0a61446f9a280b5c00e1ec10",
     "source_doc_hashes": {
-      "spec.md": "14f21be15cfeaee4112e498d1dfe85d4bb1b66698804b1e9539d7f9c6c57fdce"
+      "spec.md": "fb0937a9b1bbb7f318f3c0eac7781c27d56dcbaae31bf82c99611d85cb48dd8c"
     },
     "last_active_child_id": "hooks/002-injection-bloat-reduction/018-fix-code-review-p0-p3-findings-for-directive-lifecycle-delivery",
     "last_active_at": "2026-08-12T05:31:12.206Z"

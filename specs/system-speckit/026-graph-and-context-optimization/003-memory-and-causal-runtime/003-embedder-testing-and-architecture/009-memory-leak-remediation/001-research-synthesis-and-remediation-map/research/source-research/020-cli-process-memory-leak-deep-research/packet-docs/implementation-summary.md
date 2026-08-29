@@ -46,7 +46,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/020-cli-process-memory-leak-deep-research` |
+| **Spec Folder** | packet-docs |
 | **Completed** | Research synthesis completed 2026-05-22; follow-up remediation pending |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

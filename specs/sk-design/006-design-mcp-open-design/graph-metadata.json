@@ -41,26 +41,12 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md",
-      ".opencode/skills/sk-design/mode-registry.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/design-mcp-open-design/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-design/mode-registry.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -192,11 +178,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The shipped `design-mcp-open-design` transport mode had no packet in git or memory",
     "created_at": "2026-07-16T09:10:59.222Z",
-    "last_save_at": "2026-07-16T09:10:59.222Z",
+    "last_save_at": "2026-08-28T22:11:48.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -30,7 +30,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/041-v-rule-cross-spec-overreach` |
+| **Spec Folder** | 041-v-rule-cross-spec-overreach |
 | **Started** | 2026-05-14 |
 | **Completed** | Partial - build blocked by local EPERM writes |
 | **Level** | 2 |

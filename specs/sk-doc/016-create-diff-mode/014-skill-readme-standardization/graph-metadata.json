@@ -61,24 +61,17 @@
       "recent"
     ],
     "importance_tier": "high",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "023-system-spec-kit-readme/spec.md",
-      "024-skills-index-readme/spec.md",
-      ".opencode/skills/README.md"
+      "024-skills-index-readme/spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {
@@ -120,17 +113,17 @@
     ],
     "causal_summary": "The repo root `README.md` and the recent `system-spec-kit` changelogs read in one warm, human-centered narrative voice: a problem-first opener, an \"At a Glance\" table near the top, outcome-named section headers, sparse tables, honest trade-off notes, and a verification closer",
     "created_at": "2026-06-07T08:58:31Z",
-    "last_save_at": "2026-07-17T13:38:42.575Z",
+    "last_save_at": "2026-08-28T22:21:04.491Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:6cb3456c5eca694ed543c983eb5c91f9bfad8b3af1785a36738cfd779f2ccb2c",
+    "source_fingerprint": "sha256:8a8964e2fca31929f2dea2fb9b8a640b7e11cbb36bfab01f0fa9c095d2a431a4",
     "source_doc_hashes": {
-      "spec.md": "6ca5e23e2fb80fb8fd8ef81a7264c860e46c0d2cab9642fa59de5ec06ec71f71"
+      "spec.md": "ef1903340e749c3bbba70c5e96627a0e68c5c8eb4d0ffc78d918eb74124e3a18"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/016-create-diff-mode/014-skill-readme-standardization/024-skills-index-readme",
     "last_active_at": "2026-06-07T17:38:46.456Z"
   }
 }

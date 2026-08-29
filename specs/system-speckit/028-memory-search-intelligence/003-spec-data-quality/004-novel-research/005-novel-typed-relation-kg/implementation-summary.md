@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 023-novel-typed-relation-kg |
+| **Spec Folder** | 005-novel-typed-relation-kg |
 | **Completed** | Not yet, scaffold only |
 | **Level** | 2 |
 | **Status** | PLANNED |

@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 026-shared-safe-fix-engine |
+| **Spec Folder** | 001-shared-safe-fix-engine |
 | **Status** | PLANNED, not yet implemented |
 | **Completed** | Not completed |
 | **Level** | 2 |

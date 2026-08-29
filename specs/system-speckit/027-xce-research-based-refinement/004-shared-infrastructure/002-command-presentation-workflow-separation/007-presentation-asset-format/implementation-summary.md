@@ -27,7 +27,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `007-presentation-asset-format` |
+| **Spec Folder** | 007-presentation-asset-format |
 | **Completed** | 2026-06-12 |
 | **Level** | 1 |
 

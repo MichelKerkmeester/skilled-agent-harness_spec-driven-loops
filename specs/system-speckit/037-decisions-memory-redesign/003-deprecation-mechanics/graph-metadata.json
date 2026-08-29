@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The constitutional DB tier is decorative but not inert: `includeConstitutional` defaults true, so ADR-shaped `memorysearch` calls still pull constitutional files, and the indexer keeps scanning `constitutional/`",
     "created_at": "2026-08-26T05:34:12Z",
-    "last_save_at": "2026-08-26T15:22:30.971Z",
+    "last_save_at": "2026-08-29T00:57:27.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a60d9c677d6b1336c0a561e55e5212ad315d0ac5d32ceea42966dec3417f5a04",
+    "source_fingerprint": "sha256:aef3bc3f16d6b77feaa453d9f2ee27bbab0a63968d497b6b903d41692713eec5",
     "source_doc_hashes": {
-      "spec.md": "a5f57a095ac56734be2204482b8a73cfc895b456eeedde371af33c06deca98dd",
-      "plan.md": "40ab18755353db752008c773cf136869b9138a33ba96a6c04a553a141e609a49",
-      "tasks.md": "937642b2703502fdd7c8e73db1c3676fb47b56e6834a396c4b6e54c122e6121f",
-      "implementation-summary.md": "f9a43db639f973f443741a1b444dd79d7e0135ed7c38c47ca9e7efb273a2cfa0"
+      "spec.md": "b35537cbe80ba001a5e9b3df4ef54590297b6c18f44362bf02de027b6debee31",
+      "plan.md": "43f49e5e0da6a30c741dd63f2525f43d84674d3d3f9b269f4f6fc5479d5d5324",
+      "tasks.md": "83dc251f376cd4d1192bef3f33d007fd2019777674a44f56b601ad9da5aad72a",
+      "implementation-summary.md": "0f0c6849aa8ddbf664ca7b3e79273e1f7b76d2ae72a0ab9ea35131b90bb3d2ac"
     },
     "last_active_child_id": null,
     "last_active_at": null

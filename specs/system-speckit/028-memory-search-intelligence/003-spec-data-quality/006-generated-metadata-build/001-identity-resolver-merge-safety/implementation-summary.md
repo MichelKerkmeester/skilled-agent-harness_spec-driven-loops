@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 033-identity-resolver-merge-safety |
+| **Spec Folder** | 001-identity-resolver-merge-safety |
 | **Completed** | 2026-06-22, status IMPLEMENTED (grandfather report listing deferred) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

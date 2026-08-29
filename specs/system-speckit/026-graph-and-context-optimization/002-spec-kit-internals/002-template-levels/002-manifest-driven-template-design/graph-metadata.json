@@ -46,21 +46,17 @@
       "decision-record.md",
       "spec.md",
       "research/resource-map.md",
-      "scripts/templates/inline-gate-renderer.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
-      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
-      ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
       "tasks.md",
       "checklist.md",
-      "templates/manifest/spec-kit-docs.json",
-      "mcp_server/lib/templates/level-contract-resolver.ts",
-      "scripts/tests/workflow-invariance.vitest.ts",
-      "scripts/spec/create.sh",
-      "scripts/rules/check-files.sh",
-      "scripts/rules/check-sections.sh",
-      "mcp_server/lib/validation/spec-doc-structure.ts",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/iterations/iteration-007.md",
+      "research/iterations/iteration-001.md",
+      "research/iterations/iteration-008.md",
+      "research/deep-research-state.jsonl",
+      "research/deltas/iter-001.jsonl",
+      "research/deltas/iter-008.jsonl",
+      "research/deep-research-strategy.md",
+      "research/findings-registry.json"
     ],
     "entities": [
       {
@@ -88,36 +84,6 @@
         "source": "derived"
       },
       {
-        "name": "inline-gate-renderer.ts",
-        "kind": "code",
-        "path": "scripts/templates/inline-gate-renderer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "check-files.sh",
-        "kind": "script",
-        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh",
-        "source": "derived"
-      },
-      {
-        "name": "template-structure.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
-        "source": "derived"
-      },
-      {
-        "name": "spec-doc-health.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -130,39 +96,57 @@
         "source": "derived"
       },
       {
-        "name": "spec-kit-docs.json",
-        "kind": "config",
-        "path": "templates/manifest/spec-kit-docs.json",
-        "source": "derived"
-      },
-      {
-        "name": "level-contract-resolver.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/templates/level-contract-resolver.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow-invariance.vitest.ts",
-        "kind": "test",
-        "path": "scripts/tests/workflow-invariance.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "check-sections.sh",
-        "kind": "script",
-        "path": "scripts/rules/check-sections.sh",
-        "source": "derived"
-      },
-      {
-        "name": "spec-doc-structure.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/validation/spec-doc-structure.ts",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-008.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-008.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iter-001.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-001.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "iter-008.jsonl",
+        "kind": "file",
+        "path": "research/deltas/iter-008.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
         "source": "derived"
       },
       {
@@ -206,11 +190,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Hybrid Manifest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current template system maintains 86 files (~13K LOC) split across `core/`, `addendum/`, four materialized `levelN/` outputs, `phaseparent/`, cross-cutting templates, plus a build-time composer (`compose.sh`) and an anchor wrapper (`wrap-all-templates.ts`)",
     "created_at": "2026-05-01T09:15:39Z",
-    "last_save_at": "2026-07-17T17:19:16.294Z",
+    "last_save_at": "2026-08-28T22:56:09.169Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

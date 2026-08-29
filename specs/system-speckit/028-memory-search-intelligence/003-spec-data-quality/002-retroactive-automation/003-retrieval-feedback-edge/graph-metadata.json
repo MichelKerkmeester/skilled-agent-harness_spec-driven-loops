@@ -41,12 +41,6 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -54,42 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "learned-feedback.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/learned-feedback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-truncation.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-truncation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "learned-triggers-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/learned-triggers-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "flag-ceiling.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -197,11 +155,47 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The retrieval-learning loop records only the positive selection edge",
     "created_at": "2026-06-27T17:15:36.032Z",
-    "last_save_at": "2026-07-17T17:19:51.267Z",
+    "last_save_at": "2026-08-29T00:37:11.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c5a10d8c875ea819a59baf179ef6e25450e81339d2b5c23a48dd84c416f92d70",
+    "source_fingerprint": "sha256:cf485a3e838c45cef628d998988c096705fd3333ff92f1fbe1d57623d766988f",
     "source_doc_hashes": {
-      "spec.md": "2cffc1eb9dced32cd18d2a9912e465b61d36733e3e488f02ee7fe1da422d699d",
+      "spec.md": "2b9d6a21761842a56a41f88892d56c3987bc510ee09d3827b014ed8f47871cca",
       "plan.md": "de51cae967c960080c91cd82cfc970fa0da1a27426821b49170c0a46f48313a7",
       "tasks.md": "2f6dbf389464bf2317a9b7e881006a45e191116d66116764d7de1e877194857a",
       "checklist.md": "77aba6b4b54721b931b4f94e03692a64ac669150b56ac473cbbd37b0df5b1fed",
-      "implementation-summary.md": "ccc88b36f68b32c789e5249837d3f32f7dc17cbb7a35783de0f921abeb0dc7c2"
+      "implementation-summary.md": "941d0b7d7e9733e12574057dfa80101abc340d990e7dda0ddb76d147f245398e"
     },
     "last_active_child_id": null,
     "last_active_at": null

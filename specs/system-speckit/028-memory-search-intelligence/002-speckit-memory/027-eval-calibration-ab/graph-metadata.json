@@ -41,82 +41,13 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
-      "lib/eval/ablation-framework.ts",
-      "lib/eval/eval-metrics.ts",
-      "lib/eval/shadow-scoring.ts",
-      "lib/search/confidence-calibration.ts",
-      "lib/search/confidence-scoring.ts",
-      "tests/eval-calibration-ab.vitest.ts",
-      "tests/confidence-calibration.vitest.ts",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/eval/shadow-scoring.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      "plan.md"
+      "plan.md",
+      "tasks.md",
+      "spec.md"
     ],
     "entities": [
-      {
-        "name": "confidence-calibration.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-calibration.ts",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-scoring.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/confidence-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "query-classifier.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/query-classifier.ts",
-        "source": "derived"
-      },
-      {
-        "name": "eval-metrics.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/eval-metrics.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ablation-framework.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ablation-framework.ts",
-        "source": "derived"
-      },
-      {
-        "name": "shadow-scoring.ts",
-        "kind": "code",
-        "path": "lib/eval/shadow-scoring.ts",
-        "source": "derived"
-      },
-      {
-        "name": "eval-calibration-ab.vitest.ts",
-        "kind": "test",
-        "path": "tests/eval-calibration-ab.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "confidence-calibration.vitest.ts",
-        "kind": "test",
-        "path": "tests/confidence-calibration.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "checklist.md",
         "kind": "doc",
@@ -130,21 +61,21 @@
         "source": "derived"
       },
       {
-        "name": "ground-truth-feedback.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/eval/ground-truth-feedback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -206,11 +137,65 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Harvest",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Calibration Harvest",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP ships two classes of unvalidated retrieval intelligence, dormant calibration machinery that cannot be promoted and default-on levers that were never measured:",
     "created_at": "2026-06-19T05:52:29.576Z",
-    "last_save_at": "2026-07-17T17:19:48.683Z",
+    "last_save_at": "2026-08-29T00:21:17.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:56d7f068ce0058d34bd484a9559e707d00c656e09e6a0cc3454b0d980b94006b",
+    "source_fingerprint": "sha256:cc7446c247972c5008680a93227b36f46a97f82e524f1c3c8c49ab8e7ff59d2a",
     "source_doc_hashes": {
       "spec.md": "a795ca736acfc8cac9d2be817ab9826e89f8b3fefa26fb81ecc47fb40ad56665",
       "plan.md": "f1e75cff83368786f4e8a551ed48a3e0d7262af014897b4bcb7cac44c5917b80",
       "tasks.md": "221c29b140a2318fce7ed0c520e5e6c0953a99fe1b03c87336fe698a7a214539",
       "checklist.md": "7e5e8c781ff4f3bb59208296c83fe7abf07041f2cd71e948daf8ab5b42796dc6",
-      "implementation-summary.md": "8d0b790c50f79ff525b466b4d7d231d13a414ee42bac6f53232cd1c2fffa1735"
+      "implementation-summary.md": "3ffdc9cad4fa2d5ce809d4b548898efbb58110f1553ef277533f87bb8f964add"
     },
     "last_active_child_id": null,
     "last_active_at": null

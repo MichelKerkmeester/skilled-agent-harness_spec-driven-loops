@@ -25,5 +25,6 @@
     "003-fix-mcp-runtime-stress-findings"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "1"
 }

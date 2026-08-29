@@ -41,9 +41,7 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
       "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -51,21 +49,9 @@
     ],
     "entities": [
       {
-        "name": "description-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/description/description-schema.ts",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "flag-ceiling.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/flag-ceiling.vitest.ts",
         "source": "derived"
       },
       {
@@ -193,11 +179,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system computes a per-doc quality score but never holds a doc to a named quality bar over time",
     "created_at": "2026-06-27T17:15:39.283Z",
-    "last_save_at": "2026-07-17T17:19:51.895Z",
+    "last_save_at": "2026-08-29T00:37:36.385Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cbbc32546734c6d0b7b5981a84279c976a88ef9334d0e122c680362f7d15294d",
+    "source_fingerprint": "sha256:c50cfca66f7a811c40a03a4210ddb19b8389546bf68ed80bd1fe9f2c61c112da",
     "source_doc_hashes": {
       "spec.md": "4dcf4924e7ec7b80993c2eb8cf2053d959eefc8787371362a114a41f3c968b5b",
       "plan.md": "1f173eb359ce9bd0d5325eb84156c38a55f40099c2d995debcb0b1459037ed9e",
       "tasks.md": "990a1c591f648a8059dba5eaa47d3efd18e0a9abc939fce16e54ae7e16721a4b",
       "checklist.md": "da92ce94a5b971a3cace8ae766dd12a610f1218030b9f7ff77380800e68fce7b",
-      "implementation-summary.md": "e91aa1c3439d78186f2914f0077165bae37dbf5ba35f58db8162829ee75d030c"
+      "implementation-summary.md": "99154106484a0d648869963b4cf6338d3d39c18f7f00e4d6150f2f269e09d741"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -41,10 +41,9 @@
       "remaining"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
       "handover.md"
     ],
     "entities": [
@@ -52,12 +51,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "authored-brand-boundary.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-design/shared/authored-brand/authored-brand-boundary.mjs",
         "source": "derived"
       },
       {
@@ -141,19 +134,19 @@
     ],
     "causal_summary": "The hallmark design system needed adopting into sk-design in a controlled way — surgical fixes first, then evidence envelopes, authored cards, brand-first authoring, and measured composition retrieval — rather than a single large change",
     "created_at": "2026-07-22T16:38:23.466Z",
-    "last_save_at": "2026-07-23T07:56:07.629Z",
+    "last_save_at": "2026-08-28T22:14:49.215Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:843aae3d23c4846852feb7041321b2bf75ae5ee1490ad055c39a8c91014e2692",
+    "source_fingerprint": "sha256:1f2ad777a002a9d3bf2ccfbc29731403f567f17e62c317e2c4f566876b8ac776",
     "source_doc_hashes": {
       "spec.md": "fced7b9b0bb16d50b101a4cd8d0a620e0977528702df0b258ad730b65393a378",
-      "handover.md": "577b70e053ff5481c7ccc4f704b010029dbee31389b14b0ced1ec589148dab64"
+      "handover.md": "31c65cad23ba404b464919eba25fdeb79b12891cbec8e46f8a5ab18da9bc48e6"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
     "last_active_at": null
   }
 }

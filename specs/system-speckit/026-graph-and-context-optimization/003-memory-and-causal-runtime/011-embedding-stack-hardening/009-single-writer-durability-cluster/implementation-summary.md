@@ -34,7 +34,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 031-embedding-stack-hardening/009-single-writer-durability-cluster |
+| **Spec Folder** | 009-single-writer-durability-cluster |
 | **Completed** | 2026-05-30 (implemented + tested) |
 | **Level** | 1 |
 

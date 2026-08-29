@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/017-metadata-fusion"
+    packet_pointer: "system-speckit/028-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/004-metadata-fusion"
     last_updated_at: "2026-07-04T17:11:51.707Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored buildable phase spec from research C4 verdict"

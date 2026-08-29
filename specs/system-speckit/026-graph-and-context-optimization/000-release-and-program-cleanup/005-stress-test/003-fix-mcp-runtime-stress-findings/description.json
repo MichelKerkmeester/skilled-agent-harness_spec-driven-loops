@@ -51,5 +51,6 @@
     "005-stress-test"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "phase"
 }

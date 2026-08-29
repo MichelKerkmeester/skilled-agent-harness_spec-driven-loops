@@ -34,8 +34,6 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -43,18 +41,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "stage2-fusion.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts",
-        "source": "derived"
-      },
-      {
-        "name": "run-eval-v2.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -186,11 +172,23 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The fusion stage scores a candidate from text similarity and then applies a bounded validation multiplier over that composite (`stage2-fusion.ts:261-289`, clamped by `clampMultiplier` at `stage2-fusion.ts:157`)",
     "created_at": "2026-06-27T17:15:37.106Z",
-    "last_save_at": "2026-07-17T17:19:51.581Z",
+    "last_save_at": "2026-08-29T00:37:20.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7dce35ad057f8479644fe3599bf4956548e4c537d795ba0884ad6105f7be9687",
+    "source_fingerprint": "sha256:d49bc78c6acbf146bb662004348e60359c78892c0bb2b39e91d4a6bbb069a89f",
     "source_doc_hashes": {
-      "spec.md": "e43781c62ac0b8381bb293ebbc7478f8c8ee9d23bf3789d0a436a03a862d19a7",
+      "spec.md": "37942b3689c23b353472f8e1c49d112288b07e828ad04dbd0277ea8e54a47dff",
       "plan.md": "689bf90db2049a1a7e47cb9742c17463dd6de64d81ee2ad141bd6c6d1c1dabec",
       "tasks.md": "579926026eb47a67ec4e5f8714055f38a38b3d5ff78b7e6937f070371a5e7a69",
       "checklist.md": "3e5269b1a52405b2bc76f496f136b9b75325c1b03478dd2fdc41d51741de6e57",
-      "implementation-summary.md": "e7a2eaf957aa81401de2bb7571ff7a5358b496b34cdf8641440f27704e443973"
+      "implementation-summary.md": "f1c4e33ae42203baae30181e2497d4ad2c57086cc703bd6d3a0fd9a3dbcc9f7d"
     },
     "last_active_child_id": null,
     "last_active_at": null

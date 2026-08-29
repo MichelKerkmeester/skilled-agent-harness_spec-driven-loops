@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 010-consolidation-cursor-clock |
+| **Spec Folder** | 011-consolidation-cursor-clock |
 | **Completed** | (not started, planning-only) |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

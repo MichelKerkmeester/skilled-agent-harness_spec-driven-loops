@@ -43,9 +43,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/governance-ephemeral-decouple.vitest.ts",
-      "tests/governance-ephemeral-decouple.vitest.ts",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -53,18 +50,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "scope-governance.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
-        "source": "derived"
-      },
-      {
-        "name": "governance-ephemeral-decouple.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/governance-ephemeral-decouple.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -196,11 +181,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Passing `retentionPolicy: \"ephemeral\"` to `memorysave` silently triggered governed-ingest validation and required the full audit chain",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-07-17T17:19:19.449Z",
+    "last_save_at": "2026-08-28T22:58:10.203Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:10:00Z",
     "source_docs": [

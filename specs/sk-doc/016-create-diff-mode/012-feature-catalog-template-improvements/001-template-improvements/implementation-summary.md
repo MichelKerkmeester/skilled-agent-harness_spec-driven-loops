@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/012-feature-catalog-template-improvements/001-template-improvements"
+    packet_pointer: "sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/001-template-improvements"
     last_updated_at: "2026-06-02T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Restructured to phase child; moved from parent"
@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 125-feature-catalog-template-improvements/001-template-improvements |
+| **Spec Folder** | 001-template-improvements |
 | **Completed** | 2026-05-31 |
 | **Level** | 1 |
 | **Parent Spec** | `../spec.md` |

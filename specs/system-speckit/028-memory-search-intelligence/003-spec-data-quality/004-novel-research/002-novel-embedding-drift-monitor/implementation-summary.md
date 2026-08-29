@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 020-novel-embedding-drift-monitor |
+| **Spec Folder** | 002-novel-embedding-drift-monitor |
 | **Completed** | Not completed (PLANNED scaffold) |
 | **Level** | 2 |
 | **Status** | PLANNED |

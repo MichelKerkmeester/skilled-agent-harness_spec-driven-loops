@@ -33,11 +33,8 @@
       "three"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      "scripts/README.md",
-      ".opencode/skills/sk-doc/create-skill/references/shared/overview.md",
-      ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -45,24 +42,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "scripts/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "overview.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/shared/overview.md",
-        "source": "derived"
-      },
-      {
-        "name": "package_skill.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/package_skill.py",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +167,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`corpus/` is not one of the three canonical bundled-resource categories (`scripts/`, `references/`, `assets/`) documented in `create-skill/references/shared/overview.md` §2, so no authored template governs it directly",
     "created_at": "2026-07-27T14:56:08.426Z",
-    "last_save_at": "2026-07-27T15:05:16.134Z",
+    "last_save_at": "2026-08-28T22:15:30.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +199,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3cb7c7db64fe3df0dc4bed2f04d2e5ef432486885ba8aad7668a637b7b14bdaf",
+    "source_fingerprint": "sha256:62691f12fd55e52c8017c890dbba61c64f9dc7e4ccb9a97d6753ffe4a33ec1f0",
     "source_doc_hashes": {
-      "spec.md": "950e50af6156292df40acdf2f8315341c0806546942223b6397865cca65dc916",
-      "plan.md": "8336d380354b865abe08e5d81137434fcdff90ba7dbc14887652c02e08eb574e",
-      "tasks.md": "d9170c8091a8cf1c190ea4106f9787f6a6de95a21ffe384477f88b8ec8d2c694",
-      "checklist.md": "bb888151062530f9f94fd960ec7f0c235cff74aa4b8cbf346f48ae7849d4fedb",
-      "implementation-summary.md": "937ba3a188568584928f4c1b4d002dd6445c49d3742bece789d21712b6de03f4"
+      "spec.md": "87851933b5b2244fd7767aeb3622d3cd0328a5ef37a6d967a3ba6775080558c4",
+      "plan.md": "e1e8d581926b362e4732931d391db67ac8ea11fa8abf575ab149338f6498773e",
+      "tasks.md": "c9cd495a4fa5068db4a305a1775b5e081543268bd4503126458e5de48e840286",
+      "checklist.md": "641a3abd46d9ab60033b434859579ecc88699096ac34079554496bc780e3672d",
+      "implementation-summary.md": "be41c09478eea5c138d13b2c98f820ef210c6a98c7b8f301d4a715da8e7546ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

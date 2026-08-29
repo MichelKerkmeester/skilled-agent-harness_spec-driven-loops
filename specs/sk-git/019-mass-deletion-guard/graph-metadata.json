@@ -8,43 +8,35 @@
     "depends_on": [],
     "supersedes": [],
     "related_to": [
-      "sk-git/015-remote-branch-policy",
-      "sk-git/016-git-action-advisory-hook"
+      {
+        "packet_id": "sk-git/015-remote-branch-policy",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      },
+      {
+        "packet_id": "sk-git/016-git-action-advisory-hook",
+        "reason": "Imported from legacy graph-metadata.json",
+        "source": "legacy"
+      }
     ]
   },
   "derived": {
-    "trigger_phrases": [
-      "mass deletion guard",
-      "git add -A clobber",
-      "stale tree snapshot deletion",
-      "deletion ceiling hook",
-      "SPECKIT_ALLOW_MASS_DELETION",
-      "mass deletion guard plan",
-      "mass deletion guard tasks",
-      "mass deletion guard checklist",
-      "mass deletion guard summary"
-    ],
+    "trigger_phrases": [],
     "key_topics": [
-      "mass",
-      "deletion",
+      "spec",
+      "mass-deletion",
       "guard",
-      "git",
-      "hook",
-      "pre-commit",
-      "pre-push",
-      "threshold",
-      "fail-open",
-      "clobber",
-      "override",
-      "audit-log"
+      "commits",
+      "pushes",
+      "plan",
+      "tasks",
+      "checklist",
+      "implementation",
+      "summary"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/scripts/git-hooks/lib/mass-deletion-guard.sh",
-      ".opencode/scripts/git-hooks/pre-commit",
-      ".opencode/scripts/git-hooks/pre-push",
-      ".opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -52,30 +44,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "mass-deletion-guard.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/git-hooks/lib/mass-deletion-guard.sh",
-        "source": "derived"
-      },
-      {
-        "name": "pre-commit",
-        "kind": "script",
-        "path": ".opencode/scripts/git-hooks/pre-commit",
-        "source": "derived"
-      },
-      {
-        "name": "pre-push",
-        "kind": "script",
-        "path": ".opencode/scripts/git-hooks/pre-push",
-        "source": "derived"
-      },
-      {
-        "name": "mass-deletion-guard.test.sh",
-        "kind": "test",
-        "path": ".opencode/scripts/git-hooks/tests/mass-deletion-guard.test.sh",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -105,11 +73,125 @@
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Deletion Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Complete",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Refuse",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "unrestricted FS",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Approach",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Design",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Why a threshold of 100",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Functional (proven by `tests/mass-deletion-guard.test.sh`, 12/12 pass)",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Robustness",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Wiring",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Hygiene",
+        "kind": "heading",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Root",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Final state",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What shipped",
+        "kind": "heading",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "A stale-tree `git add -A` snapshot recorded 902 branch files as deletions and clobbered the release branch; this adds a fail-open git-hook ceiling on tracked-file deletions per commit/push, overridable per operation, to stop the next one.",
+    "causal_summary": "Spec — Mass-Deletion Guard for Commits and Pushes",
     "created_at": "2026-08-13T00:00:00.000Z",
-    "last_save_at": "2026-08-13T00:00:00.000Z",
+    "last_save_at": "2026-08-28T22:36:41.440Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -119,6 +201,7 @@
       "checklist.md",
       "implementation-summary.md"
     ],
+    "source_fingerprint": "sha256:a08fcb59269641ff329c950a43958889184f7a8db27c6b6ea96d2d88f5610de7",
     "source_doc_hashes": {
       "spec.md": "99e4ddd3a05529a0a4e3708101595f8ddd96db067b05e108e3c9fcebbb85be14",
       "plan.md": "1ef822dbeccf3b1c49809850363c866d4089c88e7ef38c7e4bed02dd49c0a4d6",

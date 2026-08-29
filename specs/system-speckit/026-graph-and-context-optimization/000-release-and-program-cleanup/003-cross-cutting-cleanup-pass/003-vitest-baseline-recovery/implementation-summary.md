@@ -31,7 +31,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/003-vitest-baseline-recovery` |
+| **Spec Folder** | 003-vitest-baseline-recovery |
 | **Completed** | Not complete |
 | **Level** | 2 |
 | **Actual Effort** | Partial triage and baseline capture |

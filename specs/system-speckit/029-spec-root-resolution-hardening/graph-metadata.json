@@ -46,23 +46,12 @@
     "status": "planned",
     "key_files": [
       "research/research.md",
-      "scripts/core/config.ts",
-      "spec/create.sh",
-      "mcp_server/dist/hooks/claude/session-stop.js",
-      "scripts/dist/memory/generate-context.js",
       "research/iterations/iteration-001.md",
       "research/deep-research-state.jsonl",
       "research/deep-research-strategy.md",
       "research/findings-registry.json",
       "research/deep-research-dashboard.md",
       "research/resource-map.md",
-      ".opencode/skills/system-spec-kit/scripts/core/config.ts",
-      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-      ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
-      ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
-      ".claude/settings.json",
-      ".github/workflows/strict-pass-freshness-sweep.yml",
       "spec.md"
     ],
     "entities": [
@@ -70,30 +59,6 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "config.ts",
-        "kind": "code",
-        "path": "scripts/core/config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "create.sh",
-        "kind": "script",
-        "path": "spec/create.sh",
-        "source": "derived"
-      },
-      {
-        "name": "session-stop.js",
-        "kind": "code",
-        "path": "mcp_server/dist/hooks/claude/session-stop.js",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.js",
-        "kind": "code",
-        "path": "scripts/dist/memory/generate-context.js",
         "source": "derived"
       },
       {
@@ -124,36 +89,6 @@
         "name": "deep-research-dashboard.md",
         "kind": "doc",
         "path": "research/deep-research-dashboard.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "gate-3-classifier.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/shared/gate-3-classifier.ts",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "strict-pass-freshness-sweep.yml",
-        "kind": "config",
-        "path": ".github/workflows/strict-pass-freshness-sweep.yml",
         "source": "derived"
       },
       {
@@ -209,11 +144,29 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Stop",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verified Resolver And Writer Inventory This",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Spec-root resolution is implemented at ~20 independent call sites with four different precedences (canonical-first, legacy-first, canonical-only, direct-path-first) and no single contract",
     "created_at": "2026-07-17T09:30:14.185Z",
-    "last_save_at": "2026-07-20T13:58:04.421Z",
+    "last_save_at": "2026-08-29T00:56:29.488Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,7 +178,7 @@
       "spec.md": "aba1c5e39051a4056aff74391348c2654ea86245a39711878a86c4ad52e9b92f",
       "research/research.md": "ce4ec60c4a62ebeabe361cf62e2b51a3f0eda955dc7bd8863269098d065f6c1d"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/029-spec-root-resolution-hardening/005-symlink-retirement-and-validation",
     "last_active_at": null
   }
 }

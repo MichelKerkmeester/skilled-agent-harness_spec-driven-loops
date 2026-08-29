@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The `mcp-obsidian` mode needs an MCP path so agents (Code Mode) can reach Obsidian operations the CLI cannot, exactly as `mcp-click-up` routes documents/chat to its `clickupofficial` MCP",
     "created_at": "2026-08-02T05:50:28Z",
-    "last_save_at": "2026-08-02T06:12:32.609Z",
+    "last_save_at": "2026-08-28T22:06:01.168Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:533a411cf5b7fea60b6a3528daf86008d8e23d0c48f2256deaeccfd4733416ac",
+    "source_fingerprint": "sha256:1bee57e59870ac54aa37bd30927b14f3a556689ecadecb4c8e0e8048d5084cdd",
     "source_doc_hashes": {
       "spec.md": "9348f6e151fd7cbe2e7375a8f8e824a72a848a733f1189ceb4a606f3cf595547",
       "plan.md": "4d971665ff62cae287fc01c9b2aede8c06acdbe4aaba3cded7ff65916b70027b",
       "tasks.md": "4d8f6b781a2ff3bd732895a1a87e4a57350683b8380adde4ca8a5a58e46b8aca",
-      "implementation-summary.md": "5af5a79721dad3d9e9125e80cac0b11e898dfce2aa3948a91bce578694ecd526"
+      "implementation-summary.md": "1beb18730cc4c99d97e710bcfbca98f95d1501eddf94ea5efc0a67e85d0bc7c2"
     },
     "last_active_child_id": null,
     "last_active_at": null

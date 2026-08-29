@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 025-novel-per-doc-quality-slas |
+| **Spec Folder** | 007-novel-per-doc-quality-slas |
 | **Status** | PLANNED, scaffold only |
 | **Completed** | Not yet implemented |
 | **Level** | 2 |

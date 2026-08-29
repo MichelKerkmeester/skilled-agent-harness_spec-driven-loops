@@ -41,46 +41,20 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md",
-      ".opencode/skills/mcp-tooling/hub-router.json",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
       "decision-record.md",
       "regression/post-ws1-replay-hub.json",
       "scratch/replay-driver.cjs",
       "regression/post-ws2-replay-hub.json",
       "regression/post-ws2-replay-packets.json",
       "regression/pre-fix-gates.md",
-      ".opencode/skills/mcp-tooling/mode-registry.json",
-      ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
-      ".opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/mcp-tooling/graph-metadata.json",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-      ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/spec.md",
       "plan.md",
       "tasks.md",
       "spec.md",
-      "checklist.md"
+      "checklist.md",
+      "research/research.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": ".opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "hub-router.json",
-        "kind": "config",
-        "path": ".opencode/skills/mcp-tooling/hub-router.json",
-        "source": "derived"
-      },
-      {
-        "name": "router-replay.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
-        "source": "derived"
-      },
       {
         "name": "decision-record.md",
         "kind": "doc",
@@ -118,42 +92,6 @@
         "source": "derived"
       },
       {
-        "name": "mode-registry.json",
-        "kind": "config",
-        "path": ".opencode/skills/mcp-tooling/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "manual_testing_playbook.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/mcp-tooling/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "run-skill-benchmark.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "load-playbook-scenarios.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
-        "source": "derived"
-      },
-      {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
@@ -175,6 +113,18 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -206,11 +156,53 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completed Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Execute Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The phase-007 deep review (`.opencode/specs/mcp-tooling/007-mcp-tooling-parent/007-routing-benchmark-and-review/review-report.md`) issued a FAIL, release-blocking verdict on the mcp-tooling hub routing surface",
     "created_at": "2026-07-16T16:50:35Z",
-    "last_save_at": "2026-07-16T19:02:57.031Z",
+    "last_save_at": "2026-08-28T22:05:49.431Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +214,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d682bae2b660e0dda6bd86232a80be3144aab60122485e5c2eae8e112e7fb330",
+    "source_fingerprint": "sha256:666c9c53449f8d4a7967a528df6e67dedbed11306c9b6f12a0dcf4b10b1938c4",
     "source_doc_hashes": {
       "spec.md": "d0227008d01e780b2243cb8b1fe3c86ae81922a32de607a9a43fbca55d83167f",
       "plan.md": "5459aa56e2a1d35a7d7e09c9ff5161b8d1c826229cb2ac93b69326c0a675dfe1",
-      "tasks.md": "80d3efc34b4c5bc13a8adff9807f80a16c8e2968e0e8e617c462d55a71a801ca",
-      "checklist.md": "a6eacb6fa2287a83b89972db1f1831feccccb0d5be4b34bb5d61c2ac7002d6e4",
+      "tasks.md": "521a4ece0d9299be3ee43264931fb13257e5c91275db993ea2989c1b69e4ee89",
+      "checklist.md": "18d9db615e8a5805f790c27b07cb2c0455c1f152908be21f10e78174183954e3",
       "decision-record.md": "78a5b8aa91d57a004d6f160aa0c1f954290654639b00110e66dd10da7353b5c2",
-      "implementation-summary.md": "ca932d6bb233f283b5c2cdadf26fe868a7694b63648afd697c9855404d0c829d",
+      "implementation-summary.md": "c74ac64f8065f5851f30bb029553c73835083296579b68f869663726f1d145eb",
       "research/research.md": "37553967cbf2d1055e925cbdaab944a29d0af99021e68ae04d2ed87c575be9a0"
     },
     "last_active_child_id": null,

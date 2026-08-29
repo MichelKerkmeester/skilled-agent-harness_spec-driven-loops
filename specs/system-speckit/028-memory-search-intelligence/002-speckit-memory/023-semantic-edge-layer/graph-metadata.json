@@ -47,22 +47,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "mcp_server/lib/search/vector-index-schema.ts",
-      "mcp_server/lib/storage/causal-edges.ts",
-      "mcp_server/lib/storage/consolidation.ts",
-      "mcp_server/lib/search/search-flags.ts",
       "decision-record.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      "lib/storage/causal-edges.ts",
-      "lib/storage/consolidation.ts",
-      "lib/graph/contradiction-detection.ts",
-      "lib/search/hybrid-search.ts",
-      "lib/search/search-flags.ts",
-      "tests/flag-ceiling.vitest.ts",
-      "lib/storage/README.md"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -90,57 +76,15 @@
         "source": "derived"
       },
       {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "consolidation.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/consolidation.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "contradiction-detection.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "lib/search/hybrid-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "flag-ceiling.vitest.ts",
-        "kind": "test",
-        "path": "tests/flag-ceiling.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "lib/storage/README.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -208,11 +152,53 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The causal graph is substrate-blind at the edge",
     "created_at": "2026-06-19T05:47:05.578Z",
-    "last_save_at": "2026-07-12T13:24:50.996Z",
+    "last_save_at": "2026-08-29T00:21:08.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:22107ce5937f1ad1e9e4935d43ababeba9d38dc79dfb67f8590cba31129e2e4a",
+    "source_fingerprint": "sha256:effb85e01ea364dca66b33fa827c425b28d913ad204b29a5ff8e629a2f090a2d",
     "source_doc_hashes": {
       "spec.md": "05faa06fbf32b53a2eacd11685cd5c8261a70b3e988ec90c25daa824259a22b7",
       "plan.md": "9e95b0d4f698558149163eeeb76e6126d30022aec71e049697ec0e06111cf073",
       "tasks.md": "29347bdb1b3a57045272382bc1f3023af1f75e705b6749efae52f2cf7784143e",
       "checklist.md": "f1efe71a78f11f16feebc6fb0271d53dfc5729a7408fa83bf53c63df01220b82",
       "decision-record.md": "dec224c60fc6e519a2f7cff072bb4f7ea6f8f203ae938be02e948db216fa25fd",
-      "implementation-summary.md": "1e12e03d3e4dbcfa5a3e96669d2bc56a79cb55bf8495eee6a40dadb896602f87"
+      "implementation-summary.md": "d352a92cfcb4cc12fafad2a8db8405a6289146623e978c51380122af30bb062f"
     },
     "last_active_child_id": null,
     "last_active_at": null

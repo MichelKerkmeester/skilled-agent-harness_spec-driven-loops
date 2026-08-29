@@ -43,7 +43,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 021-novel-example-test-generation |
+| **Spec Folder** | 003-novel-example-test-generation |
 | **Status** | PLANNED, scaffold not yet built |
 | **Completed** | Not yet, no implementation has run |
 | **Level** | 2 |

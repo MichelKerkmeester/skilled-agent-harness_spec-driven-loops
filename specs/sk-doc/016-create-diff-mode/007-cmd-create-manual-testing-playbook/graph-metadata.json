@@ -42,8 +42,6 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      ".opencode/commands/create/README.txt",
-      ".opencode/commands/README.txt",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -55,12 +53,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/commands/create/README.txt",
         "source": "derived"
       },
       {
@@ -194,11 +186,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repo now has a stable manual testing playbook contract, but there is no dedicated create command that can generate it reliably",
     "created_at": "2026-04-12T09:02:50.174Z",
-    "last_save_at": "2026-07-17T14:37:11.094Z",
+    "last_save_at": "2026-08-28T22:20:05.536Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a3bcc32e03721b1a1b167cc1d2d5ca6fc20ae85610a4089d1d1f20d30d2688e2",
+    "source_fingerprint": "sha256:ca89d1038095e1795f06318f0d2b717a1f9a081cf1424d249ea936d4df1a3c6e",
     "source_doc_hashes": {
-      "spec.md": "f25313f29630f2874534a9b5c712db1c0dc0c664d75ef2c4c8b5bca06552f3f2",
-      "plan.md": "4deddfb738b194b0bc2437ccfa74e4f0196f616acb4457dacdf46a3d661b6838",
-      "tasks.md": "7fd9f0951ecab07190efa01e00f0f64fe36cc28a5eaa8e6fee36509149a8144f",
-      "checklist.md": "57afe977ed2ffe05bcd3b515deacc6afd741fd44d090f7ea13ad36f66c503c91",
+      "spec.md": "37ade01d44c46c811894b6829bbb349ef0d18229e04170a2182b0063c440bb1f",
+      "plan.md": "45ac05f17be4d1c76a980e457df44071ea379d0276ac324452af4665f9f7e8b2",
+      "tasks.md": "384d3f8812502075ebaf547b5c67fa1b2c54c1cccba8c9562e28c1de92c9163f",
+      "checklist.md": "966fc7bbfdda57c32366206c7ffa4f966d6e22659bd6a741a3052df6af65a0f1",
       "decision-record.md": "e4f4f67dfe091641d79ff54c2e3722dd962184031cbf3856e41a93c7595ed2f1",
-      "implementation-summary.md": "5bb6bf425388efb7c29b4cc3027b4bdb77f3e2c5e6227f80b1df26a1b39b1116"
+      "implementation-summary.md": "2cfedf665ff2a00c677e5213dc54e456015e047f1223dc7ae02a3b9d1a343d45"
     },
     "last_active_child_id": null,
     "last_active_at": null

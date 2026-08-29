@@ -42,16 +42,6 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      ".opencode/commands/README.txt",
-      ".opencode/commands/create/README.txt",
-      ".opencode/commands/memory/README.txt",
-      ".opencode/commands/speckit/README.txt",
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/README.md",
-      ".opencode/skills/README.md",
-      ".opencode/skills/mcp-code-mode/README.md",
-      ".opencode/skills/sk-doc/README.md",
-      ".opencode/skills/sk-git/README.md",
       "tasks.md",
       "implementation-summary.md",
       "plan.md",
@@ -62,18 +52,6 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/commands/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -201,11 +179,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Skill READMEs and command READMEs vary in quality, structure and voice",
     "created_at": "2026-04-12T09:02:50.178Z",
-    "last_save_at": "2026-07-17T14:37:11.966Z",
+    "last_save_at": "2026-08-28T22:20:12.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +205,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:db5a02a921f71218938ad2067dd82f391051e4ad68cb4b61acbd91f9691d1eb3",
+    "source_fingerprint": "sha256:df4f8423641ce35172118661332d03b116bff9b7acd3d56a568be167c9ded437",
     "source_doc_hashes": {
-      "spec.md": "921103109078a862c2c70b6c522f92ec238cd28e681bcc1678a53df1f33de57a",
-      "plan.md": "f8954e610bcb9e792d64ce0f5e846e6bd6d0b34299b18497880818bd265d33d2",
-      "tasks.md": "c34e2b64dbb48e4fda6b4c3fd65d468106bbc147fce8ebedc82ff3f06cfd9496",
-      "checklist.md": "1a187d581fd1065896854f846a56e83cf9ffdcf454e6d49c95f366c7ff185d10",
-      "implementation-summary.md": "e375ec93b3808860e6d3d53445f6fbaa78cf2c5f4ca4ebeb48de2445e41443c1"
+      "spec.md": "b5df976e47e7c3fa1845df08a590555e3fecfdc96a209104b131697508d9d0a7",
+      "plan.md": "f1ff7de77f78b426b7c87315413516c3b5e15011dc2118eaf7fcbd9b4a08f663",
+      "tasks.md": "5086f48ae11720666f713b7e6024db4d92ae4e4bb282a6ffd8cc7acb1d69ebff",
+      "checklist.md": "672752fade1a58fbdbfe06cb47ecb28ea4513ddb0710ccbba8ec00fecfff3946",
+      "implementation-summary.md": "d32fc8faa36e4cc8e306e4b44f2fce12791ce8c8373f825857ad5a5a632d3a46"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -46,11 +46,10 @@
       "implementation"
     ],
     "importance_tier": "high",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
-      "scripts/doctor.sh"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -63,12 +62,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor.sh",
-        "kind": "script",
-        "path": "scripts/doctor.sh",
         "source": "derived"
       },
       {
@@ -136,23 +129,29 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Open Design",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-design's `manualtestingplaybook` (37 scenarios, 8 categories) has only ever been exercised by the automated Lane C skill-benchmark harness, which structurally cannot reach the whole corpus (`PB-004..007`, `HM-`, `FR-` are never dispatched at all; every `MR-` scenario is force-classified `browser` and routed out) and which deliberately wraps every dispatched prompt into a \"state what you'd do, don't do it\" routing-analysis-only request specifically to avoid real side effects",
     "created_at": "2026-07-07T14:55:39.959Z",
-    "last_save_at": "2026-07-09T10:02:44.573Z",
+    "last_save_at": "2026-08-28T22:12:47.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:99569e91cf64f767cbb5ba5385ab4914538f9567872df914cdfa4ffda4d7667a",
+    "source_fingerprint": "sha256:3121ae5be3cf8c017903e82b90d48e1e2aff4e1cd718c1c70108728211677742",
     "source_doc_hashes": {
       "spec.md": "2ddba4baf41b05a4a509d6a72d9133293fdc6a75544e248c400b05a164cff4f8",
-      "implementation-summary.md": "3de6a7bbfaacebe1fcfb44798f7fe6fbf46bbcd9831c5737b366abc2a04b63ad"
+      "implementation-summary.md": "911861e533687fd4ff539b42044afe6e320023c837283e7c04bb5908b493ef04"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-design/009-sk-design-claude-parity/023-full-manual-playbook-execution/010-md-generator-serial-pipeline",
     "last_active_at": null
   }
 }

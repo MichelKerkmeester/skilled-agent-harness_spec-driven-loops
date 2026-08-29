@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The compiled evaluator (`002`) already carries `rankScore`/`scoreMargin` as evidence inside a `route` decision (synthesis §2.3)",
     "created_at": "2026-07-18T13:13:18.421Z",
-    "last_save_at": "2026-07-24T12:11:51.184Z",
+    "last_save_at": "2026-08-28T22:23:24.303Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,9 +202,9 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51e884eba9bb66e7b82506d41d369581c2295bb43ae031593a82d291a617592a",
+    "source_fingerprint": "sha256:7114cd02639c897889ff1f5ffbc04a8825b6e012121c23258c711841b33f7ad8",
     "source_doc_hashes": {
-      "spec.md": "b3e69cbe6ba4a3f9a8d9bc13582ea00139f5abf9026bc2cfc206e60ab99e676c",
+      "spec.md": "d6a6daf546b18c4e57ccb7c0d11bbaf2d677c5fdf5f1a6e7ac0bf4b89dbf9cb0",
       "plan.md": "0c784d2eca2cc4ea75764f2998bcc78edceafa744f43a42bff45db749d5427fa",
       "tasks.md": "4ec3622b6651ea7eeb2194b3bc94e1506c86dda7531a2999e97947b8450f29fa",
       "checklist.md": "c4b0a193ae086ace7df8bab33206eb8ebca109792a31caae2267d212b87f3ab6",

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Re-run the full 15-scenario suite in `manual_testing_playbook/local-llm-query-intelligence/` after Wave 1 lands. Produce a real PASS/FAIL distribution against the post-fix substrate.",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-07-17T17:19:19.444Z",
+    "last_save_at": "2026-08-28T22:58:12.385Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:55:00Z",
     "source_docs": [
@@ -207,13 +207,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4236b2a1891ae8b7797777e6e6a35b8378d4c48b27af63d4726e127defd8ad27",
+    "source_fingerprint": "sha256:736271533bab7fba827f09d75ac27e9753f624128bc51a59ca0eca7a60733e4e",
     "source_doc_hashes": {
       "spec.md": "7e242bb7209acb355d9caf1248a6c3d8c48f8ccfd0f43cebfb48c43a885e46f2",
       "plan.md": "e28f59c008fedc1ffb6f5fbe1ea6dec07e2314cca5a400e7be84dd5985857a99",
       "tasks.md": "5c53860afa8ed080ff8eff6d75c3d535d64ce5ce755ffc6d6a260184efa68760",
       "checklist.md": "587dfca56bd16b9c0857e779754eb878eedf8bdd32f6bc88f953a5328393ca85",
-      "implementation-summary.md": "9731facfe22a4d417eac66160584a7e99704204bba9c8df87ff9d289cc8867d1"
+      "implementation-summary.md": "5c53609bc93038e30d5e3ab508d0fa0b9a2b0cc6a51e96725fd6802307f5b539"
     },
     "last_active_child_id": null,
     "last_active_at": null

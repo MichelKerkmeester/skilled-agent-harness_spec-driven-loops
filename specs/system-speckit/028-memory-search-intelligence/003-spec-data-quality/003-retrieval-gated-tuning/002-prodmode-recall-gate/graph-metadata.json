@@ -34,7 +34,6 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -42,12 +41,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "run-eval-v2.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/evals/run-eval-v2.mjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -185,11 +178,17 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The prod retrieval path diverges from the external eval path, and the harness already measures the gap",
     "created_at": "2026-06-27T17:15:36.570Z",
-    "last_save_at": "2026-07-17T17:19:51.268Z",
+    "last_save_at": "2026-08-29T00:37:16.467Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,13 +198,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:beddf3a53b340aa39ac31ff26c34ac7d051dc2fa7081f6cf2d0b5aef33097dd2",
+    "source_fingerprint": "sha256:aab72ea479c39dce5d37da93cddc28aa8706c5ee40b52efce2472e1464365580",
     "source_doc_hashes": {
       "spec.md": "a33ccc3cb82743c48565278b56ca2475a3afb77b3eaba3cac5a7ba9c0c938f09",
       "plan.md": "6506fc8ccbf4840cde632106a816fe5ad12394f6725ed4f9315ae3909e9fd74c",
       "tasks.md": "6d780f935f891168ba8d6e38575a8d4d0da2780a14e776ad2f584da5ca06c6d2",
       "checklist.md": "a98750736f2d379bbee6a9cacbfebea6986bbccc873e96c4245a004b34b6fb6e",
-      "implementation-summary.md": "5850ac4fff654a9fed5e6d3d264271d3facd588f1a46735132af535cd18a6e06"
+      "implementation-summary.md": "165fbc439f51e3757a77b01268bf5426f818a8fd35ba633eb1bae413fa0ece62"
     },
     "last_active_child_id": null,
     "last_active_at": null

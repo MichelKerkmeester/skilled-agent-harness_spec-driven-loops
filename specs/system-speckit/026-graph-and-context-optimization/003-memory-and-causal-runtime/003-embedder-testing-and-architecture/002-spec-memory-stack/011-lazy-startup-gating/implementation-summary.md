@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/002-spec-memory-stack/011-lazy-startup-gating` |
+| **Spec Folder** | 011-lazy-startup-gating |
 | **Completed** | Implementation complete; handler-family verification blocked |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->

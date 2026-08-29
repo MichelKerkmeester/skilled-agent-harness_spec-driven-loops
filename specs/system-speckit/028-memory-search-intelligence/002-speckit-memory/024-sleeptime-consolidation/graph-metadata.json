@@ -45,17 +45,6 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "mcp_server/handlers/save/reconsolidation-bridge.ts",
-      "mcp_server/handlers/chunking-orchestrator.ts",
-      "mcp_server/lib/search/search-flags.ts",
-      "handlers/save/reconsolidation-bridge.ts",
-      "handlers/chunking-orchestrator.ts",
-      "lib/cognitive/pressure-monitor.ts",
-      "mcp_server/lib/cognitive/pressure-monitor.ts",
-      "lib/search/search-flags.ts",
-      "lib/runtime/timer-registry.ts",
-      "lib/session/session-manager.ts",
-      "tests/flag-ceiling.vitest.ts",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -82,48 +71,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "reconsolidation-bridge.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/save/reconsolidation-bridge.ts",
-        "source": "derived"
-      },
-      {
-        "name": "chunking-orchestrator.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/chunking-orchestrator.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "pressure-monitor.ts",
-        "kind": "code",
-        "path": "lib/cognitive/pressure-monitor.ts",
-        "source": "derived"
-      },
-      {
-        "name": "timer-registry.ts",
-        "kind": "code",
-        "path": "lib/runtime/timer-registry.ts",
-        "source": "derived"
-      },
-      {
-        "name": "session-manager.ts",
-        "kind": "code",
-        "path": "lib/session/session-manager.ts",
-        "source": "derived"
-      },
-      {
-        "name": "flag-ceiling.vitest.ts",
-        "kind": "test",
-        "path": "tests/flag-ceiling.vitest.ts",
         "source": "derived"
       },
       {
@@ -203,11 +150,53 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The internal Memory MCP has no off-turn memory reorganization",
     "created_at": "2026-06-19T05:47:05.579Z",
-    "last_save_at": "2026-07-12T13:24:51.256Z",
+    "last_save_at": "2026-08-29T00:21:11.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +207,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3ca73d1ba781b9117bf402f652d34d41289257096b11dfd1cefe97b20277297e",
+    "source_fingerprint": "sha256:2eea17dd4cf3ce6c03b84d21491298f00f9ed89035b83b284f8e3038c14a2afd",
     "source_doc_hashes": {
-      "spec.md": "977bc5ea6aefcf9a74a028350a0473848b6b68169d3a325e2119d5b9954b4450",
+      "spec.md": "b52db362e0c8ddeaef2b68f24a6b9c2c2ce8aecf797a941b01b0a7c8956c0d37",
       "plan.md": "608011245fa579dc623b52d86f5cf767f5a77cfd18148d4644f29fe4c5e9b224",
-      "tasks.md": "32e229956095210b1aa6b4ef961f9bc5b0697b030ca8025dcb94a34a07969cad",
+      "tasks.md": "d25a206e7bcd16c40643570ef04d2272e1ebb558d9c56edbdc5b016010cb423e",
       "checklist.md": "478ebcee918cab8854631ad403ba47bda76a0cdff41cb9a27978e72758f35485",
       "decision-record.md": "78772836c1d57106a1765cfcbbb83e06175bf74834f3b2abeb0a0aecf2181c01",
-      "implementation-summary.md": "83ddf7406eb5e9d0e9b7d4d3747b3157d334069f32541db717c9cb6a700ee1cc"
+      "implementation-summary.md": "752951f9a450589832ce3a0f9edfaae51f7fdd95dc1cf67f6c5f42e3273cf225"
     },
     "last_active_child_id": null,
     "last_active_at": null

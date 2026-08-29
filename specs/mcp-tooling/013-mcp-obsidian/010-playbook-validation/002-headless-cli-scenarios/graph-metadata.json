@@ -20,9 +20,9 @@
       "obsidian verification tasks",
       "mcp-obsidian closeout tasks",
       "mcp-obsidian phase 8 tasks",
-      "implementation",
-      "summary",
-      "template"
+      "002-headless-cli-scenarios results",
+      "playbook validation results",
+      "mcp-obsidian scenario results"
     ],
     "key_topics": [
       "headless",
@@ -180,13 +180,13 @@
         "source": "derived"
       },
       {
-        "name": "What Was Built",
+        "name": "What Was Built Executor",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Files Changed",
+        "name": "How It Was Delivered Scenarios",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Execute the 8 headless notesmd-cli manual-testing-playbook scenarios against the test vault and record pass/fail. Executor: deepseek-v4-flash via cli-pi.",
     "created_at": "2026-08-03T04:10:01.640Z",
-    "last_save_at": "2026-08-03T04:10:01.640Z",
+    "last_save_at": "2026-08-28T22:06:15.100Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f287aca72aa41ef207e3a9dffeb461bcfc61635cd0f90fb51379abae3d30052",
+    "source_fingerprint": "sha256:c13c768660a56d9061a0c60c444a39bcd1b916823627f75f7cd291eb8709d3d8",
     "source_doc_hashes": {
       "spec.md": "a717d78c305dd697d13de17c991dd6534b8ead9108ba79b10ed3e48ea5e5d3ac",
-      "plan.md": "2d210e82814be3647dd43a0ede3f7b46189f08e247745f60b557ed6db0231e2c",
-      "tasks.md": "edd83307eecd3e8540e22edfeab1a51910c1592ccf35338c2cea4cc01cf43365",
-      "implementation-summary.md": "63d0fc88ef919a21085e5ab313fd76698dc9f0099ab0e5aef652834c71cc0636"
+      "plan.md": "7e75d3989a02abbbeeb432610bb720fff2f105f5259d5c035d67c4087eb90a5d",
+      "tasks.md": "150050475013ff6f4bb26f0d27f4cfe51e19f69effa946b4d051738f648fe355",
+      "implementation-summary.md": "901c12a2af3e7f418f6aafa851975c3e998072e8384720a09eeeb81a98e3e747"
     },
     "last_active_child_id": null,
     "last_active_at": null

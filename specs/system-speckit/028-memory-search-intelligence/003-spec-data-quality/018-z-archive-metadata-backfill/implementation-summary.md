@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 052-z-archive-metadata-backfill |
+| **Spec Folder** | 018-z-archive-metadata-backfill |
 | **Completed** | In Progress. 8 of 9 archive roots backfilled and committable; the 9th is gitignored (on-disk only) |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

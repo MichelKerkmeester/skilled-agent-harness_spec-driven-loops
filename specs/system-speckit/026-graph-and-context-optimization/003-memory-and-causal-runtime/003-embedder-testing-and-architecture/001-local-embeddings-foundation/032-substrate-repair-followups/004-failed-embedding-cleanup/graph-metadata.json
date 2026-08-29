@@ -42,21 +42,13 @@
     "importance_tier": "normal",
     "status": "blocked",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/scripts/repair-failed-embeddings.mjs",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md",
-      "mcp_server/scripts/repair-failed-embeddings.mjs"
+      "spec.md"
     ],
     "entities": [
-      {
-        "name": "repair-failed-embeddings.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/scripts/repair-failed-embeddings.mjs",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -194,11 +186,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The active Memory MCP database has historical rows in `memoryindex` with `embeddingstatus='failed'`",
     "created_at": "2026-05-14T11:10:00Z",
-    "last_save_at": "2026-07-17T17:19:19.779Z",
+    "last_save_at": "2026-08-28T22:58:16.815Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:10:00Z",
     "source_docs": [
@@ -208,13 +206,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eb00ee6edfc76e16556ebc18f8c48860ec3486dfe6fa0c9636c26ccc65810d8f",
+    "source_fingerprint": "sha256:a235836c77fbcffda043530732c9c432503d96b857fd8f0db56cdf74f2b7b0c5",
     "source_doc_hashes": {
       "spec.md": "d0611a64249f0cec55ba37baba68b2279af878254d7afdc03b6de208d3ae71b7",
       "plan.md": "f900dae689f5402be31bfdeccc36b195d102e0310102d862624927dc41646517",
       "tasks.md": "c25ab48c14c8ddd9a0fa1c8a999592bcffb0979d3ed63c35978d042d81b19741",
       "checklist.md": "e4d730737cc99b5a45f2356c527349c1f87244e93001018b40f8b4222ab5ed70",
-      "implementation-summary.md": "a7f79c12178393efb420d49187ab9b5c14cc8780d5d832977b7d5ae6862585ff"
+      "implementation-summary.md": "751be565cac66da57469235bd4525154c4b08815d07a36e1f43ed1cde075bda0"
     },
     "last_active_child_id": null,
     "last_active_at": null

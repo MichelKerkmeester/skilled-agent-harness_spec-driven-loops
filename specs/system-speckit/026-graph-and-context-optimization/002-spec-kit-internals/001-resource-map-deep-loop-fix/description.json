@@ -38,5 +38,6 @@
     "002-spec-kit-internals"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": []
+  "memoryNameHistory": [],
+  "level": "phase"
 }

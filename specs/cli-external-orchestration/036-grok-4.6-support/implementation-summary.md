@@ -21,7 +21,7 @@ contextType: "implementation"
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | cli-external-orchestration/036-grok-4.6-support |
+| **Spec Folder** | 036-grok-4.6-support |
 | **Completed** | 2026-08-12 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

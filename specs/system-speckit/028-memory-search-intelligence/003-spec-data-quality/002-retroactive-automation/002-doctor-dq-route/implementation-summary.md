@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 012-doctor-dq-route |
+| **Spec Folder** | 002-doctor-dq-route |
 | **Completed** | PLANNED, not yet implemented |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
