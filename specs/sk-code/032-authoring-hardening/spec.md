@@ -146,3 +146,7 @@ Summary of aggregate scope for audit trail only. Per-phase detail lives in each 
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec, plan, tasks, and implementation summary
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
+- **Predecessor packet**: `../031-playbook-family-remediation/` — the cleanup this packet exists to
+  make permanent. That packet brought every playbook to zero; this one repairs the authoring
+  templates, the validator false positives, and the enforcement gap that let the backlog form
+  unseen. Its phases 002 and 004 depend on fixes delivered here.

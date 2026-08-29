@@ -91,9 +91,9 @@
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:426aaa615799bdf474c3d8e3524278a7754ba1d3a4c318d80d891cea393f60a2",
+    "source_fingerprint": "sha256:0c536519d5df385db3dc8342a51c6c54737ef858ca8234e4b0a3bcc15daf833e",
     "source_doc_hashes": {
-      "spec.md": "7f2144a146e7896478c11d5ab2150361f5d59937afdbaff7a5bb87aa88c8954e"
+      "spec.md": "2d6ec6a55a8df95a1afd5f2ed6357c76cf8375387e2fc48b14a98097431aff3d"
     },
     "last_active_child_id": "sk-code/032-authoring-hardening/003-per-root-enforcement",
     "last_active_at": null
