@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-015` and confirm the
 - Objective: Confirm AI-generated code is reviewed for over-abstraction, missing tests, and invented contracts without biasing severity unfairly.
 - Real user request: `Review target is suspected AI-generated code.`
 - Prompt: `Review this suspected AI-generated diff for over-abstraction, contract safety, and test adequacy based on behavior, not authorship.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when a suspected AI-generated-code fixture is missing from the environment.
 - Expected signals: Step 1: changed size visible; Step 2: suspect patterns checked; Step 3: findings tie to behavior not authorship
 - Desired user-visible outcome: a balanced quality review that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if over-engineering and missing tests are assessed via assets/code-quality-checklist.md and test-quality-checklist.md; FAIL if report relies on AI-generated label alone

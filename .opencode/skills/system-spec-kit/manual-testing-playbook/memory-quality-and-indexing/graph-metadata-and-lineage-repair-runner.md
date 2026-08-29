@@ -21,7 +21,7 @@ This scenario validates `mcp-server/scripts/repair-graph-metadata.mjs`. The runn
 
 - Objective: Confirm the runner is idempotent on re-run, writes backups before any real mutation, repairs the three failure classes, and that a follow-up `memory_index_scan` reports zero failures for the targeted classes.
 - Real user request: `` My memory_index_scan keeps reporting hundreds of failures across E_LINEAGE, invalid graph metadata, importance_tier check constraint, and V8 hard-block buckets after a bunch of folder renames. I want to run the repair runner end-to-end, verify it actually fixes things, and confirm a re-run is a no-op. Please run the dry-run first, then the real run, then a second dry-run for idempotency, and finally a memory_index_scan to confirm the targeted failure counts drop to 0. ``
-- RCAF Prompt: `As a memory-maintenance operator, validate the repair-graph-metadata.mjs runner against a real scan log and confirm idempotency.`
+- Operator prompt: `As a memory-maintenance operator, validate the repair-graph-metadata.mjs runner against a real scan log and confirm idempotency.`
 - Expected execution process: Capture a baseline `memory_index_scan` snapshot, run the runner with `--dry-run` to preview, run for real, re-run `--dry-run` to assert idempotency, re-run the scan, and return a pass/fail verdict with cited evidence.
 - Expected signals: dry-run report lists target files and a non-zero `graphFilesNeedingRepairBefore`; real run touches the same file count and writes backups to `/tmp/repair-graph-metadata-*`; second dry-run reports `graphMetadata.changed: 0` and `lineage.changed: 0`; follow-up scan reports `failed: 0` across `INSUFFICIENT_CONTEXT_ABORT`, `E_LINEAGE`, invalid graph schema, invalid importance_tier, and V8 buckets.
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -89,16 +89,17 @@ Validate the graph-metadata and lineage repair runner: dry-run, real run, idempo
 
 ### Evidence
 
-- 2026-07-02: BLOCKED before command execution by the task-level allowed-write constraint. The scenario Commands require writes outside the single permitted scenario file:
-  - Block A step 1 requires saving a JSON-RPC response to `/tmp/scan-before.log`.
-  - Block C step 6 runs `node .opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs --scan-log /tmp/scan-before.log`, which the scenario contract expects to perform real mutations.
-  - Block C step 7 expects `backupDir: /tmp/repair-graph-metadata-<timestamp>` containing mutated files plus SQLite database copies.
-- User-level constraint for this run was: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.` and `ALLOWED WRITE PATHS - .opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md (this file only)`.
-- Because the required scenario commands cannot be executed without creating or modifying files outside the only allowed write path, no baseline scan, repair runner, backup listing, idempotency check, or follow-up scan was run.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: The playbook requires out-of-scope writes (`/tmp/scan-before.log`, `/tmp/repair-graph-metadata-*`, and real repair-run mutations/backups), but this execution was constrained to modify only this scenario file.
+- **Pass**: The runner is idempotent, backups exist, and the follow-up scan shows zero failures in the targeted classes.
+- **Fail**: The runner mutates manual fields on healthy active packets, if the second dry-run reports non-zero changes, or if the follow-up scan still shows the targeted failure classes.
 
 ### Failure Triage
 

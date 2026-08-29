@@ -10,6 +10,13 @@ This document combines the full manual-validation contract for the `create-diff`
 
 ---
 
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> `sk-create-diff/benchmark/reports/<dated-run-label>/`.
+
+---
+
 This playbook package adopts the Feature Catalog split-document pattern for the `create-diff` mode. The root document acts as the directory, review surface, and orchestration guide, while per-feature execution detail lives in the category folders at the playbook root.
 
 Canonical package artifacts:

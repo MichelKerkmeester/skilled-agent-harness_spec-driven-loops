@@ -51,13 +51,13 @@ Operators run the exact command sequence and judge only grep-checkable signals.
 set -uo pipefail
 rm -rf /tmp/cp-052-sandbox /tmp/cp-052-sandbox-baseline /tmp/cp-052-spec
 mkdir -p /tmp/cp-052-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup_cp_sandbox.sh --sandbox-dir /tmp/cp-052-sandbox
+.opencode/skills/system-deep-loop/deep-review/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-052-sandbox
 cp -a /tmp/cp-052-sandbox /tmp/cp-052-sandbox-baseline
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 git status --porcelain -- /tmp/cp-052-sandbox /tmp/cp-052-spec > /tmp/cp-052-pre.txt
 cd /tmp/cp-052-sandbox
 opencode run "/deep:review:auto \"agent:deep-review\" --spec-folder=/tmp/cp-052-spec --max-iterations=1 --convergence=0.10 --no-resource-map. Use target type agent and dimensions traceability. Do not ask follow-up setup questions." --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-052-sandbox </dev/null 2>&1 | tee /tmp/cp-052-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-052-B-exit.txt
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 find /tmp/cp-052-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-052-B-artifacts.txt 2>/dev/null || touch /tmp/cp-052-B-artifacts.txt
 cat /tmp/cp-052-B-command.txt /tmp/cp-052-B-artifacts.txt > /tmp/cp-052-B-combined.txt
 diff -ru /tmp/cp-052-sandbox-baseline/.opencode/agent /tmp/cp-052-sandbox/.opencode/agent > /tmp/cp-052-agent.diff; echo "AGENT_DIFF=$?" > /tmp/cp-052-agent-diff-exit.txt
@@ -83,17 +83,18 @@ diff_field(){ label="$1"; file="$2"; if [ ! -s "$file" ]; then echo "$label: 1+"
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 | File | Lines | Role |
 |---|---:|---|
 | `.opencode/commands/deep/review.md` | 7-25, 43-160, 238-245 | Setup-first command contract and YAML handoff |
 | `.opencode/skills/system-deep-loop/deep-review/SKILL.md` | 43-61, 253-346 | Command-only invocation and three-layer workflow |
 | `.opencode/agents/deep-review.md` | 23-33, 218-238 | Agent is single-iteration target and mirrors are read-only |
+| [manual-testing-playbook.md](../manual-testing-playbook.md) | — | Root directory page and scenario summary |
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Command-flow stress tests
 - Playbook ID: CP-052

@@ -639,4 +639,14 @@ PRE-DELIVERY VERIFICATION:
 - Inherit assumptions from prior failed attempts; start with fresh observation.
 - Make multiple unrelated changes in one fix; one change at a time.
 - Claim resolution without showing verification evidence (test output or error no longer reproducing).
+
+---
+
+## 12. RELATED RESOURCES
+
+- `.opencode/agents/code.md` — the implementation target for a debug-to-implementation handoff.
+- `.opencode/agents/orchestrate.md` — governs the operator-approved Task-tool dispatch this agent requires.
+- `.opencode/commands/speckit/implement.md` — a command surface that may offer @debug after repeated failures.
+- `.opencode/commands/speckit/complete.md` — a command surface that may offer @debug after repeated failures.
+
 '''

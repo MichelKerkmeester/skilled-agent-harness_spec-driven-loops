@@ -88,11 +88,11 @@ Public export capture from `mcp-server/api/providers.ts`:
 Provider cascade and current local model IDs observed in imported shared registry/factory:
 
 ```text
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/embeddings/registry.ts:
+.opencode/skills/system-spec-kit/shared/embeddings/registry.ts:
   Line 24:     name: 'nomic-embed-text-v1.5',
   Line 168:   // is `nomic-ai/nomic-embed-text-v1.5` on HuggingFace.
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:
+.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:
   Line 164:     'nomic-ai/nomic-embed-text-v1.5': 768,
 ```
 
@@ -100,13 +100,13 @@ Exact grep output for legacy `unsloth/bge-base-en-v1.5-GGUF` or `onnx-community/
 
 ```text
 Found 19 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/embeddings/types.ts:
+.opencode/skills/system-spec-kit/shared/embeddings/types.ts:
   Line 31:  * Prefix tokens are required by some models (notably `nomic-embed-text-v1.5`):
 
   Line 38:    * Canonical name (e.g. "nomic-embed-text-v1.5"). Used as the lookup key in
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/embeddings/registry.ts:
+.opencode/skills/system-spec-kit/shared/embeddings/registry.ts:
   Line 24:     name: 'nomic-embed-text-v1.5',
 
   Line 160:     // registry's canonical name (e.g. 'nomic-embed-text-v1.5'). The
@@ -116,11 +116,11 @@ Found 19 matches
   Line 168:   // is `nomic-ai/nomic-embed-text-v1.5` on HuggingFace.
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:
+.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:
   Line 129:   'nomic-embed-text-v1.5': 768,
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/embeddings/profile.test.ts:
+.opencode/skills/system-spec-kit/shared/embeddings/profile.test.ts:
   Line 100:     getCanonicalFallback('ollama') === 'nomic-embed-text-v1.5',
 
   Line 101:     "getCanonicalFallback('ollama') canonical = 'nomic-embed-text-v1.5' (ADR-013/014)",
@@ -130,17 +130,17 @@ Found 19 matches
   Line 105:     "getCanonicalFallback('hf-local') canonical = 'nomic-ai/nomic-embed-text-v1.5' (ADR-014)",
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/embeddings/registry.test.ts:
+.opencode/skills/system-spec-kit/shared/embeddings/registry.test.ts:
   Line 34: const ADR_CANONICAL_NAME = 'nomic-embed-text-v1.5';
 
   Line 35: const ADR_HF_LOCAL_FORM = 'nomic-ai/nomic-embed-text-v1.5';
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/embeddings/providers/ollama.ts:
+.opencode/skills/system-spec-kit/shared/embeddings/providers/ollama.ts:
   Line 30:     name: 'nomic-embed-text-v1.5',
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts:
+.opencode/skills/system-spec-kit/shared/embeddings/providers/hf-local.ts:
   Line 36: // Task prefixes required by nomic-embed-text-v1.5
 
   Line 37: // See: https://huggingface.co/nomic-ai/nomic-embed-text-v1.5
@@ -150,7 +150,7 @@ Found 19 matches
   Line 79:  * @param modelId - HuggingFace model id, e.g. 'nomic-ai/nomic-embed-text-v1.5'
 
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:
+.opencode/skills/system-spec-kit/shared/embeddings/factory.ts:
   Line 164:     'nomic-ai/nomic-embed-text-v1.5': 768,
 ```
 
@@ -158,7 +158,7 @@ Retry-manager evidence for pending/retry/failed/success states, retry delays, ci
 
 ```text
 Found 37 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/providers/retry-manager.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/providers/retry-manager.ts:
   Line 11: import { computeContentHash, lookupEmbedding, storeEmbedding } from '../cache/embedding-cache.js';
   Line 271: export function sanitizeAndLogEmbeddingFailure(
   Line 309:         SET embedding_status = 'retry',

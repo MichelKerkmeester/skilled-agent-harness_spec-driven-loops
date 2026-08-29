@@ -23,7 +23,7 @@ Every write against a data source's rows depends on knowing its schema first —
 - Feature Name: Retrieve a data source
 - Scenario Objective: Read a scratch data source's property schema and confirm it resolves.
 - Exact Prompt: `Show me the schema of my scratch data source -- what columns does it have?`
-- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_retrieve-a-data-source") -> 3. Code Mode: call_tool_chain({ code: "const ds = await notion[\"notion_retrieve-a-data-source\"]({ data_source_id: \"SCRATCH_DATA_SOURCE_ID\" }); return ds;" })`
+- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_retrieve-a-data-source") -> 3. Code Mode: call_tool_chain({ code: "const ds = await notion[\"notion_retrieve-a-data-source\"] ({ data_source_id: \"SCRATCH_DATA_SOURCE_ID\" }); return ds;" })`
 - Expected Signals: The live manual reports the callable name; the schema resolves; the response carries the data source's `title`, `parent`, and a `properties` map including the `Name` title column.
 - Evidence: `list_tools()` result, `tool_info()` result, Code Mode response, `SCRATCH_DATA_SOURCE_ID` used, and the returned `properties` map.
 - Pass/Fail Criteria: PASS if the tool name and schema resolve and the returned `properties` map matches the scratch data source's known columns; SKIP if no scratch data source ID is available (run DS-005 first, or supply one); FAIL if a confirmed call returns an error or a schema contradicting the known scratch setup.

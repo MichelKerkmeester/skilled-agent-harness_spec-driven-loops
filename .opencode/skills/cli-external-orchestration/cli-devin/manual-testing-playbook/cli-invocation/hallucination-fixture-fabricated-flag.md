@@ -32,13 +32,35 @@ The archived prompt-quality work records hallucinated CLI flags, wrong-cwd paths
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Audit this proposed Devin invocation without executing it: devin -p "review the change" --model adaptive --permission-mode normal --reasoning-effort high. State which flags are real in the installed CLI, explicitly reject any fabricated flag, and do not edit files.`
+
+### Commands
+
 1. `devin --help > /tmp/cli-devin-dv003-help.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv003-help.txt`
 2. `devin -p 'Audit this proposed invocation without executing it: devin -p "review the change" --model adaptive --permission-mode normal --reasoning-effort high. State which flags are real in the installed CLI, explicitly reject any fabricated flag, and do not edit files.' --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv003.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv003.txt`
 3. Compare the response with the captured help text and record whether `--reasoning-effort` was rejected.
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| DV-003 | `devin -p ... --permission-mode normal` | Fake flag rejected; no unverified command executed | PASS/FAIL/SKIP |
+### Expected
+
+Fake flag rejected; no unverified command executed
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Fake flag rejected; no unverified command executed`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when the fabricated flag is rejected.
+- **Fail**: if the response states or implies that `--reasoning-effort` is a valid Devin flag
+- **Skip**: only when auth or availability is blocked. (a missing or unavailable prerequisite is the named blocker).
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

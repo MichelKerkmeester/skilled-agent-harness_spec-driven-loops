@@ -38,19 +38,30 @@ Council rounds must survive partial-write crashes. If round-state-jsonl drifts, 
 - `runtime/` source tree is present.
 - Feature catalog entry exists at `feature-catalog/council/round-state-jsonl.md`.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate Round-state JSONL and report whether the current source, persistence surface, and tests agree with the runtime/ contract.`
+
+### Commands
 
 1. Inspect `lib/council/round-state-jsonl.cjs` for the implementation contract.
 2. Inspect `tests/council/round-state-jsonl.vitest.ts` for the primary regression coverage.
 3. Run or inspect the matching test assertions for this feature.
 4. Capture the source lines, command output, or test assertions that prove the expected signals.
-5. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
+5. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
 ### Expected Outcome
 
 Round-state JSONL matches the documented current reality, the source anchors are accurate, and validation evidence is reproducible.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `lib/council/round-state-jsonl.cjs` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/council/round-state-jsonl.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - Lockfile path or naming changes without corresponding catalog/playbook updates.
 - JSONL repair step removed or weakened.
@@ -59,7 +70,7 @@ Round-state JSONL matches the documented current reality, the source anchors are
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -75,11 +86,12 @@ Round-state JSONL matches the documented current reality, the source anchors are
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Council
 - Playbook ID: DLR-019
 - Feature catalog entry: `feature-catalog/council/round-state-jsonl.md`
 - Scenario file path: `manual-testing-playbook/council/round-state-jsonl.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

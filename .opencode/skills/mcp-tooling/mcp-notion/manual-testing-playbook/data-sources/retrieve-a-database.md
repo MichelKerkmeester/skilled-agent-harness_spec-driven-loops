@@ -23,7 +23,7 @@ This scenario validates the confirmed `notion_retrieve-a-database` tool against 
 - Feature Name: Retrieve a database
 - Scenario Objective: Read a scratch database container's metadata and confirm its data-source ID list resolves.
 - Exact Prompt: `What data sources live inside my scratch database container?`
-- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_retrieve-a-database") -> 3. Code Mode: call_tool_chain({ code: "const db = await notion[\"notion_retrieve-a-database\"]({ database_id: \"SCRATCH_DATABASE_ID\" }); return db;" })`
+- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_retrieve-a-database") -> 3. Code Mode: call_tool_chain({ code: "const db = await notion[\"notion_retrieve-a-database\"] ({ database_id: \"SCRATCH_DATABASE_ID\" }); return db;" })`
 - Expected Signals: The live manual reports the callable name; the schema resolves; the response carries the database's `title` and a non-empty `data_source_id` list for its child data source(s).
 - Evidence: `list_tools()` result, `tool_info()` result, Code Mode response, `SCRATCH_DATABASE_ID` used, and the returned `data_source_id` list.
 - Pass/Fail Criteria: PASS if the tool name and schema resolve and the response returns container metadata with a data-source ID list; SKIP if no scratch database container ID is available (no `create-a-database` tool exists, so this requires an operator-provisioned container shared with the integration); FAIL if a confirmed call returns an error or omits the data-source ID list for a container known to hold data sources.

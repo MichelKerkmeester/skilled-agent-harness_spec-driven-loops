@@ -63,7 +63,7 @@ Gated run command:
 Observed output:
 
 ```text
- RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server
+ RUN  v4.1.6 .opencode/skills/system-skill-advisor/mcp-server
 
  ❯ tests/tri-daemon-drill.vitest.ts (1 test | 1 failed) 297ms
      × spawns all three CLI shims with isolated owners and divergent SIGTERM behavior 296ms
@@ -111,7 +111,7 @@ Ungated control command:
 Observed output:
 
 ```text
- RUN  v4.1.6 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/mcp-server
+ RUN  v4.1.6 .opencode/skills/system-skill-advisor/mcp-server
 
 
  Test Files  1 skipped (1)

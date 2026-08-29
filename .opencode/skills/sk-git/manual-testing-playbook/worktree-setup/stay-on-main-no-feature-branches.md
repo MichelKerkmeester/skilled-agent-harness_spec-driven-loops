@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-003` and confirm th
 - Prompt: `Run the spec scaffold, restore main if a helper changes branches, and report the branch-state evidence and recovery action.`
 - Expected execution process: Inspect the starting branch, run the helper only in a disposable target if needed, detect generated-branch state, switch back to main, and report the recovery.
 - Expected signals: The final branch is `main`; response explains any branch recovery; no feature branch is used for ongoing work.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox cannot provide a disposable checkout in which to run the branch-creating helper.
 - Pass/fail: PASS if the final checkout is `main`, the agent honors the user preference per `SKILL.md §3`, and branch creation policy still avoids direct new-branch commands per `references/shared-patterns.md §3`. FAIL if the agent continues on an auto-created branch, creates another feature branch, or treats the stay-on-main preference as optional.
 
 ---

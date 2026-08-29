@@ -28,7 +28,7 @@ The command may continue into steady-state status or rebuild behavior according 
 - Expected signals: state log shows migration skipped because source equals current version; no migration script IDs execute; command proceeds only to steady-state status or rebuild behavior.
 - Desired user-visible outcome: A no-op migration verdict proving current-version users are not migrated again.
 - Pass/fail: PASS if migration is explicitly skipped and no migration scripts execute.
-- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, `SKIP`, or `UNAUTOMATABLE`.
+- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable; a scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
 
@@ -77,7 +77,8 @@ manifest top-level keys: schema_version, migration, completed_at, executor, work
 
 ### Pass / Fail
 
-- **BLOCKED**: the workspace cannot establish the required installed version `3.4.1.0`, and the referenced manifest lacks the required `current_version: 3.4.1.0`; running `/doctor:update --migrate` would not test the specified already-current no-op scenario.
+- **Pass**: Migration is explicitly skipped and no migration scripts execute.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

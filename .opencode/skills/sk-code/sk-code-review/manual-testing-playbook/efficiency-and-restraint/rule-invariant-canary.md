@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-024` and confirm the
 - Objective: Confirm the canary exits 0 when copies agree, its self-test passes, and a tampered Iron Law or verdict copy makes it exit non-zero.
 - Real user request: `Prove the load-bearing review wording cannot silently drift across its copies.`
 - Prompt: `Run the rule-invariant canary and its self-test, confirm a clean pass, then tamper one Iron Law copy and confirm the canary fails loudly.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when the node runtime needed to execute scripts/check-rule-copies.js is unavailable in the current environment.
 - Expected signals: Step 1: canary exits 0 reporting the exact-string and Iron Law file counts; Step 2: the self-test reports all cases pass; Step 3: a tampered copy makes the canary exit 1 and name the drifted phrase, then restore.
 - Desired user-visible outcome: a guard that passes silently when wording agrees and blocks loudly the moment any copy drifts.
 - Pass/fail: PASS if the clean run exits 0, the self-test passes, and a tampered copy exits 1 per scripts/check-rule-copies.js; FAIL if drift is not caught or the clean run errors.

@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-028` and confirm th
 - Prompt: `Launch worktree-session.sh with AI_SESSION_CHILD=1 set and confirm it execs the runtime in place with no new worktree, then repeat from inside an existing linked worktree and confirm the same structural backstop applies.`
 - Expected execution process: Set `AI_SESSION_CHILD=1` and run the wrapper in `--dry-run`; separately, run the wrapper (without the env var) from inside an already-linked worktree and confirm the git-dir-vs-common-dir structural check also triggers exec-in-place.
 - Expected signals: output states `child/already-isolated session (...) — exec'ing in place, no new worktree`; no `git worktree add` is invoked; runtime arguments are preserved exactly.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox cannot create the linked fixture worktree this exec-in-place check runs from.
 - Pass/fail: PASS if both the env-var signal and the structural backstop each cause an in-place exec with zero new worktrees created and the original CLI arguments preserved unmodified. FAIL if a child still allocates a new worktree, or if the reason string leaks into the exec argv.
 
 ---

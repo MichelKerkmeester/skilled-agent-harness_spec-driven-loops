@@ -126,13 +126,13 @@ Check the Outliner plugin setup in my vault and report which settings are active
 
 ---
 
-## 4. CLEANUP
+### Cleanup
 
 Remove the throwaway vault with `rm -rf /tmp/_pbtest-outliner-settings-defaults` after the run. Confirm the path no longer exists. The real vaults are never written and never read during this scenario, so no vault state changes. Limitation restated: this scenario proves the reference provenance and the example assets agree with the recorded facts; a fresh live-vault re-verification is out of reach headlessly and outside this test boundary.
 
 ---
 
-## 5. SOURCE FILES
+## 4. SOURCE FILES
 
 ### Playbook Sources
 
@@ -154,7 +154,7 @@ Remove the throwaway vault with `rm -rf /tmp/_pbtest-outliner-settings-defaults`
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugin tie-ins
 - Playbook ID: OBS-020

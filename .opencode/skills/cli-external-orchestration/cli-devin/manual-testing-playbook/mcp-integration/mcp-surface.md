@@ -32,14 +32,36 @@ MCP management is a real Devin capability and must be distinguished from the rep
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Do not edit files or MCP configuration. Explain which MCP servers are currently visible to this Devin session and which management actions are available.`
+
+### Commands
+
 1. `devin mcp --help > /tmp/cli-devin-dv018-help.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv018-help.txt`
 2. `devin mcp list > /tmp/cli-devin-dv018-list.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv018-list.txt`
 3. `devin -p "Do not edit files or MCP configuration. Explain which MCP servers are currently visible to this Devin session and which management actions are available." --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv018-prompt.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv018-prompt.txt`
 4. Confirm no live config diff.
 
-| Feature ID | Exact commands | Expected signal | Verdict |
-|---|---|---|---|
-| DV-018 | `devin mcp --help` and `devin mcp list` | Eight verbs documented; list returns; no mutation | PASS/FAIL/SKIP |
+### Expected
+
+Eight verbs documented; list returns; no mutation
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Eight verbs documented; list returns; no mutation`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when help/list work and the working tree/config are unchanged.
+- **Fail**: on missing verbs or unexpected mutation
+- **Skip**: if no authenticated MCP context exists, with that blocker named..
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

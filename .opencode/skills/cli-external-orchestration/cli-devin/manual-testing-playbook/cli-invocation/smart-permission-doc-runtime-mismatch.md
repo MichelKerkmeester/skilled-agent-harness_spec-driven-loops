@@ -32,14 +32,36 @@ Permission-mode routing is safety-critical. Treating a help-only value as execut
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Reply with one sentence only: report the result of the permission-mode probe; do not edit files.`
+
+### Commands
+
 1. `devin --help > /tmp/cli-devin-dv004-help.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv004-help.txt`
 2. `devin -p "Reply with one sentence only: permission probe control succeeded." --model adaptive --permission-mode smart </dev/null > /tmp/cli-devin-dv004-smart.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv004-smart.txt`
 3. `devin -p "Reply with one sentence only: permission probe control succeeded." --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv004-normal.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv004-normal.txt`
 4. Record the help line, rejection text, and control result.
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| DV-004 | `devin -p ... --permission-mode smart` | Help mentions `smart`; runtime rejects it | PASS/FAIL/SKIP |
+### Expected
+
+Help mentions `smart`; runtime rejects it
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Help mentions `smart`; runtime rejects it`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when help advertises but runtime rejects `smart`.
+- **Fail**: if the test reports `smart` as accepted without evidence
+- **Skip**: only when the binary cannot be invoked. (a missing or unavailable prerequisite is the named blocker).
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

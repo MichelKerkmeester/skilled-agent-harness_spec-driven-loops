@@ -36,7 +36,7 @@ The 7-framework selection table, the task->framework map, the pre-planning-densi
 
 ## 3. OPENCODE SMALL-MODEL DISPATCH
 
-OpenCode dispatches the MiniMax, MiMo, DeepSeek-v4-pro, Kimi-K2.7, and GLM small models. Framework selection for these models follows the cross-model defaults in the canonical card; there are no per-model prompt-craft profiles.
+OpenCode dispatches the MiniMax, MiMo, DeepSeek-v4-flash, Kimi-K2.7, and GLM small models. Framework selection for these models follows the cross-model defaults in the canonical card; there are no per-model prompt-craft profiles.
 
 **Executor notes:** Omit `--agent` for all small-model dispatches. OpenCode maps `--variant low/medium/high` to MiMo's reasoning effort; `high` is the standing default for MiMo. MiniMax Token Plan (`minimax-coding-plan/MiniMax-M3`) and Direct API (`minimax/MiniMax-M3`) both serve M3. Xiaomi Token Plan (`xiaomi-token-plan-ams/mimo-v2.5-pro`) and Direct API (`xiaomi/mimo-v2.5-pro`) both serve MiMo-V2.5-Pro; the Direct API additionally serves `xiaomi/mimo-v2.5-pro-ultraspeed`, a low-latency tier with the same prompt contract. Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path — resolve before dispatch. Always include a self-invocation guard signal when the dispatched session could loop back.
 

@@ -44,7 +44,7 @@ Operators run the exact command sequence for `MANUAL-001` and confirm the expect
 4. Compare the observed output against the desired user-visible outcome.
 5. Return a concise final answer that a real user would understand.
 
-PRE: This is a read-only scenario with no access requirement. It must never SKIP.
+PRE: This is a read-only scenario with no access requirement. It must never SKIP for any environment or credential blocker, since it never depends on live Refero access.
 
 1. `bash: bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh`  # -> OK 'refero' manual registered
 2. optional `bash: REFERO_DOCTOR_LIVE=1 bash .opencode/skills/mcp-tooling/mcp-refero/scripts/doctor.sh`  # -> HTTP 401 (auth required, as documented)

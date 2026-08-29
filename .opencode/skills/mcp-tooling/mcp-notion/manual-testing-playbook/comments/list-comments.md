@@ -23,7 +23,7 @@ This scenario validates the confirmed `notion_list-comments` tool by listing the
 - Feature Name: List comments
 - Scenario Objective: List the unresolved comments on a known shared page via `list-comments` and confirm the response shape, whether or not any comments exist.
 - Exact Prompt: `Show me the comments on this Notion page.`
-- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_list-comments") -> 3. Code Mode: call_tool_chain({ code: "return await notion[\"notion_list-comments\"]({ block_id: KNOWN_PAGE_ID });" })`
+- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_list-comments") -> 3. Code Mode: call_tool_chain({ code: "return await notion[\"notion_list-comments\"] ({ block_id: KNOWN_PAGE_ID });" })`
 - Expected Signals: the call resolves with a `results` array (empty or populated) plus pagination fields (`has_more`, `next_cursor`); no error is raised for a page with zero unresolved comments.
 - Evidence: `list_tools()` result, `tool_info()` result, and the Code Mode response — the `results` array as returned and the pagination fields.
 - Pass/Fail Criteria: PASS if the call resolves with a valid comments-list shape (empty or populated) and pagination fields are present; SKIP if no known page ID shared with the integration is available to target; FAIL if the call errors against a known-valid page ID, or the response shape contradicts the documented comment-object structure.
@@ -58,7 +58,7 @@ Capture tool discovery, schema, and the raw `results` array plus pagination fiel
 ### Pass / Fail
 
 - **Pass:** the call resolves with a valid comments-list shape, empty or populated.
-- **Skip:** no known shared page ID is available to target.
+- **Skip:** no page ID shared with the integration is available in this environment to target.
 - **Fail:** the call errors on a valid page ID, or the response contradicts the documented shape.
 
 ### Failure Triage

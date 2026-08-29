@@ -38,7 +38,11 @@ A wrong agent name silently runs the research loop in a review fan-out context.
 - Working directory is repository root.
 - `deep-review-auto.yaml` present.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate native fan-out for deep-review: confirm step_fanout_spawn_native uses agent: deep-review and passes the correct lineage artifact dir override.`
+
+### Commands
 
 1. `bash: grep -n "step_fanout_spawn_native\|agent: deep-review\|agent: deep-research\|fanout_lineage_artifact_dir" .opencode/commands/deep/assets/deep-review-auto.yaml`
 2. Confirm `agent: deep-review` appears in the native dispatch block — NOT `agent: deep-research`.
@@ -55,7 +59,12 @@ A wrong agent name silently runs the research loop in a review fan-out context.
 
 Source inspection confirms `agent: deep-review`, correct dir override, correct `skip_when`. Review command docs include native fan-out note.
 
-### Failure Modes
+### Evidence
+
+- Grep output from step 1, saved to `/tmp/drv-066-grep.txt`, showing `agent: deep-review` (not `agent: deep-research`) and `config.fanout_lineage_artifact_dir`.
+- Grep output from step 5, saved to `/tmp/drv-066-docs-grep.txt`, showing the native fan-out note in `review.md`.
+
+### Failure Triage
 
 - `agent: deep-research` in review YAML native block: native lineages run the research loop, producing research.md instead of review-report.md.
 - Dir override absent: each native lineage resolves `artifact_dir` from `spec_folder` and overwrites the same review dir.
@@ -79,7 +88,7 @@ Source inspection confirms `agent: deep-review`, correct dir override, correct `
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`

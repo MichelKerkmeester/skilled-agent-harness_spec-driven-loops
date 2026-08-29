@@ -52,8 +52,8 @@ Missing metadata files created; complete folders unchanged; output identifies on
 Before listing for the pre-approved packet research tree:
 
 ```text
-$ ls -la "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/research"
-ls: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/research: No such file or directory
+$ ls -la ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep/research"
+ls: .opencode/specs/system-speckit/031-manual-playbook-execution-sweep/research: No such file or directory
 ```
 
 Existing fixture search:
@@ -66,9 +66,9 @@ Glob specs/**/research/**/iterations: No files found
 Backfill dry-run output against the pre-approved packet:
 
 ```text
-$ npx tsx memory/backfill-research-metadata.ts "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --dry-run
+$ npx tsx memory/backfill-research-metadata.ts ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep" --dry-run
 {
-  "specFolderPath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep",
+  "specFolderPath": ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep",
   "dryRun": true,
   "iterationDirectories": [],
   "descriptionCreated": 0,
@@ -84,15 +84,16 @@ $ npx tsx memory/backfill-research-metadata.ts "/Users/michelkerkmeester/MEGA/De
 After listing for the pre-approved packet research tree:
 
 ```text
-$ ls -la "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/research"
-ls: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/research: No such file or directory
+$ ls -la ".opencode/specs/system-speckit/031-manual-playbook-execution-sweep/research"
+ls: .opencode/specs/system-speckit/031-manual-playbook-execution-sweep/research: No such file or directory
 ```
 
 The scenario requires a fixture or packet containing both missing-metadata and complete research iteration folders. None exists under `.opencode/specs` or `specs`, and preparing one or running `--apply` would create or modify files outside the allowed write path for this execution.
 
 ### Pass / Fail
 
-- **BLOCKED**: no eligible research iteration fixture or packet exists in the current repo state, and the allowed-write boundary permits editing only this scenario file.
+- **Pass**: The script repairs incomplete research iteration folders without rewriting the complete ones.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

@@ -20,11 +20,11 @@ This scenario covers the new embedder inventory MCP surface from packet 016/003.
 
 - Objective: Validate embedder_list happy path and registry shape.
 - Real user request: `List the available system-spec-memory embedders and tell me which one is active.`
-- RCAF Prompt: `Run embedder_list and verify each embedder entry includes name, dimensions, provider, and active/install status.`
+- Operator prompt: `Run embedder_list and verify each embedder entry includes name, dimensions, provider, and active/install status.`
 - Expected execution process: Run the documented commands, capture output, compare against the expected signals, and return a cited verdict.
 - Expected signals: - At least one embedder is listed. - One active embedder is identifiable. - Dimension/provider metadata is present for every entry.
-- Desired user-visible outcome: A concise PASS/PARTIAL/FAIL verdict with cited evidence.
-- Pass/fail: PASS if all expected signals are present; PARTIAL if the happy path works but an edge signal is missing; FAIL if the tool errors unexpectedly or omits required evidence.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with cited evidence.
+- Pass/fail: PASS only if every expected signal is present; FAIL if the tool errors unexpectedly, omits required evidence, or the happy path works while any edge signal is missing.
 
 ---
 
@@ -128,6 +128,13 @@ Verification observations:
 
 FAIL — `embedder_list({})` returned one active embedder, but the entry omitted the required `dimensions` and `provider` fields.
 
+### Failure Triage
+
+1. Re-run each command in the sequence on its own and record its exit status; the first non-zero exit names the failing step.
+2. Confirm the handler or script listed in section 4 is the one actually loaded, and that any compiled output under `dist/` is current for it.
+3. Compare the observed response field by field against the Expected block, and quote the first field that disagrees.
+
+
 ### Cleanup
 
 No persistent cleanup is required unless the command writes a temporary fixture path; remove only that temporary path.
@@ -135,6 +142,7 @@ No persistent cleanup is required unless the command writes a temporary fixture 
 ---
 
 ## 4. SOURCE FILES
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - `.opencode/skills/system-spec-kit/mcp-server/handlers/embedder-list.ts`
 - `.opencode/skills/system-spec-kit/mcp-server/lib/embedders/registry.ts`
 

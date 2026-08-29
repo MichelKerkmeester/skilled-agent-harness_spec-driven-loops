@@ -86,4 +86,4 @@ Privilege the convergence reference for exact math and use quick reference and S
 - Playbook ID: DRV-031
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/composite-review-convergence-stop-behavior.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

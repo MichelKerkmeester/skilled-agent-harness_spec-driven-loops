@@ -453,7 +453,17 @@ Before sending: (1) Run self-check protocol, (2) Verify all evidence exists, (3)
 
 ---
 
-## 12. SUMMARY
+## 12. RELATED RESOURCES
+
+- `.opencode/skills/sk-code/SKILL.md` — router-selected style, process, build, and test standards.
+- `.opencode/skills/sk-code/sk-code-review/SKILL.md` — the code-review mode baseline every invocation loads first.
+- `.claude/agents/orchestrate.md` — the dispatcher for quality-gate validation (pre/mid/post execution).
+- `.claude/agents/context.md` — the optional Context Package provider that lets this agent skip Layer-1 memory checks.
+- `.claude/agents/deep-review.md` — the separate iterative reviewer for `/deep:review`, not a delegation target.
+
+---
+
+## 13. SUMMARY
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐

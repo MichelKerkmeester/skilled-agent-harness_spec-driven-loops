@@ -21,7 +21,7 @@ This scenario validates Cross-document entity linking (S5) for `060`. It focuses
 
 - Objective: Confirm guarded supports-edge linking.
 - Real user request: `Please validate Cross-document entity linking (S5) against the documented validation surface and tell me whether the expected signals are present: Supports-edges created between documents sharing entities; density guard prevents excessive edges; entity normalization applied.`
-- RCAF Prompt: `As a retrieval-enhancement validation operator, validate Cross-document entity linking (S5) against the documented validation surface. Verify supports-edges created between documents sharing entities; density guard prevents excessive edges; entity normalization applied. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a retrieval-enhancement validation operator, validate Cross-document entity linking (S5) against the documented validation surface. Verify supports-edges created between documents sharing entities; density guard prevents excessive edges; entity normalization applied. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Supports-edges created between documents sharing entities; density guard prevents excessive edges; entity normalization applied
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

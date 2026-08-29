@@ -157,7 +157,7 @@ Add a Claudian summarize slash command and a vault-triage skill to this vault's 
 
 ---
 
-## 4. CLEANUP
+### Cleanup
 
 Remove the throwaway vault. Nothing outside `/tmp/_pbtest-claudian` was created, so this one command restores the machine to its prior state.
 
@@ -167,7 +167,7 @@ rm -rf /tmp/_pbtest-claudian
 
 ---
 
-## 5. SOURCE FILES
+## 4. SOURCE FILES
 
 ### Playbook Sources
 
@@ -187,7 +187,7 @@ rm -rf /tmp/_pbtest-claudian
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugin tie-ins
 - Playbook ID: OBS-025

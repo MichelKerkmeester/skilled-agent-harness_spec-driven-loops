@@ -84,7 +84,7 @@ Progressive Validation Pipeline v1.0.0
 Auto-enabled recursive validation: phase child folders detected.
 
 Spec Folder Validation v3.0.0
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep
+  Folder: .opencode/specs/system-speckit/031-manual-playbook-execution-sweep
   Level:  phase
 x SPEC_DOC_SUFFICIENCY: 1 spec_doc_sufficiency issue(s) found
 x GENERATED_METADATA_INTEGRITY: Generated metadata integrity found 1 violation(s) (enforced)
@@ -96,7 +96,7 @@ Summary: Errors: 2  Warnings: 4
 RESULT: FAILED
 
 Spec Folder Validation v3.0.0
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/001-findings-remediation
+  Folder: .opencode/specs/system-speckit/031-manual-playbook-execution-sweep/001-findings-remediation
   Level:  2
 x FILE_EXISTS: Missing 1 required file(s) for Level 2
 x TEMPLATE_SOURCE: Template source header missing
@@ -256,7 +256,8 @@ EXIT_CODE=2
 
 ### Pass / Fail
 
-- **BLOCKED**: Level progression, report generation, error severity mapping, and proposed auto-fix diffs were observed, but the scenario could not execute non-dry-run auto-fix application because the required write would modify `.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/spec.md`, which is outside the single allowed write path for this run. The JSON report therefore shows `"autoFixes":{"count":1,"applied":false,...}`.
+- **Pass**: Levels 1-4 produce progressively stricter validation and exit codes match severity.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

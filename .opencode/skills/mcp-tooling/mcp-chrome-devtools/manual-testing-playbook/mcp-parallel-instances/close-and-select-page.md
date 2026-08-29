@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `BDG-016` and confirm th
 
 - Objective: Verify two pages can be opened in `chrome_devtools_1`; `close_page` succeeds for the first; `select_page` succeeds for the second; and `take_screenshot` on the surviving page, given an explicit `filePath`, writes a valid PNG to disk.
 - Real user request: `"Open two tabs in chrome_devtools_1, close the first one, and screenshot the second."`
-- RCAF Prompt: `As a manual-testing orchestrator, open 2 pages in chrome_devtools_1, close the first, and confirm the second is still accessible through Code Mode against the chrome_devtools_1 MCP instance. Verify select_page can switch back to the surviving page. Return a concise user-facing pass/fail verdict with the main reason.`
+- Prompt: `As a manual-testing orchestrator, open 2 pages in chrome_devtools_1, close the first, and confirm the second is still accessible through Code Mode against the chrome_devtools_1 MCP instance. Verify select_page can switch back to the surviving page. Return a concise user-facing pass/fail verdict with the main reason.` (RCAF format)
 - Expected execution process: navigate first page; open second page via `new_page`; close first via `close_page`; select second via `select_page`; screenshot with an explicit `filePath`; verify the written file in a separate shell step (Code Mode's V8 sandbox has no filesystem access).
 - Expected signals: 2 page IDs allocated; close returns success for the first ID; select returns success for the second ID; the screenshot file exists, is non-empty, and has PNG magic bytes.
 - Desired user-visible outcome: A short report listing both page IDs, the closed page, and the surviving screenshot file path and size with a PASS verdict.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `BDG-016` and confirm th
 
 ### Prompt
 
-- RCAF Prompt: `As a manual-testing orchestrator, open 2 pages in chrome_devtools_1, close the first, and confirm the second is still accessible through Code Mode against the chrome_devtools_1 MCP instance. Verify select_page can switch back to the surviving page. Return a concise user-facing pass/fail verdict with the main reason.`
+- Prompt: `As a manual-testing orchestrator, open 2 pages in chrome_devtools_1, close the first, and confirm the second is still accessible through Code Mode against the chrome_devtools_1 MCP instance. Verify select_page can switch back to the surviving page. Return a concise user-facing pass/fail verdict with the main reason.` (RCAF format)
 
 ### Commands
 

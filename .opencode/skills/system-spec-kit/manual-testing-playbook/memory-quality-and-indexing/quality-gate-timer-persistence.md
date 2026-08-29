@@ -80,7 +80,7 @@ $ npm test -- --run tests/save-quality-gate.vitest.ts -t "WO7" --reporter verbos
 > node scripts/run-tests.mjs --run tests/save-quality-gate.vitest.ts -t WO7 --reporter verbose
 
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 stderr | mcp-server/tests/save-quality-gate.vitest.ts > Save Quality Gate (TM-04) > Warn-Only Mode (MR12) > WO7: runQualityGate does not reset persisted activation window on restart
 INFO  [VectorIndex] Created vec_memories table with dimension 768
@@ -98,7 +98,8 @@ Blocker: the scenario has no Preconditions section and its Commands section does
 
 ### Pass / Fail
 
-- **BLOCKED**: The documented regression test `WO7: runQualityGate does not reset persisted activation window on restart` passes, but the scenario cannot be truthfully completed as a real service-restart verification because no executable restart command/service target is specified and the single-file write restriction prevents the required persisted timestamp mutation outside this scenario file.
+- **Pass**: Activation timestamp persists across restart and quality gate honors the original timer.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

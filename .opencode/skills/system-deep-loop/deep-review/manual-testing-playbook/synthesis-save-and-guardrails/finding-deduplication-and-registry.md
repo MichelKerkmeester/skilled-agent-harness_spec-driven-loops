@@ -87,4 +87,4 @@ Privilege the SKILL.md rules for deduplication logic and the quick reference for
 - Playbook ID: DRV-028
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `synthesis-save-and-guardrails/finding-deduplication-and-registry.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

@@ -70,7 +70,7 @@ $ npm test -- --run tests/memory-lineage-state.vitest.ts
 > node scripts/run-tests.mjs --run tests/memory-lineage-state.vitest.ts
 
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -106,6 +106,13 @@ Observed comparison against Expected: the targeted suite passed with `1 passed (
 ### Regression Triage
 
 Re-run `npm test -- --run tests/memory-lineage-state.vitest.ts -t asOf`; inspect `validateTransitionInput()` and `resolveLineageAsOf()` in `lib/storage/lineage-state.ts` and `lib/search/vector-index-schema.ts` if projection or timestamp assertions drift.
+
+### Failure Triage
+
+1. Re-run each command in the sequence on its own and record its exit status; the first non-zero exit names the failing step.
+2. Confirm the handler or script listed in section 4 is the one actually loaded, and that any compiled output under `dist/` is current for it.
+3. Compare the observed response field by field against the Expected block, and quote the first field that disagrees.
+
 
 ---
 

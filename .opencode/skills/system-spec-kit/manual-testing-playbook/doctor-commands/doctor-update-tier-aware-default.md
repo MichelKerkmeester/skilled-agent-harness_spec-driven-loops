@@ -28,7 +28,7 @@ The user-facing safety point is pacing. A casual default update should not silen
 - Expected signals: skill-graph and deep-loop init run silently; code-graph and eval share one combined prompt; memory rebuild prompt includes `5-15 min runtime, proceed?` or equivalent ETA language.
 - Desired user-visible outcome: A prompt-sequence verdict proving single interactive mode protects long work while avoiding noisy prompts for short steps.
 - Pass/fail: PASS if prompt sequence and step classification match the tier-aware contract.
-- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, `SKIP`, or `UNAUTOMATABLE`.
+- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable; a scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
 
@@ -56,49 +56,17 @@ The command loads `doctor-update.yaml` and uses tier-aware interactive mode. Sho
 
 ### Evidence
 
-- BLOCKED before invoking `/doctor:update`: Command step 1 requires `Prepare a disposable workspace with mixed subsystem states.`, but this run's allowed write paths permit edits only to `.opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-update-tier-aware-default.md`. Preparing a disposable workspace would require creating/modifying files outside the allowed path.
-- BLOCKED before invoking `/doctor:update`: the scenario metadata says `Destructive: Potentially; disposable workspace only.`
-- Read of `.opencode/commands/doctor/update.md` confirmed the default command has no suffix and obsolete mode suffixes are invalid:
+Capture, for every step in the Commands sequence above:
 
-```text
-3: argument-hint: "[--force] [--no-snapshot] [--cleanup-legacy] [--migrate] [--keep-snapshots] [--resume-bootstrap]"
-38: ## Routing Rules
-40: - This command is always interactive; deleted mode suffixes are invalid.
-46: - Every terminal path writes the update state log defined by the YAML workflow.
-```
-
-- Read of `.opencode/commands/doctor/assets/doctor-update.yaml` confirmed running the real workflow would write outside the allowed path:
-
-```text
-18:   state_log: "mcp-server/database/.doctor-update.last-run.json"
-98: mutation_boundaries:
-99:   allowed_targets:
-102:     - "mcp-server/database/context-index.sqlite"  # canonical memory DB
-104:     - ".opencode/skills/system-skill-advisor/mcp-server/database/skill-graph.sqlite"  # standalone advisor routing graph DB
-106:     - ".opencode/skills/system-deep-loop/runtime/database/deep-loop-graph.sqlite"  # research/review coverage graph DB
-108:     - "mcp-server/database/speckit-eval.db"  # eval/ablation DB
-110:     - "mcp-server/database/.doctor-update.flock"  # single-instance lock
-112:     - "mcp-server/database/.doctor-update.last-run.json"  # orchestrator state log
-386:   phase_5_dependency_order_execute:
-399:         action: "memory_index_scan({ incremental: false, force: true })"
-456:       skill-graph: "system_skill_advisor.skill_graph_scan({})"
-457:       advisor: "system_skill_advisor.advisor_rebuild({ force: true }) + system_skill_advisor.advisor_validate({})"
-459:       speckit-eval: "eval_run_ablation({})"
-501:   phase_10_state_log_unlock_cleanup:
-503:     state.log: "write .doctor-update.last-run.json with timestamps, durations, snapshot paths"
-```
-
-- Glob check for the state log path returned an existing state log path, confirming the real command's final artifact path is outside the only allowed write path:
-
-```text
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/.doctor-update.last-run.json
-```
-
-- No prompt transcript, tier-aware prompt sequence, final dashboard, or fresh `.doctor-update.last-run.json` was captured because invoking the real command would violate the user-provided write-path restriction and the playbook's own disposable-workspace precondition is unavailable under that restriction.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: the current run forbids all writes except this scenario file, while the scenario requires a disposable workspace and the real `/doctor:update` workflow writes database, lock, snapshot, and state-log artifacts outside the allowed path.
+- **Pass**: Prompt sequence and step classification match the tier-aware contract.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

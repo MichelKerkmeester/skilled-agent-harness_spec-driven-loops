@@ -5,11 +5,11 @@ trigger_phrases:
   - "opencode providers and models"
   - "which model for opencode dispatch"
   - "opencode variant reasoning effort"
-  - "opencode default model deepseek"
+  - "opencode default model opencode-go flash"
   - "opencode minimax xiaomi gpt dispatch"
 importance_tier: normal
 contextType: implementation
-version: 1.1.0.0
+version: 1.2.0.0
 ---
 
 # cli-opencode Providers, Models & Invocation
@@ -44,15 +44,6 @@ This file enumerates the provider/model/effort facts and the dispatch envelope. 
 
 OpenCode resolves models through configured providers; the model string passed to `--model` is always `provider/model-id`. Run `opencode models <provider>` for the live list on a given install — but a live id that is NOT in this catalog is still forbidden for cli-opencode dispatch.
 
-### deepseek
-
-Policy: DeepSeek V4 Flash is a reasoning model (confirmed via `opencode models deepseek`: `reasoning: true`, with a `max` thinking level) and is dispatched **only at its max thinking tier** — never at a lower effort. The fan-out builder pins `deepseek-v4-flash` to `--variant max` automatically, so a lineage that requests a lower effort is upgraded to max.
-
-| Model id | Default? | Notes |
-|----------|----------|-------|
-| `deepseek/deepseek-v4-pro` | **Default** | Deep reasoning at low cost via direct DeepSeek API |
-| `deepseek/deepseek-v4-flash` | — | Latency-optimized reasoning sibling; pinned to `--variant max` (max thinking tier) by policy |
-
 ### minimax
 
 | Model id | Default? | Notes |
@@ -68,17 +59,16 @@ Policy: DeepSeek V4 Flash is a reasoning model (confirmed via `opencode models d
 
 ### openai
 
-GPT-5.6 via the `openai` provider — three personas (sol/terra/luna) × three speed tiers (base / fast / pro) = 9 slugs. `gpt-5.6-sol` is the flagship default persona; confirm live slugs via `opencode models openai`.
+GPT-5.6 via the `openai` provider — two personas (sol/luna) × three speed tiers (base / fast / pro) = 6 slugs (the Terra persona was retired). `gpt-5.6-sol` is the flagship default persona; confirm live slugs via `opencode models openai`.
 
 | Persona | Base | Fast (low-latency) | Pro |
 |---------|------|--------------------|-----|
 | sol | `openai/gpt-5.6-sol` | `openai/gpt-5.6-sol-fast` | `openai/gpt-5.6-sol-pro` |
-| terra | `openai/gpt-5.6-terra` | `openai/gpt-5.6-terra-fast` | `openai/gpt-5.6-terra-pro` |
 | luna | `openai/gpt-5.6-luna` | `openai/gpt-5.6-luna-fast` | `openai/gpt-5.6-luna-pro` |
 
 ### opencode-go
 
-OpenCode Go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and Qwen families. Confirm live slugs via `opencode models opencode-go`.
+opencode-go gateway (subsidized "2x usage" rate); fronts the DeepSeek, GLM, and Qwen families and hosts this mode's **default model** (`opencode-go/deepseek-v4-flash`, the flash literal's opencode-go route — the direct DeepSeek API provider was retired). Confirm live slugs via `opencode models opencode-go`.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
@@ -101,12 +91,11 @@ OpenRouter gateway (base `https://openrouter.ai/api/v1`); pass the full three-se
 
 ### cline-pass
 
-Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible); pass the full three-segment `cline-pass/cline-pass/<model-id>` to `--model`. Authenticate with `opencode auth login` (the `/login` flow) — the provider registers as **`cline-pass`**, not `cline` (`opencode models cline` errors "Provider not found"). Confirm live slugs via `opencode models cline-pass`. DeepSeek V4 Flash and DeepSeek V4 Pro here both report `reasoning: true`, but their thinking tiers run `none`→`xhigh` with **no `max` tier**. **Default effort: `--variant xhigh`** — dispatch either cline-pass DeepSeek model at its top thinking tier by default, following the DeepSeek family's top-tier-only policy (the direct/opencode-go `--variant max` pin has no `max` here, so `xhigh` is the equivalent top tier). The cline-pass DeepSeek entries are direct-dispatch roster entries only; they are not wired into the fan-out executor registry (which would force the unsupported `--variant max`). Note: opencode has no per-model default-effort config key, so this default is a dispatch convention here — the interactive TUI picker remembers the effort per model on its own.
+Cline provider (Cline Pass account, base `https://api.cline.bot/api/v1`, OpenAI-compatible); pass the full three-segment `cline-pass/cline-pass/<model-id>` to `--model`. Authenticate with `opencode auth login` (the `/login` flow) — the provider registers as **`cline-pass`**, not `cline` (`opencode models cline` errors "Provider not found"). Confirm live slugs via `opencode models cline-pass`. The cline-pass DeepSeek V4 Flash entry reports `reasoning: true` with thinking tiers running `none`→`xhigh`, **no `max` tier**. **Default effort: `--variant xhigh`** — dispatch it at its top thinking tier by default, following the DeepSeek family's top-tier-only policy (the opencode-go `--variant max` pin has no `max` here, so `xhigh` is the equivalent top tier). The cline-pass DeepSeek entry is a direct-dispatch roster entry only; it is not wired into the fan-out executor registry (which would force the unsupported `--variant max`). Note: opencode has no per-model default-effort config key, so this default is a dispatch convention here — the interactive TUI picker remembers the effort per model on its own.
 
 | Model id | Default? | Notes |
 |----------|----------|-------|
-| `cline-pass/cline-pass/deepseek-v4-flash` | — | DeepSeek V4 Flash via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier); list-verified in `opencode models cline-pass` on 2026-08-18 (not dispatch-tested) |
-| `cline-pass/cline-pass/deepseek-v4-pro` | — | DeepSeek V4 Pro via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier); context 1M, output 384K; list-verified in `opencode models cline-pass` on 2026-08-18 (not dispatch-tested). cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.5`/`mimo-v2.5-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope |
+| `cline-pass/cline-pass/deepseek-v4-flash` | — | DeepSeek V4 Flash via the Cline provider; reasoning model; **default effort `--variant xhigh`** (its top thinking tier; no `max` tier); list-verified in `opencode models cline-pass` on 2026-08-18 (not dispatch-tested). cline-pass also fronts `glm-5.2`, `kimi-k2.6`/`kimi-k2.7-code`/`kimi-k3`, `mimo-v2.5`/`mimo-v2.5-pro`, `minimax-m3`, `qwen3.7-max`/`qwen3.7-plus`, out of this catalog's curated scope. DeepSeek V4 Pro was retired from the roster and is not a dispatch target here |
 
 > **GLM-5.3-Flash is NOT available on cli-opencode's Cline route.** Unlike cli-pi (which passes the raw Cline id `z-ai/glm-5.3-flash` straight through and works), opencode's `cline-pass` adapter returns `Unexpected server error` for every id form (`cline-pass/z-ai/glm-5.3-flash`, `cline-pass/cline-pass/glm-5.3-flash`), and `opencode models cline-pass` lists only `glm-5.3` (no `-flash` variant). Verified 2026-08-27. Reach GLM-5.3-Flash on cli-opencode via **`openrouter/z-ai/glm-5.3-flash`** or **`opencode-go/glm-5.3-flash`** instead.
 
@@ -118,14 +107,14 @@ Dispatch this mode's default without opening any other file:
 
 | Field | Value |
 |-------|-------|
-| Default model | `deepseek/deepseek-v4-pro` |
-| Default effort | `--variant high` |
+| Default model | `opencode-go/deepseek-v4-flash` |
+| Default effort | `--variant max` (flash is max-tier-pinned by policy) |
 | Default format | `--format json` |
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir "$REPO_ROOT" \
   "<prompt>" </dev/null
@@ -137,16 +126,15 @@ If the default provider is not configured, the mode ASKS the operator before sub
 
 ## 4. REASONING-EFFORT / THINKING LEVER
 
-cli-opencode expresses reasoning effort through the **`--variant`** flag, which maps to a provider-specific effort scale. Default skill behavior is `--variant high`.
+cli-opencode expresses reasoning effort through the **`--variant`** flag, which maps to a provider-specific effort scale. Default skill behavior is `--variant high` for non-pinned models; the `opencode-go/deepseek-v4-flash` default is pinned to `--variant max` by policy.
 
 | Provider | `--variant` behavior |
 |----------|----------------------|
-| `deepseek` (`-v4-pro`) | reasoning effort accepted |
-| `deepseek` (`-v4-flash`) | non-reasoning — `--variant` ignored |
+| `opencode-go` (`deepseek-v4-flash`) | reasoning model pinned to `--variant max` (max thinking tier) by policy — the fan-out builder upgrades a lower requested effort automatically |
 | `minimax` (MiniMax-M3) | behavior unverified — omitted by default; confirm before relying |
 | `xiaomi` (mimo) | maps to MiMo effort (low/medium/high); **always use `--variant high`** |
-| `openai` GPT-5.6 | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
-| `cline-pass` (deepseek-v4-flash, deepseek-v4-pro) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) for both models |
+| `openai` GPT-5.6 (sol/luna) | maps to OpenAI effort `none`/`low`/`medium`/`high`/**`xhigh`**; Pro tiers `medium`/`high`/`xhigh`; `-fast` slugs are the low-latency Fast tier with the same range |
+| `cline-pass` (deepseek-v4-flash) | reasoning effort accepted — tiers `none`/`low`/`medium`/`high`/**`xhigh`**; **no `max`**; **default/pinned `--variant xhigh`** (top thinking tier) |
 
 ---
 
@@ -157,7 +145,7 @@ When dispatching as a non-interactive child (spec-gate-neutralized worker), pref
 
 ```bash
 SYSTEM_SPEC_GATE_ENFORCE=0 AI_SESSION_CHILD=1 opencode run \
-  --model deepseek/deepseek-v4-pro --variant high --format json \
+  --model opencode-go/deepseek-v4-flash --variant max --format json \
   --dir "$REPO_ROOT" "<prompt>" </dev/null > stdout.log 2> stderr.log
 ```
 

@@ -58,11 +58,11 @@ Coverage note (2026-08-21): 33 operator scenarios across 8 categories cover 24 M
 
 An operator reads: "create a scratch page, add a paragraph, then read it back." The mode routes this to the official Notion MCP through Code Mode. The orchestrator calls:
 
-1. `notion["notion_retrieve-bot-user"]({})` -- auth/connectivity preflight (returns the bot user).
-2. `notion["notion_create-a-page"]({...})` -- create the scratch page under a known parent.
-3. `notion["notion_append-block-children"]({...})` -- append a paragraph block.
-4. `notion["notion_retrieve-a-page"]({...})` -- read the page back and confirm.
-5. `notion["notion_archive-a-page"]({...})` -- trash the scratch page (reversible cleanup).
+1. `notion["notion_retrieve-bot-user"] ({})` -- auth/connectivity preflight (returns the bot user).
+2. `notion["notion_create-a-page"] ({...})` -- create the scratch page under a known parent.
+3. `notion["notion_append-block-children"] ({...})` -- append a paragraph block.
+4. `notion["notion_retrieve-a-page"] ({...})` -- read the page back and confirm.
+5. `notion["notion_archive-a-page"] ({...})` -- trash the scratch page (reversible cleanup).
 
 A scenario PASSES only when both the **execution process** (correct tool called, correct arguments) and the **observable outcome** (the returned object matches, the page is visible then trashed) are verified.
 
@@ -110,7 +110,7 @@ Each scenario MUST capture:
 
 | Type | Notation | Example |
 |------|----------|---------|
-| MCP tool (Code Mode) | `notion["notion_<tool>"]({...})` | `notion["notion_retrieve-a-page"]({ page_id: "X" })` |
+| MCP tool (Code Mode) | `notion["notion_<tool>"] ({...})` | `notion["notion_retrieve-a-page"] ({ page_id: "X" })` |
 | Direct REST | `GET/POST <endpoint>` | `GET /v1/pages/{id}/properties/{prop}` |
 | Bash | `bash: <command>` | `bash: grep -c '"name": "notion"' .utcp_config.json` |
 | Sequential | `->` separator | `retrieve-bot-user -> create-a-page -> retrieve-a-page -> archive-a-page` |

@@ -36,7 +36,11 @@ Without the warn surface, an operator cannot stage rollout: they would have to e
 - Shell can set `DEEP_REVIEW_V2_ENFORCEMENT=warn`.
 - A legacy iteration record fixture is available that omits `reviewDepthSchemaVersion`.
 
-### Steps
+### Prompt
+
+- Prompt: `Run a deep-review iteration against a legacy unversioned record with DEEP_REVIEW_V2_ENFORCEMENT=warn and confirm the legacy advisory fires without failing the record.`
+
+### Commands
 
 1. Set `DEEP_REVIEW_V2_ENFORCEMENT=warn`.
 2. Run the validator fixture path that covers legacy unversioned review records.
@@ -48,7 +52,11 @@ Without the warn surface, an operator cannot stage rollout: they would have to e
 
 The validator surfaces `legacy_unversioned_record` while `DEEP_REVIEW_V2_ENFORCEMENT=warn` is active, and the record remains readable instead of failing as explicit v2.
 
-### Failure Modes
+### Evidence
+
+- Validator output showing `ok: true` with `warnings[]` containing the `legacy_unversioned_record` code, captured to `/tmp/drv-058-validator-warn.txt`.
+
+### Failure Triage
 
 - `legacy_unversioned_record` is absent: inspect whether the input record accidentally includes `reviewDepthSchemaVersion`.
 - The run hard-fails: verify the environment is `DEEP_REVIEW_V2_ENFORCEMENT=warn`, not `strict`.
@@ -56,15 +64,16 @@ The validator surfaces `legacy_unversioned_record` while `DEEP_REVIEW_V2_ENFORCE
 
 ---
 
-## 4. SOURCE REFERENCES
+## 4. SOURCE FILES
 
 - Validator: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts` (`PostDispatchAdvisory`, `legacy_unversioned_record`).
 - Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts`.
 - Rollout policy: complexity-validator-v2-enforcement decision record, ADR-001 (see this skill's changelog for provenance).
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Review-depth v2 rollout
 - Playbook ID: DRV-058

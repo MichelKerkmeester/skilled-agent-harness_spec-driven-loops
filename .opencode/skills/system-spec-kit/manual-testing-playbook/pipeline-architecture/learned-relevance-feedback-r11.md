@@ -175,7 +175,7 @@ Command 3, verify safeguards, top-3 exclusion: `memory_validate({ id: 7470, wasU
 Validation surface command: `npx vitest run tests/learned-feedback.vitest.ts`
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)

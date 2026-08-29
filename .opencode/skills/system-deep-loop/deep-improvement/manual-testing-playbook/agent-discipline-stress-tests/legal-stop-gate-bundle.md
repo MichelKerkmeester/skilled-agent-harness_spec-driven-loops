@@ -60,7 +60,7 @@ Operators run the exact prompt and command sequence for `CP-035` and confirm the
 ```bash
 rm -rf /tmp/cp-035-sandbox /tmp/cp-035-sandbox-baseline /tmp/cp-035-spec
 mkdir -p /tmp/cp-035-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/setup_cp_sandbox.sh --sandbox-dir /tmp/cp-035-sandbox
+.opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-035-sandbox
 cp -a /tmp/cp-035-sandbox /tmp/cp-035-sandbox-baseline
 git status --porcelain > /tmp/cp-035-pre.txt
 cat > /tmp/cp-035-task.txt <<'EOF'
@@ -75,7 +75,7 @@ opencode run "$(cat /tmp/cp-035-prompt-A.txt)" --model deepseek/deepseek-v4-pro 
 rm -rf /tmp/cp-035-sandbox && cp -a /tmp/cp-035-sandbox-baseline /tmp/cp-035-sandbox
 cd /tmp/cp-035-sandbox
 opencode run "/deep:agent-improvement \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-035-spec --iterations=1" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-035-sandbox </dev/null 2>&1 | tee /tmp/cp-035-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-035-B-exit.txt
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 test -f /tmp/cp-035-spec/improvement/improvement-journal.jsonl && cp /tmp/cp-035-spec/improvement/improvement-journal.jsonl /tmp/cp-035-B-journal.jsonl || touch /tmp/cp-035-B-journal.jsonl
 cat /tmp/cp-035-B-command.txt /tmp/cp-035-B-journal.jsonl > /tmp/cp-035-B-combined.txt
 git status --porcelain > /tmp/cp-035-post.txt

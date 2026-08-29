@@ -23,7 +23,7 @@ This scenario validates Constitutional memory as expert knowledge injection (PI-
 
 - Objective: Confirm directive enrichment.
 - Real user request: `Please validate Constitutional memory as expert knowledge injection (PI-A4) against the documented validation surface and tell me whether the expected signals are present: Directive metadata appears in retrieval results; constitutional tier classification applied; enrichment fields populated.`
-- RCAF Prompt: `As a retrieval-enhancement validation operator, validate Constitutional memory as expert knowledge injection (PI-A4) against the documented validation surface. Verify directive metadata appears in retrieval results; constitutional tier classification applied; enrichment fields populated. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a retrieval-enhancement validation operator, validate Constitutional memory as expert knowledge injection (PI-A4) against the documented validation surface. Verify directive metadata appears in retrieval results; constitutional tier classification applied; enrichment fields populated. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Directive metadata appears in retrieval results; constitutional tier classification applied; enrichment fields populated
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -236,7 +236,7 @@ Command 2, run retrieval, successful `memory_quick_search` output:
       {
         "id": 9372,
         "specFolder": "system-spec-kit",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+        "filePath": ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
         "title": "TOOL ROUTING - Search & Retrieval Decision Tree",
         "similarity": 90,
         "score": 0.526638052173913,
@@ -260,7 +260,7 @@ Command 3, inspect directive metadata, retrieval auto-surfaced constitutional me
       {
         "id": 38292,
         "specFolder": "system-spec-kit",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md",
+        "filePath": ".opencode/skills/system-spec-kit/constitutional/goal-prompting-runtime-specific.md",
         "title": "GOAL PROMPTING — Runtime-Specific: Claude Code Native vs OpenCode opencode-goal Plugin",
         "importanceTier": "constitutional",
         "retrieval_directive": "Always surface when: rule applies — always resolved to the OpenCode markdown and instructed a call to `opencode_goal()`, | Prioritize when: never existed: created as"
@@ -268,7 +268,7 @@ Command 3, inspect directive metadata, retrieval auto-surfaced constitutional me
       {
         "id": 16264,
         "specFolder": "system-spec-kit",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+        "filePath": ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
         "title": "TOOL ROUTING - Search & Retrieval Decision Tree",
         "importanceTier": "constitutional",
         "retrieval_directive": "Always surface when: TOOL ROUTING - Search & Retrieval Decision Tree | Prioritize when: task context aligns with \"TOOL ROUTING - Search & Retrieval Decision Tree\""

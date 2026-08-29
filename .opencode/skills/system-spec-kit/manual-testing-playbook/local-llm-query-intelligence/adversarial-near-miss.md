@@ -22,11 +22,11 @@ If BGE local fallback's semantic representation is functioning correctly, it pul
 
 - Objective: Confirm semantic > lexical when they disagree.
 - Real user request: `Verify Code Graph's semantic ranking beats lexical decoys: fire 3 adversarial queries and confirm the semantically-correct file ranks above the lexical decoy in each top-5.`
-- RCAF Prompt: `As a query-intelligence validation operator, fire 3 adversarial queries with intentional lexical decoys and verify the semantically-correct file outranks the decoy in each top-5. Return a pass/fail verdict.`
+- Operator prompt: `As a query-intelligence validation operator, fire 3 adversarial queries with intentional lexical decoys and verify the semantically-correct file outranks the decoy in each top-5. Return a pass/fail verdict.`
 - Expected execution process: run 3 queries with engineered lexical+semantic mismatch, identify the correct file and the decoy in each result list, check ranks.
 - Expected signals: correct file rank < decoy rank in ≥ 2 of 3 queries.
 - Desired user-visible outcome: `PASS — semantic ranking beats lexical decoy in 3/3 queries.`
-- Pass/fail: PASS if 3/3; PARTIAL if 2/3; FAIL if ≤ 1.
+- Pass/fail: PASS only if 3/3; FAIL at 2/3 or fewer — a 2-of-3 result is a FAIL, not partial credit.
 
 ---
 
@@ -93,86 +93,26 @@ For each query, capture:
 
 ### Evidence
 
-- The 3 queries verbatim:
-  - Query A: `where are embedding results cached by content hash to skip recomputation`
-  - Query B: `core class that opens the sqlite-vec virtual table for runtime vector queries`
-  - Query C: `primary entry point that constructs concrete embedding provider instances and resolves auto cascade`
-- Native Code Graph status before retrying the commands:
+Capture, for every step in the Commands sequence above:
 
-```text
-cache_ttl_ms=5000
-spec_folder=auto
-resume_mode=minimal
-messages_transform_enabled=true
-messages_transform_mode=schema_aligned
-runtime_ready=false
-node_binary=node
-bridge_timeout_ms=15000
-last_runtime_error=Bridge skipped: SOCKET_ABSENT (exit=75); plugin injection will no-op
-cache_entries=0
-cache=empty
-```
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
-- Code Index CLI tool availability check:
+### Pass / Fail
 
-```text
-detect_changes
-```
+- **Pass**: 3/3.
+- **Fail**: At 2/3 or fewer — a 2-of-3 result is a FAIL, not partial credit.
 
-- Query A command output:
+### Failure Triage
 
-```json
-{
-  "status": "error",
-  "exitCode": 75
-}
-```
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
 
-- Query B command output:
-
-```json
-{
-  "status": "error",
-  "exitCode": 75
-}
-```
-
-- Query C command output:
-
-```json
-{
-  "status": "error",
-  "exitCode": 75
-}
-```
-
-- Rank-pair table:
-
-```text
-| Query | Semantic target        | Target rank | Lexical decoy                     | Decoy rank | Target > Decoy? |
-|-------|------------------------|------------:|-----------------------------------|-----------:|----------------|
-| A     | embedding-cache.ts     | BLOCKED     | embedding-circuit-breaker.vitest.ts | BLOCKED  | BLOCKED        |
-| B     | vector-index-store.ts  | BLOCKED     | vector-index-impl.vitest.ts       | BLOCKED    | BLOCKED        |
-| C     | factory.ts             | BLOCKED     | embeddings-ollama-factory.vitest.ts | BLOCKED  | BLOCKED        |
-```
-
-- Honest note: unable to assess whether any decoy is actually a better answer because no ranked result lists were produced.
-- Active provider from `memory_health`: BLOCKED. Native MCP `memory_health` returned this output on repeated attempts:
-
-```text
-MCP error -32001: backend recycled; retry
-```
-
-- Spec Memory CLI fallback for `memory_health` returned this output:
-
-```text
-@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build
-```
-
----
-
-## 4. PASS PREDICATE
-
+### Pass Predicate
 A FAIL signal indicates one of:
 1. The embedding lane is degraded or disabled.
 2. The lexical (FTS5) score is being weighted too heavily in the hybrid-search composition.
@@ -180,3 +120,19 @@ A FAIL signal indicates one of:
 
 Differentiate (1)/(2) from (3) by inspecting the top-10 — if MANY test/decoy files cluster at the top and the impl is buried, it's (1)/(2). If the impl simply doesn't have rich content, it's (3) and the test is inconclusive.
 
+---
+
+## 4. SOURCE FILES
+
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 407
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/adversarial-near-miss.md`

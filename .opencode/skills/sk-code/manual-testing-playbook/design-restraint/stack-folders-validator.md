@@ -25,6 +25,8 @@ This is a deterministic command scenario: the contract is exit-code behavior, no
 Run the language reference folder validator, confirm a clean pass, then add an orphan references/<fake-language> folder and confirm it fails.
 ```
 
+Prompt: `Run the language reference folder validator, confirm a clean pass, then add an orphan references/<fake-language> folder and confirm it fails.`
+
 **Expected detection**: not applicable — this is a deterministic script run, not a routing decision (no advisor probe, no runtime reference loading).
 
 **Expected behavior**:
@@ -76,8 +78,9 @@ Run the language reference folder validator, confirm a clean pass, then add an o
 ### Pass/Fail Criteria
 
 - **PASS** iff: the clean run exits 0 AND an orphan folder in `references/` produces exit 1 naming the orphan, per `assets/scripts/verify_stack_folders.py`.
-- **PARTIAL** iff: the clean run exits 0 but the orphan run reports the problem without a non-zero exit.
-- **FAIL** iff: an orphan is not caught, a known language is wrongly flagged, `shared/` is wrongly flagged, or the clean run errors.
+- **FAIL** iff: an orphan is not caught (including when the orphan run reports the problem text but exits 0 instead of 1), a known language is wrongly flagged, `shared/` is wrongly flagged, or the clean run errors.
+
+Evidence: the exit code and report text captured from each `verify_stack_folders.py` invocation in steps 1, 4, and 7.
 
 ### Failure Triage
 
@@ -89,6 +92,7 @@ Run the language reference folder validator, confirm a clean pass, then add an o
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/sk-code-opencode/assets/scripts/verify_stack_folders.py` — code-opencode language reference folder validator.
 - `.opencode/skills/sk-code/sk-code-opencode/references/` — language reference folders and shared cross-language material checked by the validator.
 
@@ -96,6 +100,8 @@ Run the language reference folder validator, confirm a clean pass, then add an o
 
 ## 5. SOURCE METADATA
 
+- Group: Design Restraint
+- Playbook ID: DR-004
 - **Created**: 2026-06-13
 - **Critical path**: No
 - **Destructive**: No (creates and removes a temporary `references/zzz_fake_language/` folder; recovery is the `rmdir` in step 6).

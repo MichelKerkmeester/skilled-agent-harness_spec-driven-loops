@@ -24,12 +24,20 @@ This scenario routes the same ambiguous spec task through multiple external CLI 
 - Prompt: See the canonical test prompt in §3.
 - Expected execution process: Rotate the canonical test prompt through at least 3 of the 4 supported CLIs; collect JSON responses; verify each proposed slug contains a specific subject token and is absent from the stoplist.
 - Expected signals: Each returned slug names a concrete component or behavior (`singleton-leak`, `thread-local-cache`, `session-teardown`, `launcher-uptime-fix`, etc.); no slug matches the generic stoplist (`phase-1`, `phase-2`, `phase-3`, `cleanup`, `remediation`, `fix`, `refactor`, `setup`); the rationale field explicitly identifies the subject token.
-- Desired user-visible outcome: A per-CLI verdict table with slug values and PASS/PARTIAL/FAIL per CLI plus an aggregate verdict.
-- Pass/fail: PASS if all 3 returned slugs contain a specific subject token and none match the stoplist. PARTIAL if exactly 2 of 3 slugs pass. FAIL if 2 or more slugs match the stoplist or none contain a specific subject token.
+- Desired user-visible outcome: A per-CLI verdict table with slug values and a PASS or FAIL per CLI plus an aggregate verdict.
+- Pass/fail: PASS only if all 3 returned slugs contain a specific subject token and none match the stoplist. FAIL if any slug matches the stoplist or lacks a specific subject token, including the case where exactly 2 of 3 slugs qualify.
 
 ---
 
 ## 3. TEST EXECUTION
+
+### Commands
+
+Run the phases below in order; each named phase states its exact commands, prompts, and CLI rotation.
+
+1. Phase 1 -- Setup
+2. Phase 2 -- Per-CLI invocations
+3. Phase 3 -- Verification
 
 ### Phase 1 -- Setup
 
@@ -184,44 +192,17 @@ Per-CLI JSON response shape:
 
 ### Evidence
 
-Setup command executed:
+Capture, for every step in the Commands sequence above:
 
-```bash
-grep -Fl "LITERAL phase names" \
-  .opencode/commands/speckit/assets/spec_kit_plan_auto.yaml \
-  .opencode/commands/speckit/assets/spec_kit_plan_confirm.yaml \
-  .opencode/commands/speckit/assets/spec_kit_complete_auto.yaml \
-  .opencode/commands/speckit/assets/spec_kit_complete_confirm.yaml
-```
-
-Observed output:
-
-```text
-grep: .opencode/commands/speckit/assets/spec_kit_plan_auto.yaml: No such file or directory
-grep: .opencode/commands/speckit/assets/spec_kit_plan_confirm.yaml: No such file or directory
-grep: .opencode/commands/speckit/assets/spec_kit_complete_auto.yaml: No such file or directory
-grep: .opencode/commands/speckit/assets/spec_kit_complete_confirm.yaml: No such file or directory
-```
-
-Summary table across CLIs tested:
-
-```text
-| External CLI | model | slug 1 | slug 2 | slug 3 | verdict |
-|--------------|-------|--------|--------|--------|---------|
-| not run      | n/a   | n/a    | n/a    | n/a    | BLOCKED |
-```
-
-No CLI JSON responses were collected because the Phase 1 setup command printed 0 of 4 expected YAML workflow files. The scenario instruction says to stop if fewer than 4 files are printed.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
 - **Pass**: All 3 slugs from a CLI contain a specific subject token AND none match the generic stoplist.
-- **Partial**: Exactly 2 of 3 slugs pass the check (one generic placeholder).
 - **Fail**: 2 or more slugs match the generic stoplist, or no slug contains a specific subject token.
-
-Aggregate verdict:
-
-- BLOCKED: Phase 1 setup failed because all four referenced YAML workflow files were missing at the paths used by the required command.
 
 ### Failure Triage
 

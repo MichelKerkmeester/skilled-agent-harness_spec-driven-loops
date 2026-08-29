@@ -23,7 +23,7 @@ This scenario validates the confirmed `notion_list-all-users` tool by listing th
 - Feature Name: List all users
 - Scenario Objective: List the workspace's users via `list-all-users` and confirm at least one row (the integration's own bot user) is present.
 - Exact Prompt: `List everyone in our Notion workspace.`
-- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_list-all-users") -> 3. Code Mode: call_tool_chain({ code: "return await notion[\"notion_list-all-users\"]({});" })`
+- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_list-all-users") -> 3. Code Mode: call_tool_chain({ code: "return await notion[\"notion_list-all-users\"] ({});" })`
 - Expected Signals: the call resolves with a non-empty `results` array containing at least the bot user itself, plus pagination fields (`has_more`, `next_cursor`).
 - Evidence: `list_tools()` result, `tool_info()` result, and the Code Mode response — the `results` array and pagination fields.
 - Pass/Fail Criteria: PASS if the call resolves with a non-empty users array and pagination fields are present; SKIP if the manual/token is unavailable; FAIL if the call errors, or resolves with zero users despite a valid token.
@@ -80,7 +80,7 @@ Capture tool discovery, schema, and the raw `results` array plus pagination fiel
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root directory page and scenario summary |
-| [`../../feature-catalog/users/list-all-users.md`](../../feature-catalog/users/list-all-users.md) | Feature-catalog source describing the implementation contract |
+| `list-all-users.md` (feature-catalog Users category) | Feature-catalog source describing the implementation contract |
 
 ### Implementation And Test Anchors
 

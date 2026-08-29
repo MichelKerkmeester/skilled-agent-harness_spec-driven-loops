@@ -25,6 +25,8 @@ The ladder is defined in `references/universal/code-quality-standards.md`, and t
 Add a helper to .opencode/skills/system-spec-kit/mcp-server/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung.
 ```
 
+Prompt: `Add a helper to .opencode/skills/system-spec-kit/mcp-server/lib/util/unique.ts that removes duplicate strings from an array. Before writing, walk the Design Restraint Ladder and pick the laziest viable rung.`
+
 **Expected detection**:
 - Surface: `OPENCODE` (target path contains `/.opencode/`)
 - Intent: implementation (write work)
@@ -78,8 +80,9 @@ Add a helper to .opencode/skills/system-spec-kit/mcp-server/lib/util/unique.ts t
 ### Pass/Fail Criteria
 
 - **PASS** iff: surface == OPENCODE AND the ladder runs after routing AND the selected rung is the laziest viable one (stdlib / native / one-liner over custom) per `references/universal/code-quality-standards.md` AND the Phase 0 to 1 gate in `references/phase-detection.md` is honored.
-- **PARTIAL** iff: the ladder runs and picks a lazy rung but does not cite the Phase 0 to 1 gate.
-- **FAIL** iff: the AI jumps straight to custom code, runs the ladder before routing, or overrides surface precedence.
+- **FAIL** iff: the AI jumps straight to custom code, runs the ladder before routing, overrides surface precedence, or picks a lazy rung without citing the Phase 0 to 1 gate.
+
+Evidence: `/tmp/skc-DR001-advisor.txt` (advisor probe output) and `/tmp/skc-DR001-ladder.txt` (ladder trace).
 
 ### Failure Triage
 
@@ -91,6 +94,7 @@ Add a helper to .opencode/skills/system-spec-kit/mcp-server/lib/util/unique.ts t
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/shared/references/universal/code-quality-standards.md` — The pre-write Design Restraint Ladder.
 - `.opencode/skills/sk-code/shared/references/phase-detection.md` — Phase 0 to 1 gate requiring the laziest viable rung for implementation intent.
 - `.opencode/skills/sk-code/SKILL.md` — Phase Overview naming the ladder; surface precedence and Iron Law.
@@ -99,6 +103,8 @@ Add a helper to .opencode/skills/system-spec-kit/mcp-server/lib/util/unique.ts t
 
 ## 5. SOURCE METADATA
 
+- Group: Design Restraint
+- Playbook ID: DR-001
 - **Created**: 2026-06-13
 - **Critical path**: No
 - **Destructive**: No (read-only behavior test; the helper edit is described but not applied)

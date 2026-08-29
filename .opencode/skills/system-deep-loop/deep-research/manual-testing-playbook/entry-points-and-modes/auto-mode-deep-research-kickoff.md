@@ -84,4 +84,4 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 - Playbook ID: DR-001
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `entry-points-and-modes/auto-mode-deep-research-kickoff.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

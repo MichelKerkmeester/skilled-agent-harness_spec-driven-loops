@@ -49,29 +49,17 @@ Similarity >=0.88 triggers merge; 0.75-0.88 triggers supersede/deprecate; below 
 
 ### Evidence
 
-BLOCKED: No save output with similarity scores was produced. The repository's Vitest discovery did not load the documented reconsolidation test file because the configured include pattern excludes `*.vitest.ts` files.
+Capture, for every step in the Commands sequence above:
 
-Command run for threshold verification:
-
-```bash
-npx vitest run .opencode/skills/system-spec-kit/mcp-server/tests/reconsolidation.vitest.ts -t "Action Determination|Constants|RO1|RO2|RO3"
-```
-
-Actual output:
-
-```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-
-No test files found, exiting with code 1
-
-filter: .opencode/skills/system-spec-kit/mcp-server/tests/reconsolidation.vitest.ts
-include: **/*.{test,spec}.?(c|m)[jt]s?(x)
-exclude:  **/node_modules/**, **/.git/**
-```
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: Threshold behavior could not be verified because the documented reconsolidation test file was not discovered by Vitest in the current repo configuration.
+- **Pass**: Threshold behavior is correct, stale predecessor writes return `predecessor_changed` or `predecessor_gone` without destructive merge side effects, and failed BM25 repair persists `bm25_repair_needed=1`.
+- **Fail**: Wrong threshold action, stale merge still commits, or BM25 repair debt is not recorded.
 
 ### Failure Triage
 
@@ -100,29 +88,17 @@ Merge returns `action: complement` with `status: predecessor_changed` or `status
 
 ### Evidence
 
-BLOCKED: The targeted command from the playbook did not execute any test, so no `memory_index` row dump or stale-predecessor assertion evidence was produced.
+Capture, for every step in the Commands sequence above:
 
-Command run exactly as documented:
-
-```bash
-npx vitest run .opencode/skills/system-spec-kit/mcp-server/tests/reconsolidation.vitest.ts -t "Aborts merge when predecessor changes during embedding generation"
-```
-
-Actual output:
-
-```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-
-No test files found, exiting with code 1
-
-filter: .opencode/skills/system-spec-kit/mcp-server/tests/reconsolidation.vitest.ts
-include: **/*.{test,spec}.?(c|m)[jt]s?(x)
-exclude:  **/node_modules/**, **/.git/**
-```
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each signal named in the Expected block.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: Stale predecessor behavior could not be verified because the documented targeted test command found no test files.
+- **Pass**: every signal named in the Expected block above is present in the captured output.
+- **Fail**: any signal named in the Expected block is absent, or a command in the sequence errors unexpectedly.
 
 ### Failure Triage
 
@@ -151,29 +127,17 @@ Merge commits, warning is emitted, and the merged row persists `bm25_repair_need
 
 ### Evidence
 
-BLOCKED: The targeted command from the playbook did not execute any test, so no SQL evidence for `bm25_repair_needed=1` or warning text was produced.
+Capture, for every step in the Commands sequence above:
 
-Command run exactly as documented:
-
-```bash
-npx vitest run .opencode/skills/system-spec-kit/mcp-server/tests/reconsolidation.vitest.ts -t "Persists bm25_repair_needed after BM25 repair fails post-merge"
-```
-
-Actual output:
-
-```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
-
-No test files found, exiting with code 1
-
-filter: .opencode/skills/system-spec-kit/mcp-server/tests/reconsolidation.vitest.ts
-include: **/*.{test,spec}.?(c|m)[jt]s?(x)
-exclude:  **/node_modules/**, **/.git/**
-```
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each signal named in the Expected block.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: BM25 repair-debt behavior could not be verified because the documented targeted test command found no test files.
+- **Pass**: every signal named in the Expected block above is present in the captured output.
+- **Fail**: any signal named in the Expected block is absent, or a command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

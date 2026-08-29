@@ -32,14 +32,36 @@ The skill contract requires `command -v devin` before dispatch and must refuse t
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Do not perform a coding task. Report the installed Devin CLI version and whether the binary is available.`
+
+### Commands
+
 1. `command -v devin`
 2. `devin --version`
 3. `devin -p "Do not edit files. Reply with the single word AVAILABLE." --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv002.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv002.txt`
 4. Record the path, version, output, and exit code.
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| DV-002 | `command -v devin -> devin --version -> devin -p ...` | Ordered preflight, version, bounded response | PASS/FAIL/SKIP |
+### Expected
+
+Ordered preflight, version, bounded response
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Ordered preflight, version, bounded response`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when the ordered preflight is recorded and the binary is available.
+- **Fail**: if a dispatch is constructed before the probe
+- **Skip**: if `devin` is not installed. (a missing or unavailable prerequisite is the named blocker).
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

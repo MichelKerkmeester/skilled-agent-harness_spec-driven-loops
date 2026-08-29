@@ -23,6 +23,8 @@ Sub-detection rules defined in SKILL.md lines 78-90.
 Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py to add a --json-output flag that emits results as JSON.
 ```
 
+Prompt: `Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advisor/mcp-server/scripts/skill_advisor.py to add a --json-output flag that emits results as JSON.`
+
 **Expected detection**:
 - Surface: `OPENCODE`
 - Sub-language: `PYTHON` (target file `.py`, also Python-specific signal: `argparse`)
@@ -53,10 +55,16 @@ Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advi
 2. Capture loaded refs to `/tmp/skc-LS002-loaded-refs.txt`.
 3. Verify: 3 python/* + 2 shared/* refs loaded; 0 typescript/shell/config refs.
 
+### Expected Signals
+
+Expected signals: exactly 3 `python/*` refs plus 2 `shared/*` refs load, and 0 typescript/shell/config refs load.
+
 ### Pass/Fail Criteria
 
 - **PASS** iff: 3 python/* refs + 2 shared/* refs loaded AND 0 other-sub-language refs.
 - **FAIL** iff: any typescript/shell/config ref leaks, OR fewer than 3 python/* refs loaded.
+
+Evidence: `/tmp/skc-LS002-loaded-refs.txt` (loaded-refs transcript).
 
 ### Failure Triage
 
@@ -67,6 +75,7 @@ Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advi
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
 - `.opencode/skills/sk-code/sk-code-opencode/references/python/{style_guide,quality_standards,quick_reference}.md`.
 
@@ -74,6 +83,8 @@ Update the skill_advisor.py argparse block at .opencode/skills/system-skill-advi
 
 ## 5. SOURCE METADATA
 
+- Group: Language Sub-Detection
+- Playbook ID: LS-002
 - **Created**: 2026-05-04
 - **Critical path**: No
 - **Destructive**: No

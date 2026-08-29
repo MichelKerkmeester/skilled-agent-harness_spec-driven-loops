@@ -54,6 +54,11 @@ deep-ai-council: run a planning council and converge on a recommendation.
 1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `research`, `review`, and `ai-council` entries.
 2. Skill advisor is callable.
 
+### Prompt
+
+- Prompt: `deep-research: run an iterative investigation workflow and summarize findings.`
+- Additional probes: `deep-review: run an iterative review loop and produce severity weighted findings.` and `deep-ai-council: run a planning council and converge on a recommendation.`
+
 ### Exact Command Sequence
 
 1. **Run advisor probes**: run the skill advisor once for each prompt and append output to `/tmp/dlw-AI-002/advisor.jsonl`.
@@ -70,11 +75,15 @@ deep-ai-council: run a planning council and converge on a recommendation.
 | 3 | Responses name the expected commands and agents. |
 | 4 | None of the three prompts routes through `deep-improvement`. |
 
+### Evidence
+
+- Advisor probe log: `/tmp/dlw-AI-002/advisor.jsonl`.
+- Route transcript: `/tmp/dlw-AI-002/routes.txt`, showing the resolved mode, command, and agent for each of the three prompts.
+
 ### Pass/Fail Criteria
 
-- **PASS** iff all three lexical prompts resolve to the expected modes and route fields.
-- **PARTIAL** iff all modes are correct but one response omits the lexical-routing explanation.
-- **FAIL** iff any prompt resolves to an improvement lane or the wrong lexical mode.
+- **PASS**: all three lexical prompts resolve to the expected modes and route fields, whether or not the response also narrates the lexical-scoring mechanism.
+- **FAIL**: any prompt resolves to an improvement lane or the wrong lexical mode.
 
 ### Failure Triage
 
@@ -88,6 +97,7 @@ deep-ai-council: run a planning council and converge on a recommendation.
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - hub routing rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - lexical advisor routing fields.
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---
 

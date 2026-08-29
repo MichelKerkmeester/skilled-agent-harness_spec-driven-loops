@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-001` and confirm the
 - Objective: Confirm a focused one-file diff review stays findings-first without over-scoping.
 - Real user request: `Review target is staged changes in one file.`
 - Prompt: `Review the staged one-file diff findings-first, with file:line evidence for P0/P1 issues and a clear merge posture.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when a staged single-file diff fixture is missing from the environment.
 - Expected signals: Step 1: one-file diff visible; Step 2: findings precede summary; Step 3: stats match reviewed scope
 - Desired user-visible outcome: a severity-ordered review report that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if findings are severity ordered and every P0/P1 cites file:line per references/review-core.md; FAIL if summary or praise appears before findings

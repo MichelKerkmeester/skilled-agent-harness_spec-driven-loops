@@ -189,28 +189,28 @@ $ npm run lint
 > @spec-kit/mcp-server@1.8.0 lint
 > eslint . --ext .ts
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/context-server.ts
+.opencode/skills/system-spec-kit/mcp-server/context-server.ts
   242:7  error  'GRAPH_ENRICHMENT_SYMBOL_LIMIT' is assigned a value but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-stop.ts
+.opencode/skills/system-spec-kit/mcp-server/hooks/claude/session-stop.ts
   22:27  error  'parseAssistantTextTurns' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/cache/embedding-cache.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/cache/embedding-cache.ts
   268:10  error  'estimateRowBytes' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/eval/ablation-framework.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/eval/ablation-framework.ts
   412:10  error  'canQueryVecMemories' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/observability/retrieval-observability.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/observability/retrieval-observability.ts
   66:7  error  'CHANNEL_KEYS' is assigned a value but only used as a type. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/routing/content-router.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/routing/content-router.ts
   35:7  error  'SOURCE_SHAPES' is assigned a value but only used as a type. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/pipeline/stage1-candidate-gen.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/search/pipeline/stage1-candidate-gen.ts
   174:10  error  'applyFolderFilter' is defined but never used. Allowed unused vars must match /^_/u  @typescript-eslint/no-unused-vars
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/query-router.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/search/query-router.ts
   301:7  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
 
 ✖ 35 problems (30 errors, 5 warnings)

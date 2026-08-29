@@ -1,0 +1,18 @@
+{
+  "level": "3",
+  "specFolder": "mcp-tooling/017-mcp-magicpath",
+  "description": "MagicPath has no MCP server",
+  "keywords": [
+    "magicpath",
+    "mcp",
+    "server"
+  ],
+  "lastUpdated": "2026-08-29T12:01:02.522Z",
+  "specId": "017",
+  "folderSlug": "mcp-magicpath",
+  "parentChain": [
+    "mcp-tooling"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

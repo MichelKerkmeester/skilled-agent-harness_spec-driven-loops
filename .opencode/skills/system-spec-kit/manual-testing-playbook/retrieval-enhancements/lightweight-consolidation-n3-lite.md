@@ -21,7 +21,7 @@ This scenario validates Lightweight consolidation (N3-lite) for `058`. It focuse
 
 - Objective: Confirm maintenance cycle behavior.
 - Real user request: `Please validate Lightweight consolidation (N3-lite) against the documented validation surface and tell me whether the expected signals are present: Consolidation cycle completes; contradiction detection, hebbian strengthening, and staleness decay all produce output; no runtime errors in logs.`
-- RCAF Prompt: `As a retrieval-enhancement validation operator, validate Lightweight consolidation (N3-lite) against the documented validation surface. Verify consolidation cycle completes; contradiction detection, hebbian strengthening, and staleness decay all produce output; no runtime errors in logs. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a retrieval-enhancement validation operator, validate Lightweight consolidation (N3-lite) against the documented validation surface. Verify consolidation cycle completes; contradiction detection, hebbian strengthening, and staleness decay all produce output; no runtime errors in logs. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Consolidation cycle completes; contradiction detection, hebbian strengthening, and staleness decay all produce output; no runtime errors in logs
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -95,7 +95,7 @@ Retry via MCP save surface with required governed-ingest fields, constrained to 
     ]
   },
   "hints": [
-    "Planner prepared 1 proposed edit(s) for /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/031-manual-playbook-execution-sweep/spec.md",
+    "Planner prepared 1 proposed edit(s) for .opencode/specs/system-speckit/031-manual-playbook-execution-sweep/spec.md",
     "Available follow-up actions: apply, refresh-graph, reindex, reconsolidate",
     "3 advisory warning(s) remain after structural planning checks"
   ]
@@ -113,10 +113,10 @@ SPECKIT_CONSOLIDATION=true npx vitest run tests/n3lite-consolidation.vitest.ts -
 Output:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 stderr | mcp-server/tests/n3lite-consolidation.vitest.ts
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
 stderr | mcp-server/tests/n3lite-consolidation.vitest.ts > T002d: Edge bounds enforcement > T-BOUNDS-02: auto edge rejected when at MAX_EDGES_PER_NODE
 [causal-edges] Edge bounds: node 1 has 20 edges (max 20), rejecting auto edge

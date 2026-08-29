@@ -49,30 +49,17 @@ Source diff non-empty on expected paths; targeted vitest exits 0; `dist/` carrie
 
 ### Evidence
 
-BLOCKED before command execution.
+Capture, for every step in the Commands sequence above:
 
-Observed scenario file content:
-
-```text
-38: 1. `git diff mcp-server/ > /tmp/278-source-diff.txt && wc -l /tmp/278-source-diff.txt` — confirm source diff non-empty and on expected paths
-39: 2. `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run <suite> 2>&1 | tee /tmp/278-vitest.txt` — confirm exit 0
-40: 3. `cd .opencode/skills/system-spec-kit/mcp-server && npm run build && grep -l "<new-marker>" dist/<file>.js && stat -f "%m" dist/<file>.js src/<file>.ts` — confirm marker present and dist mtime > source mtime
-41: 4. Restart the MCP-owning runtime per `references/mcp-rebuild-restart-protocol.md` (OpenCode: reload tools; Claude Code: restart binary; OpenCode: restart binary)
-```
-
-Blocking constraints from the execution request:
-
-```text
-Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
-ALLOWED WRITE PATHS
-- .opencode/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/mcp-daemon-rebuild-restart-live-probe.md (this file only)
-```
-
-Commands 1 and 2 require creating `/tmp/278-source-diff.txt` and `/tmp/278-vitest.txt`, which are outside the only allowed write path. Command 2 also leaves `<suite>` unresolved, and command 3 leaves `<new-marker>`, `dist/<file>.js`, and `src/<file>.ts` unresolved. The scenario does not name the representative TypeScript fix, affected file, marker, vitest suite, runtime restart command, or exact live probe payload to execute.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: commands require writes outside the only allowed write path (`/tmp/278-source-diff.txt`, `/tmp/278-vitest.txt`) and contain unresolved placeholders (`<suite>`, `<new-marker>`, `dist/<file>.js`, `src/<file>.ts`) for the representative TypeScript fix.
+- **Pass**: All 4 parts verified in order; live probe returns post-fix payload.
+- **Fail**: Any part skipped, dist marker missing despite vitest pass (means stale dist), or live probe still returns pre-fix payload (means stale daemon).
 
 ### Failure Triage
 

@@ -28,7 +28,7 @@ The test uses a known three-iteration work packet as the target. It proves the r
 - Expected signals: Phase 4 gold battery runs; convergence response includes `convergence_score` or equivalent non-empty score plus signal artifacts such as answered questions, supported claims, blockers, or trace payload.
 - Desired user-visible outcome: A concise pass/fail verdict citing the convergence score and the non-empty signal fields.
 - Pass/fail: PASS if the convergence response is non-empty for the target packet after rebuild.
-- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, `SKIP`, or `UNAUTOMATABLE`.
+- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable; a scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
 

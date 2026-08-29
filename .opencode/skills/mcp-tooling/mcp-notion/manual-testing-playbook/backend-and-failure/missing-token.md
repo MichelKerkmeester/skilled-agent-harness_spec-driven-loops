@@ -23,7 +23,7 @@ A generic crash gives an operator no path to recovery. A named-credential error 
 - Feature Name: Missing Token
 - Scenario Objective: Confirm `retrieve-bot-user` fails with a named-credential error when `notion_NOTION_TOKEN` is unset, then restore the token and confirm recovery.
 - Exact Prompt: `"Call retrieve-bot-user with no Notion token configured."`
-- Exact Command Sequence: `1. unset notion_NOTION_TOKEN -> 2. notion["notion_retrieve-bot-user"]({}) -> 3. restore notion_NOTION_TOKEN -> 4. notion["notion_retrieve-bot-user"]({})`
+- Exact Command Sequence: `1. unset notion_NOTION_TOKEN -> 2. notion["notion_retrieve-bot-user"] ({}) -> 3. restore notion_NOTION_TOKEN -> 4. notion["notion_retrieve-bot-user"] ({})`
 - Expected Signals: Step 2 fails with an auth error naming the token, not a generic crash, and a non-zero exit; Step 4 succeeds and returns the bot user, confirming recovery.
 - Evidence: the error message/body from Step 2, the exit code, and the successful Step 4 response.
 - Pass/Fail Criteria: PASS if the failure names the missing token credential and the token is restored and re-confirmed working; FAIL if it crashes generically, hangs, or silently returns empty instead of erroring.
@@ -46,9 +46,9 @@ A valid `notion_NOTION_TOKEN` value is available to restore immediately after th
 ### Commands
 
 1. Unset `notion_NOTION_TOKEN`.
-2. `notion["notion_retrieve-bot-user"]({})`.
+2. `notion["notion_retrieve-bot-user"] ({})`.
 3. Restore `notion_NOTION_TOKEN` to its valid value.
-4. `notion["notion_retrieve-bot-user"]({})` (confirm recovery).
+4. `notion["notion_retrieve-bot-user"] ({})` (confirm recovery).
 
 ### Expected
 
@@ -72,7 +72,7 @@ Capture the step-2 error message/body, its exit code, and the step-4 successful 
 
 | Feature ID | Feature Name | Scenario Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| FAIL-001 | Missing Token | Verify retrieve-bot-user fails with a named-credential error when the token is unset | `"Call retrieve-bot-user with no Notion token configured."`| 1. unset token -> 2. `notion["notion_retrieve-bot-user"]({})` -> 3. restore token -> 4. re-call | Named-credential error, non-zero exit; recovery succeeds | Error message, exit code, recovery response | PASS if failure names the token and recovery succeeds; FAIL if generic crash or silent empty success | Confirm unset, confirm error path, restore and re-verify |
+| FAIL-001 | Missing Token | Verify retrieve-bot-user fails with a named-credential error when the token is unset | `"Call retrieve-bot-user with no Notion token configured."`| 1. unset token -> 2. `notion["notion_retrieve-bot-user"] ({})` -> 3. restore token -> 4. re-call | Named-credential error, non-zero exit; recovery succeeds | Error message, exit code, recovery response | PASS if failure names the token and recovery succeeds; FAIL if generic crash or silent empty success | Confirm unset, confirm error path, restore and re-verify |
 
 Cleanup: restore `notion_NOTION_TOKEN` to a valid value before any other scenario runs (done in step 3, confirmed in step 4).
 

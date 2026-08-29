@@ -75,9 +75,9 @@ Memory epilogue: include MEMORY_HANDBACK delimiters at the end of the response s
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
+  --model opencode-go/deepseek-v4-flash \
   --agent general \
-  --variant high \
+  --variant max \
   --format json \
   --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
@@ -135,9 +135,9 @@ Success criteria:
 opencode run \
   --share \
   --port 4096 \
-  --model deepseek/deepseek-v4-pro \
+  --model opencode-go/deepseek-v4-flash \
   --agent deep-research \
-  --variant high \
+  --variant max \
   --format json \
   --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
@@ -197,9 +197,9 @@ Memory epilogue: include MEMORY_HANDBACK delimiters at the end so the calling ru
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
+  --model opencode-go/deepseek-v4-flash \
   --agent general \
-  --variant high \
+  --variant max \
   --format json \
   --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
@@ -347,8 +347,8 @@ opencode run --flags "<prompt>" </dev/null > stdout 2> stderr
 
 ```bash
 timeout 720 opencode run \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --pure \
   --dangerously-skip-permissions \
   "$(cat prompt.md)" \

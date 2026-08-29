@@ -21,7 +21,7 @@ This scenario validates Provenance-rich response envelopes (P0-2) for `096`. It 
 
 - Objective: Confirm includeTrace opt-in exposes scores/source/trace.
 - Real user request: `Please validate Provenance-rich response envelopes (P0-2) against SPECKIT_RESPONSE_TRACE and tell me whether the expected signals are present: Trace objects (scores, source, trace) present when includeTrace=true or env override active; absent when neither is set; score fields include all 7 expected sub-fields.`
-- RCAF Prompt: `As a retrieval-enhancement validation operator, validate Provenance-rich response envelopes (P0-2) against SPECKIT_RESPONSE_TRACE. Verify trace objects (scores, source, trace) present when includeTrace=true or env override active; absent when neither is set; score fields include all 7 expected sub-fields. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a retrieval-enhancement validation operator, validate Provenance-rich response envelopes (P0-2) against SPECKIT_RESPONSE_TRACE. Verify trace objects (scores, source, trace) present when includeTrace=true or env override active; absent when neither is set; score fields include all 7 expected sub-fields. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Trace objects (scores, source, trace) present when includeTrace=true or env override active; absent when neither is set; score fields include all 7 expected sub-fields
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -94,7 +94,7 @@ Observed output included top-level trace/envelope metadata and result-level `sco
           "attention": null
         },
         "source": {
-          "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/156-agent-loops-improved/008-testing/spec.md",
+          "file": ".opencode/specs/deep-loops/156-agent-loops-improved/008-testing/spec.md",
           "anchorIds": [
             "metadata",
             "phase-context",

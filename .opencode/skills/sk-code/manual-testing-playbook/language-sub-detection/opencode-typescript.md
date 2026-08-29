@@ -23,6 +23,8 @@ Sub-detection rules are defined in SKILL.md lines 78-90 and `references/stack-de
 Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.
 ```
 
+Prompt: `Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mcp-server/lib/deep-loop/executor-config.ts to throw on missing model when type is cli-opencode.`
+
 **Expected detection**:
 - Surface: `OPENCODE`
 - Sub-language: `TYPESCRIPT` (target file `.ts`)
@@ -53,10 +55,16 @@ Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mc
 2. **Capture loaded refs** to `/tmp/skc-LS001-loaded-refs.txt`.
 3. **Verify**: 3 typescript/* + 2 shared/* refs loaded; 0 python/shell/config refs loaded.
 
+### Expected Signals
+
+Expected signals: exactly 3 `typescript/*` refs plus 2 `shared/*` refs load, and 0 python/shell/config refs load.
+
 ### Pass/Fail Criteria
 
 - **PASS** iff: exactly 3 typescript/* refs + 2 shared/* refs in load set AND 0 other-sub-language refs.
 - **FAIL** iff: any python/shell/config sub-language ref is loaded, OR fewer than 3 typescript/* refs loaded.
+
+Evidence: `/tmp/skc-LS001-loaded-refs.txt` (loaded-refs transcript).
 
 ### Failure Triage
 
@@ -67,6 +75,7 @@ Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mc
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/SKILL.md` (lines 78-90 — sub-detection table).
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` (lines 50-62).
 - `.opencode/skills/sk-code/sk-code-opencode/references/typescript/{style_guide,quality_standards,quick_reference}.md`.
@@ -75,6 +84,8 @@ Refactor the parseExecutorConfig function in .opencode/skills/system-spec-kit/mc
 
 ## 5. SOURCE METADATA
 
+- Group: Language Sub-Detection
+- Playbook ID: LS-001
 - **Created**: 2026-05-04
 - **Critical path**: No
 - **Destructive**: No

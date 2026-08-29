@@ -14,7 +14,7 @@ This document captures the canonical manual-testing contract for `SB-046`.
 
 ## 1. OVERVIEW
 
-This scenario validates that `scripts/skill-benchmark/d5-connectivity.cjs` is a static structural hard gate that runs FIRST (before any dispatch) and caps the verdict regardless of weighted score. `scanConnectivity()` reads the target `SKILL.md`, parses the router, and detects: dead routed paths (P0, `dead_resource_path`), routed paths escaping the skill root (P0, `path_escape`), an unparseable router (P0, `router_unparseable`), `RESOURCE_MAP` keys absent from `INTENT_SIGNALS` (P1, `dead_intent_key`), and on-disk references never reached from any `RESOURCE_MAP` entry (P2, `orphan_reference`, reported not gated). Any P0 (or an unparseable router) sets `gateFailed: true`. Score starts at 100 and subtracts P0=40 / P1=12 / P2=3, floored at 0. The standalone CLI is `d5-connectivity.cjs --skill <skill-root>`: it prints `{ score, gateFailed, routerParseable, deadResourcePaths, deadIntentKeys, orphanReferences, pathEscapes, findings }` and exits `1` when `gateFailed` / `0` otherwise. A skill whose router cannot be parsed (no `INTENT_SIGNALS`/`RESOURCE_MAP`) is the strongest gate failure: `routerParseable:false`, `gateFailed:true`. In the orchestrator, `run-skill-benchmark.cjs` calls `scanConnectivity()` as step 2 (before fixtures/dispatch) and `aggregate()` maps `gateFailed` to the verdict `BLOCKED-BY-STRUCTURE`.
+This scenario validates that `scripts/skill-benchmark/d5-connectivity.cjs` is a static structural hard gate that runs FIRST (before any dispatch) and caps the verdict regardless of weighted score. `scanConnectivity()` reads the target `SKILL.md`, parses the router, and detects: dead routed paths (P0, `dead_resource_path`), routed paths escaping the skill root (P0, `path_escape`), an unparseable router (P0, `router_unparseable`), `RESOURCE_MAP` keys absent from `INTENT_SIGNALS` (P1, `dead_intent_key`), and on-disk references never reached from any `RESOURCE_MAP` entry (P2, `orphan_reference`, reported not gated). Any P0 (or an unparseable router) sets `gateFailed: true`. Score starts at 100 and subtracts P0=40 / P1=12 / P2=3, floored at 0. The standalone CLI is `d5-connectivity.cjs --skill <skill-root>`: it prints `{ score, gateFailed, routerParseable, deadResourcePaths, deadIntentKeys, orphanReferences, pathEscapes, findings }` and exits `1` when `gateFailed` / `0` otherwise. A skill whose router cannot be parsed (no `INTENT_SIGNALS`/`RESOURCE_MAP`) is the strongest gate failure: `routerParseable:false`, `gateFailed:true`. In the orchestrator, `run-skill-benchmark.cjs` calls `scanConnectivity()` as step 2 (before fixtures/dispatch) and `aggregate()` maps `gateFailed` to the verdict `Blocked-By-Structure`.
 
 ---
 
@@ -73,7 +73,7 @@ Output excerpt:
 | `../../SKILL.md` | Skill entry point and operator contract for deep-improvement (Lane C: Skill-Benchmark) |
 | `../../scripts/skill-benchmark/d5-connectivity.cjs` | Static structural scan; the D5 hard gate that runs first |
 | `../../scripts/skill-benchmark/run-skill-benchmark.cjs` | Orchestrator that runs `scanConnectivity()` before any dispatch |
-| `../../scripts/skill-benchmark/score-skill-benchmark.cjs` | `aggregate()` maps `gateFailed` to the `BLOCKED-BY-STRUCTURE` verdict |
+| `../../scripts/skill-benchmark/score-skill-benchmark.cjs` | `aggregate()` maps `gateFailed` to the `Blocked-By-Structure` verdict |
 
 ---
 

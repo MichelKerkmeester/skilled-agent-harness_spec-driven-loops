@@ -62,7 +62,7 @@ For deeper validation, add `-c model_reasoning_effort="xhigh"` and re-dispatch w
 
 | File | Role |
 |---|---|
-| `MANUAL_TESTING_PLAYBOOK.md` | Root directory page and scenario summary |
+| `manual-testing-playbook.md` | Root directory page and scenario summary |
 | `../../references/agent-delegation.md` (§3 @research) | Documents the research profile contract |
 | `../../references/codex-tools.md` | `--search` capability documentation |
 
@@ -79,5 +79,5 @@ For deeper validation, add `-c model_reasoning_effort="xhigh"` and re-dispatch w
 
 - Group: Agent Routing
 - Playbook ID: CX-026
-- Canonical root source: `MANUAL_TESTING_PLAYBOOK.md`
+- Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `agent-routing/research-profile.md`

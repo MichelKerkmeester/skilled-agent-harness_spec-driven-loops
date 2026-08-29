@@ -64,16 +64,16 @@ $ node .opencode/bin/spec-memory.cjs memory_health --json '{"reportMode":"full"}
 Attempted direct TypeScript source handler invocation against a disposable DB fixture containing `normal`, `deprecated`, and `archived` `memory_index.importance_tier` rows plus `memory_fts`:
 
 ```text
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159
 export = Database;
          ^
 
 ReferenceError: Database is not defined
-    at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
-    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
+    at <anonymous> (.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
+    at Object.<anonymous> (.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
     at Module._compile (node:internal/modules/cjs/loader:1781:14)
-    at Object.transformer (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:3176)
+    at Object.transformer (.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:3176)
     at Module.load (node:internal/modules/cjs/loader:1505:32)
     at Function._load (node:internal/modules/cjs/loader:1309:12)
     at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
@@ -95,10 +95,10 @@ Focused suite from `.opencode/skills/system-spec-kit/mcp-server`:
 ```text
 $ npx vitest run tests/stale-audit-tool-ownership.vitest.ts
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 stderr | mcp-server/tests/stale-audit-tool-ownership.vitest.ts
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
  ❯ mcp-server/tests/stale-audit-tool-ownership.vitest.ts (6 tests | 1 failed) 66ms
      × flags deprecated relevant rows while recall output stays byte-identical 6ms
@@ -157,7 +157,8 @@ No output was produced by the diff command.
 
 ### Pass / Fail
 
-- **BLOCKED**: `memory_health({ reportMode: "full" })` could not be executed because the Spec Memory CLI reports stale dist output and rebuilding would modify files outside the allowed write path; additionally, the focused suite currently fails `flags deprecated relevant rows while recall output stays byte-identical` because recall returns `[1, 2]` instead of `[1]`.
+- **Pass**: Health audit classifications are visible and the lint passes clean state while failing each drift simulation.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

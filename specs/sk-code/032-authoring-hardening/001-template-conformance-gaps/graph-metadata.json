@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/032-authoring-hardening/001-template-conformance-gaps",
+  "spec_folder": "sk-code/032-authoring-hardening/001-template-conformance-gaps",
+  "parent_id": "sk-code/032-authoring-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "template conformance gaps",
+      "agent template related resources gap",
+      "command template mandatory input gate",
+      "cleared template hypothesis",
+      "template conformance gaps plan",
+      "authoring template control-first plan",
+      "template conformance gaps tasks",
+      "authoring template control tasks",
+      "template conformance gaps implementation",
+      "cleared template negative control summary"
+    ],
+    "key_topics": [
+      "template",
+      "conformance",
+      "gaps",
+      "agent",
+      "related",
+      "resources",
+      "gap",
+      "command",
+      "mandatory",
+      "input",
+      "gate",
+      "cleared"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "implementation-summary.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Conformance Gaps",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Required Body Shape",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Control",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Exact Command Sequence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fail Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Four",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two authoring templates omitted the element their own SKILL.md contract required, so every artifact generated from them inherited the omission; a third template was blamed on grep evidence and then cleared by a negative control.",
+    "created_at": "2026-08-29T11:34:45.425Z",
+    "last_save_at": "2026-08-29T11:34:45.425Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2a7c454d0b3dfeac7d3ece10173c2bac472d0d6ac0e4d70979cd55416155a8ca",
+    "source_doc_hashes": {
+      "spec.md": "4dc8855dad1002da0e7c3a2bffbaae1b0f66d6f5e874b0431a1e9b1107990bdc",
+      "plan.md": "2698b44305cda4c6fd0b74cf3cab1308b60d9413ec10d954942813426be832c8",
+      "tasks.md": "faa07f1e77ec762afd7babebcc965c225090264c6a972d5519248f280efe1e8c",
+      "implementation-summary.md": "b2794aa745bc55c79f6ece4cc95dcf4fd2926ce48b433b754fe2e137fe3e6f3e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

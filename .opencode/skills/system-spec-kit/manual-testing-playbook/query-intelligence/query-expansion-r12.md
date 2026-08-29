@@ -21,7 +21,7 @@ This scenario validates Query expansion (R12) for `038`. It focuses on Confirm p
 
 - Objective: Confirm parallel expansion + dedup.
 - Real user request: `Please validate Query expansion (R12) against the documented validation surface and tell me whether the expected signals are present: Complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion.`
-- RCAF Prompt: `As a query-intelligence validation operator, validate Query expansion (R12) against the documented validation surface. Verify complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a query-intelligence validation operator, validate Query expansion (R12) against the documented validation surface. Verify complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Complex queries produce expanded variants; expanded results deduplicated against baseline; simple queries skip expansion
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -68,7 +68,7 @@ Validation files: mcp-server/tests/embedding-expansion.vitest.ts; mcp-server/tes
 Command: `npx vitest run tests/embedding-expansion.vitest.ts tests/stage1-expansion.vitest.ts tests/search-flags.vitest.ts`
 
 ```text
-RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  2 passed | 1 skipped (3)
@@ -80,7 +80,7 @@ RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.o
 Command: `npx vitest run tests/query-expander.vitest.ts --reporter verbose`
 
 ```text
-RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+RUN  v4.1.9 .opencode/skills/system-spec-kit
 
  ✓ mcp-server/tests/query-expander.vitest.ts > C138-P3 Query Expander > T1: original query is always the first variant 1ms
  ✓ mcp-server/tests/query-expander.vitest.ts > C138-P3 Query Expander > T2: known domain terms produce synonym variants 0ms
@@ -173,7 +173,7 @@ Command: `node --import ../scripts/node_modules/tsx/dist/loader.mjs -e "const { 
 Command: `npx vitest run tests/embedding-expansion.vitest.ts --reporter verbose`
 
 ```text
-RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 stderr | mcp-server/tests/embedding-expansion.vitest.ts > R12: Embedding-Based Query Expansion > T8: returns identity result for empty embedding (zero-length Float32Array)
 [embedding-expansion] Received empty embedding — skipping expansion
@@ -212,7 +212,7 @@ stderr | mcp-server/tests/embedding-expansion.vitest.ts > R12: Embedding-Based Q
 Command: `npx vitest run tests/stage1-expansion.vitest.ts --reporter verbose`
 
 ```text
-RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+RUN  v4.1.9 .opencode/skills/system-spec-kit
 
  ↓ mcp-server/tests/stage1-expansion.vitest.ts > Stage-1: Expansion & Dedup > T1: calls expansion when R12 flag is enabled and query is not simple
  ↓ mcp-server/tests/stage1-expansion.vitest.ts > Stage-1: Expansion & Dedup > T2: deduplication preserves baseline-first ordering
@@ -252,7 +252,8 @@ Observed comparison against Expected: complex rule-based query expansion produce
 
 ### Pass / Fail
 
-- **BLOCKED**: Baseline+expanded dedup could not be truthfully verified because `mcp-server/tests/stage1-expansion.vitest.ts` is currently skipped (`describe.skip`), producing `Test Files 1 skipped` and `Tests 13 skipped`; complex expansion and simple-query skip were observed, but the scenario's required dedup signal was not executable.
+- **Pass**: Complex query generates >=2 expansion variants; results deduplicated; simple queries bypass expansion.
+- **Fail**: No expansion or duplicate results in output.
 
 ### Failure Triage
 

@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-002` and confirm the
 - Objective: Confirm large refactors trigger scope control, surface evidence, and risk-ranked findings.
 - Real user request: `Review target is a 500+ LOC refactor branch.`
 - Prompt: `Review the full refactor branch diff, call out large-diff limits and surface evidence, and keep blockers severity-ordered.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when a 500+ LOC refactor branch fixture is missing from the environment.
 - Expected signals: Step 1: large diff size visible; Step 2: changed surface inventory exists; Step 3: report names scope caveat and surface evidence
 - Desired user-visible outcome: a merge-readiness report with scope caveats that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if large-diff limits are stated per SKILL.md escalation rules and P0/P1 cite file:line per references/review-core.md; FAIL if the review pretends exhaustive certainty without evidence

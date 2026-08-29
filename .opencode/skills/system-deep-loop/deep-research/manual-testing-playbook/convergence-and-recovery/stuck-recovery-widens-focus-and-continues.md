@@ -85,4 +85,4 @@ Check the convergence reference and loop protocol together because one defines t
 - Playbook ID: DR-014
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/stuck-recovery-widens-focus-and-continues.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

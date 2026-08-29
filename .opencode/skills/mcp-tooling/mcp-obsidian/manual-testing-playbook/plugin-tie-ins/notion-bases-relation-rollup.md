@@ -236,7 +236,7 @@ Capture the fixture file tree, the python assertion output for all four checks, 
 
 ---
 
-## 4. CLEANUP
+### Cleanup
 
 Remove the throwaway fixture. Nothing outside `/tmp/_pbtest-notion-bases-relation-rollup` was created, so this one command restores the machine to its prior state.
 
@@ -246,7 +246,7 @@ rm -rf /tmp/_pbtest-notion-bases-relation-rollup
 
 ---
 
-## 5. SOURCE FILES
+## 4. SOURCE FILES
 
 ### Playbook Sources
 
@@ -266,7 +266,7 @@ rm -rf /tmp/_pbtest-notion-bases-relation-rollup
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugin tie-ins
 - Playbook ID: OBS-022

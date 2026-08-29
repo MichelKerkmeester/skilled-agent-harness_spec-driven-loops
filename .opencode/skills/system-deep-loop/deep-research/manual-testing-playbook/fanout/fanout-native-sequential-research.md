@@ -39,7 +39,11 @@ If the `agent:` dispatch block uses the wrong agent name or omits
 - Working directory is repository root.
 - `deep-research-auto.yaml` present.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate native fan-out for deep-research: confirm step_fanout_spawn_native uses agent: deep-research and passes the correct lineage artifact dir override.`
+
+### Commands
 
 1. `bash: grep -n "step_fanout_spawn_native\|agent: deep-research\|fanout_lineage_artifact_dir" .opencode/commands/deep/assets/deep-research-auto.yaml`
 2. Confirm `agent: deep-research` appears in the native dispatch block.
@@ -57,7 +61,12 @@ If the `agent:` dispatch block uses the wrong agent name or omits
 
 Source inspection confirms native dispatch block uses `agent: deep-research`, passes the lineage dir override, and has the correct `skip_when` guard. Command docs include the native fan-out note.
 
-### Failure Modes
+### Evidence
+
+- Grep output from step 1, saved to `/tmp/dr-053-grep.txt`, showing `agent: deep-research`, `config.fanout_lineage_artifact_dir`, and the `skip_when` guard.
+- Grep output from step 5, saved to `/tmp/dr-053-docs-grep.txt`, showing the native fan-out note in `research.md`.
+
+### Failure Triage
 
 - `agent: deep-review` instead of `agent: deep-research`: native lineages run the review loop, not research.
 - `fanout_lineage_artifact_dir` absent from context: each native lineage resolves `artifact_dir` from `spec_folder` and overwrites the same dir.
@@ -82,7 +91,7 @@ Source inspection confirms native dispatch block uses `agent: deep-research`, pa
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`

@@ -41,7 +41,7 @@ For a deep research run, resolve the mode through the registry and state the bac
 - Runtime extension evidence: `runtimeLoopTypes` are `"research"`, `"review"`, and `"council"`.
 - Hub rule: if `registry[mode].runtimeLoopType !== null`, backend is `convergence.cjs --loop-type <runtimeLoopType>`.
 
-**Desired user-visible outcome**: The AI reports that research uses the runtime-loop backend keyed by `research`, not the improvement host.
+**Desired user-visible outcome**: The AI reports that research uses the runtime-loop backend keyed by `research`, and states the command and agent, not just the backend.
 
 ---
 
@@ -51,6 +51,10 @@ For a deep research run, resolve the mode through the registry and state the bac
 
 1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `research` mode entry.
 2. `.opencode/skills/system-deep-loop/SKILL.md` contains the backend routing rule.
+
+### Prompt
+
+- Prompt: `For a deep research run, resolve the mode through the registry and state the backend, runtime loop type, command, agent, and artifact root before starting.`
 
 ### Exact Command Sequence
 
@@ -66,11 +70,14 @@ For a deep research run, resolve the mode through the registry and state the bac
 | 2 | Response names `backendKind: runtime-loop-type` and `runtimeLoopType: research`. |
 | 3 | Response does not mention `loopHostMode`, `improvement-host`, or `external-adapter`. |
 
+### Evidence
+
+- Response transcript: `/tmp/dlw-RB-001/response.txt`, showing the stated backend, runtime loop type, command, agent, and artifact root.
+
 ### Pass/Fail Criteria
 
-- **PASS** iff research resolves to `runtime-loop-type` with `runtimeLoopType: research` and the expected command, agent, and artifact root.
-- **PARTIAL** iff backend is correct but command or agent is omitted.
-- **FAIL** iff backend is not `runtime-loop-type` or runtime loop type is missing or inferred incorrectly.
+- **PASS**: research resolves to `runtime-loop-type` with `runtimeLoopType: research`, and the response states the command and agent alongside the backend fields, matching the prompt's explicit request.
+- **FAIL**: backend is not `runtime-loop-type`, runtime loop type is missing or inferred incorrectly, or the response omits command or agent.
 
 ### Failure Triage
 
@@ -84,6 +91,7 @@ For a deep research run, resolve the mode through the registry and state the bac
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - backend routing rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `research` backend fields.
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---
 

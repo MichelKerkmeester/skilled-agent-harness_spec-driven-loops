@@ -55,7 +55,7 @@ Attempted direct pure-function import first to avoid fixture writes; this did no
 
 ```text
 $ node --import ../scripts/node_modules/tsx/dist/loader.mjs --input-type=module -e 'import { validateStructural, scoreContentQuality, checkSemanticDedup, SIGNAL_DENSITY_THRESHOLD, SEMANTIC_DEDUP_THRESHOLD } from "./lib/validation/save-quality-gate.ts"; const makeContent = (length) => "x".repeat(length); const structural = validateStructural({ title: null, content: makeContent(100), specFolder: "003-memory" }); const contentQuality = scoreContentQuality({ title: "x", content: makeContent(60), triggerPhrases: [], anchors: [] }); const semanticDedup = checkSemanticDedup([1,1,1], "003-memory", () => [{ id: 99, file_path: "/test/dup.md", similarity: 0.95 }]); const observed = { structuralFailure: { stage: "Layer 1: structural", result: structural, saveOutcome: structural.pass ? "allow" : "block" }, semanticQualityFailure: { stage: "Layer 2: content quality", threshold: SIGNAL_DENSITY_THRESHOLD, result: contentQuality, saveOutcome: contentQuality.pass ? "allow" : "advisory-warn-only" }, duplicateContentCase: { stage: "Layer 3: semantic dedup", threshold: SEMANTIC_DEDUP_THRESHOLD, result: semanticDedup, saveOutcome: semanticDedup.pass ? "allow" : "advisory-warn-only" } }; console.log(JSON.stringify(observed, null, 2));'
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159
+.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159
 export = Database;
          ^
 
@@ -66,7 +66,7 @@ Second direct import attempt with Node's TS stripping also failed before executi
 
 ```text
 $ node --experimental-strip-types --input-type=module -e 'import { validateStructural, scoreContentQuality, checkSemanticDedup, SIGNAL_DENSITY_THRESHOLD, SEMANTIC_DEDUP_THRESHOLD } from "./lib/validation/save-quality-gate.ts"; const makeContent = (length) => "x".repeat(length); const structural = validateStructural({ title: null, content: makeContent(100), specFolder: "003-memory" }); const contentQuality = scoreContentQuality({ title: "x", content: makeContent(60), triggerPhrases: [], anchors: [] }); const semanticDedup = checkSemanticDedup([1,1,1], "003-memory", () => [{ id: 99, file_path: "/test/dup.md", similarity: 0.95 }]); const observed = { structuralFailure: { stage: "Layer 1: structural", result: structural, saveOutcome: structural.pass ? "allow" : "block" }, semanticQualityFailure: { stage: "Layer 2: content quality", threshold: SIGNAL_DENSITY_THRESHOLD, result: contentQuality, saveOutcome: contentQuality.pass ? "allow" : "advisory-warn-only" }, duplicateContentCase: { stage: "Layer 3: semantic dedup", threshold: SEMANTIC_DEDUP_THRESHOLD, result: semanticDedup, saveOutcome: semanticDedup.pass ? "allow" : "advisory-warn-only" } }; console.log(JSON.stringify(observed, null, 2));'
-Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/search-flags.js' imported from /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/validation/save-quality-gate.ts
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '.opencode/skills/system-spec-kit/mcp-server/lib/search/search-flags.js' imported from .opencode/skills/system-spec-kit/mcp-server/lib/validation/save-quality-gate.ts
 ```
 
 Supported project harness execution of the documented TM-04 failure classes:
@@ -74,7 +74,7 @@ Supported project harness execution of the documented TM-04 failure classes:
 ```text
 $ npx vitest run tests/save-quality-gate.vitest.ts -t "WO4|UG3|UG4|UG5" --reporter verbose
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
  ✓ mcp-server/tests/save-quality-gate.vitest.ts > Save Quality Gate (TM-04) > Warn-Only Mode (MR12) > WO4: Would-reject logged but save allowed in warn-only mode 37ms
  ✓ mcp-server/tests/save-quality-gate.vitest.ts > Save Quality Gate (TM-04) > Unified Quality Gate > UG3: Gate ON, structural failure rejects 0ms

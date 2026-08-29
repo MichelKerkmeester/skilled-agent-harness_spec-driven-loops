@@ -49,75 +49,12 @@ Save-path and context-server suites pass, atomic-save success responses match th
 
 ### Evidence
 
-Command run from `.opencode/skills/system-spec-kit/mcp-server`:
+Capture, for every step in the Commands sequence above:
 
-```text
-npx vitest run tests/memory-save-ux-regressions.vitest.ts tests/context-server.vitest.ts
-
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
-
-{"timestamp":"2026-07-02T22:45:15.858Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:999-memory-save-ux-fixtures","trigger_phrases:2","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
-{"timestamp":"2026-07-02T22:45:15.876Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:999-memory-save-ux-fixtures","trigger_phrases:2","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
-{"timestamp":"2026-07-02T22:45:15.885Z","level":"info","message":"contamination_audit","stage":"post-render","patternsChecked":["frontmatter:trigger_phrases","frontmatter:key_topics","body:foreign-spec-dominance","body:foreign-spec-scatter","title:template instructional heading","title:placeholder bracket title","title:generic stub title","title:spec-id-only title"],"matchesFound":[],"actionsTaken":["failed_rules:none"],"passedThrough":["current_spec:999-memory-save-ux-fixtures","trigger_phrases:2","key_topics:0","captured_file_count:unknown","filesystem_file_count:unknown"]}
-
- Test Files  2 passed (2)
-      Tests  394 passed (394)
-   Start at  00:45:14
-   Duration  1.39s (transform 680ms, setup 15ms, import 562ms, tests 691ms, environment 0ms)
-```
-
-Observed save-path assertions in `tests/memory-save-ux-regressions.vitest.ts` are planner-output focused:
-
-```text
-417: describe('Memory save UX regressions', () => {
-418:   it('returns readable, action-oriented planner output for narrative progress saves', async () => {
-429:     expect(parsed.data).toMatchObject({
-430:       status: 'planned',
-431:       plannerMode: 'plan-only',
-432:       routeTarget: expect.objectContaining({
-456:     expect(parsed.hints).toEqual(expect.arrayContaining([
-457:       expect.stringContaining('Planner prepared 1 proposed edit'),
-458:       expect.stringContaining('Available follow-up actions: apply'),
-462:   it('keeps metadata-only planner guidance readable and continuity-focused', async () => {
-471:     expect(parsed.data).toMatchObject({
-472:       status: 'planned',
-473:       plannerMode: 'plan-only',
-484:     expect(parsed.data.followUpActions).toEqual(expect.arrayContaining([
-500:   it('reports blocked planner responses with readable blocker and next-step language', async () => {
-511:     expect(parsed.data.status).toBe('blocked');
-526:     expect(parsed.hints).toEqual(expect.arrayContaining([
-527:       'Resolve planner blockers before requesting full-auto apply mode',
-```
-
-Observed callback snapshot assertions in `tests/context-server.vitest.ts`:
-
-```text
-1285:     it('T000b: callbacks are triggered after dispatchTool and non-blocking', () => {
-1286:       expect(sourceCode).toMatch(/const\s+result\s*=\s*await\s+runWithCallerContext\([\s\S]*?dispatchTool\(name,\s*validatedArgs,\s*callerContext\)/)
-1287:       expect(sourceCode).toMatch(/runAfterToolCallbacks\(name,\s*callId,\s*structuredClone\(result\)\)/)
-1288:       expect(sourceCode).toMatch(/queueMicrotask\(\(\)\s*=>\s*\{/)
-1289:       expect(sourceCode).not.toMatch(/await\s+runAfterToolCallbacks\(/)
-1298:     it('T000d: callback runs after dispatchTool resolves', async () => {
-1334:         runAfterToolCallbacks('memory_search', 'call-1', structuredClone(result))
-1352:       expect(callbackSpy).toHaveBeenCalledTimes(1)
-1353:       // structuredClone snapshot: callback receives a deep clone before post-dispatch mutations
-1355:       expect(callArgs[0]).toBe('memory_search')
-1356:       expect(callArgs[1]).toBe('call-1')
-1357:       expect(callArgs[2]).toEqual({ content: [{ type: 'text', text: '{}' }] })
-1358:       expect(callArgs[2]).not.toBe(toolResult) // structuredClone produces a new reference
-1359:       expect(events).toEqual(['dispatch:start', 'dispatch:end', 'callback'])
-1362:     it('T000d: rejected callback does not block other callbacks', async () => {
-1397:       expect(callbackOrder).toEqual(['first', 'second'])
-1399:         errorSpy.mock.calls.some((call) => String(call[0]).includes('afterTool callback failed'))
-1400:       ).toBe(true)
-1403:     it('T000d: response stays non-blocking while callback is pending', async () => {
-1446:       expect(responseRace).toBe('resolved')
-1448:       expect(callbackStarted).toBe(true)
-1449:       expect(callbackFinished).toBe(false)
-1455:       expect(callbackFinished).toBe(true)
-```
-
-Missing expected assertion coverage in the targeted save-path suite: no observed assertions in `tests/memory-save-ux-regressions.vitest.ts` for successful atomic-save `postMutationHooks` contract parity, pending async embedding partial-indexing guidance, or duplicate/unchanged suppression of false hook metadata.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in section 3.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass / Fail
 

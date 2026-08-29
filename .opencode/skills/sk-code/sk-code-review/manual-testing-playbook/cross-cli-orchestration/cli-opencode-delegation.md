@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-017` and confirm the
 - Objective: Confirm external OpenCode delegation preserves the exact review scope and returns review-compatible findings.
 - Real user request: `Review is delegated to OpenCode.`
 - Prompt: `As an external conductor, delegate a code review to cli-opencode against the requested diff scope. Verify OpenCode uses findings-first severity, file:line evidence, and no implementation changes. Return a review-compatible handback.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when the cli-opencode CLI is not installed or not authenticated in the current environment.
 - Expected signals: Step 1: scope listed; Step 2: OpenCode handback includes P0/P1/P2 buckets; Step 3: no edits appear
 - Desired user-visible outcome: a review-compatible handback that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if handback satisfies references/review-core.md schema and .opencode/agents/review.md read-only intent; FAIL if OpenCode fixes code or omits file:line evidence
@@ -69,8 +69,8 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 |---|---|
 | `../../SKILL.md` | Review baseline and tool-neutral output contract |
 | `../../references/review-core.md` | Portable findings schema for handbacks |
-| `../../../../agent/review.md` | Native @review read-only behavior |
-| `../../../../agent/deep-review.md` | Deep-review leaf boundary and file:line evidence discipline |
+| `../../../../../agents/review.md` | Native @review read-only behavior |
+| `../../../../../agents/deep-review.md` | Deep-review leaf boundary and file:line evidence discipline |
 
 ---
 

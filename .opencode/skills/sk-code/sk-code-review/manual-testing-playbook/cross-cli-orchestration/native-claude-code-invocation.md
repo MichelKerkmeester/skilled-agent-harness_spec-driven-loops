@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-016` and confirm the
 - Objective: Confirm native review-agent invocation obeys read-only leaf constraints and review doctrine.
 - Real user request: `Review is run natively through @review.`
 - Prompt: `As an orchestrator, dispatch the native review agent against the target diff inside Claude Code or OpenCode. Verify @review stays read-only, loads review, and returns findings-first output. Return a native agent review transcript.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when the native @review agent is unavailable in the current runtime.
 - Expected signals: Step 1: target files listed; Step 2: @review report names baseline; Step 3: status shows no target edits by reviewer
 - Desired user-visible outcome: a native agent review transcript that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if @review remains read-only per .opencode/agents/review.md and output follows references/review-core.md; FAIL if it edits files or delegates
@@ -69,8 +69,8 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 |---|---|
 | `../../SKILL.md` | Review baseline and tool-neutral output contract |
 | `../../references/review-core.md` | Portable findings schema for handbacks |
-| `../../../../agent/review.md` | Native @review read-only behavior |
-| `../../../../agent/deep-review.md` | Deep-review leaf boundary and file:line evidence discipline |
+| `../../../../../agents/review.md` | Native @review read-only behavior |
+| `../../../../../agents/deep-review.md` | Deep-review leaf boundary and file:line evidence discipline |
 
 ---
 

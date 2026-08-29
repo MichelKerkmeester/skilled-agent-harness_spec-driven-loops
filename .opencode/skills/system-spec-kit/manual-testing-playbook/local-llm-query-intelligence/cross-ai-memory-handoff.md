@@ -22,15 +22,24 @@ This scenario tests that **storage AI ≠ retrieval AI** does NOT degrade recall
 
 - Objective: Confirm Memory MCP delivers stored memories across AI consumer boundary.
 - Real user request: `Validate that what Claude stores in Memory MCP is retrievable by OpenCode in a separate CLI session.`
-- AI-to-CLI handoff prompt: `You are OpenCode / claude-code. I am the orchestrating AI. I just saved a memory through Memory MCP. Open a fresh MCP session and find that memory using the trigger phrases I provide. Return rank, score, and content snippet.`
+- Orchestrator prompt: `You are OpenCode / claude-code. I am the orchestrating AI. I just saved a memory through Memory MCP. Open a fresh MCP session and find that memory using the trigger phrases I provide. Return rank, score, and content snippet.`
 - Expected execution process: orchestrating AI stores, dispatches external CLI with a clean session, external CLI runs `memory_search`, returns top-K, orchestrator verifies the stored memory is in top-3.
 - Expected signals: external-CLI top-3 contains the stored memory's parent ID; similarity score ≥ 0.6.
 - Desired user-visible outcome: `PASS — OpenCode retrieved Claude's memory at rank 1 (score 0.84); cross-AI handoff confirmed.`
-- Pass/fail: PASS if external CLI returns the memory in top-3 with score ≥ 0.6; PARTIAL if rank 4-10; FAIL if absent from top-10.
+- Pass/fail: PASS if the external CLI returns the memory in top-3 with score ≥ 0.6; rank 4-10 also counts as PASS when the evidence records a large live corpus as the reason for the drift. FAIL if the memory is absent from top-10, or ranks 4-10 without that recorded corpus-size justification.
 
 ---
 
 ## 3. TEST EXECUTION
+
+
+### Commands
+
+Run the steps below in order; each named subsection states its exact tool calls and inputs.
+
+1. Phase 1 — Orchestrating AI stores
+2. Phase 2 — External CLI handoff prompt
+3. Phase 3 — Verification
 
 ### Phase 1 — Orchestrating AI stores
 
@@ -83,7 +92,7 @@ Open a fresh Memory MCP session (your MCP client should already be wired). Then:
      "query": "cross-AI handoff scenario 414",
      "top_5": [{rank, score, parent_id, snippet}],
      "stored_memory_rank": <rank or null>,
-     "verdict": "PASS|PARTIAL|FAIL" + rationale
+     "verdict": "PASS|FAIL" + rationale
    }
 PROMPT
 ```
@@ -130,19 +139,42 @@ Per CLI:
   ```
 - Active provider at time of test from `memory_health` (same DB, both AIs should see the same data).
 
----
+### Pass / Fail
 
-## 4. NOTES
+- **Pass**: The external CLI returns the memory in top-3 with score ≥ 0.6; rank 4-10 also counts as PASS when the evidence records a large live corpus as the reason for the drift.
+- **Fail**: The memory is absent from top-10, or ranks 4-10 without that recorded corpus-size justification.
 
+### Failure Triage
+
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
+
+### Notes
 - Each external-CLI session SHOULD use its own MCP client process, but read from the same active profile DB (since the DB is workspace-local).
 - A FAIL here points to a SERIOUS issue: either the DB isn't shared correctly (each CLI is opening its own DB), the embedding rendering differs across MCP clients (shouldn't, since embeddings are persisted in the DB), or the trigger-phrase routing is AI-session-dependent (it shouldn't be).
-- PARTIAL (rank 4-10) is acceptable if the corpus is large — drift down the ranking is normal when there's a busy index.
+- A rank of 4-10 still counts as PASS when the corpus is large — drift down the ranking is normal on a busy index; record the corpus size in the evidence.
 
----
-
-## 5. CLEAN-UP
-
+### Clean-Up
 ```
 mcp__system_spec_memory__memory_delete({ parent_id: STORED_ID })
 rm -rf <spec-folder>
 ```
+
+---
+
+## 4. SOURCE FILES
+
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 414
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/cross-ai-memory-handoff.md`

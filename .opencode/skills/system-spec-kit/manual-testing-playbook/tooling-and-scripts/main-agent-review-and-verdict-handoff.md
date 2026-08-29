@@ -20,7 +20,7 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 
 - Objective: This snippet preserves the canonical memory/spec-kit operator workflow for `M-004`.
 - Real user request: `Please validate Main-Agent Review and Verdict Handoff against @review and tell me whether the expected signals are present: severity-ranked findings and final verdict.`
-- RCAF Prompt: `As a tooling validation operator, validate Main-Agent Review and Verdict Handoff against @review. Verify severity-ranked findings and final verdict. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a tooling validation operator, validate Main-Agent Review and Verdict Handoff against @review. Verify severity-ranked findings and final verdict. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Execute the documented validation request against @review, capture the response and evidence, compare it against the expected signals, and return the pass/fail verdict.
 - Expected signals: severity-ranked findings and final verdict
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -33,37 +33,30 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
 ### Prompt
 
 `As a tooling validation operator, validate Main-Agent Review and Verdict Handoff against @review. Verify severity-ranked findings and final verdict. Return a concise pass/fail verdict with the main reason and cited evidence.`
+### Commands
+
+1. Dispatch the operator prompt above to `@review` against the change set under test.
+2. Capture the returned findings list in full, including each finding's severity label.
+3. Capture the final verdict line and the rationale the reviewer gives for it.
+4. Confirm the findings are ordered by severity and that the verdict is one of PASS or FAIL.
+
 ### Expected
 
-severity-ranked findings and final verdict.
+Severity-ranked findings and a final verdict, each finding carrying an explicit severity label and the verdict carrying a stated rationale.
 ### Evidence
 
-BLOCKED: the scenario file does not contain the required `Preconditions` or `Commands` sections, so there were no documented preconditions to verify and no documented commands to execute exactly as written.
+Capture, for every step in the Commands sequence above:
 
-Actual file read output for the executable scenario area:
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
-```text
-28: ## 3. TEST EXECUTION
-29: 
-30: ### Prompt
-31: 
-32: `As a tooling validation operator, validate Main-Agent Review and Verdict Handoff against @review. Verify severity-ranked findings and final verdict. Return a concise pass/fail verdict with the main reason and cited evidence.`
-33: ### Expected
-34: 
-35: severity-ranked findings and final verdict.
-36: ### Evidence
-37: 
-38: review output with file:line findings.
-39: ### Pass/Fail
-40: 
-41: deterministic verdict issued with rationale.
-42: ### Failure Triage
-43: 
-44: collect missing evidence and rerun review.
-```
 ### Pass/Fail
 
-BLOCKED -- Missing scenario `Preconditions` and `Commands` sections prevent exact real execution; the Expected outcome was not evaluated because the required executable instructions are absent.
+- **Pass**: Deterministic verdict issued with rationale.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
+
 ### Failure Triage
 
 collect missing evidence and rerun review.

@@ -10,6 +10,11 @@ version: 1.4.0.17
 
 > **SELF-INVOCATION GUARD**: This playbook validates the `cli-codex` skill from a non-Codex runtime (Claude Code, OpenCode, Copilot or shell). Operators MUST NOT execute these scenarios from inside Codex CLI itself. The skill refuses to load when Codex env vars or process ancestry are detected. See SKILL.md §2 Self-Invocation Guard.
 
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> `cli-codex/benchmark/reports/<dated-run-label>/`.
+
 This document combines the full manual-validation contract for the `cli-codex` skill into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide. It explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded and where each per-feature validation file lives. The per-feature files provide the deeper execution contract for each scenario, including the user request, orchestrator prompt, execution process, source anchors and validation criteria.
 
 ---
@@ -27,12 +32,14 @@ Canonical package artifacts:
 - `prompt-templates/`
 - `built-in-tools/`
 - `codex-cloud/`
+- `git-preflight-advisory/`
+- `stress/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 28 deterministic scenarios across 9 categories validating the `cli-codex` skill surface. Each feature keeps its global `CX-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 42 deterministic scenarios across 11 categories validating the `cli-codex` skill surface. Each feature keeps its global `CX-NNN` ID (or `cli-codex-EC-NNN` for the hermetic stress-matrix category) and links to a dedicated feature file with the full execution contract.
 
 Coverage note (2026-04-26): Covers the canonical default invocation (`gpt-5.6-luna` + `medium` reasoning + `service_tier="fast"`), every documented sandbox mode, every reasoning_effort level, every agent profile (`review`, `context`, `research`, `write`, `debug`, `ai-council`), session continuity surfaces (`--full-auto`, native hooks, resume, fork), unique built-in capabilities (`/review`, `--search`, `--image`, `codex mcp`), prompt-template usage with the CLEAR quality card and cross-AI delegation patterns. Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
 
@@ -727,6 +734,8 @@ The `cli-codex` skill is an orchestrator wrapper around a third-party binary (`c
 | `.opencode/skills/system-spec-kit/mcp-server/dist/hooks/codex/{session-start,user-prompt-submit}.js` | Hook contract integration | `CX-016` exercises the hook scripts via the documented manual smoke checks in `hook-contract.md` §6 |
 | `.opencode/skills/cli-external-orchestration/cli-codex/references/hook-contract.md` §6 manual smoke checks | Hook output shape | `CX-016` |
 | `.opencode/skills/sk-doc/scripts/validate_document.py` | Markdown structure validation for this playbook | This playbook itself (root MUST validate cleanly) |
+| `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` | Shared `PreToolUse` `exec` advisory hook | `CX-029` |
+| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-codex.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-codex` adapter | `cli-codex-EC-001` .. `cli-codex-EC-014` |
 
 There is no automated coverage for default-invocation, sandbox-mode, reasoning_effort, agent_routing or built-in-tool scenarios. Manual playbook execution IS the canonical validation surface for those features. Re-run the wave plan in §6 before each release.
 
@@ -787,3 +796,38 @@ There is no automated coverage for default-invocation, sandbox-mode, reasoning_e
 ### CODEX CLOUD
 
 - CX-028: [codex cloud dispatch](../manual-testing-playbook/codex-cloud/codex-cloud-dispatch.md)
+
+---
+
+## 18. GIT PREFLIGHT ADVISORY (`CX-029`)
+
+This category validates that the shared sk-git preflight advisory reaches Codex's `PreToolUse` `exec`
+context on a directory-scoped commit that would silently drop an untracked file, stays silent on an
+ordinary commit, and is suppressible via `SKGIT_ADVISORY=0`.
+
+- `CX-029`: [Git preflight advisory delivery](git-preflight-advisory/git-preflight-advisory.md)
+
+---
+
+## 19. STRESS MATRIX (`cli-codex-EC-001..cli-codex-EC-014`)
+
+This category runs the shared hermetic stress-matrix cells for the `cli-codex` adapter: authentication,
+model/balance, rate-limit, timeout, stdin closure, child-spec-gate, sandbox/permission, missing
+transport, budget rejection, partial lineage death, orphan cleanup, worktree collision, node_modules
+integrity, and self-invocation. Every cell runs as a fully automated Vitest check with no live
+external Codex process; there is no operator-facing prompt beyond the run-this-test instruction.
+
+- `cli-codex-EC-001`: [Authentication failure](stress/auth-failure.md)
+- `cli-codex-EC-002`: [Model or balance failure](stress/model-or-balance.md)
+- `cli-codex-EC-003`: [Rate limit](stress/rate-limit.md)
+- `cli-codex-EC-004`: [Timeout](stress/timeout.md)
+- `cli-codex-EC-005`: [Stdin closure](stress/stdin-hang.md)
+- `cli-codex-EC-006`: [Child spec gate](stress/child-spec-gate.md)
+- `cli-codex-EC-007`: [Sandbox or permission](stress/sandbox-permission.md)
+- `cli-codex-EC-008`: [Missing transport](stress/transport-missing.md)
+- `cli-codex-EC-009`: [Budget rejection](stress/budget-rejection.md)
+- `cli-codex-EC-010`: [Partial lineage death](stress/partial-lineage-death.md)
+- `cli-codex-EC-011`: [Orphan cleanup](stress/orphan-cleanup.md)
+- `cli-codex-EC-012`: [Worktree collision](stress/worktree-collision.md)
+- `cli-codex-EC-013`: [Node modules integrity](stress/node-modules-integrity.md)
+- `cli-codex-EC-014`: [Self invocation](stress/self-invocation.md)

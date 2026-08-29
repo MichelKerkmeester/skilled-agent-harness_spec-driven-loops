@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-032` and confirm th
 - Prompt: `Run the worktree reaper against a fixture wrapper worktree that is clean, merged, and has a dead-PID marker, and confirm it is removed along with its branch and marker file.`
 - Expected execution process: Build a fixture `work/<runtime>/<slug>` worktree that is clean and whose branch is merged into the fixture's current HEAD, write a marker file naming an already-exited PID, then run the reaper with no flags.
 - Expected signals: `git worktree remove` and `git branch -d` both run against the fixture pair; the marker `.pid` file is deleted; the log line reads `prune (wrapper merged + clean + inactive): ...`.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox cannot create the fixture worktree pair the reaper evaluates.
 - Pass/fail: PASS if the worktree directory, its branch ref, and its marker file are all gone after the run, and no other fixture worktree is touched. FAIL if the pair survives despite meeting all three conditions, or if a sibling worktree is removed as a side effect.
 
 ---

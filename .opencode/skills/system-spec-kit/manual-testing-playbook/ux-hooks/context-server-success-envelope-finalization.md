@@ -54,7 +54,7 @@ Command run from `.opencode/skills/system-spec-kit/mcp-server`:
 ```text
 $ npx vitest run tests/context-server.vitest.ts
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)

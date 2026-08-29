@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-030` and confirm th
 - Prompt: `Launch a session, confirm its session marker file is written under the shared git common dir with the session's PID, and show the marker correctly reports the process as dead once it exits.`
 - Expected execution process: Launch a short-lived runtime through the wrapper in a disposable fixture, confirm `<common-git-dir>/worktree-sessions/<runtime>-<slug>.pid` is created with the launching PID, then confirm the process is no longer running and the marker now indicates inactivity.
 - Expected signals: the marker file exists and contains a single positive integer PID; `kill -0 <pid>` succeeds while the session is alive and fails once it exits; a write failure logs a WARNING rather than aborting the launch.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when no short-lived runtime binary is available in this environment to launch through the wrapper.
 - Pass/fail: PASS if the marker is written under the common dir (never inside the worktree) with the correct PID, and the reaper's own liveness check matches the actual process state. FAIL if the marker is missing after a successful launch, is written inside the worktree instead of the common dir, or its PID misreports a live process as dead.
 
 ---

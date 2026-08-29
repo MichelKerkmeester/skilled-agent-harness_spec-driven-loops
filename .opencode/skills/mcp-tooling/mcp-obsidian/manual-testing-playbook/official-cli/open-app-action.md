@@ -58,7 +58,7 @@ Capture help, command, exit code, visible app state, and any URI-action details.
 ### Pass / Fail
 
 - **Pass:** a help-confirmed command opens/focuses the expected target.
-- **Skip:** exact syntax is not confirmed on the installed app.
+- **Skip:** Obsidian desktop is not installed, or `obsidian --help` is unavailable in this environment, so the target-open syntax cannot be confirmed before running it.
 - **Fail:** confirmed syntax runs but opens the wrong target or does not focus the app.
 
 ### Failure Triage

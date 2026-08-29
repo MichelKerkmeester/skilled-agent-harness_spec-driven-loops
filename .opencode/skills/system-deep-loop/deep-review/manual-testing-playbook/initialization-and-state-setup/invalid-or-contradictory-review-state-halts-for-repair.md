@@ -83,4 +83,4 @@ Enumerate all possible partial-state combinations (config only, JSONL only, stra
 - Playbook ID: DRV-006
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

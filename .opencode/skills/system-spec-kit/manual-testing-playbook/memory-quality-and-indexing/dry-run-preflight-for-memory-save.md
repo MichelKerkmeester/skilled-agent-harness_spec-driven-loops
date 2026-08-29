@@ -53,25 +53,12 @@ Dry-run returns preflight plus quality-loop and sufficiency payloads; thin memor
 
 ### Evidence
 
-BLOCKED before TEST EXECUTION command 1.
+Capture, for every step in the Commands sequence above:
 
-Observed scenario command requiring writes outside the allowed path:
-
-```text
-1. Create a rich sandbox memory file and a thin sandbox memory file
-```
-
-Observed user-scoped write constraint for this run:
-
-```text
-Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
-Do NOT touch any other manual testing playbook scenario file.
-
-ALLOWED WRITE PATHS
-- .opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/dry-run-preflight-for-memory-save.md (this file only)
-```
-
-No `memory_stats()`, `memory_save()`, or `memory_search()` scenario command was run because command 1 is a required setup step and cannot be performed under the allowed write path constraint without creating files outside the single permitted file.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 

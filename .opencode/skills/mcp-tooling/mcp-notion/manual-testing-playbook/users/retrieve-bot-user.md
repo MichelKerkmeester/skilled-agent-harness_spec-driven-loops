@@ -23,10 +23,10 @@ This scenario validates the confirmed `notion_retrieve-bot-user` tool by reading
 - Feature Name: Retrieve your bot user
 - Scenario Objective: Confirm `retrieve-bot-user` resolves with the integration's own bot identity, no input required.
 - Exact Prompt: `Check that our Notion integration is connected and tell me which bot it's running as.`
-- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_retrieve-bot-user") -> 3. Code Mode: call_tool_chain({ code: "return await notion[\"notion_retrieve-bot-user\"]({});" })`
+- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_retrieve-bot-user") -> 3. Code Mode: call_tool_chain({ code: "return await notion[\"notion_retrieve-bot-user\"] ({});" })`
 - Expected Signals: the call resolves with a `bot` type user object carrying `id`, `bot.owner`, and `bot.workspace_name`.
 - Evidence: `list_tools()` result, `tool_info()` result, and the Code Mode response — the bot user object.
-- Pass/Fail Criteria: PASS if the call resolves with a valid bot user object; SKIP only if the manual is entirely unregistered (in which case no other Comments/Users/Search scenario in this playbook can run either); FAIL if the call returns a 401 or a malformed/non-bot object.
+- Pass/Fail Criteria: PASS if the call resolves with a valid bot user object; SKIP only if the `notion` manual is entirely unregistered in this environment (in which case no other Comments, Users, or Search scenario in this playbook can run either); FAIL if the call returns a 401 or a malformed/non-bot object.
 - Failure Triage: 1. Check `NOTION_TOKEN` is set and valid — there is no browser step on the local stdio backend. 2. Re-run `list_tools()` to confirm the `notion` manual is registered at all. 3. If this fails, do not attempt any other mcp-notion scenario until it is resolved — this is the critical-path gate.
 
 ---
@@ -58,7 +58,7 @@ Capture tool discovery, schema, and the raw bot user object.
 ### Pass / Fail
 
 - **Pass:** the call resolves with a valid bot user object.
-- **Skip:** the manual is entirely unregistered — note that this also blocks every other Comments/Users/Search scenario.
+- **Skip:** the `notion` manual is entirely unregistered in this environment — note that this also blocks every other Comments, Users, and Search scenario.
 - **Fail:** the call returns a 401 or a malformed/non-bot object.
 
 ### Failure Triage
@@ -80,7 +80,7 @@ Capture tool discovery, schema, and the raw bot user object.
 | File | Role |
 |---|---|
 | [`../manual-testing-playbook.md`](../manual-testing-playbook.md) | Root directory page and scenario summary |
-| [`../../feature-catalog/users/retrieve-bot-user.md`](../../feature-catalog/users/retrieve-bot-user.md) | Feature-catalog source describing the implementation contract |
+| `retrieve-bot-user.md` (feature-catalog Users category) | Feature-catalog source describing the implementation contract |
 
 ### Implementation And Test Anchors
 

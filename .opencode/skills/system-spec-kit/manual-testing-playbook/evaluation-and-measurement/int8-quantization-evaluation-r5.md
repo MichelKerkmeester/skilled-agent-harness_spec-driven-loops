@@ -50,9 +50,6 @@ Quality degradation metrics and activation criteria are checked against current 
 
 Threshold metrics summary + go/no-go criteria comparison + documented decision with evidence
 
-### Current Verdict (2026-07-03)
-
-**PASS** - Current read-only measurements warrant re-evaluation rather than a simple no-go reaffirmation. The live active vector-backed corpus is 18,466 embedded memories versus the 10,000 threshold; `memory_index` marks 18,840 active rows as successful, with 374 missing active vector payloads. The active embedder remains `nomic-embed-text-v1.5` via `ollama` at 768 dimensions, below the 1,536 threshold. Persisted eval latency is sparse (`n=2`) but currently records p95 123ms versus the 50ms threshold, so a sustained latency benchmark should be part of the follow-up re-evaluation. The feature-catalog decision record now documents these current values and the re-evaluation rationale.
 
 ### Pass / Fail
 

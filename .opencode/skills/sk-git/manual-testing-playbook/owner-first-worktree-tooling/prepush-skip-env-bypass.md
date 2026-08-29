@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-040` and confirm th
 - RCAF Prompt: `As a git safety reviewer, push a maximally malformed new branch name with SPECKIT_SKIP_PREPUSH_NAMING=1 set, and verify the entire gate is skipped with an explicit bypass notice rather than a silent pass.`
 - Expected execution process: Set the env var and feed a badly malformed new-branch line; confirm the hook exits before evaluating any ref line and logs an explicit bypass notice.
 - Expected signals: stderr contains `SPECKIT_SKIP_PREPUSH_NAMING=1 — skipping branch-naming gate.`; exit code is 0 regardless of branch name shape.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the `pre-push` hook script is missing from the checkout under test.
 - Pass/fail: PASS if the bypass env var causes an immediate, explicitly logged skip of the entire gate for every ref line in the push. FAIL if the bypass is silent, or if any ref line is still evaluated/rejected despite the bypass.
 
 ---

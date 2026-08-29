@@ -32,15 +32,37 @@ Create one bounded session, list it, continue the most recent session, and resum
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Remember the non-secret test token ALPHA-TEST for the next turn. Do not edit files; acknowledge only.`
+
+### Commands
+
 1. `DV019_DIR=$(mktemp -d /tmp/cli-devin-dv019.XXXXXX); cd "$DV019_DIR"`
 2. `devin -p "Remember the non-secret test token ALPHA-TEST for the next turn. Do not edit files; acknowledge only." --model adaptive --permission-mode normal </dev/null > first.txt 2>&1; echo "exit=$?" >> first.txt`
 3. `devin list --format json > sessions.json 2>&1; echo "exit=$?" >> sessions.json`
 4. `devin -c -p "Report the non-secret token remembered from the previous turn. Do not edit files." --model adaptive --permission-mode normal </dev/null > continued.txt 2>&1; echo "exit=$?" >> continued.txt`
 5. If `sessions.json` yields an id, run `devin -r <session-id> -p "Report the remembered token." --model adaptive --permission-mode normal </dev/null`.
 
-| Feature ID | Exact commands | Expected signal | Verdict |
-|---|---|---|---|
-| DV-019 | Initial `-p`, `list --format json`, `-c -p`, optional `-r` | Prior context retrievable | PASS/FAIL/SKIP |
+### Expected
+
+Prior context retrievable
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Prior context retrievable`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when context survives the selected operation.
+- **Fail**: when the tool claims continuation but loses context
+- **Skip**: when the build/auth cannot create or list a session. (a missing or unavailable prerequisite is the named blocker).
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

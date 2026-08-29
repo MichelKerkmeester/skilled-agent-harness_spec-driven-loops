@@ -230,7 +230,8 @@ devin -p \
 | User says | Resolve to |
 |-----------|------------|
 | (nothing specified) | `--model swe --permission-mode dangerous` |
-| "Use glm" | `--model glm-5-2 --permission-mode dangerous` |
+| "Use glm" / "Use glm high" | `--model glm-5-2 --permission-mode dangerous` |
+| "Use glm no-thinking" | `--model glm-5-2-none --permission-mode dangerous` |
 | "Use glm max" | `--model glm-5-2-max --permission-mode dangerous` |
 | "Use grok high" | `--model grok-4-6-high --permission-mode dangerous` |
 | "Use deepseek" | `--model deepseek-v4-pro --permission-mode dangerous` |
@@ -242,7 +243,7 @@ Honor whichever dimensions the user names. Model stays on `swe` and permission m
 
 ### Model Selection
 
-Default `swe` (alias → `swe-1-7-lightning`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families, alphabetical: DeepSeek (`deepseek-v4-pro`, `deepseek-v4-flash-max`, `deepseek-v4-pro-max`), Gemini (`gemini-3-7-flash-high`), GLM-5.2 (`glm-5-2`, `glm-5-2-1m`, `glm-5-2-max`, `glm-5-2-max-1m`, `glm-5-2-none`, `glm-5-2-none-1m`), GPT-5.6 Luna Max (`gpt-5-6-luna-max`, `gpt-5-6-luna-max-priority`), Grok 4.5 (`grok-4-5-high`, `grok-4-5-low`, `grok-4-5-medium`), Grok 4.6 (`grok-4-6-high`, `grok-4-6-low`, `grok-4-6-medium`, `grok-4-6-xhigh`), SWE-1.7 (`swe-1-7`, `swe-1-7-lightning`, `swe-1-7-medium`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
+Default `swe` (alias → `swe-1-7-lightning`). Switch per-dispatch with `--model <name>`; there is no headless reasoning-effort flag, so autonomy is set through `--permission-mode`. Curated families, alphabetical: DeepSeek (`deepseek-v4-pro`, `deepseek-v4-flash-max`, `deepseek-v4-pro-max`), Gemini (`gemini-3-7-flash-high`), GLM-5.2 (`glm-5-2` = **GLM-5.2 High**, free tier; `glm-5-2-1m` = High 1M; `glm-5-2-max` = Max; `glm-5-2-max-1m` = Max 1M; `glm-5-2-none` = No Thinking; `glm-5-2-none-1m` = No Thinking 1M), GPT-5.6 Luna Max (`gpt-5-6-luna-max`, `gpt-5-6-luna-max-priority`), Grok 4.5 (`grok-4-5-high`, `grok-4-5-low`, `grok-4-5-medium`), Grok 4.6 (`grok-4-6-high`, `grok-4-6-low`, `grok-4-6-medium`, `grok-4-6-xhigh`), SWE-1.7 (`swe-1-7`, `swe-1-7-lightning`, `swe-1-7-medium`) — full roster and the permission-mode effort lever in [references/providers-and-models.md](references/providers-and-models.md).
 
 **Selection Strategy**: default `swe` for quick edits and cost-sensitive work; switch to `grok-4-6-high` (or `-xhigh` for the deepest passes) for reasoning-heavy work (architecture, security, deep planning); use `glm-5-2` / `glm-5-2-max` for general generation; use `swe-1-7` for max-effort SWE work. Per-task rationale table: [cli-reference.md](./references/cli-reference.md) §5.
 
@@ -335,6 +336,8 @@ The full flag glossary, permission modes, unique capabilities (`/handoff`, `run_
 ```
 Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `dangerous` for throwaway isolated runners.
 - **Always pass `--model` explicitly in scripts** — omitting it relies on the caller's `~/.config/devin/config.json` default, which may be a different model. Explicit means reproducible regardless of who runs it.
+- **Model ids carry no `-high` suffix, but the interactive picker shows one** — the TUI labels `glm-5-2` as "GLM-5.2 High", so an operator asking for "GLM 5.2 high" means the id `glm-5-2`. There is no `glm-5-2-high`. `devin models list` is the authority for every id and its display name; this document's roster is a convenience copy.
+- **A free-tier model still dispatches when the Pro quota reads 0%** — `glm-5-2` is billed as Free, and a dispatch succeeded with `Pro · 0% remaining` showing in the TUI. Quota exhaustion gates the paid families, so do not abandon a dispatch on the quota banner alone; probe with a trivial read-only call first.
 - **Use `--` before every print-mode prompt** — `devin -p -- "list all TODO comments"` prevents the prompt from being parsed as CLI flags. The prompt must follow the separator, or load it with `--prompt-file`.
 
 ---

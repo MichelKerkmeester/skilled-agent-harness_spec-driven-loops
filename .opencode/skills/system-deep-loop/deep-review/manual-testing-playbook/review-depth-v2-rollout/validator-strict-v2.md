@@ -36,7 +36,11 @@ The strict tier is the contract enforcement that gives the v2 schema operational
 - Shell can set `DEEP_REVIEW_V2_ENFORCEMENT=strict`.
 - Malformed v2 records can be selected or constructed with `reviewDepthSchemaVersion`, `reviewDepthApplicability`, `targetSelection`, `searchCoverage`, and `searchLedger`.
 
-### Steps
+### Prompt
+
+- Prompt: `Run the validator fixture under DEEP_REVIEW_V2_ENFORCEMENT=strict and confirm all five v2 failure codes fire on the corresponding malformed records.`
+
+### Commands
 
 1. Set `DEEP_REVIEW_V2_ENFORCEMENT=strict`.
 2. Run the validator fixture that exercises explicit v2 records.
@@ -50,7 +54,11 @@ The strict tier is the contract enforcement that gives the v2 schema operational
 
 Under `DEEP_REVIEW_V2_ENFORCEMENT=strict`, all five v2 failure codes fire on their corresponding malformed records: `v2_missing_ledger`, `v2_uncited_ledger_row`, `v2_broken_linked_finding`, `v2_shallow_finding_details`, and `state_delta_iteration_mismatch`.
 
-### Failure Modes
+### Evidence
+
+- Validator output for each of the five malformed records, showing `ok: false` and the matching `reason` code (`v2_missing_ledger`, `v2_uncited_ledger_row`, `v2_broken_linked_finding`, `v2_shallow_finding_details`, `state_delta_iteration_mismatch`), captured to `/tmp/drv-059-validator-strict.txt`.
+
+### Failure Triage
 
 - A code is missing: confirm the malformed record targets that exact failure condition (e.g. for `v2_uncited_ledger_row`, the row's `searchActions[].evidenceRefs` must be empty, not just sparse).
 - Legacy warnings appear instead of failure codes: confirm the record includes `reviewDepthSchemaVersion: 2`.
@@ -58,15 +66,16 @@ Under `DEEP_REVIEW_V2_ENFORCEMENT=strict`, all five v2 failure codes fire on the
 
 ---
 
-## 4. SOURCE REFERENCES
+## 4. SOURCE FILES
 
 - Validator: `.opencode/skills/system-deep-loop/runtime/lib/deep-loop/post-dispatch-validate.ts` (v2 strict checks branch + new failure-reason union members).
 - Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-validator.vitest.ts`.
 - Schema: `.opencode/skills/system-deep-loop/deep-review/references/state/state-format.md` (`## Review Depth Schema (v2)`).
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Review-depth v2 rollout
 - Playbook ID: DRV-059

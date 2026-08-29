@@ -21,7 +21,7 @@ This scenario validates Contextual tree injection (P1-4) for `145`. It focuses o
 
 - Objective: Verify hierarchical spec-folder headers are injected into search results when `SPECKIT_CONTEXT_HEADERS=true` and suppressed when disabled.
 - Real user request: `` Please validate Contextual tree injection (P1-4) against memory_search({ query:"spec folder context headers", includeContent:true, includeTrace:true, limit:5 }) and tell me whether the expected signals are present: Enabled: results with spec-folder paths have `[parent > child — description]` headers prepended, truncated at 100 chars; Disabled: no headers injected, content unchanged. ``
-- RCAF Prompt: `As a retrieval-enhancement validation operator, validate Contextual tree injection (P1-4) against memory_search({ query:"spec folder context headers", includeContent:true, includeTrace:true, limit:5 }). Verify hierarchical spec-folder headers are injected into search results when SPECKIT_CONTEXT_HEADERS=true and suppressed when disabled. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a retrieval-enhancement validation operator, validate Contextual tree injection (P1-4) against memory_search({ query:"spec folder context headers", includeContent:true, includeTrace:true, limit:5 }). Verify hierarchical spec-folder headers are injected into search results when SPECKIT_CONTEXT_HEADERS=true and suppressed when disabled. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Enabled: results with spec-folder paths have `[parent > child — description]` headers prepended, truncated at 100 chars; Disabled: no headers injected, content unchanged
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -145,35 +145,35 @@ Observed output excerpts:
       {
         "id": 7208,
         "specFolder": "system-spec-kit/z_archive/006-generate-context-subfolder",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/z_archive/006-generate-context-subfolder/spec.md",
+        "filePath": ".opencode/specs/system-spec-kit/z_archive/006-generate-context-subfolder/spec.md",
         "content": null,
         "contentError": "File not found"
       },
       {
         "id": 6936,
         "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/058-generate-context-modularization",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/058-generate-context-modularization/spec.md",
+        "filePath": ".opencode/specs/system-spec-kit/z_archive/001-fix-command-dispatch/z_archive/058-generate-context-modularization/spec.md",
         "contentError": "File not found",
         "compact": true
       },
       {
         "id": 4094,
         "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names/spec.md",
+        "filePath": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names/spec.md",
         "contentError": "File not found",
         "compact": true
       },
       {
         "id": 3265,
         "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/004-stress-test-folder-completion",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/004-stress-test-folder-completion/spec.md",
+        "filePath": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/004-stress-test-folder-completion/spec.md",
         "contentError": "File not found",
         "compact": true
       },
       {
         "id": 13450,
         "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/004-fix-validation-memory",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/004-fix-validation-memory/graph-metadata.json",
+        "filePath": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research/004-fix-deep-research-findings/004-fix-validation-memory/graph-metadata.json",
         "contentError": "File not found",
         "compact": true
       }
@@ -270,7 +270,7 @@ Observed output excerpts:
       {
         "id": 7208,
         "specFolder": "system-spec-kit/z_archive/006-generate-context-subfolder",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/z_archive/006-generate-context-subfolder/spec.md",
+        "filePath": ".opencode/specs/system-spec-kit/z_archive/006-generate-context-subfolder/spec.md",
         "content": null,
         "contentError": "File not found"
       },

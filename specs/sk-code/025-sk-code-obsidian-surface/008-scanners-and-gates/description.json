@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "sk-code/025-sk-code-obsidian-surface/008-scanners-and-gates",
+  "description": "Three Node ESM scanners under tools/naming/ that make the plugin's target source conventions (kebab-case filenames, MODULE banners and numbered sections, paired folder docs) executable, proven against the current unconverted tree.",
+  "keywords": [
+    "three",
+    "node",
+    "esm",
+    "scanners",
+    "under",
+    "tools",
+    "naming",
+    "make",
+    "plugin"
+  ],
+  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "specId": "008",
+  "folderSlug": "scanners-and-gates",
+  "parentChain": [
+    "sk-code",
+    "025-sk-code-obsidian-surface"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

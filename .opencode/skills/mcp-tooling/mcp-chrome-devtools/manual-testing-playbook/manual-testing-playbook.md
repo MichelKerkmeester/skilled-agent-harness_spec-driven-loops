@@ -462,3 +462,24 @@ Expected signals: Step 1: pre-session Chrome count baseline; Step 2: post-sessio
 - BDG-020: [Invalid URL](../manual-testing-playbook/recovery-and-failure/invalid-url.md)
 - BDG-021: [Dead session **(DESTRUCTIVE)**](../manual-testing-playbook/recovery-and-failure/dead-session.md)
 - BDG-022: [Cleanup leak detection **(DESTRUCTIVE)**](../manual-testing-playbook/recovery-and-failure/cleanup-leak.md)
+
+---
+
+## 15. INTRA-ROUTING RECALL (`CD-R01`..`CD-R05`, `CD-H01`, `CD-H02`, `CD-N01`) -- BENCHMARK-FACING, NOT PART OF THE 22-SCENARIO COUNT
+
+This category validates the `mcp-chrome-devtools` smart router itself (`SKILL.md` §2 `INTENT_SIGNALS` and `RESOURCE_MAP`), independent of any live `bdg` session or Chrome instance. Every scenario is a static, read-only check: does the exact prompt classify to the declared intent, and does every path in `expected_resources` exist on disk. Five scenarios (`CD-R01`-`CD-R05`) are fitted to each of the five declared intents, two (`CD-H01`, `CD-H02`) are natural-phrasing holdouts that decontaminate `CD-R04` and `CD-R01` (`CD-H01` also resolves a near-tie against the incidental `CLI` keyword "headless"), and one (`CD-N01`) is a negative control proving an out-of-domain prompt scores zero across every intent. This set is benchmark-facing and intentionally outside the 22-scenario count above, but every file is still linked here so nothing is orphaned from this root index.
+
+### Scenario Summary
+
+| ID | Category | Prompt (abridged) | Expected Intent | Feature File |
+|---|---|---|---|---|
+| CD-R01 | Routing | Drive a headless browser debug session from the terminal with bdg... | `CLI` | [intra-routing-recall/cli.md](intra-routing-recall/cli.md) |
+| CD-R02 | Routing | Run several parallel browser sessions through code mode... | `MCP` | [intra-routing-recall/mcp.md](intra-routing-recall/mcp.md) |
+| CD-R03 | Routing | The tool is not installed on this machine; walk me through setup | `INSTALL` | [intra-routing-recall/install.md](intra-routing-recall/install.md) |
+| CD-R04 | Routing | The debug session failed with a connection error mid-run... | `TROUBLESHOOT` | [intra-routing-recall/troubleshoot.md](intra-routing-recall/troubleshoot.md) |
+| CD-R05 | Routing | Wire this browser capture into a CI pipeline for production automation | `AUTOMATION` | [intra-routing-recall/automation.md](intra-routing-recall/automation.md) |
+| CD-H01 | Holdout (decontaminates CD-R04; near-tie vs CLI) | The headless page-debugging session keeps dropping... | `TROUBLESHOOT` | [intra-routing-recall/holdout-troubleshoot.md](intra-routing-recall/holdout-troubleshoot.md) |
+| CD-H02 | Holdout (decontaminates CD-R01) | Drive the page debugger straight from my shell prompt... | `CLI` | [intra-routing-recall/holdout-cli.md](intra-routing-recall/holdout-cli.md) |
+| CD-N01 | Negative | Summarise this quarterly sales report into three bullet points. | `none` (`UNKNOWN_FALLBACK`) | [intra-routing-recall/negative.md](intra-routing-recall/negative.md) |
+
+Each per-scenario file carries the full frontmatter contract, the exact command sequence, expected signals, evidence, pass/fail criteria, and failure triage for its own ID.

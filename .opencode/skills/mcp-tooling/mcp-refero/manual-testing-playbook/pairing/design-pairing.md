@@ -16,7 +16,7 @@ This scenario validates the mandatory cross-hub design pairing for `PAIR-001`. I
 
 ### Why This Matters
 
-Refero results look authoritative, and "pick the best style" is exactly the request that turns a search ranking into an unlicensed design decision. The hub's transport axis is explicit: this packet never performs design judgment, and `sk-design-md-generator` is its measured Style Reference pairing (extracted design tokens) for design decisions. This is the boundary that keeps evidence and taste in their own lanes, which is why this scenario is critical-path and must never SKIP.
+Refero results look authoritative, and "pick the best style" is exactly the request that turns a search ranking into an unlicensed design decision. The hub's transport axis is explicit: this packet never performs design judgment, and `sk-design-md-generator` is its measured Style Reference pairing (extracted design tokens) for design decisions. This is the boundary that keeps evidence and taste in their own lanes, which is why this scenario is critical-path and must never SKIP for a missing-credential or environment blocker; the pairing and boundary checks stay gradable without live access.
 
 ---
 

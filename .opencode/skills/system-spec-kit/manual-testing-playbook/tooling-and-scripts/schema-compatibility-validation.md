@@ -47,7 +47,7 @@ Targeted suite passes; transcript shows missing-table reporting and minimal-comp
 
 ### Evidence
 
-Command run from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server`:
+Command run from `.opencode/skills/system-spec-kit/mcp-server`:
 
 ```text
 npm test -- --run tests/vector-index-schema-compatibility.vitest.ts
@@ -60,7 +60,7 @@ Observed output:
 > node scripts/run-tests.mjs --run tests/vector-index-schema-compatibility.vitest.ts
 
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)

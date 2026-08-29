@@ -63,7 +63,7 @@ Operators run the exact prompt and command sequence for `CP-033` and confirm the
 ```bash
 rm -rf /tmp/cp-033-sandbox /tmp/cp-033-sandbox-baseline /tmp/cp-033-spec
 mkdir -p /tmp/cp-033-spec/improvement/control /tmp/cp-033-spec/improvement/candidates
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/setup_cp_sandbox.sh --sandbox-dir /tmp/cp-033-sandbox
+.opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-033-sandbox
 cp /tmp/cp-033-sandbox/.opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/improvement-charter.md /tmp/cp-033-spec/improvement/control/improvement-charter.md
 cp /tmp/cp-033-sandbox/.opencode/skills/system-deep-loop/deep-improvement/assets/agent-improvement/target-manifest.jsonc /tmp/cp-033-spec/improvement/control/target-manifest.jsonc
 node /tmp/cp-033-sandbox/.opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/scan-integration.cjs --agent=cp-improve-target --repo-root=/tmp/cp-033-sandbox --output=/tmp/cp-033-spec/improvement/integration-report.json

@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-009` and confirm the
 - Objective: Confirm public helper or schema changes inventory consumers before declaring review complete.
 - Real user request: `Review target changes a shared helper, response field, schema, or policy.`
 - Prompt: `Trace consumer impact for this shared helper or schema change, naming affected consumers or proving none exist.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when a fixture changing a shared helper, schema, or policy consumed elsewhere is missing from the environment.
 - Expected signals: Step 1: changed contract identified; Step 2: consumers listed; Step 3: affectedSurfaceHints present for cross-consumer findings
 - Desired user-visible outcome: a cross-consumer review finding set that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if cross-consumer findings include affectedSurfaceHints per references/review-core.md schema; FAIL if downstream consumers are ignored

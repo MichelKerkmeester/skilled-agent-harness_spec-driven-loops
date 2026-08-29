@@ -22,7 +22,7 @@ This scenario validates Transaction wrappers on mutation handlers for `085`. It 
 
 - Objective: Confirm atomic wrapper behavior.
 - Real user request: `Please validate Transaction wrappers on mutation handlers against the documented validation surface and tell me whether the expected signals are present: Mid-step fault triggers automatic rollback; DB state remains consistent after rollback; no partial writes persist.`
-- RCAF Prompt: `As a mutation validation operator, validate Transaction wrappers on mutation handlers against the documented validation surface. Verify mid-step fault triggers automatic rollback; DB state remains consistent after rollback; no partial writes persist. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a mutation validation operator, validate Transaction wrappers on mutation handlers against the documented validation surface. Verify mid-step fault triggers automatic rollback; DB state remains consistent after rollback; no partial writes persist. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Mid-step fault triggers automatic rollback; DB state remains consistent after rollback; no partial writes persist
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

@@ -74,8 +74,8 @@ At the end of your response, include a structured handback inside delimiters:
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
@@ -112,8 +112,8 @@ Success criteria:
 opencode run \
   --share \
   --port 4096 \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
@@ -155,8 +155,8 @@ Memory Epilogue: include MEMORY_HANDBACK delimiters as in Template 1.
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
@@ -173,9 +173,9 @@ Dispatch a task to a specific agent slug. See `../references/agent-delegation.md
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
+  --model opencode-go/deepseek-v4-flash \
   --agent orchestrate \
-  --variant high \
+  --variant max \
   --format json \
   --dir /repo \
   "Use the <slug> subagent: <prompt>" 2>&1
@@ -220,8 +220,8 @@ Context: Spec folder: <path> (pre-approved, skip Gate 3).
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir /repo \
   "<prompt>" 2>&1
@@ -255,8 +255,8 @@ Do NOT dispatch this shape with a raw `opencode run --agent deep-research`; that
 ```bash
 opencode run \
   --command deep/research \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir /repo \
   "<prompt>" 2>&1
@@ -291,8 +291,8 @@ Input: <input data path>
 opencode run \
   --share \
   --port 4097 \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir /repo \
   "<prompt>" 2>&1
@@ -326,8 +326,8 @@ for n in $(seq 1 8); do
   opencode run \
     --share \
     --port "$port" \
-    --model deepseek/deepseek-v4-pro \
-    --variant high \
+    --model opencode-go/deepseek-v4-flash \
+    --variant max \
     --format json \
     --dir /repo \
     "Worker $n: <prompt>" > "logs/worker-$n.log" 2>&1 </dev/null &
@@ -358,8 +358,8 @@ Format: structured JSON event stream. Memory Epilogue at the end.
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir /repo \
   "<prompt>" 2>&1
@@ -385,9 +385,9 @@ Target: an implementation-ready plan that another agent can execute.
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
+  --model opencode-go/deepseek-v4-flash \
   --agent orchestrate \
-  --variant high \
+  --variant max \
   --format json \
   --dir /repo \
   "Dispatch @ai-council: <prompt>" 2>&1
@@ -411,9 +411,9 @@ Format: markdown.
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
+  --model opencode-go/deepseek-v4-flash \
   --agent markdown \
-  --variant high \
+  --variant max \
   --format json \
   --dir /repo \
   "<prompt>" 2>&1
@@ -631,8 +631,8 @@ Output:
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1

@@ -131,7 +131,7 @@ Actual stdout/stderr excerpt:
       {
         "id": 4498,
         "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/050-all-skills-alignment-sweep",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/050-all-skills-alignment-sweep/tasks.md",
+        "filePath": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/050-all-skills-alignment-sweep/tasks.md",
         "title": "Tasks: All Skills Alignment Sweep",
         "score": 0.58484168,
         "importanceTier": "critical",
@@ -140,7 +140,7 @@ Actual stdout/stderr excerpt:
       {
         "id": 4481,
         "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming/tasks.md",
+        "filePath": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/047-handover-anchor-naming/tasks.md",
         "title": "4481 -> 3540",
         "score": 0.5729837435452942,
         "importanceTier": "important",
@@ -149,7 +149,7 @@ Actual stdout/stderr excerpt:
       {
         "id": 4577,
         "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge/handover.md",
+        "filePath": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge/handover.md",
         "title": "Handover: 016/002/007 — pre-compaction state snapshot 2026-05-18 21:50 PM",
         "score": 0.45359999999999995,
         "importanceTier": "important",
@@ -164,7 +164,9 @@ Actual stdout/stderr excerpt:
 The observed output did not include save stdout, did not show a continuity ladder resolving through `handover.md` then `_memory.continuity` then spec docs, did not demonstrate absence of `ALIGNMENT_BLOCK` for matching code files, and returned `requestQuality.label: "weak"` with `responsePolicy.requiredAction: "broaden_or_ask"`. The scenario command contains `specs/<target-spec>` but no concrete target spec or setup data is provided in this file.
 ### Pass/Fail
 
-BLOCKED - the command's unresolved `specs/<target-spec>` placeholder prevents validating the expected continuity ladder and alignment-guard behavior against a real target spec.
+- **Pass**: Captured-session save succeeds for matching files, emits provenance-backed context, and still blocks unrelated captures when overlap is genuinely low.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
+
 ### Failure Triage
 
 inspect `input-normalizer.ts` relevance filtering, compare captured file paths to the spec's files-to-change table, verify handover/continuity precedence, then rerun.

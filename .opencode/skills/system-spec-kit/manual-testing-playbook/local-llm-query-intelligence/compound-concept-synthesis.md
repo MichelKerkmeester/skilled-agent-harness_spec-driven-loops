@@ -26,11 +26,11 @@ A good ranker brings these together in top-K so the operator can synthesize. A p
 
 - Objective: Confirm compound-question retrieval surfaces multiple constituent sources.
 - Real user request: `Verify that a compound question whose answer is not in any single file returns the constituent sources in top-3, allowing me to synthesize.`
-- RCAF Prompt: `As a query-intelligence validation operator, fire a compound question requiring multi-source synthesis, and verify top-3 returns ≥ 2 of the 3-4 expected constituent files. Return a pass/fail verdict with the source-set table.`
+- Operator prompt: `As a query-intelligence validation operator, fire a compound question requiring multi-source synthesis, and verify top-3 returns ≥ 2 of the 3-4 expected constituent files. Return a pass/fail verdict with the source-set table.`
 - Expected execution process: fire compound query, identify the expected constituent source set, check which constituents appear in top-3 / top-5 / top-10.
 - Expected signals: after deduplicating mirrored runtime paths (`.opencode`, `.opencode`, `.claude`) to one constituent hit, at least 2 of the 4 expected constituents appear in top-3 and at least 3 in top-5.
 - Desired user-visible outcome: `PASS — top-3 includes 3 of 4 expected constituents (the missing one was in rank 6, still close).`
-- Pass/fail: PASS if >= 2/4 deduped constituents are in top-3 AND >= 3/4 are in top-5; PARTIAL if 2/4 are in top-3 but < 3/4 are in top-5; FAIL if < 2/4 are in top-3.
+- Pass/fail: PASS only if >= 2/4 deduped constituents are in top-3 AND >= 3/4 are in top-5; FAIL if < 2/4 are in top-3, and also FAIL when 2/4 reach top-3 but fewer than 3/4 reach top-5.
 
 ---
 
@@ -172,12 +172,34 @@ Summary:
 
 ### Pass/Fail
 
-BLOCKED — The required MCP query tool was not registered, the CLI equivalent rejected the scenario's `query`/`num_results` arguments with `Missing required fields: operation, subject`, and `memory_health` was unavailable because `@spec-kit/mcp-server dist is stale`.
+- **Pass**: >= 2/4 deduped constituents are in top-3 AND >= 3/4 are in top-5.
+- **Fail**: < 2/4 are in top-3, and also FAIL when 2/4 reach top-3 but fewer than 3/4 reach top-5.
 
----
+### Failure Triage
 
-## 4. NOTES
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
 
+### Notes
 This scenario stresses **retrieval breadth**, not depth. A top-3 with 3 different constituent sources is BETTER than a top-3 with 3 paragraphs from the same file, even if that single file has the longest individual coverage.
 
 If a single doc happens to comprehensively answer the question (rare, but possible), that's actually a corpus-quality win — note it explicitly and pass the test.
+
+---
+
+## 4. SOURCE FILES
+
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 408
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/compound-concept-synthesis.md`

@@ -38,28 +38,66 @@ Deep loops mutate long-lived packet state across iterations. The state-safety pr
 - `runtime/` source tree is present.
 - Feature catalog entry exists at `feature-catalog/state-safety/jsonl-repair.md`.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate JSONL repair and report whether the current source, script surface, and tests agree with the runtime/ contract.`
+
+### Commands
 
 1. Inspect `lib/deep-loop/jsonl-repair.ts` for the implementation contract.
 2. Inspect `tests/unit/jsonl-repair.vitest.ts` for the primary regression coverage.
 3. Run the matching test command for this feature and require EXIT 0; source inspection alone is not sufficient.
 4. Capture the source lines and EXIT 0 test command output that prove the expected signals.
-5. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
+5. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
 ### Expected Outcome
 
 JSONL repair matches the documented current reality, the source anchors are accurate, and validation evidence is reproducible.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `lib/deep-loop/jsonl-repair.ts` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/unit/jsonl-repair.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - Source file no longer exposes the documented function, type, script argument, or output field.
 - Matching test coverage is missing, renamed, or contradicts the documented behavior.
 - Script or runtime output changes without corresponding catalog and playbook updates.
 - Evidence is inferred from memory instead of captured from current source or command output.
 
+### Adversarial Regression
+
+> Regression guard for a fixed deep-review finding. This scenario is adversarial: it PASSES only
+> while the bug stays fixed and is phrased to FAIL the moment the regression returns.
+
+#### Adversarial Contract
+
+- Bug under guard: appending a record to a JSONL file whose last line lacked a trailing newline
+  merged the new record onto the prior line, corrupting both at the record boundary.
+- Must-stay-true invariant: appends must keep every record parseable at line boundaries even when
+  the prior content lacked a clean terminator.
+- Pass/fail: PASS only if the command below exits 0 AND `tests/unit/jsonl-repair.vitest.ts` still
+  contains the named assertions; FAIL if either is missing, renamed, skipped, or exits non-zero —
+  any of which means the boundary-corruption regression has returned.
+
+#### Adversarial Steps
+
+1. Run `cd .opencode/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/jsonl-repair.vitest.ts` and require EXIT 0.
+2. Confirm `tests/unit/jsonl-repair.vitest.ts` asserts `appends records without rewriting existing content` and `strips corrupt trailing lines even when the corrupt line ends with a newline`.
+3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
+
+#### Regression Anchor
+
+| File | Role |
+|---|---|
+| `tests/unit/jsonl-repair.vitest.ts` | Fails if an append after a missing terminator corrupts a record boundary. |
+
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -75,40 +113,12 @@ JSONL repair matches the documented current reality, the source anchors are accu
 
 ---
 
-## 5. ADVERSARIAL REGRESSION
-
-> Regression guard for a fixed deep-review finding. This scenario is adversarial: it PASSES only
-> while the bug stays fixed and is phrased to FAIL the moment the regression returns.
-
-### Adversarial Contract
-
-- Bug under guard: appending a record to a JSONL file whose last line lacked a trailing newline
-  merged the new record onto the prior line, corrupting both at the record boundary.
-- Must-stay-true invariant: appends must keep every record parseable at line boundaries even when
-  the prior content lacked a clean terminator.
-- Pass/fail: PASS only if the command below exits 0 AND `tests/unit/jsonl-repair.vitest.ts` still
-  contains the named assertions; FAIL if either is missing, renamed, skipped, or exits non-zero —
-  any of which means the boundary-corruption regression has returned.
-
-### Adversarial Steps
-
-1. Run `cd .opencode/skills/system-deep-loop/runtime/ && PATH=/opt/homebrew/bin:$PATH npm test -- tests/unit/jsonl-repair.vitest.ts` and require EXIT 0.
-2. Confirm `tests/unit/jsonl-repair.vitest.ts` asserts `appends records without rewriting existing content` and `strips corrupt trailing lines even when the corrupt line ends with a newline`.
-3. Record PASS only with captured EXIT 0 output; a prose-only, skipped, or absent test is FAIL.
-
-### Regression Anchor
-
-| File | Role |
-|---|---|
-| `tests/unit/jsonl-repair.vitest.ts` | Fails if an append after a missing terminator corrupts a record boundary. |
-
----
-
-## 6. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: State safety
 - Playbook ID: DLR-007
 - Feature catalog entry: `feature-catalog/state-safety/jsonl-repair.md`
 - Scenario file path: `manual-testing-playbook/state-safety/jsonl-repair.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

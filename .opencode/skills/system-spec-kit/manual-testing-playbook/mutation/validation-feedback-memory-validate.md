@@ -22,7 +22,7 @@ This scenario validates Validation feedback (memory_validate) for `EX-010`. It f
 
 - Objective: Feedback learning loop.
 - Real user request: `Please validate Validation feedback (memory_validate) against memory_validate(id, wasUseful:true, queryId) and tell me whether the expected signals are present: Confidence/promotion metadata updates.`
-- RCAF Prompt: `As a mutation validation operator, validate Validation feedback (memory_validate) against memory_validate(id, wasUseful:true, queryId). Verify confidence/promotion metadata updates. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a mutation validation operator, validate Validation feedback (memory_validate) against memory_validate(id, wasUseful:true, queryId). Verify confidence/promotion metadata updates. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Confidence/promotion metadata updates
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.

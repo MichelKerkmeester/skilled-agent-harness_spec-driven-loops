@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-026` and confirm th
 - Prompt: `Validate a launch-wrapper branch name as the exempt wrapper lane and a backup ref as the safety-ref lane, then attempt to create a worktree with a malformed slug and confirm it is refused.`
 - Expected execution process: Run `validate-branch` on a `work/<runtime>/<slug>` name and on a `backup/<anything>` name (expect `ok`, since both are legal grammar names) and separately confirm `is_wrapper_branch` / `is_backup_branch` recognize the distinct lanes; then run `create bad_slug` and confirm it fails closed with no worktree created.
 - Expected signals: `work/opencode/20260101-1` and `backup/pre-bump` both pass `validate-branch` but are distinguished by the dedicated lane checks; `create bad_slug` exits non-zero before any `git worktree add`.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when `worktree-naming.sh` is missing from the checkout under test.
 - Pass/fail: PASS if the wrapper name and backup ref are recognized as exempt lanes (not flagged as malformed) and the malformed slug is rejected by `create` with no worktree created. FAIL if a wrapper name or backup ref is treated identically to a malformed task branch, or if `create` allows a malformed slug through.
 
 ---

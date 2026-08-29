@@ -21,7 +21,7 @@ This scenario validates Dynamic token budget allocation (FUT-7) for `037`. It fo
 
 - Objective: Confirm complexity-tier budgets.
 - Real user request: `Please validate Dynamic token budget allocation (FUT-7) against the documented validation surface and tell me whether the expected signals are present: Token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget.`
-- RCAF Prompt: `As a query-intelligence validation operator, validate Dynamic token budget allocation (FUT-7) against the documented validation surface. Verify token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a query-intelligence validation operator, validate Dynamic token budget allocation (FUT-7) against the documented validation surface. Verify token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Token budget scales with query complexity tier; simple queries get smaller budgets; disabled flag falls back to default budget
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -60,10 +60,10 @@ npx vitest run tests/dynamic-token-budget.vitest.ts tests/query-classifier.vites
 Observed output excerpts:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 stderr | mcp-server/tests/token-budget.vitest.ts
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
 stderr | mcp-server/tests/token-budget.vitest.ts > CHK-023: adjustedBudget formula (header overhead deduction) > T5: truncateToBudget respects the adjusted budget when passed
 [hybrid-search] Token budget overflow: 1034 tokens > 980 budget, truncated 2 → 1 results (1 deferred to progressive disclosure)

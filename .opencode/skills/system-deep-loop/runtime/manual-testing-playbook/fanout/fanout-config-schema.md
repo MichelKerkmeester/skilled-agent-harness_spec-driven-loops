@@ -39,7 +39,11 @@ salvage, and merge primitives receive malformed lineage descriptors.
 - `runtime/` source tree present.
 - vitest resolves from `.opencode/skills/system-spec-kit/mcp-server/`.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate fan-out config schema and confirm the 9 fan-out tests pass and align with the executor-config.ts implementation.`
+
+### Commands
 
 1. Inspect `lib/deep-loop/executor-config.ts` — confirm `lineageExecutorSchema` at ~L294, `fanoutConfigSchema` at ~L304, `parseFanoutConfig` at ~L323, `expandLineages` at ~L381.
 2. `bash: cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/unit/executor-config.vitest.ts`
@@ -50,7 +54,14 @@ salvage, and merge primitives receive malformed lineage descriptors.
 
 36/36 pass. Fan-out tests cover: happy path, unique-label rejection, expanded-label collision, count expansion (label-1…label-N), per-entry kind validation reuse (cli-opencode requires model). Audit records byte-identical when `lineageId` absent.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `lib/deep-loop/executor-config.ts`, `lib/deep-loop/executor-audit.ts` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/unit/executor-config.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - Any fan-out test failure indicates schema drift in `executor-config.ts`.
 - If `lineageId` is unconditionally included, single-executor audit records differ from pre-fan-out baseline.
@@ -58,7 +69,7 @@ salvage, and merge primitives receive malformed lineage descriptors.
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -75,11 +86,12 @@ salvage, and merge primitives receive malformed lineage descriptors.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Playbook ID: DLR-023
 - Feature catalog entry: `feature-catalog/fanout/fanout-config-schema.md`
 - Scenario file path: `manual-testing-playbook/fanout/fanout-config-schema.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Expected verdict mode: GREEN when 36/36 pass and source anchors agree
 - Wall-time estimate: 5-10 min

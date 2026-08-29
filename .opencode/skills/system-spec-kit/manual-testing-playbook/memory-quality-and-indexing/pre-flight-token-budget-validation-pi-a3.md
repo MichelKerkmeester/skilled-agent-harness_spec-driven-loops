@@ -74,7 +74,7 @@ for f in .opencode/specs/**/(spec.md|plan.md|tasks.md|checklist.md|decision-reco
 Near-limit dry-run command:
 
 ```text
-memory_save({filePath:"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/anobel.com/004-bento-visuals/implementation-summary.md", dryRun:true, tenantId:"manual-playbook", userId:"opencode", sessionId:"pre-flight-token-budget-validation-pi-a3", provenanceSource:"manual_testing_playbook", provenanceActor:"opencode", governedAt:"2026-07-02T11:30:00.000Z", retentionPolicy:"keep"})
+memory_save({filePath:".opencode/specs/anobel.com/004-bento-visuals/implementation-summary.md", dryRun:true, tenantId:"manual-playbook", userId:"opencode", sessionId:"pre-flight-token-budget-validation-pi-a3", provenanceSource:"manual_testing_playbook", provenanceActor:"opencode", governedAt:"2026-07-02T11:30:00.000Z", retentionPolicy:"keep"})
 ```
 
 Near-limit response payload excerpt:
@@ -122,7 +122,7 @@ Near-limit response payload excerpt:
 Over-limit dry-run command:
 
 ```text
-memory_save({filePath:"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/deep-loops/z_archive/011-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md", dryRun:true, tenantId:"manual-playbook", userId:"opencode", sessionId:"pre-flight-token-budget-validation-pi-a3", provenanceSource:"manual_testing_playbook", provenanceActor:"opencode", governedAt:"2026-07-02T11:30:00.000Z", retentionPolicy:"keep"})
+memory_save({filePath:".opencode/specs/deep-loops/z_archive/011-sk-deep-research-review-improvement-2/002-semantic-coverage-graph/spec.md", dryRun:true, tenantId:"manual-playbook", userId:"opencode", sessionId:"pre-flight-token-budget-validation-pi-a3", provenanceSource:"manual_testing_playbook", provenanceActor:"opencode", governedAt:"2026-07-02T11:30:00.000Z", retentionPolicy:"keep"})
 ```
 
 Over-limit response payload excerpt:

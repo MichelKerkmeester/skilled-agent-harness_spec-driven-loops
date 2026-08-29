@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `BDG-015` and confirm th
 
 - Objective: Verify `Promise.all([navigate+shot on _1, navigate+shot on _2])` produces two valid PNG files on disk, and that a same-wave repeated-trial parallel median is meaningfully faster than a same-wave repeated-trial sequential median.
 - Real user request: `"Open example.com on one browser and example.org on another at the same time and screenshot both."`
-- RCAF Prompt: `As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com and chrome_devtools_2 to https://example.org in parallel via Promise.all through Code Mode against both MCP instances. Verify both return successfully and confirm parallelism with a same-wave sequential-vs-parallel median comparison. Cross-reference: depends on CM-012 (Promise.all parallel). Return a concise user-facing pass/fail verdict with the main reason.`
+- Prompt: `As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com and chrome_devtools_2 to https://example.org in parallel via Promise.all through Code Mode against both MCP instances. Verify both return successfully and confirm parallelism with a same-wave sequential-vs-parallel median comparison. Cross-reference: depends on CM-012 (Promise.all parallel). Return a concise user-facing pass/fail verdict with the main reason.` (RCAF format)
 - Expected execution process: build a Code Mode script that (a) runs one functional navigate+screenshot pair inside `Promise.all` with explicit `filePath`s, then (b) runs several repeated same-wave trials of a sequential pair and a parallel pair (interleaved to control for warm-up/variance), measuring wall time per trial; verify the screenshot files with a separate shell step; compare medians.
 - Expected signals: both screenshot files exist, are non-empty, and have PNG magic bytes; the parallel-trial median wall time is below a documented fraction of the sequential-trial median (this scenario requires at least 30% faster: `parallelMedianMs < 0.7 * sequentialMedianMs`).
 - Desired user-visible outcome: A short report quoting both URLs, both screenshot file paths, the sequential and parallel medians, and a PASS verdict.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `BDG-015` and confirm th
 
 ### Prompt
 
-- RCAF Prompt: `As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com and chrome_devtools_2 to https://example.org in parallel via Promise.all through Code Mode against both MCP instances. Verify both return successfully and confirm parallelism with a same-wave sequential-vs-parallel median comparison. Cross-reference: depends on CM-012 (Promise.all parallel). Return a concise user-facing pass/fail verdict with the main reason.`
+- Prompt: `As a manual-testing orchestrator, navigate chrome_devtools_1 to https://example.com and chrome_devtools_2 to https://example.org in parallel via Promise.all through Code Mode against both MCP instances. Verify both return successfully and confirm parallelism with a same-wave sequential-vs-parallel median comparison. Cross-reference: depends on CM-012 (Promise.all parallel). Return a concise user-facing pass/fail verdict with the main reason.` (RCAF format)
 
 ### Commands
 

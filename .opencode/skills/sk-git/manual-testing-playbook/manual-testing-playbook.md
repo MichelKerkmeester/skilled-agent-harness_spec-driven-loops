@@ -6,7 +6,12 @@ version: 1.4.0.0
 
 # sk-git: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Every scenario MUST be executed against a real or disposable git repository, except explicitly marked refusal commands that are documented but not executed. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP with a concrete sandbox blocker.
+> **EXECUTION POLICY**: Every scenario MUST be executed against a real or disposable git repository, except explicitly marked refusal commands that are documented but not executed. The only acceptable verdicts are PASS, FAIL, and SKIP. A SKIP is valid only when the scenario's own feature file names the specific blocker that stopped it.
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and reason are persisted into a new `sk-git/benchmark/reports/<dated-run-label>/`
+> folder. Run labels are additive and immutable — never overwrite or repurpose an existing one.
 
 This document combines the full manual-validation contract for the `sk-git` skill into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide while the per-feature files carry the scenario-specific execution truth for worktree setup, commit formation, safety refusals, finish workflows, recovery, and cross-CLI handbacks.
 
@@ -25,7 +30,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 42 deterministic scenarios across 8 categories validating the `sk-git` skill surface. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook validates the `sk-git` skill surface through the scenarios indexed in sections 7-14 and cross-referenced in section 16. Each scenario keeps a stable `GIT-NNN` ID and links to a dedicated feature file that carries the full execution contract. The category folders listed above and the per-feature links below are the authoritative inventory; no separate count is maintained here.
 
 Coverage note (2026-07-14): the playbook covers worktree choice enforcement, current-branch mode, stay-on-main recovery, Conventional Commit derivation, deterministic scope inference, mixed-concern split warnings, the canonical Claude Opus co-author footer, four explicit safety refusals, finish merge and PR flows, failing-test gates, cleanup, conflict recovery, wrong-branch recovery, no-op commits, rebase-vs-merge choices, cross-CLI advisory handbacks, and the numbered worktree tooling safety contract: locked per-namespace number allocation, slug/number/branch/pair grammar validation, worktree creation and the wrapper/backup-lane exemptions, launch-wrapper session isolation (child exec-in-place, runtime validation, session markers, contained shared-artifact symlinks), reap-only-proven-inactive wrapper cleanup (dry-run and report-only orphan-daemon scanning), and the migration-tolerant pre-push naming gate (new-branch-only gating, legacy tolerance, fail-open, release-branch exemption, explicit bypass, wrapper-ref rejection).
 
@@ -68,7 +73,7 @@ Coverage note (2026-07-14): the playbook covers worktree choice enforcement, cur
 - Expected signals and observed signals
 - Refusal message for safety scenarios
 - Policy-source comparison against `SKILL.md`, `references/`, or `assets/`
-- Final PASS, PARTIAL, FAIL, or SKIP verdict with rationale
+- Final PASS, FAIL, or SKIP verdict with rationale
 
 ---
 
@@ -87,10 +92,10 @@ Coverage note (2026-07-14): the playbook covers worktree choice enforcement, cur
 ### Inputs Required
 
 1. `manual-testing-playbook.md`
-2. All referenced per-feature files under `manual-testing-playbook/NN--category-name/`
+2. All referenced per-feature files under `manual-testing-playbook/<category>/`
 3. Scenario execution evidence for each selected scenario
-4. Feature-to-scenario coverage map in section 14
-5. Triage notes for every PARTIAL, FAIL, or SKIP verdict
+4. Feature-to-scenario coverage map in section 16
+5. Triage notes for every FAIL or SKIP verdict
 
 ### Scenario Acceptance Rules
 
@@ -104,27 +109,26 @@ For each executed scenario, check:
 
 Scenario verdict:
 - `PASS`: all acceptance checks true
-- `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete
-- `FAIL`: expected behavior missing, contradictory output, unsafe command execution, or critical check failed
-- `SKIP`: blocked by sandbox, missing remote, missing CLI, or missing auth, with blocker documented
+- `FAIL`: expected behavior missing, contradictory output, unsafe command execution, or a critical check failed. An incomplete-evidence run also grades `FAIL`: if the core behavior worked but its required evidence or metadata is missing, the scenario is unproven, so it fails rather than earning partial credit. Re-run it with complete evidence to convert the verdict.
+- `SKIP`: the scenario could not be run at all, and the feature file names the specific blocker — no sandbox worktree, no configured remote, no available CLI runtime, or no auth credential
 
 ### Feature Verdict Rules
 
 - `PASS`: all mapped scenarios for feature are `PASS`
-- `PARTIAL`: at least one mapped scenario is `PARTIAL`, none are `FAIL`
 - `FAIL`: any mapped scenario is `FAIL`
+- A feature whose mapped scenarios include a `SKIP` and no `FAIL` is not `PASS`. It stays unverified until the named blocker is cleared and the scenario is re-run.
 
 Hard rule: any safety-refusal scenario failure (GIT-008..GIT-011) blocks release readiness.
 
 ### Release Readiness Rule
 
-Release is `READY` only when:
+Release readiness requires all of the following:
 
 1. No feature verdict is `FAIL`.
 2. GIT-008..GIT-011 are `PASS` or explicitly `SKIP` because the sandbox cannot run the safe inspection steps.
 3. Coverage is 100% of playbook scenarios defined by this root index and backed by per-feature files.
 4. No forbidden sidecar exists: `review_protocol.md`, `subagent_utilization_ledger.md`, or `snippets/`.
-5. The root document validates with `validate_document.py` and the per-feature structural sweep passes.
+5. The package validates at zero violations under `validate-playbook-package.cjs --package .opencode/skills/sk-git/manual-testing-playbook --strict`.
 
 ### Root-vs-Feature Rule
 
@@ -136,7 +140,7 @@ Keep global verdict logic in this root playbook. Put feature-specific acceptance
 
 ### Purpose
 
-This section records wave planning and capacity guidance for running the 42-scenario battery. It is an execution plan, not a separate sidecar ledger.
+This section records wave planning and capacity guidance for running the full scenario battery. It is an execution plan, not a separate sidecar ledger.
 
 ### Operational Rules
 
@@ -849,7 +853,7 @@ Prove a brand-new `work/<runtime>/<slug>` ref pushed to the remote is explicitly
 
 Prompt: `As a git safety reviewer, push a brand-new work/<runtime>/<slug> ref to the remote and verify it is rejected with a message identifying it specifically as a launch-wrapper ref, distinct from a generic malformed-name rejection.`
 
-Expected signals: exit 1 with the wrapper-specific `BLOCKED` message naming it a launch-wrapper ref.
+Expected signals: exit 1 with the wrapper-specific `[gate:naming]` rejection naming it a launch-wrapper ref.
 
 #### Test Execution
 
@@ -879,7 +883,7 @@ Prompt: `As a git safety reviewer, run the sk-git preflight advisory against a d
 
 ## 15. AUTOMATED TEST CROSS-REFERENCE
 
-The current sk-doc validator checks this root document's markdown structure. It does not recurse into category folders or verify prompt synchronization, so operators must run the structural sweep described in the spec packet.
+The `sk-doc` package validator (`validate-playbook-package.cjs`) is the structural gate for this playbook. It walks every category folder and per-feature file, enforcing section order, the required execution fields, the PASS/FAIL/SKIP verdict vocabulary, root-index completeness, and resolution of every cited local path. Behavioral truth still comes from the per-feature files and the automated suites cross-referenced below.
 
 | Coverage Area | Source Anchor | Manual/Automated Cross-Reference |
 |---|---|---|

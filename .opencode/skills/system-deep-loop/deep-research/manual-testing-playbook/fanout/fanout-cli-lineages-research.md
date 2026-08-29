@@ -40,7 +40,11 @@ two executors are specified, no fan-out dispatch happens silently.
 - `deep-research-auto.yaml` and `research.md` present.
 - `fanout-run.cjs` and `fanout-merge.cjs` present.
 
-### Steps
+### Prompt
+
+- Prompt: `/deep:research:auto "test topic" --executor=cli-opencode --model=o4-mini --label=opencode --executor=cli-claude-code --model=claude-opus-4-8 --label=claude --concurrency=2`
+
+### Commands
 
 1. `bash: grep -n "step_fanout_spawn\|step_fanout_merge\|fanout_lineage_artifact_dir\|skip_when" .opencode/commands/deep/assets/deep-research-auto.yaml | head -20`
 2. Confirm `step_fanout_spawn_cli` calls `fanout-run.cjs --loop-type research`.
@@ -61,7 +65,12 @@ two executors are specified, no fan-out dispatch happens silently.
 
 Source inspection confirms dispatch chain. Unit tests confirm pool isolation and lineage dir creation.
 
-### Failure Modes
+### Evidence
+
+- Grep output from steps 1 and 4, saved to `/tmp/dr-052-grep.txt`, showing `step_fanout_spawn`, `step_fanout_merge`, and the `--executor` default-policy docs.
+- `fanout-run.vitest.ts` output from step 6, saved to `/tmp/dr-052-vitest.txt`, showing 5/5 passing.
+
+### Failure Triage
 
 - `step_fanout_spawn` absent from YAML: fan-out never triggers regardless of config.
 - `skip_when` guard missing: fan-out step runs in single-executor mode, calling `fanout-run.cjs` with absent config.
@@ -89,7 +98,7 @@ Source inspection confirms dispatch chain. Unit tests confirm pool isolation and
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`

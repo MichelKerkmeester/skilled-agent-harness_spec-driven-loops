@@ -90,7 +90,7 @@ Created `description.json` content:
 Targeted automated validation covering stale detection, per-folder preference, mixed-mode aggregation, corrupt/schema-invalid fallback and repair, missing-file fallback without implicit backfill, traversal/prefix-bypass rejection, CRLF frontmatter stripping, and regenerated JSON/temp-file behavior:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  2 passed (2)

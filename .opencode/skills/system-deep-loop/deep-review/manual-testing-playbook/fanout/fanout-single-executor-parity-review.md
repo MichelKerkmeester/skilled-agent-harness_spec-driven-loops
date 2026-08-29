@@ -39,7 +39,11 @@ verdict.
 
 - Working directory is repository root.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate single-executor parity for deep-review: confirm the fan-out YAML steps have correct skip_when guards and the if_absent branch is unchanged.`
+
+### Commands
 
 1. `bash: grep -n "if_absent\|skip_when\|resolveArtifactRoot" .opencode/commands/deep/assets/deep-review-auto.yaml | head -20`
 2. Confirm `if_absent.command` = `node -e "...resolveArtifactRoot('{spec_folder}', 'review')..."` (unchanged from pre-fan-out).
@@ -59,7 +63,12 @@ verdict.
 
 Source inspection confirms all guards. vitest 197/197.
 
-### Failure Modes
+### Evidence
+
+- Grep output from steps 1 and 5, saved to `/tmp/drv-067-grep.txt`, showing the `if_absent` branch and both `skip_when` guards in `deep-review-auto.yaml` and `deep-review-confirm.yaml`.
+- Full vitest suite output from step 6, saved to `/tmp/drv-067-vitest.txt`, showing 197/197 passing.
+
+### Failure Triage
 
 - `if_absent` branch uses `'research'` instead of `'review'`: review runs write to the wrong artifact dir.
 - `step_fanout_merge` `skip_when` missing: merge runs with no lineage registries → empty merged registry → step_derive_verdict reads zero P0/P1/P2 → incorrect PASS.
@@ -84,7 +93,7 @@ Source inspection confirms all guards. vitest 197/197.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`

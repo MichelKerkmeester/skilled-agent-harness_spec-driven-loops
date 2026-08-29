@@ -49,7 +49,7 @@ Each feature grep returns at least 2 hits spanning handlers and lib layers; all 
 
 ### Evidence
 
-Commands run from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`.
+Commands run from `.`.
 
 Command: `grep -r "// Feature catalog: Hybrid search pipeline" ".opencode/skills/system-spec-kit/mcp-server/"`
 
@@ -79,34 +79,34 @@ Line-numbered verification output:
 
 ```text
 Found 10 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts:
+.opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts:
   Line 125: // Feature catalog: Hybrid search pipeline
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/search/hybrid-search.ts:
   Line 91: // Feature catalog: Hybrid search pipeline
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-mutations.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-mutations.ts:
   Line 4: // Feature catalog: Hybrid search pipeline
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-impl.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-impl.ts:
   Line 4: // Feature catalog: Hybrid search pipeline
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/pipeline/stage1-candidate-gen.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/search/pipeline/stage1-candidate-gen.ts:
   Line 66: // Feature catalog: Hybrid search pipeline
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/pipeline/stage3-rerank.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/search/pipeline/stage3-rerank.ts:
   Line 40: // Feature catalog: Hybrid search pipeline
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-queries.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-queries.ts:
   Line 4: // Feature catalog: Hybrid search pipeline
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/providers/embeddings.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/providers/embeddings.ts:
   Line 4: // Feature catalog: Hybrid search pipeline
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts:
   Line 4: // Feature catalog: Hybrid search pipeline
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index.ts:
   Line 4: // Feature catalog: Hybrid search pipeline
 ```
 
@@ -132,25 +132,25 @@ Line-numbered verification output:
 
 ```text
 Found 7 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/handlers/memory-triggers.ts:
+.opencode/skills/system-spec-kit/mcp-server/handlers/memory-triggers.ts:
   Line 9: // Feature catalog: Classification-based decay
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/scoring/importance-tiers.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/scoring/importance-tiers.ts:
   Line 4: // Feature catalog: Classification-based decay
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/config/memory-types.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/config/memory-types.ts:
   Line 16: // Feature catalog: Classification-based decay
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/cognitive/tier-classifier.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/cognitive/tier-classifier.ts:
   Line 4: // Feature catalog: Classification-based decay
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/cognitive/attention-decay.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/cognitive/attention-decay.ts:
   Line 4: // Feature catalog: Classification-based decay
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/cognitive/fsrs-scheduler.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/cognitive/fsrs-scheduler.ts:
   Line 4: // Feature catalog: Classification-based decay
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/fsrs.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/search/fsrs.ts:
   Line 4: // Feature catalog: Classification-based decay
 ```
 
@@ -171,19 +171,19 @@ Line-numbered verification output:
 
 ```text
 Found 5 matches
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/handlers/save/create-record.ts:
+.opencode/skills/system-spec-kit/mcp-server/handlers/save/create-record.ts:
   Line 37: // Feature catalog: Prediction-error save arbitration
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts:
+.opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts:
   Line 211: // Feature catalog: Prediction-error save arbitration
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/handlers/save/pe-orchestration.ts:
+.opencode/skills/system-spec-kit/mcp-server/handlers/save/pe-orchestration.ts:
   Line 19: // Feature catalog: Prediction-error save arbitration
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/handlers/pe-gating.ts:
+.opencode/skills/system-spec-kit/mcp-server/handlers/pe-gating.ts:
   Line 27: // Feature catalog: Prediction-error save arbitration
 
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/cognitive/prediction-error-gate.ts:
+.opencode/skills/system-spec-kit/mcp-server/lib/cognitive/prediction-error-gate.ts:
   Line 4: // Feature catalog: Prediction-error save arbitration
 ```
 

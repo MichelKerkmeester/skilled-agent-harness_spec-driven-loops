@@ -462,6 +462,27 @@ If ANY required check fails, do not claim completion. Return a blocked or partia
 | **Command Logic in Agent Body** | Couples reusable runtime role to one command | Keep loop setup and CLI semantics in command orchestration |
 ```
 
+### Related Resources
+
+Required, and the element most often omitted — the skeleton below carried it while this
+section did not, and ten of twelve production agents shipped without one as a result. An
+author working from this list produces what the list names, so it has to name everything.
+
+List the real supporting paths the agent actually uses: the skills it loads, the companion
+agents it works alongside, the commands that dispatch it, and its governing references.
+Verify every path exists before shipping — a resource list full of dead paths is worse than
+no list, because it invites trust it cannot repay.
+
+```markdown
+## N. RELATED RESOURCES
+
+| Resource | Role |
+| --- | --- |
+| `.opencode/skills/[skill-name]/SKILL.md` | [What this agent loads from it] |
+| `.opencode/agents/[companion].md` | [How the two agents relate] |
+| `.opencode/commands/[namespace]/[action].md` | [The command that dispatches this agent] |
+```
+
 ---
 
 ## 7. SUMMARY STANDARD
@@ -679,7 +700,21 @@ If ANY required check fails, do not claim completion. Return a blocked or partia
 
 ---
 
-## 8. SUMMARY
+## 8. RELATED RESOURCES
+
+Required. List the real supporting paths this agent actually uses — the skills it loads, the
+companion agents it works alongside, the commands that dispatch it, and its governing references.
+Verify every path exists before shipping; a resource list full of dead paths is worse than none.
+
+| Resource | Role |
+| --- | --- |
+| `.opencode/skills/[skill-name]/SKILL.md` | [What this agent loads from it] |
+| `.opencode/agents/[companion].md` | [How the two agents relate] |
+| `.opencode/commands/[namespace]/[action].md` | [The command that dispatches this agent] |
+
+---
+
+## 9. SUMMARY
 
 \`\`\`text
 ┌─────────────────────────────────────────────────────────────────────────┐

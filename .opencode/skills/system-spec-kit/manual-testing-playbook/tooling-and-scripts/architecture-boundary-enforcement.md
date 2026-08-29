@@ -53,18 +53,18 @@ shared/ imports into mcp-server/ or scripts/ are flagged across supported import
 Command: `node mcp-server/node_modules/vitest/vitest.mjs run scripts/tests/architecture-boundary-enforcement.vitest.ts --config mcp-server/vitest.config.ts --reporter verbose`
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
-10:40:49 PM [vite] (ssr) Failed to load source map for /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript.js.
+10:40:49 PM [vite] (ssr) Failed to load source map for .opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript.js.
 Error: An error occurred while trying to read the map file at typescript.js.map
-Error: ENOENT: no such file or directory, open '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript.js.map'
+Error: ENOENT: no such file or directory, open '.opencode/skills/system-spec-kit/node_modules/typescript/lib/typescript.js.map'
     at Object.readFileSync (node:fs:440:20)
-    at file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18742:13
-    at readFromFileMap (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18442:13)
-    at Object.exports.fromMapFileComment (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18536:12)
-    at Object.exports.fromMapFileSource (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18547:22)
-    at extractSourcemapFromFile (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18728:87)
-    at loadAndTransform (file:///Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:19697:22)
+    at file://.opencode/skills/system-spec-kit/mcp-server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18742:13
+    at readFromFileMap (file://.opencode/skills/system-spec-kit/mcp-server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18442:13)
+    at Object.exports.fromMapFileComment (file://.opencode/skills/system-spec-kit/mcp-server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18536:12)
+    at Object.exports.fromMapFileSource (file://.opencode/skills/system-spec-kit/mcp-server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18547:22)
+    at extractSourcemapFromFile (file://.opencode/skills/system-spec-kit/mcp-server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:18728:87)
+    at loadAndTransform (file://.opencode/skills/system-spec-kit/mcp-server/node_modules/vitest/node_modules/vite/dist/node/chunks/node.js:19697:22)
  ✓ scripts/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > T39: GAP A detects shared -> mcp-server/scripts imports across syntax variants 6ms
  ✓ scripts/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > parses export-from, import type, and require() forms when checking shared neutrality 2ms
  ✓ scripts/tests/architecture-boundary-enforcement.vitest.ts > Architecture Boundary Enforcement > T40: GAP B flags wrappers exceeding 50 substantive lines 2ms

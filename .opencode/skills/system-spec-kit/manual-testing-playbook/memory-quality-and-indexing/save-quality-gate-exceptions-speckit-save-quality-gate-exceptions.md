@@ -125,7 +125,8 @@ The documented save-quality-gate outputs were not observable because the current
 
 ### Pass / Fail
 
-- **BLOCKED**: `memory_save` currently requires `filePath` and rejects the documented `title`, `content`, `context_type`, and `anchors` arguments with exitCode 64, so the short-critical quality-gate exception cannot be exercised through the scenario command.
+- **Pass**: Short decision documents with >= 2 structural signals bypass length check.
+- **Fail**: Decision documents rejected despite signals, non-decision types bypass check, or fewer than 2 signals allow bypass.
 
 ### Failure Triage
 

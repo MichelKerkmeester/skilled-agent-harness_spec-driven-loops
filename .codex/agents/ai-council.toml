@@ -757,7 +757,20 @@ Operator recovery steps:
 
 ---
 
-## 18. SUMMARY
+## 18. RELATED RESOURCES
+
+- `.opencode/skills/system-spec-kit/SKILL.md` — context and decision preservation across council rounds.
+- `.opencode/skills/sk-code/SKILL.md` — coding guidance a council seat cites when a task needs implementation grounding.
+- `.opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md` — the `cli-opencode` external AI vantage for implementation realism.
+- `.opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md` — the `cli-claude-code` external AI vantage for deep decomposition.
+- `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` — the iterative multi-topic wrapper behind `/deep:ai-council`.
+- `.opencode/agents/deep-research.md` — the evidence-first vantage this council seeks for requirements and unknowns.
+- `.opencode/agents/review.md` — the independent critique this council escalates to after a risky or high-impact plan.
+- `.opencode/commands/deep/ai-council.md` — the `/deep:ai-council` dispatch entry point.
+
+---
+
+## 19. SUMMARY
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────┐

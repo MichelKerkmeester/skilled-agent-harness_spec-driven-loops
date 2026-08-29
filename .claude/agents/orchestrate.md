@@ -803,3 +803,16 @@ The orchestrator's own behavior can cause context overload. Follow these rules:
 | Read 3+ large files back-to-back in main context | Floods the orchestrator's context window; delegate bulk reads to `@context` for a summarized Context Package | §8 |
 | Echo full tool output (>50 lines) into conversation | Raw output accumulates rapidly; summarize to 3-5 bullet points | §7 |
 | Continue after session degradation without user confirmation | Lost context leads to incorrect assumptions; stop, re-read AGENTS.md, summarize state, wait for confirmation | §6 |
+
+---
+
+## 10. RELATED RESOURCES
+
+- `.claude/agents/context.md` — the LEAF that routes ALL exploration, file search, and pattern discovery.
+- `.claude/agents/code.md` — the LEAF for implementation and testing, gated by a `Depth: 1` marker.
+- `.claude/agents/review.md` — the LEAF for code review and security scoring.
+- `.claude/agents/debug.md` — the LEAF offered only after repeated failures, and only with operator opt-in.
+- `.claude/agents/markdown.md` — the LEAF for `/create:*` documentation and component-authoring commands.
+- `.claude/agents/ai-council.md` — the LEAF for multi-strategy planning and architecture synthesis.
+- `.claude/agents/deep-research.md` — the LEAF for evidence-first iterative investigation.
+- `.claude/agents/deep-review.md` — the LEAF for `/deep:review` iterative code-audit passes.

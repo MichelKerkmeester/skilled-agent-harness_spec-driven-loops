@@ -21,7 +21,7 @@ This scenario validates the two cooperating patches that restore `memory_search`
 
 - Objective: Confirm reindex writes embeddings to both the canonical blob table and the vec0 KNN virtual table in the active shard, and confirm the factory resolves the active embedder when the dim-tagged table lives in the shard rather than the main DB.
 - Real user request: `` Memory search keeps coming back with weak ranked results and the daemon log says the factory is falling back to jina-embeddings-v3 even though I have nomic active. Please validate that a reindex now lands rows in both vec_<dim> and vec_memories in the active shard, that the factory resolves nomic correctly through the shard, and that the daemon log no longer prints `[factory] Active embedder ... points to vec_<dim>, but that table is missing in <main_db>`. Return a pass/fail verdict with evidence. ``
-- RCAF Prompt: `As a memory-system operator, validate the vec_memories KNN dual-write and the factory ADR-012 shard fallback after a daemon restart.`
+- Operator prompt: `As a memory-system operator, validate the vec_memories KNN dual-write and the factory ADR-012 shard fallback after a daemon restart.`
 - Expected execution process: Run the documented commands against the active embedder shard, capture row counts and the daemon log, compare against the expected signals, and return a concise pass/fail verdict with cited evidence.
 - Expected signals: vec_<dim> and vec_memories have matching row counts in the active shard; KNN self-probe returns the seed row at rank 1 with distance 0 and real neighbors at distances 0.5 to 0.6; daemon startup log emits `[factory] Using provider: ollama (vec_metadata active_embedder_name=...)` with no preceding cascade warning.
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -86,7 +86,7 @@ Active embedder lookup via `system-spec-memory_embedder_list`:
 }
 ```
 
-Active shard used: `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`
+Active shard used: `.opencode/skills/system-spec-kit/mcp-server/database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite`
 
 Block A row-count output:
 

@@ -105,7 +105,8 @@ The required sequence could not be completed: command 4 requires restoring a val
 
 ### Pass / Fail
 
-- **BLOCKED**: `OPENAI_API_KEY` is missing, the active embedder is Ollama rather than OpenAI, and `.opencode/skills/system-spec-kit/mcp-server/dist/cli.js` is absent, so the required invalid-key save, valid-key restore, and `node cli.js reindex` recovery sequence cannot be executed as written.
+- **Pass**: Embedding failure falls back to lexical-only indexing, BM25 search works, and reindex recovers full embedding.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

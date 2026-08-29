@@ -32,13 +32,35 @@ The built-in profile is the simplest proof that Devin's native `run_subagent` su
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Use a subagent_explore subagent to identify the cli-external-orchestration skill packet, its SKILL.md, and its manual-testing playbooks. Do not edit files.`
+
+### Commands
+
 1. `devin -p "Use a subagent_explore subagent to identify the cli-external-orchestration skill packet, its SKILL.md, and its manual-testing playbooks. Do not edit files." --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv010.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv010.txt`
 2. Inspect the output for the child profile and paths.
 3. `git status --porcelain`.
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| DV-010 | `devin -p ... subagent_explore ...` | Built-in read-only child result, clean tree | PASS/FAIL/SKIP |
+### Expected
+
+Built-in read-only child result, clean tree
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Built-in read-only child result, clean tree`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when the built-in profile delegates and returns useful content.
+- **Fail**: on inline-only work or mutation
+- **Skip**: on auth/availability blockers..
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

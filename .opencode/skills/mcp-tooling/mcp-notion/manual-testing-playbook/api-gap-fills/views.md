@@ -26,7 +26,7 @@ Views are a hard gap -- no MCP tool exists for any of the 8 endpoints, and the c
 - Exact Command Sequence: `1. POST https://api.notion.com/v1/views (Bearer $notion_NOTION_TOKEN, Notion-Version: 2026-03-11, body { parent: { type: "data_source_id", data_source_id: "<scratch_data_source_id>" }, type: "table", name: "Playbook test view" }) -> 2. GET https://api.notion.com/v1/databases/<database_id>/views -> 3. POST https://api.notion.com/v1/views/<view_id>/query (body {}) -> 4. DELETE https://api.notion.com/v1/views/<view_id>`
 - Expected Signals: Step 1 returns a `view_id`; Step 2's list includes that id; Step 3 returns a paginated result list (empty is valid); Step 4 confirms deletion with no error.
 - Evidence: create response body, the list response showing the new view, the query response (row count or empty confirmation), the delete confirmation.
-- Pass/Fail Criteria: PASS if create/list/query resolve and query returns a paginated list object; SKIP if the create-view request body 400s against the unconfirmed (`VERIFY`) schema and no working body variant can be found without further live confirmation; FAIL if create succeeds but the view is absent from the list, or query returns something other than a paginated list.
+- Pass/Fail Criteria: PASS if create/list/query resolve and query returns a paginated list object; SKIP if the Notion REST API is unavailable in this environment, or the create-view request body 400s against the unconfirmed (`VERIFY`) schema and no working body variant can be found; FAIL if create succeeds but the view is absent from the list, or query returns something other than a paginated list.
 - Failure Triage: 1. Confirm `parent` uses `data_source_id`, not `database_id`. 2. Confirm `Notion-Version: 2026-03-11` is set. 3. Re-check the create-view body against the live schema before retrying. 4. Confirm the scratch database/data source is shared with the integration.
 
 ---
@@ -59,7 +59,7 @@ Capture the create response, the list response, the query response, and the dele
 ### Pass / Fail
 
 - **Pass:** create/list/query resolve as expected and delete confirms cleanup.
-- **Skip:** the create-view body 400s against the unconfirmed schema and no working variant is found without further live schema confirmation.
+- **Skip:** the Notion REST API is unavailable in this environment (`notion_NOTION_TOKEN` unset or outbound HTTPS blocked), or the create-view body 400s against its unconfirmed schema and no working variant is found.
 - **Fail:** the created view never appears in the list, or the query call returns something other than a paginated list.
 
 ### Failure Triage

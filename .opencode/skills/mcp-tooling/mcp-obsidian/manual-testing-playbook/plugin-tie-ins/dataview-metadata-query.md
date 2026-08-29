@@ -165,7 +165,7 @@ Add a Dataview table to my project notes that lists each note's status, amount a
 
 ---
 
-## 4. CLEANUP
+### Cleanup
 
 Remove the throwaway vault. Nothing outside `/tmp/_pbtest-dataview-metadata-query` was created, so this one command restores the machine to its prior state.
 
@@ -175,7 +175,7 @@ rm -rf /tmp/_pbtest-dataview-metadata-query
 
 ---
 
-## 5. SOURCE FILES
+## 4. SOURCE FILES
 
 ### Playbook Sources
 
@@ -197,7 +197,7 @@ rm -rf /tmp/_pbtest-dataview-metadata-query
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugin tie-ins
 - Playbook ID: OBS-017

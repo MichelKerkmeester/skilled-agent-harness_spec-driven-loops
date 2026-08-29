@@ -60,7 +60,7 @@ Operators run the exact prompt and command sequence for `CP-036` and confirm the
 ```bash
 rm -rf /tmp/cp-036-sandbox /tmp/cp-036-sandbox-baseline /tmp/cp-036-spec
 mkdir -p /tmp/cp-036-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/setup_cp_sandbox.sh --sandbox-dir /tmp/cp-036-sandbox
+.opencode/skills/system-deep-loop/deep-improvement/manual-testing-playbook/agent-discipline-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-036-sandbox
 cp -a /tmp/cp-036-sandbox /tmp/cp-036-sandbox-baseline
 git status --porcelain > /tmp/cp-036-pre.txt
 cat > /tmp/cp-036-task.txt <<'EOF'
@@ -75,7 +75,7 @@ opencode run "$(cat /tmp/cp-036-prompt-A.txt)" --model deepseek/deepseek-v4-pro 
 rm -rf /tmp/cp-036-sandbox && cp -a /tmp/cp-036-sandbox-baseline /tmp/cp-036-sandbox
 cd /tmp/cp-036-sandbox
 opencode run "/deep:agent-improvement \".opencode/agents/cp-improve-target.md\" :auto --spec-folder=/tmp/cp-036-spec --iterations=1" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-036-sandbox </dev/null 2>&1 | tee /tmp/cp-036-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-036-B-exit.txt
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 find /tmp/cp-036-spec -type f \( -name '*.json' -o -name '*.jsonl' -o -name '*.md' \) -print0 2>/dev/null | xargs -0 cat > /tmp/cp-036-B-artifacts.txt 2>/dev/null || touch /tmp/cp-036-B-artifacts.txt
 cat /tmp/cp-036-B-command.txt /tmp/cp-036-B-artifacts.txt > /tmp/cp-036-B-combined.txt
 git status --porcelain > /tmp/cp-036-post.txt

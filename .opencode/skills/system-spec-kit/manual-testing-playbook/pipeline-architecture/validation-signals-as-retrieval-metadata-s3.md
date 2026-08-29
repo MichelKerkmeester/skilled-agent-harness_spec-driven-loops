@@ -52,7 +52,7 @@ Validation signal multiplier bounded to [0.8, 1.2]; highly validated docs score 
 Command: `npx vitest run tests/validation-metadata.vitest.ts`
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -64,10 +64,10 @@ Command: `npx vitest run tests/validation-metadata.vitest.ts`
 Command: `npx vitest run tests/validation-metadata.vitest.ts -t "Stage2 validation scoring integration" --reporter=verbose`
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 stderr | mcp-server/tests/validation-metadata.vitest.ts
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
  ↓ mcp-server/tests/validation-metadata.vitest.ts > extractValidationMetadata — quality score signals > T1: extracts qualityScore from db quality_score when present and positive
  ↓ mcp-server/tests/validation-metadata.vitest.ts > extractValidationMetadata — quality score signals > T2: clamps qualityScore above 1.0 to 1.0; treats negative as absent (no tier fallback → null)
@@ -111,15 +111,15 @@ stderr | mcp-server/tests/validation-metadata.vitest.ts
 Command: `node --import ../scripts/node_modules/tsx/dist/loader.mjs -e 'import { __testables } from "./lib/search/pipeline/stage2-fusion.ts"; ...'`
 
 ```text
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159
+.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159
 export = Database;
          ^
 
 ReferenceError: Database is not defined
-    at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
-    at Object.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
+    at <anonymous> (.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
+    at Object.<anonymous> (.opencode/skills/system-spec-kit/node_modules/@types/better-sqlite3/index.d.ts:159:10)
     at Module._compile (node:internal/modules/cjs/loader:1781:14)
-    at Object.transformer (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:3176)
+    at Object.transformer (.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/register-BOkp8V6j.cjs:9:3176)
     at Module.load (node:internal/modules/cjs/loader:1505:32)
     at Function._load (node:internal/modules/cjs/loader:1309:12)
     at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)

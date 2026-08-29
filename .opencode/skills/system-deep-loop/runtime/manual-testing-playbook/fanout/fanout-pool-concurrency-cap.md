@@ -39,7 +39,11 @@ weak executor cancels all other lineages.
 - Working directory is repository root.
 - `scripts/fanout-pool.cjs` present.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate the fan-out worker pool and confirm the 10 unit tests pass and match the documented concurrency and isolation contracts.`
+
+### Commands
 
 1. Inspect `scripts/fanout-pool.cjs` — confirm `runCappedPool` pump loop clamps concurrency to ≥1 and pre-sizes results array.
 2. `bash: cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run ../../runtime//tests/unit/fanout-pool.vitest.ts`
@@ -50,7 +54,14 @@ weak executor cancels all other lineages.
 
 10/10 pass. Pool cap respected, one rejection does not sink pool, ordered results preserved, `all_failed` correct, `onEvent` callback receives started/completed/failed events.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `scripts/fanout-pool.cjs` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/unit/fanout-pool.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - Concurrency cap exceeded: `maxActive()` > configured cap.
 - One rejection propagates to pool promise: entire pool rejects instead of settling individually.
@@ -58,7 +69,7 @@ weak executor cancels all other lineages.
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -74,11 +85,12 @@ weak executor cancels all other lineages.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Playbook ID: DLR-024
 - Feature catalog entry: `feature-catalog/fanout/fanout-pool.md`
 - Scenario file path: `manual-testing-playbook/fanout/fanout-pool-concurrency-cap.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Expected verdict mode: GREEN when 10/10 pass and source anchors agree
 - Wall-time estimate: 5-10 min

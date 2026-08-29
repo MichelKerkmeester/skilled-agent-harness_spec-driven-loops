@@ -1,5 +1,6 @@
 ---
 title: "424 -- MCP Code Index Reconnecting Proxy"
+description: "Confirms the MCP launcher routes client stdio through the shared reconnecting session proxy and classifies forwarded frames, so a code-index client keeps its transport across daemon recycles and owner-session churn instead of silently disconnecting."
 version: 3.6.0.2
 id: pipeline-architecture-mcp-code-index-reconnecting-proxy
 expected_workflow_mode: UNKNOWN
@@ -18,7 +19,7 @@ The check is automated-test-backed. A human runs the launcher syntax check, the 
 ## 2. SCENARIO CONTRACT
 
 - Expected execution process: Run the launcher syntax check, run the code-index proxy unit tests, and grep for the session-proxy bridge and the frame classifier to confirm they are defined and wired into the transport path.
-- Expected signals: `node --check` exits cleanly for the launcher. `launcher-code-index-proxy.vitest.ts` passes including the bridge and frame-classification cases. `bridgeStdioThroughSessionProxy` and `classifyCodeIndexFrame` appear at their definitions and at the transport call site.
+- Expected signals: `node --check` exits cleanly for the launcher. `launcher-session-proxy.vitest.ts` passes, including the bridge and frame-classification cases. `bridgeStdioThroughSessionProxy` and `createClassifyFrame` appear at their definitions and at the transport call site.
 - Desired user-visible outcome: The code-index client keeps its transport across daemon recycles and owner-session churn instead of silently disconnecting.
 - Pass/fail: PASS only when syntax, unit tests, and proxy wiring all match expectations.
 
@@ -28,18 +29,23 @@ The check is automated-test-backed. A human runs the launcher syntax check, the 
 
 ### Prompt
 
+- Prompt: `Confirm the MCP launcher bridges client stdio through the reconnecting session proxy and classifies forwarded frames, then report a PASS or FAIL verdict with cited command output.`
+
 ```text
+Confirm the MCP launcher bridges client stdio through the reconnecting session proxy and classifies forwarded frames, then report a PASS or FAIL verdict with cited command output.
 ```
 
 ### Commands
 
-2. `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launcher-code-index-proxy.vitest.ts`
+1. `node --check .opencode/bin/system-spec-memory-launcher.cjs && node --check .opencode/bin/lib/launcher-session-proxy.cjs`
+2. `cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launcher-session-proxy.vitest.ts`
+3. `grep -n 'bridgeStdioThroughSessionProxy' .opencode/bin/system-spec-memory-launcher.cjs && grep -n 'createClassifyFrame' .opencode/bin/lib/launcher-session-proxy.cjs`
 
 ### Expected
 
 - Command 1 exits with no syntax errors.
-- Command 2 passes the code-index proxy suite, including the stdio-bridge case and the frame-classification case.
-- Command 3 shows `bridgeStdioThroughSessionProxy` and `classifyCodeIndexFrame` at their definitions and at the transport call site that bridges stdio and classifies forwarded frames.
+- Command 2 passes the shared session-proxy suite, including the stdio-bridge case and the frame-classification case.
+- Command 3 shows `bridgeStdioThroughSessionProxy` in the launcher transport path and `createClassifyFrame` exported from the shared session proxy that classifies forwarded frames.
 
 ### Evidence
 
@@ -53,7 +59,7 @@ Exit status: 0
 ```text
 $ cd .opencode/skills/system-spec-kit/mcp-server && npx vitest run tests/launcher-code-index-proxy.vitest.ts
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -99,7 +105,8 @@ If the syntax check fails, inspect the helper placement and the CommonJS exports
 | File | Role |
 |---|---|
 | `.opencode/bin/lib/launcher-session-proxy.cjs` | Shared classify-frame factory anchor |
-| `mcp-server/tests/launcher-code-index-proxy.vitest.ts` | Regression or validation anchor |
+| `mcp-server/tests/launcher-session-proxy.vitest.ts` | Regression or validation anchor |
+| `.opencode/bin/system-spec-memory-launcher.cjs` | Launcher transport that bridges client stdio through the proxy |
 
 ---
 

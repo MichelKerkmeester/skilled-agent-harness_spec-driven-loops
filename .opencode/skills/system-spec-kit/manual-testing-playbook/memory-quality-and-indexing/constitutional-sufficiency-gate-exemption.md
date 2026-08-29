@@ -23,7 +23,7 @@ This scenario validates the 5-line patch to the scan batch loop that OR-s `isCon
 
 - Objective: Confirm that `memory_index_scan` no longer hard-rejects constitutional files with `INSUFFICIENT_CONTEXT_ABORT`, and confirm the strict gate still fires for non-classified content that lacks anchors and primary evidence.
 - Real user request: `` After my last memory_index_scan I see 2 constitutional markdown files hard-rejected with INSUFFICIENT_CONTEXT_ABORT. The files are policy text, not evidence-bearing notes, so the rejection looks wrong. Please validate that constitutional files now pass through warn-only and that other unrelated content still hits the strict gate when it lacks anchors. Return a pass/fail verdict. ``
-- RCAF Prompt: `As a memory-index operator, validate the constitutional sufficiency-gate exemption after a daemon restart.`
+- Operator prompt: `As a memory-index operator, validate the constitutional sufficiency-gate exemption after a daemon restart.`
 - Expected execution process: Run `memory_index_scan` after the daemon restart picks up the patched dist, grep the scan output for constitutional rejections, sample a non-classified low-quality fixture to confirm the strict gate still fires, and return a pass/fail verdict.
 - Expected signals: zero `INSUFFICIENT_CONTEXT_ABORT` rejections in the scan output for files under `.opencode/skills/*/constitutional/`; strict gate still rejects non-classified markdown that lacks both anchors and primary evidence; warn-only advisories may still appear for constitutional files but do not halt the save.
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -70,30 +70,17 @@ Validate constitutional sufficiency-gate exemption against memory_index_scan and
 
 ### Evidence
 
-BLOCKED before command execution due an instruction conflict in the current run constraints.
+Capture, for every step in the Commands sequence above:
 
-The scenario commands require writes outside the single allowed scenario file:
-
-```text
-47:      sleep 300; } | node .opencode/bin/system-spec-memory-launcher.cjs > /tmp/scan-out.log
-57: 5. Author a temporary markdown file at `/tmp/sufficiency-probe.md` with no ANCHOR tags, no primary-evidence section, and trivial body content.
-```
-
-The user-provided run constraints prohibit those writes:
-
-```text
-BANNED OPERATIONS
-- Do NOT modify, create, or delete any file OTHER than the single scenario file named below.
-
-ALLOWED WRITE PATHS
-- .opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md (this file only)
-```
-
-No `memory_index_scan`, `rg`, or `memory_save` command was run because following Block A and Block C exactly would create `/tmp/scan-out.log` and `/tmp/sufficiency-probe.md`, violating the allowed write path constraint.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: The scenario cannot be executed exactly as written under the current allowed-write constraints because Block A and Block C require creating `/tmp/scan-out.log` and `/tmp/sufficiency-probe.md`, while only this scenario file is writable.
+- **Pass**: Scan shows 0 INSUFFICIENT_CONTEXT_ABORT for constitutional files AND a low-quality non-classified probe still gets rejected.
+- **Fail**: Constitutional files still hard-reject, OR if the strict gate is weakened beyond the constitutional exemption.
 
 ### Failure Triage
 

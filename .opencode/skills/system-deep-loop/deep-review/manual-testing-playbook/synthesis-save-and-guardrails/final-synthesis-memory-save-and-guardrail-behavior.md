@@ -87,4 +87,4 @@ Privilege the agent definitions for LEAF-only behavior and the skill rules for r
 - Playbook ID: DRV-027
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-03-28.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

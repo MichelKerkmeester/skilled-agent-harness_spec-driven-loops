@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-012` and confirm the
 - Objective: Confirm test-only changes are reviewed for false confidence, isolation, and meaningful assertions.
 - Real user request: `Review target only changes test files.`
 - Prompt: `Review the staged test-only diff for assertion-free tests, swallowed assertions, over-mocking, flaky state, and cleanup gaps.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when a test-only diff fixture is missing from the environment.
 - Expected signals: Step 1: test diff captured; Step 2: test-quality checklist applied; Step 3: findings avoid production-style-only noise
 - Desired user-visible outcome: a test-quality findings report that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if findings use assets/test-quality-checklist.md severity guidance and cite file:line; FAIL if assertion-free tests are approved

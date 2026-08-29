@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-018` and confirm the
 - Objective: Confirm alternate CLI reviewers can hand back findings that preserve severity, evidence, and uncertainty.
 - Real user request: `Review uses two alternate CLI surfaces.`
 - Prompt: `As an external conductor, cross-check a review through cli-opencode and cli-claude-code against the same changed-file list. Verify both handbacks preserve severity buckets, file:line evidence, and explicit uncertainty on disagreements. Return a reconciled review comparison.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when cli-opencode or cli-claude-code is not installed or not authenticated in the current environment.
 - Expected signals: Step 1: one scope file list; Step 2: both CLI reports cite lines; Step 3: reconciliation separates confirmed findings from disagreements
 - Desired user-visible outcome: a reconciled review comparison that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if reconciliation keeps P0/P1 only when supported by file:line evidence per references/review-core.md; FAIL if unsupported CLI claims become blockers
@@ -69,8 +69,8 @@ If the primary run passes, repeat the scenario against a second tiny fixture or 
 |---|---|
 | `../../SKILL.md` | Review baseline and tool-neutral output contract |
 | `../../references/review-core.md` | Portable findings schema for handbacks |
-| `../../../../agent/review.md` | Native @review read-only behavior |
-| `../../../../agent/deep-review.md` | Deep-review leaf boundary and file:line evidence discipline |
+| `../../../../../agents/review.md` | Native @review read-only behavior |
+| `../../../../../agents/deep-review.md` | Deep-review leaf boundary and file:line evidence discipline |
 
 ---
 

@@ -25,11 +25,11 @@ A naive search ranker collapses onto the most-frequent term ("embedding"); a com
 
 - Objective: Confirm multi-aspect representation in top-5.
 - Real user request: `Verify that a 3-concept compound query 'Apple Silicon Metal GPU embedding default' returns top-5 results that collectively cover all three concepts.`
-- RCAF Prompt: `As a query-intelligence validation operator, fire a compound query joining platform + acceleration + feature, and verify that the top-5 results span all three concepts. Return a pass/fail verdict with the per-aspect coverage breakdown.`
+- Operator prompt: `As a query-intelligence validation operator, fire a compound query joining platform + acceleration + feature, and verify that the top-5 results span all three concepts. Return a pass/fail verdict with the per-aspect coverage breakdown.`
 - Expected execution process: run the compound query, tag each top-5 result with the aspects it touches (A=Apple Silicon, M=Metal, E=Embedding-default), confirm all three aspects appear at least once in the top-5.
 - Expected signals: each of the 3 aspects appears in at least 1 result; ≥ 2 results touch multiple aspects.
 - Desired user-visible outcome: `PASS — aspects A, M, E all represented in top-5; 3 results touch ≥ 2 aspects.`
-- Pass/fail: PASS if all 3 aspects represented AND ≥ 2 results are multi-aspect; PARTIAL if all 3 aspects but no multi-aspect results; FAIL if any aspect is missing from top-5.
+- Pass/fail: PASS only if all 3 aspects are represented AND ≥ 2 results are multi-aspect; FAIL if any aspect is missing from top-5, and also FAIL when all 3 aspects appear but no result is multi-aspect.
 
 ---
 
@@ -93,8 +93,34 @@ Coverage summary:
 - An honest note on which aspect was weakest in top-5 (and whether that's correct given the corpus).
 - Active provider from memory_health.
 
+### Pass / Fail
+
+- **Pass**: All 3 aspects are represented AND ≥ 2 results are multi-aspect.
+- **Fail**: Any aspect is missing from top-5, and also FAIL when all 3 aspects appear but no result is multi-aspect.
+
+### Failure Triage
+
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
+
+### Pass Predicate
+A naive lexical ranker would over-weight "embedding" (frequent) and underweight "Apple Silicon" (less frequent). The semantic ranker should balance contributions and ensure each aspect surfaces. If a single-aspect-dominated top-5 is observed (e.g., 5 hits all about embeddings, none about Apple Silicon), mark FAIL.
+
 ---
 
-## 4. PASS PREDICATE
+## 4. SOURCE FILES
 
-A naive lexical ranker would over-weight "embedding" (frequent) and underweight "Apple Silicon" (less frequent). The semantic ranker should balance contributions and ensure each aspect surfaces. If a single-aspect-dominated top-5 is observed (e.g., 5 hits all about embeddings, none about Apple Silicon), mark FAIL.
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: 405
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/multi-aspect-query-synthesis.md`

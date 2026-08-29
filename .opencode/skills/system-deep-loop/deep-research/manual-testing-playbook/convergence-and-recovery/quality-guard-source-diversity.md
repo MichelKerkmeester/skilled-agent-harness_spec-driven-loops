@@ -86,4 +86,4 @@ Privilege convergence.md §2.4 for the canonical guard definition; use loop-prot
 - Playbook ID: DR-020
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/quality-guard-source-diversity.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

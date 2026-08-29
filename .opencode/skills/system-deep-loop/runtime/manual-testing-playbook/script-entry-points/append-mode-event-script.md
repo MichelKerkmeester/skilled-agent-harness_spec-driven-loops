@@ -39,7 +39,11 @@ The append gateway is the sanctioned way every canonical record reaches a mode's
 - Feature catalog entry exists at `feature-catalog/script-entry-points/append-mode-event-script.md`.
 - A scratch authority root and run directory are available outside the repository tree.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate append-mode-event.cjs and report whether the current source, script surface, and tests agree with the runtime/ contract.`
+
+### Commands
 
 1. Inspect `scripts/append-mode-event.cjs` for the implementation contract.
 2. Inspect `tests/unit/mode-append-gateway.vitest.ts` for the primary regression coverage (its fixture pins authority at `legacy_authoritative` and asserts the legacy projection is refreshed).
@@ -68,7 +72,7 @@ The append gateway is the sanctioned way every canonical record reaches a mode's
    - An event file carrying neither stem nor event_type (e.g. `{"type":"event","event":"x"}`) — exit 1, `reason` `"Unrecognized event format: expected object with stem or event_type"`, code `RUNTIME_ERROR`.
    - An unresolvable mode name (`--mode not-a-real-mode`) — exit 1, `reason` `"Unsupported mode: not-a-real-mode"`, code `RUNTIME_ERROR`.
    - A mode that resolves but sits outside the frozen authority order (`--mode deep-improvement`) — exit 2, `reason` `"Mode 'deep-improvement' is not in the frozen authority order: deep-research, deep-review, deep-ai-council, deep-improvement-common, agent-improvement, model-benchmark, skill-benchmark"`, code `AUTHORITY_DENIED`.
-9. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
+9. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
 ### Expected Outcome
 
@@ -93,7 +97,14 @@ append-mode-event.cjs matches the documented current reality, the source anchors
 - Exit 1 and exit 2 mean different things and must not be treated interchangeably: exit 1 is a script error where the input never reached authority, exit 2 is a refusal at the authority boundary.
 - Exit 0 means the event is durable, not that the legacy file was projected. `projectionRefreshed` is the signal for whether the legacy projection file was actually refreshed; it must be checked separately from the exit status, and `projectionError` carries the named reason when it is `false`. A caller that inspects only the exit code can leave the legacy file silently stale while every signal it looked at says success.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `scripts/append-mode-event.cjs` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/unit/mode-append-gateway.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 Two distinct exit codes carry two distinct meanings; do not conflate them.
 
@@ -119,7 +130,7 @@ Exit 2 is the refusal path, demonstrably: it is a halt, never a licence to write
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -141,11 +152,12 @@ Exit 2 is the refusal path, demonstrably: it is a halt, never a licence to write
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Script entry points
 - Playbook ID: DLR-055
 - Feature catalog entry: `feature-catalog/script-entry-points/append-mode-event-script.md`
 - Scenario file path: `manual-testing-playbook/script-entry-points/append-mode-event-script.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

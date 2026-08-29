@@ -56,19 +56,17 @@ The command resolves `intent=APPLY`, loads `.opencode/commands/doctor/assets/doc
 
 ### Evidence
 
-- BLOCKED before running the scenario command sequence.
-- Real observed scenario command 1: `Create a disposable copy of the repository or fresh checkout.`
-- Real active execution constraint from the operator request: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
-- Real active allowed write path from the operator request: `.opencode/skills/system-spec-kit/manual-testing-playbook/doctor-commands/doctor-memory-fresh-install.md (this file only)`
-- Because command 1 requires creating a disposable repository copy and the active execution constraint forbids creating any file other than this scenario file, the sandbox precondition could not be established without violating the allowed write paths.
-- `/doctor memory --incremental=true` was not run.
-- Post-run database existence check was not run.
-- State log was not produced.
-- Gold-battery summary was not produced.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: The scenario requires creating a disposable repository copy or fresh checkout, but the active operator constraints allow writes only to this scenario file, so the required sandbox precondition could not be created and the real `/doctor memory --incremental=true` run could not be performed.
+- **Pass**: The database exists after the run and post-verify succeeds.
+- **Fail**: The command treats the missing DB as an unrecoverable error.
 
 ### Failure Triage
 

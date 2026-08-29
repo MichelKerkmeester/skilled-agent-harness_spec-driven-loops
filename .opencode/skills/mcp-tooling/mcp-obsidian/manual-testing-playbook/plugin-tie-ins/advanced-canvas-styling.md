@@ -170,7 +170,7 @@ Turn my throwaway canvas into a small flowchart — a pill "Start" node, a diamo
 
 ---
 
-## 4. CLEANUP
+### Cleanup
 
 Remove the throwaway vault. Nothing outside `/tmp/_pbtest-advanced-canvas` was created, so this one command restores the machine to its prior state.
 
@@ -180,7 +180,7 @@ rm -rf /tmp/_pbtest-advanced-canvas
 
 ---
 
-## 5. SOURCE FILES
+## 4. SOURCE FILES
 
 ### Playbook Sources
 
@@ -200,7 +200,7 @@ rm -rf /tmp/_pbtest-advanced-canvas
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugin tie-ins
 - Playbook ID: OBS-024

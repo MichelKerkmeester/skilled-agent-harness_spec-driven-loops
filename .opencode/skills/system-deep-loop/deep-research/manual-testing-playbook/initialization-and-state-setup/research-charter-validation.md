@@ -82,4 +82,4 @@ Privilege the loop protocol Step 7a for the canonical charter validation contrac
 - Playbook ID: DR-027
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `initialization-and-state-setup/research-charter-validation.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-24.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

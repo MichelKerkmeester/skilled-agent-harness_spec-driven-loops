@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-025` and confirm th
 - Prompt: `Create a numbered worktrees/NNN-slug worktree with a fresh branch, then create a separate numbered detached worktree with no branch, and report both paths and branch names.`
 - Expected execution process: Run `create <slug>` and confirm it emits `<branch> <dir>` with the branch matching `worktrees/NNN-<slug>` and the directory matching `.worktrees/NNN-<slug>`; run `create-detached <slug>` and confirm a `.worktrees/NNN-detached-<slug>` directory with no branch; then attempt `create bad_slug` and confirm it fails before any `git worktree add` runs.
 - Expected signals: the `create` output pair passes `validate-pair`; `git worktree list` shows both new worktrees; the invalid-slug call exits non-zero with `invalid slug: bad_slug` on stderr and creates no worktree.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox cannot create git worktrees in the fixture repository.
 - Pass/fail: PASS if both creators produce a correctly paired, numbered worktree/branch (or detached directory) and the invalid-slug call is rejected before any git mutation. FAIL if the branch/directory pairing mismatches the grammar, if the invalid-slug call still creates a worktree, or if the allocated number collides with an existing one.
 
 ---

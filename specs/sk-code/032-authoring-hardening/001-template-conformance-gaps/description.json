@@ -1,0 +1,30 @@
+{
+  "specFolder": "sk-code/032-authoring-hardening/001-template-conformance-gaps",
+  "description": "Two authoring templates omitted the element their own SKILL.md contract required, so every artifact generated from them inherited the omission; a",
+  "keywords": [
+    "two",
+    "authoring",
+    "templates",
+    "omitted",
+    "element",
+    "own",
+    "skill",
+    "contract",
+    "required",
+    "every",
+    "artifact",
+    "them",
+    "inherited",
+    "omission"
+  ],
+  "lastUpdated": "2026-08-29T11:34:28.842Z",
+  "specId": "001",
+  "folderSlug": "template-conformance-gaps",
+  "parentChain": [
+    "sk-code",
+    "032-authoring-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

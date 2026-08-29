@@ -50,7 +50,7 @@ Operators run the exact command sequence for `CP-048` and grade the result throu
 ```bash
 rm -rf /tmp/cp-048-sandbox /tmp/cp-048-sandbox-baseline /tmp/cp-048-spec
 mkdir -p /tmp/cp-048-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup_cp_sandbox.sh --sandbox-dir /tmp/cp-048-sandbox
+.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-048-sandbox
 cp -a /tmp/cp-048-sandbox /tmp/cp-048-sandbox-baseline
 cat > /tmp/cp-048-spec/spec.md <<'EOF'
 ---
@@ -80,7 +80,7 @@ opencode run "$(cat /tmp/cp-048-prompt-A.txt)" --model deepseek/deepseek-v4-pro 
 rm -rf /tmp/cp-048-sandbox && cp -a /tmp/cp-048-sandbox-baseline /tmp/cp-048-sandbox
 cd /tmp/cp-048-sandbox
 opencode run "/deep:research:auto \"CP-048 resource map suppression\" --spec-folder=/tmp/cp-048-spec --max-iterations=1 --convergence=0.05 --no-resource-map" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-048-sandbox </dev/null 2>&1 | tee /tmp/cp-048-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-048-B-exit.txt
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 diff -u /tmp/cp-048-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-048-sandbox/.opencode/agents/deep-research.md > /tmp/cp-048-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-048-B-canonical-exit.txt
 find /tmp/cp-048-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-048-B-artifacts.txt 2>/dev/null || touch /tmp/cp-048-B-artifacts.txt
 cat /tmp/cp-048-B-command.txt /tmp/cp-048-B-artifacts.txt > /tmp/cp-048-B-combined.txt
@@ -95,7 +95,7 @@ diff /tmp/cp-048-pre.txt /tmp/cp-048-post.txt > /tmp/cp-048-tripwire.diff; echo 
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 | File | Anchor |
 |---|---|

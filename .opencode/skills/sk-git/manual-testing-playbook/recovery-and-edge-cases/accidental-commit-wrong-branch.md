@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-017` and confirm th
 - Prompt: `Move my accidental main commit to a proper worktree branch without losing work, then return recovery evidence.`
 - Expected execution process: Identify the mistaken commit, create a recovery worktree branch from that commit, move or revert main safely, and report preserved SHA.
 - Expected signals: Recovery branch contains the commit; main is clean or explicitly reverted; no force reset occurs without approval.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox has no disposable repository in which to stage the wrong-branch commit.
 - Pass/fail: PASS if recovery uses worktree-created branch policy per `SKILL.md §3` and shared recovery patterns in `references/shared-patterns.md §6`. FAIL if the AI runs destructive reset, drops the commit, or creates a branch directly with `git checkout -b`.
 
 ---

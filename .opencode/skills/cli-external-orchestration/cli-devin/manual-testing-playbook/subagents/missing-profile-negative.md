@@ -32,13 +32,35 @@ Silent fallback from a missing specialist to a built-in general agent can invali
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Use the custom subagent profile definitely-missing-profile to answer with the single word MISSING. If the profile does not exist, report that exact failure and do not substitute another profile.`
+
+### Commands
+
 1. `devin -p "Use the custom subagent profile definitely-missing-profile to answer with the single word MISSING. If the profile does not exist, report that exact failure and do not substitute another profile." --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv013.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv013.txt`
 2. Record whether the output names the missing profile and whether any fallback was disclosed.
 3. `git status --porcelain`.
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| DV-013 | `devin -p ... definitely-missing-profile ...` | Explicit missing-profile failure; no silent fallback | PASS/FAIL/SKIP |
+### Expected
+
+Explicit missing-profile failure; no silent fallback
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Explicit missing-profile failure; no silent fallback`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when the missing profile is surfaced explicitly.
+- **Fail**: when a different profile runs without disclosure
+- **Skip**: only on auth/availability blockers..
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

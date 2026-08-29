@@ -21,7 +21,7 @@ This scenario validates Implemented: cross-document entity linking (S5) for `094
 
 - Objective: Confirm deferred->implemented status.
 - Real user request: `Please validate Implemented: cross-document entity linking (S5) against the documented validation surface and tell me whether the expected signals are present: Entity linker creates supports-edges between related documents; density guards cap edge creation; edge types are correctly classified.`
-- RCAF Prompt: `As a retrieval-enhancement validation operator, validate Implemented: cross-document entity linking (S5) against the documented validation surface. Verify entity linker creates supports-edges between related documents; density guards cap edge creation; edge types are correctly classified. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a retrieval-enhancement validation operator, validate Implemented: cross-document entity linking (S5) against the documented validation surface. Verify entity linker creates supports-edges between related documents; density guards cap edge creation; edge types are correctly classified. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Entity linker creates supports-edges between related documents; density guards cap edge creation; edge types are correctly classified
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -52,7 +52,7 @@ Entity linker creates supports-edges between related documents; density guards c
 Entity linker command output:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -123,7 +123,7 @@ expect(result.edgeDensity).toBeCloseTo(1.25);
 Integration validation output:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
  ✓ mcp-server/tests/deferred-features-integration.vitest.ts > Deferred Features: Integration Tests > R10 → S5 dependency chain > extracts entities from content and stores them 1ms
  ✓ mcp-server/tests/deferred-features-integration.vitest.ts > Deferred Features: Integration Tests > R10 → S5 dependency chain > updates entity catalog from extracted entities 0ms

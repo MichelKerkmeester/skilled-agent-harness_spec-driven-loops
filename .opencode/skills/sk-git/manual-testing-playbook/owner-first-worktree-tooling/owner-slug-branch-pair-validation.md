@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-024` and confirm th
 - Prompt: `Run the worktree-naming validators against a mix of legal and illegal slugs, numbers, branches, and directory pairs, and report which ones pass or fail and why.`
 - Expected execution process: Run `validate-slug` against a clean kebab slug and slugs with underscores/leading/trailing/double hyphens; `validate-nnn` against 001..999 and 000/2-digit/4-digit values; `validate-branch` against a conformant `worktrees/NNN-slug`, a `branches/NNN-slug`, `main`, a release branch, a `backup/*` safety ref, and an owner-first legacy name; `validate-pair` against a matching and a mismatched branch/directory combination.
 - Expected signals: every legal input prints `ok` with exit 0; every illegal input prints `invalid` to stderr with a non-zero exit.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when `worktree-naming.sh` is missing from the checkout under test.
 - Pass/fail: PASS if `worktrees/NNN-slug`, `branches/NNN-slug`, `main`, `skilled/vA.B.C.D`, and `backup/*` all validate `ok`, and an owner-first name, an underscore slug, a 2-digit branch number, a `wt/` legacy branch, and a mismatched pair all report `invalid`. FAIL if any legal form is rejected, or any illegal form is accepted.
 
 ---

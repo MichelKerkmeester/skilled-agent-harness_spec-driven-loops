@@ -45,6 +45,15 @@ This scenario validates: the plugin's own kill-switch regression test; a live in
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+- Prompt: `Validate the Speckit Completion Exposer end to end against the commands below, and report a PASS or FAIL verdict with cited command output.`
+
+```text
+an agent operating under the COMPLETION VERIFICATION gate calls the OpenCode tool `system_speckit_completion({specFolder, strict})` (or, from Claude, runs the CLI shim) instead of hand-composing and hand-merging separate `check-completion.sh --json` and `calculate-completeness.sh --json` calls
+```
+
+
 ### Commands
 
 1. Run the plugin's own kill-switch regression test directly with node:
@@ -117,304 +126,32 @@ SYSTEM_SPECKIT_COMPLETION_DISABLED=1 node -e '
 - Step 5: non-zero exit, usage text on stderr.
 - Step 6: `hooks keys: []` and `hooks JSON: {}` -- not a registered tool that merely answers `disabled`.
 
----
+### Evidence
 
-## 4. EVIDENCE
+Capture, for every step in the Commands sequence above:
 
-Preconditions observed (source files read):
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
-```text
-.opencode/plugins/system-speckit-completion.js read successfully; total 90 lines.
-.opencode/skills/system-spec-kit/scripts/lib/completion-state.cjs read successfully; total 280 lines.
-.opencode/plugins/tests/system-speckit-completion.test.cjs read successfully; total 64 lines.
-.opencode/bin/speckit-completion.cjs read successfully; total 97 lines.
-.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh exists (16769 bytes).
-.opencode/skills/system-spec-kit/scripts/spec/calculate-completeness.sh exists (20553 bytes).
-```
+### Pass / Fail
 
-Command 1 and real output:
+- **Pass**: All signals above hold from real captured output and `execute()` never throws for any of the three fixtures.
+- **Fail**: The kill-switch leaves the tool registered, if the checklist section ever misreports a known EVIDENCE_MISSING packet as `"unavailable"` or `"COMPLETE"`, if the CLI shim's payload diverges from the live tool's payload for the same fixture, or if any call throws instead of degrading gracefully.
 
-```bash
-node .opencode/plugins/tests/system-speckit-completion.test.cjs
-```
+### Failure Triage
 
-```text
-system-speckit-completion.test.cjs: all assertions passed
-EXIT_CODE=0
-```
+1. Re-run each command in the sequence on its own and record its exit status; the first non-zero exit names the failing step.
+2. Confirm the plugin host, bridge, and core files listed in section 4 are the ones actually loaded, and that any compiled output is current.
+3. Compare the observed output field by field against the expected signals in section 2, and quote the first field that disagrees.
 
-Command 2 and real output:
-
-```bash
-node --test .opencode/plugins/tests/system-speckit-completion.test.cjs
-```
-
-```text
-TAP version 13
-# system-speckit-completion.test.cjs: all assertions passed
-# Subtest: .opencode/plugins/tests/system-speckit-completion.test.cjs
-ok 1 - .opencode/plugins/tests/system-speckit-completion.test.cjs
-  ---
-  duration_ms: 54.041375
-  type: 'test'
-  ...
-1..1
-# tests 1
-# suites 0
-# pass 1
-# fail 0
-# cancelled 0
-# skipped 0
-# todo 0
-# duration_ms 59.496417
-```
-
-Command 3 and real output (live tool `execute()` against three real fixtures):
-
-```text
-=== Level-2 COMPLETE ===
-{
-  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync",
-  "level": 2,
-  "filesPresent": {
-    "spec": true,
-    "plan": true,
-    "tasks": true,
-    "checklist": true,
-    "decisionRecord": false,
-    "implementationSummary": true
-  },
-  "checklist": {
-    "folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync",
-    "status": "COMPLETE",
-    "passed": true,
-    "strict": false,
-    "summary": { "total": 23, "completed": 23, "percentage": 100 },
-    "priorities": {
-      "p0": { "total": 8, "completed": 8 },
-      "p1": { "total": 14, "completed": 14 },
-      "p2": { "total": 1, "completed": 1 },
-      "untagged": { "total": 0, "completed": 0 }
-    },
-    "qualityGates": { "priorityContextMissing": 0, "p0MissingEvidence": 0, "p1MissingEvidence": 0 }
-  },
-  "placeholders": {
-    "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync",
-    "files_analyzed": 4,
-    "overall_completion": 100,
-    "total_placeholders": 0,
-    "total_lines": 400,
-    "files": {},
-    "quality": { "enabled": false }
-  },
-  "generatedAt": "2026-07-11T12:40:44.439Z"
-}
-=== Level-2 EVIDENCE_MISSING ===
-{
-  "level": 2,
-  "filesPresent": {
-    "spec": true,
-    "plan": true,
-    "tasks": true,
-    "checklist": true,
-    "decisionRecord": false,
-    "implementationSummary": true
-  },
-  "checklist": {
-    "status": "EVIDENCE_MISSING",
-    "passed": false,
-    "strict": false,
-    "summary": { "total": 22, "completed": 22, "percentage": 100 },
-    "priorities": {
-      "p0": { "total": 9, "completed": 9 },
-      "p1": { "total": 12, "completed": 12 },
-      "p2": { "total": 1, "completed": 1 },
-      "untagged": { "total": 0, "completed": 0 }
-    },
-    "qualityGates": { "priorityContextMissing": 0, "p0MissingEvidence": 9, "p1MissingEvidence": 12 }
-  },
-  "placeholders": {
-    "files_analyzed": 4,
-    "overall_completion": 100,
-    "total_placeholders": 0,
-    "total_lines": 425,
-    "files": {},
-    "quality": { "enabled": false }
-  },
-  "generatedAt": "2026-07-11T12:40:44.836Z"
-}
-=== Level-3 (decision-record present) ===
-{
-  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/122-cli-codex-deprecation",
-  "level": 3,
-  "filesPresent": {
-    "spec": true,
-    "plan": true,
-    "tasks": true,
-    "checklist": true,
-    "decisionRecord": true,
-    "implementationSummary": true
-  },
-  "checklist": {
-    "folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/122-cli-codex-deprecation",
-    "status": "EVIDENCE_MISSING",
-    "passed": false,
-    "strict": false,
-    "summary": { "total": 50, "completed": 50, "percentage": 100 },
-    "priorities": {
-      "p0": { "total": 15, "completed": 15 },
-      "p1": { "total": 26, "completed": 26 },
-      "p2": { "total": 9, "completed": 9 },
-      "untagged": { "total": 0, "completed": 0 }
-    },
-    "qualityGates": { "priorityContextMissing": 0, "p0MissingEvidence": 15, "p1MissingEvidence": 26 }
-  },
-  "placeholders": {
-    "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/122-cli-codex-deprecation",
-    "files_analyzed": 4,
-    "overall_completion": 100,
-    "total_placeholders": 0,
-    "total_lines": 620,
-    "files": {},
-    "quality": { "enabled": false }
-  },
-  "generatedAt": "2026-07-11T13:04:02.761Z"
-}
-=== Level-3 with strict:true ===
-{
-  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/122-cli-codex-deprecation",
-  "level": 3,
-  "filesPresent": {
-    "spec": true,
-    "plan": true,
-    "tasks": true,
-    "checklist": true,
-    "decisionRecord": true,
-    "implementationSummary": true
-  },
-  "checklist": {
-    "folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/122-cli-codex-deprecation",
-    "status": "EVIDENCE_MISSING",
-    "passed": false,
-    "strict": true,
-    "summary": { "total": 50, "completed": 50, "percentage": 100 },
-    "priorities": {
-      "p0": { "total": 15, "completed": 15 },
-      "p1": { "total": 26, "completed": 26 },
-      "p2": { "total": 9, "completed": 9 },
-      "untagged": { "total": 0, "completed": 0 }
-    },
-    "qualityGates": { "priorityContextMissing": 0, "p0MissingEvidence": 15, "p1MissingEvidence": 26 }
-  },
-  "placeholders": {
-    "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/122-cli-codex-deprecation",
-    "files_analyzed": 4,
-    "overall_completion": 100,
-    "total_placeholders": 0,
-    "total_lines": 620,
-    "files": {},
-    "quality": { "enabled": false }
-  },
-  "generatedAt": "2026-07-11T13:04:03.174Z"
-}
-```
-
-Note on the Level-3 fixture: `122-cli-codex-deprecation` is a stable, completed Level-3 spec folder in this repo that carries `decision-record.md`, used to exercise the exposer's Level-3 resolution path (a present `decision-record.md` raises the inferred level to 3 over a checklist-only inference). The tool reports whatever completion state the folder currently holds -- a live signal read from the real fixture, not a fabricated or fixed count -- so this scenario asserts only the stable structural signal (`level:3`) and the payload shape, never a hard-coded checklist count or status.
-
-Command 4 and real output (CLI shim parity):
-
-```bash
-node .opencode/bin/speckit-completion.cjs .opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync --project-dir "$PWD"
-```
-
-```text
-{
-  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync",
-  "level": 2,
-  "filesPresent": {
-    "spec": true,
-    "plan": true,
-    "tasks": true,
-    "checklist": true,
-    "decisionRecord": false,
-    "implementationSummary": true
-  },
-  "checklist": {
-    "folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync",
-    "status": "COMPLETE",
-    "passed": true,
-    "strict": false,
-    "summary": { "total": 23, "completed": 23, "percentage": 100 },
-    "priorities": {
-      "p0": { "total": 8, "completed": 8 },
-      "p1": { "total": 14, "completed": 14 },
-      "p2": { "total": 1, "completed": 1 },
-      "untagged": { "total": 0, "completed": 0 }
-    },
-    "qualityGates": { "priorityContextMissing": 0, "p0MissingEvidence": 0, "p1MissingEvidence": 0 }
-  },
-  "placeholders": {
-    "spec_folder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-deep-loop/037-scenario-loader-code-surface-sync",
-    "files_analyzed": 4,
-    "overall_completion": 100,
-    "total_placeholders": 0,
-    "total_lines": 400,
-    "files": {},
-    "quality": { "enabled": false }
-  },
-  "generatedAt": "2026-07-11T12:40:52.404Z"
-}
-```
-
-(exit code 0; `level`/`checklist.status`/`checklist.passed` match the Step 3 Level-2-COMPLETE live tool call exactly)
-
-Command 5 and real output (usage/exit-1 path):
-
-```bash
-node .opencode/bin/speckit-completion.cjs
-```
-
-```text
-Usage: speckit-completion.cjs <spec-folder> [--strict] [--project-dir <dir>]
-
-Prints one merged JSON payload:
-  {specFolder, level, filesPresent, checklist, placeholders, generatedAt}
-
-Options:
-  --strict             Treat P2 checklist items as required (see check-completion.sh --strict)
-  --project-dir <dir>  Resolve <spec-folder> and shell both scripts from this directory (default: cwd)
-  --help, -h            Show this help
-
-Set SYSTEM_SPECKIT_COMPLETION_DISABLED=1 to make this a full no-op (no filesystem probe, no script exec).
-EXIT=1
-```
-
-Command 6 and real output (kill-switch, plus an unset control run):
-
-```bash
-SYSTEM_SPECKIT_COMPLETION_DISABLED=1 node -e '...'
-```
-
-```text
-hooks keys: []
-hooks JSON: {}
-```
-
-```bash
-node -e '... (kill-switch unset) ...'
-```
-
-```text
-hooks keys: [ 'tool' ]
-tool keys: [ 'system_speckit_completion' ]
-```
-
-Observation (not part of the pass/fail contract, recorded for maintainers): the shared core's own suite, `.opencode/skills/system-spec-kit/scripts/lib/completion-state.test.mjs`, is not currently picked up by either project vitest config (`.opencode/skills/system-spec-kit/vitest.config.ts` or `mcp-server/vitest.config.ts`) -- both `include` globs require a `.vitest.ts` or `.test.ts` extension, and this file is `.test.mjs`. Running `node_modules/.bin/vitest run scripts/lib/completion-state.test.mjs` from `mcp-server/` produced `No test files found, exiting with code 1`. This scenario instead exercises the identical `computeCompletionState` code paths live through the plugin's own `execute()` and the CLI shim above, so the core logic itself is not left unverified; only that specific vitest suite invocation is dormant.
 
 ---
 
-## 5. SOURCE FILES
+## 4. SOURCE FILES
 
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - OpenCode plugin adapter: `.opencode/plugins/system-speckit-completion.js`
 - Plugin regression test: `.opencode/plugins/tests/system-speckit-completion.test.cjs`
 - Claude/Bash CLI shim: `.opencode/bin/speckit-completion.cjs`
@@ -426,17 +163,9 @@ Observation (not part of the pass/fail contract, recorded for maintainers): the 
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugins And Hooks
 - Playbook ID: speckit-completion-exposer
 - Canonical root source: manual-testing-playbook.md
 - Feature file path: plugins-and-hooks/speckit-completion-exposer.md
-
----
-
-## 7. PASS/FAIL
-
-**PASS**
-
-The kill-switch regression test passed with `all assertions passed` (exit 0), confirmed both directly and via the `node --test` tap harness (`# pass 1 / # fail 0`). Live invocation of the actual registered tool's `execute()` against three real, distinct spec-folder fixtures in this repo correctly reported `level:2`/`COMPLETE`/`passed:true` for the Level-2 COMPLETE packet, the real (non-degraded) `EVIDENCE_MISSING`/`passed:false`/`p0MissingEvidence:9` for the Level-2 packet with missing evidence markers, and `level:3` for the Level-3 packet carrying `decision-record.md`, with its checklist reported at whatever completion state the folder currently holds (`EVIDENCE_MISSING`/`passed:false` on this run) -- an honest live signal, not a hard-coded count. The `strict:true` flag passed through correctly (`checklist.strict:true`). The Claude/Bash CLI shim returned an identical `level`/`checklist.status`/`checklist.passed` for the same fixture as the live tool call, and its no-args path exited non-zero with usage text. The kill-switch produced a genuinely empty plugin hooks object (`{}`, no `tool` key) rather than a registered-but-disabled tool, and an unset/`"0"` value left the tool registered with a callable `execute`. One non-blocking observation is recorded in Evidence: the shared core's own `completion-state.test.mjs` vitest suite is not currently reachable via the project's vitest `include` globs (extension mismatch), though this does not affect the pass verdict since the same core logic was exercised live above.

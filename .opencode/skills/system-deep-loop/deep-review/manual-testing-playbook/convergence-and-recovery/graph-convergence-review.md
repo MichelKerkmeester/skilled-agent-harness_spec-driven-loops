@@ -85,4 +85,4 @@ Privilege `references/convergence/convergence.md` for the review stop contract a
 - Playbook ID: DRV-032
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/graph-convergence-review.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-review/` as of 2026-04-10.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-review/`; this scenario does not currently cite a specific catalog entry.

@@ -23,7 +23,7 @@ Retrieving a page is the baseline read path for confirming state before and afte
 - Feature Name: Retrieve a page
 - Scenario Objective: Read a known scratch page's properties and metadata by ID.
 - Exact Prompt: `Look up the properties and metadata of our known scratch Notion page and summarize what you find.`
-- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_retrieve-a-page") -> 3. Code Mode: call_tool_chain({ code: "return await notion[\"notion_retrieve-a-page\"]({ page_id: SCRATCH_PAGE_ID });" })`
+- Exact Command Sequence: `1. Code Mode: list_tools() -> 2. Code Mode: tool_info("notion.notion_retrieve-a-page") -> 3. Code Mode: call_tool_chain({ code: "return await notion[\"notion_retrieve-a-page\"] ({ page_id: SCRATCH_PAGE_ID });" })`
 - Expected Signals: The manual reports the callable name; the schema resolves; the call returns a structured page object with `id`, `properties`, and `url`; any relation/rollup/people property near or past ~25 items shows the documented truncation rather than an error.
 - Evidence: `list_tools()` result, `tool_info()` result, Code Mode response, and the scratch page ID used.
 - Pass/Fail Criteria: PASS if the callable and schema resolve and the page object is returned with its properties (an empty or minimal property set is a valid outcome); SKIP if the manual, token, or a known scratch page ID is unavailable; FAIL if a confirmed call returns a malformed object or contradicts the documented truncation behavior.

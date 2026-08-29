@@ -32,14 +32,35 @@ Real files would fork agent instructions and allow Cursor behavior to drift from
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Inspect the repository's Cursor agent mirror directory. Report whether every agent file is a symlink resolving into .claude/agents/, and do not edit files.`
+
+### Commands
+
 1. `for f in .cursor/agents/*.md; do test -L "$f" || exit 1; target=$(readlink -f "$f") || exit 1; case "$target" in "$PWD"/.claude/agents/*.md) ;; *) echo "bad target: $f -> $target"; exit 1 ;; esac; done`
 2. `find .cursor/agents -maxdepth 1 -type f -name '*.md' -print | wc -l` (must be 0; symlinks are not regular files).
 3. `cursor-agent -p "Inspect the repository's Cursor agent mirror directory. Report whether every agent file is a symlink resolving into .claude/agents/, and do not edit files." --model composer-2.5 --auto-review --sandbox enabled --output-format text </dev/null > /tmp/cli-cursor-cu025.txt 2>&1; echo "exit=$?" >> /tmp/cli-cursor-cu025.txt`
-4. Record `cursor-agent about` output-text auth evidence and the audit result.
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| CU-025 | Symlink audit plus `cursor-agent -p ...` | 13 symlinks, all target `.claude/agents/`, no forks | PASS/FAIL/SKIP |
+### Expected
+
+Step 1 exits 0 with every entry a symlink resolving under `.claude/agents/`. Step 2 prints `0`. Step 3's dispatch reports the mirror as intact with no forked file named.
+
+### Evidence
+
+Record `cursor-agent about` output-text auth evidence, the step 1/2 exit codes, and the audit summary captured in `/tmp/cli-cursor-cu025.txt` from step 3.
+
+### Pass / Fail
+
+- **Pass**: all mirrors satisfy the symlink and target-root checks in steps 1-2, and step 3's summary agrees.
+- **Fail**: any regular file, broken link, or target outside `.claude/agents/` is found, or step 3 contradicts the filesystem audit.
+- **Skip**: only the step 3 `cursor-agent` dispatch is SKIP when Cursor authentication or availability blocks that specific summary call; the filesystem audit in steps 1-2 is hermetic and does not SKIP.
+
+### Failure Triage
+
+1. **Broken/forked mirror**: step 1 or step 2 fails; identify the exact `.cursor/agents/*.md` entry, restore it as a symlink into `.claude/agents/`, and re-run the audit.
+2. **Auth/availability blocker**: step 3 fails to authenticate or dispatch; capture the `cursor-agent about` output and record the SKIP with that exact blocker.
+3. **Summary mismatch**: step 3 reports a fork or broken link that steps 1-2 do not confirm, or the reverse; trust the filesystem audit and re-run step 3 once the discrepancy is understood.
 
 ---
 

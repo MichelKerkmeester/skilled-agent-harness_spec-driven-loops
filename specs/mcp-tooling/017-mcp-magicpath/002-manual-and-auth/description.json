@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "mcp-tooling/017-mcp-magicpath/002-manual-and-auth",
+  "description": "The probe proved a transport, not a surface",
+  "keywords": [
+    "probe",
+    "proved",
+    "transport",
+    "surface"
+  ],
+  "lastUpdated": "2026-08-29T12:01:02.521Z",
+  "specId": "002",
+  "folderSlug": "manual-and-auth",
+  "parentChain": [
+    "mcp-tooling",
+    "017-mcp-magicpath"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

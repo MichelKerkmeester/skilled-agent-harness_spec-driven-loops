@@ -23,6 +23,8 @@ This scenario verifies the comment-hygiene half of `.opencode/skills/sk-code/sk-
 In a /tmp sandbox, add a source file whose comment carries an ephemeral-artifact pointer (an ADR id), and confirm claude-posttooluse.sh prints a COMMENT HYGIENE WARNING banner and still exits 0, that check-comment-hygiene.sh returns rc=1 on that file, then fix the comment in place and confirm rc=0.
 ```
 
+Prompt: `In a /tmp sandbox, add a source file whose comment carries an ephemeral-artifact pointer (an ADR id), and confirm claude-posttooluse.sh prints a COMMENT HYGIENE WARNING banner and still exits 0, that check-comment-hygiene.sh returns rc=1 on that file, then fix the comment in place and confirm rc=0.`
+
 **Expected detection**: not applicable — this is a deterministic hook-wiring check, not a routing decision (no advisor probe, no surface/reference loading).
 
 **Expected behavior (intended contract)**:
@@ -87,13 +89,13 @@ In a /tmp sandbox, add a source file whose comment carries an ephemeral-artifact
 
 ### Expected Signals
 
-| Step | Signal (intended contract) | Observed (verified 2026-07-07) |
-|---|---|---|
-| 2 (direct checker, pre-fix) | stdout: `<file>:2:   // retry cap per ADR-014`; `direct_prefix_exit=1` | `/tmp/skc-TH002-sandbox/sample.ts:2:   // retry cap per ADR-014`; `direct_prefix_exit=1` — matches |
-| 3 (full hook, pre-fix) | hook stdout contains the `COMMENT HYGIENE WARNING` banner (blank-line wrapped), the indented violation line, and the `code-style-guide.md §4` + `hygiene-ok` escape lines; stderr empty; `hook_exit=0` | banner present with `  /tmp/skc-TH002-sandbox/sample.ts:2:   // retry cap per ADR-014`; stderr empty; `hook_exit=0` — matches |
-| 5 (direct checker, post-fix) | stdout empty; `direct_postfix_exit=0` | empty; `direct_postfix_exit=0` — matches |
+| Step | Signal (intended contract) |
+|---|---|
+| 2 (direct checker, pre-fix) | stdout: `<file>:2:   // retry cap per ADR-014`; `direct_prefix_exit=1` |
+| 3 (full hook, pre-fix) | hook stdout contains the `COMMENT HYGIENE WARNING` banner (blank-line wrapped), the indented violation line, and the `code-style-guide.md §4` + `hygiene-ok` escape lines; stderr empty; `hook_exit=0` |
+| 5 (direct checker, post-fix) | stdout empty; `direct_postfix_exit=0` |
 
-The banner captured verbatim at step 3:
+The banner expected verbatim at step 3:
 
 ```
 COMMENT HYGIENE WARNING: ephemeral-artifact pointers found in code comments.
@@ -107,8 +109,9 @@ Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line
 ### Pass/Fail Criteria
 
 - **PASS** iff: the hook prints the COMMENT HYGIENE WARNING banner to stdout for the file with the forbidden comment AND exits 0, AND `check-comment-hygiene.sh` returns rc=1 on that file pre-fix and rc=0 after the comment is rewritten as a durable WHY.
-- **PARTIAL** iff: the hook exits 0 (warn-only contract holds) but the banner does not reach stdout due to a checker-invocation failure (e.g. a stripped executable bit, the class of gap TH-001 documented) — the failure is caught safely but coverage is not achieved.
-- **FAIL** iff: the hook exits non-zero (blocks the edit) for any reason, or the checker fires the banner when the comment carries no forbidden pointer (false positive), or the direct checker rc does not flip from 1 (pre-fix) to 0 (post-fix).
+- **FAIL** iff: the hook exits non-zero (blocks the edit) for any reason, the checker fires the banner when the comment carries no forbidden pointer (false positive), the direct checker rc does not flip from 1 (pre-fix) to 0 (post-fix), or the banner does not reach stdout for the forbidden comment (e.g. a stripped executable bit, the class of gap TH-001 documented) even though the hook itself still exits 0.
+
+Evidence: `/tmp/th002-hook-stdout.txt` (full hook stdout), `/tmp/th002-direct-prefix.txt` (direct checker pre-fix stdout), `/tmp/th002-direct-postfix.txt` (direct checker post-fix stdout).
 
 ### Failure Triage
 
@@ -121,6 +124,7 @@ Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh` — Dispatches both the comment-hygiene and dist-staleness checkers on every `Write`/`Edit`; prints the `COMMENT HYGIENE WARNING` banner only when the comment checker returns rc=1 with non-empty stdout; always exits 0.
 - `.opencode/skills/sk-code/sk-code-quality/scripts/check-comment-hygiene.sh` — Comment-hygiene checker (Python, `.sh` extension); ships executable (`-rwxr-xr-x`). Exit 0 clean, 1 violations (printed as `<file>:<lineno>: <excerpt>`), 2 skipped (excluded dir, unknown extension, or unreadable).
 - `.opencode/skills/sk-code/shared/references/universal/code-style-guide.md` §4 — The forbidden ephemeral-artifact-pointer classes and the durable-WHY convention the checker enforces.
@@ -129,7 +133,20 @@ Escape: add 'hygiene-ok' to a comment line to suppress the warning for that line
 
 ---
 
-## 5. DEEP-REVIEW CONSUMPTION NOTE
+## 5. SOURCE METADATA
+
+- Group: Tooling And Hooks
+- Playbook ID: TH-002
+- **Created**: 2026-07-07
+- **Critical path**: No
+- **Destructive**: No (every write is confined to a throwaway `/tmp/skc-TH002-sandbox/` scratch file that is created and removed within the scenario; no project file is edited, so there is nothing to restore)
+- **Sandbox**: the forbidden comment is planted in a disposable `/tmp` `.ts` file and deleted on cleanup; no production file is touched and no production behavior changes
+- **Concurrent-safe**: Yes (operates only on a unique `/tmp/skc-TH002-sandbox/` path and shares no state with other scenarios — unlike TH-001, which mutates a shared source file's mtime and must run serially)
+- **Last validated**: pending first manual run against the current Pass/Fail criteria.
+
+---
+
+## 6. DEEP-REVIEW CONSUMPTION NOTE
 
 The comment-hygiene hook is an **author-side** gate: it runs at edit time inside `code-quality` (the `sk-code` quality workflow mode) and its warn-only banner nudges the author to replace an ephemeral-artifact pointer with a durable WHY before the code ever reaches a reviewer. That authoring-time signal is the first half of a two-party contract; `deep-review` is the second half. This note documents the hand-off boundary so the two are not conflated.
 
@@ -138,14 +155,3 @@ The comment-hygiene hook is an **author-side** gate: it runs at edit time inside
 **Where `deep-review` consumes it.** `deep-review` audits four dimensions — correctness, security, **traceability**, and maintainability (`.opencode/skills/system-deep-loop/deep-review/README.md:80`). The comment-hygiene envelope feeds the **traceability** dimension: a comment that still points at a spec path, packet/phase number, or ADR/REQ/task/finding id is exactly the kind of unstable, rot-prone reference the traceability pass is meant to catch, and the author-side envelope tells the reviewer which such references were already flagged, fixed, or deferred. `deep-review` then classifies each surviving finding by blocking severity — P0/P1/P2 (`.opencode/skills/system-deep-loop/deep-review/README.md:84`) — and those severity gates roll up into the release-readiness verdict, PASS / CONDITIONAL / FAIL (`.opencode/skills/system-deep-loop/deep-review/README.md:27`). A comment-hygiene deferral the author labelled low-risk typically lands as a P2 advisory that rides a PASS; one that obscures a real traceability defect can be escalated by the reviewer through its own adversarial re-read.
 
 **The boundary (what this note is NOT).** This consumption path does **not** make `code-quality` a deep-loop mode, and it does **not** make the comment-hygiene hook a review owner. `code-quality` stays the author-side gate that produces evidence; `deep-review` stays the independent reviewer that consumes it, re-derives severity through its own Hunter/Skeptic/Referee self-check, and owns the verdict. The hook's warn-only, always-exit-0 contract — the whole point of this TH-002 scenario — is precisely what keeps it advisory rather than gating: the blocking decision belongs to the reviewer, not to the author-side hook. Nothing here adds a dependency from `code-quality` onto the deep-loop runtime; the envelope is read by `deep-review`, not produced for it.
-
----
-
-## 6. SOURCE METADATA
-
-- **Created**: 2026-07-07
-- **Critical path**: No
-- **Destructive**: No (every write is confined to a throwaway `/tmp/skc-TH002-sandbox/` scratch file that is created and removed within the scenario; no project file is edited, so there is nothing to restore)
-- **Sandbox**: the forbidden comment is planted in a disposable `/tmp` `.ts` file and deleted on cleanup; no production file is touched and no production behavior changes
-- **Concurrent-safe**: Yes (operates only on a unique `/tmp/skc-TH002-sandbox/` path and shares no state with other scenarios — unlike TH-001, which mutates a shared source file's mtime and must run serially)
-- **Last validated**: 2026-07-07 — **PASS**. The direct checker returned `direct_prefix_exit=1` with the violation line `/tmp/skc-TH002-sandbox/sample.ts:2:   // retry cap per ADR-014`; the full hook printed the `COMMENT HYGIENE WARNING` banner to stdout with stderr empty and `hook_exit=0`; after rewriting the comment as a durable WHY the direct checker returned `direct_postfix_exit=0` and the hook printed no banner and still exited 0. No authoring gap found — the checker's executable bit (`-rwxr-xr-x`) was intact, so the banner reached stdout through the full hook path with no intervention. Evidence: `/tmp/th002-hook-stdout.txt`, `/tmp/th002-direct-prefix.txt`, `/tmp/th002-direct-postfix.txt`.

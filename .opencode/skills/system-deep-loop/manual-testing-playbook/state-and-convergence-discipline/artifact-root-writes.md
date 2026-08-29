@@ -52,6 +52,10 @@ Before starting an AI council deliberation, resolve the mode through the registr
 1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `ai-council` mode entry.
 2. `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` documents packet-local council artifact persistence.
 
+### Prompt
+
+- Prompt: `Before starting an AI council deliberation, resolve the mode through the registry and state exactly where council artifacts should be written.`
+
 ### Exact Command Sequence
 
 1. **Invoke hub**: `Skill(system-deep-loop, "Before starting an AI council deliberation, resolve the mode through the registry and state exactly where council artifacts should be written.")`.
@@ -67,11 +71,14 @@ Before starting an AI council deliberation, resolve the mode through the registr
 | 3 | Response names artifact root `ai-council/`. |
 | 3 | Response does not route artifacts to another mode's root or to `/tmp`. |
 
+### Evidence
+
+- Response transcript: `/tmp/dlw-SC-002/response.txt`, showing the exact artifact-root string the AI names.
+
 ### Pass/Fail Criteria
 
-- **PASS** iff the route is ai-council and artifact root is exactly `ai-council/`.
-- **PARTIAL** iff the route is correct but the response uses a broad phrase such as "council artifacts" without the exact root.
-- **FAIL** iff artifact root is missing, wrong, or redirected outside the mode's registry root.
+- **PASS**: the route is `ai-council` and the response names the exact artifact root `ai-council/`, not a broad paraphrase such as "council artifacts" alone.
+- **FAIL**: artifact root is missing, wrong, redirected outside the mode's registry root, or only referenced by a broad phrase without the exact `ai-council/` string.
 
 ### Failure Triage
 
@@ -86,6 +93,7 @@ Before starting an AI council deliberation, resolve the mode through the registr
 - `.opencode/skills/system-deep-loop/SKILL.md` - packet artifact ownership.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `ai-council` artifact root.
 - `.opencode/skills/system-deep-loop/deep-ai-council/SKILL.md` - council artifact persistence.
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---
 

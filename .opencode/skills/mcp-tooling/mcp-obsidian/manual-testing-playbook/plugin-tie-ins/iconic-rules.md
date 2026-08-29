@@ -99,7 +99,7 @@ Add a red icon rule for PDF files and enable tag-pill icons in the Iconic setup,
 |---|---|
 | PASS | Backup exists, diff = exactly the 2 intended changes, JSON parses, real vault file untouched |
 | FAIL | Unrelated keys changed, no backup, invalid JSON, or the real vault file was modified |
-| SKIP | No vault with iconic installed available |
+| SKIP | No Obsidian vault with the Iconic plugin installed is available in this environment (a specific missing-plugin blocker) |
 
 ---
 

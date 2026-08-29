@@ -21,6 +21,8 @@ Verify language sub-detection for `.json` / `.jsonc` files within OPENCODE. Conf
 Add a derived.last_active_child_id field to the graph-metadata.json file with value "001-spec".
 ```
 
+Prompt: `Add a derived.last_active_child_id field to the graph-metadata.json file with value "001-spec".`
+
 **Expected detection**:
 - Surface: `OPENCODE`
 - Sub-language: `CONFIG` (target `.json`, signals: `schema`, `descriptor`-style edits)
@@ -51,10 +53,16 @@ Add a derived.last_active_child_id field to the graph-metadata.json file with va
 2. Capture loaded refs to `/tmp/skc-LS004-loaded-refs.txt`.
 3. Verify: 3 config/* + 2 shared/* refs loaded; 0 other-sub-language refs.
 
+### Expected Signals
+
+Expected signals: exactly 3 `config/*` refs plus 2 `shared/*` refs load, and 0 typescript/python/shell refs load.
+
 ### Pass/Fail Criteria
 
 - **PASS** iff: 3 config/* refs + 2 shared/* refs loaded AND 0 other-sub-language refs.
 - **FAIL** iff: any typescript/python/shell ref leaks.
+
+Evidence: `/tmp/skc-LS004-loaded-refs.txt` (loaded-refs transcript).
 
 ### Failure Triage
 
@@ -65,6 +73,7 @@ Add a derived.last_active_child_id field to the graph-metadata.json file with va
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/SKILL.md` (sub-detection table).
 - `.opencode/skills/sk-code/sk-code-opencode/references/config/{style_guide,quality_standards,quick_reference}.md`.
 
@@ -72,6 +81,8 @@ Add a derived.last_active_child_id field to the graph-metadata.json file with va
 
 ## 5. SOURCE METADATA
 
+- Group: Language Sub-Detection
+- Playbook ID: LS-004
 - **Created**: 2026-05-04
 - **Critical path**: No
 - **Destructive**: No

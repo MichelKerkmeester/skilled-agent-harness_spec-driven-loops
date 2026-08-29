@@ -32,13 +32,35 @@ Devin does not auto-discover the repository's `.claude/agents/` directory on its
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `Use the prompt-improver subagent to improve this request: "Fix auth." Return the improved request and name the constraints you added. Do not edit files.`
+
+### Commands
+
 1. `test -L .devin/agents/prompt-improver/AGENT.md && readlink .devin/agents/prompt-improver/AGENT.md`
 2. `devin -p "Use the prompt-improver subagent to improve this request: \"Fix auth.\" Return the improved request and name the constraints you added. Do not edit files." --model adaptive --permission-mode normal </dev/null > /tmp/cli-devin-dv011.txt 2>&1; echo "exit=$?" >> /tmp/cli-devin-dv011.txt`
 3. Inspect the response for profile-derived behavior and confirm `git status --porcelain` is unchanged.
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| DV-011 | `devin -p ... prompt-improver ...` | Mirrored agent result and symlink target | PASS/FAIL/SKIP |
+### Expected
+
+Mirrored agent result and symlink target
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Mirrored agent result and symlink target`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when the mirrored profile is used and returns derived content.
+- **Fail**: when Devin falls back silently or cannot load the profile
+- **Skip**: on auth/availability blockers..
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-001` and confirm th
 - Prompt: `Start a login-timeout feature in an isolated worktree, keep main clean, and report the worktree path, branch, and verdict.`
 - Expected execution process: Ask for workspace choice when needed, create the worktree with `git worktree add -b`, run baseline checks, and report the isolated path.
 - Expected signals: Main status is unchanged; new worktree appears in `git worktree list`; branch is `fix/login-timeout`.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the sandbox cannot create a git worktree.
 - Pass/fail: PASS if the workspace is created with `git worktree add -b` per `references/worktree-workflows.md §3` and no direct `git branch`, `git checkout -b`, or `git switch -c` is used per `SKILL.md §3` and `references/shared-patterns.md §3`. FAIL if the agent creates a branch directly, mutates main, skips user choice, or cannot show worktree evidence.
 
 ---

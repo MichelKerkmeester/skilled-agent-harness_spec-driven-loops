@@ -63,7 +63,7 @@ Command 2:
 ```console
 $ npx vitest run tests/lazy-loading.vitest.ts tests/context-server.vitest.ts
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  2 passed (2)

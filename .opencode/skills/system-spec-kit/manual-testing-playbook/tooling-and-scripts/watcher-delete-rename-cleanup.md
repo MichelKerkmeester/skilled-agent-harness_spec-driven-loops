@@ -50,7 +50,7 @@ unlink events call removeFn for deleted markdown files; rename removes the old p
 
 ### Evidence
 
-Command run from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server`:
+Command run from `.opencode/skills/system-spec-kit/mcp-server`:
 
 ```text
 npm run test:file-watcher
@@ -59,7 +59,7 @@ npm run test:file-watcher
 > vitest run tests/file-watcher.vitest.ts
 
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -68,12 +68,12 @@ npm run test:file-watcher
    Duration  128ms (transform 33ms, setup 12ms, import 31ms, tests 27ms, environment 0ms)
 ```
 
-Verbose evidence command run from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server`:
+Verbose evidence command run from `.opencode/skills/system-spec-kit/mcp-server`:
 
 ```text
 npx vitest run tests/file-watcher.vitest.ts --reporter verbose
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 stderr | mcp-server/tests/file-watcher.vitest.ts > file-watcher runtime behavior > calls removeFn when a markdown file is deleted
 [file-watcher] Removed indexed entries for sample.md

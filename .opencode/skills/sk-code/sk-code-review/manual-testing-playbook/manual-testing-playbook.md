@@ -6,7 +6,12 @@ version: 1.5.0.11
 
 # review: Manual Testing Playbook
 
-> **EXECUTION POLICY**: Every scenario MUST be executed against the live `review` skill, `@review`, or the named external CLI surface. No mocks, no stubs, and no "unautomatable" verdicts. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP with a concrete sandbox or tool-availability blocker.
+> **EXECUTION POLICY**: Every scenario MUST be executed against the live `review` skill, `@review`, or the named external CLI surface. No mocks, no stubs, and no "unautomatable" verdicts. Acceptable verdicts are PASS, FAIL, or SKIP with a concrete sandbox or tool-availability blocker.
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> `sk-code-review/benchmark/reports/<dated-run-label>/`.
 
 This document combines the full manual-validation contract for the `review` skill into one reference. The root playbook acts as the operator directory, review protocol, and orchestration guide, while the per-feature files carry scenario-specific execution truth for findings-first code-review behavior.
 
@@ -24,14 +29,15 @@ Canonical package artifacts:
 - `cross-cli-orchestration/`
 - `structural-impact-preflight/`
 - `efficiency-and-restraint/`
+- `intra-routing-recall/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 24 deterministic scenarios across 8 categories validating the `review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
+This playbook provides 31 deterministic scenarios across 9 categories validating the `review` skill surface and its review-agent consumers. Each scenario maps to a dedicated per-feature file with exact prompt, command sequence, expected signals, evidence, pass/fail criteria, and failure triage.
 
-Coverage note (2026-06-13): the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, structural-impact preflight degradation, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, and the v1.4.0.0 efficiency-and-restraint behaviors: reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.opencode/agents/` on disk.
+Coverage note: the playbook covers single-pass review flow, security/correctness minimums, severity and evidence discipline, scope and precedence, re-review behavior, stale-context handling, structural-impact preflight degradation, AI-generated-code review, native `@review` invocation, external CLI handbacks through cli-opencode and cli-claude-code, the v1.4.0.0 efficiency-and-restraint behaviors (reinvent-the-wheel detection, the unrequested-code removal prompt, ceiling-comment downgrade, the `SK_CODE_REVIEW_DEPTH` alias, and the rule-invariant canary), and intra-skill routing recall for the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`) driven by `SKILL.md` §2's `INTENT_SIGNALS` and `RESOURCE_MAP`. `review` does not ship a dedicated feature catalog, so per-feature files anchor directly to `SKILL.md`, `references/`, `scripts/`, and `.opencode/agents/` on disk.
 
 ### Realistic Test Model
 
@@ -71,7 +77,7 @@ Coverage note (2026-06-13): the playbook covers single-pass review flow, securit
 - File:line citations for every P0/P1 finding, or explicit evidence-backed clean result
 - Source-reference mapping to `references/review-core.md` and any applicable checklist
 - Delegation or runtime-routing notes when a sub-agent or external CLI is used
-- Final scenario verdict with rationale: PASS, PARTIAL, FAIL, or SKIP
+- Final scenario verdict with rationale: PASS, FAIL, or SKIP
 
 ---
 
@@ -94,8 +100,8 @@ Coverage note (2026-06-13): the playbook covers single-pass review flow, securit
 1. `manual-testing-playbook.md`
 2. Referenced per-feature files under `manual-testing-playbook/NN__category_name/`
 3. Scenario execution evidence from section 3
-4. Feature-to-scenario coverage map from section 14
-5. Triage notes for every PARTIAL, FAIL, or SKIP verdict
+4. Feature-to-scenario coverage map from section 17
+5. Triage notes for every FAIL or SKIP verdict
 
 ### Scenario Acceptance Rules
 
@@ -109,27 +115,28 @@ For each executed scenario, check:
 6. Outcome rationale is explicit and merge-decision useful.
 
 Scenario verdict:
-- `PASS`: all acceptance checks true
-- `PARTIAL`: core behavior works but non-critical evidence or metadata is incomplete
-- `FAIL`: expected behavior missing, contradictory output, scope mutation, or critical evidence missing
-- `SKIP`: execution blocked by a named sandbox, missing CLI, missing auth, or unavailable fixture
+- `PASS`: all acceptance checks true, including complete and readable evidence.
+- `FAIL`: any acceptance check is false — expected behavior missing, contradictory output, scope
+  mutation, or evidence/metadata that is missing or incomplete (a scenario with working core
+  behavior but incomplete non-critical evidence is FAIL, not a separate middle verdict).
+- `SKIP`: execution blocked by a named sandbox, missing CLI, missing auth, or unavailable fixture.
 
 ### Feature Verdict Rules
 
 - `PASS`: the mapped scenario is PASS.
-- `PARTIAL`: the mapped scenario is PARTIAL and no critical check failed.
 - `FAIL`: the mapped scenario is FAIL.
+- `SKIP`: the mapped scenario is SKIP for a named environment-only reason.
 
 Hard rule:
 - Any critical-path scenario FAIL (CR-001, CR-004, CR-007, CR-010, CR-013, CR-016, CR-017) blocks release readiness.
 
 ### Release Readiness Rule
 
-Release is READY only when:
+The release is cleared to ship only when:
 
 1. No feature verdict is FAIL.
 2. All critical-path scenarios are PASS or explicitly SKIP for environment-only reasons.
-3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 24`).
+3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-feature files (`COVERED_FEATURES == TOTAL_FEATURES == 31`).
 4. No unresolved blocking triage item remains.
 5. External CLI handbacks preserve review severity and evidence contracts.
 
@@ -143,13 +150,13 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 
 | Field | Required | Notes |
 |---|---|---|
-| Scenario ID | Yes | One of CR-001..CR-024 |
+| Scenario ID | Yes | One of CR-001..CR-024 or CR-R01..CR-R07 |
 | Feature file | Yes | Relative path under this playbook root |
 | Runtime | Yes | Native, @review, cli-opencode, cli-claude-code, or skipped surface |
 | Scope source | Yes | Diff range, staged diff, explicit file list, or fixture path |
 | Exact prompt hash | Yes | Hash or pasted prompt proving canonical prompt equality |
 | Evidence path | Yes | Transcript, report path, or captured output location |
-| Verdict | Yes | PASS, PARTIAL, FAIL, or SKIP |
+| Verdict | Yes | PASS, FAIL, or SKIP |
 | Blocking reason | Conditional | Required for FAIL and SKIP |
 | Follow-up owner | Conditional | Required when a P0/P1 issue is discovered |
 
@@ -158,7 +165,7 @@ Use this compact ledger when reporting wave results back to an orchestrator.
 Before declaring this playbook release-ready, confirm:
 
 1. Root validator is clean.
-2. Per-feature structural sweep checks all 24 files.
+2. Per-feature structural sweep checks all 31 files.
 3. No forbidden sidecars exist.
 4. Every table row has exactly 9 columns.
 5. Every scenario prompt is realistic per the RCAF-vs-natural-human heuristic in sk-doc creation reference §5.
@@ -174,7 +181,7 @@ Before declaring this playbook release-ready, confirm:
 
 ### Purpose
 
-This section records wave planning and capacity guidance for executing the 24-scenario review battery. It is not a runtime support matrix by itself.
+This section records wave planning and capacity guidance for executing the 31-scenario review battery. It is not a runtime support matrix by itself.
 
 ### Operational Rules
 
@@ -196,6 +203,7 @@ This section records wave planning and capacity guidance for executing the 24-sc
 | 4 | Cross-CLI | CR-016..CR-018 | Tool availability and handback reconciliation are isolated |
 | 5 | Structural impact | CR-019 | Isolates code-graph freshness and `detect_changes` caveat behavior |
 | 6 | Efficiency + restraint | CR-020..CR-024 | Restraint, needed-ness, ceiling evidence, depth alias, and the wording canary are read-only and isolate cleanly |
+| 7 | Intra routing recall | CR-R01..CR-R07 | Pure path-resolution checks against `SKILL.md` §2's `INTENT_SIGNALS`/`RESOURCE_MAP`; no diff fixture or CLI dependency, isolates cleanly |
 
 ### Cross-CLI Reconciliation Rules
 
@@ -655,7 +663,111 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 ---
 
-## 15. AUTOMATED TEST CROSS-REFERENCE
+## 15. INTRA ROUTING RECALL (CR-R01..CR-R07)
+
+This category covers 7 scenarios while the linked feature files remain the canonical execution contract. Unlike CR-001..CR-024, these scenarios do not review a diff; they confirm that `SKILL.md` §2's `INTENT_SIGNALS` keyword weights and `RESOURCE_MAP` entries still resolve the correct checklist/reference set for each of the seven review-lens intents (`SECURITY`, `QUALITY`, `KISS`, `DRY`, `SOLID`, `REMOVAL`, `TESTING`).
+
+### CR-R01 | Security routing
+
+#### Description
+
+Confirms an auth/injection-shaped prompt classifies as `SECURITY` and resolves the ALWAYS-loaded baseline set unchanged.
+
+#### Scenario Contract
+
+Prompt: `Review this auth handler for injection, vulnerability, race, and secret-handling security issues.`
+
+#### Test Execution
+
+> **Feature File:** [CR-R01](../manual-testing-playbook/intra-routing-recall/security.md)
+
+### CR-R02 | Quality routing
+
+#### Description
+
+Confirms a correctness/regression-shaped prompt classifies as `QUALITY` and resolves the ALWAYS-loaded baseline set unchanged.
+
+#### Scenario Contract
+
+Prompt: `Review this change for correctness, regression risk, performance boundaries, and breaking contract compatibility.`
+
+#### Test Execution
+
+> **Feature File:** [CR-R02](../manual-testing-playbook/intra-routing-recall/quality.md)
+
+### CR-R03 | KISS routing
+
+#### Description
+
+Confirms a simplicity-shaped prompt classifies as `KISS` and resolves the shared code-quality checklist already in the ALWAYS-loaded baseline.
+
+#### Scenario Contract
+
+Prompt: `Review this implementation for KISS, simplicity, and signs that it is over-engineered or overengineering the solution.`
+
+#### Test Execution
+
+> **Feature File:** [CR-R03](../manual-testing-playbook/intra-routing-recall/kiss.md)
+
+### CR-R04 | DRY routing
+
+#### Description
+
+Confirms a duplication-shaped prompt classifies as `DRY` and resolves the shared code-quality checklist already in the ALWAYS-loaded baseline.
+
+#### Scenario Contract
+
+Prompt: `Review this change for DRY problems, duplication, duplicate branches, copy-paste code, and repeated logic.`
+
+#### Test Execution
+
+> **Feature File:** [CR-R04](../manual-testing-playbook/intra-routing-recall/dry.md)
+
+### CR-R05 | SOLID routing
+
+#### Description
+
+Confirms an architecture-shaped prompt classifies as `SOLID` and adds `assets/solid-checklist.md` beyond the ALWAYS-loaded baseline.
+
+#### Scenario Contract
+
+Prompt: `Review this architecture for SOLID design, coupling, cohesion, module boundaries, adapter interfaces, abstraction responsibility, and dependency direction.`
+
+#### Test Execution
+
+> **Feature File:** [CR-R05](../manual-testing-playbook/intra-routing-recall/solid.md)
+
+### CR-R06 | Removal routing
+
+#### Description
+
+Confirms a removal-shaped prompt classifies as `REMOVAL` and adds `assets/removal-plan.md` beyond the ALWAYS-loaded baseline.
+
+#### Scenario Contract
+
+Prompt: `Review this cleanup plan to remove dead code and deprecate obsolete behavior safely.`
+
+#### Test Execution
+
+> **Feature File:** [CR-R06](../manual-testing-playbook/intra-routing-recall/removal.md)
+
+### CR-R07 | Testing routing
+
+#### Description
+
+Confirms a test-shaped prompt classifies as `TESTING` and adds `assets/test-quality-checklist.md` beyond the ALWAYS-loaded baseline.
+
+#### Scenario Contract
+
+Prompt: `Review this test suite for testing coverage, assertions, mocks, stubs, fixtures, test quality, and brittle cases.`
+
+#### Test Execution
+
+> **Feature File:** [CR-R07](../manual-testing-playbook/intra-routing-recall/testing.md)
+
+---
+
+## 16. AUTOMATED TEST CROSS-REFERENCE
 
 The current repository has no dedicated automated test module for `review/manual-testing-playbook/`, and the sk-doc validator currently checks the root playbook only. These adjacent tests and stress fixtures exercise related routing or review-dispatch behavior.
 
@@ -669,7 +781,7 @@ Validator limitation: per-feature file completeness requires the structural swee
 
 ---
 
-## 16. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -697,3 +809,10 @@ Validator limitation: per-feature file completeness requires the structural swee
 | CR-022 | Ceiling-comment downgrade | EFFICIENCY AND RESTRAINT | [CR-022](../manual-testing-playbook/efficiency-and-restraint/ceiling-comment-downgrade.md) |
 | CR-023 | Review-depth alias | EFFICIENCY AND RESTRAINT | [CR-023](../manual-testing-playbook/efficiency-and-restraint/review-depth-alias.md) |
 | CR-024 | Rule-invariant canary | EFFICIENCY AND RESTRAINT | [CR-024](../manual-testing-playbook/efficiency-and-restraint/rule-invariant-canary.md) |
+| CR-R01 | Security routing | INTRA ROUTING RECALL | [CR-R01](../manual-testing-playbook/intra-routing-recall/security.md) |
+| CR-R02 | Quality routing | INTRA ROUTING RECALL | [CR-R02](../manual-testing-playbook/intra-routing-recall/quality.md) |
+| CR-R03 | KISS routing | INTRA ROUTING RECALL | [CR-R03](../manual-testing-playbook/intra-routing-recall/kiss.md) |
+| CR-R04 | DRY routing | INTRA ROUTING RECALL | [CR-R04](../manual-testing-playbook/intra-routing-recall/dry.md) |
+| CR-R05 | SOLID routing | INTRA ROUTING RECALL | [CR-R05](../manual-testing-playbook/intra-routing-recall/solid.md) |
+| CR-R06 | Removal routing | INTRA ROUTING RECALL | [CR-R06](../manual-testing-playbook/intra-routing-recall/removal.md) |
+| CR-R07 | Testing routing | INTRA ROUTING RECALL | [CR-R07](../manual-testing-playbook/intra-routing-recall/testing.md) |

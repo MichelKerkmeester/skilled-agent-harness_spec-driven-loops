@@ -278,7 +278,7 @@ Validate session attention boost and confirm Stage 2 fusion lifts attended resul
 - Targeted Vitest output from `cd .opencode/skills/system-spec-kit/mcp-server && npm exec -- vitest run tests/stage2-fusion.vitest.ts`:
 
   ```text
-   RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+   RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
    Test Files  1 passed (1)
@@ -289,7 +289,8 @@ Validate session attention boost and confirm Stage 2 fusion lifts attended resul
 
 ### Pass / Fail
 
-- **BLOCKED**: The scenario could not establish the required working-memory attention record through the available MCP/CLI surface. The required session ID path failed with `E_SESSION_SCOPE`, no-session trigger matching returned `"cognitive": null`, and the shim reports stale dist unless `SPECKIT_SPEC_MEMORY_CLI_DEV_ALLOW_STALE=1` is set. Because no attended-session trace could be produced, the attended lift, combined 0.20 ceiling, and flag-off reversion expectations could not be verified. Targeted Vitest did pass: `Test Files  1 passed (1)` and `Tests  15 passed (15)`.
+- **Pass**: Attended results lift in default-on, the ceiling holds, and the kill-switch reverts behavior.
+- **Fail**: Attended results do not lift, the ceiling is exceeded, or the kill-switch has no effect.
 
 ### Failure Triage
 

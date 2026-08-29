@@ -64,16 +64,41 @@ grep -lqE "window\.Motion|window\.gsap|gsap\.(to|from|set|timeline|registerPlugi
 
 ## 3. TEST EXECUTION
 
-Run this scenario through the cross-CLI universal prompt using `SCENARIO_ID=CS-001`. Capture the runtime YAML result and raw transcript.
+### Prompt
 
-Expected result files:
-- `/tmp/skc-CS-001-<cli>.txt`
-- `<spec-folder><cli>.yaml`
+- Prompt: `For a Webflow hero in src/2_javascript/hero.js, show the pinned Motion CDN pattern and in-view animation snippet.`
+
+### Commands
+
+1. Dispatch the exact prompt through the cross-CLI universal-prompt harness with `SCENARIO_ID=CS-001` on each configured CLI runtime.
+2. Capture the raw transcript per runtime to `/tmp/skc-CS-001-<cli>.txt`.
+3. Capture the structured routing result (surface, references, assets, agent dispatch) per runtime to `results/CS-001-<cli>.yaml`.
+4. Diff each `results/CS-001-<cli>.yaml` against the reference/asset set declared in §2 SCENARIO CONTRACT.
+
+### Expected
+
+Expected signals: the structured result in `results/CS-001-<cli>.yaml` reports surface `WEBFLOW` and the reference/asset set declared in §2 SCENARIO CONTRACT, with no agent dispatched.
+
+### Evidence
+
+Evidence: `/tmp/skc-CS-001-<cli>.txt` (raw per-runtime transcript) and `results/CS-001-<cli>.yaml` (structured routing result) for each configured CLI runtime.
+
+### Pass / Fail
+
+- **Pass**: surface is `WEBFLOW`, at least one `sk-code-webflow/references/implementation/*` path loads, `sk-code-webflow/references/animation/quick-start.md` and `sk-code-webflow/assets/animation/snippets/in-view-reveal.js` load, and `agent_dispatched` is `none`.
+- **Fail**: surface is not `WEBFLOW`, Motion.dev peer references are omitted, or any agent is dispatched.
+
+### Failure Triage
+
+1. If surface is not `WEBFLOW`, verify the prompt includes `src/2_javascript/` and Webflow terms.
+2. If Motion.dev paths are missing, inspect `references/smart-routing.md` Section 3.
+3. If an agent was dispatched, verify the universal prompt says analyze only and "DO NOT dispatch any agent."
 
 ---
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` - Root directory page and scenario summary.
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` - WEBFLOW marker block.
 - `.opencode/skills/sk-code/shared/references/smart-routing.md` - WEBFLOW plus MOTION_DEV loading rules.
 - `.opencode/skills/sk-code/sk-code-webflow/references/animation/quick-start.md` - Motion install and import guidance.
@@ -83,9 +108,11 @@ Expected result files:
 
 ## 5. SOURCE METADATA
 
-- **Created**: 2026-05-05
-- **Critical path**: Yes
-- **Destructive**: No
-- **Sandbox**: read-only routing analysis
-- **Concurrent-safe**: Yes
-- **Last validated**: pending Phase D matrix
+- Group: Cross-Stack Routing
+- Playbook ID: CS-001
+- Created: 2026-05-05
+- Critical path: Yes
+- Destructive: No
+- Sandbox: read-only routing analysis
+- Concurrent-safe: Yes
+- Last validated: pending Phase D matrix

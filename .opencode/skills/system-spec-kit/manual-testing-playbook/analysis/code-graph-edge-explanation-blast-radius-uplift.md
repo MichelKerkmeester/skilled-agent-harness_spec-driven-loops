@@ -66,7 +66,7 @@ Validate Code Graph edge explanation, blast-radius enrichment, overflow handling
 - Block A: each edge has `reason` + `step` keys (value may be null); blast_radius response has `depthGroups`, `riskLevel`, echoed `minConfidence`, `ambiguityCandidates`, `failureFallback` (when applicable).
 - Block B: exact-limit case returns `partialResult: false` (the bug-fix assertion); under-limit case returns `partialResult: true` with overflow indicator.
 - Block C: multi-subject failure preserves resolved seeds in `preservedSeedNodes`; `nodes[]` reflects partial traversal not wiped to `[]`.
-- Block D: each of the 5 `failureFallback.code` values triggers from its respective scenario; `compute_error` may SKIP if fault injection isn't accessible.
+- Block D: each of the 5 `failureFallback.code` values triggers from its respective scenario; `compute_error` may SKIP only when the fault-injection harness is unavailable in this environment.
 - Block E: control-char-containing `reason` round-trips as `null`; raw bytes do NOT leak through the read path.
 
 ### Evidence
@@ -75,8 +75,8 @@ JSON payloads from steps 2, 3, 4, 6, 7, 9, 10, 12, 13, (14 if reproduced), and 1
 
 ### Pass / Fail
 
-- **Pass**: Block A required fields present and behave correctly; Block B exact-limit assertion holds (`partialResult: false`); Block C `preservedSeedNodes[]` populated on partial failure; Block D at least 4 of 5 codes triggered (compute_error allowed UNAUTOMATABLE with cited test coverage); Block E control-char `reason` returns `null`.
-- **Fail**: Any of: relationship rows missing reason/step; exact-limit case returns `partialResult: true` (R-007-P2-4 regression); multi-subject failure returns empty `nodes[]` or missing `preservedSeedNodes` (R-007-P2-5 regression); `failureFallback.code` field missing from any response (R-007-P2-6 regression); control characters round-trip through `reason` to caller (R-007-P2-3 regression — security relevant).
+- **Pass**: All required fields appear with plausible values across all blocks.
+- **Fail**: Any bare blast-radius error string replaces `failureFallback`, ambiguity is silently resolved, exact-limit returns `partialResult: true` (false-positive overflow), multi-subject failure wipes resolved seeds, OR control characters round-trip through edge metadata.
 
 ### Failure Triage
 

@@ -36,7 +36,7 @@ An external session that needs the project's whole runtime has no native path to
 
 ### What It Does
 
-cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. The default dispatch is `opencode run --model deepseek/deepseek-v4-pro --variant high --format json --dir <repo-root>`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
+cli-opencode is the single routing point for runtimes that need an OpenCode dispatch. A smart router scores the prompt against intent signals (external dispatch, parallel detached, cross-AI handback, agent delegation, cross-repo) and loads only the references that match. The default dispatch is `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir <repo-root>`. A three-layer guard refuses self-invocation unless the request is an explicit parallel detached session.
 
 It does not write application code or manage spec folders. `sk-code` owns code standards and tests. `system-spec-kit` owns spec folders, memory and continuity. cli-opencode dispatches to OpenCode and hands the result back to the caller.
 
@@ -47,7 +47,7 @@ It does not write application code or manage spec folders. `sk-code` owns code s
 | **One-shot full-runtime dispatch** | `opencode run` loads every plugin in `opencode.json`, every skill under `.opencode/skills/`, every MCP server and the Spec Kit Memory database |
 | **Parallel detached sessions** | separate session ids and state in the shared `~/.local/share/opencode/` database for ablation suites and worker farms |
 | **Cross-AI handback** | bridges the dispatch result back into the caller's spec folder through the Memory Handback |
-| **Provider and model surface** | reaches the `deepseek`, `minimax`, `xiaomi` and `openai` provider catalogs through `references/providers-and-models.md` |
+| **Provider and model surface** | reaches the `opencode-go`, `minimax`, `xiaomi` and `openai` provider catalogs through `references/providers-and-models.md` |
 | **Agent delegation** | routes to project-local agents under `.opencode/agents/` with the primary-versus-subagent caveats in `references/agent-delegation.md` |
 
 ---
@@ -68,14 +68,13 @@ If nothing prints, install with `brew install opencode` (macOS) or `curl -fsSL h
 opencode providers list
 ```
 
-Expected when configured: a table of providers with status and default indicators. If `deepseek` is missing, the skill asks before falling back rather than substituting a model you did not approve.
+Expected when configured: a table of providers with status and default indicators. If `opencode-go` is missing, the skill asks before falling back rather than substituting a model you did not approve.
 
 **Step 3: Run the default dispatch.**
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash --variant max \
   --format json \
   --dir "$REPO_ROOT" \
   "Act as a context-retrieval agent: search memory context and return the top findings." \
@@ -90,7 +89,7 @@ You get structured JSON events streamed to stdout as the session runs, ending wi
 
 ```bash
 opencode run --share --port 4096 \
-  --model deepseek/deepseek-v4-pro --variant high --format json --dir "$REPO_ROOT" \
+  --model opencode-go/deepseek-v4-flash --variant max --format json --dir "$REPO_ROOT" \
   "Run a parallel research branch for the approved spec folder." \
   </dev/null &
 ```
@@ -129,7 +128,7 @@ The one exception is an explicit parallel detached request. When the prompt cont
 
 ### Provider Auth Pre-Flight
 
-Before the first dispatch in a session the skill runs `opencode providers list`. Four providers are documented: `deepseek` (direct API, the default), `minimax` (MiniMax-M3), `xiaomi` (mimo-v2.5-pro and -ultraspeed) and `openai` (paid premium, the GPT-5.6 family). If the default `deepseek` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
+Before the first dispatch in a session the skill runs `opencode providers list`. Four providers are documented: `opencode-go` (Go gateway, the default), `minimax` (MiniMax-M3), `xiaomi` (mimo-v2.5-pro and -ultraspeed) and `openai` (paid premium, the GPT-5.6 family). If the default `opencode-go` is missing the skill asks before falling back and never substitutes a model you did not approve. The full roster and effort map live in `references/providers-and-models.md`.
 
 ### Agent Delegation
 
@@ -174,7 +173,7 @@ If you are already inside one runtime, the matching cli-X skill refuses to load.
 | `command not found: opencode` | CLI not installed or PATH not updated | `brew install opencode` or `curl -fsSL https://opencode.ai/install \| bash`, then restart your terminal |
 | Dispatch hangs at 0% CPU after the snapshot line | Missing `</dev/null` on a non-interactive run | Append `</dev/null` before any `> stdout.log 2> stderr.log` redirect |
 | `--agent general` fails or warns | The default path is selected by omitting `--agent` | Omit `--agent general`. Use `orchestrate` only when it is the documented primary route and help-verified. Route `context`, `review`, `debug` and `ai-council` through the documented primary path (or, for `ai-council`, `/deep:ai-council`) instead of a direct top-level `--agent`. |
-| `provider/model not found` or `401 Unauthorized` | The default `deepseek` is not configured on this machine | Run `opencode providers list`, then `opencode providers login <provider>` for the missing one |
+| `provider/model not found` or `401 Unauthorized` | The default `opencode-go` is not configured on this machine | Run `opencode providers list`, then `opencode providers login <provider>` for the missing one |
 | Empty event stream | Output format defaulted to formatted instead of JSON | Force `--format json` |
 | `Self-invocation refused` | The caller is already inside OpenCode (`OPENCODE_*` env, `opencode` ancestry or a state lock) | Use a different runtime, exit the current session or restate with explicit parallel-detached keywords |
 | Unknown `--share` or `--variant` flag | Binary older than the documented baseline | Run `opencode --version` and `opencode run --help`, then upgrade |
@@ -202,7 +201,7 @@ A: OpenCode reads stdin at startup before session creation. When stdout and stde
 
 **Q: Which model do I pick?**
 
-A: Default to `deepseek/deepseek-v4-pro --variant high` via the direct DeepSeek API, which gives elevated reasoning at low cost. Switch to `minimax/MiniMax-M3` for MiniMax Direct, `xiaomi/mimo-v2.5-pro` for MiMo, `xiaomi/mimo-v2.5-pro-ultraspeed` for low latency or `openai/gpt-5.6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
+A: Default to `opencode-go/deepseek-v4-flash --variant max` via the Go gateway, which fronts the latency-optimized reasoning model at its max thinking tier with subsidized usage. Switch to `minimax/MiniMax-M3` for MiniMax Direct, `xiaomi/mimo-v2.5-pro` for MiMo, `xiaomi/mimo-v2.5-pro-ultraspeed` for low latency or `openai/gpt-5.6-sol` for paid premium. The full roster lives in `references/providers-and-models.md`.
 
 ---
 
@@ -214,7 +213,7 @@ The skill ships a manual testing playbook with per-feature scenarios grouped by 
 |---|---|
 | README structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-opencode/README.md --type readme` reports zero issues |
 | Playbook structure | `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/manual-testing-playbook.md` |
-| Default dispatch | `opencode run --model deepseek/deepseek-v4-pro --variant high --format json --dir . "Say hello" </dev/null` returns a JSON event stream ending with a tool-result message |
+| Default dispatch | `opencode run --model opencode-go/deepseek-v4-flash --variant max --format json --dir . "Say hello" </dev/null` returns a JSON event stream ending with a tool-result message |
 
 ---
 

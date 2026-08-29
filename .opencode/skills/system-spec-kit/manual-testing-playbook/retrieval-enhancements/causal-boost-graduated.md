@@ -300,7 +300,7 @@ data.deleted: true
 - Targeted Vitest summary for `npm exec -- vitest run tests/causal-boost.vitest.ts tests/stage2-fusion.vitest.ts`:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  2 passed (2)

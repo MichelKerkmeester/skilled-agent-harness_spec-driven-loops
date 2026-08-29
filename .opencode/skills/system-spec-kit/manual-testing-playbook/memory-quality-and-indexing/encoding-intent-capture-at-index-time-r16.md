@@ -52,7 +52,7 @@ Intent labels (doc/code/structured) persisted in metadata; labels read-only afte
 Command: `npx vitest run tests/encoding-intent.vitest.ts` from `.opencode/skills/system-spec-kit/mcp-server`
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 (node:28393) ExperimentalWarning: SQLite is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)

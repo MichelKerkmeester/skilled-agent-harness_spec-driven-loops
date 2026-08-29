@@ -28,7 +28,7 @@ The test treats existing edges as historical evidence. Even if the command finds
 - Expected signals: existing edges are byte-identical before and after; new edges are appended; edge count increases by the number of inserted candidates; no delete or update operation is observed.
 - Desired user-visible outcome: A pass/fail verdict proving mutation flow preserved all existing causal evidence.
 - Pass/fail: PASS if pre-existing causal edges are unchanged and all differences are additive new rows.
-- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, `SKIP`, or `UNAUTOMATABLE`.
+- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable; a scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
 
@@ -67,10 +67,8 @@ If `N` new edges are inserted, the post-run edge count is exactly baseline plus 
 
 ### Pass / Fail
 
-- **PASS**: existing edges are byte-identical pre/post, the diff contains only additions, and edge count delta equals inserted new edges.
-- **FAIL**: any existing edge weight changes, any existing row is deleted, any existing row is updated, or the command uses a forbidden delete/update path.
-- **SKIP**: no sandbox or target dataset has both established existing edges and eligible new candidate edges.
-- **UNAUTOMATABLE**: the runtime cannot execute `/doctor causal-graph` or produce comparable pre/post causal edge dumps.
+- **Pass**: Pre-existing causal edges are unchanged and all differences are additive new rows.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

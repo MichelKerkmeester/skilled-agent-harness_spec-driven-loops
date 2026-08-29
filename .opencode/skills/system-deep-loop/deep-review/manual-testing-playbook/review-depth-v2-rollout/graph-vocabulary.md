@@ -36,7 +36,11 @@ Without graph-side persistence, the ledger has nowhere to project its richer sem
 - Graph upsert test fixtures can include `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST` events with valid review-loop relations.
 - The graph test path can verify persisted review-loop nodes.
 
-### Steps
+### Prompt
+
+- Prompt: `Upsert a BUG_CLASS, INVARIANT, PRODUCER, CONSUMER, and TEST node into the review coverage-graph and confirm all five persist.`
+
+### Commands
 
 1. Run or prepare the graph fixture path anchored by `review-depth-graph.vitest.ts`.
 2. Upsert a `BUG_CLASS` node and verify success.
@@ -50,7 +54,12 @@ Without graph-side persistence, the ledger has nowhere to project its richer sem
 
 The review-loop graph accepts and persists `BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, and `TEST` node kinds without rejection. Existing relations (`IN_DIMENSION`, `IN_FILE`, `EVIDENCE_FOR`) cover the new node mappings without requiring new relation kinds.
 
-### Failure Modes
+### Evidence
+
+- Upsert response for each of the five node kinds (`BUG_CLASS`, `INVARIANT`, `PRODUCER`, `CONSUMER`, `TEST`), captured to `/tmp/drv-063-upserts.txt`.
+- A post-upsert graph query or state inspection showing all five node kinds present in the review-loop namespace, captured to `/tmp/drv-063-graph-state.txt`.
+
+### Failure Triage
 
 - A node kind is rejected with `unsupported_kind`: confirm the test runs against `loopType: 'review'` and that `coverage-graph-db.ts` `VALID_KINDS['review']` includes all five new entries.
 - A node kind disappears after upsert: inspect persistence (graph DB query) rather than only the upsert response.
@@ -58,7 +67,7 @@ The review-loop graph accepts and persists `BUG_CLASS`, `INVARIANT`, `PRODUCER`,
 
 ---
 
-## 4. SOURCE REFERENCES
+## 4. SOURCE FILES
 
 - Allow-list: `.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts` (`VALID_KINDS['review']` constant).
 - Upsert handler: `.opencode/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-db.ts` (dynamic kind validation via `VALID_KINDS[loopType]`).
@@ -66,10 +75,11 @@ The review-loop graph accepts and persists `BUG_CLASS`, `INVARIANT`, `PRODUCER`,
 - Confirm mirror: `.opencode/commands/deep/assets/deep-review-confirm.yaml`.
 - Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-graph.vitest.ts`.
 - Phase spec: complexity-ledger-led graph-vocab spec (see this skill's changelog for provenance).
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Review-depth v2 rollout
 - Playbook ID: DRV-063

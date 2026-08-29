@@ -119,43 +119,11 @@ Set up a Health.md visualization for a throwaway vault by identifying the config
 |---|---|
 | PASS | Data folder identified from settings, authentic source file verified, block is a valid `health-viz` block with a metric present in the file, both files parse and round-trip, throwaway files removed |
 | FAIL | Evidence rests only on mock-data rendering, wrong fence or unknown block keys used, invalid file, unknown metric, or fabricated data outside the `_pbtest-` throwaway path |
-| SKIP | No vault available or health-md not installed (Phase 11 prerequisite) |
+| SKIP | No vault is available in this environment, or health-md is not installed in it (a specific missing-plugin blocker) |
 
 ---
 
-## 4. LIVE RUN RECORD (2026-08-03)
-
-Executed as the Phase 017 live validation closeout against a throwaway vault at `/tmp/_pbtest-obs014` (manifest copied from the real vault; the real vault was never touched).
-
-**Pre-flight — real vault `/Users/michelkerkmeester/MEGA/Documents/Obsidian`:** health-md v2.1.0 enabled; no `data.json` present (defaults in effect: `Health/`, `Flat`, `*`, auto); no `Health/` folder — the mock-fallback trap is live on this machine.
-
-**Defect found and fixed in step 1:** with no `data.json` present, `jq` on the missing file returned empty, the folder resolved to the vault root, and the guard could not fire. Fixed command:
-
-~~~sh
-DATA_FOLDER="$TEST_VAULT/$(jq -r '.dataFolder // "Health"' "$PLUGIN_DIR/data.json" 2>/dev/null || echo Health)"
-~~~
-
-**Guard output (verbatim):**
-
-```
-GUARD: configured data folder is missing or empty — the plugin would render deterministic bundled example data; NO chart can count as evidence
-GUARD: no authentic source file found
-```
-
-**Results:**
-
-| Check | Result |
-|-------|--------|
-| Fixture shape | OK — canonical wrapper keys only, no invented keys |
-| Render block | `type: step-spiral` / `last: 7` references a metric present in the file |
-| Round-trip | Byte-identical |
-| Cleanup | Verified — throwaway files removed; throwaway vault removed; real vault has no `Health/` folder (confirmed untouched) |
-
-**Verdict:** PASS on file-layer mechanics + mock-fallback guard behavior; the authentic-source axis is correctly graded as not-passable until the user exports real health data (documented expected state, not a defect).
-
----
-
-## 5. SOURCE FILES
+## 4. SOURCE FILES
 
 ### Playbook Sources
 
@@ -177,7 +145,7 @@ GUARD: no authentic source file found
 
 ---
 
-## 6. SOURCE METADATA
+## 5. SOURCE METADATA
 
 - Group: Plugin tie-ins
 - Playbook ID: OBS-014

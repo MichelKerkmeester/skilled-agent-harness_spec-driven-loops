@@ -49,37 +49,17 @@ Anchor metadata enriched in pipeline; anchor tags visible in query metadata; no 
 
 ### Evidence
 
-- Scenario file read in full from `.opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/template-anchor-optimization-s2.md`.
-- Observed Commands section exactly:
-  ```
-  1. Save anchored memory
-  2. query pipeline metadata
-  3. verify no score mutation
-  ```
-- Observed Expected section exactly:
-  ```
-  Anchor metadata enriched in pipeline; anchor tags visible in query metadata; no score mutation from anchor presence
-  ```
-- Referenced root playbook global preconditions observed:
-  ```
-  1. Working directory is project root.
-  2. Feature summary files are accessible.
-  3. Spec/memory commands are available in the runtime.
-  4. Manual execution logging is enabled (terminal transcript capture).
-  5. Destructive scenarios (`EX-008`, `EX-009`, `EX-018`, `EX-021`) MUST run only in a disposable sandbox spec folder (for example `specs/test-sandbox`), never in active project folders.
-  6. Before each destructive scenario, create and record a named checkpoint for rollback evidence.
-  ```
-- Referenced feature catalog read from `.opencode/skills/system-spec-kit/feature-catalog/pipeline-architecture/template-anchor-optimization.md`; observed validation contract:
-  ```
-  Anchor markers in memory files (structured sections like `<!-- ANCHOR:state -->`) are parsed and attached as metadata to search pipeline rows. The module extracts anchor IDs and derives semantic types from structured IDs (for example, `DECISION-pipeline-003` yields type `DECISION`). Simple IDs like `summary` pass through as-is.
+Capture, for every step in the Commands sequence above:
 
-  This is a pure annotation step wired into Stage 2 as step 8. It never modifies any score fields. The enrichment makes Stage 3 (rerank) and Stage 4 (filter) anchor-aware without score side-effects. No feature flag. Always active.
-  ```
-- BLOCKED before executing command 1 because the scenario requires `Save anchored memory`, which is a mutation outside the single allowed write path for this run. The active run constraint was: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.` The only allowed write path was `.opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/template-anchor-optimization-s2.md`.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: Command 1 (`Save anchored memory`) requires a real memory/spec mutation, but this run allowed writes only to `.opencode/skills/system-spec-kit/manual-testing-playbook/pipeline-architecture/template-anchor-optimization-s2.md`; therefore the anchored-memory save, pipeline metadata query against that saved memory, and score comparison could not be truthfully executed under the stated constraints.
+- **Pass**: Anchor metadata present; scores identical with/without anchor enrichment.
+- **Fail**: Anchor metadata missing or score mutation detected.
 
 ### Failure Triage
 

@@ -102,7 +102,6 @@ Each file follows the same shape:
 - **PASS** — Top-K matches expected signals, observed within latency bounds, all AI-to-CLI handoffs returned coherent JSON, no errors in any transcript.
 - **FAIL** — Expected target absent from top-K, OR cross-AI handoff produced corrupt JSON / errors, OR concurrent reads returned inconsistent data.
 - **SKIP** — Pre-flight missing (no ollama + hf-local both unavailable, no indexed corpus, no external CLI for cross-AI scenarios). Document the blocker.
-- **UNAUTOMATABLE** — Scenario cannot be run deterministically by the harness; document the manual blocker and evidence needed.
 
 Aggregate the 15 scenarios into a single packet-level summary in `_sandbox/local-llm-query-intelligence/evidence/summary.md`.
 

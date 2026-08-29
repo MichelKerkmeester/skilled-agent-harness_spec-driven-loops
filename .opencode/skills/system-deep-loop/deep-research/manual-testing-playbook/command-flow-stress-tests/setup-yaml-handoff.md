@@ -50,7 +50,7 @@ Operators run the exact command sequence for `CP-046` and confirm the expected s
 ```bash
 rm -rf /tmp/cp-046-sandbox /tmp/cp-046-sandbox-baseline /tmp/cp-046-spec
 mkdir -p /tmp/cp-046-spec
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup_cp_sandbox.sh --sandbox-dir /tmp/cp-046-sandbox
+.opencode/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/setup-cp-sandbox.sh --sandbox-dir /tmp/cp-046-sandbox
 cp -a /tmp/cp-046-sandbox /tmp/cp-046-sandbox-baseline
 cat > /tmp/cp-046-spec/spec.md <<'EOF'
 ---
@@ -80,7 +80,7 @@ opencode run "$(cat /tmp/cp-046-prompt-A.txt)" --model deepseek/deepseek-v4-pro 
 rm -rf /tmp/cp-046-sandbox && cp -a /tmp/cp-046-sandbox-baseline /tmp/cp-046-sandbox
 cd /tmp/cp-046-sandbox
 opencode run "/deep:research:auto \"CP-046 setup binding handoff across command and YAML\" --spec-folder=/tmp/cp-046-spec --max-iterations=1 --convergence=0.05" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-046-sandbox </dev/null 2>&1 | tee /tmp/cp-046-B-command.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-046-B-exit.txt
-cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+cd "$(git rev-parse --show-toplevel)"
 diff -u /tmp/cp-046-sandbox-baseline/.opencode/agents/deep-research.md /tmp/cp-046-sandbox/.opencode/agents/deep-research.md > /tmp/cp-046-B-canonical.diff; echo "POST_B_CANONICAL_DIFF=$?" | tee /tmp/cp-046-B-canonical-exit.txt
 find /tmp/cp-046-spec -type f -print0 2>/dev/null | xargs -0 cat > /tmp/cp-046-B-artifacts.txt 2>/dev/null || touch /tmp/cp-046-B-artifacts.txt
 cat /tmp/cp-046-B-command.txt /tmp/cp-046-B-artifacts.txt > /tmp/cp-046-B-combined.txt
@@ -95,7 +95,7 @@ diff /tmp/cp-046-pre.txt /tmp/cp-046-post.txt > /tmp/cp-046-tripwire.diff; echo 
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 | File | Anchor |
 |---|---|

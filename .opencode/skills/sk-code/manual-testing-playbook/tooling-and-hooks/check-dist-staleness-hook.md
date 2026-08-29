@@ -23,6 +23,8 @@ This scenario verifies the dist-staleness half of `.opencode/skills/sk-code/sk-c
 Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts while its compiled dist output is stale, and confirm claude-posttooluse.sh prints a STALE DIST WARNING banner and still exits 0.
 ```
 
+Prompt: `Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts while its compiled dist output is stale, and confirm claude-posttooluse.sh prints a STALE DIST WARNING banner and still exits 0.`
+
 **Expected detection**: not applicable — this is a deterministic hook-wiring check, not a routing decision (no advisor probe, no surface/reference loading).
 
 **Expected behavior (intended contract)**:
@@ -80,8 +82,7 @@ Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts 
 ### Pass/Fail Criteria
 
 - **PASS** iff: the hook prints the STALE DIST WARNING banner to stdout for the stale package AND exits 0.
-- **PARTIAL** iff: the hook exits 0 (warn-only contract holds) but the banner does not reach stdout due to a checker-invocation failure (e.g. the missing-executable-bit gap in §1) — the failure is caught safely but coverage is not achieved.
-- **FAIL** iff: the hook exits non-zero (blocks the edit) for any reason, or the checker fires the banner when the package is actually fresh (false positive).
+- **FAIL** iff: the hook exits non-zero (blocks the edit) for any reason, the checker fires the banner when the package is actually fresh (false positive), or the banner does not reach stdout for a stale package (e.g. a checker-invocation failure such as the missing-executable-bit gap in §1) even though the hook itself still exits 0.
 
 ### Failure Triage
 
@@ -94,8 +95,9 @@ Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts 
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/sk-code-quality/scripts/hooks/claude-posttooluse.sh` — Dispatches both the comment-hygiene and dist-staleness checkers on every `Write`/`Edit`; always exits 0.
-- `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` — Dist-staleness checker (Python, `.sh` extension); currently missing its executable bit (see §1, §3 Failure Triage).
+- `.opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` — Dist-staleness checker (Python, `.sh` extension); ships executable (see §1 for the historical missing-bit gap and its fix, §3 Failure Triage for the regression check).
 - `.opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs` — Shared `checkFileFreshness()` / `DIST_PACKAGES` registry the checker calls.
 
 **Related**: `claude-posttooluse.sh` also runs the pre-existing comment-hygiene check (`check-comment-hygiene.sh`, see `references/universal/code-style-guide.md` §4) on the same edit. That checker's hook branch is covered by its own scenario `TH-002` (see `comment-hygiene-hook.md` in this same category).
@@ -104,9 +106,12 @@ Edit .opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts 
 
 ## 5. SOURCE METADATA
 
+- Group: Tooling And Hooks
+- Playbook ID: TH-001
 - **Created**: 2026-07-02
 - **Critical path**: No
 - **Destructive**: No (writes only touch mtimes and a temp cache file under the already-gitignored `dist/` tree; content changes are backed up and restored byte-exact via the local `$BAK` copy)
 - **Sandbox**: mutations are confined to `orchestrator.ts` mtime/content (restored) and `orchestrator.js` mtime (restored); no production behavior changes
 - **Concurrent-safe**: No (touches a shared source file's mtime; run this scenario serially, and avoid running it while another session may be editing the same file)
-- **Last validated**: 2026-07-02 — **PASS**. Initial authoring run found the missing-executable-bit gap (see §1, PARTIAL at the time); `chmod +x .opencode/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh` applied and both the direct checker invocation and the full hook path independently re-verified afterward -- fresh dist exits 0 silently, stale dist prints the STALE DIST WARNING banner to stdout and still exits 0.
+- **Last validated**: pending first manual run against the current Pass/Fail criteria.
+- Evidence: direct checker stdout (`direct_exit`) and full hook stdout/stderr (`hook_exit`) captured during §3 steps 2-3.

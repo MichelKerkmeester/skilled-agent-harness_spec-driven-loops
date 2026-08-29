@@ -54,7 +54,7 @@ Command 1: `npx tsx .opencode/skills/system-spec-kit/scripts/evals/map-ground-tr
 ```text
 npm warn exec The following package was not found and will be installed: tsx@4.22.5
 === Ground Truth ID Mapping Script ===
-Database: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite
+Database: .opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite
 Mode: DRY RUN
 
 Loaded 103 ground truth queries
@@ -83,12 +83,12 @@ Command 3: `SPECKIT_ABLATION=true npx tsx .opencode/skills/system-spec-kit/scrip
 
 ABLATION STUDY (R13-S3)
 ------------------------------------------------------------
-Production DB: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite
-FATAL: VectorIndexError: another live process holds the single-writer lock for /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite (held by pid 97253 since 2026-07-02T21:01:45.063Z); refusing to open a second writer on the same database
-    at acquire_db_instance_lock (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/db-instance-lock.ts:190:13)
-    at Module.initialize_db (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts:2068:5)
-    at main (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts:107:26)
-    at <anonymous> (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts:209:1)
+Production DB: .opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite
+FATAL: VectorIndexError: another live process holds the single-writer lock for .opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite (held by pid 97253 since 2026-07-02T21:01:45.063Z); refusing to open a second writer on the same database
+    at acquire_db_instance_lock (.opencode/skills/system-spec-kit/mcp-server/lib/search/db-instance-lock.ts:190:13)
+    at Module.initialize_db (.opencode/skills/system-spec-kit/mcp-server/lib/search/vector-index-store.ts:2068:5)
+    at main (.opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts:107:26)
+    at <anonymous> (.opencode/skills/system-spec-kit/scripts/evals/run-ablation.ts:209:1)
     at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
@@ -124,7 +124,7 @@ Node.js v22.23.1
 
 ### Pass / Fail
 
-- **Blocked**: The enabled run could not initialize the production DB because another live process held the single-writer lock for `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite` (`code: 'DB_LOCK_HELD'`, held by pid 97253 since 2026-07-02T21:01:45.063Z), so `/tmp/ablation-result.json` was not written.
+- **Blocked**: The enabled run could not initialize the production DB because another live process held the single-writer lock for `.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite` (`code: 'DB_LOCK_HELD'`, held by pid 97253 since 2026-07-02T21:01:45.063Z), so `/tmp/ablation-result.json` was not written.
 
 ### Failure Triage
 

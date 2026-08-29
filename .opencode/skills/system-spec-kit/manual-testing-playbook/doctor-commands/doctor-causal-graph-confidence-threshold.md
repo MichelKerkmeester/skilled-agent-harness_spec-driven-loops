@@ -28,7 +28,7 @@ The threshold matters because causal links are evidence, not cleanup churn. The 
 - Expected signals: candidates with confidence `>= 0.7` are linked; candidates below `0.7` are skipped with `skipped: below threshold`; causal edge count delta equals the number of newly inserted `>= 0.7` candidates.
 - Desired user-visible outcome: A concise applied verdict that names inserted high-confidence edges and skipped lower-confidence records.
 - Pass/fail: PASS if only candidates at or above 0.7 are inserted and all lower-confidence candidates are logged as skipped.
-- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, `SKIP`, or `UNAUTOMATABLE`.
+- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable; a scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
 
@@ -115,7 +115,8 @@ The state log or final report shows `threshold: 0.7`, the attempted count, inser
 
 ### Pass / Fail
 
-- **BLOCKED**: `memory_causal_stats({})` could not execute because the Spec Memory MCP dist is stale (`@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build`) and the plugin reports `runtime_ready=false`, `last_error_code=EXIT_69`, `warm_status=fail_open`, `warm_retryable=false`. Rebuilding would modify files outside this scenario's allowed write path, so the mixed-confidence candidate precondition and expected link/skip evidence could not be verified.
+- **Pass**: Only candidates at or above 0.7 are inserted and all lower-confidence candidates are logged as skipped.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

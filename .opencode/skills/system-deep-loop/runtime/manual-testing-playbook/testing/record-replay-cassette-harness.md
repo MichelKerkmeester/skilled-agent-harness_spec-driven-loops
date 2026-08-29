@@ -38,7 +38,11 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 - `runtime/` source tree is present.
 - Feature catalog entry exists at `feature-catalog/testing/record-replay-cassette-harness.md`.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate Record-replay cassette harness and report whether the current source, script surface, and tests agree with the runtime/ contract.`
+
+### Commands
 
 
 1. Inspect `tests/helpers/spawn-cjs.ts` for the matching regression coverage.
@@ -46,13 +50,19 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 3. Inspect `tests/unit/fanout-run.vitest.ts` for the matching regression coverage.
 4. Run or inspect the matching test assertions for this feature.
 5. Capture the source lines, command output, or test assertions that prove the expected signals.
-6. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
+6. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
 ### Expected Outcome
 
 Record-replay cassette harness matches the documented current reality, the source anchors are accurate, and validation evidence is reproducible.
 
-### Failure Modes
+### Evidence
+
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/helpers/spawn-cjs.ts`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/fanout-run.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - Source file no longer exposes the documented function, type, script argument, output field, or YAML step.
 - Matching test coverage is missing, renamed, or contradicts the documented behavior.
@@ -61,7 +71,7 @@ Record-replay cassette harness matches the documented current reality, the sourc
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -79,12 +89,13 @@ Record-replay cassette harness matches the documented current reality, the sourc
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Testing
 - Playbook ID: DLR-051
 - Feature catalog entry: `feature-catalog/testing/record-replay-cassette-harness.md`
 - Scenario file path: `manual-testing-playbook/testing/record-replay-cassette-harness.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/007-testing/002-record-replay-cassette-harness`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

@@ -51,11 +51,17 @@ Validate post-save quality review issue detection and remediation guidance.
 
 ### Evidence
 
-BLOCKED before execution. The required command was not run because it would execute `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`, which is a save pipeline command and may write generated context/spec metadata outside the only allowed write path: `.opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/post-save-quality-review.md`.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: Required save command conflicts with the task-level allowed-write constraint, so no `POST-SAVE QUALITY REVIEW` stdout block was produced.
+- **Pass**: Review output matches expected status for each scenario and AI-applied patches resolve all reported issues.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 
@@ -80,15 +86,21 @@ Validate generic-title save reports a HIGH title issue.
 
 ### Expected
 
-[HIGH]` severity issue for title; fix instruction references `sessionSummary
+A `[HIGH]` severity issue is reported for the title field, and its fix instruction references `sessionSummary`.
 
 ### Evidence
 
-BLOCKED before execution. The required command was not run because it would execute `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`, which is a save pipeline command and may write generated context/spec metadata outside the only allowed write path: `.opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/post-save-quality-review.md`.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each signal named in the Expected block.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: Required save command conflicts with the task-level allowed-write constraint, so no `[HIGH]` title issue output or fix instruction could be observed.
+- **Pass**: every signal named in the Expected block above is present in the captured output.
+- **Fail**: any signal named in the Expected block is absent, or a command in the sequence errors unexpectedly.
 
 ### Failure Triage
 
@@ -115,11 +127,17 @@ Validate path-fragment trigger phrases report a HIGH trigger issue.
 
 ### Evidence
 
-BLOCKED before execution. The required command was not run because it would execute `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`, which is a save pipeline command and may write generated context/spec metadata outside the only allowed write path: `.opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/post-save-quality-review.md`.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each signal named in the Expected block.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: Required save command conflicts with the task-level allowed-write constraint, so no `[HIGH]` `trigger_phrases` issue output could be observed.
+- **Pass**: every signal named in the Expected block above is present in the captured output.
+- **Fail**: any signal named in the Expected block is absent, or a command in the sequence errors unexpectedly.
 
 ### Failure Triage
 
@@ -147,11 +165,17 @@ Validate mismatched importance tier reports a MEDIUM issue.
 
 ### Evidence
 
-BLOCKED before execution. The required command was not run because it would execute `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`, which is a save pipeline command and may write generated context/spec metadata outside the only allowed write path: `.opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/post-save-quality-review.md`. The scenario also requires forcing or simulating a pipeline override to `normal`, but no allowed non-writing command path is provided.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each signal named in the Expected block.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: Required save command conflicts with the task-level allowed-write constraint, so no `[MEDIUM]` `importance_tier` mismatch output could be observed.
+- **Pass**: every signal named in the Expected block above is present in the captured output.
+- **Fail**: any signal named in the Expected block is absent, or a command in the sequence errors unexpectedly.
 
 ### Failure Triage
 
@@ -178,11 +202,17 @@ Validate missing key decision propagation reports a MEDIUM decision-count issue.
 
 ### Evidence
 
-BLOCKED before execution. The required command was not run because it would execute `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<payload>' <spec-folder>`, which is a save pipeline command and may write generated context/spec metadata outside the only allowed write path: `.opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/post-save-quality-review.md`.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each signal named in the Expected block.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: Required save command conflicts with the task-level allowed-write constraint, so no `[MEDIUM]` `decision_count` issue output could be observed.
+- **Pass**: every signal named in the Expected block above is present in the captured output.
+- **Fail**: any signal named in the Expected block is absent, or a command in the sequence errors unexpectedly.
 
 ### Failure Triage
 
@@ -210,11 +240,17 @@ Frontmatter fields match payload values after patch; no remaining mismatches for
 
 ### Evidence
 
-BLOCKED before execution. Command step 3 requires applying a patch to the rendered spec-doc record file frontmatter, but the task-level allowed-write constraint permits editing only `.opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/post-save-quality-review.md`. No before/after frontmatter diff was produced.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each signal named in the Expected block.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: Required frontmatter patch conflicts with the task-level allowed-write constraint.
+- **Pass**: every signal named in the Expected block above is present in the captured output.
+- **Fail**: any signal named in the Expected block is absent, or a command in the sequence errors unexpectedly.
 
 ### Failure Triage
 
@@ -242,11 +278,17 @@ Validate score-penalty advisory logging after post-save review.
 
 ### Evidence
 
-BLOCKED before execution. The required command was not run because it would execute `node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json`, which is a save pipeline command and may write generated context/spec metadata outside the only allowed write path: `.opencode/skills/system-spec-kit/manual-testing-playbook/memory-quality-and-indexing/post-save-quality-review.md`.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each signal named in the Expected block.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file or log the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: Required save command conflicts with the task-level allowed-write constraint, so no `Post-save review: quality_score penalty` stdout line could be observed.
+- **Pass**: every signal named in the Expected block above is present in the captured output.
+- **Fail**: any signal named in the Expected block is absent, or a command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

@@ -53,6 +53,10 @@ Explain whether the system-deep-loop hub owns convergence, state, synthesis, or 
 1. `.opencode/skills/system-deep-loop/SKILL.md` contains the routing-only and packet-owned behavior rules.
 2. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `review` mode entry.
 
+### Prompt
+
+- Prompt: `Explain whether the system-deep-loop hub owns convergence, state, synthesis, or artifact logic, then resolve a review request through the registry.`
+
 ### Exact Command Sequence
 
 1. **Invoke hub**: `Skill(system-deep-loop, "Explain whether the system-deep-loop hub owns convergence, state, synthesis, or artifact logic, then resolve a review request through the registry.")`.
@@ -68,11 +72,14 @@ Explain whether the system-deep-loop hub owns convergence, state, synthesis, or 
 | 3 | Response says the hub does not own per-mode convergence, state, synthesis, or artifact logic. |
 | 3 | Response assigns review-specific behavior to the `deep-review` packet. |
 
+### Evidence
+
+- Response transcript: `/tmp/dlw-SC-004/response.txt`, showing the boundary statement covering all four categories (convergence, state, synthesis, artifact) and the resolved review route.
+
 ### Pass/Fail Criteria
 
-- **PASS** iff the response preserves the hub routing-only boundary and resolves review using registry fields.
-- **PARTIAL** iff the route is correct but the response omits one behavior category, such as synthesis.
-- **FAIL** iff the response says the hub owns per-mode logic, invents mode behavior in the hub, or bypasses the registry.
+- **PASS**: the response preserves the hub routing-only boundary for all four categories (convergence, state, synthesis, artifact) and resolves review using registry fields.
+- **FAIL**: the response says the hub owns per-mode logic, invents mode behavior in the hub, bypasses the registry, or omits any of the four boundary categories.
 
 ### Failure Triage
 
@@ -87,6 +94,7 @@ Explain whether the system-deep-loop hub owns convergence, state, synthesis, or 
 - `.opencode/skills/system-deep-loop/SKILL.md` - routing-only boundary and packet ownership rules.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `review` route fields.
 - `.opencode/skills/system-deep-loop/deep-review/SKILL.md` - review packet behavior ownership.
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---
 

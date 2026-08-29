@@ -28,7 +28,7 @@ The scenario is intentionally operator-visible. A real user wants to know whethe
 - Expected signals: status is `ATTENTION`, `STALE`, or `DEGRADED`; coverage is below 60%; recommendation names `/doctor causal-graph` with the default confidence floor.
 - Desired user-visible outcome: A short report saying the graph is under target and naming the remediation command.
 - Pass/fail: PASS if the report captures coverage below 60%, marks the graph degraded or attention-worthy, and explicitly recommends `/doctor causal-graph`.
-- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, `SKIP`, or `UNAUTOMATABLE`.
+- Classification: Manual scenario; valid verdicts are `PASS`, `FAIL`, or `SKIP`. Record `SKIP` only when a named environment prerequisite, credential, or command binary is unavailable; a scenario that cannot be run for any other reason is a `FAIL`.
 
 ---
 
@@ -68,7 +68,8 @@ The pre-run and post-run causal edge counts are identical because the read-only 
 
 ### Pass / Fail
 
-- **BLOCKED**: the required precondition could not be confirmed because `memory_causal_stats({})` failed with `MCP error -32001: backend recycled; retry`, the warm CLI fallback reported `@spec-kit/mcp-server dist is stale. Run: cd .opencode/skills/system-spec-kit/mcp-server && npm run build`, and the exact workflow database path `mcp-server/database/context-index.sqlite` was missing.
+- **Pass**: The report captures coverage below 60%, marks the graph degraded or attention-worthy, and explicitly recommends `/doctor causal-graph`.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

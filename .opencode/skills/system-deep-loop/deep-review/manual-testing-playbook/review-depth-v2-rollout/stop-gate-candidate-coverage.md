@@ -36,7 +36,11 @@ Without the gate, a review can terminate with PASS verdict even though the agent
 - A standard or complex v2 session can set `searchCoverage` with uncovered required bug classes.
 - Reducer state can expose `candidateCoverage` and `searchDebt`.
 
-### Steps
+### Prompt
+
+- Prompt: `Run a standard-scope v2 review iteration with one required bug class uncovered and confirm STOP is blocked by candidateCoverageGate.`
+
+### Commands
 
 1. Prepare a standard or complex v2 session with `searchCoverage.requiredBugClasses` containing at least one bug class.
 2. Leave that required class out of `covered[]`, `ruledOut[]`, `deferred[]`, and `blocked[]` so `candidateCoverage` remains incomplete.
@@ -49,7 +53,12 @@ Without the gate, a review can terminate with PASS verdict even though the agent
 
 The review cannot legally stop. The blocked_stop output names `candidateCoverageGate` in `blocked_gates[]`, and the evidence points to incomplete `candidateCoverage` plus remaining `searchDebt`.
 
-### Failure Modes
+### Evidence
+
+- The `blocked_stop` event payload showing `blocked_gates[]` containing `candidateCoverageGate`, captured to `/tmp/drv-061-blocked-stop.json`.
+- The reducer's non-empty `searchDebt` value at the time of the blocked stop, captured alongside the same evidence file.
+
+### Failure Triage
 
 - STOP succeeds: verify the input scope is not `trivial` and required coverage is actually missing.
 - The blocked output is generic: inspect whether `candidateCoverageGate` was dropped before the final gate payload.
@@ -57,17 +66,18 @@ The review cannot legally stop. The blocked_stop output names `candidateCoverage
 
 ---
 
-## 4. SOURCE REFERENCES
+## 4. SOURCE FILES
 
 - Workflow YAML: `.opencode/commands/deep/assets/deep-review-auto.yaml` (`step_check_convergence` legal-stop decision tree).
 - Confirm mirror: `.opencode/commands/deep/assets/deep-review-confirm.yaml`.
 - Reducer: `.opencode/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` (registry exposing `candidateCoverage`, `searchDebt`).
 - Fixture: `.opencode/skills/system-deep-loop/runtime/tests/integration/review-depth-convergence.vitest.ts` (workflow-runner integration TODO).
 - ADR: complexity-candidate-saturation-gates decision record (see this skill's changelog for provenance).
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - Root directory page and scenario summary.
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Review-depth v2 rollout
 - Playbook ID: DRV-061

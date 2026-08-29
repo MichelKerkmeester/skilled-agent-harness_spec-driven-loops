@@ -31,12 +31,16 @@ Operators run the exact prompt and command sequence for `CC-028` and confirm the
 - Prompt: `As a git safety reviewer, run the sk-git preflight advisory under a Claude Code PreToolUse Bash payload against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, arrives as additionalContext with no denial, and is silenced by SKGIT_ADVISORY=0. Return the advisory text and a PASS/FAIL verdict.`
 - Expected execution process: Create a scratch repo with a modified tracked file and an untracked file under a subdir -> pipe a `Bash` payload for `git commit --only <dir> -m x` through the shared hook -> observe the `⚠ sk-git advisory` line naming `commit-scope-drops-untracked` in `additionalContext` -> repeat with `SKGIT_ADVISORY=0` and confirm silence -> run an ordinary clean commit and confirm silence.
 - Expected signals: `additionalContext` contains `⚠ sk-git advisory` and `[commit-scope-drops-untracked]`; no denial/`permissionDecision: deny` field; the commit still runs; the suppressed re-run prints nothing; the ordinary commit prints nothing.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the advisory text and silence evidence.
-- Pass/fail: PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND suppression silences it. FAIL if the command is blocked or no advisory appears on the trap shape.
+- Desired user-visible outcome: A concise PASS, FAIL, or SKIP verdict with the advisory text and silence evidence.
+- Pass/fail: PASS when the advisory names `commit-scope-drops-untracked` AND no denial field is present AND suppression silences it. FAIL if the command is blocked or no advisory appears on the trap shape. SKIP applies only when the shared hook file `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` is missing from this checkout, blocking every step.
 
 ---
 
 ## 3. TEST EXECUTION
+
+### Prompt
+
+Prompt: `As a git safety reviewer, run the sk-git preflight advisory under a Claude Code PreToolUse Bash payload against a directory-scoped commit that would silently drop an untracked file. Verify the advisory names commit-scope-drops-untracked, arrives as additionalContext with no denial, and is silenced by SKGIT_ADVISORY=0. Return the advisory text and a PASS/FAIL verdict.`
 
 ### Recommended Orchestration Process
 
@@ -47,6 +51,39 @@ Operators run the exact prompt and command sequence for `CC-028` and confirm the
 5. Repeat with `SKGIT_ADVISORY=0` and confirm silence.
 6. Run an ordinary clean commit and confirm silence.
 7. Return a concise user-facing verdict.
+
+### Commands
+
+The exact reproducible command sequence is the 9-column table's "Exact Command Sequence" cell below:
+registration grep, scratch-repo setup, the shared-hook dispatch, and the suppressed re-run.
+
+### Expected
+
+Step 1: the registration line is present under `PreToolUse` matcher `Bash`. Step 3: JSON
+`hookSpecificOutput.additionalContext` contains `⚠ sk-git advisory` and
+`[commit-scope-drops-untracked]`, with no denial field. Step 4: zero stdout.
+
+### Evidence
+
+`.claude/settings.json` excerpt, captured advisory JSON, silence confirmation, and the terminal
+transcript from every command in the table below.
+
+### Pass / Fail
+
+- **Pass**: the advisory names `commit-scope-drops-untracked` AND no denial field is present AND the
+  suppressed re-run (step 4) prints nothing.
+- **Fail**: the command is blocked, or no advisory appears on the trap shape.
+- **Skip**: only when the shared hook file
+  `.opencode/skills/sk-git/scripts/hooks/git-preflight-advisory.mjs` is missing from this checkout,
+  blocking every step; record that exact missing-file blocker.
+
+### Failure Triage
+
+1. Inspect the step 3 JSON for the rule id; if absent, confirm `src/untracked.txt` exists and the
+   payload `cwd` points at the scratch repo.
+2. Confirm the hook is registered for `Bash`, not just `Task`, in `.claude/settings.json`.
+3. If the environment lacks the shared hook file, record the SKIP with that exact missing-file
+   blocker rather than guessing a result.
 
 || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 ||---|---|---|---|---|---|---|---|---|

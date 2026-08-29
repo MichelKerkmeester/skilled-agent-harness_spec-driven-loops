@@ -28,6 +28,8 @@ Either is acceptable IF the chosen behavior is documented in SKILL.md. What is N
 Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for the local preview index page.
 ```
 
+Prompt: `Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for the local preview index page.`
+
 **Markers present**:
 - WEBFLOW library marker: `Lenis` (matches `references/stack-detection.md:30-37`)
 - OPENCODE path marker: `.opencode/skills/sk-doc/scripts/preview-server.js`
@@ -56,12 +58,18 @@ Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for
 2. Capture `SURFACE` decision and any clarification question to `/tmp/skc-RD001-response.txt`.
 3. Capture loaded refs to `/tmp/skc-RD001-loaded-refs.txt`.
 
+### Expected Signals
+
+Expected signals: surface resolves to `OPENCODE` with a documented precedence rule (Outcome A) or to `AMBIGUOUS` with an explicit clarification question (Outcome B); no silent choice.
+
 ### Pass/Fail Criteria
 
 - **PASS** iff:
   - **Outcome A**: surface == OPENCODE AND no `sk-code-webflow/references/*` loaded AND SKILL.md documents this precedence.
   - **Outcome B**: surface reported as AMBIGUOUS AND a clarification question is asked AND no surface-specific refs are loaded yet.
 - **FAIL** iff: surface silently picked without surfacing the conflict AND no documented precedence exists in SKILL.md.
+
+Evidence: `/tmp/skc-RD001-response.txt` (surface decision and clarification question) and `/tmp/skc-RD001-loaded-refs.txt` (loaded refs).
 
 ### Failure Triage
 
@@ -73,6 +81,7 @@ Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` — Root directory page and scenario summary.
 - `.opencode/skills/sk-code/SKILL.md` §2 "Code Surface Detection (FIRST)" — post-remediation pseudocode with explicit if/elif/else precedence.
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` §2 "DETECTION ORDER" — post-remediation precedence wording + new mixed-marker test case in §4 TEST CASES.
 - Internal design notes — F-NEW-001 source (historical gpt-5.5 high adversarial pass).
@@ -81,6 +90,8 @@ Add Lenis smooth-scroll to .opencode/skills/sk-doc/scripts/preview-server.js for
 
 ## 5. SOURCE METADATA
 
+- Group: Routing Disambiguation
+- Playbook ID: RD-001
 - **Created**: 2026-05-04
 - **Critical path**: No (but tied to F-NEW-001 P1)
 - **Destructive**: No (read-only routing test)

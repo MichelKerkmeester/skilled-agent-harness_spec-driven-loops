@@ -81,15 +81,15 @@ Calling AI (CONDUCTOR — RESULT HANDBACK)
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
+  --model opencode-go/deepseek-v4-flash \
   --agent <slug> \
-  --variant high \
+  --variant max \
   --format json \
   --dir /repo \
   "<prompt>"
 ```
 
-The `--variant high` flag is the cli-opencode default for cross-AI dispatches. The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the `--model` flag wins.
+The `--variant max` flash pin is the cli-opencode default for cross-AI dispatches on the flash default (`--variant high` stays the generic effort for non-pinned models). The agent's own frontmatter may override the model selection if the agent pins a specific model. When an agent does NOT pin a model, the `--model` flag wins.
 
 ### Conductor rules
 
@@ -239,8 +239,8 @@ Mirroring the sibling cli-* skills, cli-opencode supports an inline routing patt
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir /repo \
   "As @review: Inspect @src/auth.ts for security issues. Surface any P0 / P1 findings with file:line citations."
@@ -269,9 +269,9 @@ Example:
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
+  --model opencode-go/deepseek-v4-flash \
   --agent orchestrate \
-  --variant high \
+  --variant max \
   --format json \
   --dir /repo \
   "Coordinate a code review for the approved spec folder. Dispatch @review for the code. Aggregate findings."
@@ -313,8 +313,8 @@ The calling AI wants a security-focused review of a single file. No `--agent` fl
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir /path/to/repo \
   "As @review: audit @src/auth/handler.ts for OWASP Top 10 issues. Surface findings as P0 / P1 / P2 with file:line citations. READ-ONLY — do not propose fixes."
@@ -333,8 +333,8 @@ The calling AI's first 3 debug attempts failed. Escalate to a fresh-context disp
 
 ```bash
 opencode run \
-  --model deepseek/deepseek-v4-pro \
-  --variant high \
+  --model opencode-go/deepseek-v4-flash \
+  --variant max \
   --format json \
   --dir /path/to/repo \
   "As @debug: Login returns 401 despite valid credentials. Error at @src/auth/handler.ts:45. Prior attempts: verified token expiry, checked DB connection, confirmed env vars. Run the Observe -> Analyze -> Hypothesize -> Fix methodology. Write findings to debug-delegation.md."

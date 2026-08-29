@@ -32,14 +32,36 @@ The defect hid 12 of 36 commands until fixed. A roster test that only checks a l
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `In this isolated workspace, report whether the malformed and corrected fixture skills are visible to Devin. Do not edit the parent repository.`
+
+### Commands
+
 1. `DV016_DIR=$(mktemp -d /tmp/cli-devin-dv016.XXXXXX); mkdir -p "$DV016_DIR/.devin/skills/bad-fixture" "$DV016_DIR/.devin/skills/good-fixture"`
 2. Write fixtures only under `$DV016_DIR`: the bad file uses an unquoted colon in `description: Broken: value`; the control quotes the same value. Do not modify `.devin/skills/` in the repository.
 3. `cd "$DV016_DIR" && devin skills list > skills.txt 2>&1; echo "exit=$?" >> skills.txt`
 4. Compare the strict list with a lenient YAML parse and record both fixture outcomes.
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| DV-016 | Isolated fixture workspace plus `devin skills list` | Bad YAML rejected; quoted control visible | PASS/FAIL/SKIP |
+### Expected
+
+Bad YAML rejected; quoted control visible
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`Bad YAML rejected; quoted control visible`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when the malformed fixture is rejected or explicitly diagnosed and the control remains visible.
+- **Fail**: when the malformed fixture is accepted as valid or silently treated as a usable command
+- **Skip**: only when the installed parser cannot be isolated safely. (a missing or unavailable prerequisite is the named blocker).
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

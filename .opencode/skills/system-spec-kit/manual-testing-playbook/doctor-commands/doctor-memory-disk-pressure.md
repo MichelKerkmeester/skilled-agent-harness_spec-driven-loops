@@ -60,13 +60,17 @@ The command reaches Phase 2 in `.opencode/commands/doctor/assets/doctor-memory.y
 
 ### Evidence
 
-- BLOCKED before command execution: the scenario requires creating a disposable low-free-space filesystem fixture and copying the workspace into it, but the active task constraints state: `Do NOT modify, create, or delete any file OTHER than the single scenario file named below.`
-- No `df -k .` output from a low-free-space fixture was captured because creating the fixture would violate the allowed write path.
-- No DB size calculation, DB checksums, `/doctor memory --incremental=true` refusal output, exit code, or snapshot check was captured because the precondition fixture could not be created under the active constraints.
+Capture, for every step in the Commands sequence above:
+
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: The required disposable low-free-space fixture cannot be created without violating the active instruction that no file may be created, modified, or deleted except this scenario file.
+- **Pass**: The command refuses before snapshot or mutation and reports the disk calculation.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

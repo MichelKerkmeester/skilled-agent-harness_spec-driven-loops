@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-035` and confirm th
 - Prompt: `Run the worktree reaper's orphan-daemon scan against a fixture with one live-worktree daemon and one gone-worktree daemon, first without --reap-daemons and then with it, and confirm the live daemon is always left alone.`
 - Expected execution process: Fake `pgrep`/`ps` to report two `context-server.js` PIDs, one whose command line references an existing worktree path and one referencing a removed path; run the reaper without `--reap-daemons` (expect report-only for the orphan) and then with `--reap-daemons --dry-run` (expect the orphan named for a `kill -TERM`, the live one still skipped).
 - Expected signals: the default run logs `orphan daemon (report only; use --reap-daemons to kill) pid=<gone-pid>`; with `--reap-daemons` (dry-run), stdout contains `DRY_RUN would: kill -TERM <gone-pid>` and never `kill -TERM <live-pid>`.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when `pgrep` and `ps` cannot be shimmed onto the sandbox `PATH`.
 - Pass/fail: PASS if the live-worktree daemon is never targeted in either run and the orphan is only ever reported by default, only ever a kill target when `--reap-daemons` is explicitly passed. FAIL if the live daemon is ever targeted, or if the orphan is killed without `--reap-daemons` being passed.
 
 ---

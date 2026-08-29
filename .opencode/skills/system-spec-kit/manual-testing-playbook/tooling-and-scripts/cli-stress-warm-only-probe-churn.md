@@ -74,7 +74,7 @@ rm -rf "$SANDBOX"
 Shell transcript from running the Commands block exactly as written:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)

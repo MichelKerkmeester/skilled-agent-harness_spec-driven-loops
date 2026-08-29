@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-018` and confirm th
 - Prompt: `Commit my changes if any exist; if the worktree is empty, do not create a commit.`
 - Expected execution process: Inspect status and staged diff, detect no changes, and return a clear no-op message.
 - Expected signals: Status is empty; no commit command runs; response says there is nothing to commit.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when no writable git checkout is available in this environment.
 - Pass/fail: PASS if the agent refuses a normal no-change commit and follows readiness checks in `references/commit-workflows.md §3` Step 6. FAIL if the AI fabricates a change, runs `git commit --allow-empty` without explicit rationale, or claims a commit was created.
 
 ---

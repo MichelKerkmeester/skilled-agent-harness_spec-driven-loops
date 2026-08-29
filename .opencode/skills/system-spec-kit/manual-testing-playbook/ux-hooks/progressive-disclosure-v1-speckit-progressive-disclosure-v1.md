@@ -98,35 +98,35 @@ full `data.results`; summaryLayer with count + digest; Snippet[] with snippet <=
       {
         "id": 37943,
         "specFolder": "system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness/spec.md",
+        "filePath": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness/spec.md",
         "title": "Feature Specification: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)",
         "score": 0.5474123200000001
       },
       {
         "id": 26780,
         "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness/spec.md",
+        "filePath": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/008-edge-presence-currentness/spec.md",
         "title": "Feature Specification: Edge-Presence Currentness & Temporal Recall (028/001 impl phase)",
         "score": 0.5474123200000001
       },
       {
         "id": 23272,
         "specFolder": "system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing/plan.md",
+        "filePath": ".opencode/specs/system-spec-kit/028-memory-search-intelligence/001-speckit-memory/003-retrieval-class-routing/plan.md",
         "title": "Implementation Plan: Retrieval-Class Routing & Recall-Shape Intelligence (028/001 impl)",
         "score": 0.53432964
       },
       {
         "id": 16264,
         "specFolder": "system-spec-kit",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+        "filePath": ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
         "title": "TOOL ROUTING - Search & Retrieval Decision Tree",
         "score": 0.5139589460869564
       },
       {
         "id": 9372,
         "specFolder": "system-spec-kit",
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
+        "filePath": ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md",
         "title": "TOOL ROUTING - Search & Retrieval Decision Tree",
         "score": 0.5139589460869564
       }
@@ -152,7 +152,7 @@ Daemon-backed CLI attempt for the documented payload:
 Test transcript for `npx vitest run tests/progressive-disclosure.vitest.ts tests/memory-search-ux-hooks.vitest.ts`:
 
 ```text
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 (node:23533) ExperimentalWarning: SQLite is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)

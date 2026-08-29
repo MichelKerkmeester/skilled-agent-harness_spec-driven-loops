@@ -108,7 +108,8 @@ No count/schema lines were produced because the first JSON parse failed before t
 
 ### Pass / Fail
 
-- **BLOCKED**: the local `@spec-kit/mcp-server` build output is stale, so the daemon-backed CLI command output was not parseable JSON and the scenario could not verify the expected counts, schema absence, or completion parsing evidence.
+- **Pass**: All counts match, schema-field counts are zero, and every generated completion script parses under its target shell.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

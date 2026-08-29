@@ -63,7 +63,7 @@ Command transcript:
 ```text
 $ npx vitest run tests/atomic-index-memory.vitest.ts
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 
  Test Files  1 passed (1)
@@ -77,10 +77,10 @@ Verbose command transcript:
 ```text
 $ npx vitest run tests/atomic-index-memory.vitest.ts --reporter verbose
 
- RUN  v4.1.9 /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit
+ RUN  v4.1.9 .opencode/skills/system-spec-kit
 
 stderr | mcp-server/tests/atomic-index-memory.vitest.ts
-[shared/paths] database dir resolved outside @spec-kit workspace root (/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
+[shared/paths] database dir resolved outside @spec-kit workspace root (.opencode/skills/system-spec-kit); falling back to import.meta.dirname-relative resolution
 
  ✓ mcp-server/tests/atomic-index-memory.vitest.ts > atomicIndexMemory > writes canonical content and returns a success payload 4ms
  ✓ mcp-server/tests/atomic-index-memory.vitest.ts > atomicIndexMemory > promotes routed canonical content into the prepared persisted file path 2ms
@@ -120,7 +120,7 @@ $ npm exec -- ts-node --esm --eval "... import { atomicIndexMemory } from './han
 
 ```text
 $ npm exec -- ts-node --esm --eval "... import { atomicIndexMemory } from './handlers/save/atomic-index-memory' ..."
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/[eval].ts:1
+.opencode/skills/system-spec-kit/mcp-server/[eval].ts:1
 import fs from 'node:fs';
 ^^^^^^
 

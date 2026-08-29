@@ -85,4 +85,4 @@ Check the convergence pseudocode first, then verify the loop extracts `answered_
 - Playbook ID: DR-012
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/stop-when-all-key-questions-are-answered.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-19.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

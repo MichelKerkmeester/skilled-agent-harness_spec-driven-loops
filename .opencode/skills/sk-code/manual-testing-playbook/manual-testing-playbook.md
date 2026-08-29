@@ -6,6 +6,11 @@ version: 3.5.0.16
 
 # sk-code: Manual Testing Playbook
 
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and
+> reason are persisted through the operator's evidence trail described in §3 GLOBAL EVIDENCE
+> REQUIREMENTS below.
+
 > **EXECUTION POLICY**: Every scenario MUST be executed against the live sk-code skill — no mocks, no stubs, no "unautomatable" verdicts. Scenarios verify the AI's actual routing behavior: which surface it detects, which references/assets it loads, which agent it dispatches. Acceptable verdicts are PASS, PARTIAL, FAIL, or SKIP (with a documented sandbox blocker).
 
 This document combines the full manual-validation contract for the `sk-code` skill into a single reference. The root playbook acts as the operator directory, review protocol, and orchestration guide. Per-feature files provide the deeper execution contract for each scenario, including the user request, expected detection markers, expected resource loading paths, and validation criteria.
@@ -31,7 +36,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 31 deterministic scenarios across 10 categories validating the `sk-code` skill surface. Each feature keeps a stable ID (numbered `{PREFIX}-NNN` for legacy categories, or a descriptive kebab-slug for newer non-numbered categories) and links to a dedicated feature file with the full execution contract.
+This playbook provides deterministic operator scenarios validating the `sk-code` skill surface, plus one `compiled-routing/` category that is excluded as routing-gold (see the corpus manifest). Each feature keeps a stable ID (numbered `{PREFIX}-NNN` for legacy categories, or a descriptive kebab-slug for newer non-numbered categories) and links to a dedicated feature file with the full execution contract. §18 FEATURE CATALOG CROSS-REFERENCE INDEX carries the authoritative per-scenario listing and derived counts.
 
 Coverage note (2026-05-04): the playbook covers sk-code's two-axis routing (Code Surface → Intent → Resource Loading) at SKILL.md head-of-main. It exercises:
 - WEBFLOW surface detection (vanilla HTML/CSS/JS frontend with motion.dev / GSAP / Lenis / HLS / Swiper / FilePond markers, `wrangler.toml`, `src/2_javascript/`).
@@ -346,37 +351,37 @@ Tests NOT covered by automation (manual playbook is the only validation):
 
 | Category | Feature ID | Per-Feature File | Critical Path |
 |---|---|---|---|
-| Surface Detection | SD-001 | `surface-detection/webflow-detection.md` | Yes |
-| Surface Detection | SD-002 | `surface-detection/opencode-detection.md` | Yes |
-| Surface Detection | SD-003 | `surface-detection/unknown-fallback.md` | Yes |
-| Language Sub-Detection | LS-001 | `language-sub-detection/opencode-typescript.md` | No |
-| Language Sub-Detection | LS-002 | `language-sub-detection/opencode-python.md` | No |
-| Language Sub-Detection | LS-003 | `language-sub-detection/opencode-shell.md` | No |
-| Language Sub-Detection | LS-004 | `language-sub-detection/opencode-config.md` | No |
-| Routing Disambiguation | RD-001 | `routing-disambiguation/mixed-marker-ambiguity.md` | No |
-| Routing Disambiguation | RD-002 | `routing-disambiguation/skcode-vs-skdoc.md` | Yes |
-| Skill Advisor Integration | SA-001 | `skill-advisor-integration/advisor-probe-battery.md` | Yes |
-| Motion.dev And Animation Regression | MR-001 | `motion-dev-and-animation-regression/motion-api-smoke.md` | Yes |
-| Motion.dev And Animation Regression | MR-002 | `motion-dev-and-animation-regression/cdn-bundle-version-pin.md` | Yes |
-| Motion.dev And Animation Regression | MR-003 | `motion-dev-and-animation-regression/prefers-reduced-motion.md` | Yes |
-| Motion.dev And Animation Regression | MR-004 | `motion-dev-and-animation-regression/animation-regression-baseline.md` | Yes |
-| Cross-Browser And Performance Gates | CB-001 | `cross-browser-and-performance-gates/cross-browser-animate.md` | Yes |
-| Cross-Browser And Performance Gates | CB-002 | `cross-browser-and-performance-gates/cwv-gates.md` | Yes |
-| Cross-Browser And Performance Gates | CB-003 | `cross-browser-and-performance-gates/gpu-compositing.md` | Yes |
-| Cross-Stack Routing | CS-001 | `cross-stack-routing/webflow-plus-motion-dev.md` | Yes |
-| Cross-Stack Routing | CS-002 | `cross-stack-routing/non-webflow-plus-motion-dev.md` | Yes |
-| Cross-Stack Routing | CS-003 | `cross-stack-routing/opencode-plus-motion-dev.md` | Yes |
-| Cross-Stack Routing | CS-004 | `cross-stack-routing/decision-matrix-routing.md` | No |
-| Cross-Stack Routing | CS-005 | `cross-stack-routing/snippet-reuse-cross-stack.md` | No |
-| Cross-Stack Routing | CS-006 | `cross-stack-routing/cwv-gates-animation-heavy.md` | No |
-| Cross-Stack Routing | CS-007 | `cross-stack-routing/prefers-reduced-motion.md` | No |
-| Design Restraint | DR-001 | `design-restraint/design-restraint-ladder.md` | No |
-| Design Restraint | DR-002 | `design-restraint/implementer-anti-stall.md` | No |
-| Design Restraint | DR-003 | `design-restraint/ceiling-comment-convention.md` | No |
-| Design Restraint | DR-004 | `design-restraint/stack-folders-validator.md` | No |
-| Tooling And Hooks | TH-001 | `tooling-and-hooks/check-dist-staleness-hook.md` | No |
-| Tooling And Hooks | TH-002 | `tooling-and-hooks/comment-hygiene-hook.md` | No |
-| Plugins And Hooks | `post-edit-quality-router` | `plugins-and-hooks/post-edit-quality-router.md` | No |
+| Surface Detection | SD-001 | [surface-detection/webflow-detection.md](surface-detection/webflow-detection.md) | Yes |
+| Surface Detection | SD-002 | [surface-detection/opencode-detection.md](surface-detection/opencode-detection.md) | Yes |
+| Surface Detection | SD-003 | [surface-detection/unknown-fallback.md](surface-detection/unknown-fallback.md) | Yes |
+| Language Sub-Detection | LS-001 | [language-sub-detection/opencode-typescript.md](language-sub-detection/opencode-typescript.md) | No |
+| Language Sub-Detection | LS-002 | [language-sub-detection/opencode-python.md](language-sub-detection/opencode-python.md) | No |
+| Language Sub-Detection | LS-003 | [language-sub-detection/opencode-shell.md](language-sub-detection/opencode-shell.md) | No |
+| Language Sub-Detection | LS-004 | [language-sub-detection/opencode-config.md](language-sub-detection/opencode-config.md) | No |
+| Routing Disambiguation | RD-001 | [routing-disambiguation/mixed-marker-ambiguity.md](routing-disambiguation/mixed-marker-ambiguity.md) | No |
+| Routing Disambiguation | RD-002 | [routing-disambiguation/skcode-vs-skdoc.md](routing-disambiguation/skcode-vs-skdoc.md) | Yes |
+| Skill Advisor Integration | SA-001 | [skill-advisor-integration/advisor-probe-battery.md](skill-advisor-integration/advisor-probe-battery.md) | Yes |
+| Motion.dev And Animation Regression | MR-001 | [motion-dev-and-animation-regression/motion-api-smoke.md](motion-dev-and-animation-regression/motion-api-smoke.md) | Yes |
+| Motion.dev And Animation Regression | MR-002 | [motion-dev-and-animation-regression/cdn-bundle-version-pin.md](motion-dev-and-animation-regression/cdn-bundle-version-pin.md) | Yes |
+| Motion.dev And Animation Regression | MR-003 | [motion-dev-and-animation-regression/prefers-reduced-motion.md](motion-dev-and-animation-regression/prefers-reduced-motion.md) | Yes |
+| Motion.dev And Animation Regression | MR-004 | [motion-dev-and-animation-regression/animation-regression-baseline.md](motion-dev-and-animation-regression/animation-regression-baseline.md) | Yes |
+| Cross-Browser And Performance Gates | CB-001 | [cross-browser-and-performance-gates/cross-browser-animate.md](cross-browser-and-performance-gates/cross-browser-animate.md) | Yes |
+| Cross-Browser And Performance Gates | CB-002 | [cross-browser-and-performance-gates/cwv-gates.md](cross-browser-and-performance-gates/cwv-gates.md) | Yes |
+| Cross-Browser And Performance Gates | CB-003 | [cross-browser-and-performance-gates/gpu-compositing.md](cross-browser-and-performance-gates/gpu-compositing.md) | Yes |
+| Cross-Stack Routing | CS-001 | [cross-stack-routing/webflow-plus-motion-dev.md](cross-stack-routing/webflow-plus-motion-dev.md) | Yes |
+| Cross-Stack Routing | CS-002 | [cross-stack-routing/non-webflow-plus-motion-dev.md](cross-stack-routing/non-webflow-plus-motion-dev.md) | Yes |
+| Cross-Stack Routing | CS-003 | [cross-stack-routing/opencode-plus-motion-dev.md](cross-stack-routing/opencode-plus-motion-dev.md) | Yes |
+| Cross-Stack Routing | CS-004 | [cross-stack-routing/decision-matrix-routing.md](cross-stack-routing/decision-matrix-routing.md) | No |
+| Cross-Stack Routing | CS-005 | [cross-stack-routing/snippet-reuse-cross-stack.md](cross-stack-routing/snippet-reuse-cross-stack.md) | No |
+| Cross-Stack Routing | CS-006 | [cross-stack-routing/cwv-gates-animation-heavy.md](cross-stack-routing/cwv-gates-animation-heavy.md) | No |
+| Cross-Stack Routing | CS-007 | [cross-stack-routing/prefers-reduced-motion.md](cross-stack-routing/prefers-reduced-motion.md) | No |
+| Design Restraint | DR-001 | [design-restraint/design-restraint-ladder.md](design-restraint/design-restraint-ladder.md) | No |
+| Design Restraint | DR-002 | [design-restraint/implementer-anti-stall.md](design-restraint/implementer-anti-stall.md) | No |
+| Design Restraint | DR-003 | [design-restraint/ceiling-comment-convention.md](design-restraint/ceiling-comment-convention.md) | No |
+| Design Restraint | DR-004 | [design-restraint/stack-folders-validator.md](design-restraint/stack-folders-validator.md) | No |
+| Tooling And Hooks | TH-001 | [tooling-and-hooks/check-dist-staleness-hook.md](tooling-and-hooks/check-dist-staleness-hook.md) | No |
+| Tooling And Hooks | TH-002 | [tooling-and-hooks/comment-hygiene-hook.md](tooling-and-hooks/comment-hygiene-hook.md) | No |
+| Plugins And Hooks | `post-edit-quality-router` | [plugins-and-hooks/post-edit-quality-router.md](plugins-and-hooks/post-edit-quality-router.md) | No |
 
 **Total scenarios**: 31
 **Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)

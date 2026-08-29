@@ -38,7 +38,11 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 - `runtime/` source tree is present.
 - Feature catalog entry exists at `feature-catalog/observability/unified-observability-event-envelope.md`.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate Unified observability event envelope and report whether the current source, script surface, and tests agree with the runtime/ contract.`
+
+### Commands
 
 1. Inspect `lib/deep-loop/observability-events.cjs` for the implementation contract.
 2. Inspect `lib/council/round-state-jsonl.cjs` for the implementation contract.
@@ -50,13 +54,20 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 8. Inspect `tests/integration/status-script.vitest.ts` for the matching regression coverage.
 9. Run or inspect the matching test assertions for this feature.
 10. Capture the source lines, command output, or test assertions that prove the expected signals.
-11. Record PASS, PARTIAL, FAIL, or SKIP with rationale.
+11. Record PASS or FAIL with rationale; record SKIP only when a named sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevents the command from running.
 
 ### Expected Outcome
 
 Unified observability event envelope matches the documented current reality, the source anchors are accurate, and validation evidence is reproducible.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `lib/deep-loop/observability-events.cjs`, `lib/council/round-state-jsonl.cjs`, `scripts/convergence.cjs`, `scripts/fanout-run.cjs`, `scripts/status.cjs`, `.opencode/commands/deep/assets/deep-research-auto.yaml` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- Output from `tests/unit/observability-events.vitest.ts`, `tests/integration/status-script.vitest.ts` naming the assertions that carry the expected signals.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - Source file no longer exposes the documented function, type, script argument, output field, or YAML step.
 - Matching test coverage is missing, renamed, or contradicts the documented behavior.
@@ -65,7 +76,7 @@ Unified observability event envelope matches the documented current reality, the
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -87,12 +98,13 @@ Unified observability event envelope matches the documented current reality, the
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Observability
 - Playbook ID: DLR-049
 - Feature catalog entry: `feature-catalog/observability/unified-observability-event-envelope.md`
 - Scenario file path: `manual-testing-playbook/observability/unified-observability-event-envelope.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Source phase: `.opencode/specs/system-deep-loop/030-deep-loop-improved/006-ux-observability-automation/003-unified-observability-event-envelope`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

@@ -129,7 +129,7 @@ Observed 2026-07-02 while executing this scenario with the user constraint `ALLO
         "updatedAt": "2026-07-02T21:24:26.742Z",
         "importanceWeight": 0.7,
         "triggerCount": 3,
-        "filePath": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt/plan.md"
+        "filePath": ".opencode/specs/system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt/plan.md"
       }
     ],
     "constitutionalCount": 0

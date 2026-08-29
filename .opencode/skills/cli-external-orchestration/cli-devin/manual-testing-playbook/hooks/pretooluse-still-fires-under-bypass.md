@@ -32,14 +32,36 @@ The naive assumption that bypass disables every hook is false. The spec-gate and
 
 ## 3. TEST EXECUTION
 
+### Prompt
+
+Prompt: `In this isolated workspace, create bypass-pretool-marker.txt containing bypass-test. Report the tool action and completion.`
+
+### Commands
+
 1. `DV009_DIR=$(mktemp -d /tmp/cli-devin-dv009.XXXXXX); mkdir -p "$DV009_DIR/.devin"`
 2. Populate only the temporary `.devin/hooks.v1.json` with a `PreToolUse` logging probe.
 3. `cd "$DV009_DIR" && devin -p "In this isolated workspace, create bypass-pretool-marker.txt containing bypass-test. Report the tool action and completion." --model adaptive --permission-mode bypass </dev/null > stdout.txt 2>&1; echo "exit=$?" >> stdout.txt`
 4. Inspect `probe.log` and verify the repository's `.devin/hooks.v1.json` has no diff.
 
-| Feature ID | Exact command | Expected signal | Verdict |
-|---|---|---|---|
-| DV-009 | Isolated `devin -p ... --permission-mode bypass` | PreToolUse event present; approval event may be absent | PASS/FAIL/SKIP |
+### Expected
+
+PreToolUse event present; approval event may be absent
+
+### Evidence
+
+Captured output files from every command in §3, the table's Expected Signal cell (`PreToolUse event present; approval event may be absent`), and the exit code recorded alongside each command.
+
+### Pass / Fail
+
+- **Pass**: when `PreToolUse` is logged under bypass.
+- **Fail**: when the write succeeds with no `PreToolUse` event or when the result treats bypass as hook-free
+- **Skip**: only on auth/availability blockers..
+
+### Failure Triage
+
+1. **Signal mismatch**: the captured output does not match the Expected Signal cell; re-run the exact command sequence above and diff the new output against it.
+2. **Preflight/blocker**: if the required binary, auth, or workspace precondition is unavailable, record the SKIP with that exact blocker rather than guessing a result.
+3. **Unexpected mutation**: if the repository or a temporary workspace shows an unexpected diff, treat the scenario as FAIL regardless of the command's own exit code.
 
 ---
 

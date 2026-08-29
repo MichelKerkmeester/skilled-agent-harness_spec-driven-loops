@@ -21,7 +21,7 @@ This scenario validates Implemented: memory summary generation (R8) for `093`. I
 
 - Objective: Confirm deferred->implemented status.
 - Real user request: `Please validate Implemented: memory summary generation (R8) against the documented validation surface and tell me whether the expected signals are present: Summary generated for long memories; summary persisted in DB; scale gate prevents summary generation below corpus threshold.`
-- RCAF Prompt: `As a retrieval-enhancement validation operator, validate Implemented: memory summary generation (R8) against the documented validation surface. Verify summary generated for long memories; summary persisted in DB; scale gate prevents summary generation below corpus threshold. Return a concise pass/fail verdict with the main reason and cited evidence.`
+- Operator prompt: `As a retrieval-enhancement validation operator, validate Implemented: memory summary generation (R8) against the documented validation surface. Verify summary generated for long memories; summary persisted in DB; scale gate prevents summary generation below corpus threshold. Return a concise pass/fail verdict with the main reason and cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Summary generated for long memories; summary persisted in DB; scale gate prevents summary generation below corpus threshold
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -49,20 +49,15 @@ Summary generated for long memories; summary persisted in DB; scale gate prevent
 
 ### Evidence
 
-BLOCKED before executing `save long memory`.
+Capture, for every step in the Commands sequence above:
 
-Actual constraint from this scenario run:
-
-```text
-ALLOWED WRITE PATHS
-- .opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/implemented-memory-summary-generation-r8.md (this file only)
-```
-
-The scenario command `save long memory` is a persistence operation. Running a real memory save would modify memory storage outside the single allowed scenario file, which is explicitly prohibited by the run instructions. No save output, DB summary record, or scale-gate runtime result was produced because executing the first command would violate the allowed write path.
+- The exact command or tool call issued, its full output, and its exit status.
+- The output lines that carry each expected signal listed in the Scenario Contract.
+- Any deviation from the expected result, quoted verbatim from the output.
+- The resolved path of every file the run reads or writes.
 
 ### Pass / Fail
 
-- **BLOCKED**: The required `save long memory` command cannot be executed under the run's single-file write restriction; real summary persistence verification would require writes outside `.opencode/skills/system-spec-kit/manual-testing-playbook/retrieval-enhancements/implemented-memory-summary-generation-r8.md`.
 - **Pass**: summaries are generated and persisted for long memories and scale gate correctly controls activation
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 

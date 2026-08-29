@@ -565,7 +565,16 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 ---
 
-## 9. SUMMARY
+## 9. RELATED RESOURCES
+
+- `.opencode/commands/deep/research.md` — the `/deep:research` loop owner that dispatches one iteration at a time.
+- `.opencode/skills/system-deep-loop/deep-research/SKILL.md` — the research-mode packet skill.
+- `.opencode/skills/system-deep-loop/SKILL.md` — the deep-loop hub this mode is packaged under.
+- `.opencode/skills/system-spec-kit/SKILL.md` — the packet-scope discipline behind the local-owner research packet rule.
+
+---
+
+## 10. SUMMARY
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────┐

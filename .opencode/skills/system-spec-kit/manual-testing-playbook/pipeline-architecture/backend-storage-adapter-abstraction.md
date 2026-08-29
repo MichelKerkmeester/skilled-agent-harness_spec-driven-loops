@@ -54,13 +54,13 @@ Validate backend storage adapter abstraction against the documented validation s
 Observed port file discovery output:
 
 ```text
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/index.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/lexical-search.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/maintenance.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/contention-policy.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/common.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/vector-store.ts
-/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/graph-traversal.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/index.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/lexical-search.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/maintenance.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/contention-policy.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/common.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/vector-store.ts
+.opencode/skills/system-spec-kit/mcp-server/lib/storage/ports/graph-traversal.ts
 ```
 
 Observed port exports from `mcp-server/lib/storage/ports/index.ts`:

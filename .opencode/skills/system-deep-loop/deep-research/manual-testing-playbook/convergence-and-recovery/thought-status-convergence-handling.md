@@ -85,4 +85,4 @@ Privilege state-format.md for the status taxonomy and convergence.md for the alg
 - Playbook ID: DR-030
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `convergence-and-recovery/thought-status-convergence-handling.md`
-- Feature catalog status: No `feature-catalog/` package exists under `.opencode/skills/system-deep-loop/deep-research/` as of 2026-03-24.
+- Feature catalog status: `feature-catalog/` exists under `.opencode/skills/system-deep-loop/deep-research/`; this scenario does not currently cite a specific catalog entry.

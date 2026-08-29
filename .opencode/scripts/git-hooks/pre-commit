@@ -194,4 +194,45 @@ if [[ "${SPECKIT_SKIP_TOOL_OWNERSHIP_LINT:-0}" != "1" ]]; then
   fi
 fi
 
+# --- Manual-testing-playbook operator contract (blocking) ---
+# Only checks roots that are BOTH on the fail-closed allowlist AND have staged changes,
+# so an ordinary commit pays nothing and a playbook edit is judged before it reaches CI.
+#
+# The staged list is materialised once rather than piped into `grep -q` per root. A
+# short-circuiting reader can leave the writer with SIGPIPE, and under `pipefail` that
+# failure status is indistinguishable from "no match" — which would skip the gate on
+# exactly the large commits it exists to catch. Reading a file cannot fail that way, and
+# it also drops one `git diff` invocation per allowlisted root.
+#
+# Bypass: SPECKIT_SKIP_PLAYBOOK_CONTRACT=1 git commit ...
+if [[ "${SPECKIT_SKIP_PLAYBOOK_CONTRACT:-0}" != "1" ]]; then
+  PB_PACKET="${REPO_ROOT}/.opencode/skills/sk-doc/sk-create-manual-testing-playbook"
+  PB_VALIDATOR="${PB_PACKET}/scripts/validate-playbook-package.cjs"
+  PB_ALLOWLIST="${PB_PACKET}/playbook-failclosed-allowlist.txt"
+  # This hook is installed globally, and .opencode is a symlink in sibling repos, so the
+  # validator resolves as "present" from a checkout it does not describe. Only run where
+  # the packet genuinely belongs to THIS repository.
+  if [[ -f "$PB_VALIDATOR" && -f "$PB_ALLOWLIST" && -d "${REPO_ROOT}/.opencode/skills/sk-doc" && ! -L "${REPO_ROOT}/.opencode" ]]; then
+    PB_STAGED="$(mktemp)"
+    git diff --cached --name-only --diff-filter=ACMD > "$PB_STAGED" || true
+    PB_FAILED=0
+    while IFS= read -r pb_root; do
+      [[ -z "$pb_root" || "$pb_root" == \#* ]] && continue
+      grep -q -- "^${pb_root}/" "$PB_STAGED" || continue
+      if ! node "$PB_VALIDATOR" --package "$pb_root" --repo-root "$REPO_ROOT" --strict >/tmp/pb-precommit.txt 2>&1; then
+        echo "" >&2
+        echo "BLOCKED [gate:playbook-contract]: $pb_root violates the operator-scenario contract." >&2
+        sed -n '1,40p' /tmp/pb-precommit.txt >&2
+        PB_FAILED=1
+      fi
+    done < "$PB_ALLOWLIST"
+    rm -f "$PB_STAGED"
+    if [[ "$PB_FAILED" -ne 0 ]]; then
+      echo "Fix the package. Do not remove its allowlist line to go green." >&2
+      echo "Bypass: SPECKIT_SKIP_PLAYBOOK_CONTRACT=1 git commit ..." >&2
+      exit 1
+    fi
+  fi
+fi
+
 exit 0

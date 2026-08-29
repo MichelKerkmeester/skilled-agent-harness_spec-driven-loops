@@ -73,7 +73,7 @@ Command 2, strict validation on compliant fixture:
 ```text
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2
+  Folder: .opencode/skills/system-spec-kit/scripts/test-fixtures/053-template-compliant-level2
   Level:  2
 
 + FILE_EXISTS: All required files present for Level 2
@@ -92,7 +92,7 @@ Command 3, strict validation on extra-header warning fixture:
 ```text
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header
+  Folder: .opencode/skills/system-spec-kit/scripts/test-fixtures/054-template-extra-header
   Level:  2
 
 + TEMPLATE_HEADERS: Template headers match in 5 file(s)
@@ -113,7 +113,7 @@ Command 4, strict validation on missing-header fixture:
 ```text
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/test-fixtures/055-template-missing-header
+  Folder: .opencode/skills/system-spec-kit/scripts/test-fixtures/055-template-missing-header
   Level:  2
 
 x TEMPLATE_HEADERS: 1 template headers issue(s) found
@@ -131,7 +131,7 @@ Command 4, strict validation on reordered-anchor fixture:
 ```text
 Spec Folder Validation v3.0.0
 
-  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/scripts/test-fixtures/058-template-reordered-anchor
+  Folder: .opencode/skills/system-spec-kit/scripts/test-fixtures/058-template-reordered-anchor
   Level:  2
 
 + TEMPLATE_HEADERS: Template headers match in 5 file(s)
@@ -176,7 +176,8 @@ EXIT_CODE=0
 
 ### Pass / Fail
 
-- **BLOCKED**: The canonical contract exists and the validator fixtures produced the expected strict-validation behavior, but the scenario cannot confirm embedded spec-authoring runtime definitions because all five inspected CLI agent definition files are missing: `.claude/agents/speckit.md`, `.opencode/agents/speckit.md`, `.opencode/agents/speckit.toml`, `.codex/agents/speckit.md`, and `.agents/agents/speckit.md`.
+- **Pass**: Contract presence is confirmed, compliant fixtures pass strict validation, and non-compliant fixtures fail for the expected structural reasons.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

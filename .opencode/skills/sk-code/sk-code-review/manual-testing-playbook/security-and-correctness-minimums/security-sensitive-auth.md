@@ -27,7 +27,7 @@ Operators run the exact prompt and command sequence for `CR-004` and confirm the
 - Objective: Confirm auth and authorization gaps are treated as mandatory baseline risks.
 - Real user request: `Review target changes authentication or authorization code.`
 - Prompt: `Review this auth-sensitive diff for missing auth or ownership checks, treating likely authorization gaps as P1/P0 risks.`
-- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, PARTIAL, FAIL, or SKIP verdict with rationale.
+- Expected execution process: Run the deterministic command sequence, capture the transcript, compare the output against review references, and record a PASS, FAIL, or SKIP verdict with rationale; SKIP only when a fixture changing authentication or authorization code is missing from the environment.
 - Expected signals: Step 1: auth diff visible; Step 2: security findings lead; Step 3: grep evidence supports scope
 - Desired user-visible outcome: a security findings report that a real maintainer can act on without asking for missing scope or evidence.
 - Pass/fail: PASS if missing authz on mutation is flagged per assets/security-checklist.md section 3 and evidence cites file:line per references/review-core.md; FAIL if auth risk is downgraded to style

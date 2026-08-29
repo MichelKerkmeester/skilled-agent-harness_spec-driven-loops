@@ -220,6 +220,20 @@ allowed-tools: Tool1, Tool2
 
 [One sentence describing purpose.]
 
+<!-- REQUIRED-ARGUMENT GATE: keep this block whenever argument-hint declares a required
+<argument>; delete it only for a command that takes none. It is the reason a command stops
+instead of inventing an input from context. -->
+
+### MANDATORY INPUT GATE
+
+**STATUS: BLOCKED** until `<required>` is bound.
+
+1. Parse `$ARGUMENTS`; strip any mode suffix and flags before resolving the required input.
+2. Treat an absent or whitespace-only value as missing. Do not infer it from conversation
+   history, open files, screenshots, or repository state.
+3. When it is missing, ask for it with clear options or an expected reply format, stop, and
+   wait. Use only `$ARGUMENTS` or that explicit reply.
+
 ## 1. PURPOSE
 
 [2-3 sentences explaining the command.]

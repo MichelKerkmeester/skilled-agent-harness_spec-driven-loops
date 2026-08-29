@@ -59,16 +59,41 @@ Generic-Node guard: WEBFLOW markers are gated to actual Webflow signals (vendor 
 
 ## 3. TEST EXECUTION
 
-Run this scenario through the cross-CLI universal prompt using `SCENARIO_ID=CS-002`. Grade the emitted YAML against the binary rules above.
+### Prompt
 
-Evidence files:
-- `/tmp/skc-CS-002-<cli>.txt`
-- `<spec-folder><cli>.yaml`
+- Prompt: `For a non-Webflow vanilla JS page, which Motion.dev references and snippets should sk-code load for hover cards and in-view reveal?`
+
+### Commands
+
+1. Dispatch the exact prompt through the cross-CLI universal-prompt harness with `SCENARIO_ID=CS-002` on each configured CLI runtime.
+2. Capture the raw transcript per runtime to `/tmp/skc-CS-002-<cli>.txt`.
+3. Capture the structured routing result (surface, references, assets, agent dispatch) per runtime to `results/CS-002-<cli>.yaml`.
+4. Diff each `results/CS-002-<cli>.yaml` against the reference/asset set declared in §2 SCENARIO CONTRACT.
+
+### Expected
+
+Expected signals: the structured result in `results/CS-002-<cli>.yaml` reports surface `UNKNOWN` and the reference/asset set declared in §2 SCENARIO CONTRACT, with no agent dispatched.
+
+### Evidence
+
+Evidence: `/tmp/skc-CS-002-<cli>.txt` (raw per-runtime transcript) and `results/CS-002-<cli>.yaml` (structured routing result) for each configured CLI runtime.
+
+### Pass / Fail
+
+- **Pass**: the AI does not classify the prompt as `WEBFLOW`, loads Motion.dev peer resources, and asks for the target runtime/verification command before implementation.
+- **Fail**: the AI routes to `WEBFLOW`, loads Webflow-only assets as authoritative guidance, or dispatches an agent.
+
+### Failure Triage
+
+1. If `WEBFLOW` is detected, re-read the generic-node guard in `code_surface_detection.md`.
+2. If no Motion.dev refs load, inspect `MOTION_DEV` signals in `references/smart-routing.md`.
+3. If the response proceeds to implementation, verify the universal prompt is routed as read-only analysis.
 
 ---
 
 ## 4. SOURCE FILES
 
+- `../manual-testing-playbook.md` - Root directory page and scenario summary.
 - `.opencode/skills/sk-code/shared/references/stack-detection.md` - generic-node guard.
 - `.opencode/skills/sk-code/shared/references/smart-routing.md` - MOTION_DEV signals.
 - `.opencode/skills/sk-code/sk-code-webflow/references/animation/decision-matrix.md` - CSS/Motion/WAAPI trade-offs.
@@ -78,9 +103,11 @@ Evidence files:
 
 ## 5. SOURCE METADATA
 
-- **Created**: 2026-05-05
-- **Critical path**: Yes
-- **Destructive**: No
-- **Sandbox**: read-only routing analysis
-- **Concurrent-safe**: Yes
-- **Last validated**: pending Phase D matrix
+- Group: Cross-Stack Routing
+- Playbook ID: CS-002
+- Created: 2026-05-05
+- Critical path: Yes
+- Destructive: No
+- Sandbox: read-only routing analysis
+- Concurrent-safe: Yes
+- Last validated: pending Phase D matrix

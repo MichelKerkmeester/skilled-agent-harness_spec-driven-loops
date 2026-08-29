@@ -16,7 +16,7 @@ Validates that **Get Document via MCP** behaves as defined in the feature catalo
 
 Verify `clickup_get_document` returns the document created in MCP-M015 is required for correct agent operation. Failure here means 404 not found or name mismatch.
 
-> **Capability status: SKIP.** A live `list_tools()` inventory (`references/mcp-tools.md`) found no top-level get-document tool on the registered server — only document creation and document-pages tools were confirmed. Do not execute this scenario against the current server; it will fail with a tool-not-found error, not the pass/fail signals below. Re-enable only after a fresh `tool_info()`/`list_tools()` capture confirms an exact callable name and schema.
+> **Capability status: SKIP — the top-level get-document tool is missing from the registered server.** A live `list_tools()` inventory (`references/mcp-tools.md`) found no such tool — only document creation and document-pages tools were confirmed. Do not execute this scenario against the current server; it will fail with a tool-not-found error, not the pass/fail signals below. Re-enable only after a fresh `tool_info()`/`list_tools()` capture confirms an exact callable name and schema.
 
 ---
 

@@ -49,7 +49,7 @@ All known multi-feature files carry >= 2 annotations; annotations are semantical
 
 ### Evidence
 
-Executed from `/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public`:
+Executed from `.`:
 
 ```bash
 rg -n "// Feature catalog:" ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts" ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts" ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-crud-delete.ts" && rg -c "// Feature catalog:" ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-save.ts" ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts" ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-crud-delete.ts"

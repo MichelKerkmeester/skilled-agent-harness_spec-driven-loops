@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/030-agent-template-conformance",
+  "spec_folder": "sk-code/030-agent-template-conformance",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent template conformance",
+      "sk-create-agent audit",
+      "related resources section missing",
+      "agent hard boundary missing",
+      "agent template conformance plan",
+      "sk-create-agent audit plan",
+      "agent template conformance tasks",
+      "sk-create-agent audit tasks",
+      "agent template conformance implementation",
+      "sk-create-agent audit summary"
+    ],
+    "key_topics": [
+      "agent",
+      "template",
+      "conformance",
+      "sk-create-agent",
+      "related",
+      "resources",
+      "required",
+      "body",
+      "shape",
+      "hard",
+      "boundary",
+      "runtime"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+      ".opencode/skills/sk-doc/sk-create-agent/SKILL.md",
+      ".opencode/agents/deep-improvement.md",
+      ".opencode/agents/prompt-improver.md",
+      ".codex/agents/deep-improvement.toml",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": ".opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+        "source": "derived"
+      },
+      {
+        "name": ".opencode/skills/sk-doc/sk-create-agent/SKILL.md",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-agent/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": ".opencode/agents/deep-improvement.md",
+        "kind": "file",
+        "path": ".opencode/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": ".opencode/agents/prompt-improver.md",
+        "kind": "file",
+        "path": ".opencode/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": ".codex/agents/deep-improvement.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-improvement.toml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Template Conformance",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "4. REQUIREMENTS",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "How It Was Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Audit all 12 agents across every runtime against sk-doc/sk-create-agent's Canonical Frontmatter and Required Body Shape, fix the confirmed defects, and fix the authoring template that let them happen.",
+    "created_at": "2026-08-29T10:24:54.000Z",
+    "last_save_at": "2026-08-29T10:24:54.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f78bf3e044c3b2ec8558e9d3e5ba5abc2369ad30902be27bf3d3ec67560ec7f2",
+    "source_doc_hashes": {
+      "spec.md": "67eaab934f22d8e8d6f38ce4e34956b0f899515fdbbb97a88dff109abc7c1a8f",
+      "plan.md": "df947b6c0b70ce17a34bd8e62525edfa924d7f0d08b45f6a9dbe8b45b5f5ee48",
+      "tasks.md": "f0a72cbbd51227b8b244dc07d21f566a055b8d2ed3786c0f34907bb71c30c8f1",
+      "implementation-summary.md": "084638474ba43cb764aee422a7e3517cd2b5786816f214953029a8bb40f90835"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -40,7 +40,11 @@ runs for users who never use fan-out. The `skip_when` guards are the primary pro
 - Working directory is repository root.
 - All 4 deep-loop YAML files present.
 
-### Steps
+### Prompt
+
+- Prompt: `Validate the fan-out YAML parity: confirm single-executor behavior is unchanged by inspecting the if_absent branch and skip_when guards, and run the full vitest suite to confirm 197/197.`
+
+### Commands
 
 1. `bash: grep -n "if_absent\|skip_when\|fanout_lineage_artifact_dir" .opencode/commands/deep/assets/deep-research-auto.yaml | head -20`
 2. Confirm `if_absent.command` contains `resolveArtifactRoot('{spec_folder}', 'research')` — byte-identical to pre-change.
@@ -54,7 +58,13 @@ runs for users who never use fan-out. The `skip_when` guards are the primary pro
 
 Source inspection confirms `if_absent` branch is unchanged. Both fan-out steps skipped in single-executor mode. Full vitest suite green.
 
-### Failure Modes
+### Evidence
+
+- Source excerpts from `.opencode/commands/deep/assets/deep-research-auto.yaml`, `.opencode/commands/deep/assets/deep-review-auto.yaml`, `.opencode/commands/deep/assets/deep-research-confirm.yaml`, `.opencode/commands/deep/assets/deep-review-confirm.yaml` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Captured stdout and exit status for every command run in this section.
+- A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
+
+### Failure Triage
 
 - `if_absent` branch modified: `resolveArtifactRoot` receives wrong arguments, breaking artifact dir resolution for all single-executor runs.
 - `skip_when` guard removed from `step_fanout_spawn`: the spawn step runs even in single-executor mode, attempting to call `fanout-run.cjs` with an absent fanout config.
@@ -62,7 +72,7 @@ Source inspection confirms `if_absent` branch is unchanged. Both fan-out steps s
 
 ---
 
-## 4. SOURCE ANCHORS
+## 4. SOURCE FILES
 
 ### Implementation
 
@@ -81,11 +91,12 @@ Source inspection confirms `if_absent` branch is unchanged. Both fan-out steps s
 
 ---
 
-## 5. SOURCE_METADATA
+## 5. SOURCE METADATA
 
 - Group: Fan-Out
 - Playbook ID: DLR-029
 - Feature catalog entry: `feature-catalog/fanout/fanout-config-schema.md`
 - Scenario file path: `manual-testing-playbook/fanout/artifact-dir-override-parity.md`
+- Canonical root source: `manual-testing-playbook/manual-testing-playbook.md`
 - Expected verdict mode: GREEN when source inspection confirms guards and 197/197 vitest passes
 - Wall-time estimate: 10-15 min

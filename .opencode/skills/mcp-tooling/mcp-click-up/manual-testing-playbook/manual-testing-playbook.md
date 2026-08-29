@@ -12,6 +12,11 @@ End-to-end manual testing reference for the mcp-click-up skill. Every scenario v
 
 **EXECUTION POLICY:** Every scenario in this playbook MUST be executed for real — not mocked, not stubbed, not classified as unautomatable. Run actual commands, inspect real outputs, call real API endpoints. Valid statuses: **PASS**, **FAIL**, or **SKIP** (with a documented blocker). "UNAUTOMATABLE" is not a valid status.
 
+### Result persistence
+
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into `mcp-click-up/benchmark/reports/<dated-run-label>/`.
+
 ---
 
 ## 1. OVERVIEW
@@ -40,7 +45,7 @@ End-to-end manual testing reference for the mcp-click-up skill. Every scenario v
 | Recovery and Failure | auth fail, empty queue, status errors, MCP fail | 3 |
 | **TOTAL** | **96 features** | **37 scenarios** |
 
-Scenario count verified by direct file count against the 10 scenario category folders (39 files; 37 distinct IDs -- `MCP-M015` and `MCP-M019` each currently have two canonical files pending de-duplication, counted once above). The routing-recall holdout set validates smart-router intent selection on a separate ID scheme and is not an executable manual-testing scenario, so it is excluded from this count.
+Scenario count verified by direct file count against the 9 scenario category folders (37 files; 37 distinct IDs -- the legacy `mcp-advanced/` duplicates of `MCP-M015` and `MCP-M019` were removed in favor of their canonical `mcp-documents-goals/` files). The routing-recall holdout set validates smart-router intent selection on a separate ID scheme and is not an executable manual-testing scenario, so it is excluded from this count.
 
 ### Realistic Test Model
 
@@ -806,7 +811,25 @@ Expected: `cupt time status` shows the running timer; `cupt time stop` stops it;
 
 ---
 
-## 16. AUTOMATED TEST CROSS-REFERENCE
+## 16. INTRA ROUTING RECALL
+
+Routing-recall contracts validate that the SKILL.md Smart Router's `INTENT_SIGNALS`/`RESOURCE_MAP`
+model routes realistic prompts to the right references. Routing-stage files may use router
+vocabulary; holdout files were authored blind to obvious router keywords (their `blindExceptions`
+frontmatter records any natural-language vocabulary later bound into the router); the negative file
+must route to `UNKNOWN_FALLBACK` with no loaded resource.
+
+- CU-R01: [CUPT daily routing](intra-routing-recall/cupt-daily.md)
+- CU-R02: [MCP advanced routing](intra-routing-recall/mcp-advanced.md)
+- CU-R03: [Install routing](intra-routing-recall/install.md)
+- CU-R04: [Troubleshoot routing](intra-routing-recall/troubleshoot.md)
+- CU-H01: [Blind holdout — daily task op](intra-routing-recall/holdout-daily.md)
+- CU-H02: [Blind holdout — advanced feature](intra-routing-recall/holdout-advanced.md)
+- CU-N01: [Negative — out of domain](intra-routing-recall/negative.md)
+
+---
+
+## 17. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage |
 |-------------|---------|
@@ -822,7 +845,7 @@ All test modules are at 86% coverage per the cupt upstream repo.
 
 ---
 
-## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 18. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | ID | Feature | Category | Catalog File |
 |----|---------|---------|-------------|

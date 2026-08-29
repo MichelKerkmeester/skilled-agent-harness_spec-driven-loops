@@ -23,7 +23,13 @@ Canonical package artifacts:
 - `mcp-integration/`
 - `session-continuity/`
 - `cloud-handoff/`
+- `git-preflight-advisory/`
+- `stress/`
 
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> `cli-devin/benchmark/reports/<dated-run-label>/`.
 
 ---
 
@@ -65,7 +71,7 @@ Two results corrected assumptions carried in the authored scenarios:
 
 ## 1. OVERVIEW
 
-This playbook contains 20 deterministic scenarios across 9 categories. The count is deliberate: six confirmed lifecycle events are covered by one event-matrix scenario, while approval delivery and the bypass safety invariant have dedicated scenarios. The result covers every requested Devin-native surface without duplicating one file per event where the evidence is the same.
+This playbook contains 35 deterministic scenarios across 11 categories. The original 20 `DV-NNN` scenarios are deliberate: six confirmed lifecycle events are covered by one event-matrix scenario, while approval delivery and the bypass safety invariant have dedicated scenarios. `DV-021` adds the shared sk-git preflight advisory, and the `cli-devin-EC-NNN` stress-matrix category adds 14 hermetic fan-out/lineage cells. The result covers every requested Devin-native surface without duplicating one file per event where the evidence is the same.
 
 Coverage note (2026-07-27): The scenarios are grounded in Devin 3000.2.17, with `devin` installed and authenticated during the live contract work. They cover the default `devin -p` dispatch, availability and hallucination probes, the `smart` help/runtime mismatch, `normal`/`auto`, `accept-edits`, `dangerous`/`bypass`, and `autonomous`/`--sandbox` permission behavior, six live hook events, the PermissionRequest difference, PreToolUse under bypass, built-in and mirrored subagents, all 13 mirrored agents, the 36 slash-command roster, the unquoted-colon parser defect, Cursor/Claude/Standard rule inheritance, the `devin mcp` surface, session continuation, and document-only `/handoff` coverage. No live result is asserted beyond the verified facts supplied with this phase.
 
@@ -191,6 +197,10 @@ Devin's `skills` subcommand is the slash-command surface. These scenarios verify
 
 The playbook is manual by design. It has no replacement automated suite for the authenticated CLI, hook delivery, interactive slash commands, or cloud handoff. Structural evidence can be checked locally with `rg`, `find`, and the phase's Spec Kit validator; those checks do not replace executing the scenario commands.
 
+The `cli-devin` stress-matrix category is the one exception: it runs the shared hermetic Vitest suite
+at `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-devin.vitest.ts`, covering
+`cli-devin-EC-001` .. `cli-devin-EC-014`.
+
 ---
 
 ## 17. FEATURE CATALOG CROSS-REFERENCE INDEX
@@ -206,3 +216,38 @@ The root index and per-scenario files are the canonical manual-testing catalog f
 | Skill packet contract | [`../SKILL.md`](../SKILL.md) |
 
 Scenario files carry the exact source anchors and validation criteria for their own category; this index intentionally does not duplicate those contracts.
+
+---
+
+## 18. GIT PREFLIGHT ADVISORY (`DV-021`)
+
+This category validates that the shared sk-git preflight advisory reaches Devin's `PreToolUse` `exec`
+context on a directory-scoped commit that would silently drop an untracked file, stays silent on an
+ordinary commit, is suppressible via `SKGIT_ADVISORY=0`, and fails open on a hook resolution error.
+
+- `DV-021`: [Git preflight advisory delivery](git-preflight-advisory/git-preflight-advisory.md)
+
+---
+
+## 19. STRESS MATRIX (`cli-devin-EC-001..cli-devin-EC-014`)
+
+This category runs the shared hermetic stress-matrix cells for the `cli-devin` adapter: authentication,
+model/balance, rate-limit, timeout, stdin closure, child-spec-gate, sandbox/permission, missing
+transport, budget rejection, partial lineage death, orphan cleanup, worktree collision, node_modules
+integrity, and self-invocation. Every cell runs as a fully automated Vitest check with no live
+external Devin process; there is no operator-facing prompt beyond the run-this-test instruction.
+
+- `cli-devin-EC-001`: [Authentication failure](stress/auth-failure.md)
+- `cli-devin-EC-002`: [Model or balance failure](stress/model-or-balance.md)
+- `cli-devin-EC-003`: [Rate limit](stress/rate-limit.md)
+- `cli-devin-EC-004`: [Timeout](stress/timeout.md)
+- `cli-devin-EC-005`: [Stdin closure](stress/stdin-hang.md)
+- `cli-devin-EC-006`: [Child spec gate](stress/child-spec-gate.md)
+- `cli-devin-EC-007`: [Sandbox or permission](stress/sandbox-permission.md)
+- `cli-devin-EC-008`: [Missing transport](stress/transport-missing.md)
+- `cli-devin-EC-009`: [Budget rejection](stress/budget-rejection.md)
+- `cli-devin-EC-010`: [Partial lineage death](stress/partial-lineage-death.md)
+- `cli-devin-EC-011`: [Orphan cleanup](stress/orphan-cleanup.md)
+- `cli-devin-EC-012`: [Worktree collision](stress/worktree-collision.md)
+- `cli-devin-EC-013`: [Node modules integrity](stress/node-modules-integrity.md)
+- `cli-devin-EC-014`: [Self invocation](stress/self-invocation.md)

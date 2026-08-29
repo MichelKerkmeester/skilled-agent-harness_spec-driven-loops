@@ -10,6 +10,11 @@ version: 1.2.0.0
 
 > **SELF-INVOCATION GUARD**: This playbook validates the `cli-cursor` skill from a non-Cursor runtime (Claude Code, Codex, OpenCode or shell). Operators MUST NOT execute these scenarios from inside Cursor CLI itself. The skill refuses to load when Cursor env vars (`CURSOR_AGENT`/`CURSOR_CONVERSATION_ID`) or process ancestry are detected. See SKILL.md §2 Self-Invocation Guard.
 
+<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
+> **Result persistence**: a scenario run is complete only after its `PASS`, `FAIL`, or `SKIP`
+> outcome and reason are persisted through `run-manual-playbook-scenario.cjs` into
+> `cli-cursor/benchmark/reports/<dated-run-label>/`.
+
 This document combines the full manual-validation contract for the `cli-cursor` skill into a single reference. The root playbook acts as the operator directory, review protocol and orchestration guide. It explains how realistic user-driven tests should be run, how evidence should be captured, how results should be graded and where each per-scenario validation file lives. The per-scenario files provide the deeper execution contract for each scenario, including the user request, orchestrator prompt, execution process, source anchors and validation criteria.
 
 ---
@@ -30,12 +35,13 @@ Canonical package artifacts:
 - `agents-skills-rules/`
 - `git-preflight-advisory/`
 - `goal-hook/`
+- `stress/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 27 deterministic scenarios across 12 categories validating the `cli-cursor` skill surface. Each feature keeps its global `CU-NNN` ID and links to a dedicated feature file with the full execution contract.
+This playbook provides 40 deterministic scenarios across 13 categories validating the `cli-cursor` skill surface. Each feature keeps its global `CU-NNN` ID (or `cli-cursor-EC-NNN` for the hermetic stress-matrix category) and links to a dedicated feature file with the full execution contract.
 
 Coverage note (2026-07-27): Covers the canonical default invocation (`composer-2.5` model + `--output-format text`), the Cursor-specific auth-fail-but-exit-0 safety gotcha, a flag/model-id hallucination-fixture probe (fabricated `--reasoning-effort` and bracket-effort model ids), all three documented execution modes (`--mode plan`, `--mode ask`, default agent), Cursor's real approval/sandbox flags (`--auto-review` Smart Auto, `--force`/`--yolo`, `--sandbox enabled|disabled`), the two Cursor-unique surfaces with no sibling analog (native git worktree isolation via `-w`, and the infra-grade cloud `worker`), MCP client integration (`cursor-agent mcp list`/`list-tools`, `.cursor/mcp.json` precedence, `--approve-mcps`), the editor-shared hooks system (confirmed-fires, confirmed-non-delivery, the unreviewed prebind design, and phase 011's live-fire-confirmed `Task`-matcher dispatch guard), session continuity (`--continue`/`--resume`), prompt-template quality discipline (CLEAR scoring via the canonical card, plus a Composer-specific RCAF dispatch), the 13-agent/runtime-derived-command/mirror-integrity roster surfaces added in CU-022..CU-025, and the direct Cursor Shell delivery of the sk-git advisory. Self-invocation refusal is enforced upstream by the skill's detection guard and is not retested here.
 
@@ -614,8 +620,34 @@ The `cli-cursor` skill is an orchestrator wrapper around a third-party binary (`
 | `.opencode/skills/system-spec-kit/mcp-server/hooks/cursor/{spec-gate-enforce,spec-gate-classify}.mjs` | Runtime hook enforcement/advisory | `CU-013` (enforce, wired to `preToolUse`); `CU-014` (classify, dormant - documented, never wired) |
 | `.opencode/hooks/task-dispatch/cursor/task-dispatch-guard.mjs` | `Task`-matcher `preToolUse` dispatch guard (phase 011) | `CU-021` exercises the confirmed live-fire `matcher: "Task"` entry |
 | `.opencode/skills/sk-doc/scripts/validate_document.py` | Markdown structure validation for this playbook | This playbook itself (root and every scenario file MUST validate cleanly) |
+| `.opencode/skills/system-deep-loop/runtime/tests/stress/cli-adapter/cli-cursor.vitest.ts` | Hermetic fan-out, lineage, timeout, and transport stress cells for the `cli-cursor` adapter | `cli-cursor-EC-001` .. `cli-cursor-EC-014` |
 
 There is no automated coverage for default-invocation, execution-mode, approval/sandbox, worktree, MCP, or session-continuity scenarios. Manual playbook execution IS the canonical validation surface for those features. Re-run the wave plan in §6 before each release.
+
+---
+
+## 19. STRESS MATRIX (`cli-cursor-EC-001..cli-cursor-EC-014`)
+
+This category runs the shared hermetic stress-matrix cells for the `cli-cursor` adapter: authentication,
+model/balance, rate-limit, timeout, stdin closure, child-spec-gate, sandbox/permission, missing
+transport, budget rejection, partial lineage death, orphan cleanup, worktree collision, node_modules
+integrity, and self-invocation. Every cell runs as a fully automated Vitest check with no live
+external Cursor process; there is no operator-facing prompt beyond the run-this-test instruction.
+
+- `cli-cursor-EC-001`: [Authentication failure](stress/auth-failure.md)
+- `cli-cursor-EC-002`: [Model or balance failure](stress/model-or-balance.md)
+- `cli-cursor-EC-003`: [Rate limit](stress/rate-limit.md)
+- `cli-cursor-EC-004`: [Timeout](stress/timeout.md)
+- `cli-cursor-EC-005`: [Stdin closure](stress/stdin-hang.md)
+- `cli-cursor-EC-006`: [Child spec gate](stress/child-spec-gate.md)
+- `cli-cursor-EC-007`: [Sandbox or permission](stress/sandbox-permission.md)
+- `cli-cursor-EC-008`: [Missing transport](stress/transport-missing.md)
+- `cli-cursor-EC-009`: [Budget rejection](stress/budget-rejection.md)
+- `cli-cursor-EC-010`: [Partial lineage death](stress/partial-lineage-death.md)
+- `cli-cursor-EC-011`: [Orphan cleanup](stress/orphan-cleanup.md)
+- `cli-cursor-EC-012`: [Worktree collision](stress/worktree-collision.md)
+- `cli-cursor-EC-013`: [Node modules integrity](stress/node-modules-integrity.md)
+- `cli-cursor-EC-014`: [Self invocation](stress/self-invocation.md)
 
 ---
 

@@ -29,7 +29,7 @@ Operators run the exact prompt and command sequence for `GIT-021` and confirm th
 - RCAF Prompt: `As a cross-CLI conductor, delegate a sk-git commit-plan review against cli-opencode. Verify the response preserves Conventional Commit determinism and refuses unsafe git shortcuts. Return the handback summary and pass/fail verdict.`
 - Expected execution process: Send a bounded cli-opencode prompt with source anchors, require no file writes, and compare the returned plan to sk-git rules.
 - Expected signals: Handback includes deterministic commit subject, targeted staging, and no bypass/force-push advice.
-- Desired user-visible outcome: A concise PASS, PARTIAL, FAIL, or SKIP verdict with the evidence needed for release review.
+- Desired user-visible outcome: A concise PASS or FAIL verdict with the evidence needed for release review; SKIP only when the `cli-opencode` runtime is unavailable to this operator.
 - Pass/fail: PASS if handback follows `references/commit-workflows.md §3`, `assets/commit-message-template.md §3-§5`, and `SKILL.md §4` NEVER rules. FAIL if cli-opencode proposes `git add .`, `--no-verify`, force-push to protected branch, or direct branch creation.
 
 ---

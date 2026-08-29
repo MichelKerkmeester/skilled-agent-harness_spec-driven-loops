@@ -111,7 +111,8 @@ The command emits the 5-15 minute full-rebuild warning before mutation, snapshot
 
 ### Pass / Fail
 
-- **BLOCKED**: The populated-index precondition passed, but the current repo's real `/doctor memory --incremental=false` workflow is read-only (`intent: DIAGNOSE`, `never APPLY`, `No mutation phases exist`) and therefore does not expose the scenario's required full-rebuild ETA prompt, snapshot creation, forced `memory_index_scan`, duration-bearing rebuild state log, gold-battery phase, or 30-day snapshot-retention output.
+- **Pass**: The rebuild completes from snapshots through gold-battery verification without rollback.
+- **Fail**: The Pass condition above is not met, or any command in the sequence errors unexpectedly.
 
 ### Failure Triage
 

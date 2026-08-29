@@ -56,6 +56,10 @@ This scenario verifies that the model benchmark lane is reached by its command b
 1. `.opencode/skills/system-deep-loop/mode-registry.json` contains the `model-benchmark` mode entry.
 2. The orchestrator can accept `/deep:model-benchmark` command prompts.
 
+### Prompt
+
+- Prompt: `/deep:model-benchmark Run a model benchmark for the prompt framework candidates and compare model behavior against the current harness.`
+
 ### Exact Command Sequence
 
 1. **Invoke command surface**: enter the exact prompt into the orchestrator runtime.
@@ -71,11 +75,14 @@ This scenario verifies that the model benchmark lane is reached by its command b
 | 2 | Response names backend `improvement-host`, loop host mode `model-benchmark`, and artifact root `improvement/`. |
 | 3 | Response states or implies command-bridge behavior, not lexical or alias-fold advisor behavior. |
 
+### Evidence
+
+- Command response transcript: `/tmp/dlw-IL-002/response.txt`, showing the resolved mode, backend, loop host mode, and artifact root.
+
 ### Pass/Fail Criteria
 
-- **PASS** iff `/deep:model-benchmark` resolves to `model-benchmark` with the expected registry fields.
-- **PARTIAL** iff route is correct but the response does not explicitly mention command-bridge behavior.
-- **FAIL** iff the lane fires from a bare advisor alias, routes to `agent-improvement`, or assigns a non-null runtime loop type.
+- **PASS**: `/deep:model-benchmark` resolves to `model-benchmark` with the expected registry fields, whether or not the response also names "command-bridge" behavior explicitly.
+- **FAIL**: the lane fires from a bare advisor alias, routes to `agent-improvement`, or assigns a non-null runtime loop type.
 
 ### Failure Triage
 
@@ -89,6 +96,7 @@ This scenario verifies that the model benchmark lane is reached by its command b
 
 - `.opencode/skills/system-deep-loop/SKILL.md` - improvement family routing rule.
 - `.opencode/skills/system-deep-loop/mode-registry.json` - `model-benchmark` source of truth.
+- [manual-testing-playbook.md](../manual-testing-playbook.md) - root directory page and scenario summary.
 
 ---
 

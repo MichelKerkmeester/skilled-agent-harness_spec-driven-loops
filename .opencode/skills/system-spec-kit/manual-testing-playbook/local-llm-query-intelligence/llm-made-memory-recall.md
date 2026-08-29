@@ -24,11 +24,11 @@ A round-trip failure mode would be: store a memory about concept X, query with a
 
 - Objective: Validate deterministic paraphrase recall for LLM-stored memories.
 - Real user request: `Read the 10-pair 409 fixture, query each paraphrase, and verify the expected source memory appears in top-3 each time.`
-- RCAF Prompt: `As a query-intelligence validation operator, read manual-testing-playbook/local-llm-query-intelligence/409_fixture.json, query each fixture paraphrase with Memory MCP, and verify the expected source memory appears in top-3. Return a pass/fail verdict with the per-sample table.`
+- Operator prompt: `As a query-intelligence validation operator, read manual-testing-playbook/local-llm-query-intelligence/409_fixture.json, query each fixture paraphrase with Memory MCP, and verify the expected source memory appears in top-3. Return a pass/fail verdict with the per-sample table.`
 - Expected execution process: read 10 pairs from `409-fixture.json`; for each pair, query the `query` string and check the rank of `expected_source_memory_id`.
 - Expected signals: source memory in top-3 for >= 8 of 10 deterministic fixture rows; mean rank <= 2. Calibration source: 016/004 retrieval-rescue evidence reached 8/10 with the post-surgery fixture.
 - Desired user-visible outcome: `PASS - 8 of 10 fixture rows surface their source memory in top-3; mean rank <= 2.0.`
-- Pass/fail: PASS if >= 8/10 in top-3; PARTIAL if 5-7/10; FAIL if <= 4/10.
+- Pass/fail: PASS only if >= 8/10 land in top-3; FAIL at <= 7/10 — the 5-7/10 band is a FAIL, not partial credit.
 
 ---
 
@@ -142,12 +142,17 @@ Summary: 8/10 or better in top-3, mean rank <= 2.0 -> PASS
 
 ### Pass/Fail
 
-BLOCKED - Required Memory MCP search and health evidence could not be collected: native MCP returned `E030` / backend recycle errors, and the warm CLI fallback refused to run because `@spec-kit/mcp-server dist is stale`; rebuilding dist would violate this scenario's allowed write paths.
+- **Pass**: >= 8/10 land in top-3.
+- **Fail**: At <= 7/10 — the 5-7/10 band is a FAIL, not partial credit.
 
----
+### Failure Triage
 
-## 4. NOTES
+1. Re-run each command on its own and record its exit status; the first non-zero exit names the failing step.
+2. Check the active embedding provider with `memory_health` — a degraded or lexical-only lane changes recall and is the most common cause of a rank miss.
+3. Confirm indexing finished before the query step; re-run the query after the documented wait if the stored record is absent from every result.
+4. Compare the observed output against the Expected block field by field and quote the first field that disagrees.
 
+### Notes
 This scenario tests embedding consistency over time: memories stored earlier should still surface today under faithful paraphrases. If the recall rate drops below 80%, possible causes:
 
 1. Provider drift.
@@ -157,8 +162,22 @@ This scenario tests embedding consistency over time: memories stored earlier sho
 
 If recall is high (>= 90%), the local-LLM round-trip is healthy and embeddings remain stable across the storage-to-retrieval boundary.
 
+### Clean-Up
+No cleanup needed. Treat fixture IDs as read-only.
+
 ---
 
-## 5. CLEANUP
+## 4. SOURCE FILES
 
-No cleanup needed. Treat fixture IDs as read-only.
+- Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
+- Category overview: [local-llm-query-intelligence/README.md](../../manual-testing-playbook/local-llm-query-intelligence/README.md)
+- Mechanical local-LLM suites: `.opencode/skills/system-spec-kit/mcp-server/tests/local-llm-features/`
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Local LLM Query Intelligence
+- Playbook ID: local-llm-query-intelligence-llm-made-memory-recall
+- Canonical root source: [manual-testing-playbook.md](../manual-testing-playbook.md)
+- Feature file path: `local-llm-query-intelligence/llm-made-memory-recall.md`

@@ -30,7 +30,7 @@ Operators run the exact prompt and command sequence for `ASD-005` and confirm th
 - Expected execution process: seed task, session-id capture, continuation, context judgment.
 - Expected signals: id captured; continuation returns; the answer references prior-run content it was never re-told.
 - Desired user-visible outcome: The follow-up answer plus the judgment that it required prior context.
-- Pass/fail: PASS if continuation demonstrably reuses context; FAIL if it starts cold or errors. SKIP (documented) if the installed version surfaces no session id anywhere — that observation is itself the finding.
+- Pass/fail: PASS if continuation demonstrably reuses context; FAIL if it starts cold or errors. SKIP (documented) when the installed `aside` version surfaces no session id anywhere — a specific missing-feature blocker in this environment — that observation is itself the finding.
 
 ---
 
