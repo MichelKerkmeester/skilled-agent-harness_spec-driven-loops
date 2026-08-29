@@ -33,15 +33,22 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "scripts/check-agent-gateway.sh",
       "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scripts/check-agent-gateway.sh",
+      ".claude/agents/deep-research.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -61,27 +68,27 @@
         "source": "derived"
       },
       {
-        "name": "check-agent-gateway.sh",
-        "kind": "script",
-        "path": "scripts/check-agent-gateway.sh",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-gateway.sh",
+        "kind": "script",
+        "path": "scripts/check-agent-gateway.sh",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-research.md",
         "source": "derived"
       },
       {
@@ -179,17 +186,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `012-runtime-enablement` work made the typed event ledger authoritative for all eight deep-loop modes and turned each `-state.jsonl` into a pure projection of the ledger",
     "created_at": "2026-08-25T07:11:26.953Z",
-    "last_save_at": "2026-08-25T07:26:58.161Z",
+    "last_save_at": "2026-08-29T15:22:08.443Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +203,12 @@
     ],
     "source_fingerprint": "sha256:34b85e1ed184be1060212fe9a70d2d70641c3a798828a3b2dc60686ec4971958",
     "source_doc_hashes": {
-      "spec.md": "c3d88470da6e24ba2459bb8ab139b5c0ae7a585f90f2b2464c9581fa8fd7c3a8",
-      "plan.md": "22abc6fd0c5634d7ff3550cfde7ff7da100bd9f9d8ae4f7773f8c325302eb42f",
-      "tasks.md": "4e994bfa129dd4cf3512962c4f17339e78fffcc2bb575b2c74646e5cf8f13109",
-      "checklist.md": "b33f400a3a28a7c6c75de0ffa0ab66ae6381b7e63be3295c004ef804e31a5500",
-      "decision-record.md": "2f395ae1424f699f91f40d50d510ca3f357b6d344fce15fbaf2c39ce1ecd4db3",
-      "implementation-summary.md": "1fbde93984381b94d85eb0c6f59c8ef7ae9b69e3eead13820b5d64af526e2bc2"
+      "spec.md": "cd84afd1fae1705d9db71607f41af5e6b6199cce6e0d1642d3228bc72900e581",
+      "plan.md": "61f53c5a596bdb943f7c34fd7a3b4db95d50044431a7d823f74bea7b4654871a",
+      "tasks.md": "62697dd3e2e65d2364f7aba2a7a4a0d3fdc23213df22e5a516f25f957f3135a2",
+      "checklist.md": "3c5965fe088fe1d481efd23ebb9fbfb2da727395da70a832735cb200334212f8",
+      "decision-record.md": "07d7e81ba022d45d363a855e146f7c4e16de2899879d14a987436c840a02dc8c",
+      "implementation-summary.md": "aff9135a24a503b549f4fd0ad6035a13fcf152fe946a8ec25b026a56ac5c2f5a"
     },
     "last_active_child_id": null,
     "last_active_at": null

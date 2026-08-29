@@ -46,12 +46,10 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "mcp_server/scripts/evals/run-retrieval-flag-eval.mjs",
-      "mcp_server/tests/retrieval-flag-eval-driver.vitest.ts",
+      "implementation-summary.md",
       "tests/retrieval-flag-eval-driver.vitest.ts",
-      "scripts/evals/run-retrieval-flag-eval.mjs",
-      "mcp_server/lib/search/hybrid-search.ts",
-      "implementation-summary.md"
+      "database/context-index.sqlite",
+      "scripts/evals/run-retrieval-flag-eval.mjs"
     ],
     "entities": [
       {
@@ -79,27 +77,27 @@
         "source": "derived"
       },
       {
-        "name": "run-retrieval-flag-eval.mjs",
-        "kind": "file",
-        "path": "mcp_server/scripts/evals/run-retrieval-flag-eval.mjs",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "retrieval-flag-eval-driver.vitest.ts",
         "kind": "test",
-        "path": "mcp_server/tests/retrieval-flag-eval-driver.vitest.ts",
+        "path": "tests/retrieval-flag-eval-driver.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "hybrid-search.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/hybrid-search.ts",
+        "name": "context-index.sqlite",
+        "kind": "file",
+        "path": "database/context-index.sqlite",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "run-retrieval-flag-eval.mjs",
+        "kind": "file",
+        "path": "scripts/evals/run-retrieval-flag-eval.mjs",
         "source": "derived"
       },
       {
@@ -201,7 +199,7 @@
     ],
     "causal_summary": "The per-flag retrieval benchmark feeds the criterion-4 flip decision, but its driver measures every flag on a non-representative all-channels path, and its trigger-channel ablation is a complete no-op",
     "created_at": "2026-06-19T00:00:00Z",
-    "last_save_at": "2026-07-17T17:19:54.099Z",
+    "last_save_at": "2026-08-29T15:22:23.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

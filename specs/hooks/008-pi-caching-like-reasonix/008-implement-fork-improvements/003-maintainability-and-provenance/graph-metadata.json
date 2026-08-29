@@ -42,7 +42,15 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/scripts/check-vendored-fork-provenance.mjs",
+      ".opencode/scripts/run-local-deep-pi-boundary.mjs",
+      ".pi/extensions/deep-pi/package.json",
+      ".pi/extensions/deep-pi/scripts/live-benchmark.mjs",
+      ".opencode/scripts/vendored-fork-provenance.json",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      ".pi/settings.json",
+      ".pi/extensions/pi-cache-optimizer/package.json"
     ],
     "entities": [
       {
@@ -73,6 +81,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-vendored-fork-provenance.mjs",
+        "kind": "file",
+        "path": ".opencode/scripts/check-vendored-fork-provenance.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-local-deep-pi-boundary.mjs",
+        "kind": "file",
+        "path": ".opencode/scripts/run-local-deep-pi-boundary.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".pi/extensions/deep-pi/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "live-benchmark.mjs",
+        "kind": "file",
+        "path": ".pi/extensions/deep-pi/scripts/live-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "vendored-fork-provenance.json",
+        "kind": "config",
+        "path": ".opencode/scripts/vendored-fork-provenance.json",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
         "source": "derived"
       },
       {
@@ -146,53 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "no",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "isolated",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "10",
     "created_at": "2026-08-08T07:01:48.414Z",
-    "last_save_at": "2026-08-11T06:50:03.485Z",
+    "last_save_at": "2026-08-29T15:21:52.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

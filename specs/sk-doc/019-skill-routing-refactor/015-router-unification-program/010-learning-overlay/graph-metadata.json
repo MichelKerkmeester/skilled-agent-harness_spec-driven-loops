@@ -38,14 +38,22 @@
     "importance_tier": "critical",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
       "checklist.md",
       "implementation-summary.md",
-      "lib/correction-overlay.cjs"
+      "fixtures/learning-overlay-cases.v1.json",
+      "lib/correction-overlay.cjs",
+      "harness/validate-learning-overlay.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -56,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -77,9 +79,21 @@
         "source": "derived"
       },
       {
+        "name": "learning-overlay-cases.v1.json",
+        "kind": "config",
+        "path": "fixtures/learning-overlay-cases.v1.json",
+        "source": "derived"
+      },
+      {
         "name": "correction-overlay.cjs",
         "kind": "file",
         "path": "lib/correction-overlay.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate-learning-overlay.cjs",
+        "kind": "file",
+        "path": "harness/validate-learning-overlay.cjs",
         "source": "derived"
       },
       {
@@ -137,14 +151,14 @@
         "source": "derived"
       },
       {
-        "name": "text",
-        "kind": "technology",
+        "name": "Core Implementation",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "overlay",
-        "kind": "key_phrase",
+        "name": "text",
+        "kind": "technology",
         "path": "plan.md",
         "source": "derived"
       },
@@ -177,23 +191,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Offline Correction Overlay",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The refactor's route decisions are compiled from authored sources and are static per generation",
     "created_at": "2026-07-18T13:13:20.713Z",
-    "last_save_at": "2026-07-24T12:11:57.478Z",
+    "last_save_at": "2026-08-29T15:22:02.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

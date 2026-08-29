@@ -41,18 +41,15 @@
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp/README.md",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp/package.json",
+      ".opencode/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -69,6 +66,30 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/mcp-servers/obsidian-mcp/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-tools.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/references/mcp-tools.md",
         "source": "derived"
       },
       {
@@ -172,29 +193,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "For Level",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `mcp-obsidian` mode needs an MCP path so agents (Code Mode) can reach Obsidian operations the CLI cannot, exactly as `mcp-click-up` routes documents/chat to its `clickupofficial` MCP",
     "created_at": "2026-08-02T05:50:28Z",
-    "last_save_at": "2026-08-28T22:06:01.168Z",
+    "last_save_at": "2026-08-29T15:21:54.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -43,32 +43,32 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "handover.md",
-      "ai-council/council-report-followups-mcp-stability.md",
-      "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "spec.md"
+      "implementation-summary.md",
+      "handover.md",
+      "ai-council/council-report-followups-mcp-stability.md",
+      "lib/storage/schema-downgrade.ts",
+      "lib/embedders/reindex.ts",
+      "lib/storage/incremental-index.ts",
+      "tests/handler-memory-index-cooldown.vitest.ts",
+      "tests/incremental-index.vitest.ts",
+      "tests/incremental-index-v2.vitest.ts",
+      "tests/safety.vitest.ts",
+      "handlers/memory-crud-health.ts",
+      "handlers/memory-index.ts",
+      "core/db-state.ts",
+      "handlers/save/embedding-pipeline.ts",
+      "lib/search/vector-index-mutations.ts"
     ],
     "entities": [
       {
-        "name": "handover.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "council-report-followups-mcp-stability.md",
-        "kind": "doc",
-        "path": "ai-council/council-report-followups-mcp-stability.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -96,9 +96,93 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report-followups-mcp-stability.md",
+        "kind": "doc",
+        "path": "ai-council/council-report-followups-mcp-stability.md",
+        "source": "derived"
+      },
+      {
+        "name": "schema-downgrade.ts",
+        "kind": "code",
+        "path": "lib/storage/schema-downgrade.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": "lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index.ts",
+        "kind": "code",
+        "path": "lib/storage/incremental-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-index-cooldown.vitest.ts",
+        "kind": "test",
+        "path": "tests/handler-memory-index-cooldown.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index.vitest.ts",
+        "kind": "test",
+        "path": "tests/incremental-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index-v2.vitest.ts",
+        "kind": "test",
+        "path": "tests/incremental-index-v2.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "safety.vitest.ts",
+        "kind": "test",
+        "path": "tests/safety.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "db-state.ts",
+        "kind": "code",
+        "path": "core/db-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-pipeline.ts",
+        "kind": "code",
+        "path": "handlers/save/embedding-pipeline.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-mutations.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-mutations.ts",
         "source": "derived"
       },
       {
@@ -124,83 +208,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Implement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Dispatch Phase",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Maintaining Index",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Eventually",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execute Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Coalescing Contract",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Orphan Sweep",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`memoryindexscan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease",
     "created_at": "2026-05-31T15:00:00.000Z",
-    "last_save_at": "2026-08-28T15:59:52.327Z",
+    "last_save_at": "2026-08-29T15:22:16.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

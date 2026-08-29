@@ -39,22 +39,52 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "scripts/gap-relevance-rebenchmark.mjs",
       "results/metrics.json",
+      "benchmark-results.md",
       "tests/evidence-gap-relevance.vitest.ts",
-      "implementation-summary.md",
       "lib/search/search-flags.ts",
       "lib/search/confidence-scoring.ts",
       "lib/search/evidence-gap-detector.ts",
       "lib/search/pipeline/types.ts",
-      "lib/search/pipeline/stage4-filter.ts",
-      "mcp_server/ENV_REFERENCE.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "lib/search/pipeline/stage4-filter.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "gap-relevance-rebenchmark.mjs",
         "kind": "file",
@@ -68,15 +98,15 @@
         "source": "derived"
       },
       {
-        "name": "evidence-gap-relevance.vitest.ts",
-        "kind": "test",
-        "path": "tests/evidence-gap-relevance.vitest.ts",
+        "name": "benchmark-results.md",
+        "kind": "doc",
+        "path": "benchmark-results.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "evidence-gap-relevance.vitest.ts",
+        "kind": "test",
+        "path": "tests/evidence-gap-relevance.vitest.ts",
         "source": "derived"
       },
       {
@@ -107,36 +137,6 @@
         "name": "stage4-filter.ts",
         "kind": "code",
         "path": "lib/search/pipeline/stage4-filter.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": "mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "The 043 benchmark proved the Z-score evidence-gap detector measures peakedness, not relevance",
     "created_at": "2026-06-27T17:15:44.445Z",
-    "last_save_at": "2026-07-17T17:19:53.138Z",
+    "last_save_at": "2026-08-29T15:22:23.225Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

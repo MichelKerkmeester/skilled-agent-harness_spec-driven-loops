@@ -39,7 +39,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/create/feature-catalog.md"
     ],
     "entities": [
       {
@@ -64,6 +65,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/feature-catalog.md",
         "source": "derived"
       },
       {
@@ -179,17 +186,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc standards, doc templates, and `templaterules.json` config currently mandate or allow `## TABLE OF CONTENTS` blocks and treat `ANCHOR` markers as recommended",
     "created_at": "2026-05-26T09:40:16.335Z",
-    "last_save_at": "2026-08-28T15:59:18.631Z",
+    "last_save_at": "2026-08-29T15:22:01.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

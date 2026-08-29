@@ -36,21 +36,16 @@
     "status": "planned",
     "key_files": [
       "spec.md",
-      "research/research.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "research/research.md",
+      "synthesis.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -63,6 +58,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "synthesis.md",
+        "kind": "doc",
+        "path": "synthesis.md",
         "source": "derived"
       },
       {
@@ -178,17 +185,11 @@
         "kind": "technology",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "javascript",
-        "kind": "technology",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The shipped Meta Bind docs teach a correctness bug: they stamp a button-written timestamp with `value: \"=now()\"`, citing it as \"the documented pattern.\" Meta Bind has no `now()` function and no `=`-prefixed expression language — `=now()` is a Dataview convention misapplied",
     "created_at": "2026-08-23T03:46:01.410Z",
-    "last_save_at": "2026-08-23T03:46:01.410Z",
+    "last_save_at": "2026-08-29T15:21:55.024Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

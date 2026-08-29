@@ -41,34 +41,17 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "research/deep-research-strategy.md",
-      "research/research.md",
-      "research/deep-research-config.json",
       "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/deep-research-strategy.md",
+      "research/deep-research-config.json",
       "research/deep-research-state.jsonl",
-      "implementation-summary.md"
+      "scripts/core/workflow.ts"
     ],
     "entities": [
-      {
-        "name": "deep-research-strategy.md",
-        "kind": "doc",
-        "path": "research/deep-research-strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-config.json",
-        "kind": "config",
-        "path": "research/deep-research-config.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -88,15 +71,39 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-strategy.md",
+        "kind": "doc",
+        "path": "research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
         "name": "deep-research-state.jsonl",
         "kind": "file",
         "path": "research/deep-research-state.jsonl",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "scripts/core/workflow.ts",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 027 epic shipped twenty-four phases, a finding-remediation program, and a database recovery — but every review so far was scoped to shipped diffs",
     "created_at": "2026-06-12T04:40:47.948Z",
-    "last_save_at": "2026-08-28T23:45:59.912Z",
+    "last_save_at": "2026-08-29T15:22:20.952Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

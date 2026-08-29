@@ -43,15 +43,29 @@
       "shared"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "description.json",
+      "graph-metadata.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": "description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "graph-metadata.json",
         "source": "derived"
       },
       {
@@ -93,7 +107,7 @@
     ],
     "causal_summary": "Phase-parent control packet for post-012 learning feedback reducers: shared aggregation foundation, session-trace causal reducer, learned retention reducer, and env/tests integration closeout.",
     "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-07-17T17:19:40.084Z",
+    "last_save_at": "2026-08-29T15:22:19.593Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -103,7 +117,7 @@
     "source_doc_hashes": {
       "spec.md": "ba7809d3f645dd37d258c9533635ce22fcece189fef6caf38d1ccdbfe98b9ff9"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/027-xce-research-based-refinement/002-memory-store-and-search/004-learning-feedback-reducers/005-env-tests-integration",
     "last_active_at": null
   }
 }

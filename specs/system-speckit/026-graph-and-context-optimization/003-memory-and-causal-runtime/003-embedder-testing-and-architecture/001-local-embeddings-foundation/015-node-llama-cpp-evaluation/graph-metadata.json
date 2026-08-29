@@ -50,8 +50,10 @@
       "implementation-summary.md",
       "scratch/bench-results.json",
       "scratch/parity-results.txt",
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
       "scratch/bench-llama-cpp-vs-hf-local.ts",
       "scratch/model-info.json",
+      "shared/embeddings/factory.ts",
       "scratch/smoke-results.txt"
     ],
     "entities": [
@@ -95,6 +97,12 @@
         "name": "parity-results.txt",
         "kind": "file",
         "path": "scratch/parity-results.txt",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
         "source": "derived"
       },
       {
@@ -192,17 +200,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verify Metal",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Memory MCP local embedding path currently defaults to `hf-local`, which uses `@huggingface/transformers` with the ONNX EmbeddingGemma export and q8 dtype",
     "created_at": "2026-05-13T09:52:09Z",
-    "last_save_at": "2026-08-28T15:59:33.490Z",
+    "last_save_at": "2026-08-29T15:22:14.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T09:56:14Z",
     "source_docs": [

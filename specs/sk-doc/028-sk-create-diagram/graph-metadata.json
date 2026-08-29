@@ -49,13 +49,19 @@
       "complete"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
-      "context/skills/diagram-design/SKILL.md",
       "001-inventory-and-skill-contract/decision-record.md",
+      "015-flowchart-deprecation/implementation-summary.md",
+      "016-command-mirror-restoration/implementation-summary.md",
+      "scripts/README.md",
+      "008-resource-reorganization-and-code-alignment/implementation-summary.md",
+      "014-review-remediation/implementation-summary.md",
+      "context/skills/diagram-design/SKILL.md",
       "context/README.md",
-      "001-inventory-and-skill-contract/spec.md"
+      "001-inventory-and-skill-contract/spec.md",
+      ".opencode/skills/sk-doc/sk-create-skill/SKILL.md"
     ],
     "entities": [
       {
@@ -65,15 +71,15 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "context/skills/diagram-design/SKILL.md",
+        "path": "scripts/README.md",
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "context/README.md",
+        "path": "context/skills/diagram-design/SKILL.md",
         "source": "derived"
       },
       {
@@ -115,7 +121,7 @@
     ],
     "causal_summary": "`context/` holds a complete, already-working third-party Claude/Pi/Codex plugin (\"diagram-design\" by Cathryn Lavery) that generates 27 kinds of editorial technical diagrams as self-contained HTML files with inline SVG — architecture, flowcharts, sequence, ER, Gantt, and more — plus draw.io/Mermaid import and PNG/SVG export",
     "created_at": "2026-08-12T05:43:11.000Z",
-    "last_save_at": "2026-08-13T17:15:00.000Z",
+    "last_save_at": "2026-08-29T15:22:04.455Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

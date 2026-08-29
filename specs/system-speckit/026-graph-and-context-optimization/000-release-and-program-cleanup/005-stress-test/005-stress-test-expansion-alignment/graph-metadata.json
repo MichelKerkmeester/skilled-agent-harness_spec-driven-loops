@@ -44,7 +44,10 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      "resource-map.md"
+      "resource-map.md",
+      "audit-findings.md",
+      "coverage-matrix.md",
+      "remediation-log.md"
     ],
     "entities": [
       {
@@ -87,6 +90,24 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-findings.md",
+        "kind": "doc",
+        "path": "audit-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-matrix.md",
+        "kind": "doc",
+        "path": "coverage-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-log.md",
+        "kind": "doc",
+        "path": "remediation-log.md",
         "source": "derived"
       },
       {
@@ -172,29 +193,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "stresstest had useful coverage but uneven sk-code-opencode alignment and no scoped catalog coverage map",
     "created_at": "2026-05-18T08:15:53.296Z",
-    "last_save_at": "2026-07-17T17:19:12.851Z",
+    "last_save_at": "2026-08-29T15:22:12.216Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

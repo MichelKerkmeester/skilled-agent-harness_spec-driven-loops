@@ -41,19 +41,50 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "scripts/multihop-tail-appends-benchmark.mjs",
-      "results/metrics.json",
-      "lib/search/deterministic-multihop.ts",
-      "lib/search/lane-champion-backfill.ts",
-      "lib/search/hybrid-search.ts",
-      "handlers/memory-search.ts",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "scripts/multihop-tail-appends-benchmark.mjs",
+      "results/metrics.json",
+      "benchmark-results.md",
+      "lib/search/deterministic-multihop.ts",
+      "lib/search/lane-champion-backfill.ts",
+      "lib/search/hybrid-search.ts",
+      "handlers/memory-search.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "multihop-tail-appends-benchmark.mjs",
         "kind": "file",
@@ -64,6 +95,12 @@
         "name": "metrics.json",
         "kind": "config",
         "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark-results.md",
+        "kind": "doc",
+        "path": "benchmark-results.md",
         "source": "derived"
       },
       {
@@ -88,36 +125,6 @@
         "name": "memory-search.ts",
         "kind": "code",
         "path": "handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,17 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two finished search features ship dark behind default-off flags with no measured verdict",
     "created_at": "2026-06-24T04:55:43.757Z",
-    "last_save_at": "2026-07-17T17:19:54.397Z",
+    "last_save_at": "2026-08-29T15:22:23.747Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

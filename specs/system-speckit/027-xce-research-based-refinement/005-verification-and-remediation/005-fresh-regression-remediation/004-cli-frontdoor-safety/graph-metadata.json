@@ -31,11 +31,12 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "tasks.md",
-      "tests/spec-memory-cli-socket-perimeter.vitest.ts",
-      "tests/spec-memory-cli.vitest.ts",
       "plan.md",
-      "implementation-summary.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "dist/spec-memory-cli.js",
+      "tests/spec-memory-cli-socket-perimeter.vitest.ts",
+      "tests/spec-memory-cli.vitest.ts"
     ],
     "entities": [
       {
@@ -45,9 +46,27 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-memory-cli.js",
+        "kind": "code",
+        "path": "dist/spec-memory-cli.js",
         "source": "derived"
       },
       {
@@ -60,18 +79,6 @@
         "name": "spec-memory-cli.vitest.ts",
         "kind": "test",
         "path": "tests/spec-memory-cli.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -175,17 +182,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built Six",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Remediation sub-phase of the 027 fresh+regression deep-review: 6 CLI front-door findings. Resolved — 5 fixed, 1 refuted-then-hardened; CLI vitest green.",
     "created_at": "2026-07-10T06:23:17.683Z",
-    "last_save_at": "2026-07-17T17:19:45.528Z",
+    "last_save_at": "2026-08-29T15:22:20.950Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

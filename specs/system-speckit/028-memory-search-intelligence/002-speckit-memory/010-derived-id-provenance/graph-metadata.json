@@ -46,7 +46,11 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "lib/content-id.ts",
+      "tests/derived-id-provenance.vitest.ts",
+      "lib/search/vector-index-schema.ts",
+      "lib/storage/causal-edges.ts"
     ],
     "entities": [
       {
@@ -83,6 +87,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "content-id.ts",
+        "kind": "code",
+        "path": "lib/content-id.ts",
+        "source": "derived"
+      },
+      {
+        "name": "derived-id-provenance.vitest.ts",
+        "kind": "test",
+        "path": "tests/derived-id-provenance.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "lib/storage/causal-edges.ts",
         "source": "derived"
       },
       {
@@ -168,35 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Run Memory",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Generated (DERIVED) causal edges have no content-addressed identity",
     "created_at": "2026-06-19T05:40:37.445Z",
-    "last_save_at": "2026-08-28T16:00:11.824Z",
+    "last_save_at": "2026-08-29T15:22:21.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -40,10 +40,7 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "review-report.md",
       "tools/index.ts"
     ],
     "entities": [
@@ -78,27 +75,15 @@
         "source": "derived"
       },
       {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review-report.md",
         "source": "derived"
       },
       {
         "name": "index.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+        "path": "tools/index.ts",
         "source": "derived"
       },
       {
@@ -190,11 +175,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The release-readiness program needs a truth check for the MCP tool schema contract",
     "created_at": "2026-04-29T21:20:00.000Z",
-    "last_save_at": "2026-07-17T17:19:07.964Z",
+    "last_save_at": "2026-08-29T15:22:09.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

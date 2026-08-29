@@ -41,38 +41,47 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/deep/alignment.md",
-      ".claude/agents/deep-alignment.md",
-      ".opencode/agents/deep-alignment.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/mode-registry.json",
-      ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
-      ".opencode/commands/deep/assets/legacy/deep_alignment.body.md",
-      ".opencode/commands/deep/assets/compiled/deep_alignment.contract.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
-      ".opencode/commands/deep/assets/deep_alignment_auto.yaml",
-      ".opencode/commands/deep/assets/deep_alignment_confirm.yaml",
-      ".opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/scenarios/DAB-011-clean-pass-zero-findings.md",
-      ".opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/behavior_benchmark.md",
       ".opencode/commands/deep/review.md",
       ".claude/agents/deep-review.md",
       ".opencode/agents/deep-review.md",
-      ".opencode/skills/system-deep-loop/deep-alignment/README.md",
-      "plan.md",
-      ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
-      ".opencode/skills/system-deep-loop/deep-review/behavior_benchmark/behavior_benchmark.md"
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
       {
-        "name": "alignment.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/commands/deep/alignment.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "deep-alignment.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".claude/agents/deep-alignment.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -82,57 +91,9 @@
         "source": "derived"
       },
       {
-        "name": "skill_advisor.py",
-        "kind": "file",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py",
-        "source": "derived"
-      },
-      {
-        "name": "aliases.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/aliases.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep_alignment.body.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/assets/legacy/deep_alignment.body.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep_alignment.contract.md",
-        "kind": "doc",
-        "path": ".opencode/commands/deep/assets/compiled/deep_alignment.contract.md",
-        "source": "derived"
-      },
-      {
         "name": "render-command-contract.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/runtime/scripts/render-command-contract.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep_alignment_auto.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_alignment_auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep_alignment_confirm.yaml",
-        "kind": "config",
-        "path": ".opencode/commands/deep/assets/deep_alignment_confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "DAB-011-clean-pass-zero-findings.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/scenarios/DAB-011-clean-pass-zero-findings.md",
-        "source": "derived"
-      },
-      {
-        "name": "behavior_benchmark.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/behavior_benchmark/behavior_benchmark.md",
         "source": "derived"
       },
       {
@@ -148,21 +109,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "routing-registry-drift-guard.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-skill-advisor/mcp_server/tests/routing-registry-drift-guard.vitest.ts",
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
         "source": "derived"
       },
       {
@@ -206,11 +155,53 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Paths",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Every prior phase in this packet plans internals (adapters, runtime wiring); none of it is reachable by a user or by the advisor until a command exists to invoke it, a leaf agent exists to execute one iteration, the advisor knows to route alignment requests here, a benchmark proves the mode behaves as intended, and the standard cutover gates confirm the packet is structurally sound before it ships",
     "created_at": "2026-07-11T06:23:43.199Z",
-    "last_save_at": "2026-07-16T16:33:21.453Z",
+    "last_save_at": "2026-08-29T15:22:06.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

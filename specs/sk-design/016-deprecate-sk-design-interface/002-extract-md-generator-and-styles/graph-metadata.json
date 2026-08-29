@@ -37,7 +37,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design-md-generator/SKILL.md",
+      ".opencode/skills/sk-design-md-generator/styles/lib/paths.mjs"
     ],
     "entities": [
       {
@@ -62,6 +64,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design-md-generator/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "paths.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-design-md-generator/styles/lib/paths.mjs",
         "source": "derived"
       },
       {
@@ -171,23 +185,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 002 moves sk-design-md-generator (120 tracked) and styles (7,812 tracked) out of the doomed hub into a new top-level skill root via directory git mv, preserving build artifacts and the style corpus, leaving a transiently unwired tree that phase 003 repairs.",
     "created_at": "2026-08-19T05:03:10.568Z",
-    "last_save_at": "2026-08-19T11:43:37.664Z",
+    "last_save_at": "2026-08-29T15:22:00.345Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

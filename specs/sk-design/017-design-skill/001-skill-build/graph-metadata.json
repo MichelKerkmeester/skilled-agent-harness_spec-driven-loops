@@ -41,13 +41,34 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/SKILL.md",
+      ".opencode/skills/sk-design/README.md",
+      ".opencode/skills/sk-design/graph-metadata.json",
+      ".opencode/skills/sk-design/leaf-manifest.config.json",
+      ".opencode/skills/sk-design/leaf-manifest.json",
+      ".opencode/skills/sk-design/leaf-aliases.json",
+      ".opencode/skills/sk-design/references/color-system.md",
+      ".opencode/skills/sk-design/references/build-procedure.md",
+      ".opencode/skills/sk-design/references/hierarchy.md",
+      ".opencode/skills/sk-design/references/ux-laws.md",
+      ".opencode/skills/sk-design/references/diagnosis-table.md",
+      ".opencode/skills/sk-design/references/depth-and-detail.md",
+      ".opencode/skills/sk-design/references/interaction-craft.md",
+      ".opencode/skills/sk-design/references/motion-principles.md",
+      ".opencode/skills/sk-design/references/review-checklist.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -67,15 +88,99 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.config.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/leaf-manifest.config.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-aliases.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-design/leaf-aliases.json",
+        "source": "derived"
+      },
+      {
+        "name": "color-system.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/color-system.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-procedure.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/build-procedure.md",
+        "source": "derived"
+      },
+      {
+        "name": "hierarchy.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/hierarchy.md",
+        "source": "derived"
+      },
+      {
+        "name": "ux-laws.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/ux-laws.md",
+        "source": "derived"
+      },
+      {
+        "name": "diagnosis-table.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/diagnosis-table.md",
+        "source": "derived"
+      },
+      {
+        "name": "depth-and-detail.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/depth-and-detail.md",
+        "source": "derived"
+      },
+      {
+        "name": "interaction-craft.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/interaction-craft.md",
+        "source": "derived"
+      },
+      {
+        "name": "motion-principles.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/motion-principles.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/references/review-checklist.md",
         "source": "derived"
       },
       {
@@ -101,101 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Next Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Scaffold",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Progressive",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Web Interface Guidelines",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Visual Design",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Agents building UI in this repo have no source of design values, so they invent them: 17px padding, a hand-picked hex, a 400ms transition because 400 is round",
     "created_at": "2026-08-28T10:50:34.606Z",
-    "last_save_at": "2026-08-28T12:30:04.468Z",
+    "last_save_at": "2026-08-29T15:22:00.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

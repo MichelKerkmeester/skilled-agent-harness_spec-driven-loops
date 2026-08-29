@@ -41,7 +41,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "dist/formatters/search-results.js",
+      "dist/lib/search/recovery-payload.js",
+      "tests/d5-recovery-payload.vitest.ts",
+      "tests/empty-result-recovery.vitest.ts"
     ],
     "entities": [
       {
@@ -66,6 +70,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.js",
+        "kind": "code",
+        "path": "dist/formatters/search-results.js",
+        "source": "derived"
+      },
+      {
+        "name": "recovery-payload.js",
+        "kind": "code",
+        "path": "dist/lib/search/recovery-payload.js",
+        "source": "derived"
+      },
+      {
+        "name": "d5-recovery-payload.vitest.ts",
+        "kind": "test",
+        "path": "tests/d5-recovery-payload.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "empty-result-recovery.vitest.ts",
+        "kind": "test",
+        "path": "tests/empty-result-recovery.vitest.ts",
         "source": "derived"
       },
       {
@@ -163,35 +191,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implemented Phase",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "006/I2 cli-opencode received `requestQuality:\"weak\"` plus `recovery.recommendedAction:\"askuser\"` with `suggestedQueries:[]`, yet still synthesized canonical-looking spec folder paths and file references that did not exist",
     "created_at": "2026-04-27T07:48:04.973Z",
-    "last_save_at": "2026-08-28T22:53:16.197Z",
+    "last_save_at": "2026-08-29T15:22:11.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -42,22 +42,17 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "research/research.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -76,6 +71,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `mcp-tooling` hub covers ClickUp, Chrome DevTools, Obsidian, and several design transports, but has no Notion support",
     "created_at": "2026-08-21T10:59:48.443Z",
-    "last_save_at": "2026-08-21T15:52:03.435Z",
+    "last_save_at": "2026-08-29T15:21:54.489Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +211,7 @@
       "spec.md": "06eea5ec93dd81a2cac50f62e8a84354698211996cef9a8bd7a41827b91c9c50",
       "plan.md": "4cac88a667392647c005fd67dc4be78e996c638b875dc98baa60f9ff44c581bf",
       "tasks.md": "ce01cf9af67d930c3826c368910ae9dc5f2b2c148c9db64394dd86ba006d4d03",
-      "implementation-summary.md": "40ab38949475d74770240a9af394985f70ec242d67a5704649cb5e01a3c2fcdf",
+      "implementation-summary.md": "3d468e70e98a8fa0689a671352cd2e33f04be2d4b1e38a0d45b4dbaf000c1ccf",
       "research/research.md": "7728300ce4b804ebcc2f28cafb5ab31b4ce39047965af2891dc2107cbe47ae19"
     },
     "last_active_child_id": null,

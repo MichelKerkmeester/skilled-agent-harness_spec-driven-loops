@@ -44,6 +44,10 @@
       "001-research/spec.md",
       "001-research/plan.md",
       "001-research/research/deep-research-strategy.md",
+      "shared/algorithms/rrf-fusion.ts",
+      "shared/ranking/learned-combiner.ts",
+      "shared/trigger-extractor.ts",
+      "shared/chunking.ts",
       "001-research/tasks.md",
       "001-research/research/deep-research-fanout-config.json"
     ],
@@ -58,6 +62,30 @@
         "name": "deep-research-strategy.md",
         "kind": "doc",
         "path": "001-research/research/deep-research-strategy.md",
+        "source": "derived"
+      },
+      {
+        "name": "rrf-fusion.ts",
+        "kind": "code",
+        "path": "shared/algorithms/rrf-fusion.ts",
+        "source": "derived"
+      },
+      {
+        "name": "learned-combiner.ts",
+        "kind": "code",
+        "path": "shared/ranking/learned-combiner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-extractor.ts",
+        "kind": "code",
+        "path": "shared/trigger-extractor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "chunking.ts",
+        "kind": "code",
+        "path": "shared/chunking.ts",
         "source": "derived"
       },
       {
@@ -105,7 +133,7 @@
     ],
     "causal_summary": "The `system-spec-kit` backend is ~244K LOC of authored TypeScript across ~1,487 files (`mcpserver/`, `scripts/`, `shared/`), run as a long-lived MCP server over `StdioServerTransport` (`mcpserver/context-server.ts`)",
     "created_at": "2026-07-11T00:00:00.000Z",
-    "last_save_at": "2026-08-28T22:50:21.763Z",
+    "last_save_at": "2026-08-29T15:22:08.922Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

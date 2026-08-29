@@ -38,7 +38,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tests/embedder-registry.vitest.ts"
     ],
     "entities": [
       {
@@ -63,6 +64,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-registry.vitest.ts",
+        "kind": "test",
+        "path": "tests/embedder-registry.vitest.ts",
         "source": "derived"
       },
       {
@@ -178,17 +185,11 @@
         "kind": "heading",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "3. HOW IT WAS DELIVERED",
-        "kind": "heading",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 1 of 016 pluggable embedder architecture. Foundational types: define EmbedderAdapter interface + EmbedderRegistry lookup. Pure TypeScript design work — no runtime wiring yet.",
     "created_at": "2026-05-17T06:35:17.033Z",
-    "last_save_at": "2026-08-28T22:59:10.397Z",
+    "last_save_at": "2026-08-29T15:22:14.706Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

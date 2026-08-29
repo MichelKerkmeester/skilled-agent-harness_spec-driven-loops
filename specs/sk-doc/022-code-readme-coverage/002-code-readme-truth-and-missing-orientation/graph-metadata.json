@@ -45,9 +45,22 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "checklist.md",
       "tasks.md",
-      "implementation-summary.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
+      ".opencode/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py",
+      ".github/workflows/README.md",
+      ".opencode/install-guides/install-scripts/README.md",
+      ".opencode/hooks/git/README.md",
+      ".opencode/scripts/git-hooks/tests/README.md",
+      ".opencode/commands/doctor/scripts/README.md",
+      ".opencode/plugins/README.md",
+      ".opencode/plugins/tests/README.md",
+      ".opencode/scripts/README.md",
+      "scripts/README.md",
+      ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/README.md",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/command-bridges/README.md"
     ],
     "entities": [
       {
@@ -63,21 +76,39 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check_readme_references.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py",
+        "source": "derived"
+      },
+      {
+        "name": "check_derived_readme_counts.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/scripts/check_derived_readme_counts.py",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
         "source": "derived"
       },
       {
@@ -175,29 +206,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "These are the only findings in the program with real operator cost",
     "created_at": "2026-07-30T18:58:50.819Z",
-    "last_save_at": "2026-08-28T15:59:25.676Z",
+    "last_save_at": "2026-08-29T15:22:03.575Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

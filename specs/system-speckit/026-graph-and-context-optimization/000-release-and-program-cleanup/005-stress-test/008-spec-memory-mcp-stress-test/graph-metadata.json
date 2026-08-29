@@ -38,17 +38,44 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "handover.md",
       "evidence/tool-sweep.jsonl",
       "evidence/playbook-results.jsonl",
       "evidence/checkpoint-create-rca.md",
-      "tasks.md",
       "evidence/agent-config-008.json",
-      "implementation-summary.md",
-      "spec.md",
-      "plan.md"
+      ".claude/mcp.json",
+      "dist/tool-schemas.js",
+      "lib/utils/README.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "handover.md",
         "kind": "doc",
@@ -74,33 +101,27 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "agent-config-008.json",
         "kind": "config",
         "path": "evidence/agent-config-008.json",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "tool-schemas.js",
+        "kind": "code",
+        "path": "dist/tool-schemas.js",
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "lib/utils/README.md",
         "source": "derived"
       },
       {
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Commit Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "templated Bash",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "re-dispatch",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Exercise all 39 mk-spec-memory MCP tools and execute all 345 manual_testing_playbook scenarios via cli-devin SWE-1.6 to validate behavior post-113 z_archive un-exclusion.",
     "created_at": "2026-05-16T13:55:00Z",
-    "last_save_at": "2026-08-28T19:09:02.382Z",
+    "last_save_at": "2026-08-29T15:22:12.215Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

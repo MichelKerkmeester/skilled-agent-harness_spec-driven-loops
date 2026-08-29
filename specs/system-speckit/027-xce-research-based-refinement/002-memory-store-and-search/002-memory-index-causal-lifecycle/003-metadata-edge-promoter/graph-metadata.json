@@ -41,94 +41,16 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "lib/causal/frontmatter-promoter.ts",
-      "handlers/memory-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/frontmatter-promoter.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/frontmatter-promoter.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-incremental-foundation.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts",
-      "mcp_server/lib/graph/graph-metadata-parser.ts",
-      "mcp_server/lib/parsing/memory-parser.ts",
-      "mcp_server/lib/causal/frontmatter-promoter.ts",
-      "mcp_server/handlers/memory-index.ts",
-      "mcp_server/lib/storage/causal-edges.ts",
-      "mcp_server/lib/search/vector-index-schema.ts",
       "spec.md",
       "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "lib/causal/frontmatter-promoter.ts",
+      "handlers/memory-index.ts",
       "tests/secret-scrubber.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "frontmatter-promoter.ts",
-        "kind": "code",
-        "path": "lib/causal/frontmatter-promoter.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "handlers/memory-index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sweep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "frontmatter-promoter.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/frontmatter-promoter.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema-compatibility.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema-incremental-foundation.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-incremental-foundation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema-migration-refinements.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/vector-index-schema-migration-refinements.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata-parser.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/graph/graph-metadata-parser.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-parser.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/parsing/memory-parser.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -139,6 +61,36 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontmatter-promoter.ts",
+        "kind": "code",
+        "path": "lib/causal/frontmatter-promoter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
         "source": "derived"
       },
       {
@@ -206,11 +158,47 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Evidence",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "curated",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Causal edges are currently created mostly through manual `memorycausallink` flows",
     "created_at": "2026-05-13T09:00:47Z",
-    "last_save_at": "2026-07-17T17:19:39.773Z",
+    "last_save_at": "2026-08-29T15:22:19.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

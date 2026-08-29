@@ -45,8 +45,15 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      "handlers/memory-index.ts",
+      "lib/search/trigger-embedding-backfill.ts",
+      "tests/trigger-embedding-backfill.vitest.ts",
+      "tests/handler-memory-index-scan-jobs.vitest.ts",
+      "lib/storage/maintenance-marker.ts",
+      "utils/batch-processor.ts",
+      "core/config.ts"
     ],
     "entities": [
       {
@@ -62,15 +69,57 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-embedding-backfill.ts",
+        "kind": "code",
+        "path": "lib/search/trigger-embedding-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-embedding-backfill.vitest.ts",
+        "kind": "test",
+        "path": "tests/trigger-embedding-backfill.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-index-scan-jobs.vitest.ts",
+        "kind": "test",
+        "path": "tests/handler-memory-index-scan-jobs.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "maintenance-marker.ts",
+        "kind": "code",
+        "path": "lib/storage/maintenance-marker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "batch-processor.ts",
+        "kind": "code",
+        "path": "utils/batch-processor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "config.ts",
+        "kind": "code",
+        "path": "core/config.ts",
         "source": "derived"
       },
       {
@@ -150,53 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria The",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "these",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "020's marker keeps a busy daemon un-reaped, but a blocked event loop is still the failure mode that breaks re-election: it cannot answer a competing launcher's bridge/probe, and it cannot fire the marker's 20s self-refresh, so a synchronous phase that blocks longer than the 180s TTL lets the marker go stale and a fresh launcher spawns a second daemon",
     "created_at": "2026-06-17T17:15:00.000Z",
-    "last_save_at": "2026-08-28T16:00:08.204Z",
+    "last_save_at": "2026-08-29T15:22:20.086Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

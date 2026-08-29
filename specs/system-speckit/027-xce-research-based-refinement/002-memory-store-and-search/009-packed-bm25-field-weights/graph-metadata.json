@@ -40,6 +40,7 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "scripts/deploy-mcp.sh",
       "scratch/rss-probe-evidence.md"
     ],
     "entities": [
@@ -65,6 +66,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "deploy-mcp.sh",
+        "kind": "script",
+        "path": "scripts/deploy-mcp.sh",
         "source": "derived"
       },
       {
@@ -180,17 +187,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The in-memory BM25 fallback channel has two latent defects at the measured corpus (10,245 docs, 69.2 MB indexed text)",
     "created_at": "2026-06-10T17:48:33Z",
-    "last_save_at": "2026-08-28T16:00:05.233Z",
+    "last_save_at": "2026-08-29T15:22:19.619Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

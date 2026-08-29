@@ -76,43 +76,70 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/spec.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/plan.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/checklist.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/decision-record.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/implementation-summary.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/release-report.md",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/description.json",
+      ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/spec.md",
         "source": "derived"
       },
       {
         "name": "plan.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/plan.md",
         "source": "derived"
       },
       {
         "name": "tasks.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/tasks.md",
         "source": "derived"
       },
       {
         "name": "checklist.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/checklist.md",
         "source": "derived"
       },
       {
         "name": "decision-record.md",
         "kind": "doc",
-        "path": "decision-record.md",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "release-report.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/release-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/sk-design/009-sk-design-claude-parity/005-parity-benchmark-release-gate/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -204,29 +231,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Architecture Tasks",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The parity refactor can look correct at the router layer while still failing live design usefulness, procedure selection, proof discipline, anti-slop judgment, accessibility, hierarchy, interaction quality, polish, or md-generator preservation",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-08-28T15:53:02.017Z",
+    "last_save_at": "2026-08-29T15:21:59.000Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -52,15 +52,42 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      "research/research.md",
+      "context-index.md",
+      "timeline.md",
+      "graph-metadata.json",
       "changelog/before-vs-after.md",
-      "changelog/README.md",
-      "research/research.md"
+      "changelog/README.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-index.md",
+        "kind": "doc",
+        "path": "context-index.md",
+        "source": "derived"
+      },
+      {
+        "name": "timeline.md",
+        "kind": "doc",
+        "path": "timeline.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "graph-metadata.json",
         "source": "derived"
       },
       {
@@ -73,12 +100,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "changelog/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -150,7 +171,7 @@
     ],
     "causal_summary": "Spec Kit needed a coordinated refinement program spanning memory correctness, retrieval, causal-graph hygiene, trigger matching, learning feedback, skill-advisor and code-graph hardening, shared CLI/infrastructure layers, and verify-first remediation",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-08-28T23:08:04.246Z",
+    "last_save_at": "2026-08-29T15:22:18.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [

@@ -40,24 +40,19 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "decision-record.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "resource-map.md"
+      "resource-map.md",
+      "remediation-log.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -79,6 +74,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -88,6 +89,12 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-log.md",
+        "kind": "doc",
+        "path": "remediation-log.md",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 046 fixed the release-blocking P0s and a small Tier beta set, but 24 P1",
     "created_at": "2026-05-18T08:15:52.987Z",
-    "last_save_at": "2026-07-17T17:19:08.260Z",
+    "last_save_at": "2026-08-29T15:22:09.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

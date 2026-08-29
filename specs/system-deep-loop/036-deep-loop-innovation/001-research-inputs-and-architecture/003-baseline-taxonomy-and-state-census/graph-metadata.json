@@ -46,6 +46,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
+      "base-manifest.json",
+      "phase-004-handoff-manifest.json",
       "fixtures/event-streams.json",
       "fixtures/expected-projections.json",
       ".opencode/skills/system-deep-loop/runtime/references/state-format.md"
@@ -79,6 +81,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "base-manifest.json",
+        "kind": "config",
+        "path": "base-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "phase-004-handoff-manifest.json",
+        "kind": "config",
+        "path": "phase-004-handoff-manifest.json",
         "source": "derived"
       },
       {
@@ -182,23 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "owners",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Freeze the immutable BASE and authoritative deep-loop taxonomy, then capture the runtime, state, schema, behavior-benchmark, replay-fixture, defect-contract, and rollback evidence every later 036 phase must preserve.",
     "created_at": "2026-07-16T03:43:57.879Z",
-    "last_save_at": "2026-08-29T13:09:52.019Z",
+    "last_save_at": "2026-08-29T15:22:06.472Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

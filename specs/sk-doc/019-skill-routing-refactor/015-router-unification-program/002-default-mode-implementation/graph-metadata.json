@@ -14,9 +14,15 @@
       "default mode implementation",
       "flip hubs to null default",
       "sk-design hub-identity over-emission fix",
-      "default mode implementation summary",
-      "hubs flipped to null default done",
-      "sk-design over-emission fixed"
+      "default mode implementation plan",
+      "flip hubs to null default plan",
+      "routing-helper fallback plan",
+      "default mode implementation tasks",
+      "flip hubs to null tasks",
+      "sk-design over-emission fix tasks",
+      "default mode implementation checklist",
+      "flip hubs to null checklist",
+      "route-gold baseline held checklist"
     ],
     "key_topics": [
       "default",
@@ -28,14 +34,17 @@
       "sk-design",
       "hub-identity",
       "over-emission",
-      "summary",
-      "flipped",
-      "done"
+      "plan",
+      "routing-helper",
+      "fallback"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -43,6 +52,24 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -88,39 +115,87 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
+        "name": "Technical Context",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "What Was Built Applied",
+        "name": "Overview Apply",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "How It Was Delivered Executed",
+        "name": "Pattern Config",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
+        "name": "Key Components",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-design",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Implement the vetted defaultMode recommendations from research child 001-research/007-default-mode-policy-research: keep sk-prompt, flip system-deep-loop / mcp-tooling / sk-design / cli-external to defaultMode null with a routing-helper fallback, and fix sk-design's hub-identity over-emission. Reversible, gated on route-gold, one hub at a time. Executor: GPT-5.6-SOL high fast.",
     "created_at": "2026-07-18T14:47:45.777Z",
-    "last_save_at": "2026-07-24T12:00:47.927Z",
+    "last_save_at": "2026-08-29T15:22:02.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -132,11 +207,11 @@
     ],
     "source_fingerprint": "sha256:b12458fadf9ff76f3705b5418177c7b20d3c34f82a6f2574a26e1c514d9aaf95",
     "source_doc_hashes": {
-      "spec.md": "e8254f9e8e89f089fff0e1ea1060b3dd272403cc85d92e2e0717c6f4cefe239d",
-      "plan.md": "80f7636c54ae72af15da4ce2ec7f77213e995670e30e12252567d7aac5c50fa0",
-      "tasks.md": "fee9397568c938b668e9b6823bac5bd12a0da64180b2365b2084319ec2a64f26",
-      "checklist.md": "cb0e20bd256bcfb7da403c6c48b25e762372bab71d5700bce17aedab2b5e5925",
-      "implementation-summary.md": "54a1f8b85124e8adc080dc36032ffb6ebd8a51eade68e0281169c1719e43d6e9"
+      "spec.md": "016caa2e9189d2da5217ac0a9216d696ca62bc53bcf03b3692d531a68a47956c",
+      "plan.md": "57ab7852a17c433d9511ff4bdd29a7f9a8dde7d6bf130f30dd5446cb0b0418c1",
+      "tasks.md": "430f02c585449eb0eeadc0375b499bef823676a987da27538247f3e2868a4976",
+      "checklist.md": "a6667c0e894513314ea4a43f8ee77053ddf352e40c82997b14ca34a156832fa8",
+      "implementation-summary.md": "2082f61cd28d5190ad8723a00932ce115f4d4441f42ada717c1bd5073e097c9a"
     },
     "last_active_child_id": null,
     "last_active_at": null

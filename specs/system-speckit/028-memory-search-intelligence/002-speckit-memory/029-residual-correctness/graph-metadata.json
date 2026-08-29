@@ -45,7 +45,10 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tests/launcher-maintenance-guard.vitest.ts",
+      "tests/memory-search-quality-filter.vitest.ts",
+      "tests/maintenance-marker.vitest.ts"
     ],
     "entities": [
       {
@@ -76,6 +79,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-maintenance-guard.vitest.ts",
+        "kind": "test",
+        "path": "tests/launcher-maintenance-guard.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search-quality-filter.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-search-quality-filter.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "maintenance-marker.vitest.ts",
+        "kind": "test",
+        "path": "tests/maintenance-marker.vitest.ts",
         "source": "derived"
       },
       {
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This sub-phase closes two always-on correctness residuals surfaced by the 008 retrieval-evaluation campaign",
     "created_at": "2026-06-19T05:52:29.577Z",
-    "last_save_at": "2026-08-28T16:00:14.805Z",
+    "last_save_at": "2026-08-29T15:22:22.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

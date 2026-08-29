@@ -57,12 +57,8 @@
       "research/008-deep-research-review-pt-01/prompts/iteration-010.md",
       "research/008-deep-research-review-pt-01/deltas/iteration-010.jsonl",
       "tests/memory/trust-badges.test.ts",
-      "mcp_server/formatters/search-results.ts",
-      "mcp_server/lib/storage/causal-edges.ts",
-      "mcp_server/lib/search/search-utils.ts",
-      "mcp_server/handlers/memory-search.ts",
-      "mcp_server/tests/causal-edges-unit.vitest.ts",
-      "mcp_server/tests/memory/trust-badges.test.ts"
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
       {
@@ -138,33 +134,15 @@
         "source": "derived"
       },
       {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "mcp_server/formatters/search-results.ts",
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/storage/causal-edges.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-utils.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/search/search-utils.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-search.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-search.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges-unit.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/causal-edges-unit.vitest.ts",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -208,11 +186,29 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 006 and the 006/007 remediation claimed broad closure across graph-impact and affordance work, but the shipped code, tests, and playbook coverage needed independent audit",
     "created_at": "2026-04-25T23:20:00.000Z",
-    "last_save_at": "2026-07-17T17:19:32.463Z",
+    "last_save_at": "2026-08-29T15:22:17.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

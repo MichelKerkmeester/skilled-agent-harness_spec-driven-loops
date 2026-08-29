@@ -42,7 +42,13 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handlers/memory-index.ts",
+      "lib/config/spec-doc-paths.ts",
+      "tests/orphan-sweep-time-budget-and-refresh.vitest.ts",
+      "tests/memory-index-scoped-scan-gating.vitest.ts",
+      "lib/storage/maintenance-marker.ts",
+      ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh"
     ],
     "entities": [
       {
@@ -73,6 +79,42 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-paths.ts",
+        "kind": "code",
+        "path": "lib/config/spec-doc-paths.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-sweep-time-budget-and-refresh.vitest.ts",
+        "kind": "test",
+        "path": "tests/orphan-sweep-time-budget-and-refresh.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index-scoped-scan-gating.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-index-scoped-scan-gating.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "maintenance-marker.ts",
+        "kind": "code",
+        "path": "lib/storage/maintenance-marker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-drift-marker.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
         "source": "derived"
       },
       {
@@ -152,17 +194,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "F2 (headline finding, confirmed by reproduction) -- scoped scan (drift-marker consumption) bypasses every",
     "created_at": "2026-07-09T15:13:29.637Z",
-    "last_save_at": "2026-08-28T16:00:12.475Z",
+    "last_save_at": "2026-08-29T15:22:21.420Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

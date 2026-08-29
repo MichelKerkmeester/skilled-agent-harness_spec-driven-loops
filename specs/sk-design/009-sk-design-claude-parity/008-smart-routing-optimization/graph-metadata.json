@@ -41,27 +41,16 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "benchmark-after-008/report.json",
-      "benchmark-after-008/report.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-design/SKILL.md",
+      "benchmark-after-008/report.json",
+      "benchmark-after-008/report.md"
     ],
     "entities": [
-      {
-        "name": "report.json",
-        "kind": "config",
-        "path": "benchmark-after-008/report.json",
-        "source": "derived"
-      },
-      {
-        "name": "report.md",
-        "kind": "doc",
-        "path": "benchmark-after-008/report.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -90,6 +79,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "report.json",
+        "kind": "config",
+        "path": "benchmark-after-008/report.json",
+        "source": "derived"
+      },
+      {
+        "name": "report.md",
+        "kind": "doc",
+        "path": "benchmark-after-008/report.md",
         "source": "derived"
       },
       {
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design Lane-C skill-benchmark harness recorded a `CONDITIONAL` verdict at aggregate `69/100` in both the frozen `benchmark/baseline/` run (21 scenarios, pre-Phase-002) and the Phase-005 `benchmark/2026-07-06--after-009--router/` rerun (24 scenarios, post-Phase-005)",
     "created_at": "2026-07-06T04:34:34.389Z",
-    "last_save_at": "2026-08-28T15:53:02.405Z",
+    "last_save_at": "2026-08-29T15:21:58.989Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

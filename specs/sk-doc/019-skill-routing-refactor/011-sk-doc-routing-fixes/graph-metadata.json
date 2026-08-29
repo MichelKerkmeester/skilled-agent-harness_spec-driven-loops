@@ -46,21 +46,17 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-      ".opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs",
-      ".opencode/skills/sk-doc/create-skill/scripts/tests/leaf-resource-contract.test.cjs",
+      "implementation-summary.md",
       ".opencode/skills/sk-doc/mode-registry.json",
       ".opencode/skills/sk-doc/leaf-aliases.json",
       ".opencode/skills/sk-doc/leaf-manifest.json",
       ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
       ".opencode/commands/doctor/scripts/tests/parent-skill-check-leaf-manifest.test.cjs",
-      ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/executor-dispatch.cjs",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-doc-leaf-routing-contract.vitest.ts",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs",
-      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs",
-      ".opencode/skills/sk-doc/shared/references/smart-routing.md"
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/build-report.cjs"
     ],
     "entities": [
       {
@@ -94,21 +90,9 @@
         "source": "derived"
       },
       {
-        "name": "leaf-resource-contract.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/lib/leaf-resource-contract.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "generate-leaf-manifest.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/generate-leaf-manifest.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "leaf-resource-contract.test.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/tests/leaf-resource-contract.test.cjs",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -142,12 +126,6 @@
         "source": "derived"
       },
       {
-        "name": "validate-playbook-topology.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate-playbook-topology.cjs",
-        "source": "derived"
-      },
-      {
         "name": "router-replay.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/router-replay.cjs",
@@ -178,12 +156,6 @@
         "source": "derived"
       },
       {
-        "name": "smart-routing.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/shared/references/smart-routing.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,11 +178,35 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "sk-doc's Tier-2 gpt-5.6-luna benchmark run scored 20/100 with roughly 19 percent exact-resource recall (`tier2-sk-doc-luna-opencode.report.json`)",
     "created_at": "2026-07-16T08:08:19.396Z",
-    "last_save_at": "2026-07-24T11:03:16.781Z",
+    "last_save_at": "2026-08-29T15:22:02.017Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

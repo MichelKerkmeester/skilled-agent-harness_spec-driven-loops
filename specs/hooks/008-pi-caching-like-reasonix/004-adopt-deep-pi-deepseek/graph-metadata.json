@@ -39,8 +39,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md",
-      "checklist.md"
+      ".pi/settings.json"
     ],
     "entities": [
       {
@@ -62,15 +63,21 @@
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
         "source": "derived"
       },
       {
@@ -180,17 +187,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator intends to route more work through DeepSeek going forward",
     "created_at": "2026-08-07T05:55:43Z",
-    "last_save_at": "2026-08-11T06:50:07.029Z",
+    "last_save_at": "2026-08-29T15:21:52.313Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

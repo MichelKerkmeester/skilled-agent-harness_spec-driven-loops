@@ -34,13 +34,27 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      "core/db-state.ts",
+      "hooks/claude/session-stop.ts",
+      "lib/feedback/batch-learning.ts",
+      "lib/validation/orchestrator.ts",
+      "scripts/migrations/rebuild-memory-index-archived-check.mjs",
+      "tests/query-channel-calibration.vitest.ts",
+      "tests/flag-ceiling.vitest.ts",
+      "lib/search/README.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -66,9 +80,51 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "db-state.ts",
+        "kind": "code",
+        "path": "core/db-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-stop.ts",
+        "kind": "code",
+        "path": "hooks/claude/session-stop.ts",
+        "source": "derived"
+      },
+      {
+        "name": "batch-learning.ts",
+        "kind": "code",
+        "path": "lib/feedback/batch-learning.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": "lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "rebuild-memory-index-archived-check.mjs",
+        "kind": "file",
+        "path": "scripts/migrations/rebuild-memory-index-archived-check.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "query-channel-calibration.vitest.ts",
+        "kind": "test",
+        "path": "tests/query-channel-calibration.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "flag-ceiling.vitest.ts",
+        "kind": "test",
+        "path": "tests/flag-ceiling.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "lib/search/README.md",
         "source": "derived"
       },
       {
@@ -136,59 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Audit Remediation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`classifyQueryComplexity` routes any query of `<=3` whitespace terms to the `simple` tier (`query-classifier.ts:228`), and `DEFAULTROUTINGCONFIG.simple` maps that tier to `['vector', 'fts']` only — graph and degree are excluded (`query-router.ts:114-118`)",
     "created_at": "2026-07-09T06:16:37.869Z",
-    "last_save_at": "2026-08-28T16:00:12.152Z",
+    "last_save_at": "2026-08-29T15:22:21.384Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

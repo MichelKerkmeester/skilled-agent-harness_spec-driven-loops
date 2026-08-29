@@ -46,7 +46,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "tests/vector-shard-read-path-resilience.vitest.ts",
+      "lib/search/vector-index-store.ts",
+      "lib/embedders/reindex.ts",
+      "lib/observability/retrieval-observability.ts"
     ],
     "entities": [
       {
@@ -71,6 +75,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "vector-shard-read-path-resilience.vitest.ts",
+        "kind": "test",
+        "path": "tests/vector-shard-read-path-resilience.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-store.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": "lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-observability.ts",
+        "kind": "code",
+        "path": "lib/observability/retrieval-observability.ts",
         "source": "derived"
       },
       {
@@ -168,29 +196,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built Vector",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Durable Repair Sentinel The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Based Boot Assessment",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Vector-shard quarantine previously relied on process memory plus a per-shard sentinel",
     "created_at": "2026-06-11T06:25:38Z",
-    "last_save_at": "2026-08-28T16:00:05.870Z",
+    "last_save_at": "2026-08-29T15:22:20.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

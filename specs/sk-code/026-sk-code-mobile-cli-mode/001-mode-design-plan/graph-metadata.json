@@ -28,11 +28,21 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md"
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/mode-registry.json",
+      ".opencode/skills/sk-code/ROUTER.md",
+      ".opencode/skills/sk-code/sk-code-mobile-cli/SKILL.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -46,9 +56,21 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/ROUTER.md",
         "source": "derived"
       },
       {
@@ -156,7 +178,7 @@
     ],
     "causal_summary": "This phase **plans, but does not build**, a new mode under the `sk-code` parent hub, purely for Mobile-CLI app work (`apps/pi-remote-web/` and its siblings), so future code work…",
     "created_at": "2026-08-17T05:11:33.348Z",
-    "last_save_at": "2026-08-24T17:54:43.597Z",
+    "last_save_at": "2026-08-29T15:21:57.670Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -11,32 +11,30 @@
   },
   "derived": {
     "trigger_phrases": [
-      "pathspec-integrity",
-      "git advisory pathspec-integrity",
-      "004-pathspec-integrity plan",
-      "004-pathspec-integrity tasks",
-      "004-pathspec-integrity implementation-summary"
+      "advisory noise audit",
+      "git advisory fire rate"
     ],
     "key_topics": [
-      "pathspec-integrity",
-      "git",
       "advisory",
-      "004-pathspec-integrity",
-      "plan",
-      "tasks",
-      "implementation-summary",
-      "commit",
-      "only",
-      "paths",
-      "silently",
-      "skips"
+      "noise",
+      "audit",
+      "git",
+      "fire",
+      "rate",
+      "pathspec",
+      "failure",
+      "motivated",
+      "packet",
+      "covered",
+      "rule"
     ],
-    "importance_tier": "normal",
-    "status": "planned",
+    "importance_tier": "important",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -56,6 +54,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -89,13 +93,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase Documentation Map",
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Phase Context This",
+        "name": "Scope Boundary",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -107,26 +111,26 @@
         "source": "derived"
       },
       {
-        "name": "an",
+        "name": "a",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. SUMMARY",
-        "kind": "heading",
+        "name": "nothing",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
+        "name": "no",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
+        "name": "different",
+        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
@@ -143,65 +147,61 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria This",
+        "name": "Completion Criteria Complete",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Parent Phase Documentation Map",
-        "kind": "proper_noun",
+        "name": "untracked",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Implementation Summary",
+        "name": "Verification Checklist",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Spec Folder",
+        "name": "Verification Protocol",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "What Was Built Nothing",
+        "name": "Completion Impact",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "Key Decisions",
+        "name": "Code Quality",
         "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Known Limitations The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
+        "path": "checklist.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The pathspec failure that motivated the packet is covered by a rule built in phase 002, and its reproduction is asserted there",
     "created_at": "2026-07-27T18:47:26Z",
-    "last_save_at": "2026-07-27T19:50:11.084Z",
+    "last_save_at": "2026-08-29T15:22:05.276Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "checklist.md",
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:daf7300967d70d18809e69443f489f1cf69a8e98460108692ae5170e319bb22a",
     "source_doc_hashes": {
-      "spec.md": "095524e557460dbe6b13d569f44eba9590eed73829226c3d876f8e81a338caae",
-      "plan.md": "1fe8ab33b000ca02aaf68b56be295304295f4f0e0c7683c1ffd58499da4b7dc8",
-      "tasks.md": "409ea840f031f9b15122e894bc6acc4ff0fa7bf5c97f632d1cf00db6f6116617",
-      "implementation-summary.md": "f4a147016d07719ed2880e53543164b3d7a8251403938acaedf09cfc35924ce0"
+      "spec.md": "ee35fe306675614d9ed9a69dbb048688108258ec00a85ecf86d5b73ed1bc9f3c",
+      "plan.md": "5595555ff9c1d2df89d8c9a0793eb98ea324f7ef7e34af7b17403803d0e64955",
+      "tasks.md": "71dcb9c329eb90b1e75539877530e216b91c3db0ac6f9e477717c3ac712abe2a",
+      "checklist.md": "7e5b479b334b7469e80d4847fa88d2df9132db50396db15164b3d58a5a62c4d6",
+      "implementation-summary.md": "f50f932994ea833a76ca8b0ffff47ded350a030dc022fe62c96ae614e745cdfa"
     },
     "last_active_child_id": null,
     "last_active_at": null

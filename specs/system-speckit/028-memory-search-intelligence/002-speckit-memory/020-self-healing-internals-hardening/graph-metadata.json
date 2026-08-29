@@ -39,7 +39,14 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "dist/handlers/memory-search.js",
+      "dist/startup-checks.js",
+      "dist/context-server.js",
+      "tests/memory-search-drift-suspect-write-timeout.vitest.ts",
+      "tests/startup-checks-processing-marker-sigkill.vitest.ts",
+      "tests/memory-drift-healing.vitest.ts",
+      "tests/startup-checks.vitest.ts"
     ],
     "entities": [
       {
@@ -70,6 +77,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.js",
+        "kind": "code",
+        "path": "dist/handlers/memory-search.js",
+        "source": "derived"
+      },
+      {
+        "name": "startup-checks.js",
+        "kind": "code",
+        "path": "dist/startup-checks.js",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search-drift-suspect-write-timeout.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-search-drift-suspect-write-timeout.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "startup-checks-processing-marker-sigkill.vitest.ts",
+        "kind": "test",
+        "path": "tests/startup-checks-processing-marker-sigkill.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-drift-healing.vitest.ts",
+        "kind": "test",
+        "path": "tests/memory-drift-healing.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "startup-checks.vitest.ts",
+        "kind": "test",
+        "path": "tests/startup-checks.vitest.ts",
         "source": "derived"
       },
       {
@@ -143,53 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Queue Read Warning",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key   Components",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "F8 — synchronous drift-suspect write can block the search hot path up to 10s ([MEDIUM], flag-gated OFF today)",
     "created_at": "2026-07-09T15:13:35.568Z",
-    "last_save_at": "2026-08-28T16:00:13.433Z",
+    "last_save_at": "2026-08-29T15:22:21.843Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

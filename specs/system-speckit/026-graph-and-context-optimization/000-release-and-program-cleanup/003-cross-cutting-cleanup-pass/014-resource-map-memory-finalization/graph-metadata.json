@@ -41,7 +41,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "resource-map.md"
+      "resource-map.md",
+      "finalization-log.md"
     ],
     "entities": [
       {
@@ -78,6 +79,12 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "finalization-log.md",
+        "kind": "doc",
+        "path": "finalization-log.md",
         "source": "derived"
       },
       {
@@ -181,17 +188,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Seventeen session-touched spec folders lacked final resource maps and fresh memory indexing",
     "created_at": "2026-04-29T18:41:25.655Z",
-    "last_save_at": "2026-07-17T17:19:09.463Z",
+    "last_save_at": "2026-08-29T15:22:10.260Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

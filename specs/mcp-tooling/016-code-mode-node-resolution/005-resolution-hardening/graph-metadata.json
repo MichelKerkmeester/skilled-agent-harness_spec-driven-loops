@@ -38,18 +38,22 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "tasks.md",
       "spec.md",
       "plan.md",
-      "implementation-summary.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/bin/lib/node-engine-resolver.cjs",
+      ".opencode/bin/lib/node-engine-resolver.test.cjs",
+      ".opencode/skills/mcp-code-mode/scripts/install.sh",
+      ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+      ".opencode/scripts/session-cleanup.sh",
+      ".opencode/scripts/orphan-mcp-sweeper.sh",
+      ".opencode/.gitignore",
+      ".opencode/bin/tests/compiled-route-manifest.test.cjs",
+      ".opencode/skills/sk-code/mode-registry.json",
+      ".opencode/bin/mcp-code-mode-launcher.test.cjs"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -63,9 +67,75 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "node-engine-resolver.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/node-engine-resolver.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "node-engine-resolver.test.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/node-engine-resolver.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "install.sh",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-code-mode/scripts/install.sh",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-doctor.sh",
+        "kind": "script",
+        "path": ".opencode/commands/doctor/scripts/mcp-doctor.sh",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "orphan-mcp-sweeper.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".opencode/.gitignore",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-manifest.test.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/tests/compiled-route-manifest.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-code-mode-launcher.test.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mcp-code-mode-launcher.test.cjs",
         "source": "derived"
       },
       {
@@ -127,71 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Repair Enumeration",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "No Node",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The packet shipped a resolver whose search-path branch cannot return a candidate on a real host",
     "created_at": "2026-08-29T09:58:50.535Z",
-    "last_save_at": "2026-08-29T10:18:54.706Z",
+    "last_save_at": "2026-08-29T15:21:55.809Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

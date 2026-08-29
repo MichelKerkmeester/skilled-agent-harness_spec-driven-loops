@@ -41,17 +41,11 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edge-tombstones.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-      ".opencode/skills/system-spec-kit/constitutional/entity-cooccurrence-is-not-causal.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "handlers/memory-crud-delete.ts",
       "handlers/memory-bulk-delete.ts",
       "lib/storage/causal-edges.ts",
@@ -59,80 +53,85 @@
       "handlers/causal-graph.ts",
       "handlers/causal-links-processor.ts",
       "lib/governance/memory-retention-sweep.ts",
-      "constitutional/entity-cooccurrence-is-not-causal.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-write-safety.vitest.ts"
+      "tests/causal-edges-write-safety.vitest.ts"
     ],
     "entities": [
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "memory-crud-delete.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+        "path": "handlers/memory-crud-delete.ts",
         "source": "derived"
       },
       {
         "name": "memory-bulk-delete.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edge-tombstones.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edge-tombstones.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-retention-sweep.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-retention-sweep.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vector-index-schema.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
-        "source": "derived"
-      },
-      {
-        "name": "entity-cooccurrence-is-not-causal.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/constitutional/entity-cooccurrence-is-not-causal.md",
+        "path": "handlers/memory-bulk-delete.ts",
         "source": "derived"
       },
       {
         "name": "causal-edges.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+        "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
         "source": "derived"
       },
       {
         "name": "causal-graph.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+        "path": "handlers/causal-graph.ts",
         "source": "derived"
       },
       {
         "name": "causal-links-processor.ts",
         "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts",
+        "path": "handlers/causal-links-processor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": "lib/governance/memory-retention-sweep.ts",
         "source": "derived"
       },
       {
         "name": "causal-edges-write-safety.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-write-safety.vitest.ts",
+        "path": "tests/causal-edges-write-safety.vitest.ts",
         "source": "derived"
       },
       {
@@ -200,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The review found the prior soft-delete premise was false: delete was a hard delete via `vectorIndex.deleteMemory`, not a soft-delete writer",
     "created_at": "2026-06-06T10:10:48Z",
-    "last_save_at": "2026-07-17T17:19:40.429Z",
+    "last_save_at": "2026-08-29T15:22:19.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

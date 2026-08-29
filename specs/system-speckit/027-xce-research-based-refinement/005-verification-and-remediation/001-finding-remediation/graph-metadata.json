@@ -49,11 +49,18 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "backlog/p1-backlog.json",
       "backlog/p2-backlog.json",
-      "spec.md"
+      "remediation-plan.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "p1-backlog.json",
         "kind": "config",
@@ -67,9 +74,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "remediation-plan.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "remediation-plan.md",
         "source": "derived"
       },
       {
@@ -111,7 +118,7 @@
     ],
     "causal_summary": "The 120-seat epic deep-review sweep adjudicated only its 41 strongest finding clusters (23 confirmed and fixed)",
     "created_at": "2026-06-11T19:10:00Z",
-    "last_save_at": "2026-07-17T17:19:44.532Z",
+    "last_save_at": "2026-08-29T15:22:20.556Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -121,7 +128,7 @@
     "source_doc_hashes": {
       "spec.md": "017048d09fd8c2b2cca87c48b06ee200128990f0ab66e90b561a9d5ac5100932"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/027-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/008-doc-truth-and-test-fidelity",
     "last_active_at": "2026-06-11T18:50:03.207Z"
   }
 }

@@ -40,7 +40,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "dist/lib/search/intent-classifier.js",
+      "lib/search/intent-classifier.ts",
+      "tests/intent-paraphrase-stability.vitest.ts"
     ],
     "entities": [
       {
@@ -65,6 +68,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "intent-classifier.js",
+        "kind": "code",
+        "path": "dist/lib/search/intent-classifier.js",
+        "source": "derived"
+      },
+      {
+        "name": "intent-classifier.ts",
+        "kind": "code",
+        "path": "lib/search/intent-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "intent-paraphrase-stability.vitest.ts",
+        "kind": "test",
+        "path": "tests/intent-paraphrase-stability.vitest.ts",
         "source": "derived"
       },
       {
@@ -168,29 +189,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built Implemented",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "005/REQ-016 captured paraphrase instability: `\"Semantic Search\"` → `fixbug` (0.098) but `\"Find stuff related to semantic search\"` → `understand`",
     "created_at": "2026-04-27T07:56:33.777Z",
-    "last_save_at": "2026-08-28T22:53:12.646Z",
+    "last_save_at": "2026-08-29T15:22:11.729Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

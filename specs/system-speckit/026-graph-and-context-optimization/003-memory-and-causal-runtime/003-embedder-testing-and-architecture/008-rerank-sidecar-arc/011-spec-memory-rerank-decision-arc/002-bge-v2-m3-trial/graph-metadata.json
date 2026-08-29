@@ -37,19 +37,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "evidence/bge-v2-m3-bench-2026-05-21.json",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "dist/handlers/memory-search.js",
+      "lib/search/search-flags.ts",
+      "evidence/bge-v2-m3-bench-2026-05-21.json"
     ],
     "entities": [
-      {
-        "name": "bge-v2-m3-bench-2026-05-21.json",
-        "kind": "config",
-        "path": "evidence/bge-v2-m3-bench-2026-05-21.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -72,6 +68,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.js",
+        "kind": "code",
+        "path": "dist/handlers/memory-search.js",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "lib/search/search-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "bge-v2-m3-bench-2026-05-21.json",
+        "kind": "config",
+        "path": "evidence/bge-v2-m3-bench-2026-05-21.json",
         "source": "derived"
       },
       {
@@ -175,23 +189,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Execute Phase",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Arc 008 tried two off-the-shelf rerankers on spec-memory:",
     "created_at": "2026-05-23T11:55:15.630Z",
-    "last_save_at": "2026-08-28T15:53:29.318Z",
+    "last_save_at": "2026-08-29T15:22:15.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

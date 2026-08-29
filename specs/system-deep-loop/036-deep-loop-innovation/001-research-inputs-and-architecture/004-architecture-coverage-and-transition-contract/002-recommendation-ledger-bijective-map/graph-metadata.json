@@ -44,7 +44,10 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "recommendation-ledger.json",
+      "recommendation-ledger-validation.json",
+      "validate-ledger.cjs"
     ],
     "entities": [
       {
@@ -75,6 +78,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "recommendation-ledger.json",
+        "kind": "config",
+        "path": "recommendation-ledger.json",
+        "source": "derived"
+      },
+      {
+        "name": "recommendation-ledger-validation.json",
+        "kind": "config",
+        "path": "recommendation-ledger-validation.json",
+        "source": "derived"
+      },
+      {
+        "name": "validate-ledger.cjs",
+        "kind": "file",
+        "path": "validate-ledger.cjs",
         "source": "derived"
       },
       {
@@ -172,29 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Freeze the 178 deep-loop recommendations into one immutable classified ledger with stable IDs, normalized taxonomy targets, exactly one disposition per source recommendation, and machine-verifiable corpus and phase coverage.",
     "created_at": "2026-07-16T03:43:44.897Z",
-    "last_save_at": "2026-08-29T13:09:52.033Z",
+    "last_save_at": "2026-08-29T15:22:06.482Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

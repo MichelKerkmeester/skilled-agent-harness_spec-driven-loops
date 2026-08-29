@@ -41,54 +41,19 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "scripts/retrieval-class-routing-benchmark.mjs",
-      "results/metrics.json",
-      "lib/search/query-router.ts",
-      "lib/search/retrieval-class-classifier.ts",
-      "lib/search/search-flags.ts",
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      "scripts/retrieval-class-routing-benchmark.mjs",
+      "results/metrics.json",
+      "benchmark-results.md",
+      "lib/search/query-router.ts",
+      "lib/search/retrieval-class-classifier.ts",
+      "lib/search/search-flags.ts"
     ],
     "entities": [
-      {
-        "name": "retrieval-class-routing-benchmark.mjs",
-        "kind": "file",
-        "path": "scripts/retrieval-class-routing-benchmark.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "metrics.json",
-        "kind": "config",
-        "path": "results/metrics.json",
-        "source": "derived"
-      },
-      {
-        "name": "query-router.ts",
-        "kind": "code",
-        "path": "lib/search/query-router.ts",
-        "source": "derived"
-      },
-      {
-        "name": "retrieval-class-classifier.ts",
-        "kind": "code",
-        "path": "lib/search/retrieval-class-classifier.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": "lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -111,6 +76,48 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-class-routing-benchmark.mjs",
+        "kind": "file",
+        "path": "scripts/retrieval-class-routing-benchmark.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "metrics.json",
+        "kind": "config",
+        "path": "results/metrics.json",
+        "source": "derived"
+      },
+      {
+        "name": "benchmark-results.md",
+        "kind": "doc",
+        "path": "benchmark-results.md",
+        "source": "derived"
+      },
+      {
+        "name": "query-router.ts",
+        "kind": "code",
+        "path": "lib/search/query-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-class-classifier.ts",
+        "kind": "code",
+        "path": "lib/search/retrieval-class-classifier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.ts",
+        "kind": "code",
+        "path": "lib/search/search-flags.ts",
         "source": "derived"
       },
       {
@@ -190,17 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`SPECKITRETRIEVALCLASSROUTING` is built, default-off, and never measured against the real corpus on the production path",
     "created_at": "2026-06-24T04:58:22.472Z",
-    "last_save_at": "2026-07-17T17:19:54.404Z",
+    "last_save_at": "2026-08-29T15:22:23.753Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

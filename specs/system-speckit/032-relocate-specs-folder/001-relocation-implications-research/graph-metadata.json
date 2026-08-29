@@ -36,11 +36,11 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".pi/modes.json",
-      "research/research.md",
       "spec.md",
       "plan.md",
       "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
       ".claude/SYNC.md",
       ".github/workflows/strict-pass-freshness-sweep.yml",
       ".opencode/skills/system-spec-kit/scripts/core/spec-root-registry.ts",
@@ -59,18 +59,6 @@
     ],
     "entities": [
       {
-        "name": "modes.json",
-        "kind": "config",
-        "path": ".pi/modes.json",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -86,6 +74,18 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Nobody has mapped what actually breaks if `.opencode/specs/` becomes a top-level `specs/` directory",
     "created_at": "2026-08-06T09:09:30Z",
-    "last_save_at": "2026-08-06T13:28:58.771Z",
+    "last_save_at": "2026-08-29T15:22:24.669Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

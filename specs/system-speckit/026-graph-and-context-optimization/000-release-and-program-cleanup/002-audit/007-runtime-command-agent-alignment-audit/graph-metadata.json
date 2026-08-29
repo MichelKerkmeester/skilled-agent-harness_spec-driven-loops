@@ -38,35 +38,20 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".codex/agents/context.toml",
-      ".codex/agents/deep-research.toml",
-      ".codex/agents/orchestrate.toml",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "resource-map.md"
+      "resource-map.md",
+      "audit-findings.md",
+      "remediation-log.md",
+      "cross-runtime-diff.md",
+      ".codex/agents/context.toml",
+      ".codex/agents/deep-research.toml",
+      ".codex/agents/orchestrate.toml"
     ],
     "entities": [
-      {
-        "name": "context.toml",
-        "kind": "file",
-        "path": ".codex/agents/context.toml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-research.toml",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate.toml",
-        "kind": "file",
-        "path": ".codex/agents/orchestrate.toml",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -101,6 +86,42 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-findings.md",
+        "kind": "doc",
+        "path": "audit-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-log.md",
+        "kind": "doc",
+        "path": "remediation-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "cross-runtime-diff.md",
+        "kind": "doc",
+        "path": "cross-runtime-diff.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.toml",
+        "kind": "file",
+        "path": ".codex/agents/context.toml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-research.toml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
         "source": "derived"
       },
       {
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Runtime command and agent docs can drift when tool names, paths, hook contracts, and MCP surfaces change quickly",
     "created_at": "2026-05-18T08:15:53.029Z",
-    "last_save_at": "2026-07-17T17:19:08.545Z",
+    "last_save_at": "2026-08-29T15:22:09.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

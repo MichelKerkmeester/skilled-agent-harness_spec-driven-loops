@@ -38,7 +38,10 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "research/research.md"
+      "research/research.md",
+      ".opencode/skills/sk-communication/SKILL.md",
+      ".opencode/skills/sk-communication/graph-metadata.json",
+      ".opencode/skills/sk-communication/benchmark/reports/advisor-routing-smoke-2026-08-12.json"
     ],
     "entities": [
       {
@@ -69,6 +72,24 @@
         "name": "research.md",
         "kind": "doc",
         "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-communication/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-routing-smoke-2026-08-12.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-communication/benchmark/reports/advisor-routing-smoke-2026-08-12.json",
         "source": "derived"
       },
       {
@@ -166,29 +187,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "PHASE 1: SETUP",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Status",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The portable CLI communication-projection capability lived only as a package under `packages/cli-communication-projection/`, so the skill advisor could not surface it and an AI agent had no routed entry point to its invariants",
     "created_at": "2026-08-12T12:59:48.551Z",
-    "last_save_at": "2026-08-28T15:53:23.294Z",
+    "last_save_at": "2026-08-29T15:22:04.345Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

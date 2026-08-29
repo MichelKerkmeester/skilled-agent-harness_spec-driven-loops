@@ -3,6 +3,7 @@
   "packet_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool",
   "spec_folder": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool",
   "parent_id": "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,80 +42,25 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "mcp_server/lib/embedders/embedding-reconcile.ts",
-      "mcp_server/handlers/memory-embedding-reconcile.ts",
-      "mcp_server/tests/embedding-reconcile.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "lib/embedders/embedding-reconcile.ts",
-      "mcp_server/tools/memory-tools.ts",
-      "mcp_server/schemas/tool-input-schemas.ts",
-      "mcp_server/tool-schemas.ts",
-      "mcp_server/handlers/index.ts",
-      "mcp_server/tools/types.ts",
-      "mcp_server/context-server.ts",
       "tests/embedding-reconcile.vitest.ts",
       "tools/memory-tools.ts",
       "schemas/tool-input-schemas.ts",
       "handlers/index.ts",
       "tools/types.ts",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
       "handlers/memory-embedding-reconcile.ts",
-      "implementation-summary.md"
+      "handlers/memory-retention-sweep.ts"
     ],
     "entities": [
       {
-        "name": "embedding-reconcile.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/embedders/embedding-reconcile.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-embedding-reconcile.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-embedding-reconcile.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-reconcile.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/embedding-reconcile.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-tools.ts",
-        "kind": "code",
-        "path": "mcp_server/tools/memory-tools.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-input-schemas.ts",
-        "kind": "code",
-        "path": "mcp_server/schemas/tool-input-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tool-schemas.ts",
-        "kind": "code",
-        "path": "mcp_server/tool-schemas.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "types.ts",
-        "kind": "code",
-        "path": "mcp_server/tools/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "context-server.ts",
-        "kind": "code",
-        "path": "mcp_server/context-server.ts",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -139,6 +85,54 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-reconcile.ts",
+        "kind": "code",
+        "path": "lib/embedders/embedding-reconcile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-reconcile.vitest.ts",
+        "kind": "test",
+        "path": "tests/embedding-reconcile.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-tools.ts",
+        "kind": "code",
+        "path": "tools/memory-tools.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "handlers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "tools/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-embedding-reconcile.ts",
+        "kind": "code",
+        "path": "handlers/memory-embedding-reconcile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": "handlers/memory-retention-sweep.ts",
         "source": "derived"
       },
       {
@@ -210,7 +204,7 @@
     ],
     "causal_summary": "The one-time backlog repair — vector-present rows whose `embeddingstatus` is stale at `failed`/`pending`/`retry`, which must be flipped to `success` — was executed via hand-written guarded SQL (\"emergency fallback\" in 004 `research/research.md` §7-§8)",
     "created_at": "2026-05-27T08:49:42.820Z",
-    "last_save_at": "2026-07-17T17:19:29.602Z",
+    "last_save_at": "2026-08-29T15:22:16.563Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

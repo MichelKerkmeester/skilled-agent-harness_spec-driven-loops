@@ -41,17 +41,16 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "research/research.md",
-      "research/resource-map.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "research/research.md",
+      "research/resource-map.md",
       "research/iterations/iteration-001.md",
       "research/deep-research-state.jsonl",
       "shared/config.ts",
       "research/deltas/iter-001.jsonl",
-      "mcp_server/handlers/memory-index.ts",
       "core/db-state.ts",
       "core/config.ts",
       "lib/embedders/reindex.ts",
@@ -60,15 +59,10 @@
       "handlers/save/embedding-pipeline.ts",
       "handlers/save/create-record.ts",
       "lib/search/vector-index-mutations.ts",
-      "lib/providers/retry-manager.ts"
+      "lib/providers/retry-manager.ts",
+      "shared/embeddings.ts"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -94,6 +88,12 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "iteration-001.md",
         "kind": "doc",
         "path": "research/iterations/iteration-001.md",
@@ -115,12 +115,6 @@
         "name": "iter-001.jsonl",
         "kind": "file",
         "path": "research/deltas/iter-001.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "memory-index.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-index.ts",
         "source": "derived"
       },
       {
@@ -172,6 +166,12 @@
         "source": "derived"
       },
       {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": "shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "`memoryindexscan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease",
     "created_at": "2026-05-31T14:05:03.746Z",
-    "last_save_at": "2026-07-17T17:19:30.881Z",
+    "last_save_at": "2026-08-29T15:22:16.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

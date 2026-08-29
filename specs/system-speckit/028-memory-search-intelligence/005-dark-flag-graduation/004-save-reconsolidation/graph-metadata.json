@@ -41,21 +41,52 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "scripts/recon-precision-benchmark.mjs",
       "scripts/recon-gate-and-writes.mjs",
       "results/precision-metrics.json",
       "results/gate-metrics.json",
+      "benchmark-results.md",
       "lib/storage/reconsolidation.ts",
       "lib/search/search-flags.ts",
       "handlers/save/db-helpers.ts",
-      "handlers/save/reconsolidation-bridge.ts",
-      "implementation-summary.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "handlers/save/reconsolidation-bridge.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "recon-precision-benchmark.mjs",
         "kind": "file",
@@ -81,6 +112,12 @@
         "source": "derived"
       },
       {
+        "name": "benchmark-results.md",
+        "kind": "doc",
+        "path": "benchmark-results.md",
+        "source": "derived"
+      },
+      {
         "name": "reconsolidation.ts",
         "kind": "code",
         "path": "lib/storage/reconsolidation.ts",
@@ -102,36 +139,6 @@
         "name": "reconsolidation-bridge.ts",
         "kind": "code",
         "path": "handlers/save/reconsolidation-bridge.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`SPECKITRECONSOLIDATIONENABLED` is the opt-in gate that lets the save flow run the destructive `reconsolidate()` path",
     "created_at": "2026-06-24T04:56:08.748Z",
-    "last_save_at": "2026-07-17T17:19:54.403Z",
+    "last_save_at": "2026-08-29T15:22:23.767Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

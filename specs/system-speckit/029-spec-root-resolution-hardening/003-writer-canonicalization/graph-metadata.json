@@ -38,7 +38,11 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "spec/create.sh",
+      "scripts/memory/generate-context.ts",
+      "scripts/core/workflow.ts",
+      "scripts/spec/create.sh"
     ],
     "entities": [
       {
@@ -57,6 +61,24 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": "spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": "scripts/memory/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "scripts/core/workflow.ts",
         "source": "derived"
       },
       {
@@ -158,7 +180,7 @@
     ],
     "causal_summary": "The automatic writers resolve legacy-first or re-materialize `specs/`: the Stop autosave, bare/new `generate-context`, the phase-pointer refresh (which re-resolves the original argument and can silently skip), and `spec/create.sh` untracked (`mkdir -p specs/`)",
     "created_at": "2026-07-17T11:01:02.467Z",
-    "last_save_at": "2026-08-29T00:56:34.675Z",
+    "last_save_at": "2026-08-29T15:22:24.215Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

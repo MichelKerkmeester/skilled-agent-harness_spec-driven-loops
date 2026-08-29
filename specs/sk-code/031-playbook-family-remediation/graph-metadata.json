@@ -38,13 +38,27 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-corpus-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-failclosed-allowlist.txt",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/playbook-failclosed-allowlist.txt",
         "source": "derived"
       },
       {
@@ -86,7 +100,7 @@
     ],
     "causal_summary": "Manual testing playbooks are the only executable statement of what each skill package promises an operator",
     "created_at": "2026-08-29T11:53:28.220Z",
-    "last_save_at": "2026-08-29T11:53:28.220Z",
+    "last_save_at": "2026-08-29T15:21:58.093Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

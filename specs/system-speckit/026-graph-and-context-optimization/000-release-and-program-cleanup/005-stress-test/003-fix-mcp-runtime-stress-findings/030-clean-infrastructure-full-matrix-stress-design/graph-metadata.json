@@ -3,6 +3,7 @@
   "packet_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design",
   "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design",
   "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings",
+  "status_review_required": true,
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -48,7 +49,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "corpus-plan.md"
     ],
     "entities": [
       {
@@ -85,6 +87,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-plan.md",
+        "kind": "doc",
+        "path": "corpus-plan.md",
         "source": "derived"
       },
       {
@@ -188,17 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The prior v1.0.4 run was scoped honestly but narrowly",
     "created_at": "2026-04-29T11:40:34.000Z",
-    "last_save_at": "2026-07-17T17:19:12.849Z",
+    "last_save_at": "2026-08-29T15:22:12.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

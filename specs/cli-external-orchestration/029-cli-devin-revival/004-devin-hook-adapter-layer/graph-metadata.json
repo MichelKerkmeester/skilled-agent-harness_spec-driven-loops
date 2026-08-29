@@ -41,46 +41,28 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "decision-record.md",
-      "implementation-summary.md",
-      ".devin/hooks.v1.json",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".devin/hooks.v1.json",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
-      ".opencode/skills/system-spec-kit/runtime/hooks/devin/README.md",
-      "runtime/lib/spec-gate/spec-gate-core.mjs",
       "lib/hooks/completion-evidence-sentinel.cjs",
       ".opencode/skills/system-spec-kit/mcp-server/hooks/codex/README.md",
-      ".opencode/skills/system-spec-kit/runtime/hooks/codex/README.md",
       "hooks/devin/shared.ts",
       "hooks/codex/shared.ts",
       "hooks/devin/session-start.ts",
       "hooks/devin/user-prompt-submit.ts",
-      "runtime/hooks/devin/spec-gate-classify.mjs",
-      "runtime/hooks/codex/spec-gate-enforce.mjs",
-      "hooks/devin/README.md"
+      "hooks/devin/README.md",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/shared.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/session-start.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/user-prompt-submit.ts",
+      ".claude/settings.json",
+      ".codex/hooks.json"
     ],
     "entities": [
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "hooks.v1.json",
-        "kind": "config",
-        "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -106,15 +88,27 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "spec-gate-core.mjs",
-        "kind": "file",
-        "path": "runtime/lib/spec-gate/spec-gate-core.mjs",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.v1.json",
+        "kind": "config",
+        "path": ".devin/hooks.v1.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/hooks/devin/README.md",
         "source": "derived"
       },
       {
@@ -142,15 +136,15 @@
         "source": "derived"
       },
       {
-        "name": "spec-gate-classify.mjs",
-        "kind": "file",
-        "path": "runtime/hooks/devin/spec-gate-classify.mjs",
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
         "source": "derived"
       },
       {
-        "name": "spec-gate-enforce.mjs",
-        "kind": "file",
-        "path": "runtime/hooks/codex/spec-gate-enforce.mjs",
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
         "source": "derived"
       },
       {
@@ -206,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Thin",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks (spec-gate enforce/classify, dispatch preflight lint, post-edit quality, code-graph freshness, dispatch audit, completion-evidence sentinel, mcp route guard)",
     "created_at": "2026-07-23T19:51:58.883Z",
-    "last_save_at": "2026-07-25T10:11:05.083Z",
+    "last_save_at": "2026-08-29T15:21:50.540Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

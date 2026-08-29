@@ -12,19 +12,25 @@
   "derived": {
     "trigger_phrases": [
       "diagram import export tooling",
-      "drawio mermaid extraction port"
+      "drawio mermaid extraction port",
+      "diagram import export plan",
+      "diagram import export tasks",
+      "diagram import export checklist",
+      "diagram import export summary"
     ],
     "key_topics": [
+      "diagram",
       "import",
       "export",
+      "tooling",
       "drawio",
       "mermaid",
       "extraction",
-      "tooling",
-      "redraw",
-      "routing",
-      "scripts",
-      "references"
+      "port",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -33,12 +39,160 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py",
+      ".opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py",
+      ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md"
     ],
-    "entities": [],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "drawio_extract.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/scripts/drawio_extract.py",
+        "source": "derived"
+      },
+      {
+        "name": "mermaid_extract.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/scripts/mermaid_extract.py",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-diagram/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Generating",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Port",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "valid",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
     "causal_summary": "Generating diagrams from scratch is only half the source skill's value — redrawing an existing draw.io or Mermaid diagram at a chosen format/size/detail/audience is the other half, and neither the extraction tooling nor its routing exists yet in the ported packet",
     "created_at": "2026-08-12T06:20:00.000Z",
-    "last_save_at": "2026-08-12T06:38:42.000Z",
+    "last_save_at": "2026-08-29T15:22:04.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

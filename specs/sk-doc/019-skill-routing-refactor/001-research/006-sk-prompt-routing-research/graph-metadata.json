@@ -54,6 +54,7 @@
       "research/iterations/iteration-003.md",
       "research/iterations/iteration-002.md",
       "research/iterations/iteration-005.md",
+      ".opencode/skills/sk-prompt/SKILL.md",
       "research/deep-research-strategy.md",
       "research/deep-research-dashboard.md"
     ],
@@ -131,6 +132,12 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-research-strategy.md",
         "kind": "doc",
         "path": "research/deep-research-strategy.md",
@@ -195,17 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Autonomous",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-prompt's routing is only half-instrumented, and its baseline of 100 is misleading",
     "created_at": "2026-07-17T04:07:17.535Z",
-    "last_save_at": "2026-08-28T22:22:07.101Z",
+    "last_save_at": "2026-08-29T15:22:01.731Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

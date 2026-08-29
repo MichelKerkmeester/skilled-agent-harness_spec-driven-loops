@@ -41,19 +41,21 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "fixtures/routing-parity-fixtures.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/mode-registry.json",
+      ".opencode/skills/sk-code/hub-router.json",
+      ".opencode/skills/sk-code/graph-metadata.json",
+      ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/sk-code/changelog/v4.0.0.0.md",
+      ".opencode/skills/sk-code/shared/README.md",
+      "fixtures/routing-parity-fixtures.md",
+      "shared/README.md"
     ],
     "entities": [
-      {
-        "name": "routing-parity-fixtures.md",
-        "kind": "doc",
-        "path": "fixtures/routing-parity-fixtures.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -76,6 +78,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/changelog/v4.0.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-parity-fixtures.md",
+        "kind": "doc",
+        "path": "fixtures/routing-parity-fixtures.md",
         "source": "derived"
       },
       {
@@ -155,47 +199,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "five",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "existing",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The accepted architecture needed a safe intermediate state before content relocation",
     "created_at": "2026-07-03T00:00:00Z",
-    "last_save_at": "2026-08-28T16:28:17.077Z",
+    "last_save_at": "2026-08-29T15:21:56.156Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

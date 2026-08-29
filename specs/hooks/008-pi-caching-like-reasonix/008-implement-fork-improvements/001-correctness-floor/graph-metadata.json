@@ -42,7 +42,22 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts",
+      ".pi/extensions/deep-pi/extensions/deeppi.ts",
+      ".pi/extensions/deep-pi/tests/telemetry.test.ts",
+      ".pi/extensions/deep-pi/tests/deeppi.integration.test.ts",
+      ".pi/extensions/deep-pi/tests/fake-pi.ts",
+      ".pi/extensions/deep-pi/tests/ownership-composition.test.ts",
+      ".pi/extensions/pi-cache-optimizer/package.json",
+      ".pi/extensions/pi-cache-optimizer/tests/ownership-composition.test.ts",
+      ".pi/extensions/pi-cache-optimizer/tests/hook-guards.test.ts",
+      ".pi/extensions/shared/deepseek-ownership.json",
+      ".pi/extensions/shared/composition/one-owner.ts",
+      ".pi/extensions/deep-pi/extensions/deeppi/hashlines.ts",
+      ".pi/extensions/deep-pi/extensions/deeppi/eligibility.ts",
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      ".pi/settings.json"
     ],
     "entities": [
       {
@@ -76,6 +91,90 @@
         "source": "derived"
       },
       {
+        "name": "telemetry.ts",
+        "kind": "code",
+        "path": ".pi/extensions/deep-pi/extensions/deeppi/telemetry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deeppi.ts",
+        "kind": "code",
+        "path": ".pi/extensions/deep-pi/extensions/deeppi.ts",
+        "source": "derived"
+      },
+      {
+        "name": "telemetry.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/deep-pi/tests/telemetry.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deeppi.integration.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/deep-pi/tests/deeppi.integration.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fake-pi.ts",
+        "kind": "code",
+        "path": ".pi/extensions/deep-pi/tests/fake-pi.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ownership-composition.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/deep-pi/tests/ownership-composition.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".pi/extensions/pi-cache-optimizer/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-guards.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-cache-optimizer/tests/hook-guards.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deepseek-ownership.json",
+        "kind": "config",
+        "path": ".pi/extensions/shared/deepseek-ownership.json",
+        "source": "derived"
+      },
+      {
+        "name": "one-owner.ts",
+        "kind": "code",
+        "path": ".pi/extensions/shared/composition/one-owner.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hashlines.ts",
+        "kind": "code",
+        "path": ".pi/extensions/deep-pi/extensions/deeppi/hashlines.ts",
+        "source": "derived"
+      },
+      {
+        "name": "eligibility.ts",
+        "kind": "code",
+        "path": ".pi/extensions/deep-pi/extensions/deeppi/eligibility.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -104,95 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implement Fork Improvements",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Four",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Same",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Test Files",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Evidence Record",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Opus",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Four P0 defects were found by 007's four-lineage research and re-confirmed against the live source while authoring this spec",
     "created_at": "2026-08-08T06:50:09.777Z",
-    "last_save_at": "2026-08-11T06:50:03.112Z",
+    "last_save_at": "2026-08-29T15:21:52.735Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

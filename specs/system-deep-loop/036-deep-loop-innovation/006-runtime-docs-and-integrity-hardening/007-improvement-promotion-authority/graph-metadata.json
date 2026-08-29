@@ -43,9 +43,18 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      "handover.md",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-approval-binding.vitest.ts",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/rollback-candidate.cjs",
+      ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/sweep-benchmark.cjs",
+      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
+      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-topic.cjs",
+      ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
       "scratch/improvement-project-baseline.md",
-      "scratch/chk-111-promotion-receipt-cost.md",
-      "handover.md"
+      "scratch/chk-111-promotion-receipt-cost.md"
     ],
     "entities": [
       {
@@ -85,6 +94,60 @@
         "source": "derived"
       },
       {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "promote-candidate-approval-binding.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/tests/promote-candidate-approval-binding.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "promote-candidate.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/promote-candidate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "rollback-candidate.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/shared/rollback-candidate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-candidate.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/agent-improvement/score-candidate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/scripts/model-benchmark/sweep-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "persist-artifacts.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-topic.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-topic.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate-session.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
+        "source": "derived"
+      },
+      {
         "name": "improvement-project-baseline.md",
         "kind": "doc",
         "path": "scratch/improvement-project-baseline.md",
@@ -94,12 +157,6 @@
         "name": "chk-111-promotion-receipt-cost.md",
         "kind": "doc",
         "path": "scratch/chk-111-promotion-receipt-cost.md",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -143,59 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Context Eight",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Promotion checks score status and thresholds but never `score.candidate`, `score.target` or `score.inputHash`, so a stale score from an earlier revision can authorize promotion of a newer unscored candidate (`F-017-01`, CONFIRMED-WITH-MITIGATION: the benchmark report is target-bound, which mitigates but does not close it)",
     "created_at": "2026-07-31T01:25:21.136Z",
-    "last_save_at": "2026-08-19T04:41:20.131Z",
+    "last_save_at": "2026-08-29T15:22:07.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

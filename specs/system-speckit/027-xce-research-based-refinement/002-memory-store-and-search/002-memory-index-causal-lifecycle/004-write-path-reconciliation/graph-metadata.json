@@ -41,28 +41,49 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
       "lib/storage/statediff.ts",
       "handlers/memory-index.ts",
       "handlers/memory-save.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/statediff.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/statediff.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks-statediff.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/write-path-reconciliation.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/memory-save-dedup-order.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
-      "mcp_server/lib/storage/statediff.ts",
-      "mcp_server/handlers/memory-index.ts",
-      "mcp_server/handlers/memory-save.ts",
-      "mcp_server/handlers/memory-bulk-delete.ts"
+      "tests/statediff.vitest.ts",
+      "tests/mutation-hooks-statediff.vitest.ts",
+      "tests/write-path-reconciliation.vitest.ts"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "statediff.ts",
         "kind": "code",
@@ -82,63 +103,21 @@
         "source": "derived"
       },
       {
-        "name": "mutation-hooks.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-crud-types.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-feedback.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts",
-        "source": "derived"
-      },
-      {
-        "name": "response-builder.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-bulk-delete.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
-        "source": "derived"
-      },
-      {
         "name": "statediff.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/statediff.vitest.ts",
+        "path": "tests/statediff.vitest.ts",
         "source": "derived"
       },
       {
         "name": "mutation-hooks-statediff.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/mutation-hooks-statediff.vitest.ts",
+        "path": "tests/mutation-hooks-statediff.vitest.ts",
         "source": "derived"
       },
       {
         "name": "write-path-reconciliation.vitest.ts",
         "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/write-path-reconciliation.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save-dedup-order.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/memory-save-dedup-order.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "causal-edges.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+        "path": "tests/write-path-reconciliation.vitest.ts",
         "source": "derived"
       },
       {
@@ -206,11 +185,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`memoryindexscan` and `memorysave` currently reconcile state through scattered handler branches and post-mutation hooks",
     "created_at": "2026-05-13T09:00:48Z",
-    "last_save_at": "2026-07-17T17:19:39.769Z",
+    "last_save_at": "2026-08-29T15:22:19.592Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -43,7 +43,10 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "resource-map.md"
+      "resource-map.md",
+      "audit-findings.md",
+      "remediation-log.md",
+      "lint-results.md"
     ],
     "entities": [
       {
@@ -80,6 +83,24 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-findings.md",
+        "kind": "doc",
+        "path": "audit-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "remediation-log.md",
+        "kind": "doc",
+        "path": "remediation-log.md",
+        "source": "derived"
+      },
+      {
+        "name": "lint-results.md",
+        "kind": "doc",
+        "path": "lint-results.md",
         "source": "derived"
       },
       {
@@ -171,29 +192,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Per-feature feature-catalog snippets had drifted away from the canonical sk-doc shape",
     "created_at": "2026-05-18T08:15:53.136Z",
-    "last_save_at": "2026-07-17T17:19:09.801Z",
+    "last_save_at": "2026-08-29T15:22:10.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
