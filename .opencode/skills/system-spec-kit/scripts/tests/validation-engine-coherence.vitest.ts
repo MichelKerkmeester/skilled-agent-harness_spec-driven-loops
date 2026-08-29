@@ -36,6 +36,36 @@ afterEach(() => {
 describe('validation engine coherence', () => {
   // Every test here spawns at least one full validation, which is seconds of
   // real work, so the default per-test budget is too tight to be reliable.
+  // A track is where packets are filed, not a packet. It carries metadata so
+  // tracks are searchable, which is enough to make it look like a phase parent.
+  it('treats a track directory as a track, not a packet', () => {
+    const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'engine-coherence-track-'));
+    createdRoots.add(repoRoot);
+    const track = path.join(repoRoot, 'specs', 'some-track');
+    fs.mkdirSync(track, { recursive: true });
+    fs.writeFileSync(path.join(track, 'description.json'), '{"specFolder":"some-track"}', 'utf8');
+    fs.cpSync(fixtureRoot, path.join(track, '001-a-packet'), { recursive: true });
+
+    const result = spawnSync('bash', [validateScript, track, '--strict', '--no-recursive', '--quiet'], {
+      encoding: 'utf8', env: { ...process.env },
+    });
+    expect(result.status).toBe(0);
+  });
+
+  // The exemption is by name and location, so a real packet must never take it.
+  it('still grades a numbered packet that sits directly under specs', () => {
+    const repoRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'engine-coherence-pkt-'));
+    createdRoots.add(repoRoot);
+    const pkt = path.join(repoRoot, 'specs', '001-a-real-packet');
+    fs.cpSync(fixtureRoot, pkt, { recursive: true });
+    fs.rmSync(path.join(pkt, 'plan.md'), { force: true });
+
+    const result = spawnSync('bash', [validateScript, pkt, '--strict', '--no-recursive', '--quiet'], {
+      encoding: 'utf8', env: { ...process.env },
+    });
+    expect(result.status).toBe(2);
+  });
+
   it('names the engine that produced the verdict', () => {
     const result = runValidate(copyFixture());
     expect(result.stdout).toContain('Engine: orchestrator');
