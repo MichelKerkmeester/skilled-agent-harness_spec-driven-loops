@@ -1,0 +1,24 @@
+{
+  "level": "3",
+  "specFolder": "system-speckit/042-nested-goal-template-addon",
+  "description": "An operator sets one session objective, and whatever they set is frozen at that moment",
+  "keywords": [
+    "operator",
+    "sets",
+    "one",
+    "session",
+    "objective",
+    "whatever",
+    "set",
+    "frozen",
+    "moment"
+  ],
+  "lastUpdated": "2026-08-29T18:10:06.787Z",
+  "specId": "042",
+  "folderSlug": "nested-goal-template-addon",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

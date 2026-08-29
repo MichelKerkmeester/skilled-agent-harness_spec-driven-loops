@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/042-nested-goal-template-addon",
+  "spec_folder": "system-speckit/042-nested-goal-template-addon",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/042-nested-goal-template-addon/001-manifest-and-goal-template",
+    "system-speckit/042-nested-goal-template-addon/002-durable-slice-validator",
+    "system-speckit/042-nested-goal-template-addon/003-runtime-neutral-goal-dispatch",
+    "system-speckit/042-nested-goal-template-addon/004-parent-set-string-playbook"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "nested goal addon",
+      "goal.md template",
+      "parent goal child phases",
+      "durable slice cap"
+    ],
+    "key_topics": [
+      "nested",
+      "goal",
+      "addon",
+      "template",
+      "parent",
+      "child",
+      "phases",
+      "durable",
+      "slice",
+      "cap",
+      "operator",
+      "sets"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "research/research.md",
+      "resource-map.md",
+      "templates/spec-kit-docs.json",
+      "scripts/utils/template-structure.js",
+      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+      ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      ".opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
+      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
+      ".opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts",
+      ".opencode/skills/system-spec-kit/references/structure/phase-definitions.md",
+      ".opencode/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-ac-closure.sh",
+      ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
+      ".opencode/hooks/goal/README.md",
+      ".opencode/hooks/goal/goal-plugin.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": "templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "scripts/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-goal-offer-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "EXTENSION-GUIDE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/templates/EXTENSION-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "level-contract-resolver.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/level-contract-resolver.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "phase-definitions.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/structure/phase-definitions.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-parent.spec.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "check-ac-closure.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-ac-closure.sh",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-plugin.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/goal/goal-plugin.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Nested Goal Addon",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An operator sets one session objective, and whatever they set is frozen at that moment",
+    "created_at": "2026-08-29T17:39:40Z",
+    "last_save_at": "2026-08-29T18:10:16.387Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "research/research.md",
+      "resource-map.md"
+    ],
+    "source_fingerprint": "sha256:9eab540e319481f9609231aebf7e2dc6dc24735cae92563c0081c6836fa84c6c",
+    "source_doc_hashes": {
+      "spec.md": "62bd6c8e68c1fabc1ab5ecbc38a31ac83cfd5c7574fd90d7dc5c2de87a5e3cca",
+      "research/research.md": "ace2291925f302fc0732524cecd51440e501cc389863663222f1b0f658afb081",
+      "resource-map.md": "2ce377a03c562fc3e106677d0839f1dae5d3d3fe279daa1588cfca2f3aef75cc"
+    },
+    "last_active_child_id": "system-speckit/042-nested-goal-template-addon/004-parent-set-string-playbook",
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "researchTopic": "Nested goal addon for system-spec-kit: a parent goal.md that references per-phase child goal.md files, wired into the Level contract, template logic, and the speckit command surface.",
+  "specFolder": "specs/system-speckit/042-nested-goal-template-addon",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "convergenceMode": "default",
+    "divergent": {}
+  },
+  "executionMode": "auto",
+  "stopPolicy": "max-iterations",
+  "resource_map": {
+    "emit": true
+  },
+  "config": {
+    "fanout": {
+      "executors": [
+        {
+          "kind": "cli-cursor",
+          "model": "cursor-grok-4.6-xhigh",
+          "label": "grok46-xhigh",
+          "iters": 3
+        }
+      ]
+    }
+  },
+  "executorNote": "cli-devin selected first; its account quota was exhausted (resource_exhausted), so the same model and effort tier runs on cli-cursor."
+}
