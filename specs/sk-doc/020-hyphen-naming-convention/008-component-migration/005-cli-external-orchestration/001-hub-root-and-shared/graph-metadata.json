@@ -43,9 +43,14 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "tasks.md"
+      ".opencode/skills/cli-external-orchestration/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/README.md",
+      ".opencode/skills/cli-external-orchestration/hub-router.json",
+      ".opencode/skills/cli-external-orchestration/mode-registry.json",
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md"
     ],
     "entities": [
       {
@@ -61,6 +66,12 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
@@ -73,9 +84,27 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "SKILL.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/cli-external-orchestration/mode-registry.json",
         "source": "derived"
       },
       {
@@ -167,35 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "one",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "BASE",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The live hub root has exact routing files, delegated component trees, a root manual-testing-playbook tree, and an empty shared boundary. This phase records ownership and renames only hub/shared-owned authored names without crossing delegated playbook or benchmark scope.",
     "created_at": "2026-07-14T15:17:35Z",
-    "last_save_at": "2026-08-29T10:00:24.204Z",
+    "last_save_at": "2026-08-29T13:10:03.427Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

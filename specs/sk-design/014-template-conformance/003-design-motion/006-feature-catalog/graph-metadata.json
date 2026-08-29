@@ -32,13 +32,19 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -55,12 +61,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -186,7 +186,7 @@
     ],
     "causal_summary": "`feature-catalog/` carries a root `feature-catalog.md` plus three subdirectories — `build-cards/` (`motion-fill-in-cards.md`), `procedure-cards/` (`motion-procedure-card-inventory.md`), and `restraint-gate-and-choreography/` (`choreography-and-reduced-motion.md`, `motion-restraint-gate.md`) — none of which was in the 014 program's seed sample",
     "created_at": "2026-07-27T14:53:13.941Z",
-    "last_save_at": "2026-08-29T09:58:27.490Z",
+    "last_save_at": "2026-08-29T13:09:58.051Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

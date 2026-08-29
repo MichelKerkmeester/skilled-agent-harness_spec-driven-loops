@@ -41,19 +41,17 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "checklist.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_core.py",
+      ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_executor.py",
+      ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py",
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -73,9 +71,33 @@
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/specs/sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "reference_rewrite_core.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_core.py",
+        "source": "derived"
+      },
+      {
+        "name": "reference_rewrite_executor.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/reference_rewrite_executor.py",
+        "source": "derived"
+      },
+      {
+        "name": "test_reference_rewrite_executor.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/tests/test_reference_rewrite_executor.py",
         "source": "derived"
       },
       {
@@ -173,29 +195,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The checker only records reference sites read-only and the engine only moves files, so nothing deterministically rewrites in-file references to renamed paths. This phase defines a compare-and-swap-protected static reference-rewrite executor that consumes the disposition ledger and semantic map, verifies each site's preimage blob before writing, and regenerates rather than force-applies a rewrite plan whose base moved.",
     "created_at": "2026-07-15T09:35:26.640Z",
-    "last_save_at": "2026-08-29T10:01:08.288Z",
+    "last_save_at": "2026-08-29T13:10:15.185Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -41,15 +41,23 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "assets/rename-map.json",
-      "spec.md"
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "benchmark/reports/README.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -87,9 +95,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "benchmark/reports/README.md",
         "source": "derived"
       },
       {
@@ -181,23 +195,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol Every",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two defects, one cause",
     "created_at": "2026-07-27T09:25:16.484Z",
-    "last_save_at": "2026-08-29T10:00:22.356Z",
+    "last_save_at": "2026-08-29T13:10:02.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

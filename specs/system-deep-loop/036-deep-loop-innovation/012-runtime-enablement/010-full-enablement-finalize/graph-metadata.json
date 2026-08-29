@@ -40,16 +40,24 @@
     "status": "complete",
     "key_files": [
       "spec.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "plan.md"
+      ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-registry.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/verify-authority.cjs"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -71,9 +79,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "authority-registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/per-mode-authority-flip/authority-registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "verify-authority.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/verify-authority.cjs",
         "source": "derived"
       },
       {
@@ -177,23 +191,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The reversible flip moved all eight modes to `newauthoritativereversible`, which already routes every",
     "created_at": "2026-08-23T17:06:54.597Z",
-    "last_save_at": "2026-08-29T09:58:19.066Z",
+    "last_save_at": "2026-08-29T13:09:56.766Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

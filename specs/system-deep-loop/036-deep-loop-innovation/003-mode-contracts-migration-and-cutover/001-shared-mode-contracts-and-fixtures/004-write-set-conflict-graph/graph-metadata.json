@@ -45,8 +45,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -74,15 +74,15 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Plan the executable dependency and write-set conflict graph for the eight phase-013 mode migrations, including canonical read/write resources, derived conflict edges, hard ordering fences, freshness checks, and orchestrator consumption.",
     "created_at": "2026-07-16T03:43:54.781Z",
-    "last_save_at": "2026-08-29T09:57:50.768Z",
+    "last_save_at": "2026-08-29T13:09:52.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

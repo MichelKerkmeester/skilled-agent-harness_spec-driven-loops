@@ -43,9 +43,10 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "tasks.md"
+      "scripts/common.sh"
     ],
     "entities": [
       {
@@ -61,6 +62,12 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
@@ -73,9 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "common.sh",
+        "kind": "key_phrase",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -105,12 +112,6 @@
       {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "common.sh",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -195,7 +196,7 @@
     ],
     "causal_summary": "The nested Open Design transport packet contains underscore-bearing install, transport-reference, and shell-helper names, and the shell helper is sourced by multiple scripts.",
     "created_at": "2026-07-14T15:17:19Z",
-    "last_save_at": "2026-08-29T10:00:29.217Z",
+    "last_save_at": "2026-08-29T13:10:04.669Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -18,7 +18,9 @@ version: 3.6.0.8
 
 Spec Validation Rule Engine is the executable validation surface behind Spec Kit's documentation quality gates.
 
-The engine is centered on `validate.sh`, which acts as an orchestrator for a directory of rule scripts under `scripts/rules/`. It detects the target spec level, resolves which rules to run, applies severity mapping, executes each rule in-process, and aggregates the result into terminal-friendly output or JSON for automation.
+The engine has two parts with a firm division. `validate.sh` is a front-end: it resolves arguments and the set of folders to validate, then hands every rule decision to the compiled orchestrator at `mcp-server/lib/validation/orchestrator.ts`. The orchestrator detects the target spec level, runs the rules, and aggregates the result into terminal-friendly output or JSON.
+
+The front-end deliberately implements no rules of its own. It used to carry a second, independent implementation of the same rule set, chosen between by environment; the two disagreed, so a packet's verdict depended on how the caller's shell was configured. One engine is the point.
 
 ---
 
@@ -26,21 +28,23 @@ The engine is centered on `validate.sh`, which acts as an orchestrator for a dir
 
 ### Entry Point & Routing
 
-`validate.sh` is a rule runner, not a single monolithic validator. It begins with hard skip controls: `SPECKIT_SKIP_VALIDATION` exits immediately, and `SPECKIT_VALIDATION=false` also disables execution. From there it parses CLI flags for JSON, strict mode, verbose mode, quiet mode, and recursive validation, then loads optional configuration from `.speckit.yaml` in the target folder or repository root.
+`validate.sh` begins with hard skip controls: `SPECKIT_SKIP_VALIDATION` exits immediately, and `SPECKIT_VALIDATION=false` also disables execution. From there it parses CLI flags for JSON, strict mode, verbose mode, quiet mode, and recursive validation, resolves the folder set, and delegates. A compiled build is preferred; a source-only checkout runs the orchestrator through the TypeScript loader. When neither is available it exits `3` asking for a build rather than answering with a different rule set.
 
-Rule selection is configurable but deterministic. If `SPECKIT_RULES` is set, the engine canonicalizes the requested subset and only runs those rules. If `.speckit.yaml` declares `rule_order`, that order is respected. Otherwise the engine runs every `check-*.sh` file in `scripts/rules/` alphabetically. Canonical rule names are mapped to script basenames such as `FILE_EXISTS -> check-files.sh` and `PHASE_LINKS -> check-phase-links.sh`.
+Rule inventory lives in `scripts/lib/validator-registry.json`, which carries each rule's id, aliases, script path, severity, and category. The orchestrator implements the most common rules natively and shells out to the registry for the rest, so duplication is bounded to the handful implemented twice rather than all of them.
 
-Rule execution is dynamic but guarded. For each selected rule script, the orchestrator resolves the real path, verifies that it remains inside `RULES_DIR`, requires a `.sh` extension, sources the file, and calls its `run_check` function with the target folder and detected level. Each rule reports through shared `RULE_NAME`, `RULE_STATUS`, `RULE_MESSAGE`, `RULE_DETAILS`, and `RULE_REMEDIATION` variables, which `validate.sh` then converts into pass, warn, error, or info output. Verbose mode adds per-rule timing.
+Rule selection is deterministic. By default every registry rule runs except those marked `skip`, plus the rules marked `strict_only` when `--strict` is passed. `SPECKIT_RULES` narrows the run to a named subset, canonicalizing aliases and hyphenated spellings. It selects *which* rules run and never *how* a rule decides, so a narrowed run cannot change a verdict on any rule it includes. A name the registry does not recognise is a hard error: a subset that matched nothing would otherwise report a clean pass for a packet no rule had examined.
+
+Registry dispatch is guarded. For each rule the orchestrator resolves the real path, verifies it remains inside the rules directory (or the compiled validation directory for Node rules), and refuses anything that escapes. Shell rules report through `RULE_NAME`, `RULE_STATUS`, `RULE_MESSAGE`, `RULE_DETAILS`, and `RULE_REMEDIATION`, which the orchestrator converts into pass, warn, error, or info entries. Detail lines print whenever a rule produced any, because a finding that will not say what it found cannot be acted on.
 
 ### Quality Gates & Validation
 
-Severity is partly centralized in the orchestrator. Missing files, placeholders, anchor issues, table-of-contents policy, template-header mismatches, and spec-doc integrity failures are treated as errors. Section, priority, evidence, and phase-link issues are warnings by default. Level declaration is informational. `--strict` upgrades warning-bearing runs into exit-code failure without changing the underlying rule outputs.
+Severity comes from the registry, not from a table in the front-end. Missing files, placeholders, anchor issues, table-of-contents policy, template-header mismatches, and spec-doc integrity failures are errors. Section, priority, evidence, and phase-link issues are warnings. Level declaration is informational. `--strict` upgrades warning-bearing runs into exit-code failure without changing the underlying rule outputs.
 
-Level detection is shared infrastructure for the whole engine. `validate.sh` first looks for explicit level markers in `spec.md`, including `<!-- SPECKIT_LEVEL: ... -->`, metadata tables, bullet metadata, YAML frontmatter, or line-anchored `Level:` text. A `<!-- SPECKIT_LEVEL: review -->` marker selects the lean review-record path, which requires only `spec.md` plus `review/review-report.md` and waives the `plan.md`, `tasks.md` and `implementation-summary.md` requirements that apply to numbered levels. The review marker is the only entry into that path, so no inferred folder reaches it. If no explicit declaration is present, it infers Level 3 from `decision-record.md`, Level 2 from `checklist.md`, and Level 1 otherwise.
+Level detection belongs to the orchestrator. It first looks for explicit level markers in `spec.md`, including `<!-- SPECKIT_LEVEL: ... -->`, metadata tables, bullet metadata, YAML frontmatter, or line-anchored `Level:` text. A `<!-- SPECKIT_LEVEL: review -->` marker selects the lean review-record path, which requires only `spec.md` plus `review/review-report.md` and waives the `plan.md`, `tasks.md` and `implementation-summary.md` requirements that apply to numbered levels. The review marker is the only entry into that path, so no inferred folder reaches it. If no explicit declaration is present, it infers Level 3 from `decision-record.md`, Level 2 from `checklist.md`, and Level 1 otherwise.
 
-Phase awareness is built into the engine. If the target folder contains child directories matching `NNN-*/`, recursive validation is auto-enabled unless `--no-recursive` is passed. In recursive mode, the parent is validated first, then each child phase is validated with its own detected level, and JSON output includes a separate `phases[]` result set plus aggregate counts.
+Phase awareness sits in the front-end. If the target folder contains child directories matching `NNN-*/`, recursive validation is auto-enabled unless `--no-recursive` is passed. The parent is validated first, then each child phase with its own detected level, and the run's exit code is the worst of them. A caller can declare exactly which children a recursive run must cover by pointing `SPECKIT_CHILD_MANIFEST_FILE` at a hashed manifest, so a child cannot be added or dropped without the declaration changing with it. In JSON mode each folder emits its own report object rather than one wrapper.
 
-The current rule engine therefore behaves like a shell-based plugin host: central orchestration, distributed checks, configurable order, shared severity policy, and optional recursive traversal across phased spec packets.
+The engine therefore behaves as one validator with a thin front-end: a single place where rules are decided, a registry that names them, and optional recursive traversal across phased spec packets.
 
 ### Edge Cases & Caveats
 

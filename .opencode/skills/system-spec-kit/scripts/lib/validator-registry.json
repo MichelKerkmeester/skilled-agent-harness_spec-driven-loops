@@ -328,10 +328,10 @@
     "rule_id": "CONTINUITY_FRESHNESS",
     "aliases": [],
     "script_path": "validation/continuity-freshness.ts",
-    "severity": "warn",
+    "severity": "error",
     "category": "operational_runtime",
     "strict_only": true,
-    "description": "Strict-mode freshness check for continuity frontmatter."
+    "description": "Strict-mode freshness check for continuity frontmatter. The rule reports warn by default and escalates to fail under SPECKIT_COMPLETION_FRESHNESS_ENFORCE; the ceiling here has to allow that escalation, since a warn ceiling would silently cap it."
   },
   {
     "rule_id": "EVIDENCE_MARKER_LINT",

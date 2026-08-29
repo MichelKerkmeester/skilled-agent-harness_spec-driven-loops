@@ -39,9 +39,9 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "decision-record.md",
-      "tasks.md"
+      "decision-record.md"
     ],
     "entities": [
       {
@@ -57,6 +57,12 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
@@ -66,12 +72,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The MCP server contains non-Python directories whose names still use underscores, including runtime, bridge, stress, and test-support paths. They need semantic targets and intra-tree reference updates; leading and doubled underscores must never be converted mechanically.",
     "created_at": "2026-07-14T15:17:58Z",
-    "last_save_at": "2026-08-29T10:01:00.094Z",
+    "last_save_at": "2026-08-29T13:10:13.785Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

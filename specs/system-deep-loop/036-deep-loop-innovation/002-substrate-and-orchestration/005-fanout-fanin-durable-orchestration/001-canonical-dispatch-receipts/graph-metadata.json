@@ -45,7 +45,12 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/dispatch-barrier.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts"
     ],
     "entities": [
       {
@@ -76,6 +81,36 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-barrier.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/dispatch-barrier.ts",
+        "source": "derived"
+      },
+      {
+        "name": "resume-projection.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/dispatch-receipts/resume-projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-receipts.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/dispatch-receipts.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "receipt-crypto.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/receipt-crypto.ts",
         "source": "derived"
       },
       {
@@ -161,41 +196,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "explicit",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "non-zero",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Promote each phase-005 resolved leaf invocation into a canonical, authorized, durable pre-spawn ledger receipt so resume can detect prior dispatch intent without duplicating work.",
     "created_at": "2026-07-16T03:43:49.798Z",
-    "last_save_at": "2026-08-29T09:57:37.970Z",
+    "last_save_at": "2026-08-29T13:09:50.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/cli-external-orchestration/cli-codex/manual-testing-playbook/"
     session_dedup:
-      fingerprint: "sha256:5b461f9b930362ccba7b6630d487fed3bd560871dd2df71e3cd9eee2c4431479"
+      fingerprint: "sha256:69d92a0d73d8ff4a159482ebfcc1896dbdb36e6d7492ce8d7ca2fbeef8fba42e"
       session_id: "2026-08-08-hooks-002-010"
       parent_session_id: null
     completion_pct: 100

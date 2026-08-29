@@ -45,7 +45,9 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
     ],
     "entities": [
       {
@@ -76,6 +78,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Parity Evidence",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Ship the early, backward-compatible fan-out live-tools unblock on fanout-run.cjs: a typed liveTools.webSearch policy, a fail-closed executor capability matrix, per-kind command adapters with invocation fingerprints, and models-by-branches-by-replicas manifest expansion. The phase changes dispatch only and preserves every canonical persisted state and event shape.",
     "created_at": "2026-07-16T03:43:58.400Z",
-    "last_save_at": "2026-08-29T09:57:33.485Z",
+    "last_save_at": "2026-08-29T13:07:30.835Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
