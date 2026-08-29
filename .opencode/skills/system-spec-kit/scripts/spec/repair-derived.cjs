@@ -21,9 +21,18 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
 // ─────────────────────────────────────────────────────────────────────────────
-const { execFileSync } = require('node:child_process');
+const { execFile } = require('node:child_process');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
+const { promisify } = require('node:util');
+
+const run = promisify(execFile);
+
+// Each packet is validated by its own process and nothing is shared between
+// them, so the wall-clock cost is a scheduling problem rather than a real one.
+// Serially this walk takes hours, which is long enough that nobody runs it.
+const WORKERS = Math.max(2, Math.min(12, os.cpus().length - 2));
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -50,12 +59,11 @@ const DOCS = ['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'implementation-
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. DIAGNOSIS
 // ─────────────────────────────────────────────────────────────────────────────
-function validate(folder) {
+async function validate(folder) {
   try {
-    const out = execFileSync('bash', [VALIDATE, folder, '--strict', '--json', '--no-recursive'], {
-      cwd: REPO, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'],
-    });
-    return JSON.parse(out);
+    const { stdout } = await run('bash', [VALIDATE, folder, '--strict', '--json', '--no-recursive'],
+      { cwd: REPO, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+    return JSON.parse(stdout);
   } catch (err) {
     // A non-zero exit is the normal path for a failing packet; the report still
     // arrives on stdout. Only unparseable output means we truly cannot tell.
@@ -127,17 +135,16 @@ function fixRecordedLocation(folder) {
   return actions;
 }
 
-function rederive(folder) {
+async function rederive(folder) {
   try {
-    execFileSync('node', ['--import', TSX_LOADER, BACKFILL, folder], {
-      cwd: REPO, stdio: 'ignore', maxBuffer: 64 * 1024 * 1024,
-    });
+    await run('node', ['--import', TSX_LOADER, BACKFILL, folder],
+      { cwd: REPO, maxBuffer: 64 * 1024 * 1024 });
     return true;
   } catch { return false; }
 }
 
-function repairFolder(folder, apply) {
-  const before = validate(folder);
+async function repairFolder(folder, apply) {
+  const before = await validate(folder);
   if (!before) return { folder, unreadable: true };
   const rules = new Set(findings(before).map((f) => f.rule));
   const derivable = [...rules].filter((r) => DERIVABLE.has(r));
@@ -155,7 +162,7 @@ function repairFolder(folder, apply) {
   // Editing a document invalidates the stored fingerprint, so the re-derive is
   // part of the repair rather than a follow-up; skipping it swaps one error for
   // another. It also settles the metadata rules on its own.
-  const rederived = rederive(folder);
+  const rederived = await rederive(folder);
   return { folder, planned, authored, rederived };
 }
 
@@ -209,7 +216,7 @@ function insideSpecs(target) {
   return resolved === specsRoot || (rel !== '' && !rel.startsWith('..') && !path.isAbsolute(rel));
 }
 
-function main() {
+async function main() {
   const argv = process.argv.slice(2);
   const known = new Set(['--folder', '--roots', '--apply']);
   for (let i = 0; i < argv.length; i += 1) {
@@ -229,33 +236,56 @@ function main() {
   }
   const targets = folderArg ? [folderArg] : discover(rootsArg);
 
-  let repaired = 0, pending = 0, failed = 0;
+  let repaired = 0, pending = 0, failed = 0, done = 0;
   const blocked = new Map();
+  const lines = [];
+  const progress = process.stderr.isTTY && targets.length > 1;
 
-  for (const folder of targets) {
-    const result = repairFolder(folder, apply);
-    if (result.unreadable) { failed += 1; process.stdout.write(`UNREADABLE ${folder}\n`); continue; }
-    for (const rule of result.authored || []) blocked.set(rule, (blocked.get(rule) || 0) + 1);
-    if (!result.planned || result.planned.length === 0) continue;
-    if (apply) {
-      repaired += 1;
-      if (!result.rederived) { failed += 1; process.stdout.write(`REDERIVE-FAILED ${folder}\n`); }
-      process.stdout.write(`repaired ${folder}\n`);
-      for (const action of result.planned) process.stdout.write(`    ${action.what}\n`);
-    } else {
-      pending += 1;
-      process.stdout.write(`would repair ${folder}\n`);
-      for (const action of result.planned) process.stdout.write(`    ${action.what}\n`);
+  async function worker(queue) {
+    for (;;) {
+      const folder = queue.shift();
+      if (folder === undefined) return;
+      const result = await repairFolder(folder, apply);
+      done += 1;
+      // A whole-tree walk is long enough that silence reads as a hang, so the
+      // count goes to stderr where it cannot contaminate piped output.
+      if (progress) process.stderr.write(`\r  ${done}/${targets.length} packets`);
+      if (result.unreadable) { failed += 1; lines.push(`UNREADABLE ${folder}`); continue; }
+      for (const rule of result.authored || []) blocked.set(rule, (blocked.get(rule) || 0) + 1);
+      if (!result.planned || result.planned.length === 0) continue;
+      if (apply) {
+        repaired += 1;
+        if (!result.rederived) { failed += 1; lines.push(`REDERIVE-FAILED ${folder}`); }
+        lines.push(`repaired ${folder}`);
+      } else {
+        pending += 1;
+        lines.push(`would repair ${folder}`);
+      }
+      for (const action of result.planned) lines.push(`    ${action.what}`);
     }
   }
 
+  const queue = [...targets];
+  await Promise.all(Array.from({ length: Math.min(WORKERS, queue.length) }, () => worker(queue)));
+  if (progress) process.stderr.write('\r\u001b[K');
+
+  for (const line of lines) process.stdout.write(`${line}\n`);
   process.stdout.write(`\ninspected=${targets.length} ${apply ? `repaired=${repaired}` : `repairable=${pending}`} failed=${failed}\n`);
+
   if (blocked.size) {
     process.stdout.write('\nNot repairable here — these record work someone did, and only they can write them:\n');
     for (const [rule, count] of [...blocked].sort((a, b) => b[1] - a[1])) {
       process.stdout.write(`  ${String(count).padStart(5)}  ${rule}\n`);
     }
   }
+
+  // End on the command that acts on what was just reported, so the next step is
+  // copyable rather than something to reconstruct from the usage line.
+  if (!apply && pending > 0) {
+    const scope = folderArg ? `--folder ${folderArg}` : `--roots ${rootsArg}`;
+    process.stdout.write(`\nTo apply these repairs:\n  node ${path.relative(REPO, __filename)} ${scope} --apply\n`);
+  }
+
   if (failed) process.exit(2);
   process.exit(!apply && pending > 0 ? 1 : 0);
 }
