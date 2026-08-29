@@ -4,6 +4,10 @@ description: "Pi CLI executor for guarded headless coding, JSON/RPC integration,
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.3.0.0
 hard_rules:
+  - id: stdin-redirect-required
+    check: stdin-redirect-required
+    message: "Any non-interactive `pi -p` MUST close/redirect stdin (`</dev/null`) — omitting it hangs indefinitely with ZERO output, which reads as a slow model rather than a deadlock."
+    severity: warn
   - id: pi-availability-required
     check: command-v-pi-required
     message: "Run command -v pi before every dispatch; if it fails, refuse the route without constructing or launching a command."
@@ -216,6 +220,12 @@ The caller remains responsible for task scope, files, acceptance criteria, and v
 
 The full flag glossary and pinned-contract citations are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Gotchas that silently break a dispatch and must be honored at routing time:
 
+- **Redirect stdin on every non-interactive dispatch: `</dev/null`.** Without it `pi -p` inherits the
+  parent terminal's stdin and hangs indefinitely, emitting **nothing at all** — not a partial answer,
+  not an error. Because print mode buffers until completion, an empty log is also what a working
+  dispatch looks like mid-run, so the deadlock is indistinguishable from a slow model and has been
+  mistaken for one for over an hour. The sibling `cli-opencode` packet carries the same rule for
+  `opencode run`; it applies here for exactly the same reason.
 - **`--offline` is required for any automated or CI dispatch.** `pi --verbose` without `--offline` hung for over two minutes with no reachable network path in the pinned contract's live probe. Any non-interactive dispatch through this packet must pass `--offline` explicitly rather than rely on a fast failure.
 - **The exit code is never an availability or auth signal.** An identical unauthenticated `pi -p` dispatch returned exit `0` on the first run and exit `1` on every subsequent run in the pinned contract. Every guard in this packet checks output text (`No API key found...`), never exit code.
 - **An invalid `.pi/extensions/*.ts` fails the whole session, not just that extension.** The pinned contract confirmed Pi validates extensions must export a factory function; a broken one blocks the entire dispatch with `Extension does not export a valid factory function` rather than skipping it with a warning.

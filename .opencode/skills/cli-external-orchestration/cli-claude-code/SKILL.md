@@ -4,6 +4,10 @@ description: "Claude Code CLI executor for Anthropic-backed reasoning, edits, re
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.4.0.0
 hard_rules:
+  - id: stdin-redirect-required
+    check: stdin-redirect-required
+    message: "Any non-interactive dispatch MUST close/redirect stdin (`</dev/null`). Omitting it can hang with zero output, which is indistinguishable from a slow model."
+    severity: warn
   - id: non-interactive-permission-mode-risk
     check: non-interactive-permission-mode-risk
     message: "Non-interactive `claude -p` with acceptEdits + no TTY + a Bash-heavy prompt can deadlock on an unanswerable shell-permission prompt; run it sandboxed with `--dangerously-skip-permissions` or ensure the prompt needs no shell approval."

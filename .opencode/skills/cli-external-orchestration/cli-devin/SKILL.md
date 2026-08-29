@@ -4,6 +4,10 @@ description: "Devin CLI executor for Cognition-backed coding, cloud handoff, sub
 allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.4.1.0
 hard_rules:
+  - id: stdin-redirect-required
+    check: stdin-redirect-required
+    message: "Any non-interactive `devin -p` MUST close/redirect stdin (`</dev/null`) — not only inside a read loop. Omitting it can hang with zero output, which is indistinguishable from a slow model."
+    severity: warn
   - id: devin-availability-required
     check: command-v-devin-required
     message: "Run `command -v devin` before every dispatch; if it fails, refuse the route without constructing or launching a command."
@@ -350,7 +354,7 @@ Then `auto`/`accept-edits` auto-approve exactly those MCP tools; reserve `danger
 3. Use `--permission-mode auto` for review/analysis/research; `--permission-mode dangerous` for code generation and file modification — `devin -p` itself defaults to `auto`, so omitting the flag causes a silent no-op on edit tasks. Prefer `dangerous` over `accept-edits` for any task that must read files or run its own verification; `accept-edits` refuses those calls and the dispatch fails silently.
 4. Validate Devin-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.
-6. **Redirect devin stdin from `/dev/null`** when dispatching in a `while read` loop. Pattern: `devin -p -- "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Without `</dev/null`, the backgrounded devin process inherits the loop's stdin and silently consumes the remaining lines. See `references/integration-patterns.md#background-execution` → "Silent Stdin Consumption".
+6. **Redirect devin stdin from `/dev/null` on EVERY non-interactive dispatch** — not only inside a `while read` loop, which is the condition this rule used to name and the reason it was skipped. Pattern: `devin -p -- "$PROMPT" > "$LOG" 2>&1 </dev/null &`. Without `</dev/null`, the backgrounded devin process inherits the loop's stdin and silently consumes the remaining lines. See `references/integration-patterns.md#background-execution` → "Silent Stdin Consumption".
 7. **Specify model + permission mode explicitly** — never rely on caller environment. Default: `--model swe --permission-mode dangerous`. Honor user overrides verbatim. Use `deepseek-v4-pro-max` or `gpt-5-6-luna-max` for reasoning-heavy tasks (architecture, security, deep planning).
 8. Route to the appropriate subagent profile when the task matches a specialization (see Section 3 routing table); use `subagent_explore` for read-only research, `subagent_general` for code changes.
 9. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 in non-interactive `-p` mode.
