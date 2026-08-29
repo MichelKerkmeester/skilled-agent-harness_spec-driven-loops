@@ -39,7 +39,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/validation/ephemeral-pointer-audit.mjs",
+      "scripts/validation/ephemeral-pointer-audit.mjs"
     ],
     "entities": [
       {
@@ -64,6 +66,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ephemeral-pointer-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/validation/ephemeral-pointer-audit.mjs",
         "source": "derived"
       },
       {
@@ -179,17 +187,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 006 cleaned ephemeral-artifact pointers from code comments using hand-rolled grep patterns",
     "created_at": "2026-05-29T20:35:49.807Z",
-    "last_save_at": "2026-08-28T15:59:51.714Z",
+    "last_save_at": "2026-08-29T14:54:18.064Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

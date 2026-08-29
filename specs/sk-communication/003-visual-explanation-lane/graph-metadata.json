@@ -35,19 +35,16 @@
     "importance_tier": "medium",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
-      "tasks.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-communication/SKILL.md",
+      ".opencode/commands/rewrite/explain-visually.md",
+      ".opencode/skills/sk-communication/references/visual-explanation.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -61,15 +58,39 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "explain-visually.md",
+        "kind": "doc",
+        "path": ".opencode/commands/rewrite/explain-visually.md",
+        "source": "derived"
+      },
+      {
+        "name": "visual-explanation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/references/visual-explanation.md",
         "source": "derived"
       },
       {
@@ -167,29 +188,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-communication` adapts an explanation on exactly one axis: register",
     "created_at": "2026-08-28T04:22:57.540Z",
-    "last_save_at": "2026-08-28T04:45:05.297Z",
+    "last_save_at": "2026-08-29T14:54:10.292Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,11 +204,11 @@
     ],
     "source_fingerprint": "sha256:f8447efe6f997cccacad1b379422e5cd935a9f8ff4b8bf8dc7c1cabe26b44ea6",
     "source_doc_hashes": {
-      "spec.md": "d17361c106f3941b6098368bea4dc0f16ace8f09484c8d96333c60d5ca01d028",
+      "spec.md": "61a877941528a9d09bcb9440afd213e4f733571acd87e3d0c03e0a2c2e459f58",
       "plan.md": "0bd7249966d24f032cc8f899b43bbcca383d986b237dc9d2de1b07d7e832e0ce",
       "tasks.md": "ccc27782c7a080678bd9ad16501ed71468c5904f95ce5b6c147bd2efaf3c6de8",
       "checklist.md": "15b62e84c371cd0b39442e65a1980cdcd96280d0e0bad3b16ad210ca60cf576f",
-      "implementation-summary.md": "b8d9a808b161a2082557134338f195c40f7497fb4fc7c22e41e9793c8a18a2c8"
+      "implementation-summary.md": "6660ed29c51ef790545ac934ce1301f81cf5712fc099b3282deb77a533ef1093"
     },
     "last_active_child_id": null,
     "last_active_at": null

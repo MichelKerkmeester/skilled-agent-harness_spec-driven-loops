@@ -1129,9 +1129,13 @@ function normalizeUnique(values: string[]): string[] {
 }
 
 function deriveKeyFiles(specFolderPath: string, specFolder: string, docs: ParsedSpecDoc[]): string[] {
+  // keepKeyFile exists to filter references guessed out of prose, where a bare
+  // filename is usually noise. A frontmatter entry is not a guess, so it skips
+  // that filter and is held only to the test that decides everything here
+  // anyway: it has to resolve to a file that exists.
   const specDoc = docs.find((doc) => doc.relativePath === 'spec.md');
   const frontmatterKeyFiles = specDoc
-    ? extractFrontmatterArray(specDoc.content, 'key_files').filter(keepKeyFile)
+    ? extractFrontmatterArray(specDoc.content, 'key_files')
     : [];
 
   const preferredDoc = docs.find((doc) => doc.relativePath === 'implementation-summary.md');

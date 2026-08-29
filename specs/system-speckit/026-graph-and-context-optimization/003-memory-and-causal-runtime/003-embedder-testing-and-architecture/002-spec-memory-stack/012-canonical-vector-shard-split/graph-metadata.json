@@ -44,7 +44,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts"
     ],
     "entities": [
       {
@@ -69,6 +70,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/profile.ts",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Migration The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Embedding-profile experiments currently create full per-profile `context-index<slug>.sqlite` stores",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-08-28T15:59:40.979Z",
+    "last_save_at": "2026-08-29T14:54:18.582Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

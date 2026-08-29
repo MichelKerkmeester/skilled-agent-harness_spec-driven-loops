@@ -38,7 +38,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh"
     ],
     "entities": [
       {
@@ -63,6 +65,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-system.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-phase-system.sh",
         "source": "derived"
       },
       {
@@ -172,23 +186,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`create.sh --phase --phase-parent <existing-packet> --phase-names <name> ...` rebinds `FEATUREDIR` to the existing parent (`create.sh:1046-1062`) but still calls the parent description generator with the append request's own feature description (`create.sh:1310-1317`)",
     "created_at": "2026-07-02T15:04:28.155Z",
-    "last_save_at": "2026-08-28T16:00:23.846Z",
+    "last_save_at": "2026-08-29T14:54:16.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

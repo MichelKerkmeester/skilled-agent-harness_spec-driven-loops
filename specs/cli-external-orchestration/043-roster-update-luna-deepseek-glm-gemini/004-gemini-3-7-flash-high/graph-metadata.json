@@ -40,34 +40,21 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "evidence/live-listings.txt",
-      "evidence/cursor-dispatch.out",
-      "evidence/devin-dispatch.out",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      "evidence/live-listings.txt",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".opencode/skills/cli-external-orchestration/changelog/v1.4.1.0.md",
+      "evidence/cursor-dispatch.out",
+      "evidence/devin-dispatch.out"
     ],
     "entities": [
-      {
-        "name": "live-listings.txt",
-        "kind": "file",
-        "path": "evidence/live-listings.txt",
-        "source": "derived"
-      },
-      {
-        "name": "cursor-dispatch.out",
-        "kind": "file",
-        "path": "evidence/cursor-dispatch.out",
-        "source": "derived"
-      },
-      {
-        "name": "devin-dispatch.out",
-        "kind": "file",
-        "path": "evidence/devin-dispatch.out",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -96,6 +83,54 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "live-listings.txt",
+        "kind": "file",
+        "path": "evidence/live-listings.txt",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/executor-config.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/changelog/v1.4.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "cursor-dispatch.out",
+        "kind": "file",
+        "path": "evidence/cursor-dispatch.out",
+        "source": "derived"
+      },
+      {
+        "name": "devin-dispatch.out",
+        "kind": "file",
+        "path": "evidence/devin-dispatch.out",
         "source": "derived"
       },
       {
@@ -163,41 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Gemini 3.7 Flash High is live-available on both external CLIs but neither enforced roster carries any Gemini id: cli-cursor's `CURSORSUPPORTEDMODELS` hard-rejects `gemini-3.7-flash-high`, and cli-devin's `DEVINSUPPORTEDMODELS` hard-rejects `gemini-3-7-flash-high`",
     "created_at": "2026-08-15T09:11:19.337Z",
-    "last_save_at": "2026-08-15T10:20:36.707Z",
+    "last_save_at": "2026-08-29T14:54:25.878Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

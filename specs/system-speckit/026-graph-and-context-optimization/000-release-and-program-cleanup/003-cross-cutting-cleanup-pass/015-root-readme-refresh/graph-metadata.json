@@ -38,29 +38,19 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/agents/README.txt",
-      ".claude/agents/README.txt",
-      ".opencode/skills/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "resource-map.md"
+      "resource-map.md",
+      "README.md",
+      "verification-notes.md",
+      "audit-findings.md",
+      ".opencode/agents/README.txt",
+      ".claude/agents/README.txt"
     ],
     "entities": [
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".opencode/agents/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -95,6 +85,30 @@
         "name": "resource-map.md",
         "kind": "doc",
         "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "README.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-notes.md",
+        "kind": "doc",
+        "path": "verification-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "audit-findings.md",
+        "kind": "doc",
+        "path": "audit-findings.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/agents/README.txt",
         "source": "derived"
       },
       {
@@ -180,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The root `README.md` described stale runtime counts and omitted several recently added MCP server capabilities",
     "created_at": "2026-04-29T18:48:57.000Z",
-    "last_save_at": "2026-07-17T17:19:09.470Z",
+    "last_save_at": "2026-08-29T14:56:24.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

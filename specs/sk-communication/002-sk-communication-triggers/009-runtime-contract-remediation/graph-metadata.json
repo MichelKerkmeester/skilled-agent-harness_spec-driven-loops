@@ -35,7 +35,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli-engines.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/runtime/local-projection.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/bin/external-cli-project.mjs",
+      ".opencode/commands/rewrite/response-by-external-agent.md"
     ],
     "entities": [
       {
@@ -60,6 +64,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-engines.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli-engines.ts",
+        "source": "derived"
+      },
+      {
+        "name": "local-projection.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/runtime/local-projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "external-cli-project.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/bin/external-cli-project.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "response-by-external-agent.md",
+        "kind": "doc",
+        "path": ".opencode/commands/rewrite/response-by-external-agent.md",
         "source": "derived"
       },
       {
@@ -157,35 +185,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A review of the shipped packet found four contract defects:",
     "created_at": "2026-08-20T20:00:33.153Z",
-    "last_save_at": "2026-08-20T21:12:02.721Z",
+    "last_save_at": "2026-08-29T14:54:10.273Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

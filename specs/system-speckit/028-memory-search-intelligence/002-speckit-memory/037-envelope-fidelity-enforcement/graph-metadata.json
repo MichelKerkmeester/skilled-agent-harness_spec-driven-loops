@@ -38,7 +38,10 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/memory/search.md",
+      "formatters/search-results.ts",
+      "handlers/memory-search.ts"
     ],
     "entities": [
       {
@@ -69,6 +72,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".opencode/commands/memory/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": "handlers/memory-search.ts",
         "source": "derived"
       },
       {
@@ -166,29 +187,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 029 model benchmark exposed soft spot B, envelope fidelity",
     "created_at": "2026-06-22T00:00:00Z",
-    "last_save_at": "2026-08-28T16:00:17.535Z",
+    "last_save_at": "2026-08-29T14:54:15.813Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

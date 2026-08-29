@@ -39,7 +39,11 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/hooks/README.md",
+      ".opencode/plugins/README.md",
+      ".opencode/hooks/goal/README.md",
+      ".opencode/hooks/goal/lib/goal-core.cjs"
     ],
     "entities": [
       {
@@ -64,6 +68,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".opencode/hooks/goal/lib/goal-core.cjs",
         "source": "derived"
       },
       {
@@ -173,23 +189,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Add relative, browsability-only symlinks inside .opencode/hooks/ concern folders pointing at the real OpenCode plugin files in .opencode/plugins/, so every AI runtime's adapters are visible from one unified tree without relocating OpenCode's plugin-discovery files.",
     "created_at": "2026-07-28T17:25:55.157Z",
-    "last_save_at": "2026-08-11T06:50:04.589Z",
+    "last_save_at": "2026-08-29T14:54:15.319Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

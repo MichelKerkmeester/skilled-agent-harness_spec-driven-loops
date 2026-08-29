@@ -39,29 +39,32 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "plan.md",
-      "implementation-summary.md",
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs",
+      ".opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs",
+      ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      ".codex/hooks.json",
+      ".opencode/specs/hooks/003-goal-hooks-cross-runtime/spec.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      ".opencode/hooks/dispatch/README.md"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -74,6 +77,60 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-preflight-lint.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/codex/dispatch-preflight-lint.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit-posttooluse.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/codex/dispatch-audit-posttooluse.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".opencode/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/hooks/dispatch/README.md",
         "source": "derived"
       },
       {
@@ -141,59 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "each",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`cli-devin`, `cli-cursor`, and `cli-pi` already declare `hardrules:` in their SKILL.md frontmatter (availability check, self-invocation guard, deep-loop-runtime delegation — all `severity: error`), but the shared dispatch-shape registry (`DISPATCHSHAPES` in `.opencode/hooks/dispatch/lib/dispatch-audit.mjs`) only recognizes `opencode run` and `claude -p` command shapes",
     "created_at": "2026-07-28T17:27:32.298Z",
-    "last_save_at": "2026-08-11T06:50:04.437Z",
+    "last_save_at": "2026-08-29T14:54:15.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

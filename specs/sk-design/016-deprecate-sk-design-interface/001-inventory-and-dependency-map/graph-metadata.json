@@ -37,7 +37,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "AGENTS.md",
+      "README.md"
     ],
     "entities": [
       {
@@ -62,6 +64,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
+        "kind": "doc",
+        "path": "AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "README.md",
         "source": "derived"
       },
       {
@@ -171,23 +185,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "sk-design is referenced across ~180 files; this read-only phase classifies every reference into reconcile buckets and produces dependency-map.md for phases 002-006.",
     "created_at": "2026-08-19T04:18:34.845Z",
-    "last_save_at": "2026-08-19T11:43:37.360Z",
+    "last_save_at": "2026-08-29T14:56:23.922Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

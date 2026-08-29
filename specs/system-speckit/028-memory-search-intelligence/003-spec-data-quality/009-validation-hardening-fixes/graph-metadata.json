@@ -41,22 +41,37 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "tasks.md",
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "plan.md"
+      ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/status-classifier.sh",
+      ".opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
+      "scripts/tsconfig.json",
+      "scripts/rules/check-evidence.sh",
+      "scripts/lib/status-classifier.sh",
+      "scripts/sweep/strict-pass-freshness.ts",
+      ".github/workflows/strict-pass-freshness-sweep.yml"
     ],
     "entities": [
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -66,9 +81,39 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "check-evidence.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
+        "source": "derived"
+      },
+      {
+        "name": "status-classifier.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/status-classifier.sh",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts",
+        "source": "derived"
+      },
+      {
+        "name": "validation-gate-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/validation-gate-hardening.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tsconfig.json",
+        "kind": "config",
+        "path": "scripts/tsconfig.json",
+        "source": "derived"
+      },
+      {
+        "name": "strict-pass-freshness-sweep.yml",
+        "kind": "config",
+        "path": ".github/workflows/strict-pass-freshness-sweep.yml",
         "source": "derived"
       },
       {
@@ -128,7 +173,7 @@
     ],
     "causal_summary": "F6 — the evidence \"substance\" checker has two live defects, a false-negative loophole and a false-positive regression, both in `evidenceitemhassubstance()` (`check-evidence.sh:30-68`)",
     "created_at": "2026-07-09T15:10:28.777Z",
-    "last_save_at": "2026-08-29T00:55:07.838Z",
+    "last_save_at": "2026-08-29T14:54:17.166Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

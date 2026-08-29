@@ -35,7 +35,14 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-vision/graph-metadata.json",
+      ".opencode/skills/sk-vision/leaf-manifest.config.json",
+      ".opencode/skills/sk-vision/leaf-manifest.json",
+      ".opencode/skills/sk-vision/leaf-aliases.json",
+      ".opencode/skills/sk-vision/README.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json",
+      ".opencode/skills/sk-vision/SKILL.md"
     ],
     "entities": [
       {
@@ -60,6 +67,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.config.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/leaf-manifest.config.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-aliases.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-vision/leaf-aliases.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-vision/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph-metadata-template.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-graph-metadata-template.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-vision/SKILL.md",
         "source": "derived"
       },
       {
@@ -139,53 +188,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "SKILL.md alone is not a legal Class S skill root",
     "created_at": "2026-08-16T07:22:41Z",
-    "last_save_at": "2026-08-16T07:53:11.809Z",
+    "last_save_at": "2026-08-29T14:54:23.633Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

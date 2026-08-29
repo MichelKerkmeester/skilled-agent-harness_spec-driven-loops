@@ -52,13 +52,34 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      ".opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts",
+      ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "directive-lifecycle.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts",
         "source": "derived"
       },
       {
@@ -100,7 +121,7 @@
     ],
     "causal_summary": "The `hooks/001` research measured that the three always-on directives (comment-hygiene, governor, proof-over-appearance) are ~763 bytes / ~190 estimated tokens and constitute ~94.7% of the per-turn advisor payload, delivered on nearly every valid turn across Claude Code, Codex, Devin, and OpenCode; Pi adds its own ~554-byte dispatch directive",
     "created_at": "2026-08-06T11:15:01.299Z",
-    "last_save_at": "2026-08-28T22:01:26.490Z",
+    "last_save_at": "2026-08-29T14:54:13.983Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

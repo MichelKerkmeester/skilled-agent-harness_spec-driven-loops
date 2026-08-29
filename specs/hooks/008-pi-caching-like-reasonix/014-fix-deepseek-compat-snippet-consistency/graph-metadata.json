@@ -41,8 +41,11 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      ".pi/extensions/pi-cache-optimizer/index.ts",
+      ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+      ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md"
     ],
     "entities": [
       {
@@ -58,15 +61,33 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".pi/extensions/pi-cache-optimizer/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-findings.test.ts",
+        "kind": "test",
+        "path": ".pi/extensions/pi-cache-optimizer/tests/review-findings.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "CHANGES-FROM-UPSTREAM.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".pi/extensions/pi-cache-optimizer/CHANGES-FROM-UPSTREAM.md",
         "source": "derived"
       },
       {
@@ -170,29 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Files Changed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "In the vendored `pi-cache-optimizer` fork, the DeepSeek compat path treated `supportsLongCacheRetention` as a required/missing flag: it appeared in the \"merged compat lacks …\" startup warning, in the copyable \"Recommended DeepSeek compat snippet\", and in the `/cache-optimizer fix` auto-write set",
     "created_at": "2026-08-13T00:00:00.000Z",
-    "last_save_at": "2026-08-28T18:47:01.641Z",
+    "last_save_at": "2026-08-29T14:54:14.915Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

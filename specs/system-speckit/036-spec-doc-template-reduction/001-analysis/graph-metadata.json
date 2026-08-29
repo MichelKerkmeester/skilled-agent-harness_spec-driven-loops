@@ -42,22 +42,21 @@
     "status": "draft",
     "key_files": [
       "spec.md",
-      "research/research.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
+      "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/research/research.md",
+      "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/spec.md",
+      "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
+        "path": "specs/system-speckit/036-spec-doc-template-reduction/001-analysis/spec.md",
         "source": "derived"
       },
       {
@@ -76,6 +75,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/scaffold-golden-snapshots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec-doc-structure.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/spec-doc-structure.ts",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-golden-snapshots.vitest.ts.snap",
+        "kind": "file",
+        "path": "scripts/tests/__snapshots__/scaffold-golden-snapshots.vitest.ts.snap",
         "source": "derived"
       },
       {
@@ -173,29 +196,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 13 spec-kit manifest templates contain measured duplication and context waste",
     "created_at": "2026-08-26T05:33:55Z",
-    "last_save_at": "2026-08-29T00:57:05.130Z",
+    "last_save_at": "2026-08-29T14:54:19.778Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

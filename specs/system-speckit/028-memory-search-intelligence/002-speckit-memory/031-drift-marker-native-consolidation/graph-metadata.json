@@ -37,26 +37,26 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "implementation-summary.md",
-      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
+      "scripts/git-hooks/drift-marker-write.ts",
+      "scripts/tests/drift-marker-write.vitest.ts",
+      "scripts/evals/check-no-mcp-lib-imports.ts",
+      "scripts/check-api-boundary.sh",
+      ".opencode/skills/system-spec-kit/scripts/git-hooks/drift-marker-write.ts",
+      "scripts/spec-folder/generate-description.ts",
+      "scripts/graph/backfill-graph-metadata.ts",
+      "api/index.ts",
+      "scripts/dist/git-hooks/drift-marker-write.js",
+      ".opencode/skills/system-spec-kit/scripts/evals/check-no-mcp-lib-imports.ts",
+      ".opencode/skills/system-spec-kit/scripts/check-api-boundary.sh"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -79,6 +79,72 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-drift-marker.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
+        "source": "derived"
+      },
+      {
+        "name": "drift-marker-write.ts",
+        "kind": "code",
+        "path": "scripts/git-hooks/drift-marker-write.ts",
+        "source": "derived"
+      },
+      {
+        "name": "drift-marker-write.vitest.ts",
+        "kind": "test",
+        "path": "scripts/tests/drift-marker-write.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-mcp-lib-imports.ts",
+        "kind": "code",
+        "path": "scripts/evals/check-no-mcp-lib-imports.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-api-boundary.sh",
+        "kind": "script",
+        "path": "scripts/check-api-boundary.sh",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description.ts",
+        "kind": "code",
+        "path": "scripts/spec-folder/generate-description.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": "scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "api/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "drift-marker-write.js",
+        "kind": "code",
+        "path": "scripts/dist/git-hooks/drift-marker-write.js",
         "source": "derived"
       },
       {
@@ -134,65 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Answered Questions",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "New Entrypoint",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Hook Shrink",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/scripts/git-hooks/lib/memory-drift-marker.sh` (143 lines) detects `.opencode/specs`",
     "created_at": "2026-07-09T20:28:44.767Z",
-    "last_save_at": "2026-08-28T16:00:15.479Z",
+    "last_save_at": "2026-08-29T14:54:15.828Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

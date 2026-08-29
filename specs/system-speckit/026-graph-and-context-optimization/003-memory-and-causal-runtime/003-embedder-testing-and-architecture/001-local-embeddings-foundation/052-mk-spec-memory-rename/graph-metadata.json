@@ -43,9 +43,14 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "resource-map.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      "resource-map.md",
+      "opencode.json",
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      "dist/context-server.js",
+      ".opencode/commands/doctor/_routes.yaml"
     ],
     "entities": [
       {
@@ -61,9 +66,9 @@
         "source": "derived"
       },
       {
-        "name": "resource-map.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "resource-map.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -73,9 +78,39 @@
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.json",
+        "kind": "config",
+        "path": "opencode.json",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
         "source": "derived"
       },
       {
@@ -161,41 +196,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Update Server",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Resource Map",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The current configured server alias forces a 22-character fully qualified prefix, `mcpmkspecmemory`, into every Claude-style tool reference",
     "created_at": "2026-05-13T09:00:44Z",
-    "last_save_at": "2026-08-28T15:59:38.949Z",
+    "last_save_at": "2026-08-29T14:56:24.970Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

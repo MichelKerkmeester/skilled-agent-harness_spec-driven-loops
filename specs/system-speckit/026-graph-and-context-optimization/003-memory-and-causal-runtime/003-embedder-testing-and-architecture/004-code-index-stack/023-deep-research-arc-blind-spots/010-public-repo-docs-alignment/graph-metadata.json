@@ -40,19 +40,14 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "review/review-report.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "README.md",
+      "review/review-report.md"
     ],
     "entities": [
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,6 +70,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "README.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "key_phrase",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "sk-doc-compliant",
-        "kind": "key_phrase",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Bring public-repo documentation back into alignment with current code defaults (Qwen3-Reranker-0.6B, nomic-embed-text-v1.5, nomic-CodeRankEmbed, mcp_server feature-grouped layout) after the May 2026 retrieval-pipeline arc, the 023B Qwen3 promotion, and the post-restructure rename of benchmark-2026-05-20-expanded → benchmark-2026-05-20.",
     "created_at": "2026-05-20T15:20:22.326Z",
-    "last_save_at": "2026-08-28T15:53:26.600Z",
+    "last_save_at": "2026-08-29T14:56:24.957Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

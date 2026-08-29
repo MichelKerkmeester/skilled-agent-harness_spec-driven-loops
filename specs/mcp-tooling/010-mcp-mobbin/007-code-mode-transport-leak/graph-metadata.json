@@ -39,16 +39,17 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md"
+      "implementation-summary.md",
+      ".opencode/skills/mcp-code-mode/mcp-server/index.ts"
     ],
     "entities": [
       {
-        "name": "implementation-summary.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -64,9 +65,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/mcp-code-mode/mcp-server/index.ts",
         "source": "derived"
       },
       {
@@ -182,17 +189,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered Attribution",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A browser verification window for Mobbin reopened every few minutes with no user action",
     "created_at": "2026-08-25T06:57:09.439Z",
-    "last_save_at": "2026-08-25T06:59:17.536Z",
+    "last_save_at": "2026-08-29T14:54:09.906Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

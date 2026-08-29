@@ -36,7 +36,20 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/types.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/adapters.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/registry.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/providers/index.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/transports/index.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts",
+      ".opencode/skills/sk-communication/feature-catalog/provider-and-privacy/external-cli-provider.md",
+      ".opencode/skills/sk-communication/feature-catalog/feature-catalog.md",
+      ".opencode/skills/sk-communication/manual-testing-playbook/fidelity-and-privacy/external-cli-provider-fallback.md",
+      ".opencode/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
       {
@@ -61,6 +74,78 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "presets.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/presets.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adapters.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/adapters.ts",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/providers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/test/transports/cli.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "external-cli.test.ts",
+        "kind": "test",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/test/providers/external-cli.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "external-cli-provider.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/feature-catalog/provider-and-privacy/external-cli-provider.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "external-cli-provider-fallback.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/manual-testing-playbook/fidelity-and-privacy/external-cli-provider-fallback.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-communication/manual-testing-playbook/manual-testing-playbook.md",
         "source": "derived"
       },
       {
@@ -110,83 +195,11 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. SUMMARY",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. QUALITY GATES",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. ARCHITECTURE",
-        "kind": "heading",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria The",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "How It Was Delivered The",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Command 2's cli- engine path is pure command-level orchestration",
     "created_at": "2026-08-19T06:20:53.378Z",
-    "last_save_at": "2026-08-20T21:06:44.140Z",
+    "last_save_at": "2026-08-29T14:54:10.263Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

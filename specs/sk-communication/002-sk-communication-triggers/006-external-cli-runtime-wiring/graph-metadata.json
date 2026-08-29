@@ -35,7 +35,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-communication/cli-communication-projection/bin/external-cli-project.mjs",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/runtime/external-cli-projection.ts",
+      ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli-engines.ts"
     ],
     "entities": [
       {
@@ -60,6 +63,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "external-cli-project.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/bin/external-cli-project.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "external-cli-projection.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/runtime/external-cli-projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli-engines.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-communication/cli-communication-projection/src/transports/cli-engines.ts",
         "source": "derived"
       },
       {
@@ -163,29 +184,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 005 delivered the external-cli provider as a tested package path, but command 2's Branch B still dispatches to a cli- skill ad-hoc",
     "created_at": "2026-08-19T07:26:19.954Z",
-    "last_save_at": "2026-08-20T21:06:44.430Z",
+    "last_save_at": "2026-08-29T14:54:10.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

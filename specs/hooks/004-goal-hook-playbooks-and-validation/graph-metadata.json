@@ -49,46 +49,39 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/pi-injection-excerpt.txt",
+      ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/devin-injection-excerpt.txt",
+      ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/cursor-recorded-evidence.txt",
+      ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt",
       "evidence/pi-injection-excerpt.txt",
       "evidence/devin-injection-excerpt.txt",
       "evidence/devin-model-reply.txt",
       "evidence/cursor-recorded-evidence.txt",
       "evidence/opencode-mkgoal-finding.txt",
-      "checklist.md",
-      "implementation-summary.md",
-      "plan.md",
-      "spec.md",
-      "tasks.md"
+      ".opencode/specs/hooks/003-goal-hooks-cross-runtime/spec.md"
     ],
     "entities": [
       {
-        "name": "pi-injection-excerpt.txt",
-        "kind": "file",
-        "path": "evidence/pi-injection-excerpt.txt",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "devin-injection-excerpt.txt",
-        "kind": "file",
-        "path": "evidence/devin-injection-excerpt.txt",
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "devin-model-reply.txt",
-        "kind": "file",
-        "path": "evidence/devin-model-reply.txt",
-        "source": "derived"
-      },
-      {
-        "name": "cursor-recorded-evidence.txt",
-        "kind": "file",
-        "path": "evidence/cursor-recorded-evidence.txt",
-        "source": "derived"
-      },
-      {
-        "name": "opencode-mkgoal-finding.txt",
-        "kind": "file",
-        "path": "evidence/opencode-mkgoal-finding.txt",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -104,21 +97,33 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
+        "name": "pi-injection-excerpt.txt",
+        "kind": "file",
+        "path": ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/pi-injection-excerpt.txt",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "devin-injection-excerpt.txt",
+        "kind": "file",
+        "path": ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/devin-injection-excerpt.txt",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "cursor-recorded-evidence.txt",
+        "kind": "file",
+        "path": ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/cursor-recorded-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-mkgoal-finding.txt",
+        "kind": "file",
+        "path": ".opencode/specs/hooks/004-goal-hook-playbooks-and-validation/evidence/opencode-mkgoal-finding.txt",
+        "source": "derived"
+      },
+      {
+        "name": "devin-model-reply.txt",
+        "kind": "file",
+        "path": "evidence/devin-model-reply.txt",
         "source": "derived"
       },
       {
@@ -208,7 +213,7 @@
     ],
     "causal_summary": "Packet `003-goal-hooks-cross-runtime` shipped the runtime-neutral session-goal hook for Devin, Cursor, and Pi (plus the OpenCode plugin symlink mirror), but it closed without any manual-testing-playbook coverage for the hook and without live evidence that the hook's injected `[activegoal]` block actually reaches the model turn in each runtime",
     "created_at": "2026-07-29T09:41:34.533Z",
-    "last_save_at": "2026-08-11T06:50:09.634Z",
+    "last_save_at": "2026-08-29T14:54:15.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

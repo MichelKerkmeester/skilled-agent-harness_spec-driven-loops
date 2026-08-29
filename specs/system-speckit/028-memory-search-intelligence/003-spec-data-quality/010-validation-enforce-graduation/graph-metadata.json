@@ -42,27 +42,31 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "scripts/regen-worker.sh",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-child-drift.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+      "scripts/tests/check-graph-metadata-child-drift.sh",
+      "scripts/regen-worker.sh",
       "scripts/fix-packet-pointer.mjs",
       "scripts/census-validation-rule.sh",
-      "scripts/census-worker.sh"
+      "scripts/census-worker.sh",
+      ".opencode/bin/worktree-session.sh",
+      "scripts/rules/check-status-cross-doc-consistency.sh",
+      "scripts/rules/check-metadata-disk-consistency.sh",
+      "scripts/rules/check-graph-metadata-child-drift.sh",
+      "scripts/dist/spec/is-phase-parent.js"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "regen-worker.sh",
-        "kind": "script",
-        "path": "scripts/regen-worker.sh",
         "source": "derived"
       },
       {
@@ -96,6 +100,36 @@
         "source": "derived"
       },
       {
+        "name": "check-status-cross-doc-consistency.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-status-cross-doc-consistency.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-metadata-disk-consistency.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-metadata-disk-consistency.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-graph-metadata-child-drift.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-child-drift.sh",
+        "source": "derived"
+      },
+      {
+        "name": "dist-freshness.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/dist-freshness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "regen-worker.sh",
+        "kind": "script",
+        "path": "scripts/regen-worker.sh",
+        "source": "derived"
+      },
+      {
         "name": "fix-packet-pointer.mjs",
         "kind": "file",
         "path": "scripts/fix-packet-pointer.mjs",
@@ -111,6 +145,18 @@
         "name": "census-worker.sh",
         "kind": "script",
         "path": "scripts/census-worker.sh",
+        "source": "derived"
+      },
+      {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
+        "name": "is-phase-parent.js",
+        "kind": "code",
+        "path": "scripts/dist/spec/is-phase-parent.js",
         "source": "derived"
       },
       {
@@ -160,47 +206,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Unlike Phases",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three validation rules exist, run on every `validate.sh --strict` invocation, and correctly detect real drift — but none of them can actually fail validation today, because each is gated by its own default-`false` enforce flag:",
     "created_at": "2026-07-09T20:32:08.332Z",
-    "last_save_at": "2026-08-28T16:00:22.511Z",
+    "last_save_at": "2026-08-29T14:54:16.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

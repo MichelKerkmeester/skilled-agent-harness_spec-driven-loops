@@ -43,17 +43,32 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
+      "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md",
-      "tasks.md"
+      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
+      "scripts/rules/check-graph-metadata-shape.sh",
+      "scripts/tests/check-graph-metadata-shape-last-active-child.sh"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -69,15 +84,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "name": "check-graph-metadata-shape.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
+        "name": "check-graph-metadata-shape-last-active-child.sh",
+        "kind": "script",
+        "path": "scripts/tests/check-graph-metadata-shape-last-active-child.sh",
         "source": "derived"
       },
       {
@@ -181,23 +196,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The fourth scout surfaced a new candidate pool and applied the pipeline (scout → gpt-5.5-fast confirm → implement-and-test)",
     "created_at": "2026-06-03T09:00:00Z",
-    "last_save_at": "2026-08-28T15:59:29.829Z",
+    "last_save_at": "2026-08-29T14:54:17.621Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

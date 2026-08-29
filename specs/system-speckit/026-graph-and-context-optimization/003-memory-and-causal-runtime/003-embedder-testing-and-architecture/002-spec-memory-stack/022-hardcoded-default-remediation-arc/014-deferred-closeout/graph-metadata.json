@@ -38,40 +38,16 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/scripts/copy-skill-advisor-dist-data.sh",
-      ".opencode/scripts/install-git-hooks.sh",
-      ".opencode/install_guides/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/scripts/copy-skill-advisor-dist-data.sh",
+      ".opencode/scripts/git-hooks/pre-commit",
+      ".opencode/scripts/install-git-hooks.sh",
+      ".opencode/.gitignore"
     ],
     "entities": [
-      {
-        "name": "copy-skill-advisor-dist-data.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/copy-skill-advisor-dist-data.sh",
-        "source": "derived"
-      },
-      {
-        "name": "install-git-hooks.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/install-git-hooks.sh",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/install_guides/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "evidence-gap-detector.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/evidence-gap-detector.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -94,6 +70,30 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "copy-skill-advisor-dist-data.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/copy-skill-advisor-dist-data.sh",
+        "source": "derived"
+      },
+      {
+        "name": "pre-commit",
+        "kind": "file",
+        "path": ".opencode/scripts/git-hooks/pre-commit",
+        "source": "derived"
+      },
+      {
+        "name": "install-git-hooks.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/install-git-hooks.sh",
+        "source": "derived"
+      },
+      {
+        "name": ".gitignore",
+        "kind": "file",
+        "path": ".opencode/.gitignore",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Closes 3 of 4 deferred follow-ons from the 022 arc: tracked dist/data JSON-copy script + install-guide note, advisory pre-commit hook + install script for validate-doc-model-refs.js, Z_SCORE_THRESHOLD comment update reflecting post-013 state. node-llama-cpp dep prune resolved-by-discovery (no live package.json dep).",
     "created_at": "2026-05-23T22:00:00.000000Z",
-    "last_save_at": "2026-07-17T17:19:22.649Z",
+    "last_save_at": "2026-08-29T14:56:24.960Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

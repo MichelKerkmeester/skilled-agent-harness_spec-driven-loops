@@ -42,7 +42,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/commands/create/README.txt"
     ],
     "entities": [
       {
@@ -67,6 +68,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/commands/create/README.txt",
         "source": "derived"
       },
       {
@@ -182,17 +189,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `.opencode/commands/` surface (the `/create:` and `/doc:` command files plus their `assets/` presentation and resource YAMLs) cited the pre-refactor sk-doc layout: hub-root `assets/`/`references/` facades, the deleted `creation.md` monoliths, the pre-regroup `create-skill/references/skillcreation/` path, the `doc-quality` packet name, and `shared/references/global/`",
     "created_at": "2026-07-07T06:36:20.172Z",
-    "last_save_at": "2026-08-28T15:58:16.727Z",
+    "last_save_at": "2026-08-29T14:54:23.629Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

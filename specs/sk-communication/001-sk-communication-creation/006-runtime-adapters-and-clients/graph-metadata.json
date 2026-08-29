@@ -46,8 +46,9 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
+      "implementation-summary.md",
       "handover.md",
-      "implementation-summary.md"
+      "specs/sk-communication/001-sk-communication-creation/005-provider-adapters-and-privacy/handover.md"
     ],
     "entities": [
       {
@@ -81,15 +82,15 @@
         "source": "derived"
       },
       {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -197,7 +198,7 @@
     ],
     "causal_summary": "Integrate the projection core with six CLIs through their safest supported event and presentation boundaries",
     "created_at": "2026-08-11T10:04:31Z",
-    "last_save_at": "2026-08-28T13:23:56.971Z",
+    "last_save_at": "2026-08-29T14:54:10.635Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

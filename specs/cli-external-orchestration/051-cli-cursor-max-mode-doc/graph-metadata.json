@@ -36,12 +36,21 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-cursor/README.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -61,9 +70,21 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "providers-and-models.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/references/providers-and-models.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-cursor/README.md",
         "source": "derived"
       },
       {
@@ -141,7 +162,7 @@
     ],
     "causal_summary": "A request to define \"Composer 2.5 Max Mode\" in the cli-cursor model roster surfaced a documentation gap",
     "created_at": "2026-08-19T19:18:37.096Z",
-    "last_save_at": "2026-08-19T19:25:45.235Z",
+    "last_save_at": "2026-08-29T14:54:25.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -42,8 +42,10 @@
     "key_files": [
       "spec.md",
       "plan.md",
+      "tasks.md",
       "implementation-summary.md",
-      "tasks.md"
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/commands/memory/manage.md"
     ],
     "entities": [
       {
@@ -59,15 +61,27 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "tasks.md",
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "manage.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": ".opencode/commands/memory/manage.md",
         "source": "derived"
       },
       {
@@ -177,23 +191,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built Closed",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Kit Memory",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 052 rename shipped functionally, but deep review found command-layer namespace regressions and stale packet documentation",
     "created_at": "2026-05-15T05:59:52Z",
-    "last_save_at": "2026-08-28T15:59:39.278Z",
+    "last_save_at": "2026-08-29T14:54:18.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

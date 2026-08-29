@@ -41,17 +41,26 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "spec.md"
+      "implementation-summary.md",
+      ".pi/extensions/prompt-advisor.ts",
+      ".pi/extensions/lib/claude-hook-adapter.ts",
+      ".pi/extensions/README.md",
+      ".pi/extensions/lib/README.md",
+      ".claude/settings.json",
+      ".codex/hooks.json",
+      "dist/hooks/codex/user-prompt-submit.js",
+      "dist/hooks/claude/user-prompt-submit.js",
+      "lib/README.md"
     ],
     "entities": [
       {
-        "name": "implementation-summary.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -73,9 +82,45 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".pi/extensions/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "claude-hook-adapter.ts",
+        "kind": "code",
+        "path": ".pi/extensions/lib/claude-hook-adapter.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".pi/extensions/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": "dist/hooks/codex/user-prompt-submit.js",
         "source": "derived"
       },
       {
@@ -155,47 +200,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Confirm Pi",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "emission",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator observed that PI CLI adds delay before a message is sent, while the opencode plugin, the codex hooks, and the claude hooks do not",
     "created_at": "2026-08-02T10:45:25.735Z",
-    "last_save_at": "2026-08-11T06:50:09.789Z",
+    "last_save_at": "2026-08-29T14:54:15.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

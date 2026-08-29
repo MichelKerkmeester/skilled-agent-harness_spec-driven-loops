@@ -38,13 +38,24 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "review/review-report.md",
-      "review/lineages/glm-high/invocation-metadata.json",
-      "review/orchestration-summary.json",
-      "review/lineages/deepseek-flash/review-report.md",
       "tasks.md",
       "implementation-summary.md",
-      "review/lineages/deepseek-flash/iterations/iteration-001.md"
+      "README.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/bin/check-no-spec-imports.cjs",
+      ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
+      ".opencode/skills/system-spec-kit/scripts/core/README.md",
+      ".opencode/skills/system-spec-kit/scripts/sweep/README.md",
+      ".opencode/skills/system-spec-kit/scripts/kpi/README.md",
+      ".opencode/skills/system-spec-kit/mcp-server/README.md",
+      "mcp-server/benchmarks/README.md",
+      ".opencode/bin/lib/README.md",
+      "scripts/git-hooks/README.md",
+      ".opencode/scripts/git-hooks/README.md",
+      ".opencode/scripts/git-hooks/lib/README.md",
+      "mcp-server/hooks/cursor/README.md",
+      "mcp-server/hooks/devin/README.md",
+      "mcp-server/database/migrations/README.md"
     ],
     "entities": [
       {
@@ -60,24 +71,6 @@
         "source": "derived"
       },
       {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
-      {
-        "name": "invocation-metadata.json",
-        "kind": "config",
-        "path": "review/lineages/glm-high/invocation-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "orchestration-summary.json",
-        "kind": "config",
-        "path": "review/orchestration-summary.json",
-        "source": "derived"
-      },
-      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -90,9 +83,21 @@
         "source": "derived"
       },
       {
-        "name": "iteration-001.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "review/lineages/deepseek-flash/iterations/iteration-001.md",
+        "path": "README.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-no-spec-imports.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/check-no-spec-imports.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "memory-drift-marker.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/git-hooks/lib/memory-drift-marker.sh",
         "source": "derived"
       },
       {
@@ -190,11 +195,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The specs-root topology flip (`003-migration-execution`) changed the canonical location of every spec-kit document",
     "created_at": "2026-08-07T17:29:17Z",
-    "last_save_at": "2026-08-08T11:36:45.175Z",
+    "last_save_at": "2026-08-29T14:56:24.606Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

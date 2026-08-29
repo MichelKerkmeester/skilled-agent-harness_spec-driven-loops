@@ -45,7 +45,9 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-reducers/index.ts",
+      ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-reducers.vitest.ts"
     ],
     "entities": [
       {
@@ -76,6 +78,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-deep-loop/runtime/lib/deep-improvement-common-reducers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement-common-reducers.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-deep-loop/runtime/tests/unit/deep-improvement-common-reducers.vitest.ts",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Define the pure reducers and projections for Deep Improvement Common Services",
     "created_at": "2026-07-16T03:43:35.996Z",
-    "last_save_at": "2026-08-18T11:07:19.916Z",
+    "last_save_at": "2026-08-29T14:54:11.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

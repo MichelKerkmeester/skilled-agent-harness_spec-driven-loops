@@ -45,11 +45,17 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
       ".opencode/skills/system-deep-loop/SKILL.md",
-      ".opencode/skills/system-deep-loop/mode-registry.json",
-      "spec.md"
+      ".opencode/skills/system-deep-loop/mode-registry.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -60,12 +66,6 @@
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/system-deep-loop/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -107,7 +107,7 @@
     ],
     "causal_summary": "The system-deep-loop surface contains snake_case directories and files across runtime, five workflow packets, the root manual-testing playbook, and benchmark storage. This phase parent defines eleven independently reviewable child contracts that move only in-scope filesystem names to kebab-case, repair path references, and preserve the program exemption boundary.",
     "created_at": "2026-07-14T15:17:00Z",
-    "last_save_at": "2026-07-17T20:26:11.500Z",
+    "last_save_at": "2026-08-29T14:54:21.462Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -117,7 +117,7 @@
     "source_doc_hashes": {
       "spec.md": "d2797a695760c2e21b32029f749eac36cd9a42897f809df84ea32cfe97a0bc61"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify",
     "last_active_at": null
   }
 }

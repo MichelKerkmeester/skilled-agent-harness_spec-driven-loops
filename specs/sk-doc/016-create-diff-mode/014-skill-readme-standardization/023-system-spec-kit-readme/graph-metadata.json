@@ -37,7 +37,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
       {
@@ -62,6 +63,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -177,17 +184,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit README is a 1084-line reference manual with functional headers, no AT A GLANCE table, a stale version footer and pervasive house-voice violations (double-hyphen separators, Oxford-comma lists, prose semicolons)",
     "created_at": "2026-06-07T17:55:00Z",
-    "last_save_at": "2026-08-28T15:59:23.919Z",
+    "last_save_at": "2026-08-29T14:54:20.658Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

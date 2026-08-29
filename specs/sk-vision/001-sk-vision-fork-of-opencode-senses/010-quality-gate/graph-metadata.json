@@ -38,22 +38,19 @@
     "status": "complete",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-vision/SKILL.md",
+      ".claude/hooks/git-primary-reconcile.sh",
+      ".pi/settings.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -72,6 +69,30 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-vision/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "git-primary-reconcile.sh",
+        "kind": "script",
+        "path": ".claude/hooks/git-primary-reconcile.sh",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".pi/settings.json",
         "source": "derived"
       },
       {
@@ -169,29 +190,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "their",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "INSUFFICIENT_CONTEXT_ABORT",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Six phases of work (001-005 shipped, 006-009 amended) need one authoritative proof that the skill is aligned with sk-create-skill standards and the packet is coherent",
     "created_at": "2026-08-16T12:00:00.000Z",
-    "last_save_at": "2026-08-16T10:19:34.764Z",
+    "last_save_at": "2026-08-29T14:54:24.125Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

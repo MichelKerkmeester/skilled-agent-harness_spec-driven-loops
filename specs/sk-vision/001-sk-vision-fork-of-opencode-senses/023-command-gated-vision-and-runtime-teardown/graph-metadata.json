@@ -45,13 +45,24 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown/spec.md",
+      ".opencode/skills/sk-vision/vision-runtime/src/plugin.ts",
+      ".opencode/skills/sk-vision/vision-runtime/src/opencode/attachments.ts",
+      ".opencode/skills/sk-vision/hooks/pi/sk-vision.ts",
+      ".opencode/commands/vision.md",
+      ".cursor/mcp.json",
+      ".cursor/commands/vision.md",
+      ".pi/prompts/vision.md",
+      "runtime-mirrors/command-scope.cjs",
+      ".opencode/skills/sk-vision/vision-runtime/src/opencode/command.ts",
+      ".opencode/skills/system-spec-kit/scripts/runtime-mirrors/command-scope.cjs"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "specs/sk-vision/001-sk-vision-fork-of-opencode-senses/023-command-gated-vision-and-runtime-teardown/spec.md",
         "source": "derived"
       },
       {
@@ -76,6 +87,48 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "plugin.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/src/plugin.ts",
+        "source": "derived"
+      },
+      {
+        "name": "attachments.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/src/opencode/attachments.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sk-vision.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/hooks/pi/sk-vision.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vision.md",
+        "kind": "doc",
+        "path": ".opencode/commands/vision.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".cursor/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-scope.cjs",
+        "kind": "file",
+        "path": "runtime-mirrors/command-scope.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command.ts",
+        "kind": "code",
+        "path": ".opencode/skills/sk-vision/vision-runtime/src/opencode/command.ts",
         "source": "derived"
       },
       {
@@ -149,53 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Add Pi",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Rework Pi",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "default",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "In OpenCode, sk-vision is \"always on\" in two ways",
     "created_at": "2026-08-22T12:45:15.968Z",
-    "last_save_at": "2026-08-22T14:52:18.242Z",
+    "last_save_at": "2026-08-29T14:54:23.635Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

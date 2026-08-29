@@ -35,7 +35,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/plugins/README.md",
+      "opencode.json"
     ],
     "entities": [
       {
@@ -60,6 +62,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.json",
+        "kind": "config",
+        "path": "opencode.json",
         "source": "derived"
       },
       {
@@ -169,23 +183,11 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Operators will not find the plugin without an inventory row, and a plugin array in opencode.json would fight this repo's discovery path",
     "created_at": "2026-08-16T07:22:47Z",
-    "last_save_at": "2026-08-16T08:25:52.758Z",
+    "last_save_at": "2026-08-29T14:56:27.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

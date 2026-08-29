@@ -35,25 +35,19 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+      "AGENTS.md"
     ],
     "entities": [
       {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skills-nested-packets.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -81,9 +75,15 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "parent-skill-check.cjs",
+        "kind": "file",
+        "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "AGENTS.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": "AGENTS.md",
         "source": "derived"
       },
       {
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The skill tree carries two metadata systems that reuse the filenames `description.json` and `graph-metadata.json` with incompatible schemas: spec-folder continuity metadata and skill-advisor hub-identity metadata",
     "created_at": "2026-07-22T08:55:19.438Z",
-    "last_save_at": "2026-07-24T11:06:41.101Z",
+    "last_save_at": "2026-08-29T14:56:27.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

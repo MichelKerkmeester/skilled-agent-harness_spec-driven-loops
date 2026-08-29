@@ -42,22 +42,25 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "implementation-summary.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts",
+      ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+      ".opencode/specs/descriptions.json",
+      ".opencode/specs/system-speckit/z_archive/description.json",
+      ".opencode/specs/system-deep-loop/z_archive/description.json",
+      ".opencode/specs/sk-design/z_archive/description.json",
+      ".opencode/specs/system-skill-advisor/z_archive/description.json",
+      ".opencode/specs/system-speckit/026-graph-and-context-optimization/z_archive/description.json",
+      ".opencode/specs/system-speckit/z_archive/001-fix-command-dispatch/z_archive/description.json"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -76,6 +79,36 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-description.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts",
+        "source": "derived"
+      },
+      {
+        "name": "backfill-graph-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": ".opencode/specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-speckit/z_archive/description.json",
         "source": "derived"
       },
       {
@@ -167,35 +200,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Date",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "There are nine `zarchive` root directories across `.opencode/specs` (`system-speckit/zarchive`, `system-deep-loop/zarchive`, `skilled-agent-orchestration/zarchive`, `sk-design/zarchive`, `system-skill-advisor/zarchive`, `system-speckit/026-graph-and-context-optimization/zarchive`, `sk-design/008-sk-design-parent/external/zarchive`, plus two nested roots inside already-archived folders)",
     "created_at": "2026-07-06T06:03:39Z",
-    "last_save_at": "2026-08-29T00:55:29.646Z",
+    "last_save_at": "2026-08-29T14:54:16.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

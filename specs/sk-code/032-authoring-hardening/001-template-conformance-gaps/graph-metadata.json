@@ -39,18 +39,17 @@
     "importance_tier": "high",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+      ".opencode/skills/sk-doc/sk-create-command/assets/command-template.md",
+      ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+      ".opencode/skills/sk-doc/sk-create-command/assets/command-router-template.md",
+      ".opencode/commands/design/extract.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -67,6 +66,42 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/assets/manual-testing-playbook-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-router-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-command/assets/command-router-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "extract.md",
+        "kind": "doc",
+        "path": ".opencode/commands/design/extract.md",
         "source": "derived"
       },
       {
@@ -158,17 +193,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "What Was Built Four",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Two authoring templates omitted the element their own SKILL.md contract required, so every artifact generated from them inherited the omission; a third template was blamed on grep evidence and then cleared by a negative control.",
     "created_at": "2026-08-29T11:34:45.425Z",
-    "last_save_at": "2026-08-29T11:34:45.425Z",
+    "last_save_at": "2026-08-29T14:54:12.200Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
