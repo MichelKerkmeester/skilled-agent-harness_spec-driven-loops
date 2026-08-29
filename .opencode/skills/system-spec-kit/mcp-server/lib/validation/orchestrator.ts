@@ -690,12 +690,22 @@ function validateTemplateShape(folder: string, level: SpecKitLevel, scope: 'head
     }
   }
   // The template comparison only reaches H2s, so the checklist title is checked
-  // on its own or a mistitled document passes as template-shaped.
+  // on its own or a mistitled document passes as template-shaped. Frontmatter is
+  // skipped first: a `#` line inside it is a YAML comment, and reading one as
+  // the title lets a genuinely broken heading pass on the strength of a comment.
   if (scope === 'headers') {
     const checklist = readIfExists(path.join(folder, 'checklist.md'));
-    const h1 = checklist?.split(/\r?\n/u).find((line) => line.startsWith('# '));
-    if (h1 !== undefined && !h1.startsWith(CHECKLIST_H1_PREFIX)) {
-      findings.push(`checklist.md: H1 should start with '${CHECKLIST_H1_PREFIX}' (found: '${h1.slice(0, 60)}')`);
+    if (checklist !== null) {
+      const lines = checklist.split(/\r?\n/u);
+      let start = 0;
+      if (lines[0]?.trim() === '---') {
+        const close = lines.findIndex((line, index) => index > 0 && line.trim() === '---');
+        if (close > 0) start = close + 1;
+      }
+      const h1 = lines.slice(start).find((line) => line.startsWith('# '));
+      if (h1 !== undefined && !h1.startsWith(CHECKLIST_H1_PREFIX)) {
+        findings.push(`checklist.md: H1 should start with '${CHECKLIST_H1_PREFIX}' (found: '${h1.slice(0, 60)}')`);
+      }
     }
   }
 

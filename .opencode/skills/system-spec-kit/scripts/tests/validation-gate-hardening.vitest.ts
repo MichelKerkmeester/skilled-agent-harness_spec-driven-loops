@@ -278,7 +278,9 @@ describe('validation gate hardening', () => {
     expect(fs.readFileSync(path.join(folder, 'implementation-summary.md'), 'utf8')).toBe(before);
   });
 
-  it('reports a first-run status (not regression) for a failing folder with no baseline, but still reports regression against a real baseline', () => {
+  // Runs the sweep twice over real packets, which is seconds of actual work;
+  // the default per-test budget is too tight for it to pass reliably.
+  it('reports a first-run status (not regression) for a failing folder with no baseline, but still reports regression against a real baseline', { timeout: 60_000 }, () => {
     // Regression coverage: readBaseline() returning an empty Set (no
     // --baseline flag here) must not make wasBaselinePass default to true for
     // every folder.

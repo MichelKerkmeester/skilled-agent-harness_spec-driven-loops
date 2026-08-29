@@ -109,6 +109,31 @@ describe('validation engine coherence', () => {
     expect(() => JSON.parse(first)).not.toThrow();
   });
 
+  // A '#' line inside frontmatter is a YAML comment. Reading one as the title
+  // lets a genuinely wrong heading pass on the strength of a comment above it.
+  it('does not accept a frontmatter comment as the checklist title', () => {
+    const folder = copyFixture();
+    const checklist = path.join(folder, 'checklist.md');
+    fs.writeFileSync(
+      checklist,
+      [
+        '---',
+        'title: "Fixture"',
+        '# Verification Checklist: looks right but is a comment',
+        'contextType: "general"',
+        '---',
+        '',
+        '# Checklist: the real title, which is wrong',
+        '',
+      ].join('\n'),
+      'utf8',
+    );
+
+    const result = runValidate(folder, { SPECKIT_RULES: 'TEMPLATE_HEADERS' });
+    expect(result.stdout).toContain('H1 should start with');
+    expect(result.stdout).toContain('the real title, which is wrong');
+  });
+
   it('reports an opened but unterminated frontmatter block as its own fault', () => {
     const folder = copyFixture();
     const spec = path.join(folder, 'spec.md');
