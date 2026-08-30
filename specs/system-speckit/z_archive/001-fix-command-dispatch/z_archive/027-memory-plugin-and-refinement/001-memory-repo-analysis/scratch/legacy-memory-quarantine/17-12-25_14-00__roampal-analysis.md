@@ -39,7 +39,6 @@ contextType: general
 - [`spec.md`](./spec.md) - Requirements specification
 - [`plan.md`](./plan.md) - Implementation plan
 - [`tasks.md`](./tasks.md) - Task breakdown
-- [`checklist.md`](./checklist.md) - QA checklist
 - [`decision-record.md`](./decision-record.md) - Architecture decisions
 - [`research/research.md`](./research/research.md) - Research findings
 

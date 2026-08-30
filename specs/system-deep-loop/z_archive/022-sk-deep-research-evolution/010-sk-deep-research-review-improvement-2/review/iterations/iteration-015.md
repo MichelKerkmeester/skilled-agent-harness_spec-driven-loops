@@ -1360,7 +1360,7 @@ Define the parent coordination layer for Packet 042: summarize the four-phase sc
 | REQ-005 | Phase 4b must remain explicitly deferred until replay fixtures, behavioral suites, and corpus prerequisites exist. | [./004-offline-loop-optimizer/spec.md](./004-offline-loop-optimizer/spec.md) |
 | REQ-006 | The parent packet must map every major requirement cluster to the correct child phase instead of duplicating child detail. | This file plus child packet links |
 | REQ-007 | Parent milestones and handoff criteria must reflect the child phase dependency order `001 -> 002 -> 003 -> 004`. | [./plan.md](./plan.md) |
-| REQ-008 | Parent verification and ADR indexes must point to the child sources of truth that actually own those details. | [./checklist.md](./checklist.md), [./decision-record.md](./decision-record.md) |
+| REQ-008 | Parent verification and ADR indexes must point to the child sources of truth that actually own those details. | `checklist.md`, [./decision-record.md](./decision-record.md) |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -1486,7 +1486,7 @@ Define the parent coordination layer for Packet 042: summarize the four-phase sc
 
 - **Parent Plan**: See [./plan.md](./plan.md)
 - **Parent Task Index**: See [./tasks.md](./tasks.md)
-- **Parent Verification Index**: See [./checklist.md](./checklist.md)
+- **Parent Verification Index**: See `checklist.md`
 - **Parent ADR Index**: See [./decision-record.md](./decision-record.md)
 - **Phase 1**: See [./001-runtime-truth-foundation/spec.md](./001-runtime-truth-foundation/spec.md)
 - **Phase 2**: See [./002-semantic-coverage-graph/spec.md](./002-semantic-coverage-graph/spec.md)
@@ -1639,7 +1639,7 @@ contextType: "planning"
 
 - **Specification**: See [./spec.md](./spec.md)
 - **Implementation Plan**: See [./plan.md](./plan.md)
-- **Verification Index**: See [./checklist.md](./checklist.md)
+- **Verification Index**: See `checklist.md`
 - **Decision Index**: See [./decision-record.md](./decision-record.md)
 <!-- /ANCHOR:cross-refs -->
 
@@ -4924,7 +4924,7 @@ exec
    121	| REQ-005 | Phase 4b must remain explicitly deferred until replay fixtures, behavioral suites, and corpus prerequisites exist. | [./004-offline-loop-optimizer/spec.md](./004-offline-loop-optimizer/spec.md) |
    122	| REQ-006 | The parent packet must map every major requirement cluster to the correct child phase instead of duplicating child detail. | This file plus child packet links |
    123	| REQ-007 | Parent milestones and handoff criteria must reflect the child phase dependency order `001 -> 002 -> 003 -> 004`. | [./plan.md](./plan.md) |
-   124	| REQ-008 | Parent verification and ADR indexes must point to the child sources of truth that actually own those details. | [./checklist.md](./checklist.md), [./decision-record.md](./decision-record.md) |
+   124	| REQ-008 | Parent verification and ADR indexes must point to the child sources of truth that actually own those details. | `checklist.md`, [./decision-record.md](./decision-record.md) |
    125	<!-- /ANCHOR:requirements -->
    126
    127	---
@@ -5163,7 +5163,7 @@ exec
    136
    137	- **Specification**: See [./spec.md](./spec.md)
    138	- **Implementation Plan**: See [./plan.md](./plan.md)
-   139	- **Verification Index**: See [./checklist.md](./checklist.md)
+   139	- **Verification Index**: See `checklist.md`
    140	- **Decision Index**: See [./decision-record.md](./decision-record.md)
    141	<!-- /ANCHOR:cross-refs -->
 
@@ -5606,7 +5606,7 @@ exec
    247
    248	- **Parent Plan**: See [./plan.md](./plan.md)
    249	- **Parent Task Index**: See [./tasks.md](./tasks.md)
-   250	- **Parent Verification Index**: See [./checklist.md](./checklist.md)
+   250	- **Parent Verification Index**: See `checklist.md`
    251	- **Parent ADR Index**: See [./decision-record.md](./decision-record.md)
    252	- **Phase 1**: See [./001-runtime-truth-foundation/spec.md](./001-runtime-truth-foundation/spec.md)
    253	- **Phase 2**: See [./002-semantic-coverage-graph/spec.md](./002-semantic-coverage-graph/spec.md)

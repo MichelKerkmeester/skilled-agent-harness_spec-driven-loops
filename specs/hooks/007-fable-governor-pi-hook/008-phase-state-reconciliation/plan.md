@@ -236,7 +236,6 @@ A recursive validation with zero structural errors is the completion gate; the s
 
 - Specification: [spec.md](spec.md)
 - Tasks: [tasks.md](tasks.md)
-- Checklist: [checklist.md](checklist.md)
 - Parent packet: [../spec.md](../spec.md)
 - Evidence predecessor: [../007-dispatch-validation-evidence/plan.md](../007-dispatch-validation-evidence/plan.md)
 - Contract successor: [../009-injection-contract-directive-sync/plan.md](../009-injection-contract-directive-sync/plan.md)

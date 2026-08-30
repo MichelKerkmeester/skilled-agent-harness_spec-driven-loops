@@ -34,7 +34,6 @@ quality_flags:
 - [`spec.md`](./spec.md) - Requirements specification
 - [`plan.md`](./plan.md) - Implementation plan
 - [`tasks.md`](./tasks.md) - Task breakdown
-- [`checklist.md`](./checklist.md) - QA checklist
 
 **Key Topics:** `comprehensive` | `documentation` | `approximately` | `successfully` | `verification` | `replacements` | `misrepresent` | `remediation` | `directories` | `identifiers` | 
 

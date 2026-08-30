@@ -262,7 +262,7 @@ Approval-driven actions completed:
 - [`spec.md`](./spec.md) — packet specification with phase boundaries
 - [`plan.md`](./plan.md) — phase-by-phase implementation strategy
 - [`tasks.md`](./tasks.md) — granular task ledger (T060 through T066 cover this gate)
-- [`checklist.md`](./checklist.md) — Level 3 verification checklist
+- `checklist.md` — Level 3 verification checklist
 - [`decision-record.md`](./decision-record.md) — ADR-001 through ADR-005 accepted, ADR-006 reserved (this report fills it on approval), ADR-007 reserved (conditional)
 - [`audit-findings.jsonl`](./audit-findings.jsonl) — 23 schema-validated audit findings, all resolved
 - [`validation-report.jsonl`](./validation-report.jsonl) — 96 schema-validated per-artifact validation rows backing this report

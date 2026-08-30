@@ -285,7 +285,7 @@ See `decision-record.md` for full decision documentation.
 - [spec.md](./spec.md) - Bug inventory and requirements
 - [plan.md](./plan.md) - Implementation approach
 - [tasks.md](./tasks.md) - Task breakdown
-- [checklist.md](./checklist.md) - Verification checklist
+- `checklist.md` - Verification checklist
 - [decision-record.md](./decision-record.md) - Architectural decisions
 - [052-codebase-fixes](../052-codebase-fixes/) - Prior bug fix work
 - [053-script-analysis-testing](../053-script-analysis-testing/) - Workflow testing spec

@@ -100,7 +100,6 @@ No production task is complete. This packet records approved scope only.
 - **Parent map**: [../spec.md](../spec.md)
 - **Specification**: [spec.md](spec.md)
 - **Plan**: [plan.md](plan.md)
-- **Verification**: [checklist.md](checklist.md)
 - **Decision**: [decision-record.md](decision-record.md)
 - **Current state**: [implementation-summary.md](implementation-summary.md)
 <!-- /ANCHOR:cross-refs -->

@@ -119,7 +119,6 @@ Every task names its evidence command or artifact. Pure helper evidence is never
 
 - **Specification**: See [spec.md](spec.md).
 - **Plan**: See [plan.md](plan.md).
-- **Checklist**: See [checklist.md](checklist.md).
 - **Parent packet**: See [../spec.md](../spec.md).
 - **Next phase**: See [../007-dispatch-validation-evidence/tasks.md](../007-dispatch-validation-evidence/tasks.md).
 <!-- /ANCHOR:cross-refs -->

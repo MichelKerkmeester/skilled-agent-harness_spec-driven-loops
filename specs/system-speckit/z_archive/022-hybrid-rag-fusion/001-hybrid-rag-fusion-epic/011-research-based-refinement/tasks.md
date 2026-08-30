@@ -134,7 +134,6 @@ _memory:
 
 - [Spec](spec.md)
 - [Plan](plan.md)
-- [Checklist](checklist.md)
 - [D1 Tasks](001-fusion-scoring-intelligence/tasks.md)
 - [D2 Tasks](002-query-intelligence-reformulation/tasks.md)
 - [D3 Tasks](003-graph-augmented-retrieval/tasks.md)

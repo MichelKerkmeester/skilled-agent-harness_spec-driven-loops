@@ -181,6 +181,5 @@ gh release create v2.1.0.0 \
 ## Related Documents
 
 - **Parent**: [../spec.md](../spec.md)
-- **Checklist**: [checklist.md](checklist.md)
 - **Changes**: [changes.md](changes.md)
 - **Dependency**: [../task-06-global-readme-update/changes.md](../task-06-global-readme-update/changes.md)

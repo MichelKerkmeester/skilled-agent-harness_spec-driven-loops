@@ -182,7 +182,6 @@ Next: Continue implementation
 - [`spec.md`](./spec.md) - Requirements specification
 - [`plan.md`](./plan.md) - Implementation plan
 - [`tasks.md`](./tasks.md) - Task breakdown
-- [`checklist.md`](./checklist.md) - QA checklist
 
 **Key Topics:** `spec` | `decision` | `agents` | `system` | `anchor` | `prompt` | `doc` | `decision deleted` | `archive` | `deleted` | `parallel agents` | `empty abandoned` | 
 

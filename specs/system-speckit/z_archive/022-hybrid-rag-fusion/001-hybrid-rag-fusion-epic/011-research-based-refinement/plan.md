@@ -164,7 +164,7 @@ With Wave parallelization (4 waves, 2-3 children per wave), critical path is ~14
 
 - [Spec](spec.md) — Phase coordination spec
 - [Tasks](tasks.md) — Cross-phase tracking
-- [Checklist](checklist.md) — Parent verification
+- `checklist.md` — Parent verification
 - [Parent Plan](../plan.md) — Epic plan
 - Research source preserved in the Phase 19 scratch artifacts
 

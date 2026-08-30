@@ -37,7 +37,6 @@ contextType: general
 **Related Documentation:**
 - [`spec.md`](./spec.md) - Requirements specification
 - [`plan.md`](./plan.md) - Implementation plan
-- [`checklist.md`](./checklist.md) - QA checklist
 
 **Key Topics:** `validatefolderalignment` | `contamination` | `improvements` | `consolidated` | `alternatives` | `confirmation` | `implemented` | `interactive` | `alternative` | `originated` | 
 

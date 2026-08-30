@@ -313,4 +313,4 @@ patterns:
 - [spec.md](./spec.md) - Requirements
 - [plan.md](./plan.md) - Technical plan
 - [tasks.md](./tasks.md) - Task breakdown
-- [checklist.md](./checklist.md) - Verification checklist
+- `checklist.md` - Verification checklist

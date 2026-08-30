@@ -34,7 +34,6 @@ Complete research documentation providing in-depth analysis of bugs, inconsisten
 - Spec: [spec.md](./spec.md)
 - Plan: [plan.md](./plan.md)
 - Tasks: [tasks.md](./tasks.md)
-- Checklist: [checklist.md](./checklist.md)
 
 ---
 

@@ -258,7 +258,7 @@ onQuery(q) => search(q + matchedSurrogates(q));
 - Research Source (historical, path removed) — Full 29-recommendation synthesis
 - [Plan](plan.md) — D2 implementation phases
 - [Tasks](tasks.md) — D2 task breakdown
-- [Checklist](checklist.md) — Level 2 verification
+- `checklist.md` — Level 2 verification
 
 <!--
 LEVEL 2 SPEC — Phase 2 of 5 (D2: Query Intelligence & Reformulation)

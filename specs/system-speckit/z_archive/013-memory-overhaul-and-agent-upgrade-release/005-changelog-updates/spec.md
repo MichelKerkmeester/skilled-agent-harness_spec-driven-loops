@@ -200,6 +200,5 @@ The implementer should populate `changes.md` with:
 ## Related Documents
 
 - **Parent**: [../spec.md](../spec.md)
-- **Checklist**: [checklist.md](checklist.md)
 - **Changes**: [changes.md](changes.md)
 - **Dependencies**: [../task-01-readme-alignment/changes.md](../task-01-readme-alignment/changes.md), [../task-02-skill-speckit-alignment/changes.md](../task-02-skill-speckit-alignment/changes.md), [../task-03-command-alignment/changes.md](../task-03-command-alignment/changes.md), [../task-04-agent-alignment/changes.md](../task-04-agent-alignment/changes.md)

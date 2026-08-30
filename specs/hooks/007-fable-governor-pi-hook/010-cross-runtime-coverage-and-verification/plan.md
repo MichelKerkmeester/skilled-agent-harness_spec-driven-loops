@@ -235,6 +235,5 @@ Each command's exit status and output are read before being cited in `implementa
 
 - Specification: [spec.md](spec.md)
 - Tasks: [tasks.md](tasks.md)
-- Checklist: [checklist.md](checklist.md)
 - Evidence predecessor: [../007-dispatch-validation-evidence/plan.md](../007-dispatch-validation-evidence/plan.md)
 - Finding source: [../review/deep-review-findings-registry.json](../review/deep-review-findings-registry.json)

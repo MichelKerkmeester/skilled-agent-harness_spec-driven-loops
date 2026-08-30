@@ -224,6 +224,5 @@ A green grep is only evidence for the exact pattern it searched; the phase recor
 
 - Specification: [spec.md](spec.md)
 - Tasks: [tasks.md](tasks.md)
-- Checklist: [checklist.md](checklist.md)
 - Live contract: `.opencode/hooks/injection-contract.md`
 - State predecessor: [../008-phase-state-reconciliation/plan.md](../008-phase-state-reconciliation/plan.md)

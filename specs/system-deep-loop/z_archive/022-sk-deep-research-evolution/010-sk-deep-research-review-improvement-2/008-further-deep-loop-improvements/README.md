@@ -16,7 +16,7 @@ Phase 008 closed the visible runtime-truth gap across research, review, and deep
 | [spec.md](./spec.md) | Completed requirements, success criteria, and packet scope |
 | [plan.md](./plan.md) | Delivered A-E passes plus closing-audit remediation view |
 | [tasks.md](./tasks.md) | Completed task record with evidence |
-| [checklist.md](./checklist.md) | Verification record with evidence |
+| `checklist.md` | Verification record with evidence |
 | [decision-record.md](./decision-record.md) | Consolidated accepted Phase 008 decisions |
 | [implementation-summary.md](./implementation-summary.md) | Shipped outcome and verification summary |
 | [scratch/closing-review.md](./scratch/closing-review.md) | Focused closing audit that triggered the final remediation commits |

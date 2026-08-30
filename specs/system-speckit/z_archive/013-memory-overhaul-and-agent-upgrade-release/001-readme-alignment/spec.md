@@ -191,7 +191,6 @@ The implementer should populate `changes.md` with:
 - **Parent**: [../spec.md](../spec.md)
 - **Plan**: [plan.md](plan.md)
 - **Tasks**: [tasks.md](tasks.md)
-- **Checklist**: [checklist.md](checklist.md)
 - **Decisions**: [decision-record.md](decision-record.md)
 - **Changes**: [changes.md](changes.md)
 

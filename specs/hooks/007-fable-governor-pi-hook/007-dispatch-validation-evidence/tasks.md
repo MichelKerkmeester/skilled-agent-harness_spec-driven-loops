@@ -102,7 +102,6 @@ Every completion row cites observed output. The full corpus is explicitly nonzer
 
 - **Specification**: See [spec.md](spec.md).
 - **Plan**: See [plan.md](plan.md).
-- **Checklist**: See [checklist.md](checklist.md).
 - **Baseline artifact**: See `evidence/full-corpus-baseline.md`.
 - **Predecessor**: See [../006-dispatch-authorization-hardening/tasks.md](../006-dispatch-authorization-hardening/tasks.md).
 - **Successor**: See [../008-phase-state-reconciliation/tasks.md](../008-phase-state-reconciliation/tasks.md).

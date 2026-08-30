@@ -90,7 +90,6 @@ _memory:
 - **Previous Phase**: See [../005-sk-improve-agent-package-runtime-alignment/](../005-sk-improve-agent-package-runtime-alignment/)
 - **Specification**: See [spec.md](./spec.md)
 - **Plan**: See [plan.md](./plan.md)
-- **Checklist**: See [checklist.md](./checklist.md)
 - **Implementation Summary**: See [implementation-summary.md](./implementation-summary.md)
 <!-- /ANCHOR:cross-refs -->
 

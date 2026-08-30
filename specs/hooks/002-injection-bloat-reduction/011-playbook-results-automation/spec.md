@@ -188,7 +188,7 @@ No implementation question blocks the packet. The wrapper, contract wiring, test
 |---|---|
 | [`plan.md`](./plan.md) | Shared-writer architecture and implementation sequence |
 | [`tasks.md`](./tasks.md) | Implemented work, approved deferrals, and remaining verification |
-| [`checklist.md`](./checklist.md) | Acceptance matrix and actual evidence |
+| `checklist.md` | Acceptance matrix and actual evidence |
 | [`implementation-summary.md`](./implementation-summary.md) | Built, wired, exercised state and remaining limitations |
 | `010-playbook-cheapest-model` | Immediate predecessor; its model standardization is complete and not duplicated |
 | `sk-doc/021-benchmark-naming-and-playbook-results` | Extended foundation for naming, allocation, seven-file output, and index append |

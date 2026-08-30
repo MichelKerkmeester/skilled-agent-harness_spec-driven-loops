@@ -268,6 +268,6 @@ Deliver a bounded, independently verifiable workstream whose outputs and stop co
 - **Parent phase map**: [../spec.md](../spec.md)
 - **Implementation plan**: [plan.md](plan.md)
 - **Task ledger**: [tasks.md](tasks.md)
-- **Verification checklist**: [checklist.md](checklist.md)
+- **Verification checklist**: `checklist.md`
 - **Decision record**: [decision-record.md](decision-record.md)
 - **Current state**: [implementation-summary.md](implementation-summary.md)

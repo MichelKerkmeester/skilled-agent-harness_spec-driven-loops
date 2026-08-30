@@ -159,7 +159,6 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 - [`spec.md`](./spec.md) - Requirements specification
 - [`plan.md`](./plan.md) - Implementation plan
 - [`tasks.md`](./tasks.md) - Task breakdown
-- [`checklist.md`](./checklist.md) - QA checklist
 - [`decision-record.md`](./decision-record.md) - Architecture decisions
 
 **Key Topics:** `getconstitutionalmemoriespublic` | `getconstitutionalmemories` | `implementation` | `triggermatcher` | `comprehensive` | `deduplication` | `standardizing` | `verification` | `implementing` | `invalidation` | 

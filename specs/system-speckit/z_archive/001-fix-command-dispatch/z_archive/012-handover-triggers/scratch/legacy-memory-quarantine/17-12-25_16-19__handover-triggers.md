@@ -34,7 +34,6 @@ quality_flags:
 - [`spec.md`](./spec.md) - Requirements specification
 - [`plan.md`](./plan.md) - Implementation plan
 - [`tasks.md`](./tasks.md) - Task breakdown
-- [`checklist.md`](./checklist.md) - QA checklist
 
 **Key Topics:** `standardized` | `implemented` | `established` | `navigation` | `structure` | `reference` | `handover` | `keywords` | `template` | `triggers` | 
 

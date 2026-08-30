@@ -107,7 +107,6 @@ Every task names its evidence command or artifact. A status change is evidence-s
 
 - **Specification**: See [spec.md](spec.md).
 - **Plan**: See [plan.md](plan.md).
-- **Checklist**: See [checklist.md](checklist.md).
 - **Parent packet**: See [../spec.md](../spec.md).
 - **Evidence predecessor**: See [../007-dispatch-validation-evidence/tasks.md](../007-dispatch-validation-evidence/tasks.md).
 - **Contract successor**: See [../009-injection-contract-directive-sync/tasks.md](../009-injection-contract-directive-sync/tasks.md).

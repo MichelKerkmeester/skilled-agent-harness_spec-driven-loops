@@ -119,7 +119,6 @@ Next: Continue implementation
 - [`spec.md`](./spec.md) - Requirements specification
 - [`plan.md`](./plan.md) - Implementation plan
 - [`tasks.md`](./tasks.md) - Task breakdown
-- [`checklist.md`](./checklist.md) - QA checklist
 
 **Key Topics:** `system spec kit/022 hybrid rag fusion/010 skill alignment` | `system` | `spec` | `kit/022` | `hybrid` | `rag` | `fusion/010` | `skill` | `alignment` | `focused implementing` | `implementing testing` | `testing features` |
 

@@ -146,6 +146,5 @@ The implementer should populate `changes.md` with:
 ## Related Documents
 
 - **Parent**: [../spec.md](../spec.md)
-- **Checklist**: [checklist.md](checklist.md)
 - **Changes**: [changes.md](changes.md)
 - **Dependency**: [../task-05-changelog-updates/changes.md](../task-05-changelog-updates/changes.md)

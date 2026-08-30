@@ -96,6 +96,6 @@ Deployed 10 agents to verify all fixes were correctly applied, plus 1 additional
 ## 6. Related Documents
 
 - [implementation-summary.md](./implementation-summary.md) - Detailed fix documentation
-- [checklist.md](./checklist.md) - Verification checklist
+- `checklist.md` - Verification checklist
 - [SKILL.md](/.opencode/skills/system-spec-kit/SKILL.md) - Updated skill documentation
 - [AGENTS.md](/AGENTS.md) - Updated gate documentation

@@ -191,5 +191,4 @@ The implementer should populate `changes.md` with:
 ## Related Documents
 
 - **Parent**: [../spec.md](../spec.md)
-- **Checklist**: [checklist.md](checklist.md)
 - **Changes**: [changes.md](changes.md)

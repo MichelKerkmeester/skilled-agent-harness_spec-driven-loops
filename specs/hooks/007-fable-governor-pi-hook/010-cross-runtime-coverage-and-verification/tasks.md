@@ -102,7 +102,6 @@ Every completion row cites observed output from a command run during this phase'
 
 - **Specification**: See [spec.md](spec.md).
 - **Plan**: See [plan.md](plan.md).
-- **Checklist**: See [checklist.md](checklist.md).
 - **Evidence predecessor**: See [../007-dispatch-validation-evidence/tasks.md](../007-dispatch-validation-evidence/tasks.md).
 - **Finding source**: See [../review/deep-review-findings-registry.json](../review/deep-review-findings-registry.json).
 <!-- /ANCHOR:cross-refs -->

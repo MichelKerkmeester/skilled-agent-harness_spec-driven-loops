@@ -94,7 +94,6 @@ _memory:
 - **Previous Phase**: See [../002-sk-improve-agent-full-skill/](../002-sk-improve-agent-full-skill/)
 - **Specification**: See [spec.md](./spec.md)
 - **Plan**: See [plan.md](./plan.md)
-- **Checklist**: See [checklist.md](./checklist.md)
 - **Implementation Summary**: See [implementation-summary.md](./implementation-summary.md)
 <!-- /ANCHOR:cross-refs -->
 

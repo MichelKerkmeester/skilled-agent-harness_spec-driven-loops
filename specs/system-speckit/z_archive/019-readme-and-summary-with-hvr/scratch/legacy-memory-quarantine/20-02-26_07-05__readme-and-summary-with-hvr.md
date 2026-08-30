@@ -187,7 +187,6 @@ Next: Continue implementation
 - [`spec.md`](./spec.md) - Requirements specification
 - [`plan.md`](./plan.md) - Implementation plan
 - [`tasks.md`](./tasks.md) - Task breakdown
-- [`checklist.md`](./checklist.md) - QA checklist
 - [`decision-record.md`](./decision-record.md) - Architecture decisions
 
 **Key Topics:** `decision` | `documentation` | `references` | `because` | `spec` | `hvr` | `templates` | `assets documentation` | `assets` | `instead` | `behavior` | `updated` | 

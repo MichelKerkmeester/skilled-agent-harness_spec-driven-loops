@@ -402,5 +402,4 @@ echo "All tests passed!"
 
 - [spec.md](./spec.md) - Requirements
 - [tasks.md](./tasks.md) - Task breakdown
-- [checklist.md](./checklist.md) - Verification
 - [decision-record.md](./decision-record.md) - ADRs

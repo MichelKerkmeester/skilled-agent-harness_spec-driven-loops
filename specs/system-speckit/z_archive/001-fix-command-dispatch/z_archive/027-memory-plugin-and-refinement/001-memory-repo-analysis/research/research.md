@@ -54,7 +54,6 @@ The fundamental difference: **roampal-core's hooks inject context BEFORE the AI 
 
 **Related Documents**:
 - Spec: [spec.md](./spec.md)
-- Checklist: [checklist.md](./checklist.md)
 
 ---
 

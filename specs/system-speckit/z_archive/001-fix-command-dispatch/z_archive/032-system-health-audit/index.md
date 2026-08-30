@@ -12,7 +12,7 @@
 | [spec.md](./spec.md) | Problem statement and scope |
 | [plan.md](./plan.md) | Implementation approach |
 | [tasks.md](./tasks.md) | All tasks with status |
-| [checklist.md](./checklist.md) | Detailed checklist (all complete) |
+| `checklist.md` | Detailed checklist (all complete) |
 | [decision-record.md](./decision-record.md) | Key decisions made |
 | [retro.md](./retro.md) | Retrospective and lessons learned |
 

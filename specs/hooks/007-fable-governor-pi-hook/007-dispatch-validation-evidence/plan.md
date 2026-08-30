@@ -229,6 +229,5 @@ The evidence ledger must put command output, exit status, and class beside every
 
 - Specification: [spec.md](spec.md)
 - Tasks: [tasks.md](tasks.md)
-- Checklist: [checklist.md](checklist.md)
 - Enforcement predecessor: [../006-dispatch-authorization-hardening/plan.md](../006-dispatch-authorization-hardening/plan.md)
 - State successor: [../008-phase-state-reconciliation/plan.md](../008-phase-state-reconciliation/plan.md)

@@ -246,7 +246,7 @@ No design question blocks the follow-on. The implementation pass must confirm th
 |---|---|
 | [`plan.md`](./plan.md) | Exact 30-row runtime matrix, grouped implementation sequence, and operator checklist |
 | [`tasks.md`](./tasks.md) | Follow-on work groups by runtime, shared tool, operator action, SKIP, and rerun |
-| [`checklist.md`](./checklist.md) | Evidence-bearing acceptance checks for design, fixes, operator state, and zero-FAIL rerun |
+| `checklist.md` | Evidence-bearing acceptance checks for design, fixes, operator state, and zero-FAIL rerun |
 | [`implementation-summary.md`](./implementation-summary.md) | Design-authored state; remediation remains pending |
 | [`011-playbook-results-automation`](../011-playbook-results-automation/spec.md) | Predecessor wrapper/results contract |
 | [`scoring-contract.md`](../../../../.opencode/skills/system-deep-loop/deep-improvement/references/skill-benchmark/scoring-contract.md) | Normative scoring authority used by the rerun |

@@ -101,7 +101,6 @@ Every completed task names its observed evidence command or artifact. A grep ass
 
 - **Specification**: See [spec.md](spec.md).
 - **Plan**: See [plan.md](plan.md).
-- **Checklist**: See [checklist.md](checklist.md).
 - **Parent packet**: See [../spec.md](../spec.md).
 - **Predecessor**: See [../008-phase-state-reconciliation/tasks.md](../008-phase-state-reconciliation/tasks.md).
 <!-- /ANCHOR:cross-refs -->

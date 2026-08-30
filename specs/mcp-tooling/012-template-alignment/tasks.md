@@ -107,7 +107,7 @@ _memory:
 
 - **Specification**: See [spec.md](spec.md).
 - **Plan**: See [plan.md](plan.md).
-- **Verification Checklist**: See [checklist.md](checklist.md).
+- **Verification Checklist**: See `checklist.md`.
 - **Implementation Summary**: See [implementation-summary.md](implementation-summary.md).
 - **Authoritative Final Reducer Output**: See [alignment/alignment-report.md](alignment/alignment-report.md).
 <!-- /ANCHOR:cross-refs -->

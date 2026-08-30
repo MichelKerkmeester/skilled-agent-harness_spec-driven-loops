@@ -183,7 +183,6 @@ Next: Continue implementation
 - [`spec.md`](./spec.md) - Requirements specification
 - [`plan.md`](./plan.md) - Implementation plan
 - [`tasks.md`](./tasks.md) - Task breakdown
-- [`checklist.md`](./checklist.md) - QA checklist
 
 **Key Topics:** `spec` | `decision` | `level` | `upgrade` | `script` | `spec upgrade` | `both specs` | `recommend committing` | `committing spec` | `due cross` | `system spec kit/124 upgrade level script` | `uncovered` | 
 

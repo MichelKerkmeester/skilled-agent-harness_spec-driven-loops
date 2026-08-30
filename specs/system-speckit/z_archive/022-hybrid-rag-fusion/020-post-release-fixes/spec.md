@@ -39,7 +39,7 @@ This documentation pass does not fix those findings yet. Its job is narrower and
 
 **Key Decisions**: use `review/review-report.md` as the only authoritative review source inside this packet; treat the top-level `review-report.md` in this folder as historical evidence only; keep the written verdict `FAIL` until fresh reruns justify any change; group remediation into four workstreams: runtime/code integrity, packet/spec truth-sync, public docs and wrapper alignment, and feature verification/tooling contract repair.
 
-**Critical Dependencies**: [`review/review-report.md`](./review/review-report.md), [`tasks.md`](./tasks.md), [`checklist.md`](./checklist.md), the live feature catalog under `.opencode/skills/system-spec-kit/feature_catalog/`, and the runtime plus test surfaces cited by the canonical review.
+**Critical Dependencies**: [`review/review-report.md`](./review/review-report.md), [`tasks.md`](./tasks.md), `checklist.md`, the live feature catalog under `.opencode/skills/system-spec-kit/feature_catalog/`, and the runtime plus test surfaces cited by the canonical review.
 
 ---
 
@@ -98,7 +98,7 @@ Turn this packet into an implementation-ready remediation program that:
 
 ### In Scope
 
-- Rewrite this packet's [`spec.md`](./spec.md), [`plan.md`](./plan.md), [`tasks.md`](./tasks.md), and [`checklist.md`](./checklist.md) so they align to the canonical review.
+- Rewrite this packet's [`spec.md`](./spec.md), [`plan.md`](./plan.md), [`tasks.md`](./tasks.md), and `checklist.md` so they align to the canonical review.
 - Use the active finding registry in [`review/review-report.md`](./review/review-report.md) as the authoritative remediation source.
 - Group remediation into the four workstreams defined by the review:
   - runtime/code integrity
@@ -161,7 +161,7 @@ Turn this packet into an implementation-ready remediation program that:
 
 - **SC-001**: **Given** a maintainer opens only this packet, **Then** they can see all active findings, the owning workstream, and the expected verification path without re-planning the review.
 - **SC-002**: **Given** the canonical review remains `FAIL`, **When** the maintainer reads this packet, **Then** the packet does not imply that remediation already happened.
-- **SC-003**: **Given** a reviewer checks a specific finding ID, **When** they open [`tasks.md`](./tasks.md) or [`checklist.md`](./checklist.md), **Then** that finding has a concrete execution or verification home.
+- **SC-003**: **Given** a reviewer checks a specific finding ID, **When** they open [`tasks.md`](./tasks.md) or `checklist.md`, **Then** that finding has a concrete execution or verification home.
 - **SC-004**: **Given** the live feature catalog is part of the release surface, **When** the maintainer reads this packet, **Then** the `191/48/7/9` feature-state denominator is visible and treated as actionable planning context.
 - **SC-005**: **Given** implementation has not started yet, **When** the maintainer reads this packet, **Then** all remediation tasks remain pending and gated behind explicit go-ahead.
 - **SC-006**: **Given** fresh reruns are required to change the verdict, **When** the maintainer reads the plan and checklist, **Then** the verification order and release-control sync steps are explicit.
@@ -277,4 +277,4 @@ Turn this packet into an implementation-ready remediation program that:
 
 - [`review/review-report.md`](./review/review-report.md): canonical finding registry and verification baseline
 - [`tasks.md`](./tasks.md): implementation backlog generated from the canonical findings
-- [`checklist.md`](./checklist.md): verification gates for the remediation wave
+- `checklist.md`: verification gates for the remediation wave

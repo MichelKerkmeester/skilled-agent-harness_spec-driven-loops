@@ -234,7 +234,7 @@ spec packets, behind a link-integrity gate that fails on any miss.
 |---|---|
 | [`plan.md`](./plan.md) | How the convention was landed |
 | [`tasks.md`](./tasks.md) | Task breakdown and status |
-| [`checklist.md`](./checklist.md) | Verification evidence |
+| `checklist.md` | Verification evidence |
 | [`decision-record.md`](./decision-record.md) | The four decisions that shaped the grammar |
 | [`implementation-summary.md`](./implementation-summary.md) | What shipped and what was left out |
 | [`assets/rename-map.json`](./assets/rename-map.json) | The frozen old-to-new mapping |

@@ -680,7 +680,6 @@ Changes to spec scope (new P0 requirements, architectural shifts) require re-app
 
 - [Specification](./spec.md)
 - [Tasks](./tasks.md)
-- [Checklist](./checklist.md)
 - [Decision Record](./decision-record.md)
 - [Risk Matrix](./spec.md#risk-matrix)
 

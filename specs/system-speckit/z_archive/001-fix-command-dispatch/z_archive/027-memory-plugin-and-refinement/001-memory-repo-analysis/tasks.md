@@ -192,4 +192,3 @@ T-006-1 (AGENTS.md)
 - **Spec**: [spec.md](./spec.md)
 - **Plan**: [plan.md](./plan.md) - Section 4A
 - **Decision Record**: [decision-record.md](./decision-record.md) - ADR-002-REVISED
-- **Checklist**: [checklist.md](./checklist.md)

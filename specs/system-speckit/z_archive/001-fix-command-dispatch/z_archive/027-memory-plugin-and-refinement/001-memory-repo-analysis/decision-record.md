@@ -795,7 +795,7 @@ Rather than blocking the plugin release or implementing a suboptimal workaround:
 
 ### Related Documents
 - **Feature Specification**: [spec.md](./spec.md)
-- **Validation Checklist**: [checklist.md](./checklist.md)
+- **Validation Checklist**: `checklist.md`
 
 ### External References
 - roampal memory system (reference implementation)

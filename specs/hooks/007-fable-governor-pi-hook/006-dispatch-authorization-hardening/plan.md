@@ -231,5 +231,4 @@ Reports must label pure helper assertions separately from factory-level Pi tool-
 
 - Specification: [spec.md](spec.md)
 - Tasks: [tasks.md](tasks.md)
-- Checklist: [checklist.md](checklist.md)
 - Next evidence phase: [../007-dispatch-validation-evidence/plan.md](../007-dispatch-validation-evidence/plan.md)

@@ -1266,7 +1266,7 @@ Define the parent coordination layer for Packet 042: summarize the four-phase sc
 | REQ-005 | Phase 4b must remain explicitly deferred until replay fixtures, behavioral suites, and corpus prerequisites exist. | [./004-offline-loop-optimizer/spec.md](./004-offline-loop-optimizer/spec.md) |
 | REQ-006 | The parent packet must map every major requirement cluster to the correct child phase instead of duplicating child detail. | This file plus child packet links |
 | REQ-007 | Parent milestones and handoff criteria must reflect the child phase dependency order `001 -> 002 -> 003 -> 004`. | [./plan.md](./plan.md) |
-| REQ-008 | Parent verification and ADR indexes must point to the child sources of truth that actually own those details. | [./checklist.md](./checklist.md), [./decision-record.md](./decision-record.md) |
+| REQ-008 | Parent verification and ADR indexes must point to the child sources of truth that actually own those details. | `checklist.md`, [./decision-record.md](./decision-record.md) |
 <!-- /ANCHOR:requirements -->
 
 ---

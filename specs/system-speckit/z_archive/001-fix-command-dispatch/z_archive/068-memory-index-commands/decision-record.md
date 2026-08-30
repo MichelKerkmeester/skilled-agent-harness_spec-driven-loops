@@ -313,7 +313,7 @@ If issues arise:
 - **Feature Specification**: [spec.md](./spec.md)
 - **Implementation Plan**: [plan.md](./plan.md)
 - **Task List**: [tasks.md](./tasks.md)
-- **Validation Checklist**: [checklist.md](./checklist.md)
+- **Validation Checklist**: `checklist.md`
 
 ### Design Principles Referenced
 - Single Responsibility Principle (SRP)

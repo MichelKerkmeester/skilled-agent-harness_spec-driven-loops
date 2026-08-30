@@ -77,5 +77,5 @@ naming its event differently; and an incomplete lineage still fails.
 
 - [`spec.md`](./spec.md) for the defects and their scope.
 - [`plan.md`](./plan.md) for why one choke point covers all 12 loops.
-- [`checklist.md`](./checklist.md) for verification evidence.
+- `checklist.md` for verification evidence.
 <!-- /ANCHOR:cross-refs -->

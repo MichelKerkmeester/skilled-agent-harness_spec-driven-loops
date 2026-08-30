@@ -158,7 +158,6 @@ This session was migrated from an older format to v2.2. Review the OVERVIEW and 
 - [`spec.md`](./spec.md) - Requirements specification
 - [`plan.md`](./plan.md) - Implementation plan
 - [`tasks.md`](./tasks.md) - Task breakdown
-- [`checklist.md`](./checklist.md) - QA checklist
 
 **Key Topics:** `documentation` | `configuration` | `architectural` | `orchestrator` | `intentional` | `consolidate` | `references` | `historical` | `explaining` | `migration` | 
 

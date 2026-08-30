@@ -89,6 +89,6 @@ contain; and the link checker is no worse than where it started.
 
 - [`spec.md`](./spec.md) for requirements and scope.
 - [`plan.md`](./plan.md) for the phase order and why it is that order.
-- [`checklist.md`](./checklist.md) for verification evidence.
+- `checklist.md` for verification evidence.
 - [`assets/rename-map.json`](./assets/rename-map.json) for the frozen mapping.
 <!-- /ANCHOR:cross-refs -->

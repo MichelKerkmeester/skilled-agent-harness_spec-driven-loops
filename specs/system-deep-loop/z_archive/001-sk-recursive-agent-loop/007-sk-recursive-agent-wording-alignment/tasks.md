@@ -85,7 +85,6 @@ _memory:
 
 - **Specification**: See [spec.md](./spec.md)
 - **Plan**: See [plan.md](./plan.md)
-- **Checklist**: See [checklist.md](./checklist.md)
 - **Implementation Summary**: See [implementation-summary.md](./implementation-summary.md)
 - **Parent Packet**: See [../spec.md](../spec.md)
 <!-- /ANCHOR:cross-refs -->

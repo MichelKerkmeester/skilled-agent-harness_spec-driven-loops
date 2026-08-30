@@ -164,7 +164,6 @@ Next: Continue implementation
 - [`spec.md`](./spec.md) - Requirements specification
 - [`plan.md`](./plan.md) - Implementation plan
 - [`tasks.md`](./tasks.md) - Task breakdown
-- [`checklist.md`](./checklist.md) - QA checklist
 - [`decision-record.md`](./decision-record.md) - Architecture decisions
 
 **Key Topics:** `user decision` | `decision` | `user` | `memory` | `spec` | `perfect` | `capturing` | `system spec kit/022 hybrid rag fusion/010 perfect session capturing` | `system` | `kit/022` | `hybrid` | `rag` |

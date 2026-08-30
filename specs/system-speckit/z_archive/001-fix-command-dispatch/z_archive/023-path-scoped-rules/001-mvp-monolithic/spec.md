@@ -218,6 +218,6 @@ contextType: "planning"
 
 - [plan.md](./plan.md) - Technical implementation plan
 - [tasks.md](./tasks.md) - Task breakdown
-- [checklist.md](./checklist.md) - Verification checklist
+- `checklist.md` - Verification checklist
 - [decision-record.md](./decision-record.md) - Architectural decisions
 - [path_scoped_rules.md](/.opencode/skills/system-spec-kit/references/path_scoped_rules.md) - Original design document

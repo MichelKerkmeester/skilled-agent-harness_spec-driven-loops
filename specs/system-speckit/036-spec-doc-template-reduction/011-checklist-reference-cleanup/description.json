@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-speckit/036-spec-doc-template-reduction/011-checklist-reference-cleanup",
+  "description": "Finish the retirement: remove what pointed at the deleted document",
+  "keywords": [
+    "finish",
+    "retirement",
+    "remove",
+    "pointed",
+    "deleted",
+    "document"
+  ],
+  "lastUpdated": "2026-08-30T07:11:31.046Z",
+  "specId": "011",
+  "folderSlug": "checklist-reference-cleanup",
+  "parentChain": [
+    "system-speckit",
+    "036-spec-doc-template-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

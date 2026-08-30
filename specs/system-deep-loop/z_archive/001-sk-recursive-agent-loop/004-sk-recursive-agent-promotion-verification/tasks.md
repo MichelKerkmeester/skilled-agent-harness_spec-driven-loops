@@ -95,7 +95,6 @@ _memory:
 - **Previous Phase**: See [../003-sk-improve-agent-doc-alignment/](../003-sk-improve-agent-doc-alignment/)
 - **Specification**: See [spec.md](./spec.md)
 - **Plan**: See [plan.md](./plan.md)
-- **Checklist**: See [checklist.md](./checklist.md)
 - **Implementation Summary**: See [implementation-summary.md](./implementation-summary.md)
 <!-- /ANCHOR:cross-refs -->
 
