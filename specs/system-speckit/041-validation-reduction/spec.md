@@ -140,6 +140,7 @@ the corpus being told it is broken by rules nothing consumes.
 | 7 | `007-derive-not-grade` | Stop copying derived facts into authored prose | Deferred |
 | 8 | `008-the-small-gate` | Collapse to the checks with a machine consumer | Deferred |
 | 9 | `009-retire-the-sweep` | Replace the weekly cron with a changed-packet check | Complete |
+| 10 | `010-a-level-for-research` | A level whose contract fits research and audit packets | Complete |
 
 ### Phase Transition Rules
 

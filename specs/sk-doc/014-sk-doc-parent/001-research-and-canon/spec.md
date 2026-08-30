@@ -27,7 +27,7 @@ parent: "skilled-agent-orchestration/125-sk-doc-parent"
 ---
 # Feature Specification: Research and canon conformance (30-iteration deep research)
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: research -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SCAFFOLD: placeholder phase child of skilled-agent-orchestration/125-sk-doc-parent; plan/tasks/implementation-summary authored when the phase is worked (post-001). -->
 
@@ -38,7 +38,7 @@ parent: "skilled-agent-orchestration/125-sk-doc-parent"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 (scaffold; target complexity in parent map) |
+| **Level** | research |
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-07-06 |

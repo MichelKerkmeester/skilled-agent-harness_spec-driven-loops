@@ -31,7 +31,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: research -->
 
 # Feature Specification: sk-design mode-consolidation research
 
@@ -40,7 +40,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 2 |
+| **Level** | research |
 | **Structure** | Leaf research packet |
 | **Priority** | P1 |
 | **Status** | Research pending — deep-research loop bound, not yet run |

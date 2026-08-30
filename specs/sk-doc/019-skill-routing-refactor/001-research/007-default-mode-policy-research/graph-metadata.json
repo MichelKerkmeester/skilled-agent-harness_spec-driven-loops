@@ -166,16 +166,17 @@
     ],
     "causal_summary": "`defaultMode = <child>` auto-commits the hub to one mode when nothing specific fires",
     "created_at": "2026-07-18T14:47:46.181Z",
-    "last_save_at": "2026-08-29T15:22:01.728Z",
+    "last_save_at": "2026-08-30T09:32:20.785Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:26bf9885ba67d9ea9ccd58b5c35cacc4ff2ee5fef94a133aec5786bc19121ef8",
+    "source_fingerprint": "sha256:2815cdcf2c0c3969269288f7812d6c604662dc0904801b714ce4624f22554ffa",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "89e33bc2432e7cbbe3fad2ef86f17a1024303b9d4e81d997907cb46dfbbefde4",
+      "spec.md": "bd3f3e9446ba9ba55c5dc67445d2fe1f76f41bd92cbc0dccdefd00cb9529fe66",
       "research/research.md": "1c90820f9d0f4dd41a3460d08a9619f9ec13556fe36e36fedfc37bdb79c538b9"
     },
     "last_active_child_id": null,

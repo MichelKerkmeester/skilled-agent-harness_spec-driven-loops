@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/041-validation-reduction/010-a-level-for-research",
+  "description": "Give a research record a level it can meet, and make the rules agree with the",
+  "keywords": [
+    "give",
+    "research",
+    "record",
+    "level",
+    "meet",
+    "rules",
+    "agree"
+  ],
+  "lastUpdated": "2026-08-30T09:40:08.310Z",
+  "specId": "010",
+  "folderSlug": "a-level-for-research",
+  "parentChain": [
+    "system-speckit",
+    "041-validation-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

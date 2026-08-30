@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "research"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: research -->
 
 # Out-of-Box Routing Research — GLM Parallel Lineage
 
@@ -23,7 +23,7 @@ A second, concurrent out-of-box research lineage (GLM-5.2 at max effort, via ope
 
 | Field | Value |
 |-------|-------|
-| **Level** | 2 |
+| **Level** | research |
 | **Priority** | P1 |
 | **Status** | Research complete; findings require independent validation before implementation |
 | **Created** | 2026-07-18 |

@@ -11,7 +11,10 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase 003 — Deep-Research Synthesis (seeded depth layer)
+
+<!-- SPECKIT_LEVEL: research -->
 
 > Charter only. Full narrative in `../plan.md` §4 Phase 3 + §5. Deep-research state lands here.
 

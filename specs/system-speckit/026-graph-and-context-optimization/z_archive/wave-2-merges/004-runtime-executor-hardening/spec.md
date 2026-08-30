@@ -33,7 +33,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 ---
 # Feature Specification: Runtime Executor Hardening
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: research -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 ---
@@ -43,7 +43,7 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | research |
 | **Priority** | P1 |
 | **Status** | In Progress |
 | **Created** | 2026-04-21 |

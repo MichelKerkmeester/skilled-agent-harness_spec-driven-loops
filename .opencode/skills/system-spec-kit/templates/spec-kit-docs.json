@@ -2416,6 +2416,52 @@
           "review"
         ]
       }
+    },
+    "research": {
+      "publicLabel": "Research Record",
+      "privatePreset": "research-record",
+      "frontmatterMarkerLevel": 0,
+      "requiredCoreDocs": [
+        "spec.md"
+      ],
+      "requiredAddonDocs": [],
+      "optionalAddonDocs": [],
+      "lazyAddonDocs": [
+        "research/research.md",
+        "handover.md",
+        "before-after.md",
+        "timeline.md",
+        "roadmap.md",
+        "decision-record.md"
+      ],
+      "sectionGates": {
+        "spec.md": {
+          "metadata": [
+            "research"
+          ],
+          "problem": [
+            "research"
+          ],
+          "scope": [
+            "research"
+          ],
+          "questions": [
+            "research"
+          ]
+        },
+        "metadata": [
+          "research"
+        ],
+        "problem": [
+          "research"
+        ],
+        "scope": [
+          "research"
+        ],
+        "questions": [
+          "research"
+        ]
+      }
     }
   }
 }

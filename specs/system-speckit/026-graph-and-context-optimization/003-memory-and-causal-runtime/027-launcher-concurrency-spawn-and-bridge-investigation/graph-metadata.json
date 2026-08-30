@@ -135,16 +135,17 @@
     ],
     "causal_summary": "Under concurrent multi-session use (currently 2 Claude + 4 codex sessions sharing this repo), two runtime defects appear:",
     "created_at": "2026-06-04T18:16:47.573Z",
-    "last_save_at": "2026-08-29T14:54:18.578Z",
+    "last_save_at": "2026-08-30T09:32:22.281Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:01f91f6a1ec05b07df5c8ff94ba2676422e36366348137e59a7546cb3f0ff3ea",
+    "source_fingerprint": "sha256:d20dd72ba9d3a512478ac18b0ec70a11dd0166214ed34b67a77f672d540c9067",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "65c4a2ccaac07db80b3c26e9a9fcf56bbbbc9c1cb2b8e4a86428849173699f7d",
+      "spec.md": "baf87a4b5f35173036a968db189be11a55d83e64cd736716ed95ef3b76317654",
       "research/research.md": "abbbfc84d81971ccad4132388cb2d0648e7a2d3b0e3952d46801c75eeec9a8bc"
     },
     "last_active_child_id": null,

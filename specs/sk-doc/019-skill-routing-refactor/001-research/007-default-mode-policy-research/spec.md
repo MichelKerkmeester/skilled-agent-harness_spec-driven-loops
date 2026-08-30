@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "research"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: research -->
 
 # Feature Specification: Parent-Hub defaultMode Policy Research
 
@@ -27,7 +27,7 @@ A parent hub is a pure router: its `SKILL.md` never handles a request itself, it
 
 | Field | Value |
 |-------|-------|
-| **Level** | 2 |
+| **Level** | research |
 | **Priority** | P1 |
 | **Status** | Research — run 1 (4 iters) answered keep-1/flip-4; runs 2-3 (divergent + OOB agendas) open |
 | **Created** | 2026-07-18 |

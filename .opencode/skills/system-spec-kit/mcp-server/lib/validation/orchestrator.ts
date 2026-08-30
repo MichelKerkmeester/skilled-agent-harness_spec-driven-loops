@@ -71,7 +71,7 @@ const VALIDATOR_REGISTRY_PATH = path.join(SKILL_ROOT, 'scripts', 'lib', 'validat
 const VALIDATOR_RULES_ROOT = path.join(SKILL_ROOT, 'scripts', 'rules');
 const VALIDATOR_DIST_VALIDATION_ROOT = path.join(SKILL_ROOT, 'scripts', 'dist', 'validation');
 const VALIDATE_SCRIPT_DIR = path.join(SKILL_ROOT, 'scripts', 'spec');
-const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase', 'review']);
+const VALID_LEVELS = new Set<SpecKitLevel>(['1', '2', '3', '3+', 'phase', 'review', 'research']);
 const CANONICAL_CONTINUITY_DOC = 'implementation-summary.md';
 const OPTIONAL_CONTINUITY_DOCS = new Set([
   'spec.md',
@@ -200,6 +200,7 @@ function normalizeLevel(raw: string): SpecKitLevel {
   if (raw === '3+') return '3+';
   if (raw === 'phase' || raw === 'phase-parent') return 'phase';
   if (raw === 'review') return 'review';
+  if (raw === 'research') return 'research';
   if (raw === '1' || raw === '2' || raw === '3') return raw;
   throw new Error(`Unsupported spec kit level: ${raw || '(empty)'}`);
 }
@@ -209,7 +210,7 @@ function detectLevel(folder: string): SpecKitLevel {
   const specPath = path.join(folder, 'spec.md');
   if (fs.existsSync(specPath)) {
     const head = fs.readFileSync(specPath, 'utf8').slice(0, 4096);
-    const marker = head.match(/SPECKIT_LEVEL:\s*(1|2|3\+?|phase|review)/u)?.[1];
+    const marker = head.match(/SPECKIT_LEVEL:\s*(1|2|3\+?|phase|review|research)/u)?.[1];
     if (marker) return normalizeLevel(marker);
     const yamlLevel = head.match(/^level:\s*(1|2|3\+?)\s*$/mu)?.[1];
     if (yamlLevel) return normalizeLevel(yamlLevel);

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit",
   "description": "Spec: 026 Changelog Accuracy Re-Audit",
   "keywords": [
@@ -7,7 +8,7 @@
     "accuracy",
     "re-audit"
   ],
-  "lastUpdated": "2026-08-15T14:41:09.740Z",
+  "lastUpdated": "2026-08-30T09:33:07.185Z",
   "specId": "003",
   "folderSlug": "changelog-accuracy-reaudit",
   "parentChain": [
@@ -17,6 +18,5 @@
     "008-docs-and-catalogs-rollup"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

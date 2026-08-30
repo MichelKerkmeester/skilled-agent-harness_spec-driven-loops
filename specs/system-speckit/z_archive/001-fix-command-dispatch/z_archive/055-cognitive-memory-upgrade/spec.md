@@ -11,7 +11,7 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "planning"
 ---
-<!-- SPECKIT_LEVEL: CORE -->
+<!-- SPECKIT_LEVEL: research -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec: Cognitive Memory Upgrade Research
 

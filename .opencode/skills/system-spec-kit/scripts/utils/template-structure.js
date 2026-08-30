@@ -106,7 +106,7 @@ const DOC_TEMPLATE_NAMES = {
   'timeline.md': 'timeline.md.tmpl',
   'roadmap.md': 'roadmap.md.tmpl',
 };
-const VALID_LEVELS = new Set(['1', '2', '3', '3+', 'phase', 'review']);
+const VALID_LEVELS = new Set(['1', '2', '3', '3+', 'phase', 'review', 'research']);
 const DOCUMENT_NAME_RE = /^(?:[A-Za-z0-9][A-Za-z0-9_-]*\/)?[A-Za-z0-9][A-Za-z0-9_-]*\.md$/u;
 
 const STATIC_PHASE_PARENT_ADDENDUM = {
@@ -145,6 +145,7 @@ function normalizeLevel(level) {
   if (raw === '3+') return '3+';
   if (raw === 'phase' || raw === 'phase-parent') return 'phase';
   if (raw === 'review') return 'review';
+  if (raw === 'research') return 'research';
   throw new Error(`Internal template contract could not be resolved for Level ${raw}`);
 }
 

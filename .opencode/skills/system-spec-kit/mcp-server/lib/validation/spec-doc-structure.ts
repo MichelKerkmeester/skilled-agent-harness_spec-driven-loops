@@ -174,6 +174,7 @@ function normalizeSpecKitLevel(raw: string): SpecKitLevel {
   if (raw === '3+') return '3+';
   if (raw === 'phase' || raw === 'phase-parent') return 'phase';
   if (raw === 'review') return 'review';
+  if (raw === 'research') return 'research';
   if (raw === '1') return '1';
   if (raw === '2') return '2';
   if (raw === '3') return '3';

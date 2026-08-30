@@ -30,20 +30,20 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      "research/research.md",
-      "spec.md"
+      "spec.md",
+      "research/research.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -115,16 +115,17 @@
     ],
     "causal_summary": "Spec: 026 Changelog Accuracy Re-Audit",
     "created_at": "2026-07-10T06:19:18.252Z",
-    "last_save_at": "2026-07-10T06:19:18.252Z",
+    "last_save_at": "2026-08-30T09:33:07.350Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:bd84bc27deefea7c977c54e31771f56db6cce31b150a44dcdff851cff46d1ae5",
+    "source_fingerprint": "sha256:640ce62d554681d72d52751f5c1b69ba2edc5d1eaf50749bd0a65a53e2548e34",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2afe5e6890844e8578bba7cc528dd0e959a0eb7f4584beaee2866392afb9f74",
+      "spec.md": "d64f7601227b562027536a07c9fcb777271a24b5b880adb58c3b53a25ce8c0f3",
       "research/research.md": "b4ecf7f0b8f3c94864de2fc283520310729443ee7a51eb29c54ea56e214e2e18"
     },
     "last_active_child_id": null,

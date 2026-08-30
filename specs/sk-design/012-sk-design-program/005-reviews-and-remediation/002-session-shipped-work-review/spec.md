@@ -1,5 +1,10 @@
 # Spec: Deep Review of Session-Shipped Work (3 commits on skilled/v4.0.0.0)
 
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+
+<!-- SPECKIT_LEVEL: review -->
+
+<!-- ANCHOR:metadata -->
 ## Metadata
 
 - **Level:** 3 (cross-cutting adversarial review; the 015-P0 code is a HARD-BLOCKER foundation)
@@ -7,13 +12,16 @@
 - **Type:** Deep-review charter (read-only audit; findings only, no remediation in this packet)
 - **Review target type:** git commits + their changed files, read at the v4 tip in this worktree
 - **Executors:** GLM-5.2 (max) + MiniMax-M3 (high) via cli-opencode, 5 iterations each, flat pool
+<!-- /ANCHOR:metadata -->
 
+<!-- ANCHOR:problem -->
 ## 1. Problem
 
 Three commits shipped to `skilled/v4.0.0.0` this session without an independent multi-model
 review. They must be adversarially audited for correctness, honesty, and discipline BEFORE they
 are relied upon — the 015 Phase-0 database foundation in particular is replayed against by three
 later phases, so a subtle logic bug here silently invalidates every later parity/rollback claim.
+<!-- /ANCHOR:problem -->
 
 ## 2. Review Target (THE SUBJECT — read these, not this packet's own docs)
 
@@ -41,6 +49,7 @@ All under `.opencode/specs/sk-doc/020-hyphen-naming-convention/`. Lower priority
 mechanical edits did not fabricate content (esp. the added `REQ-005` rows) and that PHASE_LINKS
 adjacency + the parent phase map are internally consistent.
 
+<!-- ANCHOR:scope -->
 ## 3. Scope (review dimensions)
 
 - **Correctness** — logic bugs, race/torn-read windows, off-by-one, wrong residency labels, parity gaps.
@@ -50,6 +59,7 @@ adjacency + the parent phase map are internally consistent.
 - **Comment hygiene [HARD]** — no spec/packet/phase/REQ/task/ADR ids embedded in code comments.
 - **Test adequacy** — do the tests actually exercise the risk, and would they fail on the old defect?
 - **Spec-doc integrity** — completion/metadata claims match reality; PHASE_LINKS + section counts sound.
+<!-- /ANCHOR:scope -->
 
 ## 4. Requirements (a complete review must cover)
 

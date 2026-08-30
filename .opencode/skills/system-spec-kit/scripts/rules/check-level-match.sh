@@ -26,31 +26,31 @@ _level_extract_from_file() {
         local level=""
 
         # Pattern 0: SPECKIT_LEVEL marker
-        level=$(grep -oE '<!-- SPECKIT_LEVEL: *[123]\+? *-->' "$file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+        level=$(grep -oE '<!-- SPECKIT_LEVEL: *([123]\+?|phase|review|research) *-->' "$file" 2>/dev/null | grep -oE '([123]\+?|phase|review|research)' | head -1 || true)
 
         # Pattern 1: Metadata bullet format
         if [[ -z "$level" ]]; then
-            level=$(grep -E '^\- \*\*Level\*\*:\s*[123]\+?' "$file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+            level=$(grep -E '^\- \*\*Level\*\*:\s*([123]\+?|phase|review|research)' "$file" 2>/dev/null | grep -oE '([123]\+?|phase|review|research)' | head -1 || true)
         fi
 
         # Pattern 2: Table format with bold
         if [[ -z "$level" ]]; then
-            level=$(grep -E '^\|\s*\*\*Level\*\*\s*\|\s*[123]\+?\s*\|' "$file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+            level=$(grep -E '^\|\s*\*\*Level\*\*\s*\|\s*([123]\+?|phase|review|research)\s*\|' "$file" 2>/dev/null | grep -oE '([123]\+?|phase|review|research)' | head -1 || true)
         fi
 
         # Pattern 3: Table format without bold
         if [[ -z "$level" ]]; then
-            level=$(grep -E '^\|\s*Level\s*\|\s*[123]\+?\s*\|' "$file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+            level=$(grep -E '^\|\s*Level\s*\|\s*([123]\+?|phase|review|research)\s*\|' "$file" 2>/dev/null | grep -oE '([123]\+?|phase|review|research)' | head -1 || true)
         fi
 
         # Pattern 4: YAML frontmatter
         if [[ -z "$level" ]]; then
-            level=$(grep -E '^level:\s*[123]\+?' "$file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+            level=$(grep -E '^level:\s*([123]\+?|phase|review|research)' "$file" 2>/dev/null | grep -oE '([123]\+?|phase|review|research)' | head -1 || true)
         fi
 
         # Pattern 5: Anchored inline fallback
         if [[ -z "$level" ]]; then
-            level=$(grep -E '^[Ll]evel[: ]+[123]\+?' "$file" 2>/dev/null | grep -oE '[123]\+?' | head -1 || true)
+            level=$(grep -E '^[Ll]evel[: ]+([123]\+?|phase|review|research)' "$file" 2>/dev/null | grep -oE '([123]\+?|phase|review|research)' | head -1 || true)
         fi
 
         if [[ -n "$level" ]]; then
@@ -69,32 +69,32 @@ _level_has_invalid_declaration() {
     local line=""
 
     line=$(grep -E '<!--[[:space:]]*SPECKIT_LEVEL:' "$file" 2>/dev/null | head -1 || true)
-    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '<!--[[:space:]]*SPECKIT_LEVEL:[[:space:]]*([123]\+?)[[:space:]]*-->'; then
+    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '<!--[[:space:]]*SPECKIT_LEVEL:[[:space:]]*(([123]\+?|phase|review|research))[[:space:]]*-->'; then
         return 0
     fi
 
     line=$(grep -E '^\- \*\*Level\*\*:' "$file" 2>/dev/null | head -1 || true)
-    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^\-[[:space:]]+\*\*Level\*\*:[[:space:]]*([123]\+?)[[:space:]]*$'; then
+    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^\-[[:space:]]+\*\*Level\*\*:[[:space:]]*(([123]\+?|phase|review|research))[[:space:]]*$'; then
         return 0
     fi
 
     line=$(grep -E '^\|\s*\*\*Level\*\*\s*\|' "$file" 2>/dev/null | head -1 || true)
-    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^\|[[:space:]]*\*\*Level\*\*[[:space:]]*\|[[:space:]]*([123]\+?)[[:space:]]*\|'; then
+    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^\|[[:space:]]*\*\*Level\*\*[[:space:]]*\|[[:space:]]*(([123]\+?|phase|review|research))[[:space:]]*\|'; then
         return 0
     fi
 
     line=$(grep -E '^\|\s*Level\s*\|' "$file" 2>/dev/null | head -1 || true)
-    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^\|[[:space:]]*Level[[:space:]]*\|[[:space:]]*([123]\+?)[[:space:]]*\|'; then
+    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^\|[[:space:]]*Level[[:space:]]*\|[[:space:]]*(([123]\+?|phase|review|research))[[:space:]]*\|'; then
         return 0
     fi
 
     line=$(grep -E '^level:' "$file" 2>/dev/null | head -1 || true)
-    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^level:[[:space:]]*([123]\+?)[[:space:]]*$'; then
+    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^level:[[:space:]]*(([123]\+?|phase|review|research))[[:space:]]*$'; then
         return 0
     fi
 
     line=$(grep -E '^[Ll]evel(:[[:space:]]*|[[:space:]]+)[0-9]\+?[[:space:]]*$' "$file" 2>/dev/null | head -1 || true)
-    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^[Ll]evel[: ]+([123]\+?)[[:space:]]*$'; then
+    if [[ -n "$line" ]] && ! echo "$line" | grep -qE '^[Ll]evel[: ]+(([123]\+?|phase|review|research))[[:space:]]*$'; then
         return 0
     fi
 

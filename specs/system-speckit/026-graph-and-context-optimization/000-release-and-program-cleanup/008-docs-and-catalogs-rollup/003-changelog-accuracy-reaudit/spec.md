@@ -1,6 +1,7 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Spec: 026 Changelog Accuracy Re-Audit
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: research -->
 
 ## Problem
 

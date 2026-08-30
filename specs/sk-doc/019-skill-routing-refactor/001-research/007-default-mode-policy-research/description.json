@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/019-skill-routing-refactor/001-research/007-default-mode-policy-research",
   "description": "`defaultMode = <child>` auto-commits the hub to one mode when nothing specific fires",
   "keywords": [
@@ -12,7 +13,7 @@
     "specific",
     "fires"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.333Z",
+  "lastUpdated": "2026-08-30T09:32:20.642Z",
   "specId": "007",
   "folderSlug": "default-mode-policy-research",
   "parentChain": [
@@ -21,6 +22,5 @@
     "001-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

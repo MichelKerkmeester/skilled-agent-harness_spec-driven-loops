@@ -26,7 +26,7 @@ _memory:
 ---
 # Feature Specification: Gateway Alignment Deep-Review (find what the 013 fix and audit missed)
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: review -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 
 ---
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 2 |
+| **Level** | review |
 | **Priority** | P1 |
 | **Status** | In Progress |
 | **Created** | 2026-08-25 |

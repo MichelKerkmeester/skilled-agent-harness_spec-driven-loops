@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/041-validation-reduction/010-a-level-for-research",
+  "spec_folder": "system-speckit/041-validation-reduction/010-a-level-for-research",
+  "parent_id": "system-speckit/041-validation-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "research level",
+      "research packet type",
+      "research level plan",
+      "research level tasks",
+      "research level summary"
+    ],
+    "key_topics": [
+      "research",
+      "level",
+      "packet",
+      "type",
+      "plan",
+      "tasks",
+      "summary",
+      "give",
+      "record",
+      "meet",
+      "rules",
+      "agree"
+    ],
+    "importance_tier": "critical",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh",
+      "templates/spec-kit-docs.json",
+      "scripts/utils/template-structure.js",
+      "scripts/rules/check-level-match.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-kit-docs.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-level-match.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": "scripts/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Level For Research",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Give",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "research",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Give a research record a level it can meet, and make the rules agree with the",
+    "created_at": "2026-08-30T09:39:26.002Z",
+    "last_save_at": "2026-08-30T09:40:08.496Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:631bfa83d9209f8adf6d217b9a9f5f564ee9df4b9ea628b53ffeaaca059b4a3d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "173a3d3d7814b97082984fbbe66eb2914565558df8fa797612eec9a5aad4f6b6",
+      "plan.md": "2ee61e74a5f3f4f1f99e3ed06e44888626d42ed99df813d63ab1355957bdea32",
+      "tasks.md": "dc7cf3232282b162b6600e6f003a28839262883c4f108964fcbd4e4dd2bb5d9f",
+      "implementation-summary.md": "68fbb47bc6ab7fd6d7cce6ea15f89e3a59aab82c03ebbf0614e5edcfed1f4b00"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

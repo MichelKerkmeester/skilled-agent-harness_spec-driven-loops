@@ -12,13 +12,13 @@ _memory:
     packet_pointer: "sk-code/001-sk-code-parent/027-code-opencode-refinement-research"
     last_updated_at: "2026-07-08T00:00:00.000Z"
     last_updated_by: "claude-opus"
-    recent_action: "RESEARCH COMPLETE — 10 GLM-5.2 iterations + synthesis, manually orchestrated by the Opus conductor (the /deep:research :auto command was blocked by the documented GPT/GLM Gate-3 halt P0, so each iteration was a direct read-only GLM-5.2 dispatch). research/research.md holds the ranked, file-mapped code-opencode refinement backlog (~25 P1 / ~22 P2 / ~7 P3) + 8 underlying .opencode code bugs (C1-C8); iterations at research/iterations/iteration-001..010."
-    next_safe_action: "Operator reviews research/research.md; a follow-up IMPLEMENTATION packet executes the backlog in the §6 sequencing order. Packet finalization (description.json/graph-metadata.json regen, 017-parent children_ids registration, validate --strict, commit) is DEFERRED pending the live deep-loop->system-deep-loop + spec-folder-renumber migration settling, to avoid collision."
+    recent_action: "Completed 10-iteration research and synthesis"
+    next_safe_action: "Operator reviews research.md, then opens an implementation packet"
 parent: "sk-code/001-sk-code-parent"
 ---
 # Feature Specification: Deep research — refine the sk-code code-opencode surface sub-skill against .opencode reality
 
-<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_LEVEL: research -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 
 ---
@@ -28,7 +28,7 @@ parent: "sk-code/001-sk-code-parent"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 2 |
+| **Level** | research |
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-07-08 |

@@ -26,7 +26,7 @@ _memory:
 ---
 # Feature Specification: Launcher Concurrency Spawn & Bridge Investigation (deep-research)
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: research -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 
 Read-only deep-research packet investigating two root causes in the spec-kit launcher-coordination layer, both surfaced by the owner's heavy concurrent-session workflow. Canonical research output lives in `research/research.md`; this `spec.md` records the investigation ask, scope, and open questions.
@@ -38,7 +38,7 @@ Read-only deep-research packet investigating two root causes in the spec-kit lau
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 |
+| **Level** | research |
 | **Priority** | P1 |
 | **Status** | Research (read-only) |
 | **Created** | 2026-06-04 |

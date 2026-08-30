@@ -189,7 +189,7 @@
     ],
     "causal_summary": "sk-design has grown to seven modes — interface, foundations, motion, audit, md-generator, the design-mcp-open-design transport, plus a large `styles` resource tree",
     "created_at": "2026-07-25T13:39:24.267Z",
-    "last_save_at": "2026-08-30T07:16:11.780Z",
+    "last_save_at": "2026-08-30T09:32:20.195Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:016bf414ba1c4ff736ae01f1a55ae76729d7c156badcf481e730f023c2c84a3a",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint": "sha256:4966c0f1ec49a982b488dba1368f080e50fe7af5bb06b6646c3432a4f1524bce",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ce7607b737a3a45b52e33b84c3240c2ecaaaa504cc4c7a9c2123784a1e4f457d",
+      "spec.md": "27dbe37d70cba1dbc0990746daec9f7c4407da2a8a0d36a2fcfc7081988fb5f4",
       "research/research.md": "f46b446a41a8c450942ef8e7c5666202218223666b28b1ebd35d1057cbfe1ef2",
       "handover.md": "a3e0d5a785a4891f95f80442d4efc7b225391ffd3cd3d178bab0c6bf8530cd6c"
     },

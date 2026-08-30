@@ -33,20 +33,20 @@
     "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      "review/review-report.md",
-      "spec.md"
+      "spec.md",
+      "review/review-report.md"
     ],
     "entities": [
-      {
-        "name": "review-report.md",
-        "kind": "doc",
-        "path": "review/review-report.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -88,15 +88,16 @@
     ],
     "causal_summary": "The `013-runtime-agent-gateway-alignment` packet migrated the four affected deep-loop leaf agent prompts (`deep-research`, `deep-review`, `deep-alignment`, `ai-council`) across all six runtimes from a direct `-state.jsonl` bash-append to the authoritative append gateway (`append-mode-event.cjs`)",
     "created_at": "2026-08-25T12:38:56.819Z",
-    "last_save_at": "2026-08-25T13:56:07.267Z",
+    "last_save_at": "2026-08-30T09:33:39.724Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:c03dedba2a5f24407b125076f6d7258edf0c4ddf42b5f34ea77f1e31b05742c0",
+    "source_fingerprint": "sha256:78ec394e77e22fe85ce1494c278b37e85d17474fddda605ff733c84419f4d39a",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d3187b95134356747bd9c97e7a3d5123af4ac4c045a4fd073aaf1a21a4552558"
+      "spec.md": "eb8c89521978812439818ead78221bf8c223b1686a152c94a8f0dd653b43bf14"
     },
     "last_active_child_id": null,
     "last_active_at": null

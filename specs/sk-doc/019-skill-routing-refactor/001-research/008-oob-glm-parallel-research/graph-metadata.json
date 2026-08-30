@@ -127,17 +127,17 @@
     ],
     "causal_summary": "The prior routing study answered the practical `defaultMode` question, but that answer stayed within the existing parent-hub routing frame",
     "created_at": "2026-07-18T14:47:45.373Z",
-    "last_save_at": "2026-08-30T07:16:16.799Z",
+    "last_save_at": "2026-08-30T09:32:21.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:b2ab19efdb25c35d984eac95d0ee9a0676915ecc8879d44d539f2dd82f497ecc",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint": "sha256:81972945988efab5b345a1e399cf4d83afe73eee836ee77785bb1d34fc085b0e",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e7f5840a2d93ff24917e51d8d62aff93fc04bcccc307dfc1e6a2f4f9f46f3ad9",
+      "spec.md": "5d1457a5a766175ec8753e5b7d6241140e30254f904e14f2a348d80bcc95d98b",
       "research/research.md": "1bc036e46fd1de3408ed889b91f8091886753a43a13db3ee229e6bf899d14dbd"
     },
     "last_active_child_id": null,
