@@ -1,0 +1,25 @@
+{
+  "specFolder": "system-speckit/043-workspace-path-containment",
+  "description": "Prove workspace membership in the graph-metadata write guard instead of pattern-matching a specs segment",
+  "keywords": [
+    "prove",
+    "workspace",
+    "membership",
+    "graph-metadata",
+    "write",
+    "guard",
+    "instead",
+    "pattern-matching",
+    "specs",
+    "segment"
+  ],
+  "lastUpdated": "2026-08-30T08:04:09.183Z",
+  "specId": "043",
+  "folderSlug": "workspace-path-containment",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

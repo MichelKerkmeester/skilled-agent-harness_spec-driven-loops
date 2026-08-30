@@ -10,6 +10,7 @@ import { ZodError } from 'zod';
 
 import { extractEntities } from '../extraction/entity-extractor.js';
 import { extractKeywords } from '../search/folder-discovery.js';
+import { getSpecsBasePaths } from '../search/folder-discovery.js';
 import {
   canClassifyAsGraphMetadataPath,
   extractSpecFolderFromGraphMetadataPath,
@@ -1694,6 +1695,16 @@ export function serializeGraphMetadata(metadata: GraphMetadata): string {
  * @param filePath - Destination graph-metadata path
  * @param metadata - Metadata payload to persist
  */
+/** True when `candidate` sits inside one of the workspace's configured specs roots. */
+function isWithinConfiguredSpecsRoot(candidate: string): boolean {
+  const target = path.resolve(candidate);
+  for (const root of getSpecsBasePaths()) {
+    const base = path.resolve(root);
+    if (target === base || target.startsWith(base + path.sep)) return true;
+  }
+  return false;
+}
+
 export function writeGraphMetadataFile(filePath: string, metadata: GraphMetadata): void {
   const resolvedFilePath = path.resolve(filePath);
   const parentDir = path.dirname(resolvedFilePath);
@@ -1707,6 +1718,17 @@ export function writeGraphMetadataFile(filePath: string, metadata: GraphMetadata
   const canonicalFilePath = path.join(canonicalParentDir, path.basename(resolvedFilePath));
   if (!canClassifyAsGraphMetadataPath(canonicalFilePath)) {
     throw new Error(`Refusing to write graph metadata outside a supported specs root: ${canonicalFilePath}`);
+  }
+  // The classifier above only proves the path *looks* like a spec document. It
+  // matches any path containing a specs segment, so a destination anywhere on
+  // the filesystem satisfied it and this guard wrote there while reporting that
+  // it refuses exactly that. Membership is proven against the configured roots.
+  //
+  // Measured on the resolved path rather than the canonical one on purpose:
+  // tracks are commonly symlinks into sibling repositories, and canonicalizing
+  // first would place those legitimate destinations outside every root.
+  if (!isWithinConfiguredSpecsRoot(resolvedFilePath)) {
+    throw new Error(`Refusing to write graph metadata outside a configured specs root: ${resolvedFilePath}`);
   }
 
   const content = serializeGraphMetadata(metadata);
