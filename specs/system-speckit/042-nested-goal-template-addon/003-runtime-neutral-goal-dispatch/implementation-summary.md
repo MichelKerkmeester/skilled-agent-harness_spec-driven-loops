@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".opencode/commands/speckit/assets/speckit-plan-auto.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:43d76ef661f29c251338102b255ffa06b6b3b6b824670cbb5e48554d50fa4008"
       session_id: "2026-08-29-042-003-runtime-neutral-goal-dispatch"
       parent_session_id: null
     completion_pct: 100

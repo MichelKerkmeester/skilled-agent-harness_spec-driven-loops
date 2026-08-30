@@ -17,7 +17,7 @@ _memory:
     key_files:
       - "specs/system-speckit/033-spec-kit-template-optimization/001-spec-template-context-optimization/spec.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a993607a0ed02f4c59f6f939fa96298040cff39b060b3fc9ae7f011da249f559"
       session_id: "2026-08-12-system-speckit-034-optimizations"
       parent_session_id: null
     completion_pct: 100

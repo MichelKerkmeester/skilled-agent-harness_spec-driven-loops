@@ -20,7 +20,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/templates/manifest/research.md.tmpl"
       - ".opencode/skills/system-spec-kit/mcp-server/handlers/memory-search.ts"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:e305c737abcd47fc23275c887ee72d10d7b227bb7bf449f3b25f69e89c498712"
       session_id: "2026-08-12-system-speckit-034-optimizations"
       parent_session_id: null
     completion_pct: 100

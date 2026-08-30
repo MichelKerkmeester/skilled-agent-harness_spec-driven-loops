@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-speckit/042-nested-goal-template-addon/002-durable-slice-validator",
   "description": "durable slice validator",
   "keywords": [

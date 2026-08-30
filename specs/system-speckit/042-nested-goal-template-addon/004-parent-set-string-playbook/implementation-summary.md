@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5553c5186c735eb7526029efe387beced247705cc7bea639b4f0fe603d89c8ab"
       session_id: "2026-08-29-042-004-parent-set-string-playbook"
       parent_session_id: null
     completion_pct: 100

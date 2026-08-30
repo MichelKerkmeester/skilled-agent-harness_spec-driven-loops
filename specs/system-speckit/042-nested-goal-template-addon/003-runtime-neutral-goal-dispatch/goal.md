@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b1da1f31c6ce9bcf1de78b5f9eb53b99451fdb3cb21167c85e92534dbf6bb200"
       session_id: "2026-08-29-042-003-runtime-neutral-goal-dispatch"
       parent_session_id: null
     completion_pct: 0

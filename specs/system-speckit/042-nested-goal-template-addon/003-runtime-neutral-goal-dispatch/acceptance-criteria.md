@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/commands/speckit/assets/"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:08ed79b5b5bd0259496e9337c31fa1f8eba14c224248864e6cf9d10cbeb61ebb"
       session_id: "2026-08-29-042-003-runtime-neutral-goal-dispatch"
       parent_session_id: null
     completion_pct: 0

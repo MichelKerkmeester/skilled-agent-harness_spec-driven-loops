@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b7ea92ba5377e0a1cdab71661f763ba99414599f52a0a834d292e095df6c8527"
       session_id: "2026-08-29-033-003-restore-level-upgrade-and-vocabulary-invariance"
       parent_session_id: null
     completion_pct: 100

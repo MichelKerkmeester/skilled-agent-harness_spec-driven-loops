@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:c9503e3c5b3b34d778b02c2a1f61a0d866e0b100d952b0e5ee4dd1056ec07e3d"
       session_id: "2026-08-29-042-001-manifest-and-goal-template"
       parent_session_id: null
     completion_pct: 0

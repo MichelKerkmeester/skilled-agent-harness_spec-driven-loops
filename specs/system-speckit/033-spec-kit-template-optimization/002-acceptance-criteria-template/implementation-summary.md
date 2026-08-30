@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-ac-closure.sh"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:cf1108243dabdb033bbdf97ee425a8a3a0fd0826289cbf6d91b2d39f9d1622f6"
       session_id: "2026-08-29-033-002-acceptance-criteria-template"
       parent_session_id: null
     completion_pct: 80

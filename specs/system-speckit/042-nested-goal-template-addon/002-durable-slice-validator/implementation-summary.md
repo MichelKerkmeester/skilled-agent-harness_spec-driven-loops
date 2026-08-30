@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-goal-shape.sh"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b2af759b858d7b965dfe137320361cff9ff275672079afc210bdcebc70fe41e3"
       session_id: "2026-08-29-042-002-durable-slice-validator"
       parent_session_id: null
     completion_pct: 100

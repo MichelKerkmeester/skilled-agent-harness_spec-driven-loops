@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/references/"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:7b648916c2041f3fe137f6d1efb6321a8f104c0a72e199bb84f2fd0bb36e242b"
       session_id: "2026-08-29-042-004-parent-set-string-playbook"
       parent_session_id: null
     completion_pct: 0

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "There is no goal document anywhere in the documentation-level contract",
     "created_at": "2026-08-29T18:09:17Z",
-    "last_save_at": "2026-08-29T20:42:29.591Z",
+    "last_save_at": "2026-08-30T04:14:28.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,12 +201,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e444789151ff5544466710ad3cb36df07300964750f1ddb926a17f7fc11dcc4",
+    "source_fingerprint": "sha256:5b47fef2aa7a1e94e6423a94a8688eaf58c91b27a01f94e5bb59e90869c5b223",
     "source_doc_hashes": {
-      "spec.md": "76b101fbd09b894b8569ef99972784eba0a2a6f7d32be0e3e9d91742043c435a",
-      "plan.md": "6ddaba1185a82b86e7abaf8eb5ff73c38c4eb561ba9e172e2bd68234ee03b276",
-      "tasks.md": "00745f802651296336e3db5f8fa0074f7fc4507d955d5eda259f1e6d89c228ff",
-      "implementation-summary.md": "a2ba2a4953e5c4611d879d6c2c69ca2c828b65c38de1ce16eada9d9e4e370e55"
+      "spec.md": "cc8c3fcff054f7a39287cf606b614520b3e459b8f42942f6e9056231d01587fc",
+      "plan.md": "5538d650c087dd79477aa13bca61775aa5d5468af35099bfa38028db7ec7ecc6",
+      "tasks.md": "1578604e5b5196f8027596307be67ae5a3747d35c34219090e41c92e2a3f9e9a",
+      "implementation-summary.md": "66f2c1c7cecd6d995dae550d0d5c0b5b14dac958574588a017ac0bba0efccdc2"
     },
     "last_active_child_id": null,
     "last_active_at": null

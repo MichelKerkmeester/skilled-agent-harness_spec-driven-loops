@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:ac9ef0060803535aa62a49656918137db698eb6cfed59eb06369c89fe267f9df"
       session_id: "2026-08-29-042-002-durable-slice-validator"
       parent_session_id: null
     completion_pct: 0

@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-speckit/042-nested-goal-template-addon/003-runtime-neutral-goal-dispatch",
   "description": "runtime neutral goal dispatch",
   "keywords": [

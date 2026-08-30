@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Two defects surfaced during this packet's review, both pre-dating it",
     "created_at": "2026-08-29T15:25:29Z",
-    "last_save_at": "2026-08-29T20:45:01.735Z",
+    "last_save_at": "2026-08-30T04:14:22.837Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +203,13 @@
       "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6c419d954bcfc66c944806f6ecde806f7f9d41f7911ba788cfbf54812970ffd9",
+    "source_fingerprint": "sha256:036a032a245c21bb26fa503198f626139c1500d6cd8cdbb8ef4c72fdd8969980",
     "source_doc_hashes": {
-      "spec.md": "621c3f5dfea2a7a10438e1205bbdded31bf66acf2d367ec0af1fb799b49e273d",
-      "plan.md": "d59a811311d4607c38f2a6baed43d8500c3ccc636793441fc788864f64226101",
-      "tasks.md": "ad2615a30db67985ec851fd3239781df6cb125dc83294997a56f536d41fb3385",
-      "checklist.md": "e46051e5097196cda7b8113d46f6a81659852802a2be519417254e93a94e3adc",
-      "implementation-summary.md": "5d8ac61f3c00493ae11fa4b0f67ddcf26426910f8faec5242046a9760fd0d7dd"
+      "spec.md": "ac96af8fc95776e8404bb2ba888af3c4c74cc1608adc1591446e88dced0d747f",
+      "plan.md": "91b54ed61858986387900cd12fd130e34e383fd0e118d50d31997deab8dd0d77",
+      "tasks.md": "3ad77b865773a74e335e595fdf55bca51cfcafa59c34765e1c8b8663cfab4f22",
+      "checklist.md": "5002bdd0f307701968be7beda2ba04191f8c9de1772384295212c2411e6585fe",
+      "implementation-summary.md": "bcbdc6495129c77e882be140aa6ec305bf134064c26332d89ae5de40407add2f"
     },
     "last_active_child_id": null,
     "last_active_at": null

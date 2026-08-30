@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:2260f9661c4de2071cd0b61c04671039c507a7713e448a36862836881c66477a"
       session_id: "2026-08-29-042-001-manifest-and-goal-template"
       parent_session_id: null
     completion_pct: 100

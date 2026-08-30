@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:d59a811311d4607c38f2a6baed43d8500c3ccc636793441fc788864f64226101"
       session_id: "2026-08-29-033-003-restore-level-upgrade"
       parent_session_id: null
     completion_pct: 100

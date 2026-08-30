@@ -19,7 +19,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/rules/"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:8763427c86d302c55528403fc83ef29683bc748b638214cb401a02e83b46d026"
       session_id: "2026-08-29-033-004-checklist-deprecation-closure"
       parent_session_id: null
     completion_pct: 100

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The 033 deep-research packet (10 iterations, 4 lineages, 3 model families) tested two external agent-engineering concepts against system-speckit and found that most patterns already ship — but six genuine gaps survived adversarial, multi-model prior-art filtering",
     "created_at": "2026-08-12T12:51:40.227Z",
-    "last_save_at": "2026-08-29T14:54:15.810Z",
+    "last_save_at": "2026-08-30T04:14:18.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,14 +222,14 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:891427c5c70b52b8f26201029bdff342d49efc14e60fb5a2b23cf2c294b4fc56",
+    "source_fingerprint": "sha256:63ef4bbec431d0dee7f3bb82d3e958369b95d4100d852e89d4b4c79a1514a81c",
     "source_doc_hashes": {
-      "spec.md": "3c0a8afae7d909707ca0206ded6c7d534954357d6902df46f3bcc82ac607d5f3",
-      "plan.md": "a993607a0ed02f4c59f6f939fa96298040cff39b060b3fc9ae7f011da249f559",
-      "tasks.md": "e9316587cc22f81fdfdf1fe4c19f7d890c345e9121febdf79be5cf9d53e50cd4",
-      "checklist.md": "1fa5823720cbee99f489ad7c9a657e3c4140f31b3ac8b3a607cbec1b28d88189",
-      "decision-record.md": "df6ba8beef3e6dcc1a1a76ab8f683c4ee76e706db3ff0c4d347543c6099cb8a9",
-      "implementation-summary.md": "e305c737abcd47fc23275c887ee72d10d7b227bb7bf449f3b25f69e89c498712",
+      "spec.md": "34be02752b6d02cecd8913327e1d705940330f68c9fd74027df89a0b0aee7ec0",
+      "plan.md": "cd874d1f662c4cf5cd4aa41839ac23d161556f6969c29c89d51c79d1e2af4f28",
+      "tasks.md": "df0735c3b1f94d70c29791f3104c40631a13ff1aa55fb00f63b3e9ee5c5813b5",
+      "checklist.md": "bce36fb119998d7eb304578410ed562f3ac0cf76af27dc1d023f042f3aebb2a8",
+      "decision-record.md": "737fd7bd28fa1e333ba727bba1d01821f95a0ec900805d8a5bbdb137699168c5",
+      "implementation-summary.md": "f030cb7020b14a8bfb5d6820ded0084de74ed030936d17066417d6521d154ce1",
       "research/research.md": "dd31944295aa48933d1a022dab903852758477b27182ceb14bac27afc0a9b583"
     },
     "last_active_child_id": null,

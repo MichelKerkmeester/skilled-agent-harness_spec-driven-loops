@@ -18,7 +18,7 @@ _memory:
     key_files:
       - "004-checklist-deprecation-closure/spec.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:61e3f60b3cbf02fe85fbe4b97d21762bdcdf57928165ee3e5a2723f0a5689780"
       session_id: "2026-08-29-033-spec-kit-template-optimization"
       parent_session_id: null
     completion_pct: 100

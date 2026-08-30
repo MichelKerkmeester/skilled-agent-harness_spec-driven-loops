@@ -17,7 +17,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/scripts/tests/check-ac-coverage.sh"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:da916862e3c2356be246269a4192d74f5c69e356bee7b4f109c8633199c48063"
       session_id: "2026-08-29-033-004-checklist-deprecation-closure"
       parent_session_id: null
     completion_pct: 0

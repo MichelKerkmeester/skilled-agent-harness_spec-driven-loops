@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:e61778b46d14dc62c3bf92366f65cdcf1abd09b60f04b89980d91e49369d8879"
       session_id: "2026-08-29-033-004-checklist-deprecation-closure"
       parent_session_id: null
     completion_pct: 100

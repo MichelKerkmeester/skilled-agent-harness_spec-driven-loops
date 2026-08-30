@@ -18,7 +18,7 @@ _memory:
     key_files:
       - ".opencode/skills/system-spec-kit/templates/addons/goal.md.tmpl"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:a2ba2a4953e5c4611d879d6c2c69ca2c828b65c38de1ce16eada9d9e4e370e55"
       session_id: "2026-08-29-042-001-manifest-and-goal-template"
       parent_session_id: null
     completion_pct: 100

@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:46c17ef85c3e783b3f1b3891966867c87b6916659f5199d1cb6468a7ac5c1e7d"
       session_id: "2026-08-29-033-001-spec-template-context-optimization"
       parent_session_id: null
     completion_pct: 100

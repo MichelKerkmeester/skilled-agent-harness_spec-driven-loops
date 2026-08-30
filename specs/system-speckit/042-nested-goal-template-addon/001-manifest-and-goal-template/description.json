@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-speckit/042-nested-goal-template-addon/001-manifest-and-goal-template",
   "description": "There is no goal document anywhere in the documentation-level contract",
   "keywords": [

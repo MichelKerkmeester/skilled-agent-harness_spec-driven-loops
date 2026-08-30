@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Nothing dereferences a path inside a goal string",
     "created_at": "2026-08-29T18:09:19Z",
-    "last_save_at": "2026-08-29T20:42:35.168Z",
+    "last_save_at": "2026-08-30T04:14:34.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,12 +200,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b53edfb3cea56cfc7d0b7ccd211c5c458e2626f9ae55e64ff55f31dfdff71b15",
+    "source_fingerprint": "sha256:aadec192027cd2d935cd376e2d106303a950e6145e1f68e4ea04d94977376dc6",
     "source_doc_hashes": {
-      "spec.md": "16531bf8ad00187bf57f107ceb02fff28a12fa9e432e65e61940f14233ac1248",
-      "plan.md": "d77c79dcc85a506a8557d4ea4a3e0a45f19c8a858a87bb2f3519a341028d1a6a",
-      "tasks.md": "b422909d354632963a5b22d1845d93495f63359b7f731a487bfae6a68df1a60d",
-      "implementation-summary.md": "5553c5186c735eb7526029efe387beced247705cc7bea639b4f0fe603d89c8ab"
+      "spec.md": "916e3cf0175c1f0115850ed17e3f2d2f5599042d6335c21186ff4470fa16dad4",
+      "plan.md": "39f8d830faf6bc9bbbe2324f3209821afbb9e7e108d0290a6503c0f1066559f1",
+      "tasks.md": "fa6aab53970161b80c9029b8dc9c58c1c7154386500184aa2c4164a006b912b2",
+      "implementation-summary.md": "3bf0dd0a67a7f499f363dad0d4f95633a0426d2273e00d728d9e764a1e8768e4"
     },
     "last_active_child_id": null,
     "last_active_at": null

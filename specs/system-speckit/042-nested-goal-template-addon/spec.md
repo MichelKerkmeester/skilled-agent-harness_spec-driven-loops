@@ -18,7 +18,7 @@ _memory:
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:c715e211f8ce37406008dca886e04c00aa7eac46630c57d242be35bad01f271d"
       session_id: "2026-08-29-042-nested-goal-template-addon"
       parent_session_id: null
     completion_pct: 10

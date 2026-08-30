@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Nothing checks a goal document",
     "created_at": "2026-08-29T18:09:18Z",
-    "last_save_at": "2026-08-29T20:42:31.539Z",
+    "last_save_at": "2026-08-30T04:14:30.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:761b99e9736bb101f989317ccc2413bf8810349aa17040afc765822660d30e81",
+    "source_fingerprint": "sha256:a80e539fa9f747a24105e8eb7a46fa3d0fd0a0c50ca0cbaadcc3f92a28edb3e6",
     "source_doc_hashes": {
-      "spec.md": "ac9ef0060803535aa62a49656918137db698eb6cfed59eb06369c89fe267f9df",
-      "plan.md": "700946914b95a6d8f639e80c3baa02cc807213ad63796ee1fea6ab906397e691",
-      "tasks.md": "61e196672b6845081939e2b822f7d077f668f40305904f701e9354007efac6c6",
-      "implementation-summary.md": "b2af759b858d7b965dfe137320361cff9ff275672079afc210bdcebc70fe41e3"
+      "spec.md": "ffe6ff9ae06379e5dc30994590c056773894431d11fa9c41793307b0adef204b",
+      "plan.md": "68dcd2dd0618d222d621307c300b7ea5851c0823ac5b1ed98f335508ed7f49bd",
+      "tasks.md": "2aa81f2c1f1f0f668a9a4a2edfbdc238abe8ef96ed1db0c24294cd6702ccc896",
+      "implementation-summary.md": "2492a41d3339d17e4afd0f3d46b05b2e627292afe789975f3f018f6282441211"
     },
     "last_active_child_id": null,
     "last_active_at": null

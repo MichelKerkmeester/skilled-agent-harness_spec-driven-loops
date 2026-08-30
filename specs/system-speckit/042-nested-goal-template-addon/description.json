@@ -1,5 +1,5 @@
 {
-  "level": "3",
+  "level": "2",
   "specFolder": "system-speckit/042-nested-goal-template-addon",
   "description": "An operator sets one session objective, and whatever they set is frozen at that moment",
   "keywords": [
