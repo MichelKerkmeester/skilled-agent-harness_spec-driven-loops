@@ -16,7 +16,13 @@
       "010 bridge",
       "010 bridge plan",
       "010 bridge tasks",
-      "010 bridge implementation summary"
+      "010 bridge implementation summary",
+      "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/010-multi-client-stdio-socket-bridge",
+      "system-speckit",
+      "026-graph-and-context-optimization",
+      "003-memory-and-causal-runtime",
+      "003-embedder-testing-and-architecture",
+      "006-mcp-launcher-concurrency"
     ],
     "key_topics": [
       "multi-client",
@@ -32,7 +38,7 @@
       "mcp",
       "instances"
     ],
-    "importance_tier": "useful",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
@@ -197,15 +203,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ],
-    "source_fingerprint": "sha256:6ebf463617b782dc06d1e493a63d587d6a8c88924afdaf5c1de00c1148332517",
-    "source_doc_hashes": {
-      "spec.md": "0fde2a10bfd944c4333fd3de52d8aa3df998a22d1db444ce625faa75a54aebc9",
-      "plan.md": "07621c3c895a9cd681188ea557f07be360760689972dda0fe3da135c70ee12a9",
-      "tasks.md": "5d668f8b1cd147a341f320aa6f7507b18f2967cdd6522b907744b59f2f170d24",
-      "implementation-summary.md": "b252cff72d14be3c46c53453baa64ed5ba8f4c393fb3145d5f8a86e417a73315"
-    },
-    "last_active_child_id": null,
-    "last_active_at": null
+    ]
   }
 }

@@ -25,7 +25,17 @@ if [[ ! -f "$PACKET/graph-metadata.json" ]]; then
     echo "SKIP: reference packet absent"; exit 0
 fi
 
-WORK="$(mktemp -d)"; trap 'rm -rf "$WORK"' EXIT
+WORK="$(mktemp -d)"
+
+# The cases below mutate a tracked packet, so the trap has to put it back on any
+# exit - including an interrupt. Removing only the temporary directory would
+# leave a forged generation marker and a probe line committed into real docs.
+restore_packet() {
+    [[ -f "$WORK/original-gm.json" ]] && cp "$WORK/original-gm.json" "$PACKET/graph-metadata.json"
+    [[ -f "$WORK/spec.md" ]] && cp "$WORK/spec.md" "$PACKET/spec.md"
+    rm -rf "$WORK"
+}
+trap restore_packet EXIT INT TERM
 cp "$PACKET/graph-metadata.json" "$WORK/original-gm.json"
 cp "$PACKET/spec.md" "$WORK/spec.md"
 
@@ -87,7 +97,6 @@ expect "future generation still reports drift" "1" "$(mismatches)"
 restore
 expect "restored packet is clean again" "0" "$(mismatches)"
 
-cp "$WORK/original-gm.json" "$PACKET/graph-metadata.json"
 
 echo
 printf '  %d passed, %d failed\n' "$PASS" "$FAIL"

@@ -21,7 +21,8 @@
       "023A2 checklist",
       "registry verification",
       "023A2 complete",
-      "prompt license registry complete"
+      "prompt license registry complete",
+      "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/006-prompt-license-registry"
     ],
     "key_topics": [
       "023a2",
@@ -37,7 +38,7 @@
       "verification",
       "complete"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -203,16 +204,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "source_fingerprint": "sha256:accfcd3e26ff7d70a17478dc2109ad17244f5c58f17a516d6f5c69d978cc369b",
-    "source_doc_hashes": {
-      "spec.md": "59d29ea0714270e6cd32446de48a4a67e9ede2c593c878d281b515b24976792e",
-      "plan.md": "05bc55f27597fc6e8308e5f28a6c34815463312d32a220a02b0b7f09ce8e71d4",
-      "tasks.md": "dcd5019e40aec514fee1517de1e448cf115ee015cd1a915c01405d80f054bb06",
-      "checklist.md": "67f8ae69b99732d89b603dd020c0ec3681a238489d11f628e4ba65be2831ee02",
-      "implementation-summary.md": "396fe6eeff1b500533a5b63e74bab862357d7362f8756014e1c86151e1447342"
-    },
-    "last_active_child_id": null,
-    "last_active_at": null
+    ]
   }
 }

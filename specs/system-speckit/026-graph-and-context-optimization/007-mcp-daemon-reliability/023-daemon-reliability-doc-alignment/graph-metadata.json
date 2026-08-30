@@ -21,7 +21,10 @@
       "daemon reliability doc alignment tasks",
       "daemon reliability doc alignment checklist",
       "daemon reliability doc alignment done",
-      "018-022 docs aligned"
+      "018-022 docs aligned",
+      "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/023-daemon-reliability-doc-alignment",
+      "system-speckit",
+      "026-graph-and-context-optimization"
     ],
     "key_topics": [
       "daemon",
@@ -37,7 +40,7 @@
       "docs",
       "aligned"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
@@ -213,16 +216,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "source_fingerprint": "sha256:9a30f4492d35c9ecf65d29d325ee808c5666f68d37de520fc795e940afac4f7b",
-    "source_doc_hashes": {
-      "spec.md": "1b799c38e8099951663f49d5d817bd44573fee08502acb73454d571624ac69e1",
-      "plan.md": "df7b5275fb87aff3cca7b7341895200e44c9addd2de141969512a35eb34598a0",
-      "tasks.md": "7d10c54c4fef2ab309104dd5f77cdea46d2110ce5e86afacc4069ff0d93a1abc",
-      "checklist.md": "dac769599385dbc114adaf14fad4a9b28e6042d313ce49b302b373976f00bc05",
-      "implementation-summary.md": "524c6f775c72769971379151b702c02d152c99313f1a1092ac66cb8f29aacf43"
-    },
-    "last_active_child_id": null,
-    "last_active_at": null
+    ]
   }
 }

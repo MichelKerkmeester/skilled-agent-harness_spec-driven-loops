@@ -15,7 +15,14 @@
       "evidence cited redesign",
       "scaffold never touched complete match",
       "strict pass freshness sweep",
-      "metadata disk path consistency"
+      "metadata disk path consistency",
+      "system-speckit/028-memory-search-intelligence/003-spec-data-quality/008-validation-integrity-hardening",
+      "system-speckit",
+      "028-memory-search-intelligence",
+      "003-spec-data-quality",
+      "008-validation-integrity-hardening",
+      "feature",
+      "specification"
     ],
     "key_topics": [
       "validation",
@@ -31,7 +38,7 @@
       "match",
       "strict"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -212,16 +219,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "source_fingerprint": "sha256:3f28166e37d3261dc6546ab28d75b6e3f599f90838afc36a4ca5423c5ef907f4",
-    "source_doc_hashes": {
-      "spec.md": "d519c1775f08f65d2a18bd4460b583fd10ac309ae926643f8648564fae879954",
-      "plan.md": "d89e521065bd8cc25f4b06e501fc3cc192b8e95e1890226139a44184d51f36d7",
-      "tasks.md": "86268c8f6cb83cb6d7a3d8cd0f6389b57b2558846bb6568185bcc8801f519cf7",
-      "checklist.md": "9f968c22eec2560cbccd765fe80a2a47cb883f451ff4410a72c4a411033319c5",
-      "implementation-summary.md": "8e83985d2ae96f6996b5d8b05b926597012425a637007539891dbc7dd41e7f4b"
-    },
-    "last_active_child_id": null,
-    "last_active_at": null
+    ]
   }
 }

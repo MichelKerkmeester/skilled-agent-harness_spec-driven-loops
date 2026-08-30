@@ -217,6 +217,37 @@ it is recorded here with reproduction rather than folded in.
 
 ---
 
+### Third review pass (four iterations, all dimensions)
+
+A four-iteration pass on the same executor reached every dimension, including
+maintainability, which the two shorter runs never got to. Verdict CONDITIONAL:
+0 P0, 6 P1, 3 P2. Every finding was reproduced before being acted on.
+
+| ID | Finding | Resolution |
+|----|---------|------------|
+| F001 | The validation-system test still scaffolded the retired document and asserted its presence | Helper no longer creates it; the level-inference and file-presence cases now assert its absence. 104 pass / 4 fail before, 114 / 1 after |
+| F003 | The write guard authorized the unresolved path while writing the canonical one, so an in-root link redirected the write outside | Reproduced as a real write outside the repository, then closed — see the decision below |
+| F006 | The feature catalog still documented the retired document as live and indexed | Removed from both the discovery description and the environment-flag reference |
+| F009 | The fingerprint suite mutated a tracked packet and its trap removed only temporary state | Trap restores the packet on EXIT, INT and TERM; verified by interrupting a run and finding no residue |
+| F008 | A citation was said to have drifted | Already correct at the time of checking; the review read a pre-fix state |
+| F002 | Resume containment is lexical | Declined again, with the measurement below |
+| F004 | Repair scan-to-write race | Fixed in its own packet, with a control proving the suite fails without it |
+
+**F003 is the one worth reading.** The finding was right and my earlier fix was
+half a fix: membership was proven on the resolved path while the bytes went to
+the canonical one. Two stricter implementations were tried and measured, and
+both were worse than the problem. Checking the canonical path against roots
+that auto-register every in-root symlink means planting a link authorizes its
+own escape — reproduced, two files written outside. Gating those roots on
+git-tracked status refuses three of the four sibling tracks, because only one
+of them is committed. What ships is the resolved-path check with the reasoning
+recorded at the call site: an in-root link stays trusted, which costs nothing an
+attacker does not already have, while the reachable case — a caller passing an
+arbitrary destination — is refused.
+
+That is the same conclusion F002 reaches for the resume ladder, now backed by
+two independent attempts to do better rather than by argument alone.
+
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 

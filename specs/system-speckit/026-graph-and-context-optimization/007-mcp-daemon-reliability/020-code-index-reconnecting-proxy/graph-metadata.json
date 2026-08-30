@@ -46,7 +46,7 @@
       "createclassifyframe",
       "plan"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/bin/mk-code-index-launcher.cjs",
@@ -215,16 +215,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "source_fingerprint": "sha256:81accd2ff6df8d1015fd6da6d880c964714c8f67fda6da8f9682b336dc08f3eb",
-    "source_doc_hashes": {
-      "spec.md": "f5f78c7a2fb91b2629e7e9b3123438ec1267615e55ee65fd3a77bc58b064d6e1",
-      "plan.md": "bb80cbb83d432093df4c694abd56c796602fca7d66b5b54b71b278eec02e4782",
-      "tasks.md": "e143888d506ee590e4388d1431a22367f7b0affe06b2f84802a0e03cbb538510",
-      "checklist.md": "cbc1f695bbed12e88bafd20448f62572b024ee32d7fb5dad84f555e3a5cd9f21",
-      "implementation-summary.md": "3c7e03bf0df282ab1dbf40fb9bf47ca65386040a06aa2e2805e948b74d355df8"
-    },
-    "last_active_child_id": null,
-    "last_active_at": null
+    ]
   }
 }

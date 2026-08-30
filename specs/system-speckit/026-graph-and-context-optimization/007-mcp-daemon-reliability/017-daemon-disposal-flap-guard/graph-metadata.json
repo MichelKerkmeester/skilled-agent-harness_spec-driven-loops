@@ -40,7 +40,7 @@
       "transport",
       "launcher"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       ".opencode/bin/mk-spec-memory-launcher.cjs",
@@ -209,16 +209,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "source_fingerprint": "sha256:2f6ef438a19c6b19e8d38f7e0079d38d56b5545a036495eba8ce3435d1941b7b",
-    "source_doc_hashes": {
-      "spec.md": "cad54ebde444578e4b003591f5ee59f0ea1998642e2117bfc74e98e00b1a7f21",
-      "plan.md": "c40752565ebec00a033cff6ad3bdf5bd117a59cce1b27accca51677cb6ac45cf",
-      "tasks.md": "f335a751565ad5ee872d2aaa4033274a8f548a5e15dbd9193aeaf380f598bd49",
-      "checklist.md": "d84fa5396d0bac8b97f1fdf0d77c9deba089d4fc23656806e7e637770d1484da",
-      "implementation-summary.md": "1a1b401b161763814724c377d6e096041b58c40fb6e33f4e1f3eaf8a76ea2c27"
-    },
-    "last_active_child_id": null,
-    "last_active_at": null
+    ]
   }
 }

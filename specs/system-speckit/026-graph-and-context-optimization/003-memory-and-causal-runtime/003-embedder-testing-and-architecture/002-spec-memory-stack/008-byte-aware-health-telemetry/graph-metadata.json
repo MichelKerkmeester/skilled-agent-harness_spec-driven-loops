@@ -38,7 +38,7 @@
       "space",
       "cap"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "implementation-summary.md",
@@ -202,15 +202,6 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ],
-    "source_fingerprint": "sha256:c44e2cf1226bff31e4da48560ac916a1267ebf04e61d53993e77afd6f4e98731",
-    "source_doc_hashes": {
-      "spec.md": "9aec8a4f3f6b06278b7d68ba1aab6df79a6fb50e202066b2a152fe1c66ccfc14",
-      "plan.md": "1adac212b5ba588cdbbecf2cf85a001875e9ae2a64aa3661fabf28242fd3e855",
-      "tasks.md": "dab1af4fe307b432ced569bdb0ab2cee40aeff5ec2e08ad15115f06dd7a5f1f6",
-      "implementation-summary.md": "50d5912bd5a58b03fed1c35676f71c7a25735cb293e7a0e5e3c7e501b49ac06f"
-    },
-    "last_active_child_id": null,
-    "last_active_at": null
+    ]
   }
 }

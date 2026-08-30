@@ -1,0 +1,39 @@
+{
+  "stem": "deep_review.dimension_pass_completed",
+  "scope": {
+    "runId": "run-4",
+    "sessionId": "fanout-luna-xhigh-r2-1788076902384-48eibe",
+    "generation": 1,
+    "iterationId": "iteration-004",
+    "dimensionId": "maintainability"
+  },
+  "prevEventHash": "f45ffca7ab73641b12dc47e7da8eab8bf862c065ebd967b52fcca28353b8f305",
+  "replay": {
+    "fingerprint_version": 1,
+    "final_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "replay_input_digests": {}
+  },
+  "data": {
+    "passNumber": 4,
+    "targetRefs": ["target:checklist-retirement"],
+    "filesReviewed": [
+      "opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh:20-38",
+      "opencode/skills/system-spec-kit/scripts/tests/test-validation-system.cjs:280-297",
+      "opencode/skills/system-spec-kit/templates/README.md:98-151",
+      "opencode/skills/system-spec-kit/templates/examples/README.md:55-82"
+    ],
+    "searchCoverageDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "passStatus": "complete",
+    "rawFindingCounts": {"candidates": 1, "adjudicated": 1, "p0": 0, "p1": 0, "p2": 1},
+    "nextFocusRef": "focus:none"
+  },
+  "eventId": "iteration-004",
+  "streamId": "deep-review-ledger",
+  "occurredAt": "2026-08-30T08:30:02Z",
+  "recordedAt": "2026-08-30T08:30:02Z",
+  "producer": {"name": "deep-review-leaf", "version": "1.0.0"},
+  "authorityEpoch": 1,
+  "correlationId": "fanout-luna-xhigh-r2-1788076902384-48eibe-iteration-004",
+  "causationId": null,
+  "idempotencyKey": "fanout-luna-xhigh-r2-1788076902384-48eibe-iteration-004"
+}

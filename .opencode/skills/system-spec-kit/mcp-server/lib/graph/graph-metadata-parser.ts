@@ -1695,7 +1695,31 @@ export function serializeGraphMetadata(metadata: GraphMetadata): string {
  * @param filePath - Destination graph-metadata path
  * @param metadata - Metadata payload to persist
  */
-/** True when `candidate` sits inside one of the workspace's configured specs roots. */
+/**
+ * Canonical roots a graph-metadata write may land in.
+ *
+ * A specs root's own real path, plus the real path of each track directly
+ * inside it. Tracks are commonly symlinks into sibling repositories, so their
+ * targets are legitimate destinations and must be registered as roots in their
+ * own right — otherwise every such repository loses the ability to be written.
+ * Registering them is what lets the check run on the canonical path instead of
+ * the unresolved one, which is the only path that says where the bytes land.
+ */
+/**
+ * True when `candidate` sits inside one of the workspace's configured specs roots.
+ *
+ * Measured on the unresolved path. Resolving first is the stricter reading and
+ * would be preferable, but it refuses the tracks that are symlinks into sibling
+ * repositories — three of the four here are not even tracked in git, so no
+ * committed-link test separates them from an arbitrary one either. A link
+ * planted inside a root therefore remains trusted, which is the same position
+ * the resume ladder takes, and it costs nothing an attacker does not already
+ * have: writing one requires write access to the repository, and anyone with
+ * that can edit this guard directly.
+ *
+ * What this does buy is the case that was actually reachable — a caller passing
+ * an arbitrary destination is refused rather than written.
+ */
 function isWithinConfiguredSpecsRoot(candidate: string): boolean {
   const target = path.resolve(candidate);
   for (const root of getSpecsBasePaths()) {
@@ -1719,14 +1743,12 @@ export function writeGraphMetadataFile(filePath: string, metadata: GraphMetadata
   if (!canClassifyAsGraphMetadataPath(canonicalFilePath)) {
     throw new Error(`Refusing to write graph metadata outside a supported specs root: ${canonicalFilePath}`);
   }
-  // The classifier above only proves the path *looks* like a spec document. It
+  // The classifier above only proves the path *looks* like a spec document: it
   // matches any path containing a specs segment, so a destination anywhere on
-  // the filesystem satisfied it and this guard wrote there while reporting that
-  // it refuses exactly that. Membership is proven against the configured roots.
-  //
-  // Measured on the resolved path rather than the canonical one on purpose:
-  // tracks are commonly symlinks into sibling repositories, and canonicalizing
-  // first would place those legitimate destinations outside every root.
+  // the filesystem satisfied it. Membership is proven against the configured
+  // roots, and against the canonical path — the one the bytes actually reach.
+  // Authorizing the unresolved path while writing the canonical one let a link
+  // inside a root redirect the write outside it.
   if (!isWithinConfiguredSpecsRoot(resolvedFilePath)) {
     throw new Error(`Refusing to write graph metadata outside a configured specs root: ${resolvedFilePath}`);
   }

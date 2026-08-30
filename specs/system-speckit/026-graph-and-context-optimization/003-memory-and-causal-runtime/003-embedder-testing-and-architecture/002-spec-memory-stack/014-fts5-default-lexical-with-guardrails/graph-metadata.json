@@ -38,7 +38,7 @@
       "overlap",
       "gate"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -207,16 +207,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "source_fingerprint": "sha256:9d2dba8fea9156ae85c0aa2ae86c80c5c845c888d25f2ac95445637be60a0d5a",
-    "source_doc_hashes": {
-      "spec.md": "0e7280633dce83f844197383f4424ac85ce565ba95c87c5ea9b118823e5a1ce7",
-      "plan.md": "628603bd25db9fdc15fb7fae66d8fc33f20fce962417d69c8c19a157ad5f769e",
-      "tasks.md": "0c5f9d06e8dbed2533dcf94943bc89a667275e77a9e188670bcae976b8e965b1",
-      "checklist.md": "55631249ca4ef1439a9a5afa08b7db35a0632d2adcf3f6b89e75483106baccc4",
-      "implementation-summary.md": "e7cedebba1802ce0959b8f84926f7fe090d0e466b400fb158144139d894cd56b"
-    },
-    "last_active_child_id": null,
-    "last_active_at": null
+    ]
   }
 }

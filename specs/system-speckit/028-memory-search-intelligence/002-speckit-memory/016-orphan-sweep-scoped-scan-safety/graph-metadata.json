@@ -19,7 +19,10 @@
       "orphan sweep time budget plan",
       "maintenance marker refresh cadence plan",
       "scoped scan discovery gate parity plan",
-      "drift marker specDocFiles gating plan"
+      "drift marker specDocFiles gating plan",
+      "system-speckit/028-memory-search-intelligence/002-speckit-memory/016-orphan-sweep-scoped-scan-safety",
+      "system-speckit",
+      "028-memory-search-intelligence"
     ],
     "key_topics": [
       "orphan",
@@ -35,7 +38,7 @@
       "maintenance",
       "marker"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -207,16 +210,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "source_fingerprint": "sha256:88b8627a329dd5285dffc08f88d7d16513a086a2583e7eb6e971161fae7ee17b",
-    "source_doc_hashes": {
-      "spec.md": "7c764326c886996ea28c5f95f65f17351de3cdab37cf9d07d58ff7bd35511696",
-      "plan.md": "eafd780db9d79843046aa61ca2ed639c55134a8da4964ed03e9601bf7e17ac3e",
-      "tasks.md": "25999670ce05cfd8bda2417aa7edbf980fd8d34fc9f668cd56e469950fef2f64",
-      "checklist.md": "00dcd26ce62044c46f6c095896c25ca356a8ac3fa0a7ac94f1f93b70ae5e2b50",
-      "implementation-summary.md": "d34763ecd7f3687de0901b8b6f180bc4926fe73fb8049a6ab002725d793815fe"
-    },
-    "last_active_child_id": null,
-    "last_active_at": null
+    ]
   }
 }

@@ -44,7 +44,7 @@
       "plan",
       "source"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -216,16 +216,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "source_fingerprint": "sha256:7d82d19a177dac4bfe79f40afca2fa99cae84e94a00ab6b9a1fc3aeddff3e44a",
-    "source_doc_hashes": {
-      "spec.md": "709265708977b7e1c14f5084ab349b50281b4e6c585cb201e1817faf197b8818",
-      "plan.md": "e37c5266f0eb92619f20cc912fd1b5bbc145515b07c2b060ecc7ea298bdea6e9",
-      "tasks.md": "f9897095823b6681bcc3fd40775cf0233a4aa35ca27480220c396e0877a7960b",
-      "checklist.md": "7fe4be2582b532d591e291ff3ebc0589839c1cea533aa0b08e2655904337fc9f",
-      "implementation-summary.md": "4f487ee91177fae80def3e185364b37800153366fdd262ee45e17940dec3df7e"
-    },
-    "last_active_child_id": null,
-    "last_active_at": null
+    ]
   }
 }

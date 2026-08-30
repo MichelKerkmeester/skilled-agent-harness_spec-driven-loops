@@ -38,7 +38,7 @@
       "hardening",
       "daemon"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -211,16 +211,6 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ],
-    "source_fingerprint": "sha256:5c91270c3f2015d2a2b1bdb274ddfda8210ca1224a18a2742e0b1877c01f8d2d",
-    "source_doc_hashes": {
-      "spec.md": "96d085d79babba31ce3815f3c40baa2b2c0622ed616d8c1fd7d5e4c9a45c6057",
-      "plan.md": "cc2b8713b07ec7e98e62f94775072527ecbd81559ddee909ef7309da0ea4c580",
-      "tasks.md": "43852e636cde03572d9a772caa2e175a5e4b39c3fdcfca37e2d83106d9d63ded",
-      "checklist.md": "9cfdfc9353bd4e0f16a876b6dbcbc4d6afa97493043994b8e0b8b6c7afa3ea7b",
-      "implementation-summary.md": "3a83e65ef225048e2f3bcf7b36b2df72e192215731aba2aeb514e3070d59d98e"
-    },
-    "last_active_child_id": null,
-    "last_active_at": null
+    ]
   }
 }
