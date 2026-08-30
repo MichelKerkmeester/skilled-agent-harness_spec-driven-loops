@@ -48,18 +48,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Three independent triggers, so no single missed signal can recreate a multi-day orphan.
 
-### [Feature Name]
+`system-spec-memory-launcher.cjs` now exits when its stdio peer closes, and evaluates the orphan predicate on its existing heartbeat rather than only on a relaunch path a launcher with a dead child never takes. No new interval was added.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`model-server-supervision.cjs` makes `isRespawnLockStale()` treat a lock held by an orphaned process as reclaimable. Previously the check was pid-liveness only, so a live-but-useless launcher held the embedder respawn lock indefinitely under its own pid.
 
-### Files Changed
+`process-sweep.ts` gains the apply path its own README recorded as absent. It signals only a process it can prove is an orphan: exact ownership evidence, `ppid` with no live parent, `socketPeerConnected` false, and an age past a startup grace window. `session-cleanup.js` invokes it at session start behind `SPECKIT_SESSION_START_ORPHAN_SWEEP`, and the ops README no longer claims no live apply command exists.
 
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Classification was not touched. A prior packet settled it and it was already correct; this phase attaches triggers to logic that already worked.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -85,9 +82,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-| Check | Result |
-|-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+Negative control on a spawned fixture, before: the orphan survived with `lockStale:false` and `applyAttempted:false`. After: `orphanSurvived:false`, `lockReleased:true`, and `appliedPids` named only that one fixture pid.
+
+The safety property decided the phase. A fixture with a live parent produced `appliedPids:[]` and `signals:[]`, and so did one with a connected socket peer. Setting the kill switch produced `reason:"kill-switch-disabled"` with the orphan alive and its lock retained.
+
+12 scoped tests pass across both phases after rebasing onto seven concurrent commits. `npm run build` exits 0 on the integration branch, closing the toolchain gate that could not run inside a bare worktree. Across every dispatch, 0 of the live daemons captured in a pre-run snapshot were signalled.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +94,9 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+The sweep terminates autonomously by operator decision, which deliberately reverses the non-destructive framing the ops README previously described. The kill switch exists because an autonomous process-killer without one is the outlier in this repository, not because the safety checks are doubted.
+
+Whether the same treatment should extend to the skill-advisor and code-mode launchers remains open and out of scope.
 <!-- /ANCHOR:limitations -->
 
 ---

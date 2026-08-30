@@ -175,17 +175,17 @@
     ],
     "causal_summary": "A live process sweep on 2026-08-30 found 13 leaked processes attributable to this repository's system skills: three wedged vitest trees holding roughly 290% CPU for 2h35m–4h12m, and one orphaned spec-memory launcher alive at `ppid 1` for 2 days 14 hours",
     "created_at": "2026-08-30T09:55:25Z",
-    "last_save_at": "2026-08-30T12:21:21.907Z",
+    "last_save_at": "2026-08-30T18:30:45.602Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e913e55d2de9ee2a09df3643d6b4896f7fc677dffd1b00edc22eeff3d5179580",
+    "source_fingerprint": "sha256:3a37c6e8130a16bc3cfc941b44e510013c97809e2296f62fc744baa36a018719",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e3266ca8288bbb3c5bcfd87f116e4e96d653d3a7dfd9c40b200aa2b3355f1f32"
+      "spec.md": "1cadfc1617c9ac1c4323a8cba3a5bae2426105eac0b42ad86816d8c55e893e97"
     },
     "last_active_child_id": "system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene",
     "last_active_at": null

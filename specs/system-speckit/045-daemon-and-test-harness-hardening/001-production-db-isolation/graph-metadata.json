@@ -49,8 +49,11 @@
       ".opencode/skills/system-spec-kit/vitest.config.ts",
       ".opencode/skills/system-spec-kit/mcp-server/vitest.config.ts",
       ".opencode/skills/system-spec-kit/mcp-server/tests/_support/vitest-setup.ts",
+      "shared/paths.ts",
+      "mcp-server/tests/production-db-isolation.vitest.ts",
       "mcp-server/vitest.config.ts",
-      "tests/_support/vitest-setup.ts"
+      "tests/_support/vitest-setup.ts",
+      "tests/production-db-isolation.vitest.ts"
     ],
     "entities": [
       {
@@ -93,6 +96,18 @@
         "name": "vitest-setup.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp-server/tests/_support/vitest-setup.ts",
+        "source": "derived"
+      },
+      {
+        "name": "paths.ts",
+        "kind": "code",
+        "path": "shared/paths.ts",
+        "source": "derived"
+      },
+      {
+        "name": "production-db-isolation.vitest.ts",
+        "kind": "test",
+        "path": "mcp-server/tests/production-db-isolation.vitest.ts",
         "source": "derived"
       },
       {
@@ -180,27 +195,15 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`mcp-server/vitest.config.ts` loads `tests/support/vitest-setup.ts`, whose `isolateProductionDatabase()` exists to stop a test opening the live memory database",
     "created_at": "2026-08-30T09:55:25Z",
-    "last_save_at": "2026-08-30T10:13:56.412Z",
+    "last_save_at": "2026-08-30T18:30:37.227Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:377a8c00e8c60b157baee4a8bdb24fef9429b68bc2a2e53ae6256e832af38a2d",
+    "source_fingerprint": "sha256:a32e55a3fa187bd54230e227d342f540bdae9350e244a9bd4992c9562234cd67",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "af60d83a277b291c86de311eea63b92bbd1d3c34e09186b0cacb7a2011fe7571",
       "plan.md": "d45763a90e98d0340cc2100d2c2dcf0fabf150fd8c7ea149d3f6ae157c5c394e",
-      "tasks.md": "30d884023fe50291f5f300419bc2408750f62e42b8728fb608e5c58d44a0894e",
-      "implementation-summary.md": "0d8f238467df1aa0fefe3889628e31cc739fd8796f14410ec5fa72456dae1744"
+      "tasks.md": "0bdd4a45dbdb3785fd1b4c6efda90a682146525431fe84242848dc18dcfde29c",
+      "implementation-summary.md": "c9096111441698d98893bd34ddeb11b1bff5a528751d6a928e50f940d51418a4"
     },
     "last_active_child_id": null,
     "last_active_at": null
