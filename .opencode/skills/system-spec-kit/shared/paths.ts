@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------
 
 import fs from 'fs';
+import os from 'os';
 import path from 'path';
 
 import { getDbDir } from './config.js';
@@ -52,20 +53,64 @@ function resolveImportMetaRelativePackageRoot(): string {
   return path.resolve(import.meta.dirname, '..');
 }
 
+function resolveComparablePath(targetPath: string): string {
+  const resolvedPath = path.resolve(targetPath);
+  return fs.existsSync(resolvedPath) ? fs.realpathSync(resolvedPath) : resolvedPath;
+}
+
 function fallbackResolvedPath(label: 'package root' | 'database dir'): string {
   return label === 'package root'
     ? resolveImportMetaRelativePackageRoot()
     : path.join(resolveImportMetaRelativePackageRoot(), 'mcp-server', 'database');
 }
 
+function isTestContext(): boolean {
+  return process.env.VITEST === 'true'
+    || process.env.NODE_ENV === 'test'
+    || process.env.SPECKIT_TEST === 'true';
+}
+
+function isProductionDatabaseDir(resolvedPath: string): boolean {
+  const productionDatabaseDir = path.join(resolveImportMetaRelativePackageRoot(), 'mcp-server', 'database');
+  return resolveComparablePath(resolvedPath) === resolveComparablePath(productionDatabaseDir);
+}
+
+function isTestTemporaryDatabaseDir(resolvedPath: string): boolean {
+  return isTestContext()
+    && isWithinDirectoryTree(resolveComparablePath(resolvedPath), resolveComparablePath(os.tmpdir()));
+}
+
+export class ProductionDatabaseResolutionError extends Error {
+  readonly databaseDir: string;
+
+  constructor(databaseDir: string) {
+    super(`Refusing to resolve the production database directory in a test context: ${databaseDir}`);
+    this.name = 'ProductionDatabaseResolutionError';
+    this.databaseDir = databaseDir;
+    Object.setPrototypeOf(this, ProductionDatabaseResolutionError.prototype);
+  }
+}
+
+function assertDatabaseIsolation(resolvedPath: string): string {
+  if (isTestContext() && isProductionDatabaseDir(resolvedPath)) {
+    throw new ProductionDatabaseResolutionError(resolvedPath);
+  }
+  return resolvedPath;
+}
+
 function validateResolvedPath(label: 'package root' | 'database dir', resolvedPath: string): string {
   const workspaceRoot = findNearestSpecKitWorkspaceRoot(import.meta.dirname);
-  if (!workspaceRoot || isWithinDirectoryTree(resolvedPath, workspaceRoot)) {
-    return resolvedPath;
+  if (
+    !workspaceRoot
+    || isWithinDirectoryTree(resolvedPath, workspaceRoot)
+    || (label === 'database dir' && isTestTemporaryDatabaseDir(resolvedPath))
+  ) {
+    return label === 'database dir' ? assertDatabaseIsolation(resolvedPath) : resolvedPath;
   }
 
   console.warn(`[shared/paths] ${label} resolved outside @spec-kit workspace root (${workspaceRoot}); falling back to import.meta.dirname-relative resolution`);
-  return fallbackResolvedPath(label);
+  const fallback = fallbackResolvedPath(label);
+  return label === 'database dir' ? assertDatabaseIsolation(fallback) : fallback;
 }
 
 /** Resolve the system-spec-kit package root from workspace markers or package metadata. */

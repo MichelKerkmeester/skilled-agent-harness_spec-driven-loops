@@ -48,18 +48,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Three changes close the bypass.
 
-### [Feature Name]
+`vitest.config.ts` at the skill root now declares the same `setupFiles` as the mcp-server config. It already globbed `mcp-server/tests/**` while declaring no setup at all, so a run started from `scripts/` — which resolves upward to this config — loaded no isolation guard.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`shared/paths.ts` gained a fail-closed refusal. In a test context (`VITEST`, `NODE_ENV=test`, or `SPECKIT_TEST`) a resolution that lands on the production database directory now throws a named `ProductionDatabaseResolutionError` instead of silently falling back. The comparison is realpath-based, which matters in a tree this symlinked, and test temporary directories are explicitly allowed so the guard cannot break legitimate isolation.
 
-### Files Changed
+`mcp-server/tests/production-db-isolation.vitest.ts` carries three tests: a throwaway directory resolves under the system temp root, the resolver fails closed with the named error when a test context targets production, and a vitest config that globs the mcp-server tests without the isolation setup is detected as drift.
 
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+The guard is gated to test context rather than resolver-wide, which settles the phase's open question in favour of the narrower blast radius: production callers see no behavioural change.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -85,9 +82,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-| Check | Result |
-|-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+Negative control, before the fix: a `scripts/`-rooted run resolved `mcp-server/database` — the production directory, ~12.9 GB and held open by a live daemon. After the fix the same scenario raises `ProductionDatabaseResolutionError` and exits non-zero.
+
+Resolution checks from all three working directories — `scripts/`, `mcp-server/`, and the skill root — each resolved a throwaway directory under the system temp root. No database handle was opened at any point; the assertions are on the resolved path only.
+
+The drift check was proven non-vacuous rather than assumed: reverting only the config fix makes it fail and name the unguarded config, and restoring the fix makes it pass again. Test file result: 3 passed, 253ms.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +94,9 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+No full-suite baseline was taken. Roughly 56 tests fail for reasons unrelated to isolation, and the suite has hung repeatedly — bounding that is the next-but-one phase's scope, so a suite delta was deliberately excluded from this phase's acceptance rather than left as an unmet criterion.
+
+Packet validation could not run inside the worktree: the generated `mcp-server/dist` imports a `@spec-kit/shared` path that does not resolve there. Generated artifacts sit outside this phase's frozen file scope, so no rebuild was attempted; validation belongs on the integration branch.
 <!-- /ANCHOR:limitations -->
 
 ---

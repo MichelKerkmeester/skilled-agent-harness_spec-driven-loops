@@ -104,7 +104,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet scaffolded and authored | Done | 5 folders, `validate.sh --strict` RESULT: PASSED, Errors: 0 |
-| 001-production-db-isolation | Pending | — |
+| 001-production-db-isolation | Done | guard reachable from all three entry points; drift check proven non-vacuous |
 | 002-orphan-daemon-reaping | Pending | — |
 | 003-test-hang-containment | Pending | — |
 | 004-live-follow-log-hygiene | Pending | — |

@@ -79,9 +79,10 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase authored and validated | Done | `validate.sh --strict` RESULT: PASSED, Errors: 0 |
-| Negative control captured | Pending | — |
-| Configs reconciled | Pending | — |
-| Resolver fails closed | Pending | — |
+| Implementation | Done | 3 files changed; 3 tests pass; all three entry points resolve a throwaway dir |
+| Negative control captured | Done | pre-fix `scripts/` run resolved the production dir |
+| Configs reconciled | Done | root config shares the mcp-server `setupFiles` |
+| Resolver fails closed | Done | `ProductionDatabaseResolutionError`; drift check proven non-vacuous |
 
 ### Deviations and findings
 
