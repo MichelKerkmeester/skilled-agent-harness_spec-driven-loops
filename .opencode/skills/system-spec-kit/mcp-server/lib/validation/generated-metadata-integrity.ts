@@ -163,9 +163,13 @@ function assertSourceFingerprint(
   // across generations would fail thousands of untouched packets and force a repo-wide
   // repair before anything validated again, so a stale generation is skipped here and
   // refreshed by the next save or repair.
+  // Only an OLDER generation is skipped. Treating any difference as a skip let a
+  // marker nobody recognizes - a forged one, or a typo - switch drift detection
+  // off for that packet permanently and silently. A newer marker is compared
+  // like any other: reporting a mismatch is recoverable, staying quiet is not.
   const rawDocset = derived ? derived.source_fingerprint_docset : undefined;
-  const storedDocset = typeof rawDocset === 'number' ? rawDocset : null;
-  if (storedDocset !== SOURCE_FINGERPRINT_DOCSET) {
+  const storedDocset = typeof rawDocset === 'number' && Number.isInteger(rawDocset) ? rawDocset : null;
+  if (storedDocset === null || storedDocset < SOURCE_FINGERPRINT_DOCSET) {
     return;
   }
 

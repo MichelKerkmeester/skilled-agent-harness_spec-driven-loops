@@ -1,0 +1,628 @@
+{
+  "sessionId": "fanout-luna-xhigh-1788073473072-dysoga",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "timestamp": "2026-08-30T07:47:10.777Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "P1-001",
+      "severity": "P1",
+      "title": "Current-generation fingerprints omit acceptance criteria from the hashed source set",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
+      "line": 52,
+      "description": "The current-generation source fingerprint does not detect edits to acceptance-criteria.md.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The parser collection is the source for computeSourceFingerprintForFolder and the strict validator has no separate acceptance-criteria digest check.",
+      "affectedSurfaceHints": [
+        "graph metadata producer",
+        "generated metadata integrity consumer",
+        "acceptance-criteria.md contract",
+        "current-generation drift tests"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-002",
+      "severity": "P1",
+      "title": "Resume path confinement is lexical and follows in-tree symlinks to external packets",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts",
+      "line": 895,
+      "description": "A symlink under an allowed specs root can redirect resume reads outside the workspace.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Both explicit/fallback folder resolution and phase-child pointer resolution were reread; each returns or propagates a non-canonical path after only lexical root checks, and subsequent resume reads are rooted from it.",
+      "affectedSurfaceHints": [
+        "resume ladder",
+        "phase-parent pointer",
+        "findSpecDocuments read path",
+        "workspace specs roots"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-003",
+      "severity": "P1",
+      "title": "Graph metadata write guard accepts external paths merely containing a specs segment",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts",
+      "line": 63,
+      "description": "Graph metadata refresh/write can write outside supported workspace roots when an external path contains a specs segment.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The classifier has no workspace/root parameter or filesystem-root comparison, while both graph write and refresh paths rely on it after realpath.",
+      "affectedSurfaceHints": [
+        "spec-doc path classifier",
+        "graph metadata refresh",
+        "atomic metadata writer",
+        "API callers supplying folder paths"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-004",
+      "severity": "P1",
+      "title": "Unknown future fingerprint generations silently disable the integrity mismatch check",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/generated-metadata-integrity.ts",
+      "line": 161,
+      "description": "A future positive fingerprint-generation marker suppresses current-generation digest mismatch reporting.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The early return is unconditional for non-current values and the schema has no known-generation set or upper bound; the parser persists the current marker at graph-metadata-parser.ts:1471-1474.",
+      "affectedSurfaceHints": [
+        "generated metadata integrity validator",
+        "fingerprint generation schema",
+        "strict validation gate",
+        "future-generation compatibility tests"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-005",
+      "severity": "P1",
+      "title": "The verification checklist claims closure while a required P1 item is explicitly deferred without approval",
+      "file": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md",
+      "line": null,
+      "description": "The packet cannot truthfully claim a complete verification checklist while CHK-FIX-006 is unchecked because its protocol requires every P1 item to be complete or user-approved.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "The protocol, unchecked item, summary, and closure rows were directly compared; no packet-local approval or exception is recorded.",
+      "affectedSurfaceHints": [
+        "tasks.md verification protocol",
+        "CHK-FIX-006",
+        "acceptance-criteria.md closure",
+        "implementation-summary.md verification"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-006",
+      "severity": "P1",
+      "title": "AC-007 does not provide evidence for the full rules/server/scripts scope named by REQ-005",
+      "file": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/acceptance-criteria.md",
+      "line": null,
+      "description": "AC-007 is marked Met without evidence covering all producer/consumer categories named by REQ-005.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "The normative requirement, criterion, task evidence, and implementation-summary scope were directly compared; no named server-module or non-rule-script result is retained.",
+      "affectedSurfaceHints": [
+        "REQ-005",
+        "AC-007 verification",
+        "scripts/rules",
+        "mcp-server modules",
+        "scripts consumers"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P1-007",
+      "severity": "P1",
+      "title": "Fingerprint-generation coverage is claimed in the task matrix but absent from the cited test surface",
+      "file": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md",
+      "line": null,
+      "description": "The packet's retained test evidence proves the fingerprint-generation axis and AC-003/AC-004 behavior.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "The cited shell suite was read end-to-end; the exact fingerprint producer and validator are separate surfaces and are not invoked by that suite.",
+      "affectedSurfaceHints": [
+        "CHK-FIX-005 test matrix",
+        "AC-003/AC-004",
+        "graph metadata fingerprint producer",
+        "generated metadata integrity consumer",
+        "generation fixtures"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-001",
+      "severity": "P2",
+      "title": "Repair writes have a scan-to-write symlink race",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs",
+      "line": 90,
+      "description": "Static discovery rejects symlink entries, but the non-dry-run loop later copies and writes the previously discovered pathname without inode/type revalidation or a no-follow boundary.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "graphFiles filters with Dirent.isFile during discovery; the later write loop performs no canonical revalidation before copyFileSync/writeFileSync.",
+      "affectedSurfaceHints": [
+        "repair graph metadata",
+        "non-dry-run write loop",
+        "symlink race protection"
+      ],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "P2-002",
+      "severity": "P2",
+      "title": "AC-001 and T004 cite the wrong upgrade-level location for the producer evidence",
+      "file": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/acceptance-criteria.md",
+      "line": null,
+      "description": "AC-001 and T004 cite upgrade-level.sh:798, while the current Level 1 to Level 2 acceptance-criteria creation block is upgrade-level.sh:729-740.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": null,
+      "scopeProof": "The packet rows and current producer block were directly reread; this is a stale citation rather than a producer defect.",
+      "affectedSurfaceHints": [
+        "AC-001",
+        "T004",
+        "upgrade-level.sh producer block"
+      ],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (iteration summary)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": false
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 7,
+    "P2": 2
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.5675675676,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "contract_boundary",
+      "cross_consumer",
+      "evidence_matrix",
+      "generation_skip",
+      "path_confinement",
+      "repair_write_boundary",
+      "stale_citation",
+      "state_transition",
+      "symlink_handling",
+      "test_isolation"
+    ],
+    "ruledOut": [
+      "historical checklist taxonomy as live producer",
+      "prior acceptance-criteria fingerprint omission as a duplicate",
+      "prior security path-boundary findings as duplicate",
+      "prior source-level fingerprint omission as duplicate",
+      "sibling checklist level heuristic hypothesis",
+      "stale-test-surface hypotheses",
+      "static repair symlink traversal",
+      "substring path heuristic hypothesis"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "state_transition": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "contract_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          3
+        ]
+      },
+      "cross_consumer": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "stale-test-surface hypotheses": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "substring path heuristic hypothesis": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "sibling checklist level heuristic hypothesis": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "hostile environment and global-state variants": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "code graph unavailable": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "path_confinement": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "symlink_handling": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "generation_skip": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "repair_write_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "static repair symlink traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "prior acceptance-criteria fingerprint omission as a duplicate": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "hostile concurrent process behavior beyond the repair race": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "test_isolation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "evidence_matrix": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "prior source-level fingerprint omission as duplicate": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "prior security path-boundary findings as duplicate": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "historical checklist taxonomy as live producer": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "maintainability-only documentation polish beyond traceability": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_citation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "contract_boundary",
+      "cross_consumer",
+      "test_isolation",
+      "evidence_matrix"
+    ],
+    "covered": [
+      "contract_boundary",
+      "cross_consumer",
+      "test_isolation",
+      "evidence_matrix"
+    ],
+    "ruledOut": [
+      "prior source-level fingerprint omission as duplicate",
+      "prior security path-boundary findings as duplicate",
+      "historical checklist taxonomy as live producer"
+    ],
+    "deferred": [
+      "maintainability-only documentation polish beyond traceability"
+    ],
+    "blocked": [
+      "code graph unavailable"
+    ],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

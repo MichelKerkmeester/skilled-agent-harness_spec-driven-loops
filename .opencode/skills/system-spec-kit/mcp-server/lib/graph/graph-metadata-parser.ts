@@ -53,6 +53,8 @@ const CANONICAL_PACKET_DOCS = [
   'spec.md',
   'plan.md',
   'tasks.md',
+  'acceptance-criteria.md',
+  'goal.md',
   'decision-record.md',
   'implementation-summary.md',
   path.join('research', 'research.md'),
@@ -735,8 +737,10 @@ function projectDocForFingerprint(relativePath: string, content: string): [strin
  *
  * 2: the standalone verification checklist left the set; the merged tasks document
  *    carries its content.
+ * 3: the acceptance-criteria and goal documents joined it - both decide packet
+ *    state, and an unhashed document is an edit nobody detects.
  */
-export const SOURCE_FINGERPRINT_DOCSET = 2;
+export const SOURCE_FINGERPRINT_DOCSET = 3;
 
 export function computeSourceFingerprintFromDocs(
   docs: Array<{ relativePath: string; content: string }>,

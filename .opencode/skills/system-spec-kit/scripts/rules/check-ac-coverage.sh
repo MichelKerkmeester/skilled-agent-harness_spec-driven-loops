@@ -6,10 +6,17 @@ _ac_lower() {
     printf '%s' "$1" | tr '[:upper:]' '[:lower:]'
 }
 
+# Only an explicit falsey value turns the gate off. Treating every unrecognized
+# value as "off" meant a typo silently disabled the check, which is the failure
+# an enable-flag should never have: a mistake should leave the gate running, not
+# quietly remove it.
 _ac_enabled() {
     local value
     value="$(_ac_lower "${SPECKIT_AC_COVERAGE:-true}")"
-    [[ "$value" == "true" || "$value" == "1" || "$value" == "yes" || "$value" == "on" ]]
+    case "$value" in
+        false|0|no|off) return 1 ;;
+        *) return 0 ;;
+    esac
 }
 
 _ac_numeric_level() {

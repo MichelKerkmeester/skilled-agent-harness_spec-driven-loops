@@ -164,6 +164,55 @@ citation is gone.
 One failure remains in the wider suite - a working-memory and attention-decay
 export contract - which reproduces on clean HEAD and has no connection to this
 work.
+
+### Second review pass (independent executor)
+
+A further 3 iterations ran on a different vendor and model family (`cli-pi`,
+`gpt-5.6-luna` at xhigh reasoning, forced depth, `stopReason:
+maxIterationsReached`) against the already-remediated packet. Verdict
+CONDITIONAL: 0 P0, 7 P1, 2 P2 — a largely different finding set from the first
+pass, which is the point of running a second one.
+
+Two findings landed on the fingerprint work this packet introduced, and both
+were reproduced before being fixed:
+
+| ID | Defect | Proof | Fix |
+|----|--------|-------|-----|
+| P1-004 | The generation check skipped on *any* non-current marker, so a forged or mistyped value switched drift detection off for that packet permanently and silently | Real drift reported 1; the same drift with `source_fingerprint_docset: 99` reported 0 | Only an older or absent generation skips; equal and newer both compare |
+| P1-001 | The hashed source set never included the acceptance-criteria document, so edits to the document that decides closure were undetectable | Editing it reported 0 mismatches | Added to the set alongside the goal document; generation bumped to 3 |
+
+Bumping the generation is exactly the fleet-invalidating change the marker
+exists to absorb, and it behaved: a 12-packet sample still carrying
+generation-2 digests reports 0 mismatches with no repair run.
+
+`scripts/tests/fingerprint-docset-generation.sh` now pins both failure
+directions — too strict (comparing across generations, which fails every
+untouched packet) and too loose (skipping on an unrecognized marker). 6/6.
+
+The deferred hostile-environment variant was then actually run rather than left
+deferred, and it found a third defect of the same family: an unrecognized value
+for the coverage enable-flag silently disabled the gate. A typo now leaves the
+gate running; only an explicit falsey value turns it off.
+
+Also corrected: a line citation that drifted when the producer block moved, and
+an evidence claim that named a narrower sweep than the requirement it satisfied.
+
+### Carried forward, not fixed here
+
+Three path-containment findings are real, reproduced, and pre-existing — none
+introduced by this retirement:
+
+| ID | Finding | Evidence |
+|----|---------|----------|
+| P1-003 | The specs-scoped path test accepts any path containing a `specs` segment | `/tmp/evil/specs/x.md` and `../../elsewhere/specs/y.md` both pass |
+| P1-002 | Lexical containment can accept an in-root symlink redirecting resume reads outside the workspace | `mcp-server/lib/resume/resume-ladder.ts` |
+| P2-001 | Repair discovery rejects symlinks but the later write path has a scan-to-write gap | `mcp-server/scripts/repair-graph-metadata.mjs` |
+
+They are one coherent problem — proving workspace membership rather than
+pattern-matching a path — across indexing, resume and repair. Fixing that inside
+a document-retirement packet would be scope drift with its own blast radius, so
+it is recorded here with reproduction rather than folded in.
+
 <!-- /ANCHOR:review -->
 
 ---
