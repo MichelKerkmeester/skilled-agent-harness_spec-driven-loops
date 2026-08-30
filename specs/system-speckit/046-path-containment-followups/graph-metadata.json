@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/046-path-containment-followups",
+  "spec_folder": "system-speckit/046-path-containment-followups",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "path containment followups",
+      "repair scan to write gap",
+      "directory swap symlink",
+      "containment branch subsumed",
+      "path containment plan",
+      "handle identity check",
+      "tasks",
+      "name",
+      "template",
+      "tasks core",
+      "acceptance criteria",
+      "closure gate"
+    ],
+    "key_topics": [
+      "path",
+      "containment",
+      "followups",
+      "repair",
+      "scan",
+      "write",
+      "gap",
+      "directory",
+      "swap",
+      "symlink",
+      "branch",
+      "subsumed"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/repair-write-symlink-refusal.sh",
+      ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-write-containment.sh",
+      "mcp-server/scripts/repair-graph-metadata.mjs",
+      "scripts/tests/repair-write-symlink-refusal.sh",
+      "mcp-server/lib/graph/graph-metadata-parser.ts",
+      "scripts/tests/graph-metadata-write-containment.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "repair-graph-metadata.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "repair-write-symlink-refusal.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/repair-write-symlink-refusal.sh",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-write-containment.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/graph-metadata-write-containment.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Containment Follow",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "opposite",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two packets closed on the same idea — prove membership rather than match a shape — and each left a",
+    "created_at": "2026-08-30T14:17:45Z",
+    "last_save_at": "2026-08-30T14:20:01.724Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e4bf835b873c35c362c8fe28b9beef5ef425a46b87585888bdce1b6ba761feff",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ddebe16dd2bfc8ba4f7c33770a68e2e4c8bd9c5787a50e42f55b339f4d009254",
+      "plan.md": "d73e95dce0bcc13d02345ef7ec1f085d40f40fb7fdfdf7c7dd9b49a8402a319a",
+      "tasks.md": "f002b502ae6b6bcfc8ac7dc38d75f500ee30634efe15ae42df199901c3948f0c",
+      "implementation-summary.md": "4fc42163d6b65deaf743087d38815e356ad27f0ea0e1522e021b55e3b1f16337"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
