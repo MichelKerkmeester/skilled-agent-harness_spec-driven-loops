@@ -579,9 +579,13 @@ function renderedTemplate(level: SpecKitLevel, docName: string): string | null {
 // authored, template-backed spec docs; for every numbered level and phase
 // parents this set is identical to docsForLevel, so the filter is a no-op there.
 function authoredDocsForLevel(level: SpecKitLevel, folder: string): string[] {
-  return validationDocsForLevel(folder, level).filter((docName) =>
-    fs.existsSync(templatePathForName(templateNameForDoc(level, docName))),
-  );
+  return validationDocsForLevel(folder, level)
+    // A workflow loop writes these; the template exists for an author who wants
+    // it, but the artifact's shape was never the contract. The declaration was
+    // already honoured for addons — a required doc is no less free-form for
+    // being required.
+    .filter((docName) => !FREEFORM_WORKFLOW_DOCS.has(docName))
+    .filter((docName) => fs.existsSync(templatePathForName(templateNameForDoc(level, docName))));
 }
 
 function normalizeHeader(raw: string): string {
@@ -677,6 +681,7 @@ function validateAnchorIntegrity(folder: string, level: SpecKitLevel): Validatio
   let checked = 0;
 
   for (const docName of validationDocsForLevel(folder, level)) {
+    if (FREEFORM_WORKFLOW_DOCS.has(docName)) continue;
     const actual = readIfExists(path.join(folder, docName));
     if (!actual) continue;
     // A document is expected to carry anchors only where its own template

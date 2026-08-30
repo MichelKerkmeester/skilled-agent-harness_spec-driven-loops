@@ -2422,12 +2422,12 @@
       "privatePreset": "research-record",
       "frontmatterMarkerLevel": 0,
       "requiredCoreDocs": [
-        "spec.md"
+        "spec.md",
+        "research/research.md"
       ],
       "requiredAddonDocs": [],
       "optionalAddonDocs": [],
       "lazyAddonDocs": [
-        "research/research.md",
         "handover.md",
         "before-after.md",
         "timeline.md",

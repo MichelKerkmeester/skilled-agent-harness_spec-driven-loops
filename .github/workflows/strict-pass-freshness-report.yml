@@ -1,0 +1,102 @@
+name: Strict Pass Freshness Report
+
+# Whole-corpus visibility, deliberately NOT a merge gate. The per-PR gate in
+# changed-packet-validation.yml catches what a change breaks; nothing else
+# notices a toolchain change that breaks packets no PR touched, which is the
+# failure this run exists to surface.
+#
+# It reports and does not block. The job it replaces carried continue-on-error
+# on the sweep and then tested the recorded outcome in a downstream job, so a
+# known-failure state reported success — a gate that cannot fail is worse than
+# no gate, because it is read as one.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 4 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  strict-pass-freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # The validator loads TypeScript rule modules that import across the
+      # mcp-server package, so installing only the scripts workspace leaves every
+      # one of those rules erroring — which reads as thousands of failing packets
+      # rather than as a missing toolchain.
+      - name: Install spec-kit dependencies
+        # Only the package root carries a lockfile; the server, shared project and
+        # scripts are workspaces of it, so the root install is what provisions all
+        # three. Installing a workspace directly fails for want of its own lockfile.
+        run: |
+          set -euo pipefail
+          npm --prefix .opencode/skills/system-spec-kit ci
+          ( cd .opencode/skills/system-spec-kit/shared && ../node_modules/.bin/tsc --build )
+          npm --prefix .opencode/skills/system-spec-kit/mcp-server run build
+          ( cd .opencode/skills/system-spec-kit/scripts && npm ci )
+
+      - name: Sweep the corpus
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p .strict-pass-freshness
+
+          # The leading ./ is load-bearing: node --import reads a bare path as a
+          # package name, so without it the loader never resolves and the sweep
+          # dies before it reads a single packet.
+          node --import ./.opencode/skills/system-spec-kit/scripts/node_modules/tsx/dist/loader.mjs \
+            .opencode/skills/system-spec-kit/scripts/sweep/strict-pass-freshness.ts \
+            --roots specs \
+            --format json > .strict-pass-freshness/report.json
+          sweep_status=$?
+
+          # A non-zero status because packets fail is the report, not an error.
+          # A report that will not parse means the sweep never ran, and that must
+          # fail loudly rather than publish an empty artifact that reads as clean.
+          if ! node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8"))' \
+                 .strict-pass-freshness/report.json 2>/dev/null; then
+            echo "::error::Sweep produced no readable report (exit $sweep_status); it did not run"
+            exit 1
+          fi
+
+          node -e '
+            const r = JSON.parse(require("fs").readFileSync(".strict-pass-freshness/report.json","utf8"));
+            const rows = r.results ?? [];
+            const by = rows.reduce((a,x) => (a[x.status] = (a[x.status] ?? 0) + 1, a), {});
+            console.log("packets swept:", rows.length);
+            for (const [k,v] of Object.entries(by)) console.log(`  ${k}: ${v}`);
+            const regressions = by.regression ?? 0;
+            if (regressions > 0) {
+              console.log("");
+              console.log(`::warning::${regressions} packet(s) regressed against the stored baseline`);
+              for (const x of rows.filter(y => y.status === "regression").slice(0, 25)) {
+                console.log(`  ${x.folder}: ${x.message}`);
+              }
+            }
+          '
+
+      # Reports only; the repair flag is deliberately absent. A gate that
+      # silently rewrote packets would erase the drift it exists to surface, and
+      # nobody would learn that a rename left records pointing at the old place.
+      - name: Derived-repair drift report
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          node .opencode/skills/system-spec-kit/scripts/spec/repair-derived.cjs --roots specs || true
+
+      - name: Publish the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: strict-pass-freshness-report-${{ github.run_id }}
+          path: .strict-pass-freshness/report.json
+          if-no-files-found: error

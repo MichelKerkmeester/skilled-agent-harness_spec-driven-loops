@@ -36,6 +36,7 @@ isolation-check.yml
 | `routing-registry-drift.yml` | Detects drift between routing registries and skill surfaces. |
 | `rule-canary-sync.yml` | Checks rule canaries against their source rules. |
 | `runtime-no-spec-import.yml` | Prevents runtime code from importing the mutable spec tree. |
+| `strict-pass-freshness-report.yml` | Weekly whole-corpus validation report; does not gate. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
 | `spec-root-resolution-matrix.yml` | Exercises spec-root resolution across its configured matrix. |
 
