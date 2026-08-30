@@ -27,7 +27,6 @@ const options = {
 };
 const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 // Every brief ends with this capsule and it is excluded from the advisor token cap.
-// The proof-over-appearance capsule rides the same always-delivered suffix.
 const DIRECTIVES_LABEL = '\nDirectives:';
 
 function expectedBrief(summary: string): string {

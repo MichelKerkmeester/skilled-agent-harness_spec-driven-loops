@@ -13,13 +13,13 @@ import promptAdvisor, {
 } from "../../../skills/system-skill-advisor/hooks/pi/prompt-advisor";
 
 // Mirrors the real advisor brief shape: a per-turn "Advisor: …" route line,
-// then the three constant directives under the "\nDirectives:" separator.
+// then the constant directive under the "\nDirectives:" separator.
 const HEAD = "Advisor: live; use sk-code 0.91/0.23 pass.";
 const DIRECTIVES =
   "\nDirectives:\n- comment-hygiene [HARD BLOCK]: never embed ids";
 const FULL = `${HEAD}${DIRECTIVES}`;
 // A brief whose directive text changed (e.g. a redeploy edited a directive).
-const FULL_V2 = `${HEAD}${DIRECTIVES.replace("lead with the result", "lead with the verdict")}`;
+const FULL_V2 = `${HEAD}${DIRECTIVES.replace("never embed ids", "never embed identifiers")}`;
 // Advisor-failure fallback: directives only, no advisor head to keep.
 const FALLBACK = "Directives:\n- comment-hygiene [HARD BLOCK]: never embed ids";
 

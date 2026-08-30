@@ -440,7 +440,7 @@ export function renderAdvisorBrief(
   return rendered;
 }
 
-/** Render the fallback steering directives (hygiene, governor, proof) retained when no advisor brief is available. */
+/** Render the fallback steering directive (hygiene) retained when no advisor brief is available. */
 export function renderAdvisorFallbackDirective(options: AdvisorBriefRenderOptions = {}): string {
   const rendered = DIRECTIVES_LABEL.slice(1) + HYGIENE_DIRECTIVE;
   observeAdvisorPolicy(rendered, options);

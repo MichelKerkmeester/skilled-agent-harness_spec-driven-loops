@@ -274,9 +274,9 @@ describe('shadow delivery behavioral negative controls', () => {
     const result = advisorResult();
     const baseline = emittedResponse(result);
     const machine = new DeliveryStateMachine();
-    const missingGovernor = baseline.replace(HYGIENE_DIRECTIVE, '');
-    seedObservedPolicyDeliveries(missingGovernor, 'missing-directive', machine);
-    observeShadowDelivery(missingGovernor, {
+    const missingDirective = baseline.replace(HYGIENE_DIRECTIVE, '');
+    seedObservedPolicyDeliveries(missingDirective, 'missing-directive', machine);
+    observeShadowDelivery(missingDirective, {
       sessionId: 'missing-directive',
       sessionIdentityConfirmed: true,
       stateMachine: machine,

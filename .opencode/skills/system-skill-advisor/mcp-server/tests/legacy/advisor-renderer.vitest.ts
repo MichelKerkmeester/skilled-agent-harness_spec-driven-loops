@@ -13,9 +13,8 @@ import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 
 const fixturesDir = join(import.meta.dirname, 'advisor-fixtures');
 const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
-// Every brief now ends with the always-delivered governor capsule that
+// Every brief ends with the always-delivered hygiene capsule that
 // renderAdvisorBrief appends after the capped advisor portion (lib/render.ts).
-// The proof-over-appearance capsule rides the same always-delivered suffix.
 const DIRECTIVES_LABEL = '\nDirectives:';
 
 function expectedBrief(summary: string): string {
