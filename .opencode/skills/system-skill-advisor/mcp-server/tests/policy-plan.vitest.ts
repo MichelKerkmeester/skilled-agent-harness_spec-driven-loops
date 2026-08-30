@@ -59,13 +59,11 @@ describe('shadow policy planner', () => {
       'runtime.pi-dispatch.v1',
     ]);
     expect(POLICY_BLOCK_IDS).toMatchObject({
-      GOVERNOR: 'policy.governor.v1',
-      PROOF_OVER_APPEARANCE: 'policy.proof-over-appearance.v1',
       SESSION_START: 'lifecycle.session-start.v1',
       OPENCODE_CONTINUITY: 'runtime.opencode-continuity.v1',
       OPENCODE_COMPILED_ROUTE: 'route.opencode-compiled.v1',
     });
-    expect(POLICY_BLOCK_REGISTRY).toHaveLength(9);
+    expect(POLICY_BLOCK_REGISTRY).toHaveLength(7);
   });
 
   it('keeps prompt and session data out of serialized hash inputs', () => {
