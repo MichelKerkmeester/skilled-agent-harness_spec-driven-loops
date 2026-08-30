@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Flag-routing fix for cross-encoder HTTP local provider [template:level_1/tasks.md]"
+title: "...al-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder/tasks]"
 description: "Task breakdown for the flag precedence fix."
 trigger_phrases:
   - "001 tasks flag routing"

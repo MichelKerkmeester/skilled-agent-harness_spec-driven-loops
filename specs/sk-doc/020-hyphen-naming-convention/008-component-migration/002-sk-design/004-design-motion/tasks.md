@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Design-motion (020 phase 004)"
+title: "Tasks: Design-motion [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion/tasks]"
 description: "Task breakdown for Design-motion in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-motion tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 design-motion checklist"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion"
 ---
 # Tasks: Design-motion (020 phase 004)
 

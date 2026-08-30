@@ -1,5 +1,5 @@
 ---
-title: "Tasks: code-quality filesystem names (020 phase 008/003)"
+title: "Tasks: code-quality [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality/tasks]"
 description: "Execution tasks for the code-quality filesystem rename and quality-mode path closure."
 trigger_phrases:
   - "code-quality naming tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "quality checklist path tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality"
 ---
-
 # Tasks: code-quality filesystem names
 
 <!-- SPECKIT_LEVEL: 2 -->

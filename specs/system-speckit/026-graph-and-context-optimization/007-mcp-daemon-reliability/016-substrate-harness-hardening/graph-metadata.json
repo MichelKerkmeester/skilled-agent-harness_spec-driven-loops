@@ -13,12 +13,12 @@
     "trigger_phrases": [
       "substrate harness hardening",
       "pid recycling skip",
-      "liveOwnerForService identity",
+      "liveownerforservice identity",
       "maintainer mode leak",
       "spec core",
       "substrate harness plan",
       "harness hardening implementation",
-      "processStartedAt",
+      "processstartedat",
       "plan core",
       "substrate harness tasks",
       "harness hardening tasks",
@@ -41,21 +41,20 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "research/research.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md",
+      "implementation-summary.md",
+      "research/research.md",
       "research/iterations/iteration-001.md",
-      "research/resource-map.md",
-      "implementation-summary.md"
+      "research/resource-map.md"
     ],
     "entities": [
       {
-        "name": "research.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "research/research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -71,27 +70,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -101,13 +82,25 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Authored Level",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,31 +188,36 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The substrate stress harness reclassifies a connection failure as a tolerated SKIP whenever a live PID is found in a daemon's single-writer lease",
     "created_at": "2026-05-31T10:01:17.891Z",
-    "last_save_at": "2026-08-28T15:59:57.002Z",
+    "last_save_at": "2026-08-30T07:16:34.760Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ccaa45363864d711ffc857abc72d1577ee864f61dcc3d0c882b3dadabae8a510",
+    "source_fingerprint": "sha256:05c9df7cf1c64cb5dabf6c7f3c6524df6a129d932bfc0c166e536ccd1e2eea06",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "5a369b8332f75f6c15aa1126a23b8d3865372eee71461f0a7190b97a5b0e86c0",
-      "plan.md": "fc5c2670daec6a0858b6c9f2bfc13dad8e2d53db8960add03ac2b73bcea35928",
-      "tasks.md": "f0f1c2286e0bc6d96a62e63f7c9791067a10f5cd6e198cc693cfe9c43f9e8c76",
-      "checklist.md": "c35a3530a310dd33ed30a951ac5a5c8cfe64e8e8ebbfac870347909ca40bef56",
-      "decision-record.md": "874d6ba58c244714da3577ebd94de66fbc1b0590bc294181fb8bd48c82575e71",
-      "implementation-summary.md": "a4a0f8665a4de9f62928e1dae8fa352f1c3e54e0ef952bc28fbdda114c2f8fbf",
-      "research/research.md": "11b38d24ec611d377f36dc430ed149c7ecce2ef78131100818c1a1037a6b8057"
+      "spec.md": "02ef831b5acd51060318480afb3692199de32b3c1b7c193999ef282e8d3c56e9",
+      "plan.md": "52d03bde0f71d9ffe76879cb7b881291b0ab26ccf204e53ca20adf208e3b49a2",
+      "tasks.md": "65b841ece97b13c1766613926a465491ceb0c8e16cb392f6cb46e89fe5388bb5",
+      "decision-record.md": "b82fae10ced53c649f5be42e38c6bacb1f281dcbe9c5a50ee5a8451fd6f7f3ed",
+      "implementation-summary.md": "b962cc1c9b0f7e4208bea0e71497f6a3038c106ed53388eb52dcedb6200587e0",
+      "research/research.md": "321d46f563acdc168b2322b143f142888d1df079ed0c7f209b051e4b0dd511f4"
     },
     "last_active_child_id": null,
     "last_active_at": null

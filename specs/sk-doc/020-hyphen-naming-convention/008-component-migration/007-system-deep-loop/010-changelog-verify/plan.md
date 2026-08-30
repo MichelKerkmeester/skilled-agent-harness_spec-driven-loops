@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-deep-loop changelog verification (020 phase 007/010)"
+title: "Implementat [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify/plan]"
 description: "Plan for comparing the system-deep-loop changelog and version surfaces with phases 001-009, recording discrepancies for the final gate, and keeping verification non-mutating with respect to the rename."
 trigger_phrases:
   - "system-deep-loop changelog implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "changelog version verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify"
 ---
 # Implementation Plan: System-deep-loop changelog verification
 

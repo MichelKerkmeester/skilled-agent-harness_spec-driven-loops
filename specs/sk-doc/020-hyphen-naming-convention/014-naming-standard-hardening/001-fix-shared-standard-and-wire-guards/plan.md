@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Fix the Shared Naming Standard and Wire the Kebab Guards"
+title: "Impleme [sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/001-fix-shared-standard-and-wire-guards/plan]"
 description: "Reconcile core-standards.md §2/§4/§5 to the kebab canon, then run check_no_new_snake_case.py and its unit tests in a CI-only gate for pull requests and release-branch pushes."
 trigger_phrases:
   - "core-standards kebab plan"

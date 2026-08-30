@@ -19,10 +19,7 @@
       "020 phase 014 agents plan",
       "agents surface rollup gate tasks",
       "agents naming gate tasks",
-      "020 phase 014 agents tasks",
-      "agents surface rollup gate checklist",
-      "agents naming gate checklist",
-      "020 phase 014 agents checklist"
+      "020 phase 014 agents tasks"
     ],
     "key_topics": [
       "agents",
@@ -34,17 +31,16 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
       "subtree",
-      "needs"
+      "needs",
+      "one"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -166,49 +156,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The agents subtree needs one blocking rollup that aggregates the 13 definition audits and proves the whole runtime naming surface has no in-scope snake_case filesystem name outside the program exemption set.",
     "created_at": "2026-07-14T15:18:48Z",
-    "last_save_at": "2026-08-29T10:00:59.982Z",
+    "last_save_at": "2026-08-30T07:20:10.369Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:2de70c9ed6102f0eca71e7a970a45c4a6a6016ef2c8554527dc30a61370fc155",
+    "source_fingerprint": "sha256:8423ef80d418499651801e6f771f2a094541e466b9932323909edec4121c0142",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "0530a1105c81534395d0f78a79034063065c350d06f258d135d11091a89c5518",
-      "plan.md": "7a389d7750620d22f381367ef928b06a1f592ef8403e067a3c07534d47923c0d",
-      "tasks.md": "9511f59fd465b846b67ae90920aff89cba52e3b1253f160f954b564cf0a4ced4",
-      "checklist.md": "5e3e0b730716dd4602c6b0f055afe66c814271ec3abef6a8c57b7686a0192eee"
+      "spec.md": "ef0e0a78bbe56efd01297e3b18690baf4158ff135c31eb466000102f18782a86",
+      "plan.md": "90c26599ba9566aab580dee8313ec4e47d452698c5d20d1a392ff5afc6d1025a",
+      "tasks.md": "7f927fd18b7a3431413f29043564b46ba211762b0bf416bf701c1c7a1d4a5286"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -22,7 +22,7 @@
       "phase 9 tasks",
       "system deep loop readme tasks",
       "deep loop readme rewrite tasks",
-      "phase 9 checklist"
+      "phase 9 implementation summary"
     ],
     "key_topics": [
       "system",
@@ -36,11 +36,15 @@
       "spec",
       "plan",
       "tasks",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/README.md",
       ".opencode/skills/system-deep-loop/changelog/v2.1.0.0.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
@@ -48,17 +52,35 @@
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/checklist.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
       "SKILL.md",
-      "manual-testing-playbook/manual-testing-playbook.md",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "implementation-summary.md"
+      "manual-testing-playbook/manual-testing-playbook.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "README.md",
         "kind": "doc",
@@ -84,39 +106,9 @@
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "manual-testing-playbook.md",
         "kind": "doc",
         "path": "manual-testing-playbook/manual-testing-playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -202,27 +194,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The system-deep-loop skill README still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:38.067Z",
-    "last_save_at": "2026-08-04T13:37:56.531Z",
+    "last_save_at": "2026-08-30T07:20:21.176Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e22fdcf7cf0bb8f3187f395cdfe00270cab23847b125fda583c1aa6fcb84e857",
+    "source_fingerprint": "sha256:abbe8fb9535bcba773937aac5a0432e4550b39dc5cdeaa7fc9d9b54ed40d3600",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f938d33ae7786a0815cde43e923c719b14fe1c257708f53048d2cc9fd924f26e",
-      "plan.md": "6beccb4bd7d075a798ea738a42c28c0856a37ee6a6ea200c2bf27a364b09f250",
-      "tasks.md": "12e7cef62129989b1ce8cc282f01edd33c1c9bb8cecb1a25a4422fd9489a62ef",
-      "checklist.md": "2c064929bb96d52c5a7c7d2fddb30b43a9bcf9175d15fb7adb0078740a8d0135",
-      "implementation-summary.md": "e506c11310f27b887a418845e5370e761ba7e6f3cb2dd0acb2e430cc4a2a4a55"
+      "spec.md": "cb02455139e1e9a07be0579f2dd4c4ea4ac819d44b441131bdb0164be681f577",
+      "plan.md": "7a2fc3bd7fbb163a00eea0ae2a750e75b49a6682332a47f4a41742f6981e8032",
+      "tasks.md": "3e826d0f9df34ab543dac5a11d12f32304fc736296b970fc8d0a9a58e1833afe",
+      "implementation-summary.md": "17162227bcc1a59c2e8bea2381343ee2999500b5e40083e55c5bcf0ab34e4dde"
     },
     "last_active_child_id": null,
     "last_active_at": null

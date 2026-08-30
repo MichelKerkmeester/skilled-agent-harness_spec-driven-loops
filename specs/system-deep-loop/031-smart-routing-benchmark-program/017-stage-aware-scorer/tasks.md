@@ -1,5 +1,5 @@
 ---
-title: "Task Breakdown: Stage-aware Lane C skill-benchmark scorer"
+title: "Task Breakdown: Stage-aware Lane C [system-deep-loop/031-smart-routing-benchmark-program/017-stage-aware-scorer/tasks]"
 description: "Phased tasks to wire the consume side of benchmark scenario stages under a score-preserving invariant."
 trigger_phrases:
   - "tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 029 sk-create-manual-testing-playbook README revisit"
+title: "...6-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/implementation-summary]"
 description: "Closeout record for the manual-testing-playbook README purpose-first rewrite, version bump, changelog entry and validation."
 trigger_phrases:
   - "phase 029 implementation summary"

@@ -18,8 +18,6 @@
       "hyphen naming phase 000 implementation plan",
       "worktree, baseline, and census tasks",
       "hyphen naming phase 000 tasks",
-      "worktree, baseline, and census checklist",
-      "hyphen naming phase 000 checklist",
       "hyphen naming phase 000 summary",
       "worktree baseline census summary",
       "020 baseline implementation summary"
@@ -35,8 +33,8 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "summary"
+      "summary",
+      "migration"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "shared/package.json",
       "scripts/package.json",
@@ -56,8 +53,7 @@
       "baseline/gates/install-summary.md",
       "baseline/gates/realpath-proof.txt",
       "baseline/gates/reproducible-install.md",
-      "baseline/gates/lane-c-baseline.json",
-      "baseline/census/census.json"
+      "baseline/gates/lane-c-baseline.json"
     ],
     "entities": [
       {
@@ -76,12 +72,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -130,12 +120,6 @@
         "name": "lane-c-baseline.json",
         "kind": "config",
         "path": "baseline/gates/lane-c-baseline.json",
-        "source": "derived"
-      },
-      {
-        "name": "census.json",
-        "kind": "config",
-        "path": "baseline/census/census.json",
         "source": "derived"
       },
       {
@@ -203,27 +187,38 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The migration must be reproducible and isolated from the actively-raced main checkout. Before any change, the program pins an immutable BASE SHA, establishes a dedicated worktree with a fresh deterministic dependency install (never a symlink to the raced tree), and captures a complete baseline the later phases prove th",
     "created_at": "2026-07-13T14:34:05.514Z",
-    "last_save_at": "2026-08-29T13:10:03.392Z",
+    "last_save_at": "2026-08-30T07:19:08.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8f2311cbab1e4f2671514ee9ab66364272dee7ce503be24e8a34c8f306cede57",
+    "source_fingerprint": "sha256:f2f3c8aa20f7cf579237d7cff74253507637b9077e51cfd0f624d6ba96d6b890",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "3e81e1589a51b6781574913546062af3c034470c23e1ccdb03908a69dc072c9a",
-      "plan.md": "22ab488c5af3ae0d9b73d965d4193fc2693795f9355e81536bd7d677b25c6bb3",
-      "tasks.md": "eee08c886560b73b80eb15d70d984e873ebfe0eb43f327db8c303f0d2ca86e01",
-      "checklist.md": "f7a6015c6ef765ce8c452a833d49f18f2378cd09b53da55658d2806fcfc22b90",
-      "implementation-summary.md": "8d45033adc650aacf6cee7c8c6e971c6e33f6a73142ff23c1a809ce66de9b76d"
+      "spec.md": "e3fc2138f1df69fca6a6ecf1941daa32afa8c8db4ec29ad08e6a5a0d0f66d130",
+      "plan.md": "e16308ace1d517eefb1de7b977d157de92f3d73df615b3f24c253bf96e7cfb98",
+      "tasks.md": "fed28c131e421edfaf54c8f68f31d3cc1e72120d7c8f1db0f3ba592027b6e58e",
+      "implementation-summary.md": "a4de86501c424a820448e6ddaf950768ee963b89a62176648630316ba1ec0ff4"
     },
     "last_active_child_id": null,
     "last_active_at": null

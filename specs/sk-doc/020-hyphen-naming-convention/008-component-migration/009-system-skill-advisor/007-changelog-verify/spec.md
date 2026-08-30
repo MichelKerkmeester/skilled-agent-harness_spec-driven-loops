@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-skill-advisor changelog verification"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify/spec]"
 description: "Verify that the system-skill-advisor changelog records the completed filesystem rename set and the matching version bump. This is an evidence-only phase and performs no filesystem renames."
 trigger_phrases:
   - "system-skill-advisor changelog verification"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "skill version bump verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify"
@@ -28,8 +27,8 @@ _memory:
       - "The current changelog has versioned entries through v0.10.0; the execution owner chooses the next valid release version."
       - "The current SKILL.md and README expose different version strings, so verification must check the canonical version source and the release entry together."
       - "This phase verifies evidence only and does not perform renames or silently author a missing release entry."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

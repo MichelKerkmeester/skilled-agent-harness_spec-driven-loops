@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: References and assets (020 subtree 008 phase 006)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets/spec]"
 description: "The system-spec-kit reference and asset surfaces contain a broad set of underscore-bearing Markdown filenames, plus MCP documentation and curated benchmark report files. This phase renames permitted reference/asset files and updates links and pointers while keeping tool-mandated names, generated artifacts, Python files, keys, and frozen history within their exemptions."
 trigger_phrases:
   - "system-spec-kit references and assets"
@@ -9,7 +9,6 @@ trigger_phrases:
   - "kebab-case phase 006"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/006-references-and-assets"
@@ -22,8 +21,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

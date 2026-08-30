@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Manual testing playbook (020 subtree 008 phase 009)"
+title: "Task [sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook/tasks]"
 description: "The system-spec-kit manual_testing_playbook tree contains 440 underscore-bearing basenames: the root, 18 category directories, and 421 scenario or support files. This phase renames permitted playbook paths to kebab-case and closes every playbook link, index, runner, and path pointer while preserving scenario identity and the program exemption boundary."
 trigger_phrases:
   - "system-spec-kit manual testing playbook"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "manual testing phase 009"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/009-manual-testing-playbook"
@@ -21,8 +20,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 ---
-
 # Tasks: Manual testing playbook
 
 <!-- SPECKIT_LEVEL: 2 -->

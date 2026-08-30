@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: subagent-handoff workstream"
+title: "Feature Specification: subagent-handoff workstream [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/spec]"
 description: "Nested phase parent for strict fast-mode preference handoff from parent Pi sessions to child processes."
 trigger_phrases:
   - "subagent-handoff workstream"
   - "fast-mode environment handoff"
-  - "PI_FAST_MODE_W_SUBAGENT_SUPPORT"
+  - "pi_fast_mode_w_subagent_support"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

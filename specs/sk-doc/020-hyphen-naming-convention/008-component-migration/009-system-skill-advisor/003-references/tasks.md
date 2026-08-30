@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-skill-advisor references"
+title: "Tasks: syste [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references/tasks]"
 description: "Concrete tasks for the 15-file reference rename, path-only link repair, and navigation/reference verification."
 trigger_phrases:
   - "advisor references tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "reference link closure tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references"
@@ -22,8 +21,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "Reference directories remain unchanged; only files and path contexts move."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references"
 ---
-
 # Tasks: system-skill-advisor references
 
 <!-- SPECKIT_LEVEL: 2 -->

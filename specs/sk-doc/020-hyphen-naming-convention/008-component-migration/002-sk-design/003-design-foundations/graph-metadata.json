@@ -19,10 +19,7 @@
       "020 design-foundations tasks",
       "design-foundations tasks",
       "sk-design design-foundations execution",
-      "020 design-foundations checklist",
-      "design-foundations verification",
-      "sk-design design-foundations checklist",
-      "020 design-foundations gate"
+      "020 design-foundations checklist"
     ],
     "key_topics": [
       "design-foundations",
@@ -34,17 +31,16 @@
       "tasks",
       "execution",
       "checklist",
-      "verification",
-      "gate",
-      "mode"
+      "mode",
+      "contains",
+      "underscore-bearing"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -66,9 +62,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specific",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -172,43 +168,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The design-foundations mode contains underscore-bearing visual-system references and fixture directories, and its Python checker paths must remain executable under the exemption boundary.",
     "created_at": "2026-07-14T15:17:15Z",
-    "last_save_at": "2026-08-29T13:10:04.646Z",
+    "last_save_at": "2026-08-30T07:19:20.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:20940e75661a2a134141f79c76b3feeff8971a45312fde2795486cc66f14dcdc",
+    "source_fingerprint": "sha256:376d8cf8ee194a42d4b4f9618654c9dfbdf448b5982efa8c1a196f64e47a57c5",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "e7a84db73633f507b25a4d680f0b78254a24967ce09f341b44c7b532be6ab347",
-      "plan.md": "136065504f00cb7c270c6de891dced2d3eb6d5dbfd01dd34f6399eab97be1e56",
-      "tasks.md": "6b2f56ca39dd30b2ab716daefa8a75b36afbde149f5efa443e3ffc8fdb9d2ff6",
-      "checklist.md": "bdcf6031ca4a7100dcd415cd87095f1bb676994834dc7225b0cf493d8ef516ff"
+      "spec.md": "5229862e8aaec485d940fe6e52c8f301167d724d9d0b0d51753d9482c3704cef",
+      "plan.md": "842dc16995706718193f5b015c17fd7b25452e55b4771d22e6bb52672044ede8",
+      "tasks.md": "4e73acf9cf95f767b29609efa4f237c348106cfd16c9fdd332d98e8253a8cc07"
     },
     "last_active_child_id": null,
     "last_active_at": null

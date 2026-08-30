@@ -1,3 +1,13 @@
+---
+title: "C [system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/research/lineages/glm52-max/research]"
+description: "The create-command authoring canon is richer than its validator: the canon states many rules (mandatory input gate, fully-qualified MCP tools, presentation/router ownership) tha..."
+trigger_phrases:
+  - "research"
+  - "glm52"
+  - "max"
+importance_tier: "normal"
+contextType: "research"
+---
 # Command-Surface Improvement Research — glm52-max lineage
 
 > **Lineage:** `glm52-max` (cli-opencode / zai-coding-plan/glm-5.2 / reasoning max)

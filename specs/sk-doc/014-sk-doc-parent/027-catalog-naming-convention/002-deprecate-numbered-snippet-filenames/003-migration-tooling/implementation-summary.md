@@ -1,9 +1,17 @@
 ---
-title: "Implementation Summary: deterministic snippet-filename rename engine"
+title: ".../027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling/implementation-summary]"
 description: "Records denumber-snippet-filenames.mjs — the scoped, dry-run-default rename engine with collision-abort, stage derivation, hub-index reference sweep, and the corrected self-exclusion deny-list — plus its verified dry-run counts."
+trigger_phrases:
+  - "027"
+  - "catalog"
+  - "naming"
+  - "convention"
+  - "002"
+  - "implementation summary"
+  - "003"
+  - "migration"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling"
@@ -15,6 +23,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
 ---
 # Implementation Summary: Deterministic Snippet-Filename Rename Engine
 

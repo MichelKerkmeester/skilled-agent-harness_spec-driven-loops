@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-skill-advisor hooks"
+title: "Feature Specificat [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks/spec]"
 description: "Audit hook filesystem names and registrations for the system-skill-advisor surface, rename any non-tool-mandated snake_case hook filename found in the pinned baseline, and repair stale path references without changing runtime event or code identifiers."
 trigger_phrases:
   - "system-skill-advisor hook naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "prompt submit hook audit"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks"
@@ -28,8 +27,8 @@ _memory:
       - "The current hooks tree already has kebab-case filenames: user-prompt-submit.ts and skill-advisor-cli-fallback.ts."
       - "Hook event names and TypeScript identifiers are not filesystem rename targets."
       - "A no-candidate result is valid only when the inventory and registrations are evidence-pinned."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

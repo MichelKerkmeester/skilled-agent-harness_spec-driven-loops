@@ -1,7 +1,12 @@
 ---
-title: "Implementation Plan: Containment Auto-Scope for Symlinked Spec Trees"
+title: "Implementation Plan: Containment [system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope/plan]"
 description: "Phased plan to auto-resolve the containment repo root to the worktree that physically holds a symlinked artifact, closing the containment catch-22 without touching the guard."
-importance_tier: "high"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "containment"
+  - "021"
+importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:

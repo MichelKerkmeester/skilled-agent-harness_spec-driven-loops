@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-skill-advisor feature catalog"
+title: "Implemen [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog/plan]"
 description: "Rename the feature catalog root, seven categories, and 42 files with an explicit path map, then repair catalog and cross-surface links while keeping classifier tokens and content identifiers stable."
 trigger_phrases:
   - "feature catalog implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "advisor catalog rename map"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "The current tree contains seven snake_case category directories and 42 files including the root index."
       - "Catalog classification tokens and content identifiers remain unchanged."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog"
 ---
-
 # Implementation Plan: system-skill-advisor feature catalog
 
 <!-- SPECKIT_LEVEL: 2 -->

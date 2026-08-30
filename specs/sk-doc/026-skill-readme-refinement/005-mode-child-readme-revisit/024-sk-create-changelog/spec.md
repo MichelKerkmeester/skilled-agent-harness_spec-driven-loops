@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 24 sk-create-changelog README rewrite"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/spec]"
 description: "Rewrite the mode skill README at .opencode/skills/sk-doc/sk-create-changelog/README.md purpose-first against the refined template from phase 001, with mcp-obsidian as the exemplar, plus a version bump, a changelog entry and validation."
 trigger_phrases:
   - "sk create changelog readme rewrite"

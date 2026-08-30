@@ -19,10 +19,7 @@
       "code graph release evidence",
       "system-code-graph changelog tasks",
       "system-code-graph version verification tasks",
-      "code graph release evidence tasks",
-      "system-code-graph changelog checklist",
-      "system-code-graph version bump verification",
-      "code graph release evidence checklist"
+      "code graph release evidence tasks"
     ],
     "key_topics": [
       "system-code-graph",
@@ -43,10 +40,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook/checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -65,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -168,49 +156,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-code-graph release history currently ends at v1.3.0.0 and does not yet prove that the 020 filesystem migration was recorded. This read-only phase verifies the next append-only changelog entry, the matching version bump, the complete phase-001–006 rename scope, and the preserved exemption boundary without performing a rename.",
     "created_at": "2026-07-14T15:18:18Z",
-    "last_save_at": "2026-08-29T13:10:11.746Z",
+    "last_save_at": "2026-08-30T07:19:54.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:f999bacb1879942619ed477288a5a8f5756d9f0c6ea3cff9a4b47e9a98e3a4a8",
+    "source_fingerprint": "sha256:59bf4168de3fecb4d2762dff1ca7327b8bc9e37bdf75bbed16480102671f27dd",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "08b918712c824dea2beed01d15f31214de3b97aaf63c599a1919a3e5a51f68e4",
-      "plan.md": "364e3c5689be4004eb0c45bc098a115a116a4f7e1fe60dea5c46e07963b99a42",
-      "tasks.md": "6dcb352d3f6c1c48c651ef74c2273f4f799d610395eb4e5e2caed6e450af9890",
-      "checklist.md": "621d272317bec2fa59c070fd22f7dd7e045269dbbe7b12d9218e32e099eb72fa"
+      "spec.md": "a7e6742683c824c4bb16ca26fb4fd893a4ee4a8d055a8d3e814d87b1ffa669e7",
+      "plan.md": "ce10d69da41ffa32e6f3760706ac63d3d3488dcf6465b12dfbdfc726b866fe64",
+      "tasks.md": "543990e788a3dab41a9456cefe69a1ae1815aabfcacb60ac26b404eb8cf43f7b"
     },
     "last_active_child_id": null,
     "last_active_at": null

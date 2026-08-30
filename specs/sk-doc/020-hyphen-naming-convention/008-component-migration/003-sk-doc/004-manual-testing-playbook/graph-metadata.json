@@ -17,9 +17,7 @@
       "sk-doc manual playbook implementation plan",
       "manual playbook rename plan",
       "sk-doc manual playbook tasks",
-      "manual playbook rename tasks",
-      "sk-doc manual playbook checklist",
-      "manual playbook rename verification"
+      "manual playbook rename tasks"
     ],
     "key_topics": [
       "sk-doc",
@@ -40,8 +38,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,9 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specif",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -95,12 +92,6 @@
       {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "scenario",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -175,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The root sk-doc manual_testing_playbook tree uses snake_case for its category directories, scenario filenames, and root index. This phase converts those non-exempt filesystem names to kebab-case and updates the playbook index and path references without changing scenario content or identifiers.",
     "created_at": "2026-07-14T15:17:26Z",
-    "last_save_at": "2026-08-29T10:00:49.261Z",
+    "last_save_at": "2026-08-30T07:19:28.992Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:51a0fa636da167bce8eae9813b3c53e4e698c0c0a72af2ed3693a3dc363d6fb3",
+    "source_fingerprint": "sha256:c14c9c04ee4d2d4737fcd56034c2ab7c1f40b37fbf269da6bc6d17f5462d1f4a",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d0819315a16ca57ac457d3deb7537fbe847c3c98e72bc88fe80cc6183f11c23d",
-      "plan.md": "a8e151d21ab1cc04cc449ea558948955ada8c170602b20e688fdd1d392f03da9",
-      "tasks.md": "529fc4bac2299a052f6871039388e668b158c4a303ad309d3732c2d387ef422c",
-      "checklist.md": "adb872116f46e64f70ac7e9a7dc691fe68eb61eac1feb18ab088339e2fc1885d"
+      "spec.md": "1fc091eb64348081471cb5ecb4ffe71e01f02457d90ab86367316cba3103b60f",
+      "plan.md": "1df4901f5c012f0319912be386d46c1690375b2c5dff7f21cb164d0b807dbe1d",
+      "tasks.md": "52e13d86513af81eb6cee18c12dcf15fd6a966ef19417931a143ff367ff22c68"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -12,8 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "design-motion packet root audit",
-      "design-motion SKILL.md README.md conformance",
-      "motion mode root template check"
+      "design-motion skill.md readme.md conformance",
+      "motion mode root template check",
+      "plan",
+      "design",
+      "motion",
+      "packet",
+      "root",
+      "001",
+      "tasks",
+      "implementation",
+      "summary"
     ],
     "key_topics": [
       "design-motion",
@@ -27,15 +36,14 @@
       "mode",
       "template",
       "check",
-      "carries"
+      "plan"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -55,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,31 +180,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`design-motion`'s packet root carries exactly two markdown files, `SKILL.md` and `README.md`",
     "created_at": "2026-07-27T14:53:12.796Z",
-    "last_save_at": "2026-08-29T13:09:58.466Z",
+    "last_save_at": "2026-08-30T07:16:12.655Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:acccfa026eea20dbcf991104ce0c480865a611626b258feb2a54db25482a71c6",
+    "source_fingerprint": "sha256:5fabbb4d229d456089bdddae47fa1cee551b33c044a2c675eec3cc124234212f",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "8bb5622caa5a801db3cdfa197cb99d736623a704a00790b019552b54a7467f1f",
-      "plan.md": "d97ae0e768fca6e44cd22e28c3a1a4964cf230c66bdf4fcf2b8c477e590c8f07",
-      "tasks.md": "54d28ce49bf38c3285d20f3203531a0e940877c2dac5fb853ee9881377844d02",
-      "checklist.md": "a4b7e625873a097f4083f8902a78b9bdcd96a518aa69abbf1942248d768cf8d9",
-      "implementation-summary.md": "0954609c79569f824508c229f6ec9df7f6751e3b0f0d3416ea3b9dcabcbd0c42"
+      "spec.md": "99ceadad158693787a97f2a5da6c1423772a0d896cad09d698d0d21dc417e221",
+      "plan.md": "54fddfe957e31325d891b8981bbd4776edc2ba64864aa7ee2cfbde84b6b58e0e",
+      "tasks.md": "28ad9ca1884e8bb5730d34d29dce7d06338caf17d4b165b962c76dd7c23cfafb",
+      "implementation-summary.md": "fad930dc3c7d42c15cee827a0b3e44b0bcaaa4d860e2e11bf24907a9dfc2f7f9"
     },
     "last_active_child_id": null,
     "last_active_at": null

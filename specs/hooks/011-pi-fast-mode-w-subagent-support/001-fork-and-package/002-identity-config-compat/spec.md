@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: identity-config-compat"
+title: "Feature Specification: [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat/spec]"
 description: "Define package/config identity and safe compatibility behavior while preserving the upstream enabled-targets schema."
 trigger_phrases:
   - "identity-config-compat"

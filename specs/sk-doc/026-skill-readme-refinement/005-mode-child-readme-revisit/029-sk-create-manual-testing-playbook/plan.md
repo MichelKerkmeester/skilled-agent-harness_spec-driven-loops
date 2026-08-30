@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 029 sk-create-manual-testing-playbook README revisit"
+title: "Implementa [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/plan]"
 description: "Rewrite the create-manual-testing-playbook skill README against the refined README template and the mcp-obsidian exemplar, with a version bump, a changelog entry and full validation."
 trigger_phrases:
   - "phase 029 plan"

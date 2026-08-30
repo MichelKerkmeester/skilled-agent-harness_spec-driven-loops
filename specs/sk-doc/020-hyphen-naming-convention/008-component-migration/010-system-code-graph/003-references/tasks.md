@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-code-graph references"
+title: "Tasks: system-c [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references/tasks]"
 description: "Concrete tasks for the seven-file reference rename, link closure, asset/template classification, and content-contract verification."
 trigger_phrases:
   - "system-code-graph reference tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "reference link repair tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references"
@@ -22,8 +21,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The two code-graph-gold-queries.json files are already compliant assets and are not rename targets."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references"
 ---
-
 # Tasks: system-code-graph references
 
 <!-- SPECKIT_LEVEL: 2 -->

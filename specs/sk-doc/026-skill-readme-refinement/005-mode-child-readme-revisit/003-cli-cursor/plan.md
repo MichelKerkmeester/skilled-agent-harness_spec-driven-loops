@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 003 cli-cursor README rewrite"
+title: "Implementation Plan: Phase 003 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor/plan]"
 description: "Rewrite the cli-cursor skill README purpose-first on the refined README template with the mcp-obsidian exemplar, then bump the version field, add a changelog entry and validate the result."
 trigger_phrases:
   - "phase 003 plan"

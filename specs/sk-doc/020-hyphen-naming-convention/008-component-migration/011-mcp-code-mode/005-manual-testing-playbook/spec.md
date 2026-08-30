@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-code-mode manual-testing playbook (020 component 011 phase 005)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook/spec]"
 description: "The mcp-code-mode manual-testing tree uses snake_case for its root, eight category directories, the index, and 27 scenario files. This phase renames that filesystem tree to kebab-case and updates every active link and pointer while preserving scenario IDs, tool names, content keys, Python exemptions, and frozen changelog history."
 trigger_phrases:
   - "mcp-code-mode manual-testing playbook"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "manual playbook kebab-case"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

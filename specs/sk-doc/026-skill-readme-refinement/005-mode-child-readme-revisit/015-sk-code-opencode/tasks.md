@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 015 sk-code-opencode README revisit"
+title: "Tasks: Phase 015 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/tasks]"
 description: "Task list for rewriting the sk-code-opencode mode README against the refined README template and the mcp-obsidian exemplar."
 trigger_phrases:
   - "phase 015 tasks"

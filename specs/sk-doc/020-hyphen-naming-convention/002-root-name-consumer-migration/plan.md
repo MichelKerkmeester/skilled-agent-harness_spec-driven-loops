@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: root-name consumer migration (020 phase 002)"
+title: "Implementation Plan: root-name consumer [sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration/plan]"
 description: "Implementation Plan for phase 002 of the 020 kebab-case filesystem-naming program: root-name consumer migration."
 trigger_phrases:
   - "root-name consumer migration implementation plan"
   - "hyphen naming phase 002 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration"
 ---
 # Implementation Plan: Root-name consumer migration
 

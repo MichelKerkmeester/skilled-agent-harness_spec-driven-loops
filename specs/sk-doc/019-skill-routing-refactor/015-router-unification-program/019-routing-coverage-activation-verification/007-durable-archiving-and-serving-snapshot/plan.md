@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Durable Archiving & Serving-Snapshot"
+title: "...ter-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot/plan]"
 description: "Planned sequence for the durable report-path convention, the serving-snapshot.json schema and renderer, repo-relative provenance, and the append-only flip-history log — gated on the active 010 manifest and never touching the frozen scorer or the baseline label."
 trigger_phrases:
   - "durable archiving plan"

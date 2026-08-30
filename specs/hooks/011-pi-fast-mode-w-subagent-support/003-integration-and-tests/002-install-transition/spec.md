@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: install-transition"
+title: "Feature Specification: [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition/spec]"
 description: "Replace the colliding installed extension with the fork using a captured rollback state and live command ownership proof."
 trigger_phrases:
   - "install-transition"

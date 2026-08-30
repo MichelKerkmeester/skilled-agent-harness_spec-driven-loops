@@ -1,9 +1,11 @@
 ---
-title: "Implementation Summary: cli-devin skill packet"
+title: "Implementation [cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet/implementation-summary]"
 description: "The new cli-devin nested workflow mode dispatches Cognition's Devin CLI for multi-model coding, subagent delegation, cloud handoff, and cross-AI validation, failing closed when the binary is absent."
-trigger_phrases: ["cli-devin skill summary", "cli-devin packet implementation"]
-importance_tier: important
-contextType: implementation
+trigger_phrases:
+  - "cli-devin skill summary"
+  - "cli-devin packet implementation"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet"

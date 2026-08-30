@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 016 sk-code-quality README revisit (rewrite)"
+title: "Tasks: Phase 016 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/tasks]"
 description: "Task list for rewriting the sk-code-quality mode skill README purpose-first against the refined template with a version bump and a changelog entry."
 trigger_phrases:
   - "phase 16 tasks"

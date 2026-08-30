@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-code-mode references and assets (020 component 011 phase 003)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets/spec]"
 description: "The skill's reference and asset directories contain four permitted snake_case Markdown filenames: naming_convention.md, tool_catalog.md, config_template.md, and env_template.md. This phase renames those files to kebab-case and closes every active link and path pointer while leaving tool-name examples, keys, Python paths, and frozen changelog history intact."
 trigger_phrases:
   - "mcp-code-mode references and assets"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "reference asset kebab-case closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

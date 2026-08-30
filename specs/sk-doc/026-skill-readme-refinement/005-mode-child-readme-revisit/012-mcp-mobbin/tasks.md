@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 012 mcp-mobbin README revisit"
+title: "Tasks: Phase 012 mcp-mobbin [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/012-mcp-mobbin/tasks]"
 description: "Task list for rewriting the mcp-mobbin mode skill README in the mcp-tooling hub against the refined README template with the mcp-obsidian exemplar as the model."
 trigger_phrases:
   - "phase 012 tasks"

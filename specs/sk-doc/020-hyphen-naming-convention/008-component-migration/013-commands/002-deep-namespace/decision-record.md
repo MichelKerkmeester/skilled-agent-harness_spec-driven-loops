@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: deep command generated-output boundary (020 phase 008/013/002)"
+title: "Decision [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace/decision-record]"
 description: "Design decisions for separating maintained deep command assets and legacy bodies from generated compiled contract output during the kebab-case filesystem-name migration."
 trigger_phrases:
   - "deep generated contract decision"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "compiled contract filename exemption"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

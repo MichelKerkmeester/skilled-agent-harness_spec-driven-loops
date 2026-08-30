@@ -1,6 +1,5 @@
 ---
-title: "Tasks: sk-doc Legacy Template Debt Cleanup [template:level_2/tasks.md]"
-template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
+title: "...mization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "013-skdoc legacy template cleanup tasks"
@@ -21,6 +20,7 @@ _memory:
       - "plan.md"
       - "checklist.md"
     completion_pct: 100
+template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 ---
 # Tasks: sk-doc Legacy Template Debt Cleanup
 

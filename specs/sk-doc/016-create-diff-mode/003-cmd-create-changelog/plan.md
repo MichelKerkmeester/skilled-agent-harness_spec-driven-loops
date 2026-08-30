@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Create Changelog Command [03--commands-and-skills/015-cmd-create-changelog/plan]"
+title: "Implementation Plan: Create Changelog Command [sk-doc/016-create-diff-mode/003-cmd-create-changelog/plan]"
 description: "Mode-based slash command with 7-step YAML workflow that dynamically detects recent work, resolves changelog component folders, calculates version numbers, and generates formatted changelog files."
 trigger_phrases:
   - "implementation"

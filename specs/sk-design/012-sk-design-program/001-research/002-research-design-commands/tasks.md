@@ -1,6 +1,14 @@
 ---
-title: "Tasks: Deep research — design command redesign"
+title: "Tasks: Deep research — design [sk-design/012-sk-design-program/001-research/002-research-design-commands/tasks]"
 description: "Task breakdown for the design-command deep-research phase."
+trigger_phrases:
+  - "tasks"
+  - "deep"
+  - "research"
+  - "design"
+  - "002"
+importance_tier: "normal"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/001-research/002-research-design-commands"
@@ -20,7 +28,6 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

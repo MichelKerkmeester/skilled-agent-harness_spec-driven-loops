@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-figma naming closure (020 phase 004)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma/plan]"
 description: "This plan renames the Figma component's catalog, playbook, asset, reference, install-guide, and shared-helper paths through an explicit semantic map, then repairs Markdown and shell references while preserving transport and identifier semantics."
 trigger_phrases:
   - "mcp-figma naming implementation plan"
   - "figma catalog helper path repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma"
@@ -22,6 +21,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma"
 ---
 # Implementation Plan: mcp-figma Naming Closure
 

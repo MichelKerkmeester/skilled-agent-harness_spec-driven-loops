@@ -1,7 +1,11 @@
 ---
-title: "Feature Specification: Devin deep-loop executor support"
+title: "Feature Specification: Devin [cli-external-orchestration/029-cli-devin-revival/002-deep-loop-executor-support/spec]"
 description: "Restore cli-devin as the 5th typed deep-loop executor kind across executor-config.ts, executor-audit.ts, fanout-run.cjs, dispatch-model.cjs, and profile-validator.cjs, with a new fail-closed buildDevinLineageCommand adapter and a hard 7-model dispatch allowlist, grounded in phase 001's live-verified 4-mode Devin CLI contract rather than the archived pre-deprecation assumptions."
-trigger_phrases: ["cli-devin deep-loop executor", "cli-devin executor kind", "Devin fan-out adapter", "devin model allowlist enforcement"]
+trigger_phrases:
+  - "cli-devin deep-loop executor"
+  - "cli-devin executor kind"
+  - "devin fan-out adapter"
+  - "devin model allowlist enforcement"
 importance_tier: "normal"
 contextType: "general"
 _memory:

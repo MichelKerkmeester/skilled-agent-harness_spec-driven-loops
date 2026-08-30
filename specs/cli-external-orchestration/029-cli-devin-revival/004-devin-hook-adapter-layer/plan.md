@@ -1,7 +1,9 @@
 ---
-title: "Implementation Plan: Devin hook adapter layer"
+title: "Implementation Plan: Devin hook [cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/plan]"
 description: "Plan thin Devin-host adapters over the existing runtime-neutral hook cores, validated against a live Devin session, starting with SessionStart and UserPromptSubmit."
-trigger_phrases: ["devin hook adapter plan", "devin hooks implementation plan"]
+trigger_phrases:
+  - "devin hook adapter plan"
+  - "devin hooks implementation plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-skill-advisor references"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references/spec]"
 description: "Rename the 15 snake_case Markdown reference files under system-skill-advisor/references to kebab-case and repair every link, path pointer, command example, and reference index that names them."
 trigger_phrases:
   - "system-skill-advisor references naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "skill-advisor reference closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references"
@@ -28,8 +27,8 @@ _memory:
       - "The reference tree has no snake_case directories and 15 snake_case Markdown filenames."
       - "Path-valued links change; code identifiers, MCP tool IDs, and frontmatter fields do not."
       - "Reference links crossing into the catalog or playbook phases are updated only as path pointers, not as content redesign."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

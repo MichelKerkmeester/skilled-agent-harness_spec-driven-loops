@@ -1,15 +1,14 @@
 ---
-title: "Feature Specification: Templates and examples (020 subtree 008 phase 005)"
+title: "Featur [sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples/spec]"
 description: "The system-spec-kit template surface contains underscore-bearing directory and file names in the examples and stress-test layouts, including level_1, level_2, level_3, level_3+, stress_test, and EXTENSION_GUIDE.md. This phase moves permitted template paths and updates generator, renderer, and documentation pointers while preserving tool-mandated manifest templates."
 trigger_phrases:
   - "system-spec-kit templates and examples"
   - "level_1 template rename"
   - "stress_test template rename"
-  - "EXTENSION_GUIDE rename"
+  - "extension_guide rename"
   - "kebab-case phase 005"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/005-templates-and-examples"
@@ -22,8 +21,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-code subtree rollup gate (020 phase 008/009)"
+title: "Tasks: sk-code subtree [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate/tasks]"
 description: "Execution tasks for reconciling sk-code phases 001-008, checking the full scope-aware naming surface, resolving active references, and recording the final pass/block result without migration work."
 trigger_phrases:
   - "sk-code skill gate tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-code final naming census"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate"
 ---
-
 # Tasks: sk-code subtree rollup gate
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: active specs and documents (020 phase 007 child 004)"
+title: "Tasks: activ [sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs/tasks]"
 description: "Tasks for the active spec/document closure: classify authored versus generated/frozen paths, preserve phase-folder structure, update links and path values, strict-validate touched packets, and publish handoffs."
 trigger_phrases:
   - "active spec document closure tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "phase 007 child 004 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs"
@@ -26,6 +25,7 @@ _memory:
     answered_questions:
       - "Three-digit hyphenated phase folders are preserved as structurally compliant"
       - "Generated/frozen/review state requires an explicit non-rename disposition"
+parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs"
 ---
 # Tasks: Active Specs and Documents
 

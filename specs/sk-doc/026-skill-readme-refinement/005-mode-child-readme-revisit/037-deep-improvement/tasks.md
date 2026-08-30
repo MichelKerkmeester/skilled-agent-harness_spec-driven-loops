@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 037 deep-improvement README revisit"
+title: "Tasks: Phase 037 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/tasks]"
 description: "Task list for rewriting the deep-improvement README against the refined README template and the mcp-obsidian exemplar."
 trigger_phrases:
   - "phase 037 tasks"

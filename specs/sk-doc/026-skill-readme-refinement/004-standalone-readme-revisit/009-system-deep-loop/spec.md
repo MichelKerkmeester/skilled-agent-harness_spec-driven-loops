@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 9 system-deep-loop README rewrite"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/spec]"
 description: "Rewrite the system-deep-loop skill README at .opencode/skills/system-deep-loop/README.md against the refined README template from phase 001 and the mcp-obsidian exemplar, purpose-first with HVR enforcement, a version bump and a changelog entry."
 trigger_phrases:
   - "system deep loop readme"

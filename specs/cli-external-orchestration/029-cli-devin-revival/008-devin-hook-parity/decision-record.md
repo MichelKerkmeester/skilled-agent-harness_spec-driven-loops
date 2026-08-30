@@ -1,7 +1,9 @@
 ---
-title: "Decision Record: Devin hook parity"
+title: "Decision Record: Devin hook [cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/decision-record]"
 description: "5 ADRs governing Devin hook parity: contract discovery, adapter patterns, deny verification, registration location and honest divergent, unobserved or empty surfaces."
-trigger_phrases: ["devin hook parity ADR", "devin hooks.v1.json discovery"]
+trigger_phrases:
+  - "devin hook parity adr"
+  - "devin hooks.v1.json discovery"
 importance_tier: "normal"
 contextType: "general"
 _memory:

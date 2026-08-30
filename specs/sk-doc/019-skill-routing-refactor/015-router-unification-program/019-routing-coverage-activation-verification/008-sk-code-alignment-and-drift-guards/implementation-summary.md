@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: sk-code Alignment & Drift Guards"
+title: "...n-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards/implementation-summary]"
 description: "Completion record for sk-code alignment guards. Commit a1cdb65d90 delivered the RESOURCE_MAP doc-truth fix, default-off --check-router validation with positive/drift fixtures, the shared qualifiedIdToLeaf bridge and bidirectional bijection tests, and run-all-drift-guards.sh. The P1 surfaceBundle request-context was explicitly deferred; the repository default and routing decisions remain unchanged, and the frozen scorer trio stayed SHA-256-identical."
 trigger_phrases:
   - "sk-code alignment implementation summary"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: MCP server directory and manifest closure"
+title: "...hen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure/tasks]"
 description: "Concrete tasks for the system-skill-advisor package-boundary rename, manifest/entrypoint closure, exemption preservation, and runtime verification."
 trigger_phrases:
   - "mcp-server closure tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "manifest rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure"
@@ -22,8 +21,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The package manifest state is recorded before execution; no missing manifest is invented."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure"
 ---
-
 # Tasks: MCP server directory and manifest closure
 
 <!-- SPECKIT_LEVEL: 2 -->

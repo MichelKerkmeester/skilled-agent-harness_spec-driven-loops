@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop component migration (020 phase 007)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/spec]"
 description: "The system-deep-loop surface contains snake_case directories and files across runtime, five workflow packets, the root manual-testing playbook, and benchmark storage. This phase parent defines eleven independently reviewable child contracts that move only in-scope filesystem names to kebab-case, repair path references, and preserve the program exemption boundary."
 trigger_phrases:
   - "system-deep-loop kebab-case migration"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "system-deep-loop filesystem names"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop"
@@ -35,8 +34,8 @@ _memory:
       - "Python .py files, Python import-package directories, tool-mandated names, generated or lockfile output, and frozen history remain exempt."
       - "Identifiers, JSON/YAML/TOML keys, frontmatter fields, and database columns are not filesystem rename targets."
       - "Each child owns its path and reference closure; phase 011 is the subtree rollup gate."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + child phase map only; detailed planning and verification live in the children. -->

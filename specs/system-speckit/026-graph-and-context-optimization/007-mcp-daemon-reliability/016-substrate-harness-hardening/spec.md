@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Substrate stress-harness hardening [template:level_3/spec.md]"
+title: "Feat [system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/spec]"
 description: "Close the three residual risks the deep-research validation found in the skip-not-fail substrate harness: PID-recycling false-SKIP, stale-pid TSV evidence, and the maintainer-mode INDEX-scan leak."
 trigger_phrases:
   - "substrate harness hardening"
   - "pid recycling skip"
-  - "liveOwnerForService identity"
+  - "liveownerforservice identity"
   - "maintainer mode leak"
   - "spec core"
 importance_tier: "normal"

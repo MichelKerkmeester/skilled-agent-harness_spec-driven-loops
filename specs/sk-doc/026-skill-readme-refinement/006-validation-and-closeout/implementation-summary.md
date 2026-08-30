@@ -1,10 +1,10 @@
 ---
-title: "Implementation Summary: Phase 006 fleet-wide README validation and closeout"
+title: "Implementation Summary: Phase [sk-doc/026-skill-readme-refinement/006-validation-and-closeout/implementation-summary]"
 description: "Evidence-backed closeout record for validating all 50 rewritten skill READMEs and the 026 README refinement packet."
 trigger_phrases:
   - "phase 006 implementation summary"
-  - "fleet README validation"
-  - "README program closeout"
+  - "fleet readme validation"
+  - "readme program closeout"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

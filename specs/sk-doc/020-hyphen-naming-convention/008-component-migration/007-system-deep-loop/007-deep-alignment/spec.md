@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: deep-alignment filesystem names (020 phase 007/007)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment/spec]"
 description: "The deep-alignment packet contains 15 underscore-bearing directory families and 68 underscore-bearing files across adapters, catalogs, playbooks, and state references. This phase renames those in-scope paths to kebab-case and repairs path-valued resource maps while preserving authority identifiers, embedded code keys, read-only behavior, and tool-mandated names."
 trigger_phrases:
   - "deep-alignment kebab-case migration"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "deep-alignment snake_case resources"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
@@ -23,8 +22,8 @@ _memory:
       - "The live deep-alignment inventory has 15 underscore-bearing directory families and 68 underscore-bearing files."
       - "Path strings in resource maps change when their files move; Python-like identifiers, JSON/YAML keys, authority names, and frontmatter fields do not."
       - "SKILL.md and tool-mandated names stay exact, and the read-only-by-default tool surface is unchanged."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

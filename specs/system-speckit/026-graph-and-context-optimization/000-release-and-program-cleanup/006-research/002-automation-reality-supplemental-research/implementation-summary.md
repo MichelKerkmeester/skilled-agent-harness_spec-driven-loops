@@ -1,6 +1,5 @@
 ---
-title: "Implementation Summary: Automation Reality Supplemental Research [template:level_2/implementation-summary.md]"
-template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+title: "...ion/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research/implementation-summary]"
 description: "Implementation summary for the supplemental automation reality research packet — 5-iter continuation of 012."
 trigger_phrases:
   - "013 automation supplemental implementation summary"
@@ -19,6 +18,7 @@ _memory:
       - "research/research-report.md"
       - "research/deep-research-state.jsonl"
     completion_pct: 100
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 ---
 # Implementation Summary
 

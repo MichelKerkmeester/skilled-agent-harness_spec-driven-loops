@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "migration": {
     "moved_at": "2026-04-21T12:00:00Z",
     "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization/016-foundational-runtime",
@@ -34,7 +35,7 @@
     "migrations",
     "completed"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.310Z",
+  "lastUpdated": "2026-08-30T07:16:29.690Z",
   "specId": "007",
   "folderSlug": "foundational-runtime",
   "parentChain": [
@@ -46,6 +47,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "25-04-26_11-34__metadata-refresh-rewrite-children-ids-in-graph.md"
-  ],
-  "level": 2
+  ]
 }

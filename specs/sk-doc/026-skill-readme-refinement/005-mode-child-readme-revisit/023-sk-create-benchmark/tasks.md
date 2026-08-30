@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 023 sk-create-benchmark README revisit"
+title: "Tasks: Phase 023 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/tasks]"
 description: "Task list for rewriting the sk-create-benchmark skill README against the refined template and the mcp-obsidian exemplar."
 trigger_phrases:
   - "phase 023 tasks"

@@ -1,7 +1,11 @@
 ---
-title: "Feature Specification: Devin hook parity"
+title: "Feature Specification: Devin hook parity [cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/spec]"
 description: "Give every Claude hook and OpenCode plugin a correct Devin adapter, native-import equivalent, or documented gap, via thin Devin adapters over the same 7 runtime-neutral cores cli-codex already uses."
-trigger_phrases: ["devin hook parity", "devin hooks.v1.json", "devin postcompaction adapter", "devin task-dispatch-guard"]
+trigger_phrases:
+  - "devin hook parity"
+  - "devin hooks.v1.json"
+  - "devin postcompaction adapter"
+  - "devin task-dispatch-guard"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

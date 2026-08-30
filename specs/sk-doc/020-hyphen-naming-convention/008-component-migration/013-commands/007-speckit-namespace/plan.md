@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: speckit command namespace naming (020 phase 008/013/007)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace/plan]"
 description: "Plan for renaming the twelve maintained speckit workflow and presentation assets through the frozen map and repairing command/README paths while preserving /speckit:* behavior."
 trigger_phrases:
   - "speckit namespace naming plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "speckit command path repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace"
 ---
-
 # Implementation Plan: Speckit command namespace naming
 
 <!-- SPECKIT_LEVEL: 2 -->

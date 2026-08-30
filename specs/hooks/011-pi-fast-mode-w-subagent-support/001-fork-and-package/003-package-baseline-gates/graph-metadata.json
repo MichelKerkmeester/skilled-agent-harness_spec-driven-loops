@@ -15,9 +15,8 @@
       "pi extension package manifest",
       "fast-mode package verification",
       "package-baseline-gates plan",
-      "raw TypeScript extension package",
+      "raw typescript extension package",
       "package-baseline-gates tasks",
-      "package-baseline-gates checklist",
       "package-baseline-gates implementation summary"
     ],
     "key_topics": [
@@ -31,8 +30,8 @@
       "raw",
       "typescript",
       "tasks",
-      "checklist",
-      "implementation"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/settings.json"
     ],
@@ -61,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -188,27 +180,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A correct source tree is not enough for Pi to load or discover the extension",
     "created_at": "2026-08-16T09:08:04Z",
-    "last_save_at": "2026-08-29T15:21:53.172Z",
+    "last_save_at": "2026-08-30T07:18:54.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f8bc18cf496a4693a793c1934c3d84a8f703aad30390c78dd0a25e1e5208876e",
+    "source_fingerprint": "sha256:75b25f452333be310b144bb65a7d73c508dc4e6bc6ef4652671dbad178980d44",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d471df6ea766b398ceb3b412f3a7a954409163e9617a0eb8debd282ac25647bc",
-      "plan.md": "092c19fba9fe0d13c326797bc1fdf1d61b19b4affd2dea4057b0919bb56ba3cd",
-      "tasks.md": "7ccc624d5d8e0a78ebb56541756b593f64b4c09ff29625dcb46b4ba8df704fdd",
-      "checklist.md": "be2bcde7cb4cc62b020bee2a09a7d2e08786c00b4b421410398c83bf1e3e133e",
-      "implementation-summary.md": "c42ba8783810dcfd255b41b1d707d18ed167cd8986404784e9dcf97c2476070c"
+      "spec.md": "cb39d5b42f54419cb46b45f705d9edf30e07dfa19c6d0ca61f6fcd593ce3d8c8",
+      "plan.md": "020aa4cd339f1f796d37e0c92524bc9adf9e4bfec43e5fc615bb3a09e9968b56",
+      "tasks.md": "68ec7796a4adb2b70bd43be5a8c055752e48fda7eaca0e418e07bafa00242751",
+      "implementation-summary.md": "8fa19fedaee6bd130383a06f64dde40f17100f21053991c8bef436e30bb67437"
     },
     "last_active_child_id": null,
     "last_active_at": null

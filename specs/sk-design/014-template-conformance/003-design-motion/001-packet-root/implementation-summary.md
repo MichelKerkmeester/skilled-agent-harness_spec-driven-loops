@@ -1,6 +1,14 @@
 ---
-title: "Implementation Summary: design-motion packet-root conformance"
+title: "Implementation Summary: [sk-design/014-template-conformance/003-design-motion/001-packet-root/implementation-summary]"
 description: "Planning stub — audit not yet performed. Records the intended scope and verification plan for design-motion's root markdown files."
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "001"
+  - "packet"
+importance_tier: "normal"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/003-design-motion/001-packet-root"

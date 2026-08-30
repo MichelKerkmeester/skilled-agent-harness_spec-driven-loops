@@ -1,12 +1,11 @@
 ---
-title: "Decision Record: sk-prompt hub root and shared boundary (020 phase 004.001)"
+title: "Deci [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared/decision-record]"
 description: "Design decisions for phase 001: protect the sk-prompt routing contract, treat the absent shared/ subtree as an explicit census result, and keep delegated playbook and benchmark ownership separate."
 trigger_phrases:
   - "sk-prompt hub root decision record"
   - "sk-prompt phase 001 boundary decisions"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
@@ -23,8 +22,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The live tree has no shared/ directory."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1 handoff-contract"
+title: "Implementation Plan: Phase [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract/plan]"
 description: "Implement and test the strict fork-owned environment contract."
 trigger_phrases:
   - "handoff-contract plan"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: semantic rename engine (020 phase 005.001)"
+title: "Implemen [sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/implementation-summary]"
 description: "The rename engine now turns a reviewed semantic map into deterministic SCC batches, blocks stale or unsafe plans and limits every mutating test to an opted-in disposable Git repository."
 trigger_phrases:
   - "semantic rename engine implementation"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "dry-run git mv tooling"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
@@ -29,6 +28,7 @@ _memory:
     answered_questions:
       - "Apply and rollback require a committed fixture marker plus a local Git disposable flag."
       - "The engine executes every Git move with option-terminated path operands."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
 ---
 # Implementation Summary
 

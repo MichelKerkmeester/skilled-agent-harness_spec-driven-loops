@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-deep-loop subtree skill gate (020 phase 007/011)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate/plan]"
 description: "Plan for aggregating phases 001-010 and running one read-only, exemption-aware whole-surface naming and reference gate. This phase performs no new migration work."
 trigger_phrases:
   - "system-deep-loop skill gate implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "whole surface kebab-case verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate"
 ---
 # Implementation Plan: System-deep-loop subtree skill gate
 

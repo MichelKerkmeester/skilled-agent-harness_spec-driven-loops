@@ -21,8 +21,8 @@
       "phase 019 tasks",
       "sk design interface readme tasks",
       "interface readme rewrite tasks",
-      "phase 019 checklist",
-      "sk design interface readme verification"
+      "phase 019 implementation summary",
+      "sk design interface readme closeout"
     ],
     "key_topics": [
       "design",
@@ -36,31 +36,22 @@
       "phase",
       "plan",
       "tasks",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/sk-design-interface/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/019-sk-design-interface/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/019-sk-design-interface/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/019-sk-design-interface/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/019-sk-design-interface/checklist.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/sk-design-interface/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -80,9 +71,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/019-sk-design-interface/checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -92,9 +83,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
         "source": "derived"
       },
       {
@@ -198,27 +189,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill README at `.opencode/skills/sk-design/sk-design-interface/README.md` still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:45.924Z",
-    "last_save_at": "2026-08-04T18:12:15.828Z",
+    "last_save_at": "2026-08-30T07:20:29.608Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19f304b71116e824db3cb750c467cc7192d05dc1364fc3d469f57ead83ba7d5f",
+    "source_fingerprint": "sha256:84020fe634e87a5c5e59d778f2e3f06e2fc668f93f38d0f87c31ab4cf16753b3",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "4138b502d7c2390db46b592460de3669bcc8940352eb0635a331388d1985baa3",
-      "plan.md": "c2d5d1ecddf2e6c081942caf9da22146c9607216e22be13ef9f77a7f894d6cf7",
-      "tasks.md": "32651a0c6a07c1c7632b96f5a587468a9e8be0ef36e94ebebdb31c0daf890f38",
-      "checklist.md": "4fb2b58073949a42f1b0f819c235b79280f1ebcc5e01eae0fe022af0bcc5f621",
-      "implementation-summary.md": "05330dc6387666c0d6477cb8de226f6a19e98c0577d3928e3fabbd8a75da143f"
+      "spec.md": "73325b312d982fef0e521960be6adaf5601b6549d9ca27e30575228222d9864d",
+      "plan.md": "9aa322487b52d5bfd4491ac4127b749e990e994bc59d06348da3ecaa2d08a6b1",
+      "tasks.md": "9534297543561390d6a81ef197be2f677ca9f1b024746da8086f0d27f3d4a16f",
+      "implementation-summary.md": "53638ed2931d551689d2c47564342bf296d73de5f92414b4c74fc6b2c25c41be"
     },
     "last_active_child_id": null,
     "last_active_at": null

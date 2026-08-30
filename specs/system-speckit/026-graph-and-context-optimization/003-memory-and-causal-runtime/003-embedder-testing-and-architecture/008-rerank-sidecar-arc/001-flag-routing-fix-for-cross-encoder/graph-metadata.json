@@ -39,54 +39,14 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-      "tasks.md",
-      "tests/stage3-rerank-regression.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/stage3-rerank-regression.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-      "tests/search-flags.vitest.ts",
       "spec.md",
       "plan.md",
-      "implementation-summary.md"
+      "tasks.md",
+      "implementation-summary.md",
+      "tests/stage3-rerank-regression.vitest.ts",
+      "tests/search-flags.vitest.ts"
     ],
     "entities": [
-      {
-        "name": "stage3-rerank.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage3-rerank.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "stage3-rerank-regression.vitest.ts",
-        "kind": "test",
-        "path": "tests/stage3-rerank-regression.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ENV_REFERENCE.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
-        "source": "derived"
-      },
-      {
-        "name": "search-flags.vitest.ts",
-        "kind": "test",
-        "path": "tests/search-flags.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -100,19 +60,37 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "stage3-rerank-regression.vitest.ts",
+        "kind": "test",
+        "path": "tests/stage3-rerank-regression.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-flags.vitest.ts",
+        "kind": "test",
+        "path": "tests/search-flags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Begin Phase",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -194,11 +172,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Stage",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implemented Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "spec-memory has two reranker entry points and the flag contract between them shadows the path we actually want to use:",
     "created_at": "2026-05-23T11:55:15.601Z",
-    "last_save_at": "2026-07-17T17:19:26.451Z",
+    "last_save_at": "2026-08-30T07:16:31.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +203,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:884ef6cfc177cbc0bd999bd337c4dd821b75004ac9808aecebf96d84bd8b311c",
+    "source_fingerprint": "sha256:28c08216186d6b2a1ddaa12f73c47c0e6165740e4886f97d832cbd58a13339c5",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f27b84a85fd4a747afdd7bf078c6544d336174c89f9f464540de0811b3e59103",
-      "plan.md": "733f9e95afc7ca869c14d4b7d6c716b345be9f22c336240caf05b3aafa1c7e5b",
-      "tasks.md": "96ea69b131c4544ab2ef71b6ad82da411c33615215633cf0e1377ed41eef208f",
-      "implementation-summary.md": "e6dfdacfe35fd38d055bcb248473760b7dccdf79f38a9a0dc4cfd9d431de989e"
+      "spec.md": "a94383f581975e2b0e062dbba11bba39cb056b6d105053be4e865b571d568ee1",
+      "plan.md": "5601e02d1bcf02bf4db276af1ccb860ef0365102372ba00f8b4d4588b4916284",
+      "tasks.md": "4c425fe4aa5dbd815d277b6c264275d8cb70b7212cd1872c12f30a5dbe5592c1",
+      "implementation-summary.md": "0b4a70f7c67a18c839b074df3a7c18bc3bc9b49b42e84bf5e09f67e589302e1b"
     },
     "last_active_child_id": null,
     "last_active_at": null

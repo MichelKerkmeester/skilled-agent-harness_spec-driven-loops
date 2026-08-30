@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Build create-manual-testing-playbook packet"
+title: "Feature Specification: Build create-manual-testing-pl [sk-doc/014-sk-doc-parent/009-create-manual-testing-playbook/spec]"
 description: "Build create-manual-testing-playbook: manual_testing_playbook_creation.md + the template pair, symlinking shared validators inward. Distinct release-review/evidence contract; stays separate from feature-catalog pending the merge ruling."
 trigger_phrases:
   - "sk-doc create manual testing playbook"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-doc parent phase 009"
 importance_tier: "normal"
 contextType: "implementation"
-parent: "skilled-agent-orchestration/125-sk-doc-parent"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/009-create-manual-testing-playbook"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "skilled-agent-orchestration/125-sk-doc-parent"
 ---
 # Feature Specification: Build create-manual-testing-playbook packet
 

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 006 sk-doc standalone README rewrite"
+title: "Implementation Plan: Phase 006 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc/plan]"
 description: "Plan for the purpose-first rewrite of the sk-doc skill README with a version bump and a changelog entry, validated by the README validator, the HVR grep and a link guard."
 trigger_phrases:
   - "phase 006 plan"

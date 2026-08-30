@@ -1,3 +1,16 @@
+---
+title: "...arch-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research]"
+description: "The planned phases are sound and the proposed sequencing (T3 → T4 → T2, T1 deferred) is correct. Research sharpened each phase with concrete, evidence-backed refinements and sur..."
+trigger_phrases:
+  - "arch"
+  - "based"
+  - "refinement"
+  - "001"
+  - "research"
+  - "peck"
+importance_tier: "normal"
+contextType: "research"
+---
 # Deep Research: What's planned in `001-peck-teachings-adoption`
 
 > Canonical synthesis of a 5-iteration deep-research loop (executor: `cli-opencode openai/gpt-5.5 --variant xhigh`, isolated worktree). Evaluates feasibility, risks, prior art, and refinements for the planned phases: T3 (self-check template blocks), T4 (advisory current-state content rule), T2 (constitutional-rule review surface), and deferred T1 (AC-coverage completion gate).

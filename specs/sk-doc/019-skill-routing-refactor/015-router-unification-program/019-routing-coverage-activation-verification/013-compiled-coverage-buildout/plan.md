@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Compiled-Routing Coverage Build-Out & Genuine Default-On"
+title: "...ctor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/plan]"
 description: "Phased plan: sk-code pilot build-out, replicate to cli-external-orchestration/mcp-tooling/sk-prompt, fix 2 over-detection bugs, re-mint and build sk-doc/system-deep-loop, stage the default-on flip, verify the fleet."
 trigger_phrases:
   - "compiled routing coverage plan"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "compiled router rollout phases"
 importance_tier: "critical"
 contextType: "implementation"
-status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout"
@@ -29,6 +28,7 @@ _memory:
     open_questions:
       - "Should Phase 3 (re-mint) run fully in parallel with Phases 1-2, or gate on the sk-code pilot proving the pattern first?"
     answered_questions: []
+status: "complete"
 ---
 # Implementation Plan: Compiled-Routing Coverage Build-Out & Genuine Default-On
 

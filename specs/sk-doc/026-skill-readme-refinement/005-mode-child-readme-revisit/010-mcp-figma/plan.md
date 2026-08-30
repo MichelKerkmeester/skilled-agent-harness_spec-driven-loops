@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 010 mcp-figma README rewrite"
+title: "Implementation Plan: Phase 010 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma/plan]"
 description: "Rewrite the mcp-figma skill README against the refined template from phase 001 and the mcp-obsidian exemplar, bump the version field and add a changelog entry."
 trigger_phrases:
   - "phase 10 plan"

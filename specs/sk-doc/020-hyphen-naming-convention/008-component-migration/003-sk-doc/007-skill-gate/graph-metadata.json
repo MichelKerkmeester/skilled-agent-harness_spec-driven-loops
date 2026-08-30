@@ -17,9 +17,7 @@
       "sk-doc skill gate plan",
       "sk-doc naming rollup plan",
       "sk-doc skill gate tasks",
-      "sk-doc naming rollup tasks",
-      "sk-doc skill gate checklist",
-      "sk-doc naming rollup verification"
+      "sk-doc naming rollup tasks"
     ],
     "key_topics": [
       "sk-doc",
@@ -30,18 +28,17 @@
       "subtree",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
       "component",
-      "phases"
+      "phases",
+      "need",
+      "one"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc component phases need one blocking rollup that aggregates their evidence and proves the whole naming surface is kebab-clean under the 020 exemption boundary. This phase adds no migration work; it verifies every sibling phase and the final subtree census.",
     "created_at": "2026-07-14T15:17:29Z",
-    "last_save_at": "2026-08-29T10:00:49.386Z",
+    "last_save_at": "2026-08-30T07:19:29.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:1d69b3a66827af0f002aa4ced35b89ea912e60b8577c8b9790cf7abbaf5eefcf",
+    "source_fingerprint": "sha256:826bf88f3c4f1ea90f22741c0a9d60ae6ad1fc31c7a4639c4654bbf1020e3e07",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "e3d896ec9c5d8fd0b2f41e4a50662ab8502be60fd07c7dd37c6b5e7bb3ac1d7e",
-      "plan.md": "b8f42234cedd3cb512ec245b42143998483556021d2903b91c632249c23dacb8",
-      "tasks.md": "d23218c5eac7c50302ba88ffa44f6dbf83db8bcbaeb647ad46bb694523f37bb1",
-      "checklist.md": "b8f4e6b700e2b7b3faa30ff3b000d7fb4409397db763aa6bf55689e8e54dbc9b"
+      "spec.md": "f8f5029e950708bc798fa4042f5aa6bb92077e25ce610d2243f80a28a06c25a7",
+      "plan.md": "cb9c5ae19432f599ecf77e547a989ea47b6aead5381ae73c9536951d55223ecf",
+      "tasks.md": "4d1907b581b0e0bde1af40647034cd9fedf4b5405d339f36a9925968ac7edebf"
     },
     "last_active_child_id": null,
     "last_active_at": null

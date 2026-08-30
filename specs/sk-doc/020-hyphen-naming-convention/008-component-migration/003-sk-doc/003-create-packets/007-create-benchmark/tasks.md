@@ -1,12 +1,11 @@
 ---
-title: "Tasks: create-benchmark resource names"
+title: "T [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark/tasks]"
 description: "Concrete execution and verification tasks for the create-benchmark resource naming phase."
 trigger_phrases:
   - "create-benchmark resource tasks"
   - "benchmark fixture rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark"
 ---
 # Tasks: create-benchmark resource names
 

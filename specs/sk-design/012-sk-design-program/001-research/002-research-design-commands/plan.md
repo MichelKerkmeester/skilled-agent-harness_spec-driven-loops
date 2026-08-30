@@ -1,6 +1,14 @@
 ---
-title: "Implementation Plan: Deep research — design command redesign"
+title: "Implementation Plan: Deep research — [sk-design/012-sk-design-program/001-research/002-research-design-commands/plan]"
 description: "Plan for the 20-iteration SOL + GLM design-command deep-research phase."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "deep"
+  - "research"
+  - "002"
+importance_tier: "important"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/001-research/002-research-design-commands"
@@ -20,7 +28,6 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

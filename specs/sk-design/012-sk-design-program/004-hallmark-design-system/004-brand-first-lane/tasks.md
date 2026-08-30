@@ -1,6 +1,14 @@
 ---
-title: "Tasks: Brand-First Authoring Lane"
+title: "Tasks: Brand-First Authoring [sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/tasks]"
 description: "Completed task breakdown for the brand-first lane's distinct exports, provenance schema, overwrite policy, manual review gate, and adversarial verification."
+trigger_phrases:
+  - "tasks"
+  - "brand"
+  - "first"
+  - "authoring"
+  - "004"
+importance_tier: "normal"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane"
@@ -22,7 +30,6 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

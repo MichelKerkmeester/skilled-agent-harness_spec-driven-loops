@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Benchmark — Compiled Lane C Parity"
+title: "...nification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c/implementation-summary]"
 description: "Completion record for the non-frozen compiled Lane C parity harness. Implemented and committed in 8532c4b64b: compiled-routing-parity.cjs, the orchestrator hooks, the qualifiedIdToLeaf shape bridge, the vacuous-parity guard, and the flag-state/verdict-substate matrices — the frozen scorer trio untouched (SHA-256 unchanged)."
 trigger_phrases:
   - "compiled lane c parity implementation summary"

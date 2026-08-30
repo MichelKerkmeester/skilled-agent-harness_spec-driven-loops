@@ -1,6 +1,14 @@
 ---
-title: "Tasks: design-md-generator changelog/ conformance"
+title: "Tasks: design-md-generator changelog/ [sk-design/014-template-conformance/004-design-md-generator/008-changelog/tasks]"
 description: "Task breakdown for auditing design-md-generator's single changelog file."
+trigger_phrases:
+  - "tasks"
+  - "design"
+  - "generator"
+  - "changelog"
+  - "008"
+importance_tier: "normal"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/004-design-md-generator/008-changelog"

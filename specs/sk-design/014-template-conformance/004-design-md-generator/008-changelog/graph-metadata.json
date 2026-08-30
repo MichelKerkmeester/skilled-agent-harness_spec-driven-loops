@@ -13,7 +13,15 @@
     "trigger_phrases": [
       "design-md-generator changelog conformance",
       "md-generator changelog template audit",
-      "v1.0.0.0 changelog structure check"
+      "v1.0.0.0 changelog structure check",
+      "plan",
+      "design",
+      "generator",
+      "changelog",
+      "008",
+      "tasks",
+      "implementation",
+      "implementation summary"
     ],
     "key_topics": [
       "design-md-generator",
@@ -24,18 +32,17 @@
       "audit",
       "structure",
       "check",
-      "holds",
-      "exactly",
-      "one",
-      "file"
+      "plan",
+      "design",
+      "generator",
+      "tasks"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/shared/assets/changelog-template.md"
     ],
@@ -56,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -179,31 +180,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Not",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "`changelog/` holds exactly one file, `v1.0.0.0.md`, which was not part of the 014 program's seed sample",
     "created_at": "2026-07-27T15:10:03.095Z",
-    "last_save_at": "2026-08-29T13:09:58.598Z",
+    "last_save_at": "2026-08-30T07:16:13.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c8666ba43ae3964cb334b52f4fac714d0f16f2e728d5b7e276ed0d3422ebcb59",
+    "source_fingerprint": "sha256:09a64fc0510f74551dda7b3deda9f60a2e5c3c6772509b86990e3d60d2bd9a26",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "1a8c5600478f0b7653a42afda51ba0a40a81c2e1bc51687363f6020cdd8454af",
-      "plan.md": "1ee9dd5124d489e453155c088f06939f325c6ab6ea85abc69d4079939185be63",
-      "tasks.md": "d2fe6eeebf7fa66dae0000793137182d6f6f042b78d599cc4c2f26a204ae45d2",
-      "checklist.md": "c4f8c7bf4fdb6782ce8ee6c27631af5a0de9710e37034c0f998e720d28d17673",
-      "implementation-summary.md": "7379c96cc0ec26cf2fe51c4b7d0d1283d4fd2fb34d843e929f992822039a7f18"
+      "spec.md": "78b405bf4b9e4d154fbc12643d4a9029fe1abc5ea26299bc80fb1e400039e993",
+      "plan.md": "0d292895d217f1db74bcc9ce83571bdec327620f400a090615745c975c41f04b",
+      "tasks.md": "e91488223ec370fc8789b7ee3008966676ce89af42d0267d27419b48b6f1672b",
+      "implementation-summary.md": "7c445e7825ca1bf7316e1e14c016551c5ccb466095b1f3b7c4aa4e9382da9ac2"
     },
     "last_active_child_id": null,
     "last_active_at": null

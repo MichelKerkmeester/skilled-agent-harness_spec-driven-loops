@@ -1,7 +1,8 @@
 ---
-title: "Implementation Plan: Devin feature catalog"
+title: "Implementation Plan: Devin feature [cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog/plan]"
 description: "Plan for authoring cli-devin's feature-catalog package, with the hooks category as the highest-scrutiny section for dormancy-status accuracy."
-trigger_phrases: ["devin feature catalog plan"]
+trigger_phrases:
+  - "devin feature catalog plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

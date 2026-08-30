@@ -19,10 +19,7 @@
       "phase 007 child 004 plan",
       "active spec document closure tasks",
       "spec document naming tasks",
-      "phase 007 child 004 tasks",
-      "active spec document closure checklist",
-      "spec document naming verifier",
-      "phase 007 child 004 checklist"
+      "phase 007 child 004 tasks"
     ],
     "key_topics": [
       "active",
@@ -43,8 +40,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -160,55 +150,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Active spec folders and authored documents can retain snake_case names and path references even though numeric phase folders are already structurally compliant. This child separates active authored docs from generated, frozen, and tool-mandated surfaces before applying the naming contract.",
     "created_at": "2026-07-14T15:16:53Z",
-    "last_save_at": "2026-08-29T13:10:16.179Z",
+    "last_save_at": "2026-08-30T07:19:15.756Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:2f4aa0a78887253378394c30e9b192955e5b463cf8634c7623e1482b585120eb",
+    "source_fingerprint": "sha256:5ddbd52c2a89d918d82e939e05bcdc0cfade0418e6cefc08f90b6f59087f74e4",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "76512515f53959b50002e9d5f29b7f01928dcca6a1099cc94709528d83605d39",
-      "plan.md": "01815e7232839ea8423e667e480fdeb5a70f5db33c90d74990bc0fe3d2c786dd",
-      "tasks.md": "b1612f89186880eb682b50d93d8edc339905668243dc7c0a7739306530f4b1ff",
-      "checklist.md": "36be70c072b05fd015cee4d2578dcdd2d9a8321999834cb6b7cb5ea9d9a7d076"
+      "spec.md": "c3414d2941959eee086a8f0309a3a036e0fcb0e76789710d3947215cc16eb32d",
+      "plan.md": "c5dcd7c09e5d6819aa429bcf551fe598c86a71110b120bf62902cbd2f6b78877",
+      "tasks.md": "8f455e95e81af976037ba21a0373c92c7efd66653704f428a87f333d0a3d4f43"
     },
     "last_active_child_id": null,
     "last_active_at": null

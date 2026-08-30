@@ -1,7 +1,8 @@
 ---
-title: "Tasks: Devin feature catalog"
+title: "Tasks: Devin feature catalog [cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog/tasks]"
 description: "Task breakdown for authoring cli-devin's feature-catalog package via LUNA-dispatched content authoring."
-trigger_phrases: ["devin feature catalog tasks"]
+trigger_phrases:
+  - "devin feature catalog tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:

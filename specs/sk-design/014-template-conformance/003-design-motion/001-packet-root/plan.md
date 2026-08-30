@@ -1,6 +1,15 @@
 ---
-title: "Plan: design-motion packet-root conformance"
+title: "Plan: design-motion packet-root conformance [sk-design/014-template-conformance/003-design-motion/001-packet-root/plan]"
 description: "Plan for reading design-motion's SKILL.md and README.md against their governing templates and fixing any confirmed gap."
+trigger_phrases:
+  - "plan"
+  - "design"
+  - "motion"
+  - "packet"
+  - "root"
+  - "001"
+importance_tier: "important"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/003-design-motion/001-packet-root"

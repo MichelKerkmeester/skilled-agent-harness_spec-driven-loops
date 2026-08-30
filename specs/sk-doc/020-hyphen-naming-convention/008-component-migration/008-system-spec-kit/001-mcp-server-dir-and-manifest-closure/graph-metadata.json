@@ -39,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
     "entities": [
@@ -59,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -176,37 +169,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Context The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context",
+        "kind": "heading",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit workspace still exposes mcp_server as a filesystem path even though kebab-case is canonical. The package workspace, lockfile links, package scripts, and entrypoint references must move as one path closure while manifest filenames, package names, Python files, and Python package directories remain exempt.",
     "created_at": "2026-07-14T15:17:57Z",
-    "last_save_at": "2026-08-29T13:10:13.790Z",
+    "last_save_at": "2026-08-30T07:19:44.178Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:752c713716f94aa716cd35205293f934e019e55f4a8a00cb7c82c634b23451fd",
+    "source_fingerprint": "sha256:86c7624c04461c560a929f572fd2385a90b40e44419bc11ac77604f3482f954a",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "78d693127f210bd821430ae7a5297446f459277c50f5c4b92df79df31487af41",
-      "plan.md": "4406c72dc5333f47e86bf7ea61800243fac8abf67f75eba874925526f6daacda",
-      "tasks.md": "135c385c09e89c6fc1189b8febb325c20bacdc108bf873934c8939fa98d4cfc5",
-      "checklist.md": "fc33dbb78dd8b4ae3dafb271ebc78b8db04a43df354c12f93eb901c964af0045",
-      "decision-record.md": "b231206644cd6575374c697c1e3bed8cad34de5a8f3359a341c09bd9380128eb"
+      "spec.md": "6ea08e4e4a9dc325a2aae85b58c801bc0648ebaf1108e26b3905fb7393839434",
+      "plan.md": "4ab2cbd6199d034ffeccd167757024a9217cf58be9f8f90266ab1dd267d115fb",
+      "tasks.md": "0912e0bccc50fc9776885a1ce961c9bd9be087afa839656e9106465ea10045a0",
+      "decision-record.md": "91878b5638e2ab5304e1374e96ac3dcced009cea7418f6f59516623848ac6cf9"
     },
     "last_active_child_id": null,
     "last_active_at": null

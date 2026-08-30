@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 019 sk-design-interface README revisit"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/019-sk-design-interface/spec]"
 description: "Rewrite the sk-design-interface mode skill README against the refined template from phase 001: purpose-first narrative with a one-line pitch and a problem-first OVERVIEW, HVR clean, version bump plus changelog entry, validated with zero issues, using the mcp-obsidian README as the exemplar."
 trigger_phrases:
   - "sk design interface readme"

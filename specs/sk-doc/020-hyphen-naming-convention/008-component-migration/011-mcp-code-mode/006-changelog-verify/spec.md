@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-code-mode changelog verification (020 component 011 phase 006)"
+title: "Feature Specif [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify/spec]"
 description: "The mcp-code-mode surface has a changelog through v1.0.8.0 and SKILL.md currently declares version 1.0.8.0, while the embedded npm lock metadata separately records 1.0.9. This verify-only phase checks that the completed rename set has an explicit matching changelog entry and version bump without performing any renames."
 trigger_phrases:
   - "mcp-code-mode changelog verification"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "rename changelog version check"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

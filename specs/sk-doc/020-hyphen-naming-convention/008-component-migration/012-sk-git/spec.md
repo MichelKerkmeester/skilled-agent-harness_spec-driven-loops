@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-git component migration (020 phase parent)"
+title: "Feature Specification: sk-git component [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/spec]"
 description: "The sk-git surface needs a scoped kebab-case migration plan that covers its references, assets, manual playbook, benchmark artifacts, changelog evidence, and final naming gate without expanding into code or other skills."
 trigger_phrases:
   - "sk-git kebab-case migration"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 sk-git phase map"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git"
@@ -26,6 +25,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->

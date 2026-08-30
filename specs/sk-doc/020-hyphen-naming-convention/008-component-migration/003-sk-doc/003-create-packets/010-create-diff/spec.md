@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-diff naming audit"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff/spec]"
 description: "The create-diff packet is assigned a component-local naming phase, but its current filesystem inventory contains no non-exempt snake_case name to rename. This Level-2 phase records the zero-row census, verifies path references, and prevents content identifiers from being mistaken for filesystem candidates."
 trigger_phrases:
   - "create-diff naming audit"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "create-diff no-op rename phase"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

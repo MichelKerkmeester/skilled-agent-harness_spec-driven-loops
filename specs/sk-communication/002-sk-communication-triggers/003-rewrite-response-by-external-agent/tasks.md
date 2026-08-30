@@ -1,6 +1,11 @@
 ---
-title: "Tasks: Phase 3: rewrite-response-by-external-agent command"
+title: "Tasks: Phase 3: [sk-communication/002-sk-communication-triggers/003-rewrite-response-by-external-agent/tasks]"
 description: "Task list for authoring and verifying the one-shot engine-choice projection command."
+trigger_phrases:
+  - "tasks"
+  - "phase"
+  - "003"
+  - "rewrite"
 importance_tier: "normal"
 contextType: "general"
 _memory:

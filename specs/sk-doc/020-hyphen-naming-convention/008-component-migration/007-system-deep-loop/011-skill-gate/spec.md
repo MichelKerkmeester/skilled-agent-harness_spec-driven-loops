@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop subtree skill gate (020 phase 007/011)"
+title: "Feature Specifica [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate/spec]"
 description: "The system-deep-loop subtree needs one blocking rollup gate after its ten scoped child phases. This verification-only phase aggregates sibling evidence and proves the complete surface has no in-scope snake_case filesystem name outside the 020 exemption set, with no new rename work."
 trigger_phrases:
   - "system-deep-loop skill gate"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "deep loop zero snake filesystem check"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate"
@@ -23,8 +22,8 @@ _memory:
       - "This child performs rollup verification only and adds no new migration work."
       - "The gate covers siblings 001-010 and the complete .opencode/skills/system-deep-loop surface."
       - "Python/package, tool-mandated, generated/lockfile, identifier/key, and frozen-history exemptions are scope-aware."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

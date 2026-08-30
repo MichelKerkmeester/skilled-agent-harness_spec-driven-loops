@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Narrow exceptions for documentation gate remediation"
+title: "Decision Record: [sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet/decision-record]"
 description: "Records how the global link guard distinguishes active broken links from intentional fixtures and future-copy template placeholders."
 trigger_phrases:
   - "link guard exception decision"

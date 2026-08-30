@@ -1,12 +1,11 @@
 ---
-title: "Tasks: prompt-improve asset and reference names (020 phase 004.002)"
+title: "Tasks: prompt-impro [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve/tasks]"
 description: "Tasks for phase 002 of the sk-prompt kebab-case program: rename prompt-improve assets and references, close active path consumers, and verify scope."
 trigger_phrases:
   - "prompt-improve asset and reference tasks"
   - "sk-prompt phase 002 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve"
@@ -24,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The playbook, benchmark, and changelog subtrees are owned by adjacent phases."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve"
 ---
 # Tasks: prompt-improve asset and reference names
 

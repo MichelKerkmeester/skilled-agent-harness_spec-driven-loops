@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Devin PermissionRequest handler"
+title: "Implementation Plan: [cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler/plan]"
 description: "Build a real PermissionRequest adapter composing the existing spec-gate and dispatch-rule-checks cores, registered in .devin/hooks.v1.json to replace the empty-array silent rejection."
 trigger_phrases:
   - "devin permission request handler plan"

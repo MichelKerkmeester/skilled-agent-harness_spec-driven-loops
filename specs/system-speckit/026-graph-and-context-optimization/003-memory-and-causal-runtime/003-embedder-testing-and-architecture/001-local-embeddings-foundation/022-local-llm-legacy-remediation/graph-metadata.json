@@ -21,10 +21,10 @@
       "local-llm legacy remediation plan",
       "022 tasks",
       "local-llm legacy remediation tasks",
-      "022 checklist",
       "022 substrate repair complete",
       "post-014 ephemeral governance trigger root cause",
-      "E081 classified codes shipped"
+      "e081 classified codes shipped",
+      "022 scope shift remediation to substrate"
     ],
     "key_topics": [
       "local-llm",
@@ -35,10 +35,10 @@
       "correction",
       "plan",
       "tasks",
-      "checklist",
       "substrate",
       "repair",
-      "complete"
+      "complete",
+      "post-014"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
       ".codex/config.toml",
@@ -78,12 +77,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -159,13 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Is Voyage",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Is Voyage",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -205,27 +198,32 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31)",
     "created_at": "2026-05-13T14:30:00Z",
-    "last_save_at": "2026-08-29T13:10:01.575Z",
+    "last_save_at": "2026-08-30T07:16:30.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:00:00Z",
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6165c711e0b93f34c1e7c63903bf0bcf845ef02b8f5fc6ca7ce14ba0083a1679",
+    "source_fingerprint": "sha256:637109dee9936039524790616f0a1d241e069d7e8d2538c6430961fe0672e677",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f5930735428f3e639a25c04949a0218ccece7ac1a6c241f66976aebb889103ad",
-      "plan.md": "7490f903b2af859122958f6e538fb9caa925a73d917e03411582cdbab2642be5",
-      "tasks.md": "f926c119368040077553692fbe59c76217dffa484e80ba101a7298d19049d463",
-      "checklist.md": "0419af60796362836896b6249e9402cfd852d96abd47c8e3e90465fed8bc100b",
-      "implementation-summary.md": "410f43217bca5c91bc4884bdd1f1c0ea2a7933587260c70506e02879aa04c444"
+      "spec.md": "0f1b4250887e38bad3679eef48c5db1e6253d8959e1d383c2ae4110a0ae718dd",
+      "plan.md": "0a2de4ea87095f8d7ec5bb3fcca54cf5c3e992d6651eae15a1909cd18564e655",
+      "tasks.md": "b23239981878d789e2cf1324aa1bbfdc85352285ea4d7097faab9a5f64829b31",
+      "implementation-summary.md": "7b535576f2ef07ae7e7f02cc198507bd0f96c5241622ffcad41f9ba7b39123f9"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -22,7 +22,7 @@
       "phase 038 tasks",
       "deep research readme tasks",
       "mode readme rewrite tasks",
-      "phase 038 checklist"
+      "implementation summary"
     ],
     "key_topics": [
       "deep",
@@ -36,36 +36,28 @@
       "phase",
       "plan",
       "tasks",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-research/README.md",
-      ".opencode/skills/system-deep-loop/deep-research/changelog/v1.15.0.0.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-deep-loop/deep-research/README.md",
+      ".opencode/skills/system-deep-loop/deep-research/changelog/v1.15.0.0.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/tasks.md"
     ],
     "entities": [
       {
-        "name": "README.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-research/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.15.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.15.0.0.md",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/spec.md",
         "source": "derived"
       },
       {
@@ -81,27 +73,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-research/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.15.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-research/changelog/v1.15.0.0.md",
         "source": "derived"
       },
       {
         "name": "skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -199,27 +191,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research mode skill README at `.opencode/skills/system-deep-loop/deep-research/README.md` predates the mcp-obsidian pilot standard",
     "created_at": "2026-08-04T08:34:53.072Z",
-    "last_save_at": "2026-08-04T18:57:55.659Z",
+    "last_save_at": "2026-08-30T07:20:36.901Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53c216e75bd6c9a04c2135212c6d995c208ad01ab26396c5cd0c46fd41a3e704",
+    "source_fingerprint": "sha256:d84220d768ac94f46b5a6e2982d752214236b38788480814dcb63e050cf11521",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "fac87538e8fd97b2dfbe87395984a57b2149bc21871de7af99b213780379b879",
-      "plan.md": "d376042dcd9148addfcffd67f1e824a6638c30e90206fac2fcb572fce46e3edc",
-      "tasks.md": "20bc4a070d32088ff0d5a8d038822e43bb1a169d21a92a5c903d557a016fadff",
-      "checklist.md": "aaf19cd576edc9b64941cfa77ee889efdcb7039e5921469d4bc599eee91c2dd5",
-      "implementation-summary.md": "8cfb9930cf9b12aa6ec0343e969bc09d23d3dfac8e0f7b17772ebaedb744cb74"
+      "spec.md": "f1ae7a9e94e092e657119596bce6f888dc53af18c88bdb84645305e6b75e6ff2",
+      "plan.md": "5b3693f9e55cd0346890f89f02e7fefb2721ac0149dcb8fbceff28cb1fd27dac",
+      "tasks.md": "62c85e16178ac373dd603487f46976193a4fa44e5c10ae3f799ea779434d8e66",
+      "implementation-summary.md": "63fb2e66aafa1b4283b1d00a3520c09890381b3cf01706fe2c123b33f509c6b1"
     },
     "last_active_child_id": null,
     "last_active_at": null

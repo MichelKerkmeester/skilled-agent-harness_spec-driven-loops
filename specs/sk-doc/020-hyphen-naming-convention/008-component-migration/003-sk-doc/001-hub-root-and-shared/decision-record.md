@@ -1,12 +1,11 @@
 ---
-title: "Decision Record: sk-doc hub root and shared backbone"
+title: "Decisio [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared/decision-record]"
 description: "Design decisions for applying the 020 kebab-case filesystem rule to the sk-doc shared backbone while preserving Python exemptions, mandated names, and root facade symlinks."
 trigger_phrases:
   - "sk-doc shared naming decisions"
   - "hub facade symlink decision"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
@@ -19,8 +18,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

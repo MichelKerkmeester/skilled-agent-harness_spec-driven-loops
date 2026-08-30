@@ -17,7 +17,6 @@
       "install-transition plan",
       "pi install remove fast mode",
       "install-transition tasks",
-      "install-transition checklist",
       "install-transition implementation summary"
     ],
     "key_topics": [
@@ -32,7 +31,7 @@
       "remove",
       "mode",
       "tasks",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/settings.json",
       ".pi/PLUGINS.md"
@@ -62,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,27 +181,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Installing the fork beside another extension that registers `/fast` and `--fast` creates load-order ambiguity",
     "created_at": "2026-08-16T09:08:03Z",
-    "last_save_at": "2026-08-29T15:21:53.577Z",
+    "last_save_at": "2026-08-30T07:18:56.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b9f4750cda912e9000bd19a1c54bee899376b3213ebd2e48b14b28f1a9986adf",
+    "source_fingerprint": "sha256:76f3e633bd609e6fb50fe157f7ede2bd2bc7388a17a488dc83b088257df6a782",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "1eb0a1f3f696075c7b06af51acc88aa43149a445ada41bed84b13b83ef550614",
-      "plan.md": "2bc6ba4234bf1882eacbf5056c6d50c241a0d2214d98d6df465802639ad711f3",
-      "tasks.md": "126203ff67d08ae536180cea3c62c903506e59ccac7e0788a58879bce982ef0f",
-      "checklist.md": "94fe14b66bfe99276288498aaa98241e9e5419598c9ede576618b1a4549d9671",
-      "implementation-summary.md": "abf4d6081e21e5ebcedeecb4e33e1da0d07cdb827a20fdfd03e9814895f581af"
+      "spec.md": "3ec5712ec66ca309e740eabff1f4403d41b526cbe0a2093cb215300463124d97",
+      "plan.md": "5468d336cef0a04270a94218bcf0e132dd95e02ebf485b2ca37f0fcf11324ff4",
+      "tasks.md": "fc0059e4a56ff4da0aec3cec385026d7f39c995ccb3ac0a17380d7840e9a5819",
+      "implementation-summary.md": "2b3a7cc6bc71d79cea88ef2dbcb1f252592cfeed013c971ddd07716a94f75893"
     },
     "last_active_child_id": null,
     "last_active_at": null

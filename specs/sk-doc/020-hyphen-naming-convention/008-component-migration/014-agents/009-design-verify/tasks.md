@@ -1,12 +1,11 @@
 ---
-title: "Tasks: verify design agent naming (020 phase 009)"
+title: "Tasks: verify design [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/009-design-verify/tasks]"
 description: "Tasks for phase 009 of the 020 agents component migration: verify the design filename candidate set."
 trigger_phrases:
   - "design agent naming tasks"
   - "agents phase 009 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/009-design-verify"
@@ -19,8 +18,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 # Tasks: Design Agent Naming Verification
 
 <!-- SPECKIT_LEVEL: 2 -->

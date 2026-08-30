@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 018 sk-code-webflow README revisit"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/plan]"
 description: "Rewrite the sk-code-webflow README purpose-first per the refined template from phase 001, using the mcp-obsidian exemplar for the narrative voice, with a version bump, a changelog entry and full validation."
 trigger_phrases:
   - "phase 18 plan"

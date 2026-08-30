@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: fork-and-package workstream"
+title: "Feature Specification: fork-and-package workstream [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/spec]"
 description: "Nested phase parent for establishing the fast-mode extension baseline, configuration safety, and distributable package contract."
 trigger_phrases:
   - "fork-and-package workstream"

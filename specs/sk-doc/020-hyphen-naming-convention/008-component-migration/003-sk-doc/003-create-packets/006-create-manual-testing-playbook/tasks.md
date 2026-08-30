@@ -1,12 +1,11 @@
 ---
-title: "Tasks: create-manual-testing-playbook resource names"
+title: "...hen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook/tasks]"
 description: "Concrete execution and verification tasks for the create-manual-testing-playbook resource naming phase."
 trigger_phrases:
   - "create playbook resource tasks"
   - "manual testing template rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook"
 ---
 # Tasks: create-manual-testing-playbook resource names
 

@@ -1,6 +1,13 @@
 ---
-title: "Implementation Plan: Brand-First Authoring Lane"
+title: "Implementation Plan: [sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/plan]"
 description: "Delivered plan for the brand-first lane: distinct authored exports, provenance validation, measured-path refusal, and a manual reviewed-conversion checklist."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "004"
+  - "brand"
+importance_tier: "important"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane"
@@ -22,7 +29,6 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

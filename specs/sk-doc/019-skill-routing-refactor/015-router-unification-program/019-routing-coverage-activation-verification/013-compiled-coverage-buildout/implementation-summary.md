@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Compiled-Routing Coverage Build-Out & Genuine Default-On"
+title: "...ification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/implementation-summary]"
 description: "COMPLETE. All 7 hubs (sk-code, sk-design, sk-doc, sk-prompt, mcp-tooling, system-deep-loop, cli-external-orchestration) are compiled-serving with 0 route-gold drift each, and DEFAULT_ON_HUBS lists all 7 in both resolver copies as of commit 7dfffa0c93. Delivered across 6 commits: sk-code routing recipe + manifest refresh (f19ee17179), parity-harness correctness fixes (e56361ee53), sk-design/system-deep-loop/mcp-tooling coverage (f9f639674b), sk-doc under-routing fixes (b03b1dd882), a non-route/surface-layer parity refinement (6ba5f2957f), and the default-on flip (7dfffa0c93). Frozen scorer trio byte-identical throughout; 258/258 skill-benchmark vitest green."
 trigger_phrases:
   - "compiled routing coverage build-out complete"

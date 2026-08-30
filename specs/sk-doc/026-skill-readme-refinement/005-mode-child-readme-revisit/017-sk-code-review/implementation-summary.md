@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 017 sk-code-review mode README rewrite"
+title: "Implementat [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/017-sk-code-review/implementation-summary]"
 description: "The sk-code-review README now reads as a purpose-first narrative on the refined template: one-line pitch, problem-first OVERVIEW, HVR clean prose, version bumped to 1.6.0.0 with a matching changelog entry."
 trigger_phrases:
   - "phase 017 implementation summary"

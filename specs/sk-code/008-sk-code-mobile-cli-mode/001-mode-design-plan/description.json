@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan",
-  "description": "This phase **plans, but does not build**, a new mode under the `sk-code` parent hub, purely for Mobile-CLI app work (`apps/pi-remote-web/` and its",
+  "description": "This phase plans, but does not build, a new mode under the sk-code parent hub, purely for Mobile-CLI app work (apps/pi-remote-web/ and its siblings),",
   "keywords": [
     "phase",
     "plans",
@@ -15,9 +15,10 @@
     "app",
     "work",
     "apps",
-    "pi-remote-web"
+    "pi-remote-web",
+    "siblings"
   ],
-  "lastUpdated": "2026-08-29T15:04:31.750Z",
+  "lastUpdated": "2026-08-30T07:14:53.621Z",
   "specId": "001",
   "folderSlug": "mode-design-plan",
   "parentChain": [

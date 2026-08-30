@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-prompt manual-testing-playbook trees (020 phase 004.004)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook/spec]"
 description: "The sk-prompt hub and prompt-improve packet contain manual-testing-playbook roots, category directories, scenario files, and index references with underscore-separated names. This phase renames both playbook trees to kebab-case, updates active links, and proves scenario IDs and coverage remain unchanged while frozen changelog history stays untouched."
 trigger_phrases:
   - "sk-prompt manual testing playbook kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 004 naming"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
@@ -33,8 +32,8 @@ _memory:
       - "The hub playbook contains four SP routing scenarios under hub_routing/."
       - "The prompt-improve playbook contains seven category directories and 27 scenario documents."
       - "Scenario IDs and content semantics are preserved; only filesystem path segments and path-valued references change."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

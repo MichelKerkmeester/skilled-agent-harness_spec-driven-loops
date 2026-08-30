@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: sk-doc manual-testing-playbook tree"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook/plan]"
 description: "Execution plan for the root manual-testing-playbook directory, scenario filename, index, and reference closure."
 trigger_phrases:
   - "sk-doc manual playbook implementation plan"
   - "manual playbook rename plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook"
 ---
 # Implementation Plan: sk-doc manual-testing-playbook tree
 

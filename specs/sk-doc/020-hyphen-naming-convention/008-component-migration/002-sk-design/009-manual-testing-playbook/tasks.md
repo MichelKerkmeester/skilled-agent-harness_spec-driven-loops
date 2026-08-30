@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Manual-testing-playbook (020 phase 009)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook/tasks]"
 description: "Task breakdown for Manual-testing-playbook in the 020 sk-design naming subtree."
 trigger_phrases:
   - "manual-testing-playbook tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 manual-testing-playbook checklist"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook"
 ---
 # Tasks: Manual-testing-playbook (020 phase 009)
 

@@ -1,13 +1,12 @@
 ---
-title: "Implementation Plan: deep-ai-council filesystem names (020 phase 007/005)"
+title: "Implementati [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council/plan]"
 description: "Plan for renaming the deep-ai-council paired catalog/playbook trees, assets, and references through one semantic map, then repairing artifact, graph, script, and test path consumers without changing council contracts."
 trigger_phrases:
   - "deep-ai-council implementation plan"
-  - "AI council kebab-case rename plan"
+  - "ai council kebab-case rename plan"
   - "council paired playbook path closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
 ---
 # Implementation Plan: Deep-ai-council filesystem names
 

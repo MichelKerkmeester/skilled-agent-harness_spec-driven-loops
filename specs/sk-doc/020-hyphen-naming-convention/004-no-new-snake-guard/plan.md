@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: no-new-snake_case guard (020 phase 004)"
+title: "Implementation Plan: no-new-snake_case guard (020 [sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard/plan]"
 description: "Implementation Plan for phase 004 of the 020 kebab-case filesystem-naming program: no-new-snake_case guard."
 trigger_phrases:
   - "no-new-snake_case guard implementation plan"
   - "hyphen naming phase 004 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard"
 ---
 # Implementation Plan: No-new-snake_case guard
 

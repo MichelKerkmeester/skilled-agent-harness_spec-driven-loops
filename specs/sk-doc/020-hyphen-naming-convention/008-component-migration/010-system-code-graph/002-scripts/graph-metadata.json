@@ -13,16 +13,14 @@
     "trigger_phrases": [
       "system-code-graph scripts naming",
       "code graph script filename audit",
-      "kebab-case non-Python scripts",
+      "kebab-case non-python scripts",
       "code graph script reference closure",
       "system-code-graph scripts implementation plan",
       "code graph script filename plan",
       "script naming audit plan",
       "system-code-graph script tasks",
       "code graph script rename tasks",
-      "script census tasks",
-      "system-code-graph scripts checklist",
-      "code graph script filename verification"
+      "script census tasks"
     ],
     "key_topics": [
       "system-code-graph",
@@ -43,8 +41,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -66,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specificati",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -97,12 +94,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -178,37 +169,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-code-graph surface has two actual script files: scripts/doctor.sh and",
     "created_at": "2026-07-14T15:18:14Z",
-    "last_save_at": "2026-08-29T10:00:52.039Z",
+    "last_save_at": "2026-08-30T07:19:52.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:a5c74daf443352c7c849a83c18e0f736f122a0f8f8174d516f826be8f7bf9310",
+    "source_fingerprint": "sha256:ee0c0b7c72326576424b7fe73490c8711530ba1398947ef27b979012dd1df928",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "6e5de6ded05d5851002e2dcb2a9115d43af09e6ffa0a436edfef1f6d91e12478",
-      "plan.md": "165fac2d502577ae7891553203370f5b08a596354322ac4678f15889e194c423",
-      "tasks.md": "a245df065a295c64c9c37790ea0effc5589730dd15c8406b8eaeec3ff7305caf",
-      "checklist.md": "c1f7bbe5f56946e5a5bf977dfa1f843948a268548ab987abcae4cd2822b5f488"
+      "spec.md": "bf94c6bf01052b4b1b7d59fd6871c4f58ea1f15a9bba5bff737072705c0afd90",
+      "plan.md": "49cef3bef4edaeb66016c63f4de1a274cb95a1f8e3e6462eecf4f38da17e8eb9",
+      "tasks.md": "a62f6403cb9f04db6b4a9f1cdd1e52f7de024ae3ef3db900f25923631e0e0c34"
     },
     "last_active_child_id": null,
     "last_active_at": null

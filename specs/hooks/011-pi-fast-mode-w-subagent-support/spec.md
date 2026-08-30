@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: pi-fast-mode-w-subagent-support"
+title: "Feature Specification: pi-fast-mode-w-subagent-support [hooks/011-pi-fast-mode-w-subagent-support/spec]"
 description: "Phase parent: fork pi-openai-fast-mode into pi-fast-mode-w-subagent-support, adding pi-gpt-fast-mode-style subagent handoff via environment inheritance."
 trigger_phrases:
   - "pi-fast-mode-w-subagent-support"

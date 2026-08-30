@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-code-graph MCP server directory and manifest closure"
+title: "...hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/tasks]"
 description: "Concrete tasks for the code-graph package-boundary rename, manifest/entrypoint closure, exemption preservation, and runtime verification."
 trigger_phrases:
   - "system-code-graph mcp-server closure tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "manifest and entrypoint rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure"
@@ -22,8 +21,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The package manifest state is recorded before execution; no missing package.json is invented."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure"
 ---
-
 # Tasks: system-code-graph MCP server directory and manifest closure
 
 <!-- SPECKIT_LEVEL: 2 -->

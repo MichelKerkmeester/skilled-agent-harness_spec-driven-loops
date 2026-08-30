@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-code-graph MCP server directory and manifest closure"
+title: "...-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/plan]"
 description: "Use an explicit package-boundary rename map, update the code-graph path consumers as one dependency-closed change, preserve Python/tool/generated/test exemptions, and verify the renamed package through build, launcher, plugin, and discovery checks."
 trigger_phrases:
   - "system-code-graph mcp-server implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "mcp-server entrypoint closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure"
@@ -27,8 +26,8 @@ _memory:
     answered_questions:
       - "The current visible package root has package-lock.json but no package.json; no manifest is synthesized by this phase."
       - "The direct package-layout rename targets are mcp_server, plugin_bridges, and stress_test; tests/__fixtures__ remains classified as test magic."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure"
 ---
-
 # Implementation Plan: system-code-graph MCP server directory and manifest closure
 
 <!-- SPECKIT_LEVEL: 2 -->

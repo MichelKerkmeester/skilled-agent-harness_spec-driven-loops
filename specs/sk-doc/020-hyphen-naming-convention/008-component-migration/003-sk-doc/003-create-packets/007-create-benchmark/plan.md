@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: create-benchmark resource names"
+title: "Im [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark/plan]"
 description: "Execution plan for the create-benchmark taxonomy, fixture, profile, and guide rename/reference closure."
 trigger_phrases:
   - "create-benchmark resource implementation plan"
   - "benchmark fixture rename plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark"
 ---
 # Implementation Plan: create-benchmark resource names
 

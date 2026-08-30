@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-flowchart resource names"
+title: "Fe [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart/spec]"
 description: "The create-flowchart packet contains snake_case asset, reference, and validator filenames used by flowchart authoring and validation. This phase renames those non-exempt resources to kebab-case and updates packet-local links while preserving validator behavior and flowchart notation."
 trigger_phrases:
   - "create-flowchart resource naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "flowchart reference rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

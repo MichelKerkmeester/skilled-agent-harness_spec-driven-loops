@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 012 mcp-mobbin README revisit"
+title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/012-mcp-mobbin/implementation-summary]"
 description: "The mcp-mobbin README moved to the purpose-first pilot standard: one-line pitch, problem-first OVERVIEW, HVR-clean prose, version 1.1.0.0 and a matching changelog entry."
 trigger_phrases:
   - "mcp mobbin readme rewrite"

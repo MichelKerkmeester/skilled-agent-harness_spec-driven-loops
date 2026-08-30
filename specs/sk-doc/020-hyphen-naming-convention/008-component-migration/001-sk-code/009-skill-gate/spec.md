@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-code subtree rollup gate (020 phase 008/009)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate/spec]"
 description: "Final verification-only gate for the sk-code subtree: confirm phases 001-008 are complete, the full sk-code naming surface is kebab-clean within the 020 exemption boundary, and no new migration work is introduced."
 trigger_phrases:
   - "sk-code subtree rollup gate"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "sk-code phase 009 acceptance"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate"
@@ -29,8 +28,8 @@ _memory:
       - "This gate aggregates phases 001-008 and introduces no new migration map or rename work."
       - "The final census must classify every retained non-kebab name against the 020 exemption and phase evidence."
       - "Any incomplete sibling, stale reference, or unknown in-scope name blocks the sk-code rollup."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

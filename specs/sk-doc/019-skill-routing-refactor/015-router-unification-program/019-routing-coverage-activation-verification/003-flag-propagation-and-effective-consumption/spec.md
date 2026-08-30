@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Compiled Routing — Flag Propagation & Effective Consumption"
+title: "...unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption/spec]"
 description: "Make SPECKIT_COMPILED_ROUTING reach the advisor daemon child and make the compiled decision survive to the injected system-context, so that when 002 has promoted the closure and tri-stated the flag, default-on stops being a structural no-op end-to-end. Today the flag is stripped by BOTH child-env allowlists (launcher mk-skill-advisor-launcher.cjs:99 and bridge mk-skill-advisor-bridge.mjs:58, zero flag hits in each) so it never reaches the spawned daemon, and the compiled decision the advisor attaches additively (handlers/advisor-recommend.ts:371) is dropped at TWO independent rebuild sites: the OpenCode plugin bridge rebuilds the recommendation list through a field allowlist that omits compiledRoute (buildNativeBrief, mk-skill-advisor-bridge.mjs:539-551, zero compiledRoute hits) and the CLI AdvisorRecommendation interface (subprocess.ts) has no compiledRoute field either (zero hits). This phase (CF-ACT-1, CF-ACT-2, and the CF-ACT-10 cache slice) adds the flag to both allowlists; threads compiledRoute (or a top-level metadata.compiledRouteSummary) through the native brief builder AND the OpenCode bridge rebuild AND the CLI subprocess interface AND the hook render so the 4-action compiled outcome (route/clarify/defer/reject) survives to system-context injection; incorporates a manifest/serving-state fingerprint into the advisor-brief and engine cache keys so a manifest flip or =0 never serves a stale compiled brief; and adds e2e bridge+plugin tests with a real compiled decision (native AND no-dist launcher fallback) plus a =0 propagation kill test. Depends on 002. Additive only: routing decisions stay byte-identical to legacy, the three frozen scorer files are never edited, every step names a byte-exact/flag-based rollback, and no runtime path reads under .opencode/specs."
 trigger_phrases:
   - "compiled routing flag propagation effective consumption"
-  - "SPECKIT_COMPILED_ROUTING child env allowlist"
-  - "compiledRoute bridge subprocess hook threading"
+  - "speckit_compiled_routing child env allowlist"
+  - "compiledroute bridge subprocess hook threading"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

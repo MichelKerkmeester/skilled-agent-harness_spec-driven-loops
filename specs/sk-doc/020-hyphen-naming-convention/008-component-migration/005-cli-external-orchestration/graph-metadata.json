@@ -22,7 +22,7 @@
     "trigger_phrases": [
       "cli-external-orchestration kebab-case migration",
       "cli external orchestration naming phases",
-      "external CLI surface hyphen naming"
+      "external cli surface hyphen naming"
     ],
     "key_topics": [
       "cli-external-orchestration",
@@ -41,12 +41,18 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "spec.md",
       ".opencode/skills/cli-external-orchestration/SKILL.md",
       ".opencode/skills/cli-external-orchestration/hub-router.json",
-      ".opencode/skills/cli-external-orchestration/mode-registry.json",
-      "spec.md"
+      ".opencode/skills/cli-external-orchestration/mode-registry.json"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -63,12 +69,6 @@
         "name": "mode-registry.json",
         "kind": "config",
         "path": ".opencode/skills/cli-external-orchestration/mode-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -110,17 +110,18 @@
     ],
     "causal_summary": "Phase parent for the kebab-case migration of the cli-external-orchestration hub, its three CLI workflow components, manual-testing-playbook trees, benchmark boundary, release evidence, and final subtree gate. Children keep ownership and verification independent.",
     "created_at": "2026-07-14T15:16:58Z",
-    "last_save_at": "2026-07-20T11:09:35.884Z",
+    "last_save_at": "2026-08-30T07:19:33.017Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9a092111df1866f916a2129a8efbfd80aa1d3c95db1b7bde1d4dfa89a79040b9",
+    "source_fingerprint": "sha256:88cc92d1477b4123585ff554cb3ce84964107b05cf536da7658a5906f4145d81",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f1fa4718bc953eba7e4df4cc655bfc390365c8747f4509eea2cb3a3257317763"
+      "spec.md": "12a464a2575ad94168da1ae54cb334f58d41e3e64cd5ab3f40bf904b1775c38f"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode",
     "last_active_at": null
   }
 }

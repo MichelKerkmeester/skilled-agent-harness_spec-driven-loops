@@ -11,8 +11,18 @@
   },
   "derived": {
     "trigger_phrases": [
-      "drop NN category mandate",
-      "de-number sk-doc convention"
+      "drop nn category mandate",
+      "de-number sk-doc convention",
+      "doc",
+      "014",
+      "parent",
+      "027",
+      "plan",
+      "001",
+      "convention",
+      "tasks",
+      "rent",
+      "catalog"
     ],
     "key_topics": [
       "drop",
@@ -21,12 +31,12 @@
       "de-number",
       "sk-doc",
       "convention",
-      "phase",
-      "numbered-prefix",
-      "deprecation",
-      "two",
-      "authoritative",
-      "skills"
+      "doc",
+      "parent",
+      "plan",
+      "tasks",
+      "rent",
+      "catalog"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -34,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -54,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -153,55 +156,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "What Was Built Removed",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "How It Was Delivered Grep",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "File Organization",
+        "name": "Key Decisions Per",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 of the numbered-prefix deprecation. Update the two authoritative sk-doc convention skills (create-feature-catalog, create-manual-testing-playbook), their asset templates, and the /create:* command generators so the documented canonical category-folder name is the bare descriptive slug, not NN--slug. Ordering is documented as owned by the root index table. Docs-only phase — no folders are renamed here; it removes the mandate that would otherwise re-introduce numbers.",
     "created_at": "2026-07-10T18:51:12.648Z",
-    "last_save_at": "2026-08-29T10:01:16.677Z",
+    "last_save_at": "2026-08-30T07:16:14.375Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0ba7e3946c61f73f200c487dedcea04dfccba457a3839bcdfacc91a5d5a23d14",
+    "source_fingerprint": "sha256:6b0c8f7b0bec45b90a87f82cd5f38a6bf2b64501cd92cf0c035194c571079cc6",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "57de85a7d1fbf17ea4b951b207f72383b25ea419c48ffb29f02aa47df6309f6c",
-      "plan.md": "65f2f118955a1e1811fb958aea1dbcfba05a68c6eff1f31f7fed56c06a972d73",
-      "tasks.md": "3664b2b45678855aebc9f33259b784d752a6e79975314e91bb4f20d309dc4afd",
-      "checklist.md": "6c65aa2127c194fe7e243d7036498172af4674f45bb4907d6c4b5e4a332bf829",
-      "implementation-summary.md": "745f9936829d2a94b009518959c0423a7a88097768fc81067a52daf9e0a1003f"
+      "spec.md": "6e441af45bf6f914fc625dc20e72322baea96fbc86bcddde7bdd9e6864979b35",
+      "plan.md": "9a443edcdb6d6c1bee72b0aed5f701c3fbda2403b44f5f6bf6d5b005124c15e8",
+      "tasks.md": "4c56af14ffa7495db0eff7aaf45b2fa66d571d924cff1075052e3e1aeee202d8",
+      "implementation-summary.md": "54d341a9b7f5db2bd67df85ba6b32d13bb3419b7cccc0da5f2195df33be59803"
     },
     "last_active_child_id": null,
     "last_active_at": null

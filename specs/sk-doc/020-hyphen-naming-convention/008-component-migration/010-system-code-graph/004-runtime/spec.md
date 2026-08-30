@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-code-graph runtime"
+title: "Feature Specificati [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime/spec]"
 description: "Audit the system-code-graph runtime tree, rename any non-tool-mandated snake_case filesystem name found in the pinned baseline, and repair runtime references without changing hook events, code identifiers, or runtime contracts."
 trigger_phrases:
   - "system-code-graph runtime naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "freshness hook filename audit"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime"
@@ -29,8 +28,8 @@ _memory:
       - "The runtime tree currently contains four files and all runtime directory/file basenames are already kebab-case."
       - "A proven zero-rename result is valid; the phase must retain the full inventory and reference evidence."
       - "Hook events, environment keys, code identifiers, test names, and runtime behavior remain unchanged."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

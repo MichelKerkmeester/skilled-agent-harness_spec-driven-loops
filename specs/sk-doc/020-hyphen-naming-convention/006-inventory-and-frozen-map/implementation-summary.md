@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: inventory and frozen rename map (020 phase 006)"
+title: "Implementation Summary: [sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/implementation-summary]"
 description: "Phase 006 froze the executable bijective rename map for the kebab-case migration and, verifying it against the real engine, found and fixed a directory-emptying defect plus quadratic planning in the phase-005 apply tooling."
 trigger_phrases:
   - "inventory and frozen rename map summary"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "frozen rename map executable"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map"
@@ -25,6 +24,7 @@ _memory:
     answered_questions:
       - "The frozen map's intents are correct; the earlier apply failures were an engine bug, not a map bug"
       - "The full map applies through the fixed engine with zero failures, zero source-left, zero target-missing"
+parent: "sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map"
 ---
 # Implementation Summary
 

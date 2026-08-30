@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-skill-advisor subtree skill gate"
+title: "Implementatio [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate/plan]"
 description: "Aggregate sibling checklists and run a scope-aware whole-surface inventory, stale-path scan, link/reference check, and runtime/documentation parity gate without performing new migration work."
 trigger_phrases:
   - "system-skill-advisor subtree gate plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "advisor whole-surface verification"
 importance_tier: "critical"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate"
@@ -24,8 +23,8 @@ _memory:
     answered_questions:
       - "Phase 008 is evidence-only; newly discovered candidates block the gate and return to their owning phase."
       - "The scope-aware scan must distinguish filesystem names from identifiers, keys, tool names, and exemptions."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate"
 ---
-
 # Implementation Plan: system-skill-advisor subtree skill gate
 
 <!-- SPECKIT_LEVEL: 2 -->

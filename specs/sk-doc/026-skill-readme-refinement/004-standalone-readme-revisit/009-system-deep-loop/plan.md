@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 9 system-deep-loop README rewrite"
+title: "Implementation Plan: [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/plan]"
 description: "Rewrite the system-deep-loop skill README against the refined template from phase 001 and the mcp-obsidian exemplar, purpose-first with HVR enforcement, a version bump to 2.1.0.0 and a changelog entry."
 trigger_phrases:
   - "phase 9 plan"

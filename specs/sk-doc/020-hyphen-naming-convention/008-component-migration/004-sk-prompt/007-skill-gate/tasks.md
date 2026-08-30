@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-prompt subtree rollup gate (020 phase 004.007)"
+title: "Tasks: sk-prompt [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate/tasks]"
 description: "Tasks for phase 007 of the sk-prompt kebab-case program: aggregate sibling evidence, reconcile path classifications, run the final census, and publish a pass/block gate without new migration work."
 trigger_phrases:
   - "sk-prompt rollup gate tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 007 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate"
@@ -23,8 +22,8 @@ _memory:
       - ".opencode/skills/sk-prompt/prompt-models/"
     completion_pct: 0
     open_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

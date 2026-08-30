@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-deep-loop hub root and shared names (020 phase 007/001)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared/tasks]"
 description: "Execution tasks for classifying the system-deep-loop hub/shared boundary, conditionally applying any frozen-map candidate, and verifying routing and helper references."
 trigger_phrases:
   - "system-deep-loop hub shared tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "hub root reference verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared"
 ---
 # Tasks: System-deep-loop hub root and shared names
 

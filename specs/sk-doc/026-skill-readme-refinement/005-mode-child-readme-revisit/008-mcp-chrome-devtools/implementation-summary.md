@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 008 mcp-chrome-devtools README rewrite"
+title: "Implem [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/008-mcp-chrome-devtools/implementation-summary]"
 description: "The mcp-chrome-devtools README now opens purpose-first with a one-line pitch and a problem-first overview, carries the CDP capability surface, preserves every dispatch fact and versioned at 1.0.11.0 with a changelog entry."
 trigger_phrases:
   - "implementation summary"

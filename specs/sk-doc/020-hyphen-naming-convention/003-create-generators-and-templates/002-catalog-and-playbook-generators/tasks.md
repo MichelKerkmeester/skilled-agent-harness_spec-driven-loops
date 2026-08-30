@@ -1,5 +1,5 @@
 ---
-title: "Tasks: catalog and playbook generators (020 phase 003 child 002)"
+title: "Task [sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators/tasks]"
 description: "Tasks for changing feature-catalog and manual-testing-playbook generators to emit hyphenated artifact trees and proving phase 002 compatibility."
 trigger_phrases:
   - "catalog and playbook generator tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "manual testing playbook output naming tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators"
 ---
 # Tasks: Catalog and Playbook Generators
 

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 035 deep-ai-council README revisit"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council/plan]"
 description: "Rewrite the deep-ai-council skill README purpose-first per the refined template, bump the version field, add a changelog entry and validate with the readme validator and HVR grep."
 trigger_phrases:
   - "phase 035 plan"

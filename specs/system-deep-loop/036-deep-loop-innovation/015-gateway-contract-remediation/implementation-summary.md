@@ -1,7 +1,12 @@
 ---
-title: "Implementation Summary: Gateway State-Write Contract Remediation"
+title: "Implementation [system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation/implementation-summary]"
 description: "Closed the ten 014-review findings plus the fanout-merge tool bug: wired the review/alignment projection contracts into the gateway, migrated the three prompt-pack templates to the gateway, ported write-containment into the confirm YAMLs, hardened the guard, corrected SKILL doctrine, removed the decommissioned ai-council MCP, added the injection guard, and expanded the public README deep-loop section."
-importance_tier: "high"
+trigger_phrases:
+  - "implementation"
+  - "implementation summary"
+  - "015"
+  - "gateway"
+importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:

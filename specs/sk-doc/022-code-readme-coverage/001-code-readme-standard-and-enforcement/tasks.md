@@ -1,12 +1,12 @@
 ---
-title: "Tasks: Code README Standard And Enforcement"
+title: "Tasks: Code README Standard And [sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement/tasks]"
 description: "Task list for child 001: confirm findings and record the operator rulings, restate the standard on the authoring surface, build a fixture corpus, implement the opt-in validator mode and the manifest-walk auditor rewrite, then verify."
 trigger_phrases:
   - "code readme standard tasks"
   - "readme enforcement tasks"
   - "code readme validator tasks"
 importance_tier: "normal"
-contextType: "plan"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement"

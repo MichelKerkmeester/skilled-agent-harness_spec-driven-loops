@@ -1,5 +1,5 @@
 ---
-title: "Tasks: deep-alignment filesystem names (020 phase 007/007)"
+title: "Tasks: deep- [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment/tasks]"
 description: "Execution tasks for renaming deep-alignment resources and repairing path-valued adapter, catalog, playbook, state, and verification references while preserving embedded identifiers and keys."
 trigger_phrases:
   - "deep-alignment tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "alignment adapter path repair tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
 ---
 # Tasks: Deep-alignment filesystem names
 

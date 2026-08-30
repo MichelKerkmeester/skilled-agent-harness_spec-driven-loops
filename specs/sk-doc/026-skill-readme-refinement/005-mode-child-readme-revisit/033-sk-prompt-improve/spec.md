@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 033 sk-prompt-improve README revisit"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/spec]"
 description: "Rewrite the mode skill README at sk-prompt/sk-prompt-improve/ against the refined README template from phase 001, mirror the mcp-obsidian exemplar, bump the version, add a changelog entry and validate."
 trigger_phrases:
   - "sk-prompt-improve readme"

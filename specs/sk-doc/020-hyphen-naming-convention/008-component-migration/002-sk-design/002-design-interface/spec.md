@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Design-interface (020 phase 002)"
+title: "Feature Specificat [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface/spec]"
 description: "The design-interface mode has underscore-bearing procedure, asset, and reference names while its SKILL.md and README.md cite those paths directly."
 trigger_phrases:
   - "design-interface naming phase"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 design-interface"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

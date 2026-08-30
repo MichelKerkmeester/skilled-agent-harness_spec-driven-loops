@@ -1,13 +1,12 @@
 ---
-title: "Tasks: command asset emitters (020 phase 003 child 004)"
-description: "Tasks for aligning `/create:*` auto, confirm, and presentation assets with kebab-case emitted paths without renaming the source asset files."
+title: "Tasks: comman [sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters/tasks]"
+description: "Tasks for aligning /create:* auto, confirm, and presentation assets with kebab-case emitted paths without renaming the source asset files."
 trigger_phrases:
   - "create command asset emitter tasks"
   - "create auto confirm naming tasks"
   - "hyphenated command asset output tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
@@ -20,6 +19,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
 ---
 # Tasks: Command Asset Emitters
 

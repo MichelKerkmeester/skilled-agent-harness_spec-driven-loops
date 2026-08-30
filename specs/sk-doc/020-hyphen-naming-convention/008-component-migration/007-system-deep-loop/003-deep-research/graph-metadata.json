@@ -20,9 +20,7 @@
       "research packet reference closure",
       "deep-research tasks",
       "deep research kebab-case naming tasks",
-      "research packet path repair tasks",
-      "deep-research checklist",
-      "deep research naming verification"
+      "research packet path repair tasks"
     ],
     "key_topics": [
       "deep-research",
@@ -43,8 +41,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -66,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specif",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -98,12 +95,6 @@
       {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "no",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -172,43 +163,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-research packet contains 13 underscore-bearing directory families and 103 underscore-bearing files across assets, catalogs, playbooks, behavior benchmarks, references, and state artifacts. This phase renames those in-scope paths to kebab-case and repairs their consumers while preserving research state schemas, Python exemptions, and the SKILL.md contract.",
     "created_at": "2026-07-14T15:17:49Z",
-    "last_save_at": "2026-08-29T10:00:32.129Z",
+    "last_save_at": "2026-08-30T07:19:40.718Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:1174160b2e533110d078aae5cd4c0eb28c8b72cabca7d780bf725dac6626526c",
+    "source_fingerprint": "sha256:ceb0d5fa261fedf01a743680ea38d17ff02dd1b47b3d28ac4366ad0022ad8a75",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "bcdbb96b0bbd725cb20123717ed0d189851d10d0015d8e09e8ca99378673d685",
-      "plan.md": "e0601b6d2df14c189eb9933fd7be12a9260300f62acf0e71898e1ae108e663d1",
-      "tasks.md": "6dafa3e5bddda873688405e1b6641ecb193e9116bd1c5a33aaf2317398a5888d",
-      "checklist.md": "41fdacc44fe0a61191c13323f47425ab125c9f45da06017e39d7ec0a0ea77236"
+      "spec.md": "ed5a65989061d7d21661ef4efe3e7847b06559f82bf8e3c51a2807fe0a0d0a42",
+      "plan.md": "4feb01272536ff74e8631e6bc28503d74be9bfd49c5dc0e567e90cf4168e3d1c",
+      "tasks.md": "a0b3d46fda4ae8c9934f30d40cf149ec3943d7a63201144b1cef926324bc03f1"
     },
     "last_active_child_id": null,
     "last_active_at": null

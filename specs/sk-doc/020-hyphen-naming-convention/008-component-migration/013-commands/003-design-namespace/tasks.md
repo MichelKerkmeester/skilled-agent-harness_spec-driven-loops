@@ -1,5 +1,5 @@
 ---
-title: "Tasks: design command namespace naming (020 phase 008/013/003)"
+title: "Tasks: design [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace/tasks]"
 description: "Execution tasks for the design command asset rename and reference closure."
 trigger_phrases:
   - "design namespace naming tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "design command reference repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace"
 ---
-
 # Tasks: Design command namespace naming
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Scripts tree (020 subtree 008 phase 004)"
+title: "Tasks: Scripts [sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree/tasks]"
 description: "The system-spec-kit surface has a small set of non-Python script filenames that still contain underscores, while Python scripts and test fixture names follow separate contracts. This phase renames only permitted script filenames and updates sourcing, imports, and registry references without touching Python filenames or test-runner magic."
 trigger_phrases:
   - "system-spec-kit scripts tree"
@@ -9,7 +9,6 @@ trigger_phrases:
   - "kebab-case phase 004"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/004-scripts-tree"
@@ -22,8 +21,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 ---
-
 # Tasks: Scripts tree
 
 <!-- SPECKIT_LEVEL: 2 -->

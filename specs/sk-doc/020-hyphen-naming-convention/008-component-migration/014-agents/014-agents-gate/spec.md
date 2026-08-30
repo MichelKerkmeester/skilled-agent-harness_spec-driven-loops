@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: agents surface rollup gate (020 phase 014)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/014-agents-gate/spec]"
 description: "The agents subtree needs one blocking rollup that aggregates the 13 definition audits and proves the whole runtime naming surface has no in-scope snake_case filesystem name outside the program exemption set."
 trigger_phrases:
   - "agents surface rollup gate"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 phase 014 agents"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/014-agents-gate"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

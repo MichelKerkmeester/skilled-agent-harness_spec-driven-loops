@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-design component migration (020 phase parent)"
+title: "Feature Specification: sk-design [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/spec]"
 description: "Lean phase parent for the kebab-case filesystem naming work across the sk-design hub, mode packets, catalog/playbook trees, benchmark artifacts, changelog evidence, and final gate."
 trigger_phrases:
   - "sk-design naming phases"
@@ -23,7 +23,6 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT -->

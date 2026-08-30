@@ -1,9 +1,9 @@
 ---
-title: "Implementation Summary: Devin hook truth and runtime README parity"
+title: "Implementat [cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes/implementation-summary]"
 description: "Phase 011 reconciles current Devin hook truth, aligns runtime discovery READMEs, restores the Cursor route-guard mirror and removes obsolete secret-bearing Zed MCP registrations."
 trigger_phrases:
-  - "Devin hook truth implementation"
-  - "runtime README parity summary"
+  - "devin hook truth implementation"
+  - "runtime readme parity summary"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

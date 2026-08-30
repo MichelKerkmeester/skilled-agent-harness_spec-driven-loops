@@ -1,5 +1,5 @@
 ---
-title: "Tasks [system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/tasks]"
+title: "...-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime/tasks]"
 description: "27 tasks across 4 waves (A=5, B=9, C=5, D=8). Full acceptance criteria with finding crosswalk. Status tracking per task. Evidence citations pending implementation."
 trigger_phrases:
   - "017 tasks"
@@ -9,7 +9,6 @@ trigger_phrases:
   - "t-w1-hok-01 copilot compact"
 importance_tier: "critical"
 contextType: "implementation"
-template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime"
@@ -18,6 +17,7 @@ _memory:
     recent_action: "27-task scaffolding from segment-2 synthesis"
     next_safe_action: "Begin Wave A implementation"
     blockers: []
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->

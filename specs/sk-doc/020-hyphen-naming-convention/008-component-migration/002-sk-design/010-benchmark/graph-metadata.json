@@ -20,9 +20,9 @@
       "benchmark tasks",
       "sk-design benchmark execution",
       "020 benchmark checklist",
-      "benchmark verification",
-      "sk-design benchmark checklist",
-      "020 benchmark gate"
+      "sk-design benchmark naming decision",
+      "benchmark snapshot path labels",
+      "020 phase 010 decision record"
     ],
     "key_topics": [
       "benchmark",
@@ -34,9 +34,9 @@
       "tasks",
       "execution",
       "checklist",
-      "verification",
-      "gate",
-      "run"
+      "decision",
+      "snapshot",
+      "path"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       ".opencode/skills/sk-design/benchmark/README.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,27 +185,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Benchmark run snapshots use underscore-bearing after-label directories, while the benchmark README and changelog describe those paths as comparison artifacts.",
     "created_at": "2026-07-14T15:17:21Z",
-    "last_save_at": "2026-08-29T13:10:05.372Z",
+    "last_save_at": "2026-08-30T07:19:23.142Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b1bd46a065c9b06df314cd19e4a78fef2936c8dec8d04eab8ba26b039bd6a207",
+    "source_fingerprint": "sha256:74fc801f3dad5bebfbbcd9c2587d9b81c8cc72da1d05fe55d268ff63bba2d33d",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "310c3700c2b4fdadd0a4a2415462c6b687d265a5236326e1619a590104ee9dbe",
-      "plan.md": "47d4d00a151f0d11ade58bd5128c5caa2c32e6dd6881dba27690aeeea081a6da",
-      "tasks.md": "e22d50bfa0410ff719d4f3421671493d7ab54d908c3a110fef8d6c8b26e697a2",
-      "checklist.md": "042bc19631b11b11b7fb6b4292a16319a70896d37086e5379ec3dd0f26e8d266",
-      "decision-record.md": "8df5338e69de00082a639c9aa4532e106ef1e5bc38626aeabec97cff6c0b2b8e"
+      "spec.md": "b0d9a15554246ad6cb1e52c4ab6fa7b5726289bb2668f0d3e3793ebe9eac3241",
+      "plan.md": "d4183d4baac2bb22388aff7757580073c78c374e01e98e969a6f2479701fa3da",
+      "tasks.md": "c171b8c7c0accd0ef1151a0a9e10261617ff6c82c9be81d4502a301758fb2217",
+      "decision-record.md": "00fc4a9831787cd10006525a4053075f0a5d3b469bc1233572c826b460fc76e7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 1 handoff-contract"
+title: "Implementat [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract/implementation-summary]"
 description: "Planned closeout record for the strict handoff environment contract."
 trigger_phrases:
   - "handoff-contract implementation summary"

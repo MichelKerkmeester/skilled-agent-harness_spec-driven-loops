@@ -1,9 +1,13 @@
 ---
-title: "Implementation Plan: Existing-README Cleanup"
+title: "Implementation [sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/plan]"
 description: "Triage the audit to a verified real-work list, dispatch a six-agent Sonnet swarm to surgically repair genuine READMEs, then reconcile by re-running the audit."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "008"
+  - "existing"
 importance_tier: "normal"
 contextType: "implementation"
-status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup"
@@ -13,8 +17,8 @@ _memory:
     next_safe_action: "Proceed to phase 009."
     blockers: []
     key_files: []
+status: "complete"
 ---
-
 # Implementation Plan: Existing-README Cleanup
 
 <!-- SPECKIT_LEVEL: 2 -->

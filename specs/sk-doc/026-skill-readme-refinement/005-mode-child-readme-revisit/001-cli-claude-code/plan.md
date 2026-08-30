@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1 cli-claude-code README rewrite"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/plan]"
 description: "Rewrite the cli-claude-code mode skill README purpose-first against the refined template, bump the version field, add a changelog entry and validate the result."
 trigger_phrases:
   - "phase 1 plan"

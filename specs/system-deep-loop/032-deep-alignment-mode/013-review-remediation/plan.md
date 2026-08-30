@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: deep-alignment deep-review remediation"
+title: "Implementation Plan: deep-alignment deep-review [system-deep-loop/032-deep-alignment-mode/013-review-remediation/plan]"
 description: "Fix the 10 deep-review Pass A findings in workstream order, verify-first per finding, with RED->GREEN regressions for the correctness fixes and honest claim/topology reconciliation for the rest."
 trigger_phrases:
   - "deep-alignment remediation plan"

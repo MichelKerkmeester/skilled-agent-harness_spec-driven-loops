@@ -1,12 +1,11 @@
 ---
-title: "Tasks: create-skill scaffolding and packaging (020 phase 003 child 001)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging/tasks]"
 description: "Tasks for aligning create-skill scaffolding, package checks, templates, and regression fixtures with the kebab-case filesystem policy."
 trigger_phrases:
   - "create-skill scaffolding tasks"
   - "skill packaging naming tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
 ---
 # Tasks: Create-skill Scaffolding and Packaging
 

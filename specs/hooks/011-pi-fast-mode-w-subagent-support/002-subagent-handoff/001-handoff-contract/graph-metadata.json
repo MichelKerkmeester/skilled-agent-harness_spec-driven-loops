@@ -12,11 +12,10 @@
   "derived": {
     "trigger_phrases": [
       "handoff-contract",
-      "PI_FAST_MODE_W_SUBAGENT_SUPPORT contract",
+      "pi_fast_mode_w_subagent_support contract",
       "strict fast-mode env",
       "handoff-contract plan",
       "handoff-contract tasks",
-      "handoff-contract checklist",
       "handoff-contract implementation summary"
     ],
     "key_topics": [
@@ -27,38 +26,31 @@
       "env",
       "plan",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
       "child",
-      "processes"
+      "processes",
+      "need"
     ],
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "plan.md",
-      "implementation-summary.md",
       "spec.md",
+      "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -68,9 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -182,31 +174,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Child Pi processes need a stable representation of the parent's fast-mode preference",
     "created_at": "2026-08-16T09:08:02Z",
-    "last_save_at": "2026-08-16T13:55:30.060Z",
+    "last_save_at": "2026-08-30T07:18:54.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33505a3882257d503a7d07a3712119d5a282dbaa005e5cb3a2eca4c7f74754fc",
+    "source_fingerprint": "sha256:6f1b3f801af8c3dc560943c8c03abedd71eb4a676db188111134f09e6d7f05aa",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "b68769c762bc7c472bf45b21f113c91445d7de72aa42f1a6263ee1048081ec6e",
-      "plan.md": "0441f93fb136f8b6702395c7887ce8b7226b52e8204ca92aa1f730f90a137112",
-      "tasks.md": "fd086abec69b8574b7322a5292be8d079f2dc54d1ae323af4d256d96c676e1dd",
-      "checklist.md": "de31eff8cfafa46484280df88184ab016cd194396e4075a132558e27636ea632",
-      "implementation-summary.md": "7d1d9cc197ccca83dba455f57b7811520e8d6690e512dc94edaf152c6d41d27b"
+      "spec.md": "ec365985acfa43b1aa42808103d6948e7e813bb3797616b5914218f0e3f53ac1",
+      "plan.md": "c23221cc40e83082ff8b896f865c34ed204b1a503d6677df2477b681d9f7f75b",
+      "tasks.md": "0cfcd3b798ce3649381994e4f3c815be24a06927c428e39bef2694bc6f582ed4",
+      "implementation-summary.md": "171f8be7d8b7201280e8df2354b19e54ca64b63b49f3ffd51d222780822b678c"
     },
     "last_active_child_id": null,
     "last_active_at": null

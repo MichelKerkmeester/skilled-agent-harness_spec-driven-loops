@@ -1,12 +1,11 @@
 ---
-title: "Tasks: sk-doc manual-testing-playbook tree"
+title: "Tasks: sk-doc [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook/tasks]"
 description: "Concrete execution and verification tasks for the root manual-testing-playbook naming phase."
 trigger_phrases:
   - "sk-doc manual playbook tasks"
   - "manual playbook rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook"
 ---
 # Tasks: sk-doc manual-testing-playbook tree
 

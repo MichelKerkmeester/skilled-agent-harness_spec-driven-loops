@@ -18,11 +18,10 @@
       "atomic promoted closure rebuild",
       "compiled route sync repair tasks",
       "promoted closure tasks",
-      "compiled route sync checklist",
-      "atomic closure verification",
       "compiled route promotion decision",
       "stable serving root decision",
-      "compiled route sync repair summary"
+      "compiled route sync repair summary",
+      "promoted closure repair"
     ],
     "key_topics": [
       "compiled",
@@ -41,20 +40,49 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       ".opencode/bin/compiled-route-sync.cjs",
       ".opencode/bin/tests/compiled-route-manifest.test.cjs",
       ".opencode/bin/compiled-route-status.cjs",
       ".opencode/bin/compiled-route.cjs",
       ".opencode/bin/lib/compiled-route-manifest.cjs",
-      ".opencode/bin/lib/compiled-route-layout.cjs",
-      "plan.md",
-      "tasks.md",
-      "decision-record.md",
-      "checklist.md",
-      "spec.md",
-      "implementation-summary.md"
+      ".opencode/bin/lib/compiled-route-layout.cjs"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "compiled-route-sync.cjs",
         "kind": "file",
@@ -89,42 +117,6 @@
         "name": "compiled-route-layout.cjs",
         "kind": "file",
         "path": ".opencode/bin/lib/compiled-route-layout.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -198,29 +190,34 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Restore reproducible compiled-route closure checks after the router implementation tree was flattened and renumbered. Keep the stable serving root while synchronizing the current authored internal topology atomically and preserving routing parity.",
     "created_at": "2026-07-25T10:26:07Z",
-    "last_save_at": "2026-07-26T08:02:10.364Z",
+    "last_save_at": "2026-08-30T07:19:07.793Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40bad0627d388a117ac5fb32cff6375755591464b1c715d0a816feeccd54af5e",
+    "source_fingerprint": "sha256:7deb465d23ea9362cd6bbdb9f639c354bbb4c38ddfdd6bc882fe34c92683292c",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "49e9c6af0aa2bc88b446faa5f7a37b716144733c10df5e472bb0e6e115a73ae5",
-      "plan.md": "82147dee432fadcbf8701767ca648a4412a207566b740395dce883de94ec0255",
-      "tasks.md": "924fc40ab9df15c2092059d94d2ca900cf4ac26e9bb7f73ba93b37446e8e146b",
-      "checklist.md": "a5a6137ba0b2adf9aff5bd7f1bd36c20435a8219148e469a67bc3215283dd83c",
-      "decision-record.md": "8d76e5631f3bb9558c36c6a77d9d5f686419181c3d8ff900696d560f51f9042e",
-      "implementation-summary.md": "d71e693030360584d172c43523a625972efa0de837bac4e87eaf392a583a62c6"
+      "spec.md": "a38a20a486eda58935f57be3aa69c32644c70d159914f119e4c7d5e1223d98a4",
+      "plan.md": "28d0309974942e86af974cc5dbbf7086ac1cffe51dbfeb65f443b41f1199e3a3",
+      "tasks.md": "a0b11535ced156b8448b4cfeb275ba5ec4a37a3f7bfaf40bfc5f854f90773a18",
+      "decision-record.md": "fd4203afc81dac64035333657551767b43b10accdbc54667eb693dbd370b1d33",
+      "implementation-summary.md": "df7834c2ae5b5893c3e839841bd437b3507cfe615aa191419d81808e2f95a484"
     },
     "last_active_child_id": null,
     "last_active_at": null

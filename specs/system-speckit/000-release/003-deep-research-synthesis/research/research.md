@@ -1,3 +1,17 @@
+---
+title: "v4.0.0.0 Changelog — per-folder detail [system-speckit/000-release/003-deep-research-synthesis/research]"
+description: "Agents now must back every load-bearing claim with terminal evidence, not just assert it. The standalone Terminal Discipline block in AGENTS.md was removed and its mechanics dis..."
+trigger_phrases:
+  - "changelog"
+  - "per"
+  - "folder"
+  - "detail"
+  - "research"
+  - "003"
+  - "deep"
+importance_tier: "normal"
+contextType: "research"
+---
 # v4.0.0.0 Changelog — per-folder detail (deep-research, DeepSeek V4 Flash)
 
 

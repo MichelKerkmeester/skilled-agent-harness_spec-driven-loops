@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 036 deep-alignment mode README revisit"
+title: "Implementat [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment/implementation-summary]"
 description: "The deep-alignment README moves to the fleet standard: purpose-first rewrite on the refined template, HVR clean, version bumped to 1.0.0.2 with a changelog entry and a clean validator run."
 trigger_phrases:
   - "deep alignment readme summary"

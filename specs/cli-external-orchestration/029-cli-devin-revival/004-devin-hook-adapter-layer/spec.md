@@ -1,7 +1,11 @@
 ---
-title: "Feature Specification: Devin hook adapter layer"
+title: "Feature Specification: Devin hook [cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/spec]"
 description: "Add thin Devin hook adapters over this repo's runtime-neutral guard-hook cores so all 7 guard hooks (spec-gate enforce/classify, dispatch preflight lint, post-edit quality, code-graph freshness, dispatch audit, completion-evidence sentinel, mcp route guard) fire correctly when cli-devin is the dispatched CLI executor, mirroring the proven cli-codex adapter pattern."
-trigger_phrases: ["devin hook adapters", "devin hooks.v1.json", "devin guard hooks", "Devin lifecycle hooks"]
+trigger_phrases:
+  - "devin hook adapters"
+  - "devin hooks.v1.json"
+  - "devin guard hooks"
+  - "devin lifecycle hooks"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cli-external-orchestration changelog and version verification (020 phase 005.007)"
+title: "F [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify/spec]"
 description: "This verification-only phase confirms that the cli-external-orchestration hub and its three CLI workflow release surfaces record the completed kebab-case rename set and coherent version bumps. It does not rename files, rewrite historical changelogs, or repair metadata contradictions."
 trigger_phrases:
   - "cli-external changelog verification"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 007 verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify"
@@ -29,8 +28,8 @@ _memory:
       - "The current root metadata reports version 1.1.0.0 while root changelog history includes v1.2.0.0; this is a required verification point, not an authoring fix."
       - "This phase performs verification only and does not create or edit changelog entries."
       - "Actual per-surface baselines on v4: hub 1.1.0.0/changelog v1.2.0.0, cli-opencode v1.3.15.3, cli-claude-code v1.3.0.0, cli-codex v1.7.1.0; the verifier anchors on these, not a uniform version."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

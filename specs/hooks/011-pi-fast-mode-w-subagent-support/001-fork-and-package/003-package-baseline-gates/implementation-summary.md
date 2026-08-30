@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 3 package-baseline-gates"
+title: "Imple [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates/implementation-summary]"
 description: "Closeout record for the raw TypeScript package and baseline gates."
 trigger_phrases:
   - "package-baseline-gates implementation summary"

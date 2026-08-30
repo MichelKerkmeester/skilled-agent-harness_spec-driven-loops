@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: verify ai-council agent naming (020 phase 001)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/001-ai-council-verify/plan]"
 description: "Implementation Plan for phase 001 of the 020 agents component migration: a read-only ai-council filename candidate audit."
 trigger_phrases:
   - "ai-council agent naming implementation plan"
   - "agents phase 001 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/001-ai-council-verify"
@@ -19,8 +18,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 # Implementation Plan: AI Council Agent Naming Verification
 
 <!-- SPECKIT_LEVEL: 2 -->

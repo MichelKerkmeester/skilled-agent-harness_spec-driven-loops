@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-git assets (020 phase 008/012/002)"
+title: "Implementation Plan: sk-git [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets/plan]"
 description: "Implementation plan for the sk-git asset and template filename rename. The executor will apply the three-entry semantic map, repair asset and reference pointers, and prove that template content contracts remain intact."
 trigger_phrases:
   - "sk-git assets implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "asset template rename plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets"
 ---
 # Implementation Plan: sk-git assets
 

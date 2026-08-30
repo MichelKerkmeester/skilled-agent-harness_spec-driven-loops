@@ -41,17 +41,15 @@
       "asymmetry"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       "handlers/save/post-insert.ts",
       "scripts/validation/continuity-freshness.ts",
-      "scripts/validation/evidence-marker-lint.ts",
       "hooks/shared-provenance.ts",
       "hooks/claude/shared.ts",
       "lib/governance/scope-governance.ts",
@@ -62,7 +60,9 @@
       "lib/context/caller-context.ts",
       "handlers/session-resume.ts",
       "scripts/core/workflow.ts",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/scripts/memory/backfill-research-metadata.ts",
+      "scripts/spec/validate.sh"
     ],
     "entities": [
       {
@@ -81,12 +81,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -111,12 +105,6 @@
         "name": "continuity-freshness.ts",
         "kind": "code",
         "path": "scripts/validation/continuity-freshness.ts",
-        "source": "derived"
-      },
-      {
-        "name": "evidence-marker-lint.ts",
-        "kind": "code",
-        "path": "scripts/validation/evidence-marker-lint.ts",
         "source": "derived"
       },
       {
@@ -186,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "backfill-research-metadata.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/memory/backfill-research-metadata.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,29 +202,34 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Awaiting Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 017 (27 `fix(016)` commits landing P0-A/B/C/D, S1-S7 structural refactors, M3-M13 medium refactors, 21 quick wins, 34 test migrations) completed the remediation scoped from the 50-iteration Phase 016 research",
     "created_at": "2026-04-18T14:40:19.024Z",
-    "last_save_at": "2026-08-29T15:22:13.877Z",
+    "last_save_at": "2026-08-30T07:16:29.921Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:d65d25f7f346f7678da0e8f351ea82828ce1f13d70ae3431f1ad8920df57e612",
+    "source_fingerprint": "sha256:031e3f30395257cf866471245def7530ae5f38c940e6e2c8a0ee28e5cc5f7a2a",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f90d079d8dd3b1648858695056f27585bc2b3f9c5580693280ce8db001ce307c",
-      "plan.md": "3da11ce9604147bf2df23f68743f5126caee6744ab1f4d02304cf139bfe30c34",
-      "tasks.md": "77200081117a4579aaf3e11cc5b336e056b626c039f92e3539a2ce079b9de9dd",
-      "checklist.md": "90d51fc92d53937773c580fb86f033e350789f23cb138987c8fea9820695699d",
-      "implementation-summary.md": "3c79eeec41d1dd32d461ee272075843b6da8d04e92f611d2320316d9f64cc226",
-      "research/research.md": "5fc92a6ec725918a8ca5277b3104bbc4dd0848e0320f8376ee232f74416c986a"
+      "spec.md": "f898f8e5c2215a1ef84d9be7a65a2029725f7b66bcb49c63d722f5c83300ecbf",
+      "plan.md": "b7f9244403273777027a15fcc8fabdb1f5f60415796d6559397196e74cb28ef1",
+      "tasks.md": "17051d0edfa49b938849e8706eac1445aa9593128856290a87f7a435bd76cbe2",
+      "implementation-summary.md": "c089c498d75af1a0753acab0b8cde2d3de30a7af3ddfd6cd2aab383fb38b7320",
+      "research/research.md": "59fe59980f287045fb09c4edbd1586234898e3d9f29a95a3deeb34977ebdd309"
     },
     "last_active_child_id": null,
     "last_active_at": null

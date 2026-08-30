@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 006 sk-doc standalone README rewrite"
+title: "Implementation [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc/implementation-summary]"
 description: "Purpose-first README rewrite for sk-doc completed: version 2.0.0.0, changelog entry added, validator and HVR gates clean."
 trigger_phrases:
   - "phase 006 summary"

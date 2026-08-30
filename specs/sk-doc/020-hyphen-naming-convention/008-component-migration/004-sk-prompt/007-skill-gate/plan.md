@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-prompt subtree rollup gate (020 phase 004.007)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate/plan]"
 description: "Rollup verification plan for phase 007 of the sk-prompt kebab-case program: aggregate phases 001–006, run the final scope-aware census, and issue a reproducible pass/block result without new migration work."
 trigger_phrases:
   - "sk-prompt rollup gate plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 007 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate"
@@ -23,8 +22,8 @@ _memory:
       - ".opencode/skills/sk-prompt/prompt-models/"
     completion_pct: 0
     open_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

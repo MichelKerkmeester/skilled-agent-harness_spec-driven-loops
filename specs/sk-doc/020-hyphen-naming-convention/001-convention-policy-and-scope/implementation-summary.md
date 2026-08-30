@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: convention policy and scope (020 phase 001)"
+title: "Implementation Summary: [sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/implementation-summary]"
 description: "Phase 001 outcome: the canonical kebab-case convention doc is published, 027 is superseded, and the program decisions are recorded."
 trigger_phrases:
   - "hyphen naming phase 001 summary"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "kebab-case canon summary"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
 ---
 # Implementation Summary
 

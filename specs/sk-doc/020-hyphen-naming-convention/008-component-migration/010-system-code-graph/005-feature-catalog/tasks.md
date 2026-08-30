@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-code-graph feature catalog"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog/tasks]"
 description: "Concrete tasks for the code-graph feature-catalog tree rename, path-link closure, classifier preservation, and catalog parity."
 trigger_phrases:
   - "system-code-graph feature catalog tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "feature-catalog link repair tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog"
@@ -22,8 +21,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The catalog map covers 19 files, one root index, and eight category directories."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog"
 ---
-
 # Tasks: system-code-graph feature catalog
 
 <!-- SPECKIT_LEVEL: 2 -->

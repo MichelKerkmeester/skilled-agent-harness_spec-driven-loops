@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 027 sk-create-feature-catalog README revisit"
+title: "Feature Specificat [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog/spec]"
 description: "Rewrite the create-feature-catalog skill README at sk-create-feature-catalog/README.md purpose-first against the refined template from phase 001, using the mcp-obsidian README as the exemplar, with a version bump, a changelog entry and full validation."
 trigger_phrases:
   - "feature catalog readme"

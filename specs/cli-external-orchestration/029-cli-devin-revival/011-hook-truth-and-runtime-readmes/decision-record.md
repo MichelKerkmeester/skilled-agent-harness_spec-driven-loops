@@ -1,11 +1,11 @@
 ---
-title: "Decision Record: Current Devin hook truth with preserved superseded evidence"
+title: "Decision Record: [cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes/decision-record]"
 description: "Choose how current documentation ranks corrected schema and live observations while retaining the failed experiments that caused the original dormancy conclusion."
 trigger_phrases:
-  - "Devin hook truth decision"
+  - "devin hook truth decision"
   - "superseded hook evidence"
 importance_tier: "important"
-contextType: "decision"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes"

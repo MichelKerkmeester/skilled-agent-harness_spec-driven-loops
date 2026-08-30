@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: live-verification-and-sync"
+title: "Feature Specif [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync/spec]"
 description: "Prove live UI and child handoff behavior, then synchronize plugin documentation and close out reversibly."
 trigger_phrases:
   - "live-verification-and-sync"

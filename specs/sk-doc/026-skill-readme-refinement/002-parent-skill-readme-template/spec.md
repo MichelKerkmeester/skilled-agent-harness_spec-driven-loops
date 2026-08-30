@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2 parent-skill (hub) README template"
+title: "Feature Specification: Phase 2 parent-skill [sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/spec]"
 description: "Create the parent-skill README template at sk-create-skill/assets/parent-skill/, covering hub pitch, nested modes and packets, mode-registry and leaf-manifest navigation, changelog conventions, hub scripts and commands, and hub README validation."
 trigger_phrases:
   - "parent skill readme template"

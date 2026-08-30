@@ -1,6 +1,16 @@
 ---
-title: "Decision Record: 002 Deep-Review Remediation"
+title: "...ntime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/decision-record]"
 description: "Architecture decisions for closing 3 P1 and 39 P2 findings from the 2026-05-11 deep review."
+trigger_phrases:
+  - "ntime"
+  - "002"
+  - "causal"
+  - "graph"
+  - "channel"
+  - "decision record"
+  - "fix"
+importance_tier: "important"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing"

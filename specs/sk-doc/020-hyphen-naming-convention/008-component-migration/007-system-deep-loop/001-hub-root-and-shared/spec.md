@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop hub root and shared names (020 phase 007/001)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared/spec]"
 description: "The system-deep-loop hub root and shared boundary contain exact routing and metadata contracts that a broad rename could damage. The current inventory is already kebab-clean in this boundary, so this child verifies the no-op candidate set, renames any baseline drift only if present, and proves hub/shared references remain intact."
 trigger_phrases:
   - "system-deep-loop hub shared naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "system-deep-loop shared path closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared"
@@ -23,8 +22,8 @@ _memory:
       - "The current hub root and shared tree has no underscore-bearing filesystem candidate."
       - "SKILL.md, mode-registry.json, description.json, graph-metadata.json, and other exact contract names stay unchanged."
       - "Any baseline-only candidate must be handled by the frozen semantic map, never by a blanket underscore substitution."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

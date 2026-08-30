@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-code-mode scripts (020 component 011 phase 002)"
+title: "Tasks: mcp-code-mode [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts/tasks]"
 description: "Tasks for the language-aware script filename audit, Python exemption proof, and conditional non-Python reference closure."
 trigger_phrases:
   - "mcp-code-mode scripts tasks"
   - "mcp-code-mode phase 002 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts"
 ---
 # Tasks: mcp-code-mode scripts
 

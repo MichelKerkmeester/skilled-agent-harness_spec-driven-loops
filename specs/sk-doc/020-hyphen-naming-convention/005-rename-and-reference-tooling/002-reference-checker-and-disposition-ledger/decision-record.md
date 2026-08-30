@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: reference checker and disposition ledger (020 phase 005.002)"
+title: "...phen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger/decision-record]"
 description: "Design decisions for complete reference verification: a manifest-driven resolver matrix, a ledger schema that covers map entries and dynamic sites, path-value boundaries, read-only scanning, and fail-closed completeness semantics."
 trigger_phrases:
   - "reference checker decisions"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "dynamic site ledger decision"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
@@ -24,8 +23,8 @@ _memory:
       - "Completeness is measured against a tracked-file manifest and explicit map/dynamic-site row sets."
       - "The ledger is the auditable boundary for both static references and sites that require manual disposition."
       - "The checker scans and reports; it does not execute or rewrite repository content."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

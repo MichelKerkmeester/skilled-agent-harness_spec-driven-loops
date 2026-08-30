@@ -17,9 +17,7 @@
       "mcp-tooling subtree gate plan",
       "mcp tooling rollup verification",
       "mcp-tooling rollup gate tasks",
-      "mcp tooling subtree verification tasks",
-      "mcp-tooling rollup checklist",
-      "mcp tooling whole surface gate"
+      "mcp tooling subtree verification tasks"
     ],
     "key_topics": [
       "mcp-tooling",
@@ -33,7 +31,7 @@
       "plan",
       "verification",
       "tasks",
-      "checklist"
+      "needs"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -41,10 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/spec.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared/checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify/checklist.md"
+      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/spec.md"
     ],
     "entities": [
       {
@@ -63,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -160,55 +149,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-tooling subtree needs one blocking rollup contract after its independent hub, component, playbook, benchmark, and changelog phases. This gate performs no new migration work; it aggregates sibling evidence and proves that the complete in-scope surface is kebab-clean with the 020 exemption set intact.",
     "created_at": "2026-07-14T15:17:47Z",
-    "last_save_at": "2026-08-29T13:10:08.109Z",
+    "last_save_at": "2026-08-30T07:19:39.423Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:f711db4f8fbe449eab3e2761ad760ae1f0cc443e6dd40e539b56f7bdbf549525",
+    "source_fingerprint": "sha256:f9b2f234089f196b543874e32986d365a029c0c734cc18e610af693a04935154",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "8a4d362e73648136adc3a2005ea911bd81f55bba9852718314ffa97a8afaf926",
-      "plan.md": "29bb6357a11f0cc208ee62cd5aa7c501c6a43d91133acac5693e10ab8878342c",
-      "tasks.md": "d3439c0d846fab3c96717daa6ad3a7d29b50dd82567203056693cfdbf7ec9d10",
-      "checklist.md": "25ad4ff883fcdc0abbe27c57e6787242fc3bd2e86b493df7d28bf04749817371"
+      "spec.md": "ccaa4ae6df4003a46e6a5ed0d8e5cb5243269e48923e596553fd4a54d58ea42f",
+      "plan.md": "c82d90b769cd19c412a8419293f82119af63a7cfb70f91c2f8ac05bebf8b98c2",
+      "tasks.md": "6141a40220a4d1f5ca1083824fc603a7b6129fa7692b1df8506202954c17f4f5"
     },
     "last_active_child_id": null,
     "last_active_at": null

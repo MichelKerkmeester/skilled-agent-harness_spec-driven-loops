@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-code benchmark artifacts (020 phase 008/007)"
+title: "Tasks: sk-code benchmark [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark/tasks]"
 description: "Execution tasks for the sk-code benchmark storage rename and navigation closure."
 trigger_phrases:
   - "benchmark naming tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "benchmark storage path tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark"
 ---
-
 # Tasks: sk-code benchmark artifacts
 
 <!-- SPECKIT_LEVEL: 2 -->

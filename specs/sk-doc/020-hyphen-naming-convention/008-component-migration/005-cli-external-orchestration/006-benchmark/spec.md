@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cli-external-orchestration benchmark naming (020 phase 005.006)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark/spec]"
 description: "The cli-external-orchestration benchmark boundary currently contains only a .gitkeep marker, but the phase must protect the surface if fixtures, profiles, storage guides, reports, or generated runs are present at execution time. This phase applies the 020 authored-versus-generated naming boundary and records an explicit zero-candidate baseline."
 trigger_phrases:
   - "cli-external benchmark kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 006 benchmark"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "The current benchmark tree contains only .gitkeep and no fixture, profile, storage-guide, report, or run candidate."
       - "Generated/lockfile output and benchmark payload/data keys remain outside filesystem renaming."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

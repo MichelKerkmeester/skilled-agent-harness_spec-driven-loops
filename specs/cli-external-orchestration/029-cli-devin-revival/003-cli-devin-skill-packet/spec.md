@@ -1,7 +1,10 @@
 ---
-title: "Feature Specification: cli-devin skill packet"
+title: "Feature Specification: cli-devin [cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet/spec]"
 description: "Build cli-devin as a genuinely new 4th mode inside the existing, already-conformant cli-external-orchestration hub, mirroring the cli-codex revival precedent (027/003) with zero regressions to the hub's 0-fail conformance baseline."
-trigger_phrases: ["cli-devin skill packet", "cli-devin mode", "cli-external-orchestration 4th mode"]
+trigger_phrases:
+  - "cli-devin skill packet"
+  - "cli-devin mode"
+  - "cli-external-orchestration 4th mode"
 importance_tier: "normal"
 contextType: "general"
 _memory:

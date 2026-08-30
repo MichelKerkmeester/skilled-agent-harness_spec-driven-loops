@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Stage-aware Lane C skill-benchmark scorer"
+title: "Implementation Plan: Stage-aware [system-deep-loop/031-smart-routing-benchmark-program/017-stage-aware-scorer/plan]"
 description: "Wire the consume side of benchmark scenario stages under a score-preserving invariant: loader honors stage, scorer splits fitted/holdout + generalization gap, report renders the split, verified by a pristine-baseline before/after re-baseline."
 trigger_phrases:
   - "implementation"

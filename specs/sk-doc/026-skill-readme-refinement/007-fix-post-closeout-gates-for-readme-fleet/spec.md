@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Fix post-closeout gates for the README fleet"
+title: "Feature Specification: Fix [sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet/spec]"
 description: "Restore repository-wide documentation gate health by resolving broken-link findings, adding missing frontmatter versions, and aligning the six CLI mode READMEs."
 trigger_phrases:
   - "fix link guard"
   - "frontmatter version gaps"
-  - "CLI README alignment"
+  - "cli readme alignment"
   - "post closeout gates"
 importance_tier: "important"
 contextType: "implementation"

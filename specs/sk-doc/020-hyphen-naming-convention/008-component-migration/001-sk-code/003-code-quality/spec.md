@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: code-quality filesystem names (020 phase 008/003)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality/spec]"
 description: "The sk-code quality mode contains snake_case checklist, manual-playbook, and benchmark names that are referenced by the quality mode's routing and author-gate documentation. This phase defines the in-scope kebab-case rename and reference repair without changing quality rules, identifiers, or tool-mandated names."
 trigger_phrases:
   - "code-quality naming migration"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "sk-code quality packet migration"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality"
@@ -28,8 +27,8 @@ _memory:
       - "Quality-mode behavior and rule identifiers are unchanged."
       - "SKILL.md, README.md, Python files/package directories, generated output, and tool-mandated names remain exact."
       - "This child owns only the code-quality subtree and its path/reference closure."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

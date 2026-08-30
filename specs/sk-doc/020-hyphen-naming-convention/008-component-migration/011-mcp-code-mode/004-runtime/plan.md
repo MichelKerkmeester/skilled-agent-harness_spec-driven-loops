@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-code-mode runtime (020 component 011 phase 004)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime/plan]"
 description: "Audit the executable runtime tree, prove its current kebab-case names, and conditionally apply a semantic rename/reference closure if the pinned tree contains an eligible runtime name."
 trigger_phrases:
   - "mcp-code-mode runtime implementation plan"
   - "mcp-code-mode phase 004 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime"
 ---
 # Implementation Plan: mcp-code-mode runtime
 

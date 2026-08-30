@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-git references (020 phase 008/012/001)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references/plan]"
 description: "Implementation plan for the sk-git reference-file rename and pointer-closure phase. The executor will apply the frozen semantic map, repair path-valued consumers, and prove the diff stays inside the reference boundary."
 trigger_phrases:
   - "sk-git references implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "reference rename pointer closure plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references"
 ---
 # Implementation Plan: sk-git references
 

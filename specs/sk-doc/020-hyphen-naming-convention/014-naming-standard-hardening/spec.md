@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Naming Standard Hardening"
+title: "Feature Specification: Naming Standard [sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/spec]"
 description: "Harden file and folder naming standards globally and per mode: reconcile the shared standard docs and the doc-validation tooling to the kebab-case canon, wire the existing kebab guards into a gate, and add per-mode naming conformance so the kebab canon is enforced, not merely documented."
 trigger_phrases:
   - "naming standard hardening"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "filesystem naming conformance"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening"
@@ -19,8 +18,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

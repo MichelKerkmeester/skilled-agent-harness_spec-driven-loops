@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-skill-advisor subtree skill gate"
+title: "Tasks: syste [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate/tasks]"
 description: "Concrete rollup tasks for sibling evidence aggregation, scope-aware naming/reference checks, parity verification, and the no-new-migration gate."
 trigger_phrases:
   - "system-skill-advisor gate tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "advisor naming gate tasks"
 importance_tier: "critical"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate"
@@ -23,8 +22,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "Phase 008 reports and routes failures; it does not perform new migration work."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate"
 ---
-
 # Tasks: system-skill-advisor subtree skill gate
 
 <!-- SPECKIT_LEVEL: 2 -->

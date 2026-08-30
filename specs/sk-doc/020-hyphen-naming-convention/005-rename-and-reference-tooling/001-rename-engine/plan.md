@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: semantic rename engine (020 phase 005.001)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/plan]"
 description: "Implementation plan for the semantic, exemption-aware git-mv engine: validate the explicit map, derive dependency-closure batches, preflight collisions, execute only on explicit apply, and journal idempotent rollback."
 trigger_phrases:
   - "semantic rename engine implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "git-mv dry-run rollback plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
@@ -22,6 +21,7 @@ _memory:
     answered_questions:
       - "All execution begins with a read-only preflight and a complete operation plan."
       - "The engine is a Git-index-aware operation over one dependency-closed batch at a time."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
 ---
 # Implementation Plan: Semantic Rename Engine
 

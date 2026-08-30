@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 028 sk-create-flowchart README rewrite"
+title: "Tasks: Phase 028 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/tasks]"
 description: "Task list for rewriting the sk-create-flowchart skill README purpose-first against the refined template from phase 001 and the mcp-obsidian exemplar."
 trigger_phrases:
   - "phase 028 tasks"

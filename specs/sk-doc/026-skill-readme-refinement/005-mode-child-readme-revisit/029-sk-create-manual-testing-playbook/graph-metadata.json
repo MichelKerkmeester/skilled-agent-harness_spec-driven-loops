@@ -21,8 +21,8 @@
       "phase 029 tasks",
       "sk-create-manual-testing-playbook readme tasks",
       "playbook readme rewrite tasks",
-      "phase 029 checklist",
-      "sk-create-manual-testing-playbook readme verification"
+      "phase 029 implementation summary",
+      "manual testing playbook readme closeout"
     ],
     "key_topics": [
       "manual",
@@ -41,28 +41,20 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/README.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/checklist.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      "checklist.md",
-      "spec.md",
-      "plan.md",
       ".opencode/skills/sk-doc/scripts/validate_document.py",
-      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/README.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -82,9 +74,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/README.md",
         "source": "derived"
       },
       {
@@ -103,12 +101,6 @@
         "name": "check-markdown-links.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,27 +192,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The current README at `.opencode/skills/sk-doc/sk-create-manual-testing-playbook/README.md` predates the pilot standard that the mcp-obsidian README set and that phase 001 codified in the refined template",
     "created_at": "2026-08-04T08:34:49.644Z",
-    "last_save_at": "2026-08-04T20:45:26.944Z",
+    "last_save_at": "2026-08-30T07:20:33.253Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7462a1f6c9960a7260085921fe94367ecbc4f3601cb74ab722702d0fd6c8eb8d",
+    "source_fingerprint": "sha256:86821a3fbf53014c4a417288fdb49185bfb0129faa04b59d525d9c71d396b0f1",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "9f0286a823444a5a950047ad8facc12bfca6ec6d9c0852efb2c8af4f44b57a06",
-      "plan.md": "dc6d5307f233a988db4f2beadc89b2013a389217e676b66cfd0af5cc31d06ff3",
-      "tasks.md": "af7ef16fda35488e7c835cb90015b99aa78c3d352d8aa5b2546b4ad8246af8e7",
-      "checklist.md": "0340390551bf4bf07e380b897eec306faac657ffe5eb6890b3678fb2b5db51dd",
-      "implementation-summary.md": "dd6dd1826e444125d9dadfe1396fc8694948b39adb5f8bd2a9fcda37e1f2e989"
+      "spec.md": "496f3e22ad535ff716f9cbdd3e0924b55a51d6d5fb57a086cfb60a0b91d88dae",
+      "plan.md": "c12fed76c21426ca66fafce9dccbf5ce00b1c136c3269f75359c0113cbe21fd0",
+      "tasks.md": "6decf11262fb29efcdeb45caf34de1323dcee4c20e5fa1614c31612563b57d60",
+      "implementation-summary.md": "e2ab441bf15380c17b5b69e1876beca462f5b2c290b6d4dc9d9eed226204e4e8"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,12 +1,11 @@
 ---
-title: "Tasks: create-flowchart resource names"
+title: "T [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart/tasks]"
 description: "Concrete execution and verification tasks for the create-flowchart resource naming phase."
 trigger_phrases:
   - "create-flowchart resource tasks"
   - "flowchart asset rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart"
 ---
 # Tasks: create-flowchart resource names
 

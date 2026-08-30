@@ -1,5 +1,5 @@
 ---
-title: "Tasks - Phase 008 - README template descriptive-voice revision"
+title: "Tasks - Phase 008 - README template [sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/tasks]"
 description: "Task list for the descriptive-voice revision of the standalone and parent-hub README templates."
 trigger_phrases:
   - "phase 008 tasks"

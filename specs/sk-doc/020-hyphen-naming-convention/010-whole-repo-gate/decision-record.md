@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: whole-repo verification gate (020 phase 010)"
+title: "Decision Record: whole-repo verification [sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/decision-record]"
 description: "Locks the phase 010 gate as an evidence-based conjunction over scope-aware naming, reference closure, Git rename history, and the complete validation/test baseline, with exact pass criteria and measurement sources."
 trigger_phrases:
   - "whole-repo gate decision record"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "rename history verification decision"
 importance_tier: "critical"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "The phase passes only when every gate domain passes for the same candidate SHA."
       - "Git rename history is measured with explicit R-status output, not inferred from matching paths."
+parent: "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate"
 ---
-
 # Decision Record: Whole-repo verification gate
 
 <!-- SPECKIT_LEVEL: 2 -->

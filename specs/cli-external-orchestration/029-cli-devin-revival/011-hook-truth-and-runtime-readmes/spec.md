@@ -1,11 +1,11 @@
 ---
-title: "Feature Specification: Devin hook truth and runtime README parity"
+title: "Feature Specification: [cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes/spec]"
 description: "Reconcile current documentation with the corrected Devin hook registration schema and observed live behavior, align runtime mirror READMEs, restore Cursor mirror parity, and remove obsolete Zed MCP registrations that retain exposed credentials."
 trigger_phrases:
-  - "Devin hook truth"
-  - "runtime hook README parity"
-  - "Cursor hook mirror"
-  - "Zed MCP cleanup"
+  - "devin hook truth"
+  - "runtime hook readme parity"
+  - "cursor hook mirror"
+  - "zed mcp cleanup"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

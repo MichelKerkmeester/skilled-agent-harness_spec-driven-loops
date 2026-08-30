@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary — shared standalone skill README template refinement"
+title: "Implementation Summary — [sk-doc/026-skill-readme-refinement/001-readme-template-refinement/implementation-summary]"
 description: "Phase 001-readme-template-refinement implementation summary."
 trigger_phrases:
   - "phase 001-readme-template-refinement summary"

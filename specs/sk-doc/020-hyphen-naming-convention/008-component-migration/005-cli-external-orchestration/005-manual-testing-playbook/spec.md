@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cli-external-orchestration manual-testing-playbook naming (020 phase 005.005)"
+title: "...020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook/spec]"
 description: "The cli-external-orchestration surface contains four manual_testing_playbook roots and snake_case category/file names across hub, OpenCode, Claude Code, and Codex scenarios. This phase renames those playbook filesystem names, updates active references, and preserves scenario IDs, frontmatter fields, and test meaning."
 trigger_phrases:
   - "cli-external manual playbook kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 005 playbook naming"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "The current inventory has four playbook roots, 34 directories, and 116 files; the path census reports 150 underscore-bearing entries."
       - "All four playbook roots and their category/file descendants belong to this phase; component reference/assets remain with phases 002–004."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

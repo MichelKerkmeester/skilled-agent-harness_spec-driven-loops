@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: create-diff naming audit"
+title: "Impleme [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff/plan]"
 description: "Verification plan for the create-diff component's zero-row non-exempt naming census and path-reference check."
 trigger_phrases:
   - "create-diff naming audit plan"
   - "create-diff zero-row verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff"
 ---
 # Implementation Plan: create-diff naming audit
 

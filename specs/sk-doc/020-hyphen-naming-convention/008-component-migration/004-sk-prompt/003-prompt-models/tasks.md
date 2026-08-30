@@ -1,12 +1,11 @@
 ---
-title: "Tasks: prompt-models asset and reference names (020 phase 004.003)"
+title: "Tasks: prompt-models [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models/tasks]"
 description: "Tasks for phase 003 of the sk-prompt kebab-case program: rename prompt-models assets and references, preserve JSON data contracts, and close active path consumers."
 trigger_phrases:
   - "prompt-models asset and reference tasks"
   - "sk-prompt phase 003 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models"
@@ -24,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Benchmarks/** and changelog/** are outside this phase."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models"
 ---
 # Tasks: prompt-models asset and reference names
 

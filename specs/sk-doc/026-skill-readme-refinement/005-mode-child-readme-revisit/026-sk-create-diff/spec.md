@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 026-sk-create-diff skill README rewrite"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff/spec]"
 description: "Rewrite the sk-create-diff mode skill README at .opencode/skills/sk-doc/sk-create-diff/README.md purpose-first on the refined README template from phase 001 with the mcp-obsidian README as the exemplar, then bump the version field, add a changelog entry and validate."
 trigger_phrases:
   - "sk-create-diff readme"

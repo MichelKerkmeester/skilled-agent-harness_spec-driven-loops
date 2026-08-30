@@ -1,6 +1,11 @@
 ---
-title: "Implementation Summary: Stage-aware Lane C skill-benchmark scorer"
+title: "Implementation [system-deep-loop/031-smart-routing-benchmark-program/017-stage-aware-scorer/implementation-summary]"
 description: "Records the wiring of the benchmark scenario stage axis (fitted/holdout split, generalization gap, stage-driven negatives) under a score-preserving invariant, verified by a before/after Mode-A re-baseline that surfaced real generalization gaps on 7 corpora."
+trigger_phrases:
+  - "implementation"
+  - "implementation summary"
+  - "017"
+  - "stage"
 importance_tier: "normal"
 contextType: "general"
 _memory:

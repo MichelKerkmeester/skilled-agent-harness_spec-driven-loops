@@ -21,8 +21,8 @@
       "deep-alignment tasks",
       "alignment kebab-case naming tasks",
       "alignment adapter path repair tasks",
-      "system-deep-loop deep alignment checklist",
-      "deep-alignment naming verification"
+      "system-deep-loop alignment decisions",
+      "deep-alignment naming decision record"
     ],
     "key_topics": [
       "deep-alignment",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,31 +180,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep-alignment packet contains 15 underscore-bearing directory families and 68 underscore-bearing files across adapters, catalogs, playbooks, and state references. This phase renames those in-scope paths to kebab-case and repairs path-valued resource maps while preserving authority identifiers, embedded code keys, read-only behavior, and tool-mandated names.",
     "created_at": "2026-07-14T15:17:53Z",
-    "last_save_at": "2026-08-29T10:00:32.489Z",
+    "last_save_at": "2026-08-30T07:19:42.089Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:bb3fae6687bd5dafbf88dc2469d010417b850f358b8808b36b43cebd799b90b8",
+    "source_fingerprint": "sha256:a9569eb765d9079f941d11978da9018dc7dcdf8532b1dd301eaf4d528951b8e0",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "213389a5a356ce917dd772c5629dc186fcfb6e781ff4aa2a48e590d73ea38a1b",
-      "plan.md": "5422e9c0578d26e9eff8f76d178dcfe4a33fb36c8a8acd3cc391da3884e492db",
-      "tasks.md": "0457147122c22935cc8cd2b05108eb1bed06314b9a0e7c47a9651ec1f833c559",
-      "checklist.md": "ab729a2805b9ba79afc934d225c69b73d8ae0942b84e4fe3c3c0d0cd640b119d",
-      "decision-record.md": "f9e432f9be7af9a2dae5dae8d16bc3053d57edeb1b376c10738653eafeff89dc"
+      "spec.md": "2f7b7b82d65de2d0b82854bf1f9da2521c50d9f5d226d3029dd367f3cca35943",
+      "plan.md": "efebc9e614eaa3a851d4364d492eba19a53695fe2172281d009130394c5dc1a7",
+      "tasks.md": "373c225974f3b5ce063a4cef19b85a4c29b168fb78805e99a344085d4b8e2bfa",
+      "decision-record.md": "a80124b719bf083bfcfac4e52f4818a535521240731b02c9e5b85fc587460507"
     },
     "last_active_child_id": null,
     "last_active_at": null

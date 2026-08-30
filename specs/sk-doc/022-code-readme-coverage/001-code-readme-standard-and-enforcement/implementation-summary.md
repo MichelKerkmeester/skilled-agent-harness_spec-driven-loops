@@ -1,11 +1,11 @@
 ---
-title: "Implementation Summary: Code README Standard And Enforcement"
+title: "Implementation [sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement/implementation-summary]"
 description: "Implementation and verification receipts for the accepted code-folder README standard, opt-in validator mode, and manifest-driven auditor."
 trigger_phrases:
   - "code readme enforcement implementation"
   - "code folder validator mode"
   - "readme manifest handoff"
-importance_tier: "high"
+importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:

@@ -20,9 +20,9 @@
       "cli-external benchmark tasks",
       "benchmark fixture profile storage tasks",
       "cli-external phase 006 tasks",
-      "cli-external benchmark checklist",
-      "benchmark fixture profile verifier",
-      "cli-external phase 006 acceptance"
+      "cli-external benchmark decision record",
+      "benchmark authored generated boundary",
+      "cli-external phase 006 decisions"
     ],
     "key_topics": [
       "cli-external",
@@ -36,7 +36,7 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist"
+      "decision"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       ".opencode/skills/cli-external-orchestration/SKILL.md",
       ".opencode/skills/cli-external-orchestration/README.md",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,27 +187,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-external-orchestration benchmark boundary currently contains only a .gitkeep marker, but the phase must protect the surface if fixtures, profiles, storage guides, reports, or generated runs are present at execution time. This phase applies the 020 authored-versus-generated naming boundary and records an explicit zero-candidate baseline.",
     "created_at": "2026-07-14T15:17:39Z",
-    "last_save_at": "2026-08-29T13:10:03.422Z",
+    "last_save_at": "2026-08-30T07:19:35.361Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:28911657d18391610a3f0c61d304a1fee8c87ef8559358520923151ec86d955f",
+    "source_fingerprint": "sha256:bc351b328b091432d74b18599160bc5fc26606b286dfd734b3c724db15fce314",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "3b651f250d0eaa3fa02d18850440472c15b94e6e032dd8ee7430edf7e3ceb88f",
-      "plan.md": "f26ed489c564cdbdbeff6eb19538bcb60b1adfd4428b59e3ae21b6907831e0be",
-      "tasks.md": "bef288d7dbb4f74c5f4f0ba9cfbfa9ee34ebb2586d9366551b09c98d8f212a23",
-      "checklist.md": "6df58feebe236d2e709d4541a307b72e6d0eb5e2d26a3d94fb2bd67bb396d3f3",
-      "decision-record.md": "8dd1a7015659c74f04f4e9769da277195055008b153a3f9a97fd9427635c1a92"
+      "spec.md": "ec477e782396b3fe8dbafc810d308740d543d9e3fb291ac2175b54d9395c74b1",
+      "plan.md": "7287a7cbca1e3445332343f5a8dc2d632363ddf4f022d96a6d789cb6532d6495",
+      "tasks.md": "6aae2155c827d9ead2508ef3c44a3e786f7b8728d883fc78605a78cd0f23fb4f",
+      "decision-record.md": "9081dd5a39737e6b6a61583bc7c6f1788cb58d9ae5111a76431b0a7d86ab14f0"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: MCP-server consumer rewrites (020 subtree 008 phase 003)"
+title: "...k-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites/spec]"
 description: "Renaming the MCP package and its inner directories changes path-valued references across the skill, sibling skills, scripts, manifests, hooks, and documentation. This phase rewrites every consumer and import/config path without renaming exempt Python targets or changing the @spec-kit/mcp-server package identity."
 trigger_phrases:
   - "mcp-server consumer rewrites"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "kebab-case phase 003"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/003-mcp-server-consumer-rewrites"
@@ -21,8 +20,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

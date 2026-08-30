@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 006: fleet-wide validation and closeout of the skill README program"
+title: "Feature Specification: Phase 006: fleet-wide [sk-doc/026-skill-readme-refinement/006-validation-and-closeout/spec]"
 description: "Validate every rewritten skill README (standalone and child modes) with the sk-doc README validator, run the link guard per changed skill, grep HVR violations across all rewrites, reconcile versions and changelog entries, fix any failure, and close out the packet phase docs with evidence."
 trigger_phrases:
   - "fleet validation"

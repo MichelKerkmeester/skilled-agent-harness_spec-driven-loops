@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-skill-advisor component migration"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/spec]"
 description: "Phase parent for the kebab-case filesystem-name migration of the system-skill-advisor surface. Eight independently reviewable child phases cover the MCP package boundary, scripts, references, hooks, feature catalog, manual playbook, release evidence, and the final subtree gate."
 trigger_phrases:
   - "system-skill-advisor kebab-case migration"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "system-skill-advisor naming phases"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
@@ -25,8 +24,8 @@ _memory:
       - "The migration changes filesystem names only; code identifiers and data keys retain their established case."
       - "Python .py files and Python import-package directories remain snake_case exemptions."
       - "Each child phase owns its own L2 plan, tasks, checklist, and any genuine decision record."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose and child phase map only. -->

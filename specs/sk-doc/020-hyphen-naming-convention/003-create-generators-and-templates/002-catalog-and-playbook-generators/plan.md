@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: catalog and playbook generators (020 phase 003 child 002)"
+title: "Imple [sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators/plan]"
 description: "Align the catalog and playbook workflow packets with hyphenated output paths, then run the generated trees through phase 002's dual-name and fail-closed consumer matrix."
 trigger_phrases:
   - "catalog and playbook generator implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "manual testing playbook hyphen naming plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators"
 ---
 # Implementation Plan: Catalog and Playbook Generators
 

@@ -1,3 +1,17 @@
+---
+title: "...-local-embeddings-foundation/022-local-llm-legacy-remediation/ai-council/embedding-worker-diagnostic/decision-record]"
+description: "Proposed"
+trigger_phrases:
+  - "local"
+  - "embeddings"
+  - "foundation"
+  - "022"
+  - "decision record"
+  - "embedding"
+  - "worker"
+importance_tier: "important"
+contextType: "planning"
+---
 # Embedding worker chronic failure diagnostic 2026-05-14
 
 ## Status

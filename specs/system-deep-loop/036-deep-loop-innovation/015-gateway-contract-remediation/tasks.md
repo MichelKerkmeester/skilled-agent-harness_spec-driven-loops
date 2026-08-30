@@ -1,7 +1,15 @@
 ---
-title: "Task Breakdown: Gateway State-Write Contract Remediation"
+title: "Task Breakdown: Gateway State-Write [system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation/tasks]"
 description: "Sequenced tasks T001-T010 remediating the ten 014-review findings plus the merge-tool bug, WS1 behind a real-dispatch negative-control gate, mapped to REQ/ADR/quality-gates."
-importance_tier: "high"
+trigger_phrases:
+  - "task"
+  - "breakdown"
+  - "gateway"
+  - "state"
+  - "write"
+  - "tasks"
+  - "015"
+importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:

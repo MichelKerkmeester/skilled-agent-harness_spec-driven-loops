@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: verify context agent naming (020 phase 003)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/003-context-verify/plan]"
 description: "Implementation Plan for phase 003 of the 020 agents component migration: a read-only context filename candidate audit."
 trigger_phrases:
   - "context agent naming implementation plan"
   - "agents phase 003 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/003-context-verify"
@@ -19,8 +18,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 # Implementation Plan: Context Agent Naming Verification
 
 <!-- SPECKIT_LEVEL: 2 -->

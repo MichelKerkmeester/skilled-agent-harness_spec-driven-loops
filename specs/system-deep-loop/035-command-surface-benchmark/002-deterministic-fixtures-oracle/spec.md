@@ -1,7 +1,6 @@
 ---
-title: "Feature Specification: deterministic fixtures and reference oracle — an independent, non-circular defect corpus"
+title: "Feature Specification: [system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/spec]"
 description: "Builds and verifies the independent public and held-out fixture corpus plus a reference oracle, authored before any adapter code so the deterministic adapter cannot validate itself."
-status: complete
 trigger_phrases:
   - "command benchmark fixtures"
   - "reference oracle"
@@ -23,6 +22,7 @@ _memory:
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
     open_questions: []
     answered_questions: []
+status: complete
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

@@ -1,9 +1,9 @@
 ---
-title: "Spec: design-motion packet-root conformance"
+title: "Spec: design-motion packet-root conformance [sk-design/014-template-conformance/003-design-motion/001-packet-root/spec]"
 description: "Audit design-motion's two packet-root markdown files (README.md, SKILL.md) against the sk-doc skill-readme and skill-md templates, and remediate any confirmed gap."
 trigger_phrases:
   - "design-motion packet root audit"
-  - "design-motion SKILL.md README.md conformance"
+  - "design-motion skill.md readme.md conformance"
   - "motion mode root template check"
 importance_tier: "normal"
 contextType: "planning"

@@ -1,5 +1,5 @@
 ---
-title: "Featur [system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/spec]"
+title: "...h-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime/spec]"
 description: "Merged packet covering the foundational runtime arc: 50-iter research charter (ex-016) plus 27 remediation tasks across 4 Phase-017 sub-phases. Five sub-phases merged into implementation-summary.md §Sub-phase summaries."
 trigger_phrases:
   - "foundational runtime remediation"
@@ -11,7 +11,6 @@ trigger_phrases:
   - "50-iter foundational research"
 importance_tier: "critical"
 contextType: "implementation"
-template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime"
@@ -20,6 +19,7 @@ _memory:
     recent_action: "Packet consolidation: ex-016 research charter + ex-017 remediation merged into one arc"
     next_safe_action: "Cross-reference updates swept across repo"
     blockers: []
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

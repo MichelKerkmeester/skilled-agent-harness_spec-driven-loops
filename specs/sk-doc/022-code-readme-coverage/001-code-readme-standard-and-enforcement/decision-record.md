@@ -1,3 +1,15 @@
+---
+title: "Decision Record: Code [sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement/decision-record]"
+description: "The content model at readme-code-template.md:47-58 requires a Directory Tree in every multi-file code folder. It does not say whether an exhaustive CONTENTS, FILES or Key Files ..."
+trigger_phrases:
+  - "decision"
+  - "record"
+  - "code"
+  - "decision record"
+  - "001"
+importance_tier: "important"
+contextType: "planning"
+---
 # Decision Record: Code README Standard And Enforcement
 
 <!-- SPECKIT_LEVEL: 3 -->

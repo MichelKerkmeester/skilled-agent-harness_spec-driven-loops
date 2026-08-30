@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: fixture corpus and dry-run harness (020 phase 005.003)"
+title: "Featu [sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/spec]"
 description: "The rename engine and reference checker need representative, repeatable evidence before a real migration run. This phase builds disposable fixtures and a dry-run harness for semantic names, exemptions, collisions, references, idempotency, rollback, and empty scans."
 trigger_phrases:
   - "fixture corpus dry-run harness"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "rename checker harness"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
@@ -27,8 +26,8 @@ _memory:
     answered_questions:
       - "The harness creates disposable repositories and does not execute the real repo-wide migration."
       - "Fixtures cover the naming exemption boundary as well as positive, negative, collision, reference, and recovery cases."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

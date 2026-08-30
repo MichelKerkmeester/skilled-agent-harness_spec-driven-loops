@@ -1,3 +1,14 @@
+---
+title: "Advisor State-Containment [system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/research]"
+description: "The stray-state-directory leak is NOT resolved. Partial containment *did* ship in-window (two commits on 2026-07-27), but it does not cover the primary leak path, so the advisor..."
+trigger_phrases:
+  - "advisor"
+  - "state"
+  - "containment"
+  - "research"
+importance_tier: "normal"
+contextType: "research"
+---
 # Advisor State-Containment — Deep Research Findings
 
 > Converged early at 7/10 iterations (2 cli-devin lineages: grok-4-6-xhigh, deepseek-v4-pro-max). Root cause, ship-state, and fix were established; remaining iterations would only add corroboration. All claims below carry file:line / commit evidence from the live tree.

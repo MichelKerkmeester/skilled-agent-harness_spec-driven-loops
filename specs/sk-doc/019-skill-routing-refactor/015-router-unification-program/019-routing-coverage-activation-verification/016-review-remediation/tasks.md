@@ -1,9 +1,17 @@
 ---
-title: "Tasks: Compiled-Routing Deep-Review Remediation"
+title: "...ng-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/tasks]"
 description: "Task breakdown for the four remediation workstreams; test-first per fix, verify invariants after each."
+trigger_phrases:
+  - "refactor"
+  - "015"
+  - "router"
+  - "unification"
+  - "program"
+  - "tasks"
+  - "016"
+  - "review"
 importance_tier: "critical"
 contextType: "implementation"
-status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation"
@@ -13,8 +21,8 @@ _memory:
     next_safe_action: "Operator sign-off; merge to v4 remains operator-gated."
     blockers: []
     key_files: []
+status: "complete"
 ---
-
 # Tasks: Compiled-Routing Deep-Review Remediation
 
 <!-- SPECKIT_LEVEL: 2 -->

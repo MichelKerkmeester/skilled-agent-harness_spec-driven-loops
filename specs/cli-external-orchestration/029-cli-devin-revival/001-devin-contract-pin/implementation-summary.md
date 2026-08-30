@@ -1,7 +1,8 @@
 ---
-title: "Implementation Summary: Devin CLI contract pin"
+title: "Implementation [cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/implementation-summary]"
 description: "Evidence base for the live Devin CLI contract used by phases 002-007 of the cli-devin revival."
-trigger_phrases: ["devin contract pin summary"]
+trigger_phrases:
+  - "devin contract pin summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -27,7 +27,7 @@
       "conversion",
       "feature",
       "specification",
-      "create-manual-testing-playbook"
+      "create-manual-testing-pl"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -80,15 +80,16 @@
     ],
     "causal_summary": "Phase 009 of the sk-doc monolith to parent-hub conversion",
     "created_at": "2026-07-06T06:30:35.690Z",
-    "last_save_at": "2026-08-28T22:17:54.456Z",
+    "last_save_at": "2026-08-30T07:16:13.956Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:91ac04cb0a9ebbd535c94d8f15eb3fb0ca7b85c18a1d53d96e9bd87f3be553be",
+    "source_fingerprint": "sha256:bacc52edec497c72f42a88345c1b676f24da28a75b41aff2d7da87de90b92b65",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "2c6ac736d5ac70419e11fe122da5915cabd60eb59360b2f0c5127ab911a154e2"
+      "spec.md": "e814228c26de099a432f7098b03dfccb6aa7672feb3b8cbac7b97475dff16acb"
     },
     "last_active_child_id": null,
     "last_active_at": null

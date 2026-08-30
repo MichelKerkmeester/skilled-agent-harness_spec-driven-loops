@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Phase 006 sk-doc standalone README rewrite"
+title: "Feature Specification: Phase 006 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/006-sk-doc/spec]"
 description: "Rewrite the sk-doc skill README at .opencode/skills/sk-doc/README.md against the refined README template from phase 001 and the mcp-obsidian exemplar, purpose-first with HVR enforcement, a version bump and a changelog entry."
 trigger_phrases:
   - "sk doc readme rewrite"
   - "standalone readme phase 6"
-  - "sk-doc README revisit"
+  - "sk-doc readme revisit"
   - "readme version bump changelog"
   - "hvr readme cleanup"
 importance_tier: "normal"

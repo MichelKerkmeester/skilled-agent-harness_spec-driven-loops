@@ -15,9 +15,8 @@
       "fast-mode integration tests",
       "get_commands test",
       "extension-integration-suite plan",
-      "FakePi integration tests",
+      "fakepi integration tests",
       "extension-integration-suite tasks",
-      "extension-integration-suite checklist",
       "extension-integration-suite implementation summary"
     ],
     "key_topics": [
@@ -29,10 +28,10 @@
       "plan",
       "fakepi",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "pure"
+      "pure",
+      "helper"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/settings.json"
     ],
@@ -61,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -188,27 +180,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Pure helper tests can pass while extension registration, lifecycle ordering, command ownership, or status calls are wired incorrectly",
     "created_at": "2026-08-16T09:08:02Z",
-    "last_save_at": "2026-08-29T15:21:53.581Z",
+    "last_save_at": "2026-08-30T07:18:56.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f2955844b4415ebe5ffd9acd2620b435e00fc7a8356437461704a21226c3212a",
+    "source_fingerprint": "sha256:9d718f6375673c1f3f3d0cede3b5fd21c0023c81d13bfaa5ca8723b660121c3d",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "51e822c2559cc8a771f76b51d78eb7adfa93596bba22a0591ab7ece0bb03a620",
-      "plan.md": "392db1f09d3d9f8bc585678195417e6ed84f930bbb63112665ffb6b0ed275f47",
-      "tasks.md": "1b612caa36ec37ddc9332b24f01cd9322e2144d075cbec11ed4cdca7fae7fa11",
-      "checklist.md": "b872f0a8c8e6e4991e6a5d9f2fb1f6893da2d2bf13727eddc8314f64610fed9a",
-      "implementation-summary.md": "2ad01c8954bb9bb89636d24d092889f2fafca358cc25eb6566dd05640e52f773"
+      "spec.md": "6b8c0e62e4a32decc482f00d7a87b3519cbaf41ee2062628b9cc4c08cefd72db",
+      "plan.md": "589d81534d07c08f87aa993faa4103788b1ae29c32d38c7b7fc7e96f19b81553",
+      "tasks.md": "eeabfa90ec2d53d3ff977f9a7e68f6cc4b14014f90a59e5ce4925b6d06c8f19f",
+      "implementation-summary.md": "59d1a869bfe4c9feaefce21c142df65307da977eac8a53dbd8bed0be12cbd9f7"
     },
     "last_active_child_id": null,
     "last_active_at": null

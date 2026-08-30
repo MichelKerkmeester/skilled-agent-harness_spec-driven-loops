@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: design command namespace naming (020 phase 008/013/003)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace/plan]"
 description: "Plan for renaming the maintained design workflow and presentation assets through the frozen map and repairing all path-valued consumers without changing design command behavior."
 trigger_phrases:
   - "design namespace naming plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "design command path repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace"
@@ -22,8 +21,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace"
 ---
-
 # Implementation Plan: Design command namespace naming
 
 <!-- SPECKIT_LEVEL: 2 -->

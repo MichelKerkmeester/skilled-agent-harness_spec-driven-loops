@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 029 sk-create-manual-testing-playbook README revisit"
+title: "Tasks: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/tasks]"
 description: "Task list for rewriting the create-manual-testing-playbook skill README on the refined template standard."
 trigger_phrases:
   - "phase 029 tasks"

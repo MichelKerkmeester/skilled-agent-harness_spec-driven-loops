@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: verify debug agent naming (020 phase 004)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/004-debug-verify/plan]"
 description: "Implementation Plan for phase 004 of the 020 agents component migration: a read-only debug filename candidate audit."
 trigger_phrases:
   - "debug agent naming implementation plan"
   - "agents phase 004 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/004-debug-verify"
@@ -19,8 +18,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 # Implementation Plan: Debug Agent Naming Verification
 
 <!-- SPECKIT_LEVEL: 2 -->

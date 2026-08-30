@@ -20,9 +20,9 @@
       "catalog and playbook generator tasks",
       "feature catalog output naming tasks",
       "manual testing playbook output naming tasks",
-      "catalog and playbook generator checklist",
-      "feature catalog output naming checklist",
-      "manual testing playbook output naming checklist"
+      "catalog and playbook generator summary",
+      "feature catalog output migration results",
+      "manual testing playbook output migration results"
     ],
     "key_topics": [
       "catalog",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "feature-catalog/feature-catalog.md",
       "manual-testing-playbook/manual-testing-playbook.md"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,37 +176,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built New",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The feature-catalog and manual-testing-playbook generators still describe and emit underscore roots, categories, and artifact files. They must emit kebab-case output only after phase 002's bounded consumer tolerance can resolve the new names without a silent readme downgrade.",
     "created_at": "2026-07-14T15:16:45Z",
-    "last_save_at": "2026-08-29T13:10:16.866Z",
+    "last_save_at": "2026-08-30T07:19:10.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:09e6cdaa2d51d693b9a37d544814d716c3bf2f835a8978fcde2c7db61e37a16a",
+    "source_fingerprint": "sha256:b275f4f0955c391f062f99f212aa4667d67b908ab5df2259a11a1c072a411138",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "19fc8975af5dcad89517126d592c3bbfa9c15f307d25ed45502c820ad1adcc54",
-      "plan.md": "e3705f8e08a122c75483447429fb5840f9c9ff539fb0d5c4904011cfaa9719f2",
-      "tasks.md": "16a420bc4d934a1c2a0d7a94938b84add4487eef3c7b20a44316355ea26f2ff5",
-      "checklist.md": "97459f02a166588f6683cc670933d4b3dc2dd6181762d62701cb9f1d218fc510",
-      "implementation-summary.md": "04718183ee0a0f6c98af59c4173002308924c99a145e396f482397359d3dc780"
+      "spec.md": "6703735a63ebd6fa60d98f0658d5b2d4c57bb0e77d606c75cbf4f972cafbc3c3",
+      "plan.md": "21c503318d940e800bfcfe226fb41acb903ed6a59b7895e0d26e10cef85bb0d6",
+      "tasks.md": "b453ab2c57b1e576e0c53846894e88c293fc23fb23463320018dbcda28c13999",
+      "implementation-summary.md": "040d1973b0ed7e03da83cb79711c9b4a16f194951bd3ce796165333420a82e38"
     },
     "last_active_child_id": null,
     "last_active_at": null

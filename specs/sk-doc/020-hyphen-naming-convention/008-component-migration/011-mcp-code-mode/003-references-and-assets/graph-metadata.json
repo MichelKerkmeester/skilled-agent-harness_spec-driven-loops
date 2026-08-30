@@ -17,9 +17,7 @@
       "mcp-code-mode references assets implementation plan",
       "mcp-code-mode phase 003 implementation plan",
       "mcp-code-mode references assets tasks",
-      "mcp-code-mode phase 003 tasks",
-      "mcp-code-mode references assets checklist",
-      "mcp-code-mode phase 003 checklist"
+      "mcp-code-mode phase 003 tasks"
     ],
     "key_topics": [
       "mcp-code-mode",
@@ -33,15 +31,14 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist"
+      "skill"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -169,43 +160,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skill's reference and asset directories contain four permitted snake_case Markdown filenames: naming_convention.md, tool_catalog.md, config_template.md, and env_template.md. This phase renames those files to kebab-case and closes every active link and path pointer while leaving tool-name examples, keys, Python paths, and frozen changelog history intact.",
     "created_at": "2026-07-14T15:18:22Z",
-    "last_save_at": "2026-08-29T10:00:51.843Z",
+    "last_save_at": "2026-08-30T07:19:55.986Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:07b17544ab7fb9e8a2d0724d30b30fd56c0f0908e586b2f73d9b5793198d4105",
+    "source_fingerprint": "sha256:8a98303383cce229906562503ef157c800341f7b434720f35c6954a937e380d1",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "6ef7c32b056d19f63ba8367b35274d1bed3460718888c505a36a3067729d85da",
-      "plan.md": "01fe38ed310eed31f14f55cd4b6bb119f6e5a65a2cb6abb6de6cfd9b9ca2d959",
-      "tasks.md": "355b451e20587ee2d64c43d1be5048fed2fe454d3da0355370e504e275a7f9dc",
-      "checklist.md": "9947f3708a3c8a8dd831ade0a7101dd056b849884021b0f30d51291099b4cc21"
+      "spec.md": "6ea7e5f263601ad143acc0c4baab391ad5719cfb5b7689d707a724f05ea92c33",
+      "plan.md": "5ccae0c5151bcd20a9c1b99c2e2823aa3222205c335cd223ff924e5c3a88bd83",
+      "tasks.md": "f2bd68e6a63e8d1e30fc07a2992459d2b6619d4887004e91c7010982bbb6a5eb"
     },
     "last_active_child_id": null,
     "last_active_at": null

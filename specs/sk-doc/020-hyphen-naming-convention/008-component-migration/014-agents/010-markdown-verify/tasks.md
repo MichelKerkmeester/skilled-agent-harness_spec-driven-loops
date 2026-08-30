@@ -1,12 +1,11 @@
 ---
-title: "Tasks: verify markdown agent naming (020 phase 010)"
+title: "Tasks: verify [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/010-markdown-verify/tasks]"
 description: "Tasks for phase 010 of the 020 agents component migration: verify the markdown filename candidate set."
 trigger_phrases:
   - "markdown agent naming tasks"
   - "agents phase 010 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/010-markdown-verify"
@@ -19,8 +18,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 # Tasks: Markdown Agent Naming Verification
 
 <!-- SPECKIT_LEVEL: 2 -->

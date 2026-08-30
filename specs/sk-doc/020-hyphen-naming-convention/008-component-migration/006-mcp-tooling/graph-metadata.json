@@ -103,15 +103,16 @@
     ],
     "causal_summary": "The mcp-tooling surface contains snake_case directory and file names across its hub-level support material, three component packets, manual-testing playbooks, and benchmark boundary. This phased packet defines the independent rename and reference-rewrite scopes needed to make that surface kebab-clean while preserving tool-mandated names, Python exemptions, and component behavior.",
     "created_at": "2026-07-14T15:16:59Z",
-    "last_save_at": "2026-08-29T14:54:22.277Z",
+    "last_save_at": "2026-08-30T07:19:36.482Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:fbf1203876dd32143b5004bcf20508c476c0a7a27413db097e7ec69ea55eb44a",
+    "source_fingerprint": "sha256:189130aecf570cafa493cfd116898ff4c2706d1b111d8bebe3eed38cc964f802",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "6d54cccf1608d8be3fa2c3e9d8cc33db4fe604e5a613ac8dc1a54114516ca3fb"
+      "spec.md": "17617fa958283ee0d3a94944a46ecabb72b10f64e28dbd11105f899f85fe322e"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook",
     "last_active_at": null

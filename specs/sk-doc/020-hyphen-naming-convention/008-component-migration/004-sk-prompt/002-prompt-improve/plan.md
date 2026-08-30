@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: prompt-improve asset and reference names (020 phase 004.002)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve/plan]"
 description: "Implementation plan for phase 002 of the sk-prompt kebab-case program: rename six prompt-improve asset/reference files, update active consumers, and prove the packet resource map remains resolvable."
 trigger_phrases:
   - "prompt-improve asset and reference implementation plan"
   - "sk-prompt phase 002 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve"
@@ -24,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Playbook, benchmark, and changelog paths are excluded from the phase map."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve"
 ---
 # Implementation Plan: prompt-improve asset and reference names
 

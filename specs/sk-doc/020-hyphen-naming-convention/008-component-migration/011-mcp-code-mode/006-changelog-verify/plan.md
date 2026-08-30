@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-code-mode changelog verification (020 component 011 phase 006)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify/plan]"
 description: "Verify the post-migration mcp-code-mode changelog entry and skill version bump against the five preceding phase reports. Keep this phase read-only with respect to the migration and fail when the entry is missing, incomplete, or inconsistent."
 trigger_phrases:
   - "mcp-code-mode changelog verify implementation plan"
   - "mcp-code-mode phase 006 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify"
 ---
 # Implementation Plan: mcp-code-mode changelog verification
 

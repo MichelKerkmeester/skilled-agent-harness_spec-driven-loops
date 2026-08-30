@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 005 cli-opencode mode README rewrite"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/plan]"
 description: "Rewrite the cli-opencode mode README purpose-first against the refined template from phase 001 and the mcp-obsidian exemplar, with a version bump and a changelog entry."
 trigger_phrases:
   - "phase 005 plan"

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Per-Mode Naming Conformance"
+title: "Tasks: Per-Mod [sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "per-mode conformance tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-git skill gate (020 phase 008/012/006)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate/plan]"
 description: "Read-only implementation plan for the sk-git rollup gate. The verifier will reconcile sibling SOL evidence, scan the complete tracked skill surface against the 020 exemption set, and prove the component is naming-clean without performing new migration work."
 trigger_phrases:
   - "sk-git skill gate plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "component naming gate plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate"
@@ -26,6 +25,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate"
 ---
 # Implementation Plan: sk-git skill gate
 

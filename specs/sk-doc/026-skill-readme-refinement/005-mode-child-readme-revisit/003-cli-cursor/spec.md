@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 003 cli-cursor README rewrite"
+title: "Feature Specification: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor/spec]"
 description: "Rewrite the cli-cursor skill README at cli-external-orchestration/cli-cursor/README.md purpose-first on the refined README template from phase 001, using the mcp-obsidian README as the exemplar, with a version bump, a changelog entry and validation."
 trigger_phrases:
   - "cli cursor readme rewrite"

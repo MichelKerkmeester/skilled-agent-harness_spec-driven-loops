@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: command asset and reference closure (020 phase 008/013/009)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets/plan]"
 description: "Build a residual ownership map, rename only unassigned maintained command assets, and close every active path pointer against final sibling targets."
 trigger_phrases:
   - "command asset closure plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "command reference reconciliation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets"
@@ -22,8 +21,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets"
 ---
-
 # Implementation Plan: Command asset and reference closure
 
 <!-- SPECKIT_LEVEL: 2 -->

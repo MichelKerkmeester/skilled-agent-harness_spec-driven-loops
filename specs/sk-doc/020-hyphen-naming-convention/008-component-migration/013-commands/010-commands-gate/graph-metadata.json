@@ -19,10 +19,7 @@
       "commands kebab closure plan",
       "commands rollup gate tasks",
       "commands subtree acceptance tasks",
-      "command naming gate tasks",
-      "commands rollup checklist",
-      "commands subtree naming verification",
-      "whole command surface kebab check"
+      "command naming gate tasks"
     ],
     "key_topics": [
       "commands",
@@ -43,8 +40,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -172,43 +162,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The commands surface is split across seven namespace migrations, a loose-root classification, a residual asset/reference closure, and this gate",
     "created_at": "2026-07-14T15:18:38Z",
-    "last_save_at": "2026-08-29T13:10:06.716Z",
+    "last_save_at": "2026-08-30T07:20:04.635Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:fad175b8d57f6ef6895af3921eacda3114f5137289ad0c99131beb8567de6655",
+    "source_fingerprint": "sha256:a55aa2f8f1bbb35a3eff7aa2b923959da79f441842f724edf646709f75e5c9f5",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "ceaf66c32f32daabff63076397e40784145e22e33268e7a420074b613f4694df",
-      "plan.md": "330066bdee9452f7fe821b3cc4b09d012f233e7d9e3eb3a35150b2b0321077ca",
-      "tasks.md": "e3ff942405ada1b1602b7a8bbe169012ea078fe0e55d7726a93e059cb0d44364",
-      "checklist.md": "2a5dcd5a7e4d27361477e4d1054ab502accd94aad1440acf24d26b90b5d1855b"
+      "spec.md": "1240ddc2e54455ad49b4d5077bf2e520a0827775026a85fde3a2f6f69a699c6d",
+      "plan.md": "15be0536c926779f5af51346c1071639ea3580670e35876ce4fd9b17712e8082",
+      "tasks.md": "90f5b269961f77a27235f1ac1bc28234d0351b7867c9b6e011a8af09052700db"
     },
     "last_active_child_id": null,
     "last_active_at": null

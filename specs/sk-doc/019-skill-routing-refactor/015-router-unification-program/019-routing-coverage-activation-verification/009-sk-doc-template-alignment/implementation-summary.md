@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: sk-doc Template Alignment"
+title: "...nification-program/019-routing-coverage-activation-verification/009-sk-doc-template-alignment/implementation-summary]"
 description: "Planning-time record (Status: Planned) of the trigger_phrases claim fix, topology quote-tolerance, the 12-value test-type taxonomy, the strict package validator, and the P4 lockstep directive-surface manifest. No code has been written yet; this document will be updated with delivery evidence once implementation completes."
 trigger_phrases:
   - "sk-doc template alignment implementation summary"

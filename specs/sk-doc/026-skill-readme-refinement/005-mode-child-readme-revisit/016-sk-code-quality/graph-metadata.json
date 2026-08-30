@@ -21,8 +21,8 @@
       "phase 16 tasks",
       "sk code quality readme tasks",
       "quality mode rewrite tasks",
-      "phase 16 checklist",
-      "sk code quality readme verification"
+      "phase 16 implementation summary",
+      "sk code quality readme summary"
     ],
     "key_topics": [
       "code",
@@ -35,38 +35,30 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verification"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-code/sk-code-quality/README.md",
-      ".opencode/skills/sk-code/sk-code-quality/changelog/v1.0.0.2.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-code/sk-code-quality/README.md",
+      ".opencode/skills/sk-code/sk-code-quality/changelog/v1.0.0.2.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/checklist.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      "spec.md",
       ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
     ],
     "entities": [
       {
-        "name": "README.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-code/sk-code-quality/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.0.0.2.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/sk-code-quality/changelog/v1.0.0.2.md",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/spec.md",
         "source": "derived"
       },
       {
@@ -82,21 +74,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/spec.md",
+        "path": ".opencode/skills/sk-code/sk-code-quality/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.0.2.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/sk-code-quality/changelog/v1.0.0.2.md",
         "source": "derived"
       },
       {
@@ -200,27 +192,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code-quality README still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:44.799Z",
-    "last_save_at": "2026-08-04T14:49:12.147Z",
+    "last_save_at": "2026-08-30T07:20:28.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c808d1632a328c00ff4d63110fee4abe9c6edfa9143982b1cc57eb28c55e4adc",
+    "source_fingerprint": "sha256:f0716e03b56b01dd0f571a28ddbd8148d92d133e3d16ccfb71188fd5d9460139",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "97e683a2157cabeeef1560b17adbdbd43e02895fb0442d29ef01d8b822bc4a32",
-      "plan.md": "9b26927ba542486bc3c2e15493b9a1e9b9d224aa8275e54e76b1c31a07460621",
-      "tasks.md": "f5976b5e2152d77c4dcc1fa21603ec70a728ef383ac86b56b1d1ca8aba587edc",
-      "checklist.md": "a0ba6ae01d9a24d5c2d4abd90391bf6880b2e69238dc04764e75531c851a3c63",
-      "implementation-summary.md": "d1ac2add5740a03f7766ef3987a7c895ab4ca09426f89ea6cefcf17775adfd11"
+      "spec.md": "29152402788533a6ccdf0b96780f1d0049889064b9be9136d36f90809179f3c6",
+      "plan.md": "1dac042bae84b70a6b07ef72ce0d2ba37211b099628281a0fe7ce2154731111a",
+      "tasks.md": "f7df1380e364b9f9b49e8e54fd768484ea104f05ee63ebc8b8741498f719e554",
+      "implementation-summary.md": "7dee7c8d3d5cc3ecda9f910f94f3f87f6c3c476b744d0a1769b75f9e2d10885e"
     },
     "last_active_child_id": null,
     "last_active_at": null

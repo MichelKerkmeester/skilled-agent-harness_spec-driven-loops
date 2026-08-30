@@ -1,7 +1,6 @@
 ---
-title: "Implementation Summary: sk-doc Conformance Sweep and Template Cleanup"
+title: "...ease-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep/implementation-summary]"
 description: "Pre-implementation placeholder. Filled post-Tier-4 with final state, evidence, and lessons learned."
-template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 trigger_phrases:
   - "021-sk-doc-conformance-template-sweep implementation"
 importance_tier: "important"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 95
     open_questions: []
     answered_questions: []
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 ---
 # Implementation Summary
 

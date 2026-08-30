@@ -1,11 +1,11 @@
 ---
-title: "Feature Specification: deep-alignment deep-review remediation (Pass A findings F001-F010)"
+title: "Feature Specification: deep-alignment [system-deep-loop/032-deep-alignment-mode/013-review-remediation/spec]"
 description: "Remediate the 10 findings (2 P0, 8 P1) from the gpt-5.6-sol-fast xhigh deep-review Pass A of the 059 deep-alignment packet: fail-closed correctness, the read-only security-boundary overclaim, contract-vs-implementation drift, and stale phase-parent topology."
 trigger_phrases:
   - "deep-alignment review remediation"
   - "deep-alignment false-pass fix"
   - "deep-alignment read-only boundary"
-  - "deep-alignment F001 F002"
+  - "deep-alignment f001 f002"
 importance_tier: "important"
 contextType: "planning"
 _memory:

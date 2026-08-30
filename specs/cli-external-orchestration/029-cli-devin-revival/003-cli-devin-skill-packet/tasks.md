@@ -1,7 +1,9 @@
 ---
-title: "Tasks: cli-devin skill packet"
+title: "Tasks: cli-devin skill packet [cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
-trigger_phrases: ["cli-devin skill tasks", "cli-devin mode task breakdown"]
+trigger_phrases:
+  - "cli-devin skill tasks"
+  - "cli-devin mode task breakdown"
 importance_tier: "normal"
 contextType: "general"
 _memory:

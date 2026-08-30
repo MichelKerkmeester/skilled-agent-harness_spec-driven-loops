@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3 mcp-tooling README rewrite"
+title: "Implementation Plan: Phase 3 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/plan]"
 description: "Rewrite the mcp-tooling hub README against the refined standalone template with the mcp-obsidian exemplar shape, purpose-first with HVR enforcement, a version bump and a changelog entry."
 trigger_phrases:
   - "phase 3 plan"

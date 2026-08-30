@@ -1,7 +1,6 @@
 ---
-title: "Feature Specification: create-command + command-surface improvement research"
+title: "Feature Specification: [system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/spec]"
 description: "Runs a two-lineage deep-research fan-out over the 066 benchmark findings and the create-command authoring canon, producing a prioritized cross-model improvement backlog for create-command and every OpenCode command that uses the defined templates and routing logic, ready to seed follow-on remediation packets."
-status: in_progress
 trigger_phrases:
   - "create-command improvement research"
   - "command surface improvement research"
@@ -32,6 +31,7 @@ _memory:
       - "Executor = 2-lineage fan-out: 5x cli-opencode/glm-5.2 max + 5x cli-codex/gpt-5.6-sol high/fast"
       - "Stop policy = max-iterations (forced 5 per lineage; convergence is telemetry only)"
       - "Grounding = 066 benchmark findings + create-command/create-benchmark canon"
+status: in_progress
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

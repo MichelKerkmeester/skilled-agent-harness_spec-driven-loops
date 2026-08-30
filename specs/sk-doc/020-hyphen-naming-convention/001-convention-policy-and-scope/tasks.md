@@ -1,12 +1,11 @@
 ---
-title: "Tasks: convention policy and scope (020 phase 001)"
+title: "Tasks: convention policy and scope (020 [sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/tasks]"
 description: "Tasks for phase 001 of the 020 kebab-case filesystem-naming program: convention policy and scope."
 trigger_phrases:
   - "convention policy and scope tasks"
   - "hyphen naming phase 001 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
 ---
 # Tasks: Convention policy and scope
 

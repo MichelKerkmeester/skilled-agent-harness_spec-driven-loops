@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3 mcp-tooling README rewrite"
+title: "Tasks: Phase 3 mcp-tooling [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/tasks]"
 description: "Task list for rewriting the mcp-tooling hub README against the refined standalone template with the mcp-obsidian exemplar shape."
 trigger_phrases:
   - "phase 3 tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-generators-and-templates (020 phase 003)"
+title: "Feature Specification: create-generators- [sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/spec]"
 description: "The create-* generator families and their templates can still emit underscore filesystem names. This phase defines four parallel child contracts that make generated output kebab-case while preserving Python, package-directory, and tool-mandated-name exemptions."
 trigger_phrases:
   - "create generators and templates naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "kebab-case generator output"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose and child phase map only; mechanics live in the children. -->

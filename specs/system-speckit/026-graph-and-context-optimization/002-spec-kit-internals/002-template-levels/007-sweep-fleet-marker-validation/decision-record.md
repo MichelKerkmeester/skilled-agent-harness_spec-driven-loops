@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: fleet-marker-validation-sweep [template:level_3/decision-record.md]"
+title: "...nd-context-optimization/002-spec-kit-internals/002-template-levels/007-sweep-fleet-marker-validation/decision-record]"
 description: "Decision record template for documenting architectural choices, alternatives, consequences, and implementation notes."
 trigger_phrases:
   - "decision"

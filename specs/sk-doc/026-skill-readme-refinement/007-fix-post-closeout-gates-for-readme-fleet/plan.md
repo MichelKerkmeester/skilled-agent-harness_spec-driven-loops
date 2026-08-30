@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Fix post-closeout gates for the README fleet"
+title: "Implementation Plan: Fix [sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet/plan]"
 description: "Classify each global documentation-gate finding, repair real targets, preserve intentional fixtures narrowly, and align the CLI README family with verified contract language."
 trigger_phrases:
   - "link guard remediation plan"
   - "frontmatter version remediation"
-  - "CLI README alignment plan"
+  - "cli readme alignment plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

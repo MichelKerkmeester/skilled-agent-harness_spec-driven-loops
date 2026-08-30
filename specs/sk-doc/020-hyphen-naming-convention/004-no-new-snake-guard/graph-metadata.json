@@ -18,8 +18,6 @@
       "hyphen naming phase 004 implementation plan",
       "no-new-snake_case guard tasks",
       "hyphen naming phase 004 tasks",
-      "no-new-snake_case guard checklist",
-      "hyphen naming phase 004 checklist",
       "no new snake guard summary",
       "hyphen naming phase 004 summary",
       "changed-since snake guard"
@@ -35,8 +33,8 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "snake"
+      "snake",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
     ],
@@ -65,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -192,27 +183,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Nothing prevents snake_case from re-entering in-scope filesystem names. The program needs an exemption-aware guard with a debt-tolerant changed-only mode during migration and a whole-tree mode after, so intermediate commits stay green while the end state is enforced.",
     "created_at": "2026-07-13T14:34:05.525Z",
-    "last_save_at": "2026-08-29T13:10:16.173Z",
+    "last_save_at": "2026-08-30T07:19:11.786Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e19b9a6d6ecd9bc46a8645c4eb4973b6cea2a9072a508af6a59d9bcfb9087561",
+    "source_fingerprint": "sha256:4cf15ae9f6cd5efc5267793c6c88ec5ac033c3efd923cf7ab77c7ef57367fb2b",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "3cfdc7e2de752dbd685048ae8e4ea96b15bce87e780e9748cfad74adfa135edc",
-      "plan.md": "932a22f75beeb7f16e1ddd2dd6121f59375bfe304cd7027189cd1d9485a5b24c",
-      "tasks.md": "9c0675323eb6fac6a284353368b2ae770642e558751b7ec05479d9a26fe1f3fb",
-      "checklist.md": "17d0d26d15b1a28b16e41e5729e7b3bba606cd5a7e9865fb236ea9e180226989",
-      "implementation-summary.md": "2edb8bb47420c4b5fa43c5212fd5c35489906c3b6a61292990acd447fbb621c5"
+      "spec.md": "bd33f000df0f410ef98577247569ff7fc00b1a921dc0ee483575c41bc2394755",
+      "plan.md": "792056ee9bf332a8c07442a67067d546225a2555e05b215232fc63ab406cb364",
+      "tasks.md": "6ce18fb3d601f4ad44a033b151e6a0ce549164ca585442a798d1fabe921321fe",
+      "implementation-summary.md": "a6e65e3537f4400bd16f977745e5fda9d8129a634659b81a5ebc04ce67d2d553"
     },
     "last_active_child_id": null,
     "last_active_at": null

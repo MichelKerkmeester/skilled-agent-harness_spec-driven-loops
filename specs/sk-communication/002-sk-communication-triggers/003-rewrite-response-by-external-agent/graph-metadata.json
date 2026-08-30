@@ -14,7 +14,15 @@
       "rewrite-response-by-external-agent",
       "one-shot projection command",
       "engine choice projection",
-      "sk-communication trigger"
+      "sk-communication trigger",
+      "implementation",
+      "plan",
+      "003",
+      "rewrite",
+      "tasks",
+      "phase",
+      "implement",
+      "implementation summary"
     ],
     "key_topics": [
       "rewrite-response-by-external-agent",
@@ -25,10 +33,10 @@
       "choice",
       "sk-communication",
       "trigger",
-      "ships",
-      "default",
-      "operator",
-      "surface"
+      "implementation",
+      "plan",
+      "rewrite",
+      "tasks"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -187,7 +195,7 @@
     ],
     "causal_summary": "sk-communication ships off by default with no operator surface to run its projection once against a chosen engine",
     "created_at": "2026-08-19T04:54:45.825Z",
-    "last_save_at": "2026-08-29T15:21:58.972Z",
+    "last_save_at": "2026-08-30T07:16:10.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,12 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:daa17720b91beb25de04a84645de6e1430ccf4d7009fd666be743308b9064b0c",
+    "source_fingerprint": "sha256:c1d9b80e4116ca0c1f70d2dffd7bd6a6207875b42fe4b44128edc1286afb1507",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "2f201045119745db15fc12544fc94a15998b935b6269c90f6781dba842f279cc",
-      "plan.md": "ebc220a24b3eb331d1423a646bc3d159dc15e3eaaa25c9d52e10b79479d40997",
-      "tasks.md": "9e06ec9bdffed427a5e903566f281315d6e563f7c0f67de2d86f1076f3281486",
-      "implementation-summary.md": "12840bb501784a6e3e146b8e350a50d1ce5b8241a2f9214f67c3aa2c9f80d808"
+      "spec.md": "f827385ea7ac27469f033f9f73afcf090d2ffbcd03a779f0372b51a5432ce90f",
+      "plan.md": "d1900ae7ca4360cf8357105d555c66e948f3d7ba28e4b7aa71e45cffa2aa15a9",
+      "tasks.md": "1d6a94913944b65d3eddd3c5fd75e70a45b72fac56e2cdd6712026deb0545d7e",
+      "implementation-summary.md": "35d22a31ccc0ffd87bf0f1eb7238a01fc036fad18a689c8c26f6c6b7e34bf0a0"
     },
     "last_active_child_id": null,
     "last_active_at": null

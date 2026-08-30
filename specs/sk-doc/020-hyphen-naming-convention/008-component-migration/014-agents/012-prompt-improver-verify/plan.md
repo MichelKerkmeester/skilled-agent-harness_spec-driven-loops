@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: verify prompt-improver agent naming (020 phase 012)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/012-prompt-improver-verify/plan]"
 description: "Implementation Plan for phase 012 of the 020 agents component migration: a read-only prompt-improver filename candidate audit."
 trigger_phrases:
   - "prompt-improver agent naming implementation plan"
   - "agents phase 012 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/012-prompt-improver-verify"
@@ -19,8 +18,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 # Implementation Plan: Prompt Improver Agent Naming Verification
 
 <!-- SPECKIT_LEVEL: 2 -->

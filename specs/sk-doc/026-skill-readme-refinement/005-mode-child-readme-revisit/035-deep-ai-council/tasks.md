@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 035 deep-ai-council README revisit"
+title: "Tasks: Phase 035 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council/tasks]"
 description: "Task list for rewriting the deep-ai-council skill README purpose-first per the refined template with a version bump and a changelog entry."
 trigger_phrases:
   - "phase 035 tasks"

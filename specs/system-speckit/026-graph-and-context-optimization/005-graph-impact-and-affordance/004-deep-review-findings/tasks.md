@@ -1,6 +1,10 @@
 ---
-title: "Tasks: Review Remediation (006/007)"
+title: "Tasks [system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings/tasks]"
 description: "Themed task list — 21 P1 + 12 actionable P2 findings"
+trigger_phrases:
+  - "tasks"
+  - "004"
+  - "deep"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

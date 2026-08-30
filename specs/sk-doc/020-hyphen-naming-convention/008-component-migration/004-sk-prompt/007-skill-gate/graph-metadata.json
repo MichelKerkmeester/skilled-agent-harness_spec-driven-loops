@@ -19,10 +19,7 @@
       "sk-prompt phase 007 plan",
       "sk-prompt rollup gate tasks",
       "sk-prompt final naming census",
-      "sk-prompt phase 007 tasks",
-      "sk-prompt rollup gate checklist",
-      "sk-prompt kebab-clean verifier",
-      "sk-prompt phase 007 acceptance"
+      "sk-prompt phase 007 tasks"
     ],
     "key_topics": [
       "sk-prompt",
@@ -36,15 +33,14 @@
       "tasks",
       "final",
       "census",
-      "checklist"
+      "verification-only"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,37 +168,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This verification-only rollup gate aggregates phases 001–006 and proves the complete sk-prompt skill surface is kebab-clean within the 020 exemption boundary. It performs no new rename or reference migration.",
     "created_at": "2026-07-14T15:17:34Z",
-    "last_save_at": "2026-08-29T13:10:14.477Z",
+    "last_save_at": "2026-08-30T07:19:32.615Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:a76daa74109c1efdbcd0f2563c45649bc641184cebf05f62562c9ed45b650ed2",
+    "source_fingerprint": "sha256:f380e783bcd531ebce9a739b88bc3b71e5e7a621e49157594c17380c0feaa5a0",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "acb9f7052b8ddd69aefbf17cacf69c9753d63ba210e5f6c6d80db21a0663e05d",
-      "plan.md": "ff313cc3018e006797255fd651fbd728cb7dd72684cc56eb949bea50b7f54198",
-      "tasks.md": "5435fb3fe7e5aa1468bac1396ac18aa54eb6a458083bb6fd4f6ceba5b6127770",
-      "checklist.md": "3a11e1fb5dd7b0b3eac849d7f2d3dd07efa7854229662ab9324963ba6fb99f4f"
+      "spec.md": "268d1974ae14058e0b6c78f1996cee7bae0bd9261df27526ad8d22aa3c45a9a0",
+      "plan.md": "73892ca3c3f1d245e9034e38ba1abebf961370be5307636dfa621da3abc48e87",
+      "tasks.md": "f4eec21a9954fae4d1d380175a5537a3c8887f14f9557d1042524c3a7d4950c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

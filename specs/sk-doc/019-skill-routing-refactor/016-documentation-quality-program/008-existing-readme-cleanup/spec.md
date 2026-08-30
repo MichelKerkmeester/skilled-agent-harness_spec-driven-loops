@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Existing-README Cleanup"
+title: "Feature Specifica [sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/spec]"
 description: "Surgically repair the pre-existing older skill and code READMEs the audit flagged: fix real stale-path broken references and add missing OVERVIEW sections, scoped to genuine skill/code READMEs and leaving spec-folder, archive, fixture and false-positive files alone."
 trigger_phrases:
   - "existing readme cleanup"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "missing overview backfill"
 importance_tier: "normal"
 contextType: "implementation"
-status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup"
@@ -19,8 +18,8 @@ _memory:
     key_files:
       - ".opencode/skills/sk-doc/create-command/references/README.md"
       - ".opencode/skills/sk-design/styles/scripts/README.md"
+status: "complete"
 ---
-
 # Feature Specification: Existing-README Cleanup
 
 <!-- SPECKIT_LEVEL: 2 -->

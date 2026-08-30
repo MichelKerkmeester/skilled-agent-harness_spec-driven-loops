@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-git references (020 phase 008/012/001)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references/spec]"
 description: "SUPERSEDED by concurrent v4 work, which already executed the sk-git reference rename set (committed on skilled/v4); the live surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm zero underscore-bearing reference paths remain and every active pointer resolves, adopting v4's kebab names as the baseline."
 trigger_phrases:
   - "sk-git references kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "reference pointer closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

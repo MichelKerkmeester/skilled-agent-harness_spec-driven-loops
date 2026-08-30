@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: commands subtree rollup gate (020 phase 008/013/010)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate/plan]"
 description: "Aggregate child checklists, scan the complete commands tree, and issue a blocking naming and reference closure verdict without performing migration work."
 trigger_phrases:
   - "commands rollup gate plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "commands kebab closure plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate"
@@ -22,8 +21,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate"
 ---
-
 # Implementation Plan: Commands subtree rollup gate
 
 <!-- SPECKIT_LEVEL: 2 -->

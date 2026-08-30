@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: worktree, baseline, and census (020 phase 000)"
+title: "Implementation Summary: [sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/implementation-summary]"
 description: "Phase 000 outcome: isolated worktree pinned to BASE, reproducible install hardened, and the green baseline captured."
 trigger_phrases:
   - "hyphen naming phase 000 summary"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 baseline implementation summary"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
 ---
 # Implementation Summary
 

@@ -24,7 +24,7 @@
       "buildCopilotPromptArg plan",
       "012 tasks",
       "copilot authority helper tasks",
-      "012 checklist"
+      "012 implementation summary"
     ],
     "key_topics": [
       "012-copilot-target-authority-gate-helper",
@@ -46,10 +46,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "mcp_server/handlers/memory-save.ts",
-      "mcp_server/vitest.config.ts"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -71,27 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": "mcp_server/vitest.config.ts",
         "source": "derived"
       },
       {
@@ -179,42 +158,47 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Known Limitations",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Summary",
+        "name": "What Was Built The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The v1.0.2 stress-test rerun cell `runs/I1/cli-copilot-1` scored 2/8: cli-copilot mutated `009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/graph-metadata.json` without operator authorization",
     "created_at": "2026-04-27T20:00:00Z",
-    "last_save_at": "2026-07-17T17:19:11.958Z",
+    "last_save_at": "2026-08-30T07:16:27.152Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cc86d856ee96223646e42612ab154f94df2eb083e07246a85f7c5cc84e3252fc",
+    "source_fingerprint": "sha256:a50fc4312274e514d11ef596fc7c4beb570817d2979c31a3e480e98e7d407495",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
       "spec.md": "bf0d5fbccc7c67c709e29ae17169d65bf0a9b4ba0fee61ac89ff52781518fec4",
       "plan.md": "81ddd714e745ecd7bff6f407c1493a831e60be8ed72497a71136882ab525cc72",
       "tasks.md": "8e9f08b56628756ec7d52b6b3345dae64cfa86866a83f4532a9e45d548a31755",
-      "checklist.md": "bdf0944b7498933ce021eecc69d07c9d4843c7ee3e3b9f3c4ec1dad63c418cbc",
       "implementation-summary.md": "084cb8d119de41bc577002598eb620173573307ab4d18f516ad026715a929e29"
     },
     "last_active_child_id": null,

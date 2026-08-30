@@ -1,6 +1,5 @@
 ---
-title: "Tasks: MCP Stress-Cycle Doc Cleanup"
-template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
+title: "...ontext-optimization/000-release-and-program-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability/tasks]"
 description: "Six-task list driving the 6 P2 advisory closures from the 011 deep-review."
 trigger_phrases:
   - "001-fix-mcp-stress-cycle-doc-observability"
@@ -15,8 +14,8 @@ _memory:
     recent_action: "Strict-validator closure pass"
     next_safe_action: "Keep validators green"
     completion_pct: 100
+template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 ---
-
 # Tasks: MCP Stress-Cycle Doc Cleanup
 
 <!-- SPECKIT_LEVEL: 1 -->

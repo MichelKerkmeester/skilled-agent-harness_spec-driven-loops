@@ -1,6 +1,5 @@
 ---
-title: "Implementation Plan: v1.0.4 Full-Matrix Stress Test Design"
-template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.2"
+title: "...-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/plan]"
 description: "Plan for a future full-matrix v1.0.4 stress execution across system-spec-kit feature surfaces and CLI executors. Defines corpus structure, scoring, harness architecture, executor dispatch, aggregation, and execution sequencing without running the matrix."
 trigger_phrases:
   - "v1.0.4 full matrix stress plan"
@@ -28,8 +27,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "Recommend per-feature runners plus a meta-aggregator rather than rewriting the search-quality harness as universal infrastructure."
+template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.2"
 ---
-
 # Implementation Plan: v1.0.4 Full-Matrix Stress Test Design
 
 <!-- SPECKIT_LEVEL: 3 -->

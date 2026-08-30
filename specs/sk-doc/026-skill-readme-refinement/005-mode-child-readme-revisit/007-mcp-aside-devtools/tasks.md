@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 007 mcp-aside-devtools mode skill README rewrite"
+title: "Tasks: Phase 007 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools/tasks]"
 description: "Task list for the purpose-first rewrite of the mcp-aside-devtools mode skill README with version bump, changelog entry and validation."
 trigger_phrases:
   - "phase 007 tasks"

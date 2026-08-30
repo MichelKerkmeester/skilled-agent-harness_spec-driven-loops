@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-code-mode manual-testing playbook (020 component 011 phase 005)"
+title: "Impleme [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook/plan]"
 description: "Rename the complete manual_testing_playbook tree through an explicit root, category, index, and scenario map. Rewrite active Markdown links and path pointers, then prove the 27-scenario inventory and scenario semantics are preserved."
 trigger_phrases:
   - "mcp-code-mode manual playbook implementation plan"
   - "mcp-code-mode phase 005 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/005-manual-testing-playbook"
 ---
 # Implementation Plan: mcp-code-mode manual-testing playbook
 

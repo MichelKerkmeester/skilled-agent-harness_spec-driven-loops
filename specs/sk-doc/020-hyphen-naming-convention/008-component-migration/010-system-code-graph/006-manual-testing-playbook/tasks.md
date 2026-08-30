@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-code-graph manual testing playbook"
+title: "Ta [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook/tasks]"
 description: "Concrete tasks for the code-graph manual-testing-playbook tree rename, path-link closure, scenario preservation, and coverage parity."
 trigger_phrases:
   - "system-code-graph manual testing playbook tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "manual-playbook link repair tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook"
@@ -22,8 +21,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The playbook map covers 29 files, one root index, and nine category directories."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook"
 ---
-
 # Tasks: system-code-graph manual testing playbook
 
 <!-- SPECKIT_LEVEL: 2 -->

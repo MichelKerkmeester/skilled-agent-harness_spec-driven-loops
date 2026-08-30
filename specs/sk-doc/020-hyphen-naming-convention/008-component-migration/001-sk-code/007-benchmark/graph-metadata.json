@@ -20,9 +20,7 @@
       "benchmark storage path repair",
       "benchmark naming tasks",
       "sk-code benchmark rename tasks",
-      "benchmark storage path tasks",
-      "benchmark naming checklist",
-      "sk-code benchmark rename verification"
+      "benchmark storage path tasks"
     ],
     "key_topics": [
       "sk-code",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/sk-code/benchmark/README.md"
     ],
     "entities": [
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -179,37 +170,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The tracked benchmark tree mixes compliant run names with underscore-bearing storage labels: d4rlive/, fixtures/skcode/, livefinal/, livemodeb/, liveremediated/, routerbaseline/, and routerfinal/",
     "created_at": "2026-07-14T15:17:11Z",
-    "last_save_at": "2026-08-29T13:10:07.494Z",
+    "last_save_at": "2026-08-30T07:19:18.879Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:130fc78bc9c68612828cf8fc036b65c106b641daa8db92d68e465f1c9ac974e9",
+    "source_fingerprint": "sha256:45d94058ec0e539977fefaa7f93ae69e0d003bfb60724c0b459cd77384b91d09",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "86c959a1852a8df325c555b0da3d9946730768aca170335613d3503b797b3f0f",
-      "plan.md": "de08f51a3f62a61701c70c01ea91f1b924073ae3d3ba292188aa22f8213fe076",
-      "tasks.md": "e4ea01abb358eb51e5fbe3e8985ad8848976e8310a64fa7e6c4b199a35448303",
-      "checklist.md": "421ca51406b0f823d823be7bb171b8cc787ccadf7498079c5f1c92204d7ff09d"
+      "spec.md": "8b0e586e1bae2a2a8246f76778d4ad6caef38bfff510c51bb8fd6d0a19483344",
+      "plan.md": "21dc10748ef205645fbd016edc157bdccbcb33b8d62d4e0a775123bf0d54f687",
+      "tasks.md": "c2b8c76babee75b48e1b5a0723336176cfa1f3e88ab99388e9d32b729d99748c"
     },
     "last_active_child_id": null,
     "last_active_at": null

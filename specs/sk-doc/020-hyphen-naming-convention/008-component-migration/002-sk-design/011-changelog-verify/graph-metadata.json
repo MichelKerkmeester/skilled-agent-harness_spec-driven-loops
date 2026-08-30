@@ -19,10 +19,7 @@
       "020 changelog-verify tasks",
       "changelog-verify tasks",
       "sk-design changelog verification execution",
-      "020 changelog-verify checklist",
-      "changelog-verify verification",
-      "sk-design changelog verification checklist",
-      "020 changelog-verify gate"
+      "020 changelog-verify checklist"
     ],
     "key_topics": [
       "changelog-verify",
@@ -36,7 +33,7 @@
       "tasks",
       "execution",
       "checklist",
-      "gate"
+      "rename"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -44,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/sk-design/README.md"
     ],
     "entities": [
@@ -67,15 +63,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specificat",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -104,12 +100,6 @@
       },
       {
         "name": "1. METADATA",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. PROBLEM & PURPOSE",
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
@@ -185,31 +175,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The rename program needs an auditable sk-design release-note entry that identifies the completed subtree and records the resulting version bump, but this phase is verification-only.",
     "created_at": "2026-07-14T15:17:22Z",
-    "last_save_at": "2026-08-29T13:10:05.359Z",
+    "last_save_at": "2026-08-30T07:19:23.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:0dcd6b225f59841befaa2fac1b39f8b6628601b44bd2880243f6405801c0f578",
+    "source_fingerprint": "sha256:bd7691db7cf2610e79f41b7f03618ef252f0ba5f7de2c04d26e5c2174096f7cc",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "2af2318792348a216071e9dcaac10bc672ae38d63d11443f11b2d72e3c7869c9",
-      "plan.md": "fe193071a814b245e981947091065b560647b4b51748f8d12d91ca2ad1388941",
-      "tasks.md": "1611ac1ad56b316492f16df3fad8140f56d4abafe668df5a33b072d8da469096",
-      "checklist.md": "1147020509e54f6f8d5241b366ccfc4ab1c3ca16375a53caef57e62f35e238a4"
+      "spec.md": "84695d77c7af2fcc12e617d7350cab67fb1db7ee2c517d60a05333370f153990",
+      "plan.md": "e6eae767e670031fce8c724938c983bf964665c82fda54b0214915af866376ae",
+      "tasks.md": "310c3b7d1f8e46e2816d9c1d5c2cdcf011091067c1c7566a472ea78ea93601c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

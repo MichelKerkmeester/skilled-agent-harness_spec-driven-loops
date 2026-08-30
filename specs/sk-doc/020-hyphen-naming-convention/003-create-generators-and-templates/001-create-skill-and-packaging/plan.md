@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: create-skill scaffolding and packaging (020 phase 003 child 001)"
+title: "Implementa [sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging/plan]"
 description: "Update the create-skill scaffold and package contract at their existing naming boundaries, then prove the emitted temporary trees and archives obey kebab-case without renaming Python implementation files."
 trigger_phrases:
   - "create-skill scaffolding implementation plan"
   - "skill packaging naming plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
 ---
 # Implementation Plan: Create-skill Scaffolding and Packaging
 

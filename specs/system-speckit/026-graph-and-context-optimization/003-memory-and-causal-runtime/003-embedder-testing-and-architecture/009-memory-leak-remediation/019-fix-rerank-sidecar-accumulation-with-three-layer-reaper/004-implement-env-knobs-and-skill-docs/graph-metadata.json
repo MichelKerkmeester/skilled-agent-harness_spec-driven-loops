@@ -23,8 +23,8 @@
       "rerank reaper tasks",
       "env knob docs tasks",
       "sidecar operator docs tasks",
-      "rerank reaper checklist",
-      "sidecar env docs verification"
+      "rerank reaper env handoff",
+      "sidecar operator runbook"
     ],
     "key_topics": [
       "rerank",
@@ -43,19 +43,12 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,9 +68,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -117,13 +110,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Use Level",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Use Level",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -189,31 +182,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The rerank sidecar reaper implementation exists in the app and launchers, but the shell launcher still needs to forward the approved reaper controls through its explicit env allowlist",
     "created_at": "2026-05-23T07:59:05Z",
-    "last_save_at": "2026-07-17T17:19:28.972Z",
+    "last_save_at": "2026-08-30T07:16:32.974Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b536da6fd2096bd57e48d2263286f2309995bd418a23f1ce5f991fe08c271e2",
+    "source_fingerprint": "sha256:fd1e15befc9a18bbef0c46ec2126dc0d3c40bb2c066b40ac9e147054bb9e96cd",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "82115041e0330c68539e4dbf39c3d448c4acd9212d5047b1ddfd1b2d1fba4a40",
-      "plan.md": "daa9135772cfc0f5314f9d3da839ebc6fa7b980b7ee3719bd573b141bbe8c027",
-      "tasks.md": "7c028f534a8e56c24df05fb4dc4826d451a752bba7eeb485013085adb93443d7",
-      "checklist.md": "4a52d1f28b5752ede4d738126edc674b6480eab7beab67e905e3f6e8801f22cf",
-      "implementation-summary.md": "38f00d10a1af113b33dbc94a1e460b18b19aa5edb4a28e35ead76eeb8375c9fb"
+      "spec.md": "0471ae84b2fa04641dc1ea179da3b1e9820362cb570d97e8f3fac031c3c8f74d",
+      "plan.md": "b634bfed29dc56ee48a58d620f90b0155d4edfbc9add03152539a19a9008e56b",
+      "tasks.md": "2be66db47890c3376b8482f5365fb8184fea8280ff05f274e8237814ea3f1f55",
+      "implementation-summary.md": "0dfb05d1cc416921321e9dbd2784e411223773b2a5a23e3cf392bc08f8367144"
     },
     "last_active_child_id": null,
     "last_active_at": null

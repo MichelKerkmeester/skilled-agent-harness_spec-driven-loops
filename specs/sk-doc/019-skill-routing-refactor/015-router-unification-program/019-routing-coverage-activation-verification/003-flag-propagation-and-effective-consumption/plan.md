@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: Compiled Routing Flag Propagation & Effective Consumption"
+title: "...unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption/plan]"
 description: "Planned build sequence for un-stripping SPECKIT_COMPILED_ROUTING in both child-env allowlists and un-dropping the compiled decision through the native brief builder, the OpenCode bridge rebuild, the CLI subprocess interface, and the hook render — with manifest-fingerprint cache invalidation and e2e propagation/consumption tests. Additive, byte-identical to legacy, reversible; depends on 002."
 trigger_phrases:
   - "compiled routing flag propagation plan"
-  - "compiledRoute threading implementation plan"
+  - "compiledroute threading implementation plan"
   - "child env allowlist consumption plan"
 importance_tier: "critical"
 contextType: "implementation"

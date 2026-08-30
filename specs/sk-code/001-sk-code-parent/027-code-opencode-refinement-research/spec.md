@@ -1,13 +1,12 @@
 ---
-title: "Feature Specification: Deep research — refine the sk-code code-opencode surface sub-skill against .opencode reality"
+title: "Feature Specification: Deep research — refine [sk-code/001-sk-code-parent/027-code-opencode-refinement-research/spec]"
 description: "Ten-iteration deep-research investigation seeded by a Fable-5 AI-council review of sk-code, focused on the code-opencode SURFACE sub-skill. code-opencode is the playbook for writing and modifying code in this repo's own .opencode/ tree (skills, agents, commands, plugins, MCP servers, hooks, config). This research is a docs-vs-reality gap hunt: validate code-opencode's language standards, implement/debug/verify workflow doctrine, hook contracts, alignment-verification automation, detection markers, and skill/agent/command/MCP authoring checklists against the ACTUAL .opencode logic code (system-skill mcp_server TypeScript, deep-loop CJS/mjs runtime, command YAMLs, the review/code/debug agents, plugins, bin/ daemon CLIs). Output: a ranked, evidence-grounded refinement backlog for code-opencode; secondary output: any real bugs/drift found in the underlying .opencode code itself, flagged separately."
 trigger_phrases:
   - "code-opencode refinement research"
   - "refine code-opencode surface subskill"
   - "code-opencode vs .opencode reality"
-importance_tier: "high"
+importance_tier: "important"
 contextType: "research"
-parent: "sk-code/001-sk-code-parent"
 _memory:
   continuity:
     packet_pointer: "sk-code/001-sk-code-parent/027-code-opencode-refinement-research"
@@ -15,6 +14,7 @@ _memory:
     last_updated_by: "claude-opus"
     recent_action: "RESEARCH COMPLETE — 10 GLM-5.2 iterations + synthesis, manually orchestrated by the Opus conductor (the /deep:research :auto command was blocked by the documented GPT/GLM Gate-3 halt P0, so each iteration was a direct read-only GLM-5.2 dispatch). research/research.md holds the ranked, file-mapped code-opencode refinement backlog (~25 P1 / ~22 P2 / ~7 P3) + 8 underlying .opencode code bugs (C1-C8); iterations at research/iterations/iteration-001..010."
     next_safe_action: "Operator reviews research/research.md; a follow-up IMPLEMENTATION packet executes the backlog in the §6 sequencing order. Packet finalization (description.json/graph-metadata.json regen, 017-parent children_ids registration, validate --strict, commit) is DEFERRED pending the live deep-loop->system-deep-loop + spec-folder-renumber migration settling, to avoid collision."
+parent: "sk-code/001-sk-code-parent"
 ---
 # Feature Specification: Deep research — refine the sk-code code-opencode surface sub-skill against .opencode reality
 

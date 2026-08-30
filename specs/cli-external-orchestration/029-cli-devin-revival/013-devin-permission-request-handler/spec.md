@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Devin PermissionRequest handler"
+title: "Feature Specification: [cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler/spec]"
 description: "Build a real PermissionRequest adapter for Devin CLI, replacing the explicit-empty registration now that live testing confirmed the event fires and silently rejects every approval-needing tool call."
 trigger_phrases:
   - "devin permission request handler"

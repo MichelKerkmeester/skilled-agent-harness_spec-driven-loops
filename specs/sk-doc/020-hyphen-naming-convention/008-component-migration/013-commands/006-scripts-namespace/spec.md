@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: scripts command namespace naming (020 phase 008/013/006)"
+title: "Feature Specificat [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace/spec]"
 description: "The shared command-reference checker namespace is already kebab-clean. This phase records the audit, preserves the intentionally broken negative fixture, and accepts only evidence that no in-scope filesystem rename is required."
 trigger_phrases:
   - "scripts command namespace naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "scripts surface kebab audit"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "The scripts and fixtures directory names are already kebab-case."
       - "The broken fixture is a negative-test contract, not a live reference set to repair."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

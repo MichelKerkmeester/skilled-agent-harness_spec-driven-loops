@@ -1,7 +1,11 @@
 ---
-title: "Implementation Plan: deterministic fixtures and reference oracle"
+title: "Implementation Plan: [system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/plan]"
 description: "Plan for an independent fixture corpus and reference oracle that precede adapter implementation."
-status: complete
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "002"
+  - "deterministic"
 importance_tier: "important"
 contextType: "planning"
 _memory:
@@ -16,6 +20,7 @@ _memory:
       - ".opencode/commands/scripts/validate-command-references.cjs"
       - ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
+status: complete
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

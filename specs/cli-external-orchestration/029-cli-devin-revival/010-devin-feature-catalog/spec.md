@@ -1,7 +1,10 @@
 ---
-title: "Feature Specification: Devin feature catalog"
+title: "Feature Specification: Devin feature [cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog/spec]"
 description: "Author a create-feature-catalog package for cli-devin covering every shipped capability, with the hooks category enumerating all 8 lifecycle events and their verified observed, unobserved or empty status."
-trigger_phrases: ["devin feature catalog", "cli-devin capability inventory", "devin hooks catalog entry"]
+trigger_phrases:
+  - "devin feature catalog"
+  - "cli-devin capability inventory"
+  - "devin hooks catalog entry"
 importance_tier: "normal"
 contextType: "general"
 _memory:

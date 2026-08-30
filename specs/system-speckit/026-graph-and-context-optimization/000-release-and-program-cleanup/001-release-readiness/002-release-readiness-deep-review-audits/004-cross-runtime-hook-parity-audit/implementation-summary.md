@@ -1,6 +1,5 @@
 ---
-title: "Implementation Summary: Cross-Runtime Hook Parity Audit"
-template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+title: "...elease-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit/implementation-summary]"
 description: "The audit packet now records release-readiness findings for cross-runtime hook parity and distinguishes direct hook smoke evidence from missing normal-shell live verdicts."
 trigger_phrases:
   - "045-005-cross-runtime-hook-parity-audit"
@@ -8,7 +7,7 @@ trigger_phrases:
   - "5-runtime hook review"
   - "cross-runtime feature parity"
 importance_tier: "important"
-contextType: "review"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit"
@@ -32,6 +31,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Direct smoke PASS does not equal normal-shell live CLI PASS."
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 ---
 # Implementation Summary
 

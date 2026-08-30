@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Design-audit (020 phase 005)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit/spec]"
 description: "The design-audit mode has a broad underscore-bearing fixture and evidence surface, including AI-fingerprint fixture directories, registry files, and audit references."
 trigger_phrases:
   - "design-audit naming phase"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 design-audit"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/005-design-audit"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

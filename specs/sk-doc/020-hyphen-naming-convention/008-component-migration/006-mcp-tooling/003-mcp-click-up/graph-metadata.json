@@ -17,9 +17,7 @@
       "mcp-click-up naming implementation plan",
       "clickup catalog path repair",
       "mcp-click-up naming tasks",
-      "clickup catalog playbook tasks",
-      "mcp-click-up naming checklist",
-      "clickup catalog playbook verification"
+      "clickup catalog playbook tasks"
     ],
     "key_topics": [
       "mcp-click-up",
@@ -41,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md"
     ],
     "entities": [
@@ -64,15 +61,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-tooling/mcp-click-up/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specificatio",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -101,12 +98,6 @@
       },
       {
         "name": "Change Type",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -170,43 +161,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-click-up component contains snake_case catalog roots, catalog category directories, manual-testing categories, index files, reference files, and hundreds of links between them. This phase renames the component-local filesystem paths to kebab-case and updates path-derived references while preserving ClickUp CLI identifiers, package manifests, and data keys.",
     "created_at": "2026-07-14T15:17:43Z",
-    "last_save_at": "2026-08-29T13:10:08.875Z",
+    "last_save_at": "2026-08-30T07:19:37.570Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:b1f7fe62b92ecf49d604432c8d0e7df25395feb9ff41b7f41cad339052e0a52b",
+    "source_fingerprint": "sha256:d46d0134d771b149d50b02c1cd93519a8287e83b9e711a7284834fb21dc33480",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "c111cdd5b83919e828f7cc8a310c097844f4157ffe394db27c4b25d759f6d03e",
-      "plan.md": "026c99bafb224234262f0b6100356e3e88b9061fefb1d254e60d20e947423662",
-      "tasks.md": "65d7f80ff06c5d424c90b31bbf87722e658c13357f5a2d40bc0008bbccd8d292",
-      "checklist.md": "b0555dadd98801811dd65d98349279fd9ed2c5d27c093d3c28413742eb8ecf87"
+      "spec.md": "aa58d92b7c1e6d1358b87b74f7b2ae285d708b4f49874940a67e7aabb678fd5d",
+      "plan.md": "b50a33cca5dd1e35327b5d46ad635fabc47b1103498cfbe76ec6248e9cbf411b",
+      "tasks.md": "df67c1d1884bd15a24e51979d2951337d743fc47d95bbe06855b16fac1dc21e1"
     },
     "last_active_child_id": null,
     "last_active_at": null

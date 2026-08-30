@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Benchmark — Compiled Lane C Parity"
+title: "...actor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c/spec]"
 description: "Build the non-frozen compiled Lane C parity harness that proves the compiled routing decision matches legacy on every scenario: a compiled-routing-parity.cjs sibling plus two orchestrator hooks (verdict attach + render-from-JSON), a qualifiedIdToLeaf shape bridge translating compiled targetQualifiedIds into the frozen evaluator's observedResources vocabulary, a vacuous-parity guard that hard-fails any run where the hub activation manifest's servingAuthority is not compiled, an unset/0/1/invalid flag-state matrix, and exactly one named blocking drift-gate owner. The verdict sub-state that replaces today's OR-collapse is implemented in the non-frozen run-skill-benchmark.cjs orchestrator, never in the frozen score-skill-benchmark.cjs. Implemented and committed in 8532c4b64b (002 landed). The three frozen scorer files stay byte-identical and SHA-256-pinned throughout; compiled stays byte-identical to legacy on every routing field; every gate names a rollback."
 trigger_phrases:
   - "compiled lane c parity harness"

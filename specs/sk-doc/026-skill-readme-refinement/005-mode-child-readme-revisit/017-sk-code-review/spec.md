@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 017 sk-code-review mode README rewrite"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/017-sk-code-review/spec]"
 description: "Rewrite the sk-code-review mode skill README against the refined README template from phase 001 with the mcp-obsidian exemplar as reference: purpose-first pitch, problem-first OVERVIEW, HVR clean prose, version bump and changelog entry."
 trigger_phrases:
   - "sk-code review readme"

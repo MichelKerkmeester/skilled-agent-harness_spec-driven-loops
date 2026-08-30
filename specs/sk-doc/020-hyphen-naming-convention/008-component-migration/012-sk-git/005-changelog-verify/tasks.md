@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-git changelog verification (020 phase 008/012/005)"
+title: "Tasks: sk-git [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify/tasks]"
 description: "Read-only tasks for verifying the sk-git migration changelog entry and version bump."
 trigger_phrases:
   - "sk-git changelog tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "migration release evidence tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
 ---
 # Tasks: sk-git changelog verification
 

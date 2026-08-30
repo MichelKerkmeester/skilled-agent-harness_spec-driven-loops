@@ -1,12 +1,11 @@
 ---
-title: "Decision Record: /create:testing-pl [sk-doc/007-cmd-create-manual-testing-playbook/decision-record]"
+title: "Decision Record: /create:testing-pl [sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook/decision-record]"
 description: "Accepted implementation decision covering naming, source inputs, integrated root guidance, and runtime scope for /create:testing-playbook."
 trigger_phrases:
   - "testing playbook command adr"
   - "/create:testing-playbook decision record"
 importance_tier: "important"
 contextType: "planning"
-template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->"
 _memory:
   continuity:
     packet_pointer: "sk-doc/007-cmd-create-manual-testing-playbook"
@@ -15,6 +14,7 @@ _memory:
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
     next_safe_action: "Revalidate packet docs and update continuity on next save"
     key_files: ["decision-record.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->"
 ---
 # Decision Record: /create:testing-playbook Command
 

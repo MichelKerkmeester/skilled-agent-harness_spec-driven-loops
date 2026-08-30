@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 010 system-skill-advisor README revisit"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/spec]"
 description: "Rewrite the system-skill-advisor README at .opencode/skills/system-skill-advisor/README.md against the refined template from phase 001 with the mcp-obsidian exemplar shape: one-line pitch, problem-first OVERVIEW, HVR clean prose, version bump and a changelog entry."
 trigger_phrases:
   - "system skill advisor readme"

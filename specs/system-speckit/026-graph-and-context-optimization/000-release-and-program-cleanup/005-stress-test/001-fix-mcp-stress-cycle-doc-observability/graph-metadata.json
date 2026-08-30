@@ -42,12 +42,18 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -58,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 003-fix-mcp-runtime-stress-findings deep review confirmed the v1.0.2 verdict (6/7 PROVEN, 0 REGRESSION, 83.8% overall) holds independent verification, AND validated that the proposed P0 cli-copilot Gate 3 bypass fix in `executor-config.ts` + `buildCopilotPromptArg` is correctly implemented across all 5 sub-checks",
     "created_at": "2026-04-28T15:15:00.000Z",
-    "last_save_at": "2026-07-17T17:19:11.048Z",
+    "last_save_at": "2026-08-30T07:16:26.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,12 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca676a7786e5240a897b71f6df183d003894803c5f419b3a124a5d8afa271920",
+    "source_fingerprint": "sha256:10e2f0bc159a0f5e72af25ee5c3b6e9c364b8bbca5b70e60649e378e6bdb2de1",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "45e5c6f1041971e8fff87e715e7cf2bab8c962ef9ee23ffb5e717cc3b8622228",
-      "plan.md": "55c295d6529ef2e8c4135b6c892956d61e587856820bdb3227ef9a616e3f88cf",
-      "tasks.md": "c2b987b19c922d4c4a0d2c45da76fd52428eba77874d23321ea2c4099af43442",
-      "implementation-summary.md": "d834bd7c0657dd8800790e3fb9a408fac77a50d905e3532476c21ebf60f8b90d"
+      "spec.md": "22fdea4547e74773cad577dc654cc4084b8fc807e5d08bf7d4ecf339828e599d",
+      "plan.md": "4e4561647bc0667855a6b20c882df43e9fe05a1cc0db7af6f68c49c93118399a",
+      "tasks.md": "b9afc18f776c5a298442a1fc6b7aedbb584ae485a398904d77f156e670f96dfb",
+      "implementation-summary.md": "78a2e2dff9b78673477ec817e44f97062ec092bbead1248b49ad61edf308b6a2"
     },
     "last_active_child_id": null,
     "last_active_at": null

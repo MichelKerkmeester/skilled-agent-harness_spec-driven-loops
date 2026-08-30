@@ -15,6 +15,10 @@
       "010/007 remediation",
       "phase 010 remediation",
       "p1 p2 follow-up",
+      "plan",
+      "004",
+      "deep",
+      "tasks",
       "006/007 implementation summary",
       "006 remediation summary"
     ],
@@ -23,14 +27,14 @@
       "remediation",
       "phase",
       "follow-up",
+      "plan",
+      "deep",
+      "tasks",
       "implementation",
       "summary",
       "sub-phases",
       "shipped",
-      "sandbox-blocked",
-      "verification",
-      "feature",
-      "specification"
+      "sandbox-blocked"
     ],
     "importance_tier": "important",
     "status": "draft",
@@ -38,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "formatters/search-results.ts",
       "schemas/tool-input-schemas.ts",
@@ -62,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -101,6 +98,12 @@
         "source": "derived"
       },
       {
+        "name": "External Project",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -108,12 +111,6 @@
       },
       {
         "name": "Review Remediation",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "External Project",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -189,27 +186,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Test Rig Fixes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 010 sub-phases 001-006 shipped under sandbox-blocked verification",
     "created_at": "2026-04-25T13:51:18.730Z",
-    "last_save_at": "2026-08-29T13:07:41.195Z",
+    "last_save_at": "2026-08-30T07:16:33.863Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a632ca7a20d2f127063a9ffc577ad8adfa7c7ef3f4be796bc90df645e3b0633c",
+    "source_fingerprint": "sha256:13398b6d016056009f027738717f628a206d9ca3a20b72ea3b990813c5b709b4",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "91294c87c6afe8324c901dcd21bd4af60367ea1fe22d5217ea8190bbbc1137dd",
-      "plan.md": "040b3a53699556ecebbca0a759f96773849d781bb47dfeda80428885dae7ff49",
-      "tasks.md": "0366e528a9f744ff1768a1c56bbc42a87e91996ca444fec0774f06bae0b25c7b",
-      "checklist.md": "c88e52785af21aaeddc94ebf1caf29431d7751adef0f4f2685687f99652c3328",
-      "implementation-summary.md": "77c4577e81e15e25485537aad5916ce7895a8ba25ccd5df3c74d28fa76ac5304"
+      "spec.md": "2f9103548a779e348de746db4982e5a3ff45095b1ce07256e12f19b9ab762e2d",
+      "plan.md": "9bcf7ad325ab04c2ffb1f6086d828ed22cc6c684380cbe222a5783081a1595c6",
+      "tasks.md": "7f2fd1df4522ec9ced07acd5d059c38a5d276a455079a1cf7a1159dbd30c9c2c",
+      "implementation-summary.md": "49f2eafe9326b381a0d32988ec34e379079b4232dd4c26fae1829e15d50a12ea"
     },
     "last_active_child_id": null,
     "last_active_at": null

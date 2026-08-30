@@ -41,39 +41,19 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
       ".opencode/skills/cli-external-orchestration/cli-devin/changelog/v1.2.0.0.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/checklist.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md"
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/tasks.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.2.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-devin/changelog/v1.2.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-readme-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -93,15 +73,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.2.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/changelog/v1.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
         "source": "derived"
       },
       {
@@ -199,27 +191,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-devin mode README at `.opencode/skills/cli-external-orchestration/cli-devin/README.md` still carries the older tabular reference-card style with an aspect table and feature-list sections",
     "created_at": "2026-08-04T08:34:40.125Z",
-    "last_save_at": "2026-08-04T13:46:05.380Z",
+    "last_save_at": "2026-08-30T07:20:23.796Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:160ad67ce2116406b6dca170fb81f14b8a1068440932c439638d1a243b2dd406",
+    "source_fingerprint": "sha256:53d559a23d795b28248449aef8df2e3a9074b2442df31b92302efa59ab092874",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "056573d86659638c8b1706f12f418b9535e55d26d49e941734949853aaa3bd06",
-      "plan.md": "0d02541a8e75aaaee52f691aaf4651bf4af975441fe88324e5f5a38b680b3f61",
-      "tasks.md": "67682e4ed1c44a4f1e7c0c4dc2eaff6c6bc0edad85cac254c268f81f93a3b6be",
-      "checklist.md": "d6aaf423d4084b2dc3591022d3560e3e2a21a1fb43795e7163fd6935a0218c09",
-      "implementation-summary.md": "255e8937f1ac94133909affd2b018acf6174c44218dcc928317eae1f0e576768"
+      "spec.md": "c508cb914994f7f56b8f9e6ddbe7eea403904826038669504a0f7a068e7ef126",
+      "plan.md": "b49f7a0ae9c808a81c982983f992abf3c4e7ff7095d8754c64a7635c47fc2521",
+      "tasks.md": "824bd05f9db25df305bf5530a4c64bd429573ba1193ad23ce7d2aaba7193ace0",
+      "implementation-summary.md": "b7b4f9c99ca19e23fe558dce409eb9a68dd0bafa172cffa5a8a7325935c53c6c"
     },
     "last_active_child_id": null,
     "last_active_at": null

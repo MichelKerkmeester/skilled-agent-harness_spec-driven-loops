@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 038 deep-research mode skill README revisit"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/plan]"
 description: "Rewrite the deep-research mode skill README against the refined README template from phase 001 and the mcp-obsidian exemplar, with a version bump, a changelog entry and full validation."
 trigger_phrases:
   - "phase 038 plan"

@@ -20,9 +20,7 @@
       "sk-code version consistency plan",
       "sk-code changelog verification tasks",
       "sk-code release evidence tasks",
-      "sk-code version check tasks",
-      "sk-code changelog verification checklist",
-      "sk-code release evidence verifier"
+      "sk-code version check tasks"
     ],
     "key_topics": [
       "sk-code",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-code/README.md",
       ".opencode/skills/sk-code/description.json",
@@ -70,12 +67,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/SKILL.md",
@@ -97,6 +88,12 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": ".opencode/skills/sk-code/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specificatio",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -125,12 +122,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -194,25 +185,30 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code subtree can complete its physical path migration while its public release record omits affected surfaces,",
     "created_at": "2026-07-14T15:17:12Z",
-    "last_save_at": "2026-08-29T13:10:07.450Z",
+    "last_save_at": "2026-08-30T07:19:19.212Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:13dbe6a741d2491025decbc6ea6a13651e130aecd60a9b4605306a27b702d1f2",
+    "source_fingerprint": "sha256:16f7b7162611d79342a695e1ae6868c689fda1ee813ee075cdb99ba672a299b2",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "7a6c50f58637575ca287a8d9c42dbd31a4cc2744457f17a263530708ce785cce",
-      "plan.md": "4798f781b56daf85537105d9916dfb50bda63da4d16b615387881960fa1c8949",
-      "tasks.md": "e082983e92f449f30ede997f2c9a0ed36317bb81f9d1e64515c37c9216300000",
-      "checklist.md": "6e29cbd237b7403b853ca6da66e7fefc933a687f106ab232846ce409eddafd1f"
+      "spec.md": "268779a24688f91c83097401d4599949747a9e8b5e858458f216934e40033804",
+      "plan.md": "e44ed501e74bceb8650905c9da7747a1e635c5e330b307af582e574f1883c4c0",
+      "tasks.md": "7c51bb39d2371b3ad50adc69c091292a546bfb7103614dfc58cceef4ab9832cf"
     },
     "last_active_child_id": null,
     "last_active_at": null

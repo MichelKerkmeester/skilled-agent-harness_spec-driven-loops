@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3 live-verification-and-sync"
+title: "Tasks: Phase [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync/tasks]"
 description: "Task ledger for live runtime proof and repository closeout."
 trigger_phrases:
   - "live-verification-and-sync tasks"

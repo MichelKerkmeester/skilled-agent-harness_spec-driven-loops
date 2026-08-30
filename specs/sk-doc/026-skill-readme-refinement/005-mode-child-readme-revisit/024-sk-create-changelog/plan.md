@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 24 sk-create-changelog README rewrite"
+title: "Implementation Plan: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/plan]"
 description: "Rewrite the sk-create-changelog mode skill README purpose-first against the refined template from phase 001 with mcp-obsidian as the exemplar, plus a version bump, a changelog entry and validation."
 trigger_phrases:
   - "phase 24 plan"

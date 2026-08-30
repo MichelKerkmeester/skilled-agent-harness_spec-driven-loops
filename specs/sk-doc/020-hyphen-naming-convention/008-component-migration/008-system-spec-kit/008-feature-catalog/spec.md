@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Feature catalog (020 subtree 008 phase 008)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog/spec]"
 description: "The skill’s feature_catalog tree contains 366 underscore-bearing filesystem names: the root, 17 candidate category directories, and 348 files. This phase renames the catalog root, categories, and content to kebab-case and updates catalog indexes, path-derived metadata, links, and consumers without changing frontmatter fields or code identifiers."
 trigger_phrases:
   - "system-spec-kit feature catalog"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "feature catalog phase 008"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/008-feature-catalog"
@@ -21,8 +20,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

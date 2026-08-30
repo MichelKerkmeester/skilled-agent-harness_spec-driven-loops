@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Launcher Token, Env, and Reindex Cancellation Policy"
+title: "...and-p2s-for-resource-bounds-and-deadcode/004-fix-investigation-p1s-for-launcher-and-reindex-deadcode/decision-record]"
 description: "ADRs for F15 atomic owner tokens, F49 child env allowlist, and F105 reindex cancellation polling removal."
 trigger_phrases:
   - "arc 010 003 004 decisions"

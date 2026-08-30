@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: Phase 1: handoff-contract"
+title: "Feature Specification: [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract/spec]"
 description: "Define the strict fork-owned environment contract for fast-mode preference handoff."
 trigger_phrases:
   - "handoff-contract"
-  - "PI_FAST_MODE_W_SUBAGENT_SUPPORT contract"
+  - "pi_fast_mode_w_subagent_support contract"
   - "strict fast-mode env"
 importance_tier: "normal"
 contextType: "implementation"

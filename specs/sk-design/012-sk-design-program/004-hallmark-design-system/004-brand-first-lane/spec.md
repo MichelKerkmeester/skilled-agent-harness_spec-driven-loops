@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Brand-First Authoring Lane"
+title: "Feature Specification: [sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/spec]"
 description: "Implemented brand-first authoring lane that generates palette, type, and voice into distinct authored exports behind measured-path refusal and a manual reviewed-conversion gate."
 trigger_phrases:
   - "brand first authoring lane"
@@ -28,7 +28,6 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

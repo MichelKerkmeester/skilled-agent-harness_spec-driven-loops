@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Feature-catalog (020 phase 008)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog/plan]"
 description: "Execution plan for Feature-catalog in the 020 sk-design naming subtree."
 trigger_phrases:
   - "feature-catalog implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 feature-catalog tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/008-feature-catalog"
 ---
 # Implementation Plan: Feature-catalog (020 phase 008)
 

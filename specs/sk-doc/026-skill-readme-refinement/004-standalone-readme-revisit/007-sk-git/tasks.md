@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 007 sk-git standalone README revisit"
+title: "Tasks: Phase 007 sk-git standalone [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/tasks]"
 description: "Task list for rewriting the sk-git skill README against the refined README template and the mcp-obsidian exemplar."
 trigger_phrases:
   - "phase 7 tasks"

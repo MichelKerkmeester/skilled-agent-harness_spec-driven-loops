@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 034 sk-prompt-models README revisit"
+title: "Implementation Plan: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models/plan]"
 description: "Rewrite the sk-prompt-models README purpose-first on the refined template, bump the version field, add a changelog entry and validate."
 trigger_phrases:
   - "phase 034 plan"

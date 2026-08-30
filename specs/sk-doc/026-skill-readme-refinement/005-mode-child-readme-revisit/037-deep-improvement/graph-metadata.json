@@ -20,9 +20,9 @@
       "phase 037 tasks",
       "deep improvement readme tasks",
       "deep-improvement readme rewrite tasks",
-      "phase 037 checklist",
-      "deep improvement readme verification",
-      "deep-improvement readme rewrite verification"
+      "implementation summary",
+      "deep improvement readme",
+      "deep-improvement readme rewrite summary"
     ],
     "key_topics": [
       "deep",
@@ -34,48 +34,28 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
+      "implementation",
+      "summary",
       "opencode"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-deep-loop/deep-improvement/README.md",
       ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.17.1.0.md",
-      "implementation-summary.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/checklist.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
       ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md"
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.17.1.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.17.1.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -95,9 +75,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.17.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-deep-loop/deep-improvement/changelog/v1.17.1.0.md",
         "source": "derived"
       },
       {
@@ -201,27 +193,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria The",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-improvement README at `.opencode/skills/system-deep-loop/deep-improvement/README.md` still carries the older tabular reference-card style, opens with an AT A GLANCE table before the OVERVIEW and predates the pilot standard proven by the mcp-obsidian README",
     "created_at": "2026-08-04T08:34:52.681Z",
-    "last_save_at": "2026-08-04T18:47:15.478Z",
+    "last_save_at": "2026-08-30T07:20:36.488Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1e6ae85fecdb59033fc3984e760fba68d650ed437f5280c4a432cca103f6106a",
+    "source_fingerprint": "sha256:16c0d538ee85facef55f9c957f1bee5e1a487fd07797fe1419abe8987776f068",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "9e9e1976ac8c1aa2151715a778e1bf09b52ce624b2ed12be1d787838685fb73a",
-      "plan.md": "5c53918aba91633efbf6b14ca237e482d535be257532fae2b8fa0b965636ac79",
-      "tasks.md": "b5186b8e26ad61adbc7442daf8aa9f5660b23e69d2a035e1927be82ae3ccf32f",
-      "checklist.md": "289760fbc39727192cf9782a3b011717894565460e272723662e7010eea67c9d",
-      "implementation-summary.md": "7a3667f4c730218a17a58a9adfc548b4866a36c9bb386cfa77a764f50694c635"
+      "spec.md": "049830361bb846d4fcd502adb5119db5b6f9eaed43732688f090c4fd73041a2d",
+      "plan.md": "ae3516b8c4e723b8668f2188af23798c425ec1b439bdbee3faca5283670df4ac",
+      "tasks.md": "0e286ae927aff1b3f2d8b57475523c541d23b34ed0f1043afa9d3811ea61809c",
+      "implementation-summary.md": "299bef8cd8ad4d6c5c914fddce1f784d09f4d6577437fbd4cfd343636019e4ba"
     },
     "last_active_child_id": null,
     "last_active_at": null

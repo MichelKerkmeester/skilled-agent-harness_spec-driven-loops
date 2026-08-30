@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-server directory and manifest closure (020 component 011 phase 001)"
+title: ".../020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure/spec]"
 description: "The skill stores its embedded Node MCP server under mcp_server, and installers, diagnostics, guides, and generated metadata refer to that path. This phase moves the permitted directory name to mcp-server while preserving package-lock.json, tool-mandated filenames, package metadata, and the dist/index.js entrypoint."
 trigger_phrases:
   - "mcp-server directory closure"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "mcp_server kebab-case"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

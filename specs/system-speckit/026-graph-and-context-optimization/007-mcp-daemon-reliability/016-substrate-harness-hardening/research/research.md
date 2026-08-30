@@ -1,3 +1,18 @@
+---
+title: "...ystem-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/research]"
+description: 'Adversarial validation of the five behavioral claims of the "skip-not-fail on live owner" fix to the substrate stress harness. The fix makes connectSharedClient record a tolerat...'
+trigger_phrases:
+  - "ystem"
+  - "speckit"
+  - "026"
+  - "graph"
+  - "and"
+  - "research"
+  - "016"
+  - "substrate"
+importance_tier: "normal"
+contextType: "research"
+---
 # Deep Research — Substrate skip-not-fail-on-live-owner: behavioral-claim validation
 
 ## 1. Overview

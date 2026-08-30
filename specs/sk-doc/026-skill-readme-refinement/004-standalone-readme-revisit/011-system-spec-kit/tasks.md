@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 011 system-spec-kit README revisit"
+title: "Tasks: Phase 011 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/tasks]"
 description: "Task list for rewriting the system-spec-kit README purpose-first against the refined template from phase 001."
 trigger_phrases:
   - "phase 011 tasks"

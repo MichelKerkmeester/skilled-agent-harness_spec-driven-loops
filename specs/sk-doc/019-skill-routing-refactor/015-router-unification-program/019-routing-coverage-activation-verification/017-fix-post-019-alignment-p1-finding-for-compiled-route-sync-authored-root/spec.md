@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Compiled-Route Sync Authored-Root Repair"
+title: "...ng-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root/spec]"
 description: "Restore reproducible compiled-route closure checks after the router implementation tree was flattened and renumbered. Keep the stable serving root while synchronizing the current authored internal topology atomically and preserving routing parity."
 trigger_phrases:
   - "compiled route sync authored root"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "promoted closure reproducibility"
 importance_tier: "critical"
 contextType: "implementation"
-status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root"
@@ -19,6 +18,7 @@ _memory:
     key_files:
       - ".opencode/bin/compiled-route-sync.cjs"
       - ".opencode/bin/tests/compiled-route-manifest.test.cjs"
+status: "complete"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 # Feature Specification: Compiled-Route Sync Authored-Root Repair

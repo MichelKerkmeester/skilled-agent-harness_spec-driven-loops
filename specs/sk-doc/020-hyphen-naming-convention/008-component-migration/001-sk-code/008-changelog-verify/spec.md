@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-code changelog and version verification (020 phase 008/008)"
+title: "Feature Specificatio [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify/spec]"
 description: "Verification-only phase for the sk-code rename set: confirm the append-only changelog entry, the post-migration version bump, the exemption boundary, and the evidence supplied by phases 001-007 without performing any rename."
 trigger_phrases:
   - "sk-code changelog verification"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "sk-code rename release record"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify"
@@ -31,8 +30,8 @@ _memory:
       - "This phase verifies release evidence only; it performs no filesystem rename."
       - "The changelog must cover the actual 001-007 rename surfaces and the 020 exemption boundary."
       - "The post-migration version must exceed BASE 4.1.0.0 and agree across active version surfaces."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

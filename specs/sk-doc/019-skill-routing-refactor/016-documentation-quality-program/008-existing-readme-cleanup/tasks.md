@@ -1,9 +1,12 @@
 ---
-title: "Tasks: Existing-README Cleanup"
+title: "Tasks: Existing- [sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup/tasks]"
 description: "Triage the audit, dispatch six family agents to repair genuine READMEs, then reconcile by re-audit."
+trigger_phrases:
+  - "tasks"
+  - "existing"
+  - "008"
 importance_tier: "normal"
 contextType: "implementation"
-status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup"
@@ -13,8 +16,8 @@ _memory:
     next_safe_action: "Proceed to phase 009."
     blockers: []
     key_files: []
+status: "complete"
 ---
-
 # Tasks: Existing-README Cleanup
 
 <!-- SPECKIT_LEVEL: 2 -->

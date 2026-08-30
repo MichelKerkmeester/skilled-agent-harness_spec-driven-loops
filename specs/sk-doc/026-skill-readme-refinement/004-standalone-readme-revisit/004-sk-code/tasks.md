@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 004-sk-code standalone README rewrite"
+title: "Tasks: Phase 004-sk-code [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code/tasks]"
 description: "Task list for rewriting the sk-code skill README purpose-first with a version bump, a changelog entry and validation."
 trigger_phrases:
   - "phase 004-sk-code tasks"

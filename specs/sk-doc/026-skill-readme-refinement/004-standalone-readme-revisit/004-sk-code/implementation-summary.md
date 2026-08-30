@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 004-sk-code standalone README rewrite"
+title: "Implementation [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code/implementation-summary]"
 description: "The sk-code skill README was rewritten purpose-first on the refined standalone template with a one-line pitch, a problem-first OVERVIEW and a code work contract grid, with the version bumped to 4.2.0.0 and a changelog entry added."
 trigger_phrases:
   - "phase 004-sk-code implementation"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Rerank reaper env knobs and operator docs [template:level_2/spec.md]"
+title: "...-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs/spec]"
 description: "Wire approved reaper env knobs through the rerank sidecar launcher allowlist and document the lifecycle behavior for operators."
 trigger_phrases:
   - "rerank reaper env knobs"

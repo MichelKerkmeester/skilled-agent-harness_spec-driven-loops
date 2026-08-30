@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-code-graph scripts"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts/plan]"
 description: "Inventory the two current code-graph script locations, conditionally rename any non-Python snake_case filename, update its complete reference closure, and prove the existing kebab-case scripts remain behaviorally unchanged."
 trigger_phrases:
   - "system-code-graph scripts implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "script naming audit plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "The current non-Python script filenames are already kebab-case, so the execution may produce a verified no-rename result."
       - "Python script names and import/module identifiers remain unchanged."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts"
 ---
-
 # Implementation Plan: system-code-graph scripts
 
 <!-- SPECKIT_LEVEL: 2 -->

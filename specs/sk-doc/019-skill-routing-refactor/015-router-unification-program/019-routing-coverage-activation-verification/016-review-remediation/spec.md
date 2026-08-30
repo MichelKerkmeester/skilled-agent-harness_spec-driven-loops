@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Compiled-Routing Deep-Review Remediation"
+title: "...ing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation/spec]"
 description: "Fix all confirmed findings from the two GPT-5.6 deep reviews (LUNA xhigh + SOL high) of the 013 compiled-routing landing: refresh-manifest concurrency race, cutover-parity gate mishandling clarify/reject, sk-doc preview-to-review over-route, authored-closure drift for 4 hubs, cohort duplication plus stale flag telemetry, and packet completion-metadata reconciliation."
 trigger_phrases:
   - "compiled routing review remediation"
@@ -9,7 +9,6 @@ trigger_phrases:
   - "cutover gate clarify reject"
 importance_tier: "critical"
 contextType: "implementation"
-status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/016-review-remediation"
@@ -22,8 +21,8 @@ _memory:
       - ".opencode/bin/lib/compiled-route-manifest.cjs"
       - ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/router.cjs"
       - ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/cutover-playbook-executor.cjs"
+status: "complete"
 ---
-
 # Feature Specification: Compiled-Routing Deep-Review Remediation
 
 <!-- SPECKIT_LEVEL: 2 -->

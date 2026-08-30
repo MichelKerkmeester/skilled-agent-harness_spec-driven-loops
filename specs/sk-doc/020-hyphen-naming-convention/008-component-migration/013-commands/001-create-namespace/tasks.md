@@ -1,5 +1,5 @@
 ---
-title: "Tasks: create command namespace naming (020 phase 008/013/001)"
+title: "Tasks: create [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace/tasks]"
 description: "Execution tasks for the create command asset rename and reference closure."
 trigger_phrases:
   - "create namespace naming tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "create command reference repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace"
 ---
-
 # Tasks: Create command namespace naming
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 2 session-precedence"
+title: "Implement [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence/implementation-summary]"
 description: "Planned closeout record for lifecycle handoff precedence."
 trigger_phrases:
   - "session-precedence implementation summary"

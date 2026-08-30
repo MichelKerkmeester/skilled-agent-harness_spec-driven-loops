@@ -1,6 +1,5 @@
 ---
-title: "Implementation Summary: v1.0.4 Full-Matrix Stress Test Design"
-template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+title: "...s-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/implementation-summary]"
 description: "Design phase complete for the full-matrix v1.0.4 stress test. The packet defines the feature/executor/scenario matrix, rubric, harness-extension recommendation, execution task ledger, and DQI gates without running any stress cells."
 trigger_phrases:
   - "030 full matrix design complete"
@@ -34,8 +33,8 @@ _memory:
     answered_questions:
       - "No stress matrix was run in this packet."
       - "Execution phase should use per-feature runners plus a meta-aggregator."
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 ---
-
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 3 -->

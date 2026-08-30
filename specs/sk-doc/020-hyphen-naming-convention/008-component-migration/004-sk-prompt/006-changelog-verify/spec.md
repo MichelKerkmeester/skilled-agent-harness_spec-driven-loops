@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-prompt changelog and version verification (020 phase 004.006)"
+title: "Feature Specificat [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify/spec]"
 description: "This verification-only phase confirms that the sk-prompt hub, prompt-improve, and prompt-models release records document the completed kebab-case rename set and that their version metadata agrees with the new changelog entries. It does not rename files or rewrite frozen historical changelogs."
 trigger_phrases:
   - "sk-prompt changelog verification"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 006 verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify"
@@ -29,8 +28,8 @@ _memory:
     answered_questions:
       - "The current inventory includes root v1.0.0.0, prompt-improve v2.3.0.0, and prompt-models v0.9.0.0 changelog history."
       - "Current prompt-models metadata shows SKILL.md 0.9.0.1 versus description.json 0.9.0.0; phase verification must resolve or report this mismatch."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

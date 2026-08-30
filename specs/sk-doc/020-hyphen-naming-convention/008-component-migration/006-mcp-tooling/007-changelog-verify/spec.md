@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-tooling changelog verification (020 phase 007)"
+title: "Feature Specific [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify/spec]"
 description: "The mcp-tooling changelog history predates the 020 kebab-case rename set and currently has no verified append-only entry for the hub/component filesystem migration. This verification phase checks the root and component changelog version bumps, scope descriptions, exemption notes, and history preservation without performing any rename."
 trigger_phrases:
   - "mcp-tooling changelog verify"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 mcp tooling phase 007"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify"
@@ -24,8 +23,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

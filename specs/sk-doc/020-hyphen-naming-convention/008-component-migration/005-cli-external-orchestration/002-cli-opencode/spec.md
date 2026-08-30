@@ -1,13 +1,12 @@
 ---
-title: "Feature Specification: cli-opencode component naming (020 phase 005.002)"
+title: "Featu [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode/spec]"
 description: "The cli-opencode component has snake_case reference and asset filenames, including permissions-matrix examples/schema and prompt assets, with active links from SKILL.md, README.md, and JSON path values. This phase renames those local filesystem names and closes their references while preserving tool contracts and delegated playbook ownership."
 trigger_phrases:
   - "cli-opencode kebab-case migration"
-  - "OpenCode reference asset naming"
+  - "opencode reference asset naming"
   - "cli-external phase 002 naming"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "The component has 8 snake_case reference files and 6 snake_case asset files outside its delegated playbook tree."
       - "SKILL.md, scripts, changelog history, JSON keys, and Python/package exemptions remain protected."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

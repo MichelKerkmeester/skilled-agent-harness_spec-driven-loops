@@ -1,7 +1,11 @@
 ---
-title: "Implementation Plan: create-command + command-surface improvement research"
+title: "Implementation Plan: [system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/plan]"
 description: "Plan for the two-lineage deep-research fan-out that mines the 066 benchmark findings and the create-command canon into a prioritized cross-model improvement backlog at research/research.md, research and synthesis only."
-status: in_progress
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "012"
+  - "command"
 importance_tier: "important"
 contextType: "planning"
 _memory:
@@ -18,6 +22,7 @@ _memory:
       - ".opencode/skills/sk-doc/create-command/assets/command_router_template.md"
       - ".opencode/skills/sk-doc/create-command/assets/command_template.md"
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+status: in_progress
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

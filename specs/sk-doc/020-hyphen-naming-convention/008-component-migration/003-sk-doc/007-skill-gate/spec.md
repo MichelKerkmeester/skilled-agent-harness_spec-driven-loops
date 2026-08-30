@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-doc subtree rollup gate"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate/spec]"
 description: "The sk-doc component phases need one blocking rollup that aggregates their evidence and proves the whole naming surface is kebab-clean under the 020 exemption boundary. This phase adds no migration work; it verifies every sibling phase and the final subtree census."
 trigger_phrases:
   - "sk-doc skill gate"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 sk-doc subtree gate"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

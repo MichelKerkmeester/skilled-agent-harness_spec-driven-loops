@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Compiled-Routing Playbooks — Scenario Matrix & LUNA-High Acceptance"
+title: ".../015-router-unification-program/019-routing-coverage-activation-verification/005-playbooks-and-luna-acceptance/tasks]"
 description: "Task breakdown for the 7-hub compiled-routing scenario matrix, its evidence contract, the non-frozen validators/executor, and the two-plane LUNA-High acceptance stage. Not yet started."
 trigger_phrases:
   - "compiled routing playbook tasks"

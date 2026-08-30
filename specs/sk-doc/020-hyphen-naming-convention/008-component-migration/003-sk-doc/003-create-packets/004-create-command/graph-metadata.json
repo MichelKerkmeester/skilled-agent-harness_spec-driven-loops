@@ -17,9 +17,7 @@
       "create-command resource implementation plan",
       "command template rename plan",
       "create-command resource tasks",
-      "command template rename tasks",
-      "create-command resource checklist",
-      "command template rename verification"
+      "command template rename tasks"
     ],
     "key_topics": [
       "create-command",
@@ -33,15 +31,14 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist"
+      "packet"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The create-command packet contains snake_case command templates and routing guidance filenames. This phase renames those non-exempt resources to kebab-case and updates command-authoring references without changing command manifests, argument fields, or tool-mandated names.",
     "created_at": "2026-07-14T15:22:35Z",
-    "last_save_at": "2026-08-29T10:00:46.728Z",
+    "last_save_at": "2026-08-30T07:19:26.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:077c47ea249ec790ab51efce7439393d3d31e00116a263afbf100772712cf033",
+    "source_fingerprint": "sha256:e6beaa928db33e2e73af7e17369ac654f47b30718bc9ec2c2771f0624c0fc744",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "99584f5c4701db31d4e374a2cf803a27a529478abb0b1aabde0b6bccf8cd022a",
-      "plan.md": "61527ec9b6b7548a33b2ef9329e30aaa9ba841dafbb225d2e2d498e1911fa6e5",
-      "tasks.md": "0ee6d4a46a430579b94da2362658c6991564016193db5cddf6da1e6690ce619f",
-      "checklist.md": "e1617abdbea8fb9877ee2445afde9a780da39bf6aa742f46bcb037d8b552881d"
+      "spec.md": "3a2cf644d1930acc638485ed1556b9c1f59a23e688615978d351562204debeae",
+      "plan.md": "b6f944ccf5bc14fb4f94fc0cf1bce93721cd755bffcf902b71e5535691082a5d",
+      "tasks.md": "02df170e43c21071b2317f200e0315d4ea65a33c3f1e084d9ac376311ece61e6"
     },
     "last_active_child_id": null,
     "last_active_at": null

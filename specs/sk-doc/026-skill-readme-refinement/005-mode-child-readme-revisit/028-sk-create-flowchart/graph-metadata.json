@@ -21,8 +21,8 @@
       "phase 028 tasks",
       "flowchart readme tasks",
       "sk-create-flowchart rewrite tasks",
-      "phase 028 checklist",
-      "flowchart readme verification"
+      "phase 28 implementation summary",
+      "sk-create-flowchart readme closeout"
     ],
     "key_topics": [
       "flowchart",
@@ -34,40 +34,24 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
-      "skill"
+      "implementation",
+      "summary",
+      "closeout"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/sk-create-flowchart/README.md",
-      ".opencode/skills/sk-doc/sk-create-flowchart/changelog/v1.0.2.0.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/checklist.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-flowchart/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.0.2.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-flowchart/changelog/v1.0.2.0.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -87,12 +71,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -102,6 +80,12 @@
         "name": "skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
         "source": "derived"
       },
       {
@@ -199,27 +183,38 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill README at `.opencode/skills/sk-doc/sk-create-flowchart/README.md` still carries the older tabular reference-card style and predates the pilot standard set by the mcp-obsidian README and the refined template from phase 001",
     "created_at": "2026-08-04T08:34:49.243Z",
-    "last_save_at": "2026-08-04T18:12:17.317Z",
+    "last_save_at": "2026-08-30T07:20:32.898Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f4b657be5b0dbd5b09d551f548185e0085a7894ca67857bfac17f73b7b045d1",
+    "source_fingerprint": "sha256:082ace14e729ae6b9c51a40b78c98e99a672d5c09fdfe658493c380cfd0af57f",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "ab85a1f9fdd1ed1953b173783f5b72b6760faf2b8d33e8121d74246bbe54e04c",
-      "plan.md": "6095c089744176cc03f883ca44606a19b1292c9a3f944eeb75b7b76fdf88dcf3",
-      "tasks.md": "d519a0f3ce939aacf614a0d9d3ac259e865ef09248caec96eb1e4687cc1e06d7",
-      "checklist.md": "79e48ef871e2de6ccfe3567c2e9c2269c07bd4796f3766a9d0e8d3e821c49e16",
-      "implementation-summary.md": "4dcb4eb3e2b40759a56299238af8cb913989c9677836f740ac9bdb2faf731038"
+      "spec.md": "19df49bef6e7ebc1f2bd3a891db1b6a27b2462f7182b150b2b8c77135747659d",
+      "plan.md": "0ec02117fe4b9c6ad4890fd6f6de1eeca5549e5ef5cc1936e5e6e91d8d9dca95",
+      "tasks.md": "1cb482a180e471554f97309bae03808ff8247ed447add71a64a65fed25426daa",
+      "implementation-summary.md": "9dbbae7e04519633cbfae523b3e0bb1a3cede76fb5a136607adc78a49614fc90"
     },
     "last_active_child_id": null,
     "last_active_at": null

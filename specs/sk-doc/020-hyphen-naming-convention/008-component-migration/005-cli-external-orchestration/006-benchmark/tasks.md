@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-external-orchestration benchmark naming (020 phase 005.006)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark/tasks]"
 description: "Tasks for the cli-external-orchestration benchmark boundary: capture the .gitkeep-only baseline, classify any authored/generated additions, update active paths, and verify benchmark semantics."
 trigger_phrases:
   - "cli-external benchmark tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 006 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark"
@@ -24,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The current benchmark tree contains only .gitkeep."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark"
 ---
 # Tasks: cli-external-orchestration benchmark naming
 

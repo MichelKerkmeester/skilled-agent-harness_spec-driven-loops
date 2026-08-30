@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: deep-review filesystem names (020 phase 007/004)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review/plan]"
 description: "Plan for renaming deep-review assets, catalog/playbook paths, references, and state documentation through the frozen semantic map, then repairing static and dynamic path consumers without changing review contracts."
 trigger_phrases:
   - "deep-review implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "review packet reference closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
 ---
 # Implementation Plan: Deep-review filesystem names
 

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 007 sk-git standalone README revisit"
+title: "Implementation Plan: Phase 007 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/plan]"
 description: "Rewrite the sk-git skill README against the refined README template from phase 001 and the mcp-obsidian exemplar, fix HVR violations, bump the version field with a matching changelog entry and validate."
 trigger_phrases:
   - "phase 7 plan"

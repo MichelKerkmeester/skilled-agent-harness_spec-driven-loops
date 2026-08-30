@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 016 sk-code-quality README revisit (rewrite)"
+title: "Implementa [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/016-sk-code-quality/implementation-summary]"
 description: "Purpose-first rewrite of the sk-code-quality mode README on the refined template with a version bump, a changelog entry and clean validation evidence."
 trigger_phrases:
   - "phase 16 implementation summary"

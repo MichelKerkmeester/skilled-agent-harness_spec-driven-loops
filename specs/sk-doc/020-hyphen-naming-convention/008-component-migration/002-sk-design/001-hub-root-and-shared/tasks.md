@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Hub root and shared (020 phase 001)"
+title: "Tasks: Hub [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared/tasks]"
 description: "Task breakdown for Hub root and shared in the 020 sk-design naming subtree."
 trigger_phrases:
   - "hub-root-and-shared tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 hub-root-and-shared checklist"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared"
 ---
 # Tasks: Hub root and shared (020 phase 001)
 

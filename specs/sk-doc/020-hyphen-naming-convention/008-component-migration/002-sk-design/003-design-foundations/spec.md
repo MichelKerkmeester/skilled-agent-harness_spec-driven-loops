@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Design-foundations (020 phase 003)"
+title: "Feature Specific [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations/spec]"
 description: "The design-foundations mode contains underscore-bearing visual-system references and fixture directories, and its Python checker paths must remain executable under the exemption boundary."
 trigger_phrases:
   - "design-foundations naming phase"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 design-foundations"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

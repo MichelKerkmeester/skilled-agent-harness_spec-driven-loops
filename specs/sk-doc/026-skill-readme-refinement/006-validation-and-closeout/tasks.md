@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 006: fleet-wide validation and closeout"
+title: "Tasks: Phase 006: fleet-wide validation and [sk-doc/026-skill-readme-refinement/006-validation-and-closeout/tasks]"
 description: "Task list for fleet-wide README validation, per-surface gates, failure fixes, changelog reconciliation, and packet closeout."
 trigger_phrases:
   - "phase 006 tasks"

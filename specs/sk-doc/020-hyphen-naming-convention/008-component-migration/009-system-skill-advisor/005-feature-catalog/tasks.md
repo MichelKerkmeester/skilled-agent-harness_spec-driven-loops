@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-skill-advisor feature catalog"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog/tasks]"
 description: "Concrete tasks for the feature-catalog root, category, and file rename, path-link repair, and catalog parity verification."
 trigger_phrases:
   - "feature catalog tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "catalog link closure tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog"
@@ -23,8 +22,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The catalog map covers 42 files and seven category directories."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog"
 ---
-
 # Tasks: system-skill-advisor feature catalog
 
 <!-- SPECKIT_LEVEL: 2 -->

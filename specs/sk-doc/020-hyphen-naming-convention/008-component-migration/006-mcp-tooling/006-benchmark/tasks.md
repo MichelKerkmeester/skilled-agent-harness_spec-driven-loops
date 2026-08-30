@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-tooling benchmark naming closure (020 phase 006)"
+title: "Tasks: mcp-tooling [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark/tasks]"
 description: "Tasks for phase 006 of the mcp-tooling component naming migration: census benchmark artifacts, preserve .gitkeep, and rename only real candidates."
 trigger_phrases:
   - "mcp-tooling benchmark tasks"
   - "benchmark artifact census tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark"
 ---
 # Tasks: mcp-tooling Benchmark Naming Closure
 

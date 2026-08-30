@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 039 deep-review mode README rewrite"
+title: "Tasks: Phase 039 deep-review [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/tasks]"
 description: "Task list for rewriting the deep-review mode skill README against the refined README template from phase 001, with a version bump and a changelog entry."
 trigger_phrases:
   - "phase 039 tasks"

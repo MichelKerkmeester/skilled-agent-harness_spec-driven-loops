@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 3 process-propagation"
+title: "Tasks: Phase 3 process-pr [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation/tasks]"
 description: "Task ledger for child-process inheritance and one-directional isolation."
 trigger_phrases:
   - "process-propagation tasks"

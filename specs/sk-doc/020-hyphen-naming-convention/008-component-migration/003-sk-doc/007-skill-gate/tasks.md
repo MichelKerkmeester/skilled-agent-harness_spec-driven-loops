@@ -1,12 +1,11 @@
 ---
-title: "Tasks: sk-doc subtree rollup gate"
+title: "Tasks: sk-doc subtree [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate/tasks]"
 description: "Concrete aggregation and whole-surface verification tasks for the sk-doc rollup gate."
 trigger_phrases:
   - "sk-doc skill gate tasks"
   - "sk-doc naming rollup tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
 ---
 # Tasks: sk-doc subtree rollup gate
 

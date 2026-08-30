@@ -1,5 +1,5 @@
 ---
-title: "Tasks: scripts command namespace naming (020 phase 008/013/006)"
+title: "Tasks: scripts [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace/tasks]"
 description: "Bounded audit tasks for proving the scripts namespace needs no physical rename and retaining the checker fixture contract."
 trigger_phrases:
   - "scripts namespace naming tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "command checker self-test tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace"
 ---
-
 # Tasks: Scripts command namespace naming
 
 <!-- SPECKIT_LEVEL: 2 -->

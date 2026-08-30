@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 006: fleet-wide validation and closeout"
+title: "Implementation Plan: Phase 006: fleet-wide [sk-doc/026-skill-readme-refinement/006-validation-and-closeout/plan]"
 description: "Run the README validator across the rewritten fleet, guard links per changed skill, grep HVR violations, reconcile versions and changelog entries, fix failures, and close out the packet with evidence."
 trigger_phrases:
   - "phase 006 plan"

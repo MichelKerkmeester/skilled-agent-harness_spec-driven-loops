@@ -1,7 +1,11 @@
 ---
-title: "Tasks: create-command + command-surface improvement research"
+title: "Tasks: create-command + [system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/tasks]"
 description: "Task breakdown for the two-lineage deep-research fan-out, the cross-model synthesis at research/research.md, run-integrity verification, and the downstream remediation handoff."
-status: in_progress
+trigger_phrases:
+  - "tasks"
+  - "create"
+  - "command"
+  - "012"
 importance_tier: "important"
 contextType: "planning"
 _memory:
@@ -18,6 +22,7 @@ _memory:
       - ".opencode/skills/sk-doc/create-command/assets/command_router_template.md"
       - ".opencode/skills/sk-doc/create-command/assets/command_template.md"
       - ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
+status: in_progress
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

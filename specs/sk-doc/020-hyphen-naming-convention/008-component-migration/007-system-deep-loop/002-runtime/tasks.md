@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-deep-loop runtime names (020 phase 007/002)"
+title: "Tasks: system-deep- [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime/tasks]"
 description: "Execution tasks for renaming the runtime directory/file surface and repairing package, script, test, catalog, playbook, and reference consumers."
 trigger_phrases:
   - "system-deep-loop runtime tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "deep loop runtime path repair tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime"
 ---
 # Tasks: System-deep-loop runtime names
 

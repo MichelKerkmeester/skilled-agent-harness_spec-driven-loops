@@ -1,7 +1,8 @@
 ---
-title: "Tasks: Devin hook parity"
+title: "Tasks: Devin hook parity [cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/tasks]"
 description: "Task breakdown for building the remaining Devin hook adapters."
-trigger_phrases: ["devin hook parity tasks"]
+trigger_phrases:
+  - "devin hook parity tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:

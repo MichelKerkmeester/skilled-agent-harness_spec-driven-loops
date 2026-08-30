@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-tooling hub manual-testing-playbook naming closure (020 phase 005)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook/spec]"
 description: "The mcp-tooling hub-level manual-testing-playbook tree uses an underscored root, category directory, index file, and seven scenario filenames. This phase renames only that hub-level tree to kebab-case and updates its navigation references, leaving the three component-local playbooks to their own phases."
 trigger_phrases:
   - "mcp-tooling manual-testing-playbook naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 mcp tooling phase 005"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

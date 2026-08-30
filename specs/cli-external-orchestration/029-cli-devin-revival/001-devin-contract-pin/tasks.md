@@ -1,7 +1,8 @@
 ---
-title: "Tasks: Devin CLI contract pin"
+title: "Tasks: Devin CLI contract pin [cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/tasks]"
 description: "Task breakdown for the Devin CLI contract-pin phase."
-trigger_phrases: ["devin contract pin tasks"]
+trigger_phrases:
+  - "devin contract pin tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:

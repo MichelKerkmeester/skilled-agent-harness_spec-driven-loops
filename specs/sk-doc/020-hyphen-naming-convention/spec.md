@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: repo-wide kebab-case (hyphen) filesystem-naming convention"
+title: "Feature Specification: repo-wide kebab-case (hyphen) filesystem-naming [sk-doc/020-hyphen-naming-convention/spec]"
 description: "Ban snake_case in filesystem names repo-wide and make kebab-case (hyphens) the sole canonical form for folder names, file names, and script filenames — with a hard exemption for Python (.py, PEP-8 snake_case) plus vendored/third-party trees, generated/lockfile output, tool-mandated filenames, and Python import-package directories. Code identifiers, JSON/YAML/TOML keys, frontmatter fields, and DB columns are OUT of scope (idiomatic case, hyphens illegal there). Reverses and supersedes the 027 underscore migration, including the sk-doc validator/loader logic keyed on feature_catalog / manual_testing_playbook. Phase parent for a 12-phase core migration program (000-011): worktree + immutable-baseline + census first, then policy + all-consumer logic + create-generators + no-new-snake guard + rename-and-reference tooling + a frozen bijective rename map + shared cross-cutting closures, then a per-component migration fan-out, then alias-removal, the whole-repo gate, and integrate-latest + closeout. Three follow-on phases extend the closed program: 012 code-directory naming enforcement, 013 INSTALL-GUIDE canonical filename normalization (absorbed from former top-level packet 021), and 014 naming-standard hardening (absorbed from former top-level packet 022). Migration runs on a dedicated worktree pinned to an immutable BASE SHA."
 trigger_phrases:
   - "hyphen naming convention"
@@ -9,7 +9,6 @@ trigger_phrases:
   - "hyphenate folder and file names"
 importance_tier: "critical"
 contextType: "planning"
-parent: "sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention"
@@ -29,8 +28,8 @@ _memory:
       - "Catalog-root transition = bounded dual-name tolerance + an explicit alias-removal phase"
       - "Rename batching = dependency-closure (reference-graph SCCs), not per-extension"
       - "node tooling in the worktree = fresh deterministic install, never a symlink to the main tree"
+parent: "sk-doc"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

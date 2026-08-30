@@ -28,14 +28,17 @@
   "derived": {
     "trigger_phrases": [
       "cli-devin revival",
-      "Devin CLI executor",
-      "Devin hooks",
-      "Devin agents",
+      "devin cli executor",
+      "devin hooks",
+      "devin agents",
       "cognition devin",
+      "research",
+      "cli",
+      "devin",
+      "and",
+      "029",
       "cli-devin handover",
-      "029 handover",
-      "Devin hook truth",
-      "runtime README parity"
+      "029 handover"
     ],
     "key_topics": [
       "cli-devin",
@@ -46,10 +49,10 @@
       "hooks",
       "agents",
       "cognition",
+      "research",
       "handover",
-      "hook",
-      "truth",
-      "runtime"
+      "shipped",
+      "zarchive"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -155,6 +158,12 @@
         "source": "derived"
       },
       {
+        "name": "Hook Adapter",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "Hook Adapter Refinements",
         "kind": "proper_noun",
         "path": "research/research.md",
@@ -180,12 +189,6 @@
       },
       {
         "name": "Purpose Determine",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope In",
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
@@ -223,7 +226,7 @@
     ],
     "causal_summary": "`cli-devin` shipped 2026-05-15 (`zarchive/016-cli-devin-creation`), received two effectiveness/prompt-quality follow-ons (`017`, `018`), then was fully removed 2026-06-08 (`zarchive/022-cli-devin-deprecation`, 6 phases, ~45 active-wiring files across executor routing, skill-graph, agent rosters, and governance docs)",
     "created_at": "2026-07-23T19:51:48.213Z",
-    "last_save_at": "2026-08-29T15:21:50.566Z",
+    "last_save_at": "2026-08-30T07:16:09.129Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,11 +234,12 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:085ae074c13f513d532fa501bc127d4a11c40bb5da9fe8f1de0f724f267263df",
+    "source_fingerprint": "sha256:eea144b6446fb9345a07c306bb8edbd898e83564c45d6f0ce506fc25b693da6e",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "b56327b63ac640b4942c23cef901e9921bae0816a09e51b2a0a69046c7cd9c15",
-      "research/research.md": "cc7a5420d7fe9d95849f9d80d5190814225f22588ce0471280c4e7ef2a366c7a",
-      "handover.md": "87b21823d332f79741fc9affbcbd1d496e460797de89034a37a048e9e6446050"
+      "spec.md": "13bf431b67444c2c1ab7871f9bccfb526224207abb757ef84b7024603412e9d7",
+      "research/research.md": "1a8d241f480a08cf527688947e4198936cb2f77180816acb42be116878c9f94f",
+      "handover.md": "fdd9c29d2a22fc19cfef7ca991e34f4a4e71faf44409654967f6c0f7a41a735c"
     },
     "last_active_child_id": "cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer",
     "last_active_at": "2026-07-27T04:47:34.199Z"

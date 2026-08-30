@@ -92,17 +92,18 @@
     ],
     "causal_summary": "The create- packets are independent authoring workflows, but their resource directories and template filenames use mixed snakecase forms",
     "created_at": "2026-07-14T15:17:25Z",
-    "last_save_at": "2026-07-20T11:09:43.044Z",
+    "last_save_at": "2026-08-30T07:19:25.118Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b4ee474929729d8f7b32b80594996ab052061c237a71220584a880bc24f94075",
+    "source_fingerprint": "sha256:cc5bf8577cb5ae13073a8f5866ed6ed30b1a174ea5390d9c94591191b829f136",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "ca70391097067fa708fd1ad68b712a7dac181b95ffae996b7bbb308e74122931"
+      "spec.md": "81d97def3246c2b4959294f2fd85d87506b47d098db63dfb76ab046c4200440f"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent",
     "last_active_at": null
   }
 }

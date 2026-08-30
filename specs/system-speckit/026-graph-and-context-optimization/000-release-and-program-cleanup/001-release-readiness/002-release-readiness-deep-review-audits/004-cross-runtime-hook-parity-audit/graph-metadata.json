@@ -38,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "review-report.md"
     ],
@@ -62,12 +61,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -77,6 +70,12 @@
         "name": "review-report.md",
         "kind": "doc",
         "path": "review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Kit",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -93,12 +92,6 @@
       },
       {
         "name": "Readiness Audit",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Kit",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -158,31 +151,31 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Report You",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -190,23 +183,22 @@
     ],
     "causal_summary": "The release-readiness program needs a runtime-by-runtime truth check for Spec Kit hook delivery",
     "created_at": "2026-04-29T20:30:00.000Z",
-    "last_save_at": "2026-08-29T15:22:09.292Z",
+    "last_save_at": "2026-08-30T07:16:25.190Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e54d4c781b77ee23b4f0042fc9e20ade5f58d3430a57386fa4f223eaa8fd62f7",
+    "source_fingerprint": "sha256:58075e632b7581fc5fd77197a87584fb16a1caecc7fbab5ede04a1f7c9c252e7",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "7d242035b45fcc059007652e89d84c9c8b333d32557f84de8179f40e2a1df5be",
-      "plan.md": "4d9c42dd2c23f0a3fb1f204170c52ad82d823daf9c4e894ee99f8b28027eb9a7",
-      "tasks.md": "d99610413ad23b247e4e65fc1a58cc0cc15d62fcce0ab26f76d4daaec9063437",
-      "checklist.md": "c69eafbc8f554d157c1642b5e78b21a9bccb5a2fdc943399ce5f7b7bcf579f4b",
-      "implementation-summary.md": "25161d763e0bd044221d8871d15ebee2ee9ce2aedef3ef9e80d0cad83d75834c"
+      "spec.md": "e4be3374e645da3579ae16bf7a5b87e275c4b4e91f7a5e44104dfea787b70af4",
+      "plan.md": "c22266c506712e319e87d1d3b03feabbc4599f152441e27d5f3643cd5e86381d",
+      "tasks.md": "7cedecdd57f8f8bd4a2890e88c5879ccace5a32c93a2a9425cc27cc8daddba82",
+      "implementation-summary.md": "f27aaf158aabb5992859bd959ac15e4a9d1d0cb8aee7faf0fc47746e5c95b587"
     },
     "last_active_child_id": null,
     "last_active_at": null

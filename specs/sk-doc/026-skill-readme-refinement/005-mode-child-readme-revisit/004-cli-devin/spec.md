@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 004 cli-devin mode README rewrite"
+title: "Feature Specification: Phase 004 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/spec]"
 description: "Rewrite the cli-devin mode skill README at cli-external-orchestration/cli-devin/README.md against the refined README template from phase 001 and the mcp-obsidian exemplar."
 trigger_phrases:
   - "cli devin readme"

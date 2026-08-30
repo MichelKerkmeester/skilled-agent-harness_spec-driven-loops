@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 026-sk-create-diff skill README rewrite"
+title: "Tasks: Phase 026-sk-create-d [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff/tasks]"
 description: "Task list for the purpose-first rewrite of the sk-create-diff mode skill README on the refined template."
 trigger_phrases:
   - "phase 026 tasks"

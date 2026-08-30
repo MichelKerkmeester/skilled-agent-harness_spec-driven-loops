@@ -19,10 +19,7 @@
       "code graph whole-surface naming gate",
       "system-code-graph rollup gate tasks",
       "system-code-graph whole-surface verification tasks",
-      "code graph naming gate tasks",
-      "system-code-graph rollup checklist",
-      "system-code-graph whole surface gate",
-      "code graph naming verification"
+      "code graph naming gate tasks"
     ],
     "key_topics": [
       "system-code-graph",
@@ -43,15 +40,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts/checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references/checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime/checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog/checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook/checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify/checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -73,9 +62,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specific",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -104,12 +93,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -167,49 +150,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-code-graph child phases each prove a bounded path closure, but only a final rollup can prove that phases 001–007 are complete and that no in-scope snake_case filesystem name remains across the whole skill surface. This mutation-free gate aggregates sibling evidence and applies the 020 exemption boundary without performing new migration work.",
     "created_at": "2026-07-14T15:18:18Z",
-    "last_save_at": "2026-08-29T13:10:11.748Z",
+    "last_save_at": "2026-08-30T07:19:54.471Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:9accb17c7e2c653410eba05f7adf718d95fe4c9e298db4fb495287a27eb57e1e",
+    "source_fingerprint": "sha256:5f9897206c09a0f3a4ed424879e8b71bb6aba7aaaabaebad42b58c36630147ec",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "df7273bbe358ea28e62317d3a956623acc60cf160c9243aff684d1ce8c550870",
-      "plan.md": "a442484817de0d54c133af4f932431b327a2ce9a76d702342c27a5af893248ad",
-      "tasks.md": "5d8b25d4388725410dc124065894f55355a6c630dda7ee8c7e9130a9bf69480d",
-      "checklist.md": "07870c3f682901b8ea2d38d849bdc1416da043b6ea639d377fd2c267b882f65e"
+      "spec.md": "887ce03626ed8e72c753e5ba288d16b279c97d90f23957b3a691e77e402b3fee",
+      "plan.md": "512c6f6404d930d23994167e7120c506928ca71cb2519a17de43158f745ac116",
+      "tasks.md": "3a9eba6643fc5d1ce720c373d0c6cac5a98e98261cf7455a5ee5e98eb2c0654f"
     },
     "last_active_child_id": null,
     "last_active_at": null

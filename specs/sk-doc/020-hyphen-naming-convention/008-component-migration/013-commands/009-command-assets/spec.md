@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: command asset and reference closure (020 phase 008/013/009)"
+title: "Feature Specification [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets/spec]"
 description: "Reconcile residual command-surface asset, reference, and template files after namespace ownership is frozen; rename only unassigned snake_case files and update every proven pointer without duplicating sibling work."
 trigger_phrases:
   - "command asset reference closure"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "residual command asset naming"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets"
@@ -27,8 +26,8 @@ _memory:
     answered_questions:
       - "Namespace-owned workflow assets belong to phases 001–007, not a second rename here."
       - "Generated contracts, tool manifests, and negative fixtures retain their exact names or content under their documented boundaries."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

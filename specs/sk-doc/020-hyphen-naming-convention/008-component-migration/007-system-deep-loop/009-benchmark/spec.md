@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop benchmark storage names (020 phase 007/009)"
+title: "Feature Specificat [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark/spec]"
 description: "The root system-deep-loop benchmark boundary contains three underscore-separated storage directories—after_d3_proxy, live_mode_b, and router_mode_a—while its report filenames are already kebab-case. This phase renames authored storage labels, repairs benchmark index/path references, and classifies fixture/profile and generated-output ownership without changing report payloads or benchmark scores."
 trigger_phrases:
   - "system-deep-loop benchmark naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "benchmark fixture profile naming"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
@@ -23,8 +22,8 @@ _memory:
       - "The root benchmark tree has three underscore-bearing storage directories and no underscore-bearing report filenames."
       - "The component-owned deep-improvement fixture/profile and benchmark trees are not duplicated here; their ownership is classified explicitly."
       - "Report JSON keys and generated report content are data/output contracts, not filesystem rename targets."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

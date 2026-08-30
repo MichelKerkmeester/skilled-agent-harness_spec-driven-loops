@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: static reference-rewrite executor (020 phase 005.004)"
+title: ".../020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/implementation-summary]"
 description: "The executor now converts accepted ledger sites and an explicit semantic map into deterministic SCC rewrite plans with blob-hash compare-and-swap, fixture-only apply and journaled rollback."
 trigger_phrases:
   - "reference rewrite executor implementation"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "disposable rewrite fixture"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
@@ -29,6 +28,7 @@ _memory:
     answered_questions:
       - "The executor consumes checker-owned static sites and never discovers extra rewrite targets."
       - "Apply and rollback require both disposable repository opt-ins and external evidence files."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
 ---
 # Implementation Summary
 

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 037 deep-improvement README revisit"
+title: "Implementation Plan: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/plan]"
 description: "Rewrite the deep-improvement README against the refined README template from phase 001 and the mcp-obsidian exemplar, bump the version field and add a changelog entry."
 trigger_phrases:
   - "phase 037 plan"

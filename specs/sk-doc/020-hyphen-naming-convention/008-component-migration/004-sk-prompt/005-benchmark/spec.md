@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-prompt benchmark artifact names (020 phase 004.005)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark/spec]"
 description: "The sk-prompt benchmark surface contains underscore-separated authored result directories such as live_final, router_final, and router_mode_a, plus generated raw-run filenames with double underscores. This phase renames authored benchmark paths, updates path references, and records generated/frozen output dispositions without changing benchmark payload keys, fixtures, profiles, or scores."
 trigger_phrases:
   - "sk-prompt benchmark kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 005 naming"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
@@ -28,8 +27,8 @@ _memory:
       - "The authored underscore-separated benchmark directories currently observed are live_final, router_final, and router_mode_a."
       - "Raw files under prompt-models benchmark runs and runs-archive are generated output and require disposition, not blind renaming."
       - "The prompt-models asset model_profiles.json is owned by phase 003 because it is outside a benchmark tree."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

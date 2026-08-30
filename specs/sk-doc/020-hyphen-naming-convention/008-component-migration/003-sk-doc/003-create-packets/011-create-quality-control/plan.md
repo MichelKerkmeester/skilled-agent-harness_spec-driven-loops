@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: create-quality-control resource names"
+title: "...c/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control/plan]"
 description: "Execution plan for the create-quality-control reference rename/reference closure."
 trigger_phrases:
   - "create-quality-control resource implementation plan"
   - "quality control reference rename plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control"
 ---
 # Implementation Plan: create-quality-control resource names
 

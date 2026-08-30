@@ -1,3 +1,17 @@
+---
+title: "...se-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/research]"
+description: "The common root cause is contract governance drift. The audit findings are not one isolated stale-doc episode; they show repeated divergence between public MCP schemas, runtime ..."
+trigger_phrases:
+  - "and"
+  - "program"
+  - "cleanup"
+  - "012"
+  - "comprehensive"
+  - "research"
+  - "codex"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research Synthesis: 026 Deep-Review Audit Root Causes
 
 ## 1. Executive Summary

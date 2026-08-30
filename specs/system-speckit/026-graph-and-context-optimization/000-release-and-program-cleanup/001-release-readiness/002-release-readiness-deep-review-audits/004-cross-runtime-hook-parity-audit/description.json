@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit",
   "description": "The release-readiness program needs a runtime-by-runtime truth check for Spec Kit hook delivery",
   "keywords": [
@@ -13,7 +14,7 @@
     "hook",
     "delivery"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.509Z",
+  "lastUpdated": "2026-08-30T07:16:24.954Z",
   "specId": "004",
   "folderSlug": "cross-runtime-hook-parity-audit",
   "parentChain": [
@@ -24,6 +25,5 @@
     "002-release-readiness-deep-review-audits"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

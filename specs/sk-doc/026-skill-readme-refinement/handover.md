@@ -1,3 +1,17 @@
+---
+title: "Handover — mcp-obsidian README refinement and the repo-wide skill README [sk-doc/026-skill-readme-refinement/handover]"
+description: "The user asked, in order"
+trigger_phrases:
+  - "handover"
+  - "mcp"
+  - "obsidian"
+  - "readme"
+  - "refinement"
+  - "026"
+  - "skill"
+importance_tier: "normal"
+contextType: "general"
+---
 # Handover — mcp-obsidian README refinement and the repo-wide skill README program
 
 > Phase-parent packet: `.opencode/specs/sk-doc/026-skill-readme-refinement`. This handover records the original ask, the writing-style directives, exactly what was changed and how, the validation evidence, and the roadmap the phases in this packet execute.

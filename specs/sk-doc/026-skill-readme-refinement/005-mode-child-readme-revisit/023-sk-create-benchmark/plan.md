@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 023 sk-create-benchmark README revisit"
+title: "Implementation Plan: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/plan]"
 description: "Rewrite the sk-create-benchmark skill README purpose-first against the refined template from phase 001 and the mcp-obsidian exemplar, bump the version field, add a changelog entry and validate."
 trigger_phrases:
   - "phase 023 plan"

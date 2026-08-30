@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-prompt hub root and shared boundary (020 phase 004.001)"
+title: "Tasks: sk-prom [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared/tasks]"
 description: "Tasks for phase 001 of the sk-prompt kebab-case program: census the root/shared boundary, protect the hub contract, and verify delegated ownership and reference closure."
 trigger_phrases:
   - "sk-prompt hub root tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 001 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
@@ -25,8 +24,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The current root inventory has no shared/ directory."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 005 sk-design README rewrite"
+title: "Tasks: Phase 005 sk-design [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/tasks]"
 description: "Task list for the sk-design README rewrite in the 005-sk-design child phase under 004-standalone-readme-revisit."
 trigger_phrases:
   - "phase 005 tasks"

@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: Compiled-Route Sync Authored-Root Repair"
+title: "...ng-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root/plan]"
 description: "Trace the renumbered authored closure, stage it beside the serving root, verify it without spec reads, and atomically publish it with rollback retained."
 trigger_phrases:
   - "compiled route sync repair plan"
   - "atomic promoted closure rebuild"
 importance_tier: "critical"
 contextType: "implementation"
-status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root"
@@ -16,6 +15,7 @@ _memory:
     next_safe_action: "No packet-local work remains."
     blockers: []
     key_files: []
+status: "complete"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core + level2-verify + level3-arch | v2.2 -->
 # Implementation Plan: Compiled-Route Sync Authored-Root Repair

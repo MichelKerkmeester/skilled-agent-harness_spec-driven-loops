@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-prompt changelog and version verification (020 phase 004.006)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify/plan]"
 description: "Verification plan for phase 006 of the sk-prompt kebab-case program: inspect new release entries, compare version metadata, preserve frozen changelog history, and hand evidence to the rollup gate."
 trigger_phrases:
   - "sk-prompt changelog verification plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 006 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify"
@@ -25,8 +24,8 @@ _memory:
     completion_pct: 0
     open_questions:
       - "The release version is supplied by the completed migration/release candidate, not by this authoring pass."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

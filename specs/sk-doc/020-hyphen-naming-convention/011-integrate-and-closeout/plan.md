@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: integrate and close out (020 phase 011)"
+title: "Implementation Plan: integrate and close out [sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/plan]"
 description: "Implementation Plan for phase 011 of the 020 kebab-case filesystem-naming program: rebase onto the latest base, rerun the complete phase 010 gate, fast-forward the integration target, and reconcile final packet state."
 trigger_phrases:
   - "integrate and close out implementation plan"
   - "hyphen naming phase 011 implementation plan"
 importance_tier: "critical"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout"
@@ -23,6 +22,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The post-rebase candidate, not the pre-rebase head, is the only candidate eligible for integration."
+parent: "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout"
 ---
 # Implementation Plan: Integrate and close out
 

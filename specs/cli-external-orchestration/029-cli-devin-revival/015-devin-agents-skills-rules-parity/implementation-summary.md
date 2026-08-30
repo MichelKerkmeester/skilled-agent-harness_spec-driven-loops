@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Devin agents/skills/rules parity"
+title: "Implement [cli-external-orchestration/029-cli-devin-revival/015-devin-agents-skills-rules-parity/implementation-summary]"
 description: "Built and live-verified a native Devin code-reviewer AGENT.md profile, corrected a stale docs claim about Claude-agent auto-import, and documented devin skills list/devin rules list/commands non-applicability."
 trigger_phrases:
   - "devin agents skills rules parity summary"

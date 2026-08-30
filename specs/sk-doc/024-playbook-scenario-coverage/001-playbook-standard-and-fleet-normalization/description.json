@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization",
   "description": "Two contracts share one directory name, and only one of them is checked",
   "keywords": [
@@ -12,7 +13,7 @@
     "them",
     "checked"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.445Z",
+  "lastUpdated": "2026-08-30T07:16:19.968Z",
   "specId": "001",
   "folderSlug": "playbook-standard-and-fleet-normalization",
   "parentChain": [
@@ -29,6 +30,5 @@
     "31-07-26_06-12__paused-holding-awaiting-resume-or-goal-clear.md",
     "31-07-26_06-13__paused-holding-awaiting-resume-or-goal-clear.md",
     "31-07-26_06-13__paused-holding-awaiting-resume-or-goal-clear.md"
-  ],
-  "level": "3"
+  ]
 }

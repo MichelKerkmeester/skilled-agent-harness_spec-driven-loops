@@ -1,13 +1,12 @@
 ---
-title: "Implementation Plan: cli-opencode component naming (020 phase 005.002)"
+title: "Imple [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode/plan]"
 description: "Implementation plan for the cli-opencode component: build a semantic local path map for references and assets, update path-valued consumers, preserve permissions/schema semantics, and exclude the delegated playbook tree."
 trigger_phrases:
   - "cli-opencode implementation plan"
-  - "OpenCode asset reference rename plan"
+  - "opencode asset reference rename plan"
   - "cli-external phase 002 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
@@ -25,6 +24,7 @@ _memory:
     answered_questions:
       - "The current non-playbook candidate set is eight reference files plus six asset files."
       - "The nested manual-testing-playbook tree is phase 005 ownership."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
 ---
 # Implementation Plan: cli-opencode component naming
 

@@ -1,6 +1,15 @@
 ---
-title: "Task Breakdown: Semantic Relation Inference"
+title: "...ystem-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference/tasks]"
 description: "Tasks for adding the two deferred OPT-IN collectors (similarity 'supports' from cached related_memories; 'contradicts' from structural supersession) to backfillRelationInference, wiring the options through schema/types/handler, updating the honest hint, and locking the contract with tests."
+trigger_phrases:
+  - "ystem"
+  - "speckit"
+  - "026"
+  - "graph"
+  - "and"
+  - "tasks"
+  - "023"
+  - "semantic"
 importance_tier: "important"
 contextType: "general"
 _memory:

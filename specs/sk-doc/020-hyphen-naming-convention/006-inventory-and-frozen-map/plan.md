@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: inventory and frozen rename map (020 phase 006)"
+title: "Implementation Plan: inventory and frozen [sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/plan]"
 description: "Implementation Plan for phase 006 of the 020 kebab-case filesystem-naming program: inventory and frozen rename map."
 trigger_phrases:
   - "inventory and frozen rename map implementation plan"
   - "hyphen naming phase 006 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map"
 ---
 # Implementation Plan: Inventory and frozen rename map
 

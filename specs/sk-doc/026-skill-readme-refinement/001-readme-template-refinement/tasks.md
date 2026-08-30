@@ -1,5 +1,5 @@
 ---
-title: "Tasks - Phase 001 - shared standalone skill README template refinement"
+title: "Tasks - Phase 001 - shared standalone skill [sk-doc/026-skill-readme-refinement/001-readme-template-refinement/tasks]"
 description: "Task list for refining the shared standalone skill README template with the mcp-obsidian pilot learnings."
 trigger_phrases:
   - "phase 001 tasks"

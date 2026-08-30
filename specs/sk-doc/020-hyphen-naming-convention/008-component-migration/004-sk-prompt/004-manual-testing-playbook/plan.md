@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: sk-prompt manual-testing-playbook trees (020 phase 004.004)"
+title: "Implementat [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook/plan]"
 description: "Implementation plan for phase 004 of the sk-prompt kebab-case program: rename both manual-testing-playbook trees, update active links, and prove scenario-ID and category coverage parity."
 trigger_phrases:
   - "sk-prompt manual testing playbook implementation plan"
   - "sk-prompt phase 004 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
@@ -25,6 +24,7 @@ _memory:
     answered_questions:
       - "The hub has four routing scenarios; prompt-improve has seven categories and 27 scenarios."
       - "Changelog references are frozen and must be dispositioned, not rewritten."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
 ---
 # Implementation Plan: sk-prompt manual-testing-playbook trees
 

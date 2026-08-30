@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 032 sk-create-skill README revisit"
+title: "Implementa [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill/implementation-summary]"
 description: "Phase closeout evidence for the purpose-first rewrite of the sk-create-skill README on the refined README template with a version bump and matching changelog entry."
 trigger_phrases:
   - "phase 032 summary"

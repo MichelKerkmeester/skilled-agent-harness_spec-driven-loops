@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Substrate stress-harness hardening [template:level_3/tasks.md]"
+title: "Tas [system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "substrate harness tasks"

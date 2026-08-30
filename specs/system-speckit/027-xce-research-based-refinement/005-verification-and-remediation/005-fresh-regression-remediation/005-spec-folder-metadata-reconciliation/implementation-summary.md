@@ -1,6 +1,14 @@
 ---
-title: "Implementation Summary: Spec-Folder Control-Metadata Reconciliation"
+title: "...tion-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation/implementation-summary]"
 description: "Planning-only status for this remediation sub-phase: 8 findings carried as tasks; no fixes applied yet."
+trigger_phrases:
+  - "tion"
+  - "and"
+  - "remediation"
+  - "005"
+  - "fresh"
+  - "implementation summary"
+  - "spec"
 importance_tier: "important"
 contextType: "general"
 _memory:

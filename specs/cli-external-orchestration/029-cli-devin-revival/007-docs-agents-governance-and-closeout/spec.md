@@ -1,9 +1,13 @@
 ---
-title: "Feature Specification: Devin docs, agents, governance, and closeout"
+title: "Feature Specification: [cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout/spec]"
 description: "Restore cli-devin mentions across all 3 runtime agent rosters, twin-edit AGENTS.md/CLAUDE.md, restore README.md entries, and run whole-packet closeout validation against the CURRENT tree -- not the archived deprecation's drifted line numbers."
-trigger_phrases: ["cli-devin revival closeout", "Devin agent roster restore", "Devin governance docs", "Devin docs and closeout"]
-importance_tier: normal
-contextType: general
+trigger_phrases:
+  - "cli-devin revival closeout"
+  - "devin agent roster restore"
+  - "devin governance docs"
+  - "devin docs and closeout"
+importance_tier: "normal"
+contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout"

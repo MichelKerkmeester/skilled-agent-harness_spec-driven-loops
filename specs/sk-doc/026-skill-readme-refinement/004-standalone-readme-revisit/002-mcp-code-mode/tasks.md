@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 002 mcp-code-mode README rewrite"
+title: "Tasks: Phase 002 mcp-code-mod [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode/tasks]"
 description: "Task list for the mcp-code-mode README rewrite: baseline, purpose-first rewrite per the refined template, version bump, changelog entry and verification."
 trigger_phrases:
   - "phase 002 tasks"

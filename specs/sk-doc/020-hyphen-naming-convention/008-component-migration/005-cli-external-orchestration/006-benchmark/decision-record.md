@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: cli-external-orchestration benchmark naming (020 phase 005.006)"
+title: "...oc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark/decision-record]"
 description: "Design decisions for the benchmark boundary: record the current .gitkeep-only baseline, map authored artifacts explicitly if they appear, and preserve generated output and benchmark data semantics."
 trigger_phrases:
   - "cli-external benchmark decision record"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 006 decisions"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "The current benchmark tree contains only .gitkeep."
       - "Fixtures, profiles, storage guides, and generated runs are execution-time classes, not current candidates."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

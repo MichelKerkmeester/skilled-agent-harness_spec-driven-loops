@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-git skill gate (020 phase 008/012/006)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate/spec]"
 description: "The sk-git component needs a blocking rollup gate that aggregates the five sibling phase contracts and proves its complete tracked filesystem surface is kebab-clean within the 020 exemption boundary. This phase adds no migration work."
 trigger_phrases:
   - "sk-git skill gate"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-git subtree kebab-case gate"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate"
@@ -26,6 +25,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 025 sk-create-command README revisit"
+title: "Implementation Plan: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command/plan]"
 description: "Plan for rewriting the sk-create-command skill README against the refined template with a version bump and a changelog entry."
 trigger_phrases:
   - "phase 25 plan"

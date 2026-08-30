@@ -1,7 +1,11 @@
 ---
-title: "Tasks: deterministic fixtures and reference oracle"
+title: "Tasks: deterministic fixtures [system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/tasks]"
 description: "Task breakdown for the independent fixture corpus and reference oracle."
-status: complete
+trigger_phrases:
+  - "tasks"
+  - "deterministic"
+  - "fixtures"
+  - "002"
 importance_tier: "important"
 contextType: "planning"
 _memory:
@@ -16,6 +20,7 @@ _memory:
       - ".opencode/commands/scripts/validate-command-references.cjs"
       - ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
       - ".opencode/skills/system-deep-loop/deep-alignment/scripts/scoping.cjs"
+status: complete
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

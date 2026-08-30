@@ -1,12 +1,11 @@
 ---
-title: "Tasks: sk-prompt manual-testing-playbook trees (020 phase 004.004)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook/tasks]"
 description: "Tasks for phase 004 of the sk-prompt kebab-case program: rename both playbook trees, update active links, and verify scenario coverage."
 trigger_phrases:
   - "sk-prompt manual testing playbook tasks"
   - "sk-prompt phase 004 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
@@ -24,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Hub and prompt-improve playbooks are both in this phase; benchmark paths are not."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/004-manual-testing-playbook"
 ---
 # Tasks: sk-prompt manual-testing-playbook trees
 

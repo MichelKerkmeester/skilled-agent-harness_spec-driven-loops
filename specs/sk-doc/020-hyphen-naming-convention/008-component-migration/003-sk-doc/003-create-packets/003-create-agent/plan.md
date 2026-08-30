@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: create-agent resource names"
+title: "Implem [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent/plan]"
 description: "Execution plan for the create-agent template and guidance resource rename/reference closure."
 trigger_phrases:
   - "create-agent resource implementation plan"
   - "agent template rename plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent"
 ---
 # Implementation Plan: create-agent resource names
 

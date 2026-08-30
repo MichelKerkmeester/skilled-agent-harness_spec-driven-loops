@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 010 mcp-figma README rewrite"
+title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma/implementation-summary]"
 description: "Closeout record for the mcp-figma README purpose-first rewrite, version bump, changelog entry and validation."
 trigger_phrases:
   - "phase 010 implementation summary"

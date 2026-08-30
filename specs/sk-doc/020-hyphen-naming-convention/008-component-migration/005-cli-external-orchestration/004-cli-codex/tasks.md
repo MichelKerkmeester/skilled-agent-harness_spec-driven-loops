@@ -1,13 +1,12 @@
 ---
-title: "Tasks: cli-codex component naming (020 phase 005.004)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex/tasks]"
 description: "Tasks for the cli-codex component rename: map five references and two assets, update local links, preserve Codex safety contracts, and verify delegated ownership."
 trigger_phrases:
   - "cli-codex naming tasks"
-  - "Codex path map tasks"
+  - "codex path map tasks"
   - "cli-external phase 004 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex"
@@ -24,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The candidate set excludes the nested manual-testing-playbook tree."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex"
 ---
 # Tasks: cli-codex component naming
 

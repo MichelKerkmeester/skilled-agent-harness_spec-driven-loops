@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: sk-doc subtree rollup gate"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate/plan]"
 description: "Read-only aggregation and whole-surface naming gate for the sk-doc component phases."
 trigger_phrases:
   - "sk-doc skill gate plan"
   - "sk-doc naming rollup plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/007-skill-gate"
 ---
 # Implementation Plan: sk-doc subtree rollup gate
 

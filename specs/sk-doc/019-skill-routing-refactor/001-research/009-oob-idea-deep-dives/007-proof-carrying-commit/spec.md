@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep-Dive — Proof-Carrying Prepare/Verify/Commit"
+title: "Feature Specific [sk-doc/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/007-proof-carrying-commit/spec]"
 description: "Five-iteration SOL xhigh-fast deep-research lineage on a proof-carrying route lifecycle that splits one opaque commitment into PREPARE (read-only planning that emits a short-lived RouteProofV1 binding request/policy/registry hashes, a versioned read-set, ordered targets, authority class, preconditions, expiry, and idempotency key), destination-local VERIFY (recompute digests and current authority immediately before the first side effect, returning READY/STALE_PROOF/NEEDS_INPUT/DEFER/REJECT), and a narrow COMMIT where a proof is evidence not authority, a mutating leg invalidates later prepared legs, and post-mutation recovery is destination-owned rather than a false router-level atomic rollback."
 trigger_phrases:
   - "proof carrying route plan deep dive"

@@ -1,3 +1,15 @@
+---
+title: "Research: cli-devin and cli-cursor Hook Adapter [cli-external-orchestration/029-cli-devin-revival/research]"
+description: "This deep-research run (generation 2, session research-cli-hook-adapters-2026-07-27, executor cli-opencode/openai/gpt-5.6-sol reasoning-effort high, 5 forced iterations under --..."
+trigger_phrases:
+  - "research"
+  - "cli"
+  - "devin"
+  - "and"
+  - "029"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research: cli-devin and cli-cursor Hook Adapter Refinements, Hardening, and Dedup Opportunities
 
 ## Executive Summary

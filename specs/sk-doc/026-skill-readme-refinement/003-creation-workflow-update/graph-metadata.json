@@ -19,8 +19,6 @@
       "creation workflow update plan",
       "phase 003 tasks",
       "creation workflow update tasks",
-      "phase 003 checklist",
-      "creation workflow update verification",
       "phase 003 implementation summary"
     ],
     "key_topics": [
@@ -40,18 +38,41 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md",
       ".opencode/skills/sk-doc/sk-create-skill/references/skill/examples-and-maintenance.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
-      "checklist.md",
-      "spec.md",
-      "plan.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "creation-workflow.md",
         "kind": "doc",
@@ -77,39 +98,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
         "name": "hvr-rules.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -195,27 +186,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The create-skill workflow at `.opencode/skills/sk-doc/sk-create-skill/references/skill/creation-workflow.md` predates the README refinement program",
     "created_at": "2026-08-04T07:12:16.927Z",
-    "last_save_at": "2026-08-04T20:10:44.031Z",
+    "last_save_at": "2026-08-30T07:20:16.901Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7db55eb01329db7376be94ad2dddc1ceb0533fda5b4cbad4050c220653bdf887",
+    "source_fingerprint": "sha256:b4b07a77a04b16dca2e3a9339103dc9b7bfa267f39add900b2ee99b37f0f9e55",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f0c0acabf69eeac2ff1d215b8d5fdfbc39d52a056b8f4e6471dda2278bfdaaa7",
-      "plan.md": "d89ba94385f8115577df943cc383f4c4649e2e4f149a53b645fa5cb52bc54753",
-      "tasks.md": "d0d761716a6be2b2ef83c9ae8b6548edc307c1718ad18d5516349364e0545cb2",
-      "checklist.md": "3b43dbc0a8d93c19607ad3b2bda239f36b2deecfc1b471cfcab5ef9ee47229dc",
-      "implementation-summary.md": "c9746ac08f87722073ad5f0c0f25c12411b0c5c4b50f709a6ae2dc93c5f7b549"
+      "spec.md": "b813378f2ec2531b699d7de0afa253dcca24bdf46952cb804798c62139b1adff",
+      "plan.md": "b450b82cc69683029d4cd8104d71b89ab0cb2d16779c8ad92b5fd480468debfc",
+      "tasks.md": "0332d62d1dcc423dea6ea3622ba1f4aac06f79f06922d7c878517aa7906d2aed",
+      "implementation-summary.md": "f7c0535e20d83463bb4981bd0ad4bd3f0bdb941aa7a61f50be615bdccaca8116"
     },
     "last_active_child_id": null,
     "last_active_at": null

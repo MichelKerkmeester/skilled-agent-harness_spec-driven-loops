@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Devin agents/skills/rules parity"
+title: "Implementation Plan: [cli-external-orchestration/029-cli-devin-revival/015-devin-agents-skills-rules-parity/plan]"
 description: "Document Devin's already-working skills/rules discovery and build the first real .devin/agents/*/AGENT.md profile, gated on a live-docs format verification."
 trigger_phrases:
   - "devin agents skills rules parity plan"

@@ -11,18 +11,18 @@
   },
   "derived": {
     "trigger_phrases": [
-      "Devin hook truth",
-      "runtime hook README parity",
-      "Cursor hook mirror",
-      "Zed MCP cleanup",
-      "Devin hook truth plan",
-      "runtime README alignment plan",
-      "Zed MCP cleanup plan",
-      "Devin hook truth tasks",
-      "runtime README parity tasks",
-      "Devin hook truth checklist",
-      "runtime README parity verification",
-      "Devin hook truth decision"
+      "devin hook truth",
+      "runtime hook readme parity",
+      "cursor hook mirror",
+      "zed mcp cleanup",
+      "devin hook truth plan",
+      "runtime readme alignment plan",
+      "zed mcp cleanup plan",
+      "devin hook truth tasks",
+      "runtime readme parity tasks",
+      "devin hook truth decision",
+      "superseded hook evidence",
+      "devin hook truth implementation"
     ],
     "key_topics": [
       "devin",
@@ -41,22 +41,50 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       ".devin/hooks.v1.json",
       ".claude/hooks/README.md",
       ".cursor/hooks/README.md",
       ".cursor/hooks.json",
-      ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js",
       ".codex/hooks/README.md",
       ".cursor/hooks/mcp-route-guard.mjs",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "decision-record.md",
-      "hooks/devin/README.md",
-      "spec.md",
-      "implementation-summary.md"
+      "hooks/devin/README.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "hooks.v1.json",
         "kind": "config",
@@ -76,51 +104,9 @@
         "source": "derived"
       },
       {
-        "name": "index.js",
-        "kind": "code",
-        "path": ".opencode/skills/mcp-code-mode/mcp-server/dist/index.js",
-        "source": "derived"
-      },
-      {
         "name": "mcp-route-guard.mjs",
         "kind": "file",
         "path": ".cursor/hooks/mcp-route-guard.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,29 +186,40 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Refresh Claude",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parse Zed",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The registration file was originally written with an unsupported wrapper shape",
     "created_at": "2026-07-25T09:17:23Z",
-    "last_save_at": "2026-07-26T19:05:19.586Z",
+    "last_save_at": "2026-08-30T07:18:51.255Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c92820583c88c1c8c10c8fd7c6d01de76a82cc465534ad939f2bb0255fd2c6b8",
+    "source_fingerprint": "sha256:2c0739e6596ee556d35bd65e0050e6a19001c089850aadae5c178982c98ed28d",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "1d862112497dbb1f0e6ca612f8dee41bc53ce1f9911f54f45e0a89ea83660809",
-      "plan.md": "81b195536cbe4bf4cd3f9e0827c066f1894487ccdb31a54ca99fe5af9919be6e",
-      "tasks.md": "aadd5e88f036e08662868ad674ae01e41642a1ecf92bde6d86a505575face25d",
-      "checklist.md": "cde6c9c8f4261fac18e635a93ce647ba8a2c9f477a9f01e59a140c313110bc4e",
-      "decision-record.md": "74e166a1bad8a675849e6e2b04d66ec8593c9df2a409d009592f62da5b808669",
-      "implementation-summary.md": "849550390e03714e093637b3870474279b5c97679845b73800cccaa30004a5eb"
+      "spec.md": "17091b1aa13b59158f606c7229fcab2c83093ff95670f2806018ce39ba1e3c0a",
+      "plan.md": "a68bb6e0df18073f50afa68e2bad79aaf038f327fd77181d73cd0e6c4245b5c5",
+      "tasks.md": "b46bf05178136d96185d583b7bf951b0317be82a80dad6fd4c363b8846cd8632",
+      "decision-record.md": "422bb07c48aad6da48b0783dcc60f12d01c7285491b4b61538028d4a63332b07",
+      "implementation-summary.md": "291947c6fbb99c1304a4f22a5efcf0530cc1c020823dca0b843815a0948163ff"
     },
     "last_active_child_id": null,
     "last_active_at": null

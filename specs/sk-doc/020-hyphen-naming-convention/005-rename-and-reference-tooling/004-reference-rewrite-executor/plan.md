@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: static reference-rewrite executor (020 phase 005.004)"
+title: "Implementatio [sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/plan]"
 description: "Implementation plan for the CAS-protected static reference-rewrite executor: load the disposition ledger and semantic map, plan per-site rewrites keyed to preimage blob hashes, apply one dependency-closed batch at a time, and regenerate rather than force-apply when a blob drifts."
 trigger_phrases:
   - "reference-rewrite executor implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "preimage blob rewrite plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
@@ -25,6 +24,7 @@ _memory:
     answered_questions:
       - "The executor is a plan-then-apply operation over one dependency-closed batch, gated by a preimage compare-and-swap."
       - "A drifted blob regenerates its batch's rewrite plan; it never receives a stale textual patch."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
 ---
 # Implementation Plan: Static Reference-Rewrite Executor
 

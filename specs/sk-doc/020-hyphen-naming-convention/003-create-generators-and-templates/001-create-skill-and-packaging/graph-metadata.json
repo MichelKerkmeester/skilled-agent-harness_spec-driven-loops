@@ -18,11 +18,10 @@
       "skill packaging naming plan",
       "create-skill scaffolding tasks",
       "skill packaging naming tasks",
-      "create-skill scaffolding checklist",
-      "skill packaging naming checklist",
       "create-skill implementation summary",
       "skill package naming completion",
-      "kebab-case scaffold results"
+      "kebab-case scaffold results",
+      "generated path validation results"
     ],
     "key_topics": [
       "create-skill",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -169,49 +161,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "What Was Built New",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "Generated Path Contract The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The create-skill scaffolder and package checks must keep generated skill roots, packets, resource paths, and package names in kebab-case. Python implementation filenames remain exempt; the names those scripts produce do not.",
     "created_at": "2026-07-14T15:16:44Z",
-    "last_save_at": "2026-08-29T10:01:11.154Z",
+    "last_save_at": "2026-08-30T07:19:10.322Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e5593114defd45382e688157086202f1e409fed58a784cf0ac3ef45209a84487",
+    "source_fingerprint": "sha256:6d0bd3279c2907ef8e49ec2b5c5c4f3f58d524401c121a7071add074639059f6",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "7b959e2d8b7bc1be88a2846ff03b70683bdf0d1f3229aaa88519adfb36fd3863",
-      "plan.md": "f85a3025ddff749e7abd3f7ec86ee28a42f312444afeb433bf9cc17aa1df7ce5",
-      "tasks.md": "0f1d78954ed8990e899344ec0f37d5eb9da8ccc99ac31bc2fe74e1efbf739dc0",
-      "checklist.md": "50dbf8d4c0d21bfc8638da205cb0aaff3f7b399ccb5f8aa3678186b3d97e87cc",
-      "implementation-summary.md": "dc4cc223eac6a6f868ecafa0456e1b6f676beab09ed9c05a9bf5d8c2c3cfb5f2"
+      "spec.md": "ce000daeaf52e0c71243ea407b1a6ed7b4801a19847f0c0b01b98579077a9596",
+      "plan.md": "352526fb941c739baeac9c1224c152fb4cb1823cc7853033241d2f4e567218b2",
+      "tasks.md": "bcf29a6dddd28133b8266f0450cc2a4e7df21e5783db19040e2f476e958fb102",
+      "implementation-summary.md": "893fbf0cd6214d101b21b97248ef78947d8c373ce0af70e87ef651694bec7f42"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: prompt-improve asset and reference names (020 phase 004.002)"
+title: "Feature Specificatio [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve/spec]"
 description: "The prompt-improve packet still uses underscore-separated names for its format-guide assets and core reference files, and those paths are repeated in the packet skill, README, and router resource map. This phase renames only that packet-owned asset/reference set and closes every active path reference while leaving playbook, benchmark, changelog, tool-mandated, and data-key boundaries intact."
 trigger_phrases:
   - "prompt-improve kebab-case migration"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 002 naming"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve"
@@ -31,8 +30,8 @@ _memory:
       - "prompt-improve/manual_testing_playbook/** is owned by phase 004."
       - "prompt-improve/benchmark/** is owned by phase 005."
       - "Changelog history is not rewritten by this phase; phase 006 verifies release evidence."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/002-prompt-improve"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

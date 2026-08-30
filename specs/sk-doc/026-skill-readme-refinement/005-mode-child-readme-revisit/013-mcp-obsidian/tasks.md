@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 013 mcp-obsidian README revisit (verify-only exemplar)"
+title: "Tasks: Phase 013 mcp-obsidian [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/tasks]"
 description: "Task list for verifying the mcp-obsidian README against the refined template and for the conditional rewrite path."
 trigger_phrases:
   - "phase 13 tasks"

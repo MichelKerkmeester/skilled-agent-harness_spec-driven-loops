@@ -1,9 +1,17 @@
 ---
-title: "Tasks: de-numbering snippet filenames migration tooling"
+title: "...014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling/tasks]"
 description: "Task breakdown for authoring the deterministic, dry-runnable rename engine for the 111 in-scope snippet filenames."
+trigger_phrases:
+  - "014"
+  - "doc"
+  - "parent"
+  - "027"
+  - "catalog"
+  - "tasks"
+  - "003"
+  - "migration"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling"
@@ -15,6 +23,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
 ---
 # Tasks: De-Numbering Snippet Filenames Migration Tooling
 

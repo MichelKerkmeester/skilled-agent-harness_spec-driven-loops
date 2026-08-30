@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: static reference-rewrite executor (020 phase 005.004)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/spec]"
 description: "The checker only records reference sites read-only and the engine only moves files, so nothing deterministically rewrites in-file references to renamed paths. This phase defines a compare-and-swap-protected static reference-rewrite executor that consumes the disposition ledger and semantic map, verifies each site's preimage blob before writing, and regenerates rather than force-applies a rewrite plan whose base moved."
 trigger_phrases:
   - "static reference-rewrite executor"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "deterministic reference rewrite"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
@@ -28,8 +27,8 @@ _memory:
       - "The executor rewrites only static reference sites the checker already dispositioned; it never discovers references itself."
       - "Each rewrite records the preimage blob hash; a changed blob regenerates the plan instead of force-applying a stale textual patch."
       - "Dynamic references are routed to their producer or flagged, never blindly patched to a guessed path."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

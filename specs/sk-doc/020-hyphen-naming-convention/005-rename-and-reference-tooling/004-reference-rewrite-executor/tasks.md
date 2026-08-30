@@ -1,5 +1,5 @@
 ---
-title: "Tasks: static reference-rewrite executor (020 phase 005.004)"
+title: "Tasks: stati [sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor/tasks]"
 description: "Tasks for the static reference-rewrite executor: ledger/map loading, preimage-keyed planning, dependency-closed batching, compare-and-swap apply, dynamic-site routing, idempotency, and rollback."
 trigger_phrases:
   - "reference-rewrite executor tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "preimage blob rewrite tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
@@ -24,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Task evidence comes from disposable repositories or read-only plan output, never from a real migration run."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/004-reference-rewrite-executor"
 ---
 # Tasks: Static Reference-Rewrite Executor
 

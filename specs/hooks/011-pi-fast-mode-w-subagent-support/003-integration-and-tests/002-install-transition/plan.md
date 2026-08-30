@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2 install-transition"
+title: "Implementation Plan: [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition/plan]"
 description: "Capture rollback state, replace the colliding extension, and verify installed command ownership."
 trigger_phrases:
   - "install-transition plan"

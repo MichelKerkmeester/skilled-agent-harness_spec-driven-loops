@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-click-up naming closure (020 phase 003)"
+title: "Tasks: mcp-click-up [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up/tasks]"
 description: "Tasks for phase 003 of the mcp-tooling component naming migration: rename ClickUp catalog/playbook paths and repair their references."
 trigger_phrases:
   - "mcp-click-up naming tasks"
   - "clickup catalog playbook tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up"
 ---
 # Tasks: mcp-click-up Naming Closure
 

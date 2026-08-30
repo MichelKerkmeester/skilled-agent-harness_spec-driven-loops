@@ -19,10 +19,7 @@
       "020 design-md-generator tasks",
       "design-md-generator tasks",
       "sk-design design-md-generator execution",
-      "020 design-md-generator checklist",
-      "design-md-generator verification",
-      "sk-design design-md-generator checklist",
-      "020 design-md-generator gate"
+      "020 design-md-generator checklist"
     ],
     "key_topics": [
       "design-md-generator",
@@ -34,17 +31,16 @@
       "tasks",
       "execution",
       "checklist",
-      "verification",
-      "gate",
-      "md-generator"
+      "md-generator",
+      "mode",
+      "contains"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -66,9 +62,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specifi",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -97,12 +93,6 @@
       },
       {
         "name": "2. PROBLEM & PURPOSE",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. SCOPE",
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
@@ -178,37 +168,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The md-generator mode contains underscore-bearing authoring, extraction, and validation resource names, including its installation guide and private extraction procedure.",
     "created_at": "2026-07-14T15:17:18Z",
-    "last_save_at": "2026-08-29T13:10:04.693Z",
+    "last_save_at": "2026-08-30T07:19:21.830Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:64b69c129885ed3e429de9cfe70295b97baee2562c24f3bbf1533911d9f981b8",
+    "source_fingerprint": "sha256:636cfd4d3fb7e14756591ea9be3923c7bb2d753cae8abc8a0ebfb14c1c857053",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "88f1148b038fed6f9ec95cf0c27c980a2d387cbf46e91f937374f6a38ecd2361",
-      "plan.md": "32649586b82ac75c1a4e577d10fdccd2497a652ba68f253c7ea3020165aedceb",
-      "tasks.md": "4052b1e9a413c0597d2211e9935499171eecd164d9e2fcbb4da1a27dae3af02f",
-      "checklist.md": "92afe7160d42b349ab91107a52702fbd5d35098c1dab2d001334ec2056656bfd"
+      "spec.md": "03a135ae4013a4c1dc4400c02d93c9825991309fa32c0c7a2b8d6b0e0a7c1af2",
+      "plan.md": "cc2aa89f2aa107ed11eb7a8c1e5bdc76267099d4f6bf674bdfc2efe33dfd5ddf",
+      "tasks.md": "39363bead3c871727dbb84a8152cc7b6fa5444a3f6faf31ac4e785ca67bf0ac7"
     },
     "last_active_child_id": null,
     "last_active_at": null

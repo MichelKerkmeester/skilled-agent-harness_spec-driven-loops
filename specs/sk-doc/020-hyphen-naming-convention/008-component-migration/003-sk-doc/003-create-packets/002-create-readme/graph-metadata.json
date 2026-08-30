@@ -17,9 +17,7 @@
       "create-readme resource implementation plan",
       "install guide template rename plan",
       "create-readme resource tasks",
-      "install guide template rename tasks",
-      "create-readme resource checklist",
-      "install guide template rename verification"
+      "install guide template rename tasks"
     ],
     "key_topics": [
       "create-readme",
@@ -40,8 +38,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The create-readme packet contains an install_guide directory and snake_case template/reference filenames. This phase renames those non-exempt resources to kebab-case and updates documentation and audit-script path references while keeping Python scripts and template payload keys exact.",
     "created_at": "2026-07-14T15:22:34Z",
-    "last_save_at": "2026-08-29T10:00:46.729Z",
+    "last_save_at": "2026-08-30T07:19:25.755Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:391cea6d14034c4bc7d49522b38501f6f83a5b643449026766ae9daa009212cb",
+    "source_fingerprint": "sha256:4937de685b956b676780e8ba608bfd28445691a5e74f4d60374c461e4cbca787",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "e75fbb655b7f152717256140ada6d42dc1ba9c21396450bb047942558d662a36",
-      "plan.md": "8c589d9c060a072eee4c1036fb9207400b3030d8d622700057b2e999690c2d1b",
-      "tasks.md": "822a03405996b6ce80900bec8d8cffd3f8d7696469e7d3492071e8acd46bf6e2",
-      "checklist.md": "3b154a1d6b65a418d6eb014a7fa8f4f821c9bf1478843136bdaa504e4ef04129"
+      "spec.md": "da15a992bc85d8fc14c6993a279edf58d151c230970316b4812e116b0cb56fab",
+      "plan.md": "9df79ee2a6b789189e872760e98aff7d540f8df90b77acfd1b56d7208825ad41",
+      "tasks.md": "b5150cb84d1bd594bcead2d391a95df633abbf4d20bd036068d88b247675e50d"
     },
     "last_active_child_id": null,
     "last_active_at": null

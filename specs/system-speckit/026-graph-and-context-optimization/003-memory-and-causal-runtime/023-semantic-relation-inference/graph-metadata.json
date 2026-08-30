@@ -18,13 +18,13 @@
       "contradicts supersession causal edges",
       "related_memories backfill collector",
       "opt-in relation backfill collectors",
-      "semantic relation inference checklist",
-      "similarity contradicts collector verification",
-      "opt-in backfill collector verification",
-      "semantic relation inference decision",
-      "cached related_memories over live vec",
-      "supersession contradicts over semantic",
-      "opt-in collector posture"
+      "plan",
+      "023",
+      "semantic",
+      "ystem",
+      "speckit",
+      "026",
+      "graph"
     ],
     "key_topics": [
       "semantic",
@@ -46,7 +46,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "review/review-report.md",
@@ -56,8 +55,7 @@
       "lib/causal/relation-coverage.ts",
       "handlers/causal-graph.ts",
       "schemas/tool-input-schemas.ts",
-      "lib/storage/causal-edges.ts",
-      "lib/causal/README.md"
+      "lib/storage/causal-edges.ts"
     ],
     "entities": [
       {
@@ -76,12 +74,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -145,12 +137,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "lib/causal/README.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,29 +189,40 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 021's backfill only promotes two structural signals (spec-document chains + lineage predecessor links) into typed edges",
     "created_at": "2026-06-04T13:30:00Z",
-    "last_save_at": "2026-08-29T15:22:17.081Z",
+    "last_save_at": "2026-08-30T07:16:33.437Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:453ef8ba5a6aba913dff6bbede19c30077f0c8771d5f51b4b0c0ccd7fa181831",
+    "source_fingerprint": "sha256:ecf332092089ee33b621bd5f1395c8c2e2cf7dfbecd9edf3a9b0ec2961a2d7ff",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "2eab1862a70d3082798a1d835534e71afdda12a26ebd5cd94d13a34c3513d366",
-      "plan.md": "4507d8e1fad088794aaa2db814355baeaef573639660876c7fd6925e49cd5c3b",
-      "tasks.md": "74d9a30e935e153bacdea291129c2df58ff99a9e1658b9e3dbb3e218e2d5dcb3",
-      "checklist.md": "9438d638164c9f2d0b96432a8237bc85ad6cd397fd4cb5815ed2de2c657a1971",
-      "decision-record.md": "842a7ec8cce66bbc18d396de9b6db89c4a5bdb49bd07f0de6afd88b03da5e356",
-      "implementation-summary.md": "4a91343d2650ae7c731c7e45285b802e5095525689f3accd9bacd5009bac21e6"
+      "spec.md": "c4cf4930c5a96c2c46eb87e5a9b51809e95d8bb20d4630f9ea1972d35f9c4584",
+      "plan.md": "a6b2ae96f956ca01d9d375ce92af361500c59569840038bef05eaef5cf41f0fd",
+      "tasks.md": "dd9b4847b4850cc148e675c2473f6f32fa355618e05f4fab032476f9e3b1b1dd",
+      "decision-record.md": "bd3ad5e6f6dad9302edbefe5717ab0bbb3c64696a9009439501d0b7e316c14ba",
+      "implementation-summary.md": "fce17152b682e97f0e9b7d0b0f31243e8a2b38a1b17752847f8a615837d6e8a8"
     },
     "last_active_child_id": null,
     "last_active_at": null

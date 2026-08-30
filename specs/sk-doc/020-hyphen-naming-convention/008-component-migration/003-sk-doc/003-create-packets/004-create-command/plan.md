@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: create-command resource names"
+title: "Impl [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command/plan]"
 description: "Execution plan for the create-command template and routing-reference rename/reference closure."
 trigger_phrases:
   - "create-command resource implementation plan"
   - "command template rename plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
 ---
 # Implementation Plan: create-command resource names
 

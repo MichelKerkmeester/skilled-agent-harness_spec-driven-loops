@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: semantic rename engine (020 phase 005.001)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/spec]"
 description: "The migration needs a deterministic git-mv engine driven by an explicit semantic source-to-target map. It must batch by dependency closure, skip every policy exemption, abort safely on collisions, remain idempotent, and support dry-run and rollback without performing the migration during authoring."
 trigger_phrases:
   - "semantic rename engine"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "rename engine rollback"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
@@ -24,8 +23,8 @@ _memory:
       - "The engine consumes an explicit semantic source-to-target map; it never derives names by replacing every underscore."
       - "A batch is a dependency closure and may contain mixed file extensions."
       - "Dry-run is the default; apply and rollback are explicit, journaled operations."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

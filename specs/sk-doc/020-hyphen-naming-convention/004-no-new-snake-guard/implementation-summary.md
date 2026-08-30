@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: no-new-snake guard (020 phase 004)"
+title: "Implementation Summary: [sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard/implementation-summary]"
 description: "Phase 004 outcome: an exemption-aware guard that fails only on newly-introduced snake_case names, plus the leaked name it already caught."
 trigger_phrases:
   - "no new snake guard summary"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "changed-since snake guard"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard"
 ---
 # Implementation Summary
 

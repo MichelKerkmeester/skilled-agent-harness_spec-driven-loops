@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Devin hook hardening"
+title: "Tasks: Devin hook hardening [cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening/tasks]"
 description: "Task breakdown for the devin adapter workspace-root, cwd-fallback, test-suite, and comment-hygiene hardening pass."
 trigger_phrases:
   - "devin hook hardening tasks"

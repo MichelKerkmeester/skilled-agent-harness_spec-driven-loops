@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Benchmark — Compiled Lane C Parity"
+title: "...actor/015-router-unification-program/019-routing-coverage-activation-verification/004-benchmark-compiled-lane-c/plan]"
 description: "How the non-frozen compiled-routing-parity harness will translate, gate, and score compiled-vs-legacy routing without ever touching the frozen scorer trio."
 trigger_phrases:
   - "compiled lane c parity plan"

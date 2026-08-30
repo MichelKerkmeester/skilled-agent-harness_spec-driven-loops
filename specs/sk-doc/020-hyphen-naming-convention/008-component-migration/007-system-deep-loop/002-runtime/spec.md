@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop runtime names (020 phase 007/002)"
+title: "Feature Specificatio [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime/spec]"
 description: "The runtime tree has six snake_case directories and 108 underscore-bearing files across its catalog, playbook, libraries, scripts, and tests. This phase renames those in-scope names to kebab-case and updates path consumers while preserving the package workspace, tool-mandated files, database contracts, and all code/data identifiers."
 trigger_phrases:
   - "system-deep-loop runtime naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "runtime snake_case filesystem names"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime"
@@ -23,8 +22,8 @@ _memory:
       - "The live runtime inventory has six underscore-bearing directories and 108 underscore-bearing files."
       - "package-lock.json, tsconfig.json, vitest.config.ts, .opencode state markers, SQLite names, and other tool contracts stay exact."
       - "Runtime catalog and playbook trees move with their path consumers as one dependency-closed surface."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

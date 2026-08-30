@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 010 system-skill-advisor README revisit"
+title: "Tasks: Phase 010 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/tasks]"
 description: "Task list for the system-skill-advisor README rewrite: baseline setup, purpose-first rewrite, version bump, changelog entry and verification."
 trigger_phrases:
   - "phase 010 tasks"

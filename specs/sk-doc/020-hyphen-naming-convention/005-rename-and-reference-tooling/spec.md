@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Rename and Reference Tooling"
+title: "Feature Specification: Rename and [sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/spec]"
 description: "The tooling phase defines a deterministic, exemption-aware rename engine, a read-only whole-repository reference checker with a disposition ledger, and a compare-and-swap static reference-rewrite executor, then proves them against disposable fixtures before any migration run."
 trigger_phrases:
   - "rename and reference tooling"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "rename disposition ledger"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
@@ -23,8 +22,8 @@ _memory:
     answered_questions:
       - "The tooling describes and verifies future migration behavior; this authoring pass performs no rename."
       - "In-scope names use kebab-case; Python files, Python package directories, and tool-mandated names remain exempt."
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose and child phase map only; detailed mechanics live in child documents. -->

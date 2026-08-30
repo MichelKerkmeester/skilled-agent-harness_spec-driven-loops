@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 007 mcp-aside-devtools mode skill README rewrite"
+title: "Implementation Plan: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools/plan]"
 description: "Rewrite the mcp-aside-devtools skill README purpose-first against the refined template with a version bump, a changelog entry and zero validator and HVR violations."
 trigger_phrases:
   - "phase 007 plan"

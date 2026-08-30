@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: convention policy and scope (020 phase 001)"
+title: "Feature Specification: convention policy [sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/spec]"
 description: "There is no single authoritative statement that kebab-case (hyphens) is the canonical filesystem-naming form, nor a written exemption boundary, nor a record of the program decisions from the GPT design review. Packet 027 currently mandates the opposite for catalog/playbook content. This phase publishes the canonical co"
 trigger_phrases:
   - "convention policy and scope"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "kebab-case convention policy"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

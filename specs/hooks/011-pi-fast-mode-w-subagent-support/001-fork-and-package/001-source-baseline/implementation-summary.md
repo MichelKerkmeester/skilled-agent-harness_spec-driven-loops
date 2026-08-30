@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 1 source-baseline"
+title: "Implementati [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline/implementation-summary]"
 description: "Closeout record for the isolated source baseline."
 trigger_phrases:
   - "source-baseline implementation summary"

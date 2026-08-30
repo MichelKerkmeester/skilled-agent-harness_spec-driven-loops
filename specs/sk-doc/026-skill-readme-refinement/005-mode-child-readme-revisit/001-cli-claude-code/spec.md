@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1 cli-claude-code README rewrite"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/spec]"
 description: "Rewrite the mode skill README at .opencode/skills/cli-external-orchestration/cli-claude-code/README.md purpose-first against the refined template from phase 001, with mcp-obsidian as the exemplar, plus a version bump, a changelog entry and validation."
 trigger_phrases:
   - "cli claude code readme rewrite"

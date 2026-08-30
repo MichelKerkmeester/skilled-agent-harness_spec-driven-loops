@@ -12,17 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "cli-opencode kebab-case migration",
-      "OpenCode reference asset naming",
+      "opencode reference asset naming",
       "cli-external phase 002 naming",
       "cli-opencode implementation plan",
-      "OpenCode asset reference rename plan",
+      "opencode asset reference rename plan",
       "cli-external phase 002 plan",
       "cli-opencode naming tasks",
-      "OpenCode path map tasks",
+      "opencode path map tasks",
       "cli-external phase 002 tasks",
-      "cli-opencode naming checklist",
-      "OpenCode path map verifier",
-      "cli-external phase 002 acceptance"
+      "cli-opencode naming decision record",
+      "opencode path key boundary",
+      "cli-external phase 002 decisions"
     ],
     "key_topics": [
       "cli-opencode",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       ".opencode/skills/cli-external-orchestration/cli-opencode/SKILL.md",
       ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,27 +187,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-opencode component has snake_case reference and asset filenames, including permissions-matrix examples/schema and prompt assets, with active links from SKILL.md, README.md, and JSON path values. This phase renames those local filesystem names and closes their references while preserving tool contracts and delegated playbook ownership.",
     "created_at": "2026-07-14T15:17:36Z",
-    "last_save_at": "2026-08-29T13:10:04.005Z",
+    "last_save_at": "2026-08-30T07:19:33.780Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d51e2da4a86a312960d64981d0c7ba0abd90d0fafe4c083141beb4ba370b4e6f",
+    "source_fingerprint": "sha256:ad1b6dffd5df527ed4689e49a6c951bc3e91c519a7183b4a0ce30c8789feffe7",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "99ec0a1272626ca65e718045a260e0adeea19957a5cfc9ab7f08657dc4decab1",
-      "plan.md": "e60978e96ffebc3b0f4b9c9c337223e7e041db427d485ab8a9e58cb8a9d240c3",
-      "tasks.md": "a0cff7cc457ed13fadf541aaa1ebbd89652a6abf6fea9c8f51d7e4e07d93997d",
-      "checklist.md": "e1e342b7266cb5bd458da529622f06c047912a672c03857d2afca4ad3e311dc8",
-      "decision-record.md": "4087eba5cd1b48ffcd733ed299b4d5a602a7a24af8aaa694ac946831523c63a4"
+      "spec.md": "a34923899fbb68cfb9619ed67f44816fa06cee1bcb7f1331d9c4c197a631e3b6",
+      "plan.md": "8b90f6ce8cd261888fd2ecb91cb4559489426c8ac528112ea9e4f39727e8b4d5",
+      "tasks.md": "633d494ad784d5527e60348b9980c962cf076ad0292d18618f1ba1df80d16916",
+      "decision-record.md": "f99846a857e1c37fa32d4f106b1dd68340caafce4a749f16854829791fa2d549"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,7 +1,6 @@
 ---
-title: "Implementation Summary: create-command + command-surface improvement research"
+title: "Implementation [system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/implementation-summary]"
 description: "The two-lineage deep-research fan-out and the reconciled cross-model improvement backlog at research/research.md are complete and run-integrity verified; downstream remediation is deferred to successor packet 013."
-status: in_progress
 trigger_phrases:
   - "command improvement research summary"
   - "command surface fan-out synthesis"
@@ -29,6 +28,7 @@ _memory:
     answered_questions:
       - "The run is complete: both lineages 5/5, stopReason maxIterationsReached."
       - "The deliverable is research/research.md; deltas seed follow-on packets."
+status: in_progress
 ---
 # Implementation Summary
 

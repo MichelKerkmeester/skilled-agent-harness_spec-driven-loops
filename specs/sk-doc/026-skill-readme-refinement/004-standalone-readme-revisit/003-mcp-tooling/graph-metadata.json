@@ -41,33 +41,19 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/mcp-tooling/README.md",
-      ".opencode/skills/mcp-tooling/changelog/v1.5.0.0.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
+      ".opencode/skills/mcp-tooling/README.md",
+      ".opencode/skills/mcp-tooling/changelog/v1.5.0.0.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/checklist.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.5.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-tooling/changelog/v1.5.0.0.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -87,15 +73,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/changelog/v1.5.0.0.md",
         "source": "derived"
       },
       {
@@ -199,27 +191,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/mcp-tooling/README.md` still carries the older tabular reference-card style: an AT A GLANCE table, a QUICK START block and a short VERIFICATION section describe the hub as a route map before any outcome",
     "created_at": "2026-08-04T08:34:35.776Z",
-    "last_save_at": "2026-08-04T12:50:26.104Z",
+    "last_save_at": "2026-08-30T07:20:18.647Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:67f873bca873b55ffa5c73be9dcc52ba92f8cb8660b4f04630f494f83f306ac5",
+    "source_fingerprint": "sha256:583e36998e4d3e694ef79b08ee6bc9b3ca5f4f4d5721591386710158fe56a9f1",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "883551b7fbe23f1beab026e196b51439ad60f6b79e39c4c33bb50c9be98284be",
-      "plan.md": "62b62532c0d94b9852b7ca5a4a2bdeddb446b0e28c7cf7818c75240cd9335525",
-      "tasks.md": "27235a8be7b2509a7843a4eea08f2ecf073eb48f18e48b3aa3ad698e69bc8e17",
-      "checklist.md": "2bcfb128e41f298a4426e686f595fd5ab1d722a3657f2d5849e229e6aa315345",
-      "implementation-summary.md": "ee87407c5128c3a8e2ac930c4e120a54e91f8acfeb9277699dfef9c652413d6b"
+      "spec.md": "54eabe56038111882c4eabe5027ba454e1b48cff3acb194bcc21626bf88000bd",
+      "plan.md": "6eb533a0c749dbb94831cce96bcedd6d7235e8a13b8bcffb042f2aa2e20f1395",
+      "tasks.md": "6b0112d48772c3da8f136cd08fdef2561608df17dcc30f921a43af8e19400c9d",
+      "implementation-summary.md": "a5b63079eb553f3605293229dd1b3ae86d88e10a7189c847b5c1c647b189a6a4"
     },
     "last_active_child_id": null,
     "last_active_at": null

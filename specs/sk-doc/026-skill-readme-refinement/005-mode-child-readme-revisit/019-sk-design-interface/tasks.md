@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 019 sk-design-interface README revisit"
+title: "Tasks: Phase 019 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/019-sk-design-interface/tasks]"
 description: "Task list for rewriting the sk-design-interface mode skill README against the refined template with a version bump, changelog entry and full validation."
 trigger_phrases:
   - "phase 019 tasks"

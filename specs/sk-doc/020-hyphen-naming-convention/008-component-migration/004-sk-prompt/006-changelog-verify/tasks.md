@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-prompt changelog and version verification (020 phase 004.006)"
+title: "Tasks: sk-prompt [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify/tasks]"
 description: "Tasks for phase 006 of the sk-prompt kebab-case program: inventory release evidence, compare versions and rename-set coverage, and issue a pass/block handoff without changing the skill surface."
 trigger_phrases:
   - "sk-prompt changelog verification tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 006 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify"
@@ -26,8 +25,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "This phase performs verification only; it does not create or edit changelog entries."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/006-changelog-verify"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

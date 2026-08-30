@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Compiled-Routing Coverage Build-Out & Genuine Default-On"
+title: "...tor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/tasks]"
 description: "Task breakdown mirroring the 6-part plan: sk-code pilot, replicate to thin hubs, fix over-detection bugs, re-mint and build sk-doc/system-deep-loop, stage the flip, verify the fleet."
 trigger_phrases:
   - "compiled routing coverage tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "staged flip task list"
 importance_tier: "critical"
 contextType: "implementation"
-status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout"
@@ -25,6 +24,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+status: "complete"
 ---
 # Tasks: Compiled-Routing Coverage Build-Out & Genuine Default-On
 

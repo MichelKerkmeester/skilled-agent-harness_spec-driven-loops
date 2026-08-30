@@ -1,6 +1,5 @@
 ---
-title: "Feature Specification: Cross-Runtime Hook Parity Release-Readiness Audit"
-template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+title: "...gram-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit/spec]"
 description: "Deep-review angle 5 audits Claude, Codex, Copilot, Gemini, and OpenCode hook parity for release readiness. The packet is read-only against hook source/config surfaces and writes only this Level 2 audit packet."
 trigger_phrases:
   - "045-005-cross-runtime-hook-parity-audit"
@@ -8,7 +7,7 @@ trigger_phrases:
   - "5-runtime hook review"
   - "cross-runtime feature parity"
 importance_tier: "important"
-contextType: "review"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit"
@@ -34,6 +33,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Latest hook-tests run-output is sandbox-skipped for live CLI cells, not a normal-shell verdict."
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 ---
 # Feature Specification: Cross-Runtime Hook Parity Release-Readiness Audit
 

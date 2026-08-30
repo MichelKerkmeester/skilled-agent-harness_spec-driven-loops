@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: fixture corpus and dry-run harness (020 phase 005.003)"
+title: "Imple [sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/plan]"
 description: "Implementation plan for disposable Git fixtures and a deterministic harness that exercises the rename engine and reference checker across semantic, exemption, collision, reference, idempotency, rollback, and zero-scan cases without touching the real migration tree."
 trigger_phrases:
   - "fixture corpus implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "pre-migration fixture testing"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
@@ -26,6 +25,7 @@ _memory:
     answered_questions:
       - "Every harness run starts from a fresh disposable repository and compares against a captured baseline."
       - "The real migration worktree is never an apply target for fixture tests."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
 ---
 # Implementation Plan: Fixture Corpus and Dry-Run Harness
 

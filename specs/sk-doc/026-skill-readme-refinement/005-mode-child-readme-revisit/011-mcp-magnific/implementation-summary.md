@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 011 mcp-magnific README rewrite"
+title: "Implementatio [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/011-mcp-magnific/implementation-summary]"
 description: "Closeout record for the mcp-magnific README purpose-first rewrite, version bump, changelog entry and validation."
 trigger_phrases:
   - "phase 011 implementation summary"

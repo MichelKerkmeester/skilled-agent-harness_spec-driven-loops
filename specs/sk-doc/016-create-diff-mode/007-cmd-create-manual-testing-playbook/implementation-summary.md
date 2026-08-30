@@ -1,12 +1,11 @@
 ---
-title: "Implementation Summary [sk-doc/007-cmd-create-manual-testing-playbook/implementation-summary]"
+title: "Implementation Summary [sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook/implementation-summary]"
 description: "The /create:testing-playbook command is now implemented, validated, and synchronized across command docs, workflow assets, runtime mirrors, and discovery surfaces."
 trigger_phrases:
   - "testing playbook command implementation summary"
   - "/create:testing-playbook summary"
 importance_tier: "important"
 contextType: "implementation"
-template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 _memory:
   continuity:
     packet_pointer: "sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook"
@@ -15,6 +14,7 @@ _memory:
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
     next_safe_action: "Revalidate packet docs and update continuity on next save"
     key_files: ["implementation-summary.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->"
 ---
 # Implementation Summary
 

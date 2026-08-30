@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: prompt-models asset and reference names (020 phase 004.003)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models/plan]"
 description: "Implementation plan for phase 003 of the sk-prompt kebab-case program: rename eight prompt-models asset/reference files, update active consumers, preserve JSON data semantics, and exclude benchmark output."
 trigger_phrases:
   - "prompt-models asset and reference implementation plan"
   - "sk-prompt phase 003 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models"
@@ -24,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Benchmark trees and changelog history are adjacent-phase boundaries."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models"
 ---
 # Implementation Plan: prompt-models asset and reference names
 

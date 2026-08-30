@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: agents surface migration (020 component phase 014)"
+title: "Feature Specification: agents surface [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/spec]"
 description: "The 020 program needs a bounded documentation map for the agents surface. This parent groups one verify-only child per agent definition and a final rollup gate so every runtime agent directory is checked against the kebab-case filesystem policy."
 trigger_phrases:
   - "agents surface migration"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "014 agents gate"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
@@ -21,8 +20,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

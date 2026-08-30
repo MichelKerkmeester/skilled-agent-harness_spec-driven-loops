@@ -37,7 +37,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "scripts/codex/sync-prompts.cjs",
       "scripts/codex/sync-agents.cjs"
     ],
@@ -61,12 +60,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "sync-prompts.cjs",
         "kind": "file",
         "path": "scripts/codex/sync-prompts.cjs",
@@ -76,6 +69,12 @@
         "name": "sync-agents.cjs",
         "kind": "file",
         "path": "scripts/codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specific",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -105,12 +104,6 @@
       {
         "name": "no",
         "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "1. METADATA",
-        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
@@ -179,31 +172,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit surface has a small set of non-Python script filenames that still contain underscores, while Python scripts and test fixture names follow separate contracts. This phase renames only permitted script filenames and updates sourcing, imports, and registry references without touching Python filenames or test-runner magic.",
     "created_at": "2026-07-14T15:18:00Z",
-    "last_save_at": "2026-08-29T13:10:13.140Z",
+    "last_save_at": "2026-08-30T07:19:45.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:a5ee613144000272d48030bfe57b99c8b8cf839f6cf86ecc66afa4593cb4a1ce",
+    "source_fingerprint": "sha256:7f486f74b689624d2388b2c94e610eac548ac3107188f0e286db678e0744e326",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "3a87e0d1a9ccdb46d92b4c04716661e9be7f037382a8039387863a1e44b3a5c5",
-      "plan.md": "f25de410b5d02dd9175c406a0b4853765f93ce9732481255d508bf9872c3f86e",
-      "tasks.md": "a0fffe417ec386ac3f0bfbe36a17459973724063b39adc9dc9529be92e13668f",
-      "checklist.md": "170b8c22b2eb7efd86c169f4cb73800932282e28ac63655560ed6ae20fc40b65"
+      "spec.md": "6d22349cc537a70e8bb7ac03b791943627d819217514e3674aa0e26db4489f46",
+      "plan.md": "f92fd9b547e02bb739512ec7dcab8b3bc948c758236a2544532fbc8c1ff596c8",
+      "tasks.md": "beef3491f66a66590e2357d914d7319afa0ce296906490a9f359892be285ddf8"
     },
     "last_active_child_id": null,
     "last_active_at": null

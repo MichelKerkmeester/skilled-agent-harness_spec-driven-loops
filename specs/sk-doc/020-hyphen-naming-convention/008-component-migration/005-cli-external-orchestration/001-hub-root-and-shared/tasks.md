@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-external-orchestration hub root and shared boundary (020 phase 005.001)"
+title: "...oc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared/tasks]"
 description: "Tasks for the cli-external-orchestration root/shared boundary: build the ownership ledger, preserve exact routing contracts, and verify delegated playbook and benchmark ownership."
 trigger_phrases:
   - "cli-external hub root tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 001 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
@@ -24,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The live shared/ directory is absent."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
 ---
 # Tasks: cli-external-orchestration hub root and shared boundary
 

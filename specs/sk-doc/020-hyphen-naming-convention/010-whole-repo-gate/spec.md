@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: whole-repo verification gate (020 phase 010)"
+title: "Feature Specification: whole-repo verification gate [sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/spec]"
 description: "The migration needs one evidence-based end-state gate that proves the scope-aware filesystem naming rule, reference closure, Git rename history, and the complete validation and test baseline all hold on the same candidate commit. This phase defines that gate and records exact pass measurements; it does not repair failures or perform the migration."
 trigger_phrases:
   - "whole-repo verification gate"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "kebab-case migration final gate"
 importance_tier: "critical"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate"
@@ -26,8 +25,8 @@ _memory:
       - "The gate evaluates one candidate SHA against the pinned BASE and the frozen, classified rename map."
       - "A Git rename must be observable as R-status; a delete plus add pair is not an acceptable substitute."
       - "The exemption set is scope-aware and includes Python files/package directories, generated/lockfile output, tool-mandated names, and frozen surfaces."
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

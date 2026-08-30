@@ -1,13 +1,12 @@
 ---
-title: "Feature Specification: root-name consumer migration (020 phase 002)"
-description: "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real file, the Lane C loader + generator, parent-skill-check.cjs, post-edit-router.cjs, package_skill.py, and an INVERSE guard that currently rejects the hyphenated state. All "
+title: "Feature Specification: root-name consumer [sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration/spec]"
+description: "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real file, the Lane C loader + generator, parent-skill-check.cjs, post-edit-router.cjs, package_skill.py, and an INVERSE guard that currently rejects the hyphenated state. All"
 trigger_phrases:
   - "root-name consumer migration"
   - "hyphen naming phase 002"
   - "kebab-case root name"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

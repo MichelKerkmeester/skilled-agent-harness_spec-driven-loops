@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-code-graph changelog verification (020 phase 007)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify/spec]"
 description: "The system-code-graph release history currently ends at v1.3.0.0 and does not yet prove that the 020 filesystem migration was recorded. This read-only phase verifies the next append-only changelog entry, the matching version bump, the complete phase-001–006 rename scope, and the preserved exemption boundary without performing a rename."
 trigger_phrases:
   - "system-code-graph changelog verification"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 system-code-graph phase 007"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify"
@@ -27,8 +26,8 @@ _memory:
     answered_questions:
       - "The current system-code-graph release baseline is v1.3.0.0 in SKILL.md, INSTALL_GUIDE.md, and changelog/v1.3.0.0.md."
       - "This phase verifies release evidence only; it does not edit changelog history or perform filesystem renames."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

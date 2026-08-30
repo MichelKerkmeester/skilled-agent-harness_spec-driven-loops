@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: Phase 1 extension-integration-suite"
+title: "Implementatio [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite/plan]"
 description: "Extend deterministic FakePi coverage across config, lifecycle, status, handoff, and command registration."
 trigger_phrases:
   - "extension-integration-suite plan"
-  - "FakePi integration tests"
+  - "fakepi integration tests"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

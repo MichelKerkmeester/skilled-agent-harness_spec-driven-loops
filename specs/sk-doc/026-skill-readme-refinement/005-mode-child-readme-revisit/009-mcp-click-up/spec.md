@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 009 mcp-click-up mode skill README rewrite"
+title: "Feature Specification: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up/spec]"
 description: "Rewrite the mcp-click-up mode skill README against the refined README template from phase 001 and the mcp-obsidian exemplar: purpose-first narrative, HVR clean, version bump, changelog entry, validated with zero issues."
 trigger_phrases:
   - "mcp click up readme"

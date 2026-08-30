@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-skill-advisor feature catalog"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog/spec]"
 description: "Rename the system-skill-advisor feature_catalog root, seven category directories, and 42 catalog files to kebab-case, then update every path link while preserving catalog classification tokens and code/data identifiers."
 trigger_phrases:
   - "system-skill-advisor feature catalog naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "catalog file link closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/005-feature-catalog"
@@ -28,8 +27,8 @@ _memory:
       - "The catalog contains 42 files, including feature_catalog/feature_catalog.md, under seven snake_case category directories."
       - "The root and path segments become feature-catalog and category/feature names become kebab-case."
       - "sk-doc template tags, frontmatter fields, JSON/YAML/TOML keys, and code identifiers retain their current spelling."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 037 deep-improvement README revisit"
+title: "Implement [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/implementation-summary]"
 description: "The deep-improvement README now opens purpose-first with a one-line pitch and a problem-first overview, carries the three lanes, the integration scan and the guarded promotion gate, and versioned at 1.17.1.0 with a changelog entry."
 trigger_phrases:
   - "implementation summary"

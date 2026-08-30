@@ -1,5 +1,5 @@
 ---
-title: "Tasks: reference checker and disposition ledger (020 phase 005.002)"
+title: "...doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger/tasks]"
 description: "Tasks for the whole-repository checker and ledger: enumerate scan coverage, resolve typed path references, disposition dynamic sites, validate map-row completeness, and fail on empty or unresolved scans."
 trigger_phrases:
   - "reference checker tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "dynamic reference audit tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
@@ -21,6 +20,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The checker must fail closed on zero files, unresolved references, ambiguous resolution, and undispositioned dynamic sites."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
 ---
 # Tasks: Reference Checker and Disposition Ledger
 

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 6 cli-pi mode skill README revisit"
+title: "Feature Specification: Phase 6 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi/spec]"
 description: "Rewrite the cli-pi skill README at cli-external-orchestration/cli-pi/ against the refined README template from phase 001 with the mcp-obsidian exemplar: purpose-first identity, one-line pitch, problem-first overview, version bump and changelog entry."
 trigger_phrases:
   - "cli pi readme"

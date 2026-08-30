@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 010 system-skill-advisor README revisit"
+title: "Implementation Plan: [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/plan]"
 description: "Rewrite the system-skill-advisor README against the refined standalone template with the mcp-obsidian exemplar shape, HVR clean, version bump plus changelog entry, validated with zero issues."
 trigger_phrases:
   - "phase 010 plan"

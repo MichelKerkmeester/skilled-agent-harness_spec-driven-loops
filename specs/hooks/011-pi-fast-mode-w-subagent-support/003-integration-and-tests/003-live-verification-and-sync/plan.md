@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3 live-verification-and-sync"
+title: "Implementation [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync/plan]"
 description: "Verify live UI and child handoff behavior, then update plugin docs and sync receipts."
 trigger_phrases:
   - "live-verification-and-sync plan"

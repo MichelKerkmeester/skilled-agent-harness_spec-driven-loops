@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: shared and cross-cutting dependency closures (020 phase 007)"
+title: "Feature Specification: shared and [sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/spec]"
 description: "Backbone phase for dependency closures whose filesystem-name changes and reference fan-out cross skill boundaries, shared script trees, root infrastructure, or active spec documentation."
 trigger_phrases:
   - "shared cross-cutting dependency closures"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "hoisted shared script closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures"
@@ -27,8 +26,8 @@ _memory:
       - "Kebab-case is the canonical form for in-scope filesystem names"
       - "Python scripts, Python import-package directories, tool-mandated names, generated output, and frozen history remain exempt"
       - "Each child owns a dependency closure and publishes its handoff for the component phases"
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + child phase map only; detailed plans, tasks, checklists, and decisions live in the children. -->

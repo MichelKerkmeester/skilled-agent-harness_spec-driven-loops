@@ -1,7 +1,8 @@
 ---
-title: "Tasks: Devin manual-testing playbook"
+title: "Tasks: Devin manual-testing [cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook/tasks]"
 description: "Task breakdown for authoring the Devin-native manual-testing playbook: setup/confirmation, root-file + 8-category authoring, and structural verification."
-trigger_phrases: ["devin manual testing playbook tasks"]
+trigger_phrases:
+  - "devin manual testing playbook tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:

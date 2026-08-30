@@ -1,13 +1,12 @@
 ---
-title: "Tasks: root and OpenCode infrastructure strays (020 phase 007 child 001)"
+title: "Tas [sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays/tasks]"
 description: "Tasks for the root and OpenCode infrastructure dependency closure, including candidate classification, semantic targets, same-surface references, and downstream handoff."
 trigger_phrases:
   - "root infrastructure closure tasks"
-  - "OpenCode infrastructure naming tasks"
+  - "opencode infrastructure naming tasks"
   - "phase 007 child 001 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays"
@@ -23,6 +22,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "All tasks describe future execution; this authoring pass performs no rename"
+parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays"
 ---
 # Tasks: Root and OpenCode Infrastructure Strays
 

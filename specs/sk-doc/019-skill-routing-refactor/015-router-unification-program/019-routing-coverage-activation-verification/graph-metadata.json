@@ -29,7 +29,13 @@
     "trigger_phrases": [
       "routing coverage activation verification",
       "compiled router enable by default program",
-      "compiled routing p0 foundation"
+      "compiled routing p0 foundation",
+      "doc",
+      "019",
+      "skill",
+      "routing",
+      "refactor",
+      "handover"
     ],
     "key_topics": [
       "routing",
@@ -42,23 +48,29 @@
       "default",
       "program",
       "foundation",
-      "phase",
-      "parent"
+      "doc",
+      "skill"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
+      "handover.md",
       "001-research/synthesis-v1.md",
       "001-research/review-v1.md",
-      "011-activation-cutover-p4/controller/cutover-controller.cjs",
-      "handover.md"
+      "011-activation-cutover-p4/controller/cutover-controller.cjs"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -77,18 +89,6 @@
         "name": "cutover-controller.cjs",
         "kind": "file",
         "path": "011-activation-cutover-p4/controller/cutover-controller.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "handover.md",
-        "kind": "doc",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -117,6 +117,12 @@
       },
       {
         "name": "the",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "cohort",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -154,17 +160,18 @@
     ],
     "causal_summary": "Phase parent for the program that makes the shipped-but-inert compiled skill-router perfectly integrated, enabled by default (as the phased P4 outcome that 012 settled), and verified through automated tests + benchmarks + manual-testing playbook scenarios (GPT-5.6 LUNA HIGH as the routed test subject), with all routing code aligned to sk-code:code-opencode and every MD authored via the correct sk-doc mode template.",
     "created_at": "2026-07-20T21:22:58.451Z",
-    "last_save_at": "2026-07-26T08:02:14.332Z",
+    "last_save_at": "2026-08-30T07:16:17.845Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:ff811e0c5e7071b2df7c4a8cd19445750d301bfde7b08e5a81f8b9c2d43405e0",
+    "source_fingerprint": "sha256:b8a1099e5425e97a9a9a0875622899cabdd55d2033eedce5d7ec435692aa8aa8",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "df8b345124d14da292f1935298077b3be4b7daa39627f02ba7343071c659e5bc",
-      "handover.md": "e71c9211e8e741998069bd1fdb99c4e2e5176ba77119671f596d2c4244bed82c"
+      "spec.md": "55ed6c36d9cdcfdddd6fef5837a4270c7eca7d68524212b511a7e84f5005b5e6",
+      "handover.md": "745ae1a251ad16f47a149fc5515b323af4fcba4de943b1481e7569db080616fa"
     },
     "last_active_child_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root",
     "last_active_at": "2026-07-26T08:02:14.332Z"

@@ -1,7 +1,8 @@
 ---
-title: "Tasks: Devin deep-loop executor support"
+title: "Tasks: Devin deep-loop [cli-external-orchestration/029-cli-devin-revival/002-deep-loop-executor-support/tasks]"
 description: "Task breakdown for restoring cli-devin as a typed deep-loop executor kind across the 5 hand-synced runtime files and their tests."
-trigger_phrases: ["cli-devin executor support tasks"]
+trigger_phrases:
+  - "cli-devin executor support tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:

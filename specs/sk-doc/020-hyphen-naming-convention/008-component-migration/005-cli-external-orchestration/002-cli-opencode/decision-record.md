@@ -1,13 +1,12 @@
 ---
-title: "Decision Record: cli-opencode component naming (020 phase 005.002)"
+title: "...020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode/decision-record]"
 description: "Design decisions for the cli-opencode rename: use an explicit local reference/asset map, rewrite path-valued schema consumers without changing data keys, and keep playbook/scripts/history ownership separate."
 trigger_phrases:
   - "cli-opencode naming decision record"
-  - "OpenCode path key boundary"
+  - "opencode path key boundary"
   - "cli-external phase 002 decisions"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
@@ -24,8 +23,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The four permissions-matrix assets are filesystem candidates while their JSON keys remain data contracts."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

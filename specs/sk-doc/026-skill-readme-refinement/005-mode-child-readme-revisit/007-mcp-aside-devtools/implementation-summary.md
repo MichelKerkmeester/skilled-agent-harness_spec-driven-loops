@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 007 mcp-aside-devtools README rewrite"
+title: "Impleme [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools/implementation-summary]"
 description: "The mcp-aside-devtools README now opens purpose-first with a one-line pitch and a problem-first overview, carries the lane capability layer, preserves every dispatch fact and versioned at 1.1.0.0 with a changelog entry."
 trigger_phrases:
   - "implementation summary"

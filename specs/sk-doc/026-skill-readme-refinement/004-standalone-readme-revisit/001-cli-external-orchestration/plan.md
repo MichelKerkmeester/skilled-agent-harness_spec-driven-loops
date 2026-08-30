@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1 cli-external-orchestration README rewrite"
+title: "Implementation [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration/plan]"
 description: "Rewrite the cli-external-orchestration skill README purpose-first per the refined standalone template, bump the version field to 1.3.0.0, add a changelog entry and validate with the readme validator, the HVR grep and the link guard."
 trigger_phrases:
   - "phase 1 plan"

@@ -17,9 +17,7 @@
       "create-changelog resource implementation plan",
       "changelog guidance rename plan",
       "create-changelog resource tasks",
-      "changelog guidance rename tasks",
-      "create-changelog resource checklist",
-      "changelog guidance rename verification"
+      "changelog guidance rename tasks"
     ],
     "key_topics": [
       "create-changelog",
@@ -40,8 +38,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The create-changelog packet contains snake_case reference filenames for topology edge cases, version bump rules, and worked examples. This phase renames those non-exempt resources to kebab-case and updates packet-local links without changing release/version fields or changelog filenames.",
     "created_at": "2026-07-14T15:22:39Z",
-    "last_save_at": "2026-08-29T10:00:46.896Z",
+    "last_save_at": "2026-08-30T07:19:28.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:607bea4c65be792080e42f9f12ac8b0532f71ff66ffc6bbafb933314ced236b7",
+    "source_fingerprint": "sha256:9b180eee6e415eb0e4924420ce91141bebec61935289c1bf566d8bee58c8b59f",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "284e2967111e310267ef3cc2048f971f1d57e60893f3ee814269c7d435616f09",
-      "plan.md": "42afe13a26a8e1911ca822f976b1056427b09192f1ea74650ddf3145415fa8ed",
-      "tasks.md": "b7b20c1f1c991d4c6dddcb525f6e48a65712fa02317acc33f1b0e421f40410d1",
-      "checklist.md": "93258b2096fd12f95896873d46d9230cd952e635cc3e6d3570666f47d99d48c6"
+      "spec.md": "1288fcedceb845bbb7753c638a28b67ec794fd4389fbbefbe5b58840a7381406",
+      "plan.md": "dd30e22e33d825eaa6485439a26b519a490252c864be6bf8e5ab030fa3a8830c",
+      "tasks.md": "259a9ef421ceb923832af30be03f2325396a61cb47ca49f278511875ff31a718"
     },
     "last_active_child_id": null,
     "last_active_at": null

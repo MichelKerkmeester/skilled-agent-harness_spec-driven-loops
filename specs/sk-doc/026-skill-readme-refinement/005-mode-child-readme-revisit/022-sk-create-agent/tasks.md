@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 022 sk-create-agent README revisit (rewrite per refined template)"
+title: "Tasks: Phase 022 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/tasks]"
 description: "Task list for rewriting or aligning the sk-create-agent mode skill README against the refined README template and the mcp-obsidian exemplar."
 trigger_phrases:
   - "phase 022 tasks"

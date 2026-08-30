@@ -20,9 +20,9 @@
       "cli-external manual playbook tasks",
       "manual-testing-playbook path map tasks",
       "cli-external phase 005 tasks",
-      "cli-external manual playbook checklist",
-      "manual-testing-playbook verifier",
-      "cli-external phase 005 acceptance"
+      "cli-external manual playbook decision record",
+      "manual-testing-playbook scenario boundary",
+      "cli-external phase 005 decisions"
     ],
     "key_topics": [
       "cli-external",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       ".opencode/specs/sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record.md"
     ],
@@ -68,25 +67,19 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Claude Code",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,31 +181,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The cli-external-orchestration surface contains four manual_testing_playbook roots and snake_case category/file names across hub, OpenCode, Claude Code, and Codex scenarios. This phase renames those playbook filesystem names, updates active references, and preserves scenario IDs, frontmatter fields, and test meaning.",
     "created_at": "2026-07-14T15:17:38Z",
-    "last_save_at": "2026-08-29T13:10:03.437Z",
+    "last_save_at": "2026-08-30T07:19:34.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:3153e00e0dfb6de05f801dbe444ad5dcf50f87a624ccee3d0e4479d37f5de4a3",
+    "source_fingerprint": "sha256:d381e6b46625793aad90eb0e7bf4d3f9361455e33816d5fe3eb636ac715cc989",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "96b6d567e33d01967cc2f4adbb5816fa8b93dc23b8ac33a72c1a222da4538f28",
-      "plan.md": "6e157759128552f3fbb6b4464940b5e71d2f6afdebb158b804bc5090c263130b",
-      "tasks.md": "5d3a7880669ed5a021520cbe8f46ade48dc1f2411d2f322b7f3248d5beb543c5",
-      "checklist.md": "27fd6194ed4ff7e3ec999e8b5c1104cb5305babfe4c7d14b3e1143ce6408b727",
-      "decision-record.md": "19d4412d2a6bd6894a907d10d1a3def8b29650d446c86bca670e2550a3319c19"
+      "spec.md": "9f3e6ff3a4e37edb245915f50b18808e92f0aff35b5ca03ca4c8ccac10358a7a",
+      "plan.md": "378024d1e327e894c9e1a6e7807b8f98d2727e9526758ba61dbe0a7ef15ca991",
+      "tasks.md": "3cf07e11ea7a056e9e37f57f44ad3ee389b8b5e795c4da9dfa5921f133b07580",
+      "decision-record.md": "3d02a46d5740a98aa414a92bc218a904edcb533f486ed9ccd7efe9ee37e5fa27"
     },
     "last_active_child_id": null,
     "last_active_at": null

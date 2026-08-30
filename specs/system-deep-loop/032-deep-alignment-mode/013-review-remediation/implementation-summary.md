@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: deep-alignment deep-review remediation"
+title: "Implementation Summary: [system-deep-loop/032-deep-alignment-mode/013-review-remediation/implementation-summary]"
 description: "Fixed the 10 Pass A deep-review findings on the 059 deep-alignment packet: the gate now fails closed on unaudited/corrupt corpora, the LEAF's write boundary is honestly labeled, the command contract matches implementation, and the parent topology matches on-disk reality."
 trigger_phrases:
   - "deep-alignment remediation summary"

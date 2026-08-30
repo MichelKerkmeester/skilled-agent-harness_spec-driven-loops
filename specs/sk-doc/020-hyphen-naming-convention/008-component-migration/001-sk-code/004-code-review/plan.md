@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: code-review filesystem names (020 phase 008/004)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review/plan]"
 description: "Plan for renaming code-review assets, review scenarios, references, and benchmark labels through the frozen map, then proving review navigation and findings behavior remain intact."
 trigger_phrases:
   - "code-review naming implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "review playbook reference repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review"
 ---
-
 # Implementation Plan: code-review filesystem names
 
 <!-- SPECKIT_LEVEL: 2 -->

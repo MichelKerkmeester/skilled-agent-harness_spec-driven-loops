@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-code-graph subtree rollup gate (020 phase 008)"
+title: "Feature Specific [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate/spec]"
 description: "The system-code-graph child phases each prove a bounded path closure, but only a final rollup can prove that phases 001–007 are complete and that no in-scope snake_case filesystem name remains across the whole skill surface. This mutation-free gate aggregates sibling evidence and applies the 020 exemption boundary without performing new migration work."
 trigger_phrases:
   - "system-code-graph subtree rollup gate"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 system-code-graph phase 008"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate"
@@ -28,8 +27,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

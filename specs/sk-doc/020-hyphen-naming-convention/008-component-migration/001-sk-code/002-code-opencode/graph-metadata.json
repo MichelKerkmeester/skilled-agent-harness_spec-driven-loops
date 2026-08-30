@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "code-opencode naming migration",
-      "OpenCode packet kebab-case",
-      "OpenCode reference rename",
-      "OpenCode playbook path migration",
+      "opencode packet kebab-case",
+      "opencode reference rename",
+      "opencode playbook path migration",
       "code-opencode naming implementation plan",
-      "OpenCode packet rename plan",
-      "OpenCode resource path repair",
+      "opencode packet rename plan",
+      "opencode resource path repair",
       "code-opencode naming tasks",
-      "OpenCode packet rename tasks",
-      "OpenCode reference repair tasks",
-      "code-opencode naming checklist",
-      "OpenCode packet rename verification"
+      "opencode packet rename tasks",
+      "opencode reference repair tasks"
     ],
     "key_topics": [
       "code-opencode",
@@ -43,8 +41,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -166,49 +157,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The code-opencode packet is a large evidence tree with snakecase names across assets/checklists, manual-testing-playbook categories, language-reference directories, Rust checklists, shared organization references, and benchmark labels",
     "created_at": "2026-07-14T15:17:07Z",
-    "last_save_at": "2026-08-29T10:00:39.269Z",
+    "last_save_at": "2026-08-30T07:19:17.264Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:5244ca0560e68973c2bf1cd9b53265c97015b303471f30469a4efd748a91e826",
+    "source_fingerprint": "sha256:984d1a9d70dd86870d1efad71a10bc5716ee76fc4f84e31dcc9d81498476df3a",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "25b0b1210403f1e116f727c6da13111191867762018f1827a922bb962b22c30e",
-      "plan.md": "d10adb0ea7cd40beeee22be70b6e8298b4e499a4856bc026d73c39ddafbb23cb",
-      "tasks.md": "df1e8e4a552ccaeae4d1c7b76fd602a5a2c6e3524febca02c58c5508f11fc4f1",
-      "checklist.md": "12f623a3f42211e0867b8fcbeef940d5b50b9d6be372e55ebc090d7ba2f2a1bf"
+      "spec.md": "37ffce1df15ac174f0c33d9ab538809370185cfd27b486c30c99323c1252957f",
+      "plan.md": "9561ca9287b076284f9cdcad7138c07a90d42d44ba9b336c920232fc5cd425b5",
+      "tasks.md": "da6f526bb9279020ce0c7e869bcafffe5f5ee439c680d4679fef360faf864979"
     },
     "last_active_child_id": null,
     "last_active_at": null

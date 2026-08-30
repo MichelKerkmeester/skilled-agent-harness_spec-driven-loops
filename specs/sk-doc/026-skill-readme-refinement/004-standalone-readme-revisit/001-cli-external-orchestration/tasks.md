@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1 cli-external-orchestration README rewrite"
+title: "Tasks: Phase 1 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration/tasks]"
 description: "Task list for rewriting the cli-external-orchestration skill README purpose-first against the refined standalone template, bumping the version to 1.3.0.0 and adding a changelog entry."
 trigger_phrases:
   - "phase 1 tasks"

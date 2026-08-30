@@ -20,9 +20,7 @@
       "shared workflow path migration",
       "hub shared naming tasks",
       "sk-code shared rename tasks",
-      "workflow path repair tasks",
-      "hub shared naming checklist",
-      "sk-code shared rename verification"
+      "workflow path repair tasks"
     ],
     "key_topics": [
       "sk-code",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-code/shared/README.md"
     ],
@@ -68,12 +65,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/SKILL.md",
@@ -83,6 +74,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/shared/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specifica",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -111,12 +108,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -196,21 +187,20 @@
     ],
     "causal_summary": "The shared sk-code layer is the source for surface detection, routing, universal verification, workflow doctrine, and reusable asset patterns",
     "created_at": "2026-07-14T15:17:06Z",
-    "last_save_at": "2026-08-29T13:10:07.453Z",
+    "last_save_at": "2026-08-30T07:19:16.914Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:1db5d38ffb327161e9b099e7428a3984143fbb07c6b58c277701575a7fdb6c6a",
+    "source_fingerprint": "sha256:d8ef9a51d481a9f86b934fa67fbe98cd04c70b8ce3efc93d68bdf18ec9a1428b",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f407bde942bfacbcd52deba2d4276a8fa4e3e1082eda18a58753a0b0f766e9e6",
-      "plan.md": "c1c88534093aaaecccfe8efd19c79e84f43416bf38f79e993c2a84af7e7230e4",
-      "tasks.md": "000e13b793c08feddfc360a0537d3ffc2ff9242d3d877ef67d156d1d726f0fac",
-      "checklist.md": "a7de016db3c902af80d7c69456c2d80191ec7c977bf3b0a7ced6d43114001e97"
+      "spec.md": "7a16ace9c3496b141a1c557877f59ba95ea7be0b7f8ed1d42230213359856036",
+      "plan.md": "04cbc6a81ad6f132fd2dd9a166c43d7a77ba3c87cf8671d256b2d5aaf226a8aa",
+      "tasks.md": "b7caec7c2cc9d8ea3e7d7640c36deb670eee1c44a0621375797c2db8babd4558"
     },
     "last_active_child_id": null,
     "last_active_at": null

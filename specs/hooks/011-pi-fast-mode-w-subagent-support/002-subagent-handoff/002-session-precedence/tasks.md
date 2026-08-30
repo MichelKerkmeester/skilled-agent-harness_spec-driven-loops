@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2 session-precedence"
+title: "Tasks: Phase 2 session-pre [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence/tasks]"
 description: "Task ledger for lifecycle handoff writes and presence-aware state precedence."
 trigger_phrases:
   - "session-precedence tasks"

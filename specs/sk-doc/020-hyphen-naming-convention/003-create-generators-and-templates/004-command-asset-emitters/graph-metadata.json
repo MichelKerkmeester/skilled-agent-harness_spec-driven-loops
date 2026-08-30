@@ -20,9 +20,9 @@
       "create command asset emitter tasks",
       "create auto confirm naming tasks",
       "hyphenated command asset output tasks",
-      "create command asset emitter checklist",
-      "create auto confirm naming checklist",
-      "hyphenated command asset output checklist"
+      "create command asset emitter implementation",
+      "kebab case create command outputs",
+      "command asset output migration summary"
     ],
     "key_topics": [
       "command",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/commands/create/assets/tests/test_emitted_name_contract.py",
       ".opencode/commands/create/assets/tests/fixtures/emitted-name-contract.json",
@@ -69,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -108,6 +101,12 @@
         "source": "derived"
       },
       {
+        "name": "Feature Specif",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -133,12 +132,6 @@
       },
       {
         "name": "the",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "child",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -180,43 +173,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "child",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built The",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The `/create:*` auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths. Update the emitter logic to request and write kebab-case names while leaving the asset source filenames and later on-disk renames untouched.",
+    "causal_summary": "The /create:* auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths. Update the emitter logic to request and write kebab-case names while leaving the asset source filenames and later on-disk renames untouched.",
     "created_at": "2026-07-14T15:16:46Z",
-    "last_save_at": "2026-08-29T13:10:16.857Z",
+    "last_save_at": "2026-08-30T07:19:11.448Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:84d7907eaba033f96db721468820f4e9dba3ea31812d7879ad1bfc7b20522160",
+    "source_fingerprint": "sha256:1bbda1bebba279fcb4f673e1c9fae5f6cbe2b8eb736024d07b17d3a43645d181",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "276c407b82e495dd907332f858ecdc13edcf680621eaf301d041085373aea98b",
-      "plan.md": "39cab5562f6d4fa486c1a1ecb215ebb7eae3f9c02603cd93666c63e82285589f",
-      "tasks.md": "cd8a7cfd7c20985071739536653971b4ce176c7308be7262969ad2009f10ac8b",
-      "checklist.md": "ed31f4ef1e2412d1839135f7df65a2ed0d1955d4839ac980a8c51f2c660b4cb1",
-      "implementation-summary.md": "c00668eb63e6fbb4b169a6f1d5557607f27b69061fe021017309ad853fbdde9a"
+      "spec.md": "483e41e460f4220b767042c8ce863df6cfecf1f677e49843aaf1ada694564095",
+      "plan.md": "c5b838fb234138b759adb9aa67b8817cf35cf5c739d562219925a00db7e56d1b",
+      "tasks.md": "8031f495d6db0fd24a036e77b578ad06bc697d4cfec5b53bbaa19d63342e7f8d",
+      "implementation-summary.md": "a4e183ac3127f793f23ee67eb5c4e087b13afebafc5f0f9353d1520737d10a2e"
     },
     "last_active_child_id": null,
     "last_active_at": null

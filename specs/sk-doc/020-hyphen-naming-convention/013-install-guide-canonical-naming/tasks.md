@@ -1,12 +1,11 @@
 ---
-title: "Tasks: INSTALL-GUIDE canonical filename normalization (sk-doc 021)"
+title: "Tasks: INSTALL-GUIDE canonical filename [sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming/tasks]"
 description: "Task list for the INSTALL-GUIDE canonical-naming migration: classifier recognition, renames, filename references, and verification."
 trigger_phrases:
   - "install-guide normalization tasks"
-  - "INSTALL-GUIDE rename tasks"
+  - "install-guide rename tasks"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
 ---
 # Tasks: INSTALL-GUIDE canonical filename normalization
 

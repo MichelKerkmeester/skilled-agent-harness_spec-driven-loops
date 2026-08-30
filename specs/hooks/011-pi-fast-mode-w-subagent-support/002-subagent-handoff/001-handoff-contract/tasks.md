@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1 handoff-contract"
+title: "Tasks: Phase 1 handoff-contr [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/001-handoff-contract/tasks]"
 description: "Task ledger for the strict fast-mode handoff environment contract."
 trigger_phrases:
   - "handoff-contract tasks"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-deep-loop runtime names (020 phase 007/002)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime/plan]"
 description: "Plan for renaming runtime catalog/playbook directories and underscore-bearing runtime resources through the frozen semantic map, then repairing package, script, test, and documentation path consumers while preserving tool and data contracts."
 trigger_phrases:
   - "system-deep-loop runtime implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "deep loop runtime reference closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime"
 ---
 # Implementation Plan: System-deep-loop runtime names
 

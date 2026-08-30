@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-doc root benchmark artifact boundary"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark/spec]"
 description: "The root sk-doc benchmark directory is assigned a naming phase for fixtures, profiles, and storage-guide artifacts, but the pinned surface currently contains only .gitkeep. This phase records the empty baseline, verifies no hidden or referenced snake_case artifact is missed, and keeps create-benchmark packet resources in their separate phase."
 trigger_phrases:
   - "sk-doc benchmark artifact naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 benchmark phase"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

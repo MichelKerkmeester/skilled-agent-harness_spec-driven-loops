@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 033 sk-prompt-improve README revisit"
+title: "Implementation Plan: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/plan]"
 description: "Rewrite the sk-prompt-improve mode README purpose-first on the refined template, mirror the mcp-obsidian exemplar, bump the version, add a changelog entry and validate."
 trigger_phrases:
   - "phase 033 plan"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 036 deep-alignment mode README revisit"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment/spec]"
 description: "Rewrite the deep-alignment mode skill README at .opencode/skills/system-deep-loop/deep-alignment/README.md against the refined README template from phase 001 and the mcp-obsidian exemplar, with a version bump, a changelog entry and full validation."
 trigger_phrases:
   - "deep alignment readme revisit"

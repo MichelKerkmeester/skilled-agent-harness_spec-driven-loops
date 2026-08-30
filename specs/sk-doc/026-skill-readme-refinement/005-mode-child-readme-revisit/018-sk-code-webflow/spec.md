@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 018 sk-code-webflow README revisit (rewrite)"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/spec]"
 description: "Rewrite the sk-code-webflow mode skill README at sk-code/sk-code-webflow/README.md against the refined README template from phase 001, using the mcp-obsidian exemplar as the voice model, with a version bump, a changelog entry and full validation."
 trigger_phrases:
   - "sk code webflow readme rewrite"

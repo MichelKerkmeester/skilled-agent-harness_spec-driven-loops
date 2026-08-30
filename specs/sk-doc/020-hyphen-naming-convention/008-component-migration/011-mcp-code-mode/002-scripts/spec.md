@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-code-mode scripts (020 component 011 phase 002)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts/spec]"
 description: "The mcp-code-mode scripts surface must be audited under the 020 filesystem exemption boundary. The current non-Python script names are already kebab-case, while validate_config.py is an explicitly exempt Python filename; this phase proves that inventory and closes any eligible script reference set without renaming the Python file."
 trigger_phrases:
   - "mcp-code-mode scripts naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "script filename exemption audit"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

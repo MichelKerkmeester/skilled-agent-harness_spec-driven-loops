@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 014 mcp-refero README rewrite"
+title: "Tasks: Phase 014 mcp-refero [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/014-mcp-refero/tasks]"
 description: "Task list for rewriting the mcp-refero mode skill README on the refined standalone README template."
 trigger_phrases:
   - "phase 14 tasks"

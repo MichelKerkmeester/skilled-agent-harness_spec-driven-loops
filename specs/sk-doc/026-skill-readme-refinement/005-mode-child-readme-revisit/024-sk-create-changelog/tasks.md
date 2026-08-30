@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 24 sk-create-changelog README rewrite"
+title: "Tasks: Phase 24 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/tasks]"
 description: "Task list for rewriting the sk-create-changelog README against the refined template, with a version bump, a changelog entry and validation."
 trigger_phrases:
   - "phase 24 tasks"

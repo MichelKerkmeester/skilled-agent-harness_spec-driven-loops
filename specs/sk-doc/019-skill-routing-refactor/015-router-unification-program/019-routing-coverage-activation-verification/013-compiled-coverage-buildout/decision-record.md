@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Compiled-Routing Coverage Build-Out & Genuine Default-On"
+title: "...uter-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/decision-record]"
 description: "ADR-001: Path 1 (build full compiled-routing coverage) chosen over Path 2 (byte-identical via legacy fallback) and Path 3 (hold), per operator directive of no concessions."
 trigger_phrases:
   - "compiled routing coverage decision"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "no concessions decision"
 importance_tier: "critical"
 contextType: "implementation"
-status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout"
@@ -26,6 +25,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Path 1 vs Path 2 vs Path 3: Path 1 accepted, Path 2 and Path 3 rejected."
+status: "complete"
 ---
 # Decision Record: Compiled-Routing Coverage Build-Out & Genuine Default-On
 

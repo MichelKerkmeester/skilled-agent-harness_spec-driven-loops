@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Changelog verification (020 subtree 008 phase 011)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify/tasks]"
 description: "This verify-only phase confirms that the system-spec-kit changelog records the complete phase 001-010 filesystem rename set, the exemption boundary, and a coherent version bump above the current v3.7.1.0 baseline. It does not perform renames or rewrite historical changelog entries."
 trigger_phrases:
   - "system-spec-kit changelog verify"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "changelog phase 011"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/011-changelog-verify"
@@ -21,8 +20,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 ---
-
 # Tasks: Changelog verification
 
 <!-- SPECKIT_LEVEL: 2 -->

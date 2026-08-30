@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cross-skill symlink closure (020 phase 007 child 002)"
+title: "Impleme [sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/plan]"
 description: "Execution plan for the atomic symlink closure: inventory link edges, preflight target ownership and modes, update every pointer with its target, and prove no dangling link remains."
 trigger_phrases:
   - "cross-skill symlink implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "phase 007 child 002 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure"
@@ -25,6 +24,7 @@ _memory:
     answered_questions:
       - "Atomicity and ordering are governed by the child decision record"
       - "Target content changes remain with the target-owning phase"
+parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure"
 ---
 # Implementation Plan: Cross-Skill Symlink Closure
 

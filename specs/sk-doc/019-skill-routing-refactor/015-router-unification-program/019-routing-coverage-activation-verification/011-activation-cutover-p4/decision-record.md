@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Compiled Routing Staged Activation Cutover (P4)"
+title: "...15-router-unification-program/019-routing-coverage-activation-verification/011-activation-cutover-p4/decision-record]"
 description: "Three decisions governing the terminal P4 cutover: advance the effective default per hub via cohort state rather than a fleet-wide unset=on flip; make each hub's rewrite an atomic lockstep and flip the two shared create-skill parent templates last under a normalized-parity assertion; and gate entry on a proven P3 coverage-closure join gate with per-hub stop-on-first-failure and byte-exact rollback."
 trigger_phrases:
   - "compiled routing cutover decision record"

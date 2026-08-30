@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-prompt component migration (020 phase 004)"
+title: "Feature Specification: sk-prompt [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/spec]"
 description: "Phase parent for the kebab-case filesystem-naming work across the sk-prompt hub, its prompt-improve and prompt-models packets, shared playbooks, benchmark artifacts, and release records. The child phases keep the rename maps, reference rewrites, verification contracts, and rollup evidence independently reviewable."
 trigger_phrases:
   - "sk-prompt kebab-case migration"
@@ -28,7 +28,6 @@ _memory:
       - "Python scripts, Python package directories, tool-mandated names, generated output, and frozen history remain exempt."
       - "This authoring pass changes only the child documentation under the assigned sk-prompt packet."
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + child phase map only; detailed planning and verification live in the children. -->

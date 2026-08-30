@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-tooling hub manual-testing-playbook naming closure (020 phase 005)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook/tasks]"
 description: "Tasks for phase 005 of the mcp-tooling component naming migration: rename the hub-level playbook tree and repair its navigation."
 trigger_phrases:
   - "mcp-tooling hub playbook tasks"
   - "hub routing scenario rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook"
 ---
 # Tasks: mcp-tooling Hub Manual-Testing-Playbook Naming Closure
 

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: source-baseline"
+title: "Feature Specification: Phase [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline/spec]"
 description: "Establish the pinned upstream source baseline and package location before behavior or identity changes are introduced."
 trigger_phrases:
   - "source-baseline"

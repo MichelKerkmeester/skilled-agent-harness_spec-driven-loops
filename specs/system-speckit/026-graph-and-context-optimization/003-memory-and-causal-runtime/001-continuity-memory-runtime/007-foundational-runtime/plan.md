@@ -1,5 +1,5 @@
 ---
-title: "Implem [system-spec-kit/026-graph-and-context-optimization/004-runtime-executor-hardening/001-foundational-runtime/plan]"
+title: "...h-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime/plan]"
 description: "4-wave implementation plan: Wave A infrastructure primitives (20h), Wave B cluster consumers (30h parallel 3 lanes), Wave C rollout + sweeps (15h), Wave D P2 maintainability (40h deferrable). Critical path ~60h / 6 working days."
 trigger_phrases:
   - "017 phase 017 plan"
@@ -9,7 +9,6 @@ trigger_phrases:
   - "phase 017 implementation plan"
 importance_tier: "critical"
 contextType: "planning"
-template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/007-foundational-runtime"
@@ -18,6 +17,7 @@ _memory:
     recent_action: "Plan scaffolded from iter-054 wave structure + segment-2 synthesis §5"
     next_safe_action: "Begin Wave A implementation after spec approval"
     blockers: []
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->

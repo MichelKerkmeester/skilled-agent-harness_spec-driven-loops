@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: remove transition aliases (020 phase 009)"
+title: "Feature Specification: remove transition [sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases/spec]"
 description: "The migration has completed and the bounded coexistence window from phase 002 is closed, but runtime consumers still carry compatibility paths for the old underscore catalog and playbook roots and indexes. This phase removes those aliases and makes unsupported legacy names fail explicitly without falling through to a generic document classification."
 trigger_phrases:
   - "remove transition aliases"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "remove snake case back compatibility"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "The canonical live roots and indexes are hyphenated; the underscore forms are transitional aliases only."
       - "This phase removes alias resolution after the phase 002 coexistence window has closed."
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

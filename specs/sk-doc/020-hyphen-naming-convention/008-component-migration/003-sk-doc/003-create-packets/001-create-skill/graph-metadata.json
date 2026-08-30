@@ -17,9 +17,7 @@
       "create-skill resource implementation plan",
       "create-skill template rename plan",
       "create-skill resource tasks",
-      "create-skill template rename tasks",
-      "create-skill resource checklist",
-      "create-skill template rename verification"
+      "create-skill template rename tasks"
     ],
     "key_topics": [
       "create-skill",
@@ -40,8 +38,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The create-skill packet uses snake_case directories and template/reference filenames throughout its parent-skill and ordinary skill resource trees. This phase converts those non-exempt filesystem names to kebab-case and updates generator and documentation references while preserving SKILL.md, manifests, and Python scripts.",
     "created_at": "2026-07-14T15:22:33Z",
-    "last_save_at": "2026-08-29T10:00:44.841Z",
+    "last_save_at": "2026-08-30T07:19:25.426Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:fc5c79a1b175b4c6cb77d4c67570b33a78db11574127dba5ee2b4322f49a755a",
+    "source_fingerprint": "sha256:b45b7edc51358db05860f92027a27db8479b494e9892ace68c61ea0de2c331b5",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "6bafaecdec1aa843cd32ed29e72daac5c521ec728a5d9350d950e74b09230604",
-      "plan.md": "c5855008615fc4f55fb5ef44efa206e293fd146747595dd2789bd0d35e635d5c",
-      "tasks.md": "d41013bfabb43fd0e1945ab566d83660a1d6da0e1e57acd309038a719b5e5af4",
-      "checklist.md": "198405c1156d0643f9447436aa5537cc2782058a081263586c774ef5986e678f"
+      "spec.md": "5b56f034f478c23966691e708af580e6d396b287bb80385ce7fcfd7702cd6d6c",
+      "plan.md": "2164a6616a57f327a19eda72517e6446840161f66f73f52d753f4d5d3c8e263a",
+      "tasks.md": "ec5db18568cf912f9eb3a092f5820e2421bc6d096a477c1822baabd02dda7bbc"
     },
     "last_active_child_id": null,
     "last_active_at": null

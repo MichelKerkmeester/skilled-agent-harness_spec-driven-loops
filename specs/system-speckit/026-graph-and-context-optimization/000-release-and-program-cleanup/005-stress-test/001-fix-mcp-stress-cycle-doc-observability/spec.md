@@ -1,6 +1,5 @@
 ---
-title: "Feature Specification: MCP Stress-Cycle Doc/Observability Cleanup"
-template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+title: "...context-optimization/000-release-and-program-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability/spec]"
 description: "Close the 6 P2 advisories surfaced by the 003-fix-mcp-runtime-stress-findings deep review (PASS verdict, hasAdvisories=true). Doc drift, navigation, and verdict-replayability fixes only — no runtime code change."
 trigger_phrases:
   - "001-fix-mcp-stress-cycle-doc-observability"
@@ -18,8 +17,8 @@ _memory:
     next_safe_action: "Keep validators green"
     blockers: []
     completion_pct: 100
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 1 -->
 

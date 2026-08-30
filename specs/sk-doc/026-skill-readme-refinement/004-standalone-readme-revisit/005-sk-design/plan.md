@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 005 sk-design README rewrite"
+title: "Implementation Plan: Phase 005 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/plan]"
 description: "Implementation plan for the sk-design README rewrite: baseline inventory, purpose-first rewrite per the refined template, version bump to 1.7.0.0, changelog entry and full verification."
 trigger_phrases:
   - "phase 005 plan"

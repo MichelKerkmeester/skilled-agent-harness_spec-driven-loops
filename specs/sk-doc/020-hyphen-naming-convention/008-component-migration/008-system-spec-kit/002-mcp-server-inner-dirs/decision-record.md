@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: MCP-server inner directories (020 subtree 008 phase 002)"
+title: "...c/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs/decision-record]"
 description: "Design decisions for semantic inner-directory targets and test-support discovery preservation."
 trigger_phrases:
   - "mcp-server inner-directory decisions"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "phase 002 decision record"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

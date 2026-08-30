@@ -1,5 +1,5 @@
 {
-  "level": 2,
+  "level": "2",
   "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy",
   "description": "Three related integrity gaps sit at the P1 rollback/audit/policy layer of the activation program",
   "keywords": [
@@ -15,7 +15,7 @@
     "activation",
     "program"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.709Z",
+  "lastUpdated": "2026-08-30T07:16:17.542Z",
   "specId": "010",
   "folderSlug": "rollback-audit-and-non-hub-policy",
   "parentChain": [

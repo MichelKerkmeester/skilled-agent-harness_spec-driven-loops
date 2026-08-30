@@ -1,12 +1,11 @@
 ---
-title: "Tasks: Compiled-Route Sync Authored-Root Repair"
+title: "...g-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root/tasks]"
 description: "Implementation and verification tasks for safe closure tracing and atomic promotion after source-tree renumbering."
 trigger_phrases:
   - "compiled route sync repair tasks"
   - "promoted closure tasks"
 importance_tier: "critical"
 contextType: "implementation"
-status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root"
@@ -16,6 +15,7 @@ _memory:
     next_safe_action: "No packet-local work remains."
     blockers: []
     key_files: []
+status: "complete"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify + level3-arch | v2.2 -->
 # Tasks: Compiled-Route Sync Authored-Root Repair

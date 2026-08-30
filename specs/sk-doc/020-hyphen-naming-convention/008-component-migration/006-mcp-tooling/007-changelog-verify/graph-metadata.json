@@ -17,9 +17,7 @@
       "mcp-tooling changelog verification plan",
       "mcp tooling version bump check",
       "mcp-tooling changelog tasks",
-      "mcp tooling version verification tasks",
-      "mcp-tooling changelog checklist",
-      "mcp tooling version bump verification"
+      "mcp tooling version verification tasks"
     ],
     "key_topics": [
       "mcp-tooling",
@@ -40,8 +38,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,9 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specific",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -94,12 +91,6 @@
       },
       {
         "name": "Change Type",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -163,49 +154,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-tooling changelog history predates the 020 kebab-case rename set and currently has no verified append-only entry for the hub/component filesystem migration. This verification phase checks the root and component changelog version bumps, scope descriptions, exemption notes, and history preservation without performing any rename.",
     "created_at": "2026-07-14T15:17:46Z",
-    "last_save_at": "2026-08-29T10:00:41.706Z",
+    "last_save_at": "2026-08-30T07:19:39.094Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:8c71fd6ef069248733e06b1ecac947734feb29879026432e5257232bd4e1ae7d",
+    "source_fingerprint": "sha256:ad6f495048308c003b8adb8828d3d6b63e93717bfb4819949a2cac2647aff5df",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "3a0f8bf7ae38fc2bc5e8094df11c5884222283cf3c3e9ba4a6f80991f6737f95",
-      "plan.md": "b6444cb891ddd52225c2a227a50bb47f254ecb9f3a2732c34c2fe5c3bebc0c8f",
-      "tasks.md": "f5217a5224578834f3bb155e78588a7d0afae5289da5289b5b71ce5687116f46",
-      "checklist.md": "a28e258e49ef2b528c8345ea5048c795551db1703f6fb36d735e42d1e505807c"
+      "spec.md": "4d31eb76776030a4c94047149feb6f666d9a89b38153e4c58154dbe3ca11627a",
+      "plan.md": "2f49480159f96f46125ffe25b5a6fc0176a9e3dafbea597c2ab4d4d2789a17fb",
+      "tasks.md": "1373181e9a3e8220577f5822a70ee38d3aac3394ac5f350151f7721ac506e453"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 030 sk-create-quality-control README revisit"
+title: "Feature Specificat [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control/spec]"
 description: "Rewrite the sk-create-quality-control mode skill README purpose-first against the refined README template from phase 001, using the mcp-obsidian exemplar, with a version bump and a changelog entry."
 trigger_phrases:
   - "sk create quality control readme"

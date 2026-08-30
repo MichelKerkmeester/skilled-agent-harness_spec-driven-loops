@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 035 deep-ai-council README revisit"
+title: "Implementa [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council/implementation-summary]"
 description: "The deep-ai-council README now opens with a one-line pitch and a problem-first overview, passes the readme validator with zero issues, passes the HVR grep with zero hits and ships with a bumped version field plus a matching changelog entry."
 trigger_phrases:
   - "phase 035 implementation summary"

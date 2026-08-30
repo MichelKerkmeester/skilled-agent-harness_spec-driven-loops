@@ -16,7 +16,6 @@
       "devin hooks catalog entry",
       "devin feature catalog plan",
       "devin feature catalog tasks",
-      "devin feature catalog checklist",
       "devin feature catalog decision record",
       "hook evidence state"
     ],
@@ -31,40 +30,20 @@
       "entry",
       "plan",
       "tasks",
-      "checklist",
-      "decision"
+      "decision",
+      "record"
     ],
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
-      "feature-catalog/feature-catalog.md",
-      "mcp-server/hooks/devin/session-start.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "feature-catalog/feature-catalog.md",
+      "mcp-server/hooks/devin/session-start.ts"
     ],
     "entities": [
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-feature-catalog/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.md",
-        "kind": "doc",
-        "path": "feature-catalog/feature-catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "session-start.ts",
-        "kind": "code",
-        "path": "mcp-server/hooks/devin/session-start.ts",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,15 +63,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-start.ts",
+        "kind": "code",
+        "path": "mcp-server/hooks/devin/session-start.ts",
         "source": "derived"
       },
       {
@@ -190,27 +175,38 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "No sibling mode has a feature-catalog package today",
     "created_at": "2026-07-24T13:08:08.318Z",
-    "last_save_at": "2026-07-25T10:11:05.104Z",
+    "last_save_at": "2026-08-30T07:18:50.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:0dc0ca2bcf0af45ebf8369a5e1fd18d47a2c26aeb774500d54a89ea794fcea59",
+    "source_fingerprint": "sha256:ec073bbef2ae9657ef68d7a1c266f7d1eb77651e2bc99e759554827e685ad433",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "19dd793e3ce142a64266ca37158fa7632dc21ffbd39896a53188275e7cf07ec2",
-      "plan.md": "eec1cf00af37bf398fdef710648114cd0336a4ccf94a42d2d0b9b85dec05263f",
-      "tasks.md": "6f35feff170984dcf4d4ac81dc3982f1e55f2800d5e2570fa6baf5baabefefe8",
-      "checklist.md": "7388d2004c88bdf9c6d7af8ff64a5c7a9a6f77f6c210ba74768370f47f0c0a6b",
-      "decision-record.md": "ececc4fbf11164117e73d84fd210251fddc897ad756b5140fdfe16721b644cf4"
+      "spec.md": "fa665ed9e8a6ab19a1bd043e10fe2a4867401eb00c256f09a0e47855e5fa3c64",
+      "plan.md": "39dfc00582df393eb29cc027553844ec12234584e0707ea42929f3509539779c",
+      "tasks.md": "df46006ace9f8b782efe7adef23cbdb3102119116f6264ca4e90d09671639309",
+      "decision-record.md": "6b4c83becad1439460d1ea12fcf76cb96aa93f15860efccc35b7bdf721bb5164"
     },
     "last_active_child_id": null,
     "last_active_at": null

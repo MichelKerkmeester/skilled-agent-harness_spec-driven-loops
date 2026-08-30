@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Durable Archiving & Serving-Snapshot"
+title: "...ter-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot/spec]"
 description: "Delivered specification for the durable <hub>/benchmark/compiled-routing/<run-label>/ convention, serving-snapshot.json schema and renderer, repo-relative provenance, and active-manifest archive boundary. Implemented in 2a39ecb9a0 without changing the default, a live hub, the frozen baseline label, or the frozen scorer trio. The append-only flip-history ledger is explicitly owned by sibling 010 and later landed in a1cdb65d90."
 trigger_phrases:
   - "durable archiving serving snapshot"

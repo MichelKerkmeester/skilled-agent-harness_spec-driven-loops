@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Routing Coverage, Activation & Verification"
+title: "Fea [sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/spec]"
 description: "Phase parent for the program that makes the shipped-but-inert compiled skill-router perfectly integrated, enabled by default (as the phased P4 outcome that 012 settled), and verified through automated tests + benchmarks + manual-testing playbook scenarios (GPT-5.6 LUNA HIGH as the routed test subject), with all routing code aligned to sk-code:code-opencode and every MD authored via the correct sk-doc mode template. A 25-iteration deep-research pass (001-research) proved the load-bearing work is a P0 activation FOUNDATION — the compiled decision is dropped by the OpenCode bridge and the flag is stripped from both daemon env allowlists, so default-on is a structural no-op end-to-end — and that the four named coverage gaps are downstream of it. Ten children build the foundation, then the coverage + verification, then the staged hub-by-hub cutover. Byte-identical to legacy and reversible at every step; the three frozen benchmark scorer files are never edited."
 trigger_phrases:
   - "routing coverage activation verification"

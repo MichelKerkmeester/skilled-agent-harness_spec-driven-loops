@@ -1,3 +1,15 @@
+---
+title: "Command-Surface Improvement [system-deep-loop/035-command-surface-benchmark/012-command-improvement-research/research]"
+description: "Two independent models, forced to five non-converging iterations each, converged on one architectural diagnosis"
+trigger_phrases:
+  - "command"
+  - "surface"
+  - "improvement"
+  - "research"
+  - "012"
+importance_tier: "normal"
+contextType: "research"
+---
 # Command-Surface Improvement Research — Cross-Model Synthesis
 
 > **Packet:** `066-command-surface-benchmark/012-command-improvement-research`

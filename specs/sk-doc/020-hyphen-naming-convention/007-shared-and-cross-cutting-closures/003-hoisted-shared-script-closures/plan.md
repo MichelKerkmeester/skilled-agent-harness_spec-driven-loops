@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: hoisted shared script closures (020 phase 007 child 003)"
+title: "Impl [sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures/plan]"
 description: "Execution plan for shared scripts consumed by multiple skills: construct the consumer graph, select semantic targets, update every script reference, preserve exemptions and modes, and publish component dependencies."
 trigger_phrases:
   - "shared script closure implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "phase 007 child 003 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures"
@@ -25,6 +24,7 @@ _memory:
     answered_questions:
       - "The phase owns only multi-skill closures; one-skill scripts are delegated to phase 008"
       - "Python `.py` names and Python package directories remain exempt"
+parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures"
 ---
 # Implementation Plan: Hoisted Shared Script Closures
 

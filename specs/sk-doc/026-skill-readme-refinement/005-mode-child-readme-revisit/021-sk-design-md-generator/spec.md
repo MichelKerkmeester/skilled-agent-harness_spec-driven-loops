@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 021 sk-design-md-generator README revisit (rewrite)"
+title: "Feature Specification [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/spec]"
 description: "Rewrite the sk-design-md-generator mode skill README purpose-first per the refined README template from phase 001 and the mcp-obsidian exemplar, with a version bump, a changelog entry and validation."
 trigger_phrases:
   - "sk design md generator readme"

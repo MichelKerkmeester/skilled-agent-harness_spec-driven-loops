@@ -19,10 +19,7 @@
       "020 hub-root-and-shared tasks",
       "hub-root-and-shared tasks",
       "sk-design hub/shared execution",
-      "020 hub-root-and-shared checklist",
-      "hub-root-and-shared verification",
-      "sk-design hub/shared checklist",
-      "020 hub-root-and-shared gate"
+      "020 hub-root-and-shared checklist"
     ],
     "key_topics": [
       "hub-root-and-shared",
@@ -36,7 +33,7 @@
       "tasks",
       "execution",
       "checklist",
-      "verification"
+      "reference"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -44,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/sk-design/SKILL.md",
       ".opencode/skills/sk-design/README.md"
     ],
@@ -68,12 +64,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/SKILL.md",
@@ -83,6 +73,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-design/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specifi",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -111,12 +107,6 @@
       },
       {
         "name": "1. METADATA",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. PROBLEM & PURPOSE",
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
@@ -196,21 +186,20 @@
     ],
     "causal_summary": "The sk-design hub and shared reference base still contain snake_case Markdown asset names, so routing instructions and cross-mode references cannot be treated as kebab-clean.",
     "created_at": "2026-07-14T15:17:13Z",
-    "last_save_at": "2026-08-29T13:10:04.651Z",
+    "last_save_at": "2026-08-30T07:19:20.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:e02df05f788a5dc1f564ae4d6c028439d2783a6975deafd362b6a7d76af3486c",
+    "source_fingerprint": "sha256:fc992d6eb204127ff0228acb45809b45252ae2fade2de7dc33a283ff5bd306e6",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d0339b7a694121066c05197984bb451661f969dd7150ee945dbe2c8a209fc161",
-      "plan.md": "8423ddaff99de73c2bdefcbedc602d1b7b7ed08deed46da3403be0db58dc739e",
-      "tasks.md": "5f0f981dcbad1e3be70ea37b72715b97f30fd6e5343a34d3fa0224582e541b0f",
-      "checklist.md": "fb35ee9c793fe6044a1e2688637d8f36dbab915d79b799ff638c5893c070bd2e"
+      "spec.md": "0950c37bc39e721ef9914c535e80bd2419c7715f1b6261e5f382088279629d3e",
+      "plan.md": "cf8fe7772bbc9d80191ccfc02bc6ff5d2284a4a01f2dfbd3e37c4dce3717b627",
+      "tasks.md": "2da259dc1fd33c43a705518bac696799d836a0cb0681888b0136306068976d56"
     },
     "last_active_child_id": null,
     "last_active_at": null

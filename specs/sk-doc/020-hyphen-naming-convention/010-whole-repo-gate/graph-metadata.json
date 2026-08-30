@@ -18,8 +18,6 @@
       "hyphen naming phase 010 implementation plan",
       "whole-repo verification gate tasks",
       "hyphen naming phase 010 tasks",
-      "whole-repo verification gate checklist",
-      "hyphen naming phase 010 checklist",
       "whole-repo gate decision record",
       "phase 010 gate criteria",
       "rename history verification decision"
@@ -44,9 +42,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases/checklist.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
@@ -66,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,31 +179,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The migration needs one evidence-based end-state gate that proves the scope-aware filesystem naming rule, reference closure, Git rename history, and the complete validation and test baseline all hold on the same candidate commit. This phase defines that gate and records exact pass measurements; it does not repair failures or perform the migration.",
     "created_at": "2026-07-14T15:22:42Z",
-    "last_save_at": "2026-08-29T13:10:16.196Z",
+    "last_save_at": "2026-08-30T07:20:11.247Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:a41cbbfdec12ebf644bea8e71225efcab8897038fc5b5542699a3a684f6ed519",
+    "source_fingerprint": "sha256:d8d5e9546e995a6ee8ef07db3a7ae82cbca9abbbb0ae8438c89844614ad1c54c",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "097c2f973498b3127cc3b952d6d375a291515df179a84c6f5f71725c824b430c",
-      "plan.md": "e09c058f2f9be87eb3650be991e1d00516bf372056f12c5b2a9af1db7f488b82",
-      "tasks.md": "a5d2c62cf1b38dc17837a9bed4981f7b7b41e69d93e2b5eebf901eb6e94ce2a6",
-      "checklist.md": "f27f5f500c26a82efa2b023961d6e9a5bcfb52e28da182999d7661b66862e6f7",
-      "decision-record.md": "0a8bbb7ce84c72035ea12dc28d59e8ff56b98d1206a8d75194e2abe57f578551"
+      "spec.md": "cdb60769ea1be4511b577657a4d635da3bf699aacdc2e106042dcf9506e7617f",
+      "plan.md": "3c9e5f117c8d9f0976505875361ad1c6c02321003512bf604d13087ac3bf6fb2",
+      "tasks.md": "268a18df42954561f3fd2cccac534e4eeff026039a3832196c180ab63952863f",
+      "decision-record.md": "a36a9c14259fb1c833f7599ac4a062ecf7adbdcdf5429816f4971110ebdfdeda"
     },
     "last_active_child_id": null,
     "last_active_at": null

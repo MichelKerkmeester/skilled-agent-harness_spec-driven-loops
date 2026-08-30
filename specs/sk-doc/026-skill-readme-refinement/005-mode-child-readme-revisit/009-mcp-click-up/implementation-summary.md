@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 009 mcp-click-up mode skill README rewrite"
+title: "Implementatio [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up/implementation-summary]"
 description: "The mcp-click-up README now opens purpose-first with a one-line pitch and a problem-first overview, carries a ClickUp Operation Layer capability table, and versioned at 1.1.0.0 with a changelog entry."
 trigger_phrases:
   - "implementation summary"

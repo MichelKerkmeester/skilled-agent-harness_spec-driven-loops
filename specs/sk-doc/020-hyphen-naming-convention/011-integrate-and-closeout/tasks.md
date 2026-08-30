@@ -1,12 +1,11 @@
 ---
-title: "Tasks: integrate and close out (020 phase 011)"
+title: "Tasks: integrate and close out (020 phase 011) [sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/tasks]"
 description: "Tasks for phase 011 of the 020 kebab-case filesystem-naming program: integrate the verified migration branch and close out the packet with a consistent parent rollup."
 trigger_phrases:
   - "integrate and close out tasks"
   - "hyphen naming phase 011 tasks"
 importance_tier: "critical"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout"
 ---
 # Tasks: Integrate and close out
 

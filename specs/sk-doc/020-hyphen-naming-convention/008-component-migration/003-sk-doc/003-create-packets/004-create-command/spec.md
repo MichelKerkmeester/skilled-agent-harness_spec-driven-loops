@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-command resource names"
+title: "Feat [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command/spec]"
 description: "The create-command packet contains snake_case command templates and routing guidance filenames. This phase renames those non-exempt resources to kebab-case and updates command-authoring references without changing command manifests, argument fields, or tool-mandated names."
 trigger_phrases:
   - "create-command resource naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "command template rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

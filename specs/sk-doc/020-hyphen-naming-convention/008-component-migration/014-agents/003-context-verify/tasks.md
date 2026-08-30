@@ -1,12 +1,11 @@
 ---
-title: "Tasks: verify context agent naming (020 phase 003)"
+title: "Tasks: verify [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/003-context-verify/tasks]"
 description: "Tasks for phase 003 of the 020 agents component migration: verify the context filename candidate set."
 trigger_phrases:
   - "context agent naming tasks"
   - "agents phase 003 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/003-context-verify"
@@ -19,8 +18,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 # Tasks: Context Agent Naming Verification
 
 <!-- SPECKIT_LEVEL: 2 -->

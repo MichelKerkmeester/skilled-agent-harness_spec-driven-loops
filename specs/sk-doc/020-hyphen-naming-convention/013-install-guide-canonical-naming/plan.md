@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: INSTALL-GUIDE canonical filename normalization (sk-doc 021)"
+title: "Implementation Plan: INSTALL-GUIDE [sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming/plan]"
 description: "Plan for normalizing skill install-guide filenames to INSTALL-GUIDE.md: additive classifier hyphen-stem recognition, git-mv renames (two-step for case-only), and .md-suffixed filename reference updates, preserving the install_guide doc-type contract."
 trigger_phrases:
   - "install-guide normalization plan"
-  - "INSTALL-GUIDE rename plan"
+  - "install-guide rename plan"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
 ---
 # Implementation Plan: INSTALL-GUIDE canonical filename normalization
 

@@ -19,10 +19,7 @@
       "sk-prompt phase 006 plan",
       "sk-prompt changelog verification tasks",
       "sk-prompt release evidence tasks",
-      "sk-prompt phase 006 tasks",
-      "sk-prompt changelog verification checklist",
-      "sk-prompt release evidence verifier",
-      "sk-prompt phase 006 acceptance"
+      "sk-prompt phase 006 tasks"
     ],
     "key_topics": [
       "sk-prompt",
@@ -34,9 +31,9 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verifier",
-      "acceptance"
+      "verification-only",
+      "confirms",
+      "hub"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -44,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/sk-prompt/SKILL.md"
     ],
     "entities": [
@@ -67,15 +63,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specificat",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -104,12 +100,6 @@
       },
       {
         "name": "the",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "active",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -169,47 +159,34 @@
         "source": "derived"
       },
       {
-        "name": "versions",
+        "name": "active",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "versions",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This verification-only phase confirms that the sk-prompt hub, prompt-improve, and prompt-models release records document the completed kebab-case rename set and that their version metadata agrees with the new changelog entries. It does not rename files or rewrite frozen historical changelogs.",
     "created_at": "2026-07-14T15:17:33Z",
-    "last_save_at": "2026-08-29T13:10:14.465Z",
+    "last_save_at": "2026-08-30T07:19:32.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:1f0f5c3f8ff843acda0a5ed2534432644dc301d33217929536ebc97832f9ae3f",
+    "source_fingerprint": "sha256:f4a8e9576b3c84b893e99c16c8a5fd33eb360ef5a3ba3d1c01efef86fbb7a4b6",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "49415c9bd9a2f7e0734540ec15911c8909dd6c9c1994981c331a7d082775d52f",
-      "plan.md": "883ca3b8824c06fce384731ffaebe7910da40efe00755f4d4ab3156c2ea9931f",
-      "tasks.md": "ae9f9f730cfdcba3d53846761067b439b8df8d689e51d96e600a2270f3944b60",
-      "checklist.md": "a720b8963f17fd0e05f03dafde6c2a03c588a450e3252e88a428c19a3df3b1db"
+      "spec.md": "619034901c7c8c4bd656e60dd6da13ce6872c9637446d08df9212352b0a6e71d",
+      "plan.md": "52de1f182a6f604dfb774db474993815680e445074ecce8fe0bee63d7b688ced",
+      "tasks.md": "a3024a4c8ed5ed302d614134e93902c023675d2f981f19fd2b376549ccddbc4f"
     },
     "last_active_child_id": null,
     "last_active_at": null

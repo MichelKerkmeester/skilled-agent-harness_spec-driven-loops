@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-doc surface component migration"
+title: "Feature Specification: sk-doc surface [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/spec]"
 description: "The sk-doc skill surface contains in-scope snake_case directories and non-Python filenames across its hub, shared backbone, workflow packets, playbook, and release evidence. This phase parent divides the surface into independent component phases so each rename set has a bounded reference update and blocking acceptance contract."
 trigger_phrases:
   - "sk-doc component migration"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 sk-doc surface"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT -->

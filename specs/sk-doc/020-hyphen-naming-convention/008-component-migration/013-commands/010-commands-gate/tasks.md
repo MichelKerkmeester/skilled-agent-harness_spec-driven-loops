@@ -1,5 +1,5 @@
 ---
-title: "Tasks: commands subtree rollup gate (020 phase 008/013/010)"
+title: "Tasks: commands [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate/tasks]"
 description: "Blocking aggregation tasks for sibling acceptance, whole-tree kebab-case closure, exemption evidence, and active reference integrity."
 trigger_phrases:
   - "commands rollup gate tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "command naming gate tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate"
 ---
-
 # Tasks: Commands subtree rollup gate
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-code changelog and version verification (020 phase 008/008)"
+title: "Tasks: sk-code [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify/tasks]"
 description: "Execution tasks for checking the sk-code release entry, version coherence, exemption boundary, and handoff to the final subtree gate without performing migration work."
 trigger_phrases:
   - "sk-code changelog verification tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-code version check tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify"
 ---
-
 # Tasks: sk-code changelog and version verification
 
 <!-- SPECKIT_LEVEL: 2 -->

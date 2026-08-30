@@ -19,10 +19,7 @@
       "asset template rename plan",
       "sk-git assets tasks",
       "020 asset rename tasks",
-      "asset template pointer tasks",
-      "sk-git assets checklist",
-      "020 asset rename verification",
-      "asset template pointer acceptance"
+      "asset template pointer tasks"
     ],
     "key_topics": [
       "sk-git",
@@ -44,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/skills/sk-git/README.md"
     ],
@@ -65,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -186,31 +176,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "SUPERSEDED by concurrent v4 work, which already executed the three sk-git asset renames (committed on skilled/v4); the live asset surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm the three kebab targets exist, no source spelling survives in any active pointer, and template content contracts are intact.",
     "created_at": "2026-07-14T15:18:27Z",
-    "last_save_at": "2026-08-29T13:10:08.890Z",
+    "last_save_at": "2026-08-30T07:19:58.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:18f5f5a7feb60db2583d041da855895c5ae631b451bf1d36be1d4b258e28738e",
+    "source_fingerprint": "sha256:aff267df356ccb5147ea55a91c120e87ed29b110d4299224929dcdd162cb5b32",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "0d22fe27dffd41392af2cdb7157e4622953aefad0d61642d1983831460bdced8",
-      "plan.md": "7be46aceb13e847be9e1bac6a302b7086ce09b92d5960dcb28728bae14f80915",
-      "tasks.md": "501b2322ccbf3f78fbf59326a5544ed9bc4dceef32777d55b9a6983efd08f5db",
-      "checklist.md": "908aeae130775cbea2be1a202e4216964a70d8ed58c49b7149b0d2190f705348"
+      "spec.md": "3d4ee203a1dd67d2650e72e62e7884a970963eb67728169662bf07f5df9d74a1",
+      "plan.md": "6b34f0afe53c5566b31ef5af60c086f5cf326a0a35e369fe587e9e0a11d1bb47",
+      "tasks.md": "7b8fa664e944730d7af75fa58988f77ce28e299de587bbf3c1294b24cc49626a"
     },
     "last_active_child_id": null,
     "last_active_at": null

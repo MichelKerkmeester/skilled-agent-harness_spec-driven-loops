@@ -1,5 +1,5 @@
 ---
-title: "Handover: 016/002/007 — pre-compaction state snapshot 2026-05-18 21:50 PM"
+title: "...003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge/handover]"
 description: "Session handover capturing all in-flight work, recent commits, hard constraints, and the next safe action. Read this FIRST after any compaction event; do not assume the compaction summary's implied next steps."
 trigger_phrases:
   - "016/002/007 handover"
@@ -7,7 +7,7 @@ trigger_phrases:
   - "post-compaction recovery snapshot"
   - "embedder packet handover"
 importance_tier: "important"
-contextType: "handover"
+contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge"
@@ -27,7 +27,6 @@ _memory:
       parent_session_id: "016-002-007"
     completion_pct: 0
 ---
-
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

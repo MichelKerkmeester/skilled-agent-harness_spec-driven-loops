@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-git benchmark (020 phase 008/012/004)"
+title: "Tasks: sk-git benchmark [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark/tasks]"
 description: "Tasks for the sk-git benchmark profile-directory and path-value rename phase."
 trigger_phrases:
   - "sk-git benchmark tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "benchmark evidence parity tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark"
 ---
 # Tasks: sk-git benchmark
 

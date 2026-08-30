@@ -22,7 +22,7 @@
       "compiled routing coverage tasks",
       "sk-code pilot tasks",
       "staged flip task list",
-      "compiled routing coverage checklist"
+      "compiled routing coverage decision"
     ],
     "key_topics": [
       "compiled",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md",
@@ -74,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -179,13 +172,13 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Should Phase",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Should Phase",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -201,31 +194,36 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A real parity run (`SPECKITCOMPILEDROUTING=1`, route-gold on) shows the compiled router mechanism works and is byte-identical to legacy on covered prompts, but compiled routing coverage was only built out for sk-design",
     "created_at": "2026-07-21T09:34:21.815Z",
-    "last_save_at": "2026-08-29T14:54:23.673Z",
+    "last_save_at": "2026-08-30T07:19:07.144Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:ef8aec1db38be03d6c0ba71c5218474ab604ed449795f015aa083991422c68ee",
+    "source_fingerprint": "sha256:779066017fc3e6e6967d84c80735d045fda0ab4914d8e12b5765b790f8344bbe",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "172bfd15cb0981e32e13d4913b7ed5fc362a352be9df7f17171673591c5a17e0",
-      "plan.md": "1b683b549268db3b48a6830d3dbd8e993e702dff7ffd525ac94fdde6a8240931",
-      "tasks.md": "369568a69b2f8960f9796c7eee8919261c7b72d0cac3ba5e958b66aa1afbd36c",
-      "checklist.md": "105e74e5699f6d8f3b535fded7116f87d6e67d3fbe1bbc67ed8a5a9c222d3de5",
-      "decision-record.md": "ba42d33dee285a416b1a0d5a0fc407e0d1b194ee9863cdbf243e3715f2204be3",
-      "implementation-summary.md": "82f22a7eb156f4ef17447a68ba2053b09c417614d4100369ba1cc97e0f3df89f",
-      "handover.md": "9fbbee5beceac2e7a7847a1ed32f93ed873346599a40affb88f36fcf89f78c30"
+      "spec.md": "5460a3bb2909a554abe6f8716b2c0c016b6f2b7f48458bc0aca851be1dd67503",
+      "plan.md": "9fa5c5f36345d2026b1b211f18f2e8f9a645a70f10d1deef1b2c33b1682c8f88",
+      "tasks.md": "6fbb4e17aead332da9a8b4365d95d50477ecb782618e4f792e523b2242c09f36",
+      "decision-record.md": "3af7247d8fafe6c727095387bd87fef62b071dabff0b449b4b8aaedfe903d72b",
+      "implementation-summary.md": "e5a2ccefe4f59ec68fe9e63dd44f3727c6bf0f93b3d0892f1be850560da69b86",
+      "handover.md": "2e67d57c9fce0c73d0a2011518837dc341e3a3fc350a18be76aaf5e3e1594f58"
     },
     "last_active_child_id": null,
     "last_active_at": null

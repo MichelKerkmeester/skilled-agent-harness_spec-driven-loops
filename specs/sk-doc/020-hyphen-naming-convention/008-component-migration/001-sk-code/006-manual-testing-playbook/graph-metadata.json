@@ -20,9 +20,7 @@
       "manual-testing-playbook reference repair",
       "manual playbook naming tasks",
       "sk-code scenario rename tasks",
-      "playbook link repair tasks",
-      "manual playbook naming checklist",
-      "sk-code scenario rename verification"
+      "playbook link repair tasks"
     ],
     "key_topics": [
       "sk-code",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/sk-code/benchmark/README.md"
     ],
     "entities": [
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -179,37 +170,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The hub-level playbook is a routable evidence corpus with the root manualtestingplaybook/ and categories crossbrowserandperformancegates, crossstackrouting, designrestraint, languagesubdetection, motiondevandanimationregression, pluginsandhooks, routingdisambiguation, skilladvisorintegration, surfacedetection, and toolingandhooks",
     "created_at": "2026-07-14T15:17:10Z",
-    "last_save_at": "2026-08-29T13:10:08.103Z",
+    "last_save_at": "2026-08-30T07:19:18.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:b9bd9749ed9e15d6b5e610552d5e449bb16d4c0588dcc63be1622a3a9e853a1e",
+    "source_fingerprint": "sha256:29bedcb1803e97251eef00cebecf153b5fb6bbcd2541a99bfb12cbc490c15ed6",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "a538a18dc3ae0dc369c18a5f0a279820a1608d05ef75959e6caeed3dd0219202",
-      "plan.md": "1ed49e8c2bc52b93d00f9ae7f38cde763518ed8a5879a6a7853845385d3f3130",
-      "tasks.md": "d2c99bef37bfe479ef4a494c793f970313d3e9cee06462b7873b2f635b1e40db",
-      "checklist.md": "6b1f516265e9245560341c34a7b5d61819da99a0138c1386f2f3ff2de27bba51"
+      "spec.md": "bd48ee687dbea587cdb6fb0deece30b94d3588646a9db9cc6f913d5b232003df",
+      "plan.md": "188e358369ede06156cf887e57d1455141f42c79db283df53078938319c7543c",
+      "tasks.md": "7836ef7c40488d7cc90a1473fb770957dce3ceb146557cbf4dc2ba2181480486"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-quality-control resource names"
+title: "...c/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control/spec]"
 description: "The create-quality-control packet contains snake_case transformation, validation, and workflow reference filenames. This phase converts those non-exempt resources to kebab-case and updates packet-local references while preserving the shared quality-control contract and tool-mandated names."
 trigger_phrases:
   - "create-quality-control resource naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "quality control transformation rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/011-create-quality-control"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

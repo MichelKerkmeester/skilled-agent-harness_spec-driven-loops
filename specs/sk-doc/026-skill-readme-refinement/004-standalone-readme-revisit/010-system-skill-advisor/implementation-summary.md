@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 010 system-skill-advisor README revisit"
+title: "Imple [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/010-system-skill-advisor/implementation-summary]"
 description: "The system-skill-advisor README now reads purpose-first on the refined template: one-line pitch, problem-first overview, five-lane scorer table and a verification close, with the version bumped to 0.11.0.0 and a matching changelog entry."
 trigger_phrases:
   - "phase 010 implementation summary"

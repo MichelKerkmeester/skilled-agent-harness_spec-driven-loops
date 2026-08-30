@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-click-up naming closure (020 phase 003)"
+title: "Feature Specificatio [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up/spec]"
 description: "The mcp-click-up component contains snake_case catalog roots, catalog category directories, manual-testing categories, index files, reference files, and hundreds of links between them. This phase renames the component-local filesystem paths to kebab-case and updates path-derived references while preserving ClickUp CLI identifiers, package manifests, and data keys."
 trigger_phrases:
   - "mcp-click-up kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 mcp tooling phase 003"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up"
@@ -24,8 +23,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

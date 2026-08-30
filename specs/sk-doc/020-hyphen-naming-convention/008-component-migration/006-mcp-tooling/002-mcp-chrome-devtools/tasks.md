@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-chrome-devtools naming closure (020 phase 002)"
+title: "Tasks: mcp-c [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools/tasks]"
 description: "Tasks for phase 002 of the mcp-tooling component naming migration: rename Chrome DevTools paths and repair their references."
 trigger_phrases:
   - "mcp-chrome-devtools naming tasks"
   - "chrome devtools playbook rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools"
 ---
 # Tasks: mcp-chrome-devtools Naming Closure
 

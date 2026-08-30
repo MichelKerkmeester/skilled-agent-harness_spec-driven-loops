@@ -1,13 +1,12 @@
 ---
-title: "Implementation Plan: root and OpenCode infrastructure strays (020 phase 007 child 001)"
+title: "Impl [sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays/plan]"
 description: "Execution plan for the root and OpenCode infrastructure closure: classify candidates, apply semantic targets, close same-surface references, and hand off cross-skill edges."
 trigger_phrases:
   - "root infrastructure closure implementation plan"
-  - "OpenCode infrastructure naming plan"
+  - "opencode infrastructure naming plan"
   - "phase 007 child 001 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays"
@@ -25,6 +24,7 @@ _memory:
     answered_questions:
       - "The plan uses the phase 005 semantic rename/reference tooling and phase 006 frozen map"
       - "Symlink and shared-script edges are handed to sibling closure children"
+parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays"
 ---
 # Implementation Plan: Root and OpenCode Infrastructure Strays
 

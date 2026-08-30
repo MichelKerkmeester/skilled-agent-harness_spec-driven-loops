@@ -1,12 +1,11 @@
 ---
-title: "Tasks: create-feature-catalog resource names"
+title: ".../020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog/tasks]"
 description: "Concrete execution and verification tasks for the create-feature-catalog resource naming phase."
 trigger_phrases:
   - "create-feature-catalog resource tasks"
   - "feature catalog template rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog"
 ---
 # Tasks: create-feature-catalog resource names
 

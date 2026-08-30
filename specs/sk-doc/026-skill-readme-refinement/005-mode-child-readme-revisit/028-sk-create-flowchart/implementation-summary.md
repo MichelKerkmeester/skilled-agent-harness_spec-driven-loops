@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 028 sk-create-flowchart README rewrite"
+title: "Implem [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/implementation-summary]"
 description: "Closeout record for the sk-create-flowchart README purpose-first rewrite: baseline 1.0.0.0, target version 1.0.2.0, changelog entry, validator and HVR evidence, scope guard."
 trigger_phrases:
   - "phase 28 implementation summary"
@@ -27,7 +27,6 @@ _memory:
     answered_questions:
       - "README version field lags the changelog head. Fixed by bumping the field to 1.0.2.0 with a matching new entry, per the 013-mcp-obsidian precedent"
 ---
-
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

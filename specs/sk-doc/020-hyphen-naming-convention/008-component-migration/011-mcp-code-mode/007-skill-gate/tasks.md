@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-code-mode subtree skill gate (020 component 011 phase 007)"
+title: "Tasks: mcp-code-mod [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate/tasks]"
 description: "Tasks for aggregating sibling evidence and running the read-only whole-surface naming, reference, executable, parity, and changelog gate."
 trigger_phrases:
   - "mcp-code-mode subtree gate tasks"
   - "mcp-code-mode phase 007 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate"
 ---
 # Tasks: mcp-code-mode subtree skill gate
 

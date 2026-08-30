@@ -1,9 +1,9 @@
 ---
-title: "Tasks: Devin hook truth and runtime README parity"
+title: "Tasks: Devin hook truth [cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes/tasks]"
 description: "Track the bounded correction of current Devin hook documentation, runtime discovery mirrors, approved Zed MCP cleanup and verification evidence."
 trigger_phrases:
-  - "Devin hook truth tasks"
-  - "runtime README parity tasks"
+  - "devin hook truth tasks"
+  - "runtime readme parity tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

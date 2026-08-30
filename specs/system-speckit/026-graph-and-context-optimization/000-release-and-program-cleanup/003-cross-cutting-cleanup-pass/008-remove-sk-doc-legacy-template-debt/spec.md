@@ -1,6 +1,5 @@
 ---
-title: "Spec: sk-doc Legacy Template Debt Cleanup (Tier 4)"
-template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+title: "...imization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt/spec]"
 description: "Address 93 HIGH + 177 MED findings from sk-doc template alignment audit on older spec folders. Pre-existing legacy debt; not regression-driven. Bulk fix via grouped pattern remediation."
 trigger_phrases:
   - "008-remove-sk-doc-legacy-template-debt"
@@ -17,8 +16,8 @@ _memory:
     next_safe_action: "Defer remaining prose-heavy MED issues to Tier 5"
     blockers: []
     completion_pct: 100
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

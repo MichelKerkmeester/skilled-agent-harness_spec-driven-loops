@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2 identity-config-compat"
+title: "Implementation Plan: [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat/plan]"
 description: "Apply package identity and the researched config/request safety contract without adding handoff behavior."
 trigger_phrases:
   - "identity-config-compat plan"

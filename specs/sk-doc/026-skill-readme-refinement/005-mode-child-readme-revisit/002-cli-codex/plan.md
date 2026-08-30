@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 002 cli-codex README revisit"
+title: "Implementation Plan: Phase 002 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex/plan]"
 description: "Rewrite the cli-codex skill README purpose-first on the refined template from phase 001, using the mcp-obsidian exemplar as the standard, with a version bump and changelog entry."
 trigger_phrases:
   - "phase 002 plan"

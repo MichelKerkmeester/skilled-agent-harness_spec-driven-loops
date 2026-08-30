@@ -22,7 +22,7 @@
       "phase 2 tasks",
       "parent skill readme tasks",
       "hub readme template tasks",
-      "phase 2 checklist"
+      "phase 002-parent-skill-readme-template summary"
     ],
     "key_topics": [
       "parent",
@@ -41,25 +41,17 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/checklist.md",
-      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md"
     ],
     "entities": [
-      {
-        "name": "parent-skill-readme-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -79,21 +71,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "parent-skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/parent-skill/parent-skill-readme-template.md",
         "source": "derived"
       },
       {
         "name": "skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -197,27 +189,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The fleet has parent hubs with READMEs of inconsistent shape",
     "created_at": "2026-08-04T07:12:16.602Z",
-    "last_save_at": "2026-08-04T12:30:48.761Z",
+    "last_save_at": "2026-08-30T07:20:16.451Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bd97aa7668866609e5bb5a92dc8e9c15cafbdf337d45c352dac9f0e83a871bd9",
+    "source_fingerprint": "sha256:e8931507012c11571371a0ba3766a1b14359455c072e270177cd6fc059441f37",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "661c1b7d0d1e54b312417bf17851466f3e0378edcac8b725dde0b02249b8adf6",
-      "plan.md": "7bab9798ae320b3703d62a74025288c31c4141469f5b2bd0e6a2fbc585d80583",
-      "tasks.md": "7b125c958d5ddef559352fd3a5eadc6bfaff16fc8819413297f0a91a09a3d266",
-      "checklist.md": "7d18eaef1740473a049fc1bff4d1e0b2b025e8225488b0b4a3ace05ddba648a8",
-      "implementation-summary.md": "6293a0787dbb7445503383643bd4ad5f32bdf3b77d0b860582278be662cc3829"
+      "spec.md": "5ffe76950139396f4d85af8f327e085e87a3e1480cb1f59272ba3638e6686ac0",
+      "plan.md": "24d8d297f06efd67d3df07d892fa96775d805f98d30f3f8cc494162016db1a41",
+      "tasks.md": "e734c09acb6ee3ed369559785b7104d2f690590ed53e6f0aa2144e1034c97331",
+      "implementation-summary.md": "1b7cda323921653a1b5a24843a307f1804addab06b4fd5346d58431abbb83f29"
     },
     "last_active_child_id": null,
     "last_active_at": null

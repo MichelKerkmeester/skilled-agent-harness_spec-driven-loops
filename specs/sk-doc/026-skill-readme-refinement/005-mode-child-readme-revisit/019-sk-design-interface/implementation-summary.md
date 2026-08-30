@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 019 sk-design-interface README revisit"
+title: "Implem [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/019-sk-design-interface/implementation-summary]"
 description: "Closeout record for the sk-design-interface README purpose-first rewrite, version bump, changelog entry and validation."
 trigger_phrases:
   - "phase 019 implementation summary"

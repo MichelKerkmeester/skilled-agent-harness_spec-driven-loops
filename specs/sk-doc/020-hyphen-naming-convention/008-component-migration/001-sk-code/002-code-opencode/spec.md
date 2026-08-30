@@ -1,14 +1,13 @@
 ---
-title: "Feature Specification: code-opencode filesystem names (020 phase 008/002)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode/spec]"
 description: "The code-opencode evidence packet contains snake_case asset, playbook, reference, benchmark, and symlink names that are embedded in OpenCode routing documentation. This phase renames those filesystem names to kebab-case and repairs their references while preserving SKILL.md, Python files, Python package directories, and other exact-name contracts."
 trigger_phrases:
   - "code-opencode naming migration"
-  - "OpenCode packet kebab-case"
-  - "OpenCode reference rename"
-  - "OpenCode playbook path migration"
+  - "opencode packet kebab-case"
+  - "opencode reference rename"
+  - "opencode playbook path migration"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode"
@@ -28,8 +27,8 @@ _memory:
       - "OpenCode .py scripts and Python import-package directories are exempt."
       - "SKILL.md, README.md, package manifests, and other tool-mandated names remain exact."
       - "The phase owns the code-opencode subtree and its path/reference closure."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

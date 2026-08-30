@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 010 mcp-figma README rewrite"
+title: "Feature Specification: Phase 010 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma/spec]"
 description: "Rewrite the mcp-figma skill README against the refined README template from phase 001 and the mcp-obsidian exemplar, with a version bump and a changelog entry."
 trigger_phrases:
   - "mcp figma readme"

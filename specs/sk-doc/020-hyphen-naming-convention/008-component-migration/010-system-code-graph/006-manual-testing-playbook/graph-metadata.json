@@ -20,9 +20,7 @@
       "manual scenario rename map",
       "system-code-graph manual testing playbook tasks",
       "code graph manual scenario rename tasks",
-      "manual-playbook link repair tasks",
-      "system-code-graph manual testing playbook checklist",
-      "code graph manual-playbook verification"
+      "manual-playbook link repair tasks"
     ],
     "key_topics": [
       "system-code-graph",
@@ -43,8 +41,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,37 +169,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The code-graph manual playbook currently uses the snakecase manualtestingplaybook root, nine snakecase category",
     "created_at": "2026-07-14T15:18:17Z",
-    "last_save_at": "2026-08-29T10:00:54.807Z",
+    "last_save_at": "2026-08-30T07:19:53.730Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:2c90bae1b3ab7a522204e225fe5d98ec2da80c71d0e77782480c04681b9c5f8f",
+    "source_fingerprint": "sha256:f0763b50035417f6f9ff564bcf573276c6e526a84cb9dd634cf66f2aadb8bc9e",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "40cee31e6c24ce5f9a4a69569f21fdcbac027f95598f1f00a8554bb1a965c4c7",
-      "plan.md": "26306d1853ef34cce98c6eeb9382dfaed0e38b08f56f1467872444b0da014539",
-      "tasks.md": "3efe4cf87708d4fe3866682bd3be5ce02a8aa06393677bfbf750bb9a88957813",
-      "checklist.md": "bcccf681de71de80eb954a2d7b4afd3f0af10082376bb74720674cf48207a093"
+      "spec.md": "35a21600c4f698b9797357fb8cd14991414ee91c59c2331515ce0d068a50e856",
+      "plan.md": "01972a6eb5af98c3ecb3f48feb6207056f93b347ca6caf5fc78bfef8f1aee0a9",
+      "tasks.md": "e4d04c9014fbff0abaad3bb79d408d9640aef70682273d169606acc50866a15f"
     },
     "last_active_child_id": null,
     "last_active_at": null

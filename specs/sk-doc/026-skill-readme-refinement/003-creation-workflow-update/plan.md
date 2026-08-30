@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan — Phase 003 — creation workflow README template wiring"
+title: "Implementation Plan — Phase 003 — creation [sk-doc/026-skill-readme-refinement/003-creation-workflow-update/plan]"
 description: "Wire both README templates into the create-skill workflow with a choice rule and post-authoring validation."
 trigger_phrases:
   - "phase 003 plan"

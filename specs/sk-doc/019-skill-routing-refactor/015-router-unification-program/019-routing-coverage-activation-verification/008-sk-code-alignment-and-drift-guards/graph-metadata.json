@@ -13,14 +13,12 @@
     "trigger_phrases": [
       "sk-code alignment drift guards",
       "code-opencode resource map equality gate",
-      "qualifiedIdToLeaf bijection test",
+      "qualifiedidtoleaf bijection test",
       "sk-code alignment plan",
       "drift guards orchestrator plan",
-      "qualifiedIdToLeaf plan",
+      "qualifiedidtoleaf plan",
       "sk-code alignment tasks",
       "drift guards task list",
-      "sk-code alignment checklist",
-      "drift guards QA gate",
       "sk-code alignment implementation summary",
       "drift guards delivered summary"
     ],
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts",
       ".opencode/skills/sk-code/leaf-manifest.json"
@@ -66,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,31 +180,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The documented enforcement mechanism for code-opencode's RESOURCEMAP parent-child equality is inert",
     "created_at": "2026-07-20T21:51:40.268Z",
-    "last_save_at": "2026-08-29T13:10:18.697Z",
+    "last_save_at": "2026-08-30T07:19:05.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e991a4594c92e860d5919e1401123a5c520ce9f0fb97b9343ef22397e455629b",
+    "source_fingerprint": "sha256:64eb77c4134a25a74267b80deb646e1693c49506fcd9d1e0cbfa53cd35bc103c",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "1c9741b1c7e552fd4f36d64d7c3f6bb56fc2cb650b50addcc054cb6be71703d8",
-      "plan.md": "dd1702c373f602aee225ce3cd0b0c86f2d892288909c8308e3d9a57111659a65",
-      "tasks.md": "858d91fbcf2c53f63ea150bb1fc65631d7116631e3afff45a8928a8f6214a2b2",
-      "checklist.md": "17a82b9842a4a4d4bb1263673ccd170c4c576963ada0d92f28c2f83e993f71c4",
-      "implementation-summary.md": "f14c0be4101f9919cf10f40ec8308c80250ae349067c499da00ee1cdd29b6b0b"
+      "spec.md": "f502375b480dc6830bf91ca5febdbe7407ab31dd12da0ca2ea4d989026bbaa9e",
+      "plan.md": "305d673d988e551c318ab58b747ff1a566d2e20389490108d56efa84e6c033b6",
+      "tasks.md": "46c42218889fb5004b04996bb3737de1303342389ca816c68dac5dbead1a09cd",
+      "implementation-summary.md": "96074d23d5eeb6be99209009c506a247930290e07cc97137ae862b24bc088cdb"
     },
     "last_active_child_id": null,
     "last_active_at": null

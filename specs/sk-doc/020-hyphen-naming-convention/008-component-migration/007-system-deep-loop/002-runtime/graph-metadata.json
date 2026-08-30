@@ -21,8 +21,8 @@
       "system-deep-loop runtime tasks",
       "runtime kebab-case naming tasks",
       "deep loop runtime path repair tasks",
-      "system-deep-loop runtime checklist",
-      "runtime naming verification"
+      "system-deep-loop runtime decisions",
+      "deep loop runtime naming decision record"
     ],
     "key_topics": [
       "system-deep-loop",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       ".opencode/skills/system-deep-loop/runtime/package-lock.json"
     ],
@@ -68,12 +67,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -83,6 +76,12 @@
         "name": "package-lock.json",
         "kind": "config",
         "path": ".opencode/skills/system-deep-loop/runtime/package-lock.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specificatio",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -112,12 +111,6 @@
       {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "their",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -192,27 +185,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The runtime tree has six snake_case directories and 108 underscore-bearing files across its catalog, playbook, libraries, scripts, and tests. This phase renames those in-scope names to kebab-case and updates path consumers while preserving the package workspace, tool-mandated files, database contracts, and all code/data identifiers.",
     "created_at": "2026-07-14T15:17:48Z",
-    "last_save_at": "2026-08-29T13:10:06.048Z",
+    "last_save_at": "2026-08-30T07:19:40.403Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:e35e44648a82ef980134926cd31de99e4a545dee2a43613b33f153aca7722b30",
+    "source_fingerprint": "sha256:7c1a53bc490394af790ec18bf3d984d255c1eaf0e519ef1dd3b46bf864da46e9",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "ee26cee023f950b7406c60184b3b54fac60427b3d7485d45e78f193532ddcca0",
-      "plan.md": "0a243f7772f5ae5969f4c0d58ab1be6aa25bc39c1639a29f3f192b89aa2c1991",
-      "tasks.md": "7d2f55ce609d2cbceff11159af0cac3da0061e82d6daadaecde2f6cc16199bf8",
-      "checklist.md": "192d4c665a05f7e27d2ba06f5487efbec1f5ee2aea97491cb26e9a3c836749df",
-      "decision-record.md": "f63c8f8f87a38ec6f7d286b8f41aa732c4d79255355af4fa65b6b841ea1e5016"
+      "spec.md": "821d99ec4adc57375d738e5ff43701249c57db4eeefaddd96a63b1720e0a2517",
+      "plan.md": "a19c7a7d627105ab2b0f75df3c45377fbb4c3e5b1a3f47b6bd05212149c5bacb",
+      "tasks.md": "8a595a8b9979ae2699a285f652b1450e98f9e6dbcb4724f8c755bc24f54a3b8b",
+      "decision-record.md": "0f1d9a9c797e52ab4ae207d64c4e29238fef52f48f9d0aadebe1ef72f2b79e35"
     },
     "last_active_child_id": null,
     "last_active_at": null

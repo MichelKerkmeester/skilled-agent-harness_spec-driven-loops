@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: operator-surface-realignment [template:level_1/spec.md]"
+title: "...ntext-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment/spec]"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"

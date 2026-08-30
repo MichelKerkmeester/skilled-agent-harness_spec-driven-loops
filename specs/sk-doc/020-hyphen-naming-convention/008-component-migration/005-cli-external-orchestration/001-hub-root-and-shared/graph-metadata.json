@@ -20,9 +20,9 @@
       "cli-external hub root tasks",
       "cli external shared boundary tasks",
       "cli-external phase 001 tasks",
-      "cli-external hub root checklist",
-      "cli external shared boundary verifier",
-      "cli-external phase 001 acceptance"
+      "cli-external hub root decision record",
+      "cli external shared boundary decisions",
+      "cli-external phase 001 decisions"
     ],
     "key_topics": [
       "cli-external",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       ".opencode/skills/cli-external-orchestration/SKILL.md",
       ".opencode/skills/cli-external-orchestration/README.md",
@@ -69,12 +68,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,27 +189,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The live hub root has exact routing files, delegated component trees, a root manual-testing-playbook tree, and an empty shared boundary. This phase records ownership and renames only hub/shared-owned authored names without crossing delegated playbook or benchmark scope.",
     "created_at": "2026-07-14T15:17:35Z",
-    "last_save_at": "2026-08-29T13:10:03.427Z",
+    "last_save_at": "2026-08-30T07:19:33.403Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:08abd7883025b8d73160e0117a9c4c50a85ca902341ffa7b2b73a418c5efcdf7",
+    "source_fingerprint": "sha256:31d311dc1ffd7eb8783bfa9ebc5ad648e3cd3e15dc9226d691638ac8b6831a0c",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "3eb8eb03c378d823e1aa0107cb1f8b954af0dfd3a1d8f1b81851eac078acfb88",
-      "plan.md": "69a95cc3f57a0880872e3b27ae999c4bfafdd54b1689903ff4dd8236e697375e",
-      "tasks.md": "ec18ea1a3266d551faf112f6446b35459398a945962d186ce0dfb1369b084a8e",
-      "checklist.md": "19bf37a0c73f9cf86daec18deb1defaf61d31ed44f6cf3f92122f140df36c7d9",
-      "decision-record.md": "d3c121487b50603dfb15510bbe68b9a1d4bf42ab14bc0ee6002c50392e09aa72"
+      "spec.md": "05318e39693ea0322378b0e54ada8997b71045b59ad6ee81d537b148bfde08f4",
+      "plan.md": "944821f44d4b4aed241591bea5756367714e4525bb43b733d48f808fb25037de",
+      "tasks.md": "f05725bb4918d4c19c07bef6904833abf48f3be729bad9246d4ca57be945c748",
+      "decision-record.md": "e83878afd6a39309a74e42e3ed1caf33b0595f3df680a23eafe88a66c4086e63"
     },
     "last_active_child_id": null,
     "last_active_at": null

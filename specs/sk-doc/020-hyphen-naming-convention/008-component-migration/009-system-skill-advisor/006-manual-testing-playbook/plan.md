@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-skill-advisor manual testing playbook"
+title: "...k-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook/plan]"
 description: "Rename the manual-testing-playbook root, nine categories, and 48 files with a complete path map, repair catalog and operator links, and prove scenario identity and discovery parity."
 trigger_phrases:
   - "manual testing playbook implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "advisor scenario rename map"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "The current tree contains nine snake_case category directories and 48 files including the root index."
       - "Scenario IDs and contract content are the parity baseline."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook"
 ---
-
 # Implementation Plan: system-skill-advisor manual testing playbook
 
 <!-- SPECKIT_LEVEL: 2 -->

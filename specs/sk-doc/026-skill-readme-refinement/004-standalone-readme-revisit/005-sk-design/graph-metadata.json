@@ -41,34 +41,19 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-design/README.md",
-      ".opencode/skills/sk-design/changelog/v1.7.0.0.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/checklist.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.7.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/changelog/v1.7.0.0.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -88,9 +73,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-design/README.md",
         "source": "derived"
       },
       {
@@ -103,12 +94,6 @@
         "name": "hvr-rules.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,27 +185,38 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "zero",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design README at `.opencode/skills/sk-design/README.md` still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:36.577Z",
-    "last_save_at": "2026-08-04T13:21:18.157Z",
+    "last_save_at": "2026-08-30T07:20:19.511Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3dcbae2ef14ac32e19c8a279a164a3bcda5bb74e9254ecde6d74f5e943949d1e",
+    "source_fingerprint": "sha256:8d891ba41f427f07f3c3a3844ed2ed13ebff7434ffc32ac07051c81c41aff42a",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "46fb8a774dc50ae63159d0d9351dbb4606480479467cf6f75a2ef1d01b8554c6",
-      "plan.md": "716fa54d7fffb822205d1a5354d6f307596c4d786674b3bdbb62436e1c1bb5f1",
-      "tasks.md": "d4d35ee7fca632e68751c531bd786a15fcdaa17eb99ba5fabb08ea84e087cd21",
-      "checklist.md": "3f71b83c5d29e01d45aaa665ba5cd760b4012103f73b910483b0a7e4d63f97a9",
-      "implementation-summary.md": "064a7f664d20f5552e0a68d22d7e5cfb5d16a447127dc8f422ad105b38ff377e"
+      "spec.md": "55e16e2708b8b729519a71ebb95b141b8d544adab6ad3d6d0cf3effc46f86a79",
+      "plan.md": "eb7c8745eb007ee2da4657c1fbeb7ebb840a8614ab78a8961a3bde208d242928",
+      "tasks.md": "547c386c5144111178b372475bb43bf76a0bfdd5c7e1a94f2dc9eebc94d37912",
+      "implementation-summary.md": "96e3c3bdeeb14e1449fb1eafc6e568c91a6349b13dd4527ca31c1110af4dc0b0"
     },
     "last_active_child_id": null,
     "last_active_at": null

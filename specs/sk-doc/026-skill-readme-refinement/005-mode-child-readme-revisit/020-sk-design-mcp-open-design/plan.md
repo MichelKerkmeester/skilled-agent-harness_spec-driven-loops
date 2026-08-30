@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 020 sk-design-mcp-open-design README revisit"
+title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/020-sk-design-mcp-open-design/plan]"
 description: "Rewrite the sk-design-mcp-open-design README purpose-first per the refined README template with a version bump and a changelog entry."
 trigger_phrases:
   - "phase 20 plan"

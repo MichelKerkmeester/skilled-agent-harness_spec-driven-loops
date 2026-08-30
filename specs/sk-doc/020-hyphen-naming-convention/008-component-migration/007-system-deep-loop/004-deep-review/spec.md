@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: deep-review filesystem names (020 phase 007/004)"
+title: "Feature Specific [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review/spec]"
 description: "The deep-review packet contains 15 underscore-bearing directory families and 96 underscore-bearing files across review dimensions, severity, state, convergence, playbooks, and assets. This phase renames those in-scope paths to kebab-case and repairs their consumers without changing review findings, convergence, state, or tool contracts."
 trigger_phrases:
   - "deep-review kebab-case migration"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "deep-review snake_case resources"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
@@ -23,8 +22,8 @@ _memory:
       - "The live deep-review inventory has 15 underscore-bearing directory families and 96 underscore-bearing files."
       - "SKILL.md, review_mode_contract.yaml, tool-mandated names, generated output, and frozen history stay exact."
       - "Review severity, state, JSONL, and convergence identifiers are contracts and are not filesystem rename targets."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

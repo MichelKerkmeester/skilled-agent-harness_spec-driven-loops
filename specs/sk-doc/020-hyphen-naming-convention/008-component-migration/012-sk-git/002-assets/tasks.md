@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-git assets (020 phase 008/012/002)"
+title: "Tasks: sk-git assets (020 [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets/tasks]"
 description: "Tasks for the sk-git asset and template filename rename phase."
 trigger_phrases:
   - "sk-git assets tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "asset template pointer tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets"
 ---
 # Tasks: sk-git assets
 

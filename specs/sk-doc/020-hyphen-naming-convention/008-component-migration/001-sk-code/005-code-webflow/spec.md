@@ -1,14 +1,13 @@
 ---
-title: "Feature Specification: code-webflow filesystem names (020 phase 008/005)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow/spec]"
 description: "The code-webflow surface contains snake_case asset files, animation and implementation reference trees, manual-playbook categories, and benchmark labels. These names are embedded in browser/runtime guidance and links, so this phase defines a complete kebab-case rename/reference closure while preserving Webflow, JavaScript, CSS, HTML, and Motion.dev behavior."
 trigger_phrases:
   - "code-webflow naming migration"
-  - "Webflow packet kebab-case"
-  - "Webflow asset path rename"
+  - "webflow packet kebab-case"
+  - "webflow asset path rename"
   - "animation reference path migration"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow"
@@ -28,8 +27,8 @@ _memory:
       - "Webflow, JavaScript, CSS, HTML, and Motion.dev behavior is out of scope for redesign."
       - "SKILL.md, README.md, Python/package, generated, tool-mandated, and frozen names remain exact."
       - "This child owns only the code-webflow subtree and its path/reference closure."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: scripts command namespace naming (020 phase 008/013/006)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace/plan]"
 description: "Audit the already-clean scripts namespace, preserve its negative fixture contract, and produce evidence for the command-surface rollup."
 trigger_phrases:
   - "scripts namespace naming plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "scripts no-op migration plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace"
@@ -22,8 +21,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/006-scripts-namespace"
 ---
-
 # Implementation Plan: Scripts command namespace naming
 
 <!-- SPECKIT_LEVEL: 2 -->

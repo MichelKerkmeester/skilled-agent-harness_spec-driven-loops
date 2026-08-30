@@ -1,11 +1,11 @@
 ---
-title: "Implementation Summary: Compiled-Routing Deep-Review Remediation"
+title: "...outer-unification-program/019-routing-coverage-activation-verification/016-review-remediation/implementation-summary]"
 description: "Fixed all eight confirmed findings from two GPT-5.6 deep reviews of the compiled-routing v4 landing: two routing-parity bugs, a manifest race, an authored-closure drift, a cohort guard, a stale telemetry value, and two doc-honesty gaps. Every fix ships with a regression test and every release invariant was re-verified."
 trigger_phrases:
   - "compiled routing remediation"
   - "deep review remediation"
   - "routing parity remediation"
-  - "F001 F002 F005 F007 remediation"
+  - "f001 f002 f005 f007 remediation"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

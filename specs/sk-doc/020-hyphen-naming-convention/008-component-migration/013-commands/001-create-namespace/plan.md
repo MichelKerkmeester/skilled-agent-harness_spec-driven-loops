@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: create command namespace naming (020 phase 008/013/001)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace/plan]"
 description: "Plan for renaming the maintained create command asset files through the frozen semantic map, repairing mode and presentation pointers, and proving the command behavior remains equivalent."
 trigger_phrases:
   - "create namespace naming plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "create command path repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace"
 ---
-
 # Implementation Plan: Create command namespace naming
 
 <!-- SPECKIT_LEVEL: 2 -->

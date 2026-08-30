@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-prompt hub root and shared boundary (020 phase 004.001)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared/plan]"
 description: "Implementation plan for phase 001 of the sk-prompt kebab-case program: census the hub root/shared boundary, apply only owned path renames, preserve exact routing files, and hand delegated trees to their child phases."
 trigger_phrases:
   - "sk-prompt hub root implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 001 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "No shared/ directory is present in the current root inventory."
       - "manual_testing_playbook/ and benchmark/ are delegated child-phase surfaces."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 

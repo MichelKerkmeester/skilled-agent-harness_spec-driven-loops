@@ -1,7 +1,9 @@
 ---
-title: "Decision Record: Devin feature catalog"
+title: "Decision Record: Devin [cli-external-orchestration/029-cli-devin-revival/010-devin-feature-catalog/decision-record]"
 description: "ADR-001: the hook evidence-state set and why it is enforced as a content requirement rather than a shared create-feature-catalog schema change."
-trigger_phrases: ["devin feature catalog decision record", "hook evidence state"]
+trigger_phrases:
+  - "devin feature catalog decision record"
+  - "hook evidence state"
 importance_tier: "normal"
 contextType: "general"
 _memory:

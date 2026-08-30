@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 014 mcp-refero README rewrite"
+title: "Implementation Plan: Phase 014 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/014-mcp-refero/plan]"
 description: "Rewrite the mcp-refero mode skill README purpose-first on the refined standalone README template with HVR enforcement, a version bump to 1.1.0.0 and a changelog entry."
 trigger_phrases:
   - "phase 14 plan"

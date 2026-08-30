@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-tooling subtree rollup gate (020 phase 008)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate/plan]"
 description: "This plan aggregates the sibling SOL contracts and runs the complete exemption-aware naming and reference checks for mcp-tooling without adding a new migration batch."
 trigger_phrases:
   - "mcp-tooling subtree gate plan"
   - "mcp tooling rollup verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate"
 ---
 # Implementation Plan: mcp-tooling Subtree Rollup Gate
 

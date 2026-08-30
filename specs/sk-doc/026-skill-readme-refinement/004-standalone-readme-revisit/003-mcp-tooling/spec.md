@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3 mcp-tooling README rewrite"
+title: "Feature Specification: Phase 3 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/spec]"
 description: "Rewrite .opencode/skills/mcp-tooling/README.md against the refined standalone README template from phase 001 with the mcp-obsidian README as the exemplar shape, purpose-first with HVR enforcement, a version bump and a changelog entry."
 trigger_phrases:
   - "mcp tooling readme"

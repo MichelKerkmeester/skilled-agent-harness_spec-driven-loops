@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: inventory and frozen rename map (020 phase 006)"
+title: "Feature Specification: inventory and frozen [sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map/spec]"
 description: "Before any rename, the in-scope surface must be frozen into a fully-classified rename map partitioned by dependency closure, pinned to the CURRENT migration tip (not the authoring SHA). Every candidate is classified exactly once (rename/exempt/frozen/generated/tool-mandated) with no 'unknown' bucket; rename entries carry a pending vs already-applied disposition because concurrent v4 work has landed part of the surface (the sk-git kebab pilot). The map is hashed with BASE so execution is reproducible, and the generated .codex/prompts surface is in scope, classified generated."
 trigger_phrases:
   - "inventory and frozen rename map"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "kebab-case inventory and"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/006-inventory-and-frozen-map"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

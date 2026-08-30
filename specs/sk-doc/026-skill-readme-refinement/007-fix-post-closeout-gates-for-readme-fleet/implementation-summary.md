@@ -1,10 +1,10 @@
 ---
-title: "Implementation Summary: Phase 007 documentation gate remediation"
+title: "Implementation [sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet/implementation-summary]"
 description: "Evidence-backed closeout record for restoring global documentation gates and aligning the CLI mode README family."
 trigger_phrases:
   - "phase 007 implementation summary"
   - "documentation gate remediation"
-  - "CLI README alignment status"
+  - "cli readme alignment status"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

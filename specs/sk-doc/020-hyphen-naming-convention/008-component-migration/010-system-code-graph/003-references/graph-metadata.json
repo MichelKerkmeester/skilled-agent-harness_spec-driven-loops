@@ -20,9 +20,7 @@
       "reference filename rename map",
       "system-code-graph reference tasks",
       "code graph reference rename tasks",
-      "reference link repair tasks",
-      "system-code-graph references checklist",
-      "code graph reference link verification"
+      "reference link repair tasks"
     ],
     "key_topics": [
       "system-code-graph",
@@ -43,8 +41,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -66,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specific",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -97,12 +94,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -178,37 +169,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-code-graph references tree has seven snakecase Markdown filenames: databasepathpolicy.md,",
     "created_at": "2026-07-14T15:18:15Z",
-    "last_save_at": "2026-08-29T10:00:54.701Z",
+    "last_save_at": "2026-08-30T07:19:52.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:95ebf82be0d44aa8767c7a293250049d6b336963c3a6639c6d5c40cac631f0b7",
+    "source_fingerprint": "sha256:65f3d4a9a1c9c8ec2fdc196c899f307191476997e6401dff88f1cc4d9696d0bc",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "0dee4113c641f3d60a2e891df7d348ec49234459da0612ec8d6078208bee622a",
-      "plan.md": "8067209c53a7427243a8b0e2ae479c11dc6ff6c1fb046c9c0a26828c8c4e0bbb",
-      "tasks.md": "3eb1492410418956d459f08b17cda9bce5d8ba9a058659e38dab22d4b9f72786",
-      "checklist.md": "8e51372ea8658a87f1b1f448cadefb6a249ae2f3a67741642063e79a39143099"
+      "spec.md": "521c6a7053ea7fbf207dc9c5363ad31bfb1bcbf1d14e72971967822663707eb0",
+      "plan.md": "e10ea7c6d9134e02b3ba4c6a94e4942ec5f13ad01e04740ba8d9870f5ee74946",
+      "tasks.md": "f2919234cd0c96e58a46f5093b6bc7dc8669d5e565409ee9acd87c84c5a09471"
     },
     "last_active_child_id": null,
     "last_active_at": null

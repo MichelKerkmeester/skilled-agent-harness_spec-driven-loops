@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-skill-advisor changelog verification"
+title: "Impleme [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify/plan]"
 description: "Compare the release entry, canonical version metadata, sibling checklists, and final gate evidence; fail closed on missing or contradictory rename evidence and make no source or path edits."
 trigger_phrases:
   - "changelog verification implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "skill version bump audit"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "Current changelog entries reach v0.10.0; the target release version is selected during execution."
       - "This phase is verification-only and cannot repair missing release evidence."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify"
 ---
-
 # Implementation Plan: system-skill-advisor changelog verification
 
 <!-- SPECKIT_LEVEL: 2 -->

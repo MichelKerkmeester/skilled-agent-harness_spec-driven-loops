@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: prompt-models asset and reference names (020 phase 004.003)"
+title: "Feature Specification [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models/spec]"
 description: "The prompt-models packet has underscore-separated asset and reference filenames, including the model registry and budget data files that are named by active Markdown and skill references. This phase renames those packet-owned paths to kebab-case, updates path-valued consumers, and preserves model IDs, JSON keys, Python/package exemptions, and generated benchmark output."
 trigger_phrases:
   - "prompt-models kebab-case migration"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 003 naming"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models"
@@ -30,8 +29,8 @@ _memory:
       - "The prompt-models benchmarks/** tree is owned by phase 005."
       - "models/_index.md is not an underscore-separated name and is not mechanically rewritten."
       - "Model IDs and JSON keys remain unchanged even when the containing data filename changes."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/003-prompt-models"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

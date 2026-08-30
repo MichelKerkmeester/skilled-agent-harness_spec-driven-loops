@@ -1,3 +1,15 @@
+---
+title: "000-release — v4.0.0.0 Release Notes & README Refresh (Planning Capture) [system-speckit/000-release/spec]"
+description: "Gather every change between the last public GitHub release (v3.6.0.0, 2026-06-18) and the"
+trigger_phrases:
+  - "000"
+  - "release"
+  - "notes"
+  - "readme"
+  - "spec"
+importance_tier: "important"
+contextType: "implementation"
+---
 # 000-release — v4.0.0.0 Release Notes & README Refresh (Planning Capture)
 
 > **Phase parent — lean trio.** Root purpose only. The full plan lives in `plan.md`; each phase child holds its own charter.

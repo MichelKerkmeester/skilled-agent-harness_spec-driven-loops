@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 020 sk-design-mcp-open-design README revisit"
+title: "Feature Specificat [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/020-sk-design-mcp-open-design/spec]"
 description: "Rewrite the sk-design-mcp-open-design mode skill README purpose-first against the refined README template from phase 001, using the mcp-obsidian exemplar, with a version bump and a changelog entry."
 trigger_phrases:
   - "sk design mcp open design readme"

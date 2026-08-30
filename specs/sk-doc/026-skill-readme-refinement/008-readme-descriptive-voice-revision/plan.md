@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan - Phase 008 - README template descriptive-voice revision"
+title: "Implementation Plan - Phase 008 - [sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/plan]"
 description: "Execution plan for the descriptive-voice revision of the standalone and parent-hub README templates: raise prose ceilings, require a problem narrative, add a capability prose lead-in, promote the connection diagram, add a value beat, permit a narrative hook and clarify HVR sentence length."
 trigger_phrases:
   - "phase 008 plan"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-code-graph subtree rollup gate (020 phase 008)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate/plan]"
 description: "This plan aggregates phases 001–007 and runs the complete exemption-aware naming and active-reference checks for system-code-graph without adding a new migration batch."
 trigger_phrases:
   - "system-code-graph subtree gate plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "code graph whole-surface naming gate"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate"
@@ -22,6 +21,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/008-skill-gate"
 ---
 # Implementation Plan: system-code-graph Subtree Rollup Gate
 

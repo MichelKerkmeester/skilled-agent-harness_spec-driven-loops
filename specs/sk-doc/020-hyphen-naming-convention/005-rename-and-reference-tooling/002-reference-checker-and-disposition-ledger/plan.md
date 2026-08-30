@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: reference checker and disposition ledger (020 phase 005.002)"
+title: "...-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger/plan]"
 description: "Implementation plan for a read-only whole-repository reference checker: enumerate tracked files and symlinks, resolve code and path-valued references, classify dynamic sites, and validate a complete disposition ledger against the semantic rename map."
 trigger_phrases:
   - "reference checker implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "dynamic reference completeness plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
@@ -22,6 +21,7 @@ _memory:
     answered_questions:
       - "The checker is read-only; reports and ledger output are evidence, not migration writes."
       - "Completeness is proven by reconciling the scanned manifest, map rows, extracted references, and dynamic-site rows."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
 ---
 # Implementation Plan: Reference Checker and Disposition Ledger
 

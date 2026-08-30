@@ -1,7 +1,10 @@
 ---
-title: "Decision Record: cli-devin skill packet"
+title: "Decision Record: [cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet/decision-record]"
 description: "Three ADRs: packet-kind classification, self-invocation guard signal design, and prompt-quality-card shape for the new cli-devin mode."
-trigger_phrases: ["cli-devin decision record", "cli-devin ADR", "cli-devin architecture decisions"]
+trigger_phrases:
+  - "cli-devin decision record"
+  - "cli-devin adr"
+  - "cli-devin architecture decisions"
 importance_tier: "normal"
 contextType: "general"
 _memory:

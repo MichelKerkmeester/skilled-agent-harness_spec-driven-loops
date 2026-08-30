@@ -1,14 +1,13 @@
 ---
-title: "Feature Specification: system-skill-advisor scripts"
+title: "Feature Specific [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts/spec]"
 description: "Rename non-Python snake_case script filenames in the system-skill-advisor surface to kebab-case and update every dataset, registry, source, and documentation reference without touching Python script names or import identifiers."
 trigger_phrases:
   - "system-skill-advisor scripts naming"
   - "skill advisor regression fixture rename"
-  - "kebab-case non-Python scripts"
+  - "kebab-case non-python scripts"
   - "advisor script reference closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts"
@@ -28,8 +27,8 @@ _memory:
       - "The current non-Python filename candidate is fixtures/skill_advisor_regression_cases.jsonl."
       - "skill_advisor.py, skill_advisor_bench.py, skill_advisor_regression.py, skill_advisor_runtime.py, and skill_graph_compiler.py remain Python exemptions."
       - "Underscores in Python imports, tool IDs, JSONL fields, and code identifiers are not filesystem rename targets."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

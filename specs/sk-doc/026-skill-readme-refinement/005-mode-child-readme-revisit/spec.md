@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 005 — mode child skill README revisit (per-skill phases)"
+title: "Feature Specification: Phase 005 — mode child [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/spec]"
 description: "Phase parent: one child phase per mode (child) skill, each revisiting that skill's README against the refined template from phase 001, using mcp-obsidian as the exemplar."
 trigger_phrases:
   - "mode readme revisit"

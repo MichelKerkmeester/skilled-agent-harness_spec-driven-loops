@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: deep-research filesystem names (020 phase 007/003)"
+title: "Feature Specif [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research/spec]"
 description: "The deep-research packet contains 13 underscore-bearing directory families and 103 underscore-bearing files across assets, catalogs, playbooks, behavior benchmarks, references, and state artifacts. This phase renames those in-scope paths to kebab-case and repairs their consumers while preserving research state schemas, Python exemptions, and the SKILL.md contract."
 trigger_phrases:
   - "deep-research kebab-case migration"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "deep-research snake_case resources"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research"
@@ -23,8 +22,8 @@ _memory:
       - "The live deep-research inventory has 13 underscore-bearing directory families and 103 underscore-bearing files."
       - "SKILL.md and tool-mandated or generated names stay exact; path-valued resource references change when required."
       - "Research state and artifact keys are contracts, not filesystem names, and remain unchanged."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

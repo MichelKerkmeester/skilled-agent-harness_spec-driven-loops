@@ -1,5 +1,5 @@
 ---
-title: "Research Charter: Root-Cause Synthesis of the system-spec-kit / 026 Deep-Review Audit"
+title: "...context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/spec]"
 description: "Deep-research charter investigating root causes and blast radius of the drift, doc-code, memory-correctness, and runtime findings surfaced by the 8-slice review."
 trigger_phrases:
   - "audit root cause research"

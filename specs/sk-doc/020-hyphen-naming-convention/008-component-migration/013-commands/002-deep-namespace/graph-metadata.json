@@ -20,9 +20,9 @@
       "deep namespace naming tasks",
       "deep asset rename tasks",
       "deep contract refresh",
-      "deep namespace naming checklist",
-      "deep asset rename verification",
-      "compiled contract verification"
+      "deep generated contract decision",
+      "deep command asset boundary",
+      "compiled contract filename exemption"
     ],
     "key_topics": [
       "deep",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       ".opencode/commands/deep/assets/compiled/README.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,31 +182,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The maintained deep asset tree contains names such as `deepai-councilauto.yaml`, `deepresearchpresentation.txt`, and `deepai-council.body.md`",
     "created_at": "2026-07-14T15:18:32Z",
-    "last_save_at": "2026-08-29T13:10:06.722Z",
+    "last_save_at": "2026-08-30T07:20:01.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:9d1ea32c59b9afb7a1efc8b4bcd5bb974e8f66890b1180bcdef06415ceab15ca",
+    "source_fingerprint": "sha256:502ad91c6e54dddf1337fadd55af73d3f1d6beff0fe24609418e517ddbb78572",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "608659484fd0b1ff6ae670d465a3d392ba052e4f7fa342259994343bf3a17802",
-      "plan.md": "1f7054118b34d9c6db93a79dc520c152420ed7a1c06fbf9932fd368be32ac323",
-      "tasks.md": "2f6e8c58c0a7415179a3e301a31837414994464a145a53f64a2b723b4e2179fa",
-      "checklist.md": "a710420009579ef28c8a867a7d9d144ed3e0b4d4d29a4ae4b53e3de0426522c2",
-      "decision-record.md": "be5405cc5dab31e9cd27ca4fd3346935dd7929494c807b289680a169db15f876"
+      "spec.md": "d74ef9d6c1bfbfe0a954d702a2c3e33566025c8c9a9868835ac8cd762569e470",
+      "plan.md": "31572194d4289734c569653fde4d9d183fa16a82ab915501e1c559ee667274c1",
+      "tasks.md": "d5d4e26ee58b281b3cf451dee0f6d071847ae328efcc84d4fd5a24e3f74fdd8f",
+      "decision-record.md": "e7c9d04d02db1e23e645f822b0417b661c63c637366d27655afeebd55c024fc2"
     },
     "last_active_child_id": null,
     "last_active_at": null

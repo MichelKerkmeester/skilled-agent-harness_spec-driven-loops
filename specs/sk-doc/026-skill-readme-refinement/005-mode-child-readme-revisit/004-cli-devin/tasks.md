@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 004 cli-devin mode README rewrite"
+title: "Tasks: Phase 004 cli-devin mode [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/tasks]"
 description: "Task list for rewriting the cli-devin mode skill README in cli-external-orchestration."
 trigger_phrases:
   - "phase 004 tasks"

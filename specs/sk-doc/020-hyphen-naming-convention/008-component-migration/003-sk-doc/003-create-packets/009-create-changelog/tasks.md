@@ -1,12 +1,11 @@
 ---
-title: "Tasks: create-changelog resource names"
+title: "T [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog/tasks]"
 description: "Concrete execution and verification tasks for the create-changelog resource naming phase."
 trigger_phrases:
   - "create-changelog resource tasks"
   - "changelog guidance rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog"
 ---
 # Tasks: create-changelog resource names
 

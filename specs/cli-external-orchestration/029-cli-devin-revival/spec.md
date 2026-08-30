@@ -1,9 +1,14 @@
 ---
-title: "Feature Specification: cli-devin revival"
+title: "Feature Specification: cli-devin revival [cli-external-orchestration/029-cli-devin-revival/spec]"
 description: "Coordinate the phased revival of cli-devin inside cli-external-orchestration, including executor support, skill packet, live hook adapters, model registry, playbook, MCP-host integration, feature catalog and current-state documentation reconciliation."
-trigger_phrases: ["cli-devin revival", "Devin CLI executor", "Devin hooks", "Devin agents", "cognition devin"]
-importance_tier: important
-contextType: implementation
+trigger_phrases:
+  - "cli-devin revival"
+  - "devin cli executor"
+  - "devin hooks"
+  - "devin agents"
+  - "cognition devin"
+importance_tier: "important"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival"

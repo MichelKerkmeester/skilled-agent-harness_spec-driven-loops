@@ -1,12 +1,11 @@
 ---
-title: "Tasks: create-readme resource names"
+title: "Task [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme/tasks]"
 description: "Concrete execution and verification tasks for the create-readme resource naming phase."
 trigger_phrases:
   - "create-readme resource tasks"
   - "install guide template rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme"
 ---
 # Tasks: create-readme resource names
 

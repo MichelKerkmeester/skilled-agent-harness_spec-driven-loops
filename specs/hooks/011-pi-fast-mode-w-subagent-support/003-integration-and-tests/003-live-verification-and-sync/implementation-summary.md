@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 3 live-verification-and-sync"
+title: ".../011-pi-fast-mode-w-subagent-support/003-integration-and-tests/003-live-verification-and-sync/implementation-summary]"
 description: "Closeout record for live runtime proof and synchronized documentation."
 trigger_phrases:
   - "live-verification-and-sync implementation summary"

@@ -1,9 +1,11 @@
 ---
-title: "Tasks: Devin docs, agents, governance, and closeout"
+title: "Tasks: Devin docs, [cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
-trigger_phrases: ["Devin docs closeout tasks", "Devin agent roster restore tasks"]
-importance_tier: normal
-contextType: general
+trigger_phrases:
+  - "devin docs closeout tasks"
+  - "devin agent roster restore tasks"
+importance_tier: "normal"
+contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout"

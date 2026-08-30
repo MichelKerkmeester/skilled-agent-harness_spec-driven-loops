@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-tooling hub manual-testing-playbook naming closure (020 phase 005)"
+title: "Implement [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook/plan]"
 description: "This plan renames the hub-level manual-testing-playbook root, hub-routing category, index, and seven scenario files, then repairs hub navigation while keeping component-local playbooks out of scope."
 trigger_phrases:
   - "mcp-tooling hub playbook implementation plan"
   - "hub routing scenario path repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/005-manual-testing-playbook"
 ---
 # Implementation Plan: mcp-tooling Hub Manual-Testing-Playbook Naming Closure
 

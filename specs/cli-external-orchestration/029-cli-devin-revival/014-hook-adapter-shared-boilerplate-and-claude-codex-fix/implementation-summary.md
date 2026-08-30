@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Hook adapter shared boilerplate and Claude/Codex fix"
+title: "...-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix/implementation-summary]"
 description: "Extracted the byte-identical readStdin/JSON-parse-fail-open boilerplate into a shared ESM/CJS helper pair, migrated nine adapters across four runtimes, and applied the firstNonBlankString alias-chain fix to Claude's and Codex's spec-gate-enforce.mjs."
 trigger_phrases:
   - "hook adapter shared boilerplate summary"

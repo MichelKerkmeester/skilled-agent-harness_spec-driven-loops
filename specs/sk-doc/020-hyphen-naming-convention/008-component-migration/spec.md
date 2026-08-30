@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: component migration (020 phase 008)"
+title: "Feature Specification: component migration (020 [sk-doc/020-hyphen-naming-convention/008-component-migration/spec]"
 description: "The 14-way per-component fan-out that renames each skill subtree's snake_case filesystem names to kebab-case as a self-contained, dependency-closed closure. Lanes are scheduled from the phase 006 executable SCC condensation DAG under exclusive skill leases and one serial integration steward; phase number is grouping order, not a runtime sequence."
 trigger_phrases:
   - "component migration fan-out"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "per-skill kebab-case migration"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration"
@@ -22,8 +21,8 @@ _memory:
     answered_questions:
       - "Lane count is derived from the phase 006 executable SCC DAG, not fixed at 14; a skill splits only when its intra-skill closures are proven disjoint."
       - "Cross-skill closures are hoisted to phase 007 first, so each component subtree here is a self-contained closure."
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose and child phase map only; detailed mechanics live in child documents. -->

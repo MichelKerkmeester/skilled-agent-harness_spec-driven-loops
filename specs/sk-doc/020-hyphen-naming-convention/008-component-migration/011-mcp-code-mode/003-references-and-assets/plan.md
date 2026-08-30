@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-code-mode references and assets (020 component 011 phase 003)"
+title: "Implement [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets/plan]"
 description: "Apply a four-entry semantic rename map to the mcp-code-mode reference and asset files, then resolve all active links and pointers from the skill guides, templates, scripts, and cross-references."
 trigger_phrases:
   - "mcp-code-mode references assets implementation plan"
   - "mcp-code-mode phase 003 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets"
 ---
 # Implementation Plan: mcp-code-mode references and assets
 

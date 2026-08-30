@@ -1,7 +1,8 @@
 ---
-title: "Implementation Plan: Devin CLI contract pin"
+title: "Implementation Plan: Devin CLI contract [cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/plan]"
 description: "Plan for verifying the live Devin CLI contract before executor/skill-packet work begins."
-trigger_phrases: ["devin contract pin plan"]
+trigger_phrases:
+  - "devin contract pin plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

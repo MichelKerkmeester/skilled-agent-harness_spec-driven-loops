@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 037 deep-improvement README revisit"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement/spec]"
 description: "Rewrite the deep-improvement README at .opencode/skills/system-deep-loop/deep-improvement/README.md against the refined README template from phase 001 and the mcp-obsidian exemplar, with a version bump and a changelog entry."
 trigger_phrases:
   - "deep improvement readme revisit"

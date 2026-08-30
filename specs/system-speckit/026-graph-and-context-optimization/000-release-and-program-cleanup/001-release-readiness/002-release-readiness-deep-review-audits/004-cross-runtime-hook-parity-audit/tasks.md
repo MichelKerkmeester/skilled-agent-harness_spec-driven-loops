@@ -1,6 +1,5 @@
 ---
-title: "Tasks: Cross-Runtime Hook Parity Release-Readiness Audit"
-template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
+title: "...ram-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit/tasks]"
 description: "Completed task ledger for the Level 2 read-only deep-review packet."
 trigger_phrases:
   - "045-005-cross-runtime-hook-parity-audit"
@@ -8,7 +7,7 @@ trigger_phrases:
   - "5-runtime hook review"
   - "cross-runtime feature parity"
 importance_tier: "important"
-contextType: "review"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/001-release-readiness/002-release-readiness-deep-review-audits/004-cross-runtime-hook-parity-audit"
@@ -28,6 +27,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 ---
 # Tasks: Cross-Runtime Hook Parity Release-Readiness Audit
 

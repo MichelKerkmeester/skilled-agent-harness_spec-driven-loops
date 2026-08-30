@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 034 sk-prompt-models README revisit"
+title: "Implement [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/034-sk-prompt-models/implementation-summary]"
 description: "Closeout record for the sk-prompt-models README purpose-first rewrite, version bump, changelog entry and validation."
 trigger_phrases:
   - "phase 034 implementation summary"

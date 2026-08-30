@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Review Remediation (006/007)"
+title: "...t/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings/implementation-summary]"
 description: "Placeholder. Populated after the 6-theme remediation pass completes."
 trigger_phrases:
   - "006/007 implementation summary"

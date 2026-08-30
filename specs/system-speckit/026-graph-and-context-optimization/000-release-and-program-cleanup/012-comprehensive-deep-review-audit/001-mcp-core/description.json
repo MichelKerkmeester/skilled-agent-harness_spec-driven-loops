@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
   "description": "The spec-kit MCP memory write path (mutation hooks, the save pipeline, CRUD update/delete/bulk-delete, and embedding reconcile) was heavily modified",
   "keywords": [
@@ -19,7 +20,7 @@
     "heavily",
     "modified"
   ],
-  "lastUpdated": "2026-08-15T14:41:09.867Z",
+  "lastUpdated": "2026-08-30T07:16:28.315Z",
   "specId": "001",
   "folderSlug": "mcp-core",
   "parentChain": [
@@ -29,6 +30,5 @@
     "012-comprehensive-deep-review-audit"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

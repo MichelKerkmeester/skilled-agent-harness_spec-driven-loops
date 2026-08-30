@@ -1,13 +1,12 @@
 ---
-title: "Implementation Plan: cli-claude-code component naming (020 phase 005.003)"
+title: "Im [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code/plan]"
 description: "Implementation plan for the cli-claude-code component: map four reference files and two prompt assets, update local path-valued consumers, preserve Claude dispatch semantics, and exclude the delegated playbook tree."
 trigger_phrases:
   - "cli-claude-code implementation plan"
-  - "Claude Code asset reference rename plan"
+  - "claude code asset reference rename plan"
   - "cli-external phase 003 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code"
@@ -25,6 +24,7 @@ _memory:
     answered_questions:
       - "The current candidate set is four reference files plus two asset files."
       - "The nested manual-testing-playbook tree is phase 005 ownership."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code"
 ---
 # Implementation Plan: cli-claude-code component naming
 

@@ -1,3 +1,16 @@
+---
+title: "Phase 003 — Deep-Research Synthesis (seeded depth layer) [system-speckit/000-release/003-deep-research-synthesis/spec]"
+description: "Cross-cutting synthesis the per-packet spine can't produce: the through-line of the skill-model"
+trigger_phrases:
+  - "phase"
+  - "003"
+  - "deep"
+  - "research"
+  - "synthesis"
+  - "spec"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Phase 003 — Deep-Research Synthesis (seeded depth layer)
 
 > Charter only. Full narrative in `../plan.md` §4 Phase 3 + §5. Deep-research state lands here.

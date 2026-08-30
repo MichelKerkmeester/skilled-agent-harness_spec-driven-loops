@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-git benchmark (020 phase 008/012/004)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark/plan]"
 description: "Implementation plan for the sk-git benchmark profile-directory rename. The executor will move the two observed profiles, inventory report/fixture/storage-guide paths, repair exact path values, and compare benchmark evidence before and after."
 trigger_phrases:
   - "sk-git benchmark implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "benchmark artifact parity plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark"
 ---
 # Implementation Plan: sk-git benchmark
 

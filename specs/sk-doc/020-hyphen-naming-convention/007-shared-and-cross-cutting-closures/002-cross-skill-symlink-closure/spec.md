@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cross-skill symlink closure (020 phase 007 child 002)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/spec]"
 description: "Symlink targets and link-nodes cross skill boundaries, so a target name change is safe only when every pointer, relative target string, and executable target mode moves as one dependency-closed operation."
 trigger_phrases:
   - "cross-skill symlink closure"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "hyphen naming symlink phase"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure"
@@ -27,8 +26,8 @@ _memory:
       - "The closure includes link-nodes whose resolved targets cross skill or shared-infrastructure boundaries"
       - "A target move without every pointer update is a failed closure, not an acceptable intermediate state"
       - "Symlink content remains link text; target file content is owned by its target phase"
+parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

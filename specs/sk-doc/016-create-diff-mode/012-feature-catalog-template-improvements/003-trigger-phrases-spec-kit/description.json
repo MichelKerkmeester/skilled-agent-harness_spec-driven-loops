@@ -1,6 +1,6 @@
 {
   "title": "Trigger Phrases — system-spec-kit",
-  "level": 1,
+  "level": "1",
   "id": "003-trigger-phrases-spec-kit",
   "status": "planned",
   "track": "skilled-agent-orchestration",
@@ -19,7 +19,7 @@
     "file",
     "content"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.841Z",
+  "lastUpdated": "2026-08-30T07:16:16.043Z",
   "specId": "003",
   "folderSlug": "trigger-phrases-spec-kit",
   "parentChain": [

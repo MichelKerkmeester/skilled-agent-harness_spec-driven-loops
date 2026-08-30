@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Routing Coverage — Deep Research"
+title: "...skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/001-research/spec]"
 description: "The 25-iteration deep-research pass that this 015 packet is built from: investigate how to fully integrate, enable-by-default, and verify the compiled skill-router, and dig for gaps beyond the four named ones. Ran 25 iterations with no early convergence across four models (10 SOL-high, 3 SOL-ultra, 5 TERRA-xhigh via cli-codex; 2 GLM-max, 5 MiniMax via cli-opencode), 1 codex parallel with 1 opencode. Output: 143 findings consolidated by a fresh-Opus synthesis (47 findings), adversarially verified by a Sonnet pass (all 8 spine claims CONFIRMED), reconciled into an orchestrator review that is the authoring brief for children 002-011."
 trigger_phrases:
   - "compiled routing deep research"

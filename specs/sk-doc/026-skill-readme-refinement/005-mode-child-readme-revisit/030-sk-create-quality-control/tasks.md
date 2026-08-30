@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 030 sk-create-quality-control README revisit"
+title: "Tasks: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control/tasks]"
 description: "Task list for rewriting the sk-create-quality-control mode skill README purpose-first on the refined template with a version bump and a changelog entry."
 trigger_phrases:
   - "phase 030 tasks"

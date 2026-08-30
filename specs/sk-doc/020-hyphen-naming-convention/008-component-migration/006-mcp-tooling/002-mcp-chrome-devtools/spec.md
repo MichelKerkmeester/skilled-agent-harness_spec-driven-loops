@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-chrome-devtools naming closure (020 phase 002)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools/spec]"
 description: "The mcp-chrome-devtools component contains snake_case manual-testing categories, scenario filenames, reference filenames, and an uppercase underscored install guide. This phase renames those filesystem paths to semantic kebab-case and updates every component-local reference while preserving the SKILL.md contract and non-filesystem identifiers."
 trigger_phrases:
   - "mcp-chrome-devtools kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 mcp tooling phase 002"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

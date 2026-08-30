@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Brand-First Authoring Lane"
+title: "Implementation [sk-design/012-sk-design-program/004-hallmark-design-system/004-brand-first-lane/implementation-summary]"
 description: "Implemented authored-only brand exports with per-value provenance, measured-path refusal, and a manual reviewed-conversion checklist."
 trigger_phrases:
   - "brand first authoring lane"
@@ -28,7 +28,6 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 

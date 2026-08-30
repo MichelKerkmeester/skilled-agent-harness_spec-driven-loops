@@ -1,6 +1,13 @@
 ---
-title: "Handover: Routing Coverage, Activation & Verification (015)"
+title: "...-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/handover]"
 description: "Detailed resume state for the 015 program — the verified P0-foundation reframing, per-child status, the resume ladder, and the exact next action. Companion to goal.md (the standing goal) and 001-research/review-v1.md (the authoring contract)."
+trigger_phrases:
+  - "doc"
+  - "019"
+  - "skill"
+  - "routing"
+  - "refactor"
+  - "handover"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:
@@ -27,7 +34,6 @@ _memory:
       - "Is the build done? Yes — all ten children 002-011 are implemented and committed behind the still-OFF flag (validate --strict Errors:0, routing byte-identical to legacy, frozen scorer SHA-256 unchanged)."
       - "Is the repo default flipped? No, by design — honestly gated on siblings 013/014 and the P3 coverage-closure join gate (011 reports all 7 hubs BLOCKED). The flip is an operator decision after those land."
 ---
-
 # Handover — Routing Coverage, Activation & Verification (015)
 
 ## What this session did

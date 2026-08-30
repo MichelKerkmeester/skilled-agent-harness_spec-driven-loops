@@ -1,5 +1,5 @@
 ---
-title: "Tasks: deep-improvement filesystem names (020 phase 007/006)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement/tasks]"
 description: "Execution tasks for renaming the deep-improvement three-lane surface and repairing loop-host, fixture/profile, benchmark, script, import, and test path consumers."
 trigger_phrases:
   - "deep-improvement tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "deep improvement benchmark path repair tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
 ---
 # Tasks: Deep-improvement filesystem names
 

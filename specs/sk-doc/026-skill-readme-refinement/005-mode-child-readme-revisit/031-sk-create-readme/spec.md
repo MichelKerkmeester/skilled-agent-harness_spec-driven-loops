@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 031 sk-create-readme README rewrite"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme/spec]"
 description: "Rewrite the sk-create-readme skill README at sk-create-readme/README.md against the refined template from phase 001 and the mcp-obsidian exemplar, with a version bump and a changelog entry."
 trigger_phrases:
   - "phase 031 readme rewrite"

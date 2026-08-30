@@ -3,7 +3,6 @@
   "packet_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling",
   "spec_folder": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling",
   "parent_id": "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -14,7 +13,16 @@
     "trigger_phrases": [
       "de-numbering snippet filenames migration script",
       "dry-run rename engine for snippet filenames",
-      "stage frontmatter injection for routing holdout negative"
+      "stage frontmatter injection for routing holdout negative",
+      "014",
+      "doc",
+      "parent",
+      "027",
+      "catalog",
+      "plan",
+      "003",
+      "migration",
+      "tasks"
     ],
     "key_topics": [
       "de-numbering",
@@ -31,12 +39,11 @@
       "routing"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "scripts/denumber-snippet-filenames.mjs"
     ],
@@ -57,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -168,43 +169,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol Every",
+        "name": "Deterministic Snippet",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Filename Rename Engine",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 of the numbered-snippet-filename deprecation. Author one deterministic rename engine, denumber-snippet-filenames.mjs, adapted from the proven 108 denumber-snippets.cjs: enumerate exactly the 111 in-scope per-scenario snippet files across 9 skill packets (excluding the 20 legitimate system-spec-kit single-digit files), abort on any collision before writing, derive and inject a stage: routing|holdout|negative frontmatter field for the 63 files that encode that grouping in their filename, and sweep the 3 hub-routing root-index tables that cite the old filenames.",
     "created_at": "2026-07-11T14:47:54.428Z",
-    "last_save_at": "2026-08-29T13:10:16.882Z",
+    "last_save_at": "2026-08-30T07:16:14.812Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2f567825389276ef15b4daade1efdcd808eb9ced536aa5135c1b930eb9c185c",
+    "source_fingerprint": "sha256:7afe0e62b883002f617bb5098c7ba247bf64f7d239bc91c2f1dd4c81b931b6d3",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "da5a68dd71896a113e3f94a86ec0d8a355f0697170a533b44a34f6367b4bc753",
-      "plan.md": "454aa64583dd8a9cce323b584125b4e05b5c68b3a222ed0a554f90f8f58d19a9",
-      "tasks.md": "c674aef2fa454a1f845984cf23148e3e204cdfecfeccf1611e3c5278658fd11b",
-      "checklist.md": "c5421edfa6b3bc434c99c6c856cd2498399461058cac9f0ec0dcaed3d580571b",
-      "implementation-summary.md": "a9bb8d9fa01c2a35f4eee54e7fbdf463c9544fa7c42bc082124f5740b1dcab70"
+      "spec.md": "70e168769d57b1f422ba9a155ab5fa23654ca0a2ff880b68b46a1d10685c0c88",
+      "plan.md": "c963c8fc6d4494395bf6c8cd3487606da05714bc93213721d8e1a800fc7807d8",
+      "tasks.md": "50aa8176a18a1f6efa16b3f39b66b53fb26fa0d9557b050e8f1bee3d1d9a7ab8",
+      "implementation-summary.md": "415d76844c1e4a06fe3c66fcfcaa5dc1075920a11076edcb466f1db2b959f14a"
     },
     "last_active_child_id": null,
     "last_active_at": null

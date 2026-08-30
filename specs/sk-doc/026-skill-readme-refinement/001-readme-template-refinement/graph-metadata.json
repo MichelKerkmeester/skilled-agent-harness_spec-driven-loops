@@ -18,8 +18,6 @@
       "readme template refinement plan",
       "phase 001 tasks",
       "readme template refinement tasks",
-      "phase 001 checklist",
-      "readme template refinement verification",
       "phase 001-readme-template-refinement summary"
     ],
     "key_topics": [
@@ -30,35 +28,27 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
       "001-readme-template-refinement",
       "summary",
-      "shared"
+      "shared",
+      "standalone",
+      "sk-create-skill"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/001-readme-template-refinement/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/001-readme-template-refinement/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/001-readme-template-refinement/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/001-readme-template-refinement/checklist.md",
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "checklist.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-      "implementation-summary.md"
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
     ],
     "entities": [
-      {
-        "name": "skill-readme-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,9 +68,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/001-readme-template-refinement/checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
         "source": "derived"
       },
       {
@@ -93,12 +89,6 @@
         "name": "hvr-rules.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -192,31 +182,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The shared standalone README template at `sk-create-skill/assets/skill/skill-readme-template.md` predates the mcp-obsidian pilot",
     "created_at": "2026-08-04T12:30:48.167Z",
-    "last_save_at": "2026-08-04T12:30:48.167Z",
+    "last_save_at": "2026-08-30T07:20:16.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0fc56286062bd06a6bf2210d31b853ed3c980a29034235fc2df006f4c1b764cd",
+    "source_fingerprint": "sha256:3483ee21e4c8de32662debaf437dcf9237858bea36f971c645ed4baf88208089",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "ef0ebd4e7aeae3aff8cee5093ee42b93df780e91e582a2b22eb3939ba7705d22",
-      "plan.md": "49930ed19104d3c9554e531a5ce2afe7dcba0e3b57462e68d35e637482232b0e",
-      "tasks.md": "070e3bedd096d145f1efebca5552fef236d17404e416db4ff4fb35cb2c71cd47",
-      "checklist.md": "13908d2d91dc47d6a0601fa706dd63c72f6f5e972072ba590f775305afe31892",
-      "implementation-summary.md": "be51b0a4727c829c5043b88789a46233f180061791e5968323789303dc0abf87"
+      "spec.md": "0c206152eeb8e706d86f354c73dac0f4dcb6e35c926afe2693a91ff4f7917170",
+      "plan.md": "c9ac8bcf030089fb82c5279589c60a343d6eb0ef8c7bff59a6a81efd694eda48",
+      "tasks.md": "cad056070237ca7a14aa376822121757af75cb504c1cd9f5b0cfaee51055a76f",
+      "implementation-summary.md": "767083e6228e0d27b797d6577c500697f8c5ccdbc489f8eec7322f341c4ff3ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -17,9 +17,7 @@
       "deep-review agent naming implementation plan",
       "agents phase 008 implementation plan",
       "deep-review agent naming tasks",
-      "agents phase 008 tasks",
-      "deep-review agent naming checklist",
-      "agents phase 008 checklist"
+      "agents phase 008 tasks"
     ],
     "key_topics": [
       "deep-review",
@@ -32,16 +30,15 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "surface"
+      "surface",
+      "needs"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,9 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specificati",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -94,12 +91,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -163,49 +154,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for deep-review across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:44Z",
-    "last_save_at": "2026-08-29T10:00:57.834Z",
+    "last_save_at": "2026-08-30T07:20:08.107Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:34a63f82abf8e3517012749013a737ad3aec61b68e3ed1fd04617e56662db7ac",
+    "source_fingerprint": "sha256:c7dd701648113705b93f42cf062ea5ed2ed5c872b6bf52f4e6bace8f9783cda6",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "9329995dba07f1c83c8aebc1a902e7d1e64cb732728dbda0806f00fc3033da68",
-      "plan.md": "39515f4e1110da50f2fb84b7593d6bd6539a0571b9c2f4600f0956f6f42d6238",
-      "tasks.md": "e9ad2915ce2af858ecd32234e63ad93d5d746fee1cd4f7393d87334c1eef75a2",
-      "checklist.md": "35bf620d0badfa2ed714d95cf7640ed0dc3922004cd7b0d0d7da228e077c6e8d"
+      "spec.md": "3c223d97d04cee000e79075d06b113645215a6a91f408c75b876a1c09498db51",
+      "plan.md": "94839e029ad0a8a82ccf70119ee03c45ea20dd289a7461d8e5f4b7368bcc37ba",
+      "tasks.md": "8a728e5309d7d7c2b52789083641689ceef15cf48e23e265b097d7820acaec26"
     },
     "last_active_child_id": null,
     "last_active_at": null

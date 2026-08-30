@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-git manual testing playbook (020 phase 008/012/003)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook/plan]"
 description: "Implementation plan for the sk-git manual-playbook tree rename. The executor will move the root index, seven category directories, and 41 scenarios through one semantic map, then prove link and scenario-discovery parity."
 trigger_phrases:
   - "sk-git manual playbook implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "playbook path closure plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook"
 ---
 # Implementation Plan: sk-git manual testing playbook
 

@@ -1,13 +1,12 @@
 ---
-title: "Implementation Summary: reference checker and disposition ledger (020 phase 005.002)"
+title: "...ming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger/implementation-summary]"
 description: "The checker now turns the rename engine's semantic map into a complete CAS-ready reference ledger without writing to the scanned repository."
 trigger_phrases:
   - "reference checker implementation"
   - "disposition ledger fixture results"
-  - "CAS-ready reference sites"
+  - "cas-ready reference sites"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
@@ -31,6 +30,7 @@ _memory:
     answered_questions:
       - "The checker delegates semantic-map validation to the rename engine's public loader."
       - "The ledger records static sites with Git blob preimages and dispositions every dynamic site."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
 ---
 # Implementation Summary
 

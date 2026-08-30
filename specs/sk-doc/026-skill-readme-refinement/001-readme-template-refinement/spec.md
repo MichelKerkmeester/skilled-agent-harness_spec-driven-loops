@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 001 - shared standalone skill README template refinement"
+title: "Feature Specification: Phase 001 - shared [sk-doc/026-skill-readme-refinement/001-readme-template-refinement/spec]"
 description: "Refine the shared standalone skill README template with the mcp-obsidian pilot learnings: purpose-first identity, capability sections, HVR enforcement, versioning conventions and a stricter validation checklist."
 trigger_phrases:
   - "readme template refinement"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-doc create-packet components"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/spec]"
 description: "The eleven create-* workflow packets under sk-doc contain snake_case asset, reference, and template names. This nested phase parent separates each packet so its rename map and path-reference closure can be reviewed without widening another component's scope."
 trigger_phrases:
   - "sk-doc create-packet components"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 create workflow packet names"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT -->

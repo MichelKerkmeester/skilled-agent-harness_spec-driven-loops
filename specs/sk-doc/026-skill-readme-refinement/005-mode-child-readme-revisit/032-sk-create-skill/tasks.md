@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 032 sk-create-skill README revisit"
+title: "Tasks: Phase 032 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/032-sk-create-skill/tasks]"
 description: "Task list for rewriting the sk-create-skill README against the refined README template and the mcp-obsidian exemplar."
 trigger_phrases:
   - "phase 032 tasks"

@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: sk-code Alignment & Drift Guards"
+title: "...-router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards/plan]"
 description: "How the RESOURCE_MAP-equality doc-truth fix, the qualifiedIdToLeaf bidirectional bijection test, the run-all-drift-guards.sh orchestrator, and the additive surfaceBundle request-context land as the single code-opencode alignment-authority interface, behind the still-off SPECKIT_COMPILED_ROUTING flag."
 trigger_phrases:
   - "sk-code alignment plan"
   - "drift guards orchestrator plan"
-  - "qualifiedIdToLeaf plan"
+  - "qualifiedidtoleaf plan"
 importance_tier: "critical"
 contextType: "implementation"
 ---

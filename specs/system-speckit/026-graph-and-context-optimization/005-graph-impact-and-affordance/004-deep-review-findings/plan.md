@@ -1,6 +1,10 @@
 ---
-title: "Plan: Review Remediation (010/007)"
+title: "Plan: [system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings/plan]"
 description: "6-theme remediation plan with explicit ordering and parallelism map."
+trigger_phrases:
+  - "plan"
+  - "004"
+  - "deep"
 importance_tier: "important"
 contextType: "implementation"
 ---

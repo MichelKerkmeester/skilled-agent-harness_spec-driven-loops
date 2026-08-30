@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-code changelog and version verification (020 phase 008/008)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify/plan]"
 description: "Plan for comparing the sk-code append-only release entry and active version surfaces with the completed 001-007 rename evidence, while keeping verification non-mutating and failing closed on discrepancies."
 trigger_phrases:
   - "sk-code changelog verification plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-code version consistency plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify"
@@ -25,8 +24,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/008-changelog-verify"
 ---
-
 # Implementation Plan: sk-code changelog and version verification
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-skill-advisor manual testing playbook"
+title: "...k-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook/spec]"
 description: "Rename the manual_testing_playbook root, nine category directories, and 48 scenario/index files to kebab-case, update every catalog and documentation link, and preserve scenario IDs and operator contracts."
 trigger_phrases:
   - "system-skill-advisor manual testing playbook"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "advisor scenario file rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/006-manual-testing-playbook"
@@ -28,8 +27,8 @@ _memory:
       - "The playbook contains 48 files, including manual_testing_playbook/manual_testing_playbook.md, under nine snake_case category directories."
       - "Scenario IDs, frontmatter fields, JSON keys, and test semantics are preserved."
       - "Only filesystem path names and the links/pointers that resolve them change."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

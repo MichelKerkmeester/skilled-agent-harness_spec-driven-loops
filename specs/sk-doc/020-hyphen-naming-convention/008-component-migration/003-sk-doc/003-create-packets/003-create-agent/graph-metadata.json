@@ -17,9 +17,7 @@
       "create-agent resource implementation plan",
       "agent template rename plan",
       "create-agent resource tasks",
-      "agent template rename tasks",
-      "create-agent resource checklist",
-      "agent template rename verification"
+      "agent template rename tasks"
     ],
     "key_topics": [
       "create-agent",
@@ -33,15 +31,14 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist"
+      "packet"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The create-agent packet contains snake_case template and reference filenames used to scaffold agent documentation. This phase converts those non-exempt names to kebab-case and updates packet-local references without changing agent permission fields, SKILL.md, or other tool-mandated names.",
     "created_at": "2026-07-14T15:22:35Z",
-    "last_save_at": "2026-08-29T10:00:47.301Z",
+    "last_save_at": "2026-08-30T07:19:26.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:13d1727cc4e855fbe41fcd983667134b2ff652e925fac93eadf53c3a9ad8bff1",
+    "source_fingerprint": "sha256:d2608d99097a25549373e44e9f2fdf270f568f37d13c93e6d8766c7ecbca679c",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "64492db6ae65b03f0bbce0f1e5993a3835654913b78f65a6c91b366e0a44ed5b",
-      "plan.md": "758e7d3e7b42165b196471e9cde0765b504f089e427849666d0e69193a7a8d76",
-      "tasks.md": "a457859225c5421729e0adb532b26fc3db3efe1c0b2cf24e0cbec5d6563584a8",
-      "checklist.md": "3ee7e869c137e3622dd223316e6303be7d61c2f70733d6b51d450a33199d478c"
+      "spec.md": "8c5163a1c9ee80bf577a7862e96405d6f72b97f99362cda31126bf66ed9e37b9",
+      "plan.md": "dd66dc8325c316eafe7fa283fb233f1c42a618598cd7bb8064e0f92ae6d9bee5",
+      "tasks.md": "e93d702e11ce63fe2cd43f91b3fa9cca9cdce552dd2085605afcb015a13733f3"
     },
     "last_active_child_id": null,
     "last_active_at": null

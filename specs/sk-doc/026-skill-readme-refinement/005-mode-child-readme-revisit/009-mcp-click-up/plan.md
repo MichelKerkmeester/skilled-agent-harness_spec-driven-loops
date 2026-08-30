@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 009 mcp-click-up mode skill README rewrite"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up/plan]"
 description: "Rewrite the mcp-click-up skill README purpose-first against the refined template with a version bump, a changelog entry and zero validator and HVR violations."
 trigger_phrases:
   - "phase 009 plan"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Skill gate (020 phase 012)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate/plan]"
 description: "Execution plan for Skill gate in the 020 sk-design naming subtree."
 trigger_phrases:
   - "skill-gate implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 skill-gate tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/012-skill-gate"
 ---
 # Implementation Plan: Skill gate (020 phase 012)
 

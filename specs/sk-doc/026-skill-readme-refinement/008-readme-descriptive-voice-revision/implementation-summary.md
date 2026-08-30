@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary — README template descriptive-voice revision"
+title: "Implementation [sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/implementation-summary]"
 description: "Phase 008-readme-descriptive-voice-revision implementation summary."
 trigger_phrases:
   - "phase 008-readme-descriptive-voice-revision summary"

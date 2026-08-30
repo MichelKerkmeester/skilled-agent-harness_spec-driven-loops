@@ -1,3 +1,17 @@
+---
+title: "...se-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-4/research]"
+description: "The release-gate decision should remain conditional/fail for a governed release until the P0/P1 cluster is remediated and the fan-out runner is rerun. The strongest root causes ..."
+trigger_phrases:
+  - "and"
+  - "program"
+  - "cleanup"
+  - "012"
+  - "comprehensive"
+  - "research"
+  - "codex"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research Synthesis - codex-4
 
 ## Verdict

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: package-baseline-gates"
+title: "Feature Specification: [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates/spec]"
 description: "Finalize raw TypeScript packaging, licensing/provenance, and baseline typecheck/test/pack gates for the fork."
 trigger_phrases:
   - "package-baseline-gates"

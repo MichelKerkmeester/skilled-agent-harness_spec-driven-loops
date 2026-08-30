@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: active specs and documents (020 phase 007 child 004)"
+title: "Implementatio [sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs/plan]"
 description: "Execution plan for active spec/document names: separate authored packets from generated and frozen state, preserve numeric phase-folder forms, close document links and path values, and strict-validate every touched packet."
 trigger_phrases:
   - "active specs documents implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "phase 007 child 004 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs"
@@ -26,6 +25,7 @@ _memory:
     answered_questions:
       - "Compliant three-digit phase folders are preserved"
       - "Only path-derived frontmatter values change; fields and data keys stay unchanged"
+parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs"
 ---
 # Implementation Plan: Active Specs and Documents
 

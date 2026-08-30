@@ -1,9 +1,9 @@
 ---
-title: "Feature Specification: Runtime Promotion & Status Foundation (P0)"
+title: "...er-unification-program/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation/spec]"
 description: "The P0 foundation the whole 015 activation tree depends on. Promote the compiled-routing runtime CLOSURE (resolver + engine loader + the seven activation manifests + the seven per-hub compiled bundles) out of the mutable spec tree to a stable runtime path so no runtime path ever reads under .opencode/specs, make that promotion binding per the parent decision-record's ADR-003, and correct the stale residual-coupling escape hatch at 016-default-on-decision/implementation-summary.md:170. Split manifest-derived ELIGIBILITY from the HUB_CHILD engine-dispatch table (HUB_CHILD stays an engine-location map, it was never a removable duplicate) and add a cross-check test that fails when sort(COMPILED_ROUTING_HUBS) diverges from sort(keys(HUB_CHILD)). Ship .opencode/bin/compiled-route-status.cjs --hub|--all emitting a stable per-hub JSON status contract and wire it into advisor_status and session_bootstrap so 'drifted' is finally distinguishable from 'broken'. Document SPECKIT_COMPILED_ROUTING in the system-spec-kit ENV-REFERENCE. Tri-state the flag in BOTH read sites (resolve.cjs flagEnabled and advisor-recommend.ts) with a truth-table test, keeping unset behavior-identical to today because the per-hub default-on cohort is empty until P4. Add stderr breadcrumbs to the three silent catches. Add a DURABLE lint/CI rule that fails any future require/import from .opencode/specs in runtime code. Every change ships behind the still-off flag, stays byte-identical to legacy on routing fields, names a byte-exact or flag rollback, and never edits the three SHA-256-pinned frozen scorer files."
 trigger_phrases:
   - "runtime promotion and status foundation"
-  - "compiled routing P0 foundation spec"
+  - "compiled routing p0 foundation spec"
   - "promote resolver closure status probe tri-state"
 importance_tier: "critical"
 contextType: "implementation"

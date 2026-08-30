@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 018 sk-code-webflow README revisit"
+title: "Tasks: Phase 018 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/tasks]"
 description: "Task list for rewriting the sk-code-webflow README purpose-first per the refined template, with a version bump, a changelog entry and full validation."
 trigger_phrases:
   - "phase 18 tasks"

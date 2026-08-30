@@ -20,9 +20,7 @@
       "advisor documentation path migration",
       "advisor references tasks",
       "reference file rename tasks",
-      "reference link closure tasks",
-      "advisor references checklist",
-      "reference file rename verification"
+      "reference link closure tasks"
     ],
     "key_topics": [
       "system-skill-advisor",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/system-skill-advisor/SKILL.md",
       ".opencode/skills/system-skill-advisor/README.md"
     ],
@@ -65,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,21 +187,20 @@
     ],
     "causal_summary": "The references tree contains 15 Markdown files with snakecase names across config/, decisions/, graph/, hooks/,",
     "created_at": "2026-07-14T15:18:08Z",
-    "last_save_at": "2026-08-29T13:10:04.040Z",
+    "last_save_at": "2026-08-30T07:19:49.426Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:c9475ca1fcc9151a8805e56ad30c1a5be6dbeb9b3048a5e7d8269ba5e6249952",
+    "source_fingerprint": "sha256:cfda09ad4e4aca713b9685181bf79a45ebda8124a8b720793932d99611ba5eb5",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "11aa2a6111068a77b2a1f13fa681418689ef88f21429f5b20f4be8d531b78611",
-      "plan.md": "e5fdc1a41f1905b154fde446b9669152b0dc907d0d8c387a73ef2c49d1c6f36f",
-      "tasks.md": "abc57061d2326a32fd75f10d9d118a91d0f5335c61822bc4097b5629501343bd",
-      "checklist.md": "b071abe257a3ca73670312426d8de69c1a1ad36c4756febca1afade4dde97d84"
+      "spec.md": "0ee1bd2453794bd15985831beb6b9bb14aa6550f884b26c161458be249b0e226",
+      "plan.md": "193f628618cfcf4a2047fb67973066b1a8af07173753feff499104f1e82d5f08",
+      "tasks.md": "02ba42dbb02fab8d00304e3c2debe91e4a6a51c0dd2116f218182f1f759e8f0b"
     },
     "last_active_child_id": null,
     "last_active_at": null

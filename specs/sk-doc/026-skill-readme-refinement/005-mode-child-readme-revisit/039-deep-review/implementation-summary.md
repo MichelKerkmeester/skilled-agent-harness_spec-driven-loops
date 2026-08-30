@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 039 deep-review mode README rewrite"
+title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/039-deep-review/implementation-summary]"
 description: "Closeout record for the deep-review README rewrite: purpose-first rewrite on the refined template, version 1.11.0.36, changelog entry and verification evidence."
 trigger_phrases:
   - "phase 39 implementation summary"
@@ -27,7 +27,6 @@ _memory:
     answered_questions:
       - "COMPLEXITY_MATCH warning resolved by converting the plan.md phase table to canonical ### Phase N headings"
 ---
-
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

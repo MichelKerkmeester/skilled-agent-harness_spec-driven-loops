@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: command asset residual boundary (020 phase 008/013/009)"
+title: "Decision [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets/decision-record]"
 description: "Design decisions for residual ownership, cross-namespace pointer closure, and preservation of generated, tool, and fixture boundaries."
 trigger_phrases:
   - "command asset residual decision"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cross-namespace pointer decision"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets"
@@ -22,8 +21,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

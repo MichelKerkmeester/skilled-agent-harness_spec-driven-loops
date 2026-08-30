@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-deep-loop benchmark storage names (020 phase 007/009)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark/plan]"
 description: "Plan for renaming the three root benchmark storage labels, repairing report/index path values, and proving fixture/profile and generated-output ownership without changing report filenames, payloads, or scores."
 trigger_phrases:
   - "system-deep-loop benchmark implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "deep loop benchmark report path closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
 ---
 # Implementation Plan: System-deep-loop benchmark storage names
 

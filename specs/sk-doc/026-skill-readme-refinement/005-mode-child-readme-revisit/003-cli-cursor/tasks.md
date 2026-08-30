@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 003 cli-cursor README rewrite"
+title: "Tasks: Phase 003 cli-cursor [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor/tasks]"
 description: "Task list for rewriting the cli-cursor skill README on the refined README template with the mcp-obsidian exemplar, including the version bump, changelog entry and validation."
 trigger_phrases:
   - "phase 003 tasks"

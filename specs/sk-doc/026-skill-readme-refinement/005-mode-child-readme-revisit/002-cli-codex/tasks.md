@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 002 cli-codex README revisit"
+title: "Tasks: Phase 002 cli-codex [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex/tasks]"
 description: "Task list for rewriting the cli-codex skill README purpose-first on the refined template with a version bump and changelog entry."
 trigger_phrases:
   - "phase 002 tasks"

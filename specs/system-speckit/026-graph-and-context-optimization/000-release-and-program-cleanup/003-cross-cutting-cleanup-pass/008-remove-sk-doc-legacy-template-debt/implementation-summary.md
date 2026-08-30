@@ -1,6 +1,5 @@
 ---
-title: "Implementation Summary: sk-doc Legacy Template Debt Cleanup [template:level_2/implementation-summary.md]"
-template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
+title: "...ase-and-program-cleanup/003-cross-cutting-cleanup-pass/008-remove-sk-doc-legacy-template-debt/implementation-summary]"
 description: "Closed eligible HIGH sk-doc template-alignment debt and reduced explicit MED findings through additive spec-doc remediations."
 trigger_phrases:
   - "013-skdoc legacy template cleanup summary"
@@ -22,6 +21,7 @@ _memory:
       - "tasks.md"
       - "checklist.md"
     completion_pct: 100
+template_source: "SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2"
 ---
 # Implementation Summary
 

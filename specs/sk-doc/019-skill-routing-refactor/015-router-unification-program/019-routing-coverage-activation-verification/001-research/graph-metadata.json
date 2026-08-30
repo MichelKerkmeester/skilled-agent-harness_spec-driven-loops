@@ -18,8 +18,6 @@
       "deep research loop execution plan",
       "routing coverage research tasks",
       "deep research loop task list",
-      "routing coverage research checklist",
-      "deep research loop QA gate",
       "routing coverage research implementation summary",
       "deep research loop complete 25 iterations",
       "synthesis verification review authoring brief"
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/deep-research-state.jsonl",
       "research/iterations/iteration-001.md",
@@ -70,12 +67,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -97,12 +88,6 @@
         "name": "findings-registry.json",
         "kind": "config",
         "path": "research/findings-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -131,6 +116,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -184,37 +175,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Delivered",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The compiled skill-router is shipped but inert",
     "created_at": "2026-07-20T21:22:58.681Z",
-    "last_save_at": "2026-08-29T13:10:18.698Z",
+    "last_save_at": "2026-08-30T07:19:03.026Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f11efdae5b5d2f75ea76e001084614974aeb1d1e6939a7e45fb4c5238d9dd6ff",
+    "source_fingerprint": "sha256:075dc75a5fbdea60ef9fb50e5f0275c6bd0b82901c9100a4da954e5ec8ab2094",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "0cb0d68a303e507955cba22d962466bd3c21f683499104a6b5fded742ea38992",
-      "plan.md": "e0f1750442852ff921cae2ef825a6a55afb914d0b469fe89f2cd25f195e9309d",
-      "tasks.md": "f938813a714e607f185fd478ef2bedbbf8885dceb86106df0525da9c829eb937",
-      "checklist.md": "ae6d196e10c357470f09e7a405bccab3ba3e1a62c1bce47a4d05c360b1606558",
-      "implementation-summary.md": "fd53bce21d76c5dfe256c6333294180fae8f983a8302adabf052f0594b267297"
+      "spec.md": "f5d4c866191d72c51a20679b1a5519223ac7b576e962557708a94b3149c9895b",
+      "plan.md": "fe79365dee00a645aec0e410285bb725379d11b3fd6126ed88469fcc46d7444c",
+      "tasks.md": "3a269075de824c5427fcc35f065b8fcce92bc36e22ab577c7261c8ffde73c7b5",
+      "implementation-summary.md": "ab40e3f638044b5aaea32d3f82f060a69dbcd195388221d0100e7df4fd9fedfa"
     },
     "last_active_child_id": null,
     "last_active_at": null

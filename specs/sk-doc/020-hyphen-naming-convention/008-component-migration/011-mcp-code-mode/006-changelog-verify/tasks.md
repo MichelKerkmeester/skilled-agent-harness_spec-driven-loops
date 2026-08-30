@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-code-mode changelog verification (020 component 011 phase 006)"
+title: "Tasks: mcp-co [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify/tasks]"
 description: "Tasks for checking the post-v1.0.8.0 changelog entry, skill version bump, sibling rename evidence, and frozen history."
 trigger_phrases:
   - "mcp-code-mode changelog verify tasks"
   - "mcp-code-mode phase 006 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/006-changelog-verify"
 ---
 # Tasks: mcp-code-mode changelog verification
 

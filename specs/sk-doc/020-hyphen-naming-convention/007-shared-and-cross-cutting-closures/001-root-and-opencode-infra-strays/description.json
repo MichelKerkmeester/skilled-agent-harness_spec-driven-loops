@@ -1,7 +1,7 @@
 {
   "level": "1",
   "specFolder": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays",
-  "description": "Root-level and `.opencode` infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed",
+  "description": "Root-level and .opencode infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed",
   "keywords": [
     "root-level",
     "opencode",
@@ -14,7 +14,7 @@
     "exemption-aware",
     "reference-closed"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.889Z",
+  "lastUpdated": "2026-08-30T07:16:18.633Z",
   "specId": "001",
   "folderSlug": "root-and-opencode-infra-strays",
   "parentChain": [

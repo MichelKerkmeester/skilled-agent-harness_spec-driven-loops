@@ -1,14 +1,13 @@
 ---
-title: "Feature Specification: deep-ai-council filesystem names (020 phase 007/005)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council/spec]"
 description: "The deep-ai-council packet contains 12 underscore-bearing directory families and 89 underscore-bearing files, including paired feature-catalog and manual-playbook trees, council graph material, and assets. This phase renames those in-scope paths to kebab-case and repairs their references while preserving council artifacts, state contracts, and tool-mandated names."
 trigger_phrases:
   - "deep-ai-council kebab-case migration"
-  - "AI council filesystem names"
+  - "ai council filesystem names"
   - "council packet path repair"
   - "deep-ai-council snake_case resources"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
@@ -23,8 +22,8 @@ _memory:
       - "The live deep-ai-council inventory has 12 underscore-bearing directory families and 89 underscore-bearing files."
       - "The feature_catalog and manual_testing_playbook trees are paired views of the same council surface and move under one map."
       - "SKILL.md, package/tool names, council state keys, and generated artifacts remain protected."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

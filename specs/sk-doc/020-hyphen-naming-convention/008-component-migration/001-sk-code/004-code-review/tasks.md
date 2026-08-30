@@ -1,5 +1,5 @@
 ---
-title: "Tasks: code-review filesystem names (020 phase 008/004)"
+title: "Tasks: code-review [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review/tasks]"
 description: "Execution tasks for the code-review filesystem rename and review-scenario path closure."
 trigger_phrases:
   - "code-review naming tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "review playbook path tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review"
 ---
-
 # Tasks: code-review filesystem names
 
 <!-- SPECKIT_LEVEL: 2 -->

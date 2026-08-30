@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-code-graph feature catalog"
+title: "Implementat [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog/plan]"
 description: "Rename the feature-catalog root, eight categories, and 19 files with an explicit path map, then repair catalog and cross-surface links while keeping classifier tokens and content identifiers stable."
 trigger_phrases:
   - "system-code-graph feature catalog implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "catalog rename map"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog"
@@ -27,8 +26,8 @@ _memory:
     answered_questions:
       - "The current tree contains eight snake_case category directories and 19 files including the root index."
       - "Catalog classification tokens, feature IDs, tool IDs, and content identifiers remain unchanged."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog"
 ---
-
 # Implementation Plan: system-code-graph feature catalog
 
 <!-- SPECKIT_LEVEL: 2 -->

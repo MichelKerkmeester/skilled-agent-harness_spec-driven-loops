@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-code-graph manual testing playbook"
+title: "Imp [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook/plan]"
 description: "Rename the manual-testing-playbook root, nine categories, and 29 files with a bijective path map, then repair playbook and cross-surface links while keeping scenario content and coverage stable."
 trigger_phrases:
   - "system-code-graph manual testing playbook implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "manual scenario rename map"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook"
@@ -27,8 +26,8 @@ _memory:
     answered_questions:
       - "The current playbook contains nine snake_case category directories and 29 files including the root index."
       - "Scenario identity and content stay unchanged; only filesystem path segments and their references are rewritten."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook"
 ---
-
 # Implementation Plan: system-code-graph manual testing playbook
 
 <!-- SPECKIT_LEVEL: 2 -->

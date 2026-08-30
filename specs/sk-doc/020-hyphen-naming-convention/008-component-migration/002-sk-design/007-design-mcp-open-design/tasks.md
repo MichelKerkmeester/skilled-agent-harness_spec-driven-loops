@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Design-mcp-open-design (020 phase 007)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design/tasks]"
 description: "Task breakdown for Design-mcp-open-design in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-mcp-open-design tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 design-mcp-open-design checklist"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/007-design-mcp-open-design"
 ---
 # Tasks: Design-mcp-open-design (020 phase 007)
 

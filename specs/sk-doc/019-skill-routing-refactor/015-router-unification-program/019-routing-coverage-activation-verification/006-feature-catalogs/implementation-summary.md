@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Compiled-Routing Feature Catalogs"
+title: "...-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs/implementation-summary]"
 description: "Delivered-state record for the seven-hub compiled-routing catalog coverage: Option A shipped — 6 new hub-root catalogs, 12 hub-architecture/compiled-routing leaves, sk-design's extension leaf, and the two canonical-surface extensions. Committed in 8532c4b64b."
 trigger_phrases:
   - "compiled routing catalogs implementation summary"

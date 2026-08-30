@@ -17,9 +17,7 @@
       "sk-doc scripts implementation plan",
       "scripts fixture rename plan",
       "sk-doc scripts tasks",
-      "scripts fixture rename tasks",
-      "sk-doc scripts checklist",
-      "scripts fixture rename verification"
+      "scripts fixture rename tasks"
     ],
     "key_topics": [
       "sk-doc",
@@ -33,15 +31,14 @@
       "plan",
       "rename",
       "tasks",
-      "checklist"
+      "tree"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc scripts tree contains snake_case markdown fixture filenames and Python script names that must be treated differently. This phase renames only the non-Python filesystem names, updates their sourcing/import/registry references, and records the Python exemption explicitly.",
     "created_at": "2026-07-14T15:17:25Z",
-    "last_save_at": "2026-08-29T10:00:49.260Z",
+    "last_save_at": "2026-08-30T07:19:24.765Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:19d19af975cc843c54385efa41c3510daf921fe9a0ae028ee8491550a4a94498",
+    "source_fingerprint": "sha256:81792369df17aee2823dcad2a76bc728aa1682d264c03ed91097f5ac986204ee",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f0ea9e74858ac14c2de093892759e2c4e602716cabc2413ed8d3c1bb6dba527f",
-      "plan.md": "bb908d61385c06585c782263c5d571735ef0a71797c23b94a0d28ad7a8e19c09",
-      "tasks.md": "0dce5839050c8e00f5f71f2268c1b55693f247f882630381f1d3a5874745a253",
-      "checklist.md": "23ae38e1878a4e0a1504a6147f7b1a134349c7dbbd1a22232fb6ad0c9407bc27"
+      "spec.md": "99f70d9cab8a27ddb2cdfc84e11f7d212b3a6ec453dcae3949257707ce1122f7",
+      "plan.md": "23f78cdb14b36e503f7f09c5a0d96d748ecb9555c5fa42535ff5cd59f05f2b82",
+      "tasks.md": "f423b2b1fe12a5f1fac04f6ac9f3393d2a2e983e8958afb2508efa004f745efb"
     },
     "last_active_child_id": null,
     "last_active_at": null

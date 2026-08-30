@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 025 sk-create-command README revisit"
+title: "Tasks: Phase 025 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command/tasks]"
 description: "Task list for rewriting the sk-create-command skill README against the refined template."
 trigger_phrases:
   - "phase 25 tasks"

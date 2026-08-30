@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-feature-catalog resource names"
+title: "...c/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog/spec]"
 description: "The create-feature-catalog packet contains snake_case asset template filenames and a shared pitfalls reference. This phase renames those non-exempt resources to kebab-case and updates packet-local path references without changing catalog schema fields or feature identifiers."
 trigger_phrases:
   - "create-feature-catalog resource naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "feature catalog template rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/005-create-feature-catalog"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

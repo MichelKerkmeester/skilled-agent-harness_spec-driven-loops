@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Devin PermissionRequest handler"
+title: "Tasks: Devin PermissionReq [cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler/tasks]"
 description: "Task breakdown for the real PermissionRequest adapter, its registration, and its process-level plus live verification."
 trigger_phrases:
   - "devin permission request handler tasks"

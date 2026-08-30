@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: /create:testing-playbook [sk-doc/007-cmd-create-manual-testing-playbook/plan]"
+title: "Implementation Plan: /create:testing-playbook [sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook/plan]"
 description: "Plan the new create command, its YAML pair, runtime mirror, and discovery-doc updates using the shipped sk-doc testing-playbook references and templates."
 trigger_phrases:
   - "testing playbook command plan"
   - "/create:testing-playbook plan"
 importance_tier: "important"
 contextType: "implementation"
-template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 _memory:
   continuity:
     packet_pointer: "sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook"
@@ -15,6 +14,7 @@ _memory:
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
     next_safe_action: "Revalidate packet docs and update continuity on next save"
     key_files: ["plan.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->"
 ---
 # Implementation Plan: /create:testing-playbook Command
 

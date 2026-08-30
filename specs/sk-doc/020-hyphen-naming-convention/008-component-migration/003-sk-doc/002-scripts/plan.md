@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: sk-doc scripts and test fixtures"
+title: "Implementation Plan: sk-doc [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts/plan]"
 description: "Execution plan for the file-type-aware scripts-tree rename map and its sourcing, import, registry, and fixture-reference closure."
 trigger_phrases:
   - "sk-doc scripts implementation plan"
   - "scripts fixture rename plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
 ---
 # Implementation Plan: sk-doc scripts and test fixtures
 

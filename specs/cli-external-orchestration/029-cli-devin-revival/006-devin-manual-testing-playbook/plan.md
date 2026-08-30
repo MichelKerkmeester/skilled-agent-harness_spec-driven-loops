@@ -1,7 +1,9 @@
 ---
-title: "Implementation Plan: Devin manual-testing playbook"
+title: "Implementation Plan: Devin [cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook/plan]"
 description: "Mirror cli-codex's split-document Feature Catalog template exactly (root file + category folders + universal per-feature template) while reframing the category set against Devin's live-verified 2026-07 surface."
-trigger_phrases: ["devin manual testing playbook plan", "DV-NNN scenario authoring plan"]
+trigger_phrases:
+  - "devin manual testing playbook plan"
+  - "dv-nnn scenario authoring plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

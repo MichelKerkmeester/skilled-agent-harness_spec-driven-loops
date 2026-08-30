@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 2: session-precedence"
+title: "Feature Specification: [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence/spec]"
 description: "Wire handoff state into parent changes and child session-start precedence without confusing an absent flag with false."
 trigger_phrases:
   - "session-precedence"

@@ -12,17 +12,14 @@
   "derived": {
     "trigger_phrases": [
       "cli-claude-code kebab-case migration",
-      "Claude Code reference asset naming",
+      "claude code reference asset naming",
       "cli-external phase 003 naming",
       "cli-claude-code implementation plan",
-      "Claude Code asset reference rename plan",
+      "claude code asset reference rename plan",
       "cli-external phase 003 plan",
       "cli-claude-code naming tasks",
-      "Claude Code path map tasks",
-      "cli-external phase 003 tasks",
-      "cli-claude-code naming checklist",
-      "Claude Code path map verifier",
-      "cli-external phase 003 acceptance"
+      "claude code path map tasks",
+      "cli-external phase 003 tasks"
     ],
     "key_topics": [
       "cli-claude-code",
@@ -44,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
       ".opencode/skills/cli-external-orchestration/cli-claude-code/README.md"
     ],
@@ -68,12 +64,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-external-orchestration/cli-claude-code/SKILL.md",
@@ -86,13 +76,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Claude Code",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -182,35 +172,28 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
+        "name": "BASE",
+        "kind": "key_phrase",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The cli-claude-code component has underscore-separated reference and prompt-asset filenames with active links from its skill and README. This phase renames those local authored names, updates path-valued references, and preserves Claude dispatch contracts and the delegated playbook tree.",
     "created_at": "2026-07-14T15:17:37Z",
-    "last_save_at": "2026-08-29T13:10:03.421Z",
+    "last_save_at": "2026-08-30T07:19:34.163Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:f35a6f5331cda51a253f3229d0e9dbc178b7e01460dc228ecbab9ac4f2571c44",
+    "source_fingerprint": "sha256:7dbb49c673578674825e161ce9e2b5e5614fa82c8871df9e2cf524996aa4d112",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "acdc3eb3eb23b80e5a00a98d5d0805f7e02e0507f1e448dee1fd5cbd744e5579",
-      "plan.md": "20b1e37537451ae8d80918b8c3ec6807c487b94029dfd8cdfbbd5ee9476a33b9",
-      "tasks.md": "54bb1e8cad7aefd883c838401aadea24cee09e099da9339c50513e1910df2a7a",
-      "checklist.md": "8cb33baf8bcba3fdcd663c0ff2eff6a59005047949e435f865e2617199359931"
+      "spec.md": "a0784667bdc6ddaa579b23380d8f9632c63d1d56b0be5f4aa17187e1634b4bd1",
+      "plan.md": "dc9b114f3588ce9eee55bb96aded084b4cc099c9458894e00186bfda4f1f0a1b",
+      "tasks.md": "2b1054c650aba51c15f69c2456fe835d01ba7bb801dd5c8f70a3cd9cb129f667"
     },
     "last_active_child_id": null,
     "last_active_at": null

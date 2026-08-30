@@ -1,6 +1,5 @@
 ---
-title: "Spec: v1.0.4 Full-Matrix Stress Test Design"
-template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2"
+title: "...-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/spec]"
 description: "Design-only Level 3 packet for the full v1.0.4 stress matrix across system-spec-kit feature surfaces and CLI executors. This packet freezes the corpus design, rubric, harness-extension approach, executor matrix, and future execution task ledger without running the stress matrix."
 trigger_phrases:
   - "030-clean-infrastructure-full-matrix-stress-design"
@@ -34,8 +33,8 @@ _memory:
     answered_questions:
       - "Level 3 selected because the design spans 14 feature surfaces, 7 executor surfaces, non-applicable cells, rubric policy, and harness architecture decisions."
       - "This packet is design-only and does not execute any stress matrix cells."
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2"
 ---
-
 # Spec: v1.0.4 Full-Matrix Stress Test Design
 
 <!-- SPECKIT_LEVEL: 3 -->

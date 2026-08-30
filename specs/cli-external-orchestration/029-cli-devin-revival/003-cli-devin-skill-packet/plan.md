@@ -1,7 +1,10 @@
 ---
-title: "Implementation Plan: cli-devin skill packet"
+title: "Implementation Plan: cli-devin [cli-external-orchestration/029-cli-devin-revival/003-cli-devin-skill-packet/plan]"
 description: "Scaffold the cli-devin packet from sk-doc create-skill templates, wire the 3 hub registry surfaces, regenerate leaf-manifest.json, and validate against the hub's 0-fail baseline."
-trigger_phrases: ["cli-devin skill plan", "cli-devin mode wiring", "4th mode implementation plan"]
+trigger_phrases:
+  - "cli-devin skill plan"
+  - "cli-devin mode wiring"
+  - "4th mode implementation plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

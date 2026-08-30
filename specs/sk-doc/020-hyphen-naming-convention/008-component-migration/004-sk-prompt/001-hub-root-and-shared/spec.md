@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-prompt hub root and shared boundary (020 phase 004.001)"
+title: "Feature Specifi [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared/spec]"
 description: "The sk-prompt hub root owns routing and packet-entry files, while delegated playbook and benchmark trees have their own phases. This phase inventories the root/shared boundary, renames only owned snake_case paths if present, and protects tool-mandated hub names and routing semantics."
 trigger_phrases:
   - "sk-prompt hub root kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 001 naming"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "The live sk-prompt root has no shared/ directory; the census must record that absence rather than inventing candidates."
       - "The root manual_testing_playbook/ and benchmark/ trees are delegated to phases 004 and 005."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/001-hub-root-and-shared"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

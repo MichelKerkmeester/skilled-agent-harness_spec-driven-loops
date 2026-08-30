@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 005 cli-opencode mode README rewrite"
+title: "Implementatio [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/implementation-summary]"
 description: "The cli-opencode README now opens purpose-first with a one-line pitch and a problem-first overview, documents the full-runtime dispatch surface and the four-provider roster, and versioned at 1.4.1.0 with a changelog entry."
 trigger_phrases:
   - "implementation summary"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Devin hook hardening"
+title: "Implementation [cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening/implementation-summary]"
 description: "Unified workspace-root resolution across 10 Devin adapters, added cwd fallback to completion-evidence-stop, built a discriminating spec-gate test suite, and trimmed stale comment scar tissue."
 trigger_phrases:
   - "devin hook hardening summary"

@@ -1,6 +1,5 @@
 ---
-speckit_template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: Review Remediation (010/007)"
+title: "Featur [system-speckit/026-graph-and-context-optimization/005-graph-impact-and-affordance/004-deep-review-findings/spec]"
 description: "Remediation sub-phase consolidating 21 P1 + 22 P2 findings from the 7-iteration deep-review pass across 010/001-006. Excludes the P0 license-quote finding (resolved by scrubbing the External Project name from the codebase, removing the need for the LICENSE quote)."
 trigger_phrases:
   - "010 review remediation"
@@ -26,6 +25,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+speckit_template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 ---
 # Feature Specification: Review Remediation (010/007)
 

@@ -14,13 +14,11 @@
   "derived": {
     "trigger_phrases": [
       "arc 010 003 004 launcher reindex p1",
-      "F15 F49 F105 remediation",
+      "f15 f49 f105 remediation",
       "arc 010 003 004 implementation plan",
       "launcher reindex p1 plan",
       "arc 010 003 004 tasks",
-      "F15 F49 F105 tasks",
-      "arc 010 003 004 checklist",
-      "launcher reindex p1 verification",
+      "f15 f49 f105 tasks",
       "arc 010 003 004 decisions",
       "launcher token env reindex cancellation adr",
       "arc 010 003 004 implementation summary",
@@ -37,34 +35,19 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "verification"
+      "decisions",
+      "token"
     ],
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
-      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "mcp_server/tests/embedder-reindex.vitest.ts"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "reindex.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",
-        "source": "derived"
-      },
-      {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -84,21 +67,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "embedder-reindex.vitest.ts",
-        "kind": "test",
-        "path": "mcp_server/tests/embedder-reindex.vitest.ts",
         "source": "derived"
       },
       {
@@ -196,29 +173,46 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Launcher Token",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reindex Cancellation Policy",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The rerank sidecar launcher still had two P1 process-boundary risks: F15 owner-token publication could leave a partially written or race-observed token, and F49 spawned the sidecar with blanket parent environment inheritance",
     "created_at": "2026-05-23T06:45:25Z",
-    "last_save_at": "2026-07-17T17:19:28.346Z",
+    "last_save_at": "2026-08-30T07:16:32.554Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:415a0c1a81cc2dda7e796f747fd76f6116929ced65b5f57efe0f2c8cec1b8ffe",
+    "source_fingerprint": "sha256:80ad3390b76dd3cbbfc7ad08ea10321d03e565a8ac8bcb8961a42efd2e665fcb",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "7f88c9079aafa2c5de5e89d37037ddaee33a81d38d9fad0eb96d36ac9fda372a",
-      "plan.md": "5dbe8bdf5f341c85f275f35513db0b8248f7c674ea34ff3251326293a91a3f92",
-      "tasks.md": "13ee83edff1d24a62ad0908c541b10ccaaa269b32366a1a88e7320d1c0a8019a",
-      "checklist.md": "07e7346e9b27f8589eed6fb520147f3b60a8ef21950da388c7a80cc81b9cbc68",
-      "decision-record.md": "d7eb0aeddcc50cd9b4bde21b3272e632dbc4e5408143cb8e76349c7088fae089",
-      "implementation-summary.md": "4b421d47c18be82109c54e871c06c807a0c5b8e1d99894ff8b3499d97e7bf98a"
+      "spec.md": "20b192f4f3136302f0d860dcc0bb38e0b5311b1f7999a8d3e2893e5e4769383b",
+      "plan.md": "b12712baf0ad141ab8b657306850de3cda031e99d6fc038b39fa9e2274f257df",
+      "tasks.md": "8306c337a30553d360be2c19411b1bd1c096ba39873a8b2325fc9a891106fff9",
+      "decision-record.md": "3f68e60bb57bbb48996d2c00399efe1e64c34c9b1fd13a42a943d569d3a49333",
+      "implementation-summary.md": "b99b98ae52dffd6b84de9a58deaaa05172d19615f829a4d412acbb026ae61a9c"
     },
     "last_active_child_id": null,
     "last_active_at": null

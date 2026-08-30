@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: root-name consumer migration"
+title: "Implementation Summary: [sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration/implementation-summary]"
 description: "Catalog and playbook consumers now accept both registered root forms and refuse missing, coexisting or unsupported roots before classification, discovery, routing or emission."
 trigger_phrases:
   - "root-name consumer migration summary"

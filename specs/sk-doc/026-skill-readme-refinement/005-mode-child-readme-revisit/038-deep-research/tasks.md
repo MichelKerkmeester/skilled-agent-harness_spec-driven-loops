@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 038 deep-research mode skill README revisit"
+title: "Tasks: Phase 038 deep-researc [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/tasks]"
 description: "Task list for the purpose-first rewrite of the deep-research mode skill README in the system-deep-loop hub."
 trigger_phrases:
   - "phase 038 tasks"

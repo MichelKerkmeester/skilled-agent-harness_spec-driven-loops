@@ -21,8 +21,7 @@
       "plan",
       "014",
       "tasks",
-      "verification",
-      "checklist"
+      "summary"
     ],
     "key_topics": [
       "feature",
@@ -32,11 +31,11 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
+      "summary",
       "automated",
       "way",
-      "entries"
+      "entries",
+      "sk-doc"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/commands/create/changelog.md",
       ".opencode/commands/create/README.txt"
@@ -66,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,31 +181,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Create Changelog",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "No automated way to create changelog entries",
     "created_at": "2026-04-12T09:02:50.217Z",
-    "last_save_at": "2026-08-29T15:22:00.813Z",
+    "last_save_at": "2026-08-30T07:16:15.295Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1378aedca098f77b6fab5202f9c71f44562a9717d560e4f8c5b91c6aa15a747a",
+    "source_fingerprint": "sha256:fa8307beec076a6c649c8833ab83cb7a048676514647e375440eafad9c5a4cf5",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "8b0d3acd203d54cd2fc0385aafb497debdefa8b3c9c09d25cb8aaa3fea65d761",
-      "plan.md": "863b48a909bac37daed2bd05574a9f54e0aff715f5d836661b4fafc049117e3d",
-      "tasks.md": "07733385dc5858fbfb3b3a799251a483d71b1c2c1b0652b0f52224371c48d580",
-      "checklist.md": "01cb9e2f124c73e2579f7780cf3d8d5bc72767cb9fcecb134d4c2b4a460bddcf",
-      "implementation-summary.md": "ac9ce1a417395a4acbc685e164bf0f5967b3d95b7fb3077019a83c28ee24d36c"
+      "spec.md": "0590b7c22e8c9caf75a0af89c60150cbfd18ef773dc023303bf9f998089323a0",
+      "plan.md": "aeccf3ce64ece0cd5522f15b45a20eaf8a6464f22c5a4ac380317a2f068ec7aa",
+      "tasks.md": "2cb12b4f3f5b52e9669647583ea5c316f03af8698d0e8a3ee027d1a0db6479f1",
+      "implementation-summary.md": "78b361c98ba7b95fff59de1085bf3d91fb4be29689589f6db02853a905a91451"
     },
     "last_active_child_id": null,
     "last_active_at": null

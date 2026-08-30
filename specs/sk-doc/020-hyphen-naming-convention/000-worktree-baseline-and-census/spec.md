@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: worktree, baseline, and census (020 phase 000)"
+title: "Feature Specification: worktree, baseline, [sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/spec]"
 description: "The migration must be reproducible and isolated from the actively-raced main checkout. Before any change, the program pins an immutable BASE SHA, establishes a dedicated worktree with a fresh deterministic dependency install (never a symlink to the raced tree), and captures a complete baseline the later phases prove th"
 trigger_phrases:
   - "worktree, baseline, and census"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "kebab-case worktree baseline"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

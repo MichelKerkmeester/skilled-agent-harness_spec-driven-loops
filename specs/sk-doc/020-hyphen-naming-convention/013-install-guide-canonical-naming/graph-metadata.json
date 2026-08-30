@@ -12,14 +12,14 @@
   "derived": {
     "trigger_phrases": [
       "install-guide canonical naming",
-      "INSTALL-GUIDE filename normalization",
+      "install-guide filename normalization",
       "install guide uppercase hyphen",
       "install-guide normalization plan",
-      "INSTALL-GUIDE rename plan",
+      "install-guide rename plan",
       "install-guide normalization tasks",
-      "INSTALL-GUIDE rename tasks",
+      "install-guide rename tasks",
       "install-guide normalization summary",
-      "INSTALL-GUIDE migration complete"
+      "install-guide migration complete"
     ],
     "key_topics": [
       "install-guide",
@@ -38,26 +38,14 @@
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
-      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs"
     ],
     "entities": [
-      {
-        "name": "validate_document.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
-        "source": "derived"
-      },
-      {
-        "name": "check-markdown-links.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -80,6 +68,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "check-markdown-links.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
         "source": "derived"
       },
       {
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Normalize every skill install-guide document filename to the single canonical form INSTALL-GUIDE.md (uppercase + hyphen), resolving three inconsistent casings (INSTALL_GUIDE, install-guide, install_guide). The doc-type identifier install_guide is a code contract and stays; the classifier gains additive hyphen-stem recognition so renamed files still type as install_guide rather than silently downgrading to readme.",
     "created_at": "2026-07-17T16:40:25.363Z",
-    "last_save_at": "2026-07-24T15:15:39.320Z",
+    "last_save_at": "2026-08-30T07:20:12.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:128385f2cf757ac1be3a95e503a1821a161e234fcaa9457cc428d2dce846ae98",
+    "source_fingerprint": "sha256:d8f8f89129aebceca62948810cebf9370b82035dcc1608121e5c6ce944886b5d",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "a1c332eff672b4d65ba29fc88ca98344ce7c1665e31982e78adca11840e04f40",
-      "plan.md": "7066c0c6e83ad89827cfc03ee3ad937e73593f47c204fdaac3e4bcac6f958e15",
-      "tasks.md": "1c5efd3b7a4d9e8dd5094cd1db085907e566ff82589a0acc858db8b8af87666c",
-      "implementation-summary.md": "83756f02beb707b712de9a90741183fb319a9ece8c0bd7f8b5b5d7123b6e087a"
+      "spec.md": "f930ffcf0228305d8de52b53e4f41742f892d5fb6a80cb2b1932f29969fbc21d",
+      "plan.md": "ccca4d9a8b6fba53aa38a05661ad9f6cf2ed24726bc43d5812d795f7ca821aea",
+      "tasks.md": "8e139477a91a51a36e983142740c066e2b423602bbf3cb2ecc854dfc2f5fa079",
+      "implementation-summary.md": "569fb15c429bdde023689ca502d6e5d87d818c6d628684f3f79508b0a1d49a4f"
     },
     "last_active_child_id": null,
     "last_active_at": null

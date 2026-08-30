@@ -1,7 +1,6 @@
 ---
-title: "Handover: sk-doc Conformance Sweep and Template Cleanup"
+title: "...zation/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep/handover]"
 description: "Cross-session handover for packet 040. Captures final state, validation evidence, and the small set of pre-existing strict-mode warnings documented as out-of-scope."
-template_source: "SPECKIT_TEMPLATE_SOURCE: handover-core | v2.2"
 trigger_phrases:
   - "021-sk-doc-conformance-template-sweep handover"
 importance_tier: "important"
@@ -26,6 +25,7 @@ _memory:
     completion_pct: 95
     open_questions: []
     answered_questions: []
+template_source: "SPECKIT_TEMPLATE_SOURCE: handover-core | v2.2"
 ---
 # Handover: sk-doc Conformance Sweep and Template Cleanup
 

@@ -1,3 +1,16 @@
+---
+title: "Research Synthesis: pi-fast-mode-w-subagent-support [hooks/011-pi-fast-mode-w-subagent-support/research]"
+description: "Fork pi-openai-fast-mode as the implementation base, preserve its target/config semantics, and add a deliberately small child-process handoff layer modeled on pi-gpt-fast-mode. ..."
+trigger_phrases:
+  - "research"
+  - "synthesis"
+  - "fast"
+  - "mode"
+  - "subagent"
+  - "011"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research Synthesis: pi-fast-mode-w-subagent-support
 
 ## 1. Executive Decision

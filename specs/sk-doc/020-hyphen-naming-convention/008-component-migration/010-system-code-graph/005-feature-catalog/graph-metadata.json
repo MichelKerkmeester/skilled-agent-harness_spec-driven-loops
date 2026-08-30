@@ -20,9 +20,7 @@
       "catalog rename map",
       "system-code-graph feature catalog tasks",
       "code graph catalog rename tasks",
-      "feature-catalog link repair tasks",
-      "system-code-graph feature catalog checklist",
-      "code graph feature-catalog verification"
+      "feature-catalog link repair tasks"
     ],
     "key_topics": [
       "system-code-graph",
@@ -43,8 +41,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,37 +169,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The code-graph feature catalog currently uses the snakecase root featurecatalog, eight snakecase category",
     "created_at": "2026-07-14T15:18:16Z",
-    "last_save_at": "2026-08-29T10:00:52.399Z",
+    "last_save_at": "2026-08-30T07:19:53.360Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:fea4b0a63ccc47eb70cdc34225436e96fdb7a2a3cd5b000a41b8db6a9881f6ff",
+    "source_fingerprint": "sha256:baa01f2b9f8d3d7503603d8734fd1a3c517ab55e461c2f0023f21df31e0c5487",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "57b0d064d2ffc33c3b8d2daedd76fbb51502dfbc1828a1cbd107a7fd8c5c8230",
-      "plan.md": "1808cfaf944869d1ed9dc910273b83c3576cf5a53e78a9178b8666ab1ae1c089",
-      "tasks.md": "293a3ab53be9cb8bbc27072c97b4ed8c0c9bc48412065c3adfb847f96ed81a04",
-      "checklist.md": "e6f2927e3de5908e7990f5dee86829d0cf4c17cbf0b110dea93f8e8b5ae763d3"
+      "spec.md": "041d64f5d8100f8fa445664990e8c36b10a6e745d710a93d817d6107f49e7431",
+      "plan.md": "2a8d0b229214006aa950bbd37498e9fddddb276a1e44d3f117779686ad3af595",
+      "tasks.md": "3260bace80564924a60a135c933dc453598d131d673a419ff8d20f2b6ff71827"
     },
     "last_active_child_id": null,
     "last_active_at": null

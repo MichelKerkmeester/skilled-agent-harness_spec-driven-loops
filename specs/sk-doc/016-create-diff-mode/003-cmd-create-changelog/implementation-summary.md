@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Create Changelog [03--commands-and-skills/015-cmd-create-changelog/implementation-summary]"
+title: "Implementation Summary: Create Changelog [sk-doc/016-create-diff-mode/003-cmd-create-changelog/implementation-summary]"
 description: "New /create:changelog command with dynamic work detection, component resolution, version calculation, and formatted changelog generation."
 trigger_phrases:
   - "implementation"

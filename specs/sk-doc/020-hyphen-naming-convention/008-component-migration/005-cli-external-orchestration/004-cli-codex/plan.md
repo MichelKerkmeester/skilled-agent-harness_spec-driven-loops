@@ -1,13 +1,12 @@
 ---
-title: "Implementation Plan: cli-codex component naming (020 phase 005.004)"
+title: "Implemen [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex/plan]"
 description: "Implementation plan for the cli-codex component: map five reference files and two prompt assets, update local path-valued consumers, preserve Codex safety and dispatch semantics, and exclude the delegated playbook tree."
 trigger_phrases:
   - "cli-codex implementation plan"
-  - "Codex asset reference rename plan"
+  - "codex asset reference rename plan"
   - "cli-external phase 004 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex"
@@ -25,6 +24,7 @@ _memory:
     answered_questions:
       - "The current candidate set is five reference files plus two asset files."
       - "The nested manual-testing-playbook tree is phase 005 ownership."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex"
 ---
 # Implementation Plan: cli-codex component naming
 

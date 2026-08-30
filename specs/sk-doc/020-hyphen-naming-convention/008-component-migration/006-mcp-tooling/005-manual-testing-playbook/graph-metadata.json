@@ -17,9 +17,7 @@
       "mcp-tooling hub playbook implementation plan",
       "hub routing scenario path repair",
       "mcp-tooling hub playbook tasks",
-      "hub routing scenario rename tasks",
-      "mcp-tooling hub playbook checklist",
-      "hub routing scenario verification"
+      "hub routing scenario rename tasks"
     ],
     "key_topics": [
       "mcp-tooling",
@@ -41,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/mcp-tooling/SKILL.md"
     ],
     "entities": [
@@ -61,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -158,49 +149,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-tooling hub-level manual-testing-playbook tree uses an underscored root, category directory, index file, and seven scenario filenames. This phase renames only that hub-level tree to kebab-case and updates its navigation references, leaving the three component-local playbooks to their own phases.",
     "created_at": "2026-07-14T15:17:44Z",
-    "last_save_at": "2026-08-29T13:10:08.880Z",
+    "last_save_at": "2026-08-30T07:19:38.330Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:a403265165acebc23e3e8e98dbbe2c53455f31b96fd6a90865915fd314c62e7c",
+    "source_fingerprint": "sha256:82f4c901a1848f8a544309510a3452352bc831e70eae5dfca0a65f71b0cb2e16",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "018bcc0b6f21783fa600fa36635f9e8e85bda489eef1a78130601eef23e8612e",
-      "plan.md": "b65aa0ffbba916f856a1c2db45d09216751bfca57a430c7a016c3af950075b78",
-      "tasks.md": "55e94597ca4063b25b1fefbd18a59a980d1f46a28e1285511f26f648ab75db00",
-      "checklist.md": "24ff9eae9c3c5c3763f195509afe7f2263317e8c80b0a167c1a056a6cd3829b8"
+      "spec.md": "0c1b371a977e20fc1e8649b0cf19ded97d7d8a6da1a358b66fa2320c725194a2",
+      "plan.md": "3e608255d1149b67c9250c67a0e7dd97376e4bb126237e8286d058c3dfe67680",
+      "tasks.md": "0d0d26acd363f2eba4193f1650db5b4d1d8dc44099002c907cb252ecd35afbcf"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 008 sk-prompt README revisit"
+title: "Implementation Plan: Phase 008 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/plan]"
 description: "Rewrite the sk-prompt README purpose-first on the refined template with the mcp-obsidian exemplar shape, bump the version, add a changelog entry and validate."
 trigger_phrases:
   - "phase 008 plan"

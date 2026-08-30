@@ -14,11 +14,10 @@
       "devin hook adapters",
       "devin hooks.v1.json",
       "devin guard hooks",
-      "Devin lifecycle hooks",
+      "devin lifecycle hooks",
       "devin hook adapter plan",
       "devin hooks implementation plan",
       "devin hook adapter tasks",
-      "devin hook adapter checklist",
       "devin hook adapter decision record",
       "read_config_from.claude decision",
       "devin hook adapter summary",
@@ -36,7 +35,7 @@
       "plan",
       "implementation",
       "tasks",
-      "checklist"
+      "decision"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -44,7 +43,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".devin/hooks.v1.json",
@@ -79,12 +77,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -206,29 +198,34 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This repo enforces its scope-lock, spec-folder, quality, and completion-evidence discipline through 7 guard hooks (spec-gate enforce/classify, dispatch preflight lint, post-edit quality, code-graph freshness, dispatch audit, completion-evidence sentinel, mcp route guard)",
     "created_at": "2026-07-23T19:51:58.883Z",
-    "last_save_at": "2026-08-29T15:21:50.540Z",
+    "last_save_at": "2026-08-30T07:18:48.848Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3dddf8c864b800c8f980d323ad2edcf92c39534557abed85a1ae83551e04d3d9",
+    "source_fingerprint": "sha256:3b751d1f14e59da415b31f2eb54719babd33ade72e65d9ab2948e7ae80cc7911",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "5175fdee3a53e5ce211f6598b1b52be3ffcfc788e81408c4f502e937ae4fd625",
-      "plan.md": "2ef13c5854b010224d06fea37625ec133c8f3baad4bf47f0b2d1c2f9c7699987",
-      "tasks.md": "22da0bbf5154716a07b42ddfef7816a1ae754e429cdf3a5bcd98284b22a4ecde",
-      "checklist.md": "8b404f9f3767fffc53d645318f2cd67a6b2d7021b62434a7e27f4e6ba58999f3",
-      "decision-record.md": "53970dcee68f685bdffa5ca89709807bf0f36aaec39ba44ad2d1ca5a3f037082",
-      "implementation-summary.md": "c53f3c687b6f402cb3cb997f06dcc145b51839524237dd52858286bef430ef8b"
+      "spec.md": "1910936c68f5e504a36d8fed18829785c57dcb6b90d87e0e63f24f133cd8205c",
+      "plan.md": "a457b95672319fc470429e030c1c728c5ade82630781b8fa59305974261d0be6",
+      "tasks.md": "567e0824716c6c820fc04aec7727252c557c26d181cd8d8819a943694c0b9222",
+      "decision-record.md": "cce2b4a362f73cc26fc2c5885662bc2e1eb6b9d7089caa08ac3a3aac55b178e2",
+      "implementation-summary.md": "2e04995c483edbb4764940bff3eeca145f836b9d3a945317b211629c7ebb31c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,11 +1,11 @@
 ---
-title: "Feature Specification: Containment Auto-Scope for Symlinked Spec Trees"
+title: "Feature Specification: Containment [system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope/spec]"
 description: "Close the containment half of the spaced-path catch-22: when the artifact tree resolves through a symlink into a different checkout, write-containment rejected every artifact as unscopable because it resolved against the working directory's git worktree, which no longer contains the realpath'd artifact. Resolve the containment repo root to the worktree that physically holds the artifact, automatically, so containment works without requiring DEEP_LOOP_REPO_ROOT."
 trigger_phrases:
   - "containment symlink autoscope"
-  - "resolveArtifactScope null symlinked spec tree"
+  - "resolveartifactscope null symlinked spec tree"
   - "containment repo root auto detection"
-importance_tier: "high"
+importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:

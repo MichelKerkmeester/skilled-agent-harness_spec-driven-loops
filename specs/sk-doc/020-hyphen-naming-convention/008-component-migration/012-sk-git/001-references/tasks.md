@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-git references (020 phase 008/012/001)"
+title: "Tasks: sk-git references [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references/tasks]"
 description: "Tasks for the sk-git reference-file rename and pointer-closure phase."
 trigger_phrases:
   - "sk-git references tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "reference pointer closure tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/001-references"
 ---
 # Tasks: sk-git references
 

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: catalog and playbook generators"
+title: "...hen-naming-convention/003-create-generators-and-templates/002-catalog-and-playbook-generators/implementation-summary]"
 description: "Feature-catalog and manual-testing-playbook workflows now emit kebab-case package roots, category directories, leaf files, links and filesystem-valued slugs."
 trigger_phrases:
   - "catalog and playbook generator summary"

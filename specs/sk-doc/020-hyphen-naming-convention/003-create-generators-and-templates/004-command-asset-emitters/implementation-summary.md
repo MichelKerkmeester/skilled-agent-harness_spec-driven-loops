@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: command asset emitters"
+title: "...c/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters/implementation-summary]"
 description: "Create command assets now request, derive and display canonical kebab-case output paths while their current source filenames and schema keys remain stable."
 trigger_phrases:
   - "create command asset emitter implementation"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "command asset output migration summary"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
@@ -23,6 +22,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Current underscore command asset source filenames remain unchanged in this child."
+parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
 ---
 # Implementation Summary
 

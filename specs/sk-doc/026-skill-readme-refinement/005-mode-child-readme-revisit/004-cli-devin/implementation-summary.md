@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 004 cli-devin mode README rewrite"
+title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/implementation-summary]"
 description: "The cli-devin README now opens purpose-first with a one-line pitch and a problem-first overview, documents the curated model roster and the delegation surface, and versioned at 1.2.0.0 with a changelog entry."
 trigger_phrases:
   - "implementation summary"

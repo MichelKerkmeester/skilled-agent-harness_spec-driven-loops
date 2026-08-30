@@ -1,7 +1,6 @@
 ---
-title: "Feature Specification: sk-doc Conformance Sweep and Template Cleanup"
+title: "...timization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep/spec]"
 description: "Multiple sk-doc-governed surfaces have drifted from canonical format and the templates folder needs legacy cleanup; this packet runs a coordinated conformance sweep so sk-doc remains the single source-of-truth for documentation shape."
-template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2"
 trigger_phrases:
   - "021-sk-doc-conformance-template-sweep"
   - "sk-doc conformance sweep"
@@ -36,6 +35,7 @@ _memory:
       - "Phase 040 collision resolved naturally (prior 040 renumbered to 027)."
       - "skill_advisor playbook = Reclassify."
       - "system-spec-kit canonical playbook drift = Full remediation."
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2"
 ---
 # Feature Specification: sk-doc Conformance Sweep and Template Cleanup
 

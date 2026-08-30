@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 027 sk-create-feature-catalog README revisit"
+title: "Tasks: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog/tasks]"
 description: "Task list for the create-feature-catalog README rewrite: setup, implementation and verification phases."
 trigger_phrases:
   - "phase 027 tasks"

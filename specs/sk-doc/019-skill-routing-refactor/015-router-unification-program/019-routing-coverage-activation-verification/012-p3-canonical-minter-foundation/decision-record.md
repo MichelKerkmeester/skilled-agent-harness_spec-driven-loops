@@ -1,11 +1,11 @@
 ---
-title: "Decision Record: P3 Canonical Manifest Minter Foundation"
+title: "...-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation/decision-record]"
 description: "Architecture decisions for compiler reuse, canonical storage, exact freshness, and the boundary between manifest readiness and runtime serving."
 trigger_phrases:
   - "canonical minter decisions"
   - "manifest freshness architecture"
 importance_tier: "critical"
-contextType: "decision"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation"

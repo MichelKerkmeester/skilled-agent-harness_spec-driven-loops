@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Research and canon conformance (30-iteration deep research)"
+title: "Feature Specification: Research and canon conformance [sk-doc/014-sk-doc-parent/001-research-and-canon/spec]"
 description: "Run the 30-iteration deep research over the deepResearchAngles to settle every open packet-boundary and migration question before any file moves. Re-verify the canon two-axis definition against sk-code/sk-design/deep-loop live registries; confirm sk-doc is WOR"
 trigger_phrases:
   - "sk-doc research and canon"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-doc parent phase 001"
 importance_tier: "normal"
 contextType: "research"
-parent: "skilled-agent-orchestration/125-sk-doc-parent"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/001-research-and-canon"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "skilled-agent-orchestration/125-sk-doc-parent"
 ---
 # Feature Specification: Research and canon conformance (30-iteration deep research)
 

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: deep-alignment deep-review remediation"
+title: "Tasks: deep-alignment deep-review remediation [system-deep-loop/032-deep-alignment-mode/013-review-remediation/tasks]"
 description: "Task Format: T### [P?] Description (file path). Maps the 10 findings' fixes across setup, implementation, and verification."
 trigger_phrases:
   - "deep-alignment remediation tasks"

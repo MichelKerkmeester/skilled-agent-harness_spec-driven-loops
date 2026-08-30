@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: doctor command namespace naming (020 phase 008/013/004)"
+title: "Feature Specificati [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace/spec]"
 description: "The doctor command namespace has maintained workflow assets with snake_case filenames, a route manifest with an exact tool-facing name, and a Python helper that is exempt by language. This phase renames only the maintained non-Python assets, repairs route path values, and preserves route IDs and tool contracts."
 trigger_phrases:
   - "doctor command namespace naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "doctor route manifest paths"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace"
@@ -27,8 +26,8 @@ _memory:
       - "_routes.yaml is an exact route-manifest name and remains unchanged."
       - "audit_descriptions.py remains unchanged under the Python filename exemption."
       - "Route IDs and YAML keys remain exact; only filesystem path values change."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

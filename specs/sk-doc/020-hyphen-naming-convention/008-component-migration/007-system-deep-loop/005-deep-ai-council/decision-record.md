@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: system-deep-loop deep-ai-council names (020 phase 007/005)"
+title: "D [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council/decision-record]"
 description: "L2 design decisions for the deep-ai-council naming phase, including paired catalog/playbook mapping, artifact-state separation, and council parity evidence."
 trigger_phrases:
   - "system-deep-loop council decisions"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "council catalog playbook parity"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-prompt benchmark artifact names (020 phase 004.005)"
+title: "Tasks: sk-prompt [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark/tasks]"
 description: "Tasks for phase 005 of the sk-prompt kebab-case program: build the benchmark path ledger, rename authored artifacts, preserve generated output, and verify benchmark content contracts."
 trigger_phrases:
   - "sk-prompt benchmark tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 005 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "The live authored candidates currently include live_final, router_final, and router_mode_a."
       - "Raw prompt-models run and archive names are generated output and require explicit disposition."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 

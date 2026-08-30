@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 002 cli-codex README revisit"
+title: "Feature Specification: Phase 002 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex/spec]"
 description: "Rewrite the cli-codex skill README at .opencode/skills/cli-external-orchestration/cli-codex/README.md purpose-first on the refined template from phase 001, using the mcp-obsidian exemplar as the standard."
 trigger_phrases:
   - "cli codex readme"

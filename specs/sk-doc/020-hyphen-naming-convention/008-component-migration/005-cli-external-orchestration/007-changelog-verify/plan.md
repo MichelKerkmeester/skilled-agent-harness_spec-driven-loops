@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cli-external-orchestration changelog and version verification (020 phase 005.007)"
+title: "I [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify/plan]"
 description: "Verification plan for phase 007: inspect four release histories, compare new rename entries with child evidence and active metadata, preserve historical changelogs, and issue a pass/block handoff without changing the skill surface."
 trigger_phrases:
   - "cli-external changelog verification plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 007 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify"
@@ -27,6 +26,7 @@ _memory:
       - "The release version and exact new entry filenames are supplied by the migration candidate."
     answered_questions:
       - "The phase is read-only verification and does not create or edit changelog entries."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify"
 ---
 # Implementation Plan: cli-external-orchestration changelog and version verification
 

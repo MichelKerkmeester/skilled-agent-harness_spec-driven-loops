@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 019 sk-design-interface README revisit"
+title: "Implementation Plan: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/019-sk-design-interface/plan]"
 description: "Rewrite the sk-design-interface mode skill README against the refined template from phase 001 with a purpose-first narrative, version bump, changelog entry and full validation."
 trigger_phrases:
   - "phase 019 plan"

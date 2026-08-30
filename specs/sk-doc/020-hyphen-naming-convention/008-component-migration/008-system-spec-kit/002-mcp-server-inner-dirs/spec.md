@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: MCP-server inner directories (020 subtree 008 phase 002)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs/spec]"
 description: "The MCP server contains non-Python directories whose names still use underscores, including runtime, bridge, stress, and test-support paths. They need semantic targets and intra-tree reference updates; leading and doubled underscores must never be converted mechanically."
 trigger_phrases:
   - "mcp-server inner directories"
@@ -9,7 +9,6 @@ trigger_phrases:
   - "kebab-case phase 002"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/002-mcp-server-inner-dirs"
@@ -22,8 +21,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

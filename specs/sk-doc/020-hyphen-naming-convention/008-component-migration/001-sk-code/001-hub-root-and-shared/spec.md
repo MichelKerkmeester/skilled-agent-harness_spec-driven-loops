@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: hub root and shared sk-code names (020 phase 008/001)"
+title: "Feature Specifica [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared/spec]"
 description: "The sk-code hub's shared assets and references still use snake_case names, including workflow documents, shared checklists, router references, and reusable pattern files. This phase defines the hub/shared rename closure while keeping exact tool names, Python exemptions, and shared symlink behavior intact."
 trigger_phrases:
   - "sk-code hub shared naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "hub root naming phase"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared"
@@ -28,8 +27,8 @@ _memory:
       - "The hub's SKILL.md, README.md, mode-registry.json, hub-router.json, and metadata files remain exact."
       - "Shared workflow source files and their path consumers must move as one reference closure."
       - "Kebab-case is the only target form; Python files, package directories, generated output, tool-mandated names, and frozen history remain exempt."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

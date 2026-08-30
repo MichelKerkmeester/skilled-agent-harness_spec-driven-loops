@@ -1,5 +1,5 @@
 ---
-title: "Tasks: README, agent, command, changelog, flowchart, diff, and benchmark generators (020 phase 003 child 003)"
+title: "...ing-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark/tasks]"
 description: "Tasks for aligning seven create-* workflow families with semantic kebab-case output names and verifying each family in a temporary target."
 trigger_phrases:
   - "create workflow artifact naming tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "hyphenated create output tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
@@ -20,6 +19,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
 ---
 # Tasks: README, Agent, Command, Changelog, Flowchart, Diff, and Benchmark Generators
 

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-skill scaffolding and packaging (020 phase 003 child 001)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging/spec]"
 description: "The create-skill scaffolder and package checks must keep generated skill roots, packets, resource paths, and package names in kebab-case. Python implementation filenames remain exempt; the names those scripts produce do not."
 trigger_phrases:
   - "create-skill scaffolding naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "hyphenate generated skill names"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/001-create-skill-and-packaging"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

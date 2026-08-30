@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-git changelog verification (020 phase 008/012/005)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify/plan]"
 description: "Read-only implementation plan for verifying the sk-git migration changelog and version bump. The verifier will compare the v1.3.2.0 entry with sibling evidence and version consumers, then prove phase 005 made no mutation."
 trigger_phrases:
   - "sk-git changelog verification plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "migration release evidence plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
@@ -27,6 +26,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
 ---
 # Implementation Plan: sk-git changelog verification
 

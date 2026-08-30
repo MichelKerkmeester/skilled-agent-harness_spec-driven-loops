@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-tooling changelog verification (020 phase 007)"
+title: "Tasks: mcp-tool [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify/tasks]"
 description: "Tasks for phase 007 of the mcp-tooling component naming migration: verify append-only changelog entries and version bumps without renaming files."
 trigger_phrases:
   - "mcp-tooling changelog tasks"
   - "mcp tooling version verification tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify"
 ---
 # Tasks: mcp-tooling Changelog Verification
 

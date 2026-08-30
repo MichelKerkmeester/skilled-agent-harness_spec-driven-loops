@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 028 sk-create-flowchart README rewrite"
+title: "Implementation Plan: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/plan]"
 description: "Rewrite the sk-create-flowchart skill README purpose-first against the refined template from phase 001 and the mcp-obsidian exemplar, with a version bump and a matching changelog entry."
 trigger_phrases:
   - "phase 028 plan"

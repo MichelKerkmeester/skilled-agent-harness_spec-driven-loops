@@ -19,10 +19,10 @@
       "new hub manifest store",
       "canonical minter tasks",
       "manifest freshness implementation tasks",
-      "canonical minter checklist",
-      "manifest freshness QA gate",
       "canonical minter decisions",
-      "manifest freshness architecture"
+      "manifest freshness architecture",
+      "canonical minter implementation summary",
+      "manifest freshness current status"
     ],
     "key_topics": [
       "canonical",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/bin/lib/compiled-route-manifest.cjs",
@@ -71,12 +70,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -122,12 +115,6 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Canonical Manifest Minter Foundation",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -153,6 +140,12 @@
       },
       {
         "name": "Phase Context The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -198,29 +191,34 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The seven current activation manifests were produced by fixed per-hub build harnesses",
     "created_at": "2026-07-21T04:50:51Z",
-    "last_save_at": "2026-08-29T13:07:56.667Z",
+    "last_save_at": "2026-08-30T07:19:06.771Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dc7387837acf9318461dde1a90acbc7a1e8f3d37c2b12209e73f834baf356ca5",
+    "source_fingerprint": "sha256:2cf241677773c535a28a39d08a4dbd3b6cbb1b7756b55d86caeaacece12e8c21",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "6c58c1d62a1f76ffc2ffd2d393c29bf4c5edb6ee91ceb6951065ec46b5913459",
-      "plan.md": "379b9006e6067e4da27fdf4ed4e86934705592a04eb4f7fa0d7ccef030e0ccd9",
-      "tasks.md": "4070b0e5645927a964b502af02b7156cf77f1b953026f2ae57dbe3399a66e210",
-      "checklist.md": "f1c5bca7b867ca5685d6b97268798157bf2dc3d657f5b3ec3e109f945d947259",
-      "decision-record.md": "d690052ca7be28f1bf8c5a9875f03b491fb371d58ea56028afc75e325aede7b0",
-      "implementation-summary.md": "407d02aa6689223afe9b9c924ac92eb2d774ab2ace9b2e3a1f06a9d2b40387b2"
+      "spec.md": "edd9e4703ffd285f80571e4bbcc21c8d88785cc6d23dad3c4f2865fa4b97f689",
+      "plan.md": "19746379ca2019e12396baa73f8cd18f3dfbcadceb4956f3a8eedac0933a8ceb",
+      "tasks.md": "75cf98fa9796444fd10a9ed200fe01e59025bb6d15718f0f961eb80544e69ccc",
+      "decision-record.md": "2f242d1cb6c43fcf9ca862ef6ad9a9764876e45b4580f88406ec94618e877124",
+      "implementation-summary.md": "f327b0e0482a1295ff55fd90029e42c9702d9a6c0bd1f472faabd583ce06b9d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,13 +1,12 @@
 ---
-title: "Implementation Plan: code-webflow filesystem names (020 phase 008/005)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow/plan]"
 description: "Plan for renaming code-webflow assets, playbook categories, references, symlink consumers, and benchmark labels through the frozen map, then proving browser-surface resource and scenario parity."
 trigger_phrases:
   - "code-webflow naming implementation plan"
-  - "Webflow packet rename plan"
-  - "Webflow asset reference repair"
+  - "webflow packet rename plan"
+  - "webflow asset reference repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/005-code-webflow"
 ---
-
 # Implementation Plan: code-webflow filesystem names
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: integrate and close out (020 phase 011)"
+title: "Feature Specification: integrate and close out [sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout/spec]"
 description: "The migration candidate may have passed the whole-repo gate against an earlier base while the integration target continues to move. This phase rebases the migration branch onto the latest base, reruns the exact phase 010 gate on the resulting commit, fast-forwards the integration target only after a green result, and closes the packet with a consistent parent rollup."
 trigger_phrases:
   - "integrate and close out migration"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "rebase rerun fast forward closeout"
 importance_tier: "critical"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/011-integrate-and-closeout"
@@ -26,8 +25,8 @@ _memory:
       - "The final gate must run after rebasing onto the latest base, not only on the pre-rebase migration head."
       - "Integration is fast-forward-only after the post-rebase gate passes."
       - "Closeout reconciles phase and parent metadata; it does not rewrite frozen history or weaken the gate."
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

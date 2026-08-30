@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Hook adapter shared boilerplate and Claude/Codex fix"
+title: "Feature [cli-external-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix/spec]"
 description: "Extract the byte-identical readStdin()/JSON-parse-fail-open boilerplate into shared helpers, and apply the already-shipped firstNonBlankString() alias-chain fix to Claude's and Codex's spec-gate-enforce.mjs, which carry the identical masking bug independently."
 trigger_phrases:
   - "hook adapter shared boilerplate"
   - "claude codex spec gate alias fix"
-  - "firstNonBlankString claude codex"
+  - "firstnonblankstring claude codex"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

@@ -21,8 +21,8 @@
       "phase 008 tasks",
       "sk prompt readme tasks",
       "prompt readme rewrite tasks",
-      "phase 008 checklist",
-      "sk prompt readme verification"
+      "implementation summary",
+      "phase 008 summary"
     ],
     "key_topics": [
       "prompt",
@@ -34,53 +34,27 @@
       "spec",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
+      "implementation",
+      "summary",
       "mcp-obsidian"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-prompt/README.md",
       ".opencode/skills/sk-prompt/changelog/v1.1.0.0.md",
-      "tasks.md",
-      "checklist.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/checklist.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-      "spec.md",
-      "plan.md",
-      "implementation-summary.md"
+      ".opencode/skills/sk-doc/shared/references/hvr-rules.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.1.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/changelog/v1.1.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/checklist.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -94,6 +68,30 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
         "name": "skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
@@ -103,12 +101,6 @@
         "name": "hvr-rules.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/shared/references/hvr-rules.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -200,27 +192,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-obsidian pilot set the standard for standalone skill READMEs: narrative, purpose-first documents that state the outcome before the tooling, obey the Human Voice Rules and pass the sk-doc README validator",
     "created_at": "2026-08-04T08:34:37.731Z",
-    "last_save_at": "2026-08-04T19:04:16.606Z",
+    "last_save_at": "2026-08-30T07:20:20.769Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:602ba07ac05ffef10cfb8652a44c86fe43b95c135a462ed86b1fd5596b83e0bd",
+    "source_fingerprint": "sha256:9a41d2e29e1fe36f2487b1ea6722b35f47b4d82de4e93d05fe449b355b6a5d1f",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "58ff206bb0ce6b9e49d1f00727608070827b9e78b54bbb8f138693ac315f6ba0",
-      "plan.md": "08410d9e2b78eb503e1b13357dd6605718fe25d714e41b175e5f407bb7e6b2a5",
-      "tasks.md": "a490d6b67219fe3ab8d817a81b97d1a3a655810bb8262df94b29ae075a0b3c14",
-      "checklist.md": "ba52aa983743592561fca40a9e364957b86b38279b56084571b1287b7b18d86f",
-      "implementation-summary.md": "05a80dac48d4f7918af60c3ab55276b16436b63526d1580a54fb0b5c08dbe98c"
+      "spec.md": "b695b9203ac9132a2a1c79e946fc66c150d26096a6b5e6fe5a1ef82a3f34d56b",
+      "plan.md": "f93feb0acce07da98041a667f08e3c58dec3cc13032cc5ab72c51735be853ae6",
+      "tasks.md": "7f29607dc535fed7518210d387feb32c617b56e06312b25a911d59fd7337f328",
+      "implementation-summary.md": "81b0e0a00ba8e2692f8fff05c16fd17f3e3dd0b5b6d25614a415e447094967c2"
     },
     "last_active_child_id": null,
     "last_active_at": null

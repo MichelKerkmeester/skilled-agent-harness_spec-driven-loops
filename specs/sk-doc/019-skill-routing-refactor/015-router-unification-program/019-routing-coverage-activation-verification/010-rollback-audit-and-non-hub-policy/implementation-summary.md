@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Rollback, Audit Integrity & Non-Hub Policy"
+title: "...on-program/019-routing-coverage-activation-verification/010-rollback-audit-and-non-hub-policy/implementation-summary]"
 description: "Completion record for rollback and audit safety. Commit a1cdb65d90 delivered activate-hub.cjs --rollback, flip-serving.cjs prior/fence fixes, shared append-only history, the five-candidate non-hub policy and fixtures, and the P2 canary profile. The P1 session-snapshot field/status-probe work was explicitly deferred. No live hub or repository default was flipped, and the frozen scorer trio stayed SHA-256-identical."
 trigger_phrases:
   - "rollback audit integrity implementation summary"

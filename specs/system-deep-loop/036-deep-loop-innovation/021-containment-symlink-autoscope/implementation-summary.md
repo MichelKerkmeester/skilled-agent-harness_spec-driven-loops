@@ -1,11 +1,11 @@
 ---
-title: "Implementation Summary: Containment Auto-Scope for Symlinked Spec Trees"
+title: "Implementation [system-deep-loop/036-deep-loop-innovation/021-containment-symlink-autoscope/implementation-summary]"
 description: "Final state and verification for auto-resolving the write-containment repo root to the worktree that physically holds a symlinked artifact, closing the containment half of the spaced-path catch-22 without touching the guard."
 trigger_phrases:
   - "containment symlink autoscope summary"
-  - "resolveContainmentRepoRoot artifact worktree"
+  - "resolvecontainmentreporoot artifact worktree"
   - "containment catch-22 closed"
-importance_tier: "high"
+importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:

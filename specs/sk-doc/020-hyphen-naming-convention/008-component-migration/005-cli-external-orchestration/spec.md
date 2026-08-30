@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: cli-external-orchestration component migration (020 phase 005)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/spec]"
 description: "Phase parent for the kebab-case migration of the cli-external-orchestration hub, its three CLI workflow components, manual-testing-playbook trees, benchmark boundary, release evidence, and final subtree gate. Children keep ownership and verification independent."
 trigger_phrases:
   - "cli-external-orchestration kebab-case migration"
   - "cli external orchestration naming phases"
-  - "external CLI surface hyphen naming"
+  - "external cli surface hyphen naming"
 importance_tier: "important"
 contextType: "planning"
 _memory:
@@ -26,7 +26,6 @@ _memory:
       - "This authoring pass changes only the assigned child documentation and removes scaffold artifacts."
       - "Python scripts and package directories, tool-mandated names, generated output, and frozen history remain exempt."
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + child phase map only; detailed plans, tasks, checklists, and decisions live in the children. -->

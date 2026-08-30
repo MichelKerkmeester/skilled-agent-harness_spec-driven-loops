@@ -1,12 +1,11 @@
 ---
-title: "Tasks: sk-doc root benchmark artifact boundary"
+title: "Tasks: sk-doc root [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark/tasks]"
 description: "Concrete census and verification tasks for the root benchmark naming phase."
 trigger_phrases:
   - "sk-doc root benchmark tasks"
   - "benchmark artifact naming tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
 ---
 # Tasks: sk-doc root benchmark artifact boundary
 

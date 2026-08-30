@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: memory command namespace naming (020 phase 008/013/005)"
+title: "Feature Specificati [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace/spec]"
 description: "The memory command namespace has compliant command markdown files but four snake_case presentation asset filenames. This phase renames those maintained assets, updates command and README pointers, and preserves memory command IDs, tool names, and data keys."
 trigger_phrases:
   - "memory command namespace naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "hyphenate memory presentation files"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "The memory command markdown files already use compliant basenames; the four presentation files are the physical candidates."
       - "Memory tool IDs, YAML/data keys, and plugin contracts remain exact while path values change."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

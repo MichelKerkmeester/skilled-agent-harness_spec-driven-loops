@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-git skill gate (020 phase 008/012/006)"
+title: "Tasks: sk-git skill gate [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate/tasks]"
 description: "Read-only tasks for the final sk-git sibling rollup and whole-surface naming gate."
 trigger_phrases:
   - "sk-git skill gate tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "whole surface naming gate tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate"
@@ -26,6 +25,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/006-skill-gate"
 ---
 # Tasks: sk-git skill gate
 

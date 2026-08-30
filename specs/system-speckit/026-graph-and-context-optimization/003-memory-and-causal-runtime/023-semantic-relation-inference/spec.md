@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Semantic Relation Inference (similarity + contradicts collectors)"
+title: "F [system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference/spec]"
 description: "Packet 021 shipped the bounded relation-inference backfill with two deterministic collectors (spec-document chains + lineage 'caused' links) and explicitly deferred the similarity 'supports' and 'contradicts' signals. This packet adds those two as OPT-IN collectors to backfillRelationInference: a similarity 'supports' collector that reads ONLY the pre-computed memory_index.related_memories column (no live vec scan, no O(n^2)) and a 'contradicts' collector driven by structural memory_lineage.superseded_by_memory_id. Both default false and inherit the existing dryRun-default, bounded, created_by='auto' safety posture."
 trigger_phrases:
   - "semantic relation inference"

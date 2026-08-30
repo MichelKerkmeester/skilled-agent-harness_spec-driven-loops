@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 004-sk-code standalone README rewrite"
+title: "Feature Specification: Phase [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code/spec]"
 description: "Rewrite the sk-code skill README purpose-first against the refined README template from phase 001 and the mcp-obsidian exemplar, with a version bump, a changelog entry and HVR-clean validation."
 trigger_phrases:
   - "sk-code readme rewrite"

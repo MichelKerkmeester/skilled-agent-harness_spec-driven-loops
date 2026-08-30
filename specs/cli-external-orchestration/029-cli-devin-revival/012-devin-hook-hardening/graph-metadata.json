@@ -16,7 +16,6 @@
       "devin spec-gate test suite",
       "devin hook hardening plan",
       "devin hook hardening tasks",
-      "devin hook hardening checklist",
       "devin hook hardening summary"
     ],
     "key_topics": [
@@ -31,7 +30,7 @@
       "suite",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -39,9 +38,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".devin/hooks.v1.json",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".devin/hooks.v1.json"
     ],
     "entities": [
       {
@@ -63,21 +61,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "hooks.v1.json",
         "kind": "config",
         "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -187,27 +179,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "An independent review of the 10 Devin hook adapters (built in phases 004 and 008) found four hardening gaps:",
     "created_at": "2026-07-26T10:00:00Z",
-    "last_save_at": "2026-07-27T06:24:14.639Z",
+    "last_save_at": "2026-08-30T07:18:51.602Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:714b73e0a13c7b134d173b80fc7b4744f70836774bd7552d251135e104810200",
+    "source_fingerprint": "sha256:10761506e124a75653e0bd0ceb5ec39fb119a75045cbf98cd80b4600637e134d",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "3f9efe4b33d52eddc47311211213503ef7f9c7fe907bf0a37a3ab55f1de67467",
-      "plan.md": "8ccfb633b029cbe5a40fe9cbe5533cf1b0c45545f8be245426cfd785042bfe6b",
-      "tasks.md": "8463d1c63d082424ca715a45a5dd91da1484c474035c93b60c4bea656488779e",
-      "checklist.md": "16eb9c1765b8a1b9eb0b0f31c36d7fcc993ec131a039187bb7ee3faf02c2c62a",
-      "implementation-summary.md": "70b4ea7a96cfc7c83562024fac2e66d1d8c77e86c8b10ec2e8594ffbc8dc3142"
+      "spec.md": "584e7e645a5bec6f0090b45c781526fa1d4a5a1aa49190542673ed5270d7fc34",
+      "plan.md": "1e738f6f7f7d182e4d80f1134003fbafd23cc490eb2f6c2b086a7c83905e263a",
+      "tasks.md": "f3c184fe6596f5278d0bd3750e16413bc95499731af56ce437f793e050de2934",
+      "implementation-summary.md": "b1e551d949bd64d17af919e22cb7fd795669f29cc39933dbf05612dd1a37b528"
     },
     "last_active_child_id": null,
     "last_active_at": null

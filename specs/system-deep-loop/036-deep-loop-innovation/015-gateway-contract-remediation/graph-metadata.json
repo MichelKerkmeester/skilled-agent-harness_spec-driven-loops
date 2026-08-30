@@ -3,7 +3,6 @@
   "packet_id": "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation",
   "spec_folder": "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation",
   "parent_id": "system-deep-loop/036-deep-loop-innovation",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -17,9 +16,13 @@
       "prompt-pack direct append fix",
       "review alignment projection refresh",
       "check-agent-gateway fail closed",
-      "gateway contract remediation adr",
-      "single canonical state-write path decision",
-      "projection refresh vs gateway receipt decision"
+      "implementation",
+      "plan",
+      "gateway",
+      "015",
+      "task",
+      "breakdown",
+      "state"
     ],
     "key_topics": [
       "gateway",
@@ -35,13 +38,12 @@
       "projection",
       "refresh"
     ],
-    "importance_tier": "high",
-    "status": "complete",
+    "importance_tier": "important",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".pi/mcp.json",
@@ -71,12 +73,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -198,29 +194,34 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Ten confirmed findings, all cited to shipped source in `014`'s registry:",
     "created_at": "2026-08-25T17:42:50.623Z",
-    "last_save_at": "2026-08-29T15:22:08.462Z",
+    "last_save_at": "2026-08-30T07:16:23.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3b40f239afbe71eba68b857906c3aaafb780fccf4efd5a65628e8d470f68fa54",
+    "source_fingerprint": "sha256:9f0783e2b279b2054a46ddc2e7af5621705c5f5c108d38b9ff6c0c0784ac719a",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "90d6bf205fd884139e1974d70e286272fb1213c7468465c0204722c70c2231cf",
-      "plan.md": "72730d3c794fa95ab432e825b9f22cb69c6eeface9327764b7f6c50a0ebf651a",
-      "tasks.md": "43017d79c939c6789b9299230e0a55a22504fdb4fa3ae5e945e3ffdd3a262b60",
-      "checklist.md": "ce6d1a1b75c31a446d1973fbd49db66953d97ba0612fe6d1147dbfba0f1919a8",
-      "decision-record.md": "498a119dfbbe9a2c425060ca04d1875a768999d1ff3d68ccf9b75a4cea79d593",
-      "implementation-summary.md": "c2885912eb8ba0305e31d4b9266af005458929a1473445dfe88a58d1795cdd7a"
+      "spec.md": "f285e281679096d352fd8ce3d0755d6fbe9529680fef88fbe8e6219e2f3b0851",
+      "plan.md": "a6482930a24d017cc05d377cd808af11e0c72d783ceeb9bc44f8229f537cbcb5",
+      "tasks.md": "542c2a258bdd500e9e7b23179f73370cf805c535f459306eba387ce68fa126d3",
+      "decision-record.md": "9331ce8bc93a409b6fded0e2084cb0bba2d8bdf815b78aa76e6fd963921632ec",
+      "implementation-summary.md": "845f467ce746a4093a72ed48afd77ce62fdb1042df10530b6ce05a4735596a7a"
     },
     "last_active_child_id": null,
     "last_active_at": null

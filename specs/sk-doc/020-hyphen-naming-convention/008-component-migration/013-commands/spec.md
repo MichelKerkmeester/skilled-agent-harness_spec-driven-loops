@@ -1,14 +1,13 @@
 ---
-title: "Feature Specification: commands component migration (020 phase 008/013)"
+title: "Feature Specification: commands [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/spec]"
 description: "The .opencode/commands surface contains namespaced command assets and loose root commands with filesystem names that do not consistently use kebab-case. This phase parent defines independent child contracts for each command namespace, loose command IDs, the shared asset closure, and the final commands-surface gate while preserving command IDs, tool-mandated names, Python files, generated output, and data keys."
 trigger_phrases:
   - "commands component migration"
   - "kebab-case commands surface"
-  - "hyphenate OpenCode command assets"
+  - "hyphenate opencode command assets"
   - "commands subtree naming gate"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
@@ -27,8 +26,8 @@ _memory:
       - "Kebab-case is the canonical filesystem-name form for in-scope command names and assets."
       - "Command IDs, tool-mandated names, Python files, generated output, and data keys remain exact."
       - "Each child owns one command namespace or loose surface; the final child owns only subtree evidence."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + child phase map only; detailed mechanics live in the children. -->

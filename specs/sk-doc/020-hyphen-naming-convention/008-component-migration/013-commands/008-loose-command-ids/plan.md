@@ -1,13 +1,12 @@
 ---
-title: "Implementation Plan: loose command ID naming (020 phase 008/013/008)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids/plan]"
 description: "Resolve the loader contract, classify root command filenames, and close path references without changing public command IDs or tool contracts."
 trigger_phrases:
   - "loose command naming plan"
   - "root command filename plan"
-  - "command ID preservation plan"
+  - "command id preservation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
@@ -22,8 +21,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
 ---
-
 # Implementation Plan: Loose command ID naming
 
 <!-- SPECKIT_LEVEL: 2 -->

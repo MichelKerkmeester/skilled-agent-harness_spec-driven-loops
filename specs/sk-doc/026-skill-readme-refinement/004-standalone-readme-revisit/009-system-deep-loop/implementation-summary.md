@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 9 system-deep-loop README rewrite"
+title: "Implement [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/implementation-summary]"
 description: "The system-deep-loop skill README now reads purpose-first on the refined template: a one-line pitch, a problem-first overview, a mode family table and a verification close, with the version bumped to 2.1.0.0 and a changelog entry."
 trigger_phrases:
   - "phase 9 implementation summary"

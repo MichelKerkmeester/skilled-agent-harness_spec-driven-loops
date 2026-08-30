@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: no-new-snake_case guard (020 phase 004)"
+title: "Feature Specification: no-new-snake_case guard (020 [sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard/spec]"
 description: "Nothing prevents snake_case from re-entering in-scope filesystem names. The program needs an exemption-aware guard with a debt-tolerant changed-only mode during migration and a whole-tree mode after, so intermediate commits stay green while the end state is enforced."
 trigger_phrases:
   - "no-new-snake_case guard"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "kebab-case no new"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/004-no-new-snake-guard"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

@@ -1,12 +1,11 @@
 ---
-title: "Tasks: create-agent resource names"
+title: "Tasks [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent/tasks]"
 description: "Concrete execution and verification tasks for the create-agent resource naming phase."
 trigger_phrases:
   - "create-agent resource tasks"
   - "agent template rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent"
 ---
 # Tasks: create-agent resource names
 

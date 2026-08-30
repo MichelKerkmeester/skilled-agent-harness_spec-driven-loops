@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 013 mcp-obsidian README revisit (verify-only exemplar)"
+title: "Feature Specification: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/spec]"
 description: "Verify that the mcp-obsidian mode skill README still conforms to the refined README template from phase 001 and record the verification evidence. Rewrite purpose-first with a version bump and changelog entry only when conformance fails."
 trigger_phrases:
   - "mcp obsidian readme verify"

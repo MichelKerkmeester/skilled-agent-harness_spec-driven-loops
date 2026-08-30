@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Hub root and shared (020 phase 001)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared/plan]"
 description: "Execution plan for Hub root and shared in the 020 sk-design naming subtree."
 trigger_phrases:
   - "hub-root-and-shared implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 hub-root-and-shared tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/001-hub-root-and-shared"
 ---
 # Implementation Plan: Hub root and shared (020 phase 001)
 

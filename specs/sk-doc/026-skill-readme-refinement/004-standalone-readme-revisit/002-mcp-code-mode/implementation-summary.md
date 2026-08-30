@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 002 mcp-code-mode README rewrite"
+title: "Implementati [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode/implementation-summary]"
 description: "Purpose-first README rewrite for mcp-code-mode on the refined template, version bump to 1.0.0.31, changelog entry, validator and HVR gates passed."
 trigger_phrases:
   - "mcp code mode readme implementation summary"

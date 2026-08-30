@@ -1,7 +1,9 @@
 ---
-title: "Decision Record: Devin hook adapter layer"
+title: "Decision Record: Devin [cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/decision-record]"
 description: "ADR-001: hook adapter strategy for the Devin hook adapter layer - hand-built adapters vs. native read_config_from.claude import vs. hybrid."
-trigger_phrases: ["devin hook adapter decision record", "read_config_from.claude decision"]
+trigger_phrases:
+  - "devin hook adapter decision record"
+  - "read_config_from.claude decision"
 importance_tier: "normal"
 contextType: "general"
 _memory:

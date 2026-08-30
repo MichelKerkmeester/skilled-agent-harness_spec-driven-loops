@@ -17,8 +17,7 @@
       "create-diff naming audit plan",
       "create-diff zero-row verification",
       "create-diff naming audit tasks",
-      "create-diff zero-row tasks",
-      "create-diff naming audit checklist"
+      "create-diff zero-row tasks"
     ],
     "key_topics": [
       "create-diff",
@@ -32,15 +31,14 @@
       "plan",
       "zero-row",
       "tasks",
-      "checklist"
+      "packet"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -62,19 +60,13 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
+        "name": "This Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "This Level",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -174,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The create-diff packet is assigned a component-local naming phase, but its current filesystem inventory contains no non-exempt snake_case name to rename. This Level-2 phase records the zero-row census, verifies path references, and prevents content identifiers from being mistaken for filesystem candidates.",
     "created_at": "2026-07-14T15:22:40Z",
-    "last_save_at": "2026-08-29T10:00:46.723Z",
+    "last_save_at": "2026-08-30T07:19:28.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:f1af47b3183b7fd49fe3f5760e394edf27980115445a104b0c63908c0ffd035e",
+    "source_fingerprint": "sha256:68ca2dedd6daf46aada5beaac13442718fc34c671e8bffa178df95f2068191bb",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "9457e016d2f799d66eff38f56921b7d50dfbb87958de5265e0c3df55ec1dfa01",
-      "plan.md": "0dd51433c37fafff8d72152c3bfc5d67b8833a070acf7be5e1cf894aa42081f8",
-      "tasks.md": "c616cc580fe2afdedf77bd9ce657fc7f69f726ca3f995d64a70e0834f0691ff3",
-      "checklist.md": "dc81d5c5a7064f13cde50452b03973b32946299ff8f10e5e0a3083cc4b0354ff"
+      "spec.md": "41e880ce31047d4980e1dcd860b161641cd667c261d39563f55f5ee99e3c92d1",
+      "plan.md": "a1b056841b8521585be4667fa7eb83df3f67abcc040e2ab5deed9d0ca5b612e5",
+      "tasks.md": "8a3f373642e4471ba160243381df18a25f0f269b8a14e60209ed4d67bb450d3c"
     },
     "last_active_child_id": null,
     "last_active_at": null

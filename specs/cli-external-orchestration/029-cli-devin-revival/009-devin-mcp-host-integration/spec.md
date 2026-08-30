@@ -1,7 +1,10 @@
 ---
-title: "Feature Specification: Devin MCP-host integration"
+title: "Feature Specification: Devin [cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration/spec]"
 description: "Register this repo's 3 MCP servers (spec-kit-memory, code-graph, skill-advisor) with Devin CLI's native devin mcp surface, using a two-tier deny-by-default permission policy, resolving Open Question 3."
-trigger_phrases: ["devin mcp host integration", "devin mcp config", "devin mcp permission policy"]
+trigger_phrases:
+  - "devin mcp host integration"
+  - "devin mcp config"
+  - "devin mcp permission policy"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

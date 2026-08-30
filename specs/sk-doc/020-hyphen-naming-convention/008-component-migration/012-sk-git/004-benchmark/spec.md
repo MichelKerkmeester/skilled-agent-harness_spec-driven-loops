@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-git benchmark (020 phase 008/012/004)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark/spec]"
 description: "The sk-git benchmark surface contains two snake_case live-profile directories and report content with historical path pointers. This phase moves the benchmark filesystem names to kebab-case and proves that benchmark evidence, fixture discovery, and storage-guide references remain intact."
 trigger_phrases:
   - "sk-git benchmark kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "benchmark artifact path closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark"
@@ -25,6 +24,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

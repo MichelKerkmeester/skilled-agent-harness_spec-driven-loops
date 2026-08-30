@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cross-skill symlink closure (020 phase 007 child 002)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/tasks]"
 description: "Tasks for the atomic symlink closure: manifest link edges, group pointers by target, preflight modes and relative paths, execute closed batches, and publish downstream dependencies."
 trigger_phrases:
   - "cross-skill symlink closure tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "phase 007 child 002 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure"
@@ -23,6 +22,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "A target and its pointers are one closure; no pointer-only or target-only batch is valid"
+parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure"
 ---
 # Tasks: Cross-Skill Symlink Closure
 

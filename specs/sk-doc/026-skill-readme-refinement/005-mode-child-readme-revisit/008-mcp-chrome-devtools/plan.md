@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 008 mcp-chrome-devtools README rewrite"
+title: "Implementation Plan: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/008-mcp-chrome-devtools/plan]"
 description: "Rewrite the mcp-chrome-devtools skill README against the refined template from phase 001 and the mcp-obsidian exemplar, bump the version field and add a changelog entry."
 trigger_phrases:
   - "phase 8 plan"

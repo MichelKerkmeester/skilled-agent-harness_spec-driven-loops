@@ -1,8 +1,13 @@
 ---
-title: "Deep Research: Interface Creation Commands"
+title: "Deep Research [sk-design/012-sk-design-program/001-research/002-research-design-commands/research/lineages/sol/research]"
 description: "Evidence-backed command templates for five interface-design workflows that preserve sk-design mode authority."
+trigger_phrases:
+  - "deep"
+  - "research"
+  - "sol"
+importance_tier: "normal"
+contextType: "research"
 ---
-
 # Interface Creation Commands
 
 ## 1. Executive Summary

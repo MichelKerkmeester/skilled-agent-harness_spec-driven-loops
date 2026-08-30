@@ -1,12 +1,11 @@
 ---
-title: "Decision Record: Compiled-Route Closure Promotion Topology"
+title: "...-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root/decision-record]"
 description: "Architecture decision for preserving a stable serving root while following the current authored phase topology safely."
 trigger_phrases:
   - "compiled route promotion decision"
   - "stable serving root decision"
 importance_tier: "critical"
-contextType: "decision"
-status: "accepted"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/017-fix-post-019-alignment-p1-finding-for-compiled-route-sync-authored-root"
@@ -17,6 +16,7 @@ _memory:
     blockers:
       - "Live serving-root replacement requires explicit operator approval."
     key_files: []
+status: "accepted"
 ---
 # Decision Record: Compiled-Route Closure Promotion Topology
 

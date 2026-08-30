@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: stage-aware scorer — fitted/holdout split under a score-preserving invariant"
+title: "Decision Record: [system-deep-loop/031-smart-routing-benchmark-program/017-stage-aware-scorer/decision-record]"
 description: "ADR-001 records the stage-split scoring semantics (holdout excluded from the fitted aggregate, separate holdout score + generalization gap, negatives via the existing advisor-inversion lane) and the score-preserving invariant that anchors the refactor."
 trigger_phrases:
   - "stage split scoring semantics"

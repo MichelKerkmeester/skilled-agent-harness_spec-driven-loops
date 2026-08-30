@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: speckit command namespace naming (020 phase 008/013/007)"
+title: "Feature Specificat [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace/spec]"
 description: "The speckit command namespace has compliant command markdown files but twelve snake_case workflow and presentation asset filenames. This phase renames those maintained assets, repairs command and README pointers, and preserves the /speckit:* command IDs and workflow keys."
 trigger_phrases:
   - "speckit command namespace naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "hyphenate speckit workflow files"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/007-speckit-namespace"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "The four speckit command markdown files already use compliant basenames."
       - "The /speckit:* command IDs, workflow keys, and tool contracts remain exact while asset path values change."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

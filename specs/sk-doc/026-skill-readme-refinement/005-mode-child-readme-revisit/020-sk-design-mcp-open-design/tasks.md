@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 020 sk-design-mcp-open-design README revisit"
+title: "Tasks: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/020-sk-design-mcp-open-design/tasks]"
 description: "Task list for rewriting the sk-design-mcp-open-design README against the refined README template."
 trigger_phrases:
   - "phase 20 tasks"

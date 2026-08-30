@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: hoisted shared script closures (020 phase 007 child 003)"
+title: "Feat [sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures/spec]"
 description: "Shared scripts used by more than one skill must move with their complete import, require, source, registry, fixture, and symlink closure rather than being hidden inside one component subtree."
 trigger_phrases:
   - "hoisted shared script closures"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "phase 007 shared scripts"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/003-hoisted-shared-script-closures"
@@ -27,8 +26,8 @@ _memory:
       - "Only non-exempt script filenames are rename candidates; Python `.py` scripts remain exempt"
       - "A shared script is hoisted here when its reference closure spans two or more skill subtrees"
       - "Symlink façades are coordinated with child 002, while component-owned script batches remain with phase 008"
+parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

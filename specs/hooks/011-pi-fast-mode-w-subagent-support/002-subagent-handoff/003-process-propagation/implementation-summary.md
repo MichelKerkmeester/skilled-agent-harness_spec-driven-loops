@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 3 process-propagation"
+title: "Implemen [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation/implementation-summary]"
 description: "Planned closeout record for deterministic child-process handoff proof."
 trigger_phrases:
   - "process-propagation implementation summary"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: doctor command namespace naming (020 phase 008/013/004)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace/plan]"
 description: "Plan for renaming maintained doctor asset files, repairing route and presentation path values, and proving the exact route-manifest and Python exemptions remain intact."
 trigger_phrases:
   - "doctor namespace naming plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "doctor routes path repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace"
 ---
-
 # Implementation Plan: Doctor command namespace naming
 
 <!-- SPECKIT_LEVEL: 2 -->

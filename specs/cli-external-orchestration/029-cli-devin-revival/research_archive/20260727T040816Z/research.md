@@ -1,5 +1,5 @@
 ---
-title: "Deep Research: Devin CLI as MCP Host — Feasibility for Spec-Kit Memory, Code Graph, and Skill Advisor"
+title: "Deep Research: Devin CLI [cli-external-orchestration/029-cli-devin-revival/research_archive/20260727T040816Z/research]"
 description: "Resolved Open Question 3 of 029-cli-devin-revival: Can Devin CLI genuinely host this repo's three MCP servers? Iteration-by-iteration synthesis with concrete gaps, policy, and phase shape."
 trigger_phrases:
   - "devin mcp host"
@@ -9,11 +9,10 @@ trigger_phrases:
   - "spec-kit-memory devin"
   - "code-graph devin"
   - "skill-advisor devin"
-importance_tier: important
-contextType: research
+importance_tier: "important"
+contextType: "research"
 version: 1.0
 ---
-
 # Deep Research: Devin CLI as MCP Host — Feasibility for the Three Repository MCP Servers
 
 > **Direct resolution of Open Question 3** in `.opencode/specs/cli-external-orchestration/029-cli-devin-revival/spec.md`. The original `cli-devin` deprecation (`z_archive/022-cli-devin-deprecation/context/context-report.md`) explicitly left this surface untouched; this packet re-opens it for the current Devin CLI product (`v3000.2.17`).

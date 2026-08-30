@@ -11,6 +11,7 @@
     "level3plus-govern rename",
     "stress-test stress_test rename"
   ],
+  "level": "3",
   "contextType": "implementation",
   "importance_tier": "important",
   "specFolder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep",
@@ -29,7 +30,7 @@
     "skilladvisor",
     "codegraph"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.678Z",
+  "lastUpdated": "2026-08-30T07:16:25.986Z",
   "specId": "021",
   "folderSlug": "sk-doc-conformance-template-sweep",
   "parentChain": [
@@ -39,6 +40,5 @@
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

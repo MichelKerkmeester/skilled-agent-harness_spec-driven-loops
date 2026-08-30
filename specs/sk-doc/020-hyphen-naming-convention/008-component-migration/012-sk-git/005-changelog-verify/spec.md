@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-git changelog verification (020 phase 008/012/005)"
+title: "Feature Specification [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify/spec]"
 description: "v4 already shipped sk-git version 1.3.2.0 and its changelog entry as part of the kebab pilot, covering the reference, asset, and manual-playbook renames. This read-only phase verifies that shipped release evidence matches the actual migration; benchmark (004) is not yet migrated on v4, so its changelog coverage is deferred until that phase executes."
 trigger_phrases:
   - "sk-git changelog verification"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "migration changelog evidence"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
@@ -27,6 +26,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/005-changelog-verify"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

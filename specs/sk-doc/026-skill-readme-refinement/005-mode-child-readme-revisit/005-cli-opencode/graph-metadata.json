@@ -41,39 +41,19 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
       ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.1.0.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/checklist.md",
-      "implementation-summary.md",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md"
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/tasks.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.4.1.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.1.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-readme-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -93,15 +73,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-opencode/changelog/v1.4.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
         "source": "derived"
       },
       {
@@ -199,27 +191,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The cli-opencode mode README at `.opencode/skills/cli-external-orchestration/cli-opencode/README.md` still carries the older tabular reference-card style with an aspect table and feature-list sections",
     "created_at": "2026-08-04T08:34:40.499Z",
-    "last_save_at": "2026-08-04T13:56:09.396Z",
+    "last_save_at": "2026-08-30T07:20:24.209Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:34fbaab87de388cc68f7885f68f71c7eda05df33174d9812d65efdd3d1c76401",
+    "source_fingerprint": "sha256:990a7b53190b19c0352b72be283acf8440703997804253d331976693c53bdc16",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "4e82a66fb878c575bfdf9ac3432be48e7bd7b5ba91dff2672c0e1029dd231a62",
-      "plan.md": "1dcc45b5bd0088aa166092d26f177f77b400718cc007c641e9ada4d78f1d682e",
-      "tasks.md": "2b57c40a16ab07fc64e1e629d1a9c056b88d52486e41f02096d4e15f97684c37",
-      "checklist.md": "f26b09b811c9879b80509cfe4e94ff88dce109117f0048aee664889c848f0926",
-      "implementation-summary.md": "66a9be4d85b8451a87935c82a1bd818c26d4a7e960b0d7001129d9247840d765"
+      "spec.md": "dbf5ba13df04430b1a90233446c9aa936b2b42cd55903a6accf1e2e15ef31924",
+      "plan.md": "0e97d020da36746dca95640bc79d19e23d39ac69eb84374f4c3f2f6bcd918bf4",
+      "tasks.md": "c999fcda7470a444a6f5f7d69be73abe022dae74d0a66f03ee143f835176bd27",
+      "implementation-summary.md": "61592344174b1cef200680859078cb2899e5bb61fec8e3b049410c56a0e28f8f"
     },
     "last_active_child_id": null,
     "last_active_at": null

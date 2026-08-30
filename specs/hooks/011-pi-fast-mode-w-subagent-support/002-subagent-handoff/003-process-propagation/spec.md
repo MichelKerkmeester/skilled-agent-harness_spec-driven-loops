@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: process-propagation"
+title: "Feature Specification: [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation/spec]"
 description: "Prove child-process environment inheritance and one-directional handoff isolation before live integration."
 trigger_phrases:
   - "process-propagation"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: code-review filesystem names (020 phase 008/004)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review/spec]"
 description: "The code-review mode stores review assets, manual-review scenarios, benchmark labels, and reference documents under snake_case names. Those names are embedded in review routing, checklist links, and scenario indexes, so this phase defines a complete kebab-case rename/reference closure without changing review severity or security behavior."
 trigger_phrases:
   - "code-review naming migration"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "sk-code review packet migration"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/004-code-review"
@@ -28,8 +27,8 @@ _memory:
       - "Review findings, severity tiers, security rules, and review identifiers are unchanged."
       - "SKILL.md, README.md, Python/package, generated, tool-mandated, and frozen names remain exact."
       - "This child owns only the code-review subtree and its path/reference closure."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

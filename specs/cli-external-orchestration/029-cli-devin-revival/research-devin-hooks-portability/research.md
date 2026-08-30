@@ -1,11 +1,14 @@
 ---
-title: "Deep Research: Devin hooks vs. Claude Code hooks / OpenCode plugins portability"
+title: "Deep Research: Devin [cli-external-orchestration/029-cli-devin-revival/research-devin-hooks-portability/research]"
 description: "10-iteration forced-depth research (GPT-5.6-LUNA, xhigh, cli-codex) into which of this repo's Claude Code hooks and OpenCode plugins can be ported to Devin CLI's native hook contract, feeding phase 004-devin-hook-adapter-layer ADR-001."
-trigger_phrases: ["devin hooks portability research", "claude hooks devin port", "opencode plugins devin port", "ADR-001 evidence"]
-importance_tier: important
-contextType: research
+trigger_phrases:
+  - "devin hooks portability research"
+  - "claude hooks devin port"
+  - "opencode plugins devin port"
+  - "adr-001 evidence"
+importance_tier: "important"
+contextType: "research"
 ---
-
 # Deep Research: Devin Hooks vs. Claude Code Hooks / OpenCode Plugins Portability
 
 > **Compilation note**: this file was compiled manually from the completed research packet (`iterations/iteration-001.md` through `iteration-010.md`, `deep-research-state.jsonl`, `deep-research-strategy.md`, `findings-registry.json`) after the automated `/deep:research:auto` synthesis step crashed post-iteration-10 without writing this file. All 10 iterations completed successfully with real, cited evidence (confirmed via the JSONL state log and iteration files on disk) — only the final compilation step failed. No content here is fabricated; every claim traces to iteration 009's consolidated evidence pack (itself built by reconciling iterations 001-008) and iteration 010's convergence pass.

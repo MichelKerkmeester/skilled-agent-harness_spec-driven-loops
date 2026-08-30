@@ -19,10 +19,10 @@
       "4th mode implementation plan",
       "cli-devin skill tasks",
       "cli-devin mode task breakdown",
-      "cli-devin skill checklist",
-      "cli-devin mode verification",
       "cli-devin decision record",
-      "cli-devin ADR"
+      "cli-devin adr",
+      "cli-devin architecture decisions",
+      "cli-devin skill summary"
     ],
     "key_topics": [
       "cli-devin",
@@ -44,14 +44,10 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".devin/hooks.v1.json",
-      ".opencode/skills/sk-doc/create-skill/SKILL.md",
-      ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
-      ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-      ".opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py"
+      ".opencode/commands/doctor/scripts/parent-skill-check.cjs"
     ],
     "entities": [
       {
@@ -73,12 +69,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -97,27 +87,9 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skills-nested-packets.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/create-skill/references/parent-skill/parent-skills-nested-packets.md",
-        "source": "derived"
-      },
-      {
         "name": "parent-skill-check.cjs",
         "kind": "file",
         "path": ".opencode/commands/doctor/scripts/parent-skill-check.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "validate_skill_package.py",
-        "kind": "file",
-        "path": ".opencode/skills/sk-doc/create-skill/scripts/validate_skill_package.py",
         "source": "derived"
       },
       {
@@ -197,29 +169,52 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`cli-devin` never previously existed as a mode inside `cli-external-orchestration` — before its 2026-06-08 deprecation it was a standalone top-level skill (`.opencode/skills/cli-devin/`), and the hub (with `cli-opencode`/`cli-claude-code`/`cli-codex` as its 3 modes) was created after that deprecation",
     "created_at": "2026-07-23T19:51:58.753Z",
-    "last_save_at": "2026-07-26T17:29:13.002Z",
+    "last_save_at": "2026-08-30T07:18:48.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:56438a87fdc3b688fa76429e07955f75dddf275bb2450820edd4ac6d4bd72a66",
+    "source_fingerprint": "sha256:5646cbfca0ecfbd52a27fe25c91cf69953267570cf5fd06bd662a7c2dd74c719",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "e2c05300137095b312d250c2212f57a4201ba4cefbe4b88e868bccc0a2345613",
-      "plan.md": "232a2dbaa39a3bb0c9a0a84c1e130a8f2c03e0bda83d6054692da1d6f1b178f3",
-      "tasks.md": "5c2dd0c3cb985655e567b29b153e7189ab8366699599e4086064adcaba2179a2",
-      "checklist.md": "f3eb009c4480bee153c1e48f5553bd2fdb87b30f4ce41a2e2f19579e0cfd70b9",
-      "decision-record.md": "40d10a774559eb872adb0fa2c6f95b713453e041c75c2caa04b289aae6c7245a",
-      "implementation-summary.md": "34d95eb3894bb3e68c64ab972336c03d5e929871cae7030d083ee38bf770a503"
+      "spec.md": "8ee672407fcf1ace3c4d0f618b14558f3eb91c8b7f66286e12bedf5b8da58b8f",
+      "plan.md": "c75f1b822a32ffd38ceb70af39deb44c93575e8c1520b498b9d2dc8a0d484a3f",
+      "tasks.md": "09fc35607b64dbc28fb647b24f873803ad43fd88306f960f1880ba7b39bc5f40",
+      "decision-record.md": "d0541b41de41027fece115ee5cde9effd0c654a8a6019de0953c6fd59bde4411",
+      "implementation-summary.md": "77e730efa7e86b396107691a08cf0e50e4553a908cf53739e9efbe2f9b939893"
     },
     "last_active_child_id": null,
     "last_active_at": null

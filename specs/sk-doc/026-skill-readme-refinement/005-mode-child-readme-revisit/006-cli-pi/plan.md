@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 6 cli-pi mode skill README revisit"
+title: "Implementation Plan: Phase 6 cli-pi [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi/plan]"
 description: "Rewrite the cli-pi skill README purpose-first against the refined README template from phase 001 with the mcp-obsidian exemplar, including a version bump and changelog entry."
 trigger_phrases:
   - "phase 6 plan"

@@ -12,17 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "compiled routing staged hub-by-hub cutover",
-      "compiled routing P4 activation controller",
+      "compiled routing p4 activation controller",
       "compiled routing coverage-closure join gate",
-      "compiled routing P4 cutover plan",
+      "compiled routing p4 cutover plan",
       "staged hub-by-hub activation plan",
       "coverage-closure join gate plan",
-      "compiled routing P4 cutover tasks",
+      "compiled routing p4 cutover tasks",
       "staged hub-by-hub activation task list",
-      "compiled routing P4 cutover checklist",
-      "staged activation verification gate",
       "compiled routing cutover decision record",
-      "per-hub cohort staging decision"
+      "per-hub cohort staging decision",
+      "coverage-closure join gate decision",
+      "compiled routing p4 cutover controller implemented"
     ],
     "key_topics": [
       "compiled",
@@ -42,14 +42,13 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
-      "decision-record.md",
-      "controller/cutover-controller.cjs",
-      "verification/verify-cutover.cjs",
-      "verification/dry-run-evidence.json",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      "decision-record.md",
+      "implementation-summary.md",
+      "controller/cutover-controller.cjs",
+      "verification/verify-cutover.cjs",
+      "verification/dry-run-evidence.json"
     ],
     "entities": [
       {
@@ -59,9 +58,27 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -80,36 +97,6 @@
         "name": "dry-run-evidence.json",
         "kind": "config",
         "path": "verification/dry-run-evidence.json",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -138,6 +125,12 @@
       },
       {
         "name": "Purpose Specify",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -195,29 +188,34 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Requirement Coverage",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The parent goal wants compiled routing to be \"the effective default.\" Naively that reads as a one-line flip of `SPECKITCOMPILEDROUTING` from off to on",
     "created_at": "2026-07-20T21:44:54.891Z",
-    "last_save_at": "2026-08-28T15:53:19.358Z",
+    "last_save_at": "2026-08-30T07:19:06.444Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53e7492f4490a44e502053b1284b139b68575a90379cfa6a1acb53add2880993",
+    "source_fingerprint": "sha256:60d88e1b5adbf01dd870e87b979a3eb7ff8d8ca4e85acf034b82042bc0cd46d6",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "245a0f31ed1df75c7122176e8218be3312bfa895cfbcf6adfbc98e68fec5a475",
-      "plan.md": "24d82a3f36e14fd161986f81a5effd5a8df01353f009b6786ddc214c73022509",
-      "tasks.md": "c85fa387894b7b9e6c17780eb2d81191800a786c97a4a9fe8bb843e210eba418",
-      "checklist.md": "29a873c1282904cf27a1031c8fd100e5fd661f842e6a564e7e2c66ddf56832f1",
-      "decision-record.md": "d542005cf8a1b1eeba803a3923803e0dfb8bdd902a8a33bbfeb8ed00ce49fa03",
-      "implementation-summary.md": "f9828f90e7cf1e0d980f2b2b1ef0049e384bbe911812d0c45600cae202b8022a"
+      "spec.md": "02f4d839f030843bc7dd912f8a1fa5c8d240c29809882abdbefda3cd3f1809cb",
+      "plan.md": "ce8a5af3c212944fd747cd2e049068ee5da1b379a338f7fdcf081310db13ed17",
+      "tasks.md": "732d9741d2716e6ec1eb9726189267c1200c66dcd4e221fd03c25d1e6f14c28e",
+      "decision-record.md": "77fc239eda25d81d13a2af5fa227649758c1b540cca99ba9065ae3cd399cccd7",
+      "implementation-summary.md": "35822fa66ba83a5dfecfb642d3b70f63b625647c7918688ed26f38319cd72a82"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,12 +1,11 @@
 ---
-title: "Tasks: create-command resource names"
+title: "Tas [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command/tasks]"
 description: "Concrete execution and verification tasks for the create-command resource naming phase."
 trigger_phrases:
   - "create-command resource tasks"
   - "command template rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/004-create-command"
 ---
 # Tasks: create-command resource names
 

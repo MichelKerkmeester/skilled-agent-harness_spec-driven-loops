@@ -3,7 +3,6 @@
   "packet_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs",
   "spec_folder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs",
   "parent_id": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification",
-  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -19,8 +18,6 @@
       "feature catalog topology decision plan",
       "compiled routing catalogs tasks",
       "feature catalog leaf authoring tasks",
-      "compiled routing catalogs checklist",
-      "feature catalog QA gate",
       "compiled routing catalogs implementation summary",
       "feature catalog topology current status"
     ],
@@ -44,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -67,21 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -110,6 +94,12 @@
       },
       {
         "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -175,43 +165,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "What Was Built",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Delivered Files",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Compiled routing has no discoverable documentation surface across six of seven eligible hubs",
     "created_at": "2026-07-20T21:51:34.999Z",
-    "last_save_at": "2026-08-29T13:10:18.695Z",
+    "last_save_at": "2026-08-30T07:19:04.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b99d35c545a66bb1cd5f44520adb06ce565cdda637c60c4fc6c88137956bd990",
+    "source_fingerprint": "sha256:0b99559d8854bbf2372b84ed0d3865fcd300b632c3aa36ec79b0a99aace54c2a",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "5bc77d0988352c0b75f0e110c9739f5f35ae0db595ca01cb8dde71725693cf1e",
-      "plan.md": "9290a50302cf01365ea1af27392388a1161803c66570b734eed67cc0205651f1",
-      "tasks.md": "d2a8f7e5e77a18b6e071cf3894b88d18cde20d858ea6d16cf3ed508f62bdb59f",
-      "checklist.md": "81e8b24907fa8dd62c109b21aa194c6c80eaa18a30022ce2f2b9f94a9694c38b",
-      "implementation-summary.md": "49b9f029bf84094a668148eeb9edd8c6385a1bfea495de070aa8f4676cc2f8c7"
+      "spec.md": "c06025b4e647219c09fc9bd4a29d5c1fe6d6f3bca29c917098115bebcdfeb763",
+      "plan.md": "5b2c2fa3fa94dbbf71e5480c805eb22b23d180f877a38b8fe4c5674c8a412524",
+      "tasks.md": "cb34ee1d0a3e7d3ca997377dac720f3711d45e9434278c50b51ba465d876ac7c",
+      "implementation-summary.md": "7be5a6c423fdd3a26f64f13e062de1baa3a0614d2ebcc2b3312c4066ff5b7919"
     },
     "last_active_child_id": null,
     "last_active_at": null

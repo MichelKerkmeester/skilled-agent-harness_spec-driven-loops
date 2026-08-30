@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: create-changelog resource names"
+title: "Im [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog/plan]"
 description: "Execution plan for the create-changelog guidance reference rename/reference closure."
 trigger_phrases:
   - "create-changelog resource implementation plan"
   - "changelog guidance rename plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog"
 ---
 # Implementation Plan: create-changelog resource names
 

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1: extension-integration-suite"
+title: "Feature [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite/spec]"
 description: "Add deterministic cross-boundary coverage for the completed fast-mode extension before installation mutates settings."
 trigger_phrases:
   - "extension-integration-suite"

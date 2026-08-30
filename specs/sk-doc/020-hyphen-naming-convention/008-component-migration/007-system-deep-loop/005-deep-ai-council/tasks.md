@@ -1,13 +1,12 @@
 ---
-title: "Tasks: deep-ai-council filesystem names (020 phase 007/005)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council/tasks]"
 description: "Execution tasks for renaming the paired deep-ai-council catalog/playbook surface and repairing council asset, graph, artifact, script, and test paths."
 trigger_phrases:
   - "deep-ai-council tasks"
-  - "AI council kebab-case naming tasks"
+  - "ai council kebab-case naming tasks"
   - "council paired path repair tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/005-deep-ai-council"
 ---
 # Tasks: Deep-ai-council filesystem names
 

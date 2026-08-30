@@ -20,9 +20,9 @@
       "design-mcp-open-design tasks",
       "sk-design design-mcp-open-design execution",
       "020 design-mcp-open-design checklist",
-      "design-mcp-open-design verification",
-      "sk-design design-mcp-open-design checklist",
-      "020 design-mcp-open-design gate"
+      "design-mcp-open-design naming decision",
+      "common.sh helper target",
+      "020 phase 007 decision record"
     ],
     "key_topics": [
       "design-mcp-open-design",
@@ -34,9 +34,9 @@
       "tasks",
       "execution",
       "checklist",
-      "verification",
-      "gate",
-      "nested"
+      "decision",
+      "common",
+      "helper"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "scripts/common.sh"
     ],
@@ -68,12 +67,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -86,13 +79,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Open Design",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Open Design",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -188,31 +181,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Path Targets",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The nested Open Design transport packet contains underscore-bearing install, transport-reference, and shell-helper names, and the shell helper is sourced by multiple scripts.",
     "created_at": "2026-07-14T15:17:19Z",
-    "last_save_at": "2026-08-29T13:10:04.669Z",
+    "last_save_at": "2026-08-30T07:19:22.161Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c4c4ff9dc436fb6e42b9c64b47f32f6933c835007d2fe81c4d5ae4b751595643",
+    "source_fingerprint": "sha256:4a699bd282e80a03bc9900a9ca8913d6878f4998205048024fce5e3f04618e0b",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d5b06daa06646a807c2224486d8c98133da4e0b47729fb7a22c9b23719d2ca16",
-      "plan.md": "ff6f5ac2cf812b0c7d82060b3d4c175498159f55ba4042b7386cf68edf0c2a22",
-      "tasks.md": "ab4832c05eb32bb07f9232f7e6350aabe135f4c117b6e1cdddc238d08b7a531f",
-      "checklist.md": "75d2380a17c1f084c9105ea403a51b474ffe34c0da2f464e678109bda9e937ee",
-      "decision-record.md": "273e7699463d24eac4d78af4c1f38d943a93e2c8ce1eddf1e59ed4fad5066a2d"
+      "spec.md": "6c09f89d2344720b41893a159d1b918808dcb347aa84dc49be95c3ed442f10b1",
+      "plan.md": "91b513b5c405157447fa07921cdab5b30d24600e35a1cb341314054c85b059d2",
+      "tasks.md": "c1fa5351acdab03ea9358b5550284712792b7ed4750a82f60ffafaa9bda790af",
+      "decision-record.md": "9110ccbfe5214cb6a50bd04009714f405e14628260de7cd53953c328560050b7"
     },
     "last_active_child_id": null,
     "last_active_at": null

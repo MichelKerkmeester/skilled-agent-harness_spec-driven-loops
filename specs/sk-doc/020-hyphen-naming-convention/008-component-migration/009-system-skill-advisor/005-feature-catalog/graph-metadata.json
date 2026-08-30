@@ -20,9 +20,7 @@
       "advisor catalog rename map",
       "feature catalog tasks",
       "feature-catalog tree tasks",
-      "catalog link closure tasks",
-      "feature catalog checklist",
-      "feature-catalog tree verification"
+      "catalog link closure tasks"
     ],
     "key_topics": [
       "system-skill-advisor",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/system-skill-advisor/SKILL.md",
       ".opencode/skills/system-skill-advisor/README.md"
     ],
@@ -65,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,21 +187,20 @@
     ],
     "causal_summary": "The advisor's feature catalog currently uses the snakecase root featurecatalog, seven snakecase category",
     "created_at": "2026-07-14T15:18:10Z",
-    "last_save_at": "2026-08-29T13:10:04.018Z",
+    "last_save_at": "2026-08-30T07:19:50.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:d4f506100cb936aca88c51b65cf67676770b09fe018e593e923c937acac78631",
+    "source_fingerprint": "sha256:524902888ec58a3150cc9b8a4e56cc6e43ff9a77bcce7922ce8865d7c72ae4fa",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "8ae5e8e2da4a97acd3f138787e825c7e5ae8ef79e3cfd1de6a6923cdd7bd7d69",
-      "plan.md": "56f83e2d2341d00fad10ad3cce292a0338869ed069732901a33836209a73eb1f",
-      "tasks.md": "8ac7b2db06978538db499a04bb971d62324f19ce2544077b8bc66bde334016cd",
-      "checklist.md": "6b94ff07b6ffd3b8b4ccec62c7f5f09afa1745d373bcf9805505c535a65cc02c"
+      "spec.md": "424c1671cc615120f9eb4346aba2c68f4e0513d412cec025a145cbd3288d180f",
+      "plan.md": "da6558060239671c201b6efcbced5db6dcc45c8ff0a1992a8ae639e055ebc64a",
+      "tasks.md": "f39991c4a83933fbb94efbe44b40bd25b74253d3665f0125069c93e11475a611"
     },
     "last_active_child_id": null,
     "last_active_at": null

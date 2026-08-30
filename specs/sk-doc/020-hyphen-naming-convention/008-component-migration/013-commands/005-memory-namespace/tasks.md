@@ -1,5 +1,5 @@
 ---
-title: "Tasks: memory command namespace naming (020 phase 008/013/005)"
+title: "Tasks: memory [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace/tasks]"
 description: "Execution tasks for the memory presentation asset rename and reference closure."
 trigger_phrases:
   - "memory namespace naming tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "memory presentation reference repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace"
 ---
-
 # Tasks: Memory command namespace naming
 
 <!-- SPECKIT_LEVEL: 2 -->

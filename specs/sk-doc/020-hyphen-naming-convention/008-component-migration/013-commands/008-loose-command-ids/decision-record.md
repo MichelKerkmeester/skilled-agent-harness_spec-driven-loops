@@ -1,13 +1,12 @@
 ---
-title: "Decision Record: loose command ID boundary (020 phase 008/013/008)"
+title: "Decisio [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids/decision-record]"
 description: "Design decisions for distinguishing root command filesystem basenames from public slash-command IDs and tool-owned paths."
 trigger_phrases:
-  - "loose command ID decision"
+  - "loose command id decision"
   - "root command filename boundary"
-  - "command ID preservation decision"
+  - "command id preservation decision"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
@@ -22,8 +21,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

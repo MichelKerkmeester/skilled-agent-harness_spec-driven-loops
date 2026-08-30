@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-tooling changelog verification (020 phase 007)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify/plan]"
 description: "This plan performs a read-only check of the root and component changelog entries, expected version bumps, migration scope, exemptions, and append-only history."
 trigger_phrases:
   - "mcp-tooling changelog verification plan"
   - "mcp tooling version bump check"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/007-changelog-verify"
 ---
 # Implementation Plan: mcp-tooling Changelog Verification
 

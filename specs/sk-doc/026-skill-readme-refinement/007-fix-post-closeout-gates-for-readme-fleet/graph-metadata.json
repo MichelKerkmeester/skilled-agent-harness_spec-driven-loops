@@ -13,16 +13,16 @@
     "trigger_phrases": [
       "fix link guard",
       "frontmatter version gaps",
-      "CLI README alignment",
+      "cli readme alignment",
       "post closeout gates",
       "link guard remediation plan",
       "frontmatter version remediation",
-      "CLI README alignment plan",
-      "README fleet remediation tasks",
+      "cli readme alignment plan",
+      "readme fleet remediation tasks",
       "link guard repair tasks",
-      "CLI README alignment tasks",
-      "link guard remediation checklist",
-      "frontmatter version checklist"
+      "cli readme alignment tasks",
+      "link guard exception decision",
+      "intentional fixture exclusion"
     ],
     "key_topics": [
       "link",
@@ -41,26 +41,19 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
-      ".opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
+      ".opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh"
     ],
     "entities": [
       {
-        "name": "check-markdown-links.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "check-frontmatter-versions.sh",
-        "kind": "script",
-        "path": ".opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh",
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -76,27 +69,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-markdown-links.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "check-frontmatter-versions.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-doc/shared/scripts/check-frontmatter-versions.sh",
         "source": "derived"
       },
       {
@@ -194,29 +187,34 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 006 proved that the changed README surfaces have no broken links, but the repository-wide guard still reports 96 failures across older documents",
     "created_at": "2026-08-05T05:58:53Z",
-    "last_save_at": "2026-08-05T12:04:11.877Z",
+    "last_save_at": "2026-08-30T07:20:38.001Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d8b76e12345c6a289cc2ed2440c971e5591692606fd3dba48d1a59c6bb50be0",
+    "source_fingerprint": "sha256:bc01dfe54a53513b05b07a66c2a97f40bfcfc9a55710f426481af3df83d7b733",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d6dc000c67faa31e637b1b836f912b45fb55525027f5266356945fc94966883b",
-      "plan.md": "2f0994a50a43f90354612d2db2992c4d68b2444c08aff4809d9461f62005400b",
-      "tasks.md": "e9ac910adbaf5a4189edec8df64464521e6f28ab9fc9d2f2610a848329b81dbd",
-      "checklist.md": "5af8e23318df688e4629aa340bae7df3191e82c17fcd9d01906586ef873d195f",
-      "decision-record.md": "d3af82ff10daf2563557bed4d40f7d1eafa81cfd2ebbe0eba9ff801d89fe0cd2",
-      "implementation-summary.md": "46bc8c948b52592a1b367678d1a57e85f9d25360121c4a48ea1262f8e035e952"
+      "spec.md": "48235bd6fb4b8f15f98df642b9daf7ed8f91028a9f02df21f0981928c591ce00",
+      "plan.md": "01fcff709128a6b80ce8a52c7d892b93629390276c1863b9473b3354c93f2b55",
+      "tasks.md": "7f3a91f988f04681a6b68ef29acbe6b36e8a067e600609345c984801882372fd",
+      "decision-record.md": "bd5fe24c1a8ad447b65156d4b8d02844079847a9a4f0cb845293f47891209b6f",
+      "implementation-summary.md": "76e03e4b689be4fdfc4599b981f02ea20299cabf4971c98813303e5efa0c92a6"
     },
     "last_active_child_id": null,
     "last_active_at": null

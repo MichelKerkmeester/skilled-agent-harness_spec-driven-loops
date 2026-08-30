@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Hook adapter shared boilerplate and Claude/Codex fix"
+title: "Tasks: [cli-external-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix/tasks]"
 description: "Task breakdown for the shared stdin/parse helper extraction, the Claude/Codex alias fix, and the migration of Q6-sampled adapters."
 trigger_phrases:
   - "hook adapter shared boilerplate tasks"

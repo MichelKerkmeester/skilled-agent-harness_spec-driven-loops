@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 007 sk-git standalone README revisit"
+title: "Implementation [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/implementation-summary]"
 description: "Rewrite of the sk-git skill README against the refined standalone README template and the mcp-obsidian exemplar: purpose-first structure, HVR cleanup, version bump with a matching changelog entry and validation evidence."
 trigger_phrases:
   - "phase 7 implementation summary"

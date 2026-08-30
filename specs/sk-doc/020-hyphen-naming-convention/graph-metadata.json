@@ -48,10 +48,10 @@
       "migration"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      "001-convention-policy-and-scope/decision-record.md",
-      "spec.md"
+      "spec.md",
+      "001-convention-policy-and-scope/decision-record.md"
     ],
     "entities": [
       {
@@ -99,17 +99,18 @@
     ],
     "causal_summary": "The repo's filesystem naming is inconsistent and, after packet 027, actively snakecase for catalog/playbook content",
     "created_at": "2026-07-13T11:48:37.060Z",
-    "last_save_at": "2026-07-24T14:42:54.544Z",
+    "last_save_at": "2026-08-30T07:16:19.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:dc36ae2d85cc0b60b643573f5c613caeb55ba1f3ea44512d2454b9629484d3a0",
+    "source_fingerprint": "sha256:61aa2c397ce8519bdecd248b0edcf742d227716e1a862a41477907207d24e898",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "8f6e15481e45f63f8c158eacd243f62108670b986422de7b6f57c348187b19d0"
+      "spec.md": "06ce06f76714c1f825fe721f423d849e2715cb4aeaf91958e85ff331b05fa5c3"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures",
     "last_active_at": null
   }
 }

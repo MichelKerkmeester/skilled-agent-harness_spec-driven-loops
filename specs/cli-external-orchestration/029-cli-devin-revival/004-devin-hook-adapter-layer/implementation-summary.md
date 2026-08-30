@@ -1,7 +1,9 @@
 ---
-title: "Implementation Summary: Devin hook adapter layer"
+title: "Implementation [cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/implementation-summary]"
 description: "SessionStart and UserPromptSubmit adapters built, typechecked, directly tested and observed live under devin -p after correcting hooks.v1.json to the documented top-level event schema."
-trigger_phrases: ["devin hook adapter summary", "devin hook live evidence"]
+trigger_phrases:
+  - "devin hook adapter summary"
+  - "devin hook live evidence"
 importance_tier: "important"
 contextType: "general"
 _memory:

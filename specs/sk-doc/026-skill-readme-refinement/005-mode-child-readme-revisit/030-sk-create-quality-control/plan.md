@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 030 sk-create-quality-control README revisit"
+title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/030-sk-create-quality-control/plan]"
 description: "Rewrite the sk-create-quality-control mode skill README purpose-first on the refined template with a version bump and a changelog entry, then validate the result."
 trigger_phrases:
   - "phase 030 plan"

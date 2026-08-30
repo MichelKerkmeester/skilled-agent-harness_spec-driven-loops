@@ -1,11 +1,11 @@
 ---
-title: "Plan: Local-LLM legacy remediation (post-021 review)"
+title: "...-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation/plan]"
 description: "5-batch cli-codex dispatch plan that lands narrative correction (batch 1), model-name purge (batch 2), sqlite-path normalization (batch 3), ONNX cleanup (batch 4), and asset regeneration (batch 5); confirmatory re-review at the end."
 trigger_phrases:
   - "022 remediation plan"
   - "local-llm legacy remediation plan"
 importance_tier: "important"
-contextType: "remediation"
+contextType: "planning"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: Local-LLM legacy remediation (post-021 review)

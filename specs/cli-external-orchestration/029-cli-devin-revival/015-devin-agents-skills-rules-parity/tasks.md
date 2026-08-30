@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Devin agents/skills/rules parity"
+title: "Tasks: Devin agents/skills [cli-external-orchestration/029-cli-devin-revival/015-devin-agents-skills-rules-parity/tasks]"
 description: "Task breakdown for the live-docs-gated AGENT.md build and the skills/rules discovery documentation."
 trigger_phrases:
   - "devin agents skills rules parity tasks"

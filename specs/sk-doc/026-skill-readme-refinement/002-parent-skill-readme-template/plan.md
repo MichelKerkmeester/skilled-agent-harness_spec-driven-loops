@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2 parent-skill (hub) README template"
+title: "Implementation Plan: Phase 2 parent-skill [sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/plan]"
 description: "Create the parent-skill README template covering hub pitch, nested modes and packets, registry and manifest navigation, changelog conventions, hub scripts and commands, and validation."
 trigger_phrases:
   - "phase 2 plan"

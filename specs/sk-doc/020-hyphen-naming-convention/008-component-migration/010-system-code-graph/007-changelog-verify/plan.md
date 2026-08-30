@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-code-graph changelog verification (020 phase 007)"
+title: "Implementa [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify/plan]"
 description: "This read-only plan compares the system-code-graph migration evidence with the next append-only changelog entry, version bump, exemption notes, and frozen-history baseline without changing the skill surface."
 trigger_phrases:
   - "system-code-graph changelog verification plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "code graph release evidence"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify"
 ---
 # Implementation Plan: system-code-graph Changelog Verification
 

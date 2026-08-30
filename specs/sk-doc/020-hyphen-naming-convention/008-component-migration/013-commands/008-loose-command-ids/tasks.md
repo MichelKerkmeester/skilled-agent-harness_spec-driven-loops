@@ -1,13 +1,12 @@
 ---
-title: "Tasks: loose command ID naming (020 phase 008/013/008)"
+title: "Tasks: loose [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids/tasks]"
 description: "Bounded tasks for classifying root command files, preserving public IDs, and closing approved path references."
 trigger_phrases:
   - "loose command naming tasks"
-  - "root command ID tasks"
+  - "root command id tasks"
   - "command path contract tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
 ---
-
 # Tasks: Loose command ID naming
 
 <!-- SPECKIT_LEVEL: 2 -->

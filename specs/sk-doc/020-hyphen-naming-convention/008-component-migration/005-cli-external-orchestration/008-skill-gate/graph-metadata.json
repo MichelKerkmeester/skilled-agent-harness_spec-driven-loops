@@ -19,8 +19,7 @@
       "cli-external phase 008 plan",
       "cli-external subtree rollup gate tasks",
       "cli-external final naming census",
-      "cli-external phase 008 tasks",
-      "cli-external subtree rollup gate checklist"
+      "cli-external phase 008 tasks"
     ],
     "key_topics": [
       "cli-external",
@@ -41,8 +40,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -64,19 +62,13 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
+        "name": "Approved Python",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Approved Python",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -176,37 +168,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This read-only rollup gate aggregates phases 001–007 and proves that the complete cli-external-orchestration naming surface is kebab-clean within the 020 exemption boundary. It performs no new rename, reference rewrite, changelog repair, or metadata mutation.",
     "created_at": "2026-07-14T15:17:40Z",
-    "last_save_at": "2026-08-29T13:10:03.415Z",
+    "last_save_at": "2026-08-30T07:19:36.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:21023f63686519c81bdf5991bb77574a384e0790beee498a3ccb656cb4be7da1",
+    "source_fingerprint": "sha256:e86c92b0e7ddf8825d34cf94a751c5fbe6087bcfc2046a0e440f5c858107a761",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "e848664ad4bf1f0d261ab163057f01d8fb9b507b7aaefc7a81ea53f7e7cee0d9",
-      "plan.md": "bb8c8bd38342e11005a4d83d9db2267bee1688cda8ec6bdf72d47d39879805db",
-      "tasks.md": "935efd0952686f572627f78b9f14884aeb1c5ae740ac44de4e8ba7c5587883b3",
-      "checklist.md": "3d1816a534ce99954477bdad8d81a9368722074ceb0deffe9773c42c45621675"
+      "spec.md": "6e741d85c9cecffe35200583e9c4b7f42f7673e3b43e3775932c05c306765e98",
+      "plan.md": "aea5f91a4150cf3e6123dbe179f4679bd438313091762c474aabcc36eca4d327",
+      "tasks.md": "d551c658df4b0061ecc5da83615debeb00d9496deb1413383984bd064aff31bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

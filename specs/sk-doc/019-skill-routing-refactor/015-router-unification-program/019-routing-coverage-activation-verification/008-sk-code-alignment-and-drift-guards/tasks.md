@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-code Alignment & Drift Guards"
+title: "...router-unification-program/019-routing-coverage-activation-verification/008-sk-code-alignment-and-drift-guards/tasks]"
 description: "Task breakdown for the RESOURCE_MAP doc-truth fix, the qualifiedIdToLeaf bijection test, the run-all-drift-guards.sh orchestrator, and the additive surfaceBundle request-context (Planned)."
 trigger_phrases:
   - "sk-code alignment tasks"

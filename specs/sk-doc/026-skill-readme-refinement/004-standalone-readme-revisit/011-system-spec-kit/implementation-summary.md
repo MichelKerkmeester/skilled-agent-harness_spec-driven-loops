@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 011 system-spec-kit README revisit"
+title: "Implementa [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/implementation-summary]"
 description: "The system-spec-kit README now reads purpose-first on the refined standalone template with a one-line pitch, a problem-first overview and a version bump to 3.8.0.0 with a matching changelog entry."
 trigger_phrases:
   - "phase 011 implementation summary"

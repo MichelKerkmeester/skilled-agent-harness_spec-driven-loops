@@ -17,9 +17,7 @@
       "remove transition aliases implementation plan",
       "hyphen naming phase 009 implementation plan",
       "remove transition aliases tasks",
-      "hyphen naming phase 009 tasks",
-      "remove transition aliases checklist",
-      "hyphen naming phase 009 checklist"
+      "hyphen naming phase 009 tasks"
     ],
     "key_topics": [
       "remove",
@@ -41,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/specs/sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration/spec.md",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
       ".opencode/skills/system-deep-loop/deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs",
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -185,31 +176,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The migration has completed and the bounded coexistence window from phase 002 is closed, but runtime consumers still carry compatibility paths for the old underscore catalog and playbook roots and indexes. This phase removes those aliases and makes unsupported legacy names fail explicitly without falling through to a generic document classification.",
     "created_at": "2026-07-14T15:22:41Z",
-    "last_save_at": "2026-08-29T13:10:15.181Z",
+    "last_save_at": "2026-08-30T07:20:10.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:987da02f6da8f9ebcebb6cd4979319b871df7dbcfa6141b9e4f73c6a878d0667",
+    "source_fingerprint": "sha256:d8499f0481cf4b6c1c2bfd895129ce5132a1398fdd5c710483cc2ff03ec4ecde",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "54b3e76b64ba15e0554a88bb78ef8eff26a935aaa044c1d455c618de4f0a2b67",
-      "plan.md": "bd3d199d2f2a51dc722c6bcb2430f0bfc0cf9e867cfe4d82113c856bcad9f0a7",
-      "tasks.md": "6cdb8468ff9870619560488dc510368ae049484380a42e1c6360ff2eb3f86d0a",
-      "checklist.md": "8452bcae69f6660a385ee0519fc5232159d127c0295b9649be1051feac91fc5e"
+      "spec.md": "cf22143a05241f4789277fbf321deef0e2e612f57d48d2108a303f614bbb6e45",
+      "plan.md": "84a7adccf516e97bb7e93304d1c78d551d99ef901fcf3980cadcd48082a649c5",
+      "tasks.md": "0150ee1dc1bbfcfe92482e0ec6a11691065526b26b7067e8be7794728ec1df89"
     },
     "last_active_child_id": null,
     "last_active_at": null

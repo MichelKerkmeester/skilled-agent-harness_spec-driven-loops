@@ -1,13 +1,12 @@
 ---
-title: "Feature Specification: INSTALL-GUIDE canonical filename normalization (sk-doc 021)"
+title: "Feature Specification: INSTALL-GUIDE [sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming/spec]"
 description: "Normalize every skill install-guide document filename to the single canonical form INSTALL-GUIDE.md (uppercase + hyphen), resolving three inconsistent casings (INSTALL_GUIDE, install-guide, install_guide). The doc-type identifier install_guide is a code contract and stays; the classifier gains additive hyphen-stem recognition so renamed files still type as install_guide rather than silently downgrading to readme."
 trigger_phrases:
   - "install-guide canonical naming"
-  - "INSTALL-GUIDE filename normalization"
+  - "install-guide filename normalization"
   - "install guide uppercase hyphen"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/020-hyphen-naming-convention"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
@@ -25,8 +24,8 @@ _memory:
       - "Canonical form is INSTALL-GUIDE.md (uppercase like README/CHANGELOG, hyphen per the naming program)."
       - "The doc-type id install_guide (classifier return, enum choices, adapter list, template_rules key, tests) is a code contract and is preserved."
       - "Prose mentions of the install-guide concept and the JSON install_guide key are out of scope (files + filename refs only)."
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->

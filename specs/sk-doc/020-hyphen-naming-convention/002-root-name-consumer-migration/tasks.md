@@ -1,12 +1,11 @@
 ---
-title: "Tasks: root-name consumer migration (020 phase 002)"
+title: "Tasks: root-name consumer migration (020 [sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration/tasks]"
 description: "Tasks for phase 002 of the 020 kebab-case filesystem-naming program: root-name consumer migration."
 trigger_phrases:
   - "root-name consumer migration tasks"
   - "hyphen naming phase 002 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/002-root-name-consumer-migration"
 ---
 # Tasks: Root-name consumer migration
 

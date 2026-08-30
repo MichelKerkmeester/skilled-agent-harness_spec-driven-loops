@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 002 mcp-code-mode README rewrite"
+title: "Feature Specification: Phase [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode/spec]"
 description: "Rewrite the mcp-code-mode skill README at .opencode/skills/mcp-code-mode/README.md against the refined README template from phase 001 with the mcp-obsidian exemplar as the reference shape."
 trigger_phrases:
   - "mcp code mode readme"

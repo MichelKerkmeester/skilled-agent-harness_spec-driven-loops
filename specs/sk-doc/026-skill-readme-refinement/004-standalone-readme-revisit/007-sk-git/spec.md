@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 007 sk-git standalone README revisit"
+title: "Feature Specification: Phase 007 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/spec]"
 description: "Rewrite the sk-git skill README at .opencode/skills/sk-git/README.md against the refined README template from phase 001 and the mcp-obsidian exemplar: purpose-first rewrite, HVR cleanup, version bump with a matching changelog entry and validation."
 trigger_phrases:
   - "sk-git readme revisit"

@@ -1,7 +1,8 @@
 ---
-title: "Implementation Plan: Devin model registry and quota restoration"
+title: "Implementation Plan: Devin [cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota/plan]"
 description: "Plan for restoring the swe-1.6 registry entry, 3 sibling cli-devin executor rows, the swe-1.6.md model card, and the check-prompt-quality-card-sync.sh CI gate arrays, including a newly-identified CLI_EXECUTOR_HUB_METADATA dependency the restored rows will exercise."
-trigger_phrases: ["devin model registry plan"]
+trigger_phrases:
+  - "devin model registry plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

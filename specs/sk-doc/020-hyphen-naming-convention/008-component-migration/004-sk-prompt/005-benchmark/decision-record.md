@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: sk-prompt benchmark artifact names (020 phase 004.005)"
+title: "Decision [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark/decision-record]"
 description: "Design decisions for phase 005: map authored benchmark paths explicitly, preserve generated raw output, and keep filesystem path changes separate from benchmark payload and data-key semantics."
 trigger_phrases:
   - "sk-prompt benchmark decision record"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 005 decisions"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "The authored directory map currently includes live_final, router_final, and router_mode_a."
       - "Raw run/archive output is generated and is not an authored naming surface."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

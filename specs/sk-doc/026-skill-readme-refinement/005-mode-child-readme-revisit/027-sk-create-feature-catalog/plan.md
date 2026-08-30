@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 027 sk-create-feature-catalog README revisit"
+title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/027-sk-create-feature-catalog/plan]"
 description: "Implementation plan for the purpose-first rewrite of the create-feature-catalog skill README with a version bump, a changelog entry and full validation."
 trigger_phrases:
   - "phase 027 plan"

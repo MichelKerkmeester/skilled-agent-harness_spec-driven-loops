@@ -1,12 +1,11 @@
 ---
-title: "Tasks: remove transition aliases (020 phase 009)"
+title: "Tasks: remove transition aliases (020 phase [sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases/tasks]"
 description: "Tasks for phase 009 of the 020 kebab-case filesystem-naming program: remove post-migration root and index aliases and verify fail-closed handling."
 trigger_phrases:
   - "remove transition aliases tasks"
   - "hyphen naming phase 009 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases"
 ---
 # Tasks: Remove transition aliases
 

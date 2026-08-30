@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 015 sk-code-opencode README revisit"
+title: "Implement [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/implementation-summary]"
 description: "Purpose-first README rewrite for the sk-code-opencode surface mode on the refined README template, version 1.0.0.5, changelog entry added and every gate clean."
 trigger_phrases:
   - "phase 15 implementation summary"

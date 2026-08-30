@@ -1,7 +1,8 @@
 ---
-title: "Implementation Plan: Devin MCP-host integration"
+title: "Implementation Plan: Devin [cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration/plan]"
 description: "Plan for registering this repo's 3 MCP servers with Devin CLI under a two-tier deny-by-default permission policy."
-trigger_phrases: ["devin mcp host integration plan"]
+trigger_phrases:
+  - "devin mcp host integration plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

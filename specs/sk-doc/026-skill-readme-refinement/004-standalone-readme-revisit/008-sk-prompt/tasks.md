@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 008 sk-prompt README revisit"
+title: "Tasks: Phase 008 sk-prompt [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/tasks]"
 description: "Task list for the purpose-first rewrite of the sk-prompt README with a version bump, a changelog entry and full validation."
 trigger_phrases:
   - "phase 008 tasks"

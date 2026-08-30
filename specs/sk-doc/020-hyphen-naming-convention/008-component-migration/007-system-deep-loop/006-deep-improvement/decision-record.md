@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: system-deep-loop deep-improvement names (020 phase 007/006)"
+title: "...k-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement/decision-record]"
 description: "L2 design decisions for the deep-improvement multi-lane naming phase, including Python/package boundaries, generated artifacts, shared loop-host closure, and benchmark ownership."
 trigger_phrases:
   - "system-deep-loop improvement decisions"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "improvement lane boundary decision"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->

@@ -1,5 +1,5 @@
 {
-  "level": 3,
+  "level": "3",
   "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/011-activation-cutover-p4",
   "description": "The parent goal wants compiled routing to be \"the effective default.\" Naively that reads as a one-line flip of `SPECKITCOMPILEDROUTING` from off to on",
   "keywords": [
@@ -16,7 +16,7 @@
     "flip",
     "speckitcompiledrouting"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.710Z",
+  "lastUpdated": "2026-08-30T07:16:17.551Z",
   "specId": "011",
   "folderSlug": "activation-cutover-p4",
   "parentChain": [

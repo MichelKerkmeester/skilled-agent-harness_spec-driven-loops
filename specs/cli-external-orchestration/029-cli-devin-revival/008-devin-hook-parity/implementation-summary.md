@@ -1,7 +1,9 @@
 ---
-title: "Implementation Summary: Devin hook parity"
+title: "Implementation [cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/implementation-summary]"
 description: "10 Devin hook adapters built and directly tested, with full lifecycle registration corrected to the documented nested schema; six lifecycle events are observed live under devin -p."
-trigger_phrases: ["devin hook parity summary", "devin hooks.v1.json full coverage"]
+trigger_phrases:
+  - "devin hook parity summary"
+  - "devin hooks.v1.json full coverage"
 importance_tier: "important"
 contextType: "general"
 _memory:

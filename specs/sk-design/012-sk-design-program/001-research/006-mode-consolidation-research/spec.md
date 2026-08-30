@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-design mode-consolidation research"
+title: "Feature Specification: sk-design [sk-design/012-sk-design-program/001-research/006-mode-consolidation-research/spec]"
 description: "Deep research into consolidating sk-design from its seven-mode structure to a target four-mode set (interface, motion, md-generator, open-design transport), resolving the fate of foundations, audit, and the styles database."
 trigger_phrases:
   - "sk-design mode consolidation"
@@ -30,7 +30,6 @@ _memory:
       - "Do the four survivors remain hub-modes or become standalone skills?"
     answered_questions: []
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

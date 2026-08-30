@@ -80,15 +80,16 @@
     ],
     "causal_summary": "Two CI-safe deterministic harness extensions: an identity-scoped contamination lint that unblocks generic-keyword over-activation negatives (the scoring path already exists; only the lint gate blocks it), and a scenario-loader relaxation that lets all playbook categories (not just 10--intra-routing-recall) enter Type-1 scoring when they carry gold.",
     "created_at": "2026-07-09T12:18:01.049Z",
-    "last_save_at": "2026-07-16T16:33:11.196Z",
+    "last_save_at": "2026-08-30T07:16:21.225Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:d1cb65a36d3228206aaa6a479319156afadfa821144900147473247896349340",
+    "source_fingerprint": "sha256:2090c61008d47081cac08c2afcd1c4eb431a0c2b1582a437edacd1b29d464b2b",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "4f0cd84cdc1e197aece5f31abd4bc1a66734e1e0e33503c877d78c2cc8fde032"
+      "spec.md": "975822eec274e60f9c4c4d5f2744748fb31b31599776d15fe2ed0386a72209ea"
     },
     "last_active_child_id": null,
     "last_active_at": null

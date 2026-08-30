@@ -1,13 +1,12 @@
 ---
-title: "Decision Record: doctor route and exemption boundary (020 phase 008/013/004)"
+title: "Decision [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace/decision-record]"
 description: "Design decisions for preserving the doctor route manifest and Python helper while renaming maintained doctor asset filenames and path-valued route entries."
 trigger_phrases:
   - "doctor route manifest decision"
-  - "doctor Python exemption"
+  - "doctor python exemption"
   - "doctor asset boundary"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/004-doctor-namespace"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

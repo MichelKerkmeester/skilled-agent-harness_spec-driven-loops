@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-tooling benchmark naming closure (020 phase 006)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark/plan]"
 description: "This plan verifies the benchmark boundary, preserves the current .gitkeep-only baseline, and renames any real fixture, profile, storage-guide, or support path discovered at execution through an explicit map."
 trigger_phrases:
   - "mcp-tooling benchmark implementation plan"
   - "benchmark artifact path census"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/006-benchmark"
 ---
 # Implementation Plan: mcp-tooling Benchmark Naming Closure
 

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 015 sk-code-opencode README revisit"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/015-sk-code-opencode/spec]"
 description: "Rewrite the sk-code-opencode mode README at .opencode/skills/sk-code/sk-code-opencode/README.md against the refined README template from phase 001 and the mcp-obsidian exemplar, with a version bump and a changelog entry."
 trigger_phrases:
   - "sk-code-opencode readme"

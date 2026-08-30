@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1 cli-claude-code README rewrite"
+title: "Tasks: Phase 1 cli-claude-c [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/001-cli-claude-code/tasks]"
 description: "Task list for rewriting the cli-claude-code mode skill README against the refined template with a version bump, a changelog entry and validation."
 trigger_phrases:
   - "phase 1 tasks"

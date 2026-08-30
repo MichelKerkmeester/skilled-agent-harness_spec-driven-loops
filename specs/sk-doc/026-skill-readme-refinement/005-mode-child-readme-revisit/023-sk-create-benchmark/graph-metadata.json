@@ -21,8 +21,8 @@
       "phase 023 tasks",
       "create-benchmark readme tasks",
       "benchmark readme rewrite tasks",
-      "phase 023 checklist",
-      "create-benchmark readme verification"
+      "phase 023 implementation summary",
+      "create-benchmark readme closeout"
     ],
     "key_topics": [
       "create-benchmark",
@@ -35,39 +35,25 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verification"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-doc/sk-create-benchmark/README.md",
-      ".opencode/skills/sk-doc/sk-create-benchmark/changelog/v1.5.0.0.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-doc/sk-create-benchmark/README.md",
+      ".opencode/skills/sk-doc/sk-create-benchmark/changelog/v1.5.0.0.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/checklist.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-benchmark/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.5.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-benchmark/changelog/v1.5.0.0.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -87,15 +73,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.5.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-benchmark/changelog/v1.5.0.0.md",
         "source": "derived"
       },
       {
@@ -199,27 +191,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "backticked",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill README at `.opencode/skills/sk-doc/sk-create-benchmark/README.md` predates the pilot standard",
     "created_at": "2026-08-04T08:34:47.400Z",
-    "last_save_at": "2026-08-04T14:52:02.418Z",
+    "last_save_at": "2026-08-30T07:20:31.109Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f5133a530636b855c5833c727f41bcc1663c5787f2a3a11f87ed8af19f86c86e",
+    "source_fingerprint": "sha256:31ce6e16a6a06021258ef90298dba898667d45a1cd41b183ce343cc65311f335",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "2e80bede8b129d1191d6823855ee37e9b81931837fb8d1175e69457a23dd1f32",
-      "plan.md": "b0cf4a624ad9b1132297f23d90b3b1abfb955a6c43a4d34533b564fedaa1ea67",
-      "tasks.md": "66e1dd653d3b7c2052ecfa6f6bf1492341e5782c808705d7a7c7c9e988876a9c",
-      "checklist.md": "8dea3284fd63bf0731e35dac47960e2083683ba33e0dcb918f69f0a33fcbba03",
-      "implementation-summary.md": "423b19c3755ea7d0fed74d5e6e9f9adaf7dcf74cafb4b62004d093397f8a8788"
+      "spec.md": "394bdc12fd83d3c76ee07c83058b3bef9abe4061cd27c00d7569071f10b4b53d",
+      "plan.md": "a887ff977c4f08d7b81f68374fd9e0ca369b5e4933434ca93589864993f0d188",
+      "tasks.md": "aa3b1ef2e099cabe0a9df39d70dabb8f53cc8acb6013f0f46505712f605a6009",
+      "implementation-summary.md": "9a519cf2530aeb8495d725a3d4b1d13f308c12c246fbacdb884ae79a50dec114"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,7 +13,13 @@
     "trigger_phrases": [
       "sk-doc research and canon",
       "125 research and canon",
-      "sk-doc parent phase 001"
+      "sk-doc parent phase 001",
+      "deep",
+      "research",
+      "synthesis",
+      "doc",
+      "parent",
+      "001"
     ],
     "key_topics": [
       "sk-doc",
@@ -21,13 +27,13 @@
       "canon",
       "parent",
       "phase",
+      "deep",
+      "synthesis",
+      "doc",
       "monolith",
       "parent-hub",
       "conversion",
-      "feature",
-      "specification",
-      "conformance",
-      "30-iteration"
+      "feature"
     ],
     "importance_tier": "normal",
     "status": "draft",
@@ -123,17 +129,18 @@
     ],
     "causal_summary": "Phase 001 of the sk-doc monolith to parent-hub conversion",
     "created_at": "2026-07-06T06:30:33.394Z",
-    "last_save_at": "2026-08-28T22:17:39.888Z",
+    "last_save_at": "2026-08-30T07:16:13.534Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ec8353e4f0b0e98aef081f79538ed2ed2ed5cffa3a693ba3814e8c7be3829b8c",
+    "source_fingerprint": "sha256:0ed7e2f4f28373a24a00cbddf76dda05a4b773ba452617ce009aa637b3a6b752",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f729304a115cedc4445d27a8301ad3542044177b94b0e9ebb4749862d8714e82",
-      "research/research.md": "175b0b8c1dcd9e5622c085afc17c6b203f959c848e4947e288d9eaed92e1b4d4"
+      "spec.md": "acdb0aa61387970df61f0805b86d4825c121273481d1d2a701e9329387a503d5",
+      "research/research.md": "8b4cb123e523688b7a6df8a215ce0e148a851db6c6b3d5a45c75e9737661c743"
     },
     "last_active_child_id": null,
     "last_active_at": null

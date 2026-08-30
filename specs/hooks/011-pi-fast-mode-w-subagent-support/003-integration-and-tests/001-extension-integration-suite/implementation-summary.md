@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 1 extension-integration-suite"
+title: "...011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite/implementation-summary]"
 description: "Closeout record for deterministic extension-boundary tests."
 trigger_phrases:
   - "extension-integration-suite implementation summary"

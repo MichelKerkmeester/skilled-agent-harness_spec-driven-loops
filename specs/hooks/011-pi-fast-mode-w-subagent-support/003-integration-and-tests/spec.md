@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: integration-and-tests workstream"
+title: "Feature Specification: integration-and-tests [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/spec]"
 description: "Nested phase parent for cross-boundary tests, safe installation, command ownership, live UI/handoff proof, and repository closeout."
 trigger_phrases:
   - "integration-and-tests workstream"

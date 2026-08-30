@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-tooling hub root and shared naming closure (020 phase 001)"
+title: "Tasks: mcp-t [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared/tasks]"
 description: "Tasks for phase 001 of the mcp-tooling component naming migration: classify root/shared paths, repair hub references, and preserve exact contracts."
 trigger_phrases:
   - "mcp-tooling hub root tasks"
   - "mcp-tooling shared naming tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared"
 ---
 # Tasks: mcp-tooling Hub Root and Shared Naming Closure
 

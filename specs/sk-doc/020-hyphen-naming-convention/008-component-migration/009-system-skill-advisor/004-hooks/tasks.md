@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-skill-advisor hooks"
+title: "Tasks: system-ski [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks/tasks]"
 description: "Concrete tasks for the advisor hook filename inventory, conditional rename, registration closure, and behavior-parity verification."
 trigger_phrases:
   - "advisor hooks tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "prompt submit audit tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks"
@@ -23,8 +22,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The visible hook filenames are already kebab-case; a no-rename result requires evidence."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks"
 ---
-
 # Tasks: system-skill-advisor hooks
 
 <!-- SPECKIT_LEVEL: 2 -->

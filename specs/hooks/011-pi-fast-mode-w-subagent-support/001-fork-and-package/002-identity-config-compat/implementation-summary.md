@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 2 identity-config-compat"
+title: "Imple [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat/implementation-summary]"
 description: "Closeout record for package identity, config compatibility, safe persistence, and request guards."
 trigger_phrases:
   - "identity-config-compat implementation summary"

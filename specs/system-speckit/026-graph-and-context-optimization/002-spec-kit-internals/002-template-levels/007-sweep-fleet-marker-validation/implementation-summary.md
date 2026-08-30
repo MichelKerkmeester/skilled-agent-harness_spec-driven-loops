@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary [template:level_3/implementation-summary.md]"
+title: "...ext-optimization/002-spec-kit-internals/002-template-levels/007-sweep-fleet-marker-validation/implementation-summary]"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
   - "implementation"

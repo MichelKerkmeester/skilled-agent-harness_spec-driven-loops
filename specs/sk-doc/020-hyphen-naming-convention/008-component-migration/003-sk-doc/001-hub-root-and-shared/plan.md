@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: sk-doc hub root and shared backbone"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared/plan]"
 description: "Execution plan for the sk-doc hub/shared kebab-case rename map, including facade-link preservation and path-reference closure."
 trigger_phrases:
   - "sk-doc hub shared implementation plan"
   - "shared backbone rename plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
 ---
 # Implementation Plan: sk-doc hub root and shared backbone
 

@@ -1,12 +1,11 @@
 ---
-title: "Research Charter: Automation Reality Supplemental — Continuation of 012"
-template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
+title: "...-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research/spec]"
 description: "5-iter supplemental deep research extending 012's automation reality map. Deepens the 4 P1 aspirational findings via adversarial Hunter→Skeptic→Referee, probes under-covered surfaces (deep-loop graph, CCC + eval + ablation, validator auto-fire), and outputs a sequenced remediation backlog (packets 031-035)."
 trigger_phrases:
   - "002-automation-reality-supplemental-research"
   - "automation reality supplemental"
   - "deep-loop graph automation"
-  - "CCC eval ablation reality"
+  - "ccc eval ablation reality"
   - "validator auto-fire reality"
   - "automation remediation backlog"
 importance_tier: "important"
@@ -20,8 +19,8 @@ _memory:
     next_safe_action: "Use packet for downstream work"
     blockers: []
     completion_pct: 100
+template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Compiled-Routing Coverage Build-Out & Genuine Default-On"
+title: "...ctor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout/spec]"
 description: "Build full compiled-router coverage for the thin/stale hubs (sk-code, cli-external-orchestration, mcp-tooling, sk-prompt, then sk-doc/system-deep-loop post-remint) so compiled routing matches legacy on every scenario, fix two over-detection bugs, re-mint two stale manifests, then stage the per-hub default-on flip."
 trigger_phrases:
   - "compiled routing coverage buildout"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "sk-code compiled router coverage"
 importance_tier: "critical"
 contextType: "implementation"
-status: "complete"
 _memory:
   continuity:
     packet_pointer: "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/013-compiled-coverage-buildout"
@@ -30,6 +29,7 @@ _memory:
       - "Does the safe defer-to-legacy contract (root cause 4) need a fix before Path 1, or is it a Path-2-only concern?"
     answered_questions:
       - "Path 1 (build full coverage) vs Path 2 (byte-identical via fallback): Path 1 chosen, no concessions."
+status: "complete"
 ---
 # Feature Specification: Compiled-Routing Coverage Build-Out & Genuine Default-On
 

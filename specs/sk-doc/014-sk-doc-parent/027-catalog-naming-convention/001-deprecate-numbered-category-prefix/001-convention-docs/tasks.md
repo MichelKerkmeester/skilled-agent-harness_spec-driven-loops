@@ -1,9 +1,16 @@
 ---
-title: "Tasks: drop the NN-- category-name mandate"
+title: "...doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs/tasks]"
 description: "Task breakdown for the convention-doc de-numbering pass."
+trigger_phrases:
+  - "doc"
+  - "014"
+  - "parent"
+  - "027"
+  - "tasks"
+  - "001"
+  - "convention"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs"
@@ -15,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix"
 ---
 # Tasks: Drop the NN-- Category-Name Mandate
 

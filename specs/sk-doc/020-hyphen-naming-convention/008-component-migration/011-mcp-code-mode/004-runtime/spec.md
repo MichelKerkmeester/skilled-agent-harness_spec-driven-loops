@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-code-mode runtime (020 component 011 phase 004)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime/spec]"
 description: "The runtime tree must be checked independently because hook and library paths are executed by Node and referenced by manual scenarios. The current runtime names are already kebab-case, so this phase records a zero-candidate proof at the pinned baseline and closes any runtime path references if a later inventory reveals an eligible name."
 trigger_phrases:
   - "mcp-code-mode runtime naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "runtime kebab-case audit"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

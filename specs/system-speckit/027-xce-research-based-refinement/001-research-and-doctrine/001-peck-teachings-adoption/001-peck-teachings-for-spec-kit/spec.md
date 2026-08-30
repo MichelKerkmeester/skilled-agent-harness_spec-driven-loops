@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Analysis of peck framework teachings applicable to system-spec-kit"
+title: "...research-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit/spec]"
 description: "Analyze the external repo gytis-ivaskevicius/peck and extract transferable teachings that could improve system-spec-kit. Analysis-only deliverable; no behavioral changes to spec-kit."
 trigger_phrases:
   - "feature"

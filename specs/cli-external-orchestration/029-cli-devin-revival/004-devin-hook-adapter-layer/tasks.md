@@ -1,7 +1,8 @@
 ---
-title: "Tasks: Devin hook adapter layer"
+title: "Tasks: Devin hook adapter layer [cli-external-orchestration/029-cli-devin-revival/004-devin-hook-adapter-layer/tasks]"
 description: "Task breakdown for building the Devin hook adapter layer: schema re-verification, thin adapter implementation, and live smoke testing."
-trigger_phrases: ["devin hook adapter tasks"]
+trigger_phrases:
+  - "devin hook adapter tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:

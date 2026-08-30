@@ -1,13 +1,12 @@
 ---
-title: "Tasks: cli-claude-code component naming (020 phase 005.003)"
+title: "T [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code/tasks]"
 description: "Tasks for the cli-claude-code component rename: map four references and two assets, update local links, preserve provider contracts, and verify delegated ownership."
 trigger_phrases:
   - "cli-claude-code naming tasks"
-  - "Claude Code path map tasks"
+  - "claude code path map tasks"
   - "cli-external phase 003 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code"
@@ -24,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The candidate set excludes the nested manual-testing-playbook tree."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/003-cli-claude-code"
 ---
 # Tasks: cli-claude-code component naming
 

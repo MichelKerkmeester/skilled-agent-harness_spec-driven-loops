@@ -17,8 +17,7 @@
       "cli-devin executor rows",
       "devin model allowlist",
       "devin model registry plan",
-      "devin model registry tasks",
-      "devin model registry checklist"
+      "devin model registry tasks"
     ],
     "key_topics": [
       "devin",
@@ -37,12 +36,17 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
+      "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md",
-      "spec.md"
+      "tasks.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -53,18 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -174,37 +166,24 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 2026-06-08 deprecation deleted the `swe-1.6` model entirely from `model-profiles.json` (it was cli-devin-exclusive; no `cli-opencode` alternative existed) and stripped `cli-devin` executor rows from 3 sibling models",
     "created_at": "2026-07-23T19:51:59.010Z",
-    "last_save_at": "2026-07-24T11:25:05.917Z",
+    "last_save_at": "2026-08-30T07:18:49.191Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:7776407297b6645251a279202b27adfb01230ffb61d5eaee01d80619ee71a267",
+    "source_fingerprint": "sha256:14078be3eeab1b4ec53ce3eb94a76ec0218625bf24a7d633273bec1a56714ea2",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "07bc280883fc934b66a2d1cfbeeabbd866907ad2b39315004355344d8792d77e",
-      "plan.md": "407cf5f439affdb401f7daa217a59e4af3e43234b7b4ddc2cd14e4ede30b514f",
-      "tasks.md": "87fcc7facdf70f50e2f57733fb4e6ef4d553825c8f8ed950b8a1f04ff757c1cd",
-      "checklist.md": "de794fed17f75e4bcdb30aae8b9387addf52935153ced21f877089fce924843d"
+      "spec.md": "bbaa1452e709c575247825981ec277f5bb5c210fea72abf64392482cdd209c80",
+      "plan.md": "43d66a97d09f7a8daeafa1ded3e06806db4d3b537f89849888c6ac0b6683f514",
+      "tasks.md": "facbe271d28df13cd09b488760fd77f6ac8354834ac37e6d92abb6d0eb9f323a"
     },
     "last_active_child_id": null,
     "last_active_at": null

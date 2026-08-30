@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: kebab-case filesystem-naming program (020 phase 001)"
+title: "Decision Record: kebab-case [sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope/decision-record]"
 description: "Program-level decision record for the 020 kebab-case filesystem-naming migration: the GPT-5.6-sol design-review outcome and the locked decisions (dual-name tolerance, dependency-closure batching, fresh-install worktree, packet numbering, exemption boundary) that shape the 020 phased plan."
 trigger_phrases:
   - "hyphen naming decision record"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 program decisions"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/001-convention-policy-and-scope"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

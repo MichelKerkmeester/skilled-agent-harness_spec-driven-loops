@@ -1,10 +1,10 @@
 ---
-title: "Feature Specification: Devin agents/skills/rules parity"
+title: "Feature Specification: [cli-external-orchestration/029-cli-devin-revival/015-devin-agents-skills-rules-parity/spec]"
 description: "Document Devin's already-working, undocumented devin skills list/devin rules list discovery, and build the first real .devin/agents/*/AGENT.md subagent profile -- documented as supported in cli-devin/SKILL.md but never built."
 trigger_phrases:
   - "devin agents skills rules parity"
   - "devin agent profile"
-  - "devin AGENT.md"
+  - "devin agent.md"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

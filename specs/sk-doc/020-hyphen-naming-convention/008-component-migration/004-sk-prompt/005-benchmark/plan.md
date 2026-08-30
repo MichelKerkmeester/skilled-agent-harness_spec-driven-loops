@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: sk-prompt benchmark artifact names (020 phase 004.005)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark/plan]"
 description: "Implementation plan for phase 005 of the sk-prompt kebab-case program: rename authored benchmark directories, classify generated raw output, update active paths, and preserve benchmark semantics."
 trigger_phrases:
   - "sk-prompt benchmark implementation plan"
   - "sk-prompt phase 005 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
@@ -25,6 +24,7 @@ _memory:
     answered_questions:
       - "Authored candidates currently observed are live_final, router_final, and router_mode_a."
       - "Raw run/archive output is generated and must be dispositioned before any rename."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/005-benchmark"
 ---
 # Implementation Plan: sk-prompt benchmark artifact names
 

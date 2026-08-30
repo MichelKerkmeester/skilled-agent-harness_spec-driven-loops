@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Playbook Standard and Fleet Normalization BUILD Leaf"
+title: "Implementat [sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization/implementation-summary]"
 description: "Scoped FIX-leaf evidence for per-file routing-gold classification, explicit corpus overrides, fixtures, and packet doctrine updates."
 trigger_phrases:
   - "playbook package validator implementation"

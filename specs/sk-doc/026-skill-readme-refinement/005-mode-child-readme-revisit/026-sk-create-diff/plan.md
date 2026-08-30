@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 026-sk-create-diff skill README rewrite"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff/plan]"
 description: "Rewrite the sk-create-diff mode skill README purpose-first on the refined template, bump the version field to 1.1.2.0, add a changelog entry and validate the result."
 trigger_phrases:
   - "phase 026 plan"

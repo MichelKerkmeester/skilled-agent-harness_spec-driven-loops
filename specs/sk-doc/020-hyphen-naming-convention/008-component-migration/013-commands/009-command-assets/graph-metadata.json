@@ -20,9 +20,9 @@
       "command asset closure tasks",
       "residual command reference tasks",
       "command template path tasks",
-      "command asset closure checklist",
-      "residual command path verification",
-      "command template reference verification"
+      "command asset residual decision",
+      "command asset ownership boundary",
+      "cross-namespace pointer decision"
     ],
     "key_topics": [
       "command",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       ".opencode/commands/deep/assets/compiled/README.md",
       ".opencode/commands/scripts/README.md"
@@ -66,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -189,31 +182,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The commands surface stores workflow, presentation, legacy, compiled, fixture, and reference-like files under several namespace asset directories",
     "created_at": "2026-07-14T15:18:37Z",
-    "last_save_at": "2026-08-29T13:10:06.715Z",
+    "last_save_at": "2026-08-30T07:20:04.232Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:29c9d98eb51cc1d80468434788a7f678bf0057bf06192c888ec2aa469769b983",
+    "source_fingerprint": "sha256:c60254a24602f0b67cf8477d493f7c0ff36dc0aad54439e142b7ee722a110546",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "8dfe5d5eac851988154507e49dc33ce74af87561868cf3dcb003c6e853778da1",
-      "plan.md": "e737b50f5d4962a6825178195fefefc9db1c551bf42ffd8790e64df089f878b4",
-      "tasks.md": "4b6f5e93f476a68eb6ce97f745765489b3e7fb7c7e8d2b8ba83dcef8a4fdb423",
-      "checklist.md": "08d636d48317d28191ee40d3af149d88bb393f9ee4c9c219a02076b151f01c7a",
-      "decision-record.md": "9fe642ee2e8008ea361ea1bc04496bead1788ce61e6e2bcb31c0a628cfc4c1d6"
+      "spec.md": "336314bd8040affae7414ba6232c2c68627671dba5c2d13fcd60b1473f397e1c",
+      "plan.md": "eacd001ab7da8224be57f7e3f08ac2cce68cd92a888a94c24af5c3596b462cc3",
+      "tasks.md": "d05be0909dac9947a105346b133dd771d28a82be888394a71fc4f20778349cdc",
+      "decision-record.md": "184ce59c512908e32d16ec85bef202270a7da278aa64329654553a09a5694df3"
     },
     "last_active_child_id": null,
     "last_active_at": null

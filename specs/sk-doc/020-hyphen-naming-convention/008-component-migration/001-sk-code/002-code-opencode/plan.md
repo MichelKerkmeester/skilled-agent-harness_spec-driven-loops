@@ -1,13 +1,12 @@
 ---
-title: "Implementation Plan: code-opencode filesystem names (020 phase 008/002)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode/plan]"
 description: "Plan for renaming code-opencode assets, playbook resources, references, and benchmark labels through a semantic map, then repairing OpenCode resource paths and validating language-specific discovery."
 trigger_phrases:
   - "code-opencode naming implementation plan"
-  - "OpenCode packet rename plan"
-  - "OpenCode resource path repair"
+  - "opencode packet rename plan"
+  - "opencode resource path repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode"
 ---
-
 # Implementation Plan: code-opencode filesystem names
 
 <!-- SPECKIT_LEVEL: 2 -->

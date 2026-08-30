@@ -19,10 +19,10 @@
       "/create:testing-playbook plan",
       "testing playbook command tasks",
       "/create:testing-playbook tasks",
-      "testing playbook command checklist",
-      "/create:testing-playbook checklist",
       "testing playbook command adr",
-      "/create:testing-playbook decision record"
+      "/create:testing-playbook decision record",
+      "testing playbook command implementation summary",
+      "/create:testing-playbook summary"
     ],
     "key_topics": [
       "testing",
@@ -35,8 +35,8 @@
       "template",
       "plan",
       "tasks",
-      "checklist",
-      "adr"
+      "adr",
+      "decision"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/commands/create/README.txt",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -194,29 +187,34 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repo now has a stable manual testing playbook contract, but there is no dedicated create command that can generate it reliably",
     "created_at": "2026-04-12T09:02:50.174Z",
-    "last_save_at": "2026-08-29T15:22:01.043Z",
+    "last_save_at": "2026-08-30T07:16:15.800Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ca89d1038095e1795f06318f0d2b717a1f9a081cf1424d249ea936d4df1a3c6e",
+    "source_fingerprint": "sha256:d69c1b9a7a520a003e86082e240bed87d8622f240eb5de89110bcb88eee14544",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "37ade01d44c46c811894b6829bbb349ef0d18229e04170a2182b0063c440bb1f",
-      "plan.md": "45ac05f17be4d1c76a980e457df44071ea379d0276ac324452af4665f9f7e8b2",
-      "tasks.md": "384d3f8812502075ebaf547b5c67fa1b2c54c1cccba8c9562e28c1de92c9163f",
-      "checklist.md": "966fc7bbfdda57c32366206c7ffa4f966d6e22659bd6a741a3052df6af65a0f1",
-      "decision-record.md": "e4f4f67dfe091641d79ff54c2e3722dd962184031cbf3856e41a93c7595ed2f1",
-      "implementation-summary.md": "2cfedf665ff2a00c677e5213dc54e456015e047f1223dc7ae02a3b9d1a343d45"
+      "spec.md": "2b7c018f0b776d819fdd946cd1fc2cb96be6745ee7df58c71886535deca35aa8",
+      "plan.md": "0b5a24730a06f0ffb01cc2dc02a225d620683b89a658455bcee3a807f4031498",
+      "tasks.md": "ab6249f7ebfde0ef2b6a986c2b306cf2acdb197414d457d5fa97f70cb5d2eec3",
+      "decision-record.md": "e8ba446280391b963c9d109bb70cf6e134f26eca41ac83caf66503c831d24469",
+      "implementation-summary.md": "3ae9af36a6fed3081d755696144e2ddfad3cc7d8f389961f2a7e8ed190962de7"
     },
     "last_active_child_id": null,
     "last_active_at": null

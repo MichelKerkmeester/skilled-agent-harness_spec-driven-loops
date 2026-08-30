@@ -1,13 +1,12 @@
 ---
-title: "Tasks: code-opencode filesystem names (020 phase 008/002)"
+title: "Tasks: code-opencode [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode/tasks]"
 description: "Execution tasks for the code-opencode filesystem rename and resource-reference closure."
 trigger_phrases:
   - "code-opencode naming tasks"
-  - "OpenCode packet rename tasks"
-  - "OpenCode reference repair tasks"
+  - "opencode packet rename tasks"
+  - "opencode reference repair tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/002-code-opencode"
 ---
-
 # Tasks: code-opencode filesystem names
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -21,8 +21,8 @@
       "phase 036 tasks",
       "deep alignment readme tasks",
       "mode readme rewrite tasks",
-      "phase 036 checklist",
-      "deep alignment readme verification"
+      "deep alignment readme summary",
+      "phase 036 implementation summary"
     ],
     "key_topics": [
       "deep",
@@ -36,38 +36,22 @@
       "phase",
       "plan",
       "tasks",
-      "checklist"
+      "summary"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-deep-loop/deep-alignment/README.md",
-      ".opencode/skills/system-deep-loop/deep-alignment/changelog/v1.0.0.2.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment/checklist.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "tasks.md",
-      "implementation-summary.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.0.0.2.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-deep-loop/deep-alignment/changelog/v1.0.0.2.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -87,9 +71,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment/checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -99,9 +83,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
         "source": "derived"
       },
       {
@@ -199,27 +183,38 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The deep-alignment README at `.opencode/skills/system-deep-loop/deep-alignment/README.md` still carries the older tabular reference-card style and predates the pilot standard",
     "created_at": "2026-08-04T08:34:52.328Z",
-    "last_save_at": "2026-08-04T18:43:05.723Z",
+    "last_save_at": "2026-08-30T07:20:36.121Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad8e43dba6517ad1c944c08d093128fe0b2cba6dbec96dbace86a159519d62a2",
+    "source_fingerprint": "sha256:05c287f437a9a130b55fb686aae1e96d5d17db5d5b48334815b0c1c8343dbaac",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "3d3df3799fa3678299821356b23d628a8dec76b8f0ca5c260b0046e95e7bbb13",
-      "plan.md": "4af9fefdae6390b8da58f50b5073ca4d137563ed8d588524c41bf9f824f194d4",
-      "tasks.md": "960ee2cff6eccae367f4d7696bab1354d8b211cb98b13f14f6ae711643dc477c",
-      "checklist.md": "c53ae9b346ab3ccfea198590e49095c8f2fa5d30ab14869be76372ab4c4da01c",
-      "implementation-summary.md": "32a66bee19cb8d250687f30477525f1018f6b394ea74c067b92d3b46dbe4e599"
+      "spec.md": "e14a7168286aad61b05f31f0f7872662acb6c2130efa99ed7c9ea7d6ca215451",
+      "plan.md": "3c7ff3b9dd638aa0ba4bc44b51d7ce375900a5900d51d8adf46e34a67cd2d35a",
+      "tasks.md": "d74485c5fca6ef5b6903240ded077d70690ca3684781197d594c63c262c5cded",
+      "implementation-summary.md": "480e2a38d3f0f45046ce30d6cfc949f18ef7d04caf0ab2e09cca8edcfe7d1446"
     },
     "last_active_child_id": null,
     "last_active_at": null

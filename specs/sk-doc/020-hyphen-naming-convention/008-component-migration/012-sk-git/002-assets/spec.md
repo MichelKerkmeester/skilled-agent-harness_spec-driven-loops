@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-git assets (020 phase 008/012/002)"
+title: "Feature Specification: sk-git [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets/spec]"
 description: "SUPERSEDED by concurrent v4 work, which already executed the three sk-git asset renames (committed on skilled/v4); the live asset surface is fully kebab-case. This phase is now VERIFY-ONLY: confirm the three kebab targets exist, no source spelling survives in any active pointer, and template content contracts are intact."
 trigger_phrases:
   - "sk-git assets kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "asset template pointer closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/002-assets"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

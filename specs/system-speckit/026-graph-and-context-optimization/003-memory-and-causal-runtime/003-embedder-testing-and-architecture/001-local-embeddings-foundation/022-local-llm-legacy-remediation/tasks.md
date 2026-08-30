@@ -1,11 +1,11 @@
 ---
-title: "Tasks: Local-LLM legacy remediation (post-021 review)"
+title: "...runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation/tasks]"
 description: "Per-batch task list with acceptance checks; one cli-codex dispatch per batch + final re-review."
 trigger_phrases:
   - "022 tasks"
   - "local-llm legacy remediation tasks"
 importance_tier: "important"
-contextType: "remediation"
+contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Local-LLM legacy remediation (post-021 review)

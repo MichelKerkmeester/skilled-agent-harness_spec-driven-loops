@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Devin manual-testing playbook"
+title: "Implementati [cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook/implementation-summary]"
 description: "Authored and executed the cli-devin manual-testing playbook package: 20 DV-NNN scenarios across nine categories, all run live against devin 3000.2.17 with 19 PASS and 1 by-design SKIP."
 trigger_phrases:
   - "devin manual testing playbook summary"

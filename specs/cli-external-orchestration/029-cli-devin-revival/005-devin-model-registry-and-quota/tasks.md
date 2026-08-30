@@ -1,7 +1,8 @@
 ---
-title: "Tasks: Devin model registry and quota restoration"
+title: "Tasks: Devin model [cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota/tasks]"
 description: "Task breakdown for the model-registry and CI-gate restoration: swe-1.6 entry, 3 sibling executor rows, swe-1.6.md card, and the CI script's cli_cards/cli_skills/CLI_EXECUTOR_HUB_METADATA restorations."
-trigger_phrases: ["devin model registry tasks"]
+trigger_phrases:
+  - "devin model registry tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-code-mode component migration (020)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/spec]"
 description: "The mcp-code-mode surface still contains snake_case directory, reference, asset, and manual-playbook names. This phase parent defines seven independent contracts that move permitted filesystem names to kebab-case while preserving Python names, tool-mandated names, generated history, and non-filesystem identifiers."
 trigger_phrases:
   - "mcp-code-mode component migration"
@@ -20,7 +20,6 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose and child phase map only; detailed plans, tasks, checklists, and decisions live in the children. -->

@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: remove transition aliases (020 phase 009)"
+title: "Implementation Plan: remove transition [sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases/plan]"
 description: "Implementation Plan for phase 009 of the 020 kebab-case filesystem-naming program: remove the bounded coexistence aliases after the physical migration is complete and make unsupported legacy names fail closed."
 trigger_phrases:
   - "remove transition aliases implementation plan"
   - "hyphen naming phase 009 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases"
@@ -22,6 +21,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Alias removal is allowed only after the phase 002 coexistence window and physical-root migration are proven closed."
+parent: "sk-doc/020-hyphen-naming-convention/009-remove-transition-aliases"
 ---
 # Implementation Plan: Remove transition aliases
 

@@ -1,7 +1,11 @@
 ---
-title: "Session Handover Document: cli-devin revival (029)"
+title: "Session Handover Document: cli-devin revival (029) [cli-external-orchestration/029-cli-devin-revival/handover]"
 description: "Phase 011 reconciled current Devin hook truth, aligned eleven runtime READMEs, restored the Cursor route-guard discovery mirror, and removed obsolete secret-bearing Zed MCP registrations. Provider-side credential rotation remains an operator action."
-trigger_phrases: ["cli-devin handover", "029 handover", "Devin hook truth", "runtime README parity"]
+trigger_phrases:
+  - "cli-devin handover"
+  - "029 handover"
+  - "devin hook truth"
+  - "runtime readme parity"
 importance_tier: "important"
 contextType: "general"
 _memory:

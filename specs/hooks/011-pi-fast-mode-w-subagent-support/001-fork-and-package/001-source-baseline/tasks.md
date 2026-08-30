@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1 source-baseline"
+title: "Tasks: Phase 1 source-baselin [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline/tasks]"
 description: "Task ledger for creating the isolated upstream source baseline."
 trigger_phrases:
   - "source-baseline tasks"

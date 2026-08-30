@@ -1,8 +1,13 @@
 ---
-title: "Handover: sk-design mode-consolidation research"
+title: "Handover: sk-design [sk-design/012-sk-design-program/001-research/006-mode-consolidation-research/handover]"
 description: "State handover for the five-iteration mode-consolidation deep-research run: all iterations complete, synthesis pending, verdicts and resume path recorded."
+trigger_phrases:
+  - "handover"
+  - "design"
+  - "006"
+  - "mode"
 importance_tier: "important"
-contextType: "handover"
+contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/001-research/006-mode-consolidation-research"
@@ -20,7 +25,6 @@ _memory:
       - "Foundations fate: fold into design-interface as a named subworkflow"
       - "Styles fate: stays hub-shared, engine facade is the compatibility boundary"
 ---
-
 # Handover: sk-design mode-consolidation research
 
 <!-- SPECKIT_TEMPLATE_SOURCE: handover | v2.2 -->

@@ -1,13 +1,12 @@
 ---
-title: "Implementation Plan: command asset emitters (020 phase 003 child 004)"
-description: "Inventory every `/create:*` asset emitter, update only its generated path and filename rules, and verify representative auto/confirm routes against the sibling generator and phase 002 consumer contracts."
+title: "Implementation [sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters/plan]"
+description: "Inventory every /create:* asset emitter, update only its generated path and filename rules, and verify representative auto/confirm routes against the sibling generator and phase 002 consumer contracts."
 trigger_phrases:
   - "create command asset emitter implementation plan"
   - "create auto confirm naming plan"
   - "hyphenated command asset outputs"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
@@ -20,6 +19,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
 ---
 # Implementation Plan: Command Asset Emitters
 

@@ -1,7 +1,9 @@
 ---
-title: "Decision Record: Devin MCP-host integration"
+title: "Decision Record: [cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration/decision-record]"
 description: "4 ADRs governing the Devin MCP-host integration phase: two-tier permission policy, additive-phase confirmation, embedding tier choice, working-directory/cold-bootstrap contract."
-trigger_phrases: ["devin mcp host ADR", "devin two-tier permission policy"]
+trigger_phrases:
+  - "devin mcp host adr"
+  - "devin two-tier permission policy"
 importance_tier: "normal"
 contextType: "general"
 _memory:

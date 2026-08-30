@@ -1,5 +1,5 @@
 ---
-title: "Tasks: deep-review filesystem names (020 phase 007/004)"
+title: "Tasks: deep-rev [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review/tasks]"
 description: "Execution tasks for renaming deep-review resources and repairing state, report, catalog, playbook, and command path consumers without changing review contracts."
 trigger_phrases:
   - "deep-review tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "review packet path repair tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/004-deep-review"
 ---
 # Tasks: Deep-review filesystem names
 

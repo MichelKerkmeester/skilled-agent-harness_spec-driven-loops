@@ -20,9 +20,7 @@
       "sk-code kebab-clean census",
       "sk-code skill gate tasks",
       "sk-code subtree rollup tasks",
-      "sk-code final naming census",
-      "sk-code rollup gate checklist",
-      "sk-code kebab-clean verifier"
+      "sk-code final naming census"
     ],
     "key_topics": [
       "sk-code",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-code/README.md"
     ],
@@ -65,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,21 +187,20 @@
     ],
     "causal_summary": "Independent child phases can pass while a cross-boundary snakecase filesystem name, stale reference, missing exemption",
     "created_at": "2026-07-14T15:17:12Z",
-    "last_save_at": "2026-08-29T13:10:07.461Z",
+    "last_save_at": "2026-08-30T07:19:19.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:e2dad4e20ef518a5b3276f51514fa0cba23dd59421900174e0ae5a1d3beaa44e",
+    "source_fingerprint": "sha256:3786eaf8d0c193e904c9eb124827430c862483d6d750633871ed5a31675406fb",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "576e7ddfcc70a4effdd1e096964d8a4ff7e03f5d4847f7324d2d0c3712ef1615",
-      "plan.md": "f19d04c9a01cee4facfa420a4501b090efb8009a4235d2383d80971ae3198283",
-      "tasks.md": "f3fdd3ef89f02463994d344ac31afcb08b82f0de140274b9286a2722ec6d9fb0",
-      "checklist.md": "06b50c3408673d782a0e25e97dd462110ff3ae299893e92abcb548834186f14a"
+      "spec.md": "450b1b79fe9a3bef66b4bdd8d059fadcac16ee9277fd79ade768790409c6cce8",
+      "plan.md": "6abaf1dba352acb4aa1b0caa364761f50d12d71e6c67f783f6b428776509d652",
+      "tasks.md": "e734d257e384c1d4ad50005498f2e378da68b2efd1847955c7ae70a0b30a8ab5"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-spec-kit component migration"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/spec]"
 description: "Lean phase parent for the kebab-case filesystem-name work across the system-spec-kit MCP surface, scripts, templates, references/assets, shared/runtime paths, feature catalog, manual testing playbook, verification evidence, and final subtree gate."
 trigger_phrases:
   - "system-spec-kit naming phases"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 system-spec-kit component migration"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
@@ -30,8 +29,8 @@ _memory:
       - "Kebab-case is the canonical form for in-scope filesystem names; Python .py files and Python package directories remain exempt."
       - "Tool-mandated names, generated/lockfile/vector/checkpoint artifacts, test magic, identifiers/keys, and frozen history remain outside rename scope."
       - "Each child owns its path and reference closure; phases 010 and 011 verify evidence, and phase 012 is the rollup gate."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + child phase map only; detailed plans, tasks, checklists, and decisions live in the children. -->

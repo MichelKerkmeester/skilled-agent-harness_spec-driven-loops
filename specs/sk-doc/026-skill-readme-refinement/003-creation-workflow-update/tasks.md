@@ -1,5 +1,5 @@
 ---
-title: "Task List — Phase 003 — creation workflow README template wiring"
+title: "Task List — Phase 003 — creation workflow [sk-doc/026-skill-readme-refinement/003-creation-workflow-update/tasks]"
 description: "Sequenced tasks for wiring both README templates into the create-skill workflow."
 trigger_phrases:
   - "phase 003 tasks"

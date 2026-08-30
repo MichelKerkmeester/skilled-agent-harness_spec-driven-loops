@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 025-sk-create-command README rewrite"
+title: "Implemen [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command/implementation-summary]"
 description: "Purpose-first rewrite of the sk-create-command README on the refined template, version bump to 1.0.2.0, changelog entry and full verification closeout."
 trigger_phrases:
   - "implementation summary 025"

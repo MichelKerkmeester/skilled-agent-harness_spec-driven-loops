@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 011 mcp-magnific mode skill README rewrite"
+title: "Tasks: Phase 011 mcp-magnific [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/011-mcp-magnific/tasks]"
 description: "Task list for the purpose-first rewrite of the mcp-magnific mode skill README with version bump, changelog entry and validation."
 trigger_phrases:
   - "phase 011 tasks"

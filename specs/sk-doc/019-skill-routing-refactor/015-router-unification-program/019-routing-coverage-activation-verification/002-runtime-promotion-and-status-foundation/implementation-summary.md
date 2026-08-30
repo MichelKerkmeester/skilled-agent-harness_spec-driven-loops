@@ -1,9 +1,9 @@
 ---
-title: "Implementation Summary: Runtime Promotion & Status Foundation (P0)"
+title: "...gram/019-routing-coverage-activation-verification/002-runtime-promotion-and-status-foundation/implementation-summary]"
 description: "Completion record for the compiled-routing P0 foundation. Implemented and committed in 4153cbebd8: closure promotion to .opencode/bin/lib/compiled-routing/, eligibility/engine split, status probe, ENV entry, tri-state flag, breadcrumbs, and the durable no-spec-import rule — all built behind the still-off SPECKIT_COMPILED_ROUTING flag. Compiled routing stayed byte-identical to legacy and no hub was lit."
 trigger_phrases:
   - "runtime promotion status foundation planned summary"
-  - "compiled routing P0 foundation status"
+  - "compiled routing p0 foundation status"
 importance_tier: "critical"
 contextType: "implementation"
 _memory:

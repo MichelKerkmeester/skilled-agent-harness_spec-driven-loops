@@ -107,15 +107,16 @@
     ],
     "causal_summary": "The system-deep-loop surface contains snake_case directories and files across runtime, five workflow packets, the root manual-testing playbook, and benchmark storage. This phase parent defines eleven independently reviewable child contracts that move only in-scope filesystem names to kebab-case, repair path references, and preserve the program exemption boundary.",
     "created_at": "2026-07-14T15:17:00Z",
-    "last_save_at": "2026-08-29T14:54:21.462Z",
+    "last_save_at": "2026-08-30T07:19:39.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:9cee4f457abadef54c1b730d799d79fc077485c327c2f57b2c548207a5bb8969",
+    "source_fingerprint": "sha256:cfccca2b929ac30db2da1032174131fac6727830904f7d00d3c103d630c00b84",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d2797a695760c2e21b32029f749eac36cd9a42897f809df84ea32cfe97a0bc61"
+      "spec.md": "f9c1c7a10db33d8c4a8fdd6a5878c875c683b7f24b917b62dcbf6f56b51579a2"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify",
     "last_active_at": null

@@ -22,9 +22,9 @@
       "013-skdoc legacy template cleanup tasks",
       "tier 4 sk-doc remediation tasks",
       "audit remediation task list",
-      "013-skdoc verification checklist",
-      "tier 4 sk-doc cleanup validation",
-      "legacy template debt checklist"
+      "013-skdoc legacy template cleanup summary",
+      "tier 4 sk-doc remediation complete",
+      "legacy template debt implementation summary"
     ],
     "key_topics": [
       "008-remove-sk-doc-legacy-template-debt",
@@ -43,25 +43,17 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
-      "spec.md"
+      ".opencode/skills/system-spec-kit/README.md"
     ],
     "entities": [
       {
-        "name": "README.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "hook_system.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/references/config/hook_system.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -77,21 +69,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "spec.md",
+        "name": "README.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
@@ -191,31 +177,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Eligible",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc template alignment audit on the last 40 commits scanned 384 documentation files and surfaced 93 MISALIGN-HIGH + 177 MISALIGN-MEDIUM",
     "created_at": "2026-04-29T11:05:00.000Z",
-    "last_save_at": "2026-07-17T17:19:09.160Z",
+    "last_save_at": "2026-08-30T07:16:25.707Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:faee0173f8d1b9cd4dc3a82c876c2c3d61cb13bf75d6e8eae82fc7e7b4588d2f",
+    "source_fingerprint": "sha256:68f561d4a6194bc911d3b49965706c0f7f30e76b8d9fa6040dbf68d4427c66ad",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "5c4bfa53c2e86337edb253e66376a529c7f0d1d1d393d122e3695a54a80814e1",
-      "plan.md": "0037660d6c2b11b1c7ff2926d23d4deac5a441896e132a34151e89489ae20e01",
-      "tasks.md": "14567823677affcbc663d37dfea0ce6b54f615288efed2c625936ff541925066",
-      "checklist.md": "c6bd26f493f366499a1920f803c3b5e257067eac499a7169f7df3b155b657358",
-      "implementation-summary.md": "69a0b0a90a6418be9a65da5300e3f61e16c48841455873d5d6c25d2d60204025"
+      "spec.md": "a4f53e8888c3544eb1f6988bb458739f4eeaa9822fe3120565841c7be0ebb8b6",
+      "plan.md": "f2ed884813569ae6a17fc3040bbe00ccc020bf31cda86469599e4bdb9323db2a",
+      "tasks.md": "689096a4a87e454d05edff0d5c99fe49be7ad2915c7e6c3182e8b60adc1a193f",
+      "implementation-summary.md": "42384ddfed4867f0a2db67924a4579167be275ea3c79eff07a2a48fda6895591"
     },
     "last_active_child_id": null,
     "last_active_at": null

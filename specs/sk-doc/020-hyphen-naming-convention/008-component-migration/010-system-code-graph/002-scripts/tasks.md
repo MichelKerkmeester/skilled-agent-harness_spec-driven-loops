@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-code-graph scripts"
+title: "Tasks: system-code [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts/tasks]"
 description: "Concrete tasks for the code-graph script filename inventory, conditional rename closure, exemption proof, and no-op evidence."
 trigger_phrases:
   - "system-code-graph script tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "script census tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts"
@@ -23,8 +22,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The current two script filenames are already kebab-case; a verified no-rename result is valid."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts"
 ---
-
 # Tasks: system-code-graph scripts
 
 <!-- SPECKIT_LEVEL: 2 -->

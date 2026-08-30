@@ -1,13 +1,12 @@
 ---
-title: "Tasks: cli-opencode component naming (020 phase 005.002)"
+title: "Task [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode/tasks]"
 description: "Tasks for the cli-opencode component rename: map eight reference files and six assets, update path-valued consumers, preserve schema and dispatch semantics, and verify delegated ownership."
 trigger_phrases:
   - "cli-opencode naming tasks"
-  - "OpenCode path map tasks"
+  - "opencode path map tasks"
   - "cli-external phase 002 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
@@ -24,6 +23,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The candidate set excludes the nested manual-testing-playbook tree."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/002-cli-opencode"
 ---
 # Tasks: cli-opencode component naming
 

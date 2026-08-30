@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cli-external-orchestration hub root and shared boundary (020 phase 005.001)"
+title: "...doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared/plan]"
 description: "Implementation plan for the cli-external-orchestration root/shared boundary: capture the live root census, protect exact router contracts, apply only owned path mappings, and keep playbook and benchmark ownership delegated."
 trigger_phrases:
   - "cli-external hub root implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 001 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
@@ -25,6 +24,7 @@ _memory:
       - "A later execution census must re-check the absent shared/ boundary."
     answered_questions:
       - "The current root-owned map is empty; delegated playbook and benchmark paths remain outside it."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
 ---
 # Implementation Plan: cli-external-orchestration hub root and shared boundary
 

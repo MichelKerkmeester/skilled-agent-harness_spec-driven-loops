@@ -1,12 +1,12 @@
 ---
-title: "Decision Record: Phase 13 deep-review remediation"
+title: "Decision Record: Phase 13 [system-deep-loop/032-deep-alignment-mode/013-review-remediation/decision-record]"
 description: "Judgment calls and honest deferrals for the deep-review remediation packet: the deep-alignment security-boundary reconciliation (F002), the executor-contract remove-not-implement decision (F004), and the autonomous-termination deferral (F010)."
 trigger_phrases:
   - "deep-alignment remediation decision record"
   - "deep-alignment security boundary deferral"
   - "deep-alignment executor contract decision"
 importance_tier: "normal"
-contextType: "decision"
+contextType: "planning"
 ---
 # Decision Record: Phase 13 deep-review remediation
 

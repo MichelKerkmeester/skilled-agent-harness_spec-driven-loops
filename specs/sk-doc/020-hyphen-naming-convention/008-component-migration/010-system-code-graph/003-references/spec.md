@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-code-graph references"
+title: "Feature Specific [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references/spec]"
 description: "Rename the seven snake_case reference files in the system-code-graph surface to kebab-case and repair every Markdown link, path hint, and documentation pointer without changing reference content identifiers or policy keys."
 trigger_phrases:
   - "system-code-graph references naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "reference path closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references"
@@ -29,8 +28,8 @@ _memory:
       - "The references tree contains seven snake_case Markdown files under config, readiness, and runtime."
       - "The mcp_server/assets and mcp_server/tests/assets gold-query JSON files are already kebab-case and are not reference-file rename targets."
       - "Reference keys, path-hint values used as identifiers, code identifiers, tool IDs, and frontmatter fields retain their existing spelling."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

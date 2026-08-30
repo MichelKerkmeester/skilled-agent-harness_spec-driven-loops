@@ -18,8 +18,6 @@
       "hyphen naming phase 002 implementation plan",
       "root-name consumer migration tasks",
       "hyphen naming phase 002 tasks",
-      "root-name consumer migration checklist",
-      "hyphen naming phase 002 checklist",
       "root-name consumer migration summary",
       "hyphen naming phase 002 implementation"
     ],
@@ -43,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "manifest/consumer-manifest.md"
     ],
@@ -64,12 +61,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -181,37 +172,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Catalog",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The catalog/playbook root + index names are consumed by a network of runtime paths, not just the classifier: the classifier is a symlink plus a real file, the Lane C loader + generator, parent-skill-check.cjs, post-edit-router.cjs, package_skill.py, and an INVERSE guard that currently rejects the hyphenated state. All",
     "created_at": "2026-07-13T14:34:05.520Z",
-    "last_save_at": "2026-08-29T13:10:15.172Z",
+    "last_save_at": "2026-08-30T07:19:09.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e74f32ad96a7ce752982c5020a8f74969eac0cd081b6b4122b9e6a51e65cc5f",
+    "source_fingerprint": "sha256:6208f96e1101ee101ad90c3c977b527071b257177bc3d0585d8f45ad88f52667",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "5865b14373e6e2fbdaa56bc3af9c72bbb921f09b70efe903eca08b9911f14623",
-      "plan.md": "cc5e5416e9000c295fa6f95e522e3a90269e63fad7eea0bc167cbbe5d8fc80eb",
-      "tasks.md": "859b7f590642026959f1cffcdc8475f15127f14e639a6659fbc6e80846442929",
-      "checklist.md": "42e8f7b20459862ad03b4fec8a87abef9a6e163817f3177d6418f22cea5f7156",
-      "implementation-summary.md": "258791715289073fa2aaee79d71c230485d1506c20c804c21c3411501fafd092"
+      "spec.md": "04c007421ef4d029fda97a20f571b42b401ce0ecb907cbd842c367f9bf6c6821",
+      "plan.md": "2d836b98d5362780ee1bf25132b635faaff9e9644aa19ece97a4c7b245f7bc57",
+      "tasks.md": "239799a842e1fd84c07810704fa45dbaab78cac044d517af4ddbe3ddef58a749",
+      "implementation-summary.md": "28f3cba5596ade88c6cbda8f4cde3660e5f8e202033561a641f0006375e0b665"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 3 process-propagation"
+title: "Implementation Plan: [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/003-process-propagation/plan]"
 description: "Add a deterministic child-process fixture and document one-directional handoff behavior."
 trigger_phrases:
   - "process-propagation plan"

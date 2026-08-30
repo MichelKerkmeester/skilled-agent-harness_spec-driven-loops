@@ -42,7 +42,7 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Feature Specific",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -80,15 +80,16 @@
     ],
     "causal_summary": "A route decision can blur classification, authority acquisition, and execution",
     "created_at": "2026-07-18T04:39:05.757Z",
-    "last_save_at": "2026-07-24T10:52:33.258Z",
+    "last_save_at": "2026-08-30T07:16:17.225Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b1797d96ada8b573d0a6650897a0caf52961eead242beb6f6f3a0669a4edad7c",
+    "source_fingerprint": "sha256:47bbb9323b5929778ba793e825423c85af0c41193ad73d14f5913827babeb62e",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "0e7508ee8abad8633bb69c9591fabb00baf5260afbf8a71a03197a45ed341381"
+      "spec.md": "ea5dfca2dbb4c80e572109d598efa43c094760c6efc73dca0276ae700a6a2487"
     },
     "last_active_child_id": null,
     "last_active_at": null

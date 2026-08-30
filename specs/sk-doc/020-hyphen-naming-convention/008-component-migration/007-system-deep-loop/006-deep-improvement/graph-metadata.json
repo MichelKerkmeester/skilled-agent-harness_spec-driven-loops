@@ -21,8 +21,8 @@
       "deep-improvement tasks",
       "improvement lane kebab-case naming tasks",
       "deep improvement benchmark path repair tasks",
-      "system-deep-loop deep improvement checklist",
-      "deep-improvement naming verification"
+      "system-deep-loop improvement decisions",
+      "deep-improvement naming decision record"
     ],
     "key_topics": [
       "deep-improvement",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,31 +180,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The deep-improvement packet has 22 underscore-bearing directory families and 250 underscore-bearing files across three improvement lanes, benchmark assets, playbooks, references, and scripts. This phase renames the in-scope authored names to kebab-case, repairs the shared loop-host and benchmark path closure, and protects Python files, package directories, generated output, and data contracts.",
     "created_at": "2026-07-14T15:17:52Z",
-    "last_save_at": "2026-08-29T10:00:34.357Z",
+    "last_save_at": "2026-08-30T07:19:41.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:19a056c21468a6f0f0a5cc904bdad0e41f1ee7b3113022eaaff200cba11724f7",
+    "source_fingerprint": "sha256:fdf2a61e33621a7ef9ed67dcfba011e35f1def4638f84fb9a33f89dba7e7e736",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "15a095a3dea7d2d22b359dba68c79e2d1ae4f3f3a6eb27bf7f7d64679377eacc",
-      "plan.md": "bb73d470cfb71ceec177ae8232c376921e37360a1cde3f3785b05900511702c4",
-      "tasks.md": "58dacf0a61e9193b66d9aa381d51a620505384b3754ad6c62f35b4829f3e310e",
-      "checklist.md": "5992ce2bdc131f546990603f33e85ffd33a44fefd5257e37b25b78b0d8108344",
-      "decision-record.md": "d1a0f86db29b93f0713b291979b3e7b6be15566ca23880d94c7e4fe31355c55f"
+      "spec.md": "2757327f1f37efc0f67e9b0de91f9057aae7a571be5701973fcead093450598e",
+      "plan.md": "2e37510ee34f279e216bfdaacbbde2c0b6feadabe6b308aa189c0cbdf789b212",
+      "tasks.md": "28f5883befeee4f25fd57271991e72497ccb70affa5eb52c7b393eb9cf7657fb",
+      "decision-record.md": "4028754ab3940b7f2f07f8441034b90025b0f2de1d2a39895d183f0d91ca10b9"
     },
     "last_active_child_id": null,
     "last_active_at": null

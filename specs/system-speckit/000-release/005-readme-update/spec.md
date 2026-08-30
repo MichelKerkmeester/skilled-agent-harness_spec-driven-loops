@@ -1,3 +1,16 @@
+---
+title: "Phase 005 — Root README Update (Opus, surgical) [system-speckit/000-release/005-readme-update/spec]"
+description: "Refresh the public root README.md to the v4 state — targeted edits, no regeneration."
+trigger_phrases:
+  - "phase"
+  - "005"
+  - "root"
+  - "readme"
+  - "update"
+  - "spec"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Phase 005 — Root README Update (Opus, surgical)
 
 > Charter only. Full narrative in `../plan.md` §4 Phase 5.

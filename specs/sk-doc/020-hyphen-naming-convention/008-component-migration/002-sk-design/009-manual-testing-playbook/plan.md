@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Manual-testing-playbook (020 phase 009)"
+title: "Implementat [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook/plan]"
 description: "Execution plan for Manual-testing-playbook in the 020 sk-design naming subtree."
 trigger_phrases:
   - "manual-testing-playbook implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 manual-testing-playbook tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/009-manual-testing-playbook"
 ---
 # Implementation Plan: Manual-testing-playbook (020 phase 009)
 

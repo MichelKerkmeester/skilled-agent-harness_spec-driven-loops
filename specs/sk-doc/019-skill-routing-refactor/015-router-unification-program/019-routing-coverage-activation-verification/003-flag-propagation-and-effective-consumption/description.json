@@ -1,5 +1,5 @@
 {
-  "level": 3,
+  "level": "3",
   "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/003-flag-propagation-and-effective-consumption",
   "description": "With the flag on and a hub compiled-serving, `SPECKITCOMPILEDROUTING` today changes zero routing decisions AND surfaces nothing, for two structural",
   "keywords": [
@@ -17,7 +17,7 @@
     "two",
     "structural"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.707Z",
+  "lastUpdated": "2026-08-30T07:16:17.500Z",
   "specId": "003",
   "folderSlug": "flag-propagation-and-effective-consumption",
   "parentChain": [

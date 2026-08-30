@@ -1,5 +1,5 @@
 ---
-title: "Tasks: fixture corpus and dry-run harness (020 phase 005.003)"
+title: "Task [sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/tasks]"
 description: "Tasks for deterministic disposable fixtures and a dry-run harness covering engine plans, exemptions, collisions, references, dynamic sites, idempotency, rollback, and zero-scan failure."
 trigger_phrases:
   - "fixture corpus tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "rename tooling scenario tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
@@ -25,6 +24,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The harness has no apply path to the real migration worktree."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
 ---
 # Tasks: Fixture Corpus and Dry-Run Harness
 

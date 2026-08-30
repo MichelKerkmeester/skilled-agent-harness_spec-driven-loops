@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 022 sk-create-agent README revisit (rewrite per refined template)"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/plan]"
 description: "Rewrite or align the sk-create-agent mode skill README against the refined README template from phase 001 and the mcp-obsidian exemplar, sync the version field, add the changelog entry and validate every gate."
 trigger_phrases:
   - "phase 022 plan"

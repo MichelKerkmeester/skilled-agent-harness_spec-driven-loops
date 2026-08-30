@@ -17,7 +17,6 @@
       "identity-config-compat plan",
       "config compatibility plan",
       "identity-config-compat tasks",
-      "identity-config-compat checklist",
       "identity-config-compat implementation summary"
     ],
     "key_topics": [
@@ -29,10 +28,10 @@
       "plan",
       "compatibility",
       "tasks",
-      "checklist",
       "implementation",
       "summary",
-      "changing"
+      "changing",
+      "package"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -40,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".pi/settings.json"
     ],
@@ -61,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -188,27 +180,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Changing the package identity can strand an existing fast-mode configuration if the loader only looks at a new path",
     "created_at": "2026-08-16T09:08:03Z",
-    "last_save_at": "2026-08-29T15:21:53.186Z",
+    "last_save_at": "2026-08-30T07:18:53.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6bbc573176b154a3cff13ca3fe0c0a0842f8b185b7294ad41eed9d36fb67a10",
+    "source_fingerprint": "sha256:b82a70865c151134a599bbaa0a6f50ec7fa4aef041f4a98cd1196ae8e84a35c7",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "bf176c8cd0e2d7c830207a27ba483101fe06a30be183d82bbeb32ac307829952",
-      "plan.md": "d79557a5f5296fa0e471342ddb190b7020fbff7ba186ae8f52aafe4395630280",
-      "tasks.md": "01cc659f1477641454187ae722c600beb6d967e80702ea6c339dab685881d38b",
-      "checklist.md": "ffd7f9574a9e593d7bcd4ee408b76b74253c3a4ee440a71d33f5af8232302c15",
-      "implementation-summary.md": "ab94a3c5a39aa41aff550fa3dfeb002257af72d0c2b1ea2cd0ccf33836b83d16"
+      "spec.md": "31f419e343747452dcafc964ca1a3b4e664baf14e075879bb353b54feb1442d7",
+      "plan.md": "7c638209837b38d13c1ac22aefff23566a6218a4697c6eda8b8a2b2fa8bd39f6",
+      "tasks.md": "bca6e16063c82712d8a7ca9da1c9f467aff6d72c4ce3c9b37064cea0bc0c1954",
+      "implementation-summary.md": "426cca4d9e1dfe7a2930ef5f69da7ddcf0f9b82ed068c4102dd9fdb90d44bef9"
     },
     "last_active_child_id": null,
     "last_active_at": null

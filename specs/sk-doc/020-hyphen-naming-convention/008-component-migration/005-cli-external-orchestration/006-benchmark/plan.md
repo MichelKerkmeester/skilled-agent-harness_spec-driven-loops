@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cli-external-orchestration benchmark naming (020 phase 005.006)"
+title: "Implemen [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark/plan]"
 description: "Implementation plan for the cli-external-orchestration benchmark boundary: prove the current .gitkeep-only baseline, classify execution-time authored/generated artifacts, update active paths, and preserve benchmark semantics."
 trigger_phrases:
   - "cli-external benchmark implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 006 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark"
@@ -25,6 +24,7 @@ _memory:
     answered_questions:
       - "The current benchmark inventory is .gitkeep only."
       - "No benchmark fixture, profile, storage-guide, report, or generated run is present in the live surface."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/006-benchmark"
 ---
 # Implementation Plan: cli-external-orchestration benchmark naming
 

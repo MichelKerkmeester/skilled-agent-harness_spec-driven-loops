@@ -20,9 +20,7 @@
       "review packet reference closure",
       "deep-review tasks",
       "deep review kebab-case naming tasks",
-      "review packet path repair tasks",
-      "system-deep-loop deep review checklist",
-      "deep-review naming verification"
+      "review packet path repair tasks"
     ],
     "key_topics": [
       "deep-review",
@@ -43,8 +41,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -66,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specific",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -98,12 +95,6 @@
       {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "no",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -172,43 +163,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The deep-review packet contains 15 underscore-bearing directory families and 96 underscore-bearing files across review dimensions, severity, state, convergence, playbooks, and assets. This phase renames those in-scope paths to kebab-case and repairs their consumers without changing review findings, convergence, state, or tool contracts.",
     "created_at": "2026-07-14T15:17:50Z",
-    "last_save_at": "2026-08-29T10:00:31.749Z",
+    "last_save_at": "2026-08-30T07:19:41.128Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:ed09467e92fc843d11b42cbd938dadd2b14204b1f222880efd140216b99283d5",
+    "source_fingerprint": "sha256:bb4e9d22f0ced00e89bc2d32d0233f95787b6e53dcd0c8164467fb9f150e7b78",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "cfc0e6c214ba8e0c8d0c475e3272968f37993284165c516d593ff8ff6faee318",
-      "plan.md": "8b530f6a43ea4c14293f7dcfefffd0992c258dddec1aaa6ce1d1e2e203305b92",
-      "tasks.md": "00373687caf23a5185e7fb3ee05b8cb422a1fe92184e2eb3297d0a5c28416a16",
-      "checklist.md": "083b472663a82ebe9cffd08c98d3b81e68283fcb51963fa913ecf61cd75403d3"
+      "spec.md": "cc12a2e60d89b2657db6bbac0ef55af9c9683c23e7d62449f2f7b2d364979594",
+      "plan.md": "33762b688544dff8bc752ed485a5729c20a17831fb8897d3a8ceb2fc108a7cec",
+      "tasks.md": "345b2685969971c8dff7562a0398fd7b772dfdefa991cc6cf87bc4f109841d53"
     },
     "last_active_child_id": null,
     "last_active_at": null

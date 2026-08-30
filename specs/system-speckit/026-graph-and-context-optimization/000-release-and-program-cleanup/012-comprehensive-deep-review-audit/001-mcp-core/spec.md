@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: MCP Memory Mutation + Save + Reconcile Review Slice"
+title: "...graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core/spec]"
 description: "Deep-review slice targeting the spec-kit MCP memory mutation, save pipeline, and embedding-reconcile path for correctness, security, and traceability drift."
 trigger_phrases:
   - "mcp core review"

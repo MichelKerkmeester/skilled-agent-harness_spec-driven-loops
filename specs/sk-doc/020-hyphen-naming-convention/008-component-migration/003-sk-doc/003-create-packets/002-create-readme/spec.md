@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-readme resource names"
+title: "Featu [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme/spec]"
 description: "The create-readme packet contains an install_guide directory and snake_case template/reference filenames. This phase renames those non-exempt resources to kebab-case and updates documentation and audit-script path references while keeping Python scripts and template payload keys exact."
 trigger_phrases:
   - "create-readme resource naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "create-readme template rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/002-create-readme"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

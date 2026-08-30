@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop manual-testing-playbook names (020 phase 007/008)"
+title: "Feat [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook/spec]"
 description: "The root system-deep-loop manual-testing-playbook tree has five underscore-bearing category directories and 20 underscore-bearing Markdown files, including its index. This phase renames the authored categories and scenarios to kebab-case and repairs playbook, benchmark, and router references while preserving scenario IDs and prompt content."
 trigger_phrases:
   - "system-deep-loop manual playbook naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "system-deep-loop playbook filesystem names"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook"
@@ -23,8 +22,8 @@ _memory:
       - "The root playbook has five underscore-bearing category directories and 20 underscore-bearing Markdown files, representing 19 scenarios plus the index."
       - "Scenario IDs, frontmatter fields, prompt vocabulary, and JSON keys remain unchanged; only filesystem names and path-valued links move."
       - "Nested playbooks inside workflow packets are owned by their component phases, not this root-playbook child."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

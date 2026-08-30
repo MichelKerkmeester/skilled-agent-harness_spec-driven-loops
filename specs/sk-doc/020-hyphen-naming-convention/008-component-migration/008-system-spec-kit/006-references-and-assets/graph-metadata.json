@@ -36,8 +36,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -56,12 +55,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -171,37 +164,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit reference and asset surfaces contain a broad set of underscore-bearing Markdown filenames, plus MCP documentation and curated benchmark report files. This phase renames permitted reference/asset files and updates links and pointers while keeping tool-mandated names, generated artifacts, Python files, keys, and frozen history within their exemptions.",
     "created_at": "2026-07-14T15:18:01Z",
-    "last_save_at": "2026-08-29T13:10:13.802Z",
+    "last_save_at": "2026-08-30T07:19:45.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:dae4778dc0abfd5a7c53c44b48f7dc8af3a15cf2708788bb96b3274a5882dd1f",
+    "source_fingerprint": "sha256:8181dd06c0f9794cbc82065444f6f1647d4c3aa21957e19fb7128a04160e8b41",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "eeea7b4d115408b3484b8e1803ebfecb7e4b00708a640dde60868c38d60a0423",
-      "plan.md": "4fc868a0b94c2e3ff671b706f2e3d1e1eb08eb2d0c94380e7e8fa4fa52f8728e",
-      "tasks.md": "918a4bf40a402a0d62c9c87dc09b765ea0d9df5cc347a58bb97d569f0769cff5",
-      "checklist.md": "0c15abf26d76c1f353b6c699ad45fa83e7a667c6718131ab2ad1509c9d2d1e7f"
+      "spec.md": "194a084b538041c406b114b6ee6277efeb788c0448afb11e75d33b49f242f3e4",
+      "plan.md": "ce51a9a40719a75d7fcc86c0dd3be6a01dfe24bc7f9a1cd68751bb1287e65ed4",
+      "tasks.md": "862dd996da4dd677c1112b5efe09b7d4cee584d4ce409a0d9592194244704809"
     },
     "last_active_child_id": null,
     "last_active_at": null

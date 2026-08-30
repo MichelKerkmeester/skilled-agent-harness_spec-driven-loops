@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 2 install-transition"
+title: "Impl [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition/implementation-summary]"
 description: "Closeout record for the reversible installed extension transition."
 trigger_phrases:
   - "install-transition implementation summary"

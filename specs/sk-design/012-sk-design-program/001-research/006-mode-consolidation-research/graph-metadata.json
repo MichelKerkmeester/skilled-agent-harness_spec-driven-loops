@@ -14,7 +14,13 @@
       "sk-design mode consolidation",
       "design mode bloat",
       "reduce sk-design modes",
-      "styles database fate"
+      "styles database fate",
+      "deep",
+      "research",
+      "design",
+      "mode",
+      "006",
+      "handover"
     ],
     "key_topics": [
       "sk-design",
@@ -27,8 +33,8 @@
       "styles",
       "database",
       "fate",
-      "grown",
-      "seven"
+      "deep",
+      "research"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -183,7 +189,7 @@
     ],
     "causal_summary": "sk-design has grown to seven modes — interface, foundations, motion, audit, md-generator, the design-mcp-open-design transport, plus a large `styles` resource tree",
     "created_at": "2026-07-25T13:39:24.267Z",
-    "last_save_at": "2026-08-29T15:22:00.069Z",
+    "last_save_at": "2026-08-30T07:16:11.780Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,11 +197,12 @@
       "research/research.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:68dcf17751f16e8d6f9d8d104e17b07c2b7ab9f28c57fb1a62dd7dbd9fac90d6",
+    "source_fingerprint": "sha256:016bf414ba1c4ff736ae01f1a55ae76729d7c156badcf481e730f023c2c84a3a",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "2d8e32920cc7f8acf9f973749f021cea6ce2a1b56ec58d5d07737e987bb77b75",
-      "research/research.md": "8e656fc79f5fc2afe98977016ad146c37d4437f005edf427a560b931934f37a7",
-      "handover.md": "62ddad776c96d5f4f9df030e498857551729c1460141604f8c467d4fa571a624"
+      "spec.md": "ce7607b737a3a45b52e33b84c3240c2ecaaaa504cc4c7a9c2123784a1e4f457d",
+      "research/research.md": "f46b446a41a8c450942ef8e7c5666202218223666b28b1ebd35d1057cbfe1ef2",
+      "handover.md": "a3e0d5a785a4891f95f80442d4efc7b225391ffd3cd3d178bab0c6bf8530cd6c"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -17,9 +17,7 @@
       "create playbook resource implementation plan",
       "manual testing template rename plan",
       "create playbook resource tasks",
-      "manual testing template rename tasks",
-      "create playbook resource checklist",
-      "manual testing template rename verification"
+      "manual testing template rename tasks"
     ],
     "key_topics": [
       "create-manual-testing-playbook",
@@ -40,8 +38,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The create-manual-testing-playbook packet contains snake_case template and prompt-voice resource filenames. This phase converts those non-exempt names to kebab-case and updates packet-local links while preserving playbook schema fields and scenario identifiers.",
     "created_at": "2026-07-14T15:22:37Z",
-    "last_save_at": "2026-08-29T10:00:44.721Z",
+    "last_save_at": "2026-08-30T07:19:27.054Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:e73069c512625f2544adb3631f34e23189e38023b920bc96dd0d4b62de7e6f21",
+    "source_fingerprint": "sha256:16f1f1d21127f3359cd371998b2198a16deeee34dd0d82eefe54308e79da52e4",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f6de202f1c0c9b00597f08628b02629c4ee8fbf2ada6e66c4da184754a0d0d36",
-      "plan.md": "5108549b325a4142672c947bbcb0e64781ef4334d9308723cea3019d31386627",
-      "tasks.md": "a02d68d5d9d164dbba65ec9a0bc2a94c7d5caee1655c4f18b91077e30cc0dfdb",
-      "checklist.md": "69b76b39af42815e5c602d2336a21e748a3943afb7a41533bf1bc37ee7d03223"
+      "spec.md": "0eb7d17091be1669bbfac398c43d9fe822b21cb07c72fbf86e4266f7d1519e1c",
+      "plan.md": "8a70077e531b895f9e871d47fa9b632fd1f352928760241554da5c39ea065e0d",
+      "tasks.md": "ca34b5182bffdaab173c1fd0dd2aba4a9bc101a68936f1d82bcaec994492f444"
     },
     "last_active_child_id": null,
     "last_active_at": null

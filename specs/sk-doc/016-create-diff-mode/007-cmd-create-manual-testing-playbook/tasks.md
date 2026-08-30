@@ -1,12 +1,11 @@
 ---
-title: "Tasks: /create:testing-playbook Command [sk-doc/007-cmd-create-manual-testing-playbook/tasks]"
+title: "Tasks: /create:testing-playbook Command [sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "testing playbook command tasks"
   - "/create:testing-playbook tasks"
 importance_tier: "normal"
 contextType: "implementation"
-template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 _memory:
   continuity:
     packet_pointer: "sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook"
@@ -15,6 +14,7 @@ _memory:
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
     next_safe_action: "Revalidate packet docs and update continuity on next save"
     key_files: ["tasks.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->"
 ---
 # Tasks: /create:testing-playbook Command
 

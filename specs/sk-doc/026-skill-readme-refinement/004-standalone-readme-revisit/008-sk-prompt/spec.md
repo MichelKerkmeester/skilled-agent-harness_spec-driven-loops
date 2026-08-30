@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 008 sk-prompt README revisit"
+title: "Feature Specification: Phase 008 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/008-sk-prompt/spec]"
 description: "Rewrite the sk-prompt skill README at .opencode/skills/sk-prompt/README.md against the refined standalone README template from phase 001 and the mcp-obsidian exemplar, purpose-first with HVR enforcement, a version bump and a changelog entry."
 trigger_phrases:
   - "sk prompt readme revisit"

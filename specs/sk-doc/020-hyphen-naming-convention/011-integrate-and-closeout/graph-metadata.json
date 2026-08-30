@@ -17,9 +17,7 @@
       "integrate and close out implementation plan",
       "hyphen naming phase 011 implementation plan",
       "integrate and close out tasks",
-      "hyphen naming phase 011 tasks",
-      "integrate and close out checklist",
-      "hyphen naming phase 011 checklist"
+      "hyphen naming phase 011 tasks"
     ],
     "key_topics": [
       "integrate",
@@ -41,8 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/checklist.md",
       ".opencode/specs/sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/decision-record.md",
       ".opencode/specs/sk-doc/020-hyphen-naming-convention/spec.md"
     ],
@@ -63,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -160,55 +150,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "File Organization",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The migration candidate may have passed the whole-repo gate against an earlier base while the integration target continues to move. This phase rebases the migration branch onto the latest base, reruns the exact phase 010 gate on the resulting commit, fast-forwards the integration target only after a green result, and closes the packet with a consistent parent rollup.",
     "created_at": "2026-07-14T15:22:43Z",
-    "last_save_at": "2026-08-29T13:10:16.861Z",
+    "last_save_at": "2026-08-30T07:20:11.960Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:0100dd40248cd5c13b53e0eb65b2c262fa8526698927f6066aaff5b9a1c94eb5",
+    "source_fingerprint": "sha256:cdff9d9fc6ae56191e741d6b2efa10b085bb2fe0d34346be9c59ded1cf17b0cd",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "188edc0d0720d57264361aa0edd6310091e16ecf1a36077a3e097a47b634337b",
-      "plan.md": "d02ce14fe475b65d8f8b108b7948c9b67508170664aa8646328e23397caa9177",
-      "tasks.md": "22df4d30bf43f4b13aa3ffbad212b6ac6dcea5d05b59b988dbfc466e52e498cc",
-      "checklist.md": "8f831518d749fd880ae8a79c2a036e55feae42a8c9f50a63c82e58ac376ce126"
+      "spec.md": "7e51dce48bab7c68f7ecca472ca55f90b54faf439a085bc8aff6409d444ae2e1",
+      "plan.md": "3d2692548f5b46dae834ebe88bf19c1c39f0c14786aea2efd83a869323e7cefb",
+      "tasks.md": "fd1443c86e4823c24e6e74694f470dbfa9e43adffedcde8a43990f1c2a5ed870"
     },
     "last_active_child_id": null,
     "last_active_at": null

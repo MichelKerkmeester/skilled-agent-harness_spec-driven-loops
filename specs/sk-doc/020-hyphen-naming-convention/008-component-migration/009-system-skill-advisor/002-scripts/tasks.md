@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-skill-advisor scripts"
+title: "Tasks: system-s [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts/tasks]"
 description: "Concrete tasks for the non-Python script filename rename, dataset reference closure, and Python exemption verification."
 trigger_phrases:
   - "advisor scripts tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "script reference closure tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts"
@@ -23,8 +22,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "Python script names and imports remain exempt."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts"
 ---
-
 # Tasks: system-skill-advisor scripts
 
 <!-- SPECKIT_LEVEL: 2 -->

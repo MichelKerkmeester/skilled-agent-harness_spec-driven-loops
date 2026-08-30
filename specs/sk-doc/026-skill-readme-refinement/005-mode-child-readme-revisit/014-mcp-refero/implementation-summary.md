@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 014 mcp-refero README rewrite"
+title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/014-mcp-refero/implementation-summary]"
 description: "Purpose-first README rewrite for mcp-refero on the refined standalone template, version 1.1.0.0, changelog entry added and every gate clean."
 trigger_phrases:
   - "phase 14 implementation summary"

@@ -1,9 +1,16 @@
 ---
-title: "Implementation Summary: drop the NN-- category-name mandate"
+title: "...rent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs/implementation-summary]"
 description: "PLANNED — will record the convention-doc de-numbering once implemented: which sections of create-feature-catalog / create-manual-testing-playbook, which templates, and which /create:* generators were changed to make the bare slug canonical, plus the grep + validate evidence."
+trigger_phrases:
+  - "rent"
+  - "027"
+  - "catalog"
+  - "naming"
+  - "convention"
+  - "implementation summary"
+  - "001"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix/001-convention-docs"
@@ -15,6 +22,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/001-deprecate-numbered-category-prefix"
 ---
 # Implementation Summary: Drop the NN-- Category-Name Mandate
 

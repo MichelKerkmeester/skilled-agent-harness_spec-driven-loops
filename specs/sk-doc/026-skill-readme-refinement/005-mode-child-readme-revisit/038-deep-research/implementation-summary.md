@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 038 deep-research mode README rewrite"
+title: "Implementati [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/implementation-summary]"
 description: "The deep-research README now opens purpose-first with a one-line pitch and a problem-first overview, documents the research state layer, and versioned at 1.15.0.0 with a changelog entry."
 trigger_phrases:
   - "implementation summary"

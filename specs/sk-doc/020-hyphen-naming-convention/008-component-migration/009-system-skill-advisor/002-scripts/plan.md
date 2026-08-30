@@ -1,13 +1,12 @@
 ---
-title: "Implementation Plan: system-skill-advisor scripts"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts/plan]"
 description: "Rename the single current non-Python script filename candidate, update its complete reference closure, and prove the Python compatibility scripts remain importable and semantically unchanged."
 trigger_phrases:
   - "system-skill-advisor scripts implementation plan"
   - "regression dataset path plan"
-  - "Python script exemption verification"
+  - "python script exemption verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "The regression dataset filename is the only current non-Python script filename containing snake_case."
       - "Python script names and import/module identifiers remain unchanged."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/002-scripts"
 ---
-
 # Implementation Plan: system-skill-advisor scripts
 
 <!-- SPECKIT_LEVEL: 2 -->

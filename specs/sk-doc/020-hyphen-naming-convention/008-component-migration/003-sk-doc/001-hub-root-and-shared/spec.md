@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-doc hub root and shared backbone"
+title: "Feature Specificat [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared/spec]"
 description: "The sk-doc hub's shared assets, references, and one CommonJS contract file use snake_case filesystem names. This phase applies the 020 kebab-case rule to those non-exempt names while preserving SKILL.md, registry metadata, Python files, facade symlink behavior, and path-versus-key boundaries."
 trigger_phrases:
   - "sk-doc hub root shared naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 hub root and shared"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

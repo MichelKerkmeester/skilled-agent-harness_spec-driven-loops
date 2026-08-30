@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-code-graph MCP server directory and manifest closure"
+title: "...-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/spec]"
 description: "Rename the system-code-graph MCP package root and permitted non-Python direct layout directories to kebab-case, then update the launcher, CLI, build, test, plugin, configuration, and documentation path closure atomically."
 trigger_phrases:
   - "system-code-graph mcp-server directory"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "plugin-bridges stress-test rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure"
@@ -31,8 +30,8 @@ _memory:
       - "The current non-Python package-boundary candidates are mcp_server, plugin_bridges, and stress_test."
       - "The visible package root has package-lock.json but no package.json; the executor must record that state and must not invent a manifest."
       - "package-lock.json, generated dist/node_modules output, test-magic directories, Python names, and tool identifiers are preserved."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

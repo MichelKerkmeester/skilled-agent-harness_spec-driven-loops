@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-doc changelog and version verification"
+title: "Feature Specification [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify/spec]"
 description: "The sk-doc component migration needs a changelog entry that names the completed rename set and records the corresponding four-part version bump. This verification phase performs no filesystem renames; it checks the released changelog evidence against the sibling phase manifests and the current skill version contract."
 trigger_phrases:
   - "sk-doc changelog verification"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 changelog verify phase"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

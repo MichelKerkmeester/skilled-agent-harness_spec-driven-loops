@@ -1,12 +1,11 @@
 ---
-title: "Tasks: create-diff naming audit"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff/tasks]"
 description: "Concrete census and verification tasks for the create-diff naming phase."
 trigger_phrases:
   - "create-diff naming audit tasks"
   - "create-diff zero-row tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/010-create-diff"
 ---
 # Tasks: create-diff naming audit
 

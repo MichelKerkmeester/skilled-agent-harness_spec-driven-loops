@@ -1,6 +1,14 @@
 ---
-title: "Plan: design-md-generator changelog/ conformance"
+title: "Plan: design-md-generator changelog/ [sk-design/014-template-conformance/004-design-md-generator/008-changelog/plan]"
 description: "Plan to audit design-md-generator's single changelog file against changelog-template.md."
+trigger_phrases:
+  - "plan"
+  - "design"
+  - "generator"
+  - "changelog"
+  - "008"
+importance_tier: "important"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/004-design-md-generator/008-changelog"

@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: create-flowchart resource names"
+title: "Im [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart/plan]"
 description: "Execution plan for the create-flowchart asset and reference rename/reference closure."
 trigger_phrases:
   - "create-flowchart resource implementation plan"
   - "flowchart asset rename plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/008-create-flowchart"
 ---
 # Implementation Plan: create-flowchart resource names
 

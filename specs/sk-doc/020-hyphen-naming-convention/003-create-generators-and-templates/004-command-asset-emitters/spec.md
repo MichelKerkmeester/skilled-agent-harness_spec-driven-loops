@@ -1,13 +1,12 @@
 ---
-title: "Feature Specification: command asset emitters (020 phase 003 child 004)"
-description: "The `/create:*` auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths. Update the emitter logic to request and write kebab-case names while leaving the asset source filenames and later on-disk renames untouched."
+title: "Feature Specif [sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters/spec]"
+description: "The /create:* auto, confirm, and presentation assets still contain output rules and examples that can emit underscore paths. Update the emitter logic to request and write kebab-case names while leaving the asset source filenames and later on-disk renames untouched."
 trigger_phrases:
   - "create command asset emitter naming"
   - "hyphenate create command outputs"
   - "create auto confirm output paths"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/004-command-asset-emitters"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

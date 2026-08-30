@@ -1,7 +1,11 @@
 ---
-title: "Feature Specification: Devin manual-testing playbook"
+title: "Feature Specification: Devin [cli-external-orchestration/029-cli-devin-revival/006-devin-manual-testing-playbook/spec]"
 description: "Author a Devin-native manual-testing playbook for the cli-devin skill: a split-document Feature Catalog with 9 category folders and 20 DV-NNN scenario files grounded in Devin's actual 2026-07 CLI surface."
-trigger_phrases: ["devin manual testing playbook", "DV-NNN scenarios", "cli-devin playbook categories", "devin hallucination fixture scenario"]
+trigger_phrases:
+  - "devin manual testing playbook"
+  - "dv-nnn scenarios"
+  - "cli-devin playbook categories"
+  - "devin hallucination fixture scenario"
 importance_tier: "normal"
 contextType: "general"
 _memory:

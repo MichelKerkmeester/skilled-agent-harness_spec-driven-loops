@@ -1,6 +1,5 @@
 ---
-title: "Implementation Plan: Automation Reality Supplemental Research [template:level_2/plan.md]"
-template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
+title: "...-context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research/plan]"
 description: "Plan for 5-iteration supplemental research extending 012's automation reality map with deep-loop graph + CCC + eval + ablation + validator auto-fire coverage and adversarial 4-P1 retest."
 trigger_phrases:
   - "013 automation supplemental plan"
@@ -20,6 +19,7 @@ _memory:
       - "research/research-report.md"
       - "research/deep-research-state.jsonl"
     completion_pct: 100
+template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 ---
 # Implementation Plan: Automation Reality Supplemental Research
 

@@ -1,7 +1,8 @@
 ---
-title: "Implementation Plan: Devin deep-loop executor support"
+title: "Implementation Plan: Devin [cli-external-orchestration/029-cli-devin-revival/002-deep-loop-executor-support/plan]"
 description: "Plan for widening EXECUTOR_KINDS to 5 members and adding a fail-closed buildDevinLineageCommand fan-out adapter for cli-devin, grounded in phase 001's live-verified Devin CLI contract."
-trigger_phrases: ["cli-devin executor support plan"]
+trigger_phrases:
+  - "cli-devin executor support plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

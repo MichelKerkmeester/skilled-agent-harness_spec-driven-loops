@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: fixture corpus and dry-run verification (020 phase 005.003)"
+title: "...hen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness/implementation-summary]"
 description: "The migration tooling now has a deterministic disposable fixture corpus that proves semantic rename, reference checking and reference rewrite behavior without changing the real worktree."
 trigger_phrases:
   - "fixture corpus implementation"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "disposable migration fixtures"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
@@ -30,6 +29,7 @@ _memory:
     answered_questions:
       - "The default command runs dry-run only and protects the exact current Git worktree."
       - "Explicit apply and rollback execute only in temporary Git repositories with both disposable opt-ins."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/003-fixture-corpus-and-dry-run-harness"
 ---
 # Implementation Summary
 

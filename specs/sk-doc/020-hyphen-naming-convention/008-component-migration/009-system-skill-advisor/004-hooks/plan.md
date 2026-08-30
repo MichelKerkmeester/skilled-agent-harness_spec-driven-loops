@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-skill-advisor hooks"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks/plan]"
 description: "Inventory advisor hook filenames, preserve the current kebab-case hook files when confirmed, repair stale registrations and references, and rename only a real non-mandated candidate found in the pinned baseline."
 trigger_phrases:
   - "system-skill-advisor hooks implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "prompt submit hook verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "The visible advisor hook filenames are already kebab-case."
       - "Stale cross-skill paths must be classified by owner before any edit."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/004-hooks"
 ---
-
 # Implementation Plan: system-skill-advisor hooks
 
 <!-- SPECKIT_LEVEL: 2 -->

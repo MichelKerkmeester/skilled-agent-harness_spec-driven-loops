@@ -1,6 +1,5 @@
 ---
-title: "Implementation Plan: MCP Stress-Cycle Doc Cleanup"
-template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
+title: "...context-optimization/000-release-and-program-cleanup/005-stress-test/001-fix-mcp-stress-cycle-doc-observability/plan]"
 description: "Single-batch doc cleanup. No runtime code touched. Each REQ is one file edit or one sidecar creation."
 trigger_phrases:
   - "001-fix-mcp-stress-cycle-doc-observability"
@@ -15,8 +14,8 @@ _memory:
     recent_action: "Strict-validator closure pass"
     next_safe_action: "Keep validators green"
     completion_pct: 100
+template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 ---
-
 # Implementation Plan: MCP Stress-Cycle Doc Cleanup
 
 <!-- SPECKIT_LEVEL: 1 -->

@@ -1,13 +1,12 @@
 ---
-title: "Feature Specification: cli-codex component naming (020 phase 005.004)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex/spec]"
 description: "The cli-codex component has underscore-separated reference and prompt-asset filenames with active links from its skill and README. This phase renames those local authored names, updates path-valued references, and preserves Codex availability, sandbox, model, and review contracts."
 trigger_phrases:
   - "cli-codex kebab-case migration"
-  - "Codex reference asset naming"
+  - "codex reference asset naming"
   - "cli-external phase 004 naming"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "The component has five snake_case reference files and two snake_case asset files outside its delegated playbook tree."
       - "SKILL.md, changelog history, CLI/data identifiers, and Python/package exemptions remain protected."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/004-cli-codex"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

@@ -19,10 +19,7 @@
       "020 design-interface tasks",
       "design-interface tasks",
       "sk-design design-interface execution",
-      "020 design-interface checklist",
-      "design-interface verification",
-      "sk-design design-interface checklist",
-      "020 design-interface gate"
+      "020 design-interface checklist"
     ],
     "key_topics": [
       "design-interface",
@@ -34,17 +31,16 @@
       "tasks",
       "execution",
       "checklist",
-      "verification",
-      "gate",
-      "mode"
+      "mode",
+      "underscore-bearing",
+      "procedure"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -66,9 +62,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specificat",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -97,12 +93,6 @@
       },
       {
         "name": "1. METADATA",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. PROBLEM & PURPOSE",
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
@@ -178,37 +168,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The design-interface mode has underscore-bearing procedure, asset, and reference names while its SKILL.md and README.md cite those paths directly.",
     "created_at": "2026-07-14T15:17:14Z",
-    "last_save_at": "2026-08-29T13:10:04.636Z",
+    "last_save_at": "2026-08-30T07:19:20.552Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:e421f382dcb659f9cc68fc5c9c1204a457dae0158954496409c8391dce7de3c3",
+    "source_fingerprint": "sha256:8aa8f9f84107fbe2f483aa38fbbad3916ce689382abbc0644445fa0f9b7cb48b",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "ca416436b649bb924241c53c33bfeab2e7497409c98fd74e90a858cacce10886",
-      "plan.md": "831ffaacbf0a6ff18d56fe16645446b66fe00c3fae94b02727ac32ac0216618f",
-      "tasks.md": "743b8fd38e87f4c24ca2e808465561dd98e9e17059d4885a1362d30c568d58b5",
-      "checklist.md": "2d5943c455b910c787ccab6e9e9544cc8f8ec8532bbe9642a1c437d4965852be"
+      "spec.md": "95462176215e87adddc81d9effe0ecb1f6128659a4fd6092b6c796b525153135",
+      "plan.md": "6e80e621e53347eadb9eee98052fdb811083fd3ece300b314909940f601b9cfa",
+      "tasks.md": "2c652fc74b7fba8e33014977c0858a49386ebdb569a2467f0a2b9c47ce7e3499"
     },
     "last_active_child_id": null,
     "last_active_at": null

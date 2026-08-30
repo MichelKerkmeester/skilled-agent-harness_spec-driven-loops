@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 021 sk-design-md-generator README revisit (rewrite)"
+title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/plan]"
 description: "Implementation plan for the purpose-first rewrite of the sk-design-md-generator mode skill README per the refined template and the mcp-obsidian exemplar, with a version bump, a changelog entry and validation."
 trigger_phrases:
   - "phase 021 plan"

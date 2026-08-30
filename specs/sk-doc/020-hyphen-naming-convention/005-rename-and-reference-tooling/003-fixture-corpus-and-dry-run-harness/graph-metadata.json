@@ -21,8 +21,8 @@
       "fixture corpus tasks",
       "dry-run harness tasks",
       "rename tooling scenario tasks",
-      "fixture corpus checklist",
-      "dry-run harness verifier"
+      "fixture corpus implementation",
+      "rename tooling dry-run results"
     ],
     "key_topics": [
       "fixture",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_core.py",
       ".opencode/skills/sk-doc/shared/scripts/rename_tooling_fixture_harness.py",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -191,31 +184,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The rename engine and reference checker need representative, repeatable evidence before a real migration run. This phase builds disposable fixtures and a dry-run harness for semantic names, exemptions, collisions, references, idempotency, rollback, and empty scans.",
     "created_at": "2026-07-14T15:16:49Z",
-    "last_save_at": "2026-08-29T13:10:15.170Z",
+    "last_save_at": "2026-08-30T07:19:13.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:afa664d54d5de0fe3a0a9ed137304f3f6360f3d5303ffda188ecf383a2469ae9",
+    "source_fingerprint": "sha256:901f045c7febb1bc84c0e67c73f138642afb19ae1b64b235e8f1eed9eedcb1c9",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "01c45319e777ab4456125c56e61cde67b8815657d6daef68589be283daa958ab",
-      "plan.md": "0aa07260e45a82c4967756b937597ed8c601a3f262cbeb73498d0f5c3abae842",
-      "tasks.md": "a964a088294c1b5a22ec99a05eee4b12b012cdf034788f7b6b2cdce6ae0fb579",
-      "checklist.md": "b559a841ce559327c819e82eceb5edd0efae71c254b4693a601042c46dedeba2",
-      "implementation-summary.md": "30546f76f20f101c57da0b2c8b2fd75944cf24cf30bd822151385c3a6a7d0093"
+      "spec.md": "8692cebe901f6232157a5d32128220077d869548a17d2729dd8977ab83e93cf1",
+      "plan.md": "b04acaa9e255ba149ec1562f2f865502cdb2c267c89de04ae0db74bb8d2aa138",
+      "tasks.md": "df25135f25c18c4868179d281414b0e36a7a9a96f817c60072fd075913e0d4a2",
+      "implementation-summary.md": "170da9722bec1cf56fea8b909fb79e4f9fde13bfe18e2f6dec11784549310cd4"
     },
     "last_active_child_id": null,
     "last_active_at": null

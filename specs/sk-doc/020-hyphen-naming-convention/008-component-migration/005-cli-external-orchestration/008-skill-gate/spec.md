@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cli-external-orchestration subtree rollup gate (020 phase 005.008)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate/spec]"
 description: "This read-only rollup gate aggregates phases 001–007 and proves that the complete cli-external-orchestration naming surface is kebab-clean within the 020 exemption boundary. It performs no new rename, reference rewrite, changelog repair, or metadata mutation."
 trigger_phrases:
   - "cli-external subtree rollup gate"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 008 acceptance"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
@@ -27,8 +26,8 @@ _memory:
     answered_questions:
       - "The gate aggregates sibling evidence and does not absorb new migration work."
       - "Approved Python/package, tool-mandated, generated, frozen, and content-key exemptions remain scope-aware."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

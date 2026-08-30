@@ -1,5 +1,5 @@
 ---
-title: "Tasks: command asset and reference closure (020 phase 008/013/009)"
+title: "Tasks: command [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets/tasks]"
 description: "Bounded residual tasks for command asset ownership, kebab-case targets, and complete active path closure."
 trigger_phrases:
   - "command asset closure tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "command template path tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/009-command-assets"
 ---
-
 # Tasks: Command asset and reference closure
 
 <!-- SPECKIT_LEVEL: 2 -->

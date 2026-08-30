@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-skill-advisor subtree skill gate"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate/spec]"
 description: "Aggregate the eight system-skill-advisor child-phase contracts and prove that the whole naming surface is kebab-clean within the program exemption boundary. This is a rollup gate with no new migration work."
 trigger_phrases:
   - "system-skill-advisor skill gate"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "system-skill-advisor migration closure"
 importance_tier: "critical"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/008-skill-gate"
@@ -26,8 +25,8 @@ _memory:
       - "Phase 008 performs no new rename or source migration."
       - "Every sibling phase must pass its own L2 checklist before the subtree gate can pass."
       - "The final scan is scope-aware: Python names, Python package directories, tool-mandated/generated/lockfile names, identifiers, keys, frozen history, and intentional non-path mentions are excluded."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

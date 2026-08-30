@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-server directory and manifest closure (020 component 011 phase 001)"
+title: "...020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure/tasks]"
 description: "Tasks for the semantic mcp_server to mcp-server directory rename and its package, installer, diagnostic, metadata, and entrypoint reference closure."
 trigger_phrases:
   - "mcp-server closure tasks"
   - "mcp-code-mode phase 001 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/001-mcp-server-dir-and-manifest-closure"
 ---
 # Tasks: mcp-server directory and manifest closure
 

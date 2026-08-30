@@ -21,8 +21,8 @@
       "phase 021 tasks",
       "md generator readme tasks",
       "sk design readme rewrite tasks",
-      "phase 021 checklist",
-      "md generator readme verification"
+      "phase 21 implementation summary",
+      "md generator readme closeout"
     ],
     "key_topics": [
       "design",
@@ -34,40 +34,24 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
-      "sk-design-md-generator"
+      "implementation",
+      "summary",
+      "closeout"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-design/sk-design-md-generator/README.md",
-      ".opencode/skills/sk-design/sk-design-md-generator/changelog/v1.1.0.0.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/checklist.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/sk-design-md-generator/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.1.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-design/sk-design-md-generator/changelog/v1.1.0.0.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -87,12 +71,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -102,6 +80,12 @@
         "name": "skill-readme-template.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
         "source": "derived"
       },
       {
@@ -199,27 +183,38 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-design-md-generator mode skill generates markdown from design artifacts",
     "created_at": "2026-08-04T08:34:46.630Z",
-    "last_save_at": "2026-08-04T18:12:16.608Z",
+    "last_save_at": "2026-08-30T07:20:30.368Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4f18d941ffec19cd0a17816a7229b9911b385bac40c9459d6eb17690c40e7ffa",
+    "source_fingerprint": "sha256:c31236118113508196f5b1329a7213ecd3b0076dd892f58a513c834d5cdcf4a7",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "cba662a71b98e7ab0b95494d54508f28779b09a42c35f596efff07c48b5d8963",
-      "plan.md": "c3c078f3a9dd88315dd280dd3c3d7bf3b3cf2a016d62c7849bf3c12b82d42b1e",
-      "tasks.md": "c0c7715cea2ff8c8ef7c1ec653b7113d36ce7fd7a3705629d6d65da8a5bd19ac",
-      "checklist.md": "e7aa9066bfc3ca0af0d3427cdfc5d907d44becea06e25481458bec8aee34d38d",
-      "implementation-summary.md": "cb5904fe1bd4bed0efcde1e54c9dc40d01cf205d54100f69750581b28b9b1bf9"
+      "spec.md": "009200966f527d7fee1f607075467660d8e10429f44b600f5053a5d422c4a38e",
+      "plan.md": "d224acd897785e33772063582d6c4ce6d96848e4f227d3d3aff420d6508fd8cc",
+      "tasks.md": "d7c015dc9d43db6ad739d8ab670a288e863dc8d09c8f2cd062d7bcbb1552ba27",
+      "implementation-summary.md": "b0a1f72c61702f33b14893ca09b6c85c88297ea3d3ddcfad5976dbee9e8df476"
     },
     "last_active_child_id": null,
     "last_active_at": null

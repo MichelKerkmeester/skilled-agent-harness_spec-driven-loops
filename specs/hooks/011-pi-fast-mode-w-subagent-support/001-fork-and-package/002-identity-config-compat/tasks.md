@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2 identity-config-compat"
+title: "Tasks: Phase 2 [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/002-identity-config-compat/tasks]"
 description: "Task ledger for package identity, config compatibility, safe persistence, and request guards."
 trigger_phrases:
   - "identity-config-compat tasks"

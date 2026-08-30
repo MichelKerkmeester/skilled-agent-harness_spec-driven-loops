@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 6 cli-pi README rewrite"
+title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi/implementation-summary]"
 description: "The cli-pi README now opens purpose-first with a one-line pitch and a problem-first overview, carries the three output contracts as a capability table, documents the conductor model and the conservative self-invocation guard, and is versioned at 1.4.0.0 with a changelog entry."
 trigger_phrases:
   - "implementation summary"

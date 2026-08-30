@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Fix the Shared Naming Standard and Wire the Kebab Guards"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/001-fix-shared-standard-and-wire-guards/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "core-standards kebab tasks"

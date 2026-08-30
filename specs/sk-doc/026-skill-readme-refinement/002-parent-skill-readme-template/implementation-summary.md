@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary — parent-skill (hub) README template"
+title: "Implementation Summary — [sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/implementation-summary]"
 description: "Phase 002-parent-skill-readme-template implementation summary."
 trigger_phrases:
   - "phase 002-parent-skill-readme-template summary"

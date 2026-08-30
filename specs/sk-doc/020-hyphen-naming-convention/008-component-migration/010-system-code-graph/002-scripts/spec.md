@@ -1,14 +1,13 @@
 ---
-title: "Feature Specification: system-code-graph scripts"
+title: "Feature Specificati [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts/spec]"
 description: "Inventory non-Python script filenames in the system-code-graph surface, rename any remaining snake_case candidate to kebab-case, and update every source, registry, fixture, and documentation reference without touching Python script names or import identifiers."
 trigger_phrases:
   - "system-code-graph scripts naming"
   - "code graph script filename audit"
-  - "kebab-case non-Python scripts"
+  - "kebab-case non-python scripts"
   - "code graph script reference closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/002-scripts"
@@ -29,8 +28,8 @@ _memory:
       - "The current script inventory contains doctor.sh and score-seeded-ppr-retrieval.mjs; both filenames are already kebab-case."
       - "No non-Python snake_case script filename is present in the inspected system-code-graph tree."
       - "Python filenames, Python import directories, script identifiers, tool IDs, and data keys remain exempt."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

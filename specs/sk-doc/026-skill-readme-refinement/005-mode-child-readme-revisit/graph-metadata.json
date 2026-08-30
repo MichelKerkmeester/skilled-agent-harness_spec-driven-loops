@@ -145,15 +145,16 @@
     ],
     "causal_summary": "Phase parent: one child phase per mode (child) skill, each revisiting that skill's README against the refined template from phase 001, using mcp-obsidian as the exemplar.",
     "created_at": "2026-08-04T07:12:17.718Z",
-    "last_save_at": "2026-08-29T15:22:04.038Z",
+    "last_save_at": "2026-08-30T07:20:22.332Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:bbc2b81d5ca34fd7844f6c0f3a3a787b8b0e2b5484f1af02762a814d4e2991a0",
+    "source_fingerprint": "sha256:80ff166e38c12f1e335541d4627d02b06157b5502f731e1b9d79694519bb08b2",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "2c3c4d64b88bd0778148fad944bc8f37ee461fbdb72ddc8d0cc1146d09ed9c99"
+      "spec.md": "9e8232e6db806c80cb374716aa257e2670fb793221ebcc020eb5d3d74961bb73"
     },
     "last_active_child_id": "sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/037-deep-improvement",
     "last_active_at": "2026-08-04T18:47:15.566Z"

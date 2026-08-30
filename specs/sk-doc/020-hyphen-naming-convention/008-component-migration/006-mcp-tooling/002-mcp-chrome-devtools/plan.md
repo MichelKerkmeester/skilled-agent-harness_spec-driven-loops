@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-chrome-devtools naming closure (020 phase 002)"
+title: "Implementatio [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools/plan]"
 description: "This plan renames the Chrome DevTools component's underscored playbook, scenario, reference, and install-guide paths using an explicit map, then repairs links and path-derived metadata while preserving identifiers and tool contracts."
 trigger_phrases:
   - "mcp-chrome-devtools naming implementation plan"
   - "chrome devtools playbook path repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/002-mcp-chrome-devtools"
 ---
 # Implementation Plan: mcp-chrome-devtools Naming Closure
 

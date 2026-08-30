@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-skill resource names"
+title: "Featur [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill/spec]"
 description: "The create-skill packet uses snake_case directories and template/reference filenames throughout its parent-skill and ordinary skill resource trees. This phase converts those non-exempt filesystem names to kebab-case and updates generator and documentation references while preserving SKILL.md, manifests, and Python scripts."
 trigger_phrases:
   - "create-skill resource naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "parent skill template rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

@@ -1,11 +1,17 @@
 ---
-title: "Deep Research Synthesis: sk-doc parent-hub conversion (phase 001)"
+title: "Deep Research Synthesis: sk-doc parent-hub conversion [sk-doc/014-sk-doc-parent/001-research-and-canon/research]"
 description: "Consolidated findings from a 30-iteration GPT-5.5-fast xhigh deep research (15 breadth angles + 8 adversarial verdicts + spec-artifact passes) settling the packet set, registry/router/facade/shared specs, and migration invariants for converting sk-doc into a workflow-only parent hub."
+trigger_phrases:
+  - "deep"
+  - "research"
+  - "synthesis"
+  - "doc"
+  - "parent"
+  - "001"
+importance_tier: "important"
 contextType: "research"
-importance_tier: "high"
 parent: "skilled-agent-orchestration/125-sk-doc-parent/001-research-and-canon"
 ---
-
 # Deep Research Synthesis — sk-doc Parent-Hub Conversion
 
 ## 0. Method & confidence

@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: cli-external-orchestration manual-testing-playbook naming (020 phase 005.005)"
+title: "...naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook/decision-record]"
 description: "Design decisions for the four-tree playbook rename: keep one ownership map across hub and CLI components, rename path segments without changing scenario contracts, and resolve references against the final tree."
 trigger_phrases:
   - "cli-external manual playbook decision record"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 005 decisions"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook"
@@ -25,8 +24,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "All four playbook roots are owned by this phase; component reference/assets are not."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

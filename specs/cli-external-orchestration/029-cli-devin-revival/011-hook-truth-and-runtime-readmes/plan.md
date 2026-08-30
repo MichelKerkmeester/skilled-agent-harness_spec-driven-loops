@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Devin hook truth and runtime README parity"
+title: "Implementation Plan: Devin [cli-external-orchestration/029-cli-devin-revival/011-hook-truth-and-runtime-readmes/plan]"
 description: "Apply a source-ranked documentation correction, refresh runtime discovery mirrors, make the approved external MCP cleanup and verify every affected contract without touching unrelated concurrent work."
 trigger_phrases:
-  - "Devin hook truth plan"
-  - "runtime README alignment plan"
-  - "Zed MCP cleanup plan"
+  - "devin hook truth plan"
+  - "runtime readme alignment plan"
+  - "zed mcp cleanup plan"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

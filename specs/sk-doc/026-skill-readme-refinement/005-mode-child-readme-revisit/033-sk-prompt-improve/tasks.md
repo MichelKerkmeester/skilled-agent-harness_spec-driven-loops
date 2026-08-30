@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 033 sk-prompt-improve README revisit"
+title: "Tasks: Phase 033 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/tasks]"
 description: "Task list for rewriting the sk-prompt-improve mode README against the refined template, bumping the version, adding a changelog entry and validating."
 trigger_phrases:
   - "phase 033 tasks"

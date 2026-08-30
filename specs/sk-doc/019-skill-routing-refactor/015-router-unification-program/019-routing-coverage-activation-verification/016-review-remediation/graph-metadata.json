@@ -16,10 +16,13 @@
       "sk-doc preview review over-route",
       "authored closure unresolved hubs",
       "cutover gate clarify reject",
-      "compiled routing remediation",
-      "deep review remediation",
-      "routing parity remediation",
-      "F001 F002 F005 F007 remediation"
+      "ing",
+      "refactor",
+      "015",
+      "router",
+      "unification",
+      "plan",
+      "016"
     ],
     "key_topics": [
       "compiled",
@@ -41,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/bin/lib/compiled-route-manifest.cjs",
       ".opencode/bin/lib/compiled-routing/009-parent-hub-rollout/007-sk-doc/lib/router.cjs",
@@ -64,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -181,37 +177,42 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Two",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Two independent GPT-5.6 deep reviews (LUNA xhigh, SOL high; ten non-converging iterations each) audited the v4 compiled-routing landing (packet `013-compiled-coverage-buildout`)",
     "created_at": "2026-07-22T06:15:19.898Z",
-    "last_save_at": "2026-08-29T14:54:23.635Z",
+    "last_save_at": "2026-08-30T07:19:07.469Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5acdced8a78cfbc6240ba9766f6207a21786936ddb1bb0ddc61c76dc81a18ee5",
+    "source_fingerprint": "sha256:3c88fd422e09009c6a78d527325e3bbe1a0e3f6756fb89cf462356b9cae4a96e",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "a3e1c323fb49949e9957761672ea481bcebd883295d007fa8a44121c6d641d3e",
-      "plan.md": "33ea9976131b93f66613a990208b511ef632640b0336b7b2ef98d80f5feeb5d2",
-      "tasks.md": "958a16621449779cfcc36e7449929721d4ee1a1623ceaf5a341edcce243e1f4c",
-      "checklist.md": "7b6b4cc49915209b6b727934d0e5e81da89437b8d85bacce4ec431b27c0dc2b1",
-      "implementation-summary.md": "1fa5a8e1b2e6ca3e05735ae6714d9f33edd71c4ce0568d0137b7de9ad4b1ba60"
+      "spec.md": "990f0c02ea8825141e49e2dde1fe4cf6d91775f67a88bb6a57cd2b53dec12cfe",
+      "plan.md": "143dbcf806a3dfac652f27a4bce63c1559868063c4932acfa33a4df0ad69f1f3",
+      "tasks.md": "50b55ec1ddc8d8b7dab302e720899e8ac079502c37c4d6818d1d0b77ed5d5029",
+      "implementation-summary.md": "88ff474dfcd8c36bbdb5245a478b31f163e3e2c1a987886aa24b351ceeb7d74b"
     },
     "last_active_child_id": null,
     "last_active_at": null

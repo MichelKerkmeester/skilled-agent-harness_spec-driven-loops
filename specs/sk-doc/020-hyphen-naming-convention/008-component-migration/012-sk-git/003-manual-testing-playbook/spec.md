@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-git manual testing playbook (020 phase 008/012/003)"
+title: "Feature Specif [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook/spec]"
 description: "SUPERSEDED by concurrent v4 work, which already renamed the sk-git manual-testing-playbook tree to kebab-case (committed on skilled/v4). This phase is now VERIFY-ONLY: confirm the seven category dirs and scenario files are kebab, the GIT-001..041 identities are intact, and every index/link resolves. Re-verify the entry count against v4's actual tree (v4 release evidence = 42 files / 8 dirs vs the 49-entry authoring map)."
 trigger_phrases:
   - "sk-git manual testing kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "manual scenario path closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->

@@ -21,8 +21,8 @@
       "phase 24 tasks",
       "sk create changelog readme tasks",
       "changelog readme rewrite tasks",
-      "phase 24 checklist",
-      "sk create changelog readme verification"
+      "phase 24 implementation summary",
+      "sk create changelog readme closeout"
     ],
     "key_topics": [
       "changelog",
@@ -33,53 +33,27 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verification",
-      "sk-create-changelog",
-      "opencode"
+      "implementation",
+      "summary",
+      "closeout",
+      "sk-create-changelog"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-changelog/README.md",
       ".opencode/skills/sk-doc/sk-create-changelog/changelog/v1.0.1.2.md",
-      "tasks.md",
-      "checklist.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/checklist.md",
       ".opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md",
-      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      "spec.md",
-      "plan.md",
-      "implementation-summary.md"
+      ".opencode/skills/mcp-tooling/mcp-obsidian/README.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-changelog/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.0.1.2.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-changelog/changelog/v1.0.1.2.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/checklist.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -93,15 +67,33 @@
         "source": "derived"
       },
       {
-        "name": "readme-template.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md",
+        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/024-sk-create-changelog/tasks.md",
         "source": "derived"
       },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-changelog/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.1.2.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-changelog/changelog/v1.0.1.2.md",
+        "source": "derived"
+      },
+      {
+        "name": "readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-readme/assets/readme-template.md",
         "source": "derived"
       },
       {
@@ -199,27 +191,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-create-changelog README at `.opencode/skills/sk-doc/sk-create-changelog/README.md` still carries the older tabular reference-card style",
     "created_at": "2026-08-04T08:34:47.756Z",
-    "last_save_at": "2026-08-04T14:50:13.949Z",
+    "last_save_at": "2026-08-30T07:20:31.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f0818105c16cce5d62eef53364ed93cbc0e254dc0aa7a9ec0c9017d025b3790c",
+    "source_fingerprint": "sha256:e297d9c87ac1ac25858eab388b63acbd1456563cd943890f9c93cb5dded36ab5",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "456001d9f68141f8642bf6969a56748a4f628902ef20542441b92249f01aaa83",
-      "plan.md": "a24c5ae98b258afe7f4f6ed792b8ad4f65cbb3e215b79d189a017a03f13abeb1",
-      "tasks.md": "997bb9fa99e1b710f8155c707424e841a10a325ef366273cc0a6ae30e4d74922",
-      "checklist.md": "d88c63cfe19f64d1d92626c2af0877a4d44670f2bad287f889f112b0c1de386d",
-      "implementation-summary.md": "1e4a353e282fd0b13b534160fead030450e10e12d9aab87888f0485647ff2582"
+      "spec.md": "f3d3ed1b58254e1096efb403a84397b1c04e1019fba8e053eaf2c413119ca567",
+      "plan.md": "df61916ab59abe22744ab9e0b59f573849907a73fcfc835f90837915909cd526",
+      "tasks.md": "996bef527e0a1dceb675e319ae9cf0d32be2734e2b909944ae16476965328d81",
+      "implementation-summary.md": "6abf134b7cdd3585e63cf6f12fad5926a4a7a60e9c89740796b07dc978569857"
     },
     "last_active_child_id": null,
     "last_active_at": null

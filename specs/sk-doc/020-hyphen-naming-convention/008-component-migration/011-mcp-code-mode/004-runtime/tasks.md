@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-code-mode runtime (020 component 011 phase 004)"
+title: "Tasks: mcp-code-mode [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime/tasks]"
 description: "Tasks for the runtime filename census, no-op proof, conditional rename closure, and executable path verification."
 trigger_phrases:
   - "mcp-code-mode runtime tasks"
   - "mcp-code-mode phase 004 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/004-runtime"
 ---
 # Tasks: mcp-code-mode runtime
 

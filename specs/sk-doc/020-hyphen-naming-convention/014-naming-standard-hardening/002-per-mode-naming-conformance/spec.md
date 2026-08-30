@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Per-Mode Naming Conformance"
+title: "Feature Specifi [sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance/spec]"
 description: "Only two of about ten sk-doc modes verify kebab filenames in code; the rest state it in prose with no checker, the validation mode points authors at the stale standard doc, and one guide contradicts the on-disk kebab reality. This phase gives each generating mode a kebab conformance check and reconciles the mode docs to the canon."
 trigger_phrases:
   - "per-mode naming conformance"

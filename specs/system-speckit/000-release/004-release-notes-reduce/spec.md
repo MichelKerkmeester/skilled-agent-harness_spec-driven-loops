@@ -1,3 +1,16 @@
+---
+title: "Phase 004 — Reduce → Release Notes (Opus, this session) [system-speckit/000-release/004-release-notes-reduce/spec]"
+description: "Assemble the shipped, public-facing release-notes-v4.0.0.0.md."
+trigger_phrases:
+  - "phase"
+  - "004"
+  - "reduce"
+  - "release"
+  - "notes"
+  - "spec"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Phase 004 — Reduce → Release Notes (Opus, this session)
 
 > Charter only. Full narrative in `../plan.md` §4 Phase 4.

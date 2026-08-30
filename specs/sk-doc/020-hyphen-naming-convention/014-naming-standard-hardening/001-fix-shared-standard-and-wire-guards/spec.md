@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Fix the Shared Naming Standard and Wire the Kebab Guards"
+title: "Feature [sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/001-fix-shared-standard-and-wire-guards/spec]"
 description: "core-standards.md documented snake_case as the .md filename rule and labeled a nonexistent kebab-to-snake auto-fix. This phase reconciles the shared standard to the kebab canon and runs the repo-wide guard and its unit tests in CI."
 trigger_phrases:
   - "core-standards kebab reconciliation"

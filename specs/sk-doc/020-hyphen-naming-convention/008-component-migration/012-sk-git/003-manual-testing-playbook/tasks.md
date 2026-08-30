@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-git manual testing playbook (020 phase 008/012/003)"
+title: "Tasks: sk-git [sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook/tasks]"
 description: "Tasks for the sk-git manual-testing-playbook directory and scenario filename rename."
 trigger_phrases:
   - "sk-git manual playbook tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "playbook discovery parity tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/003-manual-testing-playbook"
 ---
 # Tasks: sk-git manual testing playbook
 

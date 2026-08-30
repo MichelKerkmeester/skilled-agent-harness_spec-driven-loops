@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 022 sk-create-agent README rewrite"
+title: "Implementa [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/implementation-summary]"
 description: "Closeout record for the sk-create-agent README conformance pass: purpose-first rewrite against the refined template, version 1.0.1.2, changelog entry v1.0.1.2.md and verification evidence."
 trigger_phrases:
   - "phase 22 implementation summary"
@@ -27,7 +27,6 @@ _memory:
     answered_questions:
       - "Target version for the rewrite: patch bump v1.0.1.2 above the changelog head v1.0.1.1, per the four-part rule that a docs update is a patch"
 ---
-
 # Implementation Summary: Phase 22 sk-create-agent README rewrite
 
 <!-- SPECKIT_LEVEL: 2 -->

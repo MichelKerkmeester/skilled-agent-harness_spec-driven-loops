@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 010 mcp-figma README rewrite"
+title: "Tasks: Phase 010 mcp-figma [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/010-mcp-figma/tasks]"
 description: "Task list for rewriting the mcp-figma skill README against the refined template with a version bump and a changelog entry."
 trigger_phrases:
   - "phase 10 tasks"

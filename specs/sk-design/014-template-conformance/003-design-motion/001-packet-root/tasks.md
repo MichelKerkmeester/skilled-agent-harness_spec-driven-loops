@@ -1,6 +1,15 @@
 ---
-title: "Tasks: design-motion packet-root conformance"
+title: "Tasks: design-motion packet-root [sk-design/014-template-conformance/003-design-motion/001-packet-root/tasks]"
 description: "Task breakdown for auditing and remediating design-motion's SKILL.md and README.md."
+trigger_phrases:
+  - "tasks"
+  - "design"
+  - "motion"
+  - "packet"
+  - "root"
+  - "001"
+importance_tier: "normal"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/003-design-motion/001-packet-root"

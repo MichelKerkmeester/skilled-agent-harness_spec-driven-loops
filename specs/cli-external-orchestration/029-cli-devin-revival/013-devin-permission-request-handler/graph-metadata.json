@@ -16,7 +16,6 @@
       "devin approval gate",
       "devin permission request handler plan",
       "devin permission request handler tasks",
-      "devin permission request handler checklist",
       "devin permission request handler summary"
     ],
     "key_topics": [
@@ -29,9 +28,9 @@
       "gate",
       "plan",
       "tasks",
-      "checklist",
       "summary",
-      "controlled"
+      "controlled",
+      "live"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -39,9 +38,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      ".devin/hooks.v1.json",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      ".devin/hooks.v1.json"
     ],
     "entities": [
       {
@@ -63,21 +61,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "hooks.v1.json",
         "kind": "config",
         "path": ".devin/hooks.v1.json",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -187,27 +179,32 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A controlled live probe (temporary unconditional-log hook wired into `.devin/hooks.v1.json`, backed up first and restored after) confirmed that `devin -p \"Create a new file at /tmp/...\"` under the CLI's default `--permission-mode auto` dispatches a real `PermissionRequest` event with payload `{hookeventname, toolname, toolinput, tooluseid, sessionid, promptid}`",
     "created_at": "2026-07-27T06:02:22.538Z",
-    "last_save_at": "2026-07-27T11:58:22.290Z",
+    "last_save_at": "2026-08-30T07:18:51.968Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b7a59be3cf95e283dd61a39b1425691da98a887f76d5192b0a293f355d227efa",
+    "source_fingerprint": "sha256:f77eb0ef87d50b276e7d11ee9291ae01b0ea51fd0eb9bb0e7a53cd167fce45a0",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "5ac1ff4d627970146a64cf95762059ec4a70bcac87d6862c6ea534830cf805fe",
-      "plan.md": "f5c28dcdd98638d18e80ca94fc915878752e75ea5a52d1bc9bb55b809f91e5b9",
-      "tasks.md": "064792a2bd89a513b6932c1ab76ec0173e669a94e8f959083bcdf33eef68a6da",
-      "checklist.md": "1b140f3fd0310cc23b81e203e388a50e86bc2d8ba708701838d061dae181e62f",
-      "implementation-summary.md": "bccc1521b4d8744551e9caba80d7a5a4f312e1caa13b9f3274d863faef5c97ea"
+      "spec.md": "ccd4251262ee5f8870a4452fa85869104eda7f7728ce4152ea3501d4030c221b",
+      "plan.md": "6b7d00f9f411d20097c8b5770f7691df863bc82f1b63ebf216fbf69362fff4f6",
+      "tasks.md": "bea9a50210d1c5db1e3d1bd9a5576000714d4b55a0a2b1a61fe1ea282d5069f3",
+      "implementation-summary.md": "21dd28a606593d49fd7dadd6a8f998a6150d085e6b6018a8ffbd8adde25420c4"
     },
     "last_active_child_id": null,
     "last_active_at": null

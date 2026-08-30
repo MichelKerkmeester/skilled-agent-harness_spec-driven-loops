@@ -1,12 +1,11 @@
 ---
-title: "Tasks: sk-doc hub root and shared backbone"
+title: "Tasks: sk-doc [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared/tasks]"
 description: "Concrete execution and verification tasks for the sk-doc hub/shared kebab-case rename phase."
 trigger_phrases:
   - "sk-doc hub shared tasks"
   - "shared backbone rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/001-hub-root-and-shared"
 ---
 # Tasks: sk-doc hub root and shared backbone
 

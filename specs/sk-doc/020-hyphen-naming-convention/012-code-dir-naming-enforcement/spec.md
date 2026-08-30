@@ -1,13 +1,12 @@
 ---
-title: "Feature Specification: code-directory naming enforcement (020 phase 012)"
+title: "Feature Specification: code-directory [sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement/spec]"
 description: "Close the naming gap the 000-011 migration never scoped: leading-underscore and __tests__ code directories inside skills. Extend the canon, broaden enforcement to code dirs, de-duplicate per-mode restatements, and rename the sk-design styles code dirs."
-parent: "sk-doc/020-hyphen-naming-convention"
 trigger_phrases:
   - "code directory naming enforcement"
   - "leading underscore db engine tests naming"
   - "naming checker code dirs scope gap"
-importance_tier: important
-contextType: planning
+importance_tier: "important"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement"
@@ -27,8 +26,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

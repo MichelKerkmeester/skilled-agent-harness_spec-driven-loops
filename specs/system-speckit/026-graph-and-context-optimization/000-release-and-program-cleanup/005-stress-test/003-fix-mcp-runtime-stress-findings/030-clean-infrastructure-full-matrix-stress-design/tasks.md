@@ -1,6 +1,5 @@
 ---
-title: "Tasks: v1.0.4 Full-Matrix Stress Test Execution Phase"
-template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
+title: "...cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/tasks]"
 description: "Future execution-phase task ledger for the full-matrix stress test. These tasks are not executed by this design packet."
 trigger_phrases:
   - "full matrix stress tasks"
@@ -25,8 +24,8 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 ---
-
 # Tasks: v1.0.4 Full-Matrix Stress Test Execution Phase
 
 <!-- SPECKIT_LEVEL: 3 -->

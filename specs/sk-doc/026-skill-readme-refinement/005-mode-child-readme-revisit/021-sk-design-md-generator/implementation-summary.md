@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 021 sk-design-md-generator README revisit (rewrite)"
+title: "Imp [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/implementation-summary]"
 description: "Closeout record for the sk-design-md-generator README purpose-first rewrite: baseline recorded, README rewritten on the refined template, version 1.1.0.0, changelog entry, HVR and validator gates clean, facts preserved."
 trigger_phrases:
   - "phase 21 implementation summary"
@@ -26,7 +26,6 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

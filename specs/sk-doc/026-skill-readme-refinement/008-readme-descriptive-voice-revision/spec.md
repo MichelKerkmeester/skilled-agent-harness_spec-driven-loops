@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 008 - README template descriptive-voice revision"
+title: "Feature Specification: Phase 008 - [sk-doc/026-skill-readme-refinement/008-readme-descriptive-voice-revision/spec]"
 description: "Revise the standalone and parent-hub skill README templates so authors produce descriptive, narrative documents in the repo root README voice instead of concise reference cards: raise prose ceilings, require a problem narrative, add a prose capability lead-in, promote the architecture diagram, add a value beat, permit a narrative hook and clarify that HVR governs clarity not sentence length."
 trigger_phrases:
   - "readme template descriptive voice"

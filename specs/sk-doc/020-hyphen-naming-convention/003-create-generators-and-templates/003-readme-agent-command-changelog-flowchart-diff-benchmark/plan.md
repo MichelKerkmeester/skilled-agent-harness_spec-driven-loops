@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: README, agent, command, changelog, flowchart, diff, and benchmark generators (020 phase 003 child 003)"
+title: "...ming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark/plan]"
 description: "Inventory seven create-* output contracts, update their packet guidance and templates, and verify each family in a disposable target with semantic kebab-case naming and explicit exemptions."
 trigger_phrases:
   - "create workflow artifact naming implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "hyphenated create output plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
@@ -20,6 +19,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/003-create-generators-and-templates/003-readme-agent-command-changelog-flowchart-diff-benchmark"
 ---
 # Implementation Plan: README, Agent, Command, Changelog, Flowchart, Diff, and Benchmark Generators
 

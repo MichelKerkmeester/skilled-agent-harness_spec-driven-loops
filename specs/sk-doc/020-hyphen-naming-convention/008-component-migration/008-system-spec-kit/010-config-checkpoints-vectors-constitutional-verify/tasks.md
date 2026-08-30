@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Config, checkpoints, vectors, and constitutional verification (020 subtree 008 phase 010)"
+title: "...ng-convention/008-component-migration/008-system-spec-kit/010-config-checkpoints-vectors-constitutional-verify/tasks]"
 description: "This verify-only phase audits the runtime agent directories and adjacent system-spec-kit config, checkpoint, vector, and constitutional surfaces for permitted snake_case filesystem names. The pinned inventory has zero rename candidates in the three runtime agent directories; generated/vector/checkpoint artifacts and tool-mandated names retain their exempt disposition."
 trigger_phrases:
   - "system-spec-kit agent directory naming audit"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "system-spec-kit phase 010"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/010-config-checkpoints-vectors-constitutional-verify"
@@ -21,8 +20,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 ---
-
 # Tasks: Config, checkpoints, vectors, and constitutional verification
 
 <!-- SPECKIT_LEVEL: 2 -->

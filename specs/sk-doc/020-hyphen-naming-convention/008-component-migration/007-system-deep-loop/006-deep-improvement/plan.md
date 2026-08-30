@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: deep-improvement filesystem names (020 phase 007/006)"
+title: "Implementat [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement/plan]"
 description: "Plan for renaming the deep-improvement three-lane surface, benchmark assets, playbooks, references, and scripts through a classified semantic map, then repairing the shared loop-host closure while preserving Python/package and generated-output boundaries."
 trigger_phrases:
   - "deep-improvement implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "deep improvement benchmark path closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
 ---
 # Implementation Plan: Deep-improvement filesystem names
 

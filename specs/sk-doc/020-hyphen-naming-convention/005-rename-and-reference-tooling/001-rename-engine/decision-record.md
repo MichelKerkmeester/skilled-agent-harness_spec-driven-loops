@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: semantic rename engine (020 phase 005.001)"
+title: "Decision Record [sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/decision-record]"
 description: "Design decisions for the semantic rename engine: dependency-closure batching, explicit source-to-target maps, exemption detection, dry-run and idempotency, filesystem-mode preservation, and journaled rollback."
 trigger_phrases:
   - "semantic rename engine decisions"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "rename exemption detection decision"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
@@ -24,8 +23,8 @@ _memory:
       - "Dependency closure, not file extension, determines batch boundaries."
       - "Exemptions are classified and reported before execution; they are not inferred from a failed rename."
       - "The engine is dry-run by default, idempotent after apply, and reversible through its own inverse journal."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

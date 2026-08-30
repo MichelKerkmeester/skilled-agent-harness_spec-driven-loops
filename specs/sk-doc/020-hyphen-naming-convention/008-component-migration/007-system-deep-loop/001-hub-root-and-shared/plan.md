@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-deep-loop hub root and shared names (020 phase 007/001)"
+title: "Implemen [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared/plan]"
 description: "Plan for classifying the hub/shared boundary, preserving exact routing and metadata names, and applying only any frozen-map candidate with its direct reference closure. The current inventory is expected to be a verified no-op."
 trigger_phrases:
   - "system-deep-loop hub shared implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "hub root path closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/001-hub-root-and-shared"
 ---
 # Implementation Plan: System-deep-loop hub root and shared names
 

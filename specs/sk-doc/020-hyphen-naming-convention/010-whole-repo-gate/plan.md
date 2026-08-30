@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: whole-repo verification gate (020 phase 010)"
+title: "Implementation Plan: whole-repo verification gate (020 [sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/plan]"
 description: "Implementation Plan for phase 010 of the 020 kebab-case filesystem-naming program: evaluate the completed migration against the scope-aware naming, reference, Git-history, and full-suite gate contract."
 trigger_phrases:
   - "whole-repo verification gate implementation plan"
   - "hyphen naming phase 010 implementation plan"
 importance_tier: "critical"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate"
@@ -24,6 +23,7 @@ _memory:
     answered_questions:
       - "The gate is a conjunction: one failed domain fails the candidate."
       - "The phase 000 baseline and frozen map are the measurement authorities."
+parent: "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate"
 ---
 # Implementation Plan: Whole-repo verification gate
 

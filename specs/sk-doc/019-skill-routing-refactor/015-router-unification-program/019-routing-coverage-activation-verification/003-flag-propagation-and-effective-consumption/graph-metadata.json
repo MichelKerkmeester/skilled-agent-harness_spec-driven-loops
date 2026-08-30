@@ -12,17 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "compiled routing flag propagation effective consumption",
-      "SPECKIT_COMPILED_ROUTING child env allowlist",
-      "compiledRoute bridge subprocess hook threading",
+      "speckit_compiled_routing child env allowlist",
+      "compiledroute bridge subprocess hook threading",
       "compiled routing flag propagation plan",
-      "compiledRoute threading implementation plan",
+      "compiledroute threading implementation plan",
       "child env allowlist consumption plan",
       "compiled routing flag propagation tasks",
-      "compiledRoute threading task list",
-      "compiled routing flag propagation checklist",
-      "compiledRoute consumption verification",
+      "compiledroute threading task list",
       "compiled routing consumption decision record",
-      "compiledRouteSummary threading decision"
+      "compiledroutesummary threading decision",
+      "serving-state fingerprint cache decision",
+      "compiled routing flag propagation implementation summary"
     ],
     "key_topics": [
       "compiled",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/bin/compiled-routing-flag-propagation.vitest.ts",
@@ -68,12 +67,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -107,12 +100,6 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Compiled Routing",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -143,6 +130,18 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -150,12 +149,6 @@
       },
       {
         "name": "Compiled Routing Flag Propagation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Begin Phase",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -195,29 +188,34 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "With the flag on and a hub compiled-serving, `SPECKITCOMPILEDROUTING` today changes zero routing decisions AND surfaces nothing, for two structural reasons this phase is scoped to fix:",
     "created_at": "2026-07-20T21:51:27.075Z",
-    "last_save_at": "2026-08-29T15:22:02.619Z",
+    "last_save_at": "2026-08-30T07:19:03.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1f0faa7da74e4bf1a1bdf47cf2619ce9253c3c7e6b53b82a6bd4d35d5f11147a",
+    "source_fingerprint": "sha256:31337cb74215785d5c7d9b5a8171e256edf7b260201ddbe71377bb0ecd8accad",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "a6d37fa24aeaf92d53d5c1024882b3499b5cd205e3a132cd0a084d66845eb83a",
-      "plan.md": "097d4f0dac0e51dc92c7e951b2d0e49058e3bc66a7b27f5615aeeee1efb05c55",
-      "tasks.md": "7d1f66058e34c6aad46b151d9624988c5389b500ff913ac2fa4762bbf27d1c45",
-      "checklist.md": "cdce0bac1a3a5a00ed319b2424ad6b665da04c5f5bad944842d300c59bb659fa",
-      "decision-record.md": "efc3497700f38f0f36767ba0d76d506596b8d412efb63d49fa4687e29ff9d256",
-      "implementation-summary.md": "f189fc3c6358fb8e214e1f0f33093da20e1ef979d73899e6b10115c8349b037c"
+      "spec.md": "3c0b99fc360b81cbc04830b69642be37e0cf4fb51ec24a2bc58e364835f84f80",
+      "plan.md": "c153e742b4ad655521fa28c134dd27ef01b2bf83a12a9af56b89e6d34fc66e20",
+      "tasks.md": "acf405a9700123309a7f9287b43cf85574dc900ca055a7d3a95ec63df4483a1b",
+      "decision-record.md": "df539272368f48066ec1cd5198e57d6d5fe0cc3d1fec025460c6873e44e27cf4",
+      "implementation-summary.md": "76b3476dd9c6ba155aba1f5ab74e37dd5599ddf2a10e8fa44e46acce4598f667"
     },
     "last_active_child_id": null,
     "last_active_at": null

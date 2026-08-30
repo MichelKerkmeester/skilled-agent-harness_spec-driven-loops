@@ -1,6 +1,13 @@
 ---
-title: "Implementation Summary: design-md-generator changelog/ conformance"
+title: "Implementation [sk-design/014-template-conformance/004-design-md-generator/008-changelog/implementation-summary]"
 description: "Planning stub — audit not yet performed for design-md-generator's single changelog file."
+trigger_phrases:
+  - "implementation"
+  - "implementation summary"
+  - "008"
+  - "changelog"
+importance_tier: "normal"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/014-template-conformance/004-design-md-generator/008-changelog"

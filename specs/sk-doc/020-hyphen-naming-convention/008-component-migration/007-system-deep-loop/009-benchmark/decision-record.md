@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: system-deep-loop benchmark names (020 phase 007/009)"
+title: "Decisio [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark/decision-record]"
 description: "L2 design decisions for the root benchmark naming phase, including storage-label scope, report/schema protections, generated output handling, and fixture/profile ownership."
 trigger_phrases:
   - "system-deep-loop benchmark decisions"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "root benchmark ownership decision"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->

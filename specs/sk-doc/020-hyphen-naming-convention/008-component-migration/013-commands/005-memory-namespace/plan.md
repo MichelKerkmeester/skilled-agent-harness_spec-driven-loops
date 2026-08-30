@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: memory command namespace naming (020 phase 008/013/005)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace/plan]"
 description: "Plan for renaming the four maintained memory presentation assets and repairing every command, README, and external path pointer without changing memory tool behavior."
 trigger_phrases:
   - "memory namespace naming plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "memory presentation path repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/005-memory-namespace"
 ---
-
 # Implementation Plan: Memory command namespace naming
 
 <!-- SPECKIT_LEVEL: 2 -->

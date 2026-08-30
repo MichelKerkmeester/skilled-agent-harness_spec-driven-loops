@@ -20,9 +20,7 @@
       "whole surface kebab-case verification",
       "system-deep-loop skill gate tasks",
       "deep loop subtree rollup tasks",
-      "whole surface kebab-case gate tasks",
-      "system-deep-loop skill gate checklist",
-      "system-deep-loop naming gate"
+      "whole surface kebab-case gate tasks"
     ],
     "key_topics": [
       "system-deep-loop",
@@ -43,8 +41,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -66,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specifica",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -97,12 +94,6 @@
       },
       {
         "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Active Markdown",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -178,37 +169,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-deep-loop subtree needs one blocking rollup gate after its ten scoped child phases. This verification-only phase aggregates sibling evidence and proves the complete surface has no in-scope snake_case filesystem name outside the 020 exemption set, with no new rename work.",
     "created_at": "2026-07-14T15:17:56Z",
-    "last_save_at": "2026-08-29T10:00:31.727Z",
+    "last_save_at": "2026-08-30T07:19:43.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:118173fa2de9f2565b57f59387192fd8feddc99253d800ac1b0cf13e9bf9d02b",
+    "source_fingerprint": "sha256:8227a9895e0937843cba1a5d7d8962dcb5a315a71e2b42fe9079686996ba4740",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "1f3d6651f3365a52c187428cb919e8d498bcf1a09dbb1c368ece30a8aec38044",
-      "plan.md": "ed138345171fa07898ba016b96b9187fb61b2ed377e181148932f86d5cd5a7e8",
-      "tasks.md": "dbda625ee29f6ffd2275e4738786735cde0db37c31628d8b50525548957d5c96",
-      "checklist.md": "84b48b9c374d06a5513a57b389b09308bd17e785b935160cfab016c714d8c164"
+      "spec.md": "bf59a050384c1ae1cad80381ef96f27d1773c6975f10b6eb6f388300e4ed388d",
+      "plan.md": "50c959a8170a9165a4ce34b5a0918ae9f91d4a0683d47ebecd1830dbe58069fa",
+      "tasks.md": "986546142d375f4e6513aec3ebef2c6f0f12901f75d2194a6482ab1cd8a8752f"
     },
     "last_active_child_id": null,
     "last_active_at": null

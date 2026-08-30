@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: system-code-graph MCP server directory and manifest closure"
+title: "...ing-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure/decision-record]"
 description: "Phase-specific decisions for moving the system-code-graph MCP package boundary to kebab-case while preserving Python, generated, lockfile, test-magic, and tool-mandated names and closing all live entrypoint references atomically."
 trigger_phrases:
   - "system-code-graph mcp-server decision record"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "manifest closure decisions"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure"
@@ -27,8 +26,8 @@ _memory:
       - "The root package directory and ordinary non-Python direct layout directories are filesystem rename targets."
       - "Generated/tool-mandated/test-magic/Python names are preserved or classified before any move."
       - "The current visible package root has no package.json; the migration records that fact instead of synthesizing a manifest."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/001-mcp-server-dir-and-manifest-closure"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

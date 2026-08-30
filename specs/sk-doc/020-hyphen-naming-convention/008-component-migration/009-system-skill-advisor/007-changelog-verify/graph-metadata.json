@@ -20,9 +20,7 @@
       "skill version bump audit",
       "changelog verification tasks",
       "advisor release evidence tasks",
-      "version bump audit tasks",
-      "changelog verification checklist",
-      "advisor release evidence checklist"
+      "version bump audit tasks"
     ],
     "key_topics": [
       "system-skill-advisor",
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/system-skill-advisor/SKILL.md",
       ".opencode/skills/system-skill-advisor/README.md"
     ],
@@ -65,12 +62,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -196,21 +187,20 @@
     ],
     "causal_summary": "The advisor has versioned changelog entries through v0.10.0, while the skill identity documents expose version",
     "created_at": "2026-07-14T15:18:11Z",
-    "last_save_at": "2026-08-29T13:10:04.014Z",
+    "last_save_at": "2026-08-30T07:19:50.794Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:f2ab5195b1a407a0fad3a64b07a7039318acf9592a8760b516714455f2bb7fca",
+    "source_fingerprint": "sha256:57d407e1eae4a79d0b38a0b25484192a120bb7b1573f0e9a18f29ce6ef7ba57e",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "78ab5ea203ee8d17cbbf3c4ce42e208bea44c8733b4e9a9c38b01a3ac1b3feb9",
-      "plan.md": "5338b1d5489778279707d76ac106a542d1f7f782006b3710cda42a0faea14754",
-      "tasks.md": "85fe06b58d2ad153a4fc8e58f0f8a969243af0b1c4b41b096152b61b48739adf",
-      "checklist.md": "912b529695c2a53631d6063047355106be176c8494e168181aa383bc4176b1cb"
+      "spec.md": "301c998a7df1a6022ec8437217297c4a7caed9459630c32305c373d52fbf22f1",
+      "plan.md": "6d7c4631e09b7ac5860791524dd29b20a92f4a5a00742c16eb805a6e0cf35fa6",
+      "tasks.md": "c51fd209d380932a154f1da34a6c305c8d50ca893412423aaab1a9b7f0f46cf6"
     },
     "last_active_child_id": null,
     "last_active_at": null

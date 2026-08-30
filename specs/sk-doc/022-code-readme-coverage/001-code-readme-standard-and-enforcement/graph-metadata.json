@@ -21,8 +21,8 @@
       "code readme standard tasks",
       "readme enforcement tasks",
       "code readme validator tasks",
-      "code readme standard checklist",
-      "readme enforcement checklist"
+      "decision",
+      "record"
     ],
     "key_topics": [
       "code",
@@ -38,13 +38,12 @@
       "manifest",
       "plan"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".pi/extensions/README.md",
@@ -75,12 +74,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -202,29 +195,34 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three defects in the governing surface, each independently confirmed against source:",
     "created_at": "2026-07-30T18:58:50.551Z",
-    "last_save_at": "2026-08-29T15:22:03.569Z",
+    "last_save_at": "2026-08-30T07:16:19.698Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4619fd1b88dfb7de1966f0c55c174264c987e1484bfe91e10586637a27f6a221",
+    "source_fingerprint": "sha256:883c356ceeb74e1de84b0eb0be57ac94d5a41433ff24770ff3d635ddd56fe51a",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "8f97e0e9fe242e3efa8b65197f03d80e46321ced9cc07e6b95971f7930f3d4c2",
-      "plan.md": "2aa6bd4302feeabb1bd7ccea5b04200c25e5c61c8dfc88ebc8fdd69ffca32108",
-      "tasks.md": "da8b617201d99f97a97559ccf9a88a3ccbd91d751ae8540801525ec306d6961e",
-      "checklist.md": "19dfae536faa42adddc8d0280ef3bc9844d2f383739a66c4f646b77c036b823a",
-      "decision-record.md": "44d0059289b8e5634de493c56ecc6084153959ace7d34a4fb2c6f46dab3f933d",
-      "implementation-summary.md": "f6fa8afe778d1eff1d05963426748a01e5994b8d220e98ed813f9473f2bee352"
+      "spec.md": "bc3766626d9385e596f6ac9364d617a7dc701f6eaec1565e027c41ff9cab34d9",
+      "plan.md": "f685f5b749992c82d499159bb8039afad6e83a9853817e2a21bb37f81acd9caf",
+      "tasks.md": "a009aced71cb1487d73ce173b98b43ca40b0b968bcaf33341e4526633f7f2d5a",
+      "decision-record.md": "373242489f573fb8b59aa6e82644203ae6ec37ac4989802a75d204ebdc685db1",
+      "implementation-summary.md": "fdb2701a713564e1e5a5458f294ea92991bd0bdd1755d2f541e46c5e99831141"
     },
     "last_active_child_id": null,
     "last_active_at": null

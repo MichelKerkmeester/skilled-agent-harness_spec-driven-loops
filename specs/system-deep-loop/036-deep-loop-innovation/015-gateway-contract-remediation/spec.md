@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Gateway State-Write Contract Remediation"
+title: "Feature Specification: Gateway [system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation/spec]"
 description: "Remediate the deep-loop state-write contract so exactly one path — the append gateway — is instructed, permitted, and enforced across prompt-pack templates, runtime projection refresh, the iteration validator, mode SKILLs, the conformance guard, and the ai-council MCP surface, closing the ten findings the 014 deep-review confirmed the 013 fix and its audit missed."
 trigger_phrases:
   - "gateway contract remediation"
@@ -7,7 +7,7 @@ trigger_phrases:
   - "prompt-pack direct append fix"
   - "review alignment projection refresh"
   - "check-agent-gateway fail closed"
-importance_tier: "high"
+importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: skill README refinement — template, parent template, workflow, and fleet revisit"
+title: "Feature Specification: skill README refinement — template, parent template, [sk-doc/026-skill-readme-refinement/spec]"
 description: "Phase parent: revisit every skill README in the repo (standalone and child modes) on the mcp-obsidian standard, after refining the shared README template, adding a parent-skill README template, and updating the creation workflow."
 trigger_phrases:
   - "skill readme refinement"

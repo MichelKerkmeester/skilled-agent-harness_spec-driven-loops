@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Flag-routing fix for cross-encoder HTTP local provider [template:level_1/plan.md]"
+title: "...sal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder/plan]"
 description: "Three-phase plan: precedence swap in stage3-rerank.ts dispatch + flag-helper hardening + regression-test addition + docs update."
 trigger_phrases:
   - "001 plan flag routing"

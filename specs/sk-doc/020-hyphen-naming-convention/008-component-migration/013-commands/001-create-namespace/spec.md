@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create command namespace naming (020 phase 008/013/001)"
+title: "Feature Specificati [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace/spec]"
 description: "The create command namespace keeps its workflow and presentation assets in snake_case filenames even though its command markdown files already use kebab-case. This phase renames the maintained create assets, repairs every path pointer, and preserves command IDs, data keys, and tool-mandated names."
 trigger_phrases:
   - "create command namespace naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "hyphenate create workflow files"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/001-create-namespace"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "The create command markdown files are already kebab-case; the physical candidates are maintained asset files."
       - "Workflow YAML keys and command IDs remain exact while path values and links change."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

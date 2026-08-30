@@ -1,6 +1,10 @@
 ---
-title: "Implementation Plan: Semantic Relation Inference"
+title: "I [system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference/plan]"
 description: "Two OPT-IN collectors added to backfillRelationInference: a similarity 'supports' collector reading only the cached memory_index.related_memories column (no live vec, no O(n^2)), and a 'contradicts' collector from structural memory_lineage.superseded_by_memory_id. Both default false, run inside the existing transaction, emit created_by='auto' edges through insertEdgesBatch, and inherit the dryRun-default + bounded safety. Wired through the schema, types, and handler; honest hint updated."
+trigger_phrases:
+  - "plan"
+  - "023"
+  - "semantic"
 importance_tier: "important"
 contextType: "general"
 _memory:

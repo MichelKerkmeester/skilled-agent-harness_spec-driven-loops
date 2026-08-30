@@ -1,7 +1,12 @@
 ---
-title: "Feature Specification: Devin model registry and quota restoration"
+title: "Feature Specification: [cli-external-orchestration/029-cli-devin-revival/005-devin-model-registry-and-quota/spec]"
 description: "Restore the swe-1.6 model entry and cli-devin executor rows removed by the 2026-06-08 deprecation, recreate the swe-1.6.md model card, re-add the CI gate script's cli-devin arrays, and document the operator's 7-model native-dispatch allowlist (grok-4-5-high/glm-5-2/glm-5-2-max/glm-5-2-1m/glm-5-2-max-1m/swe-1-7-medium/swe-1-7) that phase 002 enforces, all grounded against current model identifiers rather than the archived docs' stale slugs."
-trigger_phrases: ["devin model registry restoration", "swe-1.6 model card", "devin quota tiers", "cli-devin executor rows", "devin model allowlist"]
+trigger_phrases:
+  - "devin model registry restoration"
+  - "swe-1.6 model card"
+  - "devin quota tiers"
+  - "cli-devin executor rows"
+  - "devin model allowlist"
 importance_tier: "normal"
 contextType: "general"
 _memory:

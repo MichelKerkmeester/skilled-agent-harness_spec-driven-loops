@@ -1,14 +1,13 @@
 ---
-title: "Feature Specification: Code README standard and enforcement"
+title: "Feature Specification: Code README [sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement/spec]"
 description: "The code-README standard contradicts itself in three places and neither the validator nor the auditor can detect the defect class this program is about. This phase settles the ambiguous requirements in the authoring surface, then extends validate_document.py with an opt-in code-folder mode and rebuilds audit_readmes.py discovery to run from a durable-directory manifest across all repository roots."
 trigger_phrases:
   - "code readme standard ruling"
   - "directory tree requirement readme"
   - "validate_document code folder mode"
   - "audit_readmes discovery manifest"
-importance_tier: "high"
+importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/022-code-readme-coverage"
 _memory:
   continuity:
     packet_pointer: "sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement"
@@ -27,8 +26,8 @@ _memory:
       - "Q3 — is content-defined equivalent orientation acceptable in place of README.md?"
     answered_questions:
       - "Applicability is need-based, not census-based"
+parent: "sk-doc/022-code-readme-coverage"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->
 <!-- SPECKIT_LEVEL: 3 -->
 

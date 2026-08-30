@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-tooling subtree rollup gate (020 phase 008)"
+title: "Tasks: mcp-tooling [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate/tasks]"
 description: "Tasks for phase 008 of the mcp-tooling component naming migration: aggregate sibling evidence and prove the whole surface is kebab-clean without new migration work."
 trigger_phrases:
   - "mcp-tooling rollup gate tasks"
   - "mcp tooling subtree verification tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate"
 ---
 # Tasks: mcp-tooling Subtree Rollup Gate
 

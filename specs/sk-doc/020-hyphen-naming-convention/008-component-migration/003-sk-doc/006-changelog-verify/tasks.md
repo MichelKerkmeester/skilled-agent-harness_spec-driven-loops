@@ -1,12 +1,11 @@
 ---
-title: "Tasks: sk-doc changelog and version verification"
+title: "Tasks: sk-doc [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify/tasks]"
 description: "Concrete verification tasks for the sk-doc migration changelog and version-bump phase."
 trigger_phrases:
   - "sk-doc changelog verification tasks"
   - "sk-doc version bump tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify"
 ---
 # Tasks: sk-doc changelog and version verification
 

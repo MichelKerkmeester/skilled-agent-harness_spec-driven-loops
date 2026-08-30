@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-skill-advisor changelog verification"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify/tasks]"
 description: "Concrete evidence tasks for verifying the rename-set changelog entry and matching version bump without performing migration work."
 trigger_phrases:
   - "changelog verification tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "version bump audit tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify"
@@ -23,8 +22,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The release version is supplied by the execution owner; this phase does not infer or create it."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/007-changelog-verify"
 ---
-
 # Tasks: system-skill-advisor changelog verification
 
 <!-- SPECKIT_LEVEL: 2 -->

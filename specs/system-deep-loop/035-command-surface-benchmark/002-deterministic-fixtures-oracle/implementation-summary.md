@@ -1,7 +1,6 @@
 ---
-title: "Implementation Summary: deterministic fixtures and independent reference oracle"
+title: "Implementation [system-deep-loop/035-command-surface-benchmark/002-deterministic-fixtures-oracle/implementation-summary]"
 description: "The command-surface benchmark now has a reproducible 13-tree fixture corpus, a CLI-only independent oracle, frozen per-fixture expectations, and a consuming manifest that production adapter code may not import from or invoke."
-status: complete
 trigger_phrases:
   - "command fixture oracle implementation"
   - "deterministic command fixtures complete"
@@ -26,8 +25,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The compound held-out fixture combines mirror drift, missing workflow reachability, and duplicated presentation ownership."
+status: complete
 ---
-
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 1 -->

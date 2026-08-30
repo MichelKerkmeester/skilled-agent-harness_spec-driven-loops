@@ -1,12 +1,11 @@
 ---
-title: "Tasks: create-skill resource names"
+title: "Tasks [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill/tasks]"
 description: "Concrete execution and verification tasks for the create-skill resource naming phase."
 trigger_phrases:
   - "create-skill resource tasks"
   - "create-skill template rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill"
 ---
 # Tasks: create-skill resource names
 

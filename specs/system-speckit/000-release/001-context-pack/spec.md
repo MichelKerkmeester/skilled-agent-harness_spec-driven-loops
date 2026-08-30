@@ -1,3 +1,16 @@
+---
+title: "Phase 001 — Context Pack (deterministic, $0) [system-speckit/000-release/001-context-pack/spec]"
+description: "Build the seed every downstream worker consumes — a deterministic, model-free extraction of the"
+trigger_phrases:
+  - "phase"
+  - "001"
+  - "context"
+  - "pack"
+  - "deterministic"
+  - "spec"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Phase 001 — Context Pack (deterministic, $0)
 
 > Charter only. Full narrative in `../plan.md` §4 Phase 1. Expand to Level 1 when executed.

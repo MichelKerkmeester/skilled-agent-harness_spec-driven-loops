@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: sk-doc root benchmark artifact boundary"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark/plan]"
 description: "Verification-first plan for the root benchmark census and any baseline-specific non-exempt artifact rename."
 trigger_phrases:
   - "sk-doc root benchmark audit plan"
   - "benchmark artifact naming plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/005-benchmark"
 ---
 # Implementation Plan: sk-doc root benchmark artifact boundary
 

@@ -1,10 +1,10 @@
 ---
-title: "Tasks: Fix post-closeout gates for the README fleet"
+title: "Tasks: Fix post-closeout gates [sk-doc/026-skill-readme-refinement/007-fix-post-closeout-gates-for-readme-fleet/tasks]"
 description: "Evidence-backed work plan for restoring global documentation gates and aligning the CLI mode README family."
 trigger_phrases:
-  - "README fleet remediation tasks"
+  - "readme fleet remediation tasks"
   - "link guard repair tasks"
-  - "CLI README alignment tasks"
+  - "cli readme alignment tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

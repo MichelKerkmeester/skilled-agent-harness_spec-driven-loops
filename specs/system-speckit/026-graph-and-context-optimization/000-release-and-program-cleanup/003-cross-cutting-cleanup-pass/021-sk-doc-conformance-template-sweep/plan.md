@@ -1,7 +1,6 @@
 ---
-title: "Implementation Plan: sk-doc Conformance Sweep and Template Cleanup"
+title: "...timization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep/plan]"
 description: "Tiered execution plan: Tier 1 foundation, Tier 2 parallel cli-codex content rewrites, Tier 3 deterministic renames + path sweep, Tier 4 validation."
-template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 trigger_phrases:
   - "021-sk-doc-conformance-template-sweep plan"
   - "sk-doc conformance plan"
@@ -26,6 +25,7 @@ _memory:
     completion_pct: 8
     open_questions: []
     answered_questions: []
+template_source: "SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2"
 ---
 # Implementation Plan: sk-doc Conformance Sweep and Template Cleanup
 

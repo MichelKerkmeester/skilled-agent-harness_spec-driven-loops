@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 005 sk-design README rewrite"
+title: "Feature Specification: Phase 005 [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/005-sk-design/spec]"
 description: "Rewrite the sk-design skill README at .opencode/skills/sk-design/README.md against the refined README template from phase 001, purpose-first with a one-line pitch and a problem-first overview, HVR clean, version bumped and a changelog entry added."
 trigger_phrases:
   - "sk design readme rewrite"

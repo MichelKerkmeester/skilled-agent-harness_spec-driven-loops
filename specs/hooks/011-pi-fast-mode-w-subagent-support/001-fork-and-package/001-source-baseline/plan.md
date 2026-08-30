@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 1 source-baseline"
+title: "Implementation Plan: Phase 1 [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline/plan]"
 description: "Copy the pinned upstream source into a separate working package and freeze the comparison boundary."
 trigger_phrases:
   - "source-baseline plan"

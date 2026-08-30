@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-prompt subtree rollup gate (020 phase 004.007)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate/spec]"
 description: "This verification-only rollup gate aggregates phases 001–006 and proves the complete sk-prompt skill surface is kebab-clean within the 020 exemption boundary. It performs no new rename or reference migration."
 trigger_phrases:
   - "sk-prompt naming rollup gate"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-prompt phase 007 gate"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "This gate aggregates sibling evidence and does not introduce a new migration map."
       - "The final scan must classify retained non-kebab names against the 020 exemption and sibling disposition records."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/004-sk-prompt/007-skill-gate"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

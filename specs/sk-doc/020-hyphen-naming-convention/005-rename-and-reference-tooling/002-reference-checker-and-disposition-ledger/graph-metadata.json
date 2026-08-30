@@ -21,8 +21,8 @@
       "reference checker tasks",
       "disposition ledger tasks",
       "dynamic reference audit tasks",
-      "reference checker checklist",
-      "disposition ledger verifier"
+      "reference checker decisions",
+      "disposition ledger schema"
     ],
     "key_topics": [
       "whole-repo",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
@@ -65,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -164,57 +157,62 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The migration needs a whole-repository checker that follows every mapped path through code, docs, configs, registries, and symlinks, while recording a disposition for every rename and dynamic require, source, or glob site.",
     "created_at": "2026-07-14T15:16:48Z",
-    "last_save_at": "2026-08-29T13:10:15.169Z",
+    "last_save_at": "2026-08-30T07:19:12.899Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04559e99270316b4dc7302f923413c53cdb972cab773fb36383c27af46a0bc1c",
+    "source_fingerprint": "sha256:486b276eefb807fac44c4275406f7fd65c748d012344f21a48442d7b32200706",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d823fbe0443026e8bb71b7d8b4b32d0f8e231d767ed270d94a7465986eea8564",
-      "plan.md": "0a0ef9d9930e6da14f306cb7a1f9b276660c8698397a19d61cb91ac2c3304726",
-      "tasks.md": "4c91709c81535991e8c1661c47d0ac3efc8f03ea32dd5063d31b79c5a361d041",
-      "checklist.md": "1100558acea122982f643bd376cd98d2f996cfa665117996b5d1cf5aa04c8217",
-      "decision-record.md": "599d53a96d5ca48d9a55c2ed7131dae8a9ba93fa978c98ef457de55ba0525987",
-      "implementation-summary.md": "9b1e5f939192001807e0162d28f468b96c5fafcd64218fd5d260ad72f51e119c"
+      "spec.md": "f4e24e8551f69be6da98d4d976c7fe0fd0d937a91eda8e238edcc9182ba4ef74",
+      "plan.md": "61a9d7b5da6eb929349979f014949ab2eb912abbe068cafc03de21b20acb3fea",
+      "tasks.md": "43496c60384dcd0857fcf690861912532c498e9c967250d53ed524b01f2fe1f0",
+      "decision-record.md": "d01b16a8ba6d92f520f0c91ecc4b6b40f7cc69ab5d019a191dab4c02d1fda9c1",
+      "implementation-summary.md": "dd1142373a53e6fcff635a48333a93ecd7a18adb5e3fed8b263778e92b59f73b"
     },
     "last_active_child_id": null,
     "last_active_at": null

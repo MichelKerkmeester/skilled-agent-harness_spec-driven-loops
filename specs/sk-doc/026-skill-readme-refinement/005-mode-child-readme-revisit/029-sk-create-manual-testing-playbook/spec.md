@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 029 sk-create-manual-testing-playbook README revisit"
+title: "Feature [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/029-sk-create-manual-testing-playbook/spec]"
 description: "Rewrite the create-manual-testing-playbook skill README against the refined README template from phase 001 and the mcp-obsidian exemplar, with a version bump, a changelog entry and full validation."
 trigger_phrases:
   - "manual testing playbook readme"

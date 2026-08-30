@@ -20,9 +20,7 @@
       "freshness runtime naming audit",
       "system-code-graph runtime tasks",
       "code graph runtime rename tasks",
-      "freshness runtime audit tasks",
-      "system-code-graph runtime checklist",
-      "code graph runtime path verification"
+      "freshness runtime audit tasks"
     ],
     "key_topics": [
       "system-code-graph",
@@ -43,8 +41,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -66,9 +63,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specificati",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -97,12 +94,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -172,43 +163,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-code-graph runtime tree is a named migration surface even though its current four files and directory",
     "created_at": "2026-07-14T15:18:15Z",
-    "last_save_at": "2026-08-29T10:00:54.696Z",
+    "last_save_at": "2026-08-30T07:19:52.980Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:238edfde32f5fd757bd19a0f4d939dbef53fd86214d9ba3657f9864a0b8bca62",
+    "source_fingerprint": "sha256:df0f685c2d7c215427ee185101c161657e5dda252c2b4afdcb1aa8d9f06d34db",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "e7c366c8fb0bcdecdb0e56af3aef6b5264ec46fcb3690cded4cc86fb5409c7e4",
-      "plan.md": "4ceec589991727e81ef3e9e1696ccd95b5879007ff4122d8ea308ed19035a682",
-      "tasks.md": "e305760507242c221e10eb2d71b3cb78295e873d192a8ca2fafd027a7f6c722b",
-      "checklist.md": "4ecd43b0af93343331f3b7925aca9d5eae5c4a6b90bd3309abc3a02056f724ae"
+      "spec.md": "3a375b72ba9ce836a923ba85726f30d83145bf0ebd9a23e0e930101de087ae02",
+      "plan.md": "e20919eed7c1b28fad2ae26fcca4ab84ea7351d98d4a41abacb6c0f23f975839",
+      "tasks.md": "26b2e03e98854b190381bf8833382c7751c15305d9fe8fb27ec0b49dbccf5fd6"
     },
     "last_active_child_id": null,
     "last_active_at": null

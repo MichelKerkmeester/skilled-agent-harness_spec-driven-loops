@@ -17,9 +17,7 @@
       "create-feature-catalog resource implementation plan",
       "feature catalog template rename plan",
       "create-feature-catalog resource tasks",
-      "feature catalog template rename tasks",
-      "create-feature-catalog resource checklist",
-      "feature catalog template rename verification"
+      "feature catalog template rename tasks"
     ],
     "key_topics": [
       "create-feature-catalog",
@@ -40,8 +38,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The create-feature-catalog packet contains snake_case asset template filenames and a shared pitfalls reference. This phase renames those non-exempt resources to kebab-case and updates packet-local path references without changing catalog schema fields or feature identifiers.",
     "created_at": "2026-07-14T15:22:36Z",
-    "last_save_at": "2026-08-29T10:00:44.478Z",
+    "last_save_at": "2026-08-30T07:19:26.723Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:3c6e261505acf85813053769ab92e83fe21150b2ad1ea3d04bdca5e844fbf0cc",
+    "source_fingerprint": "sha256:67db3f90186749a71a70eae51259ecfd4f865d0c12152b19d8eca52071b003b2",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "a81ff82a2513af81669c5910fd6d508bd6b08e3fb22779c8f653edaf6ea2944c",
-      "plan.md": "7a98b7f15842140e4d66901278e77e4d89859b34723f8baa320d38f44011e0db",
-      "tasks.md": "032acdcefff4644b26b5a7bbfc55ed4d36b66146b9fb208591174550a9618d3c",
-      "checklist.md": "fa52f69a1a1f2cf3a177edfca761e8c90a5969d401c552a127a631cca7bc30fa"
+      "spec.md": "c51cf96b54a4827a78b87dc5a3bc436276c12a419ccb2124f33538481bd4e25e",
+      "plan.md": "99a96bff506a4972aed522432bf8224bf638be318009033c34fe3344aef74712",
+      "tasks.md": "422377ea98ead1edda0caef222e81ea046bd850679dd866f220c211d068aefe5"
     },
     "last_active_child_id": null,
     "last_active_at": null

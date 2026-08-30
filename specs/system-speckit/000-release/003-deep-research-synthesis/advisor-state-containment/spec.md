@@ -1,3 +1,14 @@
+---
+title: "Advisor State-Containment — [system-speckit/000-release/003-deep-research-synthesis/advisor-state-containment/spec]"
+description: "The advisor (and other runtime writers) leak nested .opencode / .advisor-state directories into specs/."
+trigger_phrases:
+  - "advisor"
+  - "state"
+  - "containment"
+  - "spec"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Advisor State-Containment — Deep Research (Investigation)
 
 > Deep-research packet investigating whether the skill-advisor stray-state-directory

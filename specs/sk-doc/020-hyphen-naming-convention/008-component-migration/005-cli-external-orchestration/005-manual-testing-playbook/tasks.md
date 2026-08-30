@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-external-orchestration manual-testing-playbook naming (020 phase 005.005)"
+title: "...20-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook/tasks]"
 description: "Tasks for the four-tree playbook migration: inventory categories and scenarios, build a complete path map, update recursive links, preserve scenario contracts, and verify ownership boundaries."
 trigger_phrases:
   - "cli-external manual playbook tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 005 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook"
@@ -25,6 +24,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The four-tree baseline is 34 directories and 116 files."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/005-manual-testing-playbook"
 ---
 # Tasks: cli-external-orchestration manual-testing-playbook naming
 

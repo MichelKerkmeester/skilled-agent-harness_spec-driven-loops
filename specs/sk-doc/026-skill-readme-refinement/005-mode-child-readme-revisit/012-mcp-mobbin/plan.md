@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 012 mcp-mobbin README revisit"
+title: "Implementation Plan: Phase 012 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/012-mcp-mobbin/plan]"
 description: "Rewrite the mcp-mobbin mode skill README in the mcp-tooling hub against the refined README template from phase 001 with the mcp-obsidian exemplar as the model, including a version bump and a changelog entry."
 trigger_phrases:
   - "phase 012 plan"

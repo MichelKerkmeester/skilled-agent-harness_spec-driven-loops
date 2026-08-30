@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-agent resource names"
+title: "Featur [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent/spec]"
 description: "The create-agent packet contains snake_case template and reference filenames used to scaffold agent documentation. This phase converts those non-exempt names to kebab-case and updates packet-local references without changing agent permission fields, SKILL.md, or other tool-mandated names."
 trigger_phrases:
   - "create-agent resource naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "agent template rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/003-create-agent"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

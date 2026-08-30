@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-code manual-testing-playbook tree (020 phase 008/006)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook/spec]"
 description: "The hub-level sk-code manual-testing-playbook tree uses snake_case for its root directory, ten category directories, the root index, and scenario filenames. This phase renames that playbook tree to kebab-case and repairs every scenario, benchmark, asset, and cross-surface reference without changing scenario IDs or manual-test semantics."
 trigger_phrases:
   - "sk-code manual testing playbook naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "sk-code playbook path migration"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook"
@@ -28,8 +27,8 @@ _memory:
       - "Scenario IDs, prompts, expected outcomes, and manual-test semantics remain unchanged."
       - "The hub-level playbook root and categories are owned here; component-local playbooks remain in their component children."
       - "Python .py files, package directories, tool-mandated names, generated output, keys, identifiers, and frozen history remain exempt."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

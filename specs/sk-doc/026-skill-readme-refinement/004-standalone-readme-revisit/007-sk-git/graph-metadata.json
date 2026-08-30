@@ -22,7 +22,7 @@
       "phase 7 tasks",
       "sk-git readme tasks",
       "git readme rewrite tasks",
-      "phase 7 checklist"
+      "phase 7 implementation summary"
     ],
     "key_topics": [
       "sk-git",
@@ -41,40 +41,20 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/sk-git/README.md",
-      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-      ".opencode/skills/sk-git/changelog/v1.4.1.0.md",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
+      ".opencode/skills/sk-git/README.md",
+      ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+      ".opencode/skills/sk-git/changelog/v1.4.1.0.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/plan.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/checklist.md"
+      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/tasks.md"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-readme-template.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.4.1.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-git/changelog/v1.4.1.0.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -94,15 +74,27 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/007-sk-git/checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-readme-template.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.4.1.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/changelog/v1.4.1.0.md",
         "source": "derived"
       },
       {
@@ -200,27 +192,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Skill Layout",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-obsidian pilot set the standard for standalone skill READMEs: narrative, purpose-first documents written in the Human Voice Rules and validated by the sk-doc readme validator",
     "created_at": "2026-08-04T08:34:37.362Z",
-    "last_save_at": "2026-08-04T13:28:11.519Z",
+    "last_save_at": "2026-08-30T07:20:20.346Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d69a0df57349967465fc465bb11836e9846a71cd934b425bb0c1599f0be3a40",
+    "source_fingerprint": "sha256:c2eb68683e4528c110db595f91d5eebea108f09ca350ab8dc48f01bc801a3806",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "ebc1ed9f665b90bc487d26900e62931f8701048a1099b1d34317d7afd4318cc8",
-      "plan.md": "a5ebc814bf7574d2173f7108cac8ad83ddb6382057c884a6be4af69ea855ed4d",
-      "tasks.md": "dc25900c959bd80d771555dc3ade377aae25ec3c56963ee67c3571349f38cd85",
-      "checklist.md": "cff3061789524ef2fdd2768bc309879ba2da154c6ca3b918f240210f255efa1b",
-      "implementation-summary.md": "df87dad303b07098af529f86a9f6c1ef7a8543f68bf2f2e74d5a3cec1b8ac85c"
+      "spec.md": "cb6e8e15a056617ea7345d36ee0e63fcc9f578175f8b15dc58d74bb2663d69dc",
+      "plan.md": "80159d0a5747cfc078122d016e618aa0d8c309ca40281e72339a428d398920e2",
+      "tasks.md": "0f03a25e62f5ce3efabdfa33cdb38481c2c561aafafb42a6b055c9f02251ac35",
+      "implementation-summary.md": "8124b97755bd7e7f908e6457059b156a55dbdef1e55e099a101ffc665fb66e73"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: /create:testing-playboo [sk-doc/007-cmd-create-manual-testing-playbook/spec]"
+title: "Feature Specification: /create:testing-playboo [sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook/spec]"
 description: "Define a Level 3 implementation packet for a new create command that scaffolds manual_testing_playbook packages from the shipped sk-doc references and templates aligned in spec 021."
 trigger_phrases:
   - "create testing playbook command"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "sk-doc playbook template"
 importance_tier: "important"
 contextType: "implementation"
-template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->"
 _memory:
   continuity:
     packet_pointer: "sk-doc/016-create-diff-mode/007-cmd-create-manual-testing-playbook"
@@ -17,6 +16,7 @@ _memory:
     recent_action: "Backfilled _memory block (repo-wide frontmatter sweep)"
     next_safe_action: "Revalidate packet docs and update continuity on next save"
     key_files: ["spec.md"]
+template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->"
 ---
 # Feature Specification: /create:testing-playbook Command
 

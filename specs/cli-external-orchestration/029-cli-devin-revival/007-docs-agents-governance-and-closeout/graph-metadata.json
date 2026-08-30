@@ -12,15 +12,13 @@
   "derived": {
     "trigger_phrases": [
       "cli-devin revival closeout",
-      "Devin agent roster restore",
-      "Devin governance docs",
-      "Devin docs and closeout",
-      "Devin docs closeout plan",
-      "Devin agent roster restore plan",
-      "Devin docs closeout tasks",
-      "Devin agent roster restore tasks",
-      "Devin docs closeout checklist",
-      "Devin agent roster restore checklist"
+      "devin agent roster restore",
+      "devin governance docs",
+      "devin docs and closeout",
+      "devin docs closeout plan",
+      "devin agent roster restore plan",
+      "devin docs closeout tasks",
+      "devin agent roster restore tasks"
     ],
     "key_topics": [
       "cli-devin",
@@ -34,7 +32,7 @@
       "docs",
       "plan",
       "tasks",
-      "checklist"
+      "deprecation"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -42,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/agents/context.md",
       "AGENTS.md",
       "CLAUDE.md",
@@ -58,7 +55,8 @@
       ".codex/agents/deep-review.toml",
       ".opencode/agents/deep-improvement.md",
       ".claude/agents/deep-improvement.md",
-      ".codex/agents/deep-improvement.toml"
+      ".codex/agents/deep-improvement.toml",
+      ".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh"
     ],
     "entities": [
       {
@@ -77,12 +75,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -158,6 +150,12 @@
         "source": "derived"
       },
       {
+        "name": "check-prompt-quality-card-sync.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-skill-advisor/mcp-server/scripts/check-prompt-quality-card-sync.sh",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,21 +206,20 @@
     ],
     "causal_summary": "The 2026-06-08 deprecation (`zarchive/022-cli-devin-deprecation`) stripped `cli-devin`/`devin` mentions from all 3 runtime agent rosters, top-level governance docs (`AGENTS.md`, `CLAUDE.md`, `README.md`), and cross-skill sibling docs, and its own removal touch-list recorded the exact file paths and line numbers it edited",
     "created_at": "2026-07-23T19:51:59.259Z",
-    "last_save_at": "2026-08-29T15:21:50.533Z",
+    "last_save_at": "2026-08-30T07:18:49.863Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:55af1f1cd0f88bc27c395f5c2a9f9bbcdd3a7709d66ca319fdd4a20c01f95f88",
+    "source_fingerprint": "sha256:eaa3e04fa881ea108c57d221b72cc9a893adc73d2e3e5775d746f785c49535fc",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "97f2abe63b8df10a90ad9cdbbec67af2dd4204a00fdf087b6c380d576ef3da63",
-      "plan.md": "d1fe01a5220b7468275d835c48976ad7f8462f7cde698d9abc4d3d16b5fedbd0",
-      "tasks.md": "b389ca9acff389a386299db2a5939dd32633f7db118e6ed1b83a7e4747a8b820",
-      "checklist.md": "8af3cefe6e6fe5d3a3ede16ac83f3ccf19acd28f593d7843d05d979a5d2f4a3c"
+      "spec.md": "82d0e7568005fc5d5c65c0482725868ed0e1323c12e7a045531671f500dc211c",
+      "plan.md": "eddd8418efbe25b14e151762071c2050be7887b727f621b2e3685febc8e68460",
+      "tasks.md": "a4119cae4b3657e136f5133d38ed8db2ca5e67348bbbf3ae08e274b9a04a91d1"
     },
     "last_active_child_id": null,
     "last_active_at": null

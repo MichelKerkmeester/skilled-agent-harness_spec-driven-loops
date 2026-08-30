@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: cli-external-orchestration hub root and shared boundary (020 phase 005.001)"
+title: "...hen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared/decision-record]"
 description: "Design decisions for the cli-external-orchestration hub boundary: protect exact routing contracts, record the absent shared subtree, and keep playbook and benchmark ownership with their dedicated phases."
 trigger_phrases:
   - "cli-external hub root decision record"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 001 decisions"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
@@ -24,8 +23,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The current hub has no shared/ directory."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

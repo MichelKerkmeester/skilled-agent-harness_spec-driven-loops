@@ -1,12 +1,12 @@
 ---
-title: "Implementation Summary [template:level_2/implementation-summary.md]"
+title: "...ix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs/implementation-summary]"
 description: "The rerank sidecar launcher now forwards the approved reaper knobs, and the skill docs explain normal cleanup without operator guesswork."
 trigger_phrases:
   - "rerank reaper env handoff"
   - "sidecar operator runbook"
   - "reaper integration smoke"
 importance_tier: "important"
-contextType: "handover"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/004-implement-env-knobs-and-skill-docs"

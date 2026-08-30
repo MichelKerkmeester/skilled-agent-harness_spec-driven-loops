@@ -94,15 +94,16 @@
     ],
     "causal_summary": "The sk-git surface needs a scoped kebab-case migration plan that covers its references, assets, manual playbook, benchmark artifacts, changelog evidence, and final naming gate without expanding into code or other skills.",
     "created_at": "2026-07-14T15:17:03Z",
-    "last_save_at": "2026-08-29T14:54:22.737Z",
+    "last_save_at": "2026-08-30T07:19:57.962Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:06c1c3196d0d4d03c3b2239b812a978dcf2bcbd9f428dc43d29b075872076997",
+    "source_fingerprint": "sha256:87c693cc53184e2b0e49a4b455a7a83afbc3d433b4cd0c3ddcb41fea1bb04480",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "64110c339c464fe69db770c93701022290cd09f4ea205b979be0b71834e7bc8f"
+      "spec.md": "67d7f9b666ac23214bdd54424939fa4f980a8909163d86acd25df9e38c5d5a69"
     },
     "last_active_child_id": "sk-doc/020-hyphen-naming-convention/008-component-migration/012-sk-git/004-benchmark",
     "last_active_at": null

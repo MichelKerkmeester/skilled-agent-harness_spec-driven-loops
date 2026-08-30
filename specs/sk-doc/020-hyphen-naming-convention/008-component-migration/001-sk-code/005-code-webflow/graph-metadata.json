@@ -12,17 +12,15 @@
   "derived": {
     "trigger_phrases": [
       "code-webflow naming migration",
-      "Webflow packet kebab-case",
-      "Webflow asset path rename",
+      "webflow packet kebab-case",
+      "webflow asset path rename",
       "animation reference path migration",
       "code-webflow naming implementation plan",
-      "Webflow packet rename plan",
-      "Webflow asset reference repair",
+      "webflow packet rename plan",
+      "webflow asset reference repair",
       "code-webflow naming tasks",
-      "Webflow packet rename tasks",
-      "Webflow asset path tasks",
-      "code-webflow naming checklist",
-      "Webflow packet rename verification"
+      "webflow packet rename tasks",
+      "webflow asset path tasks"
     ],
     "key_topics": [
       "code-webflow",
@@ -43,8 +41,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -172,43 +163,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The code-webflow packet has snakecase names throughout its animation snippets, integration/pattern/template assets, manual-testing-playbook categories, and deep reference tree",
     "created_at": "2026-07-14T15:17:09Z",
-    "last_save_at": "2026-08-29T10:00:39.523Z",
+    "last_save_at": "2026-08-30T07:19:18.226Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:5d3ff6d897051128154c4ab8180d02176575d0c43589657f8a85565978194fc3",
+    "source_fingerprint": "sha256:ad70247013aada28f9b87b5eb1dbaaa64c1a4d74391b61ef8eb8d4ddd415611a",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "981f079d8346cdd13bd6e2dc8456ca002ac1a7dd627f378c9db74f0eca9f9255",
-      "plan.md": "3a7c5af2207eec2de88005d2a218de0a56fe3f5a35a8ec8c8597152fa1deeac8",
-      "tasks.md": "b8187918278232909ad4c598a90f550e316ddf62c54c1823d6c53ac10664b2be",
-      "checklist.md": "3b824f7b59e14a521f4df07ce7c4ca89221f786fbe5b21555197970d933d87bf"
+      "spec.md": "766443585bcd0d3f24d0f32b455cc57cfd09c3ef909c1318bfdc033cbd619b64",
+      "plan.md": "2c8763c4be1cb8162bc3a0562a5ff5481468f508bf2450aaf49f7a4ba3b1fa7f",
+      "tasks.md": "ed3713f06e61530d310e40301fc982b9dbf00d4a663a4bb0c39b74cf10bcb272"
     },
     "last_active_child_id": null,
     "last_active_at": null

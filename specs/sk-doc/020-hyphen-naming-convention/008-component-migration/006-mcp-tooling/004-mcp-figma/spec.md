@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-figma naming closure (020 phase 004)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma/spec]"
 description: "The mcp-figma component contains snake_case catalog and manual-testing directories, asset and reference filenames, an uppercase underscored install guide, and a leading-underscore shared shell helper. This phase renames those filesystem paths to safe kebab-compatible targets and updates references without changing Figma transport behavior or shell identifiers."
 trigger_phrases:
   - "mcp-figma kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 mcp tooling phase 004"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma"
@@ -24,8 +23,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

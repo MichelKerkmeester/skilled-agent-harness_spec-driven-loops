@@ -1,6 +1,11 @@
 ---
-title: "Plan: Phase 003 — Trigger Phrases, system-spec-kit"
+title: "Plan: Phase [sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit/plan]"
 description: "Execution plan for adding trigger_phrases to 313 spec-kit snippets via parallel category-scoped AI agents."
+trigger_phrases:
+  - "plan"
+  - "phase"
+  - "003"
+  - "trigger"
 importance_tier: "normal"
 contextType: "general"
 ---

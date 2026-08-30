@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-external-orchestration changelog and version verification (020 phase 005.007)"
+title: "...k-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify/tasks]"
 description: "Tasks for the verification-only release phase: inventory four changelog surfaces, compare rename-set coverage and versions with child evidence, preserve history, and hand off a pass/block matrix."
 trigger_phrases:
   - "cli-external changelog verification tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 007 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify"
@@ -26,6 +25,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "This phase performs verification only; it does not create or edit changelog entries."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/007-changelog-verify"
 ---
 # Tasks: cli-external-orchestration changelog and version verification
 

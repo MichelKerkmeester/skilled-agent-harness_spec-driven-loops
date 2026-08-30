@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Compiled-Routing Feature Catalogs"
+title: "...uting-refactor/015-router-unification-program/019-routing-coverage-activation-verification/006-feature-catalogs/plan]"
 description: "Planned sequence for resolving the catalog-topology decision, authoring per-hub compiled-routing leaves (or a centralized alternative), extending the two existing routing-documentation surfaces, and phase-gating the wording — all sequenced after the 002 resolver-promotion foundation."
 trigger_phrases:
   - "compiled routing catalogs plan"

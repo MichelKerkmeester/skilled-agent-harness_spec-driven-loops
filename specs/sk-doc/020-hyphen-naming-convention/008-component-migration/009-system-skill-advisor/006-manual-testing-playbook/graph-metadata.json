@@ -20,9 +20,7 @@
       "advisor scenario rename map",
       "manual testing playbook tasks",
       "manual-testing-playbook tree tasks",
-      "advisor scenario path closure tasks",
-      "manual testing playbook checklist",
-      "manual-testing-playbook verification"
+      "advisor scenario path closure tasks"
     ],
     "key_topics": [
       "system-skill-advisor",
@@ -43,8 +41,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -178,37 +169,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The advisor manual-testing tree uses the snakecase root manualtestingplaybook, nine snakecase category",
     "created_at": "2026-07-14T15:18:10Z",
-    "last_save_at": "2026-08-29T10:00:27.091Z",
+    "last_save_at": "2026-08-30T07:19:50.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:f8c872a589856eece21af88e7d5c971ab1c89e84bfe042df6e54c1edfbf83ccd",
+    "source_fingerprint": "sha256:0163231888c75324bb9e6b6f498dcc72a1bb90928e78ea485e7c8b1f65d266fa",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d70174d283427c8cd6b3e62ee7a2ba7c6f213f28fbde52a2d9c428d722ce52f1",
-      "plan.md": "e2fd0a2186230329ed7e2b96742573a95cc87de8db1f9dbcc978de26c048d228",
-      "tasks.md": "094d45ce823eb0f6c2926b07b9697dda90c08f61f2282fbe9fc950b714673ba1",
-      "checklist.md": "11f4120395daaf1bc926a081106d4eb0894b88273715f2059850aec70a2c9575"
+      "spec.md": "d8091232c198bae4dd8f704e77ac3dd92563bdcc83a96ddc288cd6a217c60052",
+      "plan.md": "f5123e1dbeeecc13fc22b24c8a4db5503a6295cf8d2ba347edf75c85e0413d67",
+      "tasks.md": "006049b39283626bea2480453cd3e9959617576fe9aabefd2c8b82c66e78e31f"
     },
     "last_active_child_id": null,
     "last_active_at": null

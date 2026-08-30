@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-code-graph manual testing playbook"
+title: "Fea [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook/spec]"
 description: "Rename the system-code-graph manual-testing-playbook root, nine category directories, and 29 scenario/index files to kebab-case, then repair every playbook path reference while preserving scenario identity and test semantics."
 trigger_phrases:
   - "system-code-graph manual testing playbook naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "code graph scenario link closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/006-manual-testing-playbook"
@@ -30,8 +29,8 @@ _memory:
       - "The playbook contains 29 Markdown files including the root index under nine snake_case category directories."
       - "The root, category directories, and file basenames become kebab-case; scenario IDs, titles, steps, and expected results remain unchanged."
       - "Feature-catalog and sibling component phases own their physical trees; this phase repairs playbook pointers to their target paths."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

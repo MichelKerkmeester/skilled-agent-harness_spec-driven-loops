@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 028 sk-create-flowchart README rewrite"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/028-sk-create-flowchart/spec]"
 description: "Rewrite the sk-create-flowchart skill README at sk-doc/sk-create-flowchart/README.md against the refined template from phase 001 and the mcp-obsidian exemplar, with a version bump and a matching changelog entry."
 trigger_phrases:
   - "flowchart readme rewrite"

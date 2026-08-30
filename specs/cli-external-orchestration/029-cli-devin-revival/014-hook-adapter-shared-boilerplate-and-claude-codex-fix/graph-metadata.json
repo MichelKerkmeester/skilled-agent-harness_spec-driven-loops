@@ -13,10 +13,9 @@
     "trigger_phrases": [
       "hook adapter shared boilerplate",
       "claude codex spec gate alias fix",
-      "firstNonBlankString claude codex",
+      "firstnonblankstring claude codex",
       "hook adapter shared boilerplate plan",
       "hook adapter shared boilerplate tasks",
-      "hook adapter shared boilerplate checklist",
       "hook adapter shared boilerplate summary"
     ],
     "key_topics": [
@@ -39,7 +38,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -59,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -182,31 +174,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Two independent findings from the 5-iteration deep-research pass (GPT-5.6-SOL, high effort) on the cli-devin and cli-cursor hook adapter layers:",
     "created_at": "2026-07-27T06:06:41.642Z",
-    "last_save_at": "2026-07-27T08:19:46.379Z",
+    "last_save_at": "2026-08-30T07:18:52.286Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5cd241793a27ced56c28c9687dee31426458acddce719fa601128e669c27be5",
+    "source_fingerprint": "sha256:63438d78d5d07ae6dd349c3ae16796bc29c9dd55c1d54de3624c0d2bad65696d",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d5ec3cb036271e1f542e3b334e2660d5c65ce525f4f2afb4adbb0c47422db6b1",
-      "plan.md": "35920e59f22b77153f8cdab58a6089b13ac401202ff52ef3212d0b4d885cc477",
-      "tasks.md": "aa5c158af879c5b1d1d659f893ba592f1fe291b6bbf1f5f25540de28a45354ee",
-      "checklist.md": "60862cff1e9ed6540217f1e7c3122337ef0ef81cda601c0989bce56d776d7cd0",
-      "implementation-summary.md": "2f4d6210f8325664954ebd8f2a8198ab275fe52803a16211d373ea934e990af7"
+      "spec.md": "86e324a15066d773b756513c17ecd87f52945b5b623af437ce3d096e6d94316c",
+      "plan.md": "e1d3926f05a588e86c25bf7540577766a89b3944a42ef5fabfb45bb728cebd64",
+      "tasks.md": "51c26ec3dfc903d71c75d82f62c8e3ce01b84b2a649e78b9829483a0a820750c",
+      "implementation-summary.md": "1b6c5609a3aef7a473c6b94c034b8cdeb93a443e8f4a5c36868c1fd0e349ed88"
     },
     "last_active_child_id": null,
     "last_active_at": null

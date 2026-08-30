@@ -1,3 +1,16 @@
+---
+title: "Phase 002 — Per-Packet Extraction (cheap/free, parallel) [system-speckit/000-release/002-per-packet-extraction/spec]"
+description: "Turn each packet's own shipped-truth doc into a normalized, user-facing release fragment —"
+trigger_phrases:
+  - "phase"
+  - "002"
+  - "per"
+  - "packet"
+  - "extraction"
+  - "spec"
+importance_tier: "important"
+contextType: "implementation"
+---
 # Phase 002 — Per-Packet Extraction (cheap/free, parallel)
 
 > Charter only. Full narrative in `../plan.md` §4 Phase 2. This is the coverage spine.

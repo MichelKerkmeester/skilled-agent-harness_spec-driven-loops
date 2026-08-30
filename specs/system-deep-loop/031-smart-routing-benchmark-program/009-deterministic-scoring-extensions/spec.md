@@ -1,5 +1,5 @@
 ---
-title: "Spec: Deterministic Scoring Extensions — Over-Activation Lane + Scenario-Loader Scope"
+title: "Spec: Deterministic [system-deep-loop/031-smart-routing-benchmark-program/009-deterministic-scoring-extensions/spec]"
 description: "Two CI-safe deterministic harness extensions: an identity-scoped contamination lint that unblocks generic-keyword over-activation negatives (the scoring path already exists; only the lint gate blocks it), and a scenario-loader relaxation that lets all playbook categories (not just 10--intra-routing-recall) enter Type-1 scoring when they carry gold."
 trigger_phrases:
   - "over-activation lane"

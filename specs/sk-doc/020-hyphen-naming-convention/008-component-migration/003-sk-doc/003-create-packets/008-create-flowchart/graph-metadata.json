@@ -17,9 +17,7 @@
       "create-flowchart resource implementation plan",
       "flowchart asset rename plan",
       "create-flowchart resource tasks",
-      "flowchart asset rename tasks",
-      "create-flowchart resource checklist",
-      "flowchart asset rename verification"
+      "flowchart asset rename tasks"
     ],
     "key_topics": [
       "create-flowchart",
@@ -40,8 +38,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -175,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The create-flowchart packet contains snake_case asset, reference, and validator filenames used by flowchart authoring and validation. This phase renames those non-exempt resources to kebab-case and updates packet-local links while preserving validator behavior and flowchart notation.",
     "created_at": "2026-07-14T15:22:38Z",
-    "last_save_at": "2026-08-29T10:00:46.942Z",
+    "last_save_at": "2026-08-30T07:19:27.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:e8928a9d17f7ee0446e40b448dfa41bdefd692e829d495ec7d7b0e846ea31cbf",
+    "source_fingerprint": "sha256:c3686ac2a0ca29a50cad028e0a5c49ca40e760bca4633df31f381cdfa964d5af",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "97294e2f528d5303747ffd3755a00d17f4d9b0ec4a22c3364361d1a3940d7a97",
-      "plan.md": "d053a921a4484645390ce5e27df2ba21e5fc6ac4c8a149e1b2679b70169740c3",
-      "tasks.md": "52ad2c3053b14c1fa5475d9bb0a00e8a14f1a585789d57055ee3b300079ca878",
-      "checklist.md": "fe3bfcb1b63eba57df73ba0e4bde2059e258200561bf6a1631abf1a4c532a236"
+      "spec.md": "5b65b13bade24ac30d6c729ed30f3a0b0883c682c903b63d9e671610b93fb9ff",
+      "plan.md": "dfae8de46c4e3b2ba879d7556953397a72d68ab20c238ec5499d167b48baace1",
+      "tasks.md": "aa7bb68ceb1b5362719f7097bb89afb563ac06272257dafe0aeb738a70d0f9fc"
     },
     "last_active_child_id": null,
     "last_active_at": null

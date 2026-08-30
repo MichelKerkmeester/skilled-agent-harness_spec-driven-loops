@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 036 deep-alignment mode README revisit"
+title: "Tasks: Phase 036 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/036-deep-alignment/tasks]"
 description: "Task list for rewriting the deep-alignment mode skill README on the refined template with the mcp-obsidian exemplar as the pattern."
 trigger_phrases:
   - "phase 036 tasks"

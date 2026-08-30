@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: MCP server directory and manifest closure"
+title: "...-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure/decision-record]"
 description: "Phase-specific decisions for moving the system-skill-advisor MCP package boundary to kebab-case while preserving Python, generated, lockfile, test-magic, and tool-mandated names and closing all live entrypoint references atomically."
 trigger_phrases:
   - "mcp-server directory decision record"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "manifest closure decisions"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "The root package directory and ordinary non-Python direct layout directories are filesystem rename targets."
       - "Generated/tool-mandated/test-magic/Python names are preserved or classified before any move."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

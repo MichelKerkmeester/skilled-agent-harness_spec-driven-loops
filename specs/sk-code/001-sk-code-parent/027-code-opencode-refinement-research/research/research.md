@@ -1,3 +1,15 @@
+---
+title: "code-opencode Refinement — Research [sk-code/001-sk-code-parent/027-code-opencode-refinement-research/research]"
+description: "code-opencode (the playbook for writing code in this repo's own .opencode/ tree) is structurally sound but doctrinally drifted. The surface skeleton is honest — SKILL.md §2 REFE..."
+trigger_phrases:
+  - "code"
+  - "opencode"
+  - "refinement"
+  - "research"
+  - "027"
+importance_tier: "normal"
+contextType: "research"
+---
 # code-opencode Refinement — Research Synthesis
 
 ## 1. Executive verdict

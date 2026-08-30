@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-doc scripts and test fixtures"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts/spec]"
 description: "The sk-doc scripts tree contains snake_case markdown fixture filenames and Python script names that must be treated differently. This phase renames only the non-Python filesystem names, updates their sourcing/import/registry references, and records the Python exemption explicitly."
 trigger_phrases:
   - "sk-doc scripts naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 scripts phase"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

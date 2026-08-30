@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 023 sk-create-benchmark README revisit"
+title: "Implem [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/implementation-summary]"
 description: "Closeout summary for the phase 023 sk-create-benchmark README rewrite: purpose-first rewrite on the refined template, version bump to 1.5.0.0, changelog entry, validator and HVR gates green."
 trigger_phrases:
   - "phase 023 implementation summary"

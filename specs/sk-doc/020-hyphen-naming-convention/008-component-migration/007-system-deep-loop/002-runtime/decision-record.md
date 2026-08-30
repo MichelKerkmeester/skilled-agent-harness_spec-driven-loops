@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: system-deep-loop runtime names (020 phase 007/002)"
+title: "Decision [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime/decision-record]"
 description: "L2 design decisions for the system-deep-loop runtime naming phase, including runtime-root closure, manifest protections, and verification of dynamic path consumers."
 trigger_phrases:
   - "system-deep-loop runtime decisions"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "runtime path closure decision"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/002-runtime"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->

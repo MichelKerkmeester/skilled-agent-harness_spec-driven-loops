@@ -1,12 +1,11 @@
 ---
-title: "Implementation Summary: INSTALL-GUIDE canonical filename normalization (sk-doc 021)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming/implementation-summary]"
 description: "Completed migration: 14 skill install-guide files renamed to INSTALL-GUIDE.md, an additive classifier hyphen-stem recognition so they still type as install_guide, and .md-suffixed filename reference updates, preserving the install_guide doc-type contract and prose."
 trigger_phrases:
   - "install-guide normalization summary"
-  - "INSTALL-GUIDE migration complete"
+  - "install-guide migration complete"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
@@ -20,6 +19,7 @@ _memory:
     completion_pct: 100
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/013-install-guide-canonical-naming"
 ---
 # Implementation Summary: INSTALL-GUIDE canonical filename normalization
 

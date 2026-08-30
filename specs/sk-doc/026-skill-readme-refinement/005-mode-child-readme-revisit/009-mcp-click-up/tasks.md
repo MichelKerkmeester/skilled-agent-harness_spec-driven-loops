@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 009 mcp-click-up mode skill README rewrite"
+title: "Tasks: Phase 009 mcp-click-up [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/009-mcp-click-up/tasks]"
 description: "Task list for the purpose-first rewrite of the mcp-click-up mode skill README with version bump, changelog entry and validation."
 trigger_phrases:
   - "phase 009 tasks"

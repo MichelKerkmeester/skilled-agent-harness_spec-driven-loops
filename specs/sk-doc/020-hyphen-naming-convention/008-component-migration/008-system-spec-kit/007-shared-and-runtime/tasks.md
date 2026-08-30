@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Shared and runtime (020 subtree 008 phase 007)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/007-shared-and-runtime/tasks]"
 description: "The shared/runtime part of system-spec-kit contains an underscore-bearing shared/mcp_server directory even though its TypeScript/shared-package surface can use kebab-case. This phase verifies the runtime tree, renames the permitted shared directory, updates its references, and preserves package manifests, tool names, generated databases, and Python package directories."
 trigger_phrases:
   - "system-spec-kit shared runtime"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "kebab-case phase 007"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/007-shared-and-runtime"
@@ -21,8 +20,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 ---
-
 # Tasks: Shared and runtime
 
 <!-- SPECKIT_LEVEL: 2 -->

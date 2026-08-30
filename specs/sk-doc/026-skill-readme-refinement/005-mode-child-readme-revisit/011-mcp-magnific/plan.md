@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 011 mcp-magnific mode skill README rewrite"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/011-mcp-magnific/plan]"
 description: "Rewrite the mcp-magnific skill README purpose-first against the refined template with a version bump, a changelog entry and zero validator and HVR violations."
 trigger_phrases:
   - "phase 011 plan"

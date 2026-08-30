@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-code-mode subtree skill gate (020 component 011 phase 007)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate/plan]"
 description: "Aggregate the six preceding child reports, rerun the complete exemption-aware filesystem and reference census, and verify the mcp-code-mode subtree as one read-only naming gate."
 trigger_phrases:
   - "mcp-code-mode subtree gate implementation plan"
   - "mcp-code-mode phase 007 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate"
 ---
 # Implementation Plan: mcp-code-mode subtree skill gate
 

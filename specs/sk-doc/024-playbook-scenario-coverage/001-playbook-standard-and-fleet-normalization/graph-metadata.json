@@ -20,9 +20,9 @@
       "playbook scenario coverage implementation plan",
       "playbook standard and fleet normalization task list",
       "playbook scenario coverage task list",
-      "playbook standard and fleet normalization verification checklist",
-      "playbook scenario coverage verification checklist",
-      "playbook validator ownership decision"
+      "playbook validator ownership decision",
+      "strict by default decision",
+      "playbook package validator implementation"
     ],
     "key_topics": [
       "playbook",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs",
@@ -70,12 +69,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -197,29 +190,34 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two contracts share one directory name, and only one of them is checked",
     "created_at": "2026-07-30T19:29:15.567Z",
-    "last_save_at": "2026-08-29T15:22:03.989Z",
+    "last_save_at": "2026-08-30T07:16:20.156Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9949300d9706c8c91aa370572a5df82786d2cbb917c3a2ff32a769b06563cc02",
+    "source_fingerprint": "sha256:54c76ce257a8f91f717d543cebb3e86f04fa7ae3e198550361dae5786d90868f",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "ed3866568bfccde58e4d59d158e7908a21cc236cd0450c580f8edc5e84db07c9",
-      "plan.md": "16593168a7d8c3d5460fc767f09e46d09646cc4bbbf354d409c06bb1ae31d437",
-      "tasks.md": "91f6679b72a3e751fb6d14767ef67c1951751122703dd1aa9faf73cc81077c03",
-      "checklist.md": "7c777dc589aa69caabbd38c38571d75e62b952a4f54043cf744d67f1dbe6eec8",
-      "decision-record.md": "d69b079aef017068dccfbb23d82d0693b1d84c05095b0562ddbe928daf8d4e39",
-      "implementation-summary.md": "d88c3cd7107cf22008a9324143bcf0b79e1c30be19bbaaf038d36de76c7f05d8"
+      "spec.md": "6143fe953b67ddec8e112aae41a8aea32ffb4275d5c7babe2a3d7923d2dcf647",
+      "plan.md": "eff5a2d863c9076f73e28840ba55db7bf92b55e302e9fcc1d683146fef047c33",
+      "tasks.md": "78cd8ab399caab9bd705f98d8cc29aba5ba7afa2ee869c2948e44136fac72b1d",
+      "decision-record.md": "631ff176d14c8a111d54ca86aa704648c19102609c93179998d17b40ed3c64fa",
+      "implementation-summary.md": "136b937c14aa606e9161377204a8d47700e565330509d15a1f2fac58eeec61f2"
     },
     "last_active_child_id": null,
     "last_active_at": null

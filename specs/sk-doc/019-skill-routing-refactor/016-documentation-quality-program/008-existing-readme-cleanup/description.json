@@ -1,5 +1,5 @@
 {
-  "level": 2,
+  "level": "2",
   "specFolder": "sk-doc/019-skill-routing-refactor/016-documentation-quality-program/008-existing-readme-cleanup",
   "description": "The `auditreadmes.py` fleet sweep flagged 70 template-invalid READMEs, 177 broken references and 68 missing-OVERVIEW findings across the repo's 593",
   "keywords": [
@@ -16,7 +16,7 @@
     "across",
     "repo"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.011Z",
+  "lastUpdated": "2026-08-30T07:16:18.109Z",
   "specId": "008",
   "folderSlug": "existing-readme-cleanup",
   "parentChain": [

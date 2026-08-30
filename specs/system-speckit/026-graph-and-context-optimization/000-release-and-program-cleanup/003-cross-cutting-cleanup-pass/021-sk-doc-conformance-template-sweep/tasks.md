@@ -1,7 +1,6 @@
 ---
-title: "Tasks: sk-doc Conformance Sweep and Template Cleanup"
+title: "...imization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/021-sk-doc-conformance-template-sweep/tasks]"
 description: "Numbered task list mapped to plan.md Tier 1-4 sub-phases; cli-codex parallel dispatches enumerated per wave."
-template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 trigger_phrases:
   - "021-sk-doc-conformance-template-sweep tasks"
 importance_tier: "important"
@@ -24,6 +23,7 @@ _memory:
     completion_pct: 8
     open_questions: []
     answered_questions: []
+template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 ---
 # Tasks: sk-doc Conformance Sweep and Template Cleanup
 

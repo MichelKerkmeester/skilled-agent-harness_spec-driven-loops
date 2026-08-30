@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 038 deep-research mode skill README revisit"
+title: "Feature Specification: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/038-deep-research/spec]"
 description: "Rewrite the deep-research mode skill README at system-deep-loop/deep-research/README.md against the refined README template from phase 001 and the mcp-obsidian exemplar, with a version bump, a changelog entry and full validation."
 trigger_phrases:
   - "deep research readme"

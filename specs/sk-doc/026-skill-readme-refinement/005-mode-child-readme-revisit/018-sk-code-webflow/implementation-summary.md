@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 018 sk-code-webflow README revisit"
+title: "Implementa [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/018-sk-code-webflow/implementation-summary]"
 description: "Purpose-first rewrite of the sk-code-webflow README on the refined skill README template, with a version bump to 1.1.0.0, a matching changelog entry and full validation evidence."
 trigger_phrases:
   - "phase 18 implementation summary"

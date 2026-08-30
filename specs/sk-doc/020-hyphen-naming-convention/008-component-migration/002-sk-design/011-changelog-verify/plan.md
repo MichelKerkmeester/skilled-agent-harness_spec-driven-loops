@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Changelog verification (020 phase 011)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify/plan]"
 description: "Execution plan for Changelog verification in the 020 sk-design naming subtree."
 trigger_phrases:
   - "changelog-verify implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 changelog-verify tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify"
 ---
 # Implementation Plan: Changelog verification (020 phase 011)
 

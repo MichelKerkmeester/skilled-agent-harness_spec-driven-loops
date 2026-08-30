@@ -1,6 +1,16 @@
 ---
-title: "Implementation Summary: 002 Deep-Review Remediation"
+title: "...02-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/implementation-summary]"
 description: "Closing synthesis for the 3 P1 + 39 P2 findings. Every finding is CLOSED with evidence."
+trigger_phrases:
+  - "causal"
+  - "graph"
+  - "channel"
+  - "routing"
+  - "002"
+  - "implementation summary"
+  - "fix"
+importance_tier: "normal"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing"

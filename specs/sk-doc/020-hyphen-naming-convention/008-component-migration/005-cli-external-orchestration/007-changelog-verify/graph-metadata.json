@@ -19,10 +19,7 @@
       "cli-external phase 007 plan",
       "cli-external changelog verification tasks",
       "cli-external release evidence tasks",
-      "cli-external phase 007 tasks",
-      "cli-external changelog verification checklist",
-      "cli-external release evidence verifier",
-      "cli-external phase 007 acceptance"
+      "cli-external phase 007 tasks"
     ],
     "key_topics": [
       "cli-external",
@@ -34,9 +31,9 @@
       "phase",
       "plan",
       "tasks",
-      "checklist",
-      "verifier",
-      "acceptance"
+      "verification-only",
+      "confirms",
+      "cli-external-orchestration"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -44,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/cli-external-orchestration/description.json"
     ],
     "entities": [
@@ -64,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -179,37 +169,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This verification-only phase confirms that the cli-external-orchestration hub and its three CLI workflow release surfaces record the completed kebab-case rename set and coherent version bumps. It does not rename files, rewrite historical changelogs, or repair metadata contradictions.",
     "created_at": "2026-07-14T15:17:39Z",
-    "last_save_at": "2026-08-29T13:10:03.413Z",
+    "last_save_at": "2026-08-30T07:19:35.737Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:492a257ebebe89a9d744eda32298809d5993bc7b6760a89584e064a90cbc878a",
+    "source_fingerprint": "sha256:c0a991db6e5bcaa0287231a4ad8ff918e4bd0198fae82c3b6a10de3419f4a123",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "7bc58f72d8d462ae61708e6427509fb49c6b66a628b757b6762828eefbb03be4",
-      "plan.md": "53043b80a90d4d2f76a11d52d9372419f62c049f3a849c6dc0a4e00dd44e9136",
-      "tasks.md": "10153dac7ada9f5e10bfaabdd490ebc0cb196a9adef48f8f7b00db0eb7b4aaea",
-      "checklist.md": "4e879607158e09027220423ace9d0a1dfc7bc044c3087e50591837aa8a4a7cd2"
+      "spec.md": "94119be2480df514c7bb486ba5a9d13ddda759e9d8f16de6188eaecffab1618b",
+      "plan.md": "71138f9688c33d4fe7482b0f20c6c2e562e44ef683d3c961e4b6637d4c5f5c62",
+      "tasks.md": "8e28f4444214b2faae593334fe60dcf1f7a61fdad7698781dd14b5001fb6e7a0"
     },
     "last_active_child_id": null,
     "last_active_at": null

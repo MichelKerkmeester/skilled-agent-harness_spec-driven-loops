@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 011 system-spec-kit README revisit"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/plan]"
 description: "Rewrite the system-spec-kit README purpose-first against the refined template from phase 001, bump the version, add a changelog entry and validate with the readme validator, HVR grep and link guard."
 trigger_phrases:
   - "phase 011 plan"

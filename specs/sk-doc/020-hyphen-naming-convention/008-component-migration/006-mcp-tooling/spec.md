@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-tooling component naming migration (020 component parent)"
+title: "Feature Specification: mcp-tooling [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/spec]"
 description: "The mcp-tooling surface contains snake_case directory and file names across its hub-level support material, three component packets, manual-testing playbooks, and benchmark boundary. This phased packet defines the independent rename and reference-rewrite scopes needed to make that surface kebab-clean while preserving tool-mandated names, Python exemptions, and component behavior."
 trigger_phrases:
   - "mcp-tooling kebab-case migration"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 mcp-tooling phase map"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
@@ -25,8 +24,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + phase list; detailed plans, tasks, checklists, and decisions live in child folders. -->

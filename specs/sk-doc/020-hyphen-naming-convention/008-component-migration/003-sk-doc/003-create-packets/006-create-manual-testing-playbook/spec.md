@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-manual-testing-playbook resource names"
+title: "...phen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook/spec]"
 description: "The create-manual-testing-playbook packet contains snake_case template and prompt-voice resource filenames. This phase converts those non-exempt names to kebab-case and updates packet-local links while preserving playbook schema fields and scenario identifiers."
 trigger_phrases:
   - "create-manual-testing-playbook resource naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "create playbook resource rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: cli-external-orchestration subtree rollup gate (020 phase 005.008)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate/tasks]"
 description: "Tasks for the final cli-external-orchestration gate: aggregate sibling evidence, reconcile path classifications, run the final scope-aware census, and publish a pass/block result without new migration work."
 trigger_phrases:
   - "cli-external subtree rollup gate tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 008 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
@@ -26,6 +25,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The gate performs no new rename, reference, metadata, changelog, or content work."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
 ---
 # Tasks: cli-external-orchestration subtree rollup gate
 

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 014 mcp-refero README rewrite"
+title: "Feature Specification: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/014-mcp-refero/spec]"
 description: "Rewrite the mcp-refero mode skill README at .opencode/skills/mcp-tooling/mcp-refero/README.md on the refined standalone README template with a purpose-first structure, HVR enforcement, a version bump and a changelog entry."
 trigger_phrases:
   - "refero readme rewrite"

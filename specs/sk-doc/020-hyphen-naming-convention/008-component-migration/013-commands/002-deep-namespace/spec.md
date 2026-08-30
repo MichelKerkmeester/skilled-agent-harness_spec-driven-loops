@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: deep command namespace naming (020 phase 008/013/002)"
+title: "Feature Specification [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace/spec]"
 description: "The deep command namespace mixes maintained workflow assets, legacy fallback bodies, and generated compiled contracts whose filenames and embedded source paths use underscores. This phase renames maintained filesystem names, preserves generated-output exemptions, and keeps deep command IDs and contract authority intact."
 trigger_phrases:
   - "deep command namespace naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "deep command contract paths"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "Maintained deep assets and legacy bodies are rename candidates; compiled contract files are generated-output exemptions."
       - "Compiled contract source-digest paths must be regenerated after maintained asset paths change."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

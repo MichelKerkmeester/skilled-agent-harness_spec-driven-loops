@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: system-deep-loop deep-alignment names (020 phase 007/007)"
+title: "De [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment/decision-record]"
 description: "L2 design decisions for the deep-alignment naming phase, including filesystem-path versus embedded-key classification, adapter/catalog closure, and read-only authority boundaries."
 trigger_phrases:
   - "system-deep-loop alignment decisions"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "alignment path key boundary"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
 ---
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->

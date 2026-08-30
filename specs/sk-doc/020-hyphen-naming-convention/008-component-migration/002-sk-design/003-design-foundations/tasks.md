@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Design-foundations (020 phase 003)"
+title: "Tasks: Design-f [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations/tasks]"
 description: "Task breakdown for Design-foundations in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-foundations tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 design-foundations checklist"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/003-design-foundations"
 ---
 # Tasks: Design-foundations (020 phase 003)
 

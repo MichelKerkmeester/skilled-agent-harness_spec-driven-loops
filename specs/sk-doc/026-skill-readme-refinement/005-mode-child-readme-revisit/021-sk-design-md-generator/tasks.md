@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 021 sk-design-md-generator README revisit (rewrite)"
+title: "Tasks: Phase 021 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/021-sk-design-md-generator/tasks]"
 description: "Task list for rewriting the sk-design-md-generator mode skill README purpose-first per the refined template and the mcp-obsidian exemplar, with a version bump, a changelog entry and validation."
 trigger_phrases:
   - "phase 021 tasks"

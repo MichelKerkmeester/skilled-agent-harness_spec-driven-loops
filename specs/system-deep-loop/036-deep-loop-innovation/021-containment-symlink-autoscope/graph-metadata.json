@@ -12,11 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "containment symlink autoscope",
-      "resolveArtifactScope null symlinked spec tree",
+      "resolveartifactscope null symlinked spec tree",
       "containment repo root auto detection",
-      "containment symlink autoscope summary",
-      "resolveContainmentRepoRoot artifact worktree",
-      "containment catch-22 closed"
+      "implementation",
+      "plan",
+      "containment",
+      "021",
+      "tasks",
+      "auto",
+      "scope",
+      "for",
+      "containment symlink autoscope summary"
     ],
     "key_topics": [
       "containment",
@@ -32,13 +38,12 @@
       "auto",
       "detection"
     ],
-    "importance_tier": "high",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/system-deep-loop/runtime/scripts/runtime-bootstrap.cjs",
       ".opencode/skills/system-deep-loop/runtime/scripts/fanout-run.cjs"
@@ -60,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -171,43 +170,48 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Completion Impact",
+        "name": "Actual Effort",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Closed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Packet 020 fixed the tsx-loader crash and added a `DEEPLOOPREPOROOT` override, but left the containment half of the operator's catch-22 unconfirmed",
     "created_at": "2026-08-26T16:09:53.781Z",
-    "last_save_at": "2026-08-29T14:54:11.041Z",
+    "last_save_at": "2026-08-30T07:16:24.277Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e9ab68d19df97b11024ac4c2f75b8bc4a1068e717cb6080a96877ac91f928205",
+    "source_fingerprint": "sha256:1ca032a9a61960bc7096a721e2db54fb92f0f840da6874d231833e497ad6813c",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d82d6dd0fa5b01f120fed8491011e69b702b4892ae647dcfe52d230f936cefba",
-      "plan.md": "d81bdb8dffd02feea19cf6bf15762f670f83e27a2cf2c155b744a18fa216f77a",
-      "tasks.md": "f6b477bef62ce55ae418a01763bbbbc82ca2e9cda0b946616f68baaae81d8a43",
-      "checklist.md": "fd58c991f1ad0b2f052e2e87fd1c5dcf882345b338db6af0d8fe12619c935517",
-      "implementation-summary.md": "90de4d773c6af2b1ee6e627a38ee882309c09f9b1887b21dcb5a3c40ed6442d3"
+      "spec.md": "9a9e6c46524ab6bf65cbc6aeefa7c08efcfe8f73b833ea10ea0c57f83260f863",
+      "plan.md": "00f44ba5ff2f781e19bf16a694f98e551c901d596a3247fec92486d9408ba67f",
+      "tasks.md": "7383b36b19f2002a882646ce51f4568bf2d9d4ece927fbbabb034bb7bc20f12c",
+      "implementation-summary.md": "43e3eb9295145e14127c7000f879607dcda161056eae6c55f2fba4cf0dbd8d89"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "design command research",
       "interface command redesign",
-      "creation-template prompts"
+      "creation-template prompts",
+      "implementation",
+      "plan",
+      "deep",
+      "research",
+      "002",
+      "tasks",
+      "design",
+      "implementation summary",
+      "interface"
     ],
     "key_topics": [
       "design",
@@ -23,11 +32,11 @@
       "redesign",
       "creation-template",
       "prompts",
-      "five",
-      "commands",
-      "opencode",
-      "audit",
-      "foundations"
+      "implementation",
+      "plan",
+      "deep",
+      "tasks",
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
@@ -35,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md",
       ".opencode/skills/sk-design/SKILL.md"
@@ -57,12 +65,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -180,33 +182,38 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The five design commands (`.opencode/commands/design/{interface,audit,foundations,motion,md-generator}.md`) are thin routers: each resolves an execution mode and defers to the `sk-design` hub, carrying routing contracts and sibling discriminators but no generative scaffolding",
     "created_at": "2026-07-19T06:46:18.402Z",
-    "last_save_at": "2026-08-29T14:54:13.032Z",
+    "last_save_at": "2026-08-30T07:16:11.343Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:edeb30bec25afd751913721c64337e3b5b9e64666599be5f2dfd34e952012f13",
+    "source_fingerprint": "sha256:e4e691bf93640d17076a32dffac940ab971a605aa5989bde5c48ee8987e2bc12",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f1ade4c448bf7700e04caadc2bb5f5f9e49a8c898d7da9bc987eab6a0ae5aac8",
-      "plan.md": "717fc9ccd56f9950648ceb4948b9010e23de76abf7d073817e34d4df961f6d92",
-      "tasks.md": "2816d246d2f0da01aa0d4cbf9bb492dcf60653b7a35dc34d690c367fc59943de",
-      "checklist.md": "bb51a74ca46d813bee4706e4eb6220d23aae7c41e41af20b5359687fa4475b5c",
-      "implementation-summary.md": "f2c161a61882aca82281cf8897ef0f3ed5ca1e2a0df138ece990e0be9c41ed10",
-      "research/research.md": "c64120586916510656d73e1498a46815dca7602fab9173a1356697a61cd98008"
+      "spec.md": "56018b16fdb5ae9ad23d62f19a7944040c4b616ae5040e369c66b6715be4dc86",
+      "plan.md": "bcb59a70f29dbbe25c8e429fe0453ed011f5a4734ffcdd33f93d1d09b6963190",
+      "tasks.md": "7b60372d84c9f1e0ba28dedf61bc3a35c1fba2b5f2973d32f2cdbe9d6a145e66",
+      "implementation-summary.md": "f62de33f8acc9af4c71dbc6ba3d69942f8ac416ff3a9a7a5aa8e34009c242028",
+      "research/research.md": "92257c0464c1ed2743fbce9b112ba9505e53bf92aaa229dfd725a75cc05062c0"
     },
     "last_active_child_id": null,
     "last_active_at": null

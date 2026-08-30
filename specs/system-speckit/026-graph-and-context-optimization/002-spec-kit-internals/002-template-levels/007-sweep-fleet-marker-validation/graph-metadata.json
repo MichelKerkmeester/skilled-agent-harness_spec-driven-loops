@@ -21,8 +21,8 @@
       "plan core",
       "tasks",
       "tasks core",
-      "verification",
-      "checklist"
+      "decision",
+      "record"
     ],
     "key_topics": [
       "feature",
@@ -34,21 +34,26 @@
       "implementation",
       "plan",
       "tasks",
-      "verification",
-      "checklist",
+      "decision",
+      "record",
       "broken"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
-      "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -62,21 +67,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -86,13 +79,13 @@
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "Initialized Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Initialized Level",
+        "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -182,39 +175,44 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Date",
+        "name": "Decision Title",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Alternatives Considered",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-05-02T08:52:26Z",
-    "last_save_at": "2026-07-17T17:19:16.617Z",
+    "last_save_at": "2026-08-30T07:16:29.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b155b6e46716bfd0e5c428356b2e845d22080120464a30ff3363da908f6acb5b",
+    "source_fingerprint": "sha256:ca9794ea902f224fb2ffb86e81d6939f3266d98e2ec48eca133195a2778577bc",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "61fde788fadb8d5d46d6ac7580f5c4dd8e15f1ffe159513b5753682175034e9f",
-      "plan.md": "2957018e22d38c1afaea1bf682bc9134792dbeb7355a7cfe00cef854f8059d37",
-      "tasks.md": "1e87384fb07b61b299af28478cfd45bf769ea6805cc549b5083c5718e5723ed0",
-      "checklist.md": "281186fb033af8248aa9331ddf52af1a00cecef7ab1f44dd1fe415e17826d25f",
-      "decision-record.md": "54f51ae3e224ee1459664305e9800cef02131c6d30795ed16146ba95038658cd",
-      "implementation-summary.md": "44dc6ba3e290bf1f6151a9b91d48353897ea581d0509eee5e3e38abd489468ce"
+      "spec.md": "afdb001f6bbab5a225100c8cabc0e58982df62c6cf7260a59832aca73fd72669",
+      "plan.md": "cdf90431c6a22158a6cc0a4f9aca6c674e29878660ec158d806fdfe69fd8cfc1",
+      "tasks.md": "41cfb0f6cc8c12166cceec23d5628fc01c247754b9947a28cecf66f203668416",
+      "decision-record.md": "e3b1696163803cb2cd0bf89fc07ae3fe8d8ed3057206559b40eac6fe54c792bf",
+      "implementation-summary.md": "bbfa4a77694da10c672fc79ec857f091ca3c3b4e433f89d50ad756a1a0bf1895"
     },
     "last_active_child_id": null,
     "last_active_at": null

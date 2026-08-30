@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Devin hook hardening"
+title: "Feature Specification: Devin hook [cli-external-orchestration/029-cli-devin-revival/012-devin-hook-hardening/spec]"
 description: "Harden the 10 Devin hook adapters around workspace-root resolution, fail-open stdin discipline, and discriminating process-level test coverage, plus trim stale historical comment scar tissue."
 trigger_phrases:
   - "devin hook hardening"

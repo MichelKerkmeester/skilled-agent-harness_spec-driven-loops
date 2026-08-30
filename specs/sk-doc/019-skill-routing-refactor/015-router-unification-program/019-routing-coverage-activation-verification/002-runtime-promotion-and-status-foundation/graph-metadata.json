@@ -12,17 +12,17 @@
   "derived": {
     "trigger_phrases": [
       "runtime promotion and status foundation",
-      "compiled routing P0 foundation spec",
+      "compiled routing p0 foundation spec",
       "promote resolver closure status probe tri-state",
       "runtime promotion status foundation plan",
-      "compiled routing P0 build sequence",
+      "compiled routing p0 build sequence",
       "promote closure status probe plan",
       "runtime promotion status foundation tasks",
-      "compiled routing P0 task list",
-      "runtime promotion status foundation checklist",
-      "compiled routing P0 verification gate",
+      "compiled routing p0 task list",
       "runtime promotion status foundation decisions",
-      "compiled routing closure promotion decision record"
+      "compiled routing closure promotion decision record",
+      "eligibility engine-dispatch split decision",
+      "runtime promotion status foundation planned summary"
     ],
     "key_topics": [
       "runtime",
@@ -39,21 +39,19 @@
       "tri-state"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
-      "decision-record.md",
       "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
       ".opencode/bin/compiled-route-sync.cjs",
       ".opencode/bin/check-no-spec-imports.cjs",
       ".github/workflows/runtime-no-spec-import.yml",
       ".opencode/bin/compiled-route-status.cjs",
       ".opencode/bin/compiled-route.cjs",
-      ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md",
-      ".opencode/plugins/mk-skill-advisor.js",
-      "tasks.md",
-      "checklist.md",
-      "implementation-summary.md"
+      ".opencode/skills/system-spec-kit/mcp-server/ENV-REFERENCE.md"
     ],
     "entities": [
       {
@@ -63,15 +61,27 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "plan.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": "plan.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -111,36 +121,6 @@
         "source": "derived"
       },
       {
-        "name": "mk-skill-advisor.js",
-        "kind": "code",
-        "path": ".opencode/plugins/mk-skill-advisor.js",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Runtime Promotion",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -171,13 +151,19 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "The Lane",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Begin Phase",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -199,29 +185,40 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The compiled router is shipped but held inert",
     "created_at": "2026-07-20T21:51:24.395Z",
-    "last_save_at": "2026-07-24T12:11:48.943Z",
+    "last_save_at": "2026-08-30T07:19:03.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d42d14428bb9462fbfa5bc4e55e7e43f0764511441afb15ae7db3a827e3879bb",
+    "source_fingerprint": "sha256:601531c5a9faa524589085dc70afb5a22fb8eedb4fa5130f49917b8c97c0739b",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "e9d3af7773982033536e7aef5b33091c7f2f480a8df3df33dd6877fda31f22aa",
-      "plan.md": "b4f6f5aae68a75015e15e7782e6a5194413e3285e627d1243dc69297cf58c8f7",
-      "tasks.md": "73d8454b50d931ece8927c12814c162371902d9d34c0059744cb69fbbab9f5f5",
-      "checklist.md": "b344c652412fe4ca52ff3498d1145b3f0a4724ea80184df4430cdd109803c770",
-      "decision-record.md": "3d0966187b456dbb6881301d56c9964c878d09f7ce31954fc3bc301bebeba923",
-      "implementation-summary.md": "aab198df4e0655dba8d87ffe38bda8347e3ff37cb1437dae4c3590c90eb582a2"
+      "spec.md": "7549d10d21e0225db56a7e7a053d7ac30f9c8b1c823b8516477ade31ec8e493d",
+      "plan.md": "037da934776ba32279b9c2a0d3542e68f6163363889c80f37b1af866eb2a7062",
+      "tasks.md": "154aa857ffc4dc4e5d02b3a691f0aecfbfe5f820c77898a4ad4c2d752d51f112",
+      "decision-record.md": "d562afb84124389b50cb25f2317ada1ddccacf5c5284cc6745e04b64a33e38be",
+      "implementation-summary.md": "fe9a3799b2d5f5310c169938b97ab3b17e9a14fec9eb5069e71b7d6e1dae03bb"
     },
     "last_active_child_id": null,
     "last_active_at": null

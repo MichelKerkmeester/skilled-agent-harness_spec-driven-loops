@@ -1,6 +1,5 @@
 ---
-title: "Tasks: Automation Reality Supplemental Research [template:level_2/tasks.md]"
-template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
+title: "...context-optimization/000-release-and-program-cleanup/006-research/002-automation-reality-supplemental-research/tasks]"
 description: "Task tracker for 5-iteration supplemental automation research extending 012's baseline."
 trigger_phrases:
   - "013 automation supplemental tasks"
@@ -19,6 +18,7 @@ _memory:
       - "research/research-report.md"
       - "research/deep-research-state.jsonl"
     completion_pct: 100
+template_source: "SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2"
 ---
 # Tasks: Automation Reality Supplemental Research
 

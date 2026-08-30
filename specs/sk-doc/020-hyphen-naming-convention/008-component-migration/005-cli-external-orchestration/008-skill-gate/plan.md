@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: cli-external-orchestration subtree rollup gate (020 phase 005.008)"
+title: "Impleme [sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate/plan]"
 description: "Read-only rollup plan for phase 008: reconcile phases 001–007, enumerate the complete cli-external-orchestration surface, resolve final references, and publish a reproducible pass/block result without new migration work."
 trigger_phrases:
   - "cli-external subtree rollup gate plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 008 plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
@@ -26,6 +25,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "The gate is read-only and routes new findings to sibling owners."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/008-skill-gate"
 ---
 # Implementation Plan: cli-external-orchestration subtree rollup gate
 

@@ -12,8 +12,18 @@
     "related_to": []
   },
   "derived": {
-    "trigger_phrases": [],
+    "trigger_phrases": [
+      "phase",
+      "003",
+      "spec",
+      "trigger",
+      "plan"
+    ],
     "key_topics": [
+      "phase",
+      "spec",
+      "trigger",
+      "plan",
       "frontmatter",
       "system-spec-kit",
       "snippets",
@@ -21,11 +31,7 @@
       "root",
       "catalog",
       "headings",
-      "feature",
-      "file",
-      "content",
-      "batched",
-      "category"
+      "feature"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -109,17 +115,18 @@
     ],
     "causal_summary": "Add trigger_phrases frontmatter to all 313 system-spec-kit snippets, derived from root catalog H3 headings and feature file content. Batched by category with parallel AI agents.",
     "created_at": "2026-07-09T10:02:46.122Z",
-    "last_save_at": "2026-07-17T13:38:38.822Z",
+    "last_save_at": "2026-08-30T07:16:16.235Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md"
     ],
-    "source_fingerprint": "sha256:2e0e98236dedd7e6d3cb156ecf82d8df9b7d41e8bfacd02695bc77269cbba992",
+    "source_fingerprint": "sha256:0d7c518533531c296a4768a3d406e2d0a67e74363e598b4045f1fe5e443a332f",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "be3c56b5791dab8a79b3ce9160f26eb77666b697e9242615e51c5b12da5e507e",
-      "plan.md": "f0992c9400d62cebb1dfccf1fb939570c64ee306890d579686a30accc63a250e"
+      "spec.md": "2174c238ae0612c0a8350759cae26bcfb49b1d7a3246e9f0194c306b58a0cdc0",
+      "plan.md": "5aa8a3e6d147d56673547482f5d155ed0717614ae4dec4b8bee97227548a7a21"
     },
     "last_active_child_id": null,
     "last_active_at": null

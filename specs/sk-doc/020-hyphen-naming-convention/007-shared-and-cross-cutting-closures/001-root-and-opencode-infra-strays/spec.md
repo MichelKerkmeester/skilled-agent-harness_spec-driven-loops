@@ -1,13 +1,12 @@
 ---
-title: "Feature Specification: root and OpenCode infrastructure strays (020 phase 007 child 001)"
-description: "Root-level and `.opencode` infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed filesystem-name contract before downstream component work consumes them."
+title: "Feat [sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays/spec]"
+description: "Root-level and .opencode infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed filesystem-name contract before downstream component work consumes them."
 trigger_phrases:
-  - "root and OpenCode infrastructure strays"
+  - "root and opencode infrastructure strays"
   - "hyphen naming root infrastructure closure"
   - "phase 007 root infra"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/001-root-and-opencode-infra-strays"
@@ -27,8 +26,8 @@ _memory:
       - "This child covers only root-level and `.opencode` infrastructure outside one skill-owned subtree"
       - "`.utcp_config.json`, `.mcp.json`, Python files, Python package directories, generated output, and frozen history are not rename candidates"
       - "Cross-skill symlink edges are handed to child 002 instead of being partially moved here"
+parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

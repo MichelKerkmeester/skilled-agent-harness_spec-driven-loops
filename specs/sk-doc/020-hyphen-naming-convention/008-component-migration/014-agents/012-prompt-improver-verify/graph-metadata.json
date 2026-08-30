@@ -17,9 +17,7 @@
       "prompt-improver agent naming implementation plan",
       "agents phase 012 implementation plan",
       "prompt-improver agent naming tasks",
-      "agents phase 012 tasks",
-      "prompt-improver agent naming checklist",
-      "agents phase 012 checklist"
+      "agents phase 012 tasks"
     ],
     "key_topics": [
       "prompt-improver",
@@ -32,16 +30,15 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "surface"
+      "surface",
+      "needs"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,9 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specifi",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -94,12 +91,6 @@
       },
       {
         "name": "File Path",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Change Type",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -163,49 +154,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for prompt-improver across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:47Z",
-    "last_save_at": "2026-08-29T10:00:57.417Z",
+    "last_save_at": "2026-08-30T07:20:09.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:5eb41a3cb091c588588725635d12f09e33f8d103cb11ea9c1a956a42293ca9d2",
+    "source_fingerprint": "sha256:ef85e181ac3c4e6dee0d399d3d29a06d2038155e1a227b0d2b93b0c9819d00f7",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "7891be509c00e41185cd21d722495db9b1238742e3500798cac777c2444665dd",
-      "plan.md": "1eb95e07e3c567ab174b06c8d1778868560312f7828390fe1c41d8766acbdbb0",
-      "tasks.md": "a4aff3bf227751e3787f668f8ee0900ed690906e928cb4cf07929e014ccc10f1",
-      "checklist.md": "6cbb43093e8dff6c73f4d259cff5f0a3bb041f56f2cdcdd49066da32ed996496"
+      "spec.md": "cf1d764cac454be79865a0fd3ba6e922e2659723994c496c06f9f4da8048717c",
+      "plan.md": "250bdf394dca914216f1c319ef6fa646e080f97cde12a16b242df65ddea2d96b",
+      "tasks.md": "72f228f468274e2b9263daadfb261f0549787f6eca7e7f372606b612e3904c5e"
     },
     "last_active_child_id": null,
     "last_active_at": null

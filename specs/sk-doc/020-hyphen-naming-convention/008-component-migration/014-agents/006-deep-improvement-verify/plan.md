@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: verify deep-improvement agent naming (020 phase 006)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/006-deep-improvement-verify/plan]"
 description: "Implementation Plan for phase 006 of the 020 agents component migration: a read-only deep-improvement filename candidate audit."
 trigger_phrases:
   - "deep-improvement agent naming implementation plan"
   - "agents phase 006 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/006-deep-improvement-verify"
@@ -19,8 +18,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 # Implementation Plan: Deep Improvement Agent Naming Verification
 
 <!-- SPECKIT_LEVEL: 2 -->

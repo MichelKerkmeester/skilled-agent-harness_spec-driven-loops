@@ -1,9 +1,11 @@
 ---
-title: "Implementation Plan: Devin docs, agents, governance, and closeout"
+title: "Implementation Plan: [cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout/plan]"
 description: "Restore cli-devin mentions across 3 runtime agent rosters and governance docs against the CURRENT tree, then run whole-packet closeout validation."
-trigger_phrases: ["Devin docs closeout plan", "Devin agent roster restore plan"]
-importance_tier: normal
-contextType: general
+trigger_phrases:
+  - "devin docs closeout plan"
+  - "devin agent roster restore plan"
+importance_tier: "normal"
+contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/029-cli-devin-revival/007-docs-agents-governance-and-closeout"

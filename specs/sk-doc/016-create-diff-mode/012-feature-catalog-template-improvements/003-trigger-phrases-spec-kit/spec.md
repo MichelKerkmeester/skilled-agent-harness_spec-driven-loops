@@ -1,6 +1,11 @@
 ---
-title: "Phase 003: Trigger Phrases — system-spec-kit"
+title: "Phase 003: [sk-doc/016-create-diff-mode/012-feature-catalog-template-improvements/003-trigger-phrases-spec-kit/spec]"
 description: "Add trigger_phrases frontmatter to all 313 system-spec-kit snippets, derived from root catalog H3 headings and feature file content. Batched by category with parallel AI agents."
+trigger_phrases:
+  - "phase"
+  - "003"
+  - "spec"
+  - "trigger"
 importance_tier: "normal"
 contextType: "general"
 ---

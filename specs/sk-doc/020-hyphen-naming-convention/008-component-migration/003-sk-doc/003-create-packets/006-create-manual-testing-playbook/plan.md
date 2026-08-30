@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: create-manual-testing-playbook resource names"
+title: "...phen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook/plan]"
 description: "Execution plan for the create-manual-testing-playbook asset and reference rename/reference closure."
 trigger_phrases:
   - "create playbook resource implementation plan"
   - "manual testing template rename plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/006-create-manual-testing-playbook"
 ---
 # Implementation Plan: create-manual-testing-playbook resource names
 

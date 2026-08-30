@@ -1,7 +1,10 @@
 ---
-title: "Feature Specification: Devin CLI contract pin"
+title: "Feature Specification: Devin CLI [cli-external-orchestration/029-cli-devin-revival/001-devin-contract-pin/spec]"
 description: "Verify the live Devin CLI (v3000.2.17) contract - install, hooks, config, permissions, models, subagents, auth - before any executor or skill-packet work depends on assumptions from the pre-deprecation (2026-05) product."
-trigger_phrases: ["devin contract pin", "devin cli verification", "devin hooks contract"]
+trigger_phrases:
+  - "devin contract pin"
+  - "devin cli verification"
+  - "devin hooks contract"
 importance_tier: "normal"
 contextType: "general"
 _memory:

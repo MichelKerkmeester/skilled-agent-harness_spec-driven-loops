@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-code benchmark artifacts (020 phase 008/007)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark/plan]"
 description: "Plan for renaming tracked sk-code benchmark storage labels through the semantic map, repairing benchmark navigation, and proving corpus/report discovery parity without rewriting generated artifacts."
 trigger_phrases:
   - "benchmark naming implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "benchmark storage path repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark"
@@ -24,8 +23,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark"
 ---
-
 # Implementation Plan: sk-code benchmark artifacts
 
 <!-- SPECKIT_LEVEL: 2 -->

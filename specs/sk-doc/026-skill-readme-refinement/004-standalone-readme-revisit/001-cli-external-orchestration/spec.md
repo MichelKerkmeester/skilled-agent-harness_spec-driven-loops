@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 1 cli-external-orchestration README rewrite"
+title: "Feature Specifica [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/001-cli-external-orchestration/spec]"
 description: "Rewrite the skill README at .opencode/skills/cli-external-orchestration/README.md against the refined standalone README template with the mcp-obsidian exemplar as the reference shape, purpose-first with HVR enforcement, a version bump and a changelog entry."
 trigger_phrases:
   - "cli external orchestration readme"

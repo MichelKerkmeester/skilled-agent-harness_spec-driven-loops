@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Design-interface (020 phase 002)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface/plan]"
 description: "Execution plan for Design-interface in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-interface implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 design-interface tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/002-design-interface"
 ---
 # Implementation Plan: Design-interface (020 phase 002)
 

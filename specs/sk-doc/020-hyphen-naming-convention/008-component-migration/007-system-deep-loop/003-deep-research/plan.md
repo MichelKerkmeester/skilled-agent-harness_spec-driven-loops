@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: deep-research filesystem names (020 phase 007/003)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research/plan]"
 description: "Plan for renaming deep-research assets, catalog/playbook paths, references, and state documentation through the frozen semantic map, then repairing every static and dynamic path consumer without changing research contracts."
 trigger_phrases:
   - "deep-research implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "research packet reference closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/003-deep-research"
 ---
 # Implementation Plan: Deep-research filesystem names
 

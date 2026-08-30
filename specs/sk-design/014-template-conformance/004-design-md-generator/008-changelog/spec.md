@@ -1,5 +1,5 @@
 ---
-title: "Spec: design-md-generator changelog/ conformance"
+title: "Spec: design-md-generator changelog/ [sk-design/014-template-conformance/004-design-md-generator/008-changelog/spec]"
 description: "Audit the single changelog/v1.0.0.0.md file against the sk-doc changelog-template.md and remediate any confirmed gap."
 trigger_phrases:
   - "design-md-generator changelog conformance"

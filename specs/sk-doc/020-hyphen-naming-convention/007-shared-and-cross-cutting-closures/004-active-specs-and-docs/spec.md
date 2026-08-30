@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: active specs and documents (020 phase 007 child 004)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs/spec]"
 description: "Active spec folders and authored documents can retain snake_case names and path references even though numeric phase folders are already structurally compliant. This child separates active authored docs from generated, frozen, and tool-mandated surfaces before applying the naming contract."
 trigger_phrases:
   - "active specs and documents naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "phase 007 active specs"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/004-active-specs-and-docs"
@@ -27,8 +26,8 @@ _memory:
       - "A three-digit phase prefix with hyphenated suffix is structurally compliant and is not a snake_case violation"
       - "Active authored specs/docs are distinct from z_archive, changelogs, completed history, and generated research/review state"
       - "Filesystem names and path-derived frontmatter values may change; frontmatter fields and data keys do not"
+parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

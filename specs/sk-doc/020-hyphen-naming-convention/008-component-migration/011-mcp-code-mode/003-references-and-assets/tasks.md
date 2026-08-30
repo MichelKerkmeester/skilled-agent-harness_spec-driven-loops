@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-code-mode references and assets (020 component 011 phase 003)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets/tasks]"
 description: "Tasks for the four reference/asset filename renames and their active link and path-pointer closure."
 trigger_phrases:
   - "mcp-code-mode references assets tasks"
   - "mcp-code-mode phase 003 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/003-references-and-assets"
 ---
 # Tasks: mcp-code-mode references and assets
 

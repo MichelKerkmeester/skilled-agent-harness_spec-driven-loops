@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-code-mode subtree skill gate (020 component 011 phase 007)"
+title: "Feature Specificatio [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate/spec]"
 description: "The mcp-code-mode subtree needs one blocking rollup gate after its five closure phases and changelog verification. This phase aggregates sibling evidence and proves that no in-scope snake_case filesystem name or stale active path remains outside the Python, tool-mandated, generated, lockfile, and frozen-history exemptions."
 trigger_phrases:
   - "mcp-code-mode subtree skill gate"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "mcp-code-mode kebab-clean rollup"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/007-skill-gate"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

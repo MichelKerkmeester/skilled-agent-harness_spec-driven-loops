@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 003 — creation workflow README template wiring"
+title: "Feature Specification: Phase 003 — creation [sk-doc/026-skill-readme-refinement/003-creation-workflow-update/spec]"
 description: "Wire the refined standalone README template and the new parent-skill README template into the create-skill workflow with an explicit choice rule and post-authoring validation steps."
 trigger_phrases:
   - "creation workflow readme templates"

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Deep research — design command redesign"
+title: "Feature Specification: Deep research [sk-design/012-sk-design-program/001-research/002-research-design-commands/spec]"
 description: "Twenty-iteration deep research (SOL) plus GLM lineage into how to rebuild the sk-design commands into genuine creation templates under an /interface namespace, modeled on Claude design, Open Design, and aura.build/skills."
 trigger_phrases:
   - "design command research"
@@ -26,7 +26,6 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

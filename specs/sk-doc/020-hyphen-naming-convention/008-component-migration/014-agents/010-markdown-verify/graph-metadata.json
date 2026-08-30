@@ -17,9 +17,7 @@
       "markdown agent naming implementation plan",
       "agents phase 010 implementation plan",
       "markdown agent naming tasks",
-      "agents phase 010 tasks",
-      "markdown agent naming checklist",
-      "agents phase 010 checklist"
+      "agents phase 010 tasks"
     ],
     "key_topics": [
       "markdown",
@@ -32,16 +30,15 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "surface"
+      "surface",
+      "needs"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -60,12 +57,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -163,49 +154,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The agents surface needs an explicit candidate audit for markdown across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename.",
     "created_at": "2026-07-14T15:18:46Z",
-    "last_save_at": "2026-08-29T10:00:57.412Z",
+    "last_save_at": "2026-08-30T07:20:08.881Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:7eb10f7976d0f55925dc5c3b1ba1b4fb3aacf22918838c12151a619759e6d0b9",
+    "source_fingerprint": "sha256:346eeb8fa72ef46efed772a27872a49352234d61a2a57961941162cfca671f9b",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "6fe2c202701fafb452f798ee426ff876a3d46c05ff81a883627b00ba53f05ce0",
-      "plan.md": "42fa95f56d258de4eadfe3c5c3130ab04f083660bbe25d14f6e35d12c4183931",
-      "tasks.md": "870dcbc89db02ea3568889d431babab826ffd9ee20198205ad7283fdbd6237eb",
-      "checklist.md": "d2a152b7ff9368426e4f62aaaa7be79f83c596466604e41a49840de20dc9c81d"
+      "spec.md": "0676ce498061f99c4e7aba9d6dfe0dfc2f1d7d8e6e4cce5a80d4c8178e4f1979",
+      "plan.md": "0ee34ecc3e15444add05fe9cf3121d243fb34cd765b682ca1a39ed1677dcabe9",
+      "tasks.md": "104b216852f7d91d6b1385e80d0394536199f27a91c00c573bc7d1830cf15c65"
     },
     "last_active_child_id": null,
     "last_active_at": null

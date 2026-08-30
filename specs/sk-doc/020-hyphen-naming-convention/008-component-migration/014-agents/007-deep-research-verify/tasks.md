@@ -1,12 +1,11 @@
 ---
-title: "Tasks: verify deep-research agent naming (020 phase 007)"
+title: "Tasks: verify [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/007-deep-research-verify/tasks]"
 description: "Tasks for phase 007 of the 020 agents component migration: verify the deep-research filename candidate set."
 trigger_phrases:
   - "deep-research agent naming tasks"
   - "agents phase 007 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/007-deep-research-verify"
@@ -19,8 +18,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 # Tasks: Deep Research Agent Naming Verification
 
 <!-- SPECKIT_LEVEL: 2 -->

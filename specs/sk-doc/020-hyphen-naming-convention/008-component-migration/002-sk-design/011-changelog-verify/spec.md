@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Changelog verification (020 phase 011)"
+title: "Feature Specificat [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify/spec]"
 description: "The rename program needs an auditable sk-design release-note entry that identifies the completed subtree and records the resulting version bump, but this phase is verification-only."
 trigger_phrases:
   - "changelog-verify naming phase"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 changelog-verify"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/011-changelog-verify"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Durable Archiving & Serving-Snapshot"
+title: "...er-unification-program/019-routing-coverage-activation-verification/007-durable-archiving-and-serving-snapshot/tasks]"
 description: "Planned task breakdown for the report-path convention, the serving-snapshot.json schema and renderer, the report.compiledRouting render block, repo-relative provenance, and the append-only flip-history log."
 trigger_phrases:
   - "durable archiving tasks"

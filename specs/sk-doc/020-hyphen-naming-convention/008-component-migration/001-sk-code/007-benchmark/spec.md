@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-code benchmark artifacts (020 phase 008/007)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark/spec]"
 description: "Tracked sk-code benchmark storage uses snake_case labels such as d4r_live, live_mode_b, live_final, live_remediated, router_baseline, router_final, and fixtures/sk_code. This phase renames the in-scope fixture/profile/storage paths and updates benchmark navigation while preserving generated report content and the benchmark corpus."
 trigger_phrases:
   - "sk-code benchmark naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "sk-code fixture directory migration"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/007-benchmark"
@@ -32,8 +31,8 @@ _memory:
       - "The tracked benchmark storage labels are the rename candidates; generated report contents remain generated output."
       - "skill-benchmark-report.json/md and d4-ablation.json already use compliant names and are not rewritten for naming."
       - "The manual-testing-playbook corpus is renamed by 006; this child updates its benchmark path consumers only."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

@@ -1,14 +1,13 @@
 ---
-title: "Fan-Out Synthesis: Out-of-Box GLM Parent-Hub Routing Research"
+title: "Fan-Out Synthesis: Out-of-Box [sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research/research]"
 description: "Canonical synthesis of the five-iteration GLM-5.2 lineage exploring lateral alternatives to current parent-hub routing policy."
 trigger_phrases:
   - "glm parent hub routing synthesis"
   - "typed handoff routing"
   - "threshold recovery provenance routing"
-importance_tier: important
-contextType: research
+importance_tier: "important"
+contextType: "research"
 ---
-
 # Fan-Out Synthesis: Out-of-Box GLM Parent-Hub Routing Research
 
 ## 1. Executive Summary

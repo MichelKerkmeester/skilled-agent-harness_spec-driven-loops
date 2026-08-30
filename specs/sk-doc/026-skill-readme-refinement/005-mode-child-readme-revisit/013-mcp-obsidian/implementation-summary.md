@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 013 mcp-obsidian README revisit (verify-only exemplar)"
+title: "Implementatio [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/implementation-summary]"
 description: "Closeout record for the mcp-obsidian README conformance pass: verdict FAIL on HVR and version alignment, surgical fixes, version 1.6.0.0, changelog entry and verification evidence."
 trigger_phrases:
   - "phase 13 implementation summary"
@@ -27,7 +27,6 @@ _memory:
     answered_questions:
       - "README version field must match the changelog top. Fixed by bumping the field to 1.6.0.0 with a matching new entry"
 ---
-
 # Implementation Summary
 
 <!-- SPECKIT_LEVEL: 2 -->

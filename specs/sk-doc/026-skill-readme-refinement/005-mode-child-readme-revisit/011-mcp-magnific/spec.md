@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 011 mcp-magnific mode skill README rewrite"
+title: "Feature Specification: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/011-mcp-magnific/spec]"
 description: "Rewrite the mcp-magnific mode skill README against the refined README template from phase 001 and the mcp-obsidian exemplar: purpose-first narrative, HVR clean, version bump, changelog entry, validated with zero issues."
 trigger_phrases:
   - "mcp magnific readme"

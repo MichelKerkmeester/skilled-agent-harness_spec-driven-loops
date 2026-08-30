@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-deep-loop manual-testing-playbook names (020 phase 007/008)"
+title: "Impl [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook/plan]"
 description: "Plan for renaming the root manual-testing-playbook directory, five category directories, and 19 scenario files through the frozen semantic map, then repairing benchmark and routing references while preserving scenario IDs and content."
 trigger_phrases:
   - "system-deep-loop manual playbook implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "manual-testing-playbook reference closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook"
 ---
 # Implementation Plan: System-deep-loop manual-testing-playbook names
 

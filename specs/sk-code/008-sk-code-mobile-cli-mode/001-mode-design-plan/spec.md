@@ -1,6 +1,15 @@
 ---
-title: "sk-code Mobile-CLI mode — design plan (plan-only)"
-description: "This phase **plans, but does not build**, a new mode under the `sk-code` parent hub, purely for Mobile-CLI app work (`apps/pi-remote-web/` and its siblings), so future code work…"
+title: "sk-code Mobile-CLI mode — design plan (plan-only) [sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan/spec]"
+description: "This phase plans, but does not build, a new mode under the sk-code parent hub, purely for Mobile-CLI app work (apps/pi-remote-web/ and its siblings), so future code work…"
+trigger_phrases:
+  - "code"
+  - "mobile"
+  - "cli"
+  - "mode"
+  - "design"
+  - "spec"
+  - "001"
+importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:

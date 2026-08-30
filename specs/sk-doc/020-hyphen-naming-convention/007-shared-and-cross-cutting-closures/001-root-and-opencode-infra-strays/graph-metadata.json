@@ -11,18 +11,15 @@
   },
   "derived": {
     "trigger_phrases": [
-      "root and OpenCode infrastructure strays",
+      "root and opencode infrastructure strays",
       "hyphen naming root infrastructure closure",
       "phase 007 root infra",
       "root infrastructure closure implementation plan",
-      "OpenCode infrastructure naming plan",
+      "opencode infrastructure naming plan",
       "phase 007 child 001 plan",
       "root infrastructure closure tasks",
-      "OpenCode infrastructure naming tasks",
-      "phase 007 child 001 tasks",
-      "root infrastructure closure checklist",
-      "OpenCode infrastructure naming checklist",
-      "phase 007 child 001 verifier"
+      "opencode infrastructure naming tasks",
+      "phase 007 child 001 tasks"
     ],
     "key_topics": [
       "root",
@@ -44,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/commands/doctor/_routes.yaml"
     ],
     "entities": [
@@ -64,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -173,43 +163,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Root-level and `.opencode` infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed filesystem-name contract before downstream component work consumes them.",
+    "causal_summary": "Root-level and .opencode infrastructure names with snake_case that are not owned by one skill need an exemption-aware, reference-closed filesystem-name contract before downstream component work consumes them.",
     "created_at": "2026-07-14T15:16:51Z",
-    "last_save_at": "2026-08-29T13:10:16.172Z",
+    "last_save_at": "2026-08-30T07:19:14.690Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:48bb459f3183634749ea8bc9066feb7f3ea35c6f3927b1c79f0087382e5254db",
+    "source_fingerprint": "sha256:70da4909e7fe4be1e030291c66f1563a5fdc2ab9ef1e8fcc63c865c6cbe352bc",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f7ddad3757c1a5e72b3c8050e7790e81fc089ed6873a162f50da6f86048cc054",
-      "plan.md": "cd8deb9f9e3774d5ef57bc3af97235d8ceb4f06af08b2e6820466c5b31fb87db",
-      "tasks.md": "09c3ac38d39b3c21bddd356c171e5b53dad7dd9677f015df764e3370ffac91b0",
-      "checklist.md": "e3dbb81e32301b747068140751ada76533e01da9a7c9685b5fc8d2377bd1afd0"
+      "spec.md": "23a314e60510590ad49d7df3dda5e38879c91bea3e0332429583249168ab87b2",
+      "plan.md": "7a0f0c9f4653d26b3d24d5538b4c6fde4d21c1edd6b5356eab77c6ea07fa51db",
+      "tasks.md": "3daf8c576c4ab1823d206803fd0c4b6922b81e1dc7f88508597fe6beaaba83c2"
     },
     "last_active_child_id": null,
     "last_active_at": null

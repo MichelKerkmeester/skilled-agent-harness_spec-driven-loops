@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-deep-loop changelog verification (020 phase 007/010)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify/tasks]"
 description: "Verification tasks for comparing the system-deep-loop changelog and version surfaces with phases 001-009 without performing a rename or unrelated history edit."
 trigger_phrases:
   - "system-deep-loop changelog tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "changelog version verification tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify"
 ---
 # Tasks: System-deep-loop changelog verification
 

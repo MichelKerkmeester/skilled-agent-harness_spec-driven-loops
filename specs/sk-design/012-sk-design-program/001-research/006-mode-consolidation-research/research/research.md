@@ -1,8 +1,15 @@
 ---
-title: "Deep Research: sk-design Mode Consolidation"
+title: "Deep Research: sk-design Mode [sk-design/012-sk-design-program/001-research/006-mode-consolidation-research/research]"
 description: "Evidence-backed topology and migration plan for reducing the sk-design hub to four modes while preserving foundations, audit, and styles capabilities."
+trigger_phrases:
+  - "deep"
+  - "research"
+  - "design"
+  - "mode"
+  - "006"
+importance_tier: "normal"
+contextType: "research"
 ---
-
 # sk-design Mode Consolidation
 
 ## 1. Executive Summary

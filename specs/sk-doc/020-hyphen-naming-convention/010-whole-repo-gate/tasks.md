@@ -1,12 +1,11 @@
 ---
-title: "Tasks: whole-repo verification gate (020 phase 010)"
+title: "Tasks: whole-repo verification gate (020 phase 010) [sk-doc/020-hyphen-naming-convention/010-whole-repo-gate/tasks]"
 description: "Tasks for phase 010 of the 020 kebab-case filesystem-naming program: measure the final migration candidate against the complete, evidence-pinned whole-repo gate."
 trigger_phrases:
   - "whole-repo verification gate tasks"
   - "hyphen naming phase 010 tasks"
 importance_tier: "critical"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/010-whole-repo-gate"
 ---
 # Tasks: Whole-repo verification gate
 

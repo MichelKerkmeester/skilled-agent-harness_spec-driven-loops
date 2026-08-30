@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: create-skill resource names"
+title: "Implem [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill/plan]"
 description: "Execution plan for the create-skill parent-skill and skill resource rename map and reference closure."
 trigger_phrases:
   - "create-skill resource implementation plan"
   - "create-skill template rename plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/001-create-skill"
 ---
 # Implementation Plan: create-skill resource names
 

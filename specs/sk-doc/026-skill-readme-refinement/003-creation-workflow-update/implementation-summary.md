@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 003 creation workflow README template wiring"
+title: "Implementation Summary: Phase [sk-doc/026-skill-readme-refinement/003-creation-workflow-update/implementation-summary]"
 description: "Closeout record for wiring standalone and parent-hub README templates into the create-skill workflow."
 trigger_phrases:
   - "phase 003 implementation summary"

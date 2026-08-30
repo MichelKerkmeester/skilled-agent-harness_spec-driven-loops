@@ -1,5 +1,5 @@
 ---
-title: "Tasks: deep command namespace naming (020 phase 008/013/002)"
+title: "Tasks: deep command [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace/tasks]"
 description: "Execution tasks for the maintained deep asset rename, legacy fallback closure, and generated contract refresh."
 trigger_phrases:
   - "deep namespace naming tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "deep contract refresh"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/002-deep-namespace"
 ---
-
 # Tasks: Deep command namespace naming
 
 <!-- SPECKIT_LEVEL: 2 -->

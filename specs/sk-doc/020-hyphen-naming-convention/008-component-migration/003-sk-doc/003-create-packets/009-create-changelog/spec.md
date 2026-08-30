@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-changelog resource names"
+title: "Fe [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog/spec]"
 description: "The create-changelog packet contains snake_case reference filenames for topology edge cases, version bump rules, and worked examples. This phase renames those non-exempt resources to kebab-case and updates packet-local links without changing release/version fields or changelog filenames."
 trigger_phrases:
   - "create-changelog resource naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "version bump guide rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/009-create-changelog"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

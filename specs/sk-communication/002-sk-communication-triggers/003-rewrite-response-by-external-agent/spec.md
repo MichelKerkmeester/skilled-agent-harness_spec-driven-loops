@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 3: rewrite-response-by-external-agent command"
+title: "Feature Specification: [sk-communication/002-sk-communication-triggers/003-rewrite-response-by-external-agent/spec]"
 description: "The /rewrite-response-by-external-agent command runs a one-shot sk-communication projection of a target through a user-chosen engine (a cli-* skill, native in-context, or a local LLM), flipping projection on inline for the single run and guaranteeing it off afterward, with no shipped-package edits."
 trigger_phrases:
   - "rewrite-response-by-external-agent"

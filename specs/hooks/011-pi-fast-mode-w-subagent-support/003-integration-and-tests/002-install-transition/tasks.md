@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2 install-transition"
+title: "Tasks: Phase 2 [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/002-install-transition/tasks]"
 description: "Task ledger for the reversible package replacement and command ownership probe."
 trigger_phrases:
   - "install-transition tasks"

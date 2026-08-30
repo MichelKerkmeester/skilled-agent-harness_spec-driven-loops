@@ -19,8 +19,6 @@
       "lockstep directive manifest plan",
       "sk-doc template alignment tasks",
       "lockstep manifest task list",
-      "sk-doc template alignment checklist",
-      "lockstep manifest QA gate",
       "sk-doc template alignment implementation summary",
       "lockstep manifest planned summary"
     ],
@@ -44,7 +42,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/shared/scripts/validate_document.py",
       ".opencode/skills/sk-doc/scripts/validate_document.py",
@@ -67,12 +64,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -190,31 +181,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built Corrected",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Four of sk-doc's authoring templates and validators are out of sync with the code that actually enforces or consumes them",
     "created_at": "2026-07-20T21:51:42.834Z",
-    "last_save_at": "2026-08-29T13:10:18.128Z",
+    "last_save_at": "2026-08-30T07:19:05.770Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:261bdb5cf6f8beade4d3de3815747ef4ba181c31606159e6c6a9b4f1ef3def96",
+    "source_fingerprint": "sha256:7b7bb65f941197a1bbc608a18b542dff242a6eddf3d4c322110568f1d958eaa9",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d96950aff87114f506c928cd07e2b3eb98920937bf72004b497efaebddb68562",
-      "plan.md": "dbd83504936faef6e43d46fcc2c4c291f54c39ef18e5b503a6600acc220251f0",
-      "tasks.md": "017cce8e5439d44d69e3e82192809894c194b19963004dba1a3a0311bb192626",
-      "checklist.md": "8ae82fba32eb9cdabbbe91b69cc0430942aaa9fddc28e31685e9c8d990277455",
-      "implementation-summary.md": "5e54515104d05a859f7e114951ec5d2407c12545478e6da760b86dc7b82d0afc"
+      "spec.md": "2cb4d9828b6b0bdd9ca0df3c1f5e0c0e523803a7f18295c7055189a9cd13f61e",
+      "plan.md": "d9c57a4b62ce1c6abab27984a3da248622a78565d1616dc7fd74202d86307f03",
+      "tasks.md": "b9691f783529dfc4900b7c15706b2d0d06fb3fcef623784b93f08bfbd5c9bdfe",
+      "implementation-summary.md": "75fb9ba16fa7336aa24f8b0886eb41fb5e4bd3b852b9734b8b4858ed26af6265"
     },
     "last_active_child_id": null,
     "last_active_at": null

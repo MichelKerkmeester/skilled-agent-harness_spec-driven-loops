@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 025 sk-create-command README revisit"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/025-sk-create-command/spec]"
 description: "Rewrite the sk-create-command skill README purpose-first against the refined template from phase 001, with a version bump and a changelog entry."
 trigger_phrases:
   - "sk create command readme revisit"

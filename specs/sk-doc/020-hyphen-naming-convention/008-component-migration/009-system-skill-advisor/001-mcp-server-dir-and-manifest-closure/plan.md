@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: MCP server directory and manifest closure"
+title: "...phen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure/plan]"
 description: "Use an explicit package-boundary rename map, update the advisor's path consumers as one dependency-closed change, preserve tool and Python exemptions, and verify the renamed package through build, launcher, bridge, and discovery checks."
 trigger_phrases:
   - "mcp-server directory implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "package root rename verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "The package manifest state must be recorded before execution because package.json is not present in the current visible surface."
       - "The checked-in lockfile and test-magic names are preserved unless the tool contract proves otherwise."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure"
 ---
-
 # Implementation Plan: MCP server directory and manifest closure
 
 <!-- SPECKIT_LEVEL: 2 -->

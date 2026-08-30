@@ -21,8 +21,8 @@
       "mcp-server closure tasks",
       "advisor package root tasks",
       "manifest rename tasks",
-      "mcp-server closure checklist",
-      "advisor package root checklist"
+      "mcp-server directory decision record",
+      "advisor package boundary decisions"
     ],
     "key_topics": [
       "system-skill-advisor",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -187,31 +180,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The advisor runtime is rooted at mcpserver/, and the current surface also contains the non-Python directories",
     "created_at": "2026-07-14T15:18:07Z",
-    "last_save_at": "2026-08-29T10:00:26.677Z",
+    "last_save_at": "2026-08-30T07:19:48.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:9b01d799068a13ed03991d804e79fe429d6b71d9565a397b2461b95354815f2a",
+    "source_fingerprint": "sha256:b0276d89ed7e3e6ce1488097e27d7f61bcc69597a89ae0b979834d7528a8589f",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "04f6fef38fa49b53520a98df69612b2c12e8de2f894c44630647f35aa0e95371",
-      "plan.md": "8ed037c5cd42da1eea660136cd3036dac386d8b8ad56808fcc0ff73dac1ddfb8",
-      "tasks.md": "3e742ee4b48986d8764cbbe81d9947d37aae0300a1da4dae9ced970841668a2b",
-      "checklist.md": "a8feac1db6bf8afe89622e7f5b9736934b65ebfba02d70005e3004aa0fba4183",
-      "decision-record.md": "1ebc483d4300b923a25bae3cbf8561e33c1e4392e0172dd60dda60371c31a553"
+      "spec.md": "cba804a1d9b1cce8286095f9a3320c8999358880ea4b8d69a6d80362a9cec077",
+      "plan.md": "a7771025337c8cd06eb7e0809120e9726d30b12782f9770ad235738a175144b3",
+      "tasks.md": "88852abcb6e90c438719c36be4f33df303b46f796b95969a2b98d88225fcc5bd",
+      "decision-record.md": "7736b6feae3bcf1d5cf5063db14c29cc7f0a784286f0bee385b209ba3d937182"
     },
     "last_active_child_id": null,
     "last_active_at": null

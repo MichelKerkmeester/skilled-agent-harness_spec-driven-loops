@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Design-md-generator (020 phase 006)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/006-design-md-generator/plan]"
 description: "Execution plan for Design-md-generator in the 020 sk-design naming subtree."
 trigger_phrases:
   - "design-md-generator implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 design-md-generator tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/006-design-md-generator"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/006-design-md-generator"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/006-design-md-generator"
 ---
 # Implementation Plan: Design-md-generator (020 phase 006)
 

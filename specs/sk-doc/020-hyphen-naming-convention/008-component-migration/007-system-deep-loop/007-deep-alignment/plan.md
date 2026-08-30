@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: deep-alignment filesystem names (020 phase 007/007)"
+title: "Implementatio [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment/plan]"
 description: "Plan for renaming deep-alignment assets, catalog/playbook paths, and adapter/state references through a path-aware semantic map, then proving that embedded identifiers, authority keys, and read-only behavior remain unchanged."
 trigger_phrases:
   - "deep-alignment implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "alignment adapter path closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/007-deep-alignment"
 ---
 # Implementation Plan: Deep-alignment filesystem names
 

@@ -1,6 +1,13 @@
 ---
-title: "Implementation Summary: Deep research — design command redesign"
+title: "Implementation [sk-design/012-sk-design-program/001-research/002-research-design-commands/implementation-summary]"
 description: "Converged recommendation for the /interface:* creation commands, and handoff to phase 004-interface-commands."
+trigger_phrases:
+  - "implementation"
+  - "implementation summary"
+  - "002"
+  - "research"
+importance_tier: "normal"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-design/012-sk-design-program/001-research/002-research-design-commands"
@@ -24,7 +31,6 @@ _memory:
       - "5 canonical /interface:* commands with a shared 9-stage creation contract"
       - "Commands own choreography; modes keep authority; additive /design:* aliases during migration"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-deep-loop changelog verification (020 phase 007/010)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify/spec]"
 description: "The system-deep-loop subtree needs release evidence that names the complete rename set, exemption boundary, reference repair, and version bump. This verification-only phase checks the root changelog and declared version surfaces against phases 001-009 and performs no filesystem rename or unrelated history rewrite."
 trigger_phrases:
   - "system-deep-loop changelog verification"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "rename set changelog entry"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify"
@@ -23,8 +22,8 @@ _memory:
       - "This child verifies release evidence only and performs no filesystem rename."
       - "The current hub version is 2.0.0.0; the post-migration version must be an explicitly recorded greater value."
       - "The changelog must cover phases 001-009 and the program exemption boundary without rewriting frozen history."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/010-changelog-verify"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

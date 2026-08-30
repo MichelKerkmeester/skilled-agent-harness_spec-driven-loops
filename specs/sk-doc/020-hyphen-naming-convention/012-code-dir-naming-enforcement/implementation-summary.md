@@ -1,7 +1,14 @@
 ---
-title: "Implementation Summary: code-directory naming enforcement (020 phase 012)"
+title: "Implementation Summary: [sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement/implementation-summary]"
 description: "PLANNED phase that closes the code-dir naming gap the 000-011 migration never scoped."
-parent: "sk-doc/020-hyphen-naming-convention"
+trigger_phrases:
+  - "implementation"
+  - "summary"
+  - "implementation summary"
+  - "012"
+  - "code"
+importance_tier: "normal"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement"
@@ -20,8 +27,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

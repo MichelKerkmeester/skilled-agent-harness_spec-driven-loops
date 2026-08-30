@@ -1,5 +1,5 @@
 ---
-title: "Tasks: semantic rename engine (020 phase 005.001)"
+title: "Tasks: semantic rename [sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine/tasks]"
 description: "Tasks for the semantic rename engine: explicit map validation, dependency-closure batching, exemption-aware preflight, dry-run/apply state, idempotency, mode preservation, and rollback."
 trigger_phrases:
   - "semantic rename engine tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "git-mv rollback tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
@@ -21,6 +20,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Task evidence must come from disposable repositories or read-only plan output, never from a real migration run."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/001-rename-engine"
 ---
 # Tasks: Semantic Rename Engine
 

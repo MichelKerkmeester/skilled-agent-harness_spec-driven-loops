@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 033 sk-prompt-improve README revisit"
+title: "Implemen [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/033-sk-prompt-improve/implementation-summary]"
 description: "Phase closeout evidence for the purpose-first rewrite of the sk-prompt-improve README on the refined README template with a version bump and matching changelog entry."
 trigger_phrases:
   - "phase 033 summary"

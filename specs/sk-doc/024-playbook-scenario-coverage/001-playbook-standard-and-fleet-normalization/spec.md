@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: playbook standard enforcement and fleet normalization"
+title: "Feature Specification: [sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization/spec]"
 description: "The sk-doc operator-scenario contract has no mechanical check anywhere in the repository, so every playbook coverage claim in the fleet is hand-typed prose that has drifted. This keystone phase settles the corpus-split and verdict rulings, builds the missing operator-contract validator with paired fixtures and fail-closed CI wiring, derives a per-hub coverage map from live registries, and normalizes all 11 playbook roots to a derived census."
 trigger_phrases:
   - "playbook package validator"
@@ -7,9 +7,8 @@ trigger_phrases:
   - "playbook census derivation"
   - "verdict enum migration playbook"
   - "playbook corpus discriminator"
-importance_tier: "high"
+importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/024-playbook-scenario-coverage"
 _memory:
   continuity:
     packet_pointer: "sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization"
@@ -34,6 +33,7 @@ _memory:
       - "How many fields does the per-feature required-content list actually enumerate?"
     answered_questions:
       - "Verdict enum is already ruled PASS/FAIL/SKIP by the governing standard; only the template and the roots are stale"
+parent: "sk-doc/024-playbook-scenario-coverage"
 ---
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core + level2-verify + level3-arch | v2.2 -->

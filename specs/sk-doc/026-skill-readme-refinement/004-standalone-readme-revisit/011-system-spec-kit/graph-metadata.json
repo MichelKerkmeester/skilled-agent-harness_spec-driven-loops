@@ -21,8 +21,8 @@
       "phase 011 tasks",
       "system spec kit readme tasks",
       "spec kit readme rewrite tasks",
-      "phase 011 checklist",
-      "system spec kit readme verification"
+      "phase 011 implementation summary",
+      "system spec kit readme summary"
     ],
     "key_topics": [
       "system",
@@ -36,40 +36,26 @@
       "phase",
       "plan",
       "tasks",
-      "checklist"
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       ".opencode/skills/system-spec-kit/README.md",
       "changelog/v3.8.0.0.md",
       ".opencode/skills/system-spec-kit/changelog/v3.8.0.0.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/spec.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/plan.md",
       ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/tasks.md",
-      ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/checklist.md",
       ".opencode/skills/sk-doc/sk-create-skill/assets/skill/skill-readme-template.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
-      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-      "spec.md",
-      "plan.md",
-      "checklist.md",
-      "implementation-summary.md",
-      "tasks.md"
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh"
     ],
     "entities": [
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "v3.8.0.0.md",
-        "kind": "doc",
-        "path": "changelog/v3.8.0.0.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -89,9 +75,21 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/specs/sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.8.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v3.8.0.0.md",
         "source": "derived"
       },
       {
@@ -104,12 +102,6 @@
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -201,27 +193,32 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "titled CHANGED",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.opencode/skills/system-spec-kit/README.md` still carries the older tabular reference-card style and predates the pilot standard that the mcp-obsidian README set and the refined template from phase 001",
     "created_at": "2026-08-04T08:34:38.721Z",
-    "last_save_at": "2026-08-04T13:28:19.577Z",
+    "last_save_at": "2026-08-30T07:20:21.927Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:87e7769a286bbb87ab8ca48712e455f77b3c2df9c988f487611739a2ddf7e09f",
+    "source_fingerprint": "sha256:bca0d3ffce82823bf559d9d0abccbb2abf1b2eb2823102f01c7683a56290ec7f",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "a98e856b5687af0584442c9d9e7844bda7ad461a0fc71ed3d9fedadfe7905e8e",
-      "plan.md": "af9202d20b2f436d2e585fdb46bfc0ccc32797620928c4cc0f4ff5abe021ba40",
-      "tasks.md": "01f13f5637d190d25479ffc930ef72ab1677051b8b696e9a03336d4aeee1db3f",
-      "checklist.md": "abaa5d9e34e78922e7ac8de35731c535900972caf3c3986ce262bbd0a0d6b4bd",
-      "implementation-summary.md": "5f423526e82b1aaa9e1eed2ff59741f01d35c3ecffb6fb3b970667a8338dfc1c"
+      "spec.md": "ef9622a08cda4ffcfaac7bb47cf33fa5ac17c810c10c69753c78a9e2640e32ea",
+      "plan.md": "9d05fa5b6ab3252c784520072861d6485183d47b077ca3f8df67c8baab1333b3",
+      "tasks.md": "bb880a3077752b8a42064eccad6e942d441c819f6bc2465ee0f4d79384c46aa3",
+      "implementation-summary.md": "fe2029108543f60157fbaf5c2b30ff8003f7e65da31eb3803a9681893abbffd8"
     },
     "last_active_child_id": null,
     "last_active_at": null

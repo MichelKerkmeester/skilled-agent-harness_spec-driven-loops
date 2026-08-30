@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 002 mcp-code-mode README rewrite"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/002-mcp-code-mode/plan]"
 description: "Plan for the mcp-code-mode README rewrite: baseline inventory, purpose-first rewrite per the refined template, version bump, changelog entry and verification."
 trigger_phrases:
   - "phase 002 plan"

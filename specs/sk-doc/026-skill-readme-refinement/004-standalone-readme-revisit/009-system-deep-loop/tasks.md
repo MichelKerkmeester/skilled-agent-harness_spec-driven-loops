@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 9 system-deep-loop README rewrite"
+title: "Tasks: Phase 9 system-deep [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/009-system-deep-loop/tasks]"
 description: "Task list for rewriting the system-deep-loop skill README against the refined template from phase 001 and the mcp-obsidian exemplar."
 trigger_phrases:
   - "phase 9 tasks"

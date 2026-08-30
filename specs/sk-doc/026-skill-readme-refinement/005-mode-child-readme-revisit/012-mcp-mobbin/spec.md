@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 012 mcp-mobbin README revisit"
+title: "Feature Specification: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/012-mcp-mobbin/spec]"
 description: "Rewrite the mcp-mobbin mode skill README at .opencode/skills/mcp-tooling/mcp-mobbin/README.md against the refined README template from phase 001 with the mcp-obsidian exemplar as the model, including a version bump and a changelog entry."
 trigger_phrases:
   - "mcp mobbin readme"

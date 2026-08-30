@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Fix the Shared Naming Standard and Wire the Kebab Guards"
+title: "...yphen-naming-convention/014-naming-standard-hardening/001-fix-shared-standard-and-wire-guards/implementation-summary]"
 description: "Aligned core-standards.md with the kebab-case canon and added a CI-only guard that checks changed names and runs the guard unit tests."
 trigger_phrases:
   - "core-standards kebab summary"

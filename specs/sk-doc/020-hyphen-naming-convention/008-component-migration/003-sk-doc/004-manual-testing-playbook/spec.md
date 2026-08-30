@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-doc manual-testing-playbook tree"
+title: "Feature Specif [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook/spec]"
 description: "The root sk-doc manual_testing_playbook tree uses snake_case for its category directories, scenario filenames, and root index. This phase converts those non-exempt filesystem names to kebab-case and updates the playbook index and path references without changing scenario content or identifiers."
 trigger_phrases:
   - "sk-doc manual testing playbook naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-doc scenario directory rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/004-manual-testing-playbook"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

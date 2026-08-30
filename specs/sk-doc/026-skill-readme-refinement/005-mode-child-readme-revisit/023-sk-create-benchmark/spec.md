@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 023 sk-create-benchmark README revisit"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/023-sk-create-benchmark/spec]"
 description: "Rewrite the sk-create-benchmark skill README against the refined template from phase 001 and the mcp-obsidian exemplar: purpose-first structure with a one-line pitch and problem-first OVERVIEW, version bump, changelog entry, HVR and validator gates."
 trigger_phrases:
   - "create-benchmark readme"

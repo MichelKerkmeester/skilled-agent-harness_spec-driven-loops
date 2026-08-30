@@ -17,9 +17,7 @@
       "mcp-tooling benchmark implementation plan",
       "benchmark artifact path census",
       "mcp-tooling benchmark tasks",
-      "benchmark artifact census tasks",
-      "mcp-tooling benchmark checklist",
-      "benchmark artifact verification"
+      "benchmark artifact census tasks"
     ],
     "key_topics": [
       "mcp-tooling",
@@ -41,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/mcp-tooling/SKILL.md"
     ],
     "entities": [
@@ -61,12 +58,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -170,43 +161,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-tooling benchmark boundary is reserved for fixtures, profiles, and storage guides, but the current worktree contains only benchmark/.gitkeep and no snake_case benchmark artifact. This phase establishes the evidence-backed census rule, renames any discovered in-scope artifact paths, and repairs benchmark references without inventing files.",
     "created_at": "2026-07-14T15:17:45Z",
-    "last_save_at": "2026-08-29T13:10:08.186Z",
+    "last_save_at": "2026-08-30T07:19:38.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:e600a2a75eb171c7367749ebbfa74868038b4d137045c8e7d7723bc2ac179eea",
+    "source_fingerprint": "sha256:7a6a674dcd9bd2ab6022970ccd05d4e0689b8ecb9262f68e767e588832ad0193",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "40cd0d8bc4e8fe36da002344615c35cd4559f0cf690cf1e53f29637263b1d976",
-      "plan.md": "7e6dda9eb96f12c539151e02914393f9b99d91e1d8058d5194f8ee20e2265010",
-      "tasks.md": "0c47a705ad237aa5387e832ebbe04117b5572e55401f972c7ec22c7801d0fe90",
-      "checklist.md": "30684fdcf5af6ebf774ad2fce85827207770faa31e07f2f42dce6c9e06a7a222"
+      "spec.md": "3fcc30ef40a844607b79f010fc7b7568723d708f9bd46661fdaed61a2148f1a1",
+      "plan.md": "70f1b19d0f6611655f0654ce882a12bf56180928ab167e5d45b4d5131d005949",
+      "tasks.md": "51ce6a3923da41ff3713d2ac349bf99eab0aaac48128f5886aa06c5852b745ae"
     },
     "last_active_child_id": null,
     "last_active_at": null

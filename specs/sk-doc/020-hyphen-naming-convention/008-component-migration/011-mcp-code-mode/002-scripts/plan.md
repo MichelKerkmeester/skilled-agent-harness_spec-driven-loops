@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-code-mode scripts (020 component 011 phase 002)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts/plan]"
 description: "Inventory the mcp-code-mode script filenames, preserve the Python exemption, and apply a semantic non-Python rename map only when the pinned tree contains an eligible candidate. Close shell, import, registry, and documentation references with the same map."
 trigger_phrases:
   - "mcp-code-mode scripts implementation plan"
   - "mcp-code-mode phase 002 implementation plan"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/011-mcp-code-mode/002-scripts"
 ---
 # Implementation Plan: mcp-code-mode scripts
 

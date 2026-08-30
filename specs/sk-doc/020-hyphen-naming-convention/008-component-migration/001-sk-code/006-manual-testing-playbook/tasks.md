@@ -1,5 +1,5 @@
 ---
-title: "Tasks: sk-code manual-testing-playbook tree (020 phase 008/006)"
+title: "Tasks: sk-co [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook/tasks]"
 description: "Execution tasks for the hub-level sk-code playbook filesystem rename and scenario graph closure."
 trigger_phrases:
   - "manual playbook naming tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "playbook link repair tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/006-manual-testing-playbook"
 ---
-
 # Tasks: sk-code manual-testing-playbook tree
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 026-sk-create-diff skill README rewrite"
+title: "Implementat [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/026-sk-create-diff/implementation-summary]"
 description: "Purpose-first rewrite of the sk-create-diff README on the refined template, version bump to 1.1.2.0, changelog entry and full verification closeout."
 trigger_phrases:
   - "implementation summary 026"

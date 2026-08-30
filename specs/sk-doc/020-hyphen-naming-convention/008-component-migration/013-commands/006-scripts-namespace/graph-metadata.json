@@ -19,10 +19,7 @@
       "scripts no-op migration plan",
       "scripts namespace naming tasks",
       "scripts command audit tasks",
-      "command checker self-test tasks",
-      "scripts namespace naming checklist",
-      "command checker audit verification",
-      "scripts fixture preservation verification"
+      "command checker self-test tasks"
     ],
     "key_topics": [
       "scripts",
@@ -44,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/commands/scripts/README.md",
       ".opencode/commands/scripts/validate-command-references.cjs",
       ".opencode/commands/scripts/fixtures/broken-command-refs.yaml",
@@ -70,12 +66,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/commands/scripts/README.md",
@@ -91,6 +81,12 @@
         "name": "broken-command-refs.yaml",
         "kind": "config",
         "path": ".opencode/commands/scripts/fixtures/broken-command-refs.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specificat",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -124,12 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -137,6 +127,12 @@
       },
       {
         "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
@@ -198,21 +194,20 @@
     ],
     "causal_summary": "The scripts namespace is part of the commands filesystem surface, so it must be checked against the program's canonical kebab-case rule",
     "created_at": "2026-07-14T15:18:35Z",
-    "last_save_at": "2026-08-29T13:10:06.720Z",
+    "last_save_at": "2026-08-30T07:20:03.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:d28aa5b265583a0048c1ebfe874828958173edd6911b1261b6d340376cf26a1d",
+    "source_fingerprint": "sha256:99f86d0a91038498c0eaae2a19f4136a725da25c47e51b7d5b4815bb64fc3c46",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "e008e146fadb75e561baf06f2d366012a9a7607f44afcce1d8eb6bcfbf402bd3",
-      "plan.md": "056a08c6c7c9c1fb20deb7ac295aefa78abc98fb920d44c4456f8cc7a4d7a643",
-      "tasks.md": "25fbc0e392c7e808aa6cec9bceebb34749f0dd110c9e6596a316c7b4781db6b3",
-      "checklist.md": "a35adcac6a77bf5ebf473165a999ca1f20f37b1bb246d5e4b3f97f6f984da992"
+      "spec.md": "eac3a10fedc266e375e5385b3318942c6decb40e50c966a8f0e01604e0929537",
+      "plan.md": "140ad598df1231d4826f8813386f7f77e4ea2c1ff281ce86bcff55bed934f544",
+      "tasks.md": "3b2e5d8242cf532d1a91c919b593ba1baf57b3fe6e16479d5a87c38f7b90e903"
     },
     "last_active_child_id": null,
     "last_active_at": null

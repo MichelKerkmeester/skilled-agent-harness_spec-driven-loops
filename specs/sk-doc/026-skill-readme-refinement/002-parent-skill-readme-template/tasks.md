@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 2 parent-skill (hub) README template"
+title: "Tasks: Phase 2 parent-skill (hub) README [sk-doc/026-skill-readme-refinement/002-parent-skill-readme-template/tasks]"
 description: "Task list for creating the parent-skill README template in the sk-create-skill parent-skill assets folder."
 trigger_phrases:
   - "phase 2 tasks"

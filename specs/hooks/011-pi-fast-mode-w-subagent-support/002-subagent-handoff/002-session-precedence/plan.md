@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 2 session-precedence"
+title: "Implementation Plan: [hooks/011-pi-fast-mode-w-subagent-support/002-subagent-handoff/002-session-precedence/plan]"
 description: "Wire normalized handoff state into lifecycle transitions with presence-aware flag precedence."
 trigger_phrases:
   - "session-precedence plan"

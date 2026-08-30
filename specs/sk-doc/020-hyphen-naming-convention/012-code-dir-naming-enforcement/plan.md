@@ -1,7 +1,15 @@
 ---
-title: "Implementation Plan: code-directory naming enforcement (020 phase 012)"
+title: "Implementation Plan: code-directory naming [sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement/plan]"
 description: "Plan to extend the naming canon to code dirs, broaden enforcement, de-duplicate per-mode restatements, and rename the sk-design styles code dirs."
-parent: "sk-doc/020-hyphen-naming-convention"
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "code"
+  - "directory"
+  - "naming"
+  - "012"
+importance_tier: "important"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/012-code-dir-naming-enforcement"
@@ -19,8 +27,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 

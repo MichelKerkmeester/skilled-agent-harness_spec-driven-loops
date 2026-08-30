@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Analysis of peck framework teachings applicable to system-spec-kit"
+title: "...esearch-based-refinement/001-research-and-doctrine/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

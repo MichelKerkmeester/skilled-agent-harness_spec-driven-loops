@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: commands subtree rollup gate (020 phase 008/013/010)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate/spec]"
 description: "Aggregate the ten commands-surface child phases and accept the subtree only when every in-scope filesystem name is kebab-clean or covered by the program exemption set, with references closed."
 trigger_phrases:
   - "commands subtree rollup gate"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "command surface kebab verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/010-commands-gate"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "This phase adds no migration work; it is a blocking rollup verifier."
       - "The program exemption set is authoritative for Python files, package directories, tool-mandated names, generated output, fixtures, and frozen history."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

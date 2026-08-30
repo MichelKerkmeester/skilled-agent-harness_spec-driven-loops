@@ -1,5 +1,5 @@
 ---
-title: "Spec: Deterministic dry-run rename engine for numbered snippet filenames"
+title: ".../014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling/spec]"
 description: "Phase 003 of the numbered-snippet-filename deprecation. Author one deterministic rename engine, denumber-snippet-filenames.mjs, adapted from the proven 108 denumber-snippets.cjs: enumerate exactly the 111 in-scope per-scenario snippet files across 9 skill packets (excluding the 20 legitimate system-spec-kit single-digit files), abort on any collision before writing, derive and inject a stage: routing|holdout|negative frontmatter field for the 63 files that encode that grouping in their filename, and sweep the 3 hub-routing root-index tables that cite the old filenames. Corrects a deny-list bug inherited from 108 (a stale, nonexistent 999-sk-doc-parent self-exclusion path) to reference the current 014-sk-doc-parent packet. Default mode is a DRY RUN that mutates nothing and emits a rename map, per-file diff, stage-injection preview, and collision/safety report. Tooling-only phase — Phase 004 runs it with mutation enabled."
 trigger_phrases:
   - "de-numbering snippet filenames migration script"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "stage frontmatter injection for routing holdout negative"
 importance_tier: "important"
 contextType: "implementation"
-parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
 _memory:
   continuity:
     packet_pointer: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames/003-migration-tooling"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/014-sk-doc-parent/027-catalog-naming-convention/002-deprecate-numbered-snippet-filenames"
 ---
 # Spec: Deterministic Dry-Run Rename Engine for Numbered Snippet Filenames
 

@@ -1,6 +1,14 @@
 ---
-title: "Tasks: Spec-Folder Control-Metadata Reconciliation"
+title: "...ment/005-verification-and-remediation/005-fresh-regression-remediation/005-spec-folder-metadata-reconciliation/tasks]"
 description: "One task per deep-review finding in this sub-phase (8 total): finding id + file:line + registry recommendation + Round-2 status tag. Scaffold only."
+trigger_phrases:
+  - "ment"
+  - "005"
+  - "verification"
+  - "and"
+  - "remediation"
+  - "tasks"
+  - "spec"
 importance_tier: "important"
 contextType: "general"
 _memory:

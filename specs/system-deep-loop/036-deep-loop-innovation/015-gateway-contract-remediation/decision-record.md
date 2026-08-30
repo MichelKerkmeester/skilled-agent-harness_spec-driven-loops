@@ -1,12 +1,12 @@
 ---
-title: "Decision Record: Gateway State-Write Contract Remediation"
+title: "Decision Record: Gateway [system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation/decision-record]"
 description: "Architecture decisions for reconciling the deep-loop state-write contract to a single canonical path (the append gateway): the north-star write path, the P0 resolution direction, the ai-council MCP staleness, and the conformance-guard hardening approach."
 trigger_phrases:
   - "gateway contract remediation adr"
   - "single canonical state-write path decision"
   - "projection refresh vs gateway receipt decision"
-importance_tier: "high"
-contextType: "decision"
+importance_tier: "important"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/036-deep-loop-innovation/015-gateway-contract-remediation"

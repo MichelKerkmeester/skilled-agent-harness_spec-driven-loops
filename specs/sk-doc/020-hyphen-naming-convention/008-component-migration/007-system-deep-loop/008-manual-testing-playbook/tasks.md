@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-deep-loop manual-testing-playbook names (020 phase 007/008)"
+title: "Tas [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook/tasks]"
 description: "Execution tasks for renaming the root manual-testing-playbook corpus and repairing benchmark, router, index, and Markdown path consumers while preserving scenario identity."
 trigger_phrases:
   - "system-deep-loop manual playbook tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "manual-testing-playbook path repair tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/008-manual-testing-playbook"
 ---
 # Tasks: System-deep-loop manual-testing-playbook names
 

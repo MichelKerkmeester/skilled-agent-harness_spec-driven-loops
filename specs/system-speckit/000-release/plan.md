@@ -1,3 +1,16 @@
+---
+title: "Plan — v4.0.0.0 Release Notes & README Refresh [system-speckit/000-release/plan]"
+description: "The work already documented itself. Every packet below has its own implementation-summary.md"
+trigger_phrases:
+  - "plan"
+  - "release"
+  - "notes"
+  - "readme"
+  - "refresh"
+  - "000"
+importance_tier: "important"
+contextType: "planning"
+---
 # Plan — v4.0.0.0 Release Notes & README Refresh
 
 > Captured from the RELEASE V4 planning session. Temporary. Nothing shipped has been modified.

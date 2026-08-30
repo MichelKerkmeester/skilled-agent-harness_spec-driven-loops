@@ -1,12 +1,11 @@
 ---
-title: "Tasks: worktree, baseline, and census (020 phase 000)"
+title: "Tasks: worktree, baseline, and census [sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census/tasks]"
 description: "Tasks for phase 000 of the 020 kebab-case filesystem-naming program: worktree, baseline, and census."
 trigger_phrases:
   - "worktree, baseline, and census tasks"
   - "hyphen naming phase 000 tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/000-worktree-baseline-and-census"
 ---
 # Tasks: Worktree, baseline, and census
 

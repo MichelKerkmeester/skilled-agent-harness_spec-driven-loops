@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-code-graph changelog verification (020 phase 007)"
+title: "Tasks: [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify/tasks]"
 description: "Tasks for phase 007 of the system-code-graph component naming migration: verify the append-only release entry, version bump, scope, exemptions, and mutation-free behavior without renaming files."
 trigger_phrases:
   - "system-code-graph changelog tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "code graph release evidence tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify"
@@ -22,6 +21,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/007-changelog-verify"
 ---
 # Tasks: system-code-graph Changelog Verification
 

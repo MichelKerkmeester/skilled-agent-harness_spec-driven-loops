@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Devin PermissionRequest handler"
+title: "Implement [cli-external-orchestration/029-cli-devin-revival/013-devin-permission-request-handler/implementation-summary]"
 description: "Implemented and registered a fail-closed Devin PermissionRequest adapter that composes the shared write-target and dispatch hard-rule cores, with process-level discrimination and documented live-probe limits."
 trigger_phrases:
   - "devin permission request handler summary"

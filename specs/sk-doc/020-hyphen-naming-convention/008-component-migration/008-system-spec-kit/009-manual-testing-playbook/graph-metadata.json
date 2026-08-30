@@ -35,8 +35,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -55,12 +54,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -164,43 +157,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The system-spec-kit manual_testing_playbook tree contains 440 underscore-bearing basenames: the root, 18 category directories, and 421 scenario or support files. This phase renames permitted playbook paths to kebab-case and closes every playbook link, index, runner, and path pointer while preserving scenario identity and the program exemption boundary.",
     "created_at": "2026-07-14T15:18:03Z",
-    "last_save_at": "2026-08-29T13:10:14.465Z",
+    "last_save_at": "2026-08-30T07:19:46.891Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:3a28c451240b33faac2c48e4c38db2bb46c3d0d17a48515d332911af3e87c90e",
+    "source_fingerprint": "sha256:301d329e931c940c9f5ee59c36f73260b7d744300775462099eb0209768abb3b",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "9cf715d47dc8eb5c228b1f25bc7e0e6f249277226b8cc237244199880f292b2b",
-      "plan.md": "c275cde77ed91f70b35b4aa5fbdf8808bcab6d4877f3ac146f30577f45a0f24e",
-      "tasks.md": "5253241691f39b0501ca3edd96e362fcdeb8d59d096d6b3e693b768120ed7b31",
-      "checklist.md": "5e832179832a77f4dc322950851c0c39143390ef44684936ed80dedf09272bd3"
+      "spec.md": "af2972d92f76fe23474de083ac5027bf05fb437607320d56165ab2343cdb12ad",
+      "plan.md": "157e406ba54e705542289827b3fd90c03e4a71c0d4668d87409c12cce5e352b7",
+      "tasks.md": "63435c3645e41d5be2c9938e1ecfbd83d10500971501e7f5f28b70660199b5b7"
     },
     "last_active_child_id": null,
     "last_active_at": null

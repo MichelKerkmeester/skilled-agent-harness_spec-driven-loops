@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 3 mcp-tooling README rewrite"
+title: "Implementation [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/003-mcp-tooling/implementation-summary]"
 description: "The mcp-tooling hub README now opens purpose-first: a one-line pitch, a problem-first overview and a routing surface table, with the version field synchronized to 1.5.0.0 and a matching changelog entry."
 trigger_phrases:
   - "implementation summary"

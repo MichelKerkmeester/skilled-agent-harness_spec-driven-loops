@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-deep-loop benchmark storage names (020 phase 007/009)"
+title: "Tasks: system-dee [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark/tasks]"
 description: "Execution tasks for renaming root benchmark storage labels, repairing report/index path values, and verifying report and fixture/profile ownership."
 trigger_phrases:
   - "system-deep-loop benchmark tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "deep loop benchmark report path tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/009-benchmark"
 ---
 # Tasks: System-deep-loop benchmark storage names
 

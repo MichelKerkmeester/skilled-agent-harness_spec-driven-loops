@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 007 mcp-aside-devtools mode skill README rewrite"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/007-mcp-aside-devtools/spec]"
 description: "Rewrite the mcp-aside-devtools mode skill README against the refined README template from phase 001 and the mcp-obsidian exemplar: purpose-first narrative, HVR clean, version bump, changelog entry, validated with zero issues."
 trigger_phrases:
   - "mcp aside devtools readme"

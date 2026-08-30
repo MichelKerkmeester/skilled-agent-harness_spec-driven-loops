@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Stage-aware Lane C skill-benchmark scorer (fitted/holdout split, generalization gap, stage-driven negatives)"
+title: "Feature Specification: Stage-aware [system-deep-loop/031-smart-routing-benchmark-program/017-stage-aware-scorer/spec]"
 description: "Wire the consume side of benchmark scenario stages: honor stage:negative, emit stage uniformly, and split the aggregate into a fitted score, a separate holdout score, and a generalization gap — score-preserving for corpora that declare no stages."
 trigger_phrases:
   - "stage aware scorer"

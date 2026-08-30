@@ -35,8 +35,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -55,12 +54,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -158,49 +151,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Fix Completeness",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This verify-only phase confirms that the system-spec-kit changelog records the complete phase 001-010 filesystem rename set, the exemption boundary, and a coherent version bump above the current v3.7.1.0 baseline. It does not perform renames or rewrite historical changelog entries.",
     "created_at": "2026-07-14T15:18:05Z",
-    "last_save_at": "2026-08-29T13:10:13.796Z",
+    "last_save_at": "2026-08-30T07:19:47.597Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:32be67cf4b810b8af2187b1a161e11ef043b0adcc87a497f31e7618f289f44dd",
+    "source_fingerprint": "sha256:117a471cae7125404df6e5fc6f5ce1ad1cbcf8fe4ec2342f9df779aacccd7c18",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "e54f85682ee2e08153035dab1a7e8b8043f89a5999c3db26094adc27ae90c2ee",
-      "plan.md": "ba42fdda12fbfee9fa52945f103cb74a18f9fc0c90f2e2670f76e4535fe0bcf2",
-      "tasks.md": "cdc48380420195db3f40e354e98568850d856aa56e4600af2aa8ddc0d8401ab5",
-      "checklist.md": "527b2c059be0fec8fc4069aa1da0a6068613a480593b7905fc1324dcdeb23018"
+      "spec.md": "59b1ec3630a201c5a2a326980eff717dacf7ad0c63939d63f40a66f883f458b1",
+      "plan.md": "d9a2d6b9651b49a5571bae25b14da09f8a0ae78fef9e6a0768c6e1f43181d1da",
+      "tasks.md": "b3a481b90cfe12344923207bee49307ac3af083248766616f60679aab0b4813a"
     },
     "last_active_child_id": null,
     "last_active_at": null

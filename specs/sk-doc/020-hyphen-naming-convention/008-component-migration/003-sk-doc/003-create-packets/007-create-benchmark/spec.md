@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: create-benchmark resource names"
+title: "Fe [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark/spec]"
 description: "The create-benchmark packet uses snake_case taxonomy directories and fixture, profile, guide, and storage filenames. This phase converts those non-exempt resource names to kebab-case and updates packet-local references while preserving benchmark schema fields, manifests, and Python package exemptions."
 trigger_phrases:
   - "create-benchmark resource naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "benchmark storage guide rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/003-create-packets/007-create-benchmark"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

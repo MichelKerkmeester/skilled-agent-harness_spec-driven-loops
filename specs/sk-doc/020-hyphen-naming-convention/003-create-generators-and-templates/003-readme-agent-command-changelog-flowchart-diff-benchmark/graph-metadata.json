@@ -20,9 +20,9 @@
       "create workflow artifact naming tasks",
       "readme agent command benchmark naming tasks",
       "hyphenated create output tasks",
-      "create workflow artifact naming checklist",
-      "readme agent command benchmark naming checklist",
-      "hyphenated create output checklist"
+      "create generator naming implementation",
+      "readme agent command benchmark completion",
+      "kebab-case output verification"
     ],
     "key_topics": [
       "readme",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
     "entities": [
@@ -64,12 +63,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -169,49 +162,54 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Implementation Summary",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Spec Folder",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "What Was Built Seven",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "Generator Output Contract",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Seven create-* workflow packets still carry output examples and path rules that can produce underscore names. Their generated files and directories must use kebab-case, with README/SKILL/tool contracts and Python exemptions preserved.",
     "created_at": "2026-07-14T15:16:46Z",
-    "last_save_at": "2026-08-29T10:01:11.918Z",
+    "last_save_at": "2026-08-30T07:19:11.108Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cfb27b6e50f661a968a507b678158b768a65b14180893202f5a117a6696fbf95",
+    "source_fingerprint": "sha256:ee2dce133645035b5f9fbc998bff3267c3eadd006f49e179169b9eb4fb8b99de",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "dbfec71c1223c8d6392449f405b1798bb7981eb6d7f6e906365e70764f9199fd",
-      "plan.md": "cb00dd81503b75ac8cd236f8bbcf3159b1030bc13b46ad7a4102d58bdc872f90",
-      "tasks.md": "8a6284d38c3791202ceb7b667634fc9e4ed674d7a93d9ee1d85ee47912613a8e",
-      "checklist.md": "402745e7f2966446ec1cb9f85c1e7efe4e439d41f96569c1264109c11e62a968",
-      "implementation-summary.md": "11683ec26da3882bdce17a998eba3d7ff778bae40b7e6f1e0f94a47601bf8eb0"
+      "spec.md": "d7e83bb790156d124f57ee937a502515f471f26b42ed454df93ca75c85ca8792",
+      "plan.md": "0d4536906b034e36bbeaf2b2f10fb2a65582fb3f479c760c72549a6b4d1f0b07",
+      "tasks.md": "948c871513c9aae92b0266389bd94f922ba5286c0e5a62d7ee1cbc94a7a8e0b1",
+      "implementation-summary.md": "9c1b184b13b8989106aa7f32d0786efdaa41ae60e7fe9c91e4f00fac2c4222ab"
     },
     "last_active_child_id": null,
     "last_active_at": null

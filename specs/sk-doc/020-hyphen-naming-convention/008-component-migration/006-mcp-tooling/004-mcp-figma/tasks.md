@@ -1,12 +1,11 @@
 ---
-title: "Tasks: mcp-figma naming closure (020 phase 004)"
+title: "Tasks: mcp-figma [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma/tasks]"
 description: "Tasks for phase 004 of the mcp-tooling component naming migration: rename Figma paths, repair references, and preserve helper semantics."
 trigger_phrases:
   - "mcp-figma naming tasks"
   - "figma catalog helper tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma"
@@ -22,6 +21,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/004-mcp-figma"
 ---
 # Tasks: mcp-figma Naming Closure
 

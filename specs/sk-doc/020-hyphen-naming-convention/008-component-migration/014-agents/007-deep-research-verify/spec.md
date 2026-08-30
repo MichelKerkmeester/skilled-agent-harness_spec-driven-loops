@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: verify deep-research agent naming (020 phase 007)"
+title: "Feature Specifica [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/007-deep-research-verify/spec]"
 description: "The agents surface needs an explicit candidate audit for deep-research across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename."
 trigger_phrases:
   - "deep-research agent naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "deep-research filename verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/007-deep-research-verify"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

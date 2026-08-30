@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 031 sk-create-readme README rewrite"
+title: "Implement [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/031-sk-create-readme/implementation-summary]"
 description: "The sk-create-readme README was rewritten purpose-first against the refined skill-readme template and the mcp-obsidian exemplar, with a version bump to 1.1.0.0 and a matching changelog entry."
 trigger_phrases:
   - "phase 031 implementation summary"

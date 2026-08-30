@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Out-of-Box Routing Research — GLM Parallel Lineage"
+title: "Feature Specification: Out-of-Box [sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research/spec]"
 description: "A parallel GLM-5.2-max out-of-box research lineage (5 iterations, non-converge, lateral) run alongside the SOL-ultra lineage in research child 007, so two models explore radical routing rethinks concurrently. Findings merge into the 007 defaultMode synthesis."
 trigger_phrases:
   - "out-of-box routing glm parallel"

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-doc Template Alignment"
+title: "...actor/015-router-unification-program/019-routing-coverage-activation-verification/009-sk-doc-template-alignment/plan]"
 description: "How the trigger_phrases routing-claim fix, the topology quote-tolerance fix, the 12-value test-type taxonomy, the strict package validator, and the P4 lockstep directive-surface manifest land as doc-truth and validator corrections, behind the still-off SPECKIT_COMPILED_ROUTING flag."
 trigger_phrases:
   - "sk-doc template alignment plan"

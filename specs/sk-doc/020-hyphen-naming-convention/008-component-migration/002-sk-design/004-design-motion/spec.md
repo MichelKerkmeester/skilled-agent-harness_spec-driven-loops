@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Design-motion (020 phase 004)"
+title: "Feature Specification [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion/spec]"
 description: "The design-motion mode uses underscore-bearing asset, procedure, and reference names that are cited by its routing contract and operational guidance."
 trigger_phrases:
   - "design-motion naming phase"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 design-motion"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/004-design-motion"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

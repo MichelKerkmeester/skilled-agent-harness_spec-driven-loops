@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 004 — standalone skill README revisit (per-skill phases)"
+title: "Feature Specification: Phase 004 — standalone [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/spec]"
 description: "Phase parent: one child phase per standalone skill root, each revisiting that skill's README against the refined template from phase 001, purpose-first with HVR enforcement and a per-skill changelog entry."
 trigger_phrases:
   - "standalone readme revisit"

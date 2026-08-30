@@ -1,7 +1,8 @@
 ---
-title: "Tasks: 016/002/007 Auto-Embedder Selection + llama-cpp Purge"
+title: "...me/003-embedder-testing-and-architecture/002-spec-memory-stack/007-auto-embedder-selection-and-llama-cpp-purge/tasks]"
 description: "Task list per plan.md phases"
-trigger_phrases: ["016/002/007 tasks"]
+trigger_phrases:
+  - "016/002/007 tasks"
 importance_tier: "important"
 contextType: "implementation"
 _memory:

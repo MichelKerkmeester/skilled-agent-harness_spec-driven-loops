@@ -40,7 +40,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
     "entities": [
@@ -60,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -183,31 +176,36 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context The",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The MCP server contains non-Python directories whose names still use underscores, including runtime, bridge, stress, and test-support paths. They need semantic targets and intra-tree reference updates; leading and doubled underscores must never be converted mechanically.",
     "created_at": "2026-07-14T15:17:58Z",
-    "last_save_at": "2026-08-29T13:10:13.785Z",
+    "last_save_at": "2026-08-30T07:19:44.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b3e1131ce3a1206c6063741d98b55db787883c3aaac31feda5317002df8fa3b1",
+    "source_fingerprint": "sha256:c28410dbec469b32e1f601ab8782153e8f45430da3b11b5af2b5a07ed0976f66",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "8017ee263c71aa898e368d6cd9c960e6226ce80c8303a998ee36192b172c6ff9",
-      "plan.md": "94471e7245bab4f4902f4b8b5bd06a99af36d566e50c53eee43ba1c267cb4e51",
-      "tasks.md": "cd20ff8809c91287e8573fb9c98ee5f63a7419e89c71cd4301c8e54a3fe31272",
-      "checklist.md": "93ec68b805032810d11564366d4078f79263053ce06b3fb6e0674333ebd9ffe5",
-      "decision-record.md": "ea6604c9148f81e1d7ce47cb251f7acf61a7c4b1cbb4caf1a9263e572957e437"
+      "spec.md": "8ef6d67f7f59cd5691ee9e92a131f0058ac515b65d0923548d4f659e24e9cdc6",
+      "plan.md": "a0c9bf3aba2dcac0a86fa2021bf6483ca1c1c3e2bf9e35f916ca397b65f61d9b",
+      "tasks.md": "db6c6a5301169ab4ac4f9d7c2bb251ba6f5196979ec9bd3600aa489fd5687e8f",
+      "decision-record.md": "99648429c49b1956073e7dacf1e427832b4bfd3e256643469b61b465eca64adc"
     },
     "last_active_child_id": null,
     "last_active_at": null

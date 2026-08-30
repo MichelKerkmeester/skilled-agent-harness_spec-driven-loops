@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: playbook standard enforcement and fleet normalization"
+title: "Decision Record: [sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization/decision-record]"
 description: "Two proposed decisions carrying evidence: where the new operator-contract validator lives relative to the existing routing-gold gate, and whether the gate is strict by default."
 trigger_phrases:
   - "playbook validator ownership decision"

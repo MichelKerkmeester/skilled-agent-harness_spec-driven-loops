@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-code-graph runtime"
+title: "Tasks: system-code [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime/tasks]"
 description: "Concrete tasks for the code-graph runtime inventory, conditional path rename, hook/library reference closure, and no-op evidence."
 trigger_phrases:
   - "system-code-graph runtime tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "freshness runtime audit tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime"
@@ -22,8 +21,8 @@ _memory:
     open_questions: []
     answered_questions:
       - "The four current runtime files are already kebab-case; a verified no-rename result is valid."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime"
 ---
-
 # Tasks: system-code-graph runtime
 
 <!-- SPECKIT_LEVEL: 2 -->

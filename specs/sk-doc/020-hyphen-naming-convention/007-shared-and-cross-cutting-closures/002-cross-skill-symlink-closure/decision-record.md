@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: atomic cross-skill symlink closures (020 phase 007 child 002)"
+title: "...c/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure/decision-record]"
 description: "Decision record for treating a symlink target, every link-node, relative target string, and dependent path reference as one atomic dependency closure during the kebab-case filesystem-name program."
 trigger_phrases:
   - "atomic symlink decision"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "symlink closure contract"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure"
@@ -25,6 +24,7 @@ _memory:
     answered_questions:
       - "Target-only and pointer-only intermediate states are rejected"
       - "Preflight must prove target ownership, relative-link rendering, mode preservation, and complete pointer coverage"
+parent: "sk-doc/020-hyphen-naming-convention/007-shared-and-cross-cutting-closures/002-cross-skill-symlink-closure"
 ---
 # Decision Record: Atomic Cross-Skill Symlink Closures
 

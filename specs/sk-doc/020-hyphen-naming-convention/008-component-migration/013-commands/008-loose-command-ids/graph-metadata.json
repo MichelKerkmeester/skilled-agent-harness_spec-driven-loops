@@ -11,18 +11,18 @@
   },
   "derived": {
     "trigger_phrases": [
-      "loose command ID naming",
+      "loose command id naming",
       "root command filename migration",
       "agent router goal command naming",
       "loose command naming plan",
       "root command filename plan",
-      "command ID preservation plan",
+      "command id preservation plan",
       "loose command naming tasks",
-      "root command ID tasks",
+      "root command id tasks",
       "command path contract tasks",
-      "loose command ID checklist",
-      "root command filename verification",
-      "command ID preservation verification"
+      "loose command id decision",
+      "root command filename boundary",
+      "command id preservation decision"
     ],
     "key_topics": [
       "loose",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       ".opencode/commands/README.txt",
       ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs"
@@ -69,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -90,6 +83,12 @@
         "name": "sync-prompts.cjs",
         "kind": "file",
         "path": ".opencode/skills/system-spec-kit/scripts/codex/sync-prompts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specificat",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -119,12 +118,6 @@
       {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "producer",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -193,27 +186,32 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Cross-References",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The loose command surface contains `agentrouter.md` and `goalopencode.md`, while the program's canonical filesystem form is kebab-case",
     "created_at": "2026-07-14T15:18:37Z",
-    "last_save_at": "2026-08-29T13:10:07.498Z",
+    "last_save_at": "2026-08-30T07:20:03.840Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b03dc3bad2adb1796eae2b42d4df330ddfc1d1b84c763f88506a6db6ee167743",
+    "source_fingerprint": "sha256:ab4dbbe3eb90846d5a5d799f8eea5665b47ab589aa6c183878cfd75ed55d44c8",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f1b35379ea2503b155a78edd0e2195b4cee07376e8567aaee38416a463add889",
-      "plan.md": "0169740543676c6abf9168903ade9e04d9e1c247ec8a5b1f81f8e57ec5f10667",
-      "tasks.md": "d63c0bbe5cf19ff3e3bb17818d0392c6e433e2897e989de3e194094e4a816ba3",
-      "checklist.md": "dea3a6d1fe392fe8059bb33814b7915234215eccc94cc83a6b6cedb68f28d905",
-      "decision-record.md": "8d4c7c2f2804b27faf06d94e014f96351aede021fa69a3300f95e0f895ed60ba"
+      "spec.md": "2bcaf099734ecb50912743d46e8274a77f852086f827455ec672c3044842c04e",
+      "plan.md": "3dbb2baa6fed777d6c54b041d1a1f7929c9816461678679c79b544a461028032",
+      "tasks.md": "3163f393e9bca52cc70a44c344435d25ffc95302b773e93162f43dad17f22a01",
+      "decision-record.md": "bccb3633cc4739f97fbad8bba009dc7c2504a0ae9f62bbefc2924b03393071b5"
     },
     "last_active_child_id": null,
     "last_active_at": null

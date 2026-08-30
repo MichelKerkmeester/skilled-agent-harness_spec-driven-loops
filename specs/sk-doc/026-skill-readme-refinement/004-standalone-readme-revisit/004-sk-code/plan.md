@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 004-sk-code standalone README rewrite"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/004-sk-code/plan]"
 description: "Rewrite the sk-code skill README purpose-first against the refined README template and the mcp-obsidian exemplar, bump the version field, add a changelog entry and validate."
 trigger_phrases:
   - "phase 004-sk-code plan"

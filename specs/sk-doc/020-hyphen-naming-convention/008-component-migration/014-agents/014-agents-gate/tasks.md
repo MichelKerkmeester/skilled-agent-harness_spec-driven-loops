@@ -1,5 +1,5 @@
 ---
-title: "Tasks: agents surface rollup gate (020 phase 014)"
+title: "Tasks: agents surface [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/014-agents-gate/tasks]"
 description: "Tasks for phase 014 of the 020 agents component migration: aggregate sibling evidence and close the agents naming gate."
 trigger_phrases:
   - "agents surface rollup gate tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 phase 014 agents tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/014-agents-gate"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 # Tasks: Agents Surface Rollup Gate
 
 <!-- SPECKIT_LEVEL: 2 -->

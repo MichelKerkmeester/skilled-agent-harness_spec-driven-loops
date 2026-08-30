@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 008 mcp-chrome-devtools README rewrite"
+title: "Tasks: Phase 008 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/008-mcp-chrome-devtools/tasks]"
 description: "Task list for rewriting the mcp-chrome-devtools skill README against the refined template with a version bump and a changelog entry."
 trigger_phrases:
   - "phase 8 tasks"

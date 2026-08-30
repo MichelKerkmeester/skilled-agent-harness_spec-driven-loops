@@ -13,11 +13,10 @@
     "trigger_phrases": [
       "cli-devin deep-loop executor",
       "cli-devin executor kind",
-      "Devin fan-out adapter",
+      "devin fan-out adapter",
       "devin model allowlist enforcement",
       "cli-devin executor support plan",
-      "cli-devin executor support tasks",
-      "cli-devin executor support checklist"
+      "cli-devin executor support tasks"
     ],
     "key_topics": [
       "cli-devin",
@@ -36,16 +35,15 @@
     "importance_tier": "normal",
     "status": "planned",
     "key_files": [
-      "tasks.md",
+      "spec.md",
       "plan.md",
-      "checklist.md",
-      "spec.md"
+      "tasks.md"
     ],
     "entities": [
       {
-        "name": "tasks.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": "tasks.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -55,15 +53,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -173,37 +165,24 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`cli-devin` was fully removed as a deep-loop executor kind on 2026-06-08",
     "created_at": "2026-07-23T19:51:58.603Z",
-    "last_save_at": "2026-07-24T11:23:03.331Z",
+    "last_save_at": "2026-08-30T07:18:48.132Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:e0a62af956708ec4bc23caca181141668841316924083709d55596d45980a6cc",
+    "source_fingerprint": "sha256:1a8b52c6f0f7736f7054934b1bc0c008e79c1b87dc6465971ab6d721e638293b",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "695fc66b1c3dd97295440ed639ac0cb0afb1085a2b700fc079f9a86acfad8ac8",
-      "plan.md": "7291ee1a403c25b941e8ddfc79b3cf546611ca390708b5bf37776ff868421a20",
-      "tasks.md": "882b7a65269272354fd4a2c24e47077fdf901cfe8446cc5184e2b3011dd91ea4",
-      "checklist.md": "42481aec8f4830f0b2d7ca57f1f0f4a931ebe74e7ede4cb2169c7235d67e7a3e"
+      "spec.md": "cf63a583b990b0c58be4ee97ae26f78ee930fe13178657cc318bd7e0f97f0fe9",
+      "plan.md": "fb7ae4dd96c9e3d02a82ac195802754eb1a88464ce7272fd2efbf6c1df300b61",
+      "tasks.md": "7f93466a98e2b01a2a5f1be40090fd4cdea98fd11070c27a80ed6d38243e98af"
     },
     "last_active_child_id": null,
     "last_active_at": null

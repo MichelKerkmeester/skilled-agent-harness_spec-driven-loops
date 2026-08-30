@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 013 mcp-obsidian README revisit (verify-only exemplar)"
+title: "Implementation Plan: Phase [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/013-mcp-obsidian/plan]"
 description: "Verify the mcp-obsidian mode skill README against the refined README template and record the conformance verdict with evidence. Rewrite purpose-first with a version bump and changelog entry only when conformance fails."
 trigger_phrases:
   - "phase 13 plan"

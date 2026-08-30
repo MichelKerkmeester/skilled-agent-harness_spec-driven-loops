@@ -1,12 +1,12 @@
 ---
-title: "Implementation Plan: Code README Standard And Enforcement"
+title: "Implementation Plan: Code README [sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement/plan]"
 description: "Two-halves plan for child 001: settle three operator rulings as ADRs, restate the standard on the authoring surfaces, then build a fixture corpus before an opt-in code-folder validator mode and a durable-directory auditor rewrite."
 trigger_phrases:
   - "code readme standard plan"
   - "readme enforcement plan"
   - "code readme validator mode"
 importance_tier: "normal"
-contextType: "plan"
+contextType: "planning"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/sk-doc/022-code-readme-coverage/001-code-readme-standard-and-enforcement"

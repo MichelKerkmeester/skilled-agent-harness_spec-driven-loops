@@ -17,9 +17,7 @@
       "mcp-code-mode subtree gate implementation plan",
       "mcp-code-mode phase 007 implementation plan",
       "mcp-code-mode subtree gate tasks",
-      "mcp-code-mode phase 007 tasks",
-      "mcp-code-mode subtree gate checklist",
-      "mcp-code-mode phase 007 checklist"
+      "mcp-code-mode phase 007 tasks"
     ],
     "key_topics": [
       "mcp-code-mode",
@@ -32,16 +30,15 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "needs"
+      "needs",
+      "one"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,9 +60,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specificatio",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -94,12 +91,6 @@
       },
       {
         "name": "the",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "baseline",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -175,37 +166,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-code-mode subtree needs one blocking rollup gate after its five closure phases and changelog verification. This phase aggregates sibling evidence and proves that no in-scope snake_case filesystem name or stale active path remains outside the Python, tool-mandated, generated, lockfile, and frozen-history exemptions.",
     "created_at": "2026-07-14T15:18:25Z",
-    "last_save_at": "2026-08-29T10:00:51.844Z",
+    "last_save_at": "2026-08-30T07:19:57.579Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:adc70ee402729f2aef60d7dec01082caa5ab5a282731dd13e059c4cfd816879f",
+    "source_fingerprint": "sha256:d03c6bf4362ed3b8eb11bab185c3891c43e63ad621ad5136475042b6581caf34",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "ec93edc13938146b6ea3de1838bfafc2be11c9a82c6f8ed0fe2838a5f48795e3",
-      "plan.md": "7ea1ad3aaefae9a96303db59848648ce8254767e796de507deaf5cc5c7694acc",
-      "tasks.md": "9723960df613dc27f1ca5e53054f5ae9e762c6332ec099ed88bf85349e635e76",
-      "checklist.md": "61472a6542bc12c0a1cc2e210d7e8d4a356f7e9bd9d373fcc8589e6081f8e79f"
+      "spec.md": "e83934e2ec91bce234a3102018d52823455382f52d57afe6c0f768256fba862c",
+      "plan.md": "f6ad6739203ebbb3fc30a0e1f40e9c3003fd0b7126e225a4586b825bcc79a597",
+      "tasks.md": "6f9d40abb0fe2f120e558d57fce9b6700ba74a7262b06f82f33bb5379067f031"
     },
     "last_active_child_id": null,
     "last_active_at": null

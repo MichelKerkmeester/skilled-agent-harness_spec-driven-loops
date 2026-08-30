@@ -17,7 +17,6 @@
       "session-precedence plan",
       "fast-mode lifecycle precedence",
       "session-precedence tasks",
-      "session-precedence checklist",
       "session-precedence implementation summary"
     ],
     "key_topics": [
@@ -30,9 +29,9 @@
       "plan",
       "lifecycle",
       "tasks",
-      "checklist",
       "implementation",
-      "summary"
+      "summary",
+      "registry"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -40,9 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
-      "implementation-summary.md",
-      ".pi/settings.json"
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -64,21 +61,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".pi/settings.json",
         "source": "derived"
       },
       {
@@ -188,27 +173,38 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Pi flag registry exposes a boolean default, so a plain false value cannot prove that the operator explicitly supplied a false flag",
     "created_at": "2026-08-16T09:08:03Z",
-    "last_save_at": "2026-08-29T15:21:53.241Z",
+    "last_save_at": "2026-08-30T07:18:55.177Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6e9e415875a7ff53881338772f858a7d40b1e845b3a4803ec85aa638ca60fcf0",
+    "source_fingerprint": "sha256:4afc6254e2dfb717979830bc7b532fcca7fea57071d41e1848010186b9d57f99",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "2339d942c251781c6e037f0dab33a422b0fff224d08281f3c4eb54548a80b45d",
-      "plan.md": "0f790bf461a7115900ad4e856afd0c5ff231569655b9030d10b150ce460281bb",
-      "tasks.md": "38d482fd0b9cb9dca02841fd13ca8d49175235f6a37c65f2e4df4ab5dc7cb7af",
-      "checklist.md": "0039dd2405167d2dcc0908428806aa951d4a2c3e13802ac1d539b039b5e8a9fc",
-      "implementation-summary.md": "b61448e9d9a7c9a6cc2db8eede7b51d2d3e0c65d8ec8fb2f3f8aaa7e73fd8def"
+      "spec.md": "96ec3aad613ff654d4b8682d3b71c326c097eca6d8ae93d4c1b4a1514b0df791",
+      "plan.md": "af4d054f3a146c0b47786b3846734b1f197f94348821400070ad4a1deb56228e",
+      "tasks.md": "110cd0dc7ed16ebc9d248182b4e4ab4f1ad28cb3a57dbddd04f753aa9831dc79",
+      "implementation-summary.md": "5511aaca40b3127a32e035533b34da46ded7ef5efac47eac9706d061dd7de8f9"
     },
     "last_active_child_id": null,
     "last_active_at": null

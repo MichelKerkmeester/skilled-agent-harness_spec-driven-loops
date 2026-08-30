@@ -17,9 +17,7 @@
       "mcp-figma naming implementation plan",
       "figma catalog helper path repair",
       "mcp-figma naming tasks",
-      "figma catalog helper tasks",
-      "mcp-figma naming checklist",
-      "figma catalog helper verification"
+      "figma catalog helper tasks"
     ],
     "key_topics": [
       "mcp-figma",
@@ -41,7 +39,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/mcp-tooling/mcp-figma/SKILL.md",
       ".opencode/skills/mcp-tooling/mcp-figma/scripts/_common.sh"
     ],
@@ -62,12 +59,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -165,49 +156,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Every Figma",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-figma component contains snake_case catalog and manual-testing directories, asset and reference filenames, an uppercase underscored install guide, and a leading-underscore shared shell helper. This phase renames those filesystem paths to safe kebab-compatible targets and updates references without changing Figma transport behavior or shell identifiers.",
     "created_at": "2026-07-14T15:17:43Z",
-    "last_save_at": "2026-08-29T13:10:08.874Z",
+    "last_save_at": "2026-08-30T07:19:37.946Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:3fc96da025bc36225918fa6f471c2475c6691552a176ed12d572d44401aae4f7",
+    "source_fingerprint": "sha256:ada0ea2867c5a518399d92cac4b2b59980b88482563cf8e321c5e9fdbc5316cb",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "3a21b1dfaf49ad44a59707556b836c02614671c1369684e5bf1b5bbf7453d50e",
-      "plan.md": "3a83b55ace4bd6c1a1b698427f9769aa263ff5af4539010bd7f3a3cd6f221ea6",
-      "tasks.md": "db09e474d6b5c35d3ccefd28b848e407bfc0bc6c9875feadb1c3bdc674ac471b",
-      "checklist.md": "166509cce9721d24d1b2ef448b45079650cf3b467590bc32ac5508c8d7557137"
+      "spec.md": "d35aed7c1878de0c253732ef72008b6ef092a32836eab559111a7711c42e9f32",
+      "plan.md": "1888b4f74e85d924bad63a464b41acc8f313cd2548c917e8e15161684f32f83c",
+      "tasks.md": "e1a37cee70cfd75c04fc72d02128226bf67df1bd1f3d36648180c83ffbb7faef"
     },
     "last_active_child_id": null,
     "last_active_at": null

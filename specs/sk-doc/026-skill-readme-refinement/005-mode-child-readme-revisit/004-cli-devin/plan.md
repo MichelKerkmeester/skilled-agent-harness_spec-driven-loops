@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 004 cli-devin mode README rewrite"
+title: "Implementation Plan: Phase 004 [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/004-cli-devin/plan]"
 description: "Rewrite the cli-devin mode README purpose-first against the refined template from phase 001 and the mcp-obsidian exemplar, with a version bump and a changelog entry."
 trigger_phrases:
   - "phase 004 plan"

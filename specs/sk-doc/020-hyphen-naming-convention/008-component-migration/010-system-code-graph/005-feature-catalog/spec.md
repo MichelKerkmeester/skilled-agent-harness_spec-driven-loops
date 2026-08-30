@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: system-code-graph feature catalog"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog/spec]"
 description: "Rename the system-code-graph feature_catalog root, eight category directories, and 19 catalog/index files to kebab-case, then update every path link while preserving catalog classification tokens, feature IDs, and code/data identifiers."
 trigger_phrases:
   - "system-code-graph feature catalog naming"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "code graph catalog link closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/005-feature-catalog"
@@ -30,8 +29,8 @@ _memory:
       - "The catalog contains 19 files including feature_catalog/feature_catalog.md under eight snake_case category directories."
       - "The root, category directories, and file basenames become kebab-case; feature IDs and classification tokens remain unchanged."
       - "The root-name consumer phase owns central classifier compatibility; this phase updates the system-code-graph surface and its path consumers."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

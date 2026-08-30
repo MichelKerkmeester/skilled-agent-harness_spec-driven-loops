@@ -1,7 +1,8 @@
 ---
-title: "Tasks: Devin MCP-host integration"
+title: "Tasks: Devin MCP-host [cli-external-orchestration/029-cli-devin-revival/009-devin-mcp-host-integration/tasks]"
 description: "Task breakdown for registering this repo's 3 MCP servers with Devin under a two-tier permission policy."
-trigger_phrases: ["devin mcp host integration tasks"]
+trigger_phrases:
+  - "devin mcp host integration tasks"
 importance_tier: "normal"
 contextType: "general"
 _memory:

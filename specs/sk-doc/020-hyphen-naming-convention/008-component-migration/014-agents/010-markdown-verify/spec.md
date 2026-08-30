@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: verify markdown agent naming (020 phase 010)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/010-markdown-verify/spec]"
 description: "The agents surface needs an explicit candidate audit for markdown across the three runtime agent directories. This verify-only phase records the actual definition paths and proves whether any in-scope snake_case filesystem name requires a rename."
 trigger_phrases:
   - "markdown agent naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "markdown filename verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents/010-markdown-verify"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/014-agents"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

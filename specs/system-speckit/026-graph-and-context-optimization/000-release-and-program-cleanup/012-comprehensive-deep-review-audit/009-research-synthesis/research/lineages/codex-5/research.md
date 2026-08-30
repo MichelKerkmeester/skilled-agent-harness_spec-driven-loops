@@ -1,3 +1,17 @@
+---
+title: "...se-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-5/research]"
+description: "The audit findings cluster around one main root cause: several critical contracts are hand-maintained across multiple surfaces without a generated source of truth or parity gate..."
+trigger_phrases:
+  - "and"
+  - "program"
+  - "cleanup"
+  - "012"
+  - "comprehensive"
+  - "research"
+  - "codex"
+importance_tier: "normal"
+contextType: "research"
+---
 # Research Synthesis: Root-Cause Review of the 026 Deep-Review Audit
 
 ## 1. Executive Summary

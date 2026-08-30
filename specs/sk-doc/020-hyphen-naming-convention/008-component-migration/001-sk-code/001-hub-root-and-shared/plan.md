@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: hub root and shared sk-code names (020 phase 008/001)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared/plan]"
 description: "Plan for renaming the sk-code hub shared assets and references through the frozen semantic map, then repairing path consumers and symlink targets before behavior verification."
 trigger_phrases:
   - "hub shared naming implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "shared workflow path migration"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared"
 ---
-
 # Implementation Plan: Hub root and shared sk-code names
 
 <!-- SPECKIT_LEVEL: 2 -->

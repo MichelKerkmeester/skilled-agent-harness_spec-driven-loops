@@ -1,5 +1,5 @@
 ---
-title: "Tasks: system-deep-loop subtree skill gate (020 phase 007/011)"
+title: "Tasks: system-de [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate/tasks]"
 description: "Rollup tasks for aggregating phases 001-010 and proving whole-surface kebab-case naming, reference integrity, and behavior parity without performing new migration work."
 trigger_phrases:
   - "system-deep-loop skill gate tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "whole surface kebab-case gate tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/011-skill-gate"
 ---
 # Tasks: System-deep-loop subtree skill gate
 

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-skill-advisor references"
+title: "Implementatio [sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references/plan]"
 description: "Apply a 15-file reference rename map, repair all live path links and command examples, and verify navigation and reference validation without altering runtime identifiers or document contracts."
 trigger_phrases:
   - "system-skill-advisor references implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "advisor documentation path migration"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "All reference directories are already compliant; only 15 Markdown filenames require mapping."
       - "Cross-phase catalog/playbook links are path consumers and do not authorize content redesign."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/003-references"
 ---
-
 # Implementation Plan: system-skill-advisor references
 
 <!-- SPECKIT_LEVEL: 2 -->

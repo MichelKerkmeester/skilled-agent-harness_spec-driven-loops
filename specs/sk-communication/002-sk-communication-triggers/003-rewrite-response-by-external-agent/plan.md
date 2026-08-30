@@ -1,6 +1,11 @@
 ---
-title: "Implementation Plan: Phase 3: rewrite-response-by-external-agent command"
+title: "Implementation Plan: [sk-communication/002-sk-communication-triggers/003-rewrite-response-by-external-agent/plan]"
 description: "Plan for authoring the one-shot engine-choice projection command with an explicit ON-run-OFF mechanism and no shipped-package edits."
+trigger_phrases:
+  - "implementation"
+  - "plan"
+  - "003"
+  - "rewrite"
 importance_tier: "normal"
 contextType: "general"
 _memory:

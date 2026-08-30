@@ -19,10 +19,7 @@
       "020 skill-gate tasks",
       "skill-gate tasks",
       "sk-design skill gate execution",
-      "020 skill-gate checklist",
-      "skill-gate verification",
-      "sk-design skill gate checklist",
-      "020 skill-gate gate"
+      "020 skill-gate checklist"
     ],
     "key_topics": [
       "skill-gate",
@@ -36,7 +33,7 @@
       "tasks",
       "execution",
       "checklist",
-      "verification"
+      "sibling"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -44,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/skills/sk-design/SKILL.md"
     ],
     "entities": [
@@ -64,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -185,31 +175,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sibling phases need one blocking rollup gate that proves their evidence is complete and that no in-scope snake_case filesystem name or stale path remains in sk-design.",
     "created_at": "2026-07-14T15:17:23Z",
-    "last_save_at": "2026-08-29T13:10:05.362Z",
+    "last_save_at": "2026-08-30T07:19:23.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:d67e052d5783c4cd1d865ef9c6b1e725d20d95eb47653e3097e60b2f05b5814a",
+    "source_fingerprint": "sha256:a2e4cb4a9e052484e261598a43262600d0a5e4ef061aecf47e320b62737a0d42",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "2ab4f2d04083ac2f887acd37262ae610a2fa859488e557be1526a41dc8ce36c0",
-      "plan.md": "034a7c544fd3a2b52dc8f2ecbf96f07f48dab55bcba6bbbe8ac5e56f7ea5ff3f",
-      "tasks.md": "023a619a5e5cd0feba649f3a84cc47dac82aeaf996941f895bdf19dd3aa14ad4",
-      "checklist.md": "02d485e3912bbee2a1089fc310de0b44e7ba988560b8edef68406e519f6d35d5"
+      "spec.md": "f9d8a6197f304292bfa9719d4fcab189df4846db535b3659eb969fae2bf5d15d",
+      "plan.md": "898618d4264cf43f3c6872ece3a821c0c6c48dfd089a4cfc7359a49b9eee6366",
+      "tasks.md": "043cfd8f66b6d3c19b939b5d6c37a765f330336d7810c80e2b09f61913a2b5f7"
     },
     "last_active_child_id": null,
     "last_active_at": null

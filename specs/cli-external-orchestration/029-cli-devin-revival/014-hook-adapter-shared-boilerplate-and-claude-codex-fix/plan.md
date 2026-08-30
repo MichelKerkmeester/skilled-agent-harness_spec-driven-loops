@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Hook adapter shared boilerplate and Claude/Codex fix"
+title: "Impleme [cli-external-orchestration/029-cli-devin-revival/014-hook-adapter-shared-boilerplate-and-claude-codex-fix/plan]"
 description: "Extract the byte-identical stdin/parse boilerplate into a shared ESM/CJS helper pair, migrate the Q6-sampled adapter families, and apply the firstNonBlankString alias fix to Claude's and Codex's spec-gate-enforce.mjs."
 trigger_phrases:
   - "hook adapter shared boilerplate plan"

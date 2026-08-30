@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-code-graph runtime"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime/plan]"
 description: "Inventory the four-file runtime tree, conditionally rename any non-tool-mandated snake_case path, update its consumers, and prove hook/library behavior and discovery remain at BASE parity."
 trigger_phrases:
   - "system-code-graph runtime implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "freshness runtime naming audit"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "All four current runtime files and their containing directories are already kebab-case."
       - "A verified no-rename result is valid and must include path, syntax, behavior, and discovery evidence."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/004-runtime"
 ---
-
 # Implementation Plan: system-code-graph runtime
 
 <!-- SPECKIT_LEVEL: 2 -->

@@ -1,5 +1,5 @@
 ---
-title: "Plan: fp16 cross-encoder weights on MPS [template:level_1/plan.md]"
+title: "...tion/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank/plan]"
 description: "Sidecar dtype env handler + bench."
 trigger_phrases:
   - "009 fp16 plan"

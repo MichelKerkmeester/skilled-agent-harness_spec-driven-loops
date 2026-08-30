@@ -1,9 +1,9 @@
 ---
-title: "Implementation Plan: Phase 3 package-baseline-gates"
+title: "Implementation Plan: [hooks/011-pi-fast-mode-w-subagent-support/001-fork-and-package/003-package-baseline-gates/plan]"
 description: "Finalize the Pi package manifest, provenance, and baseline verification gates."
 trigger_phrases:
   - "package-baseline-gates plan"
-  - "raw TypeScript extension package"
+  - "raw typescript extension package"
 importance_tier: "normal"
 contextType: "implementation"
 _memory:

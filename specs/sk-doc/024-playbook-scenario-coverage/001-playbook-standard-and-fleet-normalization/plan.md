@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: playbook standard enforcement and fleet normalization"
+title: "Implementation Plan: [sk-doc/024-playbook-scenario-coverage/001-playbook-standard-and-fleet-normalization/plan]"
 description: "The sk-doc operator-scenario contract has no mechanical check anywhere in the repository, so every playbook coverage claim in the fleet is hand-typed prose that has drifted. This keystone phase settles the corpus-split and verdict rulings, builds the missing operator-contract validator with paired fixtures and fail-closed CI wiring, derives a per-hub coverage map from live registries, and normalizes all 11 playbook roots to a derived census."
 trigger_phrases:
   - "playbook standard and fleet normalization implementation plan"

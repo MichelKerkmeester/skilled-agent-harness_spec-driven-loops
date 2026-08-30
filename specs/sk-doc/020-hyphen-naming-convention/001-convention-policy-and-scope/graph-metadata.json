@@ -18,11 +18,11 @@
       "hyphen naming phase 001 implementation plan",
       "convention policy and scope tasks",
       "hyphen naming phase 001 tasks",
-      "convention policy and scope checklist",
-      "hyphen naming phase 001 checklist",
       "hyphen naming decision record",
       "kebab-case migration decisions",
-      "020 program decisions"
+      "020 program decisions",
+      "hyphen naming phase 001 summary",
+      "convention policy summary"
     ],
     "key_topics": [
       "convention",
@@ -35,8 +35,8 @@
       "implementation",
       "plan",
       "tasks",
-      "checklist",
-      "decision"
+      "decision",
+      "record"
     ],
     "importance_tier": "important",
     "status": "planned",
@@ -44,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/sk-doc/shared/references/filesystem-naming-convention.md",
@@ -67,12 +66,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -166,57 +159,62 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Verification Protocol This",
+        "name": "Case Filesystem",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Code Quality",
+        "name": "Naming Program",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Policy Classification Fixtures",
+        "name": "Context This",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Fix Completeness",
+        "name": "Policy Classification Fixtures The",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "verified P0",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "There is no single authoritative statement that kebab-case (hyphens) is the canonical filesystem-naming form, nor a written exemption boundary, nor a record of the program decisions from the GPT design review. Packet 027 currently mandates the opposite for catalog/playbook content. This phase publishes the canonical co",
     "created_at": "2026-07-13T14:34:05.517Z",
-    "last_save_at": "2026-08-29T13:10:02.847Z",
+    "last_save_at": "2026-08-30T07:19:09.179Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f684574d05ca4f79a823e94e0064eb86705726ef39f4f759893c94a8e38f1f94",
+    "source_fingerprint": "sha256:4ed8183bfae5f707d3c3654ace071ffb6e85c57acb5427eb150486f1787ac899",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "c87bb702b7d129295dcfaed8ec8606754a73d3f13070c030c3fe01c50e5181f4",
-      "plan.md": "c4149d20bb2cad9d2df9b696a5e6024a2d49150ced75160087d53208e72b922c",
-      "tasks.md": "c30d47e1b09b00242afd42ce1b437bf9c9bd2d0f5974bf03fcc0c06472234b90",
-      "checklist.md": "b32a44443c88b1c18d0ae00a873e5f20276f620ca7f2d25a2a23cccc54a9b09d",
-      "decision-record.md": "5339878ab1fd17ee027910b9749406cb19212dbe0ec498fe47a02e3b2ea368f5",
-      "implementation-summary.md": "4a404ea7a17be06fd7482a4700c31a7fc4b0379776aa7a4fd8319d3b71b3f9e1"
+      "spec.md": "45db9cd21c556af1084f06c75eb083feccc5cb30ac664dd6626f902635057dc7",
+      "plan.md": "ccb3388f54acb72af9b296cca50c902be209a4ed56ed0fa42f0cc8de63e76272",
+      "tasks.md": "9df6ac87afb72abbcaa5fa834086b384ff25d961c4fab536dc8356070123c3a7",
+      "decision-record.md": "f9ffa97735be93107c5210e89d47e24e89ef7d543d228724ca66b7246e20343b",
+      "implementation-summary.md": "a181a5ca3b48b401b342358825775b3b3b2012d3f241084d94c2c0e031911b27"
     },
     "last_active_child_id": null,
     "last_active_at": null

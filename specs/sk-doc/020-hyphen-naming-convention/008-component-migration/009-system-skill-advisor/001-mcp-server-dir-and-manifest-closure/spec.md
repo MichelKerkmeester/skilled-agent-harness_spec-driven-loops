@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: MCP server directory and manifest closure"
+title: "...phen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure/spec]"
 description: "Rename the system-skill-advisor MCP package root and permitted non-Python package-layout directories to kebab-case, then update the manifest, launcher, build, and documentation path closure atomically."
 trigger_phrases:
   - "system-skill-advisor mcp-server directory"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "plugin-bridges stress-test rename"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor/001-mcp-server-dir-and-manifest-closure"
@@ -28,8 +27,8 @@ _memory:
       - "The current non-Python package-layout candidates are mcp_server, plugin_bridges, and stress_test."
       - "package-lock.json, tsconfig*.json, vitest*.ts, and test-magic directories require preservation or explicit classification."
       - "Python package directories and all .py filenames are exempt."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/009-system-skill-advisor"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

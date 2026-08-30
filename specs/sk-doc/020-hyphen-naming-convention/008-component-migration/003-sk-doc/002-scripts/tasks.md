@@ -1,12 +1,11 @@
 ---
-title: "Tasks: sk-doc scripts and test fixtures"
+title: "Tasks: sk-doc scripts and [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts/tasks]"
 description: "Concrete execution and verification tasks for the sk-doc scripts-tree naming phase."
 trigger_phrases:
   - "sk-doc scripts tasks"
   - "scripts fixture rename tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/002-scripts"
 ---
 # Tasks: sk-doc scripts and test fixtures
 

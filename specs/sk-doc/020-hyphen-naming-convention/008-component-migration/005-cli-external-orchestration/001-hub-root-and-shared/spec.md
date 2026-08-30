@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: cli-external-orchestration hub root and shared boundary (020 phase 005.001)"
+title: "...doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared/spec]"
 description: "The live hub root has exact routing files, delegated component trees, a root manual-testing-playbook tree, and an empty shared boundary. This phase records ownership and renames only hub/shared-owned authored names without crossing delegated playbook or benchmark scope."
 trigger_phrases:
   - "cli-external hub root kebab-case"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "cli-external phase 001 naming"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
@@ -27,8 +26,8 @@ _memory:
     answered_questions:
       - "The live root has no shared/ directory."
       - "manual_testing_playbook/ and benchmark/ are delegated to phases 005 and 006."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/005-cli-external-orchestration/001-hub-root-and-shared"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

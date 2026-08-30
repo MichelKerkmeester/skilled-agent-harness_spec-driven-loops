@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-tooling hub root and shared naming closure (020 phase 001)"
+title: "Implementatio [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared/plan]"
 description: "This plan classifies the mcp-tooling root and any real shared support paths, applies the 020 exemption boundary, and updates hub navigation path values without changing routing keys or tool-mandated filenames."
 trigger_phrases:
   - "mcp-tooling hub root implementation plan"
   - "mcp-tooling shared path closure"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared"
@@ -21,6 +20,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared"
 ---
 # Implementation Plan: mcp-tooling Hub Root and Shared Naming Closure
 

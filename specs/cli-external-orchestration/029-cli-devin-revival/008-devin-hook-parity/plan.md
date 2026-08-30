@@ -1,7 +1,8 @@
 ---
-title: "Implementation Plan: Devin hook parity"
+title: "Implementation Plan: Devin hook parity [cli-external-orchestration/029-cli-devin-revival/008-devin-hook-parity/plan]"
 description: "Plan for building the remaining Devin hook adapters covering all 8 lifecycle events, mirroring the proven cli-codex hook-adapter pattern."
-trigger_phrases: ["devin hook parity plan"]
+trigger_phrases:
+  - "devin hook parity plan"
 importance_tier: "normal"
 contextType: "general"
 _memory:

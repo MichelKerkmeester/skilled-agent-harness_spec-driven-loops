@@ -80,15 +80,16 @@
     ],
     "causal_summary": "An 8-slice deep-review audit of system-spec-kit and 026 surfaced ~50 distinct findings (3 P0, ~40 P1)",
     "created_at": "2026-06-04T18:53:35.323Z",
-    "last_save_at": "2026-07-02T05:31:10.976Z",
+    "last_save_at": "2026-08-30T07:16:28.928Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:43d5b8079275fb7ae0e457c2b1fdf9c49d21061250ec9a5d4c78aefa645fedc5",
+    "source_fingerprint": "sha256:faf0c2d79bbf0d39969768a13cba33f7b9551ddf1219e1e9cb89d99a34552d6c",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "5ec22ad70d307b74860333aa213d40c60217a7d01cba7615f9735178f1603a20"
+      "spec.md": "169e41f3e687ce1fa2d81f6aeaab66b02f080e239f4dae28592d0c5af64a000d"
     },
     "last_active_child_id": null,
     "last_active_at": null

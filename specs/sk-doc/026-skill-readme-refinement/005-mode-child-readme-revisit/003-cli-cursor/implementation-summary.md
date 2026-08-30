@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 003 cli-cursor README rewrite"
+title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/003-cli-cursor/implementation-summary]"
 description: "The cli-cursor README now opens with a one-line pitch and a problem-first OVERVIEW on the refined template, passes the readme validator and the HVR gate with zero hits, and carries version 1.2.0.0 with a matching changelog entry."
 trigger_phrases:
   - "implementation summary"

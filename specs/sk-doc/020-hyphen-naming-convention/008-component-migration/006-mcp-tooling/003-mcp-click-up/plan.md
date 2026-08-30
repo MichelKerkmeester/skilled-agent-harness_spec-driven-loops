@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: mcp-click-up naming closure (020 phase 003)"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up/plan]"
 description: "This plan migrates the ClickUp component's catalog, playbook, reference, and index paths through a complete semantic map, then repairs links and path-derived values without changing cupt, MCP, package, or data identifiers."
 trigger_phrases:
   - "mcp-click-up naming implementation plan"
   - "clickup catalog path repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up"
@@ -22,6 +21,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/003-mcp-click-up"
 ---
 # Implementation Plan: mcp-click-up Naming Closure
 

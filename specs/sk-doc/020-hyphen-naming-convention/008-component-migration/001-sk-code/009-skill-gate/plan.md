@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: sk-code subtree rollup gate (020 phase 008/009)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate/plan]"
 description: "Plan for reconciling phases 001-008, running the final scope-aware sk-code naming census and active-reference checks, and issuing a non-mutating pass/block handoff."
 trigger_phrases:
   - "sk-code skill gate plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "sk-code kebab-clean census"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate"
@@ -24,8 +23,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/009-skill-gate"
 ---
-
 # Implementation Plan: sk-code subtree rollup gate
 
 <!-- SPECKIT_LEVEL: 2 -->

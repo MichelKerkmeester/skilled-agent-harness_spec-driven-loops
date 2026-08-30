@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: P3 Canonical Manifest Minter Foundation"
+title: ".../015-router-unification-program/019-routing-coverage-activation-verification/012-p3-canonical-minter-foundation/spec]"
 description: "Defines the minimal shared interface that mints and verifies an initial compiled-routing activation manifest for a newly generated registry-driven parent hub. The contract reuses the shipped parent-hub compiler, preserves legacy serving authority, and does not change runtime eligibility or routing decisions."
 trigger_phrases:
   - "canonical manifest minter"

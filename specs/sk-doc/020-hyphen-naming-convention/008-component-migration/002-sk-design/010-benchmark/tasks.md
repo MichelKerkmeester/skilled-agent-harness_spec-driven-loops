@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Benchmark (020 phase 010)"
+title: "Tasks: Benchmark (020 [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark/tasks]"
 description: "Task breakdown for Benchmark in the 020 sk-design naming subtree."
 trigger_phrases:
   - "benchmark tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 benchmark checklist"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark"
@@ -23,6 +22,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/010-benchmark"
 ---
 # Tasks: Benchmark (020 phase 010)
 

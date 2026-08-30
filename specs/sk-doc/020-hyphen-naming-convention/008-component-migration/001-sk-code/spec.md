@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: sk-code component migration (020 phase 008)"
+title: "Feature Specification: sk-code [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/spec]"
 description: "The sk-code family contains a hub, shared evidence, workflow modes, surface packets, playbook scenarios, and benchmark storage whose filesystem names still use snake_case. This phase defines nine independently verifiable child contracts that migrate that surface to kebab-case while preserving tool-mandated names and the program exemption boundary."
 trigger_phrases:
   - "sk-code component migration"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "sk-code naming phases"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code"
@@ -28,8 +27,8 @@ _memory:
       - "Kebab-case is the canonical filesystem-name form for the sk-code surface."
       - "Python scripts, Python import-package directories, generated output, tool-mandated names, and frozen history remain exempt."
       - "Each child owns one sk-code component or the final subtree gate and must carry its reference closure."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration"
 ---
-
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT — root purpose + child phase map only; detailed mechanics live in the children. -->

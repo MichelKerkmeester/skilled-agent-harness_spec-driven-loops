@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 6 cli-pi mode skill README revisit"
+title: "Tasks: Phase 6 cli-pi mode skill [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/006-cli-pi/tasks]"
 description: "Task list for rewriting the cli-pi skill README against the refined README template with the mcp-obsidian exemplar, including the version bump and changelog entry."
 trigger_phrases:
   - "phase 6 tasks"

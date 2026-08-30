@@ -1,5 +1,5 @@
 {
-  "level": 2,
+  "level": "2",
   "specFolder": "sk-doc/019-skill-routing-refactor/015-router-unification-program/019-routing-coverage-activation-verification/009-sk-doc-template-alignment",
   "description": "Four of sk-doc's authoring templates and validators are out of sync with the code that actually enforces or consumes them",
   "keywords": [
@@ -15,7 +15,7 @@
     "consumes",
     "them"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.709Z",
+  "lastUpdated": "2026-08-30T07:16:17.537Z",
   "specId": "009",
   "folderSlug": "sk-doc-template-alignment",
   "parentChain": [

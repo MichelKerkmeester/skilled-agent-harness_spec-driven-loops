@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: system-code-graph references"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references/plan]"
 description: "Rename the seven reference Markdown files with an explicit path map, repair all top-level and relative links, and prove the already-compliant gold-query assets and reference contracts remain unchanged."
 trigger_phrases:
   - "system-code-graph references implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "reference filename rename map"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references"
@@ -26,8 +25,8 @@ _memory:
     answered_questions:
       - "The seven reference-file targets are database-path-policy, code-graph-readiness-check, readiness-and-scope-fingerprint, launcher-lease, naming-conventions, ownership-boundary, and tool-surface."
       - "The two code-graph-gold-queries.json asset files are already compliant and remain outside the rename set."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/010-system-code-graph/003-references"
 ---
-
 # Implementation Plan: system-code-graph references
 
 <!-- SPECKIT_LEVEL: 2 -->

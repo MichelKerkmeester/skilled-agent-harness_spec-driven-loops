@@ -35,8 +35,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -58,9 +57,9 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "Feature Specificat",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -89,12 +88,6 @@
       },
       {
         "name": "1. METADATA",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. PROBLEM & PURPOSE",
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
@@ -170,37 +163,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This rollup gate aggregates phases 001-011 and verifies that the complete system-spec-kit naming surface is kebab-clean outside the declared exemption set. It adds no migration work: acceptance depends on sibling evidence, a scope-aware whole-tree scan, reference closure, and coherent release evidence.",
     "created_at": "2026-07-14T15:18:06Z",
-    "last_save_at": "2026-08-29T13:10:14.464Z",
+    "last_save_at": "2026-08-30T07:19:47.954Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:66296af62df23b7f3e2efe0549b68029ec112a137b8a7a753b043408beda65b8",
+    "source_fingerprint": "sha256:a9f385c5db587bdef7f39962cbed6617c9bf3acea39249b8b3c8d10086e32242",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "771319ffbea40dc23cd3232dd5b9233d8847209a3606c1885e6f161aead3719d",
-      "plan.md": "f1454fe311ca0ebfb971bf950ffb3c0c173de9989a83ba4628575e79c72fa40f",
-      "tasks.md": "c335b5296a56c96789a0fec00c6e8513c671795ddbd0a6ff033d299c53ea431a",
-      "checklist.md": "652a8ca1cc0bd22886c0ccd20e208759e5ae7bb3f8f0d098c9f94e58ff4a5eb1"
+      "spec.md": "6b53bbb64fe6d47aa2f783fcb7399faff0c76353096b8182c916b881617d875a",
+      "plan.md": "b4e6fbb0d085406fe5147814e5ed22b0e689c68ebb10f07547b94ace40f15d38",
+      "tasks.md": "683077e19685c5eafc9e745716024dde42977d46c2c70657e0addb023f3ed15c"
     },
     "last_active_child_id": null,
     "last_active_at": null

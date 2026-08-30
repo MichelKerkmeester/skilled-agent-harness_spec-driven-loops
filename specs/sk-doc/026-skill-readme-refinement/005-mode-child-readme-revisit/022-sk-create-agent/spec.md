@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 022 sk-create-agent README revisit (rewrite per refined template)"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/022-sk-create-agent/spec]"
 description: "Rewrite or align the sk-create-agent mode skill README against the refined README template from phase 001 and the mcp-obsidian exemplar, sync the version field, add the changelog entry and validate every gate with evidence."
 trigger_phrases:
   - "sk create agent readme revisit"

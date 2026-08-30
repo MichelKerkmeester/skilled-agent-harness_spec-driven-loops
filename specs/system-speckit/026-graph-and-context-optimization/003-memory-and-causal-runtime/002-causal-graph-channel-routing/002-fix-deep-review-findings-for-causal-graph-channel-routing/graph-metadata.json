@@ -13,10 +13,16 @@
     "trigger_phrases": [
       "002-fix-deep-review-findings-for-causal-graph-channel-routing",
       "012 deep-review remediation",
-      "P1-C-001 cache wiring",
+      "p1-c-001 cache wiring",
       "entity-density cache invalidation hooks",
       "resource-map drift fix 012",
-      "012 P2 polish"
+      "012 p2 polish",
+      "causal",
+      "runtime",
+      "002",
+      "graph",
+      "plan",
+      "fix"
     ],
     "key_topics": [
       "002-fix-deep-review-findings-for-causal-graph-channel-routing",
@@ -38,7 +44,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
       "tests/integration/entity-density-commit-hooks.vitest.ts"
@@ -63,12 +68,6 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
@@ -87,6 +86,12 @@
         "source": "derived"
       },
       {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -100,12 +105,6 @@
       },
       {
         "name": "Causal Graph Channel Routing",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -171,45 +170,50 @@
         "source": "derived"
       },
       {
-        "name": "Verification Checklist",
+        "name": "Decision Record",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "Quality Gates",
+        "name": "Five Checks",
         "kind": "proper_noun",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "concrete",
+        "name": "Known Limitation",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "how",
         "kind": "key_phrase",
-        "path": "checklist.md",
+        "path": "decision-record.md",
         "source": "derived"
       }
     ],
     "causal_summary": "The 2026-05-11 deep review of `001-deliver-causal-graph-channel-routing-mvp` produced a CONDITIONAL verdict because of two release-blocking P1s and 39 P2 polish items",
     "created_at": "2026-05-19T15:28:02.707Z",
-    "last_save_at": "2026-08-29T13:10:00.507Z",
+    "last_save_at": "2026-08-30T07:16:30.373Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8ff0eb78aa85f59999cf414ada922a0f00c023d6bcd1f7c2495047641aa6c6e6",
+    "source_fingerprint": "sha256:50a4f6f5a46de9a8b7a222d5db47ef97ce93817a3ab89952e63da89212504bd9",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "d3fd0ccb3ee197a1b9efc2d781f6759a6accafeef32607fe233dce22c762505a",
-      "plan.md": "d7225e63e5fdd8addd13b33f7ff168fa13c7a51aea1c708017abfab620882c4b",
-      "tasks.md": "93ae145ed50575af7dff912781a3432b5196a270d98d39c118317881b02e063d",
-      "checklist.md": "a682fdedbe0a37c5c0fb246f4bdc62b5b0896b903d86be98281845c80ecbb98b",
-      "decision-record.md": "e4b356c549b0d1a8ea89d896da4b588ccecb7abf30a7e7e2ee7b4a34497d2e16",
-      "implementation-summary.md": "a395db9daa6a0fc5109f9913208bad6bdd6a7fdd5039453d26da87347acd4b02"
+      "spec.md": "90f9e4723fd63eb935b73e29490e61d99bf8ce8fc828d9fc0c2983a5564e2466",
+      "plan.md": "437d13a24b621ac85afe6e48f2bbd9629981b75a04de8e52505375d0f3468a09",
+      "tasks.md": "ebe4facd9250750008e80321a48533c6c42634312a40ac2e3a87e70047d295c0",
+      "decision-record.md": "e0510cbc7002fa1979c71f30ea1af6a0188ebd63bb6a6e19cd2d535125f69d7b",
+      "implementation-summary.md": "912eae54c1dd93560ba65c8e7b8251374c20048b62be1f42c85d9cf7f01c196b"
     },
     "last_active_child_id": null,
     "last_active_at": null

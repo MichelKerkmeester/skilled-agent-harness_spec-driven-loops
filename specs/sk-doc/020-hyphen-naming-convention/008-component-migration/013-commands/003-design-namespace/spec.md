@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: design command namespace naming (020 phase 008/013/003)"
+title: "Feature Specificati [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace/spec]"
 description: "The design command namespace has kebab-case command markdown files but snake_case workflow and presentation asset filenames. This phase renames the 15 maintained assets, repairs their path references, and leaves command IDs and configuration keys unchanged."
 trigger_phrases:
   - "design command namespace naming"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "hyphenate design workflow files"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/003-design-namespace"
@@ -25,8 +24,8 @@ _memory:
     answered_questions:
       - "The five design command markdown files already use compliant basenames."
       - "Only path-valued asset references change; command IDs and configuration keys remain exact."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

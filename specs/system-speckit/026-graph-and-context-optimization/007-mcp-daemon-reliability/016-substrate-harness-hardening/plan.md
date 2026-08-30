@@ -1,10 +1,10 @@
 ---
-title: "Implementation Plan: Substrate stress-harness hardening [template:level_3/plan.md]"
+title: "Impl [system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/plan]"
 description: "Architecture and phasing for the three harness fixes: process-start-time identity, run-id TSV with EPERM fallback, and maintainer-mode suppression."
 trigger_phrases:
   - "substrate harness plan"
   - "harness hardening implementation"
-  - "processStartedAt"
+  - "processstartedat"
   - "plan core"
 importance_tier: "normal"
 contextType: "general"

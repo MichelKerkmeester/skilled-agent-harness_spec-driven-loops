@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Design-md-generator (020 phase 006)"
+title: "Feature Specifi [sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/006-design-md-generator/spec]"
 description: "The md-generator mode contains underscore-bearing authoring, extraction, and validation resource names, including its installation guide and private extraction procedure."
 trigger_phrases:
   - "design-md-generator naming phase"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 design-md-generator"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design/006-design-md-generator"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/002-sk-design"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 

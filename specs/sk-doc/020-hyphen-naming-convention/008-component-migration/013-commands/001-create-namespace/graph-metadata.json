@@ -19,10 +19,7 @@
       "create command path repair",
       "create namespace naming tasks",
       "create asset rename tasks",
-      "create command reference repair",
-      "create namespace naming checklist",
-      "create asset rename verification",
-      "create command path verification"
+      "create command reference repair"
     ],
     "key_topics": [
       "command",
@@ -44,7 +41,6 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md",
       ".opencode/commands/create/README.txt"
     ],
     "entities": [
@@ -67,15 +63,15 @@
         "source": "derived"
       },
       {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/create/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specificati",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -105,12 +101,6 @@
       {
         "name": "Acceptance Criteria",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "no",
-        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -179,37 +169,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `.opencode/commands/create/assets/` tree has maintained filenames such as `createagentauto.yaml`, `createfeaturecatalogconfirm.yaml`, and `createmanualtestingplaybookpresentation.txt`",
     "created_at": "2026-07-14T15:18:31Z",
-    "last_save_at": "2026-08-29T13:10:06.712Z",
+    "last_save_at": "2026-08-30T07:20:01.080Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:79f846e125b46a35d1fbcd7d011d043aaf21b3ee0d7c0461c90d11f30eee675f",
+    "source_fingerprint": "sha256:8eac7bdc92511df5fba2026da40c8cc6a6d21a0040b041d36bb18e1211ce5ace",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "f42238be607040770ebf2ab5553b06d2a54aca67f1b6271d342f71273b582d72",
-      "plan.md": "d78493e1473d13bfd8eab218d3133940f00cabc61852d618dd2fd6a85b6f91e1",
-      "tasks.md": "b1eea0f2e82c493818d152d797d5d50233c52bfe1438115d6323c5de5146b3e1",
-      "checklist.md": "9a3c2a9842072f6730b6275de493ad4a284befed4922088dc936920f31fb7897"
+      "spec.md": "4cce32c761ab97fc32d9b2d4bc43340f239e4f829dfa0ee0a0fe41844192eac3",
+      "plan.md": "4aec195498ae4e49089f37fff526b44a17792496d0fb269145a9507bf83f91ce",
+      "tasks.md": "28b7864a3a495f25dc0b704cadec86e020a564df966a3b89ee9104a21ff5e918"
     },
     "last_active_child_id": null,
     "last_active_at": null

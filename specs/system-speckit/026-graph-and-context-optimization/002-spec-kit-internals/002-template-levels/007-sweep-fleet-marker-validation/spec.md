@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: fleet-marker-validation-sweep [template:level_3/spec.md]"
+title: "...026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/007-sweep-fleet-marker-validation/spec]"
 description: "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]"
 trigger_phrases:
   - "feature"

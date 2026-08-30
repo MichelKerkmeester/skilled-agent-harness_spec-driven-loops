@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: MCP-server directory and manifest closure (020 subtree 008 phase 001)"
+title: "...20-hyphen-naming-convention/008-component-migration/008-system-spec-kit/001-mcp-server-dir-and-manifest-closure/plan]"
 description: "The system-spec-kit workspace still exposes mcp_server as a filesystem path even though kebab-case is canonical. The package workspace, lockfile links, package scripts, and entrypoint references must move as one path closure while manifest filenames, package names, Python files, and Python package directories remain exempt."
 trigger_phrases:
   - "mcp-server directory closure"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "kebab-case phase 001"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/001-mcp-server-dir-and-manifest-closure"
@@ -21,8 +20,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 ---
-
 # Implementation Plan: MCP-server directory and manifest closure
 
 <!-- SPECKIT_LEVEL: 2 -->

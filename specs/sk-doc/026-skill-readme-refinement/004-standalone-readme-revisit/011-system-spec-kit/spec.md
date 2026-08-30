@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 011 system-spec-kit README revisit"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/004-standalone-readme-revisit/011-system-spec-kit/spec]"
 description: "Rewrite the system-spec-kit skill README at .opencode/skills/system-spec-kit/README.md purpose-first against the refined template from phase 001 and the mcp-obsidian exemplar, with HVR enforcement, a version bump and a changelog entry."
 trigger_phrases:
   - "system spec kit readme"

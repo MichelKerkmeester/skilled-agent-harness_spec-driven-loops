@@ -1,12 +1,11 @@
 ---
-title: "Decision Record: mcp-tooling hub root and shared naming boundary (020 phase 001)"
+title: "De [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared/decision-record]"
 description: "The phase boundary decisions for root-owned mcp-tooling routing material, an absent shared directory, and delegated child surfaces."
 trigger_phrases:
   - "mcp-tooling root naming decision"
   - "mcp-tooling shared boundary decision"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared"
@@ -21,8 +20,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/001-hub-root-and-shared"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 

@@ -1,10 +1,10 @@
 ---
-title: "022 local-llm-legacy-remediation: substrate repair + classified errors + ADR-002 (scope shift)"
+title: "...der-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation/implementation-summary]"
 description: "022 was originally planned as a 5-batch cli-codex dispatch to purge Nomic/MiniLM defaults and replace hardcoded sqlite paths post-014. Execution found the Memory MCP embedding worker itself was failing on EVERY save with a generic E081 error, blocking the playbook validation. The packet scope shifted to substrate repair — diagnosing the chronic save failure, shipping three high-value fixes (retry-throughput env knob, E081 → classified error codes, 24-- scenario doc cleanup), and proposing ADR-002 for the underlying governance trigger. Follow-up work tracked under sibling packet 032-substrate-repair-followups."
 trigger_phrases:
   - "022 substrate repair complete"
   - "post-014 ephemeral governance trigger root cause"
-  - "E081 classified codes shipped"
+  - "e081 classified codes shipped"
   - "022 scope shift remediation to substrate"
 importance_tier: "important"
 contextType: "general"
@@ -32,7 +32,6 @@ _memory:
       - q: "Was the substrate failure caused by H1 (multi-daemon contention) or H2 (retry throughput) or H4 (governance silent reject)?"
         a: "All three contributed; H4 was the dominant cause. Multi-daemon contention triggered initial circuit-breaker flapping; retry throughput limited recovery rate; governance silent reject from retentionPolicy:'ephemeral' was why every save failed regardless of substrate state."
 ---
-
 # Implementation Summary
 
 ## Metadata

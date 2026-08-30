@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 1 extension-integration-suite"
+title: "Tasks: Phase [hooks/011-pi-fast-mode-w-subagent-support/003-integration-and-tests/001-extension-integration-suite/tasks]"
 description: "Task ledger for deterministic extension-boundary tests."
 trigger_phrases:
   - "extension-integration-suite tasks"

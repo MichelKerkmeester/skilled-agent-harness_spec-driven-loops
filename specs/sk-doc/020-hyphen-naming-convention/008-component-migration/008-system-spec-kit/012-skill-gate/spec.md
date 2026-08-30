@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: System-spec-kit skill gate (020 subtree 008 phase 012)"
+title: "Feature Specificat [sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/012-skill-gate/spec]"
 description: "This rollup gate aggregates phases 001-011 and verifies that the complete system-spec-kit naming surface is kebab-clean outside the declared exemption set. It adds no migration work: acceptance depends on sibling evidence, a scope-aware whole-tree scan, reference closure, and coherent release evidence."
 trigger_phrases:
   - "system-spec-kit skill gate"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "system-spec-kit phase 012"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit/012-skill-gate"
@@ -21,8 +20,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/008-system-spec-kit"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

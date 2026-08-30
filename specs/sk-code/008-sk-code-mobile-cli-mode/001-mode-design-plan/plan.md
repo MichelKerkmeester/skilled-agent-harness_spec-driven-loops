@@ -1,6 +1,14 @@
 ---
-title: "Plan — sk-code Mobile-CLI mode — design plan (plan-only)"
+title: "Plan — sk-code Mobile-CLI mode — design plan (plan-only) [sk-code/008-sk-code-mobile-cli-mode/001-mode-design-plan/plan]"
 description: "Delivery plan for sk-code Mobile-CLI mode — design plan (plan-only)."
+trigger_phrases:
+  - "plan"
+  - "code"
+  - "mobile"
+  - "cli"
+  - "mode"
+  - "001"
+importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 005 cli-opencode mode README rewrite"
+title: "Tasks: Phase 005 cli-opencode [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/005-cli-opencode/tasks]"
 description: "Task list for rewriting the cli-opencode mode skill README in cli-external-orchestration."
 trigger_phrases:
   - "phase 005 tasks"

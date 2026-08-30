@@ -20,9 +20,7 @@
       "review playbook reference repair",
       "code-review naming tasks",
       "review mode rename tasks",
-      "review playbook path tasks",
-      "code-review naming checklist",
-      "review mode rename verification"
+      "review playbook path tasks"
     ],
     "key_topics": [
       "code-review",
@@ -43,8 +41,7 @@
     "key_files": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -63,12 +60,6 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
         "source": "derived"
       },
       {
@@ -172,43 +163,24 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol This",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Code Quality",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The code-review packet contains snakecase checklist files, review-flow and security scenario directories, a manualtestingplaybook root, benchmark labels, and review reference documents",
     "created_at": "2026-07-14T15:17:09Z",
-    "last_save_at": "2026-08-29T10:00:39.269Z",
+    "last_save_at": "2026-08-30T07:19:17.903Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
-      "tasks.md",
-      "checklist.md"
+      "tasks.md"
     ],
-    "source_fingerprint": "sha256:c41b2f0016b325c85296ed391217400569077cbc187237d46c68388bda4a9497",
+    "source_fingerprint": "sha256:72a65f57ecda67e3da261cc8970755a11b621bd5bba7afe8bcb8f84f737b66a0",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "07dffa9939d094873eeadc25859fa496c49ef6009fa072b4a74e847e15092df5",
-      "plan.md": "374e33b01fa3f2cd4dc214a9e53a9a88399c1e3105598e4b25955d95ce71eaca",
-      "tasks.md": "dbc859620da15bb3f036e1b083dfd8cbcd1b251fd70660be8193caaa3e34c35e",
-      "checklist.md": "19b76031009c665d9ad8d654f072f21fa2cb51c73027de278026e8ea52c74788"
+      "spec.md": "79a227892a847545e859cfd6585b2ddd1e9b00b535ab3b79603b75e4810c448c",
+      "plan.md": "5e78b892c5b7a89723fce6e8df872075cfeb2a81204fadfae63172dd0eb454ea",
+      "tasks.md": "36b6b4592b47c7fa04b0e341c3c997274c52ec0c3efffe20e8d3259f0729dd5e"
     },
     "last_active_child_id": null,
     "last_active_at": null

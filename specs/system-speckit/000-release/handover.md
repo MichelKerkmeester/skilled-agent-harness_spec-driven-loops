@@ -1,3 +1,16 @@
+---
+title: "Handover — v4.0.0.0 Release Notes & README Refresh [system-speckit/000-release/handover]"
+description: "Phase 2 (per-packet extraction) was launched and then killed at operator request at 61 / 248 fragments. Phases 1 (seed) and 2 (recipe) are proven; Phases 3–5 not started."
+trigger_phrases:
+  - "handover"
+  - "release"
+  - "notes"
+  - "readme"
+  - "refresh"
+  - "000"
+importance_tier: "normal"
+contextType: "general"
+---
 # Handover — v4.0.0.0 Release Notes & README Refresh
 
 > **Session:** "RELEASE V4" (2026-08-14). **Status: PAUSED by operator** ("we won't start now").

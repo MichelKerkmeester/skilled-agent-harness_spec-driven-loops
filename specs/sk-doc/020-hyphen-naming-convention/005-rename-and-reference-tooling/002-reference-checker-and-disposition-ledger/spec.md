@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: reference checker and disposition ledger (020 phase 005.002)"
+title: "...-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger/spec]"
 description: "The migration needs a whole-repository checker that follows every mapped path through code, docs, configs, registries, and symlinks, while recording a disposition for every rename and dynamic require, source, or glob site."
 trigger_phrases:
   - "whole-repo reference checker"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "reference checker completeness"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling/002-reference-checker-and-disposition-ledger"
@@ -24,8 +23,8 @@ _memory:
       - "The checker scans tracked files and symlink entries across code, docs, configuration, registries, and path-valued metadata."
       - "JSON/YAML/TOML keys and code identifiers are not rewritten; path-valued fields are checked as references."
       - "Every dynamic require, source, and glob site receives an explicit ledger disposition."
+parent: "sk-doc/020-hyphen-naming-convention/005-rename-and-reference-tooling"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

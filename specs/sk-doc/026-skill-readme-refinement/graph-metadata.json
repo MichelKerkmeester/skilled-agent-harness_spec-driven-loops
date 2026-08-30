@@ -23,7 +23,14 @@
       "skill readme refinement",
       "readme fleet revisit",
       "parent skill readme template",
-      "skill readme template update"
+      "skill readme template update",
+      "handover",
+      "mcp",
+      "obsidian",
+      "readme",
+      "refinement",
+      "026",
+      "skill"
     ],
     "key_topics": [
       "skill",
@@ -33,23 +40,29 @@
       "revisit",
       "parent",
       "template",
+      "handover",
+      "mcp",
+      "obsidian",
       "phase",
-      "every",
-      "repo",
-      "standalone",
-      "child"
+      "every"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
+      "spec.md",
       "handover.md",
       ".opencode/skills/mcp-tooling/mcp-obsidian/README.md",
       ".pi/settings.json",
       ".pi/agents/markdown.md",
-      "006-validation-and-closeout/spec.md",
-      "spec.md"
+      "006-validation-and-closeout/spec.md"
     ],
     "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
       {
         "name": "handover.md",
         "kind": "doc",
@@ -72,12 +85,6 @@
         "name": "markdown.md",
         "kind": "doc",
         "path": ".pi/agents/markdown.md",
-        "source": "derived"
-      },
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -155,17 +162,18 @@
     ],
     "causal_summary": "Phase parent: revisit every skill README in the repo (standalone and child modes) on the mcp-obsidian standard, after refining the shared README template, adding a parent-skill README template, and updating the creation workflow.",
     "created_at": "2026-08-04T07:12:18.255Z",
-    "last_save_at": "2026-08-05T11:48:45.787Z",
+    "last_save_at": "2026-08-30T07:16:20.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:76dd3258f3f89bd5b71277f877b731a7c19bd8cdfe9a719d51008d73babb702a",
+    "source_fingerprint": "sha256:a97d84f102acb164ef5d9602f59d4c7009aa9d2f862933cae4a60ef2f9c3d542",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "97b1d172cab1355359c4c2177ef265f5d5e73b8bc6021b08ae13ef1ce3cea5b9",
-      "handover.md": "7f5a1fe9b43bbcccb2cbf3c7478cbdfdd97a768527db7ac830600cd44c4ce0af"
+      "spec.md": "c3fff8a946891af11b610fc5cef45f905cdf8857d5546315c7dba51febe85062",
+      "handover.md": "8f62dd067781596bf2978200221adafe3e5a38982e79e4ae35481e186fb65e4f"
     },
     "last_active_child_id": "sk-doc/026-skill-readme-refinement/006-validation-and-closeout",
     "last_active_at": null

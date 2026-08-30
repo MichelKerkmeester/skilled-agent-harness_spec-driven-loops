@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Phase 002 cli-codex README revisit"
+title: "Implementation [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/002-cli-codex/implementation-summary]"
 description: "The cli-codex README now opens with a one-line pitch and a problem-first OVERVIEW, reads as a narrative document in the fleet voice, and carries a version field that matches the changelog head again."
 trigger_phrases:
   - "cli codex readme summary"

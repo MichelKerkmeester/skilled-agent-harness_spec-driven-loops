@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: deep-improvement filesystem names (020 phase 007/006)"
+title: "Feature [sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement/spec]"
 description: "The deep-improvement packet has 22 underscore-bearing directory families and 250 underscore-bearing files across three improvement lanes, benchmark assets, playbooks, references, and scripts. This phase renames the in-scope authored names to kebab-case, repairs the shared loop-host and benchmark path closure, and protects Python files, package directories, generated output, and data contracts."
 trigger_phrases:
   - "deep-improvement kebab-case migration"
@@ -8,7 +8,6 @@ trigger_phrases:
   - "deep-improvement snake_case resources"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
@@ -23,8 +22,8 @@ _memory:
       - "The live deep-improvement inventory has 22 underscore-bearing directory families and 250 underscore-bearing files."
       - "Python .py files and import-package directories remain exempt; .py.template assets are not Python script files and require explicit classification."
       - "The deep-improvement benchmark subtree belongs to this component; the root system-deep-loop benchmark storage belongs to phase 009."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/007-system-deep-loop/006-deep-improvement"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

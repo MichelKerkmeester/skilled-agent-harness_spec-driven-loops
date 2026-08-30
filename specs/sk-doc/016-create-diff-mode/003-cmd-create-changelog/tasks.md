@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Create Changelog Command [014-create-changelog-command/t [03--commands-and-skills/015-cmd-create-changelog/tasks]"
+title: "Tasks: Create Changelog Command [014-create-changelog-comma [sk-doc/016-create-diff-mode/003-cmd-create-changelog/tasks]"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "tasks"

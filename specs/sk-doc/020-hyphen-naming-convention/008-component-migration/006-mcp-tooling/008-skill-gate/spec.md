@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: mcp-tooling subtree rollup gate (020 phase 008)"
+title: "Feature Specification: [sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate/spec]"
 description: "The mcp-tooling subtree needs one blocking rollup contract after its independent hub, component, playbook, benchmark, and changelog phases. This gate performs no new migration work; it aggregates sibling evidence and proves that the complete in-scope surface is kebab-clean with the 020 exemption set intact."
 trigger_phrases:
   - "mcp-tooling skill gate"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "020 mcp tooling phase 008"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling/008-skill-gate"
@@ -24,8 +23,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/006-mcp-tooling"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

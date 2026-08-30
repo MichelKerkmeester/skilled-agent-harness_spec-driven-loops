@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: code-quality filesystem names (020 phase 008/003)"
+title: "Implementation Plan: [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality/plan]"
 description: "Plan for renaming code-quality checklist, playbook, and benchmark names through the frozen map, then proving that quality-mode routing and resource loading remain equivalent."
 trigger_phrases:
   - "code-quality naming implementation plan"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "quality checklist reference repair"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality"
@@ -23,8 +22,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/003-code-quality"
 ---
-
 # Implementation Plan: code-quality filesystem names
 
 <!-- SPECKIT_LEVEL: 2 -->

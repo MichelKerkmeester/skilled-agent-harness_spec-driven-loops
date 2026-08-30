@@ -1,13 +1,12 @@
 ---
-title: "Feature Specification: loose command ID naming (020 phase 008/013/008)"
+title: "Feature Specificat [sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids/spec]"
 description: "Classify the two snake_case root command files against their public slash-command and plugin contracts, then rename only filesystem names that are not tool-mandated while preserving exact command IDs."
 trigger_phrases:
-  - "loose command ID naming"
+  - "loose command id naming"
   - "root command filename migration"
   - "agent router goal command naming"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands/008-loose-command-ids"
@@ -26,8 +25,8 @@ _memory:
       - "Whether the active command loader permits a kebab-case filename while retaining each public command ID."
     answered_questions:
       - "prompt-improve.md is already compliant and is not a rename candidate."
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/013-commands"
 ---
-
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/shared/references/hvr_rules.md -->

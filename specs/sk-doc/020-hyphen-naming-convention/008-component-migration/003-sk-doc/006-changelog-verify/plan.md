@@ -1,12 +1,11 @@
 ---
-title: "Implementation Plan: sk-doc changelog and version verification"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify/plan]"
 description: "Verification plan for the sk-doc migration changelog entry, four-part version bump, and skill-version synchronization."
 trigger_phrases:
   - "sk-doc changelog verification plan"
   - "sk-doc version bump verification"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify"
@@ -19,6 +18,7 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/003-sk-doc/006-changelog-verify"
 ---
 # Implementation Plan: sk-doc changelog and version verification
 

@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: Launcher and Reindex P1 Finding Closure"
+title: "...-for-resource-bounds-and-deadcode/004-fix-investigation-p1s-for-launcher-and-reindex-deadcode/implementation-summary]"
 description: "F15, F49, and F105 are closed with atomic owner-token writes, child env filtering, and dead reindex cancellation polling removal."
 trigger_phrases:
   - "arc 010 003 004 implementation summary"

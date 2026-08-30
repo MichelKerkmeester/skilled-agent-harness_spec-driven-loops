@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Per-Mode Naming Conformance"
+title: "Implementation [sk-doc/020-hyphen-naming-convention/014-naming-standard-hardening/002-per-mode-naming-conformance/plan]"
 description: "Add a shared kebab conformance check reachable by every generating sk-doc mode, wire the existing catalog/playbook checker, re-anchor create-quality-control to the canon, and reconcile create-benchmark doc drift — sequenced after Phase 1's shared reconcile."
 trigger_phrases:
   - "per-mode conformance plan"

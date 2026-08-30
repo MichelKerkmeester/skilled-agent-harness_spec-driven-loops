@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/012-sk-design-program/001-research/006-mode-consolidation-research",
   "description": "sk-design has grown to seven modes — interface, foundations, motion, audit, md-generator, the design-mcp-open-design transport, plus a large `styles`",
   "keywords": [
@@ -17,7 +18,7 @@
     "large",
     "styles"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.954Z",
+  "lastUpdated": "2026-08-30T07:16:11.587Z",
   "specId": "006",
   "folderSlug": "mode-consolidation-research",
   "parentChain": [
@@ -28,6 +29,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "25-07-26_14-39__five-iteration-sk-design-mode-consolidation.md"
-  ],
-  "level": "2"
+  ]
 }

@@ -1,5 +1,5 @@
 ---
-title: "Feature Specification: Phase 035 deep-ai-council README revisit"
+title: "Feature Specification: [sk-doc/026-skill-readme-refinement/005-mode-child-readme-revisit/035-deep-ai-council/spec]"
 description: "Rewrite the deep-ai-council skill README purpose-first against the refined README template from phase 001 with mcp-obsidian as the exemplar, bump the version field, add a changelog entry and validate."
 trigger_phrases:
   - "phase 035 spec"

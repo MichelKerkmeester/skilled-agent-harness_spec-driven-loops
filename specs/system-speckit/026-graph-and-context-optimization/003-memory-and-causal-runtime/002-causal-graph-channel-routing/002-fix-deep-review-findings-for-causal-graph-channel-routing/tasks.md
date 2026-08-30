@@ -1,6 +1,15 @@
 ---
-title: "Tasks: 002 Deep-Review Remediation"
+title: "...-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing/tasks]"
 description: "21 batches across 4 tiers, each one cli-codex dispatch. Update as each batch lands."
+trigger_phrases:
+  - "causal"
+  - "runtime"
+  - "002"
+  - "graph"
+  - "tasks"
+  - "fix"
+importance_tier: "normal"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/026-graph-and-context-optimization/003-memory-and-causal-runtime/002-causal-graph-channel-routing/002-fix-deep-review-findings-for-causal-graph-channel-routing"

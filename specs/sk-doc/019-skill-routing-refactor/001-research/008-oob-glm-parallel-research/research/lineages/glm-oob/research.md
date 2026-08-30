@@ -1,22 +1,21 @@
 ---
-title: "OOB GLM Parallel Lineage — Radical Lateral Rethinks of Parent-Hub Routing"
+title: "OOB [sk-doc/019-skill-routing-refactor/001-research/008-oob-glm-parallel-research/research/lineages/glm-oob/research]"
 description: "A 5-iteration GLM-5.2 lateral-research lineage run concurrently with the SOL-ultra sibling to diversify the idea space over the 8-item out-of-box agenda in 001-research/008-oob-glm-parallel-research/spec.md. stopPolicy=max-iterations (non-converge, lateral). Finds: typed-handoff primitive (closed-loop routing), (T,R,P) decomposition of routing knob space, and the contrarian claim that defaultMode was a documented bug compensating for the missing recovery primitive. Run-1/run-2's keep-1/flip-4 verdict subsumes cleanly as corners of the (T,R,P) space."
-lineage: glm-oob
-session_id: fanout-glm-oob-1784347200936-r7aos1
-executor: cli-opencode (zai-coding-plan/glm-5.2)
-sibling_lineage: sol-ultra
-parent_packet: 001-research/008-oob-glm-parallel-research
-combined_synthesis_target: 001-research/007-default-mode-policy-research
 trigger_phrases:
   - "glm oob lateral routing lineage"
   - "typed handoff routing primitive"
-  - "T R P routing decomposition"
-  - "defaultMode was a documented bug"
+  - "t r p routing decomposition"
+  - "defaultmode was a documented bug"
   - "minimal hub router"
-importance_tier: important
-contextType: research
+importance_tier: "important"
+contextType: "research"
+combined_synthesis_target: 001-research/007-default-mode-policy-research
+executor: cli-opencode (zai-coding-plan/glm-5.2)
+lineage: glm-oob
+parent_packet: 001-research/008-oob-glm-parallel-research
+session_id: fanout-glm-oob-1784347200936-r7aos1
+sibling_lineage: sol-ultra
 ---
-
 # OOB GLM Parallel Lineage — Radical Lateral Rethinks of Parent-Hub Routing
 
 > **Provenance (honest, up front).** This lineage is a 5-iteration, non-converge, lateral-research

@@ -1,5 +1,5 @@
 ---
-title: "Tasks: hub root and shared sk-code names (020 phase 008/001)"
+title: "Tasks: hub [sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared/tasks]"
 description: "Execution tasks for the sk-code hub/shared filesystem rename and reference closure."
 trigger_phrases:
   - "hub shared naming tasks"
@@ -7,7 +7,6 @@ trigger_phrases:
   - "workflow path repair tasks"
 importance_tier: "important"
 contextType: "planning"
-parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared"
 _memory:
   continuity:
     packet_pointer: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared"
@@ -20,8 +19,8 @@ _memory:
     completion_pct: 0
     open_questions: []
     answered_questions: []
+parent: "sk-doc/020-hyphen-naming-convention/008-component-migration/001-sk-code/001-hub-root-and-shared"
 ---
-
 # Tasks: Hub root and shared sk-code names
 
 <!-- SPECKIT_LEVEL: 2 -->
