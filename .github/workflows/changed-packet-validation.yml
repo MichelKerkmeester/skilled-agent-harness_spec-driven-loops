@@ -43,18 +43,27 @@ jobs:
           BASE="${{ github.event.pull_request.base.sha }}"
           HEAD="${{ github.event.pull_request.head.sha }}"
 
-          # A packet is the nearest ancestor of a changed file that owns a
-          # spec.md. Scoping the gate to what the PR touched is the point: the
-          # corpus carries pre-existing failures, and a whole-tree gate would
-          # block every author for packets they never opened.
+          # A packet is in scope when one of ITS OWN documents changed — the
+          # files the validator actually grades — not when anything anywhere
+          # beneath it changed. Attributing every nested artifact to its nearest
+          # packet put 427 packets in scope for a bulk edit and blocked on
+          # pre-existing failures in packets nobody had opened, which is the
+          # whole-tree behaviour this gate exists to avoid.
+          #
+          # A changed research log or lineage output under a packet is evidence,
+          # not a graded document, so it does not pull the packet in.
           packets=$(
             git diff --name-only --diff-filter=ACMR "$BASE" "$HEAD" -- specs \
             | while IFS= read -r file; do
-                dir=$(dirname "$file")
-                while [ "$dir" != "specs" ] && [ "$dir" != "." ] && [ "$dir" != "/" ]; do
-                  if [ -f "$dir/spec.md" ]; then echo "$dir"; break; fi
-                  dir=$(dirname "$dir")
-                done
+                case "$(basename "$file")" in
+                  (spec.md|plan.md|tasks.md|implementation-summary.md|decision-record.md|acceptance-criteria.md|handover.md|description.json|graph-metadata.json)
+                    dir=$(dirname "$file")
+                    # Only the packet that owns the document, never an ancestor:
+                    # a doc orphaned by a deleted spec.md must not silently
+                    # attribute to the parent packet and escape validation.
+                    if [ -f "$dir/spec.md" ]; then echo "$dir"; fi
+                    ;;
+                esac
               done | sort -u
           )
 
@@ -67,30 +76,72 @@ jobs:
           echo "$packets" | sed 's/^/  /'
           echo ""
 
-          failed=0
+          # Block on regressions, not on the corpus's existing state. A packet
+          # that already failed at the merge base is not this PR's doing, and
+          # failing the author for it is the whole-tree behaviour this gate
+          # exists to avoid. Only the base verdict distinguishes the two, so
+          # packets that fail here are re-checked against a worktree at the base.
+          declare -a broken=()
           while IFS= read -r packet; do
             [ -n "$packet" ] || continue
             # --no-recursive keeps a phase parent from dragging in children this
             # PR never touched; each changed child is already in the list itself.
-            rc=0
             out=$(bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
-                    "$packet" --strict --no-recursive 2>&1) || rc=$?
-
+                    "$packet" --strict --no-recursive 2>&1) || true
             # A stale or unbuilt orchestrator makes validate.sh refuse to run and
             # emit no rule output at all. Requiring the explicit verdict line
             # means that silence fails the gate instead of reading as a pass.
             if ! grep -q '^RESULT: PASSED' <<<"$out"; then
-              failed=$((failed + 1))
-              echo "::error file=$packet/spec.md::Packet validation failed"
-              echo "$out" | grep -E '^\s*[x!]|^Summary:|^RESULT:' | sed 's/^/    /' || true
-              echo ""
+              broken+=("$packet")
             fi
-            [ "$rc" -eq 0 ] || true
           done <<<"$packets"
 
-          if [ "$failed" -gt 0 ]; then
-            echo "BLOCKED: $failed packet(s) changed by this PR do not validate."
+          if [ ${#broken[@]} -eq 0 ]; then
+            echo "All changed packets validate clean."
+            exit 0
+          fi
+
+          echo "${#broken[@]} changed packet(s) do not validate; checking which are regressions."
+          base_tree=$(mktemp -d)
+          if ! git worktree add --detach "$base_tree" "$BASE" >/dev/null 2>&1; then
+            echo "::error::Could not materialise the merge base; failing closed rather than skipping the comparison"
+            exit 1
+          fi
+
+          regressions=0
+          for packet in "${broken[@]}"; do
+            if [ ! -d "$base_tree/$packet" ]; then
+              echo "::error file=$packet/spec.md::New packet does not validate"
+              regressions=$((regressions + 1))
+              continue
+            fi
+            # This checkout's validator against the base's content. The base
+            # worktree has no built dist of its own, and building one there
+            # would make every packet read as failing at the base — which would
+            # silently disable the gate rather than fail it.
+            base_out=$(bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
+                          "$base_tree/$packet" --strict --no-recursive 2>&1) || true
+            if ! grep -qE '^RESULT: (PASSED|FAILED)' <<<"$base_out"; then
+              echo "::error file=$packet/spec.md::Validator produced no verdict for the base copy; failing closed"
+              regressions=$((regressions + 1))
+              continue
+            fi
+            if grep -q '^RESULT: PASSED' <<<"$base_out"; then
+              echo "::error file=$packet/spec.md::Regression — this packet validated before this PR"
+              bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh "$packet" --strict --no-recursive 2>&1 \
+                | grep -E '^\s*[x!]|^Summary:' | sed 's/^/    /' || true
+              regressions=$((regressions + 1))
+            else
+              echo "  pre-existing (also fails at the merge base): $packet"
+            fi
+          done
+
+          git worktree remove --force "$base_tree" >/dev/null 2>&1 || true
+
+          if [ "$regressions" -gt 0 ]; then
+            echo ""
+            echo "BLOCKED: $regressions packet(s) regressed in this PR."
             echo "Run: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict"
             exit 1
           fi
-          echo "All changed packets validate clean."
+          echo "No regressions: every failing packet already failed at the merge base."

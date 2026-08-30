@@ -93,12 +93,19 @@ run_check() {
             fi
         done < <(printf '%s\n' "$frontmatter" | grep -E "^[0-9]+:[[:space:]]*packet_pointer:[[:space:]]*['\"]?scaffold/" 2>/dev/null || true)
 
+        # An authorship string is a weak proxy for "never edited": it reports a
+        # fully authored document whose only stale field is the author, and it is
+        # cleared by editing that one field rather than by doing the work. The
+        # scaffold's own placeholder instructions are the durable signal — they
+        # say what has not been filled in, and they go away only when it is.
         while IFS= read -r match; do
             if [[ -n "$match" ]]; then
                 local linenum="${match%%:*}"
-                found_markers+=("$file:$linenum: last_updated_by is \"template-author\"")
+                local text="${match#*:}"
+                found_markers+=("$file:$linenum: continuity still holds a scaffold placeholder:${text}")
             fi
-        done < <(printf '%s\n' "$frontmatter" | grep -E "^[0-9]+:[[:space:]]*last_updated_by:[[:space:]]*['\"]?template-author['\"]?[[:space:]]*(#.*)?$" 2>/dev/null || true)
+        done < <(printf '%s\n' "$frontmatter" | grep -E "^[0-9]+:[[:space:]]*(recent_action:[[:space:]]*['\"]?Initiali[sz]ed?[[:space:]]|next_safe_action:[[:space:]]*['\"]?Replace[[:space:]])" 2>/dev/null || true)
+
     done
 
     # Deduplicate (bash 3.2 compatible)
