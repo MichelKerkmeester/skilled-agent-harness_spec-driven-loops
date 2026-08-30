@@ -29,6 +29,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: Lock-Protected Atomic Owner Token Publication
 
 **Status:** Accepted
@@ -49,7 +50,9 @@ Create owner tokens through an exclusive `.sidecar-owner-token.lock`, then write
 - The token file remains a plain-text newline-terminated token for compatibility.
 
 ---
+<!-- /ANCHOR:adr-001 -->
 
+<!-- ANCHOR:adr-002 -->
 ## ADR-002: Child Env Allowlist at Launcher Spawn
 
 **Status:** Accepted
@@ -70,7 +73,9 @@ Replace blanket `...processObj.env` inheritance with `buildSidecarEnv()`. The he
 - Future env needs must be consciously added to the allowlist instead of inherited by default.
 
 ---
+<!-- /ANCHOR:adr-002 -->
 
+<!-- ANCHOR:adr-003 -->
 ## ADR-003: Delete Reindex Mid-Run Cancellation Polling
 
 **Status:** Accepted
@@ -89,3 +94,4 @@ Remove `getCancellationStatus()` and both `getCancellationStatus(db, jobId) === 
 - Queued cancellation before a job runs still works through the initial status guard.
 - Mid-run cancellation is not a production feature in this phase.
 - A future packet that wires an MCP cancel tool can reintroduce polling with a real caller and tests.
+<!-- /ANCHOR:adr-003 -->
