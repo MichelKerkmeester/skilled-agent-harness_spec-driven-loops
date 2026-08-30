@@ -39,6 +39,17 @@ Executed live against `devin 3000.2.17` on 2026-07-27. Config-mutating scenarios
 
 **19 PASS - 0 FAIL - 1 SKIP (by design)**
 
+> **Audit 2026-08-30 against `devin 3000.6.7`.** Every row below was recorded against
+> `3000.2.17` and the rows are preserved as observed. Statically re-checkable claims:
+> `DV-003` (fabricated `--reasoning-effort` still rejected), `DV-018` (`devin mcp`) and
+> `DV-020` (`devin cloud`) still **hold**. `DV-004` has **inverted** — `smart` is now
+> accepted. `DV-002`'s version string is superseded. `DV-012`'s count is superseded
+> (roster is 12; parity verified OK by the roster-mirror checker). `DV-014`'s evidence
+> describes a mirrored command surface since removed by operator decision. `DV-016` was
+> obsolete for the same reason and has been **re-targeted** at the surviving mirrored
+> surface, `.devin/agents/*/AGENT.md` (v2.0.0.0) — same defect, live surface. The remaining twelve scenarios are behavioural and
+> were not re-run — they need real dispatches, which this audit deliberately avoided.
+
 | Scenario | Result | Evidence |
 |---|---|---|
 | `DV-001` | PASS | default devin -p dispatch returned the requested token |

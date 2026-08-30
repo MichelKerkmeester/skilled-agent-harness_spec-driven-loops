@@ -8,6 +8,14 @@ version: 1.0.0.0
 
 This document captures the realistic user-testing contract, execution flow, source anchors, and validation criteria for `DV-004`.
 
+> **STALE AS OF `devin 3000.6.7` — do not act on this scenario's expected result.**
+> This test was recorded against `3000.2.17`, where the binary rejected `smart`. On
+> `3000.6.7` the binary **accepts** `smart`, so the PASS condition below ("runtime
+> rejects it") can no longer be met. The mismatch this documents has inverted: help
+> now under-reports the enum rather than over-reporting it — it prints 4 of 8 accepted
+> values. Re-baseline against the installed binary before running. Probe recipe and the
+> verified enum: `../../references/cli-reference.md` `--permission-mode` row.
+
 ## 1. OVERVIEW
 
 Probe the exact documentation/runtime mismatch: `devin --help` prints `smart`, while the installed binary rejects it. This scenario must not silently normalize the result into a successful mode.

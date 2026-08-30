@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/058-flag-enum-authority",
+  "spec_folder": "cli-external-orchestration/058-flag-enum-authority",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "flag enum authority",
+      "permission mode not in help",
+      "cli help under-reports enum",
+      "flag value probe",
+      "flag enum authority plan",
+      "permission mode probe",
+      "flag enum authority tasks",
+      "flag enum authority summary",
+      "permission mode enum probe"
+    ],
+    "key_topics": [
+      "flag",
+      "enum",
+      "authority",
+      "permission",
+      "mode",
+      "help",
+      "cli",
+      "under-reports",
+      "value",
+      "probe",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".opencode/skills/cli-external-orchestration/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/SKILL.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/references/cli-reference.md",
+      ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/smart-permission-doc-runtime-mismatch.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-reference.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/references/cli-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "smart-permission-doc-runtime-mismatch.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-external-orchestration/cli-devin/manual-testing-playbook/cli-invocation/smart-permission-doc-runtime-mismatch.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Flag Enum Authority",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Four",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude-only",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "aliases",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`devin --help` prints four `--permission-mode` values",
+    "created_at": "2026-08-30T13:02:53Z",
+    "last_save_at": "2026-08-30T14:13:22.117Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9dd668591978b77c2e5f01d4d20263db35823ca6720bd91fde9385e6ce83ea2f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8d6cbe6a68337753f0c9a6b0344170139f4d28be68bceb8ead4ec2ffb8f48afd",
+      "plan.md": "0147bd558f5e749771910a057c7ab5bb3a4b55d82147f6afb46a9055c84d077c",
+      "tasks.md": "586d3e7619b306316a8b5a68ecb63de2d6cab8c03dfcdb5348cdb188ece06793",
+      "implementation-summary.md": "a40c99a92efd1feac5baceaca5bb7b870973fd21ea002309c481c98542c16030"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -110,12 +110,28 @@ Credentials:
 | Flag | Short | Values | Description |
 |------|-------|--------|-------------|
 | `--model` | | `<model-name>` | Model to use — `swe` (default alias → `swe-1-7-lightning`), plus the curated DeepSeek / GLM-5.2 / GPT-5.6 Luna Max / Grok (4.5 and 4.6) / SWE-1.7 families (see §5) |
-| `--permission-mode` | | `auto`, `accept-edits`, `smart`, `dangerous` | Permission mode controlling tool auto-approval |
+| `--permission-mode` | | canonical: `normal`, `accept-edits`, `smart`, `dangerous`, `autonomous` — aliases: `auto`→`normal`, `yolo`/`bypass`→`dangerous` | Permission mode controlling tool auto-approval. **`devin --help` prints only 4 of these 8 accepted values** — it is not the authoritative enum. See the probe below. |
 | `--print` | `-p` | `[<prompt>]` | Non-interactive mode: print response and exit |
 | `--continue` | `-c` | (none) | Continue the most recent session in the current directory |
 | `--resume` | `-r` | `[<session-id>]` | Resume a specific session by ID, or select interactively |
 | `--sandbox` | | (none) | Enable OS-level process sandboxing (selects `autonomous` permission mode) |
 | `--prompt-file` | | `<file>` | Load the initial prompt from a file |
+
+> **Verifying a flag value without spending a session.** `--help` under-reports the
+> `--permission-mode` enum, so never conclude a value is invalid because help omits it.
+> Force parse-time validation instead: an invalid value fails at exit 2 before the file
+> is read, a valid one reaches the file error at exit 1.
+>
+> ```bash
+> devin --permission-mode <value> --prompt-file /nonexistent
+> #   exit 2 + "invalid value ..."        -> rejected by the binary
+> #   exit 1 + "Failed to read prompt file" -> accepted
+> ```
+>
+> Verified against `devin 3000.6.7`: `auto`, `normal`, `accept-edits`, `smart`,
+> `dangerous`, `yolo`, `bypass`, `autonomous` all accepted; `plan` and `manual`
+> (Claude's modes, not Devin's) rejected. Re-run the probe after a CLI upgrade —
+> `smart` was rejected at 3000.2.17 and is accepted at 3000.6.7.
 | `--config` | | `<path>` | Configuration file path (override default `~/.config/devin/config.json`) |
 | `--export` | | `[<path>]` | Export conversation to a file after each turn (ATIF format) |
 | `--agent-config` | | `<file>` | Declarative agent configuration file (JSON or YAML) |
