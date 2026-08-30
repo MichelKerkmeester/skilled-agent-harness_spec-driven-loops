@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "cli-external-orchestration/058-codex-dispatch-scope-loosening",
+  "description": "Say what the runtime is for, and leave a legal path for what it is not for,",
+  "keywords": [
+    "say",
+    "runtime",
+    "leave",
+    "legal",
+    "path"
+  ],
+  "lastUpdated": "2026-08-30T09:08:50.432Z",
+  "specId": "058",
+  "folderSlug": "codex-dispatch-scope-loosening",
+  "parentChain": [
+    "cli-external-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
