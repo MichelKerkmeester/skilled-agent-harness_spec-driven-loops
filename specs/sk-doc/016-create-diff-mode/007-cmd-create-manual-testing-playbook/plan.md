@@ -159,7 +159,6 @@ User invokes `/create:testing-playbook` -> command captures target skill path, o
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```text
@@ -172,12 +171,11 @@ Contract Lock -> Command Family Implementation -> Runtime-Discovery Sync -> Vali
 | Command Family Implementation | Contract Lock | Runtime-Discovery Sync |
 | Runtime-Discovery Sync | Command Family Implementation | Validation and Closure |
 | Validation and Closure | All prior phases | Completion |
-<!-- /ANCHOR:phase-deps -->
 
 ---
 
+<!-- /ANCHOR:phase-deps -->
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The repo now has a stable manual testing playbook contract, but there is no dedicated create command that can generate it reliably",
     "created_at": "2026-04-12T09:02:50.174Z",
-    "last_save_at": "2026-08-30T07:16:15.800Z",
+    "last_save_at": "2026-08-30T08:21:55.343Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +207,11 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d69c1b9a7a520a003e86082e240bed87d8622f240eb5de89110bcb88eee14544",
+    "source_fingerprint": "sha256:8ecd78b91e9340b7edb6670688853952fdb1757985baf96f7050843b0e7e86fa",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "2b7c018f0b776d819fdd946cd1fc2cb96be6745ee7df58c71886535deca35aa8",
-      "plan.md": "0b5a24730a06f0ffb01cc2dc02a225d620683b89a658455bcee3a807f4031498",
+      "spec.md": "2ec7c38f3057b812a4a9bb860a1f791a75af65dfaef35260257080c480089f2c",
+      "plan.md": "984b28c9e3438c09b5c3681522ecaf7ac4b9f5a8ac1757530e14b5fb93ebc321",
       "tasks.md": "ab6249f7ebfde0ef2b6a986c2b306cf2acdb197414d457d5fa97f70cb5d2eec3",
       "decision-record.md": "e8ba446280391b963c9d109bb70cf6e134f26eca41ac83caf66503c831d24469",
       "implementation-summary.md": "3ae9af36a6fed3081d755696144e2ddfad3cc7d8f389961f2a7e8ed190962de7"

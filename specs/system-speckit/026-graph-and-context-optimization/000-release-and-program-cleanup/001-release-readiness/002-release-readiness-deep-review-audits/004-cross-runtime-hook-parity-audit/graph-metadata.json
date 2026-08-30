@@ -183,7 +183,7 @@
     ],
     "causal_summary": "The release-readiness program needs a runtime-by-runtime truth check for Spec Kit hook delivery",
     "created_at": "2026-04-29T20:30:00.000Z",
-    "last_save_at": "2026-08-30T08:04:38.646Z",
+    "last_save_at": "2026-08-30T08:23:30.156Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,13 +192,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:610c473ea87c30ecc7f4e14e657a669820642a24956c4563d9331c1d4aa0b01c",
+    "source_fingerprint": "sha256:b4ec121c1880113fab46035530f2e37b09f566029963fef01804f3a6bec66345",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "10d61aa2ae7772ec324cdbf9d4ed7a9c76c583606de23f6a905fb9aa6b0e3665",
-      "plan.md": "0f61f46883a4a9f680bcf8943b1d3794649f82f823787e5ec247cebd25e1ab3e",
-      "tasks.md": "93d83af81d6e64ccb747eba5635cb9608ae686380aa97102d9965838c10d5b69",
-      "implementation-summary.md": "d37f728866cbf2865fa6c69838a72ffe65c4de2f0460534a9ee1a765a04b37e0"
+      "spec.md": "aea2ec48404f9ed242579371c6015170937123e616a863c535064a6808699001",
+      "plan.md": "fca422ca9f3659f76b6fb2bcb389a268f9f195babc4e108a988449b3415fb0f0",
+      "tasks.md": "8b519b823bc72591acb1522812a8370966a633568f8e35f7d15ee546e355f416",
+      "implementation-summary.md": "0d1fbc09e681009cb1f0e3d6efd49ecab52e49bb6f402dfffc6e93778c877f13"
     },
     "last_active_child_id": null,
     "last_active_at": null

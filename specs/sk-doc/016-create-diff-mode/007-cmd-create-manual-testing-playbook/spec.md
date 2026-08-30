@@ -49,8 +49,8 @@ This packet defines the implementation contract for `/create:testing-playbook`, 
 
 ---
 
-<!-- ANCHOR:problem -->
 <!-- /ANCHOR:metadata -->
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
@@ -170,7 +170,7 @@ Add `/create:testing-playbook` so authors can create or update a standards-align
 
 ---
 
-<!-- ANCHOR:requirements -->
+<!-- ANCHOR:nfr -->
 ## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
@@ -185,7 +185,7 @@ Add `/create:testing-playbook` so authors can create or update a standards-align
 - **NFR-R01**: Generated root and per-feature files use stable naming conventions from the shipped contract.
 - **NFR-R02**: The command never creates deprecated sidecar canonical files or a `snippets/` subtree.
 
-<!-- /ANCHOR:requirements -->
+<!-- /ANCHOR:nfr -->
 ---
 
 <!-- ANCHOR:edge-cases -->

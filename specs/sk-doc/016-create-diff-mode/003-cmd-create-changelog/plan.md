@@ -202,7 +202,6 @@ User invokes /create:changelog <spec-folder> [:auto|:confirm]
 ---
 
 <!-- ANCHOR:phase-deps -->
-<!-- ANCHOR:dependencies -->
 ## L2: PHASE DEPENDENCIES
 
 ```
@@ -215,12 +214,11 @@ Phase 1 (Command File) ──► Phase 2 (Auto YAML) ──► Phase 3 (Confirm 
 | Phase 2: Auto YAML | Phase 1 | Phase 3, 4 |
 | Phase 3: Confirm YAML | Phase 2 (for duplication base) | Phase 4 |
 | Phase 4: Verification | Phase 1, 2, 3 | None |
-<!-- /ANCHOR:phase-deps -->
 
 ---
 
+<!-- /ANCHOR:phase-deps -->
 <!-- ANCHOR:effort -->
-<!-- /ANCHOR:dependencies -->
 ## L2: EFFORT ESTIMATION
 
 | Phase | Complexity | Estimated Effort |

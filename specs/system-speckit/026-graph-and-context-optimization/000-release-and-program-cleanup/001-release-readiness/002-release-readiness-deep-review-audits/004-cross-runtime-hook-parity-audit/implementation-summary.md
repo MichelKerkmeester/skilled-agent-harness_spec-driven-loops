@@ -24,7 +24,7 @@ _memory:
       - "description.json"
       - "graph-metadata.json"
     session_dedup:
-      fingerprint: "sha256:045-005-cross-runtime-hook-parity-audit-summary"
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "045-005-cross-runtime-hook-parity-audit"
       parent_session_id: "003-release-readiness-deep-review-audits"
     completion_pct: 100

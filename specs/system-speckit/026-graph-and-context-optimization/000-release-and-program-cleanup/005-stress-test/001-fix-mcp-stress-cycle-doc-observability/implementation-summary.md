@@ -23,7 +23,7 @@ _memory:
       - "../../../003-fix-mcp-runtime-stress-findings/resource-map.md"
       - "../../../003-fix-mcp-runtime-stress-findings/010-stress-test-close-loop-measurement-rerun/findings-rubric.json"
     session_dedup:
-      fingerprint: null
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "001-fix-mcp-stress-cycle-doc-observability-2026-04-28"
       parent_session_id: null
     completion_pct: 100

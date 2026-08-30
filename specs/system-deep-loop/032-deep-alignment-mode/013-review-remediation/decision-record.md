@@ -53,6 +53,7 @@ A future phase MAY implement packet-scoped shell enforcement or tool-based state
 
 ---
 
+<!-- /ANCHOR:adr-001 -->
 <!-- ANCHOR:adr-002 -->
 ## ADR-002: F004 — remove the ignored executor flags rather than implement resolution
 
@@ -78,6 +79,7 @@ Implementing a real executor-resolution path (as `deep-ai-council`/`deep-review`
 
 ---
 
+<!-- /ANCHOR:adr-002 -->
 <!-- ANCHOR:adr-003 -->
 ## ADR-003: F010 — fix the tractable setup-misbind signal; defer autonomous-termination proof
 
@@ -101,6 +103,4 @@ The correctness half of F010's setup-misbind — the unbound `resolved_lanes` on
 
 A fabricated "termination fixed" claim without a fresh, multi-sample, contention-controlled capture would violate the honesty mandate. The tractable source defect (F003) is fixed here; the empirical termination-repeatability proof is recorded as an explicit, honest deferral for a follow-up benchmark capture rather than asserted.
 
-<!-- /ANCHOR: adr-001 -->
-<!-- /ANCHOR: adr-002 -->
-<!-- /ANCHOR: adr-003 -->
+<!-- /ANCHOR:adr-003 -->
