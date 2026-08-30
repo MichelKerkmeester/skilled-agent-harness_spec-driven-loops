@@ -28,6 +28,7 @@ isolation-check.yml
 | Workflow | Responsibility |
 |---|---|
 | `agent-mirror-sync.yml` | Keeps the `.opencode` and `.claude` agent mirrors aligned. |
+| `changed-packet-validation.yml` | Validates the spec packets a pull request changed. |
 | `comment-hygiene.yml` | Rejects forbidden ephemeral-artifact pointers in code comments. |
 | `markdown-link-integrity.yml` | Checks repository Markdown link integrity. |
 | `naming-standard-guard.yml` | Enforces the repository filesystem naming standard. |
@@ -37,7 +38,6 @@ isolation-check.yml
 | `runtime-no-spec-import.yml` | Prevents runtime code from importing the mutable spec tree. |
 | `skill-doc-frontmatter.yml` | Validates skill reference and asset frontmatter. |
 | `spec-root-resolution-matrix.yml` | Exercises spec-root resolution across its configured matrix. |
-| `strict-pass-freshness-sweep.yml` | Runs the scheduled strict-pass freshness sweep. |
 
 ---
 

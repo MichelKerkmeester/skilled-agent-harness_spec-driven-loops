@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/041-validation-reduction/009-retire-the-sweep",
+  "spec_folder": "system-speckit/041-validation-reduction/009-retire-the-sweep",
+  "parent_id": "system-speckit/041-validation-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retire the sweep",
+      "changed packet validation",
+      "spec packet merge gate",
+      "retire the sweep plan",
+      "changed packet gate plan",
+      "retire the sweep tasks",
+      "retire the sweep summary"
+    ],
+    "key_topics": [
+      "retire",
+      "sweep",
+      "changed",
+      "packet",
+      "validation",
+      "spec",
+      "merge",
+      "gate",
+      "plan",
+      "tasks",
+      "summary",
+      "block"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".github/workflows/changed-packet-validation.yml"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "changed-packet-validation.yml",
+        "kind": "config",
+        "path": ".github/workflows/changed-packet-validation.yml",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Gate That Can Actually Block",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resolution Write",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "TASK NOTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 1: SETUP",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "PHASE 2: IMPLEMENTATION",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Make the gate block the thing it can fairly block: the packets a change",
+    "created_at": "2026-08-30T06:31:14.942Z",
+    "last_save_at": "2026-08-30T06:31:14.942Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ea3720be6bfb91a8d2e18dc235957a825408e301165393f3cb832b075f5a8bfe",
+    "source_doc_hashes": {
+      "spec.md": "7fb097c60df8aed3dff9aff872e391f3744edf3a2002dd6137035a1c0f075d1c",
+      "plan.md": "678474813c142a04006647dc5ee513d9cef918327eb700659216e16f20b0c051",
+      "tasks.md": "65d856189b4aa34366e3480a7012f48d3c22dda44ba7b71222c0daf86ffe39c3",
+      "implementation-summary.md": "76e57f333420f5b265a751a309d8ebe7c1bf7597c8a204be06bbaa4ee95c5089"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
