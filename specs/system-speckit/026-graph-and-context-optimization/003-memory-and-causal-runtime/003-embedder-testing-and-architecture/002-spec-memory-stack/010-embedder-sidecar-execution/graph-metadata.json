@@ -38,7 +38,7 @@
       "routing",
       "tasks"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       "implementation-summary.md",
@@ -202,6 +202,15 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:dc54ed5f9ab87d26ec337a51677caa0dabef5dbf250dcfd452cc0b0a0750b216",
+    "source_doc_hashes": {
+      "spec.md": "8b14f3bc4e853ffead577b6beebfc0e39fe44e71dd814d24f2cd48c0e13d7099",
+      "plan.md": "4b520ee657527eea0b653d7f6a7163ac893b5ca976ae8d22fa4a3d8ba5d082ec",
+      "tasks.md": "cbe7321eda55f4479ba67c7fb4a02057095b2be16bd8dc7aab0ce31e225a880d",
+      "implementation-summary.md": "70ee781d4f29e406d4077735606b35073766781a3220d1c190dc0a870ed66984"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

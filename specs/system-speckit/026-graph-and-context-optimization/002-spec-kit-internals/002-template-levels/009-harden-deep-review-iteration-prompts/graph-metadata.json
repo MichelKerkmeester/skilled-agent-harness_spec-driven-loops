@@ -38,7 +38,7 @@
       "safety",
       "plan"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
       "spec.md",
@@ -202,6 +202,15 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:54680a558a3fb58bf7348f7cff00de8b9121b439121213970ecb61d1ef93099c",
+    "source_doc_hashes": {
+      "spec.md": "a6e57af35edfac5380e48749177c93abb04b1a3c659a8379180ae061e8181f7a",
+      "plan.md": "c9751a0d0989703e80edc70e467bce08d87cf6ff18180729dc847dba7ea7a20d",
+      "tasks.md": "6a73c51498794be5cdfa9fa62617951b27a856a2dc573f0e2f7734c4219b383f",
+      "implementation-summary.md": "1e3c12f4c7dbbae6e5c15624231fc60dfc4806ee48bf284a3decb7ef276838d1"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

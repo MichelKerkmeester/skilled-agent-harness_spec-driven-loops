@@ -46,7 +46,7 @@
       "plan",
       "fallback"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/scripts/session-cleanup.sh",
@@ -214,6 +214,16 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:da76c4749623fcd70a28cf908389a2ae83a5c8208c7326418d18af7e830dddd5",
+    "source_doc_hashes": {
+      "spec.md": "a57af67ccc9d8872414232dd0efa87687be72987d3fd5c5ecb23ae75aaaca43f",
+      "plan.md": "9504d788d353842e4f87419137cbe6649756275493c1653f9edebb41f9214420",
+      "tasks.md": "b2425ae9a608ac5481a19178d4c0c43ea5b01cc00b2b26f027ea275ed52a574e",
+      "checklist.md": "1d4638ff70f9372bda5b592cc8a0448f4fddb76c1268706c0d80cb1b35776dee",
+      "implementation-summary.md": "5763f75ceb91e5954df14bfbfd1e24d688068b1e529b77d69d841c23231119f4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

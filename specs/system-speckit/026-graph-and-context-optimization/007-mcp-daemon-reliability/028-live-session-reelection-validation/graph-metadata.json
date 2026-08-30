@@ -25,12 +25,7 @@
       "live reelection validation plan",
       "live reelection validation tasks",
       "live reelection validation checklist",
-      "live reelection validation done",
-      "system-speckit/026-graph-and-context-optimization/007-mcp-daemon-reliability/028-live-session-reelection-validation",
-      "system-speckit",
-      "026-graph-and-context-optimization",
-      "007-mcp-daemon-reliability",
-      "028-live-session-reelection-validation"
+      "live reelection validation done"
     ],
     "key_topics": [
       "live",
@@ -46,7 +41,7 @@
       "plan",
       "tasks"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/bin/mk-spec-memory-launcher.cjs",
@@ -216,6 +211,16 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:d43b646020897cad02ecb6bbd3d88d7419928edf49f4865b6d50769a5b823720",
+    "source_doc_hashes": {
+      "spec.md": "203caf75262628e40c9fca2ca8cb971b8c7833e09555e9718b4625e73464ff63",
+      "plan.md": "2964fa8644691da560167d5cb2ceb8b66e250c162f0b02b4918f497057147f65",
+      "tasks.md": "e84afea894a9ae1509876fc69fcc960366d5b68a6771b3194bb348583cb940a2",
+      "checklist.md": "86fa7279c6351d442e76643d711d3050b15b1df4ae0b6663bb037b47bbb7ea76",
+      "implementation-summary.md": "4e31f7b372974bab20d729359d15f081c21a8734073f5fe8d50c20cb58e1a960"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

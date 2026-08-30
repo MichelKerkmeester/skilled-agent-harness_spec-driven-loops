@@ -40,7 +40,7 @@
       "checklist",
       "summary"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -221,6 +221,16 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:2675fb5298d6dc77fc1f1bcfc5e8da1786fbf4f1c9464115a281a3a8a0d0167f",
+    "source_doc_hashes": {
+      "spec.md": "528d5cf578a1ab8dd38147307ef49b8a76503a957887f2ccf31be9d73ac0c540",
+      "plan.md": "97d5a2ad56fd39e548d0888d4a2010ff5f992d1f74fedc9add9f66cab4328573",
+      "tasks.md": "6eae7b02b2f7e26a768a73a7e73b6ef4f2774efb0c53df57769a2d23d8a59353",
+      "checklist.md": "be821ba14a386223f5b742d01b3d7e9cb4b95bc138d6e431e3512d70fa9682cd",
+      "implementation-summary.md": "056f07785cfb89d697ee402c631cc2c8339ffe74c300680ddfac53a729c6837e"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

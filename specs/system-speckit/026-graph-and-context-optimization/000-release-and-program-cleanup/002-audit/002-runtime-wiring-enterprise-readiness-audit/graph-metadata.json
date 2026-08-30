@@ -40,7 +40,7 @@
       "w13",
       "tasks"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
       "spec.md",
@@ -219,6 +219,16 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:d95851aab2e6888a6c3dd4648c6e80ca9b46d475b166c9617abde017e558f3e1",
+    "source_doc_hashes": {
+      "spec.md": "fc45cfdf152d17770d146761ce3573f73daabbbbc3999dbaebbc551124b2fe8a",
+      "plan.md": "51711a254c7b5d6077bbed3b12641e7610582b3af896b212e8dc673ec556f918",
+      "tasks.md": "6a6ff49b1a74e2adb5cc4a3ed58a42e5c4c4fb04ffb8eb4358b3cd5612129432",
+      "checklist.md": "94d16df82769f1164b68845038e5ddaf0d9754ba8133d8064bf92a32c228b0d3",
+      "implementation-summary.md": "1d5108bfa30c23373974dafe544ae8dd04b177a27446b6fa2b7628517ab8558a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

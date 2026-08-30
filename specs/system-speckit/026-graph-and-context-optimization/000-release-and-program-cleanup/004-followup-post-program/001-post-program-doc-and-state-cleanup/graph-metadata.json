@@ -23,8 +23,7 @@
       "005 post-program cleanup checklist",
       "026 cleanup verification",
       "005 post-program cleanup summary",
-      "026 cleanup implementation summary",
-      "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/001-post-program-doc-and-state-cleanup"
+      "026 cleanup implementation summary"
     ],
     "key_topics": [
       "post-program",
@@ -40,7 +39,7 @@
       "ledger",
       "checklist"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
       "spec.md",
@@ -207,6 +206,16 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:eafaad2efdc8d518794d49fca6a96dabceb881807983999f00e01f04b9aa64ed",
+    "source_doc_hashes": {
+      "spec.md": "ce64cff2ce54279b2c661ba8ead2a5063c8da7b54855247c70812c87136d43cc",
+      "plan.md": "b39703cf12ef99f96da9b23eed1ee8e128ad5eeced7c879fcae3beee08b43dbf",
+      "tasks.md": "6b847762fb61c475a06bbf3337af2556a1026ef353eb50ea48d1620029e5f0ed",
+      "checklist.md": "f2fb1e97725c8ca0cab127b5ea2b603b14470ebcae31b93de487cddfd50dd919",
+      "implementation-summary.md": "271a2ccd45c0e995a88401fbb92321145bc2541c727daa42da8c81e7bb0a90d2"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

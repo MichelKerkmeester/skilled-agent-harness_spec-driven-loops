@@ -46,7 +46,7 @@
       "retry",
       "plan"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/bin/lib/launcher-ipc-bridge.cjs",
@@ -215,6 +215,16 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:8dd73c9cbe458d267c9b3cdcf29c2cf261a630d339a67c0d1e2754535d9e657b",
+    "source_doc_hashes": {
+      "spec.md": "87c0a4259d6393e427e4dd709f8b64d57cfe0d0693496bd93e7f4af6af09a243",
+      "plan.md": "4c373345b80833a7befff9c4791cc735d5d8305500a7f13f6d2e9ecfa514ee19",
+      "tasks.md": "d1fd189bc69a89df930caa269d936f8b84a755533e8e33c51e7f52d55c438752",
+      "checklist.md": "f45add372e8c5eef2f56175f5ddfadbc9b89578b96355431fd8b70caa6c45174",
+      "implementation-summary.md": "5186952663146cd994e10de0029c61e09bff58fb939fec848e32e7f2df930a34"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

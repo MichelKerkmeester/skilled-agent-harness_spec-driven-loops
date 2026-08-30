@@ -38,7 +38,7 @@
       "levels",
       "plan"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
       "spec.md",
@@ -221,6 +221,18 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:6304d4d3a0f5e8f712040df15bf89c958f90aa5551a09eca51eefc2f79b38557",
+    "source_doc_hashes": {
+      "spec.md": "6719fe82709a006618eeb5e91d4a8829dd6c2fba41bdb228867df100887b6e04",
+      "plan.md": "35707f0dbc1ef342cb8e971f6b94d672f2417507ac18654a4a920ffe75b8b8dc",
+      "tasks.md": "4f49e6c7e2e59f99812f94b6cdfb6e057c2fbf5777914cf49b3b585914152f87",
+      "checklist.md": "be125e44ab3d59f68339a47b83015314cca40ee4362216e925ee767b3b16061d",
+      "decision-record.md": "365f5f2a0d1989f1d9617bce48d39b89fc30b64afcc0988fc3f04537d152183f",
+      "implementation-summary.md": "925a19585c0aed0d35d178ad127b2fb191214781940f8437ab28f48ca0f498da",
+      "research/research.md": "3d9493148238e10d65d5d74221a8c110eee94ffc37bd89e76f58ebbe31294ec5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -46,7 +46,7 @@
       "trace",
       "plan"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/bin/mk-spec-memory-launcher.cjs",
@@ -214,6 +214,16 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:ee7e3d1c8a5c32450b7d8947d22ef3bef859b9edb37b677a47ecc4356320d459",
+    "source_doc_hashes": {
+      "spec.md": "4ec4ec6cd4eda10504585e9ea164002578bed4818c7f62b83fada315da2ebe16",
+      "plan.md": "23b757769d3ef628a3b1eeefb6641da797ee0f09f2d1e87e9bda0593aadee531",
+      "tasks.md": "4f7b697062a614bdc502c629b9321e9b6d3e61dcf4d80da7921786095eb1f894",
+      "checklist.md": "71ebdf43203feb74b57cb0b51d83d573bd97f55fb20532a3a23fcb40a7f87ee0",
+      "implementation-summary.md": "f040c3d77dc4f308415514036ecf1725614bdd5e96403e8441c6540e68614c6f"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -21,10 +21,7 @@
       "w3 trust tree",
       "tasks",
       "verification",
-      "implementation summary",
-      "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/004-search-rag-measurement-implementation",
-      "system-speckit",
-      "026-graph-and-context-optimization"
+      "implementation summary"
     ],
     "key_topics": [
       "search",
@@ -40,7 +37,7 @@
       "tasks",
       "verification"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -213,6 +210,16 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:e521e03484c6c1a99caab6b0de30a61234a3de09ada20e3b46e293055b75c588",
+    "source_doc_hashes": {
+      "spec.md": "81d887a56133374785c73eef85676535805a104c0b14bde5d81d67b97bdf0abb",
+      "plan.md": "0d85dea533a35972c85653ac4daf01905333453d84c84dad70f48a6c2c2d9434",
+      "tasks.md": "5eac740ec514040951c4b6ca4c08889f2c802c0a120d2cd43994f8574c633eb5",
+      "checklist.md": "576ccffc51131d68ea4aa7da7ac9c003403451c2406d8e285c4fcea99d00c24c",
+      "implementation-summary.md": "ae6de40fd221f5f988049df3084ba62ddb7db31ddf8d3b717416406a0f5a0db4"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -4,6 +4,12 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
   "parent_id": "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup",
   "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/003-memory-write-correctness",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/003-memory-write-correctness",
     "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity",
@@ -21,15 +27,7 @@
       "audit remediation",
       "013 remediation",
       "fix audit findings",
-      "deep review remediation",
-      "system-speckit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
-      "system-speckit",
-      "026-graph-and-context-optimization",
-      "000-release-and-program-cleanup",
-      "013-comprehensive-audit-remediation",
-      "feature",
-      "specification",
-      "comprehensive"
+      "deep review remediation"
     ],
     "key_topics": [
       "audit",
@@ -45,7 +43,7 @@
       "infrastructure",
       "two"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       "mcp_server/handlers/memory-search.ts",
@@ -150,6 +148,12 @@
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:81a5cf573fa48cd0cbfe0c7ed7a1525eb0f5aa6a5cc7a5e941227f5dbfc90a7a",
+    "source_doc_hashes": {
+      "spec.md": "1f9cc345a6c49b5ce9cf8e07287c3661155aad14b3de3f455dccd0238019f5e9"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

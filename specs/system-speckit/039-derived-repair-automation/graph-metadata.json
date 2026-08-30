@@ -20,9 +20,7 @@
       "derived repair tasks",
       "repair-derived tasks",
       "derived repair summary",
-      "repair-derived status",
-      "system-speckit/039-derived-repair-automation",
-      "system-speckit"
+      "repair-derived status"
     ],
     "key_topics": [
       "derived",
@@ -38,7 +36,7 @@
       "status",
       "spec-packet"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
       "spec.md",
@@ -187,6 +185,15 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:5673267d8f26951edcc5df3f4a8aac7bc4f0f18910bc0cfb42744f48a51ed123",
+    "source_doc_hashes": {
+      "spec.md": "a9d96b589382ae2018ec542c5636017843133e223674ccc8366bea7de2dc227d",
+      "plan.md": "ce2f2c0a0e16f1668c81bb9168d86e70cd013ee3872cb26a0aa2e5f4ca112b68",
+      "tasks.md": "46e398d0f63e99669941618198ccdbd09d0543086412bd00e5d4b389e4755a4c",
+      "implementation-summary.md": "f9777d93f09be61600dc568ec17c80fa3d86a9bc457b1c8b6ce2319e6111e44c"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

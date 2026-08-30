@@ -44,7 +44,7 @@
       "integrity",
       "probe"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -213,6 +213,15 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:642addf0be42af3637fa90a28407bbe53122672e7ec4bdfbccc64ee38ccb4b1d",
+    "source_doc_hashes": {
+      "spec.md": "b0ee7efd8382841893730c10efa8d01e8f7ce959d012a9de82104bcd74d1dd64",
+      "plan.md": "0492ac63955e37e62aec35bc059417d6b5914cb15648a1c02811badd6e1f318f",
+      "tasks.md": "f5ce2dc6e472bfa8b77a26c910f07b2e130a4ea65f5b4e2dbdad678a27344829",
+      "implementation-summary.md": "ce79044ab6460fe7fcccf86c2cfcf4044db4c61e49f6af2469759e00496f662a"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -38,7 +38,7 @@
       "profile",
       "migration"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       "spec.md",
@@ -203,6 +203,15 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:4ad7b2c5c606396d80e72879fe122dbbd1b5538ddec7004e46b24a5fc80eae0b",
+    "source_doc_hashes": {
+      "spec.md": "6bb940f505b750b16a691251c5256727790c19fe22f1d8d78c07e198c1354bdf",
+      "plan.md": "94965a165fef20b13d4c56e5472ecd32655d6617fceb39180e2df43bec4566f6",
+      "tasks.md": "fb2bf26da8b0f1481c0fbf5c86bf73f11922b5a6daa295855b83b61ff5456861",
+      "implementation-summary.md": "a66bdf844474b99e3e50364b6faca120685f819cc835e934036b8b558ea90c46"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

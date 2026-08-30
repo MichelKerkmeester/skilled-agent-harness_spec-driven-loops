@@ -40,7 +40,7 @@
       "checklist",
       "done"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       ".opencode/bin/mk-spec-memory-launcher.cjs",
@@ -208,6 +208,16 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:32290940bdc364370c53cd3e915ca91d33f20a31a9b7ad7bed0ccb43613ecea1",
+    "source_doc_hashes": {
+      "spec.md": "24745d95765a1cc7c5bb38f67752715176630d50c7e8b4d3b8e6d97744e4e670",
+      "plan.md": "db38729861de03cd479cc9f310272108c4098f88e4851698799a769a8a343900",
+      "tasks.md": "70d600f6e81440c4a36ba4e1f41c694a1358d8726e0be3865f0fdc4a1c3afc50",
+      "checklist.md": "0273de5c4b463575bc1fe89b2fbab6d79a7d1641d3b938e727acc85866781ee8",
+      "implementation-summary.md": "f88acf89b19f3d1c427883fd0b66eee554b243d29c5162d2f1c278b5355b1c12"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

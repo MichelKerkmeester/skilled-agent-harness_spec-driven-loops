@@ -38,7 +38,7 @@
       "lane",
       "deep"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "complete",
     "key_files": [
       "research/research.md",
@@ -214,6 +214,18 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:aaec190b03ca97ce1c774aa08ce5b9439e0da5587ee3b018ade53b58077fe44c",
+    "source_doc_hashes": {
+      "spec.md": "3bc5ae1c19c3302b963866cadb4ba41a806a8cdc2cfc932b5a7237f8db93f31e",
+      "plan.md": "0c31b01d1bcb4ca17d878ae532697bc3869ecd5e57ea3acc7e95b214eb875b8f",
+      "tasks.md": "bbb3870d2e05bfc7beba91923015151caa4b5bb35b44caa1b32e57880edf126a",
+      "checklist.md": "8637105dae748859e640769cd93f1a1fe1b3f33ce2342a51aae7156c83d7627d",
+      "decision-record.md": "77b05cc8bfc4b7deec305a987a8657f456042dc47a2a4f6c560db593abb93aac",
+      "implementation-summary.md": "7789748ccdf2caac588365b685363c468bbfaac6e92e89dfc096dc1574e15682",
+      "research/research.md": "bc4dbf8c858138923582800579dad482200731a0f03b85cb3888596e42d6bf58"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

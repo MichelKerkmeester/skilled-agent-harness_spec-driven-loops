@@ -4,6 +4,15 @@
   "spec_folder": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels",
   "parent_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals",
   "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/004-fix-template-deferred-followups",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/005-skill-reference-asset-doc-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/006-command-markdown-yaml-workflow-alignment",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/007-sweep-fleet-marker-validation",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/008-archive-fleet-marker-validation-scaffold",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/009-harden-deep-review-iteration-prompts",
     "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/001-template-level-consolidation-research",
     "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/002-manifest-driven-template-design",
     "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/003-manifest-template-implementation-plan",
@@ -24,15 +33,7 @@
       "008 template levels",
       "template levels phase parent",
       "template system rework",
-      "spec-kit template phases",
-      "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels",
-      "system-speckit",
-      "026-graph-and-context-optimization",
-      "002-spec-kit-internals",
-      "002-template-levels",
-      "feature",
-      "specification",
-      "template"
+      "spec-kit template phases"
     ],
     "key_topics": [
       "template",
@@ -48,10 +49,13 @@
       "files",
       "13k"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
-      "spec.md"
+      "spec.md",
+      "002-manifest-driven-template-design/research/research.md",
+      "003-manifest-template-implementation-plan/resource-map.md",
+      "002-manifest-driven-template-design/decision-record.md"
     ],
     "entities": [
       {
@@ -104,6 +108,12 @@
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:b38c88160007a6aa3646e192fc15189af34d2f02ff06ba57dcbd245f1afc15c4",
+    "source_doc_hashes": {
+      "spec.md": "bf6d0f2ab31673be20caf67bb6a98691988d4c95a4c60b32541e5cb013d4a4f7"
+    },
+    "last_active_child_id": "system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/005-skill-reference-asset-doc-alignment",
+    "last_active_at": null
   }
 }

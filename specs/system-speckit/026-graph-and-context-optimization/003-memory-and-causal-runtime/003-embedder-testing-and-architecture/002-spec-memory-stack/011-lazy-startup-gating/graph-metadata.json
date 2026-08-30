@@ -38,7 +38,7 @@
       "tasks",
       "task"
     ],
-    "importance_tier": "important",
+    "importance_tier": "high",
     "status": "in_progress",
     "key_files": [
       "implementation-summary.md",
@@ -202,6 +202,15 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "source_fingerprint": "sha256:68fce7e1982a37e7229a0288addfe3fd6ae81f438f8ed98add49876fd0b1ee72",
+    "source_doc_hashes": {
+      "spec.md": "4d1dd8fe32366fa8cddc76f84f3e9196f017700413b68f86810c8a6e63deb610",
+      "plan.md": "b9033f3c0ff8c62efe0856151a85098c0548eb300508ba7c9e67889a2af2d835",
+      "tasks.md": "3d6127b02aac78078f88ae7f328d5411326569afa0f72a366e34e78d5867d013",
+      "implementation-summary.md": "97834f61fefa9ae74c55e97328290fa93576e06e2644c7aba2716d2e1a665c31"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }
