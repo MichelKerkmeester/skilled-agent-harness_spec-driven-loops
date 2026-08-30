@@ -197,7 +197,7 @@
     ],
     "causal_summary": "`writeGraphMetadataFile` canonicalizes its destination, then asks a classifier whether the result may hold graph metadata",
     "created_at": "2026-08-30T08:10:26.979Z",
-    "last_save_at": "2026-08-30T08:11:25.734Z",
+    "last_save_at": "2026-08-30T12:21:28.749Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4162da36d56190a81b9135a2f3ae76a4b682a9fe3d3f8d11ad5a936284ab8a6",
+    "source_fingerprint": "sha256:4fe186677275a0a18879e9bab05e3af6228e6fb9bcd7038aca57842dd76cc0cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "04b9920edfc003ed1c06c9585443816c0bcddb0d2652da887b9c7050ce9ee9fc",
       "plan.md": "6c2eace33ba0f21093f6923be5fe7a5bc26ff3ed3ac81c73e4d81726417056e1",
       "tasks.md": "6cd2d2930516203042c12ee2abd15a2481a7b1efac064c2df892528b78ed2646",
-      "implementation-summary.md": "3b282823cd49c0459de04069c6939a23c223097da03644c89c0f00df800847e6"
+      "implementation-summary.md": "255dda1e8aa6ccbdbe6f93241969e8b1ae23cb9ac134af6e63760efe46918c67"
     },
     "last_active_child_id": null,
     "last_active_at": null

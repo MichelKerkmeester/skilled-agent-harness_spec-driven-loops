@@ -52,7 +52,7 @@ primary and mutates nothing. It supplies evidence while the acting workflow appl
 | `references/verification/` | [`verification.md`](references/verification/verification.md) | Proving a change. The browser-free resolver method, the value oracle, the CDP structural gates and the workspace gate in one document, plus the cross-repo path drift guard (`skill-reference-integrity`). |
 | `references/conventions/` | [`conventions.md`](references/conventions/conventions.md) | How source reads. Banner and comment grammar (`comment-grammar`), the `Do not edit — <why>` fences (`editability-guardrails`), and when a folder owes a `CODE.md` (`folder-docs`). |
 | `references/svelte/` | [`svelte.md`](references/svelte/svelte.md) | Runtime correctness a green suite cannot see, in one document: the `$effect` self-invalidation trap and the `untrack` doctrine, then the react-aria → bits-ui accessibility contract and the four interaction actions. |
-| `references/storybook/` | [`storybook.md`](references/storybook/storybook.md) | The component catalog and its screenshot archive: both audiences, the gates in the order they bite (`component-story-upkeep`, `screenshot-archive`), and how to start it for someone (`running-storybook`). |
+| `references/storybook/` | [`storybook.md`](references/storybook/storybook.md) | The component catalog and its screenshot archive: both audiences, the gates in the order they bite (`component-story-upkeep`, `screenshot-archive`), how to start it for someone (`running-storybook`), and the generated-versus-written split of its docs pages (`docs-layer`). |
 | `references/operations/` | [`operations.md`](references/operations/operations.md) | Running the live relay: `incident-playbooks`, `rollback`. |
 | `references/setup/` | [`setup.md`](references/setup/setup.md) | First run: `install-and-onboarding`, and putting the whole app on a phone-shaped screen — Chrome emulation, the iOS Simulator, an Android emulator, or a real phone (`device-preview`). |
 | `references/standards/` | — | The rules a change must hold: `code-standards`, `security`, `platform-support`. |
@@ -128,6 +128,7 @@ RESOURCE_MAP = {
         "references/storybook/storybook.md",
         "references/storybook/component-story-upkeep.md",
         "references/storybook/screenshot-archive.md",
+        "references/storybook/docs-layer.md",
         "assets/guardrail-audit-checklist.md",
         "assets/bem-rename-checklist.md",
         "assets/story-coverage-checklist.md",

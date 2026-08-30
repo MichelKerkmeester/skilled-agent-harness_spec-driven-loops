@@ -73,6 +73,7 @@ each one can and cannot catch.
 | [`running-storybook.md`](running-storybook.md) | Starting the catalog for someone: the one command, the port, what to tell them, the static build, and the failures that actually happen. |
 | [`component-story-upkeep.md`](component-story-upkeep.md) | The rule that every renderable component carries a co-located story showing what the app actually renders, and the two gates that enforce it: `story:coverage` and the CDP render gate. |
 | [`screenshot-archive.md`](screenshot-archive.md) | How a shot is taken, why some are transparent and some sit on the page tone, what the archive's determinism is really worth measured rather than assumed, and how an agent and a designer each use the catalog. |
+| [`docs-layer.md`](docs-layer.md) | The catalog's documentation layer: which half is generated from the component's own types and cannot drift, which half is written and can, how to read a component's source without leaving its story, and why no gate sweeps a docs page. |
 
 ---
 

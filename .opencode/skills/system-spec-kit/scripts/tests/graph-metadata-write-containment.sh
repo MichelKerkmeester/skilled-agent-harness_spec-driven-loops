@@ -13,7 +13,11 @@
 #
 #   Too strict - membership is measured on the canonicalized path, which places
 #   every symlinked track in a sibling repository outside all roots and refuses
-#   writes that were always legitimate.
+#   writes that were always legitimate. Or roots are discovered from the calling
+#   process rather than from the destination, so any caller whose working
+#   directory is not the repository is refused - a fixture workspace under a
+#   temporary directory, and a hook launched from elsewhere writing into the
+#   real repository alike.
 
 set -uo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../../.." && pwd)"
@@ -25,15 +29,18 @@ if [[ ! -f "$PARSER" ]]; then echo "SKIP: compiled parser absent"; exit 0; fi
 OUTSIDE="$(mktemp -d)"; trap 'rm -rf "$OUTSIDE"' EXIT
 mkdir -p "$OUTSIDE/specs/999-outside"
 
-# Emits "wrote" or "refused" for one destination, leaving nothing behind.
+# Emits "wrote" or "refused" for one destination, leaving nothing behind. The
+# optional second argument is the caller's working directory: the guard reads
+# roots from the process as well as from the destination, and every case that
+# runs from the repository conflates the two.
 attempt() {
-    node -e "
+    ( cd "${2:-$REPO}" && node -e "
 const { writeGraphMetadataFile } = require(process.argv[1]);
 try {
   writeGraphMetadataFile(process.argv[2], { schemaVersion: '1.0.0', specFolder: 'probe', derived: {} });
   process.stdout.write('wrote');
 } catch { process.stdout.write('refused'); }
-" "$PARSER" "$1" 2>/dev/null
+" "$PARSER" "$1" 2>/dev/null )
 }
 
 expect() {
@@ -71,6 +78,29 @@ if [[ -n "$LINKED" ]]; then
     rm -f "$PROBE"
 else
     printf '  skip  %-52s %s\n' "symlinked sibling-repo track" "none present"
+fi
+
+# A workspace that is not the caller's. Measuring membership against roots
+# discovered from the process refuses every one of these - a fixture repository
+# under a temporary directory, and equally a real write issued from a hook whose
+# working directory sits outside the repository.
+WS="$OUTSIDE/ws/.opencode/specs/system-spec-kit/900-probe"
+mkdir -p "$WS"
+expect "another workspace, anchored on .opencode" "wrote" "$(attempt "$WS/graph-metadata.json")"
+rm -f "$WS/graph-metadata.json"
+
+# The same shape with the anchor removed. This is what keeps the destination
+# from authorizing itself: a path is not a workspace merely because it contains
+# a specs segment.
+UNANCHORED="$OUTSIDE/bare/specs/system-spec-kit/900-probe"
+mkdir -p "$UNANCHORED"
+expect "the same shape with no .opencode anchor" "refused" "$(attempt "$UNANCHORED/graph-metadata.json")"
+
+# The production half of the same defect, in the other direction.
+if [[ -d "$PROBE_DIR" ]]; then
+    PROBE="$PROBE_DIR/.write-containment-probe.json"
+    expect "in-repo destination from a foreign cwd" "wrote" "$(attempt "$PROBE" "$OUTSIDE")"
+    rm -f "$PROBE"
 fi
 
 echo

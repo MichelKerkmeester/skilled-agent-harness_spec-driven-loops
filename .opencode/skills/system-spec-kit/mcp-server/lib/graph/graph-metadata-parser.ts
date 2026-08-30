@@ -1706,7 +1706,8 @@ export function serializeGraphMetadata(metadata: GraphMetadata): string {
  * the unresolved one, which is the only path that says where the bytes land.
  */
 /**
- * True when `candidate` sits inside one of the workspace's configured specs roots.
+ * True when `candidate` sits inside a configured specs root of the process's
+ * workspace or of the workspace the destination itself belongs to.
  *
  * Measured on the unresolved path. Resolving first is the stricter reading and
  * would be preferable, but it refuses the tracks that are symlinks into sibling
@@ -1722,9 +1723,26 @@ export function serializeGraphMetadata(metadata: GraphMetadata): string {
  */
 function isWithinConfiguredSpecsRoot(candidate: string): boolean {
   const target = path.resolve(candidate);
-  for (const root of getSpecsBasePaths()) {
-    const base = path.resolve(root);
-    if (target === base || target.startsWith(base + path.sep)) return true;
+  // Two workspaces are consulted, and the second is what makes this correct.
+  //
+  // Roots discovered from the process are the workspace the caller happens to
+  // be running in. That is not the workspace the bytes land in: a hook launched
+  // from the home directory, or a fixture repository built under a temporary
+  // directory, resolves a different root and every write is refused - including
+  // writes into the real repository, which is a live failure and not merely a
+  // test artifact.
+  //
+  // Deriving roots from the destination answers the question that was actually
+  // asked: does this path sit inside a specs root of the workspace it belongs
+  // to. It does not self-authorize, because a root only counts when it exists
+  // on disk and the workspace is anchored on a real `.opencode` directory - a
+  // path that merely contains a `specs` segment yields no roots at all.
+  const rootSources = [getSpecsBasePaths(), getSpecsBasePaths(target)];
+  for (const roots of rootSources) {
+    for (const root of roots) {
+      const base = path.resolve(root);
+      if (target === base || target.startsWith(base + path.sep)) return true;
+    }
   }
   return false;
 }
