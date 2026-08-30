@@ -15,13 +15,11 @@ const fixturesDir = join(import.meta.dirname, 'advisor-fixtures');
 const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 // Every brief now ends with the always-delivered governor capsule that
 // renderAdvisorBrief appends after the capped advisor portion (lib/render.ts).
-const GOVERNOR_DIRECTIVE = '\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
 // The proof-over-appearance capsule rides the same always-delivered suffix.
-const TERMINAL_PROOF_DIRECTIVE = '\n- Proof over appearance: only real command output counts. Encode every requirement as an objective pass-or-fail check (exit code, grep, diff), watch it fail before fixing, fix the root cause once, and close with a clean re-run and a no-stray-files sweep.';
 const DIRECTIVES_LABEL = '\nDirectives:';
 
 function expectedBrief(summary: string): string {
-  return `${summary}${DIRECTIVES_LABEL}${HYGIENE_DIRECTIVE}${GOVERNOR_DIRECTIVE}${TERMINAL_PROOF_DIRECTIVE}`;
+  return `${summary}${DIRECTIVES_LABEL}${HYGIENE_DIRECTIVE}`;
 }
 
 function fixture(name: string): AdvisorHookResult & Record<string, unknown> {
@@ -72,7 +70,7 @@ describe('renderAdvisorBrief', () => {
     // The 120-token (480-char) cap governs the advisor portion only; the fixed
     // directives block is appended in full afterward, so strip it before the
     // length check.
-    const directiveSuffix = DIRECTIVES_LABEL + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
+    const directiveSuffix = DIRECTIVES_LABEL + HYGIENE_DIRECTIVE;
     const ambiguousBrief = renderAdvisorBrief(ambiguous) ?? '';
     const cappedPortion = ambiguousBrief.endsWith(directiveSuffix)
       ? ambiguousBrief.slice(0, -directiveSuffix.length)

@@ -35,13 +35,13 @@ import {
 } from '../../../hooks/lib/directive-lifecycle.js';
 
 // Mirrors the real advisor brief shape: a per-turn "Advisor: …" route line,
-// then the three constant directives under the "\nDirectives:" separator.
+// then the constant directive under the "\nDirectives:" separator.
 const HEAD = 'Advisor: live; use sk-code 0.91/0.23 pass.';
 const DIRECTIVES =
-  '\nDirectives:\n- Comment hygiene [HARD BLOCK]: never embed ids\n- Governor: lead with the result\n- Proof over appearance: only real command output counts';
+  '\nDirectives:\n- Comment hygiene [HARD BLOCK]: never embed ids';
 const FULL = `${HEAD}${DIRECTIVES}`;
 // A brief whose directive text changed (e.g. a redeploy edited a directive).
-const FULL_V2 = `${HEAD}${DIRECTIVES.replace('lead with the result', 'lead with the verdict')}`;
+const FULL_V2 = `${HEAD}${DIRECTIVES.replace('never embed ids', 'never embed identifiers')}`;
 // A different route line, same directive block (a new recommendation).
 const FULL_ROUTE_V2 = `Advisor: stale; use cli-pi 0.95/0.20 pass.${DIRECTIVES}`;
 // Advisor-failure fallback: directives only, no advisor head to keep.

@@ -37,7 +37,7 @@ const ROUTE_ONLY_CONTEXT = 'Advisor: live; use sk-code 0.91/0.23 pass.';
 // Mirrors what the real bridge emits (renderAdvisorBrief appends the three
 // constant directives after the route line) so the lifecycle dedup exercises
 // the true production brief shape.
-const DIRECTIVES_BLOCK = '\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.\n- Proof over appearance: only real command output counts. Encode every requirement as an objective pass-or-fail check (exit code, grep, diff), watch it fail before fixing, fix the root cause once, and close with a clean re-run and a no-stray-files sweep.';
+const DIRECTIVES_BLOCK = '\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 // The plugin's directives-only fallback (FALLBACK_DIRECTIVE): the three constant
 // directives with the 'Directives:' label and no advisor route line. Asserted by
 // the advisor-failure tests below.

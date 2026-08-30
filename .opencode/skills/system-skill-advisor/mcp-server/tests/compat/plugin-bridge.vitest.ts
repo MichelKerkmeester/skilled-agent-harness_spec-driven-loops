@@ -88,7 +88,7 @@ describe('system-skill-advisor plugin bridge compat path', () => {
     expect(parsed.status).toBe('ok');
     expect(parsed.brief).toContain('Advisor:');
     expect(parsed.brief).toContain('system-spec-kit');
-    expect(parsed.brief).toContain('Proof over appearance:');
+    expect(parsed.brief).toContain('Comment hygiene [HARD BLOCK]:');
     expect(parsed.brief).toMatch(/\d+\.\d{2}\/\d+\.\d{2} pass\./);
     expect(parsed.metadata.route).toBe('native');
     expect(parsed.metadata.workspaceRoot).toBe(repoRoot);

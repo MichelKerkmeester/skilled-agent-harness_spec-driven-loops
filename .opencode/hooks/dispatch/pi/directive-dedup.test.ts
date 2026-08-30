@@ -16,7 +16,7 @@ import promptAdvisor, {
 // then the three constant directives under the "\nDirectives:" separator.
 const HEAD = "Advisor: live; use sk-code 0.91/0.23 pass.";
 const DIRECTIVES =
-  "\nDirectives:\n- comment-hygiene [HARD BLOCK]: never embed ids\n- Governor: lead with the result\n- Proof over appearance: only real command output counts";
+  "\nDirectives:\n- comment-hygiene [HARD BLOCK]: never embed ids";
 const FULL = `${HEAD}${DIRECTIVES}`;
 // A brief whose directive text changed (e.g. a redeploy edited a directive).
 const FULL_V2 = `${HEAD}${DIRECTIVES.replace("lead with the result", "lead with the verdict")}`;

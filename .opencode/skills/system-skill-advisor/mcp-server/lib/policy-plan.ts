@@ -7,9 +7,7 @@ import { createRequire } from 'node:module';
 
 import {
   DIRECTIVES_LABEL,
-  GOVERNOR_DIRECTIVE,
   HYGIENE_DIRECTIVE,
-  TERMINAL_PROOF_DIRECTIVE,
 } from './render.js';
 
 const requireOwnerModule = createRequire(import.meta.url);
@@ -123,8 +121,6 @@ export const ROUTE_ADVISOR_ID = 'route.advisor.v1';
 export const GATE_SPEC_FOLDER_QUESTION_ID = 'gate.spec-folder-question.v1';
 export const RUNTIME_PI_DISPATCH_ID = 'runtime.pi-dispatch.v1';
 
-export const POLICY_GOVERNOR_ID = 'policy.governor.v1';
-export const POLICY_PROOF_OVER_APPEARANCE_ID = 'policy.proof-over-appearance.v1';
 export const LIFECYCLE_SESSION_START_ID = 'lifecycle.session-start.v1';
 export const RUNTIME_OPENCODE_CONTINUITY_ID = 'runtime.opencode-continuity.v1';
 export const ROUTE_OPENCODE_COMPILED_ID = 'route.opencode-compiled.v1';
@@ -135,8 +131,6 @@ export const POLICY_BLOCK_IDS = Object.freeze({
   ADVISOR_ROUTE: ROUTE_ADVISOR_ID,
   SPEC_FOLDER_QUESTION: GATE_SPEC_FOLDER_QUESTION_ID,
   PI_DISPATCH: RUNTIME_PI_DISPATCH_ID,
-  GOVERNOR: POLICY_GOVERNOR_ID,
-  PROOF_OVER_APPEARANCE: POLICY_PROOF_OVER_APPEARANCE_ID,
   SESSION_START: LIFECYCLE_SESSION_START_ID,
   OPENCODE_CONTINUITY: RUNTIME_OPENCODE_CONTINUITY_ID,
   OPENCODE_COMPILED_ROUTE: ROUTE_OPENCODE_COMPILED_ID,
@@ -227,16 +221,6 @@ export const POLICY_BLOCK_REGISTRY: readonly PolicyBlockDefinition[] = Object.fr
     id: POLICY_COMMENT_HYGIENE_ID,
     order: 1,
     content: () => HYGIENE_DIRECTIVE,
-  },
-  {
-    id: POLICY_GOVERNOR_ID,
-    order: 2,
-    content: () => GOVERNOR_DIRECTIVE,
-  },
-  {
-    id: POLICY_PROOF_OVER_APPEARANCE_ID,
-    order: 3,
-    content: () => TERMINAL_PROOF_DIRECTIVE,
   },
   {
     id: GATE_SPEC_FOLDER_QUESTION_ID,
@@ -810,12 +794,6 @@ export function buildAdvisorRenderPlan(rendered: string | null): PolicyPlan {
   }
   if (rendered.includes(HYGIENE_DIRECTIVE)) {
     blocks.push({ id: POLICY_COMMENT_HYGIENE_ID, content: HYGIENE_DIRECTIVE, order: 1 });
-  }
-  if (rendered.includes(GOVERNOR_DIRECTIVE)) {
-    blocks.push({ id: POLICY_GOVERNOR_ID, content: GOVERNOR_DIRECTIVE, order: 2 });
-  }
-  if (rendered.includes(TERMINAL_PROOF_DIRECTIVE)) {
-    blocks.push({ id: POLICY_PROOF_OVER_APPEARANCE_ID, content: TERMINAL_PROOF_DIRECTIVE, order: 3 });
   }
   return buildPolicyPlan({ blocks });
 }

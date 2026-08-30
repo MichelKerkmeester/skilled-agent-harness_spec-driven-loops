@@ -10,8 +10,6 @@ import {
   isObservedDeliveryReceipt,
   observeRenderedAdvisorPolicy,
   POLICY_COMMENT_HYGIENE_ID,
-  POLICY_GOVERNOR_ID,
-  POLICY_PROOF_OVER_APPEARANCE_ID,
   recordObservedPolicyDelivery,
   ROUTE_ADVISOR_ID,
   SHADOW_DELIVERY_STATE_MACHINE,
@@ -93,8 +91,6 @@ const MAX_SHADOW_ROUTE_ONLY_LOG = 256;
 function directiveBlockIds(): readonly string[] {
   return Object.freeze([
     POLICY_COMMENT_HYGIENE_ID,
-    POLICY_GOVERNOR_ID,
-    POLICY_PROOF_OVER_APPEARANCE_ID,
   ]);
 }
 
@@ -104,17 +100,7 @@ const SHADOW_ROUTE_ONLY_LOG: ShadowRouteOnlyLogRecord[] = [];
 // the comment hygiene rule even when AGENTS.md is absent from session context.
 export const HYGIENE_DIRECTIVE = '\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 
-// Model-agnostic governor capsule: appended in full after the capped advisor
-// portion so it is always delivered every turn — the thermostat that re-states
-// the disposition as context grows. Steers efficiency (result-first, less
-// narration), not capability. Deliberately carries no model name: model
-// families and tiers change, the disposition does not.
-export const GOVERNOR_DIRECTIVE = '\n- Governor: reason about the problem and the person, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); treat reversible decisions as cheap — decide, mark // DECISION:, move on; qualify only when it changes what the reader should do.';
 
-// Proof-over-appearance capsule, same dispositional shape as the governor:
-// restates the terminal-verification disposition every turn. Deliberately one
-// line; the full five-step protocol lives in AGENTS.md section 4.
-export const TERMINAL_PROOF_DIRECTIVE = '\n- Proof over appearance: only real command output counts. Encode every requirement as an objective pass-or-fail check (exit code, grep, diff), watch it fail before fixing, fix the root cause once, and close with a clean re-run and a no-stray-files sweep.';
 
 // Labels the directive block so injected content reads as one structured
 // capsule instead of loose lines.
@@ -441,7 +427,7 @@ export function renderAdvisorBrief(
     const rendered = capText(
       `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.`,
       Math.min(tokenCap, AMBIGUOUS_TOKEN_CAP),
-    ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
+    ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE;
     observeAdvisorPolicy(rendered, options);
     return rendered;
   }
@@ -449,14 +435,14 @@ export function renderAdvisorBrief(
   const rendered = capText(
     `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.`,
     Math.min(tokenCap, DEFAULT_TOKEN_CAP),
-  ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
+  ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE;
   observeAdvisorPolicy(rendered, options);
   return rendered;
 }
 
 /** Render the fallback steering directives (hygiene, governor, proof) retained when no advisor brief is available. */
 export function renderAdvisorFallbackDirective(options: AdvisorBriefRenderOptions = {}): string {
-  const rendered = DIRECTIVES_LABEL.slice(1) + HYGIENE_DIRECTIVE + GOVERNOR_DIRECTIVE + TERMINAL_PROOF_DIRECTIVE;
+  const rendered = DIRECTIVES_LABEL.slice(1) + HYGIENE_DIRECTIVE;
   observeAdvisorPolicy(rendered, options);
   return rendered;
 }

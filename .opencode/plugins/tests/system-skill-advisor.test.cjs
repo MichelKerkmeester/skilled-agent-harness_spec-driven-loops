@@ -52,7 +52,6 @@ const CLAUDE_HOOK_PATH = path.join(
   'user-prompt-submit.ts',
 );
 const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]:';
-const GOVERNOR_DIRECTIVE = 'Governor:';
 
 const MODULE_STUBS = new Map([
   ['@opencode-ai/plugin/tool', 'export const tool = (definition) => definition;'],
@@ -326,7 +325,6 @@ test('no-brief turns retain hygiene and governor context with OpenCode runtime m
 
   assert.equal(output.system.length, 1);
   assert.match(output.system[0], new RegExp(HYGIENE_DIRECTIVE.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
-  assert.match(output.system[0], new RegExp(GOVERNOR_DIRECTIVE));
   assert.equal(JSON.parse(child.stdinPayload).runtime, 'opencode');
   assert.deepEqual(calls[0].options.stdio, ['pipe', 'pipe', 'ignore']);
 });
@@ -336,7 +334,6 @@ test('missing prompts retain constitutional context while disabled mode stays si
   const hooks = await makePlugin({ spawnOverride: spawnSequence([child]) });
   const missing = await runPrompt(hooks, { prompt: undefined, sessionID: '__global__' });
   assert.match(missing.system[0], /Comment hygiene \[HARD BLOCK\]:/);
-  assert.match(missing.system[0], /Governor:/);
 
   const disabledHooks = await makePlugin({ enabled: false, spawnOverride: spawnSequence([child]) });
   const disabled = await runPrompt(disabledHooks);
@@ -366,7 +363,7 @@ test('termination grace stays inside the configured timeout budget', async () =>
 
   assert.ok(elapsedMs < 200, `expected bounded timeout, got ${elapsedMs}ms`);
   assert.deepEqual(child.kills, ['SIGTERM', 'SIGKILL']);
-  assert.match(output.system[0], /Governor:/);
+  assert.match(output.system[0], /Comment hygiene \[HARD BLOCK\]:/);
   assert.match(await status(hooks), /last_error_code=TIMEOUT/);
 
   const defaultHooks = await makePlugin({ enabled: false });
@@ -485,7 +482,7 @@ test('hostile output containers cannot make the transform fail closed', async ()
   assert.match(await status(hooks), /last_error_code=UNEXPECTED_HOOK_ERROR/);
 });
 
-test('bridge rendering includes governor context and retains canonical renderer loading', async () => {
+test('bridge rendering includes the directive block and retains canonical renderer loading', async () => {
   const bridge = await import(pathToFileURL(BRIDGE_PATH).href);
   const rendered = bridge.renderAdvisorBrief({
     status: 'ok',
@@ -502,7 +499,6 @@ test('bridge rendering includes governor context and retains canonical renderer 
   const source = fs.readFileSync(BRIDGE_PATH, 'utf8');
 
   assert.match(rendered, /Comment hygiene \[HARD BLOCK\]:/);
-  assert.match(rendered, /Governor:/);
   assert.match(source, /compat\.renderAdvisorBrief/);
   assert.match(source, /loadCanonicalRenderer/);
 });
