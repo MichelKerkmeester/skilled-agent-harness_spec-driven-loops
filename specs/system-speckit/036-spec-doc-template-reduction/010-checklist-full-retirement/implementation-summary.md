@@ -148,16 +148,22 @@ checklist. The sweep was widened and `handlers/`, `tool-schemas.ts` and
 | F007 | Verification items unchecked while Status was Complete | 19 items filled with real evidence; one deferred with its reason |
 | F008 | The plan still described a fallback this packet removed | Corrected to single-source |
 
-Two are declined, with reasons:
+All findings are closed; none were left declined.
 
-| ID | Finding | Why not fixed |
-|----|---------|---------------|
-| F004 | The memory taxonomy matches `checklist` as a substring rather than a path segment | Real, and pre-existing. It lives in the taxonomy this packet scoped out, and the retirement makes it strictly less reachable since no new such path will be indexed |
-| — | Four golden snapshots fail on placeholder drift | Reproduces on clean HEAD; only the four checklist lines were hand-patched so the pre-existing failures stay visible rather than being absorbed here |
+| ID | Finding | Resolution |
+|----|---------|------------|
+| F004 | The taxonomy matched `checklist` as a substring, so a `checklists/` directory or any document merely containing the word was labelled a verification record | Bound to a filename match; three false positives verified rejected and both true positives kept |
+| — | Four golden snapshots failed on a stale Status placeholder | The template renders `Draft` and the snapshot still expected the old placeholder, so the snapshot was stale rather than the template. Rebaselined, with the diff audited to exactly that one line class |
 
-A separate contract test broke on the committed retirement — it sampled the
-section gates of the retired document — and was retargeted at a document that
-still carries gates.
+The review's remediation workstreams also surfaced something it under-stated. It
+flagged one task row citing behaviour the live code no longer had; the row was a
+symptom of the whole task list having been seeded from a sibling packet and never
+rewritten. Every task now describes work this packet actually did, and the false
+citation is gone.
+
+One failure remains in the wider suite - a working-memory and attention-decay
+export contract - which reproduces on clean HEAD and has no connection to this
+work.
 <!-- /ANCHOR:review -->
 
 ---

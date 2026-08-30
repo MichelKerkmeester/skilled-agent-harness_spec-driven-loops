@@ -53,9 +53,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Read where the total is counted from and where the evidence was read from - `scripts/rules/check-ac-coverage.sh:125` counts canonical rows while the evidence read scanned a separate table
-- [x] T002 Read the merge that deprecated the standalone checklist and what it claimed to ship - `specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/implementation-summary.md` says the merged document is preferred
-- [x] T003 Capture the reported ratio before the change as the negative control - four packet-042 phases each reported `0/5 ACs have evidence; floor 5/5`
+- [x] T001 Read what the tasks/checklist merge said it would do with the template - its files-to-change table records `Delete/retire` (`specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/spec.md`)
+- [x] T002 Inventory every producer, read-path and artifact still naming the document - 2,270 tracked packet copies, the template, 3 worked examples, and references across rules, server modules and scripts
+- [x] T003 Capture a validation baseline before any edit - fixed 12-packet sample recorded as 10 PASSED / 2 FAILED
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -63,11 +63,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Read evidence from the canonical document's Verification column, columns bound by header - `_ac_analyze_canonical` in `scripts/rules/check-ac-coverage.sh:179`
-- [x] T005 Exempt a retired criterion from citation, since its decision record carries it - Status matching waived or superseded counts as covered (`scripts/rules/check-ac-coverage.sh:220`)
-- [x] T006 Prefer the merged tasks document over the pre-merge checklist - `_ac_traceability_file` in `scripts/rules/check-ac-coverage.sh:72`
-- [x] T007 Activate the gate on the canonical document alone - `_ac_lifecycle_active` in `scripts/rules/check-ac-coverage.sh:50`
-- [x] T008 Make the remediation name the cell an author must actually edit - canonical branch in `scripts/rules/check-ac-coverage.sh:350`
+- [x] T004 Stop the producer creating the document on a level upgrade - `scripts/spec/upgrade-level.sh:798`; a live run now reports `Created: acceptance-criteria.md` only
+- [x] T005 Remove every contract entry - document, version, section gates and optional listings at three levels (`templates/spec-kit-docs.json`, 0 remaining references)
+- [x] T006 Remove the read-paths across rules, server modules and scripts - 35 files; 0 remaining in `scripts/rules/`
+- [x] T007 Delete the template, its 3 worked examples and the 2,270 tracked packet copies - confined to git-tracked in-repo paths, 0 staged under the symlinked repositories
+- [x] T008 Record the document-set generation with each digest so retirement does not invalidate every stored fingerprint - `mcp-server/lib/graph/graph-metadata-parser.ts` `SOURCE_FINGERPRINT_DOCSET`, read at `mcp-server/lib/validation/generated-metadata-integrity.ts:168`
+- [x] T009 Hold verification-shaped ids to the evidence standard, which the retirement would otherwise have exempted - `scripts/rules/check-evidence.sh:89`
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -75,10 +76,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T009 Write the rule's first unit suite, pinning the ratio rather than the severity - `scripts/tests/check-ac-coverage.sh` 14/14
-- [x] T010 Confirm the negative control still scores zero after the fix - prose-only verification reports `0/2` (`scripts/tests/check-ac-coverage.sh:64`)
-- [x] T011 Confirm a pre-merge packet resolves to the source it always did - `scripts/tests/check-ac-coverage.sh:125` returns `checklist.md`
-- [x] T012 Confirm the live symptom is gone - four packet-042 phases now report `5/5 ACs have evidence`
+- [x] T010 Confirm an untouched packet needs no repair after the change - 12-packet sample identical to its pre-change baseline with no repair run
+- [x] T011 Confirm real content drift is still reported - editing a current-generation packet's spec.md reports 1 mismatch; restoring returns 0
+- [x] T012 Confirm the evidence rule reports an uncited verification item - three fixtures report warn / pass / warn as specified (`scripts/tests/check-ac-coverage.sh`)
+- [x] T013 Confirm the fixture suite did not regress - HEAD 16 failed / 23 passed, now 13 failed / 22 passed
+- [x] T014 Confirm the retirement invariants hold - 0 tracked copies, 0 live template references, 0 rule read-paths
+- [x] T015 Close the deep-review findings, including the handlers directory the first sweep missed - `mcp-server/handlers/`, `mcp-server/tool-schemas.ts`, `mcp-server/scripts/`
 <!-- /ANCHOR:phase-3 -->
 
 ---
