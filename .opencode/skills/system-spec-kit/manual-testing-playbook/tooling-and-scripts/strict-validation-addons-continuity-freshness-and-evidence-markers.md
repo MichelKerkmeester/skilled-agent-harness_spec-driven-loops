@@ -88,7 +88,7 @@ Result: continuity freshness and evidence-marker strict checks produced the expe
 
 ### Failure Triage
 
-Inspect `scripts/spec/validate.sh`, `scripts/validation/continuity-freshness.ts`, `scripts/validation/evidence-marker-lint.ts`, `scripts/validation/evidence-marker-audit.ts`, and `scripts/rules/check-normalizer-lint.sh`
+Inspect `scripts/spec/validate.sh`, `scripts/validation/continuity-freshness.ts`, `scripts/validation/evidence-marker-audit.ts`, and `scripts/rules/check-normalizer-lint.sh`
 
 ---
 

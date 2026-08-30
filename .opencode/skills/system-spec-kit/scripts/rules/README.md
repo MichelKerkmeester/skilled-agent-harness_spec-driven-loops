@@ -55,15 +55,11 @@ Dependency direction: validate.sh ───▶ registry ───▶ rules ─�
 ```text
 rules/
 +-- check-files.sh              # Required file checks by level
-+-- check-sections.sh           # Required section checks
 +-- check-template-source.sh    # Template source marker checks
-+-- check-template-headers.sh   # Template header checks
 +-- check-canonical-save.sh     # Save-time contract checks
 +-- check-canonical-save-helper.cjs
 +-- check-graph-metadata.sh     # Graph metadata checks
 +-- check-links.sh              # Optional cross-skill link scan
-+-- check-phase-links.sh        # Parent and child phase references
-+-- check-phase-parent-content.sh
 +-- check-*.sh                  # Additional focused rule modules
 `-- README.md
 ```
@@ -79,10 +75,8 @@ The full rule list is the set of `check-*.sh` files in this directory plus `chec
 | `check-files.sh` | Confirms required packet files for the declared level. |
 | `check-level-match.sh` | Compares declared level with required-file state. |
 | `check-template-source.sh` | Verifies template-source metadata markers. |
-| `check-template-headers.sh` | Verifies template header contracts. |
 | `check-canonical-save.sh` | Checks canonical save artifacts and lineage data. |
 | `check-links.sh` | Runs optional markdown link validation when enabled. |
-| `check-phase-parent-content.sh` | Checks phase-parent content boundaries. |
 
 ---
 

@@ -31,7 +31,6 @@ validation/
 +-- ephemeral-pointer-audit.mjs  # Comment-hygiene guard (sk-code §4 enforcement)
 +-- continuity-freshness.ts      # Continuity timestamp freshness validator
 +-- evidence-marker-audit.ts     # Evidence-marker parser, report and optional rewrap tool
-+-- evidence-marker-lint.ts      # Strict-mode bridge around the evidence-marker audit
 `-- README.md
 ```
 
@@ -44,7 +43,6 @@ validation/
 | `ephemeral-pointer-audit.mjs` | Standalone, dependency-free Node ESM guard that scans code comments only and flags pointers to ephemeral artifacts. Durable WHY comments and external standards (SHA-256, UTF-16, CWE, RFC) are explicitly allowed; the perishable traceability id is what it forbids. |
 | `continuity-freshness.ts` | Compares `_memory.continuity.last_updated_at` against the `graph-metadata.json` save time and reports lag. |
 | `evidence-marker-audit.ts` | Parses evidence markers while ignoring fenced and inline code; read-only unless `--rewrap` is supplied. |
-| `evidence-marker-lint.ts` | Converts audit results into validation-friendly output and exits non-zero under `--strict` when invalid markers exist. |
 
 ---
 
@@ -68,7 +66,6 @@ Behavior worth knowing:
 
 - Run these scripts against spec folders or source trees as noted; the audit recurses directories.
 - `evidence-marker-audit.ts` is read-only unless `--rewrap` is supplied.
-- `evidence-marker-lint.ts` requires `--folder` and supports `--json` and `--strict`.
 - `continuity-freshness.ts` treats missing optional files as skipped checks rather than hard failures.
 
 ---
@@ -102,4 +99,3 @@ Expected result: the audit exits `0` over a clean tree and the README validation
 - [`ephemeral-pointer-audit.mjs`](./ephemeral-pointer-audit.mjs)
 - [`continuity-freshness.ts`](./continuity-freshness.ts)
 - [`evidence-marker-audit.ts`](./evidence-marker-audit.ts)
-- [`evidence-marker-lint.ts`](./evidence-marker-lint.ts)

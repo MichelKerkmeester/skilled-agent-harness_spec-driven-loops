@@ -212,9 +212,9 @@ function detectLevel(folder: string): SpecKitLevel {
     const head = fs.readFileSync(specPath, 'utf8').slice(0, 4096);
     const marker = head.match(/SPECKIT_LEVEL:\s*(1|2|3\+?|phase|review|research)/u)?.[1];
     if (marker) return normalizeLevel(marker);
-    const yamlLevel = head.match(/^level:\s*(1|2|3\+?)\s*$/mu)?.[1];
+    const yamlLevel = head.match(/^level:\s*(1|2|3\+?|phase|review|research)\s*$/mu)?.[1];
     if (yamlLevel) return normalizeLevel(yamlLevel);
-    const tableLevel = head.match(/\|\s*\*\*Level\*\*\s*\|\s*(1|2|3\+?)\s*\|/u)?.[1];
+    const tableLevel = head.match(/\|\s*\*\*Level\*\*\s*\|\s*(1|2|3\+?|phase|review|research)\s*\|/u)?.[1];
     if (tableLevel) return normalizeLevel(tableLevel);
   }
   if (fs.existsSync(path.join(folder, 'decision-record.md'))) return '3';

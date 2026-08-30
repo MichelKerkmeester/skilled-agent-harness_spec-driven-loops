@@ -163,7 +163,7 @@ run_check() {
     fi
 
     if [[ -z "$primary_level" ]] && _level_has_invalid_declaration "$folder/spec.md"; then
-        errors+=("spec.md contains an invalid level declaration (expected 1, 2, 3, or 3+)")
+        errors+=("spec.md contains an invalid level declaration (expected 1, 2, 3, 3+, phase, review, or research)")
     fi
 
     if [[ -z "$primary_level" ]]; then
@@ -186,7 +186,7 @@ run_check() {
                     fi
                 else
                     if _level_has_invalid_declaration "$file"; then
-                        errors+=("$basename contains an invalid level declaration (expected 1, 2, 3, or 3+)")
+                        errors+=("$basename contains an invalid level declaration (expected 1, 2, 3, 3+, phase, review, or research)")
                     else
                         warnings+=("$basename does not declare a level (expected Level $primary_level)")
                     fi

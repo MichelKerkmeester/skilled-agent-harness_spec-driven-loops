@@ -3328,7 +3328,6 @@ Prompt: `Validate Phase link validation against bash .opencode/skills/system-spe
 4 link check types reported; well-formed folder produces exit 0; missing child produces warn on Phase Documentation Map; corrupted back-reference produces warn; all issues at warn severity
 
 #### Test Execution
-> **Feature File:** [PHASE-004](../manual-testing-playbook/tooling-and-scripts/phase-link-validation.md)
 
 ### PHASE-005 | Phase command workflow
 
@@ -3758,7 +3757,6 @@ This split playbook keeps automated coverage references in three places:
 | PHASE-001 | Phase System Features | Phase detection scoring | [PHASE-001](../manual-testing-playbook/tooling-and-scripts/phase-detection-scoring.md) | *(test-only, no catalog entry)* |
 | PHASE-002 | Phase System Features | Phase folder creation | [PHASE-002](../manual-testing-playbook/tooling-and-scripts/phase-folder-creation.md) | *(test-only, no catalog entry)* |
 | PHASE-003 | Phase System Features | Recursive phase validation | [PHASE-003](../manual-testing-playbook/tooling-and-scripts/recursive-phase-validation.md) | *(test-only, no catalog entry)* |
-| PHASE-004 | Phase System Features | Phase link validation | [PHASE-004](../manual-testing-playbook/tooling-and-scripts/phase-link-validation.md) | *(test-only, no catalog entry)* |
 | PHASE-005 | Phase System Features | Phase command workflow | [PHASE-005](../manual-testing-playbook/tooling-and-scripts/phase-command-workflow.md) | *(test-only, no catalog entry)* |
 | PHASE-006 | Phase System Features | Spec-folder literal naming (create.sh fallback) | [PHASE-006](../manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md) | *(test-only, no catalog entry)* |
 | PHASE-008 | Phase System Features | Spec-folder literal naming (CLI-driven slug proposal) | [PHASE-008](../manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-cli-driven-slug.md) | *(test-only, no catalog entry)* |

@@ -44,7 +44,6 @@ The validator therefore gained both freshness enforcement and structural linting
 | `scripts/spec/validate.sh` | Orchestrator | Strict validator entry point that runs the new add-ons |
 | `scripts/validation/continuity-freshness.ts` | Script | Detects stale `_memory.continuity.last_updated_at` values relative to packet metadata |
 | `scripts/validation/evidence-marker-audit.ts` | Script | Bracket-depth audit and repair surface for malformed evidence markers |
-| `scripts/validation/evidence-marker-lint.ts` | Script | Strict lint wrapper over the evidence-marker audit parser |
 | `scripts/rules/check-normalizer-lint.sh` | Validation rule | Blocks new duplicate local scope-normalizer helpers |
 
 ### Validation And Tests
@@ -53,7 +52,6 @@ The validator therefore gained both freshness enforcement and structural linting
 |---|---|---|
 | `scripts/tests/continuity-freshness.vitest.ts` | Automated test | Continuity freshness warning behavior |
 | `scripts/tests/evidence-marker-audit.vitest.ts` | Automated test | Bracket-depth audit behavior |
-| `scripts/tests/evidence-marker-lint.vitest.ts` | Automated test | Strict lint exit-code behavior |
 | `scripts/tests/normalizer-lint.vitest.ts` | Automated test | Duplicate-normalizer rule coverage |
 
 ---

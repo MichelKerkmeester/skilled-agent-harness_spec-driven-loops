@@ -70,9 +70,7 @@ The implementation extended the strict path beyond the original shell-rule inven
 | File | Layer | Role |
 |------|-------|------|
 | `.opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh` | Validation rule | Rule script discovered and executed by the orchestrator for the AI protocols domain |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-anchors.sh` | Validation rule | Rule script discovered and executed by the orchestrator for anchor validation |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-complexity.sh` | Validation rule | Rule script discovered and executed by the orchestrator for complexity matching |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh` | Validation rule | Rule script discovered and executed by the orchestrator for evidence citation checks |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` | Validation rule | Rule script discovered and executed by the orchestrator for required file checks |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-folder-naming.sh` | Validation rule | Rule script discovered and executed by the orchestrator for folder naming checks |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-frontmatter.sh` | Validation rule | Rule script discovered and executed by the orchestrator for frontmatter validation |
@@ -80,13 +78,8 @@ The implementation extended the strict path beyond the original shell-rule inven
 | `.opencode/skills/system-spec-kit/scripts/rules/check-level.sh` | Validation rule | Rule script discovered and executed by the orchestrator for level declaration checks |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-links.sh` | Validation rule | Rule script discovered and executed by the orchestrator for link validation |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-normalizer-lint.sh` | Validation rule | Rule script discovered and executed by the orchestrator for duplicate scope-normalizer detection |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-phase-links.sh` | Validation rule | Rule script discovered and executed by the orchestrator for parent-child phase linkage checks |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-placeholders.sh` | Validation rule | Rule script discovered and executed by the orchestrator for placeholder detection |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-priority-tags.sh` | Validation rule | Rule script discovered and executed by the orchestrator for checklist priority-tag checks |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh` | Validation rule | Rule script discovered and executed by the orchestrator for section-count validation |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-sections.sh` | Validation rule | Rule script discovered and executed by the orchestrator for required section checks |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-spec-doc-integrity.sh` | Validation rule | Rule script discovered and executed by the orchestrator for spec document integrity checks |
-| `.opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh` | Validation rule | Rule script discovered and executed by the orchestrator for template-header validation |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-template-source.sh` | Validation rule | Rule script discovered and executed by the orchestrator for template-source validation |
 | `.opencode/skills/system-spec-kit/scripts/rules/check-toc-policy.sh` | Validation rule | Rule script discovered and executed by the orchestrator for table-of-contents policy checks |
 
