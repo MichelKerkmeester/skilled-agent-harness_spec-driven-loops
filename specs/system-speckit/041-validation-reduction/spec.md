@@ -138,7 +138,7 @@ the corpus being told it is broken by rules nothing consumes.
 | 5 | `005-framework-doc-matches-behaviour` | The always-loaded document describes the gate that exists | Complete |
 | 6 | `006-delete-taste-rules` | Remove rules that encode taste with no consumer | Complete |
 | 7 | `007-derive-not-grade` | Stop copying derived facts into authored prose | Deferred |
-| 8 | `008-the-small-gate` | Collapse to the checks with a machine consumer | Deferred |
+| 8 | `008-the-small-gate` | Collapse to the checks with a machine consumer | Superseded |
 | 9 | `009-retire-the-sweep` | Replace the weekly cron with a changed-packet check | Complete |
 | 10 | `010-a-level-for-research` | A level whose contract fits research and audit packets | Complete |
 
@@ -168,11 +168,34 @@ the corpus being told it is broken by rules nothing consumes.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Whether the four surviving checks should block a merge or only a completion
-  claim. Nothing mechanical enforces the gate today, so making it block is a
-  policy change with its own consequences.
-- Whether any deleted rule is load-bearing for a consumer outside this
-  repository, given the framework document is symlinked into others.
+Both original questions are answered, and phase 8's premise did not survive
+contact with the error-severity rules.
+
+**Blocking is settled.** Phase 9 made the gate block a pull request, scoped to
+the packets it changed and — after measuring 52 pre-existing failures on this
+packet's own diff — narrowed further to regressions against the merge base.
+
+**Phase 8 is superseded, not skipped.** Its framing was to keep only the checks
+with a machine consumer. That reasoning is sound for advisory rules and phase 6
+applied it: nine deleted, every one confirmed to have no reader. It does not
+transfer to error rules. Of the 30 that remain, 9 are named nowhere outside
+their own rule, tests and docs — including the comment-hygiene marker that backs
+a framework hard block, the scaffold check that catches unfinished packets, and
+the five canonical-save invariants. An enforcing rule's consumer is the verdict
+it produces, so "nothing references it" is not evidence it is unused. Deleting
+on that basis would remove real enforcement, which is the opposite of this
+packet's purpose.
+
+**Phase 7 stays open, and now has a measured price.** Its criterion is that
+moving a folder produces no findings; it currently produces two, both stored
+facts disagreeing with disk. Deriving them instead of storing them is the right
+fix and is not a cleanup: 55 source files across the cognitive, causal and
+search layers read the stored identity fields, over roughly 7,700 metadata
+files. That needs its own design pass and review rather than being folded into
+this packet.
+
+**Still unanswered.** Whether any deleted rule is load-bearing for a consumer
+outside this repository, given the framework document is symlinked into others.
 <!-- /ANCHOR:questions -->
 
 ---
