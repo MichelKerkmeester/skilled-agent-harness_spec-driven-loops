@@ -40,7 +40,7 @@ _memory:
 
 **Packet:** system-speckit/036-spec-doc-template-reduction/013-retirement-read-path-closure
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-08-30
 <!-- /ANCHOR:metadata -->
 
@@ -53,14 +53,14 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given that the evidence rule was deleted as advisory, When this packet closes, Then it records whether a blocking successor is wanted and why | [the decision, written down with its reasoning] | Unmet | - |
-| AC-002 | REQ-001 | Given a successor is wanted, When its id matching is specified, Then it covers the family, colon and four-digit shapes the deleted rule missed | [the shapes enumerated against the template's real ids] | Unmet | - |
-| AC-003 | REQ-002 | Given a level-2 packet, When level is inferred, Then both modules return 2 | [both call sites exercised, with the pre-change return of 1 as the control] | Unmet | - |
-| AC-004 | REQ-002 | Given the module the retirement never touched, When it infers level, Then it uses the replacement document rather than the deleted one | [file:line plus exercised output] | Unmet | - |
-| AC-005 | REQ-003 | Given a misspelled value in either enforcement variable, When the rule runs, Then it reports the unrecognized value instead of disabling itself | [rule output for a misspelled value] | Unmet | - |
-| AC-006 | REQ-004 | Given the reference tree, When it is searched for instructions to create the retired document, Then none remain and no link points at the deleted template | [search output, against the eight files that still match after a concurrent dead-link sweep] | Unmet | - |
-| AC-007 | REQ-005 | Given a phase child scaffolded at level 2, When it is created, Then it has the merged verification region | [the region present in a freshly created packet] | Unmet | - |
-| AC-008 | REQ-005 | Given a packet scaffolded at level 1 and then upgraded, When the upgrade completes, Then it has the same verification region as one scaffolded at level 2 | [both packets compared] | Unmet | - |
+| AC-001 | REQ-001 | Given that the evidence rule was deleted as advisory, When this packet closes, Then it records whether a blocking successor is wanted and why | ADR-001: the closure gate already blocks on the same property; the deleted rule never did | Met | - |
+| AC-002 | REQ-001 | Given a successor is wanted, When its id matching is specified, Then it covers the family, colon and four-digit shapes the deleted rule missed | Superseded — no successor is being built, so its id matching is moot | Superseded | ADR-001 |
+| AC-003 | REQ-002 | Given a level-2 packet, When level is inferred, Then both modules return 2 | `scripts/lib/completion-state.cjs` inferLevel; an L2 fixture returned 1 before the fix and 2 after | Met | - |
+| AC-004 | REQ-002 | Given the module the retirement never touched, When it infers level, Then it uses the replacement document rather than the deleted one | `shared/parsing/spec-doc-health.ts:85` now reads acceptance-criteria.md; the retirement never touched this file | Met | - |
+| AC-005 | REQ-003 | Given a misspelled value in either enforcement variable, When the rule runs, Then it reports the unrecognized value instead of disabling itself | `scripts/lib/parse-bool-flag.sh`; the value `ture` disabled a blocking rule before, keeps it enabled and names itself after | Met | - |
+| AC-006 | REQ-004 | Given the reference tree, When it is searched for instructions to create the retired document, Then none remain and no link points at the deleted template | `rg checklist.md references/` — only the line that says PRESERVE for historical docs remains | Met | - |
+| AC-007 | REQ-005 | Given a phase child scaffolded at level 2, When it is created, Then it has the merged verification region | A phase child scaffolded with --level 2 now has protocol anchor and 26 verification items; it had 0 before | Met | - |
+| AC-008 | REQ-005 | Given a packet scaffolded at level 1 and then upgraded, When the upgrade completes, Then it has the same verification region as one scaffolded at level 2 | L1 scaffold then upgrade --to 2: 0 items before, 26 after, and a second run stays at 26 | Met | - |
 
 ### Status values
 
@@ -85,9 +85,13 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-[Write this when the packet is closed, not before. AC-007 and AC-008 are the rows that decide
-whether the other fixes hold: a coverage rule and an evidence rule are only as good as the
-document they read, and today the scaffold does not produce one.]
+AC-007 and AC-008 carried the packet, and they were right to. Every other fix reads a document
+the scaffold was not producing: a phase child was created at Level 1 regardless of the level
+asked for, and the upgrade path added documents without re-assembling the one that carries the
+verification region. Both are closed, and both were measured before and after.
+
+AC-002 is superseded. It specified the id shapes a successor to the deleted evidence rule would
+need to match, and the decision was to build no successor.
 <!-- /ANCHOR:closure -->

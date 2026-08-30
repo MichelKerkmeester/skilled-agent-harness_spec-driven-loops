@@ -42,14 +42,15 @@ const EXEC_MAX_BUFFER_BYTES = 2 * 1024 * 1024;
 // makes the whole surface a full no-op: no filesystem probe, no script exec.
 const DISABLED_ENV = 'SYSTEM_SPECKIT_COMPLETION_DISABLED';
 
-// Canonical-doc presence infers the spec level: decision-record.md raises to
-// 2, decision-record.md (or its dashed variant) raises it further to 3. This
+// Canonical-doc presence infers the spec level: acceptance-criteria.md raises
+// to 2, decision-record.md (or its dashed variant) raises it further to 3. This
 // mirrors the repo's own Level 1/2/3 documentation-depth convention rather than
 // re-deriving it from LOC or any other heuristic.
 const CANONICAL_DOC_FILENAMES = Object.freeze({
   spec: 'spec.md',
   plan: 'plan.md',
   tasks: 'tasks.md',
+  acceptanceCriteria: 'acceptance-criteria.md',
   decisionRecord: 'decision-record.md',
   implementationSummary: 'implementation-summary.md',
 });
@@ -105,7 +106,7 @@ function detectFilesPresent(specFolder) {
 
 function inferLevel(filesPresent) {
   let level = 1;
-  if (filesPresent && filesPresent.checklist) level = 2;
+  if (filesPresent && filesPresent.acceptanceCriteria) level = 2;
   if (filesPresent && filesPresent.decisionRecord) level = 3;
   return level;
 }

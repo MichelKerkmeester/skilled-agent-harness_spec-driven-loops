@@ -96,7 +96,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 **Rule ID:** `AC_COVERAGE`  
 **Severity:** INFO  
 **Default:** Enabled (advisory). Set `SPECKIT_AC_COVERAGE=false` to opt out.  
-**Lifecycle predicate:** Level 2+ only, with `checklist.md` present and `implementation-summary.md` status in-progress or later. Level 1 folders and fresh scaffolds are exempt.  
+**Lifecycle predicate:** Level 2+ only, with `acceptance-criteria.md` present and `implementation-summary.md` status in-progress or later. Level 1 folders and fresh scaffolds are exempt.  
 **Coverage calculation:** covered acceptance criteria divided by total acceptance criteria must meet `ceil(total * SPECKIT_AC_COVERAGE_FLOOR)`. The default floor is `0.9`; values outside `[0,1]` are clamped.  
 **Escape hatch:** a traceability row classified as Manual-infeasible counts as covered only when it carries a rationale.  
 **Evidence citations:** Tested or Partially covered rows count only with `file:line` evidence. Malformed evidence is named in the advisory details.
@@ -115,7 +115,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 **Rule ID:** `CONTINUITY_FRESHNESS`  
 **Severity (inner label):** `warn` by default; `error` when `SPECKIT_COMPLETION_FRESHNESS_ENFORCE=true`  
 **Default:** Disabled. Set `SPECKIT_COMPLETION_FRESHNESS=true` to run the strict-only scan.  
-**Lifecycle predicate:** strict validation only, with a completion claim present (`checklist.md` checked evidence, `completion_pct: 100`, or complete/shipped status).  
+**Lifecycle predicate:** strict validation only, with a completion claim present (tasks.md checked verification evidence, `completion_pct: 100`, or complete/shipped status).  
 **Clean-tree scope:** packet-scoped paths only, not the whole repository.  
 **Clock drift:** a continuity timestamp newer than graph metadata remains a benign pass path.
 
@@ -144,7 +144,7 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | Level | Required Files                                                 |
 | ----- | -------------------------------------------------------------- |
 | 1     | `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`  |
-| 2     | Level 1 + `checklist.md`                                       |
+| 2     | Level 1 + `acceptance-criteria.md`                                       |
 | 3     | Level 2 + `decision-record.md`                                 |
 | **review** | `spec.md`, `review/review-report.md` (lean review record, entered only via the `<!-- SPECKIT_LEVEL: review -->` marker, waives plan/tasks/decision-record/implementation-summary) |
 | **Phase Parent** | `spec.md`, `description.json`, `graph-metadata.json` (lean trio only; heavy docs live in phase children) |
@@ -159,7 +159,7 @@ All spec folders require an implementation summary that captures what was built:
 | --------------------------- | --------------------------- | ---------------------------------------------- |
 | `implementation-summary.md` | End of implementation phase | Captures what was built, deviations, results   |
 
-**Note:** `create.sh` scaffolds `implementation-summary.md` for Level 1 and above. `check-files.sh` skips it in the base required-doc loop and only enforces it once implementation has started — i.e. when `checklist.md` or `tasks.md` shows completed `[x]` items. At that point a missing `implementation-summary.md` is an ERROR.
+**Note:** `create.sh` scaffolds `implementation-summary.md` for Level 1 and above. `check-files.sh` skips it in the base required-doc loop and only enforces it once implementation has started — i.e. when `tasks.md` shows completed `[x]` items. At that point a missing `implementation-summary.md` is an ERROR.
 
 ### Nested Packet Changelog (Recommended for phased work)
 
@@ -187,7 +187,7 @@ specs/008-complex-feature/
 ├── spec.md                   ✓
 ├── plan.md                   ✓
 ├── tasks.md                  ✓
-├── checklist.md              ✓
+├── acceptance-criteria.md    ✓
 └── implementation-summary.md ✓
 ```
 
@@ -245,7 +245,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path sp
 - `spec.md`
 - `plan.md`
 - `tasks.md`
-- `checklist.md` (if exists)
+- `acceptance-criteria.md` (if exists)
 - `decision-record.md` (if exists)
 
 ### Excluded Paths
@@ -292,7 +292,7 @@ Replace placeholder text with actual content:
 1. **Explicit (preferred):** Look for `| **Level** | N |` in spec.md metadata table
 2. **Inferred (fallback):** Based on file presence:
    - Has `decision-record.md` → Level 3
-   - Has `checklist.md` → Level 2
+   - Has `acceptance-criteria.md` → Level 2
    - Otherwise → Level 1
 
 ### Examples
@@ -351,7 +351,7 @@ Content goes here...
 1. **Every ANCHOR must have a closing /ANCHOR**
 2. **Names must match exactly** (case-sensitive)
 3. **No nesting** - anchors cannot contain other anchors
-4. **Scope:** `memory/*.md` files plus the major spec docs — `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, and `implementation-summary.md` — are validated
+4. **Scope:** `memory/*.md` files plus the major spec docs — `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, and `implementation-summary.md` — are validated
 
 ### Examples
 
@@ -462,7 +462,7 @@ mv specs/Feature specs/001-feature
 
 ### Validation Checks
 
-`check-frontmatter.sh` scans all six major spec docs: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, and `implementation-summary.md`. It validates frontmatter closure plus required semantic fields (`title`, `description`, `importance_tier`, `contextType`, `trigger_phrases`).
+`check-frontmatter.sh` scans all six major spec docs: `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, and `implementation-summary.md`. It validates frontmatter closure plus required semantic fields (`title`, `description`, `importance_tier`, `contextType`, `trigger_phrases`).
 
 | Check                     | Files Scanned     | Description                             |
 | ------------------------- | ----------------- | --------------------------------------- |
@@ -640,7 +640,7 @@ cat .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
 | Level | Required Files                                                                |
 | ----- | ---------------------------------------------------------------------------- |
 | 1     | spec.md, plan.md, tasks.md, implementation-summary.md (enforced once implementation starts — see §3) |
-| 2     | Level 1 + checklist.md                                                        |
+| 2     | Level 1 + acceptance-criteria.md                                                        |
 | 3     | Level 2 + decision-record.md                                                  |
 | 3+    | Level 3 set + Level-3+ governance section gates (see template-compliance-contract.md §6) |
 
@@ -649,7 +649,7 @@ cat .opencode/skills/system-spec-kit/templates/core/plan.md.tmpl
 **Error (missing required file):**
 ```
 Declared: Level 2
-Missing: checklist.md
+Missing: acceptance-criteria.md
 ```
 
 **Error (inconsistent levels):**

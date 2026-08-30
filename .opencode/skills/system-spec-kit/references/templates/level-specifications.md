@@ -30,7 +30,7 @@ templates/
 ├── plan.md.tmpl             # Technical approach
 ├── tasks.md.tmpl            # Task breakdown
 ├── acceptance-criteria.md.tmpl  # Closure criteria (Level 2+)
-├── checklist.md.tmpl        # Verification gates
+├── acceptance-criteria.md.tmpl  # Closure criteria
 ├── decision-record.md.tmpl  # Architecture decisions
 ├── implementation-summary.md.tmpl
 ├── phase-parent.spec.md.tmpl
@@ -189,7 +189,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 - `tasks.md` (from Level 1) - Task breakdown by user story
 - `implementation-summary.md` (from Level 1) - Post-implementation documentation
 - `acceptance-criteria.md` (NEW at Level 2) - The criteria that gate packet closure
-- `checklist.md` (optional at Level 2) - Validation/QA checklists
+- `acceptance-criteria.md` (required at Level 2) - the criteria that decide whether the packet may close
 
 ### Optional Files
 
@@ -199,14 +199,14 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 
 **All Level 1 content expectations PLUS:**
 
-**checklist.md required sections:**
+**acceptance-criteria.md required sections:**
 - Pre-implementation validation
 - Per-task verification
 - Integration testing steps
 - Security review checklist (if applicable)
 - Deployment verification
 
-**Enforcement:** Hard block if `checklist.md` missing
+**Enforcement:** Hard block if `acceptance-criteria.md` missing
 
 ### Example Scenarios
 
@@ -235,7 +235,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 - `templates/core/tasks.md.tmpl`
 - `templates/core/implementation-summary.md.tmpl`
 - `templates/addons/acceptance-criteria.md.tmpl`
-- `templates/addons/checklist.md.tmpl`
+- `templates/addons/acceptance-criteria.md.tmpl`
 
 **Addendum source (+Verify):**
 - `templates/core/spec.md.tmpl`
@@ -246,7 +246,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 
 **All Level 1 adaptations PLUS:**
 
-**checklist.md:**
+**acceptance-criteria.md:**
 1. Fill pre-implementation checks specific to feature
 2. Add implementation validation steps
 3. Define testing checklist items
@@ -265,7 +265,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 ├── plan.md                    # Technical approach
 ├── tasks.md                   # Implementation tasks
 ├── implementation-summary.md  # Post-implementation outcomes
-├── checklist.md               # Verification checklist (Level 2+)
+├── acceptance-criteria.md     # Closure criteria (Level 2+)
 ├── description.json           # Generated packet metadata
 ├── graph-metadata.json        # Generated graph metadata
 └── scratch/                   # Temporary files
@@ -305,7 +305,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 - `spec.md` (from Level 2) - Requirements and user stories
 - `plan.md` (from Level 2) - Technical implementation plan
 - `tasks.md` (from Level 2) - Task breakdown by user story
-- `checklist.md` (from Level 2) - Validation/QA checklists
+- `acceptance-criteria.md` (from Level 2) - the criteria that decide whether the packet may close
 - `decision-record.md` (NEW at Level 3) - Architecture Decision Records/ADRs
 - `implementation-summary.md` (from Level 2) - Post-implementation outcomes and verification evidence
 
@@ -345,7 +345,7 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 - `templates/core/spec.md.tmpl`
 - `templates/core/plan.md.tmpl`
 - `templates/core/tasks.md.tmpl`
-- `templates/addons/checklist.md.tmpl`
+- `templates/addons/acceptance-criteria.md.tmpl`
 - `templates/addons/decision-record.md.tmpl`
 - `templates/core/implementation-summary.md.tmpl`
 
@@ -389,7 +389,7 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 - `spec.md` (from Level 3) - With Complexity Assessment section
 - `plan.md` (from Level 3) - With AI Execution Framework, dependency graphs
 - `tasks.md` (from Level 3) - With 3-Tier Task Format, AI Execution Protocol
-- `checklist.md` (from Level 3) - Extended (100-150 items) with sign-off section
+- `acceptance-criteria.md` (from Level 3) - extended criteria with a sign-off section
 - `decision-record.md` (from Level 3) - Architecture Decision Records
 - `implementation-summary.md` (from Level 3) - Required completion artifact for all levels
 
@@ -404,8 +404,8 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 | AI Execution Protocol | Pre-task checklist, execution rules, status format | tasks.md, plan.md |
 | Dependency Graph | Full DAG visualization of task dependencies | plan.md |
 | Effort Estimation | Story points/hours per phase with totals | plan.md |
-| Extended Checklist | 100-150 items with P0/P1/P2 prioritization | checklist.md |
-| Sign-Off Section | Technical Lead, Product Owner, QA Lead sign-offs | checklist.md |
+| Extended verification | 100-150 items with P0/P1/P2 prioritization | tasks.md |
+| Sign-Off Section | Technical Lead, Product Owner, QA Lead sign-offs | tasks.md |
 | Workstream Organization | Parallel workstream tracking and coordination | tasks.md |
 
 ### AI Execution Protocol Components
@@ -415,7 +415,7 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 2. Load plan.md and identify current phase
 3. Load tasks.md and find next uncompleted task
 4. Verify task dependencies are satisfied
-5. Load checklist.md and identify relevant P0/P1 items
+5. Load tasks.md and identify relevant P0/P1 verification items
 6. Check for blocking issues in decision-record.md
 7. Verify memory/ folder for context from previous sessions
 8. Confirm understanding of success criteria
@@ -459,7 +459,7 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 - Workstream organization (if parallel work)
 - Status reporting format
 
-**checklist.md additions:**
+**tasks.md verification additions:**
 - Extended Verification section (Level 3+)
 - Sign-Off section with Technical Lead, Product Owner, QA Lead
 - Verification Summary table
@@ -480,7 +480,7 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 - `templates/core/spec.md.tmpl`
 - `templates/core/plan.md.tmpl`
 - `templates/core/tasks.md.tmpl`
-- `templates/addons/checklist.md.tmpl`
+- `templates/addons/acceptance-criteria.md.tmpl`
 - `templates/addons/decision-record.md.tmpl`
 - `templates/core/implementation-summary.md.tmpl`
 
@@ -546,7 +546,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-fe
 
 | From   | To   | Files Added                                            |
 | ------ | ---- | ------------------------------------------------------ |
-| L1 → L2 | +Verify | `checklist.md` + addendum sections in existing files |
+| L1 → L2 | +Verify | `acceptance-criteria.md` + the verification region in tasks.md |
 | L2 → L3 | +Arch   | `decision-record.md` + addendum sections             |
 | L3 → L3+ | +Govern | Extended governance sections + AI protocols          |
 | L1 → L3 | Skip-level | Chains through L2 automatically                 |
@@ -572,7 +572,7 @@ If the script is unavailable, manually add the required files:
 
 | From   | To                         | Action                                                 | Files to Add |
 | ------ | -------------------------- | ------------------------------------------------------ | ------------ |
-| 1 → 2  | Add verification           | Render `templates/addons/checklist.md.tmpl` for Level 2     |              |
+| 1 → 2  | Add verification           | Render `templates/addons/acceptance-criteria.md.tmpl` for Level 2     |              |
 | 2 → 3  | Add decision documentation | Render `templates/addons/decision-record.md.tmpl` for Level 3 |              |
 | 3 → 3+ | Add governance             | Re-render affected manifest templates for Level 3+             |              |
 
@@ -581,7 +581,7 @@ If the script is unavailable, manually add the required files:
 ```markdown
 ## Change Log
 - 2025-11-15: Created as Level 1 (simple feature) - spec.md, plan.md, tasks.md
-- 2025-11-16: Escalated to Level 2 (discovered validation needs) - added checklist.md
+- 2025-11-16: Escalated to Level 2 (discovered validation needs) - added acceptance-criteria.md
 - 2025-11-17: Escalated to Level 3 (architectural decision required) - added decision-record.md
 ```
 
@@ -796,7 +796,7 @@ Phase decomposition is suggested when BOTH conditions are met:
 ### What Phases Add to a Level
 
 Phases do not change the documentation requirements for a given level. Each phase child folder independently follows the level requirements:
-- A Level 3 parent with phases produces Level 3 child folders (each with spec.md, plan.md, tasks.md, checklist.md, decision-record.md)
+- A Level 3 parent with phases produces Level 3 child folders (each with spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md)
 - The parent folder adds a **Phase Documentation Map** section to its spec.md
 - Child folders add a **parent back-reference** to their spec.md metadata
 
@@ -830,7 +830,7 @@ See [phase-definitions.md](../structure/phase-definitions.md) for complete phase
 
 **Level 2 (verification):**
 - All Level 1 templates + quality gates, NFRs
-- [checklist.md.tmpl](../../templates/addons/checklist.md.tmpl) - Verification checklist
+- [checklist.md.tmpl](../../templates/addons/acceptance-criteria.md.tmpl) - Verification checklist
 
 **Level 3 (architecture):**
 - All Level 2 templates + architecture decisions

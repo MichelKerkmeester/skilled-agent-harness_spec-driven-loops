@@ -30,7 +30,7 @@ templates/
 │   ├── plan.md.tmpl
 │   ├── tasks.md.tmpl
 │   ├── acceptance-criteria.md.tmpl
-│   ├── checklist.md.tmpl
+│   ├── acceptance-criteria.md.tmpl
 │   ├── decision-record.md.tmpl
 │   ├── implementation-summary.md.tmpl
 │   ├── phase-parent.spec.md.tmpl
@@ -111,7 +111,7 @@ specs/NNN-name/
 ├── plan.md
 ├── tasks.md
 ├── acceptance-criteria.md
-├── checklist.md               # QA validation items
+├── acceptance-criteria.md     # the closure gate
 └── implementation-summary.md  # Created AFTER implementation completes
 ```
 
@@ -128,7 +128,7 @@ specs/NNN-name/
 ├── plan.md
 ├── tasks.md
 ├── acceptance-criteria.md
-├── checklist.md
+├── acceptance-criteria.md
 ├── decision-record.md         # Architecture decisions
 └── implementation-summary.md  # Created AFTER implementation completes
 ```
@@ -271,7 +271,7 @@ specs/016-user-preferences/
 ├── plan.md
 ├── tasks.md
 ├── acceptance-criteria.md
-├── checklist.md
+├── acceptance-criteria.md
 ├── implementation-summary.md  # Created after implementation
 ├── scratch/
 │   └── test-data.json
@@ -287,7 +287,7 @@ specs/017-authentication-system/
 ├── plan.md
 ├── tasks.md
 ├── acceptance-criteria.md
-├── checklist.md
+├── acceptance-criteria.md
 ├── decision-record.md
 ├── implementation-summary.md
 ├── scratch/
@@ -310,7 +310,7 @@ specs/018-api-refactor/
 │   ├── spec.md
 │   ├── plan.md
 │   ├── tasks.md
-│   └── checklist.md
+│   └── acceptance-criteria.md
 └── 003-migration-guide/
     ├── spec.md
     └── plan.md

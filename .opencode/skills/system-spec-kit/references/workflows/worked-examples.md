@@ -92,7 +92,7 @@ specs/008-fix-button-alignment/
 |--------|----------|
 | Level Selection | Level 1 is appropriate for <100 LOC with clear scope |
 | Templates | Minimal set: spec.md, plan.md, tasks.md |
-| No Checklist | Level 1 skips checklist.md (QA via tasks.md) |
+| No closure gate | Level 1 skips acceptance-criteria.md; verification lives in tasks.md |
 | Speed | Fast setup, immediate implementation |
 
 ---
@@ -124,7 +124,7 @@ User: 2
 ```bash
 User: /spec_kit:implement specs/009-notification-system/
 AI: Loading planning artifacts...
-AI: Found: spec.md, plan.md, checklist.md
+AI: Found: spec.md, plan.md, acceptance-criteria.md
 AI: Ready to implement. Starting with Phase 1 tasks...
 ```
 
@@ -135,7 +135,7 @@ specs/009-notification-system/
 ├── spec.md        # Feature requirements, acceptance criteria
 ├── plan.md        # Implementation approach, component breakdown
 ├── tasks.md       # Granular task list with priorities
-├── checklist.md   # QA validation checklist
+├── acceptance-criteria.md   # the closure gate
 ├── implementation-summary.md  # Final state, validation evidence
 └── scratch/       # Debug logs, test scripts
 ```
@@ -145,9 +145,9 @@ specs/009-notification-system/
 | Aspect | Learning |
 |--------|----------|
 | Two-Phase | Separating plan and implement allows review |
-| Checklist | Level 2 adds checklist.md for QA validation |
+| Closure gate | Level 2 adds acceptance-criteria.md, which decides whether the packet may close |
 | Multi-Session | `/memory:save` routes continuity into packet docs for later recovery |
-| Priority Tags | P0/P1/P2 in checklist.md guide completion order |
+| Priority Tags | P0/P1/P2 in the tasks.md verification region guide completion order |
 
 ---
 
@@ -210,7 +210,7 @@ specs/010-graphql-migration/
 ├── spec.md            # Migration scope, success criteria
 ├── plan.md            # Phased migration approach
 ├── tasks.md           # Detailed task breakdown
-├── checklist.md       # QA and rollback validation
+├── acceptance-criteria.md  # the closure gate
 ├── decision-record.md # ADR documenting rationale
 ├── implementation-summary.md # Final state, validation evidence
 └── scratch/           # Migration scripts, test queries
@@ -274,7 +274,7 @@ AI: Loading context for specs/009-notification-system/
 | File | Purpose |
 |------|---------|
 | `handover.md` | Session state snapshot in the packet root |
-| `checklist.md` | Progress tracking (6/10 items) |
+| `tasks.md` | Progress tracking (6/10 verification items) |
 | `tasks.md` | Next action identification |
 
 ### Key Takeaways
@@ -313,7 +313,7 @@ AI: Loading context for specs/009-notification-system/
 | LOC | Risk | Level | Key File Added |
 |-----|------|-------|----------------|
 | <100 | Low | 1 | (base set only) |
-| 100-499 | Medium | 2 | checklist.md |
+| 100-499 | Medium | 2 | acceptance-criteria.md |
 | 500+ | High | 3 | decision-record.md |
 
 > **Note**: Risk and complexity can override LOC thresholds. When in doubt, choose the higher level.

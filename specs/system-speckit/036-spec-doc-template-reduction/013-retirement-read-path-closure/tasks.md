@@ -24,8 +24,8 @@ A task is done when its evidence cell names something that was actually observed
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [P0] Record the five controls: what each check reports today while doing nothing
-- [ ] T002 [P1] Inventory every caller of the shared flag parser before changing it
+- [x] T001 [P0] Record the five controls: what each check reports today while doing nothing
+- [x] T002 [P1] Inventory every caller of the shared flag parser before changing it
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -33,12 +33,12 @@ A task is done when its evidence cell names something that was actually observed
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 [P0] Phase children honour the requested level instead of being fixed at level 1
-- [ ] T004 [P0] The upgrade path re-assembles `tasks.md` at the new level, preserving authored content
-- [ ] T005 [P0] Decide whether the deleted evidence rule needs a blocking successor, and record the reasoning
-- [ ] T006 [P0] Restore level-2 inference in both modules, keyed on the replacement document
-- [ ] T007 [P1] The flag parser reports an unrecognized value rather than disabling
-- [ ] T008 [P1] Sweep the eight reference documents, keeping historical mentions
+- [x] T003 [P0] Phase children honour the requested level instead of being fixed at level 1
+- [x] T004 [P0] The upgrade path re-assembles `tasks.md` at the new level, preserving authored content
+- [x] T005 [P0] Decide whether the deleted evidence rule needs a blocking successor, and record the reasoning
+- [x] T006 [P0] Restore level-2 inference in both modules, keyed on the replacement document
+- [x] T007 [P1] The flag parser reports an unrecognized value rather than disabling
+- [x] T008 [P1] Sweep the eight reference documents, keeping historical mentions
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -46,10 +46,10 @@ A task is done when its evidence cell names something that was actually observed
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 [P0] Each control observed failing against pre-change code
-- [ ] T010 [P0] A freshly scaffolded level-2 phase child has the verification region
-- [ ] T011 [P0] An upgraded packet matches a natively scaffolded one
-- [ ] T012 [P1] If a successor is proposed, enumerate the id shapes the deleted rule missed
+- [x] T009 [P0] Each control observed failing against pre-change code
+- [x] T010 [P0] A freshly scaffolded level-2 phase child has the verification region
+- [x] T011 [P0] An upgraded packet matches a natively scaffolded one
+- [x] T012 [P1] If a successor is proposed, enumerate the id shapes the deleted rule missed
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -90,9 +90,9 @@ is `Met`, `Waived` or `Superseded`, and `validate.sh --strict` reports `RESULT: 
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Ordering and rollback defined in plan.md
-- [ ] CHK-003 [P1] Flag-parser callers inventoried before the shared helper changes
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Ordering and rollback defined in plan.md
+- [x] CHK-003 [P1] Flag-parser callers inventoried before the shared helper changes
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -100,9 +100,9 @@ is `Met`, `Waived` or `Superseded`, and `validate.sh --strict` reports `RESULT: 
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] No fix shares a file with another, so each reverts alone
-- [ ] CHK-011 [P1] The reference sweep removes instructions and keeps history
-- [ ] CHK-012 [P1] No new comment embeds an artifact identifier
+- [x] CHK-010 [P0] No fix shares a file with another, so each reverts alone
+- [x] CHK-011 [P1] The reference sweep removes instructions and keeps history
+- [x] CHK-012 [P1] No new comment embeds an artifact identifier
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -110,10 +110,10 @@ is `Met`, `Waived` or `Superseded`, and `validate.sh --strict` reports `RESULT: 
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All five controls observed failing before their fixes
-- [ ] CHK-021 [P0] Both level-inference modules exercised, not just read
-- [ ] CHK-022 [P0] A scaffolded and an upgraded level-2 packet compared directly
-- [ ] CHK-023 [P1] The evidence-checking decision names why the rule was deleted, not just what replaced it
+- [x] CHK-020 [P0] All five controls observed failing before their fixes
+- [x] CHK-021 [P0] Both level-inference modules exercised, not just read
+- [x] CHK-022 [P0] A scaffolded and an upgraded level-2 packet compared directly
+- [x] CHK-023 [P1] The evidence-checking decision names why the rule was deleted, not just what replaced it
 <!-- /ANCHOR:testing -->
 
 ---
@@ -123,9 +123,9 @@ is `Met`, `Waived` or `Superseded`, and `validate.sh --strict` reports `RESULT: 
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | [ ]/8 |
-| P1 Items | 4 | [ ]/4 |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 4 | 4/4 |
 | P2 Items | 0 | [ ]/0 |
 
-**Verification Date**: [YYYY-MM-DD]
+**Verification Date**: 2026-08-30
 <!-- /ANCHOR:summary -->

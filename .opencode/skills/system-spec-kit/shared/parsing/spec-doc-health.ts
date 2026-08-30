@@ -82,7 +82,7 @@ function detectLevel(folderPath: string): number | null {
 
     // Fallback: infer from files
     if (fs.existsSync(path.join(folderPath, 'decision-record.md'))) return 3;
-    if (fs.existsSync(path.join(folderPath, 'checklist.md'))) return 2;
+    if (fs.existsSync(path.join(folderPath, 'acceptance-criteria.md'))) return 2;
     return 1;
   } catch {
     return null;

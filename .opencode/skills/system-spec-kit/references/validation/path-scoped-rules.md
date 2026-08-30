@@ -65,7 +65,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 | Level | Required Files               | Checks Applied                            |
 | ----- | ---------------------------- | ----------------------------------------- |
 | 1     | spec.md, plan.md, tasks.md   | FILE_EXISTS, PLACEHOLDER_FILLED, SECTIONS |
-| 2     | Level 1 + checklist.md       | + P0/P1 section headers                   |
+| 2     | Level 1 + acceptance-criteria.md       | + P0/P1 section headers                   |
 | 3     | Level 2 + decision-record.md | + Context/Decision/Consequences sections  |
 
 ---
@@ -79,7 +79,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 | `FILE_EXISTS`        | ERROR    | Required files present for documentation level      |
 | `PLACEHOLDER_FILLED` | ERROR    | No unfilled `[YOUR_VALUE_HERE:]` placeholders       |
 | `LEVEL_DECLARED`     | INFO     | Level explicitly stated in spec.md metadata         |
-| `ANCHORS_VALID`      | ERROR    | Validate `<!-- ANCHOR:id -->` pairs in spec docs (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md) and generated continuity support artifacts |
+| `ANCHORS_VALID`      | ERROR    | Validate `<!-- ANCHOR:id -->` pairs in spec docs (spec.md, plan.md, tasks.md, acceptance-criteria.md, decision-record.md, implementation-summary.md) and generated continuity support artifacts |
 
 > **Partial reference:** This table lists a commonly-encountered subset. The authoritative, complete rule set lives in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
 
@@ -95,7 +95,7 @@ ENVIRONMENT OVERRIDES (runtime control)
 | ------------------ | ----------------------------------------------- |
 | spec.md            | Problem Statement, Requirements, Scope          |
 | plan.md            | Technical Context, Architecture, Implementation |
-| checklist.md       | P0, P1 headers                                  |
+| tasks.md           | P0, P1 headers in the verification region        |
 | decision-record.md | Context, Decision, Consequences                 |
 
 ---

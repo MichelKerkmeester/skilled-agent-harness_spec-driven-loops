@@ -130,7 +130,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Platform migration
 **Template Source:**
 Templates are Level-gated manifest files rendered by `create.sh`:
 - Level 1 - spec.md, plan.md, tasks.md, implementation-summary.md
-- Level 2 - Level 1 plus checklist.md
+- Level 2 - Level 1 plus acceptance-criteria.md
 - Level 3 - Level 2 plus decision-record.md
 - Level 3+ - Level 3 file set with governance sections rendered by gate
 
@@ -180,7 +180,7 @@ For Level 3+ specs, validates AI protocol components:
 
 ### check-level-match.sh
 Validates level consistency across all spec files:
-- spec.md, plan.md, checklist.md declare same level
+- spec.md, plan.md, acceptance-criteria.md declare same level
 - Required files exist for declared level
 
 ### Running Validation
@@ -216,7 +216,7 @@ Templates are selected from `templates/spec-kit-docs.json`:
 **Example paths:**
 - `templates/core/spec.md.tmpl` - Level-gated spec template
 - `templates/addons/acceptance-criteria.md.tmpl`
-- `templates/addons/checklist.md.tmpl` - Level-gated checklist template
+- `templates/addons/acceptance-criteria.md.tmpl` - Level-gated checklist template
 - `templates/addons/decision-record.md.tmpl` - Level-gated ADR template
 - `templates/core/spec.md.tmpl` - Level 3+ spec sections are rendered by gate
 

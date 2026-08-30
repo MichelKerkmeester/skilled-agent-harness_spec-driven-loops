@@ -21,8 +21,8 @@
       "acceptance criteria",
       "closure gate",
       "read path closure criteria",
-      "implementation",
-      "summary"
+      "evidence rule successor",
+      "advisory rule deleted"
     ],
     "key_topics": [
       "retirement",
@@ -39,22 +39,23 @@
       "verification"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/scripts/lib/completion-state.cjs",
       ".opencode/skills/system-spec-kit/shared/parsing/spec-doc-health.ts",
       ".opencode/skills/system-spec-kit/scripts/lib/parse-bool-flag.sh",
       ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh",
-      "shared/parsing/spec-doc-health.ts",
-      "scripts/lib/completion-state.cjs",
-      "scripts/lib/parse-bool-flag.sh",
       "scripts/spec/create.sh",
-      "scripts/spec/upgrade-level.sh"
+      "scripts/spec/upgrade-level.sh",
+      "scripts/lib/completion-state.cjs",
+      "shared/parsing/spec-doc-health.ts",
+      "scripts/lib/parse-bool-flag.sh"
     ],
     "entities": [
       {
@@ -79,6 +80,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -194,17 +201,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Each of these was reproduced against the live tree",
     "created_at": "2026-08-30T13:58:21Z",
-    "last_save_at": "2026-08-30T14:12:55.833Z",
+    "last_save_at": "2026-08-30T15:23:14.940Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,15 +213,17 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c54fef59199f6001373978d3366253614e654ac53228c569b1b29d525d188854",
+    "source_fingerprint": "sha256:c935e698a415a3a7bda7d3c30b727d39e46258dadd76fff23a27e3c3de36bd31",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be24de82ac5f3b2bae23bb119fba9ea3f5d5033b4292fa6d147b8a0fce6a74a4",
+      "spec.md": "83745aa135061e4f62250b8061694663784d55874817aa7d7c89b9c45f6caabc",
       "plan.md": "4ce64df7e8138d6a364a6ccf63e819474706359205c000d2aaf49fec6d48e024",
-      "tasks.md": "a79671bedbe97ed3389b771f1ce1f65c99db00aa3a0d9425ae5340f5d4299a23",
-      "implementation-summary.md": "474d7e0c9076c13d6a050e48e1a6274afc49946bbe21ef138cf6fc392190f40f"
+      "tasks.md": "0ca9e433a79dab5404bc34f49b49ddd2a76d29acedd6ce436fbfb71a781bf132",
+      "decision-record.md": "13c87fd55a5a9e02a4a6700c5750eaa4a7edb31676db0a32e8d3faddcb6009c0",
+      "implementation-summary.md": "c39dbfa70fdc90551c6e2f894e5d8c5219e175e27fea59dcacbcfc3a51e4f942"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -620,6 +620,38 @@ find_insert_point() {
 # 9. PLAN.MD UPGRADE
 # ───────────────────────────────────────────────────────────────
 
+# The verification region of tasks.md is gated on level 2 and above, so a packet
+# raised from level 1 kept a tasks document with no verification section at all -
+# and the coverage rule reads that section as its traceability source. Adding
+# documents without re-assembling this one produced a level-2 packet that could
+# not cite anything.
+upgrade_tasks() {
+    local from_level="$1"
+    local to_level="$2"
+    local tasks_file="$SPEC_FOLDER/tasks.md"
+    local fragment_path=""
+
+    [[ -f "$tasks_file" ]] || { warn "tasks.md not found in $SPEC_FOLDER - skipping tasks upgrade"; return 0; }
+
+    # The region is self-contained and additive, so its presence is the
+    # idempotency test: re-running must not append a second copy.
+    if grep -q 'ANCHOR:protocol' "$tasks_file"; then
+        return 0
+    fi
+
+    fragment_path="$(derive_addendum_fragment tasks.md "$from_level" "$to_level" "$tasks_file")" || fragment_path=""
+    if [[ ! -f "$fragment_path" ]]; then
+        warn "No tasks.md verification fragment for L${from_level} -> L${to_level}"
+        return 0
+    fi
+
+    printf '\n---\n\n' >> "$tasks_file"
+    cat "$fragment_path" >> "$tasks_file"
+    rm -f "$fragment_path"
+    MODIFIED_FILES+=("tasks.md")
+    return 0
+}
+
 upgrade_plan() {
     local from_level="$1"
     local to_level="$2"
@@ -1448,6 +1480,10 @@ perform_single_upgrade() {
 
     # Step 2: Upgrade plan.md
     verbose "Step 2/5: Upgrading plan.md for L${from_level} → L${to_level}"
+    if ! upgrade_tasks "$from_level" "$to_level"; then
+        warn "tasks.md verification region could not be added"
+    fi
+
     if ! upgrade_plan "$from_level" "$to_level"; then
         warn "plan.md upgrade failed for L${from_level} → L${to_level}"
         return 2

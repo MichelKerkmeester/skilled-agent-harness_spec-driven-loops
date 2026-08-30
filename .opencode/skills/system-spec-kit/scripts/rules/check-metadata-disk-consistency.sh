@@ -87,6 +87,9 @@ run_check() {
     fi
 
     if speckit_flag_enabled "${SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE:-true}"; then
+        if [[ -n "$SPECKIT_FLAG_UNRECOGNIZED" ]]; then
+            RULE_DETAILS+=("SPECKIT_METADATA_DISK_CONSISTENCY_ENFORCE value '$SPECKIT_FLAG_UNRECOGNIZED' is not recognized; enforcement stays on")
+        fi
         RULE_STATUS="fail"
         RULE_MESSAGE="Generated metadata path drift detected against on-disk folder: $actual_path"
         RULE_REMEDIATION="Refresh description.json and graph-metadata.json from the canonical save path so stored ids match the real folder."

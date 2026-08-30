@@ -54,6 +54,9 @@ run_check() {
 
     RULE_DETAILS=("spec.md Status=$spec_status classified=$spec_bucket" "implementation-summary.md Status=$implementation_status classified=$implementation_bucket")
     if speckit_flag_enabled "${SPECKIT_STATUS_CROSS_DOC_ENFORCE:-true}"; then
+        if [[ -n "$SPECKIT_FLAG_UNRECOGNIZED" ]]; then
+            RULE_DETAILS+=("SPECKIT_STATUS_CROSS_DOC_ENFORCE value '$SPECKIT_FLAG_UNRECOGNIZED' is not recognized; enforcement stays on")
+        fi
         RULE_STATUS="fail"
         RULE_MESSAGE="spec.md and implementation-summary.md statuses disagree"
         RULE_REMEDIATION="Update the stale status field so both documents describe the same delivery state."

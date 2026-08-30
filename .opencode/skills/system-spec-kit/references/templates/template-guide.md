@@ -139,7 +139,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 1 --path sp
 
 ### Level 2: Verification Added (LOC guidance: 100-499)
 
-**Required Templates:** Level 1 + `checklist.md`
+**Required Templates:** Level 1 + `acceptance-criteria.md`
 
 **Scaffold command:**
 ```bash
@@ -155,7 +155,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path sp
 
 **All Level 1 sections PLUS:**
 
-**checklist.md sections to fill:**
+**acceptance-criteria.md sections to fill:**
 - Pre-implementation checks
 - Implementation validation
 - Testing checklist
@@ -169,7 +169,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --level 2 --path sp
 - Add security checks if relevant
 - Include rollback verification
 
-**Enforcement:** Hard block if `checklist.md` missing
+**Enforcement:** Hard block if `acceptance-criteria.md` missing
 
 ---
 
@@ -470,20 +470,20 @@ bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh 
 
 ---
 
-### checklist.md - Validation Checklist
+### acceptance-criteria.md - Closure Criteria
 
 **When to use:** When systematic validation needed
 
 **Purpose:** QA steps, deployment checks, security review
 
-**Template:** `checklist.md`
+**Template:** `acceptance-criteria.md`
 
 **Copy command:**
 ```bash
 bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh \
   --level 2 \
   --out-dir specs/###-name \
-  .opencode/skills/system-spec-kit/templates/addons/checklist.md.tmpl
+  .opencode/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
 # Or render with --level 3+ when the packet is Level 3+
 ```
 
@@ -756,7 +756,7 @@ Before presenting documentation to user, verify:
 - [ ] Numbering and emojis preserved
 - [ ] Structure matches template
 - [ ] Descriptive filenames used (for decision records)
-- [ ] No ToC heading in non-research spec artifacts (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `debug-delegation.md`, `resource-map.md`)
+- [ ] No ToC heading in non-research spec artifacts (`spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `debug-delegation.md`, `resource-map.md`)
 
 **If ANY unchecked → Fix before presenting to user**
 
@@ -1165,7 +1165,7 @@ Templates are stored as `*.md.tmpl` files and rendered by Level:
 | Level | Folder | Contents |
 |-------|--------|----------|
 | Level 1 | `templates/spec-kit-docs.json` | spec.md, plan.md, tasks.md, implementation-summary.md |
-| Level 2 | `templates/spec-kit-docs.json` | Level 1 + checklist.md |
+| Level 2 | `templates/spec-kit-docs.json` | Level 1 + acceptance-criteria.md |
 | Level 3 | `templates/spec-kit-docs.json` | Level 2 + decision-record.md and lazy research |
 | Level 3+ | `templates/spec-kit-docs.json` | Level 3 + governance sections |
 | Phase Parent | `templates/packet-types/phase-parent.spec.md.tmpl` | lean parent spec.md |
@@ -1177,7 +1177,7 @@ Templates are stored as `*.md.tmpl` files and rendered by Level:
 - [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Post-implementation summary
 
 **Level 2 Templates (includes Level 1 content):**
-- [checklist.md](../../templates/addons/checklist.md.tmpl) - Validation checklist template
+- [acceptance-criteria.md](../../templates/addons/acceptance-criteria.md.tmpl) - the Level 2+ closure gate
 
 **Level 3 Templates (includes Level 2 content):**
 - [decision-record.md](../../templates/addons/decision-record.md.tmpl) - Architecture Decision Records template

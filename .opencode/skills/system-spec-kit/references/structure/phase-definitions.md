@@ -96,7 +96,7 @@ Phase child folders use the standard 3-digit numbered naming convention:
 
 ### Parent Folder Structure (lean trio policy)
 
-A phase parent only requires **the lean trio** at the parent level: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`) live exclusively in the phase children where they stay accurate to that phase's actual work. The parent's `spec.md` carries the Phase Documentation Map; the parent's `graph-metadata.json` carries the structured rollup including `derived.last_active_child_id` and `derived.last_active_at` pointer fields:
+A phase parent only requires **the lean trio** at the parent level: `spec.md`, `description.json`, `graph-metadata.json`. Heavy docs (`plan.md`, `tasks.md`, `acceptance-criteria.md`, `decision-record.md`, `implementation-summary.md`) live exclusively in the phase children where they stay accurate to that phase's actual work. The parent's `spec.md` carries the Phase Documentation Map; the parent's `graph-metadata.json` carries the structured rollup including `derived.last_active_child_id` and `derived.last_active_at` pointer fields:
 
 ```
 specs/###-parent-feature/
@@ -109,7 +109,7 @@ specs/###-parent-feature/
 │   ├── graph-metadata.json
 │   ├── plan.md
 │   ├── tasks.md
-│   ├── checklist.md           # Level 2+
+│   ├── acceptance-criteria.md # Level 2+
 │   ├── decision-record.md     # Level 3+
 │   └── implementation-summary.md  # Created post-implementation
 ├── 002-api-layer/             # Phase 2 (same shape as 001)

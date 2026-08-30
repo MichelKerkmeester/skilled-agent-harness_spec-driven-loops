@@ -427,7 +427,7 @@ git status
 git diff HEAD~3
 
 # Compare against spec folder expectations
-cat specs/###-feature/checklist.md
+cat specs/###-feature/acceptance-criteria.md
 ```
 
 **Stale Context Detection:**

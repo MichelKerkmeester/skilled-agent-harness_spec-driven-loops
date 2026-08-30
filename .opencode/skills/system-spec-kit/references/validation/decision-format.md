@@ -157,7 +157,7 @@ UNCERTAINTY: 0.25
 ```
 EVIDENCE: User specified "specs/077-speckit-upgrade" - path exists, contains spec.md
 EVIDENCE: skill_advisor.py returned system-spec-kit (0.85) for "speckit upgrade" query
-EVIDENCE: checklist.md shows all P0 items marked [x] with timestamps
+EVIDENCE: tasks.md shows all P0 verification items marked [x] with timestamps
 ```
 
 **Poor Evidence Examples:**
@@ -251,13 +251,13 @@ GATE: COMPLETION
 DECISION: BLOCK
 CONFIDENCE: MEDIUM
 UNCERTAINTY: 0.40
-EVIDENCE: Claiming "done" but checklist.md item P0-3 not marked [x]:
+EVIDENCE: Claiming "done" but tasks.md verification item P0-3 not marked [x]:
 "[ ] Browser verification at 3 viewports"
 
 RESOLUTION_PATH:
 1. Execute browser verification at mobile/tablet/desktop
 2. Capture evidence (screenshots or DevTools output)
-3. Update checklist.md with [x] and evidence
+3. Update tasks.md with [x] and evidence
 4. Re-evaluate completion gate
 
 ALTERNATIVE: N/A - P0 items cannot be skipped

@@ -88,7 +88,7 @@ Priority-based checklists for each phase of the SpecKit workflow.
 - [ ] Unit tests written and passing
 - [ ] No console errors in browser DevTools
 - [ ] Bash 3.2 compatible (for shell scripts)
-- [ ] checklist.md updated with progress
+- [ ] tasks.md verification region updated with progress
 
 ### P1 - Must Complete
 
@@ -116,7 +116,7 @@ Priority-based checklists for each phase of the SpecKit workflow.
 - [ ] Confirm simplest solution selected (KISS principle)
 
 **During Coding:**
-- [ ] Update checklist.md as items complete
+- [ ] Update the tasks.md verification region as items complete
 - [ ] Test incrementally (don't batch all testing to end)
 - [ ] Keep changes minimal and focused
 
@@ -182,7 +182,7 @@ When debugging becomes prolonged or repetitive:
 
 ### Templates
 
-- [checklist.md](../../templates/addons/checklist.md.tmpl) - Checklist template for spec folders (Level 2+)
+- [checklist.md](../../templates/addons/acceptance-criteria.md.tmpl) - Checklist template for spec folders (Level 2+)
 
 ### Skills
 

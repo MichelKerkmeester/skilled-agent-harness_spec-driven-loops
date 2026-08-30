@@ -52,7 +52,7 @@ The generator prefers these sources, in order:
 
 1. `implementation-summary.md`
 2. `tasks.md`
-3. `checklist.md`
+3. `acceptance-criteria.md`
 4. `decision-record.md`
 5. `spec.md`
 

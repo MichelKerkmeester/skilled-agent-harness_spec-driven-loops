@@ -31,6 +31,19 @@ JSON_MODE=false
 SHORT_NAME=""
 BRANCH_NUMBER=""
 DOC_LEVEL=1  # Default to Level 1 (Baseline)
+
+# Phase children inherit the requested level. They used to be fixed at 1
+# regardless, which quietly decided more than a number: the tasks template gates
+# its verification section on level 2 and above, so every child was scaffolded
+# without one and the coverage rule had no traceability source to read. In phase
+# mode DOC_LEVEL carries the parent's own marker rather than a level, so that
+# case falls back to the baseline.
+child_doc_level() {
+    case "$DOC_LEVEL" in
+        1|2|3|3+) printf '%s' "$DOC_LEVEL" ;;
+        *) printf '1' ;;
+    esac
+}
 WITH_LAZY_ADDONS=false  # Opt in to the level-agnostic add-on documents
 SKIP_BRANCH=true   # Default: stay on the current branch (opt in with --branch). The owner's workflow commits directly to main; auto-branching is unwanted friction.
 TRACK=""           # Optional track segment: places the folder under .opencode/specs/<track>/ with per-track numbering
@@ -704,15 +717,17 @@ EOF
     mkdir -p "$child_path" "$child_path/scratch"
     touch "$child_path/scratch/.gitkeep"
 
-    child_contract="$(resolve_level_contract "1")"
+    local child_level
+    child_level="$(child_doc_level)"
+    child_contract="$(resolve_level_contract "$child_level")"
     if ! child_contract_docs="$(scaffold_contract_docs "$child_contract")"; then
         echo "Error: failed to resolve Level 1 template documents" >&2
         exit 1
     fi
     while IFS= read -r template_name; do
         [[ -z "$template_name" ]] && continue
-        if ! copy_template "$template_name" "$child_path" "1" "$TEMPLATES_BASE" >/dev/null; then
-            echo "Error: copy_template failed for $template_name (level 1)" >&2
+        if ! copy_template "$template_name" "$child_path" "$child_level" "$TEMPLATES_BASE" >/dev/null; then
+            echo "Error: copy_template failed for $template_name (level $child_level)" >&2
             exit 1
         fi
     done <<< "$child_contract_docs"
@@ -728,7 +743,7 @@ EOF
     desc_script="${SCRIPT_DIR}/../dist/spec-folder/generate-description.js"
     if [[ -f "$desc_script" ]]; then
         node "$desc_script" "$child_path" "$parent_path" \
-            --description "Phase one for $feature_name" --level "1" >/dev/null 2>&1 || true
+            --description "Phase one for $feature_name" --level "$child_level" >/dev/null 2>&1 || true
     fi
 
     CREATED_FILES+=("$child_name/")
@@ -1385,7 +1400,8 @@ EOF
     fi
 
     # ── Create child phase folders ──
-    CHILD_LEVEL_CONTRACT="$(resolve_level_contract "1")"
+    CHILD_DOC_LEVEL="$(child_doc_level)"
+    CHILD_LEVEL_CONTRACT="$(resolve_level_contract "$CHILD_DOC_LEVEL")"
     CHILDREN_INFO=()   # For JSON output
 
     for (( _i=1; _i<=PHASE_COUNT; _i++ )); do
@@ -1400,13 +1416,13 @@ EOF
 
         # Copy Level 1 templates to child folder
         if ! child_level_contract_docs="$(scaffold_contract_docs "$CHILD_LEVEL_CONTRACT")"; then
-            echo "Error: failed to resolve Level 1 template documents" >&2
+            echo "Error: failed to resolve Level $CHILD_DOC_LEVEL template documents" >&2
             exit 1
         fi
         while IFS= read -r template_name; do
             [[ -z "$template_name" ]] && continue
-            if ! created_path=$(copy_template "$template_name" "$_child_path" "1" "$TEMPLATES_BASE"); then
-                echo "Error: copy_template failed for $template_name (level 1)" >&2
+            if ! created_path=$(copy_template "$template_name" "$_child_path" "$CHILD_DOC_LEVEL" "$TEMPLATES_BASE"); then
+                echo "Error: copy_template failed for $template_name (level $CHILD_DOC_LEVEL)" >&2
                 exit 1
             fi
             _child_created_files+=("$created_path")
@@ -1417,7 +1433,7 @@ EOF
           _phase_name="${_child_folder#*-}"  # strip numeric prefix
           # Use parent of FEATURE_DIR as base so parentChain includes the parent folder
           if node "$_DESC_SCRIPT" "$_child_path" "$(dirname "$FEATURE_DIR")" \
-            --description "Phase ${_i}: ${_phase_name}" --level "1"; then
+            --description "Phase ${_i}: ${_phase_name}" --level "$CHILD_DOC_LEVEL"; then
             _child_created_files+=("description.json")
           else
             echo "  Warning: description.json generation skipped for phase ${_i}" >&2

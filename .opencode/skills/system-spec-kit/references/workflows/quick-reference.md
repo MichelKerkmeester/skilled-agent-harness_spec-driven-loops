@@ -30,7 +30,7 @@ Quick reference for spec folder management, commands, and troubleshooting using 
 
 ```
 Level 1 (Baseline):     spec.md + plan.md + tasks.md + implementation-summary.md
-Level 2 (Verification): Level 1 + checklist.md
+Level 2 (Verification): Level 1 + acceptance-criteria.md
 Level 3 (Full):         Level 2 + decision-record.md + optional research
 Level 3+ (Extended):    Level 3 + governance/AI execution content
 ```
@@ -47,7 +47,7 @@ Level 3+ (Extended):    Level 3 + governance/AI execution content
 | Situation | Level | Required Templates | Optional Templates |
 |-----------|-------|-------------------|-------------------|
 | Any task (baseline) | 1 | spec.md + plan.md + tasks.md + implementation-summary.md | resource-map.md (any level) |
-| Needs QA validation | 2 | L1 + checklist.md | resource-map.md (any level) |
+| Needs QA validation | 2 | L1 + acceptance-criteria.md | resource-map.md (any level) |
 | Complex/architectural | 3 | L2 + decision-record.md | research/research.md, resource-map.md |
 | Enterprise/governance heavy | 3+ | L3 file set rendered at Level 3+ | research/research.md, resource-map.md |
 
@@ -183,7 +183,7 @@ Before making ANY file changes, verify:
 - [ ] Created `/specs/[###-short-name]/`
 - [ ] Scaffolded ALL REQUIRED templates for chosen level:
   - [ ] Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
-  - [ ] Level 2: Level 1 + checklist.md
+  - [ ] Level 2: Level 1 + acceptance-criteria.md
   - [ ] Level 3: Level 2 + decision-record.md
   - [ ] Level 3+: Use full Level 3 file set rendered at Level 3+
 - [ ] Rendered template output names are correct
@@ -311,7 +311,7 @@ Then verify placeholders are fully resolved:
 
 | From | To | Files to Add |
 |------|----|--------------|
-| 1 → 2 | Add verification | checklist.md |
+| 1 → 2 | Add verification | acceptance-criteria.md |
 | 2 → 3 | Add decision documentation | decision-record.md (+ optional research/research.md) |
 | 3 → 3+ | Add governance | Extended governance sections + AI protocols |
 
@@ -450,7 +450,7 @@ Before presenting documentation to user:
 
 - [ ] All REQUIRED templates for level copied from `.opencode/skills/system-spec-kit/templates/`:
   - [ ] Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
-  - [ ] Level 2: Level 1 + checklist.md
+  - [ ] Level 2: Level 1 + acceptance-criteria.md
   - [ ] Level 3: Level 2 + decision-record.md
 - [ ] Optional templates copied if needed (Level 3 only)
 - [ ] All placeholders replaced (`<PLACEHOLDER>`, `<NEEDS_CLARIFICATION: ...>`)
@@ -570,7 +570,7 @@ specs/###-parent/
 - **ALWAYS copy from `.opencode/skills/system-spec-kit/templates/`** directory
 - **ALWAYS copy ALL REQUIRED templates for chosen level**:
   - Level 1: spec.md + plan.md + tasks.md + implementation-summary.md
-  - Level 2: Level 1 + checklist.md
+  - Level 2: Level 1 + acceptance-criteria.md
   - Level 3: Level 2 + decision-record.md
 - **ALWAYS fill ALL placeholders** - No `<PLACEHOLDER>` marker in final docs
 - **ALWAYS respond to workflow prompts** - Ask user for A/B/C/D/E choice
@@ -605,13 +605,13 @@ Checklist verification is **MANDATORY** for all Level 2+ documentation:
 - Level 3: Complex/architectural work (>=500 LOC guidance)
 - Level 3+: Complex governance/multi-agent work (high complexity/risk)
 
-The `checklist.md` is an **ACTIVE VERIFICATION TOOL**, not passive documentation.
+The verification region of `tasks.md` is an **ACTIVE VERIFICATION TOOL**, not passive documentation.
 
 ### Verification Process
 
 ```
 CHECKLIST AS VERIFICATION TOOL (Level 2+):
-1. LOAD checklist.md at completion phase
+1. LOAD the tasks.md verification region at completion phase
 2. VERIFY each item systematically (P0 first, then P1, then P2)
 3. MARK items [x] with evidence (links, test results, etc.)
 4. BLOCK completion until all P0/P1 items verified
@@ -667,7 +667,7 @@ For each checklist item:
 ### AI Agent Rules
 
 - **NEVER claim completion without running checklist verification**
-- **ALWAYS load checklist.md before stating work is done**
+- **ALWAYS load the tasks.md verification region before stating work is done**
 - **ALWAYS mark items with evidence, not only [x]**
 - **ALWAYS complete all P0/P1 before claiming done**
 - **ALWAYS document why P2 items are deferred (if applicable)**
@@ -710,14 +710,14 @@ When in doubt:
 - [plan.md](../../templates/core/plan.md.tmpl) - Implementation plan with verification
 - [tasks.md](../../templates/core/tasks.md.tmpl) - Task breakdown template
 - [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Completion summary template
-- [checklist.md](../../templates/addons/checklist.md.tmpl) - Validation checklist template
+- [acceptance-criteria.md](../../templates/addons/acceptance-criteria.md.tmpl) - the Level 2+ closure gate
 
 **Level 3 Templates (Full Documentation):**
 - [spec template](../../templates/core/spec.md.tmpl) - Comprehensive requirements template
 - [plan.md](../../templates/core/plan.md.tmpl) - Full implementation plan template
 - [tasks.md](../../templates/core/tasks.md.tmpl) - Detailed task breakdown template
 - [implementation-summary.md](../../templates/core/implementation-summary.md.tmpl) - Completion summary template
-- [checklist.md](../../templates/addons/checklist.md.tmpl) - Full validation checklist template
+- [acceptance-criteria.md](../../templates/addons/acceptance-criteria.md.tmpl) - the Level 2+ closure gate
 - [decision-record.md](../../templates/addons/decision-record.md.tmpl) - Architecture Decision Records template
 
 **Research Templates (Level 3 optional):**
