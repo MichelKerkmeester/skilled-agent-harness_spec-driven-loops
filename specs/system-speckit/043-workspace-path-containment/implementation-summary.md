@@ -82,6 +82,8 @@ The interesting constraint was not the escape but the shape of the fix: the obvi
 
 **The classifier keeps its job.** It answers "does this look like a spec document", which is still wanted. What was missing was a membership proof beside it, not a rewrite of it.
 
+**Membership is measured against two workspaces, and the second is the one that matters.** The first version asked `getSpecsBasePaths()` with no argument, which resolves roots from the calling process. That is not the workspace the bytes land in. Any caller running from elsewhere — a hook launched from the home directory, a fixture repository built under a temporary directory — was refused, including refused from writing into the real repository. Deriving roots from the destination as well answers the question that was actually being asked. It does not let a destination authorize itself: a root counts only when it exists on disk and its workspace is anchored on a real `.opencode` directory, so a path that merely contains a `specs` segment still yields no roots.
+
 **Two sibling findings are tracked, not folded in.** A symlink-redirect gap in resume containment and a scan-to-write gap in the repair script are the same family — proving membership rather than matching a shape — on different surfaces.
 <!-- /ANCHOR:decisions -->
 
@@ -97,7 +99,13 @@ The interesting constraint was not the escape but the shape of the fix: the obvi
 | In-repo destination | Written |
 | Symlinked sibling-repo track | Written |
 | Nested packet in a symlinked repo | Written |
-| `graph-metadata-write-containment` | 5/5 |
+| Another workspace, anchored on `.opencode` | Written |
+| The same shape with no anchor | Refused |
+| In-repo destination from a foreign working directory | Written |
+| `graph-metadata-write-containment` | 8/8 |
+| Negative control on the three added cases | 2 fail against the first shipped guard; the no-anchor refusal passes both ways, which is what it is there to show |
+| Suites the first version broke | follow-up-api, generator-hardening, identity-resolver-merge-safety, graph-metadata-refresh, continuity-freshness, workflow-canonical-save-metadata, trigger-phrase-no-prose-bigrams — 21 failed before, 52 passed / 2 skipped / 0 failed after |
+| Graph-adjacent slice | 32 failures before, 24 after, none added; the remainder pre-date this packet |
 | Surrounding suites | ac-coverage 16/16, ac-closure 29/29, goal-shape 11/11, fingerprint-docset 6/6 |
 | Build | `tsc` 0 errors, dist rebuilt |
 <!-- /ANCHOR:verification -->
@@ -109,6 +117,7 @@ The interesting constraint was not the escape but the shape of the fix: the obvi
 
 1. **A symlink planted inside a configured root still redirects the write.** Creating one already requires write access to the repository, so this guard bounds arbitrary destinations rather than replacing filesystem permissions.
 2. **`repair-derived` still refuses symlinked tracks outright**, by its own pre-existing packet-tree guard. Unrelated to this boundary, and unchanged here.
+3. **A workspace is recognized by a real `.opencode` directory beside it.** Planting one next to a destination authorizes writes there. Like limitation 1, that requires filesystem write access at the destination, which this guard does not attempt to replace.
 <!-- /ANCHOR:limitations -->
 
 ---

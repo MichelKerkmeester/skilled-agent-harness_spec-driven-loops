@@ -39,9 +39,9 @@ _memory:
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
-**Packet:** [PACKET-ID]
-**Level:** [2/3/3+]
-**Status:** [Draft/In Progress/Complete]
+**Packet:** system-speckit/043-workspace-path-containment
+**Level:** 2
+**Status:** Complete
 **Date:** 2026-08-30
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given [context], When [action], Then [observable outcome] | [command, file:line, or artifact that proves it] | Unmet | - |
+| AC-001 | REQ-001 | Given a destination that merely looks spec-shaped, When a caller passes it to the write, Then the write is refused and no file is created | `scripts/tests/graph-metadata-write-containment.sh:56` | Met | - |
+| AC-002 | REQ-001 | Given a track that is a symlink into a sibling repository, When metadata is written into it, Then the write succeeds | `scripts/tests/graph-metadata-write-containment.sh:77` | Met | - |
+| AC-003 | REQ-001 | Given a destination in a workspace that is not the caller's, When that workspace is anchored on a real `.opencode` directory, Then the write succeeds | `scripts/tests/graph-metadata-write-containment.sh:89` | Met | - |
+| AC-004 | REQ-001 | Given the same shape with the `.opencode` anchor removed, When the write is attempted, Then it is refused, so a destination cannot authorize itself | `scripts/tests/graph-metadata-write-containment.sh:97` | Met | - |
+| AC-005 | REQ-001 | Given a caller whose working directory is outside the repository, When it writes into the repository's own specs root, Then the write succeeds | `scripts/tests/graph-metadata-write-containment.sh:102` | Met | - |
 
 ### Status values
 
@@ -79,8 +83,12 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** [Yes/No]
+**Closeable:** Yes
 
-[One or two sentences: which criteria carried the packet, and what was consciously
-left out. Write this when the packet is closed, not before.]
+AC-001 and AC-002 are the two directions the boundary has to hold at once, and they
+are what the packet was opened for. AC-003 through AC-005 were added after the first
+version shipped: it measured roots from the calling process rather than from the
+destination, which refused every write from a workspace that was not the caller's.
+Left out deliberately: a symlink planted inside an authorized root is still trusted,
+recorded under Known Limitations rather than closed here.
 <!-- /ANCHOR:closure -->
