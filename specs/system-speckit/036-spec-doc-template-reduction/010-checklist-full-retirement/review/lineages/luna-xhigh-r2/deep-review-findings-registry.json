@@ -1,0 +1,858 @@
+{
+  "sessionId": "fanout-luna-xhigh-r2-1788076902384-48eibe",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "timestamp": "2026-08-30T08:25:36.468Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Active validation-system tests still require the retired Level 2 checklist",
+      "file": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-system.cjs",
+      "line": 410,
+      "description": "The active validation-system test harness still treats checklist.md as a required Level 2 artifact after the retirement contract removed it.",
+      "findingClass": "test-isolation",
+      "deltaStatus": "active",
+      "scopeProof": "scripts/package.json:14-18 wires the harness into the package test command; direct reads show the helper's Level 2 write and the explicit Level 2 expectation.",
+      "affectedSurfaceHints": [
+        "scripts/tests/test-validation-system.cjs",
+        "scripts/package.json test:validation",
+        "Level 2 fixture contract"
+      ],
+      "contentHash": "d8b539b7f8e9da113a8a310f7fa0cd6d15a97faa74db491cc6e5e6c973e61016",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Resume resolution accepts an in-root symlink that redirects document reads outside the workspace",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts",
+      "line": 895,
+      "description": "A symlink beneath a configured specs root can redirect resume reads outside the workspace because resume resolution proves only lexical containment.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The folder resolver, redirect, document lookup, and stable reader were read together; no realpath-root comparison precedes reads.",
+      "affectedSurfaceHints": [
+        "resume ladder",
+        "phase-parent redirect",
+        "findSpecDocuments",
+        "stable document reader"
+      ],
+      "contentHash": "ca553b0fc45ad103b542a90bfdb82956812843ea748b9866ba8e9dea1d9b445f",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Generated metadata write authorization can follow an in-root symlink to an external specs path",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
+      "line": 1709,
+      "description": "Graph metadata writes can follow an in-root symlink to an external path containing a specs segment because final authorization checks the unresolved path lexically.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "The classifier, canonical-parent construction, final root check, temp-file write, and rename were read together; the checks use different path identities.",
+      "affectedSurfaceHints": [
+        "isSpecsScopedPath",
+        "writeGraphMetadataFile",
+        "refreshGraphMetadataForSpecFolder",
+        "atomic metadata rename"
+      ],
+      "contentHash": "b0ab63a616d8a194435598e5d450d3a5790f8bcf2f4c3ccd52ed622a192a1e79",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "Required P1 verification item is unchecked while packet claims complete closure",
+      "file": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md",
+      "line": 116,
+      "description": "The packet cannot truthfully claim complete closure while CHK-FIX-006 remains an unchecked P1 item because its own protocol requires completion or user approval.",
+      "findingClass": "matrix/evidence",
+      "deltaStatus": "active",
+      "scopeProof": "Protocol, unchecked item, verification summary, acceptance closure, and status fields were directly compared; no approval was found.",
+      "affectedSurfaceHints": [
+        "tasks.md verification protocol",
+        "CHK-FIX-006",
+        "verification summary",
+        "acceptance closure"
+      ],
+      "contentHash": "06f161310c46702677f3320d870b354531577c9d1c69965c2778d2d91ced1a98",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P1",
+      "title": "Feature catalog still documents checklist.md as a live indexed spec document",
+      "file": ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+      "line": 705,
+      "description": "The feature catalog documents checklist.md as a live indexed spec document after the executable classifier removed it.",
+      "findingClass": "class-of-bug",
+      "deltaStatus": "active",
+      "scopeProof": "Two independent catalog sections were compared against the current executable filename allowlist; no retirement label was present.",
+      "affectedSurfaceHints": [
+        "feature catalog canonical document list",
+        "SPECKIT_INDEX_SPEC_DOCS entry",
+        "spec-doc-paths.ts allowlist"
+      ],
+      "contentHash": "01a8c81f92a8df899087f1b3ad9e46c0fe85d49d40ad1423335f5ff980fff78f",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P1",
+      "title": "Generated metadata reports in_progress while canonical packet documents report Complete",
+      "file": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/graph-metadata.json",
+      "line": 42,
+      "description": "The packet's generated graph metadata and canonical closure documents disagree: deriveStatus produces in_progress because an open verification item remains, while spec.md and implementation-summary.md claim Complete.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": "active",
+      "scopeProof": "Generated status, current generation marker, packet status tables, and deriveStatus branch were directly compared.",
+      "affectedSurfaceHints": [
+        "graph-metadata.json derived.status",
+        "deriveStatus",
+        "tasks.md open item",
+        "spec.md status",
+        "implementation-summary status"
+      ],
+      "contentHash": "c78af105647298728ebecc65e4ba2e8c99bac985f476d4a462127f6b924c424b",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Repair metadata writes have a scan-to-write replacement race",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs",
+      "line": 346,
+      "description": "Repair metadata writes can be redirected after discovery because the stored destination is not revalidated before writing.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "The regular-file scan and later write loop were directly compared; no second lstat or no-follow boundary appears.",
+      "affectedSurfaceHints": [
+        "repair scan",
+        "repair write loop",
+        "destination revalidation"
+      ],
+      "contentHash": "d598a26cec84e8650d6dca1c12e7dca6dd18e45c31f859a3ce971155c932a466",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "AC-001 and T004 retain a stale producer line citation",
+      "file": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/acceptance-criteria.md",
+      "line": 58,
+      "description": "AC-001 and T004 retain a stale producer line citation.",
+      "findingClass": "instance-only",
+      "deltaStatus": "active",
+      "scopeProof": "Packet citations and current producer block were directly reread; no producer block at line 632 was found.",
+      "affectedSurfaceHints": [
+        "AC-001",
+        "T004",
+        "upgrade-level.sh producer block"
+      ],
+      "contentHash": "4440c46ac05c354cf3621ebee2c3c8817811ad2b75d6ac42f37cb57ba0dc4b61",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "title": "Fingerprint-generation test mutates a tracked reference packet without an interruption-safe restore trap",
+      "file": ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh",
+      "line": 20,
+      "description": "The fingerprint-generation test mutates a tracked reference packet without an interruption-safe restore trap.",
+      "findingClass": "test-isolation",
+      "deltaStatus": "active",
+      "scopeProof": "The live packet argument, mutation commands, restore function, and trap were directly compared.",
+      "affectedSurfaceHints": [
+        "fingerprint-docset-generation.sh",
+        "tracked reference packet",
+        "backfill-graph-metadata.ts",
+        "restore trap"
+      ],
+      "contentHash": "dba2292a835119b76c3f8d1c95b57c5cbb5396d5e607d26ee6f0591c6d69c72e",
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 3
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "catalog_parity",
+      "completion_claim",
+      "contract_boundary",
+      "documentation_drift",
+      "generated_metadata_maintenance",
+      "generated_status",
+      "generation_skip",
+      "path_confinement",
+      "repair_write_boundary",
+      "retired_producer",
+      "stale_citation",
+      "symlink_handling",
+      "test_contract",
+      "test_isolation"
+    ],
+    "ruledOut": [
+      "contract_boundary",
+      "generation_marker",
+      "generation_skip",
+      "normal_completion_cleanup",
+      "producer_contract",
+      "retired_producer",
+      "standalone_template_doc_drift",
+      "static_repair_symlink_traversal"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "retired_producer": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "contract_boundary": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "test_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "code_graph": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "path_confinement": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "symlink_handling": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "generation_skip": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "repair_write_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "static_repair_symlink_traversal": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "concurrent_process_behavior beyond the scan/write race": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "completion_claim": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "catalog_parity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "generated_status": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "stale_citation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "producer_contract": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "generation_marker": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "maintainability_only_doc_polish": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "test_isolation": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "documentation_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "generated_metadata_maintenance": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "standalone_template_doc_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "normal_completion_cleanup": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "interrupted_test_process_reproduction": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh"
+      ],
+      "bugClass": "retired_producer",
+      "disposition": "ruled_out",
+      "rationale": "The live producer matches the retirement requirement.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:729-744"
+      ],
+      "reason": "No checklist creation branch remains."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json"
+      ],
+      "bugClass": "contract_boundary",
+      "disposition": "ruled_out",
+      "rationale": "The manifest and resolver test express the retired-document contract.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json:545-585"
+      ],
+      "reason": "No checklist entry appears in the current Level 2 bucket."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/mcp-server/lib/validation/generated-metadata-integrity.ts",
+        ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh"
+      ],
+      "bugClass": "generation_skip",
+      "disposition": "ruled_out",
+      "rationale": "The previously suspected unknown-integer marker bypass is guarded by the current comparison and fixture.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp-server/lib/validation/generated-metadata-integrity.ts:170-181",
+        ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh:72-78"
+      ],
+      "reason": "The future generation case remains a mismatch rather than a silent skip."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "templates/README.md",
+        "templates/examples/README.md"
+      ],
+      "bugClass": "standalone_template_doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "No new standalone-file pointer was found in these surfaces.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/templates/README.md:98-151",
+        ".opencode/skills/system-spec-kit/templates/examples/README.md:55-82"
+      ],
+      "reason": "The remaining checklist wording refers to the merged tasks section."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "fingerprint-docset-generation.sh"
+      ],
+      "bugClass": "normal_completion_cleanup",
+      "disposition": "ruled_out",
+      "rationale": "Normal successful execution cleans up; only interruption safety remains.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh:40",
+        ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh:88-95"
+      ],
+      "reason": "The cleanup gap requires early termination."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh"
+      ],
+      "bugClass": "retired_producer",
+      "disposition": "ruled_out",
+      "rationale": "The live producer matches the retirement requirement.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:729-744"
+      ],
+      "proof": "No checklist creation branch remains."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json"
+      ],
+      "bugClass": "contract_boundary",
+      "disposition": "ruled_out",
+      "rationale": "The manifest and resolver test express the retired-document contract.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/templates/spec-kit-docs.json:545-585"
+      ],
+      "proof": "No checklist entry appears in the current Level 2 bucket."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/mcp-server/lib/validation/generated-metadata-integrity.ts",
+        ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh"
+      ],
+      "bugClass": "generation_skip",
+      "disposition": "ruled_out",
+      "rationale": "The previously suspected unknown-integer marker bypass is guarded by the current comparison and fixture.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp-server/lib/validation/generated-metadata-integrity.ts:170-181",
+        ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh:72-78"
+      ],
+      "proof": "The future generation case remains a mismatch rather than a silent skip."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "templates/README.md",
+        "templates/examples/README.md"
+      ],
+      "bugClass": "standalone_template_doc_drift",
+      "disposition": "ruled_out",
+      "rationale": "No new standalone-file pointer was found in these surfaces.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/templates/README.md:98-151",
+        ".opencode/skills/system-spec-kit/templates/examples/README.md:55-82"
+      ],
+      "proof": "The remaining checklist wording refers to the merged tasks section."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "fingerprint-docset-generation.sh"
+      ],
+      "bugClass": "normal_completion_cleanup",
+      "disposition": "ruled_out",
+      "rationale": "Normal successful execution cleans up; only interruption safety remains.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh:40",
+        ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh:88-95"
+      ],
+      "proof": "The cleanup gap requires early termination."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "test_isolation",
+      "documentation_drift",
+      "generated_metadata_maintenance"
+    ],
+    "covered": [
+      "test_isolation",
+      "documentation_drift",
+      "generated_metadata_maintenance"
+    ],
+    "ruledOut": [
+      "standalone_template_doc_drift",
+      "normal_completion_cleanup"
+    ],
+    "deferred": [
+      "interrupted_test_process_reproduction"
+    ],
+    "blocked": [
+      "code_graph"
+    ],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 3,
+      "executed": 3,
+      "pass": 0,
+      "partial": 1,
+      "fail": 2,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/graph-metadata.json:42",
+          ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:705-718"
+        ],
+        "findingRefs": [
+          "F006",
+          "F007"
+        ],
+        "summary": "The retirement source paths are present, but the catalog and generated status disagree with the packet closure claim."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md:116-119",
+          "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md:163-164"
+        ],
+        "findingRefs": [
+          "F005"
+        ],
+        "summary": "An unchecked P1 verification item lacks the required approval while the packet claims closure."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "fail",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:705-718",
+          ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:5060-5068",
+          ".opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts:8-20"
+        ],
+        "findingRefs": [
+          "F006"
+        ],
+        "summary": "Present-tense catalog entries retain checklist indexing after the executable filename allowlist removed it."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

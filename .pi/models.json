@@ -41,6 +41,9 @@
       }
     },
     "openrouter": {
+      "compat": {
+        "sendSessionAffinityHeaders": true
+      },
       "modelOverrides": {
         "~deepseek/deepseek-v4-flash-latest": {
           "compat": {

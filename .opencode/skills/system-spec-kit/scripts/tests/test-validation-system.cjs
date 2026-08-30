@@ -282,10 +282,6 @@ Test implementation summary.
     fs.writeFileSync(path.join(folderPath, 'implementation-summary.md'), implSummaryContent || defaultImplSummary);
   }
 
-  if (level >= 2 && !skipFiles.includes('checklist.md')) {
-    fs.writeFileSync(path.join(folderPath, 'checklist.md'), checklistContent || defaultChecklist);
-  }
-
   if (level >= 3 && !skipFiles.includes('decision-record.md')) {
     fs.writeFileSync(path.join(folderPath, 'decision-record.md'), decisionRecordContent || defaultDecisionRecord);
   }
@@ -341,20 +337,20 @@ async function testLevelDetection() {
     });
     const level3Folder = createTestSpecFolder('003-level3-inferred', 3);
 
-    // Level 1 inferred (no checklist or decision-record)
-    if (!fileExists(path.join(level1Folder, 'checklist.md')) &&
-        !fileExists(path.join(level1Folder, 'decision-record.md'))) {
+    // Level 1 inferred: none of the higher-level documents are present
+    if (!fileExists(path.join(level1Folder, 'decision-record.md'))) {
       pass('Level inference: L1 from file absence', 'No L2/L3 files present');
     } else {
       fail('Level inference: L1 from file absence', 'Unexpected files present');
     }
 
-    // Level 2 inferred (checklist present)
-    if (fileExists(path.join(level2Folder, 'checklist.md')) &&
+    // Level 2 inferred: verification lives in the merged tasks document, and no
+    // decision record is present to raise the level further.
+    if (fileExists(path.join(level2Folder, 'tasks.md')) &&
         !fileExists(path.join(level2Folder, 'decision-record.md'))) {
-      pass('Level inference: L2 from checklist.md', 'Checklist present, no decision-record');
+      pass('Level inference: L2 from merged verification', 'Tasks present, no decision-record');
     } else {
-      fail('Level inference: L2 from checklist.md', 'Unexpected file state');
+      fail('Level inference: L2 from merged verification', 'Unexpected file state');
     }
 
     // Level 3 inferred (decision-record present)
@@ -398,12 +394,12 @@ async function testFileExistsRule() {
       fail('L1 required files present', 'Missing files');
     }
 
-    // Test L2 adds checklist.md
+    // The retired verification document must not reappear at Level 2.
     const l2Folder = createTestSpecFolder('011-file-exists-l2', 2);
-    if (fileExists(path.join(l2Folder, 'checklist.md'))) {
-      pass('L2 adds checklist.md', 'File present');
+    if (!fileExists(path.join(l2Folder, 'checklist.md'))) {
+      pass('L2 scaffolds no standalone checklist', 'Retired document absent');
     } else {
-      fail('L2 adds checklist.md', 'checklist.md missing');
+      fail('L2 scaffolds no standalone checklist', 'Retired document was created');
     }
 
     // Test L3 adds decision-record.md

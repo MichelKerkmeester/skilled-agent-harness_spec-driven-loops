@@ -1,4 +1,5 @@
-# Skilled - Agent Orchestration Loops w/ Custom Spec Kit & Memory System
+# Skilled - Spec-Driven Agent Loops
+# w/ Custom Skill & Memory Framework
 
 | Core layer　　　　　　　　　　 | What it adds                                                            |
 | --------------------------------| -------------------------------------------------------------------------|

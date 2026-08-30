@@ -1,0 +1,4 @@
+{"type":"iteration","iteration":1,"run":1,"status":"complete","focus":"focus:security","newInfoRatio":0,"timestamp":"2026-08-30T08:06:00Z"}
+{"type":"iteration","iteration":2,"run":2,"status":"complete","focus":"focus:traceability","newInfoRatio":0,"timestamp":"2026-08-30T08:20:00Z"}
+{"type":"iteration","iteration":3,"run":3,"status":"complete","focus":"focus:maintainability","newInfoRatio":0,"timestamp":"2026-08-30T08:26:00Z"}
+{"type":"iteration","iteration":4,"run":4,"status":"complete","focus":"focus:none","newInfoRatio":0,"timestamp":"2026-08-30T08:30:02Z"}

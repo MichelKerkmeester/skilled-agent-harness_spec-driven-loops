@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-speckit/044-repair-write-symlink-refusal",
+  "description": "Refuse symlink traversal in the graph-metadata repair write path",
+  "keywords": [
+    "refuse",
+    "symlink",
+    "traversal",
+    "graph-metadata",
+    "repair",
+    "write",
+    "path"
+  ],
+  "lastUpdated": "2026-08-30T08:24:08.704Z",
+  "specId": "044",
+  "folderSlug": "repair-write-symlink-refusal",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

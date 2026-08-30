@@ -63,7 +63,7 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T004 Stop the producer creating the document on a level upgrade - `scripts/spec/upgrade-level.sh:798`; a live run now reports `Created: acceptance-criteria.md` only
+- [x] T004 Stop the producer creating the document on a level upgrade - `scripts/spec/upgrade-level.sh:632`; a live run now reports `Created: acceptance-criteria.md` only
 - [x] T005 Remove every contract entry - document, version, section gates and optional listings at three levels (`templates/spec-kit-docs.json`, 0 remaining references)
 - [x] T006 Remove the read-paths across rules, server modules and scripts - 35 files; 0 remaining in `scripts/rules/`
 - [x] T007 Delete the template, its 3 worked examples and the 2,270 tracked packet copies - confined to git-tracked in-repo paths, 0 staged under the symlinked repositories

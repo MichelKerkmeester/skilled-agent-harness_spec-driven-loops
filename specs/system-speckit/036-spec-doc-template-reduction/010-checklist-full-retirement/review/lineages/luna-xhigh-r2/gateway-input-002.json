@@ -1,0 +1,40 @@
+{
+  "stem": "deep_review.dimension_pass_completed",
+  "scope": {
+    "runId": "run-2",
+    "sessionId": "fanout-luna-xhigh-r2-1788076902384-48eibe",
+    "generation": 1,
+    "iterationId": "iteration-002",
+    "dimensionId": "security"
+  },
+  "prevEventHash": "db728bd3c6a31008eaa3b0ebbe0ac56914826e57cd380e2329cff3f3703d0509",
+  "replay": {
+    "fingerprint_version": 1,
+    "final_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "replay_input_digests": {}
+  },
+  "data": {
+    "passNumber": 2,
+    "targetRefs": ["target:checklist-retirement"],
+    "filesReviewed": [
+      "opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts:853-918",
+      "opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts:971-1050",
+      "opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts:70-112",
+      "opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts:1700-1770",
+      "opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs:107-135"
+    ],
+    "searchCoverageDigest": "0000000000000000000000000000000000000000000000000000000000000000",
+    "passStatus": "complete",
+    "rawFindingCounts": {"candidates": 3, "adjudicated": 3, "p0": 0, "p1": 2, "p2": 1},
+    "nextFocusRef": "focus:traceability"
+  },
+  "eventId": "iteration-002",
+  "streamId": "deep-review-ledger",
+  "occurredAt": "2026-08-30T08:20:00Z",
+  "recordedAt": "2026-08-30T08:20:00Z",
+  "producer": {"name": "deep-review-leaf", "version": "1.0.0"},
+  "authorityEpoch": 1,
+  "correlationId": "fanout-luna-xhigh-r2-1788076902384-48eibe-iteration-002",
+  "causationId": null,
+  "idempotencyKey": "fanout-luna-xhigh-r2-1788076902384-48eibe-iteration-002"
+}

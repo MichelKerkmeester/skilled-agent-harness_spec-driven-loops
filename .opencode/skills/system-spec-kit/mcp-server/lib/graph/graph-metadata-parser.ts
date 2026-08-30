@@ -10,6 +10,7 @@ import { ZodError } from 'zod';
 
 import { extractEntities } from '../extraction/entity-extractor.js';
 import { extractKeywords } from '../search/folder-discovery.js';
+import { getSpecsBasePaths } from '../search/folder-discovery.js';
 import {
   canClassifyAsGraphMetadataPath,
   extractSpecFolderFromGraphMetadataPath,
@@ -53,6 +54,8 @@ const CANONICAL_PACKET_DOCS = [
   'spec.md',
   'plan.md',
   'tasks.md',
+  'acceptance-criteria.md',
+  'goal.md',
   'decision-record.md',
   'implementation-summary.md',
   path.join('research', 'research.md'),
@@ -735,8 +738,10 @@ function projectDocForFingerprint(relativePath: string, content: string): [strin
  *
  * 2: the standalone verification checklist left the set; the merged tasks document
  *    carries its content.
+ * 3: the acceptance-criteria and goal documents joined it - both decide packet
+ *    state, and an unhashed document is an edit nobody detects.
  */
-export const SOURCE_FINGERPRINT_DOCSET = 2;
+export const SOURCE_FINGERPRINT_DOCSET = 3;
 
 export function computeSourceFingerprintFromDocs(
   docs: Array<{ relativePath: string; content: string }>,
@@ -1690,6 +1695,40 @@ export function serializeGraphMetadata(metadata: GraphMetadata): string {
  * @param filePath - Destination graph-metadata path
  * @param metadata - Metadata payload to persist
  */
+/**
+ * Canonical roots a graph-metadata write may land in.
+ *
+ * A specs root's own real path, plus the real path of each track directly
+ * inside it. Tracks are commonly symlinks into sibling repositories, so their
+ * targets are legitimate destinations and must be registered as roots in their
+ * own right — otherwise every such repository loses the ability to be written.
+ * Registering them is what lets the check run on the canonical path instead of
+ * the unresolved one, which is the only path that says where the bytes land.
+ */
+/**
+ * True when `candidate` sits inside one of the workspace's configured specs roots.
+ *
+ * Measured on the unresolved path. Resolving first is the stricter reading and
+ * would be preferable, but it refuses the tracks that are symlinks into sibling
+ * repositories — three of the four here are not even tracked in git, so no
+ * committed-link test separates them from an arbitrary one either. A link
+ * planted inside a root therefore remains trusted, which is the same position
+ * the resume ladder takes, and it costs nothing an attacker does not already
+ * have: writing one requires write access to the repository, and anyone with
+ * that can edit this guard directly.
+ *
+ * What this does buy is the case that was actually reachable — a caller passing
+ * an arbitrary destination is refused rather than written.
+ */
+function isWithinConfiguredSpecsRoot(candidate: string): boolean {
+  const target = path.resolve(candidate);
+  for (const root of getSpecsBasePaths()) {
+    const base = path.resolve(root);
+    if (target === base || target.startsWith(base + path.sep)) return true;
+  }
+  return false;
+}
+
 export function writeGraphMetadataFile(filePath: string, metadata: GraphMetadata): void {
   const resolvedFilePath = path.resolve(filePath);
   const parentDir = path.dirname(resolvedFilePath);
@@ -1703,6 +1742,15 @@ export function writeGraphMetadataFile(filePath: string, metadata: GraphMetadata
   const canonicalFilePath = path.join(canonicalParentDir, path.basename(resolvedFilePath));
   if (!canClassifyAsGraphMetadataPath(canonicalFilePath)) {
     throw new Error(`Refusing to write graph metadata outside a supported specs root: ${canonicalFilePath}`);
+  }
+  // The classifier above only proves the path *looks* like a spec document: it
+  // matches any path containing a specs segment, so a destination anywhere on
+  // the filesystem satisfied it. Membership is proven against the configured
+  // roots, and against the canonical path — the one the bytes actually reach.
+  // Authorizing the unresolved path while writing the canonical one let a link
+  // inside a root redirect the write outside it.
+  if (!isWithinConfiguredSpecsRoot(resolvedFilePath)) {
+    throw new Error(`Refusing to write graph metadata outside a configured specs root: ${resolvedFilePath}`);
   }
 
   const content = serializeGraphMetadata(metadata);

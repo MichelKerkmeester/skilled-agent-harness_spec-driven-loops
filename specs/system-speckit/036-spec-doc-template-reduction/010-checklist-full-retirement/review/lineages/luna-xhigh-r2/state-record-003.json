@@ -1,0 +1,517 @@
+{
+  "type": "iteration",
+  "iteration": 3,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": 3,
+  "status": "complete",
+  "focus": "traceability",
+  "dimensions": [
+    "traceability"
+  ],
+  "filesReviewed": [
+    "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md:116-119,163-164,200-208",
+    "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/acceptance-criteria.md:58-92",
+    "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/spec.md:55-62,126-143",
+    "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/implementation-summary.md:27-33,67-78",
+    "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/graph-metadata.json:42,223-224",
+    "opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts:1289-1307",
+    "opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts:8-20",
+    "opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:705-718,5060-5068"
+  ],
+  "findingsCount": 8,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 2
+  },
+  "findingsNew": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "findingDetails": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "title": "Active validation-system tests still require the retired Level 2 checklist",
+      "dimension": "correctness",
+      "category": "correctness",
+      "file": ".opencode/skills/system-spec-kit/scripts/tests/test-validation-system.cjs:410-417",
+      "line": 410,
+      "evidence": "The active validation harness still requires checklist.md for Level 2 fixtures.",
+      "recommendation": "Rewrite the helper and Level 2 assertions to reflect the acceptance-criteria-only contract.",
+      "disposition": "active",
+      "findingClass": "test-isolation",
+      "scopeProof": "scripts/package.json:14-18 wires the harness into the active test command.",
+      "affectedSurfaceHints": [
+        "scripts/tests/test-validation-system.cjs",
+        "scripts/package.json test:validation"
+      ],
+      "claim": "The active validation-system test harness still treats checklist.md as a required Level 2 artifact after the retirement contract removed it.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/scripts/tests/test-validation-system.cjs:410-417"
+      ],
+      "counterevidenceSought": "Read the active test wiring and current manifest; no retirement replacement was found.",
+      "alternativeExplanation": "The helper could be legacy-only, but the package test command still executes it.",
+      "finalSeverity": "P1",
+      "confidence": 0.96,
+      "downgradeTrigger": "If the file is removed from active test commands or rewritten for no checklist.",
+      "content_hash": "d8b539b7f8e9da113a8a310f7fa0cd6d15a97faa74db491cc6e5e6c973e61016"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "title": "Resume resolution accepts an in-root symlink that redirects document reads outside the workspace",
+      "dimension": "security",
+      "category": "security",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts:895-918",
+      "line": 895,
+      "evidence": "resolveExistingFolder uses lexical path.resolve containment and returns the unresolved folder path; later resume reads use that path.",
+      "recommendation": "Canonicalize candidate folders and redirected children, compare canonical paths with canonical allowed roots, and retain only canonical in-root paths.",
+      "disposition": "active",
+      "findingClass": "cross-consumer",
+      "scopeProof": "The folder resolver, redirect, document lookup, and stable reader were read together; no realpath-root comparison precedes reads.",
+      "affectedSurfaceHints": [
+        "resume ladder",
+        "phase-parent redirect",
+        "findSpecDocuments",
+        "stable document reader"
+      ],
+      "claim": "A symlink beneath a configured specs root can redirect resume reads outside the workspace because resume resolution proves only lexical containment.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts:895-918",
+        ".opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts:971-1006",
+        ".opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts:540-559"
+      ],
+      "counterevidenceSought": "Read isPathWithinRoot, resolveExistingFolder, followPhaseParentRedirect, the post-resolution document lookup, and readStableMarkdownDocument; no realpath-root comparison or canonical recheck was found.",
+      "alternativeExplanation": "The workspace may trust operator-controlled symlinks, but no trust exception is documented and the code presents this as a containment boundary.",
+      "finalSeverity": "P1",
+      "confidence": 0.94,
+      "downgradeTrigger": "If supported roots cannot contain attacker-controlled symlinks or a canonical realpath check covers every resume read.",
+      "content_hash": "ca553b0fc45ad103b542a90bfdb82956812843ea748b9866ba8e9dea1d9b445f"
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "title": "Generated metadata write authorization can follow an in-root symlink to an external specs path",
+      "dimension": "security",
+      "category": "security",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts:1709-1737",
+      "line": 1709,
+      "evidence": "The writer classifies a canonical parent but applies configured-root membership to the unresolved destination, so an in-root symlink to an external path containing /specs/ can pass both checks.",
+      "recommendation": "Authorize the canonical destination against canonical configured roots before creating the temp file or renaming it.",
+      "disposition": "active",
+      "findingClass": "cross-consumer",
+      "scopeProof": "The classifier, canonical-parent construction, final root check, temp-file write, and rename were read together; the checks use different path identities.",
+      "affectedSurfaceHints": [
+        "isSpecsScopedPath",
+        "writeGraphMetadataFile",
+        "refreshGraphMetadataForSpecFolder",
+        "atomic metadata rename"
+      ],
+      "claim": "Graph metadata writes can follow an in-root symlink to an external path containing a specs segment because final authorization checks the unresolved path lexically.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts:78-88",
+        ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts:1709-1737",
+        ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts:1754-1767"
+      ],
+      "counterevidenceSought": "Read the path classifier, canonical parent resolution, unresolved configured-root check, and atomic write sequence; no canonical-root comparison was found at the final write boundary.",
+      "alternativeExplanation": "Current callers may pass trusted real folders, but the exported writer accepts paths directly and the packet names symlink writes as a safety boundary.",
+      "finalSeverity": "P1",
+      "confidence": 0.91,
+      "downgradeTrigger": "If a universal wrapper canonicalizes the candidate and roots with a regression test for an external symlink target.",
+      "content_hash": "b0ab63a616d8a194435598e5d450d3a5790f8bcf2f4c3ccd52ed622a192a1e79"
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "title": "Repair metadata writes have a scan-to-write replacement race",
+      "dimension": "security",
+      "category": "security",
+      "file": ".opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs:346-360",
+      "line": 359,
+      "evidence": "Discovery filters regular files, but the later non-dry-run loop copies and writes the stored pathname without immediate type or canonical destination revalidation.",
+      "recommendation": "Revalidate the destination immediately before writing and use no-follow or canonical safe replacement semantics.",
+      "disposition": "active",
+      "findingClass": "instance-only",
+      "scopeProof": "The regular-file scan and later write loop were directly compared; no second lstat or no-follow boundary appears.",
+      "affectedSurfaceHints": [
+        "repair scan",
+        "repair write loop",
+        "destination revalidation"
+      ],
+      "claim": "Repair metadata writes can be redirected after discovery because the stored destination is not revalidated before writing.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs:107-135",
+        ".opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs:346-360"
+      ],
+      "content_hash": "d598a26cec84e8650d6dca1c12e7dca6dd18e45c31f859a3ce971155c932a466"
+    },
+    {
+      "id": "F005",
+      "severity": "P1",
+      "title": "Required P1 verification item is unchecked while packet claims complete closure",
+      "dimension": "traceability",
+      "category": "traceability",
+      "file": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md:116-119",
+      "line": 116,
+      "evidence": "The P1 protocol requires completion or user approval; CHK-FIX-006 is unchecked and deferred, the summary reports P1 0/0 and Verification Date not yet, while acceptance closure says Closeable Yes.",
+      "recommendation": "Complete CHK-FIX-006 with evidence, record the required approval, or amend the protocol and reconcile all completion metadata.",
+      "disposition": "active",
+      "findingClass": "matrix/evidence",
+      "scopeProof": "Protocol, unchecked item, verification summary, acceptance closure, and status fields were directly compared; no approval was found.",
+      "affectedSurfaceHints": [
+        "tasks.md verification protocol",
+        "CHK-FIX-006",
+        "verification summary",
+        "acceptance closure"
+      ],
+      "claim": "The packet cannot truthfully claim complete closure while CHK-FIX-006 remains an unchecked P1 item because its own protocol requires completion or user approval.",
+      "evidenceRefs": [
+        "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md:116-119",
+        "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md:163-164",
+        "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/acceptance-criteria.md:90-92"
+      ],
+      "counterevidenceSought": "Compared the P1 protocol, unchecked row, summary, acceptance closure, spec status, implementation-summary status, and decision-record availability; no approval or exception was found.",
+      "alternativeExplanation": "The deferred environment variant may be low risk, but the packet requires explicit P1 approval and does not record it.",
+      "finalSeverity": "P1",
+      "confidence": 0.97,
+      "downgradeTrigger": "A checked row with evidence, a recorded approval, or an explicit protocol amendment.",
+      "content_hash": "06f161310c46702677f3320d870b354531577c9d1c69965c2778d2d91ced1a98"
+    },
+    {
+      "id": "F006",
+      "severity": "P1",
+      "title": "Feature catalog still documents checklist.md as a live indexed spec document",
+      "dimension": "traceability",
+      "category": "traceability",
+      "file": ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:705-718",
+      "line": 705,
+      "evidence": "The catalog lists checklist.md among canonical scanned documents, describes tasks-to-checklist causal edges, and lists checklist.md under SPECKIT_INDEX_SPEC_DOCS; current SPEC_DOCUMENT_FILENAMES excludes it.",
+      "recommendation": "Remove or explicitly mark the checklist entries historical and document the tasks/acceptance-criteria-only behavior.",
+      "disposition": "active",
+      "findingClass": "class-of-bug",
+      "scopeProof": "Two independent catalog sections were compared against the current executable filename allowlist; no retirement label was present.",
+      "affectedSurfaceHints": [
+        "feature catalog canonical document list",
+        "SPECKIT_INDEX_SPEC_DOCS entry",
+        "spec-doc-paths.ts allowlist"
+      ],
+      "claim": "The feature catalog documents checklist.md as a live indexed spec document after the executable classifier removed it.",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:705-718",
+        ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:5060-5068",
+        ".opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts:8-20"
+      ],
+      "counterevidenceSought": "Read both present-tense catalog descriptions and the current allowlist; no generated-section marker or historical qualification explained the entries.",
+      "alternativeExplanation": "The catalog could preserve historical behavior, but it uses present-tense scanner and flag descriptions and does not label the filename historical.",
+      "finalSeverity": "P1",
+      "confidence": 0.92,
+      "downgradeTrigger": "Catalog entries are removed or explicitly marked historical with current behavior documented.",
+      "content_hash": "01a8c81f92a8df899087f1b3ad9e46c0fe85d49d40ad1423335f5ff980fff78f"
+    },
+    {
+      "id": "F007",
+      "severity": "P1",
+      "title": "Generated metadata reports in_progress while canonical packet documents report Complete",
+      "dimension": "traceability",
+      "category": "traceability",
+      "file": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/graph-metadata.json:42",
+      "line": 42,
+      "evidence": "Current-generation graph metadata has derived.status in_progress; deriveStatus uses the merged verification slice and returns in_progress for open items, while spec.md and implementation-summary.md report Complete.",
+      "recommendation": "Resolve CHK-FIX-006 and regenerate metadata, then verify generated status agrees with canonical closure claims.",
+      "disposition": "active",
+      "findingClass": "cross-consumer",
+      "scopeProof": "Generated status, current generation marker, packet status tables, and deriveStatus branch were directly compared.",
+      "affectedSurfaceHints": [
+        "graph-metadata.json derived.status",
+        "deriveStatus",
+        "tasks.md open item",
+        "spec.md status",
+        "implementation-summary status"
+      ],
+      "claim": "The packet's generated graph metadata and canonical closure documents disagree: deriveStatus produces in_progress because an open verification item remains, while spec.md and implementation-summary.md claim Complete.",
+      "evidenceRefs": [
+        "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/graph-metadata.json:42",
+        "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/spec.md:55-62",
+        "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/implementation-summary.md:27-33",
+        ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts:1289-1307"
+      ],
+      "counterevidenceSought": "Reread generated status, canonical status tables, current marker, merged-verification extraction, and completion evaluator; no status override was found.",
+      "alternativeExplanation": "Metadata may predate the final closure edit, but its source generation is current and no note says the status is intentionally stale.",
+      "finalSeverity": "P1",
+      "confidence": 0.95,
+      "downgradeTrigger": "Regenerate metadata after closure reconciliation and prove status parity.",
+      "content_hash": "c78af105647298728ebecc65e4ba2e8c99bac985f476d4a462127f6b924c424b"
+    },
+    {
+      "id": "F008",
+      "severity": "P2",
+      "title": "AC-001 and T004 retain a stale producer line citation",
+      "dimension": "traceability",
+      "category": "traceability",
+      "file": "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/acceptance-criteria.md:58",
+      "line": 58,
+      "evidence": "The packet cites upgrade-level.sh:632, while the current Level 1-to-Level 2 creation block is at upgrade-level.sh:729-744.",
+      "recommendation": "Replace the stale line reference and retain the live-run evidence beside the current producer block.",
+      "disposition": "active",
+      "findingClass": "instance-only",
+      "scopeProof": "Packet citations and current producer block were directly reread; no producer block at line 632 was found.",
+      "affectedSurfaceHints": [
+        "AC-001",
+        "T004",
+        "upgrade-level.sh producer block"
+      ],
+      "claim": "AC-001 and T004 retain a stale producer line citation.",
+      "evidenceRefs": [
+        "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/acceptance-criteria.md:58",
+        "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md:66",
+        ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:729-744"
+      ],
+      "content_hash": "4440c46ac05c354cf3621ebee2c3c8817811ad2b75d6ac42f37cb57ba0dc4b61"
+    }
+  ],
+  "traceabilityChecks": {
+    "summary": {
+      "required": 2,
+      "executed": 3,
+      "pass": 0,
+      "partial": 1,
+      "fail": 2,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 1
+    },
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 1,
+          "fail": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/graph-metadata.json:42",
+          ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:705-718"
+        ],
+        "findingRefs": [
+          "F006",
+          "F007"
+        ],
+        "summary": "The retirement source paths are present, but the catalog and generated status disagree with the packet closure claim."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "fail",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md:116-119",
+          "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md:163-164"
+        ],
+        "findingRefs": [
+          "F005"
+        ],
+        "summary": "An unchecked P1 verification item lacks the required approval while the packet claims closure."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "fail",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {
+          "pass": 0,
+          "partial": 0,
+          "fail": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:705-718",
+          ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:5060-5068",
+          ".opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts:8-20"
+        ],
+        "findingRefs": [
+          "F006"
+        ],
+        "summary": "Present-tense catalog entries retain checklist indexing after the executable filename allowlist removed it."
+      }
+    ]
+  },
+  "newFindingsRatio": 1.0,
+  "noveltyJustification": "Three new packet/overlay/generated-status traceability findings and one stale citation were confirmed; security and producer findings were carried forward only.",
+  "sessionId": "fanout-luna-xhigh-r2-1788076902384-48eibe",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "releaseReadinessState": "in-progress",
+  "timestamp": "2026-08-30T08:20:05Z",
+  "durationMs": 300000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "warn",
+    "reason": "Retirement-adjacent resume, generated metadata, fingerprint, and repair boundaries",
+    "evidenceRefs": [
+      ".opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts:895-918"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".opencode/skills/system-spec-kit/mcp-server/lib/resume/resume-ladder.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/scripts/repair-graph-metadata.mjs"
+    ],
+    "selectionReason": "Trace path resolution and write authorization through symlink, generation, and repair edge cases.",
+    "discoveryMethods": [
+      "direct_read",
+      "bounded_exact_search",
+      "cited_evidence_reread"
+    ],
+    "omittedHighRiskTargets": [],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [
+      ".opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts:78-88"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "completion_claim",
+      "catalog_parity",
+      "generated_status",
+      "stale_citation"
+    ],
+    "covered": [
+      "completion_claim",
+      "catalog_parity",
+      "generated_status",
+      "stale_citation"
+    ],
+    "ruledOut": [
+      "producer_contract",
+      "generation_marker"
+    ],
+    "deferred": [
+      "maintainability_only_doc_polish"
+    ],
+    "blocked": [
+      "code_graph"
+    ],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        "tasks.md",
+        "acceptance-criteria.md"
+      ],
+      "bugClass": "completion_claim",
+      "hypothesis": "An unchecked P1 verification row may contradict Complete/Closeable claims.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "tasks.md:116-119,163-164,200-208; acceptance-criteria.md:90-92",
+          "result": "CHK-FIX-006 is open, the summary says 0/0/0 and date not yet, while Closeable is Yes.",
+          "evidenceRefs": [
+            "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md:116-119",
+            "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/tasks.md:163-164"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "The packet protocol requires completion or approval for P1 rows.",
+      "linkedFindingId": "F005"
+    },
+    {
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md",
+        ".opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts"
+      ],
+      "bugClass": "catalog_parity",
+      "hypothesis": "Feature documentation may still advertise checklist indexing after retirement.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "feature-catalog.md:705-718,5060-5068; spec-doc-paths.ts:8-20",
+          "result": "Catalog retains checklist in scanner/listing prose, current executable allowlist does not.",
+          "evidenceRefs": [
+            ".opencode/skills/system-spec-kit/feature-catalog/feature-catalog.md:705-718",
+            ".opencode/skills/system-spec-kit/mcp-server/lib/config/spec-doc-paths.ts:8-20"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "The present-tense catalog is stale about the retired capability.",
+      "linkedFindingId": "F006"
+    },
+    {
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        "graph-metadata.json",
+        "tasks.md",
+        "graph-metadata-parser.ts"
+      ],
+      "bugClass": "generated_status",
+      "hypothesis": "Generated status may disagree with canonical packet completion claims.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "graph-metadata.json:42,223-224; tasks.md:163-164; graph-metadata-parser.ts:1289-1307",
+          "result": "Current-generation metadata is in_progress because merged verification contains an open item, while packet docs claim Complete.",
+          "evidenceRefs": [
+            "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/graph-metadata.json:42",
+            ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-parser.ts:1289-1307"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "Generated and canonical status surfaces are inconsistent.",
+      "linkedFindingId": "F007"
+    },
+    {
+      "id": "SL-011",
+      "dimension": "traceability",
+      "targetRefs": [
+        "acceptance-criteria.md",
+        "upgrade-level.sh"
+      ],
+      "bugClass": "stale_citation",
+      "invariant": "Acceptance evidence must point to the current producer block.",
+      "searchActions": [
+        {
+          "method": "exact_search",
+          "queryOrPath": "acceptance-criteria.md:58; upgrade-level.sh:729-744",
+          "result": "Packet cites line 632; current producer block is 729-744.",
+          "evidenceRefs": [
+            "specs/system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement/acceptance-criteria.md:58",
+            ".opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh:729-744"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "rationale": "The behavior is present but the retained citation is stale.",
+      "linkedFindingId": "F008"
+    }
+  ],
+  "graphEvents": [],
+  "nextFocusRef": "focus:maintainability"
+}

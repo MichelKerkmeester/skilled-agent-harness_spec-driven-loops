@@ -55,13 +55,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a Level 1 to Level 2 upgrade, When it runs, Then no verification checklist is produced | Live upgrade on a probe packet reported `Created: acceptance-criteria.md` and no checklist (`scripts/spec/upgrade-level.sh:798`) | Met | - |
+| AC-001 | REQ-001 | Given a Level 1 to Level 2 upgrade, When it runs, Then no verification checklist is produced | Live upgrade on a probe packet reported `Created: acceptance-criteria.md` and no checklist (`scripts/spec/upgrade-level.sh:632`) | Met | - |
 | AC-002 | REQ-001 | Given the level contract, When it is read, Then the document appears in no bucket at any level | `scripts/tests/scaffold-golden-snapshots.vitest.ts:136` asserts absence from all four buckets; 9/9 pass | Met | - |
 | AC-003 | REQ-002 | Given a packet whose digest predates this change, When it is validated, Then it reports no drift and needs no repair | 12-packet baseline sample identical to pre-change with no repair run; generation gate at `mcp-server/lib/validation/generated-metadata-integrity.ts:168` | Met | - |
 | AC-004 | REQ-002 | Given a packet whose documents genuinely changed, When it is validated, Then drift is still reported | Editing spec.md on a current-generation packet reports 1 mismatch; restoring returns 0 | Met | - |
 | AC-005 | REQ-003 | Given a verification item with no evidence, When the evidence rule runs, Then it is reported | `scripts/rules/check-evidence.sh:89` holds both id shapes; three fixtures report warn/pass/warn | Met | - |
 | AC-006 | REQ-004 | Given the staged change, When it is inspected, Then no path inside a symlinked repository is touched | 0 staged paths under the four symlinked trees; all 2,270 deletions git-tracked in-repo | Met | - |
-| AC-007 | REQ-005 | Given the rules, server modules and scripts, When searched, Then no read-path remains | 0 matching files across rules, live templates and `templates/spec-kit-docs.json` | Met | - |
+| AC-007 | REQ-005 | Given the rules, server modules and scripts, When searched, Then no read-path remains | 0 matches in `scripts/rules/`, `mcp-server/lib/`, `mcp-server/handlers/`, `mcp-server/tool-schemas.ts`, `mcp-server/scripts/`, `scripts/spec/`, `scripts/lib/`, `scripts/extractors/`, live templates and `templates/spec-kit-docs.json`; the handlers directory was missed by the first sweep and added after review | Met | - |
 | AC-008 | REQ-006 | Given the fixture suite, When it runs, Then it fails no more than before | HEAD 16 failed / 23 passed; now 13 failed / 22 passed | Met | - |
 
 ### Status values

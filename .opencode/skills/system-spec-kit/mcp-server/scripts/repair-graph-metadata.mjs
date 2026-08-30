@@ -4,6 +4,7 @@ import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const VALID_TIERS = new Set(['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated']);
 const DOCS = ['spec.md', 'plan.md', 'tasks.md', 'decision-record.md', 'implementation-summary.md', 'research/research.md', 'research.md', 'handover.md', 'resource-map.md'];
@@ -105,6 +106,23 @@ function graphFiles(root) {
   }
   walk(root);
   return out.sort();
+}
+
+// The scan skips symlinks by inspecting the directory entry, but that decision
+// is made once and the write happens later. A path replaced by a symlink in
+// between would be followed, so the write refuses to traverse one itself rather
+// than trusting a check made earlier against a filesystem that can change.
+export function writeExistingFileNoFollow(filePath, content) {
+  let fd;
+  try {
+    fd = fs.openSync(filePath, fs.constants.O_WRONLY | fs.constants.O_TRUNC | fs.constants.O_NOFOLLOW);
+  } catch (error) {
+    if (error && (error.code === 'ELOOP' || error.code === 'EMLINK')) {
+      throw new Error(`Refusing to write graph metadata through a symlink: ${filePath}`);
+    }
+    throw error;
+  }
+  try { fs.writeFileSync(fd, content); } finally { fs.closeSync(fd); }
 }
 
 function folderId(file, specsRoot) {
@@ -356,7 +374,7 @@ function run() {
       const backup = path.join(backupDir, path.relative(root, repair.filePath));
       fs.mkdirSync(path.dirname(backup), { recursive: true });
       fs.copyFileSync(repair.filePath, backup);
-      fs.writeFileSync(repair.filePath, repair.content);
+      writeExistingFileNoFollow(repair.filePath, repair.content);
     }
   }
   const lineage = options.lineage ? repairLineage(path.resolve(root, DB_PATH), scan.lineageIds, options.dryRun, backupDir) : { candidates: 0, changed: 0, skipped: 0, failures: [] };
@@ -387,4 +405,9 @@ function run() {
   if (failed.length > 0 || lineage.failures.length > 0) process.exitCode = 2;
 }
 
-run();
+// Only run when invoked as a command. Importing the module - which the write
+// boundary's tests do, so they exercise the shipped function rather than a copy
+// of it - must not launch a repair sweep as a side effect.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  run();
+}
