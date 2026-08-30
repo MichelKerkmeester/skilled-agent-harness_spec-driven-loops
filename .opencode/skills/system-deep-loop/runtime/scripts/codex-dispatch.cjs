@@ -65,6 +65,57 @@ function isCodexAvailable(env = process.env) {
 }
 
 /**
+ * Make the credential reachable from whatever home this dispatch will run under.
+ *
+ * Codex keeps its OAuth credential in a file inside its home directory, so any
+ * caller that relocates that home to isolate session state isolates the identity
+ * with it. The dispatched process then authenticates as nobody, and the failure
+ * does not surface as an auth error: codex retries the responses websocket on a
+ * backoff, so the process stays alive at near-zero CPU until the dispatch timeout
+ * kills it and reports a timeout. That is a fifteen-minute wait for a 401.
+ *
+ * The credential is linked, never copied. Lineage homes are created inside spec
+ * folders that get committed, and copying would write an OAuth token into git
+ * history.
+ *
+ * Returns a reason string when no credential is reachable at all, so the caller
+ * can refuse immediately instead of spawning a process that cannot succeed.
+ *
+ * @param {Object} env - The environment the dispatch will run under.
+ * @returns {string|null} Failure reason, or null when a credential is reachable.
+ */
+function ensureCredentialReachable(env) {
+  const home = env.CODEX_HOME;
+  const fallbackHome = env.HOME ? path.join(env.HOME, '.codex') : null;
+  const credentialIn = (dir) => (dir ? path.join(dir, 'auth.json') : null);
+
+  // No relocation: codex reads its default home and finds its own credential.
+  if (!home) {
+    const fallback = credentialIn(fallbackHome);
+    if (fallback && fs.existsSync(fallback)) return null;
+    return 'no codex credential found (run `codex login`)';
+  }
+
+  const target = credentialIn(home);
+  if (fs.existsSync(target)) return null;
+
+  const source = credentialIn(fallbackHome);
+  if (!source || !fs.existsSync(source)) {
+    return `codex credential missing in CODEX_HOME (${home}) and none to link from (run \`codex login\`)`;
+  }
+
+  try {
+    fs.mkdirSync(home, { recursive: true });
+    fs.symlinkSync(source, target);
+    return null;
+  } catch (err) {
+    // A race with a sibling lineage creating the same link is success, not failure.
+    if (err && err.code === 'EEXIST') return null;
+    return `codex credential could not be linked into CODEX_HOME (${home}): ${err && err.message}`;
+  }
+}
+
+/**
  * Reap the dispatch's own child process tree after a timeout. Scoped to the
  * captured PID and its direct children only — never a machine-wide codex sweep.
  *
@@ -98,6 +149,15 @@ function dispatchCodex({ prompt, cwd, model, effort, tier, sandbox, timeoutMs } 
   const chosenEffort = effort || DEFAULT_EFFORT;
   const chosenTier = tier || DEFAULT_TIER;
   const chosenSandbox = sandbox || DEFAULT_SANDBOX;
+
+  const credentialProblem = ensureCredentialReachable(process.env);
+  if (credentialProblem) {
+    return {
+      status: null, timedOut: false, lastMessage: '', stdout: '', stderr: '',
+      model: chosenModel, effort: chosenEffort, tier: chosenTier, sandbox: chosenSandbox,
+      error: credentialProblem,
+    };
+  }
 
   if (!isCodexAvailable()) {
     return {
@@ -160,7 +220,7 @@ function dispatchCodex({ prompt, cwd, model, effort, tier, sandbox, timeoutMs } 
 // 4. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { dispatchCodex, isCodexAvailable, DEFAULT_MODEL, DEFAULT_EFFORT, DEFAULT_TIER };
+module.exports = { dispatchCodex, isCodexAvailable, ensureCredentialReachable, DEFAULT_MODEL, DEFAULT_EFFORT, DEFAULT_TIER };
 
 // Manual smoke test: pipe a prompt on stdin, or pass --prompt "..."; prints the
 // JSON dispatch result. Used to validate flags/auth before a benchmark batch.
