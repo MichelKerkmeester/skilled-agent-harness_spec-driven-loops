@@ -87,12 +87,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -109,20 +103,26 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Closed With",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The completion gate fails roughly two thirds of the live corpus, and the",
     "created_at": "2026-08-29T17:24:49.641Z",
-    "last_save_at": "2026-08-30T13:08:23.561Z",
+    "last_save_at": "2026-08-30T14:03:04.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:dd73ec4514e1c46f3846d0be30824e51af2a9f3327974d8e21b9a9d7d3802366",
+    "source_fingerprint": "sha256:9ba5fec61da5e3ab3c4a0c4abb4c65dd01147c72152103eb4f9d07e5cc69456f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "267f1e0881a3d84b59192164d8f3106282f8664e3cce74ef8ef833f0fe3dc97a"
+      "spec.md": "44b3838b4e02c805de1514a5341ae00e72513fc9c52dbd43bba12b76a28a281e"
     },
     "last_active_child_id": "system-speckit/041-validation-reduction/002-tracks-are-not-packets",
     "last_active_at": null

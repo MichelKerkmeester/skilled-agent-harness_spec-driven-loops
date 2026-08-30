@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-08-29 |
 | **Branch** | `skilled/v4.0.0.0` |
 | **Parent Spec** | `../spec.md` |
@@ -48,6 +48,7 @@ _memory:
 | **Predecessor** | system-speckit/040-validation-gate-coherence |
 | **Successor** | None |
 | **Handoff Criteria** | Each phase leaves the gate runnable and the corpus no worse than it found it |
+| **Closed With** | Phases 1-6, 9 and 10 shipped; 8 superseded; 7 open and priced |
 <!-- /ANCHOR:metadata -->
 
 ---

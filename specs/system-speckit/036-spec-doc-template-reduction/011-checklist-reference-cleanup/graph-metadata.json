@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Finish the retirement: remove what pointed at the deleted document",
     "created_at": "2026-08-30T07:11:39.824Z",
-    "last_save_at": "2026-08-30T07:11:39.824Z",
+    "last_save_at": "2026-08-30T14:03:04.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,7 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:d79927de0df83446b894950f4cfd6455455757b2569cdfd222c37a3089ffcaa4",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0a07c77025b37dfb820f02c8353b02e1975c231857b4e826c7b1033278226141",
       "plan.md": "69910f28e5c900e0386f50c4ddd153df3c2db55c27771303da7272cfa5cb4aaf",

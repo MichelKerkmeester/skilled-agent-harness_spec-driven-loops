@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Say what the runtime is for, and leave a legal path for what it is not for,",
     "created_at": "2026-08-30T09:07:07Z",
-    "last_save_at": "2026-08-30T09:08:50.788Z",
+    "last_save_at": "2026-08-30T14:03:05.040Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,7 +199,7 @@
       "implementation-summary.md"
     ],
     "source_fingerprint": "sha256:0fe1592640ca304158d2de2018a8f00edaa2542856e2b978edb0dda30597a51f",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d2f342214d72351ba954b887a21369d022302cdf02ac7c7172a9a491fc5a3954",
       "plan.md": "6ffc10ab726693e2ad572e75db2fb30a37f5fdcb4b5bca7b5f9048c602d8da26",
