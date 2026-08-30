@@ -8,6 +8,7 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan: Review Remediation (010/007)
 
 <!-- SPECKIT_LEVEL: 2 -->

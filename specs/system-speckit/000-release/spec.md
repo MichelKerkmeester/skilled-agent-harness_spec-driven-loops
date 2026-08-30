@@ -10,6 +10,7 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # 000-release — v4.0.0.0 Release Notes & README Refresh (Planning Capture)
 
 > **Phase parent — lean trio.** Root purpose only. The full plan lives in `plan.md`; each phase child holds its own charter.

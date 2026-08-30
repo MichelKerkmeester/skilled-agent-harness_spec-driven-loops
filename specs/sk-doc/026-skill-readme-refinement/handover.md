@@ -12,6 +12,7 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "general"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 # Handover — mcp-obsidian README refinement and the repo-wide skill README program
 
 > Phase-parent packet: `.opencode/specs/sk-doc/026-skill-readme-refinement`. This handover records the original ask, the writing-style directives, exactly what was changed and how, the validation evidence, and the roadmap the phases in this packet execute.

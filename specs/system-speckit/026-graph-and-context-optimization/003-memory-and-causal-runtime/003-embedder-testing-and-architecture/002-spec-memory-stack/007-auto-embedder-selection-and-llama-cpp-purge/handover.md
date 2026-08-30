@@ -27,6 +27,7 @@ _memory:
       parent_session_id: "016-002-007"
     completion_pct: 0
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 

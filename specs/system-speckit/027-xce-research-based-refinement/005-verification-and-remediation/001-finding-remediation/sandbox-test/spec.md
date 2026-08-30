@@ -7,6 +7,7 @@ trigger_phrases:
 importance_tier: "temporary"
 contextType: "implementation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Sandbox Mutation Test Doc
 
 This is a temporary sandbox document for mutation testing validation.

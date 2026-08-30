@@ -22,6 +22,7 @@ _memory:
     open_questions: ["Have the removed provider credentials been revoked and rotated?", "Do PermissionRequest and PostCompaction fire when those events occur?", "Does run_subagent produce the registered tool name and expected payload shape?"]
     answered_questions: ["The earlier packet-wide dormancy conclusion came from an unsupported hooks.v1.json wrapper schema.", "Six lifecycle events fire under devin -p with the corrected top-level schema.", "Phase 011 removed stale current-state claims and local Zed credential copies."]
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 # Session Handover Document: cli-devin Revival (029)
 
 ## 1. Handover Summary

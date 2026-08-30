@@ -34,6 +34,7 @@ _memory:
       - "Is the build done? Yes — all ten children 002-011 are implemented and committed behind the still-OFF flag (validate --strict Errors:0, routing byte-identical to legacy, frozen scorer SHA-256 unchanged)."
       - "Is the repo default flipped? No, by design — honestly gated on siblings 013/014 and the P3 coverage-closure join gate (011 reports all 7 hubs BLOCKED). The flip is an operator decision after those land."
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 # Handover — Routing Coverage, Activation & Verification (015)
 
 ## What this session did

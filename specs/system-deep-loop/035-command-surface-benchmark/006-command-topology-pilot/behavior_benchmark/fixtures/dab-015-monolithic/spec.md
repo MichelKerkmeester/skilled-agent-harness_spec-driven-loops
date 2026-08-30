@@ -13,6 +13,7 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "implementation"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Prompt setup contract
 
 The command may proceed only after the operator explicitly chooses both a save destination and an inline or agent dispatch mode.

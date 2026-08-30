@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Gather every change between the last public GitHub release (v3.6.0.0, 2026-06-18) and the",
     "created_at": "2026-08-14T00:00:00.000Z",
-    "last_save_at": "2026-08-30T07:16:24.707Z",
+    "last_save_at": "2026-08-30T07:28:30.789Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,14 +198,14 @@
       "plan.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:e7a821ae131a07f87b41f4fd8980668e53319a723619416dfcefe312aff68ddf",
+    "source_fingerprint": "sha256:806b0dd8d0bee829784b706a707ddfada7b4a77e132705caab7decdd2a8f0b9c",
     "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "4f2e0f227659be7b2b8186ce49db9e0af54ca43d95930809c9d6176d42401e2e",
+      "spec.md": "422c72107abc130380c5372c7799810ffdf199afb44430b7abc46588c4f9bfc2",
       "plan.md": "2beba4b731afe5b4074e18e870c6fd5d0d6d773a9565649f303377ceb8fde50c",
-      "handover.md": "c52f36c181f8bc67b860f32e1cd2aba62414d19af6b52d93184174f0ce6d92ca"
+      "handover.md": "9cee7ed022d26e2853d8055b9325303ac340ca085d75a31e8dab470e33208e6b"
     },
-    "last_active_child_id": null,
+    "last_active_child_id": "system-speckit/000-release/005-readme-update",
     "last_active_at": null
   }
 }

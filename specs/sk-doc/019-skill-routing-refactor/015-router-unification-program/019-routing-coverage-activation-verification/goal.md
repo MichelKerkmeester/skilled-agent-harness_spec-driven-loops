@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal — Routing Coverage, Activation & Verification (packet 015)
 
 > The large, standing goal for this phase. Broad by design: it drives the autonomous build from the P0 activation foundation through the staged default-on cutover, verified through automated tests + benchmarks + manual-testing playbooks. Companion: `handover.md` (detailed resume state), `spec.md` (parent phase map), `001-research/{synthesis,verification,review}-v1.md` (the verified evidence base).

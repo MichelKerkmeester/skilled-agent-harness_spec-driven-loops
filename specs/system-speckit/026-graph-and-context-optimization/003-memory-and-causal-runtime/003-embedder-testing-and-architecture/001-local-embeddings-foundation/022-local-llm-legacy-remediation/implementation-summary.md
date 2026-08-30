@@ -32,6 +32,7 @@ _memory:
       - q: "Was the substrate failure caused by H1 (multi-daemon contention) or H2 (retry throughput) or H4 (governance silent reject)?"
         a: "All three contributed; H4 was the dominant cause. Multi-daemon contention triggered initial circuit-breaker flapping; retry throughput limited recovery rate; governance silent reject from retentionPolicy:'ephemeral' was why every save failed regardless of substrate state."
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 # Implementation Summary
 
 ## Metadata

@@ -1,3 +1,4 @@
+<!-- SPECKIT_TEMPLATE_SOURCE: goal | v2.2 -->
 # Goal: pi-fast-mode-w-subagent-support
 
 **Packet:** `specs/hooks/011-pi-fast-mode-w-subagent-support` · **Branch:** `skilled/v4.0.0.0` · **Status:** Planned (0% built)

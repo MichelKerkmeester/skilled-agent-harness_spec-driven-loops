@@ -9,6 +9,7 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "general"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Phase 003: Trigger Phrases — system-spec-kit
 
 <!-- SPECKIT_LEVEL: 1 -->

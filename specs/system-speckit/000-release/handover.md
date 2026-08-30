@@ -11,6 +11,7 @@ trigger_phrases:
 importance_tier: "normal"
 contextType: "general"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: handover | v1.0 -->
 # Handover — v4.0.0.0 Release Notes & README Refresh
 
 > **Session:** "RELEASE V4" (2026-08-14). **Status: PAUSED by operator** ("we won't start now").

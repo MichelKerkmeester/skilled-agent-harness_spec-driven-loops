@@ -13,6 +13,7 @@ trigger_phrases:
 importance_tier: "important"
 contextType: "planning"
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
 # Plan
 
 Present one consolidated setup question and stop without modifying the prompt input.

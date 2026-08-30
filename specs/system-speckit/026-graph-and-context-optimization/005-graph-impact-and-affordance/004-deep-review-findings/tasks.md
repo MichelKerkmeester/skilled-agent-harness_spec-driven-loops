@@ -17,6 +17,7 @@ _memory:
     blockers: []
     completion_pct: 100
 ---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 # Tasks: Review Remediation (006/007)
 
 <!-- SPECKIT_LEVEL: 2 -->
