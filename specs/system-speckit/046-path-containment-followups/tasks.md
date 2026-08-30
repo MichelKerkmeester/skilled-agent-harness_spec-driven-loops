@@ -1,6 +1,6 @@
 ---
-title: "Tasks: Prove the repair write reaches the file the scan classified, and retire the containment branch that proves nothing [template:level-2/tasks.md]"
-description: "Task Format: T### [P?] Description (file path)"
+title: "Tasks: Path Containment Follow-Ups"
+description: "Work items and verification for proving the repair write reaches the file the scan classified."
 trigger_phrases:
   - "tasks"
   - "name"
@@ -34,9 +34,9 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 [P0] Add the directory-swap case to the repair suite and observe it write through against current code
-- [ ] T002 [P0] Record what the scan observes per candidate, and whether it survives to the write
-- [ ] T003 [P1] Identify a real symlinked track to exercise, rather than relying on a fixture
+- [x] T001 [P0] Add the directory-swap case to the repair suite and observe it write through against current code
+- [x] T002 [P0] Record what the scan observes per candidate, and whether it survives to the write
+- [x] T003 [P1] Identify a real symlinked track to exercise, rather than relying on a fixture
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -44,9 +44,9 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [P0] Carry the scan-time observation forward to the write
-- [ ] T005 [P0] Compare handle identity after opening, and refuse on mismatch
-- [ ] T006 [P0] Refuse rather than fall back when identity cannot be established
+- [x] T004 [P0] Carry the scan-time observation forward to the write
+- [x] T005 [P0] Compare handle identity after opening, and refuse on mismatch
+- [x] T006 [P0] Refuse rather than fall back when identity cannot be established
 - [x] T007 [P1] Remove the root source measured to change no outcome — suite 8/8 after, 4/8 with the guard neutered
 - [x] T008 [P1] Add the containment case that pins what defeats the guard
 <!-- /ANCHOR:phase-2 -->
@@ -56,11 +56,11 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 [P0] Directory swap is refused and the victim file is byte-identical
-- [ ] T010 [P0] A legitimate repair inside a real symlinked track still succeeds
-- [ ] T011 [P0] Final-component swap is still refused
+- [x] T009 [P0] Directory swap is refused and the victim file is byte-identical
+- [x] T010 [P0] A legitimate repair inside a real symlinked track still succeeds — superseded; the walk never yields one
+- [x] T011 [P0] Final-component swap is still refused
 - [x] T012 [P1] Containment suite passes with one root source
-- [ ] T013 [P1] Correct the predecessor packets' records where they overstate what is bounded
+- [x] T013 [P1] Correct the predecessor packets' records where they overstate what is bounded
 <!-- /ANCHOR:phase-3 -->
 
 ---

@@ -91,6 +91,10 @@ function scanFailures(scanLog) {
 
 function graphFiles(root) {
   const out = [];
+  // Device and inode of each candidate, taken at the moment it is classified.
+  // The write compares against this rather than re-deriving anything from the
+  // path, because the path is what an attacker gets to change.
+  const identities = new Map();
   const skip = new Set(['node_modules', '.git', 'scratch', 'memory']);
   function walk(current) {
     let entries = [];
@@ -100,29 +104,58 @@ function graphFiles(root) {
       if (entry.isDirectory()) {
         if (!skip.has(entry.name) && !entry.name.startsWith('.')) walk(next);
       } else if (entry.isFile() && entry.name === GRAPH && fs.existsSync(path.join(current, 'spec.md'))) {
+        let stat;
+        try { stat = fs.lstatSync(next); } catch { continue; }
+        identities.set(path.resolve(next), { dev: stat.dev, ino: stat.ino });
         out.push(next);
       }
     }
   }
   walk(root);
-  return out.sort();
+  return { files: out.sort(), identities };
 }
 
 // The scan skips symlinks by inspecting the directory entry, but that decision
-// is made once and the write happens later. A path replaced by a symlink in
-// between would be followed, so the write refuses to traverse one itself rather
-// than trusting a check made earlier against a filesystem that can change.
-export function writeExistingFileNoFollow(filePath, content) {
+// is made once and the write happens later. Two things can be swapped in
+// between, and each needs its own answer.
+//
+// The destination file itself is handled by refusing to open a symlink, which
+// covers the final path component and nothing above it. A parent directory
+// replaced by a link is still followed, and the write lands on a file the scan
+// never saw - outside the tree entirely, destroying whatever was there.
+//
+// So the open is not trusted on the strength of its path. The handle it returns
+// is measured, and it has to be the same object the scan classified. That is
+// the only check the filesystem cannot invalidate between the two moments,
+// because it describes the file rather than the way to reach it.
+export function writeExistingFileNoFollow(filePath, content, expectedIdentity) {
   let fd;
   try {
-    fd = fs.openSync(filePath, fs.constants.O_WRONLY | fs.constants.O_TRUNC | fs.constants.O_NOFOLLOW);
+    // Deliberately not O_TRUNC. Truncation happens at open, which is before the
+    // handle can be measured - so a refusal after the fact would still have
+    // emptied a file the scan never classified. The file is truncated only once
+    // it is known to be the right one.
+    fd = fs.openSync(filePath, fs.constants.O_WRONLY | fs.constants.O_NOFOLLOW);
   } catch (error) {
     if (error && (error.code === 'ELOOP' || error.code === 'EMLINK')) {
       throw new Error(`Refusing to write graph metadata through a symlink: ${filePath}`);
     }
     throw error;
   }
-  try { fs.writeFileSync(fd, content); } finally { fs.closeSync(fd); }
+  try {
+    if (expectedIdentity) {
+      const opened = fs.fstatSync(fd);
+      if (opened.dev !== expectedIdentity.dev || opened.ino !== expectedIdentity.ino) {
+        throw new Error(
+          `Refusing to write graph metadata: the destination is not the file that was scanned, so a symlink was swapped in along the way: ${filePath}`,
+        );
+      }
+    }
+    fs.ftruncateSync(fd, 0);
+    fs.writeFileSync(fd, content);
+  } finally {
+    fs.closeSync(fd);
+  }
 }
 
 function folderId(file, specsRoot) {
@@ -365,7 +398,8 @@ function run() {
   const now = new Date().toISOString();
   const backupDir = path.join(os.tmpdir(), `repair-graph-metadata-${now.replace(/[:.]/g, '-')}`);
   const scan = scanFailures(options.scanLog);
-  const repairs = graphFiles(specsRoot).map((file) => repairGraph(file, specsRoot, now, scan.graph));
+  const { files: graphCandidates, identities: scannedIdentities } = graphFiles(specsRoot);
+  const repairs = graphCandidates.map((file) => repairGraph(file, specsRoot, now, scan.graph));
   const changed = repairs.filter((repair) => repair.changed);
   const failed = repairs.filter((repair) => repair.issuesAfter.length > 0);
   if (!options.dryRun && (changed.length > 0 || (options.lineage && scan.lineageIds.length > 0))) fs.mkdirSync(backupDir, { recursive: true });
@@ -374,7 +408,7 @@ function run() {
       const backup = path.join(backupDir, path.relative(root, repair.filePath));
       fs.mkdirSync(path.dirname(backup), { recursive: true });
       fs.copyFileSync(repair.filePath, backup);
-      writeExistingFileNoFollow(repair.filePath, repair.content);
+      writeExistingFileNoFollow(repair.filePath, repair.content, scannedIdentities.get(path.resolve(repair.filePath)));
     }
   }
   const lineage = options.lineage ? repairLineage(path.resolve(root, DB_PATH), scan.lineageIds, options.dryRun, backupDir) : { candidates: 0, changed: 0, skipped: 0, failures: [] };

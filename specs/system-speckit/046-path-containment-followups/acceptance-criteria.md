@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/046-path-containment-followups"
+    packet_pointer: "system-speckit/046-path-containment-followups"
     last_updated_at: "2026-08-30T14:17:45Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 
 **Packet:** system-speckit/046-path-containment-followups
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-08-30
 <!-- /ANCHOR:metadata -->
 
@@ -54,10 +54,10 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a scanned directory replaced by a symlink between the scan and the write, When the write runs, Then it is refused and the file outside the tree is unchanged | [the reproduction above, run against the fix] | Unmet | - |
-| AC-002 | REQ-001 | Given the same case run against the pre-change code, When it runs, Then it writes through — so the new case fails without the fix | [negative control output] | Unmet | - |
-| AC-003 | REQ-001 | Given the final component replaced by a symlink, When the write runs, Then it is still refused | `scripts/tests/repair-write-symlink-refusal.sh` | Unmet | - |
-| AC-004 | REQ-001 | Given a legitimate repair target inside a symlinked sibling-repository track, When the write runs, Then it succeeds | [a real track exercised, not a fixture] | Unmet | - |
+| AC-001 | REQ-001 | Given a scanned directory replaced by a symlink between the scan and the write, When the write runs, Then it is refused and the file outside the tree is unchanged | `scripts/tests/repair-write-symlink-refusal.sh` case "swapped parent directory is refused", plus "the bystander outside the tree is untouched" | Met | - |
+| AC-002 | REQ-001 | Given the same case run against the pre-change code, When it runs, Then it writes through — so the new case fails without the fix | Negative control: with the check disabled and O_TRUNC restored, both cases fail — refused becomes wrote, bystander becomes REPAIRED | Met | - |
+| AC-003 | REQ-001 | Given the final component replaced by a symlink, When the write runs, Then it is still refused | `scripts/tests/repair-write-symlink-refusal.sh` case "destination swapped to a symlink is refused" | Met | - |
+| AC-004 | REQ-001 | Given a legitimate repair target inside a symlinked sibling-repository track, When the write runs, Then it succeeds | The repair walk never yields a candidate inside a symlinked track, so the case cannot be exercised | Superseded | ADR-001 |
 | AC-005 | REQ-002 | Given the containment guard reduced to one root source, When the suite runs, Then it passes unchanged | `scripts/tests/graph-metadata-write-containment.sh` 8/8, and 4/8 with the guard neutered | Met | - |
 | AC-006 | REQ-003 | Given a destination with a directory named `.opencode` beside it, When a write is attempted, Then the suite records that it succeeds, so the guard's limit is pinned rather than described | `scripts/tests/graph-metadata-write-containment.sh` case "another workspace, anchored on .opencode" | Met | - |
 
@@ -84,9 +84,15 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-[Write this when the packet is closed, not before. AC-002 and AC-004 are the pair that matters:
-one proves the fix does something, the other proves it did not achieve that by refusing the
-symlinked tracks — which is how the previous stricter attempt at this failed.]
+AC-002 carried the packet. The reproduction wrote through and destroyed a file outside the
+tree before the fix, and is refused after — and the bystander assertion caught a second
+defect in the fix itself: the first version refused correctly but had already emptied the
+victim, because O_TRUNC acts at open, before any handle can be measured. Truncation now
+happens only once identity is proven.
+
+AC-004 was superseded rather than met. It guarded against repeating a stricter variant that
+broke symlinked tracks, and the walk turns out never to produce such a path, so the case
+cannot be exercised. Recorded in ADR-001 rather than satisfied with a fabricated fixture.
 <!-- /ANCHOR:closure -->
