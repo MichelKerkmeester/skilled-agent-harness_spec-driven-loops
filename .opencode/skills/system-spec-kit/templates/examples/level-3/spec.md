@@ -268,7 +268,7 @@ Implement a production-ready email/password authentication system that provides 
 
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
-- **Verification Checklist**: See `checklist.md`
+- **Verification Checklist**: See `tasks.md`
 - **Decision Records**: See `decision-record.md`
 
 <!-- /ANCHOR:related-docs -->

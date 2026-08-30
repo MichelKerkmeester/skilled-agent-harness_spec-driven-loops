@@ -192,7 +192,7 @@ Implement a basic email/password authentication system that allows users to regi
 
 - **Implementation Plan**: See `plan.md`
 - **Task Breakdown**: See `tasks.md`
-- **Verification Checklist**: See `checklist.md`
+- **Verification Checklist**: See `tasks.md`
 
 <!-- /ANCHOR:related-docs -->
 

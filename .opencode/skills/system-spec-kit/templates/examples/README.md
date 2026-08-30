@@ -65,7 +65,7 @@ examples/
 |   +-- tasks.md
 |   `-- implementation-summary.md
 +-- level-2/
-|   `-- level docs with checklist.md
+|   `-- level docs
 +-- level-3/
 |   `-- level docs with decision-record.md
 `-- level_3+/

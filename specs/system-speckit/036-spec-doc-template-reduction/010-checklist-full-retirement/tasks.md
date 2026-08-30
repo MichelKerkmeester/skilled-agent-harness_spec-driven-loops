@@ -121,9 +121,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md
-- [ ] CHK-002 [P0] Technical approach defined in plan.md
-- [ ] CHK-003 [P1] Dependencies identified and available
+- [x] CHK-001 [P0] Requirements documented in spec.md - REQ-001..REQ-007 (`spec.md`)
+- [x] CHK-002 [P0] Technical approach defined in plan.md - producer-first ordering (`plan.md`)
+- [x] CHK-003 [P1] Dependencies identified - none; merged tasks already carries verification
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -131,10 +131,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Code passes lint/format checks
-- [ ] CHK-011 [P0] No console errors or warnings
-- [ ] CHK-012 [P1] Error handling implemented
-- [ ] CHK-013 [P1] Code follows project patterns
+- [x] CHK-010 [P0] Code passes lint/format checks - `bash -n` clean on all rules; `tsc --noEmit` 0 errors
+- [x] CHK-011 [P0] No console errors or warnings - both dist trees rebuilt clean
+- [x] CHK-012 [P1] Error handling implemented - absent verification section skips rather than fails
+- [x] CHK-013 [P1] Code follows project patterns - status cell read mirrors `scripts/rules/check-ac-closure.sh:80`
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -142,10 +142,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met
-- [ ] CHK-021 [P0] Manual testing complete
-- [ ] CHK-022 [P1] Edge cases tested
-- [ ] CHK-023 [P1] Error scenarios validated
+- [x] CHK-020 [P0] All acceptance criteria met - 8/8 in acceptance-criteria.md, AC_CLOSURE closeable
+- [x] CHK-021 [P0] Manual testing complete - live upgrade produced acceptance-criteria only, no checklist
+- [x] CHK-022 [P1] Edge cases tested - stray copy and unanchored tasks both resolve to no source (`scripts/tests/check-ac-coverage.sh:141`)
+- [x] CHK-023 [P1] Error scenarios validated - three evidence fixtures report warn/pass/warn
 <!-- /ANCHOR:testing -->
 
 ---
@@ -153,13 +153,13 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep.
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers, policies, schema fields, response fields, docs, and tests.
-- [ ] CHK-FIX-004 [P0] Security/path/parser/redaction fixes include adversarial table tests for delimiter, joined-input, outside-root, no-op, and fallback cases.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed.
-- [ ] CHK-FIX-006 [P1] Hostile env/global-state variant executed when tests or code read process-wide state.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
+- [x] CHK-FIX-001 [P0] Each finding classed by the review: test-isolation, class-of-bug, cross-consumer, algorithmic, matrix/evidence, instance-only
+- [x] CHK-FIX-002 [P0] Producer inventory by grep across rules, server modules and scripts; the review found `mcp-server/handlers/` was missed and it was then swept
+- [x] CHK-FIX-003 [P0] Consumer inventory across ~118 referencing files; every live read-path removed, data and taxonomy deliberately retained
+- [x] CHK-FIX-004 [P0] Adversarial cases in `scripts/tests/check-ac-coverage.sh`: column-before-id, Incomplete substring, fenced example, stray copy, unanchored tasks
+- [x] CHK-FIX-005 [P1] Axes listed: id shape (T/CHK) x source document x fingerprint generation; 16 suite rows cover them
+- [ ] CHK-FIX-006 [P1] DEFERRED: no hostile env/global-state variant executed. The changed rules read files and env flags already covered by the suite; no process-wide state was introduced
+- [x] CHK-FIX-007 [P1] Evidence pinned to the retirement commit rather than a moving range
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -167,9 +167,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets
-- [ ] CHK-031 [P0] Input validation implemented
-- [ ] CHK-032 [P1] Auth/authz working correctly
+- [x] CHK-030 [P0] No hardcoded secrets - no credentials touched
+- [x] CHK-031 [P0] Input validation implemented - deletions confined to git-tracked in-repo paths
+- [x] CHK-032 [P1] Auth/authz - not applicable; no auth surface
 <!-- /ANCHOR:security -->
 
 ---
@@ -177,9 +177,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized
-- [ ] CHK-041 [P1] Code comments adequate
-- [ ] CHK-042 [P2] README updated (if applicable)
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized - reconciled after the review findings
+- [x] CHK-041 [P1] Code comments adequate - each removal carries the durable reason
+- [x] CHK-042 [P2] README updated - templates README and worked examples repointed at tasks.md
 <!-- /ANCHOR:docs -->
 
 ---
@@ -187,8 +187,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only
-- [ ] CHK-051 [P1] scratch/ cleaned before completion
+- [x] CHK-050 [P1] Temp files in scratch/ only - stray sweep reports 0
+- [x] CHK-051 [P1] scratch/ cleaned before completion - contains only .gitkeep
 <!-- /ANCHOR:file-org -->
 
 ---

@@ -123,6 +123,45 @@ The two defects surfaced from measurement rather than review. The fingerprint pr
 
 ---
 
+<!-- ANCHOR:review -->
+## Deep Review
+
+A 3-iteration deep review ran after the retirement landed (`cli-cursor`,
+`cursor-grok-4.6-xhigh`, forced depth, `stopReason: maxIterationsReached`).
+Verdict CONDITIONAL: 0 P0, 5 P1, 3 P2. Every finding was reproduced against the
+files before being acted on.
+
+**The finding that mattered.** F005 pointed at `mcp-server/handlers/`, a
+directory the read-path sweep never covered: it was scoped to `mcp-server/lib`
+and `scripts`. Three live source files still referenced the retired document,
+including a level-discovery heuristic that returned Level 2 on a sibling
+checklist. The sweep was widened and `handlers/`, `tool-schemas.ts` and
+`mcp-server/scripts/` were cleared.
+
+| ID | Finding | Resolution |
+|----|---------|------------|
+| F001 | The coverage suite still asserted the pre-merge fallback | Retargeted: a stray copy and an unanchored tasks document both resolve to no source |
+| F002 | Level-contract test still expected the document in optional add-ons | Now asserts the acceptance-criteria document alone |
+| F003 | Integration test still required the deleted worked example | Assertion removed |
+| F005 | Level discovery still read a sibling checklist as a Level-2 signal | Removed, with two further handler references |
+| F006 | Template README and worked examples still pointed at the document | 12 files repointed at the merged tasks document |
+| F007 | Verification items unchecked while Status was Complete | 19 items filled with real evidence; one deferred with its reason |
+| F008 | The plan still described a fallback this packet removed | Corrected to single-source |
+
+Two are declined, with reasons:
+
+| ID | Finding | Why not fixed |
+|----|---------|---------------|
+| F004 | The memory taxonomy matches `checklist` as a substring rather than a path segment | Real, and pre-existing. It lives in the taxonomy this packet scoped out, and the retirement makes it strictly less reachable since no new such path will be indexed |
+| — | Four golden snapshots fail on placeholder drift | Reproduces on clean HEAD; only the four checklist lines were hand-patched so the pre-existing failures stay visible rather than being absorbed here |
+
+A separate contract test broke on the committed retirement — it sampled the
+section gates of the retired document — and was retargeted at a document that
+still carries gates.
+<!-- /ANCHOR:review -->
+
+---
+
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 

@@ -32,7 +32,7 @@ Use this guide when extending the manifest taxonomy, template version map, or le
    - `requiredCoreDocs` for files every packet at that level must have before implementation starts.
    - `requiredAddonDocs` for level add-ons that must always be present.
    - `optionalAddonDocs` for documents a level recognises without the
-     file-presence rule hard-erroring on them, such as `checklist.md` and
+     file-presence rule hard-erroring on them, such as
      `acceptance-criteria.md`. Presence for these is owned by whichever rule
      understands the rollout, because the file-presence rule has no notion of
      when a packet was created.

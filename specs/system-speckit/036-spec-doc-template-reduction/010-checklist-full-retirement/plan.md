@@ -79,10 +79,10 @@ Registry-bridged shell rule, matching every other rule in the set: the registry 
 - **Canonical read**: evidence taken from the criteria table's Verification column
 - **Single parser**: the total and the covered count come from one pass, so they cannot disagree about which rows are criteria
 - **Header binding**: `AC-ID`, `Verification` and `Status` are located by name, not by position
-- **Legacy fallback**: the merged tasks document first, the pre-merge checklist second
+- **Single source**: only the merged tasks document qualifies as a traceability source
 
 ### Data Flow
-The orchestrator resolves the packet level and sources the rule. When the packet carries a criteria document, one awk pass yields both the row count and the covered count; otherwise the legacy traceability read runs unchanged.
+The orchestrator resolves the packet level and sources the rule. When the packet carries a criteria document, one awk pass yields both the row count and the covered count; otherwise the merged tasks document is read, and a packet with neither leaves the gate inactive.
 <!-- /ANCHOR:architecture -->
 
 ---
