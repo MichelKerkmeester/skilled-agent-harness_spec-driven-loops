@@ -1690,12 +1690,6 @@ export function serializeGraphMetadata(metadata: GraphMetadata): string {
 }
 
 /**
- * Write graph metadata to disk using an atomic temp-file swap.
- *
- * @param filePath - Destination graph-metadata path
- * @param metadata - Metadata payload to persist
- */
-/**
  * Canonical roots a graph-metadata write may land in.
  *
  * A specs root's own real path, plus the real path of each track directly
@@ -1745,6 +1739,12 @@ function isWithinConfiguredSpecsRoot(candidate: string): boolean {
   return false;
 }
 
+/**
+ * Write graph metadata to disk using an atomic temp-file swap.
+ *
+ * @param filePath - Destination graph-metadata path
+ * @param metadata - Metadata payload to persist
+ */
 export function writeGraphMetadataFile(filePath: string, metadata: GraphMetadata): void {
   const resolvedFilePath = path.resolve(filePath);
   const parentDir = path.dirname(resolvedFilePath);
