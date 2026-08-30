@@ -47,6 +47,7 @@
       "goal.md",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/mcp-server/vitest.config.ts",
+      "mcp-server/scripts/run-tests.mjs",
       "mcp-server/vitest.config.ts"
     ],
     "entities": [
@@ -84,6 +85,12 @@
         "name": "vitest.config.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp-server/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-tests.mjs",
+        "kind": "file",
+        "path": "mcp-server/scripts/run-tests.mjs",
         "source": "derived"
       },
       {
@@ -171,7 +178,7 @@
         "source": "derived"
       },
       {
-        "name": "recorded",
+        "name": "SIGTERM",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -187,17 +194,11 @@
         "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "On 2026-08-30 three vitest trees were killed after 2h35m, 3h41m and 4h12m, each holding roughly 96% of a core",
     "created_at": "2026-08-30T09:55:28Z",
-    "last_save_at": "2026-08-30T10:14:01.069Z",
+    "last_save_at": "2026-08-30T18:56:42.618Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3a4ec5a24eb0791e6d07cd47be8ff8cf83fe45263fdb968d5b11d361b2625252",
+    "source_fingerprint": "sha256:3fbc5f3efe42b5ebce8f23933290f6c3e7dc90faeac2dafcf78ebb5729ed0169",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4c4ec08d5205f7b437a6895476c7b6d04b10f8ebcb8da00d6946737867b0220c",
       "plan.md": "304a0ad8619333ab6bc6ad9461ecf23d560588635e4f70942a9b97622a78847d",
-      "tasks.md": "ee9b2895db11f3da0a8e881d14d1456895db95578a95ec2da3cae03bbb4b06cc",
-      "implementation-summary.md": "5b60ec85ccf3723645b0ef3f37387ab53f315ccd323dbba46e84647b8768a57c"
+      "tasks.md": "fa4d0c0b3e50a0d19e667f62c0ee9e5138b0614005e3c81dcedc17d62c55a077",
+      "implementation-summary.md": "fd4cf83dbc085b7789c2815fc0e59ca11331e37f2c2dc3c3a01feaa233a5b761"
     },
     "last_active_child_id": null,
     "last_active_at": null

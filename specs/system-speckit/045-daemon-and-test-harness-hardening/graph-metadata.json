@@ -161,31 +161,31 @@
         "source": "derived"
       },
       {
-        "name": "the",
+        "name": "one",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "A live process sweep on 2026-08-30 found 13 leaked processes attributable to this repository's system skills: three wedged vitest trees holding roughly 290% CPU for 2h35m–4h12m, and one orphaned spec-memory launcher alive at `ppid 1` for 2 days 14 hours",
     "created_at": "2026-08-30T09:55:25Z",
-    "last_save_at": "2026-08-30T18:30:45.602Z",
+    "last_save_at": "2026-08-30T18:56:47.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:3a37c6e8130a16bc3cfc941b44e510013c97809e2296f62fc744baa36a018719",
+    "source_fingerprint": "sha256:5307ed293eab4b957557e74f8e98609425394cea18ee5ad7ca06f201c0a38055",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1cadfc1617c9ac1c4323a8cba3a5bae2426105eac0b42ad86816d8c55e893e97"
+      "spec.md": "a340eefc0bde35d06a9c83f288e2e95dda89a92465203d3db17ad00b760b3680"
     },
     "last_active_child_id": "system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene",
     "last_active_at": null

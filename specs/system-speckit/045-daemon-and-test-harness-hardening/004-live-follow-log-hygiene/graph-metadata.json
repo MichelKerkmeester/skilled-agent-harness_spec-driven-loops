@@ -170,13 +170,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
+        "name": "one",
+        "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "`git-live-follow.sh` emits its divergence warning as two unconditional `echo` statements inside the poll loop, which runs every 5 seconds by default",
     "created_at": "2026-08-30T09:55:29Z",
-    "last_save_at": "2026-08-30T10:14:03.390Z",
+    "last_save_at": "2026-08-30T18:56:44.686Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +206,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7f9a3e7158686d549b9c3c3adffee1db30899e6ecb4b6097da64646bdbae0126",
+    "source_fingerprint": "sha256:4a9525cdff56b1077d32a8a3b98a19e67242bbb133afec4e0b1887833baea2c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "582cd5fd9c164e7112bcc02b9463efbe2b274b67989f2f0cfecef236a71dc160",
       "plan.md": "a79af8fd859dd26db8049217dd4bd9a3458cca44b2a72d15f820c8abebb8cf02",
-      "tasks.md": "343345c2c27b946163e725d2f081eba7d0054a92b8cfd46b464292f504587b2f",
-      "implementation-summary.md": "420887e6aa052b6483f38617cf78e20bc17e42a4b755b5fb43c6faf30da5fa19"
+      "tasks.md": "6a52ad43195afda2535ec0f6268a44ce75b30f768823772657dddd36b7e189bb",
+      "implementation-summary.md": "801e7ff4fb298c17fd5bf38240af096adbc3de7901e70ebc5dce01673ab522ce"
     },
     "last_active_child_id": null,
     "last_active_at": null
