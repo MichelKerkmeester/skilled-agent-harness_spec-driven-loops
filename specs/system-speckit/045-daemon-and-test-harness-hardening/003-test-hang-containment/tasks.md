@@ -31,9 +31,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Measure and record a healthy full-suite baseline duration
-- [ ] T002 Build a reproduction that leaks a handle deliberately
-- [ ] T003 Decide whether the bound belongs in the invocation scripts, the config, or both
+- [x] T001 Healthy baseline recorded per invocation — the runner now logs runtime, bound and margin on every successful run
+- [x] T002 Leaked-timer reproduction built — pre-fix it persisted past the summary and named no handle
+- [x] T003 Both: the bound lives in the invocation runner, the diagnosis in the vitest config
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -41,8 +41,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Apply the runtime bound at the chosen layer
-- [ ] T005 [P] Enable hang reporting (`.opencode/skills/system-spec-kit/mcp-server/vitest.config.ts`)
+- [x] T004 10-minute default bound with `SPECKIT_TEST_RUN_TIMEOUT_MS` override; terminates the process GROUP via SIGTERM then SIGKILL
+- [x] T005 [P] `hanging-process` reporter enabled alongside default (`.opencode/skills/system-spec-kit/mcp-server/vitest.config.ts`)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -50,9 +50,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Confirm the hung reproduction terminates at the bound
-- [ ] T007 Confirm its output names the retaining handle
-- [ ] T008 Confirm the healthy suite completes with recorded margin
+- [x] T006 Confirmed independently — a 1200ms bound on a real suite yields `terminating process group` and exit 124
+- [x] T007 Reporter named the retaining handle as `Timeout`
+- [x] T008 Healthy run at a generous bound: 9 passed, 1093ms runtime, margin 178907ms, exit 0
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -60,9 +60,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Baseline duration and bound margin recorded
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Baseline duration and bound margin recorded, and logged on every run
 <!-- /ANCHOR:completion -->
 
 ---

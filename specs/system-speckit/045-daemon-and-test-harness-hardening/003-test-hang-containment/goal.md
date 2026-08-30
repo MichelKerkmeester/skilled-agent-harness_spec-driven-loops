@@ -78,9 +78,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase authored and validated | Done | `validate.sh --strict` RESULT: PASSED, Errors: 0 |
-| Baseline measured | Pending | — |
-| Reproduction built | Pending | — |
-| Bound and hang reporting applied | Pending | — |
+| Baseline measured | Done | runtime, bound and margin logged per invocation |
+| Reproduction built | Done | leaked timer persisted pre-fix, named no handle |
+| Bound and hang reporting applied | Done | exit 124 at the bound; reporter named `Timeout` |
 
 ### Deviations and findings
 

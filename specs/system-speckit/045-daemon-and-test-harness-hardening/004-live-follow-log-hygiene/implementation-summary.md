@@ -48,18 +48,13 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+`git-live-follow.sh` gains a `log_state_change()` guard that early-returns when the state key is unchanged, so the poll loop reports transitions rather than ticks. The divergence key carries the counts, `diverged:$ahead:$behind`, so a changed divergence still reports while a held one stays quiet.
 
-### [Feature Name]
+Two further per-poll emitters were found and given the same treatment: fetch failures and refused fast-forwards. Both previously repeated every interval for as long as their condition held.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The log is size-capped with one retained previous generation. Incoming bytes are accounted before the write, so rotation happens at a boundary instead of truncating a file in place and destroying evidence mid-investigation.
 
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+The follower's fast-forward-only safety contract is untouched. This was a logging defect: the signal was correct, the repetition buried it.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -85,9 +80,11 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-| Check | Result |
-|-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+Driven against a synthetic throwaway repository, never a real checkout — live followers are running on this machine and were not disturbed.
+
+A divergence held across many poll intervals produced 4 entries before the change and 1 after. Clearing and re-entering the condition produced a second entry, so deduplication does not hide a recurrence. Fetch failures and refused fast-forwards each emitted once across repeated polls. The cap held at its boundary with the previous generation retained, and a competing follower still exited cleanly against the existing pid lock.
+
+The guard was read directly to confirm it is genuinely state-gated rather than accepting the counts: `[ "$LAST_POLL_STATE" = "$state" ] && return 0`. `bash -n` and comment hygiene pass.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +92,9 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+Deduplication reports transitions, so a condition that persists for days shows one entry with no indication of how long it held. A repeat count on clearing would restore that, and was not built.
+
+Existing oversized logs are not retroactively trimmed; the cap applies from the next write.
 <!-- /ANCHOR:limitations -->
 
 ---

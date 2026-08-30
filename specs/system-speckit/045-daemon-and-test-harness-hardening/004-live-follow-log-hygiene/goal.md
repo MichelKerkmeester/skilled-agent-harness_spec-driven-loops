@@ -78,9 +78,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase authored and validated | Done | `validate.sh --strict` RESULT: PASSED, Errors: 0 |
-| Cap policy decided | Pending | — |
-| State-change logging | Pending | — |
-| Cap or rotation | Pending | — |
+| Cap policy decided | Done | size-based, one retained generation |
+| State-change logging | Done | 4 entries -> 1 across a held divergence |
+| Cap or rotation | Done | cap held; pid lock undisturbed |
 
 ### Deviations and findings
 

@@ -42,6 +42,12 @@ REMOTE="${SPECKIT_LIVE_REMOTE:-origin}"
 INTERVAL=5
 ONCE=0
 START=0
+LIVE_FOLLOW_MANAGED_LOG="${LIVE_FOLLOW_MANAGED_LOG:-0}"
+LIVE_FOLLOW_LOG_MAX_BYTES="${LIVE_FOLLOW_LOG_MAX_BYTES:-262144}"
+
+case "$LIVE_FOLLOW_LOG_MAX_BYTES" in
+  ''|0|*[!0-9]*) LIVE_FOLLOW_LOG_MAX_BYTES=262144 ;;
+esac
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -76,6 +82,43 @@ esac
 LOCK_DIR="${GIT_COMMON_PATH:-.}/live-follow"
 LOCK_KEY="$(printf '%s' "$GIT_DIR_PATH" | cksum 2>/dev/null | awk '{print $1}')"
 LOCK_FILE="$LOCK_DIR/${LOCK_KEY:-default}.pid"
+LOG_FILE="$LOCK_DIR/${LOCK_KEY:-default}.log"
+PREVIOUS_LOG_FILE="$LOG_FILE.1"
+LAST_POLL_STATE=""
+
+rotate_log_if_needed() {
+  [ "$LIVE_FOLLOW_MANAGED_LOG" = "1" ] || return 0
+  [ -f "$LOG_FILE" ] || return 0
+  local incoming_bytes="${1:-0}"
+  local current_size
+  current_size="$(wc -c < "$LOG_FILE" 2>/dev/null | tr -d '[:space:]')" || current_size=0
+  case "$current_size" in
+    ''|*[!0-9]*) return 0 ;;
+  esac
+  case "$incoming_bytes" in
+    ''|*[!0-9]*) incoming_bytes=0 ;;
+  esac
+  if [ "$current_size" -lt "$LIVE_FOLLOW_LOG_MAX_BYTES" ] &&
+    [ "$incoming_bytes" -le "$((LIVE_FOLLOW_LOG_MAX_BYTES - current_size))" ]; then
+    return 0
+  fi
+  mv -f "$LOG_FILE" "$PREVIOUS_LOG_FILE" 2>/dev/null || return 0
+  exec >> "$LOG_FILE" 2>&1
+}
+
+log_state_change() {
+  local state="$1"
+  shift
+  [ "$LAST_POLL_STATE" = "$state" ] && return 0
+  LAST_POLL_STATE="$state"
+  local incoming_bytes
+  incoming_bytes="$(printf '%s\n' "$@" | wc -c | tr -d '[:space:]')" || incoming_bytes=0
+  rotate_log_if_needed "$incoming_bytes"
+  local message
+  for message in "$@"; do
+    printf '%s\n' "$message" >&2
+  done
+}
 
 # A lock is live only while its PID answers kill -0; a stale file from a
 # killed follower is discarded so the next start can take over.
@@ -128,13 +171,18 @@ if [ "$START" = "1" ]; then
   if ! lock_held; then
     if [ -f "$__hf_root/.opencode/bin/git-live-follow.sh" ]; then
       mkdir -p "$LOCK_DIR" 2>/dev/null || true
-      nohup bash "$__hf_root/.opencode/bin/git-live-follow.sh" \
+      LIVE_FOLLOW_MANAGED_LOG=1 nohup bash "$__hf_root/.opencode/bin/git-live-follow.sh" \
         --live "$LIVE" --remote "$REMOTE" --interval "$INTERVAL" \
-        >> "$LOCK_DIR/${LOCK_KEY:-default}.log" 2>&1 &
+        >/dev/null 2>&1 &
       disown 2>/dev/null || true
     fi
   fi
   exit 0
+fi
+
+if [ "$LIVE_FOLLOW_MANAGED_LOG" = "1" ]; then
+  mkdir -p "$LOCK_DIR" 2>/dev/null || true
+  exec >> "$LOG_FILE" 2>&1
 fi
 
 # Default to whatever branch the IDE currently has open — the follower's job is to
@@ -144,15 +192,25 @@ if [ -z "$LIVE" ]; then
   [ -z "$LIVE" ] && { echo "[live-follow] detached HEAD and no --live given" >&2; exit 1; }
 fi
 
+rotate_log_if_needed
 echo "[live-follow] following $REMOTE/$LIVE (interval ${INTERVAL}s, ff-only)" >&2
 
 check_once() {
-  git fetch --quiet "$REMOTE" "$LIVE" 2>/dev/null || { echo "[live-follow] fetch failed" >&2; return 0; }
+  git fetch --quiet "$REMOTE" "$LIVE" 2>/dev/null || {
+    log_state_change "fetch-failed" "[live-follow] fetch failed"
+    return 0
+  }
   local remote_tip local_tip
   remote_tip="$(git rev-parse --quiet --verify "$REMOTE/$LIVE" 2>/dev/null || true)"
   local_tip="$(git rev-parse --quiet --verify "HEAD" 2>/dev/null || true)"
-  [ -z "$remote_tip" ] && return 0
-  [ "$remote_tip" = "$local_tip" ] && return 0
+  if [ -z "$remote_tip" ]; then
+    LAST_POLL_STATE="remote-unavailable"
+    return 0
+  fi
+  if [ "$remote_tip" = "$local_tip" ]; then
+    LAST_POLL_STATE="in-sync"
+    return 0
+  fi
 
   # Behind fast-forward: the local tip is an ancestor of the remote tip. Let git's
   # own --ff-only decide — it refuses to overwrite a modified tracked file, so an
@@ -161,9 +219,9 @@ check_once() {
   if git merge-base --is-ancestor "$local_tip" "$remote_tip"; then
     local n; n="$(git rev-list --count "$local_tip..$remote_tip" 2>/dev/null || echo '?')"
     if git merge --ff-only --quiet "$remote_tip" 2>/dev/null; then
-      echo "[live-follow] ↑ pulled $n commit(s) — now at $(git rev-parse --short HEAD)" >&2
+      log_state_change "fast-forward:$remote_tip" "[live-follow] ↑ pulled $n commit(s) — now at $(git rev-parse --short HEAD)"
     else
-      echo "[live-follow] $n new commit(s) on $LIVE, but a fast-forward would overwrite local changes — not pulling (commit/stash to catch up)" >&2
+      log_state_change "fast-forward-blocked:$remote_tip" "[live-follow] $n new commit(s) on $LIVE, but a fast-forward would overwrite local changes — not pulling (commit/stash to catch up)"
     fi
     return 0
   fi
@@ -174,8 +232,9 @@ check_once() {
   local ahead behind
   ahead="$(git rev-list --count "$remote_tip..$local_tip" 2>/dev/null || echo '?')"
   behind="$(git rev-list --count "$local_tip..$remote_tip" 2>/dev/null || echo '?')"
-  echo "[live-follow] DIVERGED: local $LIVE is $ahead commit(s) ahead of and $behind commit(s) behind $REMOTE/$LIVE" >&2
-  echo "[live-follow] manual reconcile needed — this follower never auto-merges or resets" >&2
+  log_state_change "diverged:$ahead:$behind" \
+    "[live-follow] DIVERGED: local $LIVE is $ahead commit(s) ahead of and $behind commit(s) behind $REMOTE/$LIVE" \
+    "[live-follow] manual reconcile needed — this follower never auto-merges or resets"
   return 0
 }
 

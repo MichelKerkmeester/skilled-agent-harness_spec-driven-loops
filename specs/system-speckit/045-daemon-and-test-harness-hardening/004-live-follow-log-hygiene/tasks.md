@@ -31,8 +31,8 @@ contextType: "implementation"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Answer the cap policy question: size, line count, or rotated files
-- [ ] T002 Build a synthetic diverged repository to drive the loop
+- [x] T001 Cap policy: size-based, 256KB default via `LIVE_FOLLOW_LOG_MAX_BYTES`, one retained generation
+- [x] T002 Synthetic throwaway repo built; no live follower was touched
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -40,9 +40,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Track the last reported ahead/behind state and emit only on transition (`.opencode/bin/git-live-follow.sh`)
-- [ ] T004 Apply the same treatment to any other per-poll emission in the loop
-- [ ] T005 Add the log cap or rotation
+- [x] T003 `log_state_change()` early-returns on an unchanged state key; divergence keys on `diverged:$ahead:$behind` (`.opencode/bin/git-live-follow.sh`)
+- [x] T004 `fetch-failed` and `fast-forward-blocked` are state-gated too
+- [x] T005 Size cap with one retained `.1` generation; incoming bytes accounted before write, never truncated in place
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -50,9 +50,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Hold a divergence across many intervals; count emitted lines
-- [ ] T007 Clear and re-enter the condition; confirm a second entry
-- [ ] T008 Confirm the cap holds and the pid lock is undisturbed
+- [x] T006 Held divergence: 4 entries before, 1 after
+- [x] T007 Re-entry produced a second entry
+- [x] T008 Cap held at the boundary; pid lock preserved and a competing follower exited cleanly
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -60,9 +60,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Line counts recorded before and after
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Line counts recorded before and after
 <!-- /ANCHOR:completion -->
 
 ---

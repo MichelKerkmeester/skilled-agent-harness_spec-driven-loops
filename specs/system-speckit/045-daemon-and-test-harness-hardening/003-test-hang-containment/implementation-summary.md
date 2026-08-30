@@ -48,18 +48,11 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-[Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+`mcp-server/scripts/run-tests.mjs` bounds every test invocation. The default is ten minutes, overridable through `SPECKIT_TEST_RUN_TIMEOUT_MS`, and the killer targets the process GROUP — `start_new_session=True` then `os.killpg`, SIGTERM escalating to SIGKILL. Killing only the parent is what let earlier runs survive as orphaned workers. Child stdin is closed, which is separately the failure that left a dispatch blocked at zero CPU for 47 minutes.
 
-### [Feature Name]
+`mcp-server/vitest.config.ts` adds the `hanging-process` reporter beside the default, so a stuck run names what retained it instead of requiring a process-level post-mortem.
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
-
-### Files Changed
-
-| File | Action | Purpose |
-|------|--------|---------|
-| [path] | [Created/Modified/Deleted] | [What this change accomplishes] |
+Every healthy run now logs its runtime, its bound, and the margin between them, so a future slowdown is visible as a shrinking margin rather than discovered as a hang.
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -85,9 +78,9 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:verification -->
 ## Verification
 
-| Check | Result |
-|-------|--------|
-| [Validation, lint, tests, manual check] | [PASS/FAIL with specifics] |
+Pre-fix, a deliberately leaked timer persisted past its own summary and named no handle. Post-fix the same reproduction exited 124 at its bound, and the reporter identified the retaining handle as `Timeout`.
+
+Verified independently in both directions rather than from the report: forcing a 1200ms bound on a real suite produced `[test-bound] invocation exceeded 1200ms; terminating process group` and exit 124, while the same suite under a generous bound passed 9 tests in 1093ms with margin 178907ms and exit 0. The bound fires when it should and does not fire when it should not.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -95,7 +88,9 @@ Explain what the user gains, not what files you touched.]
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **[Limitation]** [Specific detail with workaround if one exists.]
+The retaining handle behind the original multi-hour hangs is still unproven. This phase was scoped to containment and diagnosis on purpose: it makes the next occurrence produce evidence rather than a four-hour mystery, and finding the leak itself is separate work this now enables.
+
+The bound protects invocations that route through the runner. A raw `vitest` call still has none.
 <!-- /ANCHOR:limitations -->
 
 ---

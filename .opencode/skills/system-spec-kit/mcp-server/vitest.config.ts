@@ -32,6 +32,7 @@ export default defineConfig({
     fileParallelism: false,
     globals: true,
     environment: 'node',
+    reporters: ['default', 'hanging-process'],
     testTimeout: TEST_TIMEOUT_MS,
     teardownTimeout: TEARDOWN_TIMEOUT_MS,
     alias: {
