@@ -151,3 +151,66 @@ Measured, each shown failing first:
 The retry that shortens its own timeout, and the runner reporting a reconnect loop as a stall, both
 live in the caller rather than the adapter. They are real and recorded in section 6; neither is
 reached once the credential resolves, so they are left for a change that can measure them directly.
+
+## WITHDRAWN — the fix could not have fixed the reported failure
+
+A fresh security-and-correctness review returned FAIL. The code change is reverted; this record is
+kept because the investigation found real things, and because a wrong diagnosis that was believed is
+worth more written down than deleted.
+
+**The fix was in a module the failing path never executes.** The commit claimed the dispatcher is
+"the chokepoint every codex dispatch passes through." It is not. The fan-out runner contains zero
+references to it — it builds its own argv and spawns through a different helper. The reported
+symptom was every *fan-out* lineage dying, and fan-out is that runner. The only importers of the
+patched module are a benchmark path and one stress test.
+
+The refuting fact was already stated in this investigation, in a different argument: when
+attributing unit-test failures, the case made was that "only a stress test and two deep-improvement
+scripts import it." That is the same fact. It was used to excuse a failure and not carried across to
+question the placement.
+
+**The root-cause mechanism does not reproduce.** The 401 reconnect loop is bounded at five attempts
+and exits status 1 in about nineteen seconds. It does not hang. This document's §2 claimed the
+process stays alive until the dispatch timeout, which is how a 401 was supposed to become a timeout
+— while its own first criterion recorded "Exit 1", contradicting the narrative one section above it.
+So the reported timeout remains **unexplained**, and the 401 is a real but different defect.
+
+**The relocation could not be found because it is probably not in this repository.** No component
+sets a lineage home; the runner's comment says remapping is deliberately avoided *because it breaks
+credential lookup*. What the search missed is the propagation: the dispatch env allowlist forwards
+any variable whose name starts with the executor's prefix, and the home variable does. So an ambient
+value set by an ad-hoc command line is inherited by every lineage. That inverts the justification —
+if the relocation arrives from outside, patching one module repairs only that module.
+
+**The change also broke the only suite covering it.** With no credential reachable, the stress suite
+went from 26 passing to 16 failing, because the new check read the operator's real home through a
+fixture that had been hermetic. Any machine not logged in would fail it. Reverting restores 26
+passing at exit 0, verified.
+
+**And the guarantee had a hole.** The existence check follows symlinks, so a stale link reports
+absent, reaches the create call, throws, and is treated as success — certifying a dangling link as a
+reachable credential. The comment called that a race with a sibling lineage; it cannot be, because
+the check immediately before proved the entry does not resolve.
+
+### What survives
+
+The symlink-not-copy decision was correct and held under test: a copy would have put an OAuth token
+in git, and the link does not — the object store receives a path string, not the secret. Keep that
+constraint for any future attempt.
+
+The **missing ignore rule is real and is now fixed**, independently of the reverted change. Lineage
+homes drop roughly twenty-five sqlite and journal files into the tree and were not ignored here.
+
+**One open item needs the operator, not an agent.** This repository lives inside a live cloud-sync
+root with the sync client running. Git's symlink semantics protect a credential from history; a sync
+client's semantics are not git's. Any future attempt to link a credential into the tree must first
+establish whether that client dereferences links on upload — and the safer answer is to keep lineage
+state outside the tree entirely.
+
+### What a correct attempt looks like
+
+Put the guarantee where the dispatch env is actually built, so it covers the path that failed.
+Resolve a link rather than testing existence through it, so a stale one is repaired instead of
+certified. Run the credential check after the availability check, so a missing binary is not
+reported as an auth problem and no directory is created before the binary is known to exist. And
+investigate the timeout separately, because on this evidence it is not the 401.

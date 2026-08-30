@@ -18,7 +18,7 @@ hard_rules:
     severity: error
   - id: deep-loop-runtime-required
     check: deep-loop-runtime-delegation
-    message: "Deep-loop fan-outs (deep-research, deep-review) run through the shipped runtime; this skill must not implement a second Codex adapter."
+    message: "Delegate execution to the shipped deep-loop runtime; this skill must not implement a second Codex adapter."
     severity: error
 ---
 
@@ -173,13 +173,9 @@ Install with `npm i -g @openai/codex` (or `brew install --cask codex`). cli-code
 
 ### Execution Ownership
 
-This packet owns user-facing routing, the `command -v codex` availability probe, prompt construction, and the self-invocation guard.
+This packet owns user-facing routing, the `command -v codex` availability probe, prompt construction, and the self-invocation guard. Actual process construction and execution delegate to the already-shipped deep-loop runtime at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-codex`.
 
-**Deep-loop fan-outs delegate to the shipped runtime** at `../../system-deep-loop/runtime/scripts/fanout-run.cjs`, using executor kind `cli-codex`. That runtime accepts the `deep-research` and `deep-review` loop types and owns lineage state, iteration artifacts, and convergence — anything that is one of those loops goes through it.
-
-**A dispatch the runtime cannot express runs `codex exec` directly**, per the invocation documented below. A one-off delegation — repair a document, generate a file, answer a question — is not a research or review lineage, and forcing it through a lineage harness produces iteration artifacts instead of the requested work. Such a dispatch still honors every other rule in Section 4: explicit model, effort and service tier, the sandbox mode the task needs, `</dev/null`, `AI_SESSION_CHILD=1`, the inlined persona, and the spec-folder pre-approval.
-
-The prohibition that does not move: **never build a second Codex adapter.** Calling `codex exec` from a dispatch site is not an adapter; a packet-local wrapper, command builder, or reusable spawn path is, and stays forbidden.
+The runtime is the single Codex execution adapter. Do not add a packet-local wrapper, command builder, or spawn path. Direct `codex exec` snippets below are operator reference and manual-testing examples; orchestrated dispatches use the shared runtime.
 
 ### Provider Auth Pre-Flight (ChatGPT OAuth)
 
@@ -273,7 +269,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 ### ✅ ALWAYS
 
 1. Verify Codex CLI is installed before first invocation (`command -v codex`).
-2. Run deep-loop fan-outs (`deep-research`, `deep-review`) through `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-codex`. Dispatch anything the runtime cannot express with `codex exec` directly, honoring the rest of this section. Never build a second adapter in this packet either way.
+2. Delegate orchestrated execution to `../../system-deep-loop/runtime/scripts/fanout-run.cjs` with executor kind `cli-codex`; never build a second adapter in this packet.
 3. Use `--sandbox read-only` for review/analysis/research; `--sandbox workspace-write` for code generation/file modification — `codex exec` defaults to `read-only`, so omitting it causes silent no-op on edit tasks. For unattended approval, put top-level `-a never` before `exec` or set `-c approval_policy=never`.
 4. Validate Codex-generated code (XSS, injection, eval, syntax checks via `node --check`, `tsc --noEmit`, etc.) before applying.
 5. Capture stderr (`2>&1`) so rate-limit messages and errors surface.
@@ -299,7 +295,7 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 2. Trust Codex output blindly for security-sensitive code, send sensitive data (API keys, passwords, credentials) in prompts, or hammer the API with rapid sequential calls.
 3. Use Codex for tasks where context is already loaded — direct action by the calling AI is faster.
 4. Assume Codex output is correct without verification — cross-reference codebase and project standards.
-5. Build or maintain a packet-local Codex execution adapter — a wrapper, command builder, or reusable spawn path. Calling `codex exec` at a dispatch site is not an adapter; deep-loop fan-outs still belong to the shared runtime.
+5. Build or maintain a packet-local Codex execution adapter; the deep-loop runtime is the execution authority.
 
 ### ⚠️ ESCALATE IF
 
@@ -358,7 +354,7 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 - Output captured, validated, and integrated appropriately; no security vulnerabilities introduced.
 - Rate limits handled gracefully (retry or fallback strategy).
 - Appropriate Codex profile and sandbox level matched to task type (read-only for review, workspace-write for generation).
-- Deep-loop fan-outs delegated to the shared runtime; any other dispatch invoked directly, both without a packet-local adapter.
+- Orchestrated execution delegated to the shared deep-loop runtime without a packet-local adapter.
 
 ### Skill Quality
 
@@ -378,7 +374,7 @@ Key integrations:
 - **Gate 2**: Skill routing via `skill_advisor.py`
 - **Tool Routing**: Per AGENTS.md Section 6 decision tree
 - **Memory**: Context preserved via Spec Kit Memory MCP
-- **Execution**: Shared deep-loop runtime for `deep-research` / `deep-review` fan-outs (`../../system-deep-loop/runtime/scripts/fanout-run.cjs`); direct `codex exec` for dispatches outside those loop types
+- **Execution**: Shared deep-loop runtime (`../../system-deep-loop/runtime/scripts/fanout-run.cjs`)
 
 **Tool roles**: Bash dispatches the CLI; Read/Glob/Grep validate output.
 

@@ -314,3 +314,9 @@ specs/z-future
 # Skill-advisor runtime launcher state (transient build/launch records)
 # ───────────────────────────────────────────
 **/.mk-skill-advisor-launcher.json
+
+# Deep-loop lineage runtime state. A dispatched CLI writes its own home here —
+# sqlite databases, downloaded system skills, lock files, and potentially a linked
+# credential. Regenerable, large, and a credential must never reach history or a
+# cloud-sync client. The artifacts worth keeping sit beside it.
+specs/**/lineages/*/.codex-home/
