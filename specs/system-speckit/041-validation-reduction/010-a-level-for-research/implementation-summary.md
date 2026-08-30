@@ -99,7 +99,7 @@ level only made them visible.
 | Decision | Rationale |
 |----------|-----------|
 | Add a level rather than author plan and task documents | Writing an implementation plan for work that had no implementation phase makes the gate green by making the packet lie |
-| `requiredCoreDocs` is spec.md alone | Requiring research.md would grade a shape 69% of research output has never had |
+| `requiredCoreDocs` is spec.md and research/research.md | The artifact is what makes the level mean something; it is required to exist and exempt from shape grading, because 69% of research output has never carried the anchored shape |
 | Apply only to packets already carrying research or review output | The level describes shape; using it on a bare packet would make it a way to skip plan and tasks |
 | Leave the 76 spec-only leaves alone | 61 are Draft, Planned, or unstarted, and the gate is right about them |
 | Leave a misnamed folder failing | `advisor-state-containment` breaks the folder-naming convention, and that is the correct finding rather than something to relabel |
@@ -134,8 +134,10 @@ level only made them visible.
    They need either a promoted report or a looser review contract, which is the
    open question above.
 
-3. **Nothing prevents a packet declaring `research` to avoid plan and tasks.**
-   The level is an author's declaration, as every level is; it was applied here
-   only where research or review output already existed.
+3. **The level is still an author's declaration.** Requiring
+   `research/research.md` means a packet cannot take it without producing the
+   artifact, and `create.sh` refuses to scaffold the level, so it cannot be
+   reached by accident. Nothing stops an author writing a token research.md,
+   which is true of every level's required documents.
 
 <!-- /ANCHOR:limitations -->

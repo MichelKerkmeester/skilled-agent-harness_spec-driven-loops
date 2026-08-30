@@ -92,9 +92,10 @@ manifest about which levels exist.
 - The 76 leaf packets that carry neither research nor review output. Sixty-one
   of those are Draft, Planned, or unstarted; the gate is right about them and a
   level change would only hide it.
-- Making `research/research.md` a graded document. Only 31% of research output
-  corpus-wide follows the anchored template, and eight packets pass today with
-  an anchorless one, so the template was never its operative contract.
+- Grading the *shape* of `research/research.md`. It is required to exist, but
+  only 31% of research output corpus-wide follows the anchored template and
+  eight packets pass today with an anchorless one, so the template was never its
+  operative contract. The existing free-form-artifact declaration carries that.
 <!-- /ANCHOR:scope -->
 
 ---
