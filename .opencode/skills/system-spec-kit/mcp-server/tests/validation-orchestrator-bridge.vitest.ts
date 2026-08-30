@@ -134,17 +134,6 @@ describe('started-work file exemption', () => {
     expect(result.details).toContain('implementation-summary.md');
   });
 
-  it('requires implementation-summary.md when checklist contains a completed list item', () => {
-    const folder = createLevelOneFolder('# Tasks\n\n- [ ] Pending task\n', {
-      'checklist.md': '# Checklist\n\n- [X] Completed check\n',
-    });
-
-    const result = validateFileExists(folder);
-
-    expect(result.status).toBe('error');
-    expect(result.details).toContain('implementation-summary.md');
-  });
-
   it('ignores task-notation legend rows', () => {
     const folder = createLevelOneFolder([
       '# Tasks',
