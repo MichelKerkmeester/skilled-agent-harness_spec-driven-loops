@@ -300,6 +300,7 @@ tmp/
 .opencode/barter
 specs/ai-systems
 specs/anobel.com
+specs/app-mobile-cli
 specs/apps
 specs/barter
 specs/obsidian

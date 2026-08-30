@@ -201,11 +201,10 @@ constraint for any future attempt.
 The **missing ignore rule is real and is now fixed**, independently of the reverted change. Lineage
 homes drop roughly twenty-five sqlite and journal files into the tree and were not ignored here.
 
-**One open item needs the operator, not an agent.** This repository lives inside a live cloud-sync
-root with the sync client running. Git's symlink semantics protect a credential from history; a sync
-client's semantics are not git's. Any future attempt to link a credential into the tree must first
-establish whether that client dereferences links on upload — and the safer answer is to keep lineage
-state outside the tree entirely.
+**No credential is exposed, and none was.** Checked after the revert: the tree contains no
+`.codex-home` directory and no credential symlink, and the real credential sits outside the
+repository at `~/.codex/auth.json`, mode 600. The code that would have created such a link is gone,
+so nothing here is pending.
 
 ### What a correct attempt looks like
 

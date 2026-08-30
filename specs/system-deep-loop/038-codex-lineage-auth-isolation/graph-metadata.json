@@ -107,17 +107,17 @@
     ],
     "causal_summary": "A per-lineage CODEX_HOME isolates the credential file along with the session state, so every codex fan-out lineage authenticates as nobody and burns its whole timeout in a 401 reconnect loop.",
     "created_at": "2026-08-30T15:39:22.458Z",
-    "last_save_at": "2026-08-30T15:39:22.458Z",
+    "last_save_at": "2026-08-30T18:12:55.103Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:b384524f66066971a8ed8d225ba7b534203f1f292e8a9b268ac403e4ebeb8ae2",
+    "source_fingerprint": "sha256:5615d6f8d04ca1bf9613cbd94248b5f7a1db5877bf4cca7fa6068d13615ea9b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ed85f64872d8ab65c1d7705fd51886e1d29422bc66ffd32ea9cae4145c26e591"
+      "spec.md": "5c924f0505c7c8da6d1ea4f9ce8f6543a3f8fcb709b323f348c3022c7f4cb286"
     },
     "last_active_child_id": null,
     "last_active_at": null
