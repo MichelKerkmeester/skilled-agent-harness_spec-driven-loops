@@ -1,0 +1,30 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/045-daemon-and-test-harness-hardening",
+  "description": "A live process sweep on 2026-08-30 found 13 leaked processes attributable to this repository's system skills: three wedged vitest trees holding",
+  "keywords": [
+    "live",
+    "process",
+    "sweep",
+    "found",
+    "leaked",
+    "processes",
+    "attributable",
+    "repository",
+    "system",
+    "skills",
+    "three",
+    "wedged",
+    "vitest",
+    "trees",
+    "holding"
+  ],
+  "lastUpdated": "2026-08-30T09:57:03.580Z",
+  "specId": "045",
+  "folderSlug": "daemon-and-test-harness-hardening",
+  "parentChain": [
+    "system-speckit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

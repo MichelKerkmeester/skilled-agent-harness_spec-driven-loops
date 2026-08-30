@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "keywords": [
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
+  ],
+  "lastUpdated": "2026-08-30T09:56:12.152Z",
+  "specId": "002",
+  "folderSlug": "orphan-daemon-reaping",
+  "parentChain": [
+    "system-speckit",
+    "045-daemon-and-test-harness-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

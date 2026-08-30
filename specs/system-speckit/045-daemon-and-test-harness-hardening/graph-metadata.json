@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/045-daemon-and-test-harness-hardening",
+  "spec_folder": "system-speckit/045-daemon-and-test-harness-hardening",
+  "parent_id": null,
+  "children_ids": [
+    "system-speckit/045-daemon-and-test-harness-hardening/001-production-db-isolation",
+    "system-speckit/045-daemon-and-test-harness-hardening/002-orphan-daemon-reaping",
+    "system-speckit/045-daemon-and-test-harness-hardening/003-test-hang-containment",
+    "system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "045-daemon-and-test-harness-hardening",
+      "orphaned launcher respawn lock",
+      "production db isolation bypass",
+      "vitest hang containment",
+      "live-follow log growth",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "045-daemon-and-test-harness-hardening",
+      "orphaned",
+      "launcher",
+      "respawn",
+      "lock",
+      "production",
+      "isolation",
+      "bypass",
+      "vitest",
+      "hang",
+      "containment",
+      "live-follow"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".opencode/skills/system-spec-kit/vitest.config.ts",
+      ".opencode/bin/system-spec-memory-launcher.cjs",
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+      ".opencode/bin/git-live-follow.sh",
+      "tests/_support/vitest-setup.ts",
+      "ops/README.md",
+      "001-production-db-isolation/goal.md",
+      "002-orphan-daemon-reaping/goal.md",
+      "003-test-hang-containment/goal.md",
+      "004-live-follow-log-hygiene/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/system-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "process-sweep.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "git-live-follow.sh",
+        "kind": "script",
+        "path": ".opencode/bin/git-live-follow.sh",
+        "source": "derived"
+      },
+      {
+        "name": "vitest-setup.ts",
+        "kind": "code",
+        "path": "tests/_support/vitest-setup.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "ops/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Daemon Lifecycle",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Harness Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A live process sweep on 2026-08-30 found 13 leaked processes attributable to this repository's system skills: three wedged vitest trees holding roughly 290% CPU for 2h35m–4h12m, and one orphaned spec-memory launcher alive at `ppid 1` for 2 days 14 hours",
+    "created_at": "2026-08-30T09:55:25Z",
+    "last_save_at": "2026-08-30T12:21:21.907Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:e913e55d2de9ee2a09df3643d6b4896f7fc677dffd1b00edc22eeff3d5179580",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e3266ca8288bbb3c5bcfd87f116e4e96d653d3a7dfd9c40b200aa2b3355f1f32"
+    },
+    "last_active_child_id": "system-speckit/045-daemon-and-test-harness-hardening/004-live-follow-log-hygiene",
+    "last_active_at": null
+  }
+}
