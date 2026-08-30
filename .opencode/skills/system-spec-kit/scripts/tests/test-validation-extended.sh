@@ -868,7 +868,6 @@ if begin_category "Individual Rule: FILE_EXISTS (check-files.sh)"; then
     run_isolated_rule_test "L1: Missing spec.md" "check-files.sh" "006-missing-required-files" "fail" 1
     run_isolated_rule_test "L1: Missing plan.md" "check-files.sh" "032-missing-plan" "fail" 1
     run_isolated_rule_test "L1: Missing tasks.md" "check-files.sh" "035-missing-tasks" "fail" 1
-    run_isolated_rule_test "L2: Missing checklist.md" "check-files.sh" "027-level2-missing-checklist" "fail" 2
     run_isolated_rule_test "L3: Missing decision-record.md" "check-files.sh" "028-level3-missing-decision" "fail" 3
     run_isolated_rule_test "Empty folder (all missing)" "check-files.sh" "001-empty-folder" "fail" 1
 fi
@@ -959,7 +958,6 @@ if begin_category "Orchestrator: Error Fixtures (Exit 2)"; then
     run_test "005-unfilled-placeholders fails" "005-unfilled-placeholders" "fail"
     run_test "006-missing-required-files fails" "006-missing-required-files" "fail"
     run_test "008-invalid-anchors fails" "008-invalid-anchors" "fail"
-    run_test "027-level2-missing-checklist fails" "027-level2-missing-checklist" "fail"
     run_test "028-level3-missing-decision fails" "028-level3-missing-decision" "fail"
     run_test "032-missing-plan fails" "032-missing-plan" "fail"
     run_test "035-missing-tasks fails" "035-missing-tasks" "fail"
@@ -968,8 +966,6 @@ if begin_category "Orchestrator: Error Fixtures (Exit 2)"; then
     run_test "056-template-reordered-header fails" "056-template-reordered-header" "fail"
     run_test "057-template-missing-anchor fails" "057-template-missing-anchor" "fail"
     run_test "058-template-reordered-anchor fails" "058-template-reordered-anchor" "fail"
-    run_test "059-checklist-h1-invalid fails" "059-checklist-h1-invalid" "fail"
-    run_test "060-checklist-chk-format-invalid fails" "060-checklist-chk-format-invalid" "fail"
     run_test "072 scaffold marker fails through default registry bridge" "072-scaffold-never-touched-violation" "fail" "SCAFFOLD_NEVER_TOUCHED" "SCAFFOLD_NEVER_TOUCHED"
 fi
 

@@ -120,7 +120,7 @@ including effort estimates and explicit verification tasks for each feature. -->
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Checklist**: See `checklist.md`
+- **Verification**: See the verification sections in `tasks.md`
 
 <!-- /ANCHOR:cross-refs -->
 

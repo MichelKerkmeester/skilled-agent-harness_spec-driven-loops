@@ -1,28 +1,26 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/057-roster-drop-grok-from-devin",
-  "description": "Drop the Grok 4.5 and 4.6 model families from the cli-devin skill and its executor roster; Grok is a Cursor-hosted model and its presence in devin's r",
+  "description": "The cli-devin allowlist advertised Grok 4.5 and 4.6 model ids (`grok-4-5-high`, `grok-4-5-low`, `grok-4-5-medium`, `grok-4-6-high`, `grok-4-6-low`,",
   "keywords": [
-    "drop",
+    "cli-devin",
+    "allowlist",
+    "advertised",
     "grok",
     "model",
-    "families",
-    "cli-devin",
-    "skill",
-    "executor",
-    "roster",
-    "cursor-hosted",
-    "presence",
-    "devin",
-    "caused",
-    "misroute"
+    "ids",
+    "grok-4-5-high",
+    "grok-4-5-low",
+    "grok-4-5-medium",
+    "grok-4-6-high",
+    "grok-4-6-low"
   ],
-  "lastUpdated": "2026-08-29T17:59:27.042Z",
+  "lastUpdated": "2026-08-29T18:18:30.650Z",
   "specId": "057",
   "folderSlug": "roster-drop-grok-from-devin",
   "parentChain": [
     "cli-external-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

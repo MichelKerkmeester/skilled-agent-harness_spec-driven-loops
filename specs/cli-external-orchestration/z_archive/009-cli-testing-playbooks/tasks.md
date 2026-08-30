@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/009-cli-testing-playbooks"
+    packet_pointer: "cli-external-orchestration/z_archive/009-cli-testing-playbooks"
     last_updated_at: "2026-04-26T00:00:00Z"
     last_updated_by: "claude-opus-4.7"
     recent_action: "Drafted task list for two-wave delivery"

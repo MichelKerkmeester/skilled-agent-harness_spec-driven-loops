@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation"
+    packet_pointer: "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/007-cross-model-validation"
     last_updated_at: "2026-05-17T12:18:35Z"
     last_updated_by: "cli-codex"
     recent_action: "documented-planned-task-state"

@@ -559,7 +559,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Status** | Draft |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | \`[###-feature-name]\` |
 <!-- /ANCHOR:metadata -->
@@ -1048,7 +1048,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | [1/2/3/3+] |
 | **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Status** | Draft |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | \`[###-feature-name]\` |
 <!-- /ANCHOR:metadata -->
@@ -1785,7 +1785,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Status** | Draft |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | \`[###-feature-name]\` |
 <!-- /ANCHOR:metadata -->
@@ -1944,7 +1944,7 @@ contextType: "general"
 
 - **Implementation Plan**: See \`plan.md\`
 - **Task Breakdown**: See \`tasks.md\`
-- **Verification Checklist**: See \`checklist.md\`
+- **Verification Checklist**: See \`tasks.md\`
 - **Decision Records**: See \`decision-record.md\`
 
 ---"
@@ -2585,7 +2585,7 @@ Phase 1.5 (Config) ───┘
 | Agent | Focus | Files |
 |-------|-------|-------|
 | Plan Agent | plan.md | Technical approach |
-| Checklist Agent | checklist.md | Verification items |
+| Checklist Agent | tasks.md | Verification items |
 | Requirements Agent | spec.md (4-6) | Requirements detail |
 
 **Duration**: ~90s (parallel)
@@ -2679,7 +2679,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 3+ |
 | **Priority** | [P0/P1/P2] |
-| **Status** | [Draft/In Progress/Review/Complete] |
+| **Status** | Draft |
 | **Created** | [YYYY-MM-DD] |
 | **Branch** | \`[###-feature-name]\` |
 <!-- /ANCHOR:metadata -->
@@ -2875,7 +2875,7 @@ contextType: "general"
 
 - **Implementation Plan**: See \`plan.md\`
 - **Task Breakdown**: See \`tasks.md\`
-- **Verification Checklist**: See \`checklist.md\`
+- **Verification Checklist**: See \`tasks.md\`
 - **Decision Records**: See \`decision-record.md\`
 
 ---
@@ -3170,7 +3170,7 @@ _memory:
   FORBIDDEN content (do NOT author at phase-parent level):
     - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
     - migrated from, ported from, originally in
-    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+    - heavy docs: plan.md, tasks.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
   REQUIRED content (MUST author at phase-parent level):
     - Root purpose: what problem does this entire phased decomposition solve?
     - Sub-phase list: which child phase folders exist and what each one does

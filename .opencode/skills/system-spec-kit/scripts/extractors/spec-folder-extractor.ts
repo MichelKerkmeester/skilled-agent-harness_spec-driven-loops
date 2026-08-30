@@ -285,7 +285,7 @@ function parseDecisionDoc(content: string | null): SpecFolderExtraction['decisio
    4. SESSION PHASE DETECTION
 ------------------------------------------------------------------*/
 
-function determineSessionPhase(taskStats: TaskStats, checklistStats: ChecklistStats, planPhase: string, status: string): string {
+function determineSessionPhase(taskStats: TaskStats, checklistStats: ChecklistStats | null, planPhase: string, status: string): string {
   if (/complete|done|closed/i.test(status)) return 'complete';
   if (taskStats?.percent === 100 && (!checklistStats || checklistStats.passed === checklistStats.total)) return 'complete';
   if ((checklistStats && checklistStats.total > 0 && checklistStats.passed < checklistStats.total) || taskStats?.percent === 100) return 'testing';
@@ -311,7 +311,6 @@ export async function extractSpecFolderContext(specFolderPath: string): Promise<
   const spec = parseSpecDoc(readDoc(specFolderPath, 'spec.md'));
   const plan = parsePlanDoc(readDoc(specFolderPath, 'plan.md'));
   const tasks = parseTasksDoc(readDoc(specFolderPath, 'tasks.md'));
-  const checklist = parseChecklistDoc(readDoc(specFolderPath, 'checklist.md'));
   const decisions = parseDecisionDoc(readDoc(specFolderPath, 'decision-record.md'));
 
   const summary = cleanText([
@@ -356,16 +355,6 @@ export async function extractSpecFolderContext(specFolderPath: string): Promise<
       _provenance: 'spec-folder' as const,
       _synthetic: true as const,
     }] : []),
-    ...(checklist ? [{
-      type: 'verification',
-      title: 'Checklist verification status',
-      narrative: `Checklist progress P0 ${checklist.p0}, P1 ${checklist.p1}, P2 ${checklist.p2}.`,
-      timestamp: SYNTHETIC_TIMESTAMP,
-      facts: [`passed=${checklist.passed}`, `total=${checklist.total}`],
-      files: [],
-      _provenance: 'spec-folder' as const,
-      _synthetic: true as const,
-    }] : []),
   ];
   const structuralTypes = ['progress', 'checklist', 'phase', 'status'];
   observations.sort((a, b) => {
@@ -389,6 +378,6 @@ export async function extractSpecFolderContext(specFolderPath: string): Promise<
       ...((Array.isArray(description.triggerPhrases) ? description.triggerPhrases : []) as unknown[]).filter((t): t is string => typeof t === 'string').map(cleanText),
     ]).slice(0, 12),
     decisions,
-    sessionPhase: determineSessionPhase(tasks, checklist, plan.phaseTitle, String(description.status || '')),
+    sessionPhase: determineSessionPhase(tasks, null, plan.phaseTitle, String(description.status || '')),
   };
 }

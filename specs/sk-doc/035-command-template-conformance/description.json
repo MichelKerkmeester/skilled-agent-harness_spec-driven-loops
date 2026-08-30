@@ -1,22 +1,24 @@
 {
   "level": "1",
   "specFolder": "sk-doc/035-command-template-conformance",
-  "description": "Audit .opencode/commands/{design,rewrite,prompt} against the sk-doc/sk-create-command contract and fix the confirmed defects: a missing mandatory input",
+  "description": "Audit .opencode/commands/{design,rewrite,prompt} against the sk-doc/sk-create-command contract and fix the confirmed defects: a missing mandatory",
   "keywords": [
     "audit",
+    "opencode",
     "commands",
     "design",
     "rewrite",
     "prompt",
+    "against",
+    "sk-doc",
     "sk-create-command",
     "contract",
-    "fix",
     "confirmed",
     "defects",
-    "mandatory",
-    "input"
+    "missing",
+    "mandatory"
   ],
-  "lastUpdated": "2026-08-29T09:43:41.000Z",
+  "lastUpdated": "2026-08-29T15:12:26.536Z",
   "specId": "035",
   "folderSlug": "command-template-conformance",
   "parentChain": [

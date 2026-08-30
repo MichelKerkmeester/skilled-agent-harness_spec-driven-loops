@@ -49,7 +49,8 @@ expect_source() {
     local got
     got="$( set +e
         source "$RULE_DIR/check-ac-coverage.sh"
-        basename "$(_ac_traceability_file "$dir" 2>/dev/null)" 2>/dev/null || printf 'none' )"
+        resolved="$(_ac_traceability_file "$dir" 2>/dev/null)" || resolved=""
+        if [[ -n "$resolved" ]]; then basename "$resolved"; else printf 'none'; fi )"
     if [[ "$got" == "$want" ]]; then PASS=$((PASS+1)); printf '  ok    %-54s %s\n' "$name" "$got"
     else FAIL=$((FAIL+1)); printf '  FAIL  %-54s want=%s got=%s\n' "$name" "$want" "$got"; fi
 }
@@ -132,18 +133,17 @@ d="$TMP/l1"; mkpacket "$d"; ac "$d" "$AC_HEAD
 | AC-001 | REQ-001 | Given x, When y, Then z | \`a.sh:1\` | Met | - |"
 expect "the gate stays off below Level 2" "inactive" "$d" 1
 
-# Source precedence: the merged document wins, the pre-merge file is fallback.
-d="$TMP/both"; mkpacket "$d"
+# Source resolution: only the merged document qualifies.
+d="$TMP/merged"; mkpacket "$d"
 printf '# Tasks\n<!-- ANCHOR:protocol -->\n## Verification Protocol\n<!-- /ANCHOR:protocol -->\n' > "$d/tasks.md"
-printf '# Checklist\n' > "$d/checklist.md"
-expect_source "merged tasks.md wins over a stale checklist.md" "tasks.md" "$d"
+expect_source "the merged tasks document is the traceability source" "tasks.md" "$d"
 
-d="$TMP/legacyonly"; mkpacket "$d"; printf '# Checklist\n' > "$d/checklist.md"
-expect_source "a pre-merge packet still reads checklist.md" "checklist.md" "$d"
+# The standalone document is retired: a stray copy must not become a source again.
+d="$TMP/strays"; mkpacket "$d"; printf '# Checklist\n' > "$d/checklist.md"
+expect_source "a stray pre-merge copy is not a source" "none" "$d"
 
 d="$TMP/unmerged"; mkpacket "$d"; printf '# Tasks\n' > "$d/tasks.md"
-printf '# Checklist\n' > "$d/checklist.md"
-expect_source "tasks.md without the protocol anchor is not a source" "checklist.md" "$d"
+expect_source "tasks.md without the protocol anchor is not a source" "none" "$d"
 
 echo
 printf '  %d passed, %d failed\n' "$PASS" "$FAIL"

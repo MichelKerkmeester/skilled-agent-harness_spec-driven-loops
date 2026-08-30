@@ -43,6 +43,9 @@
       ".opencode/skills/system-spec-kit/scripts/tests/check-ac-coverage.sh",
       "scripts/rules/check-ac-coverage.sh",
       "scripts/tests/check-ac-coverage.sh",
+      "scripts/rules/check-description-shape.sh",
+      "scripts/spec/repair-derived.cjs",
+      "manual-testing-playbook/tooling-and-scripts/ac-coverage-single-source-ratio.md",
       "specs/system-speckit/036-spec-doc-template-reduction/002-tasks-checklist-merge/implementation-summary.md"
     ],
     "entities": [
@@ -74,6 +77,24 @@
         "name": "check-ac-coverage.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-description-shape.sh",
+        "kind": "script",
+        "path": "scripts/rules/check-description-shape.sh",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": "scripts/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ac-coverage-single-source-ratio.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/tooling-and-scripts/ac-coverage-single-source-ratio.md",
         "source": "derived"
       },
       {
@@ -171,29 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "What Was Built An",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phase 2 moved acceptance criteria into `acceptance-criteria.md` and repointed the advisory's total at that document",
     "created_at": "2026-08-29T20:32:46Z",
-    "last_save_at": "2026-08-29T21:57:59.097Z",
+    "last_save_at": "2026-08-30T04:18:07.677Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +205,12 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45789b31e5f998378dc2791e3626d3f81abe0dd85465a34547bccf657e0a90aa",
+    "source_fingerprint": "sha256:18f6f1c88d06192b7a0b3f634a66d3bb3d54532c4aad341e5c3e97c291fd1303",
     "source_doc_hashes": {
-      "spec.md": "44feb56fefeadfbb955aca90dae1777c29498cf01c22f585cbcc53611e00264d",
-      "plan.md": "aa89085852241bbca2bdad4fa83f00821cdb396ad99befed7f206c8201b6e2b2",
-      "tasks.md": "8763427c86d302c55528403fc83ef29683bc748b638214cb401a02e83b46d026",
-      "implementation-summary.md": "7f7e41bebaa7a5237aaa2d9c5ccd480a6cfa5b04c2fc55e13010a471197377de"
+      "spec.md": "b0e9d53392c49586960ced3397798bf09685fae858d99e67c6ad5114da5accb5",
+      "plan.md": "30c24e3508ebb8e959ccbc38da403aa9a774e5dab4c29623a14eae1daea761ec",
+      "tasks.md": "9d9ec9fedaec1929deeea32d02da1c1ac92487d32e20129356c0ecf224beeaaf",
+      "implementation-summary.md": "3bf178b7f18821a5eb2a489a014b1799e773ea12a5d38884a83a53e7e020f146"
     },
     "last_active_child_id": null,
     "last_active_at": null

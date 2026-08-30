@@ -480,7 +480,7 @@ async function main(): Promise<number> {
   } else if (await pathExists(DEFAULT_ROOT)) {
     // Scan only direct numbered children of 026. The 026 root itself recursively picks
     // up every child, so including it would double-count. To also scan 026-level loose
-    // markdown (checklist.md, spec.md, etc.) without re-entering child dirs, see the
+    // markdown (spec.md, tasks.md, etc.) without re-entering child dirs, see the
     // dedicated root-level pass below.
     const entries = await fs.readdir(DEFAULT_ROOT, { withFileTypes: true });
     folders = entries
@@ -497,7 +497,7 @@ async function main(): Promise<number> {
   }
 
   // When using default scan (no --folder), also audit the 026 root itself BUT only its
-  // direct loose markdown files (checklist.md, spec.md, etc.), not recursively into
+  // direct loose markdown files (spec.md, tasks.md, etc.), not recursively into
   // numbered children (which are already covered by the per-child iteration above).
   if (!folderArg && (await pathExists(DEFAULT_ROOT))) {
     const rootEntries = await fs.readdir(DEFAULT_ROOT, { withFileTypes: true });

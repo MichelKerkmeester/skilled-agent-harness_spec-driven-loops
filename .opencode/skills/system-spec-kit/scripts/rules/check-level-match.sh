@@ -111,7 +111,7 @@ _level_should_have() {
     # NOTE: plan.md is intentionally not required because many valid Level 1
     # Fixtures/specs omit a plan-level declaration while still being consistent.
     case "$basename" in
-        spec.md|checklist.md)
+        spec.md)
             return 0
             ;;
         *)
@@ -124,9 +124,6 @@ _level_has_implementation_started() {
     # Anchored to list items so the task-notation legend table (a literal
     # backticked [x] explaining the symbol) cannot read as started work.
     local folder="$1"
-    if [[ -f "$folder/checklist.md" ]] && grep -qE '^\s*[-*] \[[xX]\]' "$folder/checklist.md" 2>/dev/null; then
-        return 0
-    fi
     if [[ -f "$folder/tasks.md" ]] && grep -qE '^\s*[-*] \[[xX]\]' "$folder/tasks.md" 2>/dev/null; then
         return 0
     fi

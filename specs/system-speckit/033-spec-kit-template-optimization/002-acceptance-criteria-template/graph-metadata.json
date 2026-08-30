@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Acceptance criteria are split across two documents and owned by neither",
     "created_at": "2026-08-29T12:08:53Z",
-    "last_save_at": "2026-08-29T20:42:22.561Z",
+    "last_save_at": "2026-08-30T04:18:03.442Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b1061aca96278d8fe3da473efc87f7570c9a1962a3d0093f2373b0f2183f9dbf",
+    "source_fingerprint": "sha256:f23a2d9363b81caacd46c2069612b8624e099d199ca9a9949a6aca6c58ca05e2",
     "source_doc_hashes": {
-      "spec.md": "b60a1d60ddf37c41dce04987015003398c83141e8d76f10678e27f822dc5c4db",
-      "plan.md": "d626919caf0a4b0d7ef0fad0a4bc4a07d7a0ab0f66559c3fe7cc2088026f7ca9",
-      "tasks.md": "d232952f27c37a1c5375f5aa3d0134e4273b44057b3df1fbdec675aeaf28cc6e",
-      "checklist.md": "8eeb64bbcde58f67578649e27a9594e48326a43e39100968dc7a4bc99f8f3f1d",
-      "decision-record.md": "47c753e2e8eae72d61a0ef3d01f8d5067391ed40623dde70821ddfc4c4033fda",
-      "implementation-summary.md": "cf1108243dabdb033bbdf97ee425a8a3a0fd0826289cbf6d91b2d39f9d1622f6"
+      "spec.md": "74029f5bcdcaea74a7d33fe8bbce1762c8435905f5f25a179772debe8bcbdbd3",
+      "plan.md": "20be41bb9e7720db236550127b5d9fdf2dc3573cce7b237f63a1fd8e33425b82",
+      "tasks.md": "33d1b24bb1366b0816cd10982abfda13509f0e54567fbd9eaa4c208b7375fda1",
+      "checklist.md": "12783cd55e2de3e22433c3e1d0bfde031c32a149efff2d6ce3ba47bd39bcd31c",
+      "decision-record.md": "b96b09360fde2bc2eb64a15f31ee6e0d4185cfea1a20309c94467b124b9a3452",
+      "implementation-summary.md": "971fbe4fe3bbd8e79b904c01c1d0f1117cbef25578c5678f1572e651116f62c7"
     },
     "last_active_child_id": null,
     "last_active_at": null

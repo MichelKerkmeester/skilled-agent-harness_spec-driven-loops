@@ -1,5 +1,5 @@
 {
-  "level": "1",
+  "level": "3",
   "specFolder": "system-speckit/033-spec-kit-template-optimization/002-acceptance-criteria-template",
   "description": "Acceptance criteria are split across two documents and owned by neither",
   "keywords": [
@@ -11,7 +11,7 @@
     "documents",
     "owned"
   ],
-  "lastUpdated": "2026-08-29T16:24:10.429Z",
+  "lastUpdated": "2026-08-30T04:17:56.035Z",
   "specId": "002",
   "folderSlug": "acceptance-criteria-template",
   "parentChain": [

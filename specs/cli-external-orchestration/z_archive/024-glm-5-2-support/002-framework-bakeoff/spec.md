@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/024-glm-5-2-support/002-framework-bakeoff"
+    packet_pointer: "cli-external-orchestration/z_archive/024-glm-5-2-support/002-framework-bakeoff"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Bakeoff 008 ran; COSTAR best-of-tied; separable"

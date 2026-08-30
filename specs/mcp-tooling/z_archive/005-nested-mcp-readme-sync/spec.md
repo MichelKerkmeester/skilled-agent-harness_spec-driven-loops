@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "specification"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/005-nested-mcp-readme-sync"
+    packet_pointer: "mcp-tooling/z_archive/005-nested-mcp-readme-sync"
     last_updated_at: "2026-06-07T18:40:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Synced 3 nested mcp_server READMEs with their tool sets"

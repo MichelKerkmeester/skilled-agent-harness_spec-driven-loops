@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/014-cli-copilot-deprecation-due-to-price-hike"
+    packet_pointer: "cli-external-orchestration/z_archive/014-cli-copilot-deprecation-due-to-price-hike"
     last_updated_at: "2026-05-06T13:30:00.000Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Committed packet 081 work at 7a987e882"

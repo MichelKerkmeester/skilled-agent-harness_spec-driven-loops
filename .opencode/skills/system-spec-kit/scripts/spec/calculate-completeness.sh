@@ -26,7 +26,6 @@ declare -a TEMPLATE_FILES=(
   'spec.md'
   'plan.md'
   'tasks.md'
-  'checklist.md'
   'research/research.md'
   'decision-record-*.md'
 )

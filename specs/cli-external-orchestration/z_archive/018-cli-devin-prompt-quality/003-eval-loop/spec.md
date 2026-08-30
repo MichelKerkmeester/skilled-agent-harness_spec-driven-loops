@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/018-cli-devin-prompt-quality/003-eval-loop"
+    packet_pointer: "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/003-eval-loop"
     last_updated_at: "2026-05-16T19:10:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded eval-loop spec"

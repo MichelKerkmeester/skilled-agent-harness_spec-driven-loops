@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/003-mcp-figma-transfer/004-deep-review-remediation"
+    packet_pointer: "mcp-tooling/z_archive/003-mcp-figma-transfer/004-deep-review-remediation"
     last_updated_at: "2026-05-05T12:45:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Job3 report authored"

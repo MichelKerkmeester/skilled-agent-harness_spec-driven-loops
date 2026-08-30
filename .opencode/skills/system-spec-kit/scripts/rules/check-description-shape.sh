@@ -77,6 +77,27 @@ EOF
         return 0
     fi
 
+    # The level is generated before an author picks one, so a packet written
+    # above the scaffold level carries a derived number its own documents
+    # contradict. Checking the type alone let that disagreement stand forever:
+    # nothing reported it, so the repair tool never engaged on it either.
+    local declared recorded doc
+    declared=""
+    for doc in spec.md tasks.md plan.md; do
+        [[ -f "$folder/$doc" ]] || continue
+        declared="$(sed -n 's/.*<!--[[:space:]]*SPECKIT_LEVEL:[[:space:]]*\([0-9][+]*\)[[:space:]]*-->.*/\1/p' "$folder/$doc" | head -1)"
+        [[ -n "$declared" ]] && break
+    done
+    recorded="$(node -e 'const d=require(process.argv[1]);process.stdout.write(d.level==null?"":String(d.level))' "$(cd "$folder" && pwd)/description.json" 2>/dev/null || true)"
+
+    if [[ -n "$declared" && -n "$recorded" && "$declared" != "$recorded" ]]; then
+        RULE_STATUS="warn"
+        RULE_MESSAGE="description.json level ${recorded} disagrees with the level the packet declares (${declared})"
+        RULE_DETAILS=("declared in $doc as SPECKIT_LEVEL: ${declared}" "recorded in description.json as ${recorded}")
+        RULE_REMEDIATION="Run repair-derived.cjs --apply to align the generated level with the declared one."
+        return 0
+    fi
+
     RULE_STATUS="pass"
     RULE_MESSAGE="description.json shape validation passed"
 }

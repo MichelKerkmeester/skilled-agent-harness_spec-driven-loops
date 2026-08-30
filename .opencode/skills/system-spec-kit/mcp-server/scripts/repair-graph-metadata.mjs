@@ -6,7 +6,7 @@ import os from 'node:os';
 import path from 'node:path';
 
 const VALID_TIERS = new Set(['constitutional', 'critical', 'important', 'normal', 'temporary', 'deprecated']);
-const DOCS = ['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'decision-record.md', 'implementation-summary.md', 'research/research.md', 'research.md', 'handover.md', 'resource-map.md'];
+const DOCS = ['spec.md', 'plan.md', 'tasks.md', 'decision-record.md', 'implementation-summary.md', 'research/research.md', 'research.md', 'handover.md', 'resource-map.md'];
 const GRAPH = 'graph-metadata.json';
 const DEFAULT_SCAN_LOG = '/tmp/scan-stdout.log';
 const DB_PATH = '.opencode/skills/system-spec-kit/mcp-server/database/context-index.sqlite';

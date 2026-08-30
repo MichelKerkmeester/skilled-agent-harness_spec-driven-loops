@@ -89,7 +89,6 @@ function readContinuityPacketPointer(folderPath) {
     'spec.md',
     'plan.md',
     'tasks.md',
-    'checklist.md',
     'decision-record.md',
   ];
   for (const candidate of candidates) {

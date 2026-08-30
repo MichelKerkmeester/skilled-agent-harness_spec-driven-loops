@@ -25,7 +25,6 @@ run_check() {
     RULE_REMEDIATION=""
     
     local -a files=("spec.md" "plan.md" "tasks.md")
-    [[ -f "$folder/checklist.md" ]] && files+=("checklist.md")
     [[ -f "$folder/decision-record.md" ]] && files+=("decision-record.md")
     
     local -a found_markers=()

@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/021-cli-gemini-deprecation/003-cli-gemini-full-purge"
+    packet_pointer: "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/003-cli-gemini-full-purge"
     last_updated_at: "2026-06-08T18:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Completed cli-gemini executor purge"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | cli-external-orchestration/021-cli-gemini-deprecation/003-cli-gemini-full-purge |
+| **Spec Folder** | 003-cli-gemini-full-purge |
 | **Completed** | Yes |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

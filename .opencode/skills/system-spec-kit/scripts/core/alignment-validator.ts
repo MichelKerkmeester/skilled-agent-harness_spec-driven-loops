@@ -28,7 +28,6 @@ const PREFERRED_PARENT_FILES = new Set([
   'spec.md',
   'plan.md',
   'tasks.md',
-  'checklist.md',
   'readme.md',
 ]);
 

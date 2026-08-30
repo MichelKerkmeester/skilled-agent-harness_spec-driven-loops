@@ -1,7 +1,8 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Folder Discovery
 // ───────────────────────────────────────────────────────────────
-// Feature catalog: Spec folder description discovery
+// Resolves a packet's description from its canonical documents so search and
+// routing read one merged answer rather than each guessing from a filename.
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as crypto from 'node:crypto';
@@ -105,7 +106,6 @@ const DESCRIPTION_SOURCE_DOCS = [
   'spec.md',
   'plan.md',
   'tasks.md',
-  'checklist.md',
   'decision-record.md',
   'implementation-summary.md',
   path.join('research', 'research.md'),

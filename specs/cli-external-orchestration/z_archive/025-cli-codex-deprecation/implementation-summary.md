@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/cli-external-orchestration/025-cli-codex-deprecation"
+    packet_pointer: "cli-external-orchestration/z_archive/025-cli-codex-deprecation"
     last_updated_at: "2026-06-30T15:05:00Z"
     last_updated_by: "opencode"
     recent_action: "Added Codex Desktop App project bridge without restoring cli-codex delegation"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 122-cli-codex-deprecation |
+| **Spec Folder** | 025-cli-codex-deprecation |
 | **Completed** | 2026-06-30 |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

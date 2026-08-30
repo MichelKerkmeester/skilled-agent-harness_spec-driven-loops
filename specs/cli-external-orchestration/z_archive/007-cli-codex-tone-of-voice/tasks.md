@@ -9,7 +9,7 @@ contextType: "general"
 template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level3-arch | v2.2 -->"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/007-cli-codex-tone-of-voice"
+    packet_pointer: "cli-external-orchestration/z_archive/007-cli-codex-tone-of-voice"
     last_updated_at: "2026-04-19T00:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Tasks authored"

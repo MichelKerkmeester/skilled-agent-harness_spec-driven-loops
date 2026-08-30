@@ -10,7 +10,6 @@ set -euo pipefail
 # Severity: error
 # Description: Validates required files exist for documentation level
 #   Level 1: spec.md, plan.md, tasks.md
-#   Level 2: Level 1 + checklist.md
 #   Level 3: Level 2 + decision-record.md
 #   Lifecycle-required documents: Required after implementation starts (detected by completed items)
 
@@ -65,7 +64,7 @@ run_check() {
     # backticked [x] explaining the symbol) cannot read as started work.
     local has_implementation=false
     local started_file
-    for started_file in checklist.md tasks.md; do
+    for started_file in tasks.md; do
         if [[ -f "$folder/$started_file" ]] && grep -qE '^\s*[-*] \[[xX]\]' "$folder/$started_file" 2>/dev/null; then
             has_implementation=true
             break

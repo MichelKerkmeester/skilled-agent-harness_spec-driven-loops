@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/023-kimi-k2-7-code-support/005-filename-underscore-alignment"
+    packet_pointer: "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/005-filename-underscore-alignment"
     last_updated_at: "2026-06-16T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Renamed 7 targets (git mv), repaired ~27 live reference files, drift guard exit 0"

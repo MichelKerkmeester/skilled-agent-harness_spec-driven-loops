@@ -189,7 +189,7 @@ including dependencies, milestone mapping, and detailed verification tasks. -->
 
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
-- **Checklist**: See `checklist.md`
+- **Verification**: See the verification sections in `tasks.md`
 - **Decisions**: See `decision-record.md`
 
 <!-- /ANCHOR:cross-refs -->

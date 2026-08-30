@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/019-cli-opencode-minimax-optimization/004-minimax-token-plan-provider"
+    packet_pointer: "cli-external-orchestration/z_archive/019-cli-opencode-minimax-optimization/004-minimax-token-plan-provider"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored phase-004 task breakdown"

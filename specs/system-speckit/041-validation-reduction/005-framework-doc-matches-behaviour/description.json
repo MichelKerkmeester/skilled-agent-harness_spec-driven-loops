@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/041-validation-reduction/005-framework-doc-matches-behaviour",
   "description": "Two validation claims in the always-loaded framework document are corrected to match measured behaviour.",
   "keywords": [
@@ -13,7 +14,7 @@
     "measured",
     "behaviour"
   ],
-  "lastUpdated": "2026-08-29T19:48:07.702Z",
+  "lastUpdated": "2026-08-29T19:49:09.222Z",
   "specId": "005",
   "folderSlug": "framework-doc-matches-behaviour",
   "parentChain": [
@@ -21,6 +22,5 @@
     "041-validation-reduction"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

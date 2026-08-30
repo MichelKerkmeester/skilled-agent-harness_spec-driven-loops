@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/024-glm-5-2-support/006-vision-frontend-input"
+    packet_pointer: "cli-external-orchestration/z_archive/024-glm-5-2-support/006-vision-frontend-input"
     last_updated_at: "2026-06-28T18:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Transport proven; capability recorded in the three surfaces; phase 6 tasks complete"

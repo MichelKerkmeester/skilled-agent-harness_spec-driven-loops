@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/018-cli-devin-prompt-quality/005-extraction-rerun"
+    packet_pointer: "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun"
     last_updated_at: "2026-05-17T10:25:00Z"
     last_updated_by: "main_agent"
     recent_action: "Shipped v3 mutation-depth-8 re-run"
@@ -41,7 +41,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 113-cli-devin-prompt-quality/005-extraction-rerun |
+| **Spec Folder** | 005-extraction-rerun |
 | **Completed** | 2026-05-17 |
 | **Level** | 3 |
 | **Re-run wall-clock** | ~57 min (vs 109 min in v1; faster because no mutation iter) |

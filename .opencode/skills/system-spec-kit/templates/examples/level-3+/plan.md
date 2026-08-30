@@ -380,7 +380,7 @@ See `decision-record.md` for full ADRs:
 2. Load plan.md and identify current phase
 3. Load tasks.md and find next uncompleted task
 4. Verify task dependencies are satisfied
-5. Load checklist.md and identify relevant P0/P1 items
+5. Load the verification sections in tasks.md and identify relevant P0/P1 items
 6. Check for blocking issues in decision-record.md
 7. Review `handover.md` and `_memory.continuity` for prior session context
 8. Confirm understanding of success criteria

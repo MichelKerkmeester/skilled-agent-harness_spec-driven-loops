@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization"
+    packet_pointer: "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "All 4 phases complete + strict-validated; COSTAR benchmark winner integrated"

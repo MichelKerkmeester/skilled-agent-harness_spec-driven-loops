@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/037-playbook-family-remediation/003-deep-loop-and-spec-kit",
   "description": "Eight roots including the fleet's largest, where two of the biggest counts turned out to be single-cause defects and four remediation agents died",
   "keywords": [
@@ -18,7 +19,7 @@
     "agents",
     "died"
   ],
-  "lastUpdated": "2026-08-29T11:52:57.674Z",
+  "lastUpdated": "2026-08-29T15:12:26.977Z",
   "specId": "003",
   "folderSlug": "deep-loop-and-spec-kit",
   "parentChain": [
@@ -26,6 +27,5 @@
     "037-playbook-family-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

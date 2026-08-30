@@ -77,7 +77,6 @@ const OPTIONAL_CONTINUITY_DOCS = new Set([
   'spec.md',
   'plan.md',
   'tasks.md',
-  'checklist.md',
   'handover.md',
   'debug-delegation.md',
   'research/research.md',
@@ -87,7 +86,7 @@ const OPTIONAL_CONTINUITY_DOCS = new Set([
 ]);
 const REQUIRED_FRONTMATTER_KEYS = ['packet_pointer', 'last_updated_at', 'last_updated_by', 'recent_action', 'next_safe_action'];
 const REQUIRED_SCALAR_FRONTMATTER_FIELDS = ['title', 'description', 'importance_tier', 'contextType'];
-const SCALAR_FRONTMATTER_DOCS = ['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'decision-record.md', 'implementation-summary.md'];
+const SCALAR_FRONTMATTER_DOCS = ['spec.md', 'plan.md', 'tasks.md', 'decision-record.md', 'implementation-summary.md'];
 // Named in the report so a verdict can be attributed to what produced it.
 const ENGINE_NAME = 'orchestrator';
 const CHECKLIST_H1_PREFIX = '# Verification Checklist:';
@@ -218,7 +217,6 @@ function detectLevel(folder: string): SpecKitLevel {
     if (tableLevel) return normalizeLevel(tableLevel);
   }
   if (fs.existsSync(path.join(folder, 'decision-record.md'))) return '3';
-  if (fs.existsSync(path.join(folder, 'checklist.md'))) return '2';
   const tasksPath = path.join(folder, 'tasks.md');
   if (fs.existsSync(tasksPath) && fs.readFileSync(tasksPath, 'utf8').includes('<!-- ANCHOR:protocol -->')) return '2';
   return '1';
@@ -473,7 +471,7 @@ function lifecycleRequiredDocsForLevel(level: SpecKitLevel): string[] {
 const STARTED_WORK_ITEM_RE = /^[ \t]*[-*] \[[xX]\]/mu;
 
 function hasStartedWork(folder: string): boolean {
-  for (const docName of ['checklist.md', 'tasks.md']) {
+  for (const docName of ['tasks.md']) {
     const content = readIfExists(path.join(folder, docName));
     if (content && STARTED_WORK_ITEM_RE.test(content)) return true;
   }

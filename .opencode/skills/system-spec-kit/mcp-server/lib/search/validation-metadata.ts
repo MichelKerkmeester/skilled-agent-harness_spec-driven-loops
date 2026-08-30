@@ -108,7 +108,10 @@ function extractSpecLevelFromContent(content: string): number | undefined {
  */
 function checklistFromFilePath(filePath: string | undefined): boolean {
   if (typeof filePath !== 'string') return false;
-  return filePath.toLowerCase().includes('checklist');
+  // Match the filename, not the substring. A bare `includes` also fires on a
+  // directory named `checklists/` and on any document whose name merely
+  // contains the word, mislabelling unrelated rows as verification records.
+  return /(?:^|[\\/])checklist\.md$/i.test(filePath);
 }
 
 /**

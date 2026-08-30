@@ -12,7 +12,8 @@
     "system-speckit/036-spec-doc-template-reduction/006-verify-rollout",
     "system-speckit/036-spec-doc-template-reduction/007-lazy-addon-docs",
     "system-speckit/036-spec-doc-template-reduction/008-plan-and-contract-optimization",
-    "system-speckit/036-spec-doc-template-reduction/009-template-folder-restructure"
+    "system-speckit/036-spec-doc-template-reduction/009-template-folder-restructure",
+    "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement"
   ],
   "manual": {
     "depends_on": [],
@@ -39,7 +40,7 @@
       "merge"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -89,15 +90,16 @@
     ],
     "causal_summary": "This phased decomposition tracks Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility across independently executable child phase folders",
     "created_at": "2026-08-26T05:33:55Z",
-    "last_save_at": "2026-08-27T20:21:06.358Z",
+    "last_save_at": "2026-08-30T05:45:26.506Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f661847082bf7455bbe14ab9587befdb91361b2c2176c36140ebfa6820b1bf94",
+    "source_fingerprint": "sha256:a3f799a3ac24a30f4cafdebdf18a443983c561bbfde0461ec623681c5b584585",
+    "source_fingerprint_docset": 2,
     "source_doc_hashes": {
-      "spec.md": "a356c6266d8df0d7c2d5c1a93952c98c82edfed63f22f3a2dd13a106cacaa1b7"
+      "spec.md": "c5b4de6f073b3a565d0f147af47f4c4e604fc57be439d46b256ce8c8707136f6"
     },
     "last_active_child_id": "system-speckit/036-spec-doc-template-reduction/009-template-folder-restructure",
     "last_active_at": "2026-08-27T20:21:06.358Z"

@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "sk-doc/016-create-diff-mode/010-command-description-trim",
   "description": "After packets 083 (skills+commands first pass), 086 (audit tooling shipped), and 090 (agent trims), 8 items remain `OVER-SOFT` in the audit:",
   "keywords": [
@@ -16,7 +17,7 @@
     "remain",
     "over-soft"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.713Z",
+  "lastUpdated": "2026-08-28T16:24:15.242Z",
   "specId": "010",
   "folderSlug": "command-description-trim",
   "parentChain": [
@@ -26,6 +27,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "06-05-26_18-04__manual-context-save.md"
-  ],
-  "level": 1
+  ]
 }

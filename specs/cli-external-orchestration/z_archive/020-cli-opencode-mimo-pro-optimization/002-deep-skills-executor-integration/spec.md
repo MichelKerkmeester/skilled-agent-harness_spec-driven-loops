@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/020-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration"
+    packet_pointer: "cli-external-orchestration/z_archive/020-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Phase-002 shipped; vitest 56/56; strict validate PASSED"

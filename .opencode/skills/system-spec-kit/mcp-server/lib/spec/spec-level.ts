@@ -44,7 +44,6 @@ export function detectSpecLevelFromParsed(filePath: string): number | null {
 
     const siblings = fs.readdirSync(dir).map((file) => file.toLowerCase());
     if (siblings.includes('decision-record.md')) return 3;
-    if (siblings.includes('checklist.md')) return 2;
     const tasksMdPath = path.join(dir, 'tasks.md');
     if (siblings.includes('tasks.md') && fs.readFileSync(tasksMdPath, 'utf8').includes('<!-- ANCHOR:protocol -->')) return 2;
     return 1;

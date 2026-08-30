@@ -749,7 +749,7 @@ function generateResumeContext(
     items.push({ CONTEXT_ITEM: `Files modified: ${fileList}` });
   }
 
-  const priorityDocs = ['tasks.md', 'checklist.md', 'plan.md'];
+  const priorityDocs = ['tasks.md', 'plan.md'];
   const relevantDocs = specFiles.filter((sf) => priorityDocs.includes(sf.FILE_NAME));
   if (relevantDocs.length > 0) {
     items.push({ CONTEXT_ITEM: `Check: ${relevantDocs.map((d) => d.FILE_NAME).join(', ')}` });

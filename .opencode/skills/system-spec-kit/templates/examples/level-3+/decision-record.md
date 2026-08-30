@@ -19,7 +19,7 @@ contextType: "general"
 
 <!-- EXAMPLE: This is a filled-in Level 3+ decision record with the same ADRs as
 Level 3, demonstrating that governance-level features are primarily in spec.md,
-plan.md, tasks.md, and checklist.md. Decision records remain focused on technical
+plan.md, and tasks.md. Decision records remain focused on technical
 architecture decisions. -->
 
 ---

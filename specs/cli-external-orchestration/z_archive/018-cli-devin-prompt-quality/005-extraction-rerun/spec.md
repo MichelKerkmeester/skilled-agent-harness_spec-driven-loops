@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/018-cli-devin-prompt-quality/005-extraction-rerun"
+    packet_pointer: "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/005-extraction-rerun"
     last_updated_at: "2026-05-17T05:35:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded 113/005 spec"

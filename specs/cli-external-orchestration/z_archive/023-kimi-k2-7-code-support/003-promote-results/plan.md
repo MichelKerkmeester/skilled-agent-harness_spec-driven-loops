@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/023-kimi-k2-7-code-support/003-promote-results"
+    packet_pointer: "cli-external-orchestration/z_archive/023-kimi-k2-7-code-support/003-promote-results"
     last_updated_at: "2026-06-15T11:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Plan executed; promoted TIE finding, kept default-unverified"

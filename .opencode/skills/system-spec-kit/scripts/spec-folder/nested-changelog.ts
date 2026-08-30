@@ -658,9 +658,9 @@ function buildNestedChangelogData(specFolderPath: string, options: Pick<CliOptio
   const specMarkdown = readOptionalFile(path.join(specFolder, 'spec.md'));
   const implementationSummary = readOptionalFile(path.join(specFolder, 'implementation-summary.md'));
   const tasksMarkdown = readOptionalFile(path.join(specFolder, 'tasks.md'));
-  const checklistMarkdown = readOptionalFile(path.join(specFolder, 'checklist.md'));
   const tasksItems = parseChecklistItems(tasksMarkdown);
-  const checklistItems = parseChecklistItems(checklistMarkdown);
+  // The standalone verification document is retired; its items came only from there.
+  const checklistItems: ReturnType<typeof parseChecklistItems> = [];
   const summary = extractSummary(implementationSummary, specMarkdown);
   const changeBullets = extractChangeBullets([...tasksItems, ...checklistItems], summary);
   const filesChanged = extractFilesChanged(implementationSummary, specMarkdown, [...tasksItems, ...checklistItems]);

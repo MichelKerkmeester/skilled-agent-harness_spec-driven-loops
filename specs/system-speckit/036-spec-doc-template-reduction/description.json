@@ -1,8 +1,11 @@
 {
-  "level": "phase",
+  "level": "2",
   "specFolder": "system-speckit/036-spec-doc-template-reduction",
-  "description": "Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility",
+  "description": "This phased decomposition tracks Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and",
   "keywords": [
+    "phased",
+    "decomposition",
+    "tracks",
     "reduce",
     "optimize",
     "spec-kit",
@@ -15,11 +18,9 @@
     "bloat",
     "better",
     "historic",
-    "context",
-    "small-model",
-    "legibility"
+    "context"
   ],
-  "lastUpdated": "2026-08-27T20:20:27.241Z",
+  "lastUpdated": "2026-08-30T05:16:40.330Z",
   "specId": "036",
   "folderSlug": "spec-doc-template-reduction",
   "parentChain": [

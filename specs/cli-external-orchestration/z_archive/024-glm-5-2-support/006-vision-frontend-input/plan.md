@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/024-glm-5-2-support/006-vision-frontend-input"
+    packet_pointer: "cli-external-orchestration/z_archive/024-glm-5-2-support/006-vision-frontend-input"
     last_updated_at: "2026-06-28T17:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Planned the two-stage approach: prove image transport, then record capability + method"

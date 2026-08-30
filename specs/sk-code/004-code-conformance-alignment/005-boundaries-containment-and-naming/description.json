@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-code/004-code-conformance-alignment/005-boundaries-containment-and-naming",
   "description": "Four defect classes here share one property: the standard states what to do, and the code does something else that a machine cannot mechanically",
   "keywords": [
@@ -17,7 +18,7 @@
     "cannot",
     "mechanically"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.860Z",
+  "lastUpdated": "2026-08-29T15:04:31.724Z",
   "specId": "005",
   "folderSlug": "boundaries-containment-and-naming",
   "parentChain": [
@@ -25,6 +26,5 @@
     "004-code-conformance-alignment"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

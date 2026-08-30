@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/021-cli-gemini-deprecation"
+    packet_pointer: "cli-external-orchestration/z_archive/021-cli-gemini-deprecation"
     last_updated_at: "2026-06-08T18:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Gemini eradicated (runtime+model) across phases 001-004"

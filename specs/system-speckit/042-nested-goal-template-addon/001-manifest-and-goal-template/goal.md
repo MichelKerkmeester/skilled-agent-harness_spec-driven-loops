@@ -11,14 +11,14 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/042-nested-goal-template-addon/001-manifest-and-goal-template"
-    last_updated_at: "2026-08-29T00:00:00Z"
+    last_updated_at: "2026-08-30T04:17:55Z"
     last_updated_by: "claude-code"
     recent_action: "Shipped the contract entry, template and mapping"
     next_safe_action: "None; this phase is complete"
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:c9e0247bf164ade97abf1293bfcbc88543acc0f397cd8b2fe3863b08e0fd1c89"
       session_id: "2026-08-29-042-001-manifest-and-goal-template"
       parent_session_id: null
     completion_pct: 100

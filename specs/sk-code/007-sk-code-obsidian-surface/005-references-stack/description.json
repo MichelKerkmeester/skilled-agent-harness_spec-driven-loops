@@ -1,19 +1,18 @@
 {
   "level": "1",
   "specFolder": "sk-code/007-sk-code-obsidian-surface/005-references-stack",
-  "description": "Author the sk-code-obsidian surface packet's references/ tree — twelve top-level topic files, five purpose-named subfolders (operations, quality, release, setup, standards), and the three shared workflow-doctrine symlinks — mirroring sk-code-mobile-cli's references/ layout exactly, describing the real Obsidian plugin stack rather than the template's Svelte stack.",
+  "description": "`sk-code-obsidian/SKILL.md` (phase `004-skill-core`) names twelve references in its §2 REFERENCE",
   "keywords": [
-    "author",
     "sk-code-obsidian",
-    "surface",
-    "packet",
-    "references",
-    "tree",
+    "skill",
+    "phase",
+    "004-skill-core",
+    "names",
     "twelve",
-    "top-level",
-    "topic"
+    "references",
+    "reference"
   ],
-  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "lastUpdated": "2026-08-29T15:04:31.743Z",
   "specId": "005",
   "folderSlug": "references-stack",
   "parentChain": [

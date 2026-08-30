@@ -111,7 +111,6 @@ const SPEC_DOC_BASENAMES = new Set([
   'spec.md',
   'plan.md',
   'tasks.md',
-  'checklist.md',
   'decision-record.md',
   'implementation-summary.md',
   'research.md',
@@ -677,7 +676,6 @@ function mapSpecDocType(fileName: string): string {
       return 'plan';
     case 'tasks.md':
       return 'tasks';
-    case 'checklist.md':
       return 'checklist';
     case 'decision-record.md':
       return 'decision_record';

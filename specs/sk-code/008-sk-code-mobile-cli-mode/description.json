@@ -1,4 +1,5 @@
 {
+  "level": "phase",
   "specFolder": "sk-code/008-sk-code-mobile-cli-mode",
   "description": "Code work on `apps/pi-remote-web/` detects a generic frontend surface and does not auto-load this",
   "keywords": [
@@ -12,13 +13,12 @@
     "surface",
     "auto-load"
   ],
-  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "lastUpdated": "2026-08-29T15:04:31.747Z",
   "specId": "008",
   "folderSlug": "sk-code-mobile-cli-mode",
   "parentChain": [
     "sk-code"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }

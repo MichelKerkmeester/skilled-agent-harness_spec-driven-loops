@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion"
+    packet_pointer: "cli-external-orchestration/z_archive/021-cli-gemini-deprecation/001-runtime-surface-and-skill-deletion"
     last_updated_at: "2026-06-05T07:35:35Z"
     last_updated_by: "opencode"
     recent_action: "Completed .gemini deletion"
@@ -42,7 +42,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | cli-external-orchestration/021-cli-gemini-deprecation |
+| **Spec Folder** | 001-runtime-surface-and-skill-deletion |
 | **Completed** | Yes |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->

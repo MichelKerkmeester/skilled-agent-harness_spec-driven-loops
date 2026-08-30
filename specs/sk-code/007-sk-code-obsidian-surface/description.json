@@ -1,19 +1,16 @@
 {
   "level": "phase",
   "specFolder": "sk-code/007-sk-code-obsidian-surface",
-  "description": "A read-only sk-code SURFACE evidence packet for the Note Database plugin, and the source conventions it documents, applied to the plugin tree.",
+  "description": "Code work on this plugin resolves to the `UNKNOWN` surface",
   "keywords": [
-    "read-only",
-    "sk-code",
-    "surface",
-    "evidence",
-    "packet",
-    "note",
-    "database",
+    "code",
+    "work",
     "plugin",
-    "source"
+    "resolves",
+    "unknown",
+    "surface"
   ],
-  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "lastUpdated": "2026-08-29T15:04:31.727Z",
   "specId": "007",
   "folderSlug": "sk-code-obsidian-surface",
   "parentChain": [

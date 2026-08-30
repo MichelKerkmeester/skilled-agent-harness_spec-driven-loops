@@ -3,21 +3,15 @@
   "specFolder": "sk-communication/003-visual-explanation-lane",
   "description": "`sk-communication` adapts an explanation on exactly one axis: register",
   "keywords": [
-    "visual",
-    "explanation",
-    "lane",
     "sk-communication",
-    "explain-visually",
-    "modality",
-    "depth",
-    "rewrite",
-    "command",
-    "diagram",
-    "modality",
-    "depth",
-    "novice"
+    "adapts",
+    "explanation",
+    "exactly",
+    "one",
+    "axis",
+    "register"
   ],
-  "lastUpdated": "2026-08-28T00:45:00.000Z",
+  "lastUpdated": "2026-08-28T05:17:18.757Z",
   "specId": "003",
   "folderSlug": "visual-explanation-lane",
   "parentChain": [

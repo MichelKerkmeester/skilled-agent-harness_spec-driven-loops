@@ -95,7 +95,7 @@ const REDERIVABLE = new Set([
 
 const POINTER_LINE = /^([ \t]*packet_pointer:[ \t]*)(["']?)([^"'\r\n]*)(["']?)[ \t]*\r?$/m;
 const SPEC_FOLDER_ROW = /(\|[ \t]*\*\*Spec Folder\*\*[ \t]*\|[ \t]*)([^|\r\n]+?)([ \t]*\|)/;
-const DOCS = ['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'implementation-summary.md', 'handover.md'];
+const DOCS = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'handover.md'];
 const PACKET_MARKERS = new Set(['spec.md', 'implementation-summary.md']);
 
 // The recorded location lives in the leading YAML block. A pointer written into
@@ -165,7 +165,7 @@ function findings(report) {
 }
 
 const LEVEL_MARKER = /<!--\s*SPECKIT_LEVEL:\s*(\d\+?)\s*-->/;
-const LEVEL_MARKER_DOCS = ['spec.md', 'tasks.md', 'plan.md', 'checklist.md'];
+const LEVEL_MARKER_DOCS = ['spec.md', 'tasks.md', 'plan.md'];
 
 // The level the packet states about itself, or null when it states none.
 // Mirrors the generator that owns this field so the two writers agree; the
@@ -239,7 +239,7 @@ function fixDescriptionLevel(folder, report) {
     // at what the file meant to say is exactly the writing this tool refuses.
     return null;
   }
-  if (!data || typeof data !== 'object' || Array.isArray(data) || 'level' in data) return null;
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
   // Only a level the packet declares itself. The validator reports a level for
   // every packet, but where none is declared that number comes from a fallback
   // ladder ending in a default — a value nobody wrote down. Recording it would
@@ -247,12 +247,19 @@ function fixDescriptionLevel(folder, report) {
   // declares nothing keeps an absent field and stays visibly incomplete.
   const level = declaredLevel(folder);
   if (!level) return null;
+  // A present value that contradicts the declared one is repaired, not left
+  // alone. Filling only an absent field made drift permanent: the scaffold
+  // writes a level before the author picks one, so every packet authored above
+  // the scaffold level kept a derived number its own documents disagree with,
+  // and nothing ever reconciled the two.
+  const recorded = 'level' in data ? String(data.level) : null;
+  if (recorded === level) return null;
+  const verb = recorded === null ? 'set' : `corrected from ${recorded}`;
   return {
     file,
-    what: `description level -> ${level}`,
+    what: `description level ${verb} -> ${level}`,
     apply: () => {
       const current = JSON.parse(fs.readFileSync(file, 'utf8'));
-      if ('level' in current) return;
       // Recorded as a string: that is what the overwhelming majority of packets
       // already carry, and the schema accepts either, so matching them keeps the
       // field comparable across the fleet.

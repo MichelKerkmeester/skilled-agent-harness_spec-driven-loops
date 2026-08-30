@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/024-glm-5-2-support"
+    packet_pointer: "cli-external-orchestration/z_archive/024-glm-5-2-support"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase 6 done: GLM-5.2 vision transport proven; capability recorded in 3 surfaces"

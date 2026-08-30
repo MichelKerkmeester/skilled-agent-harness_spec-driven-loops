@@ -6,9 +6,9 @@
 # Preserves all user-written content while injecting new template sections.
 #
 # UPGRADE PATHS (upward only):
-#   L1 → L2:  Add checklist.md, NFR/Edge/Complexity sections to spec.md, plan.md sections
+#   L1 → L2:  Add acceptance-criteria.md, NFR/Edge/Complexity sections to spec.md, plan.md sections
 #   L2 → L3:  Add decision-record.md, promote L2: sections to numbered, add Risk Matrix/User Stories
-#   L3 → L3+: Add governance sections to spec.md, plan.md, checklist.md
+#   L3 → L3+: Add governance sections to spec.md, plan.md
 #   Skip-levels (e.g., L1→L3) chain through intermediate upgrades automatically.
 #
 # Usage: upgrade-level.sh <spec-folder> --to <2|3|3+> [--dry-run] [--verbose] [--json] [--keep-backups]
@@ -59,7 +59,6 @@ template_for_doc() {
         spec.md) printf '%s' "${TEMPLATES_DIR}/core/spec.md.tmpl" ;;
         plan.md) printf '%s' "${TEMPLATES_DIR}/core/plan.md.tmpl" ;;
         tasks.md) printf '%s' "${TEMPLATES_DIR}/core/tasks.md.tmpl" ;;
-        checklist.md) printf '%s' "${TEMPLATES_DIR}/addons/checklist.md.tmpl" ;;
         decision-record.md) printf '%s' "${TEMPLATES_DIR}/addons/decision-record.md.tmpl" ;;
         acceptance-criteria.md) printf '%s' "${TEMPLATES_DIR}/addons/acceptance-criteria.md.tmpl" ;;
         *) return 1 ;;
@@ -210,9 +209,9 @@ Options:
   --help, -h            Show this help message
 
 Upgrade Paths:
-  L1 → L2:   Adds checklist.md, NFR/Edge/Complexity sections, effort estimation
+  L1 → L2:   Adds acceptance-criteria.md, NFR/Edge/Complexity sections, effort estimation
   L2 → L3:   Adds decision-record.md, dependency graph, milestones, ADRs
-  L3 → L3+:  Adds governance sections, extended checklist, AI execution framework
+  L3 → L3+:  Adds governance sections, AI execution framework
   Skip-levels (e.g., L1→L3) chain through intermediate upgrades automatically.
 
 Examples:
@@ -337,7 +336,6 @@ detect_level() {
 
     # Fallback: infer from existing files
     [[ -f "$folder/decision-record.md" ]] && { CURRENT_LEVEL=3; LEVEL_METHOD="inferred"; return; }
-    [[ -f "$folder/checklist.md" ]] && { CURRENT_LEVEL=2; LEVEL_METHOD="inferred"; return; }
     CURRENT_LEVEL=1; LEVEL_METHOD="inferred"
 }
 
@@ -712,82 +710,6 @@ upgrade_plan() {
 }
 
 # ───────────────────────────────────────────────────────────────
-# 10. CHECKLIST.MD UPGRADE
-# ───────────────────────────────────────────────────────────────
-
-upgrade_checklist() {
-    local from_level="$1"
-    local to_level="$2"
-
-    # Only L3→L3+ appends extended verification sections
-    if [[ "$from_level" != "3" ]] || [[ "$to_level" != "3+" ]]; then
-        verbose "No checklist extension needed for L${from_level} → L${to_level}"
-        return 0
-    fi
-
-    local checklist_file="$SPEC_FOLDER/checklist.md"
-    local fragment_path=""
-    fragment_path="$(derive_addendum_fragment checklist.md 3 3+ "$SPEC_FOLDER/checklist.md")" || fragment_path=""
-
-    if [[ ! -f "$checklist_file" ]]; then
-        warn "checklist.md not found in $SPEC_FOLDER — skipping checklist upgrade"
-        return 0
-    fi
-
-    if [[ ! -f "$fragment_path" ]]; then
-        warn "Addendum fragment not found: $fragment_path"
-        return 2
-    fi
-
-    # Idempotency check
-    if grep -qF "## L3+: ARCHITECTURE VERIFICATION" "$checklist_file" 2>/dev/null; then
-        info "checklist.md already contains L3+ sections — skipping"
-        return 0
-    fi
-
-    if [[ "$DRY_RUN" == "true" ]]; then
-        info "DRY RUN: Would append checklist-extended.md to checklist.md"
-        return 0
-    fi
-
-    verbose "Appending extended checklist sections to checklist.md"
-
-    # Read the fragment and strip leading HTML comment lines (matching spec.md upgrade pattern)
-    local fragment_content
-    fragment_content=$(awk '
-        BEGIN { in_header = 1 }
-        in_header && /^<!--.*-->$/ { next }
-        in_header && /^[[:space:]]*$/ { next }
-        { in_header = 0; print }
-    ' "$fragment_path")
-
-    # Find insertion point: before any trailing comment block at end of file
-    local tmp_file="${checklist_file}.tmp"
-    local insert_before_line
-    insert_before_line=$(find_insert_point "$checklist_file")
-
-    if [[ -n "$insert_before_line" ]]; then
-        verbose "Inserting before trailing comment block at line $insert_before_line"
-        {
-            head -n $((insert_before_line - 1)) "$checklist_file"
-            printf '%s\n' "$fragment_content"
-            tail -n +"${insert_before_line}" "$checklist_file"
-        } > "$tmp_file"
-    else
-        verbose "Appending to end of checklist.md"
-        {
-            cat "$checklist_file"
-            printf '\n%s\n' "$fragment_content"
-        } > "$tmp_file"
-    fi
-
-    mv "$tmp_file" "$checklist_file"
-    MODIFIED_FILES+=("checklist.md")
-    verbose "checklist.md upgraded successfully"
-    return 0
-}
-
-# ───────────────────────────────────────────────────────────────
 # 11. NEW FILE CREATION
 # ───────────────────────────────────────────────────────────────
 
@@ -797,35 +719,19 @@ create_new_files() {
 
     case "${from_level}-${to_level}" in
         1-2)
-            # L1→L2: Create checklist.md from full template
-            local checklist_src=""
-            checklist_src="$(mktemp)"
-            render_doc_at_level checklist.md 2 > "$checklist_src" 2>/dev/null || : 
-            local checklist_dest="$SPEC_FOLDER/checklist.md"
-
-            if [[ -f "$checklist_dest" ]]; then
-                info "checklist.md already exists — skipping creation"
-                return 0
-            fi
-
-            if [[ ! -s "$checklist_src" ]]; then
-                warn "Could not render checklist.md from the Level contract templates"
-                return 2
-            fi
-
-            if [[ "$DRY_RUN" == "true" ]]; then
-                info "DRY RUN: Would create checklist.md from template"
-                return 0
-            fi
-
-            verbose "Creating checklist.md from template"
-            cp "$checklist_src" "$checklist_dest"
-            CREATED_FILES+=("checklist.md")
-
-            # The closure gate requires this document from Level 2 upward, so an
-            # upgrade that omitted it would leave the packet failing validation.
+            # Verification and testing sections live in the unified tasks
+            # document, which every level already carries, so an upgrade adds no
+            # separate document for them.
+            #
+            # The closure gate requires acceptance criteria from Level 2 upward,
+            # so an upgrade that omitted this would leave the packet failing
+            # validation.
             local ac_dest="$SPEC_FOLDER/acceptance-criteria.md"
             if [[ ! -f "$ac_dest" ]]; then
+                if [[ "$DRY_RUN" == "true" ]]; then
+                    info "DRY RUN: Would create acceptance-criteria.md from template"
+                    return 0
+                fi
                 local ac_src
                 ac_src="$(mktemp)"
                 if render_doc_at_level acceptance-criteria.md 2 > "$ac_src" 2>/dev/null && [[ -s "$ac_src" ]]; then
@@ -1533,7 +1439,7 @@ perform_single_upgrade() {
         return 0
     fi
 
-    # Step 1: Create new files (checklist.md for L1→L2, decision-record.md for L2→L3)
+    # Step 1: Create new files (acceptance-criteria.md for L1→L2, decision-record.md for L2→L3)
     verbose "Step 1/5: Creating new files for L${from_level} → L${to_level}"
     if ! create_new_files "$from_level" "$to_level"; then
         warn "New file creation failed for L${from_level} → L${to_level}"
@@ -1554,12 +1460,6 @@ perform_single_upgrade() {
         return 2
     fi
 
-    # Step 4: Upgrade checklist.md (only meaningful for L3→L3+)
-    verbose "Step 4/5: Upgrading checklist.md for L${from_level} → L${to_level}"
-    if ! upgrade_checklist "$from_level" "$to_level"; then
-        warn "checklist.md upgrade failed for L${from_level} → L${to_level}"
-        return 2
-    fi
 
     # Step 5: Update SPECKIT_LEVEL markers in all .md files
     verbose "Step 5/5: Updating markers to L${to_level}"

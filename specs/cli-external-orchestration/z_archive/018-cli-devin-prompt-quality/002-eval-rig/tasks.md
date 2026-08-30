@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/018-cli-devin-prompt-quality/002-eval-rig"
+    packet_pointer: "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/002-eval-rig"
     last_updated_at: "2026-05-16T19:10:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded tasks.md"

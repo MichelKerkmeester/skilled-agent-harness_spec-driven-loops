@@ -1,18 +1,18 @@
 {
   "level": "1",
   "specFolder": "system-speckit/036-spec-doc-template-reduction/001-analysis",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "The 13 spec-kit manifest templates contain measured duplication and context waste",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "spec-kit",
+    "manifest",
+    "templates",
+    "contain",
+    "measured",
+    "duplication",
+    "context",
+    "waste"
   ],
-  "lastUpdated": "2026-08-27T20:20:31.239Z",
+  "lastUpdated": "2026-08-29T12:13:22.583Z",
   "specId": "001",
   "folderSlug": "analysis",
   "parentChain": [

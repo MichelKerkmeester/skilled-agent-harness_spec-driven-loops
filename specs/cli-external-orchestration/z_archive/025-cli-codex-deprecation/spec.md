@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/cli-external-orchestration/025-cli-codex-deprecation"
+    packet_pointer: "cli-external-orchestration/z_archive/025-cli-codex-deprecation"
     last_updated_at: "2026-06-30T15:05:00Z"
     last_updated_by: "opencode"
     recent_action: "Added narrow Codex Desktop App project bridge amendment"

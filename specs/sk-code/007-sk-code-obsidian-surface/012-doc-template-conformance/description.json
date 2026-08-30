@@ -1,19 +1,22 @@
 {
   "level": "1",
   "specFolder": "sk-code/007-sk-code-obsidian-surface/012-doc-template-conformance",
-  "description": "Auditing every sk-code-obsidian packet markdown against the sk-doc templates it claims to follow, using the real validators, and recording what they find rather than what a manual read would guess.",
+  "description": "Phase 011 closed the packet's first ten phases with a live gate re-run, but named two phases still",
   "keywords": [
-    "auditing",
-    "every",
-    "sk-code-obsidian",
+    "phase",
+    "closed",
     "packet",
-    "markdown",
-    "against",
-    "sk-doc",
-    "templates",
-    "claims"
+    "first",
+    "ten",
+    "phases",
+    "live",
+    "gate",
+    "re-run",
+    "named",
+    "two",
+    "still"
   ],
-  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "lastUpdated": "2026-08-29T15:04:31.731Z",
   "specId": "012",
   "folderSlug": "doc-template-conformance",
   "parentChain": [

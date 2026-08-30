@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/003-mcp-figma-transfer/001-barter-figma-agent"
+    packet_pointer: "mcp-tooling/z_archive/003-mcp-figma-transfer/001-barter-figma-agent"
     last_updated_at: "2026-05-05T12:30:00Z"
     last_updated_by: "cli-codex"
     recent_action: "Phase doc contract normalized"

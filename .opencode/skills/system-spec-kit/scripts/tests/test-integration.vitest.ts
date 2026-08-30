@@ -212,7 +212,6 @@ describe('spec-folder creation and template parity', () => {
     expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-2', 'spec.md'))).toBe(true);
     expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-2', 'plan.md'))).toBe(true);
     expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-2', 'tasks.md'))).toBe(true);
-    expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-2', 'checklist.md'))).toBe(true);
     expect(fs.existsSync(path.join(TEMPLATES_DIR, 'level-3', 'decision-record.md'))).toBe(true);
 
     expect(fs.existsSync(path.join(specPath, 'spec.md'))).toBe(true);

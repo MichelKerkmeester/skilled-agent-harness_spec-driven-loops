@@ -10,7 +10,7 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/033-spec-kit-template-optimization/004-checklist-deprecation-closure"
-    last_updated_at: "2026-08-29T00:00:00Z"
+    last_updated_at: "2026-08-30T04:17:55Z"
     last_updated_by: "claude-code"
     recent_action: "Shipped the canonical evidence read, the source precedence and the rule's first unit suite"
     next_safe_action: "None; the review is complete and its findings are dispositioned"
@@ -19,7 +19,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-ac-coverage.sh"
       - ".opencode/skills/system-spec-kit/scripts/tests/check-ac-coverage.sh"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:44f69435cb593a2d33a1b065dcdce6bfd063ac6e56695a3c26127fce7cf45d8d"
       session_id: "2026-08-29-033-004-checklist-deprecation-closure"
       parent_session_id: null
     completion_pct: 100
@@ -71,6 +71,9 @@ An advisory that measures the document it counts from. Phase 2 moved acceptance 
 | `specs/.../042-*/00*/checklist.md` | Deleted | Four unfilled 26-item scaffolds of a deprecated document |
 | `specs/.../033-*/002-*/implementation-summary.md` | Modified | Added the missing Status row |
 | `specs/.../033-*/spec.md` | Modified | Phase map records phase 2 as shipped |
+| `scripts/rules/check-description-shape.sh` | Modified | Compares the recorded level against the declared marker |
+| `scripts/spec/repair-derived.cjs` | Modified | Corrects a disagreeing level, not only an absent one |
+| `manual-testing-playbook/tooling-and-scripts/ac-coverage-single-source-ratio.md` | Create | M-013, the count-versus-evidence scenario |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -108,6 +111,8 @@ The pre-change reading was captured as the negative control before any edit, and
 | Legacy path unchanged | A pre-merge packet still resolves to `checklist.md` |
 | `bash -n` | Clean |
 | `validate.sh --strict` | Exit 0 on this packet |
+| Regression baseline | Two drifted packets that fail today also failed with the rule change stashed - the new warn adds no failures |
+| Level drift | 0 mismatched across both active trees after repair |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -136,13 +141,20 @@ frontmatter still describing the goal-shape validator they were seeded from
 an unfilled parent phase-map row and handoff (F002), and unchecked completion
 criteria under finished tasks (F007).
 
-Three are declined, with reasons:
+All three initially declined findings were subsequently fixed at their roots:
 
-| ID | Finding | Why not fixed |
-|----|---------|---------------|
-| F004 | `description.json` level disagrees with the spec's level marker | Fleet-wide and derived: 927 of 4,022 packets carry the same disagreement, and regenerating this one leaves it unchanged. A generator fix is a migration, not this packet's scope |
-| F010 | Continuity fingerprints are the all-zero placeholder | The template default, present in 2,218 spec documents. Changing one packet buys nothing |
-| F008 | No playbook scenario pins count-versus-evidence | The unit suite pins it directly, and a scenario would restate what 16 cases already assert |
+| ID | Finding | Root cause and fix |
+|----|---------|--------------------|
+| F004 | `description.json` level disagrees with the declared level marker | Two faults, not one. No rule checked the value, so nothing reported the drift; and because `repair-derived.cjs` only acts on packets the validator already flags, it could never engage. `DESCRIPTION_SHAPE` now compares the recorded level against the declared marker at `warn`, and the repairer corrects a disagreeing value instead of only filling an absent one. The 927 fleet-wide cases self-heal on their next `--apply` rather than needing a mass rewrite |
+| F010 | Continuity fingerprints are the all-zero placeholder | The placeholder is a recognised sentinel the freshness rule skips on, so those packets were never actually checked. Real fingerprints computed with the shipped `buildContinuityFingerprint` for all 56 documents in both trees, each round-trip verified. `CONTINUITY_FRESHNESS` now evaluates the real check instead of short-circuiting at `zero_fingerprint` |
+| F008 | No scenario pins count-versus-evidence | `manual-testing-playbook/tooling-and-scripts/ac-coverage-single-source-ratio.md` (M-013), with evidence captured from real runs, including the shifted-column control that reports `1/2` where a positional read reported a no-op |
+
+The origin of F004's wrong value is `create.sh:734`, which scaffolds every phase
+child at Level 1 regardless of the `--level` passed. That is left alone: the
+whole child scaffold is Level 1 by design, so changing it is a scaffolding
+decision this packet was not asked to make. The reconciliation above makes the
+disagreement visible and repairable either way.
+
 <!-- /ANCHOR:review -->
 
 ---

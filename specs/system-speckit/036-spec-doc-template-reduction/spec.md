@@ -108,7 +108,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 7 | 007-lazy-addon-docs/ | Add on-demand before/after, timeline and roadmap docs; decouple the decision record | Complete |
 | 8 | 008-plan-and-contract-optimization/ | Make the summary lifecycle-required and trim duplicated plan checkboxes | Complete |
 | 9 | 009-template-folder-restructure/ | Split templates into core, addons and packet-types folders | Complete |
+| 10 | 010-checklist-full-retirement/ | Retire the standalone verification checklist across producers, contract, read-paths, templates and packets | Complete |
 
+| 10 | 010-checklist-full-retirement/ | [Phase 10 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -128,6 +130,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 006-verify-rollout | 007-lazy-addon-docs | Reductions verified against a real scaffold | validate.sh passes on a fresh packet |
 | 007-lazy-addon-docs | 008-plan-and-contract-optimization | On-demand docs scaffold behind the opt-in flag | Opt-in scaffold carries all four docs |
 | 008-plan-and-contract-optimization | 009-template-folder-restructure | Lifecycle contract holds in all three states | Planned, started and restored packets validate |
+| 009-template-folder-restructure | 010-checklist-full-retirement | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---

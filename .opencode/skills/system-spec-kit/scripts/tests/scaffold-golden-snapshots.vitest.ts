@@ -133,10 +133,19 @@ describe('manifest template golden snapshots', () => {
     expect(contract.lifecycleRequiredDocs.afterImplementationStarts).toEqual(['implementation-summary.md']);
   });
 
-  it('keeps legacy checklist optional while gating merged verification in tasks', () => {
+  it('carries verification in the merged tasks document and nowhere else', () => {
     const contract = resolveLevelContract('2');
-    expect(contract.requiredAddonDocs).not.toContain('checklist.md');
-    expect(contract.optionalAddonDocs).toEqual(['checklist.md', 'acceptance-criteria.md']);
+    // The standalone verification document is retired: it must appear in no
+    // bucket at all, or a scaffold would start producing it again.
+    for (const bucket of [
+      contract.requiredCoreDocs,
+      contract.requiredAddonDocs,
+      contract.optionalAddonDocs,
+      contract.lazyAddonDocs,
+    ]) {
+      expect(bucket).not.toContain('checklist.md');
+    }
+    expect(contract.optionalAddonDocs).toEqual(['acceptance-criteria.md']);
 
     const renderedTasks = renderTemplate('tasks.md.tmpl', '2');
     expect(renderedTasks).toContain('## Verification Checklist');

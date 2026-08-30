@@ -1,19 +1,17 @@
 {
   "level": "1",
   "specFolder": "sk-code/007-sk-code-obsidian-surface/006-assets-checklists",
-  "description": "Seven on-demand assets/*.md checklists for the sk-code-obsidian surface packet — screenshot coverage, .db-* class rename, fixture authoring, verification, folder docs, comment banners, and modal coverage — matching sk-code-mobile-cli's checklist shape.",
+  "description": "`sk-code-obsidian/SKILL.md` §4 already advertises on-demand checklists (`assets/.md`), and",
   "keywords": [
-    "seven",
-    "on-demand",
-    "assets",
-    "checklists",
     "sk-code-obsidian",
-    "surface",
-    "packet",
-    "screenshot",
-    "coverage"
+    "skill",
+    "already",
+    "advertises",
+    "on-demand",
+    "checklists",
+    "assets"
   ],
-  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "lastUpdated": "2026-08-29T15:04:31.742Z",
   "specId": "006",
   "folderSlug": "assets-checklists",
   "parentChain": [

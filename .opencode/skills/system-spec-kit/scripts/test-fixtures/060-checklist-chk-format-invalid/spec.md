@@ -1,1 +1,0 @@
-../053-template-compliant-level2/spec.md

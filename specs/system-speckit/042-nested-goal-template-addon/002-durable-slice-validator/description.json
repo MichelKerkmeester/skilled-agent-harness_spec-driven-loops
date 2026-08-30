@@ -1,13 +1,14 @@
 {
-  "level": "1",
+  "level": "2",
   "specFolder": "system-speckit/042-nested-goal-template-addon/002-durable-slice-validator",
-  "description": "durable slice validator",
+  "description": "Nothing checks a goal document",
   "keywords": [
-    "durable",
-    "slice",
-    "validator"
+    "nothing",
+    "checks",
+    "goal",
+    "document"
   ],
-  "lastUpdated": "2026-08-29T20:07:55.001Z",
+  "lastUpdated": "2026-08-30T04:17:56.113Z",
   "specId": "002",
   "folderSlug": "durable-slice-validator",
   "parentChain": [

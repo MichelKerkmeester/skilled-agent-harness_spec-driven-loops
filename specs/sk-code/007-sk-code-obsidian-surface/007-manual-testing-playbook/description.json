@@ -1,19 +1,14 @@
 {
   "level": "1",
   "specFolder": "sk-code/007-sk-code-obsidian-surface/007-manual-testing-playbook",
-  "description": "Routing-recall manual testing playbook for the sk-code-obsidian surface packet — seven scenarios (OB-001..OB-007) across the surface's five real intents, matching sk-code-mobile-cli's playbook shape.",
+  "description": "Before this phase, `sk-code-obsidian/` had no `manual-testing-playbook/` at all — `../goal.md` §6",
   "keywords": [
-    "routing-recall",
-    "manual",
-    "testing",
-    "playbook",
+    "phase",
     "sk-code-obsidian",
-    "surface",
-    "packet",
-    "seven",
-    "scenarios"
+    "manual-testing-playbook",
+    "goal"
   ],
-  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "lastUpdated": "2026-08-29T15:04:31.736Z",
   "specId": "007",
   "folderSlug": "manual-testing-playbook",
   "parentChain": [

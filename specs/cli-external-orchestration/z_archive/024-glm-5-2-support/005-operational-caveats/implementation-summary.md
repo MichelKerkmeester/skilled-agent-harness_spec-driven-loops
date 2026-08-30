@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/024-glm-5-2-support/005-operational-caveats"
+    packet_pointer: "cli-external-orchestration/z_archive/024-glm-5-2-support/005-operational-caveats"
     last_updated_at: "2026-06-28T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Documented benchmark-008 latency + transient-failure caveats"

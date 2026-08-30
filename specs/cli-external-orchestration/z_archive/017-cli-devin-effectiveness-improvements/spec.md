@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "cli-external-orchestration/017-cli-devin-effectiveness-improvements"
+    packet_pointer: "cli-external-orchestration/z_archive/017-cli-devin-effectiveness-improvements"
     last_updated_at: "2026-05-16T05:50:00Z"
     last_updated_by: "main_agent"
     recent_action: "Scaffolded 105 packet from 999 retrospective findings"

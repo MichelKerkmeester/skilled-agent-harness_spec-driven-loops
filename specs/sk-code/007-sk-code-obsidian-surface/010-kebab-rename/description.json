@@ -1,19 +1,18 @@
 {
   "level": "1",
   "specFolder": "sk-code/007-sk-code-obsidian-surface/010-kebab-rename",
-  "description": "A manifest-driven kebab-case rename of the plugin's 253 src/ and tools/ files, executed by script rather than by hand, closing the scan-naming gate the phase 008 scanner opened.",
+  "description": "Phase 008 built `scan-naming.mjs`, which measured the plugin tree at 235 of 248 scanned files",
   "keywords": [
-    "manifest-driven",
-    "kebab-case",
-    "rename",
+    "phase",
+    "scan-naming",
+    "mjs",
+    "measured",
     "plugin",
-    "src",
-    "tools",
-    "files",
-    "executed",
-    "script"
+    "tree",
+    "scanned",
+    "files"
   ],
-  "lastUpdated": "2026-08-29T09:29:07.259Z",
+  "lastUpdated": "2026-08-29T15:04:31.735Z",
   "specId": "010",
   "folderSlug": "kebab-rename",
   "parentChain": [

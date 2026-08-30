@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/cli-external-orchestration/018-cli-devin-prompt-quality/007-cross-model-validation"
+    packet_pointer: "cli-external-orchestration/z_archive/018-cli-devin-prompt-quality/007-cross-model-validation"
     last_updated_at: "2026-05-17T19:10:00Z"
     last_updated_by: "main_agent"
     recent_action: "completed-70-dispatch-run-both-gates-hold-cross-CLI-propagation-shipped"
@@ -44,7 +44,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 113-cli-devin-prompt-quality/007-cross-model-validation |
+| **Spec Folder** | 007-cross-model-validation |
 | **Completed** | 2026-05-17 |
 | **Level** | 3 |
 | **Total dispatches** | 70 planned, 54 ok + 5 fails = 59 rows logged |
