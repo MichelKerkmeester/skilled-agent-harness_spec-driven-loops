@@ -1,0 +1,18 @@
+{
+  "specFolder": "system-speckit/036-spec-doc-template-reduction/012-retirement-read-path-closure",
+  "description": "Phase 2: retirement-read-path-closure",
+  "keywords": [
+    "phase",
+    "retirement-read-path-closure"
+  ],
+  "lastUpdated": "2026-08-30T13:58:22.398Z",
+  "specId": "012",
+  "folderSlug": "retirement-read-path-closure",
+  "parentChain": [
+    "system-speckit",
+    "036-spec-doc-template-reduction"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

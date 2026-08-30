@@ -13,7 +13,12 @@
     "system-speckit/036-spec-doc-template-reduction/007-lazy-addon-docs",
     "system-speckit/036-spec-doc-template-reduction/008-plan-and-contract-optimization",
     "system-speckit/036-spec-doc-template-reduction/009-template-folder-restructure",
-    "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement"
+    "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement",
+    "system-speckit/036-spec-doc-template-reduction/011-fingerprint-docset-enforcement",
+    "system-speckit/036-spec-doc-template-reduction/012-retirement-read-path-closure",
+    "system-speckit/036-spec-doc-template-reduction/011-checklist-reference-cleanup",
+    "system-speckit/036-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
+    "system-speckit/036-spec-doc-template-reduction/013-retirement-read-path-closure"
   ],
   "manual": {
     "depends_on": [],
@@ -90,16 +95,16 @@
     ],
     "causal_summary": "This phased decomposition tracks Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility across independently executable child phase folders",
     "created_at": "2026-08-26T05:33:55Z",
-    "last_save_at": "2026-08-30T05:45:26.506Z",
+    "last_save_at": "2026-08-30T14:12:56.121Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a3f799a3ac24a30f4cafdebdf18a443983c561bbfde0461ec623681c5b584585",
-    "source_fingerprint_docset": 2,
+    "source_fingerprint": "sha256:7f0ffed33b5230894caebaac7d6683c39ac54e26a6f748dd78f4adac1a6c6038",
+    "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c5b4de6f073b3a565d0f147af47f4c4e604fc57be439d46b256ce8c8707136f6"
+      "spec.md": "2f512e5ea36a22c3d1d9c32cd2b37eb259e3385e5dfad54a5726f7632e23fd67"
     },
     "last_active_child_id": "system-speckit/036-spec-doc-template-reduction/009-template-folder-restructure",
     "last_active_at": "2026-08-27T20:21:06.358Z"

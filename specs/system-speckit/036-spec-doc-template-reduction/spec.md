@@ -109,8 +109,10 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 8 | 008-plan-and-contract-optimization/ | Make the summary lifecycle-required and trim duplicated plan checkboxes | Complete |
 | 9 | 009-template-folder-restructure/ | Split templates into core, addons and packet-types folders | Complete |
 | 10 | 010-checklist-full-retirement/ | Retire the standalone verification checklist across producers, contract, read-paths, templates and packets | Complete |
+| 11 | 011-checklist-reference-cleanup/ | Remove the dead links the deletion left behind in the corpus | Complete |
+| 12 | 012-fingerprint-docset-enforcement/ | Make the drift marker mandatory beside a fingerprint, and stamp the fleet without recomputing digests | Draft |
+| 13 | 013-retirement-read-path-closure/ | Close the read-paths the retirement left reporting green while doing nothing | Draft |
 
-| 10 | 010-checklist-full-retirement/ | [Phase 10 scope] | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -131,6 +133,9 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 007-lazy-addon-docs | 008-plan-and-contract-optimization | On-demand docs scaffold behind the opt-in flag | Opt-in scaffold carries all four docs |
 | 008-plan-and-contract-optimization | 009-template-folder-restructure | Lifecycle contract holds in all three states | Planned, started and restored packets validate |
 | 009-template-folder-restructure | 010-checklist-full-retirement | [Criteria TBD] | [Verification TBD] |
+| 010-checklist-full-retirement | 011-checklist-reference-cleanup | The document is gone from the corpus | No dead link points at it |
+| 011-checklist-reference-cleanup | 012-fingerprint-docset-enforcement | None; different surfaces | Each phase validates on its own |
+| 012-fingerprint-docset-enforcement | 013-retirement-read-path-closure | None; the two are independent | Each phase validates on its own |
 <!-- /ANCHOR:phase-map -->
 
 ---

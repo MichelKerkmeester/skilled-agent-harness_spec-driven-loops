@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/036-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
+  "spec_folder": "system-speckit/036-spec-doc-template-reduction/012-fingerprint-docset-enforcement",
+  "parent_id": "system-speckit/036-spec-doc-template-reduction",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "source fingerprint docset",
+      "fingerprint docset enforcement",
+      "drift gate inert",
+      "generation marker required",
+      "fingerprint docset plan",
+      "stamp only migration",
+      "fingerprint docset tasks",
+      "stamp migration tasks",
+      "acceptance criteria",
+      "closure gate",
+      "fingerprint docset criteria",
+      "implementation"
+    ],
+    "key_topics": [
+      "source",
+      "fingerprint",
+      "docset",
+      "enforcement",
+      "drift",
+      "gate",
+      "inert",
+      "generation",
+      "marker",
+      "required",
+      "plan",
+      "stamp"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-schema.ts",
+      ".opencode/skills/system-spec-kit/mcp-server/lib/validation/generated-metadata-integrity.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh",
+      "mcp-server/lib/graph/graph-metadata-schema.ts",
+      "mcp-server/lib/validation/generated-metadata-integrity.ts",
+      "scripts/tests/fingerprint-docset-generation.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-schema.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/graph/graph-metadata-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generated-metadata-integrity.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp-server/lib/validation/generated-metadata-integrity.ts",
+        "source": "derived"
+      },
+      {
+        "name": "fingerprint-docset-generation.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/fingerprint-docset-generation.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Fingerprint Docset Enforcement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "neither",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "drift",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria Every",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The marker skips comparison on an absent value, and the field is optional, so almost nothing is",
+    "created_at": "2026-08-30T13:58:20Z",
+    "last_save_at": "2026-08-30T14:12:55.501Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6693c796155785f8fa70155055f02cc072a5cb45f6b7ce48a94aaef5903c1af9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "766523de418db28575a1826e01ad842734beb91ac385353752a05c3e399dc9d9",
+      "plan.md": "bd03e81ee495aded38131bd96a4e0f5be7187dad81e73be612a800b13cbfdcd3",
+      "tasks.md": "e91d5432f4f00485b03e9a3ad24275ceca396e7a2452f0e69cd1095c53f62b38",
+      "implementation-summary.md": "acdcc4b6adc1f0252aa9b5dacab1b6d59e620ce559c5bff003db60fa06a71eea"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
