@@ -1,18 +1,23 @@
 {
   "level": "3",
   "specFolder": "system-speckit/036-spec-doc-template-reduction/010-checklist-full-retirement",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "The merge that unified tasks and checklist recorded `Delete/retire` against `templates/addons/checklist.md.tmpl` and then kept it, along with its",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "merge",
+    "unified",
+    "tasks",
+    "checklist",
+    "recorded",
+    "delete",
+    "retire",
+    "against",
+    "templates",
+    "addons",
+    "tmpl",
+    "kept",
+    "along"
   ],
-  "lastUpdated": "2026-08-30T05:16:40.516Z",
+  "lastUpdated": "2026-08-30T08:55:22.095Z",
   "specId": "010",
   "folderSlug": "checklist-full-retirement",
   "parentChain": [

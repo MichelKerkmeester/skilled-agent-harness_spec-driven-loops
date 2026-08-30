@@ -1,22 +1,30 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/044-repair-write-symlink-refusal",
-  "description": "Refuse symlink traversal in the graph-metadata repair write path",
+  "description": "The repair script decides whether a candidate is a regular file while walking the tree, using the directory entry \u2014 which reports on the link itself,",
   "keywords": [
-    "refuse",
-    "symlink",
-    "traversal",
-    "graph-metadata",
     "repair",
-    "write",
-    "path"
+    "script",
+    "decides",
+    "whether",
+    "candidate",
+    "regular",
+    "file",
+    "while",
+    "walking",
+    "tree",
+    "directory",
+    "entry",
+    "reports",
+    "link",
+    "itself"
   ],
-  "lastUpdated": "2026-08-30T08:24:08.704Z",
+  "lastUpdated": "2026-08-30T08:34:32.819Z",
   "specId": "044",
   "folderSlug": "repair-write-symlink-refusal",
   "parentChain": [
     "system-speckit"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
