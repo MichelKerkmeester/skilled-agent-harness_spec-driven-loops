@@ -307,16 +307,13 @@ run_check() {
         return 0
     fi
 
-    local total
-    total="$(_ac_count_total "$folder" "$level_num")"
-    if [[ "$total" -eq 0 ]]; then
-        RULE_MESSAGE="No acceptance criteria found at the canonical location; coverage gate is a no-op"
-        return 0
-    fi
-
-    local analysis rows covered malformed malformed_ids
+    local analysis rows covered malformed malformed_ids total
     local ac_file="$folder/acceptance-criteria.md"
+    local canonical=false
     if [[ -f "$ac_file" ]]; then
+        # One parse. The row count and the coverage both come out of it, so the
+        # two can never disagree and the file is not read twice.
+        canonical=true
         analysis="$(_ac_analyze_canonical "$ac_file")"
     else
         local traceability_file
@@ -332,8 +329,19 @@ run_check() {
     fi
     IFS=$'\t' read -r rows covered malformed malformed_ids <<< "$analysis"
 
-    if [[ "$rows" -gt "$total" ]]; then
+    if [[ "$canonical" == true ]]; then
         total="$rows"
+    else
+        # Packets predating the canonical document count their criteria from
+        # spec.md, which is a different document than the traceability rows, so
+        # the larger of the two is the honest denominator.
+        total="$(_ac_count_total "$folder" "$level_num")"
+        [[ "$rows" -gt "$total" ]] && total="$rows"
+    fi
+
+    if [[ "$total" -eq 0 ]]; then
+        RULE_MESSAGE="No acceptance criteria found at the canonical location; coverage gate is a no-op"
+        return 0
     fi
 
     local floor required

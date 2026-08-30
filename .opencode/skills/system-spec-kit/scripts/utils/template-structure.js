@@ -54,43 +54,6 @@ const CUSTOM_ALLOWED_ANCHOR_PATTERNS = {
     ],
   },
 };
-const MERGED_VERIFICATION_ANCHORS = new Set([
-  'protocol',
-  'pre-impl',
-  'code-quality',
-  'testing',
-  'fix-completeness',
-  'security',
-  'docs',
-  'file-org',
-  'summary',
-  'arch-verify',
-  'perf-verify',
-  'deploy-ready',
-  'compliance-verify',
-  'docs-verify',
-  'sign-off',
-]);
-const MERGED_VERIFICATION_HEADERS = new Set([
-  'VERIFICATION CHECKLIST',
-  'VERIFICATION CHECKLIST:',
-  'VERIFICATION PROTOCOL',
-  'PRE-IMPLEMENTATION',
-  'CODE QUALITY',
-  'TESTING',
-  'TESTING CHECKLIST',
-  'FIX COMPLETENESS',
-  'SECURITY',
-  'DOCUMENTATION',
-  'FILE ORGANIZATION',
-  'VERIFICATION SUMMARY',
-  'L3+: ARCHITECTURE VERIFICATION',
-  'L3+: PERFORMANCE VERIFICATION',
-  'L3+: DEPLOYMENT READINESS',
-  'L3+: COMPLIANCE VERIFICATION',
-  'L3+: DOCUMENTATION VERIFICATION',
-  'L3+: SIGN-OFF',
-]);
 const DOC_TEMPLATE_NAMES = {
   'spec.md': 'spec.md.tmpl',
   'plan.md': 'plan.md.tmpl',
@@ -767,21 +730,6 @@ function loadTemplateContractForDocument(level, basename, documentPath, template
     .filter(Boolean);
 
   return mergeTemplateContracts(baseContract, addendumContracts);
-}
-
-function makeLegacyTasksContract(baseContract) {
-  const legacyHeaders = baseContract.headerRules.filter((header) => !MERGED_VERIFICATION_HEADERS.has(header.normalized));
-  const mergedHeaders = baseContract.headerRules.filter((header) => MERGED_VERIFICATION_HEADERS.has(header.normalized));
-  const legacyAnchors = baseContract.requiredAnchors.filter((anchorId) => !MERGED_VERIFICATION_ANCHORS.has(anchorId));
-  const mergedAnchors = baseContract.requiredAnchors.filter((anchorId) => MERGED_VERIFICATION_ANCHORS.has(anchorId));
-
-  return {
-    ...baseContract,
-    headerRules: legacyHeaders,
-    optionalHeaderRules: [...(baseContract.optionalHeaderRules || []), ...mergedHeaders],
-    requiredAnchors: legacyAnchors,
-    optionalAnchors: [...(baseContract.optionalAnchors || []), ...mergedAnchors],
-  };
 }
 
 function loadDocumentStructure(content) {

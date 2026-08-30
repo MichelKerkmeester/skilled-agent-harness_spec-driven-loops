@@ -407,7 +407,7 @@ function extractChangeBullets(taskItems: ChecklistItem[], summaryText: string): 
   };
 }
 
-function extractVerificationItems(implementationSummary: string, checklistItems: ChecklistItem[], tasksItems: ChecklistItem[]): string[] {
+function extractVerificationItems(implementationSummary: string, tasksItems: ChecklistItem[]): string[] {
   const results: string[] = [];
   const seen = new Set<string>();
 
@@ -424,19 +424,6 @@ function extractVerificationItems(implementationSummary: string, checklistItems:
     results.push(value);
   }
 
-  const evidencedChecklistItems = checklistItems
-    .filter((item) => item.checked && item.evidence)
-    .slice(0, 4)
-    .map((item) => `${item.priority || 'Checklist'} - ${item.text} (${item.evidence})`);
-  for (const item of evidencedChecklistItems) {
-    const key = item.toLowerCase();
-    if (seen.has(key)) {
-      continue;
-    }
-    seen.add(key);
-    results.push(item);
-  }
-
   const completedTasks = tasksItems.filter((item) => item.checked).length;
   if (completedTasks > 0) {
     results.push(`Tasks complete - ${completedTasks} completed task item(s) recorded`);
@@ -445,7 +432,7 @@ function extractVerificationItems(implementationSummary: string, checklistItems:
   return results.slice(0, 8);
 }
 
-function extractFollowUps(implementationSummary: string, checklistItems: ChecklistItem[], tasksItems: ChecklistItem[]): string[] {
+function extractFollowUps(implementationSummary: string, tasksItems: ChecklistItem[]): string[] {
   const followUps: string[] = [];
   const seen = new Set<string>();
 
@@ -462,7 +449,7 @@ function extractFollowUps(implementationSummary: string, checklistItems: Checkli
     followUps.push(cleaned);
   };
 
-  for (const item of [...checklistItems, ...tasksItems]) {
+  for (const item of tasksItems) {
     if (!item.checked) {
       add(item.text);
     }
@@ -659,13 +646,11 @@ function buildNestedChangelogData(specFolderPath: string, options: Pick<CliOptio
   const implementationSummary = readOptionalFile(path.join(specFolder, 'implementation-summary.md'));
   const tasksMarkdown = readOptionalFile(path.join(specFolder, 'tasks.md'));
   const tasksItems = parseChecklistItems(tasksMarkdown);
-  // The standalone verification document is retired; its items came only from there.
-  const checklistItems: ReturnType<typeof parseChecklistItems> = [];
   const summary = extractSummary(implementationSummary, specMarkdown);
-  const changeBullets = extractChangeBullets([...tasksItems, ...checklistItems], summary);
-  const filesChanged = extractFilesChanged(implementationSummary, specMarkdown, [...tasksItems, ...checklistItems]);
-  const verification = extractVerificationItems(implementationSummary, checklistItems, tasksItems);
-  const followUps = extractFollowUps(implementationSummary, checklistItems, tasksItems);
+  const changeBullets = extractChangeBullets(tasksItems, summary);
+  const filesChanged = extractFilesChanged(implementationSummary, specMarkdown, tasksItems);
+  const verification = extractVerificationItems(implementationSummary, tasksItems);
+  const followUps = extractFollowUps(implementationSummary, tasksItems);
   const outputPath = buildOutputPath(rootSpecFolder, specFolder, mode, options.outputPath);
   const humanTitle = cleanInlineMarkdown(
     extractMarkdownTitle(specMarkdown)

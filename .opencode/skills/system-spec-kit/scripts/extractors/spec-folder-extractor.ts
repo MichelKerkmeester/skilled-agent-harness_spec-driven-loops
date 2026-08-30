@@ -41,7 +41,6 @@ export interface SpecFolderExtraction {
 
 type Frontmatter = Record<string, string | string[]>;
 type TaskStats = { checked: number; unchecked: number; percent: number } | null;
-type ChecklistStats = { passed: number; total: number; p0: string; p1: string; p2: string } | null;
 
 /* ───────────────────────────────────────────────────────────────
    2. UTILITY FUNCTIONS
@@ -231,19 +230,6 @@ function parseTasksDoc(content: string | null): TaskStats {
   return { checked, unchecked, percent: total ? Math.round((checked / total) * 100) : 0 };
 }
 
-function parseChecklistDoc(content: string | null): ChecklistStats {
-  if (!content) return null;
-  const stat = (label: string) => {
-    const section = getSection(content, new RegExp(`^##\\s+${label}\\b`, 'i'));
-    const passed = (section.match(/^- \[x\]/gim) || []).length;
-    const total = (section.match(/^- \[(?:x| )\]/gim) || []).length;
-    return `${passed}/${total || 0}`;
-  };
-  const passed = (content.match(/^- \[x\]/gim) || []).length;
-  const total = (content.match(/^- \[(?:x| )\]/gim) || []).length;
-  return { passed, total, p0: stat('P0'), p1: stat('P1'), p2: stat('P2') };
-}
-
 function parseDecisionDoc(content: string | null): SpecFolderExtraction['decisions'] {
   if (!content) return [];
   const extractLabeledBlock = (section: string, label: 'Context' | 'Decision'): string => {
@@ -285,10 +271,14 @@ function parseDecisionDoc(content: string | null): SpecFolderExtraction['decisio
    4. SESSION PHASE DETECTION
 ------------------------------------------------------------------*/
 
-function determineSessionPhase(taskStats: TaskStats, checklistStats: ChecklistStats | null, planPhase: string, status: string): string {
+// A 'testing' phase used to sit between implementing and complete, distinguished
+// by verification items that existed but had not all passed. That signal came from
+// a document that no longer exists, so the phase became unreachable rather than
+// rare. Restoring it needs a new source of partial-verification state, not a
+// parameter that is always null.
+function determineSessionPhase(taskStats: TaskStats, planPhase: string, status: string): string {
   if (/complete|done|closed/i.test(status)) return 'complete';
-  if (taskStats?.percent === 100 && (!checklistStats || checklistStats.passed === checklistStats.total)) return 'complete';
-  if ((checklistStats && checklistStats.total > 0 && checklistStats.passed < checklistStats.total) || taskStats?.percent === 100) return 'testing';
+  if (taskStats?.percent === 100) return 'complete';
   if (taskStats && taskStats.percent >= 25) return 'implementing';
   if (planPhase) return 'implementing';
   return 'planning';
@@ -378,6 +368,6 @@ export async function extractSpecFolderContext(specFolderPath: string): Promise<
       ...((Array.isArray(description.triggerPhrases) ? description.triggerPhrases : []) as unknown[]).filter((t): t is string => typeof t === 'string').map(cleanText),
     ]).slice(0, 12),
     decisions,
-    sessionPhase: determineSessionPhase(tasks, null, plan.phaseTitle, String(description.status || '')),
+    sessionPhase: determineSessionPhase(tasks, plan.phaseTitle, String(description.status || '')),
   };
 }

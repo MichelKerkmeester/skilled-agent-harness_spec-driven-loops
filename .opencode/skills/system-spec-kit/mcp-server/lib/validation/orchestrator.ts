@@ -92,43 +92,6 @@ const ENGINE_NAME = 'orchestrator';
 const CHECKLIST_H1_PREFIX = '# Verification Checklist:';
 const OPTIONAL_TEMPLATE_HEADER_RE = /^(?:L(?:2|3\+?)|FIX ADDENDUM)\s*:/iu;
 const OPTIONAL_TEMPLATE_ANCHORS = new Set(['affected-surfaces', 'nfr', 'edge-cases', 'complexity', 'phase-deps', 'effort', 'enhanced-rollback']);
-const MERGED_VERIFICATION_ANCHORS = new Set([
-  'protocol',
-  'pre-impl',
-  'code-quality',
-  'testing',
-  'fix-completeness',
-  'security',
-  'docs',
-  'file-org',
-  'summary',
-  'arch-verify',
-  'perf-verify',
-  'deploy-ready',
-  'compliance-verify',
-  'docs-verify',
-  'sign-off',
-]);
-const MERGED_VERIFICATION_HEADERS = new Set([
-  'VERIFICATION CHECKLIST',
-  'VERIFICATION CHECKLIST:',
-  'VERIFICATION PROTOCOL',
-  'PRE-IMPLEMENTATION',
-  'CODE QUALITY',
-  'TESTING',
-  'TESTING CHECKLIST',
-  'FIX COMPLETENESS',
-  'SECURITY',
-  'DOCUMENTATION',
-  'FILE ORGANIZATION',
-  'VERIFICATION SUMMARY',
-  'L3+: ARCHITECTURE VERIFICATION',
-  'L3+: PERFORMANCE VERIFICATION',
-  'L3+: DEPLOYMENT READINESS',
-  'L3+: COMPLIANCE VERIFICATION',
-  'L3+: DOCUMENTATION VERIFICATION',
-  'L3+: SIGN-OFF',
-]);
 
 export type RegistrySeverity = 'error' | 'warn' | 'info' | 'skip';
 
